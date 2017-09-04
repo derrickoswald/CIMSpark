@@ -9,12 +9,12 @@ import ch.ninecode.cim.Parseable
 /**
  * Goups Adjacent Control Areas
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param endEffectiveDate end effective date
  * @param lossPercentage_1 Loss percentage
  * @param startEffectiveDate start effective date
- * @param HostControlArea <em>undocumented</em>
- * @param RTO <em>undocumented</em>
+ * @param HostControlArea [[ch.ninecode.model.HostControlArea HostControlArea]] <em>undocumented</em>
+ * @param RTO [[ch.ninecode.model.RTO RTO]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -97,15 +97,15 @@ extends
  *
  * Types range from System Zone/Regions to Market Energy Regions to Aggregated Loads and Aggregated Generators.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param anodeType Type of aggregated node
  * @param endEffectiveDate end effective date
  * @param qualifASOrder Processing Order for AS self-provisions for this region.
  *        The priority of this attribute directs the awards of any resource that resides in overlapping regions. The regions are processed in priority manner.
  * @param startEffectiveDate start effective date
- * @param Pnode <em>undocumented</em>
- * @param RTO <em>undocumented</em>
- * @param SubControlArea <em>undocumented</em>
+ * @param Pnode [[ch.ninecode.model.Pnode Pnode]] <em>undocumented</em>
+ * @param RTO [[ch.ninecode.model.RTO RTO]] <em>undocumented</em>
+ * @param SubControlArea [[ch.ninecode.model.SubControlArea SubControlArea]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -194,7 +194,7 @@ extends
 /**
  * An aggregated pricing node is a specialized type of pricing node used to model items such as System Zone, Default Price Zone, Custom Price Zone, Control Area, Aggregated Generation, Aggregated Particpating Load, Aggregated Non-Participating Load, Trading Hub, Designated Control Area(DCA) Zone
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Pnode Pnode]] Reference to the superclass object.
  * @param apnodeType Aggregate Price Node Types
  * @param participationCategory Designated Control Area participation in LMP price measurement
  *        
@@ -202,8 +202,8 @@ extends
  *        'N' - Not included in LMP price measures
  *        'S' - Participatesin SMPM price measures
  *        'L' - Participatesin LMPM price measures
- * @param PnodeDistributionFactor <em>undocumented</em>
- * @param TACArea <em>undocumented</em>
+ * @param PnodeDistributionFactor [[ch.ninecode.model.PnodeDistributionFactor PnodeDistributionFactor]] <em>undocumented</em>
+ * @param TACArea [[ch.ninecode.model.TACArea TACArea]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -287,7 +287,7 @@ extends
  * @param bidFloorAS Bid Floor (\$/MWH) for generic AS versus a specific market product
  * @param defaultPrice Bid Default Price(\$/MWH)
  * @param marketType Market Type of the cap (DAM or RTM)
- * @param MarketProduct <em>undocumented</em>
+ * @param MarketProduct [[ch.ninecode.model.MarketProduct MarketProduct]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -378,13 +378,13 @@ extends
  *
  * Used to calculate "participation" of Cnode in an AggregateNode. Each Cnode associated to an AggregateNode would be assigned a participation factor for its participation within the AggregateNode.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param factor Used to calculate "participation" of Cnode in an AggregateNode
  * @param podLossFactor Point of delivery loss factor
- * @param AggregateNode <em>undocumented</em>
- * @param HostControlArea <em>undocumented</em>
- * @param MktConnectivityNode <em>undocumented</em>
- * @param SubControlArea <em>undocumented</em>
+ * @param AggregateNode [[ch.ninecode.model.AggregateNode AggregateNode]] <em>undocumented</em>
+ * @param HostControlArea [[ch.ninecode.model.HostControlArea HostControlArea]] <em>undocumented</em>
+ * @param MktConnectivityNode [[ch.ninecode.model.MktConnectivityNode MktConnectivityNode]] <em>undocumented</em>
+ * @param SubControlArea [[ch.ninecode.model.SubControlArea SubControlArea]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -471,9 +471,9 @@ extends
  *
  * For example, a Combined Cycle with (CT1, CT2, ST1) will have (CT1, ST1) and (CT2, ST1) configurations as part of(1CT + 1STlogicalconfiguration).
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.RegisteredGenerator RegisteredGenerator]] Reference to the superclass object.
  * @param primaryConfiguration Whether this CombinedCycleConfiguration is the primary configuration in the associated Logical configuration?
- * @param CombinedCycleLogicalConfiguration <em>undocumented</em>
+ * @param CombinedCycleLogicalConfiguration [[ch.ninecode.model.CombinedCycleLogicalConfiguration CombinedCycleLogicalConfiguration]] <em>undocumented</em>
  * @param ShutdownFlag Whether Combined Cycle Plant can be shut-down in this Configuration?
  * @param StartupFlag Whether Combined Cycle Plant can be started in this Logical Configuration?
  * @group ReferenceData
@@ -552,11 +552,11 @@ extends
 /**
  * Configuration Member of CCP Configuration.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param primary primary configuration.
  * @param steam Steam plant.
- * @param CombinedCycleConfiguration <em>undocumented</em>
- * @param MktThermalGeneratingUnit <em>undocumented</em>
+ * @param CombinedCycleConfiguration [[ch.ninecode.model.CombinedCycleConfiguration CombinedCycleConfiguration]] <em>undocumented</em>
+ * @param MktThermalGeneratingUnit [[ch.ninecode.model.MktThermalGeneratingUnit MktThermalGeneratingUnit]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -635,8 +635,8 @@ extends
  *
  * Operating Combined Cycle Plant (CCP) configurations are represented as Logical CCP Resources. Logical representation shall be used for Market applications to optimize and control Market Operations. Logical representation is also necessary for controlling the number of CCP configurations and to temper performance issues that may otherwise occur.
  *
- * @param sup Reference to the superclass object.
- * @param MktCombinedCyclePlant <em>undocumented</em>
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param MktCombinedCyclePlant [[ch.ninecode.model.MktCombinedCyclePlant MktCombinedCyclePlant]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -778,8 +778,8 @@ extends
 /**
  * Designated Congestion Area Definition (DCA)
  *
- * @param sup Reference to the superclass object.
- * @param IndividualPnode <em>undocumented</em>
+ * @param sup [[ch.ninecode.model.AggregatedPnode AggregatedPnode]] Reference to the superclass object.
+ * @param IndividualPnode [[ch.ninecode.model.IndividualPnode IndividualPnode]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -848,8 +848,8 @@ extends
  * @param factor MW value that this resource provides to the overall contract.
  * @param sinkFlag This value will be set to YES if the referenced Cnode is defined as the sink point in the contract.
  * @param sourceFlag This value will be set to YES if the referenced Cnode is defined as the source point in the contract.
- * @param Flowgate <em>undocumented</em>
- * @param RegisteredResource <em>undocumented</em>
+ * @param Flowgate [[ch.ninecode.model.Flowgate Flowgate]] <em>undocumented</em>
+ * @param RegisteredResource [[ch.ninecode.model.RegisteredResource RegisteredResource]] <em>undocumented</em>
  * @param TransmissionContractRight <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
@@ -937,7 +937,7 @@ extends
  *
  * RMR contract hosting: Startup lead time, Contract Service Limits, Max Service Hours, Max MWhs, Max Start-ups, Ramp Rate, Max Net Dependable Capacity, Min Capacity and Unit Substitution for DAM/RTM to retrieve;
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param chainOrder When used in conjunction with a Transmission Right contract chain, this is the precedence for the contracts.
  * @param contractMW MW value of the contract
  * @param contractPrice Financial value of the contract
@@ -967,8 +967,8 @@ extends
  * @param startupLeadTime Start up lead time
  * @param Chain_TransmissionRightChain <em>undocumented</em>
  * @param Ind_TransmissionRightChain <em>undocumented</em>
- * @param RTO <em>undocumented</em>
- * @param SchedulingCoordinator <em>undocumented</em>
+ * @param RTO [[ch.ninecode.model.RTO RTO]] <em>undocumented</em>
+ * @param SchedulingCoordinator [[ch.ninecode.model.SchedulingCoordinator SchedulingCoordinator]] <em>undocumented</em>
  * @param TRType Transmission Right type - is this an individual contract right or a chain contract right.
  *        Types = CHAIN or INDIVIDUAL
  * @group ReferenceData
@@ -1146,8 +1146,8 @@ extends
  * @param sup Reference to the superclass object.
  * @param attained Attained.
  * @param native1 Native.
- * @param RegisteredResource <em>undocumented</em>
- * @param SubControlArea <em>undocumented</em>
+ * @param RegisteredResource [[ch.ninecode.model.RegisteredResource RegisteredResource]] <em>undocumented</em>
+ * @param SubControlArea [[ch.ninecode.model.SubControlArea SubControlArea]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -1224,19 +1224,19 @@ extends
 /**
  * A flowgate, is single or group of transmission elements intended to model MW flow impact relating to transmission limitations and transmission service usage.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @param direction The direction of the flowgate, export or import
  * @param endEffectiveDate end effective date
  * @param exportMWRating Export MW rating
  * @param importMWRating Import MW rating
  * @param startEffectiveDate start effective date
- * @param CRR <em>undocumented</em>
+ * @param CRR [[ch.ninecode.model.CRR CRR]] <em>undocumented</em>
  * @param From_SubControlArea <em>undocumented</em>
- * @param GenericConstraints <em>undocumented</em>
- * @param HostControlArea <em>undocumented</em>
- * @param MktLine <em>undocumented</em>
- * @param MktPowerTransformer <em>undocumented</em>
- * @param SecurityConstraints <em>undocumented</em>
+ * @param GenericConstraints [[ch.ninecode.model.GenericConstraints GenericConstraints]] <em>undocumented</em>
+ * @param HostControlArea [[ch.ninecode.model.HostControlArea HostControlArea]] <em>undocumented</em>
+ * @param MktLine [[ch.ninecode.model.MktLine MktLine]] <em>undocumented</em>
+ * @param MktPowerTransformer [[ch.ninecode.model.MktPowerTransformer MktPowerTransformer]] <em>undocumented</em>
+ * @param SecurityConstraints [[ch.ninecode.model.SecurityConstraints SecurityConstraints]] <em>undocumented</em>
  * @param To_SubControlArea <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
@@ -1350,8 +1350,8 @@ extends
 /**
  * Flowgate defined partner
  *
- * @param sup Reference to the superclass object.
- * @param FlowgateValue <em>undocumented</em>
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param FlowgateValue [[ch.ninecode.model.FlowgateValue FlowgateValue]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -1423,7 +1423,7 @@ extends
  *        For Realtime Markets use in dispatch to control constraints under TLR and calculate unconstrained market flows
  * @param terminateDate Date/Time when record is no longer effective
  *        Used to determine when a record is no longer effective
- * @param Flowgate <em>undocumented</em>
+ * @param Flowgate [[ch.ninecode.model.Flowgate Flowgate]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -1509,8 +1509,8 @@ extends
  * @param flowDirectionFlag Specifies the direction of energy flow in the flowgate
  * @param mktFlow The amount of energy flow over a specifed flowgate due to generation in the market.
  * @param netFirmNetworkLimit Net Energy flow in flowgate for the associated FlowgatePartner
- * @param Flowgate <em>undocumented</em>
- * @param FlowgatePartner <em>undocumented</em>
+ * @param Flowgate [[ch.ninecode.model.Flowgate Flowgate]] <em>undocumented</em>
+ * @param FlowgatePartner [[ch.ninecode.model.FlowgatePartner FlowgatePartner]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -1605,7 +1605,7 @@ extends
  *
  * The four attributes that define a forbidden region are the low MW, the High MW, the crossing time, and the crossing cost.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param crossTime Time to cross the forbidden region in minutes.
  * @param crossingCost Cost associated with crossing the forbidden region
  * @param highMW High end of the region definition
@@ -1688,8 +1688,8 @@ extends
  *
  * The ID, name, and effectivity dates are utilized.
  *
- * @param sup Reference to the superclass object.
- * @param RegisteredResource <em>undocumented</em>
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param RegisteredResource [[ch.ninecode.model.RegisteredResource RegisteredResource]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -1754,8 +1754,8 @@ extends
 /**
  * Relationship between unit fuel cost in \$/kWh(Y-axis) and  unit output in MW (X-axis).
  *
- * @param sup Reference to the superclass object.
- * @param RegisteredGenerator <em>undocumented</em>
+ * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
+ * @param RegisteredGenerator [[ch.ninecode.model.RegisteredGenerator RegisteredGenerator]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -1820,14 +1820,14 @@ extends
 /**
  * Indication of region for fuel inventory purposes
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param endEffectiveDate end effective date
  * @param fuelRegionType The type of fuel region
  * @param lastModified Time of last update
  * @param startEffectiveDate start effective date
- * @param GasPrice <em>undocumented</em>
- * @param OilPrice <em>undocumented</em>
- * @param RTO <em>undocumented</em>
+ * @param GasPrice [[ch.ninecode.model.GasPrice GasPrice]] <em>undocumented</em>
+ * @param OilPrice [[ch.ninecode.model.OilPrice OilPrice]] <em>undocumented</em>
+ * @param RTO [[ch.ninecode.model.RTO RTO]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -1918,7 +1918,7 @@ extends
  *
  * @param sup Reference to the superclass object.
  * @param gasPriceIndex The average natural gas price at a defined fuel region.
- * @param FuelRegion <em>undocumented</em>
+ * @param FuelRegion [[ch.ninecode.model.FuelRegion FuelRegion]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -1989,15 +1989,15 @@ extends
  *
  * It also has a total load, including transmission and distribution losses.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @param areaControlMode The area's present control mode: (CF = constant frequency) or (CTL = constant tie-line) or (TLB = tie-line bias) or (OFF = off control)
  * @param endEffectiveDate end effective date
  * @param freqSetPoint The present power system frequency set point for automatic generation control
  * @param frequencyBiasFactor The control area's frequency bias factor, in MW/0.1 Hz, for automatic generation control (AGC)
  * @param startEffectiveDate start effective date
- * @param AdjacentCASet <em>undocumented</em>
+ * @param AdjacentCASet [[ch.ninecode.model.AdjacentCASet AdjacentCASet]] <em>undocumented</em>
  * @param Controls A ControlAreaCompany controls a ControlArea.
- * @param RTO <em>undocumented</em>
+ * @param RTO [[ch.ninecode.model.RTO RTO]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -2090,10 +2090,10 @@ extends
 /**
  * Individual pricing node based on Pnode
  *
- * @param sup Reference to the superclass object.
- * @param GenDistributionFactor <em>undocumented</em>
- * @param LoadDistributionFactor <em>undocumented</em>
- * @param MktConnectivityNode <em>undocumented</em>
+ * @param sup [[ch.ninecode.model.Pnode Pnode]] Reference to the superclass object.
+ * @param GenDistributionFactor [[ch.ninecode.model.GenDistributionFactor GenDistributionFactor]] <em>undocumented</em>
+ * @param LoadDistributionFactor [[ch.ninecode.model.LoadDistributionFactor LoadDistributionFactor]] <em>undocumented</em>
+ * @param MktConnectivityNode [[ch.ninecode.model.MktConnectivityNode MktConnectivityNode]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -2168,7 +2168,7 @@ extends
  *
  * Defines Load Aggregation Points.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.AggregateNode AggregateNode]] Reference to the superclass object.
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -2234,7 +2234,7 @@ extends
  * @param intervalEndTime Interval End Time
  * @param intervalStartTime Interval Start Time
  * @param share Share in percentage of total Market load for the selected time interval.
- * @param SchedulingCoordinator <em>undocumented</em>
+ * @param SchedulingCoordinator [[ch.ninecode.model.SchedulingCoordinator SchedulingCoordinator]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -2313,7 +2313,7 @@ extends
  *
  * Relationship between time (Y1-axis) vs. MW (X-axis).
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param loadReductionTimeCurveType type of the curve: Possible values are but not limited to:
  *        Max, Min,
  * @group ReferenceData
@@ -2380,8 +2380,8 @@ extends
 /**
  * Allows definition of reliablity areas (eg load pockets) within the ISO/RTO
  *
- * @param sup Reference to the superclass object.
- * @param RTO <em>undocumented</em>
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param RTO [[ch.ninecode.model.RTO RTO]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -2448,7 +2448,7 @@ extends
  *
  * Specific data is the test identifier (Price, Conduct, or Impact) and the test method (System MPM, Local MPM, Alternate System MPM, or Alternate Local MPM).
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param purposeFlag Nature of threshold data:
  *        'M' - Mitigation threshold
  *        'R' - Reporting threshold
@@ -2536,8 +2536,8 @@ extends
  * @param marketType Market Type (DAM, RTM)
  * @param percent Price Threshold in %
  * @param price Price Threshold in \$/MW
- * @param MPMTestCategory <em>undocumented</em>
- * @param RegisteredResource <em>undocumented</em>
+ * @param MPMTestCategory [[ch.ninecode.model.MPMTestCategory MPMTestCategory]] <em>undocumented</em>
+ * @param RegisteredResource [[ch.ninecode.model.RegisteredResource RegisteredResource]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -2618,7 +2618,7 @@ extends
 /**
  * Metered Sub-System aggregation of MSS Zones.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param costRecovery Charge for Emission Costs, Start Up Costs, or Minimum Load Costs.
  * @param endEffectiveDate end effective date
  * @param grossSettlement MSS Load Following may select Net vs.
@@ -2629,7 +2629,7 @@ extends
  * @param loadFollowing Indication that this particular MSSA participates in the Load Following function.
  * @param rucProcurement Indicates that RUC will be procured by the ISO or self provided.
  * @param startEffectiveDate start effective date
- * @param RTO <em>undocumented</em>
+ * @param RTO [[ch.ninecode.model.RTO RTO]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -2726,13 +2726,13 @@ extends
 /**
  * Model to define a zone within a Metered Sub System
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.AggregateNode AggregateNode]] Reference to the superclass object.
  * @param ignoreLosses Provides an indication if losses are to be ignored for this metered subsystem zone.
  * @param lossFactor This is the default loss factor for the Metered Sub-System (MSS) zone.
  *        The actual losses are calculated during the RT market.
  * @param rucGrossSettlement Metered Sub-System (MSS) Load Following may select Net vs.
  *        Gross settlement.  Net Settlement requires the net Demand settled at the Metered Sub-Sustem (MSS) Load Aggregation Point (LAP) and Net Supply needs to settle at the equivalent to the weighted average price of the MSS generation.  Gross load will be settled at the System LAP and the Gross supply will be settled at the LMP.  MSS Aggregation that elects gross settlement shall have to identify if its resources are Load Following or not.
- * @param MeteredSubSystem <em>undocumented</em>
+ * @param MeteredSubSystem [[ch.ninecode.model.MeteredSubSystem MeteredSubSystem]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -2809,7 +2809,7 @@ extends
 /**
  * General purpose information for name and other information to contact people.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param category Category of this person relative to utility operations, classified according to the utility's corporate standards and practices.
  *        Examples include employee, contractor, agent, not affiliated, etc.
  * @param electronicAddressAlternate Alternate Electronic address.
@@ -2941,7 +2941,7 @@ extends
 /**
  * Certain skills are required and shall be certified in order for a person (typically a member of a crew) to be qualified to work on types of equipment.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param effectiveDate Effective date of the privilege, terminate date of the privilege, or effective date of the application for the organization
  * @param expirationDate This is the terminate date of the application for the organization
  *        The specific organization can no longer access the application as of the terminate date
@@ -3031,7 +3031,7 @@ extends
  *
  * Defines the MarketRegions. Regions could be system Market Regions, Energy Regions or Ancillary Service Regions.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.AggregateNode AggregateNode]] Reference to the superclass object.
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -3093,11 +3093,11 @@ extends
 /**
  * Proficiency level of a craft, which is required to operate or maintain a particular type of asset and/or perform certain types of work.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param certificationPeriod Interval between the certification and its expiry.
  * @param effectiveDateTime Date and time the skill became effective.
  * @param level Level of skill for a Craft.
- * @param MarketPerson <em>undocumented</em>
+ * @param MarketPerson [[ch.ninecode.model.MarketPerson MarketPerson]] <em>undocumented</em>
  * @param MarketQualificationRequirements <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
@@ -3181,7 +3181,7 @@ extends
  *
  * Relationship between unit startup cost (Y1-axis) vs. unit elapsed down time (X-axis). This is used to validate the information provided in the Bid.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -3243,8 +3243,8 @@ extends
 /**
  * A metered subsystem
  *
- * @param sup Reference to the superclass object.
- * @param MSSAggregation <em>undocumented</em>
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param MSSAggregation [[ch.ninecode.model.MSSAggregation MSSAggregation]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -3311,8 +3311,8 @@ extends
  *
  * A set of combustion turbines and steam turbines where the exhaust heat from the combustion turbines is recovered to make steam for the steam turbines, resulting in greater overall plant efficiency
  *
- * @param sup Reference to the superclass object.
- * @param AggregatedPnode <em>undocumented</em>
+ * @param sup [[ch.ninecode.model.CombinedCyclePlant CombinedCyclePlant]] Reference to the superclass object.
+ * @param AggregatedPnode [[ch.ninecode.model.AggregatedPnode AggregatedPnode]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -3377,7 +3377,7 @@ extends
 /**
  * Subclass of IEC61970:Core:ConductingEquipment
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] Reference to the superclass object.
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -3439,7 +3439,7 @@ extends
 /**
  * Subclass of IEC61970:Contingency
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Contingency Contingency]] Reference to the superclass object.
  * @param loadRolloverFlag load change flag
  *        Flag that indicates whether load rollover and load pickup should be processed for this contingency
  * @param ltcControlFlag ltc enable flag
@@ -3534,9 +3534,9 @@ extends
 /**
  * Subclass of IEC61970: Generation: Production:HeatRateCurve
  *
- * @param sup Reference to the superclass object.
- * @param RegisteredGenerator <em>undocumented</em>
- * @param ResourceVerifiableCosts <em>undocumented</em>
+ * @param sup [[ch.ninecode.model.HeatRateCurve HeatRateCurve]] Reference to the superclass object.
+ * @param RegisteredGenerator [[ch.ninecode.model.RegisteredGenerator RegisteredGenerator]] <em>undocumented</em>
+ * @param ResourceVerifiableCosts [[ch.ninecode.model.ResourceVerifiableCosts ResourceVerifiableCosts]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -3605,7 +3605,7 @@ extends
 /**
  * Subclass of ThermalGeneratingUnit from Production Package in IEC61970.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.ThermalGeneratingUnit ThermalGeneratingUnit]] Reference to the superclass object.
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -3669,7 +3669,7 @@ extends
  *
  * @param sup Reference to the superclass object.
  * @param oilPriceIndex The average oil price at a defined fuel region.
- * @param FuelRegion <em>undocumented</em>
+ * @param FuelRegion [[ch.ninecode.model.FuelRegion FuelRegion]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -3738,12 +3738,12 @@ extends
 /**
  * This class models the allocation between asset owners and pricing nodes
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param endEffectiveDate end effective date
  * @param maxMWAllocation Maximum MW for the Source/Sink for the Allocation
  * @param startEffectiveDate start effective date
- * @param MktOrganisation <em>undocumented</em>
- * @param Pnode <em>undocumented</em>
+ * @param MktOrganisation [[ch.ninecode.model.MktOrganisation MktOrganisation]] <em>undocumented</em>
+ * @param Pnode [[ch.ninecode.model.Pnode Pnode]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -3824,14 +3824,14 @@ extends
 /**
  * This class model the ownership percent and type of ownership between resource and organisation
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param asscType association type for the association between Organisation and Resource:
  * @param endEffectiveDate end effective date
  * @param masterSchedulingCoordinatorFlag Flag to indicate that the SC representing the Resource is the Master SC.
  * @param ownershipPercent ownership percentage for each resource
  * @param startEffectiveDate start effective date
- * @param MktOrganisation <em>undocumented</em>
- * @param RegisteredResource <em>undocumented</em>
+ * @param MktOrganisation [[ch.ninecode.model.MktOrganisation MktOrganisation]] <em>undocumented</em>
+ * @param RegisteredResource [[ch.ninecode.model.RegisteredResource RegisteredResource]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -3922,7 +3922,7 @@ extends
  *
  * It is a pricing location for which market participants submit their bids, offers, buy/sell CRRs, and settle.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param endEffectiveDate End effective date of the period in which the price node definition is valid.
  * @param isPublic If true, this Pnode is public (prices are published for DA/RT and FTR markets), otherwise it is private (location is not usable by market for bidding/FTRs/transactions).
  * @param startEffectiveDate Start effective date of the period in which the price node definition is valid.
@@ -3934,10 +3934,10 @@ extends
  *        'Spin Region'
  *        'Non-Spin Region'
  *        'Price Hub'
- * @param RTO <em>undocumented</em>
+ * @param RTO [[ch.ninecode.model.RTO RTO]] <em>undocumented</em>
  * @param SinkCRRSegment <em>undocumented</em>
  * @param SourceCRRSegment <em>undocumented</em>
- * @param SubControlArea <em>undocumented</em>
+ * @param SubControlArea [[ch.ninecode.model.SubControlArea SubControlArea]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -4040,8 +4040,8 @@ extends
  * @param offPeak Indication that this distribution factor is to apply during off peak.
  * @param onPeak Indication that this factor is to apply during Peak periods.
  * @param podLossFactor Point of delivery loss factor
- * @param BidDistributionFactor <em>undocumented</em>
- * @param IndividualPnode <em>undocumented</em>
+ * @param BidDistributionFactor [[ch.ninecode.model.BidDistributionFactor BidDistributionFactor]] <em>undocumented</em>
+ * @param IndividualPnode [[ch.ninecode.model.IndividualPnode IndividualPnode]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -4126,8 +4126,8 @@ extends
 /**
  * Model to support processing of reliability must run units.
  *
- * @param sup Reference to the superclass object.
- * @param RegisteredGenerator <em>undocumented</em>
+ * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
+ * @param RegisteredGenerator [[ch.ninecode.model.RegisteredGenerator RegisteredGenerator]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -4192,8 +4192,8 @@ extends
 /**
  * Model to support processing of reliability must run units.
  *
- * @param sup Reference to the superclass object.
- * @param RegisteredGenerator <em>undocumented</em>
+ * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
+ * @param RegisteredGenerator [[ch.ninecode.model.RegisteredGenerator RegisteredGenerator]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -4258,8 +4258,8 @@ extends
 /**
  * Model to support processing of reliability must run units.
  *
- * @param sup Reference to the superclass object.
- * @param RegisteredGenerator <em>undocumented</em>
+ * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
+ * @param RegisteredGenerator [[ch.ninecode.model.RegisteredGenerator RegisteredGenerator]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -4324,8 +4324,8 @@ extends
 /**
  * Model to support processing of reliability must run units.
  *
- * @param sup Reference to the superclass object.
- * @param RegisteredGenerator <em>undocumented</em>
+ * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
+ * @param RegisteredGenerator [[ch.ninecode.model.RegisteredGenerator RegisteredGenerator]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -4390,8 +4390,8 @@ extends
 /**
  * Model to support processing of reliability must run units.
  *
- * @param sup Reference to the superclass object.
- * @param RegisteredGenerator <em>undocumented</em>
+ * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
+ * @param RegisteredGenerator [[ch.ninecode.model.RegisteredGenerator RegisteredGenerator]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -4456,7 +4456,7 @@ extends
 /**
  * Regional transmission operator.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.MktOrganisation MktOrganisation]] Reference to the superclass object.
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -4520,7 +4520,7 @@ extends
  *
  * Defines RUC Zones. A forecast region represents a collection of Nodes for which the Market operator has developed sufficient historical demand and relevant weather data to perform a demand forecast for such area. The Market Operator may further adjust this forecast to ensure that the Reliability Unit Commitment produces adequate local capacity procurement.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.AggregateNode AggregateNode]] Reference to the superclass object.
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -4582,7 +4582,7 @@ extends
 /**
  * Model of a generator  that is registered to participate in the market
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.RegisteredResource RegisteredResource]] Reference to the superclass object.
  * @param capacityFactor Capacity Factor
  * @param coldStartTime Cold start time.
  * @param combinedCyclePlantName Name of the Combined Cycle Plant (valid for Combined Cyle modes or configurations)
@@ -4667,27 +4667,27 @@ extends
  * @param syncCondCapable Is the Resource Synchronous Condenser capable Resource?
  * @param unitType Generating unit type: Combined Cycle, Gas Turbine, Hydro Turbine, Other, Photovoltaic, Hydro Pump-Turbine, Reciprocating Engine, Steam Turbine, Synchronous Condenser, Wind Turbine
  * @param useLimitFlag Use limit flag: indicates if the use-limited resource is fully scheduled (or has some slack for real-time dispatch) (Y/N)
- * @param EnergyPriceIndex <em>undocumented</em>
- * @param FuelCostCurve <em>undocumented</em>
- * @param FuelRegion <em>undocumented</em>
- * @param LocalReliabilityArea <em>undocumented</em>
- * @param MktHeatRateCurve <em>undocumented</em>
+ * @param EnergyPriceIndex [[ch.ninecode.model.EnergyPriceIndex EnergyPriceIndex]] <em>undocumented</em>
+ * @param FuelCostCurve [[ch.ninecode.model.FuelCostCurve FuelCostCurve]] <em>undocumented</em>
+ * @param FuelRegion [[ch.ninecode.model.FuelRegion FuelRegion]] <em>undocumented</em>
+ * @param LocalReliabilityArea [[ch.ninecode.model.LocalReliabilityArea LocalReliabilityArea]] <em>undocumented</em>
+ * @param MktHeatRateCurve [[ch.ninecode.model.MktHeatRateCurve MktHeatRateCurve]] <em>undocumented</em>
  * @param RMNRFlag Reliability must not run (RMNR) flag: indicated whether the RMR unit is set as an RMNR in the current market
  * @param RMRFlag Reliability must run (RMR) flag: indicates whether the unit is RMR; Indicates whether the unit is RMR:
  *        N' - not an RMR unit
  *        '1' - RMR Condition 1 unit
  *        '2' - RMR Condition 2 unit
- * @param RMRHeatRateCurve <em>undocumented</em>
+ * @param RMRHeatRateCurve [[ch.ninecode.model.RMRHeatRateCurve RMRHeatRateCurve]] <em>undocumented</em>
  * @param RMRManualIndicator Indicates the RMR Manual pre-determination status [Y/N]
- * @param RMRStartUpCostCurve <em>undocumented</em>
- * @param RMRStartUpEnergyCurve <em>undocumented</em>
- * @param RMRStartUpFuelCurve <em>undocumented</em>
- * @param RMRStartUpTimeCurve <em>undocumented</em>
+ * @param RMRStartUpCostCurve [[ch.ninecode.model.RMRStartUpCostCurve RMRStartUpCostCurve]] <em>undocumented</em>
+ * @param RMRStartUpEnergyCurve [[ch.ninecode.model.RMRStartUpEnergyCurve RMRStartUpEnergyCurve]] <em>undocumented</em>
+ * @param RMRStartUpFuelCurve [[ch.ninecode.model.RMRStartUpFuelCurve RMRStartUpFuelCurve]] <em>undocumented</em>
+ * @param RMRStartUpTimeCurve [[ch.ninecode.model.RMRStartUpTimeCurve RMRStartUpTimeCurve]] <em>undocumented</em>
  * @param RMTFlag Reliability must take (RMT) flag (Yes/No): indicates whether the unit is RMT
- * @param RegulatingLimit <em>undocumented</em>
- * @param StartUpEnergyCurve <em>undocumented</em>
- * @param StartUpFuelCurve <em>undocumented</em>
- * @param StartUpTimeCurve <em>undocumented</em>
+ * @param RegulatingLimit [[ch.ninecode.model.RegulatingLimit RegulatingLimit]] <em>undocumented</em>
+ * @param StartUpEnergyCurve [[ch.ninecode.model.StartUpEnergyCurve StartUpEnergyCurve]] <em>undocumented</em>
+ * @param StartUpFuelCurve [[ch.ninecode.model.StartUpFuelCurve StartUpFuelCurve]] <em>undocumented</em>
+ * @param StartUpTimeCurve [[ch.ninecode.model.StartUpTimeCurve StartUpTimeCurve]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -5048,14 +5048,14 @@ extends
 /**
  * This class represents the inter tie resource.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.RegisteredResource RegisteredResource]] Reference to the superclass object.
  * @param direction indicate the direction (export/import) of an intertie resource
  * @param energyProductType Under each major product type, the commodity type can be applied to further specify the type.
  * @param isDCTie Flag to indicated whether this Inter-tie is a DC Tie.
  * @param isDynamicInterchange check if the inter-tie resource is registered for the dynamic interchange..
  * @param minHourlyBlockLimit The registered upper bound of minimum hourly block for an Inter-Tie Resource
- * @param Flowgate <em>undocumented</em>
- * @param InterTieBid <em>undocumented</em>
+ * @param Flowgate [[ch.ninecode.model.Flowgate Flowgate]] <em>undocumented</em>
+ * @param InterTieBid [[ch.ninecode.model.InterTieBid InterTieBid]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -5144,7 +5144,7 @@ extends
 /**
  * Model of a load that is registered to participate in the market (demand reduction)
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.RegisteredResource RegisteredResource]] Reference to the superclass object.
  * @param blockLoadTransferFlag Flag to indicate that the Resource is Block Load pseudo resource (&lsquo;Y&rsquo;, &lsquo; N&rsquo;)
  * @param dynamicallyScheduledLoadResourceFlag Flag to indicate that a Load Resource is part of a DSR Load
  * @param dynamicallyScheduledQualificationFlag Qualification status (used for DSR qualification)
@@ -5169,9 +5169,9 @@ extends
  *        This attribute may be used also in the LoadBid class. The reason that the attribute is also modeled in this class is that it is resource attribute and needs to be persistently stored.
  * @param resourceSubType CLR	Controllable Load
  *        NCLR	Non-Controllable Load
- * @param LoadReductionPriceCurve <em>undocumented</em>
- * @param LoadReductionTimeCurve <em>undocumented</em>
- * @param MktLoadArea <em>undocumented</em>
+ * @param LoadReductionPriceCurve [[ch.ninecode.model.LoadReductionPriceCurve LoadReductionPriceCurve]] <em>undocumented</em>
+ * @param LoadReductionTimeCurve [[ch.ninecode.model.LoadReductionTimeCurve LoadReductionTimeCurve]] <em>undocumented</em>
+ * @param MktLoadArea [[ch.ninecode.model.MktLoadArea MktLoadArea]] <em>undocumented</em>
  * @param NPLCustomLoadAggregation A Non-Participating Load Resource aggregation scheme with resource-specific Distribution Factors that are submitted with the Bid and for which the distributed Energy is settled at the relevant Distribution Location marginal prices.
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
@@ -5321,10 +5321,10 @@ extends
 /**
  * This class represents the physical characteristc of a generator regarding the regulating limit
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param highLimit <em>undocumented</em>
  * @param lowLimit <em>undocumented</em>
- * @param RegisteredGenerator <em>undocumented</em>
+ * @param RegisteredGenerator [[ch.ninecode.model.RegisteredGenerator RegisteredGenerator]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -5404,7 +5404,7 @@ extends
  * @param qualificationFlag Status of the qualification ('Y' = Active, 'N' = Inactive)
  * @param startEffectiveDate Ancillary Service Qualification effective from date
  * @param typ Type of service based on ResourceAncillaryServiceType enumeration
- * @param RegisteredResource RegisteredResources are qualified for resource ancillary service types (which include market product types as well as other types such as BlackStart) by the association to the class ResourceAncillaryServiceQualification.
+ * @param RegisteredResource [[ch.ninecode.model.RegisteredResource RegisteredResource]] RegisteredResources are qualified for resource ancillary service types (which include market product types as well as other types such as BlackStart) by the association to the class ResourceAncillaryServiceQualification.
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -5585,7 +5585,7 @@ extends
 /**
  * To model the Operation and Maintenance (O and M) costs of a generation resource.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param gasPercentAboveLowSustainedLimit Percentage of Fuel Index Price (gas) for operating above Low Sustained Limit (LSL)
  * @param oilPercentAboveLowSustainedLimit Percentage of Fuel Oil Price (FOP) for operating above Low Sustained Limit (LSL)
  * @param omCostColdStartup Verifiable O&amp;M Cost (\$), Cold Startup
@@ -5593,7 +5593,7 @@ extends
  * @param omCostIntermediateStartup Verifiable O&amp;M Cost (\$), Intermediate Startup
  * @param omCostLowSustainedLimit Verifiable O&amp;M Cost (\$/MWh), LSL
  * @param solidfuelPercentAboveLowSustainedLimit Percentage of Solid Fuel for operating above Low Sustained Limit (LSL)
- * @param ResourceVerifiableCosts <em>undocumented</em>
+ * @param ResourceVerifiableCosts [[ch.ninecode.model.ResourceVerifiableCosts ResourceVerifiableCosts]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -5703,7 +5703,7 @@ extends
  * @param solidfuelPercentHotStartup Percentage of Solid Fuel for hot startup
  * @param solidfuelPercentIntermediateStartup Percentage of Solid Fuel for intermedite startup
  * @param solidfuelPercentLowSustainedLimit Percentage of Solid Fuel for operating at LSL
- * @param ResourceVerifiableCosts <em>undocumented</em>
+ * @param ResourceVerifiableCosts [[ch.ninecode.model.ResourceVerifiableCosts ResourceVerifiableCosts]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -5833,9 +5833,9 @@ extends
  * This class is defined to describe the verifiable costs associated with a generation resource.
  *
  * @param sup Reference to the superclass object.
- * @param MktHeatRateCurve <em>undocumented</em>
- * @param RegisteredResource <em>undocumented</em>
- * @param ResourceOperationMaintenanceCost <em>undocumented</em>
+ * @param MktHeatRateCurve [[ch.ninecode.model.MktHeatRateCurve MktHeatRateCurve]] <em>undocumented</em>
+ * @param RegisteredResource [[ch.ninecode.model.RegisteredResource RegisteredResource]] <em>undocumented</em>
+ * @param ResourceOperationMaintenanceCost [[ch.ninecode.model.ResourceOperationMaintenanceCost ResourceOperationMaintenanceCost]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -5910,9 +5910,9 @@ extends
  *
  * One participant could register multiple SCs with the RTO/ISO. Many market participants can do business with the RTO/ISO using a single SC. One SC could schedule multiple generators. A load scheduling point could be used by multiple SCs. Each SC could schedule load at multiple scheduling points. An inter-tie scheduling point can be used by multiple SCs. Each SC can schedule interchange at multiple inter-tie scheduling points.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.MktOrganisation MktOrganisation]] Reference to the superclass object.
  * @param scid This is the short name or Scheduling Coordinator ID field.
- * @param LoadRatio <em>undocumented</em>
+ * @param LoadRatio [[ch.ninecode.model.LoadRatio LoadRatio]] <em>undocumented</em>
  * @param MktOrgansation <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
@@ -6072,10 +6072,10 @@ extends
 /**
  * Connection to other organizations at the boundary of the ISO/RTO.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param endEffectiveDate End effective date.
  * @param startEffectiveDate Start effective date.
- * @param Flowgate <em>undocumented</em>
+ * @param Flowgate [[ch.ninecode.model.Flowgate Flowgate]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -6150,8 +6150,8 @@ extends
  *
  * Definition of the StartUpEnergyCurve includes, xvalue as the cooling time and y1value as the MW value.
  *
- * @param sup Reference to the superclass object.
- * @param RegisteredGenerator <em>undocumented</em>
+ * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
+ * @param RegisteredGenerator [[ch.ninecode.model.RegisteredGenerator RegisteredGenerator]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -6216,8 +6216,8 @@ extends
 /**
  * The fuel consumption of a Generating Resource to complete a Start-Up.(x=cooling time) Form Startup Fuel Curve. xAxisData -&gt; cooling time, y1AxisData -&gt; MBtu
  *
- * @param sup Reference to the superclass object.
- * @param RegisteredGenerator <em>undocumented</em>
+ * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
+ * @param RegisteredGenerator [[ch.ninecode.model.RegisteredGenerator RegisteredGenerator]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -6282,7 +6282,7 @@ extends
 /**
  * An area defined for the purpose of tracking interchange with surrounding areas via tie points; may or may not serve as a control area.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @param areaShortName Market area short name, which is the regulation zone.
  *        It references AGC regulation zone name.
  * @param constantCoefficient Loss estimate constant coefficient
@@ -6296,10 +6296,10 @@ extends
  * @param minSelfSchedMW Minimum amount of self schedule MW allowed for an embedded control area.
  * @param quadraticCoefficient Loss estimate quadratic coefficient
  * @param startEffectiveDate start effective date
- * @param AdjacentCASet <em>undocumented</em>
+ * @param AdjacentCASet [[ch.ninecode.model.AdjacentCASet AdjacentCASet]] <em>undocumented</em>
  * @param AreaReserveSpecification <em>undocumented</em>
- * @param HostControlArea The interchange area  may operate as a control area
- * @param RTO <em>undocumented</em>
+ * @param HostControlArea [[ch.ninecode.model.HostControlArea HostControlArea]] The interchange area  may operate as a control area
+ * @param RTO [[ch.ninecode.model.RTO RTO]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -6425,7 +6425,7 @@ extends
  * @param sup Reference to the superclass object.
  * @param precedence An indicator of the order a resource should be substituted.
  *        The lower the number the higher the precedence.
- * @param RegisteredResource <em>undocumented</em>
+ * @param RegisteredResource [[ch.ninecode.model.RegisteredResource RegisteredResource]] <em>undocumented</em>
  * @param TransmissionContractRight <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
@@ -6501,7 +6501,7 @@ extends
  *
  * Charges assessed, on behalf of the Participating Transmission Owner, to parties who require access to the controlled grid.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param endEffectiveDate end effective date
  * @param startEffectiveDate start effective date
  * @group ReferenceData
@@ -6574,11 +6574,11 @@ extends
  *
  * Many individual contract rights can be included in the definition of a TransmissionRightChain. A TransmissionRightChain is also defined as a TransmissionContractRight itself.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param endEffectiveDate end effective date
  * @param startEffectiveDate start effective date
  * @param Chain_ContractRight <em>undocumented</em>
- * @param RTO <em>undocumented</em>
+ * @param RTO [[ch.ninecode.model.RTO RTO]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -6655,8 +6655,8 @@ extends
 /**
  * Counter party in a wheeling transaction.
  *
- * @param sup Reference to the superclass object.
- * @param RegisteredInterTie <em>undocumented</em>
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param RegisteredInterTie [[ch.ninecode.model.RegisteredInterTie RegisteredInterTie]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.

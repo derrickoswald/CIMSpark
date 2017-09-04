@@ -9,13 +9,13 @@ import ch.ninecode.cim.Parseable
 /**
  * Financial Transmission Rights (FTR) regarding transmission capacity at a flowgate.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Agreement Agreement]] Reference to the superclass object.
  * @param action Buy, Sell
  * @param baseEnergy Quantity, typically MWs - Seller owns all rights being offered, MWs over time on same Point of Receipt, Point of Delivery, or Resource.
  * @param ftrType Type of rights being offered (product) allowed to be auctioned (option, obligation).
  * @param optimized Fixed (covers re-configuration, grandfathering) or Optimized (up for sale/purchase
- * @param EnergyPriceCurve <em>undocumented</em>
- * @param Flowgate <em>undocumented</em>
+ * @param EnergyPriceCurve [[ch.ninecode.model.EnergyPriceCurve EnergyPriceCurve]] <em>undocumented</em>
+ * @param Flowgate [[ch.ninecode.model.Flowgate Flowgate]] <em>undocumented</em>
  * @param Pnodes <em>undocumented</em>
  * @param _class Peak, Off-peak, 24-hour
  * @group InfCongestionRevenueRights
@@ -109,11 +109,11 @@ extends
 /**
  * A type of limit that indicates if it is enforced and, through association, the organisation responsible for setting the limit.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Limit Limit]] Reference to the superclass object.
  * @param enforced True if limit is enforced.
- * @param Flowgate <em>undocumented</em>
- * @param MktMeasurement <em>undocumented</em>
- * @param MktOrganisation <em>undocumented</em>
+ * @param Flowgate [[ch.ninecode.model.Flowgate Flowgate]] <em>undocumented</em>
+ * @param MktMeasurement [[ch.ninecode.model.MktMeasurement MktMeasurement]] <em>undocumented</em>
+ * @param MktOrganisation [[ch.ninecode.model.MktOrganisation MktOrganisation]] <em>undocumented</em>
  * @group InfCongestionRevenueRights
  * @groupname InfCongestionRevenueRights Package InfCongestionRevenueRights
  */

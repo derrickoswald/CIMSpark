@@ -11,7 +11,7 @@ import ch.ninecode.cim.Parseable
  *
  * Irated is the rated machine excitation current (calculated from nameplate conditions: V<sub>nom</sub>, P<sub>nom</sub>, CosPhi<sub>nom</sub>).
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.OverexcitationLimiterDynamics OverexcitationLimiterDynamics]] Reference to the superclass object.
  * @param ifdlim Limit value of rated field current (I<sub>FDLIM</sub>).
  *        Typical Value = 1.05.
  * @param koi Gain Over excitation limiter (K<sub>OI</sub>).
@@ -98,7 +98,7 @@ extends
  *
  * It is the result of a pragmatic approach to obtain a model that can be widely applied with attainable data from generator owners. An attempt to include all variations in the functionality of OELs and duplicate how they interact with the rest of the excitation systems would likely result in a level of application insufficient for the studies for which they are intended.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.OverexcitationLimiterDynamics OverexcitationLimiterDynamics]] Reference to the superclass object.
  * @param hyst OEL pickup/drop-out hysteresis (HYST).
  *        Typical Value = 0.03.
  * @param ifdlim OEL timed field current limit (I<sub>FDLIM</sub>).
@@ -195,7 +195,7 @@ extends
 /**
  * Field voltage over excitation limiter.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.OverexcitationLimiterDynamics OverexcitationLimiterDynamics]] Reference to the superclass object.
  * @param efd1 Low voltage point on the inverse time characteristic (EFD<sub>1</sub>).
  *        Typical Value = 1.1.
  * @param efd2 Mid voltage point on the inverse time characteristic (EFD<sub>2</sub>).
@@ -315,7 +315,7 @@ extends
 /**
  * Field Voltage or Current overexcitation limiter designed to protect the generator field of an AC machine with automatic excitation control from overheating due to prolonged overexcitation.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.OverexcitationLimiterDynamics OverexcitationLimiterDynamics]] Reference to the superclass object.
  * @param efd1 Low voltage or current point on the inverse time characteristic (EFD<sub>1</sub>).
  *        Typical Value = 1.1.
  * @param efd2 Mid voltage or current point on the inverse time characteristic (EFD<sub>2</sub>).
@@ -442,8 +442,8 @@ extends
 /**
  * <font color="#0f0f0f">O</font>Overexcitation limiter function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  *
- * @param sup Reference to the superclass object.
- * @param ExcitationSystemDynamics Excitation system model with which this overexcitation limiter model is associated.
+ * @param sup [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Excitation system model with which this overexcitation limiter model is associated.
  * @group OverexcitationLimiterDynamics
  * @groupname OverexcitationLimiterDynamics Package OverexcitationLimiterDynamics
  * @groupdesc OverexcitationLimiterDynamics Overexcitation limiters (OELs) are also referred to as <i>maximum excitation limiters </i>and <i>field current limiters. </i>The possibility of voltage collapse in stressed power systems increases the importance of modelling these limiters in studies of system conditions that cause machines to operate at high levels of excitation for a sustained period, such as voltage collapse or system-islanding. Such events typically occur over a long time frame compared with transient or small-signal stability simulations.

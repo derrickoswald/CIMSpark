@@ -9,8 +9,8 @@ import ch.ninecode.cim.Parseable
 /**
  * Power Factor or VAr controller Type II function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  *
- * @param sup Reference to the superclass object.
- * @param ExcitationSystemDynamics Excitation system model with which this Power Factor or VAr controller Type II is associated.
+ * @param sup [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Excitation system model with which this Power Factor or VAr controller Type II is associated.
  * @group PFVArControllerType2Dynamics
  * @groupname PFVArControllerType2Dynamics Package PFVArControllerType2Dynamics
  * @groupdesc PFVArControllerType2Dynamics <font color="#0f0f0f">A var/pf regulator is defined as �A synchronous machine regulator that functions to maintain the power factor or reactive component of power at a predetermined value.�  </font>
@@ -81,7 +81,7 @@ extends
  *
  * This model represents the power factor or reactive power controller such as the Basler SCP-250. The controller measures power factor or reactive power (PU on generator rated power) and compares it with the operator's set point.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PFVArControllerType2Dynamics PFVArControllerType2Dynamics]] Reference to the superclass object.
  * @param j Selector (J).
  *        true = control mode for reactive power
  *        false = control mode for power factor.
@@ -176,7 +176,7 @@ extends
  *
  * This controller is implemented as a slow PI type controller. The voltage regulator forms the inner loop and is implemented as a fast controller.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PFVArControllerType2Dynamics PFVArControllerType2Dynamics]] Reference to the superclass object.
  * @param exlon Overexcitation or under excitation flag (<i>EXLON</i>)
  *        true = 1 (not in the overexcitation or underexcitation state, integral action is active)
  *        false = 0 (in the overexcitation or underexcitation state, so integral action is disabled to allow the limiter to play its role).
@@ -283,7 +283,7 @@ extends
  *
  * It makes up the outside loop of a two-loop system. This controller is implemented as a slow PI type controller, and the voltage regulator forms the inner loop and is implemented as a fast controller.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PFVArControllerType2Dynamics PFVArControllerType2Dynamics]] Reference to the superclass object.
  * @param exlon Overexcitation or under excitation flag (<i>EXLON</i>)
  *        true = 1 (not in the overexcitation or underexcitation state, integral action is active)
  *        false = 0 (in the overexcitation or underexcitation state, so integral action is disabled to allow the limiter to play its role).

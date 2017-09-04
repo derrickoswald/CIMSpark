@@ -74,7 +74,7 @@ extends
  * This class is typically not included in instance data exchange as this information is tracked by other mechanisms in the exchange.
  *
  * @param sup Reference to the superclass object.
- * @param ModelingAuthority A Modeling Authority set supplies and maintains the data for the objects in a Modeling Authority Set.
+ * @param ModelingAuthority [[ch.ninecode.model.ModelingAuthority ModelingAuthority]] A Modeling Authority set supplies and maintains the data for the objects in a Modeling Authority Set.
  * @group ModelAuthority
  * @groupname ModelAuthority Package ModelAuthority
  * @groupdesc ModelAuthority The package describes meta data for partitioning  power system models into non overlapping subsets of objects managed by a model authority.

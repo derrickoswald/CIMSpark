@@ -9,7 +9,7 @@ import ch.ninecode.cim.Parseable
 /**
  * This is a environmental based limit dependency model for calculating operational limits.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.LimitDependency LimitDependency]] Reference to the superclass object.
  * @group InfOperationalLimits
  * @groupname InfOperationalLimits Package InfOperationalLimits
  * @groupdesc InfOperationalLimits The description of computed or dynamic limits.
@@ -72,10 +72,10 @@ extends
 /**
  * This represents one instance of an equipment that contributes to the calculation of an operational limit.
  *
- * @param sup Reference to the superclass object.
- * @param Equipment Equipment contributing toward the series limit.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param Equipment [[ch.ninecode.model.Equipment Equipment]] Equipment contributing toward the series limit.
  *        The reference here is to Equipment rather than a specific limit on the equipment so the grouiping can be reused for multiple limits of different types on the same instance of equipment.
- * @param SeriesEquipmentDependentLimit Calculation in which the refernce to equipment applies.
+ * @param SeriesEquipmentDependentLimit [[ch.ninecode.model.SeriesEquipmentDependentLimit SeriesEquipmentDependentLimit]] Calculation in which the refernce to equipment applies.
  * @group InfOperationalLimits
  * @groupname InfOperationalLimits Package InfOperationalLimits
  * @groupdesc InfOperationalLimits The description of computed or dynamic limits.
@@ -147,8 +147,8 @@ extends
  *
  * These are intended to be shared among operational limits with the same calculation form that apply to a piece of equipment..
  *
- * @param sup Reference to the superclass object.
- * @param Equipment The equipment for which this limit dependency model is organized under.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param Equipment [[ch.ninecode.model.Equipment Equipment]] The equipment for which this limit dependency model is organized under.
  * @group InfOperationalLimits
  * @groupname InfOperationalLimits Package InfOperationalLimits
  * @groupdesc InfOperationalLimits The description of computed or dynamic limits.
@@ -214,7 +214,7 @@ extends
 /**
  * Specifies an operational  limit is calculated by scaling another operational limit.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.LimitDependency LimitDependency]] Reference to the superclass object.
  * @param limitScalingPercent The associated source limit is scaled by this value to compute the limit of the dependency model.
  * @param SourceOperationalLimit <em>undocumented</em>
  * @group InfOperationalLimits
@@ -430,7 +430,7 @@ extends
 /**
  * A time scheduled value for apparent power limit.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.ScheduledLimitValue ScheduledLimitValue]] Reference to the superclass object.
  * @param value The apparent power limit value for the scheduled time.
  * @group InfOperationalLimits
  * @groupname InfOperationalLimits Package InfOperationalLimits
@@ -497,7 +497,7 @@ extends
 /**
  * A current limit that is scheduled.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.ScheduledLimitValue ScheduledLimitValue]] Reference to the superclass object.
  * @param value The current flow limit value applicable at the scheduled time.
  * @group InfOperationalLimits
  * @groupname InfOperationalLimits Package InfOperationalLimits
@@ -625,9 +625,9 @@ extends
 /**
  * A limit that is applicable during a scheduled time period.
  *
- * @param sup Reference to the superclass object.
- * @param ScheduledLimitDependency <em>undocumented</em>
- * @param Season The season for which the scheduled limits applies.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param ScheduledLimitDependency [[ch.ninecode.model.ScheduledLimitDependency ScheduledLimitDependency]] <em>undocumented</em>
+ * @param Season [[ch.ninecode.model.Season Season]] The season for which the scheduled limits applies.
  *        If not specified, then applicable ot any season.
  * @group InfOperationalLimits
  * @groupname InfOperationalLimits Package InfOperationalLimits
@@ -698,7 +698,7 @@ extends
 /**
  * A voltage limit value for a scheduled time.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.ScheduledLimitValue ScheduledLimitValue]] Reference to the superclass object.
  * @param value The voltage limit value for the scheduled time.
  * @group InfOperationalLimits
  * @groupname InfOperationalLimits Package InfOperationalLimits
@@ -767,7 +767,7 @@ extends
  *
  * A specification of  of equipment that determines the calculated operational limit values based upon other equipment and their ratings.  The most restrictive limit connected in series within the group is used.   The physical connection based on switch status for example may also impact which elements in the group are considered. Any equipment in the group that are presently connected in series with the equipment of the directly associated operational limit are used.   This provides a means to indicate which potentially series equipment limits are considered for a computed operational limit. The operational limit of the same operational limit type is assumed to be used from the grouped equipment.   It is also possible to make assumptions or calculations regarding how flow might split if the equipment is not simply in series.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.LimitDependency LimitDependency]] Reference to the superclass object.
  * @group InfOperationalLimits
  * @groupname InfOperationalLimits Package InfOperationalLimits
  * @groupdesc InfOperationalLimits The description of computed or dynamic limits.
@@ -833,7 +833,7 @@ extends
  * @param sup Reference to the superclass object.
  * @param limitPercent The scaling of the operational limit in percent.
  * @param temperature The temperature of the table point.
- * @param TemperatureDependentLimitTable <em>undocumented</em>
+ * @param TemperatureDependentLimitTable [[ch.ninecode.model.TemperatureDependentLimitTable TemperatureDependentLimitTable]] <em>undocumented</em>
  * @group InfOperationalLimits
  * @groupname InfOperationalLimits Package InfOperationalLimits
  * @groupdesc InfOperationalLimits The description of computed or dynamic limits.
@@ -907,7 +907,7 @@ extends
 /**
  * This is a table lookup that provides limit values corresponding to a temperature input.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.EnvironmentalDependentLimit EnvironmentalDependentLimit]] Reference to the superclass object.
  * @group InfOperationalLimits
  * @groupname InfOperationalLimits Package InfOperationalLimits
  * @groupdesc InfOperationalLimits The description of computed or dynamic limits.
@@ -970,7 +970,7 @@ extends
 /**
  * This describes the coefficients of a polynomial function that has temperature as input and calculates limit values as output.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.EnvironmentalDependentLimit EnvironmentalDependentLimit]] Reference to the superclass object.
  * @param coefficient0 The polinomial coefficent of power 0.
  * @param coefficient1 The polinomial coefficent of power 1.
  * @param coefficient2 The polinomial coefficent of power 2.
@@ -1057,7 +1057,7 @@ extends
 /**
  * This represents a source of ambient temperature.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @group InfOperationalLimits
  * @groupname InfOperationalLimits Package InfOperationalLimits
  * @groupdesc InfOperationalLimits The description of computed or dynamic limits.

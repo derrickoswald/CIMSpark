@@ -9,7 +9,7 @@ import ch.ninecode.cim.Parseable
 /**
  * A function that will disconnect and reconnect the customer's load under defined conditions.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.EndDeviceFunction EndDeviceFunction]] Reference to the superclass object.
  * @param eventCount Running cumulative count of connect or disconnect events, for the lifetime of this function or until the value is cleared.
  * @param isConnected True if this function is in the connected state.
  * @param isDelayedDiscon If set true, the switch may disconnect the service at the end of a specified time delay after the disconnect signal has been given.

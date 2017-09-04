@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>ConstraintResults - CIMReader 2.11-2.1.1-2.2.0 API - ch.ninecode.model.ConstraintResults</title>
-          <meta name="description" content="ConstraintResults - CIMReader 2.11 - 2.1.1 - 2.2.0 API - ch.ninecode.model.ConstraintResults" />
-          <meta name="keywords" content="ConstraintResults CIMReader 2.11 2.1.1 2.2.0 API ch.ninecode.model.ConstraintResults" />
+          <title>ConstraintResults - CIMReader 2.11-2.2.0-2.2.0 API - ch.ninecode.model.ConstraintResults</title>
+          <meta name="description" content="ConstraintResults - CIMReader 2.11 - 2.2.0 - 2.2.0 API - ch.ninecode.model.ConstraintResults" />
+          <meta name="keywords" content="ConstraintResults CIMReader 2.11 2.2.0 2.2.0 API ch.ninecode.model.ConstraintResults" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -52,10 +52,10 @@
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Provides the Market results for the constraint processing for either the DAM or RTM.</p><p>The data includes the constraint type (binding or violated), the solved value for the constraint, and the associated shadow price.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">baseFlow</dt><dd class="cmt"><p>Branch base Power Flow.</p></dd><dt class="param">bindingLimit</dt><dd class="cmt"><p>MW Limit.</p></dd><dt class="param">clearedValue</dt><dd class="cmt"><p>Cleared MW.</p></dd><dt class="param">competitivePathConstraint</dt><dd class="cmt"><p>Non-competitive path constraint Flag&quot;(Y/N)  indicating whether the shadow price on a non-competitive path was non-zero.</p></dd><dt class="param">constraintType</dt><dd class="cmt"><p>Type of constraint.</p></dd><dt class="param">limitFlag</dt><dd class="cmt"><p>Limit flag ('Maximum', 'Minimum').</p></dd><dt class="param">optimizationFlag</dt><dd class="cmt"><p>Included in optimization Y/N.</p></dd><dt class="param">overloadMW</dt><dd class="cmt"><p>Transmission overload MW.</p></dd><dt class="param">percentMW</dt><dd class="cmt"><p>Actual MW flow as percent of limit.</p></dd><dt class="param">shadowPrice</dt><dd class="cmt"><p>Shadow Price ($/MW) for the commodity.
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">baseFlow</dt><dd class="cmt"><p>Branch base Power Flow.</p></dd><dt class="param">bindingLimit</dt><dd class="cmt"><p>MW Limit.</p></dd><dt class="param">clearedValue</dt><dd class="cmt"><p>Cleared MW.</p></dd><dt class="param">competitivePathConstraint</dt><dd class="cmt"><p>Non-competitive path constraint Flag&quot;(Y/N)  indicating whether the shadow price on a non-competitive path was non-zero.</p></dd><dt class="param">constraintType</dt><dd class="cmt"><p>Type of constraint.</p></dd><dt class="param">limitFlag</dt><dd class="cmt"><p>Limit flag ('Maximum', 'Minimum').</p></dd><dt class="param">optimizationFlag</dt><dd class="cmt"><p>Included in optimization Y/N.</p></dd><dt class="param">overloadMW</dt><dd class="cmt"><p>Transmission overload MW.</p></dd><dt class="param">percentMW</dt><dd class="cmt"><p>Actual MW flow as percent of limit.</p></dd><dt class="param">shadowPrice</dt><dd class="cmt"><p>Shadow Price ($/MW) for the commodity.
        Shadow price for the corresponding constraint.</p></dd><dt class="param">updateTimeStamp</dt><dd class="cmt"><p>Update time stamp.</p></dd><dt class="param">updateType</dt><dd class="cmt"><p>MQS change type.</p></dd><dt class="param">updateUser</dt><dd class="cmt"><p>Updated user.</p></dd><dt class="param">BGLimit</dt><dd class="cmt"><p>This value is determined in DA and RTM.
        The SCUC optimization ensures that the MW flow on the Branch Group will not exceed this limit in the relevant direction.</p></dd><dt class="param">BGTRResCap</dt><dd class="cmt"><p>Branch Group TR Reservation Capacity - This value is determined in DA and RTM.
-       It is the amount of spare transmission capacity that is left for the TR holder to use.</p></dd><dt class="param">ConstraintClearing</dt><dd class="cmt"><p><em>undocumented</em></p></dd><dt class="param">Flowgate</dt><dd class="cmt"><p><em>undocumented</em></p></dd><dt class="param">MktContingency</dt><dd class="cmt"><p><em>undocumented</em></p></dd></dl><div class="toggleContainer block">
+       It is the amount of spare transmission capacity that is left for the TR holder to use.</p></dd><dt class="param">ConstraintClearing</dt><dd class="cmt"><p><a href="ConstraintClearing.html" class="extype" name="ch.ninecode.model.ConstraintClearing">ConstraintClearing</a> <em>undocumented</em></p></dd><dt class="param">Flowgate</dt><dd class="cmt"><p><a href="Flowgate.html" class="extype" name="ch.ninecode.model.Flowgate">Flowgate</a> <em>undocumented</em></p></dd><dt class="param">MktContingency</dt><dd class="cmt"><p><a href="MktContingency.html" class="extype" name="ch.ninecode.model.MktContingency">MktContingency</a> <em>undocumented</em></p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -127,10 +127,10 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">baseFlow</dt><dd class="cmt"><p>Branch base Power Flow.</p></dd><dt class="param">bindingLimit</dt><dd class="cmt"><p>MW Limit.</p></dd><dt class="param">clearedValue</dt><dd class="cmt"><p>Cleared MW.</p></dd><dt class="param">competitivePathConstraint</dt><dd class="cmt"><p>Non-competitive path constraint Flag&quot;(Y/N)  indicating whether the shadow price on a non-competitive path was non-zero.</p></dd><dt class="param">constraintType</dt><dd class="cmt"><p>Type of constraint.</p></dd><dt class="param">limitFlag</dt><dd class="cmt"><p>Limit flag ('Maximum', 'Minimum').</p></dd><dt class="param">optimizationFlag</dt><dd class="cmt"><p>Included in optimization Y/N.</p></dd><dt class="param">overloadMW</dt><dd class="cmt"><p>Transmission overload MW.</p></dd><dt class="param">percentMW</dt><dd class="cmt"><p>Actual MW flow as percent of limit.</p></dd><dt class="param">shadowPrice</dt><dd class="cmt"><p>Shadow Price ($/MW) for the commodity.
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">baseFlow</dt><dd class="cmt"><p>Branch base Power Flow.</p></dd><dt class="param">bindingLimit</dt><dd class="cmt"><p>MW Limit.</p></dd><dt class="param">clearedValue</dt><dd class="cmt"><p>Cleared MW.</p></dd><dt class="param">competitivePathConstraint</dt><dd class="cmt"><p>Non-competitive path constraint Flag&quot;(Y/N)  indicating whether the shadow price on a non-competitive path was non-zero.</p></dd><dt class="param">constraintType</dt><dd class="cmt"><p>Type of constraint.</p></dd><dt class="param">limitFlag</dt><dd class="cmt"><p>Limit flag ('Maximum', 'Minimum').</p></dd><dt class="param">optimizationFlag</dt><dd class="cmt"><p>Included in optimization Y/N.</p></dd><dt class="param">overloadMW</dt><dd class="cmt"><p>Transmission overload MW.</p></dd><dt class="param">percentMW</dt><dd class="cmt"><p>Actual MW flow as percent of limit.</p></dd><dt class="param">shadowPrice</dt><dd class="cmt"><p>Shadow Price ($/MW) for the commodity.
        Shadow price for the corresponding constraint.</p></dd><dt class="param">updateTimeStamp</dt><dd class="cmt"><p>Update time stamp.</p></dd><dt class="param">updateType</dt><dd class="cmt"><p>MQS change type.</p></dd><dt class="param">updateUser</dt><dd class="cmt"><p>Updated user.</p></dd><dt class="param">BGLimit</dt><dd class="cmt"><p>This value is determined in DA and RTM.
        The SCUC optimization ensures that the MW flow on the Branch Group will not exceed this limit in the relevant direction.</p></dd><dt class="param">BGTRResCap</dt><dd class="cmt"><p>Branch Group TR Reservation Capacity - This value is determined in DA and RTM.
-       It is the amount of spare transmission capacity that is left for the TR holder to use.</p></dd><dt class="param">ConstraintClearing</dt><dd class="cmt"><p><em>undocumented</em></p></dd><dt class="param">Flowgate</dt><dd class="cmt"><p><em>undocumented</em></p></dd><dt class="param">MktContingency</dt><dd class="cmt"><p><em>undocumented</em></p></dd></dl></div>
+       It is the amount of spare transmission capacity that is left for the TR holder to use.</p></dd><dt class="param">ConstraintClearing</dt><dd class="cmt"><p><a href="ConstraintClearing.html" class="extype" name="ch.ninecode.model.ConstraintClearing">ConstraintClearing</a> <em>undocumented</em></p></dd><dt class="param">Flowgate</dt><dd class="cmt"><p><a href="Flowgate.html" class="extype" name="ch.ninecode.model.Flowgate">Flowgate</a> <em>undocumented</em></p></dd><dt class="param">MktContingency</dt><dd class="cmt"><p><a href="MktContingency.html" class="extype" name="ch.ninecode.model.MktContingency">MktContingency</a> <em>undocumented</em></p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -243,7 +243,7 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"><em>undocumented</em> </em></p><div class="fullcomment"><div class="comment cmt"><p><em>undocumented</em></p></div></div>
+      <p class="shortcomment cmt"><a href="ConstraintClearing.html" class="extype" name="ch.ninecode.model.ConstraintClearing">ConstraintClearing</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="ConstraintClearing.html" class="extype" name="ch.ninecode.model.ConstraintClearing">ConstraintClearing</a> <em>undocumented</em></p></div></div>
     </li><li name="ch.ninecode.model.ConstraintResults#Flowgate" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="Flowgate:String"></a>
       <a id="Flowgate:String"></a>
@@ -260,7 +260,7 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"><em>undocumented</em> </em></p><div class="fullcomment"><div class="comment cmt"><p><em>undocumented</em></p></div></div>
+      <p class="shortcomment cmt"><a href="Flowgate.html" class="extype" name="ch.ninecode.model.Flowgate">Flowgate</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="Flowgate.html" class="extype" name="ch.ninecode.model.Flowgate">Flowgate</a> <em>undocumented</em></p></div></div>
     </li><li name="ch.ninecode.model.ConstraintResults#IdentifiedObject" visbl="pub" data-isabs="false" fullComment="yes" group="Hierarchy">
       <a id="IdentifiedObject:ch.ninecode.model.IdentifiedObject"></a>
       <a id="IdentifiedObject:IdentifiedObject"></a>
@@ -295,7 +295,7 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"><em>undocumented</em> </em></p><div class="fullcomment"><div class="comment cmt"><p><em>undocumented</em></p></div></div>
+      <p class="shortcomment cmt"><a href="MktContingency.html" class="extype" name="ch.ninecode.model.MktContingency">MktContingency</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="MktContingency.html" class="extype" name="ch.ninecode.model.MktContingency">MktContingency</a> <em>undocumented</em></p></div></div>
     </li><li name="org.apache.spark.sql.Row#anyNull" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="anyNull:Boolean"></a>
       <a id="anyNull:Boolean"></a>
@@ -1266,7 +1266,7 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Reference to the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Reference to the superclass object.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="ch.ninecode.model.ConstraintResults">ConstraintResults</a> → <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></dd></dl></div>
+      <p class="shortcomment cmt"><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="ch.ninecode.model.ConstraintResults">ConstraintResults</a> → <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>

@@ -9,7 +9,7 @@ import ch.ninecode.cim.Parseable
 /**
  * Boiling water reactor used as a steam supply to a steam turbine.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.SteamSupply SteamSupply]] Reference to the superclass object.
  * @param highPowerLimit High power limit.
  * @param inCoreThermalTC In-core thermal time constant.
  * @param integralGain Integral gain.
@@ -175,8 +175,8 @@ extends
 /**
  * Relationship between the combustion turbine's power output rating in gross active power (X-axis) and the ambient air temperature (Y-axis).
  *
- * @param sup Reference to the superclass object.
- * @param CombustionTurbine A combustion turbine may have an active power versus ambient temperature relationship.
+ * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
+ * @param CombustionTurbine [[ch.ninecode.model.CombustionTurbine CombustionTurbine]] A combustion turbine may have an active power versus ambient temperature relationship.
  * @group GenerationTrainingSimulation
  * @groupname GenerationTrainingSimulation Package GenerationTrainingSimulation
  * @groupdesc GenerationTrainingSimulation The Generation Dynamics package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
@@ -241,7 +241,7 @@ extends
 /**
  * A prime mover that is typically fueled by gas or light oil.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PrimeMover PrimeMover]] Reference to the superclass object.
  * @param ambientTemp Default ambient temperature to be used in modeling applications.
  * @param auxPowerVersusFrequency Off-nominal frequency effect on turbine auxiliaries.
  *        Per unit reduction in auxiliary active power consumption versus per unit reduction in frequency (from rated frequency).
@@ -253,9 +253,9 @@ extends
  * @param powerVariationByTemp Per unit change in power per (versus) unit change in ambient temperature.
  * @param referenceTemp Reference temperature at which the output of the turbine was defined.
  * @param timeConstant The time constant for the turbine.
- * @param AirCompressor A CAES air compressor is driven by combustion turbine.
- * @param CTTempActivePowerCurve A combustion turbine may have an active power versus ambient temperature relationship.
- * @param HeatRecoveryBoiler A combustion turbine may have a heat recovery boiler for making steam.
+ * @param AirCompressor [[ch.ninecode.model.AirCompressor AirCompressor]] A CAES air compressor is driven by combustion turbine.
+ * @param CTTempActivePowerCurve [[ch.ninecode.model.CTTempActivePowerCurve CTTempActivePowerCurve]] A combustion turbine may have an active power versus ambient temperature relationship.
+ * @param HeatRecoveryBoiler [[ch.ninecode.model.HeatRecoveryBoiler HeatRecoveryBoiler]] A combustion turbine may have a heat recovery boiler for making steam.
  * @group GenerationTrainingSimulation
  * @groupname GenerationTrainingSimulation Package GenerationTrainingSimulation
  * @groupdesc GenerationTrainingSimulation The Generation Dynamics package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
@@ -360,7 +360,7 @@ extends
 /**
  * Drum boiler.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.FossilSteamSupply FossilSteamSupply]] Reference to the superclass object.
  * @param drumBoilerRating Rating of drum boiler in steam units.
  * @group GenerationTrainingSimulation
  * @groupname GenerationTrainingSimulation Package GenerationTrainingSimulation
@@ -426,7 +426,7 @@ extends
 /**
  * Fossil fueled boiler (e.g., coal, oil, gas).
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.SteamSupply SteamSupply]] Reference to the superclass object.
  * @param auxPowerVersusFrequency Off nominal frequency effect on auxiliary real power.
  *        Per unit active power variation versus per unit frequency variation.
  * @param auxPowerVersusVoltage Off nominal voltage effect on auxiliary real power.
@@ -619,7 +619,7 @@ extends
 /**
  * The heat recovery system associated with combustion turbines in order to produce steam for combined cycle plants.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.FossilSteamSupply FossilSteamSupply]] Reference to the superclass object.
  * @param steamSupplyRating2 The steam supply rating in kilopounds per hour, if dual pressure boiler.
  * @group GenerationTrainingSimulation
  * @groupname GenerationTrainingSimulation Package GenerationTrainingSimulation
@@ -687,7 +687,7 @@ extends
  *
  * Typical turbine types are: Francis, Kaplan, and Pelton.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PrimeMover PrimeMover]] Reference to the superclass object.
  * @param gateRateLimit Gate rate limit.
  * @param gateUpperLimit Gate upper limit.
  * @param maxHeadMaxP Maximum efficiency active power at maximum head conditions.
@@ -803,7 +803,7 @@ extends
 /**
  * Pressurized water reactor used as a steam supply to a steam turbine.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.SteamSupply SteamSupply]] Reference to the superclass object.
  * @param coldLegFBLagTC Cold leg feedback lag time constant.
  * @param coldLegFBLeadTC1 Cold leg feedback lead time constant.
  * @param coldLegFBLeadTC2 Cold leg feedback lead time constant.
@@ -964,7 +964,7 @@ extends
 /**
  * The machine used to develop mechanical energy used to drive a generator.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @param primeMoverRating Rating of prime mover.
  * @param SynchronousMachines Synchronous machines this Prime mover drives.
  * @group GenerationTrainingSimulation
@@ -1035,7 +1035,7 @@ extends
 /**
  * Steam supply for steam turbine.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @param steamSupplyRating Rating of steam supply.
  * @param SteamTurbines Steam turbines may have steam supplied by a steam supply.
  * @group GenerationTrainingSimulation
@@ -1106,7 +1106,7 @@ extends
 /**
  * Steam turbine.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PrimeMover PrimeMover]] Reference to the superclass object.
  * @param crossoverTC Crossover time constant.
  * @param reheater1TC First reheater time constant.
  * @param reheater2TC Second reheater time constant.
@@ -1227,7 +1227,7 @@ extends
 /**
  * Once-through subcritical boiler.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.FossilSteamSupply FossilSteamSupply]] Reference to the superclass object.
  * @group GenerationTrainingSimulation
  * @groupname GenerationTrainingSimulation Package GenerationTrainingSimulation
  * @groupdesc GenerationTrainingSimulation The Generation Dynamics package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
@@ -1289,7 +1289,7 @@ extends
 /**
  * Once-through supercritical boiler.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.FossilSteamSupply FossilSteamSupply]] Reference to the superclass object.
  * @group GenerationTrainingSimulation
  * @groupname GenerationTrainingSimulation Package GenerationTrainingSimulation
  * @groupdesc GenerationTrainingSimulation The Generation Dynamics package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.

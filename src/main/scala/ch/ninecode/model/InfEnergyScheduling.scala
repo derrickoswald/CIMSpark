@@ -102,14 +102,14 @@ extends
 /**
  * Control area emergency schedules
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param emergencyScheduleMW Net tie MW.
  *        These are three entries, the current emergency schedule interchange and the two future schedules if they exist.
  * @param emergencyScheduleRampTime Ramp time, the ramping time for a schedule.
  *        This is calculated as the remaining time to ramp if a schedule is ramping. Measured in seconds, but can be negattive.
  * @param emergencyScheduleStartTime Net tie time,  the start time for a schedule.
  *        This is calculated as the current time if a schedule is ramping.
- * @param InternalControlArea <em>undocumented</em>
+ * @param InternalControlArea [[ch.ninecode.model.InternalControlArea InternalControlArea]] <em>undocumented</em>
  * @group InfEnergyScheduling
  * @groupname InfEnergyScheduling Package InfEnergyScheduling
  * @groupdesc InfEnergyScheduling This package provides the capability to schedule and account for transactions for the exchange of electric power between companies. It includes transations for megawatts which are generated, consumed, lost, passed through, sold and purchased. These classes are used by Accounting and Billing for Energy, Generation Capacity, Transmission, and Ancillary Services.
@@ -190,7 +190,7 @@ extends
  * @param currentNetTieMW Current control area net tie MW (the sum of the tie line flows, i.e the sum of flows into and out of the control area), the current instantaneous scheduled interchange.
  * @param useEmergencySchedule Use Emergency Schedule
  *        Attribute Usage: Emergency use indicator, false = Emergency Schedular OFF, true = Emergency Schedular ON.
- * @param InternalControlArea <em>undocumented</em>
+ * @param InternalControlArea [[ch.ninecode.model.InternalControlArea InternalControlArea]] <em>undocumented</em>
  * @group InfEnergyScheduling
  * @groupname InfEnergyScheduling Package InfEnergyScheduling
  * @groupdesc InfEnergyScheduling This package provides the capability to schedule and account for transactions for the exchange of electric power between companies. It includes transations for megawatts which are generated, consumed, lost, passed through, sold and purchased. These classes are used by Accounting and Billing for Energy, Generation Capacity, Transmission, and Ancillary Services.
@@ -265,8 +265,8 @@ extends
  *
  * The CurtailmentProfile must be completely contained within the EnergyProfile timeframe for this EnergyTransaction.
  *
- * @param sup Reference to the superclass object.
- * @param EnergyTransaction An EnergyTransaction may be curtailed by any of the participating entities.
+ * @param sup [[ch.ninecode.model.Profile Profile]] Reference to the superclass object.
+ * @param EnergyTransaction [[ch.ninecode.model.EnergyTransaction EnergyTransaction]] An EnergyTransaction may be curtailed by any of the participating entities.
  * @group InfEnergyScheduling
  * @groupname InfEnergyScheduling Package InfEnergyScheduling
  * @groupdesc InfEnergyScheduling This package provides the capability to schedule and account for transactions for the exchange of electric power between companies. It includes transations for megawatts which are generated, consumed, lost, passed through, sold and purchased. These classes are used by Accounting and Billing for Energy, Generation Capacity, Transmission, and Ancillary Services.
@@ -333,10 +333,10 @@ extends
  *
  * Dynamic schedules are sent and received by control areas.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.BasicIntervalSchedule BasicIntervalSchedule]] Reference to the superclass object.
  * @param dynSchedSignRev Dynamic schedule sign reversal required (true/false)
  * @param dynSchedStatus The "active" or "inactive" status of the dynamic schedule
- * @param MktMeasurement <em>undocumented</em>
+ * @param MktMeasurement [[ch.ninecode.model.MktMeasurement MktMeasurement]] <em>undocumented</em>
  * @param Receive_SubControlArea A control area can receive dynamic schedules from other control areas
  * @param Send_SubControlArea A control area can send dynamic schedules to other control areas
  * @group InfEnergyScheduling
@@ -419,8 +419,8 @@ extends
 /**
  * An EnergyProduct is offered commercially as a ContractOrTariff.
  *
- * @param sup Reference to the superclass object.
- * @param GenerationProvider <em>undocumented</em>
+ * @param sup [[ch.ninecode.model.Agreement Agreement]] Reference to the superclass object.
+ * @param GenerationProvider [[ch.ninecode.model.GenerationProvider GenerationProvider]] <em>undocumented</em>
  * @param ResoldBy_Marketer A Marketer may resell an EnergyProduct.
  * @param TitleHeldBy_Marketer A Marketer holds title to an EnergyProduct.
  * @group InfEnergyScheduling
@@ -498,7 +498,7 @@ extends
  * A control area may have more than one inadvertent account in order to track inadvertent over one or more specific tie points in addition to the usual overall net inadvertent. Separate accounts would also be used to track designated time periods, such as on-peak and off-peak.
  *
  * @param sup Reference to the superclass object.
- * @param SubControlArea A control area can have one or more net inadvertent interchange accounts
+ * @param SubControlArea [[ch.ninecode.model.SubControlArea SubControlArea]] A control area can have one or more net inadvertent interchange accounts
  * @group InfEnergyScheduling
  * @groupname InfEnergyScheduling Package InfEnergyScheduling
  * @groupdesc InfEnergyScheduling This package provides the capability to schedule and account for transactions for the exchange of electric power between companies. It includes transations for megawatts which are generated, consumed, lost, passed through, sold and purchased. These classes are used by Accounting and Billing for Energy, Generation Capacity, Transmission, and Ancillary Services.
@@ -565,8 +565,8 @@ extends
  *
  * Real time generation control affects only the internal control area.
  *
- * @param sup Reference to the superclass object.
- * @param CurrentScheduledInterchange <em>undocumented</em>
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param CurrentScheduledInterchange [[ch.ninecode.model.CurrentScheduledInterchange CurrentScheduledInterchange]] <em>undocumented</em>
  * @group InfEnergyScheduling
  * @groupname InfEnergyScheduling Package InfEnergyScheduling
  * @groupdesc InfEnergyScheduling This package provides the capability to schedule and account for transactions for the exchange of electric power between companies. It includes transations for megawatts which are generated, consumed, lost, passed through, sold and purchased. These classes are used by Accounting and Billing for Energy, Generation Capacity, Transmission, and Ancillary Services.
@@ -631,8 +631,8 @@ extends
 /**
  * LossProfile is associated with an EnerrgyTransaction and must be completely contained within the time frame of the EnergyProfile associated with this EnergyTransaction.
  *
- * @param sup Reference to the superclass object.
- * @param EnergyTransaction An EnergyTransaction may have a LossProfile.
+ * @param sup [[ch.ninecode.model.Profile Profile]] Reference to the superclass object.
+ * @param EnergyTransaction [[ch.ninecode.model.EnergyTransaction EnergyTransaction]] An EnergyTransaction may have a LossProfile.
  * @param HasLoss_1 Part of the LossProfile for an EnergyTransaction may be a loss for a TransmissionProvider.
  *        If so, the TransmissionProvider must be one of the participating entities in the EnergyTransaction.
  * @group InfEnergyScheduling
@@ -778,7 +778,7 @@ extends
 /**
  * A corridor containing one or more rights of way
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @group InfEnergyScheduling
  * @groupname InfEnergyScheduling Package InfEnergyScheduling
  * @groupdesc InfEnergyScheduling This package provides the capability to schedule and account for transactions for the exchange of electric power between companies. It includes transations for megawatts which are generated, consumed, lost, passed through, sold and purchased. These classes are used by Accounting and Billing for Energy, Generation Capacity, Transmission, and Ancillary Services.
@@ -840,8 +840,8 @@ extends
 /**
  * A collection of transmission lines that are close proximity to each other.
  *
- * @param sup Reference to the superclass object.
- * @param TransmissionCorridor A transmission right-of-way is a member of a transmission corridor
+ * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
+ * @param TransmissionCorridor [[ch.ninecode.model.TransmissionCorridor TransmissionCorridor]] A transmission right-of-way is a member of a transmission corridor
  * @group InfEnergyScheduling
  * @groupname InfEnergyScheduling Package InfEnergyScheduling
  * @groupdesc InfEnergyScheduling This package provides the capability to schedule and account for transactions for the exchange of electric power between companies. It includes transations for megawatts which are generated, consumed, lost, passed through, sold and purchased. These classes are used by Accounting and Billing for Energy, Generation Capacity, Transmission, and Ancillary Services.

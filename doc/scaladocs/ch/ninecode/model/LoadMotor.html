@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>LoadMotor - CIMReader 2.11-2.1.1-2.2.0 API - ch.ninecode.model.LoadMotor</title>
-          <meta name="description" content="LoadMotor - CIMReader 2.11 - 2.1.1 - 2.2.0 API - ch.ninecode.model.LoadMotor" />
-          <meta name="keywords" content="LoadMotor CIMReader 2.11 2.1.1 2.2.0 API ch.ninecode.model.LoadMotor" />
+          <title>LoadMotor - CIMReader 2.11-2.2.0-2.2.0 API - ch.ninecode.model.LoadMotor</title>
+          <meta name="description" content="LoadMotor - CIMReader 2.11 - 2.2.0 - 2.2.0 API - ch.ninecode.model.LoadMotor" />
+          <meta name="keywords" content="LoadMotor CIMReader 2.11 2.2.0 2.2.0 API ch.ninecode.model.LoadMotor" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -52,7 +52,7 @@
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Aggregate induction motor load.</p><p>This model  is used to represent a fraction of an ordinary load as &quot;induction motor load&quot;.  It allows load that is treated as ordinary constant power in power flow analysis to be represented by an induction motor in dynamic simulation.  If <b>Lpp</b> = 0. or <b>Lpp</b> = <b>Lp</b>, or <b>Tppo</b> = 0.,  only one cage is represented. Magnetic saturation is not modelled. Either a &quot;one-cage&quot; or &quot;two-cage&quot; model of the induction machine can be modelled. Magnetic saturation is not modelled.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">d</dt><dd class="cmt"><p>Damping factor (D).
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">d</dt><dd class="cmt"><p>Damping factor (D).
        Unit = delta P/delta speed.  Typical Value = 2.</p></dd><dt class="param">h</dt><dd class="cmt"><p>Inertia constant (H) (not=0).
        Typical Value = 0.4.</p></dd><dt class="param">lfac</dt><dd class="cmt"><p>Loading factor � ratio of initial P to motor MVA base (Lfac).
        Typical Value = 0.8.</p></dd><dt class="param">lp</dt><dd class="cmt"><p>Transient reactance (Lp).
@@ -65,7 +65,7 @@
        Typical Value = 1.</p></dd><dt class="param">tppo</dt><dd class="cmt"><p>Subtransient rotor time constant (Tppo).
        Typical Value = 0.02.</p></dd><dt class="param">tv</dt><dd class="cmt"><p>Voltage trip pickup time (Tv).
        Typical Value = 0.1.</p></dd><dt class="param">vt</dt><dd class="cmt"><p>Voltage threshold for tripping (Vt).
-       Typical Value = 0.7.</p></dd><dt class="param">LoadAggregate</dt><dd class="cmt"><p>Aggregate load to which this aggregate motor (dynamic) load belongs.</p></dd></dl><div class="toggleContainer block">
+       Typical Value = 0.7.</p></dd><dt class="param">LoadAggregate</dt><dd class="cmt"><p><a href="LoadAggregate.html" class="extype" name="ch.ninecode.model.LoadAggregate">LoadAggregate</a> Aggregate load to which this aggregate motor (dynamic) load belongs.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -137,7 +137,7 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">d</dt><dd class="cmt"><p>Damping factor (D).
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">d</dt><dd class="cmt"><p>Damping factor (D).
        Unit = delta P/delta speed.  Typical Value = 2.</p></dd><dt class="param">h</dt><dd class="cmt"><p>Inertia constant (H) (not=0).
        Typical Value = 0.4.</p></dd><dt class="param">lfac</dt><dd class="cmt"><p>Loading factor � ratio of initial P to motor MVA base (Lfac).
        Typical Value = 0.8.</p></dd><dt class="param">lp</dt><dd class="cmt"><p>Transient reactance (Lp).
@@ -150,7 +150,7 @@
        Typical Value = 1.</p></dd><dt class="param">tppo</dt><dd class="cmt"><p>Subtransient rotor time constant (Tppo).
        Typical Value = 0.02.</p></dd><dt class="param">tv</dt><dd class="cmt"><p>Voltage trip pickup time (Tv).
        Typical Value = 0.1.</p></dd><dt class="param">vt</dt><dd class="cmt"><p>Voltage threshold for tripping (Vt).
-       Typical Value = 0.7.</p></dd><dt class="param">LoadAggregate</dt><dd class="cmt"><p>Aggregate load to which this aggregate motor (dynamic) load belongs.</p></dd></dl></div>
+       Typical Value = 0.7.</p></dd><dt class="param">LoadAggregate</dt><dd class="cmt"><p><a href="LoadAggregate.html" class="extype" name="ch.ninecode.model.LoadAggregate">LoadAggregate</a> Aggregate load to which this aggregate motor (dynamic) load belongs.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -245,7 +245,7 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Aggregate load to which this aggregate motor (dynamic) load belongs.</p>
+      <p class="shortcomment cmt"><a href="LoadAggregate.html" class="extype" name="ch.ninecode.model.LoadAggregate">LoadAggregate</a> Aggregate load to which this aggregate motor (dynamic) load belongs.</p>
     </li><li name="org.apache.spark.sql.Row#anyNull" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="anyNull:Boolean"></a>
       <a id="anyNull:Boolean"></a>
@@ -1189,7 +1189,7 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Reference to the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Reference to the superclass object.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="ch.ninecode.model.LoadMotor">LoadMotor</a> → <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></dd></dl></div>
+      <p class="shortcomment cmt"><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="ch.ninecode.model.LoadMotor">LoadMotor</a> → <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>

@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>VendorShift - CIMReader 2.11-2.1.1-2.2.0 API - ch.ninecode.model.VendorShift</title>
-          <meta name="description" content="VendorShift - CIMReader 2.11 - 2.1.1 - 2.2.0 API - ch.ninecode.model.VendorShift" />
-          <meta name="keywords" content="VendorShift CIMReader 2.11 2.1.1 2.2.0 API ch.ninecode.model.VendorShift" />
+          <title>VendorShift - CIMReader 2.11-2.2.0-2.2.0 API - ch.ninecode.model.VendorShift</title>
+          <meta name="description" content="VendorShift - CIMReader 2.11 - 2.2.0 - 2.2.0 API - ch.ninecode.model.VendorShift" />
+          <meta name="keywords" content="VendorShift CIMReader 2.11 2.2.0 2.2.0 API ch.ninecode.model.VendorShift" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -52,8 +52,8 @@
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>The operating shift for a vendor during which the vendor may transact against the merchant's account.</p><p>It aggregates transactions and receipts during the shift and periodically debits a merchant account. The totals in vendor shift should always be the sum of totals aggregated in all cashier shifts that were open under the particular vendor shift.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">merchantDebitAmount</dt><dd class="cmt"><p>The amount that is to be debited from the merchant account for this vendor shift.
-       This amount reflects the sum(PaymentTransaction.transactionAmount).</p></dd><dt class="param">posted</dt><dd class="cmt"><p>If true, merchantDebitAmount has been debited from MerchantAccount; typically happens at the end of VendorShift when it closes.</p></dd><dt class="param">MerchantAccount</dt><dd class="cmt"><p>Merchant account this vendor shift periodically debits (based on aggregated transactions).</p></dd><dt class="param">Vendor</dt><dd class="cmt"><p>Vendor that opens and owns this vendor shift.</p></dd></dl><div class="toggleContainer block">
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="Shift.html" class="extype" name="ch.ninecode.model.Shift">Shift</a> Reference to the superclass object.</p></dd><dt class="param">merchantDebitAmount</dt><dd class="cmt"><p>The amount that is to be debited from the merchant account for this vendor shift.
+       This amount reflects the sum(PaymentTransaction.transactionAmount).</p></dd><dt class="param">posted</dt><dd class="cmt"><p>If true, merchantDebitAmount has been debited from MerchantAccount; typically happens at the end of VendorShift when it closes.</p></dd><dt class="param">MerchantAccount</dt><dd class="cmt"><p><a href="MerchantAccount.html" class="extype" name="ch.ninecode.model.MerchantAccount">MerchantAccount</a> Merchant account this vendor shift periodically debits (based on aggregated transactions).</p></dd><dt class="param">Vendor</dt><dd class="cmt"><p><a href="Vendor.html" class="extype" name="ch.ninecode.model.Vendor">Vendor</a> Vendor that opens and owns this vendor shift.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -125,8 +125,8 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">merchantDebitAmount</dt><dd class="cmt"><p>The amount that is to be debited from the merchant account for this vendor shift.
-       This amount reflects the sum(PaymentTransaction.transactionAmount).</p></dd><dt class="param">posted</dt><dd class="cmt"><p>If true, merchantDebitAmount has been debited from MerchantAccount; typically happens at the end of VendorShift when it closes.</p></dd><dt class="param">MerchantAccount</dt><dd class="cmt"><p>Merchant account this vendor shift periodically debits (based on aggregated transactions).</p></dd><dt class="param">Vendor</dt><dd class="cmt"><p>Vendor that opens and owns this vendor shift.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="Shift.html" class="extype" name="ch.ninecode.model.Shift">Shift</a> Reference to the superclass object.</p></dd><dt class="param">merchantDebitAmount</dt><dd class="cmt"><p>The amount that is to be debited from the merchant account for this vendor shift.
+       This amount reflects the sum(PaymentTransaction.transactionAmount).</p></dd><dt class="param">posted</dt><dd class="cmt"><p>If true, merchantDebitAmount has been debited from MerchantAccount; typically happens at the end of VendorShift when it closes.</p></dd><dt class="param">MerchantAccount</dt><dd class="cmt"><p><a href="MerchantAccount.html" class="extype" name="ch.ninecode.model.MerchantAccount">MerchantAccount</a> Merchant account this vendor shift periodically debits (based on aggregated transactions).</p></dd><dt class="param">Vendor</dt><dd class="cmt"><p><a href="Vendor.html" class="extype" name="ch.ninecode.model.Vendor">Vendor</a> Vendor that opens and owns this vendor shift.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -203,7 +203,7 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Merchant account this vendor shift periodically debits (based on aggregated transactions).</p>
+      <p class="shortcomment cmt"><a href="MerchantAccount.html" class="extype" name="ch.ninecode.model.MerchantAccount">MerchantAccount</a> Merchant account this vendor shift periodically debits (based on aggregated transactions).</p>
     </li><li name="ch.ninecode.model.VendorShift#Shift" visbl="pub" data-isabs="false" fullComment="yes" group="Hierarchy">
       <a id="Shift:ch.ninecode.model.Shift"></a>
       <a id="Shift:Shift"></a>
@@ -238,7 +238,7 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Vendor that opens and owns this vendor shift.</p>
+      <p class="shortcomment cmt"><a href="Vendor.html" class="extype" name="ch.ninecode.model.Vendor">Vendor</a> Vendor that opens and owns this vendor shift.</p>
     </li><li name="org.apache.spark.sql.Row#anyNull" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="anyNull:Boolean"></a>
       <a id="anyNull:Boolean"></a>
@@ -1073,7 +1073,7 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Reference to the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Reference to the superclass object.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="ch.ninecode.model.VendorShift">VendorShift</a> → <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></dd></dl></div>
+      <p class="shortcomment cmt"><a href="Shift.html" class="extype" name="ch.ninecode.model.Shift">Shift</a> Reference to the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p><a href="Shift.html" class="extype" name="ch.ninecode.model.Shift">Shift</a> Reference to the superclass object.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="ch.ninecode.model.VendorShift">VendorShift</a> → <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>

@@ -9,7 +9,7 @@ import ch.ninecode.cim.Parseable
 /**
  * The class represents equivalent branches.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.EquivalentEquipment EquivalentEquipment]] Reference to the superclass object.
  * @param negativeR12 Negative sequence series resistance from terminal sequence  1 to terminal sequence 2.
  *        Used for short circuit data exchange according to IEC 60909
  * @param negativeR21 Negative sequence series resistance from terminal sequence 2 to terminal sequence 1.
@@ -166,8 +166,8 @@ extends
  *
  * The class is the base for equivalent objects of different types.
  *
- * @param sup Reference to the superclass object.
- * @param EquivalentNetwork The equivalent where the reduced model belongs.
+ * @param sup [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] Reference to the superclass object.
+ * @param EquivalentNetwork [[ch.ninecode.model.EquivalentNetwork EquivalentNetwork]] The equivalent where the reduced model belongs.
  * @group Equivalents
  * @groupname Equivalents Package Equivalents
  * @groupdesc Equivalents The equivalents package models equivalent networks.
@@ -234,7 +234,7 @@ extends
  *
  * Voltage regulation is allowed only at the point of connection.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.EquivalentEquipment EquivalentEquipment]] Reference to the superclass object.
  * @param maxP Maximum active power of the injection.
  * @param maxQ Used for modeling of infeed for load flow exchange.
  *        Not used for short circuit modeling.  If maxQ and minQ are not used ReactiveCapabilityCurve can be used.
@@ -261,7 +261,7 @@ extends
  *        Used to represent Extended-Ward (IEC 60909).
  * @param x2 Negative sequence reactance.
  *        Used to represent Extended-Ward (IEC 60909).
- * @param ReactiveCapabilityCurve The reactive capability curve used by this equivalent injection.
+ * @param ReactiveCapabilityCurve [[ch.ninecode.model.ReactiveCapabilityCurve ReactiveCapabilityCurve]] The reactive capability curve used by this equivalent injection.
  * @group Equivalents
  * @groupname Equivalents Package Equivalents
  * @groupdesc Equivalents The equivalents package models equivalent networks.
@@ -388,7 +388,7 @@ extends
  *
  * The ConnectivityNodes contained in the equivalent are intended to reflect internal nodes of the equivalent. The boundary Connectivity nodes where the equivalent connects outside itself are NOT contained by the equivalent.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.ConnectivityNodeContainer ConnectivityNodeContainer]] Reference to the superclass object.
  * @group Equivalents
  * @groupname Equivalents Package Equivalents
  * @groupdesc Equivalents The equivalents package models equivalent networks.
@@ -450,7 +450,7 @@ extends
 /**
  * The class represents equivalent shunts.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.EquivalentEquipment EquivalentEquipment]] Reference to the superclass object.
  * @param b Positive sequence shunt susceptance.
  * @param g Positive sequence shunt conductance.
  * @group Equivalents

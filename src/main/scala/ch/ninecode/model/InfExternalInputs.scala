@@ -9,10 +9,10 @@ import ch.ninecode.cim.Parseable
 /**
  * Requirements for minimum amount of reserve and/or regulation to be supplied by a set of qualified resources.
  *
- * @param sup Reference to the superclass object.
- * @param MarketProduct Market product associated with reserve requirement must be a reserve or regulation product.
- * @param ReserveReqCurve <em>undocumented</em>
- * @param SensitivityPriceCurve <em>undocumented</em>
+ * @param sup [[ch.ninecode.model.ResourceGroupReq ResourceGroupReq]] Reference to the superclass object.
+ * @param MarketProduct [[ch.ninecode.model.MarketProduct MarketProduct]] Market product associated with reserve requirement must be a reserve or regulation product.
+ * @param ReserveReqCurve [[ch.ninecode.model.ReserveReqCurve ReserveReqCurve]] <em>undocumented</em>
+ * @param SensitivityPriceCurve [[ch.ninecode.model.SensitivityPriceCurve SensitivityPriceCurve]] <em>undocumented</em>
  * @group InfExternalInputs
  * @groupname InfExternalInputs Package InfExternalInputs
  */
@@ -86,8 +86,8 @@ extends
  *
  * The  curve can be based on "absolute" time or on "normalized' time.
  *
- * @param sup Reference to the superclass object.
- * @param ReserveReq <em>undocumented</em>
+ * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
+ * @param ReserveReq [[ch.ninecode.model.ReserveReq ReserveReq]] <em>undocumented</em>
  * @group InfExternalInputs
  * @groupname InfExternalInputs Package InfExternalInputs
  */
@@ -151,7 +151,7 @@ extends
 /**
  * A logical grouping of resources that are used to model location of types of requirements for ancillary services such as spinning reserve zones, regulation zones, etc.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param status Status of this group.
  * @param typ Type of this group.
  * @group InfExternalInputs
@@ -221,9 +221,9 @@ extends
 /**
  * Ancillary service requirements for a market.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param RTOs <em>undocumented</em>
- * @param ResourceGroup <em>undocumented</em>
+ * @param ResourceGroup [[ch.ninecode.model.ResourceGroup ResourceGroup]] <em>undocumented</em>
  * @group InfExternalInputs
  * @groupname InfExternalInputs Package InfExternalInputs
  */
@@ -293,8 +293,8 @@ extends
  *
  * For example, used to reduce requirements when clearing price exceeds reasonable values when the supply quantity becomes scarce. For example, a single point value of \$1000/MW for a spinning reserve will cause a reduction in the required spinning reserve.
  *
- * @param sup Reference to the superclass object.
- * @param ReserveReq <em>undocumented</em>
+ * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
+ * @param ReserveReq [[ch.ninecode.model.ReserveReq ReserveReq]] <em>undocumented</em>
  * @group InfExternalInputs
  * @groupname InfExternalInputs Package InfExternalInputs
  */

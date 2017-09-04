@@ -28,7 +28,7 @@ case class Scala (parser: ModelParser, pkg: Package)
             case "Boolean" => "Boolean_"
             case "String" => "String_"
             case "" => "attr" // ToDo: WTF?
-            case _ => 
+            case _ =>
                 val identifier = (if (s.charAt (0).isDigit) "_" else "") +
                 s.replace (" ", "_").replace ("-", "_").replace ("""/""", """_""").replace (""".""", """_""").replace (""",""", """_""")
                 if (identifier.endsWith ("_")) identifier + "1" else identifier
@@ -120,37 +120,37 @@ case class Scala (parser: ModelParser, pkg: Package)
             case Some (dom) =>
                 dom.name match
                 {
-                    case "Time" => Member (name, variable, false, comment, false, false, "String", "null", "")
-                    case "Integer" => Member (name, variable, false, comment, false, false, "Int", "0", "toInteger")
-                    case "Float" => Member (name, variable, false, comment, false, false, "Double", "0.0", "toDouble")
-                    case "Decimal" => Member (name, variable, false, comment, false, false, "Double", "0.0", "toDouble")
-                    case "Boolean" => Member (name, variable, false, comment, false, false, "Boolean", "false", "toBoolean")
-                    case "Date" => Member (name, variable, false, comment, false, false, "String", "null", "")
-                    case "Duration" => Member (name, variable, false, comment, false, false, "String", "null", "")
-                    case "String" => Member (name, variable, false, comment, false, false, "String", "null", "")
-                    case "DateTime" => Member (name, variable, false, comment, false, false, "String", "null", "")
-                    case "MonthDay" => Member (name, variable, false, comment, false, false, "String", "null", "")
+                    case "Time" => Member (name, variable, false, comment, false, false, "String", "null", "", null)
+                    case "Integer" => Member (name, variable, false, comment, false, false, "Int", "0", "toInteger", null)
+                    case "Float" => Member (name, variable, false, comment, false, false, "Double", "0.0", "toDouble", null)
+                    case "Decimal" => Member (name, variable, false, comment, false, false, "Double", "0.0", "toDouble", null)
+                    case "Boolean" => Member (name, variable, false, comment, false, false, "Boolean", "false", "toBoolean", null)
+                    case "Date" => Member (name, variable, false, comment, false, false, "String", "null", "", null)
+                    case "Duration" => Member (name, variable, false, comment, false, false, "String", "null", "", null)
+                    case "String" => Member (name, variable, false, comment, false, false, "String", "null", "", null)
+                    case "DateTime" => Member (name, variable, false, comment, false, false, "String", "null", "", null)
+                    case "MonthDay" => Member (name, variable, false, comment, false, false, "String", "null", "", null)
                     case _ =>
                         dom.value match
                             {
-                                case "Time" => Member (name, variable, false, comment, false, false, "String", "null", "")
-                                case "Integer" => Member (name, variable, false, comment, false, false, "Int", "0", "toInteger")
-                                case "Float" => Member (name, variable, false, comment, false, false, "Double", "0.0", "toDouble")
-                                case "Decimal" => Member (name, variable, false, comment, false, false, "Double", "0.0", "toDouble")
-                                case "Boolean" => Member (name, variable, false, comment, false, false, "Boolean", "false", "toBoolean")
-                                case "Date" => Member (name, variable, false, comment, false, false, "String", "null", "")
-                                case "Duration" => Member (name, variable, false, comment, false, false, "String", "null", "")
-                                case "String" => Member (name, variable, false, comment, false, false, "String", "null", "")
-                                case "DateTime" => Member (name, variable, false, comment, false, false, "String", "null", "")
-                                case "MonthDay" => Member (name, variable, false, comment, false, false, "String", "null", "")
+                                case "Time" => Member (name, variable, false, comment, false, false, "String", "null", "", null)
+                                case "Integer" => Member (name, variable, false, comment, false, false, "Int", "0", "toInteger", null)
+                                case "Float" => Member (name, variable, false, comment, false, false, "Double", "0.0", "toDouble", null)
+                                case "Decimal" => Member (name, variable, false, comment, false, false, "Double", "0.0", "toDouble", null)
+                                case "Boolean" => Member (name, variable, false, comment, false, false, "Boolean", "false", "toBoolean", null)
+                                case "Date" => Member (name, variable, false, comment, false, false, "String", "null", "", null)
+                                case "Duration" => Member (name, variable, false, comment, false, false, "String", "null", "", null)
+                                case "String" => Member (name, variable, false, comment, false, false, "String", "null", "", null)
+                                case "DateTime" => Member (name, variable, false, comment, false, false, "String", "null", "", null)
+                                case "MonthDay" => Member (name, variable, false, comment, false, false, "String", "null", "", null)
                                 case _ =>
                                     if (dom.stereotype == "enumeration")
-                                        Member (name, variable, false, comment, true, false, "String", "null", "")
+                                        Member (name, variable, false, comment, true, false, "String", "null", "", null)
                                     else
-                                        Member (name, variable, false, comment, false, false, "String", "null", "")
+                                        Member (name, variable, false, comment, false, false, "String", "null", "", null)
                             }
                 }
-            case None => Member (name, variable, false, comment, true, false, "String", "null", "")
+            case None => Member (name, variable, false, comment, true, false, "String", "null", "", null)
         }
     }
 
@@ -159,10 +159,12 @@ case class Scala (parser: ModelParser, pkg: Package)
         val name = role.name
         val variable = valid_role_name (role)
         val comment = role.note
+        val ref = parser.classes.filter (x => x._2.name == name)
+        val referenced_class = if (ref.isEmpty) null else valid_class_name (ref.head._2.name)
         if (role.upper == 1)
-            Member (name, variable, false, comment, true, false, "String", "null", "")
+            Member (name, variable, false, comment, true, false, "String", "null", "", referenced_class)
         else
-            Member (name, variable, false, comment, true, true, "List[String]", "List()", "")
+            Member (name, variable, false, comment, true, true, "List[String]", "List()", "", referenced_class)
     }
 
 //val valid_classes = """ACLineSegment
@@ -528,14 +530,15 @@ case class Scala (parser: ModelParser, pkg: Package)
                            else
                                a.variable.compareTo (b.variable)
             }
-            val sup = Member ("sup", "sup", true, "Reference to the superclass object.", false, false, if (null != cls.sup) cls.sup.name else "BasicElement", "null", "")
+            val sup = Member ("sup", "sup", true, "Reference to the superclass object.", false, false, if (null != cls.sup) cls.sup.name else "BasicElement", "null", "", if (null == cls.sup) null else valid_class_name (cls.sup.name))
             val members =
                 SortedSet[Member](sup) ++
                     parser.attributes.getOrElse(c._2, List[Attribute]()).filter(myattribute).map(details).toSet
                         .union(parser.roles.filter(myrole).map(details))
 
             val s = new StringBuilder ()
-            s.append (JavaDoc (cls.note, 0, members, pkg.name, "Package " + pkg.name, if (null != pkg.notes) pkg.notes else "").asText ())
+            val n = if (null != pkg.notes) pkg.notes else ""
+            s.append (JavaDoc (cls.note, 0, members, pkg.name, "Package " + pkg.name, n).asText)
             s.append ("case class ")
             s.append (name)
             s.append ("""

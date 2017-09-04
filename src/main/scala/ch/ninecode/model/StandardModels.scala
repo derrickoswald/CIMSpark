@@ -9,7 +9,7 @@ import ch.ninecode.cim.Parseable
 /**
  * Abstract parent class for all Dynamics function blocks.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param enabled Function block used indicator.
  *        true = use of function block is enabled
  *        false = use of function block is disabled.
@@ -78,7 +78,7 @@ extends
 /**
  * Abstract parent class for all synchronous and asynchronous machine standard models.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
  * @param damping Damping torque coefficient (D).
  *        A proportionality constant that, when multiplied by the angular velocity of the rotor poles with respect to the magnetic field (frequency), results in the damping torque.  This value is often zero when the sources of damping torques (generator damper windings, load damping effects, etc.) are modelled in detail.  Typical Value = 0.
  * @param inertia Inertia constant of generator or motor and mechanical load (H) (&gt;0).

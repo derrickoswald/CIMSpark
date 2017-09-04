@@ -129,8 +129,8 @@ extends
  * @param netAmount Net line item charge amount.
  * @param previousAmount Previous line item charge amount.
  * @param ContainerMarketInvoiceLineItem <em>undocumented</em>
- * @param MarketInvoice <em>undocumented</em>
- * @param Settlement <em>undocumented</em>
+ * @param MarketInvoice [[ch.ninecode.model.MarketInvoice MarketInvoice]] <em>undocumented</em>
+ * @param Settlement [[ch.ninecode.model.Settlement Settlement]] <em>undocumented</em>
  * @group MarketOpCommon
  * @groupname MarketOpCommon Package MarketOpCommon
  * @groupdesc MarketOpCommon This package contains the common objects shared by MarketOperations packages.
@@ -310,8 +310,8 @@ extends
  * @param postedDateTime Date and time this entry was posted to the ledger.
  * @param status Status of ledger entry.
  * @param transactionDateTime Date and time journal entry was recorded.
- * @param MarketLedger <em>undocumented</em>
- * @param Settlement <em>undocumented</em>
+ * @param MarketLedger [[ch.ninecode.model.MarketLedger MarketLedger]] <em>undocumented</em>
+ * @param Settlement [[ch.ninecode.model.Settlement Settlement]] <em>undocumented</em>
  * @group MarketOpCommon
  * @groupname MarketOpCommon Package MarketOpCommon
  * @groupdesc MarketOpCommon This package contains the common objects shared by MarketOperations packages.
@@ -404,7 +404,7 @@ extends
 /**
  * Subclass of IEC61968: Common:ActivityRecord
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.ActivityRecord ActivityRecord]] Reference to the superclass object.
  * @group MarketOpCommon
  * @groupname MarketOpCommon Package MarketOpCommon
  * @groupdesc MarketOpCommon This package contains the common objects shared by MarketOperations packages.
@@ -466,11 +466,11 @@ extends
 /**
  * Subclass of IEC61970:Topology:ConnectivityNode
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.ConnectivityNode ConnectivityNode]] Reference to the superclass object.
  * @param endEffectiveDate end effective date
  * @param startEffectiveDate start effective date
- * @param IndividualPnode <em>undocumented</em>
- * @param RTO <em>undocumented</em>
+ * @param IndividualPnode [[ch.ninecode.model.IndividualPnode IndividualPnode]] <em>undocumented</em>
+ * @param RTO [[ch.ninecode.model.RTO RTO]] <em>undocumented</em>
  * @param SysLoadDistribuFactor <em>undocumented</em>
  * @group MarketOpCommon
  * @groupname MarketOpCommon Package MarketOpCommon
@@ -552,8 +552,8 @@ extends
 /**
  * Subclass of IEC61970:Wires:EnergyConsumer
  *
- * @param sup Reference to the superclass object.
- * @param RegisteredLoad <em>undocumented</em>
+ * @param sup [[ch.ninecode.model.EnergyConsumer EnergyConsumer]] Reference to the superclass object.
+ * @param RegisteredLoad [[ch.ninecode.model.RegisteredLoad RegisteredLoad]] <em>undocumented</em>
  * @group MarketOpCommon
  * @groupname MarketOpCommon Package MarketOpCommon
  * @groupdesc MarketOpCommon This package contains the common objects shared by MarketOperations packages.
@@ -618,8 +618,8 @@ extends
 /**
  * Subclass of IEC61970:Production:GeneratingUnit
  *
- * @param sup Reference to the superclass object.
- * @param RegisteredGenerator <em>undocumented</em>
+ * @param sup [[ch.ninecode.model.GeneratingUnit GeneratingUnit]] Reference to the superclass object.
+ * @param RegisteredGenerator [[ch.ninecode.model.RegisteredGenerator RegisteredGenerator]] <em>undocumented</em>
  * @group MarketOpCommon
  * @groupname MarketOpCommon Package MarketOpCommon
  * @groupdesc MarketOpCommon This package contains the common objects shared by MarketOperations packages.
@@ -684,8 +684,8 @@ extends
 /**
  * Subclass for IEC61970:Wires:Line
  *
- * @param sup Reference to the superclass object.
- * @param TransmissionRightOfWay <em>undocumented</em>
+ * @param sup [[ch.ninecode.model.Line Line]] Reference to the superclass object.
+ * @param TransmissionRightOfWay [[ch.ninecode.model.TransmissionRightOfWay TransmissionRightOfWay]] <em>undocumented</em>
  * @group MarketOpCommon
  * @groupname MarketOpCommon Package MarketOpCommon
  * @groupdesc MarketOpCommon This package contains the common objects shared by MarketOperations packages.
@@ -750,7 +750,7 @@ extends
 /**
  * Subclass of IEC61970:LoadModel: LoadArea
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.LoadArea LoadArea]] Reference to the superclass object.
  * @group MarketOpCommon
  * @groupname MarketOpCommon Package MarketOpCommon
  * @groupdesc MarketOpCommon This package contains the common objects shared by MarketOperations packages.
@@ -812,10 +812,10 @@ extends
 /**
  * Subclass of IEC61970:Meas:Measurement
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Measurement Measurement]] Reference to the superclass object.
  * @param ByTiePoint A measurement is made on the B side of a tie point
  * @param ForTiePoint A measurement is made on the A side of a tie point
- * @param Pnode <em>undocumented</em>
+ * @param Pnode [[ch.ninecode.model.Pnode Pnode]] <em>undocumented</em>
  * @group MarketOpCommon
  * @groupname MarketOpCommon Package MarketOpCommon
  * @groupdesc MarketOpCommon This package contains the common objects shared by MarketOperations packages.
@@ -888,7 +888,7 @@ extends
 /**
  * Subclass of IEC61968:Core2:TopLevel:Organisation
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Organisation Organisation]] Reference to the superclass object.
  * @param creditFlag Flag to indicate creditworthiness (Y, N)
  * @param creditStartEffectiveDate Date that the organisation becomes creditworthy.
  * @param endEffectiveDate end effective date
@@ -896,7 +896,7 @@ extends
  * @param organisationID Organisation (internal) ID
  * @param qualificationStatus Organisation qualification status, Qualified, Not Qualified, or Disqualified
  * @param startEffectiveDate start effective date
- * @param MarketPerson <em>undocumented</em>
+ * @param MarketPerson [[ch.ninecode.model.MarketPerson MarketPerson]] <em>undocumented</em>
  * @group MarketOpCommon
  * @groupname MarketOpCommon Package MarketOpCommon
  * @groupdesc MarketOpCommon This package contains the common objects shared by MarketOperations packages.
@@ -989,7 +989,7 @@ extends
 /**
  * Subclass of IEC61970:Wires:PowerTransformer
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PowerTransformer PowerTransformer]] Reference to the superclass object.
  * @param EndAFlow <em>undocumented</em>
  * @param EndBFlow <em>undocumented</em>
  * @group MarketOpCommon
@@ -1060,10 +1060,10 @@ extends
 /**
  * Subclass of IEC61970:Core:Terminal
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Terminal Terminal]] Reference to the superclass object.
  * @param endEffectiveDate This is the end date/time of the element eligibility for the flowgate.
  * @param startEffectiveDate This is the begin date/time of the element eligibility for the flowgate.
- * @param Flowgate <em>undocumented</em>
+ * @param Flowgate [[ch.ninecode.model.Flowgate Flowgate]] <em>undocumented</em>
  * @group MarketOpCommon
  * @groupname MarketOpCommon Package MarketOpCommon
  * @groupdesc MarketOpCommon This package contains the common objects shared by MarketOperations packages.
@@ -1136,7 +1136,7 @@ extends
 /**
  * Subclass of IEC61968:Domain2:UserAttribute
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.UserAttribute UserAttribute]] Reference to the superclass object.
  * @group MarketOpCommon
  * @groupname MarketOpCommon Package MarketOpCommon
  * @groupdesc MarketOpCommon This package contains the common objects shared by MarketOperations packages.

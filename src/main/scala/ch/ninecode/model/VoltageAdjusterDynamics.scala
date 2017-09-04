@@ -11,7 +11,7 @@ import ch.ninecode.cim.Parseable
  *
  * Reference: IEEE Standard 421.5-2005 Section 11.1.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.VoltageAdjusterDynamics VoltageAdjusterDynamics]] Reference to the superclass object.
  * @param adjslew Rate at which output of adjuster changes (<i>ADJ_SLEW</i>).
  *        Unit = sec./PU.  Typical Value = 300.
  * @param taoff Time that adjuster pulses are off (<i>T</i><i><sub>AOFF</sub></i>).
@@ -109,8 +109,8 @@ extends
 /**
  * Voltage adjuster function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  *
- * @param sup Reference to the superclass object.
- * @param PFVArControllerType1Dynamics Power Factor or VAr controller Type I model with which this voltage adjuster is associated.
+ * @param sup [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
+ * @param PFVArControllerType1Dynamics [[ch.ninecode.model.PFVArControllerType1Dynamics PFVArControllerType1Dynamics]] Power Factor or VAr controller Type I model with which this voltage adjuster is associated.
  * @group VoltageAdjusterDynamics
  * @groupname VoltageAdjusterDynamics Package VoltageAdjusterDynamics
  * @groupdesc VoltageAdjusterDynamics <font color="#0f0f0f">A voltage adjuster is a reference adjuster that uses inputs from a reactive power or power factor controller to modify the voltage regulator set point to maintain the synchronous machine steady-state power factor or reactive power at a predetermined value. </font>

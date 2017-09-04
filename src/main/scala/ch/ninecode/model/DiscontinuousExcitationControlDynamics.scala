@@ -11,7 +11,7 @@ import ch.ninecode.cim.Parseable
  *
  * Reference: IEEE Standard 421.5-2005 Section 12.2.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.DiscontinuousExcitationControlDynamics DiscontinuousExcitationControlDynamics]] Reference to the superclass object.
  * @param esc Speed change reference (<i>E</i><i><sub>SC</sub></i>).
  *        Typical Value = 0.0015.
  * @param kan Discontinuous controller gain (<i>K</i><i><sub>AN</sub></i>).
@@ -183,7 +183,7 @@ extends
  *
  * This system provides transient excitation boosting via an open-loop control as initiated by a trigger signal generated remotely.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.DiscontinuousExcitationControlDynamics DiscontinuousExcitationControlDynamics]] Reference to the superclass object.
  * @param td1 Discontinuous controller time constant (<i>T</i><i><sub>D1</sub></i>).
  * @param td2 Discontinuous controller washout time constant (<i>T</i><i><sub>D2</sub></i>).
  * @param vdmax Limiter (<i>V</i><i><sub>DMAX</sub></i>).
@@ -273,7 +273,7 @@ extends
  *
  * In some systems, the stabilizer output is disconnected from the regulator immediately following a severe fault to prevent the stabilizer from competing with action of voltage regulator during the first swing.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.DiscontinuousExcitationControlDynamics DiscontinuousExcitationControlDynamics]] Reference to the superclass object.
  * @param tdr Reset time delay (<i>T</i><i><sub>DR</sub></i>).
  * @param vtmin Terminal undervoltage comparison level (<i>V</i><i><sub>TMIN</sub></i>).
  * @group DiscontinuousExcitationControlDynamics
@@ -346,9 +346,9 @@ extends
 /**
  * Discontinuous excitation control function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model</font>.
  *
- * @param sup Reference to the superclass object.
- * @param ExcitationSystemDynamics Excitation system model with which this discontinuous excitation control model is associated.
- * @param RemoteInputSignal Remote input signal used by this discontinuous excitation control system model.
+ * @param sup [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Excitation system model with which this discontinuous excitation control model is associated.
+ * @param RemoteInputSignal [[ch.ninecode.model.RemoteInputSignal RemoteInputSignal]] Remote input signal used by this discontinuous excitation control system model.
  * @group DiscontinuousExcitationControlDynamics
  * @groupname DiscontinuousExcitationControlDynamics Package DiscontinuousExcitationControlDynamics
  * @groupdesc DiscontinuousExcitationControlDynamics <font colour="#0f0f0f">In some particular system configurations, continuous excitation control with terminal voltage and power system stabilizing regulator input signals does not ensure that the potential of the excitation system for improving system stability is fully exploited. For these situations, discontinuous excitation control signals may be employed to enhance stability following large transient disturbances.</font>

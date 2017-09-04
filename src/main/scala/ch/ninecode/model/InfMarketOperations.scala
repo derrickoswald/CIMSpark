@@ -117,7 +117,7 @@ extends
 /**
  * Participation level of a given Pnode in a given AggregatePnode.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param factor Used to calculate "participation" of Pnode in an AggregatePnode.
  *        For example, for regulation region this factor is 1 and total sum of all factors for a specific regulation region does not have to be 1. For pricing zone the total sum of all factors has to be 1.
  * @group InfMarketOperations

@@ -11,7 +11,7 @@ import ch.ninecode.cim.Parseable
  *
  * These might be created as a consequence of local business processes and associated rules. It is anticipated that this class will be customised extensively to meet local implementation needs.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.ActivityRecord ActivityRecord]] Reference to the superclass object.
  * @param deadline The deadline for compliance.
  * @group InfCustomers
  * @groupname InfCustomers Package InfCustomers
@@ -79,7 +79,7 @@ extends
  *
  * The actuall billing occurs through an ErpInvoice. The CustomerBillingInfo includes information from the payment, collection, meter reading, installed meter, service, site, customer, customer account, customer agreement, services and pricing subject areas. Each component price shows up as a separate line item on the ErpInvoice.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param billingDate Business date designated for the billing run which produced this CustomerBillingInfo.
  * @param dueDate Calculated date upon which a customer billing amount is due, used in the invoicing process to determine when a Customer's Payment is delinquent.
  *        It takes into consideration the regulatory criteria and the Customer's requested due date. In the absence of a Customer requested due date, the due date is typically calculated from the regulated number of days and the 'billingDate'.
@@ -91,7 +91,7 @@ extends
  * @param outBalance Outstanding balance on the CustomerAccount as of the statement date.
  * @param pymtPlanAmt Monthly amortized amount due during each billing cycle for the CustomerAccount balance for which the Payment Plan is set-up.
  * @param pymtPlanType Type of payment plan.
- * @param CustomerAccount <em>undocumented</em>
+ * @param CustomerAccount [[ch.ninecode.model.CustomerAccount CustomerAccount]] <em>undocumented</em>
  * @param ErpInvoiceLineItems <em>undocumented</em>
  * @group InfCustomers
  * @groupname InfCustomers Package InfCustomers
@@ -195,7 +195,7 @@ extends
  *
  * For example, a customer may form a contracts with an Energy Service Supplier if Direct Access is permitted.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Agreement Agreement]] Reference to the superclass object.
  * @group InfCustomers
  * @groupname InfCustomers Package InfCustomers
  * @groupdesc InfCustomers The package is used to define detailed customer models.
@@ -257,7 +257,7 @@ extends
 /**
  * Pricing can be based on power quality.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param emergencyHighVoltLimit Emergency high voltage limit.
  * @param emergencyLowVoltLimit Emergency low voltage limit.
  * @param normalHighVoltLimit Normal high voltage limit.
@@ -365,7 +365,7 @@ extends
  *
  * Note that guarantee's identifier is in the 'name' attribute and the status of the guarantee is in the 'Status.status' attribute.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param applicationPeriod Period in which this service guantee applies.
  * @param automaticPay True if utility must autmatically pay the specified amount whenever the condition is not satisified, otherwise customer must make a claim to receive payment.
  * @param payAmount Amount to be paid by the service provider to the customer for each violation of the 'serviceRequirement'.
@@ -448,7 +448,7 @@ extends
  *
  * For example, in the USA these codes are located by the federal government, and then published in a book entitled "The Standard Industrial Classification Manual". The codes are arranged in a hierarchical structure.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param code Standard alphanumeric code assigned to a particular product/service within an industry.
  * @group InfCustomers
  * @groupname InfCustomers Package InfCustomers
@@ -514,7 +514,7 @@ extends
 /**
  * Price curve for specifying the cost of energy (X) at points in time (y1) according to a prcing structure, which is based on a tariff.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @group InfCustomers
  * @groupname InfCustomers Package InfCustomers
  * @groupdesc InfCustomers The package is used to define detailed customer models.
@@ -578,7 +578,7 @@ extends
  *
  * The history of Work Billing Info, Invoices, and Payments is to be maintained in associated ActivityRecords.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param costEstimate Estimated cost for work.
  * @param deposit Amount of price on deposit.
  * @param discount Discount from standard price.
@@ -586,7 +586,7 @@ extends
  * @param issueDateTime Date and time bill was issued to client.
  * @param receivedDateTime Date payment was received from client.
  * @param workPrice Amount of bill.
- * @param CustomerAccount <em>undocumented</em>
+ * @param CustomerAccount [[ch.ninecode.model.CustomerAccount CustomerAccount]] <em>undocumented</em>
  * @param ErpLineItems <em>undocumented</em>
  * @group InfCustomers
  * @groupname InfCustomers Package InfCustomers

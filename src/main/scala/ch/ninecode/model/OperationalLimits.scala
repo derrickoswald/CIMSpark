@@ -9,7 +9,7 @@ import ch.ninecode.cim.Parseable
 /**
  * Limit on active power flow.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.OperationalLimit OperationalLimit]] Reference to the superclass object.
  * @param value Value of active power limit.
  * @group OperationalLimits
  * @groupname OperationalLimits Package OperationalLimits
@@ -75,7 +75,7 @@ extends
 /**
  * Apparent power limit.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.OperationalLimit OperationalLimit]] Reference to the superclass object.
  * @param value The apparent power limit.
  * @group OperationalLimits
  * @groupname OperationalLimits Package OperationalLimits
@@ -143,7 +143,7 @@ extends
  *
  * A branch group need not form a cutset of the network.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param maximumActivePower The maximum active power flow.
  * @param maximumReactivePower The maximum reactive power flow.
  * @param minimumActivePower The minimum active power flow.
@@ -237,8 +237,8 @@ extends
  * @param sup Reference to the superclass object.
  * @param positiveFlowIn The flow into the terminal is summed if set true.
  *        The flow out of the terminanl is summed if set false.
- * @param BranchGroup The branch group to which the directed branch group terminals belong.
- * @param Terminal The terminal to be summed.
+ * @param BranchGroup [[ch.ninecode.model.BranchGroup BranchGroup]] The branch group to which the directed branch group terminals belong.
+ * @param Terminal [[ch.ninecode.model.Terminal Terminal]] The terminal to be summed.
  * @group OperationalLimits
  * @groupname OperationalLimits Package OperationalLimits
  * @groupdesc OperationalLimits This package models a specification of limits associated with equipment and other operational entities.
@@ -311,7 +311,7 @@ extends
 /**
  * Operational limit on current.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.OperationalLimit OperationalLimit]] Reference to the superclass object.
  * @param value Limit on current flow.
  * @group OperationalLimits
  * @groupname OperationalLimits Package OperationalLimits
@@ -379,11 +379,11 @@ extends
  *
  * The sub class value attribute shall be positive.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param LimitDependencyModel The limit dependency models which are used to calculate this limit.
  *        If no limit dependencies are specified then the native limit value is used.
- * @param OperationalLimitSet The limit set to which the limit values belong.
- * @param OperationalLimitType The limit type associated with this limit.
+ * @param OperationalLimitSet [[ch.ninecode.model.OperationalLimitSet OperationalLimitSet]] The limit set to which the limit values belong.
+ * @param OperationalLimitType [[ch.ninecode.model.OperationalLimitType OperationalLimitType]] The limit type associated with this limit.
  * @group OperationalLimits
  * @groupname OperationalLimits Package OperationalLimits
  * @groupdesc OperationalLimits This package models a specification of limits associated with equipment and other operational entities.
@@ -458,9 +458,9 @@ extends
  *
  * Sets of limits might apply to a specific temperature, or season for example. A set of limits may contain different severities of limit levels that would apply to the same equipment. The set may contain limits of different types such as apparent power and current limits or high and low voltage limits  that are logically applied together as a set.
  *
- * @param sup Reference to the superclass object.
- * @param Equipment The equipment to which the limit set applies.
- * @param Terminal <em>undocumented</em>
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param Equipment [[ch.ninecode.model.Equipment Equipment]] The equipment to which the limit set applies.
+ * @param Terminal [[ch.ninecode.model.Terminal Terminal]] <em>undocumented</em>
  * @group OperationalLimits
  * @groupname OperationalLimits Package OperationalLimits
  * @groupdesc OperationalLimits This package models a specification of limits associated with equipment and other operational entities.
@@ -529,7 +529,7 @@ extends
 /**
  * The operational meaning of a category of limits.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param acceptableDuration The nominal acceptable duration of the limit.
  *        Limits are commonly expressed in terms of the a time limit for which the limit is normally acceptable.   The actual acceptable duration of a specific limit may depend on other local factors such as temperature or wind speed.
  * @param direction The direction of the limit.
@@ -606,7 +606,7 @@ extends
 /**
  * Operational limit applied to voltage.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.OperationalLimit OperationalLimit]] Reference to the superclass object.
  * @param value Limit on voltage.
  *        High or low limit nature of the limit depends upon the properties of the operational limit type.
  * @group OperationalLimits

@@ -11,13 +11,13 @@ import ch.ninecode.cim.Parseable
  *
  * The coordinate system is a standard Cartesian coordinate system and the orientation attribute defines the orientation.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param orientation Coordinate system orientation of the diagram.
  * @param x1InitialView X coordinate of the first corner of the initial view.
  * @param x2InitialView X coordinate of the second corner of the initial view.
  * @param y1InitialView Y coordinate of the first corner of the initial view.
  * @param y2InitialView Y coordinate of the second corner of the initial view.
- * @param DiagramStyle A Diagram may have a DiagramStyle.
+ * @param DiagramStyle [[ch.ninecode.model.DiagramStyle DiagramStyle]] A Diagram may have a DiagramStyle.
  * @group DiagramLayout
  * @groupname DiagramLayout Package DiagramLayout
  * @groupdesc DiagramLayout This package describes diagram layout. This describes how objects are arranged in a coordianate system rather than how they are rendered.
@@ -104,7 +104,7 @@ extends
  *
  * This object can be associated with anything that specializes IdentifiedObject. For single line diagrams such objects typically include such items as analog values, breakers, disconnectors, power transformers, and transmission lines.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param drawingOrder The drawing order of this element.
  *        The higher the number, the later the element is drawn in sequence. This is used to ensure that elements that overlap are rendered in the correct order.
  * @param isPolygon Defines whether or not the diagram objects points define the boundaries of a polygon or the routing of a polyline.
@@ -115,9 +115,9 @@ extends
  *        This is used for defining the offset from centre for rendering an icon (the default is that a single point specifies the centre of the icon).
  * @param rotation Sets the angle of rotation of the diagram object.
  *        Zero degrees is pointing to the top of the diagram.  Rotation is clockwise.
- * @param Diagram A diagram object is part of a diagram.
- * @param DiagramObjectStyle A diagram object has a style associated that provides a reference for the style used in the originating system.
- * @param IdentifiedObject_attr The domain object to which this diagram object is associated.
+ * @param Diagram [[ch.ninecode.model.Diagram Diagram]] A diagram object is part of a diagram.
+ * @param DiagramObjectStyle [[ch.ninecode.model.DiagramObjectStyle DiagramObjectStyle]] A diagram object has a style associated that provides a reference for the style used in the originating system.
+ * @param IdentifiedObject_attr [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] The domain object to which this diagram object is associated.
  * @param VisibilityLayers A diagram object can be part of multiple visibility layers.
  * @group DiagramLayout
  * @groupname DiagramLayout Package DiagramLayout
@@ -284,8 +284,8 @@ extends
  * @param xPosition The X coordinate of this point.
  * @param yPosition The Y coordinate of this point.
  * @param zPosition The Z coordinate of this point.
- * @param DiagramObject The diagram object with which the points are associated.
- * @param DiagramObjectGluePoint The 'glue' point to which this point is associated.
+ * @param DiagramObject [[ch.ninecode.model.DiagramObject DiagramObject]] The diagram object with which the points are associated.
+ * @param DiagramObjectGluePoint [[ch.ninecode.model.DiagramObjectGluePoint DiagramObjectGluePoint]] The 'glue' point to which this point is associated.
  * @group DiagramLayout
  * @groupname DiagramLayout Package DiagramLayout
  * @groupdesc DiagramLayout This package describes diagram layout. This describes how objects are arranged in a coordianate system rather than how they are rendered.
@@ -372,7 +372,7 @@ extends
  *
  * A diagram object style describes information such as line thickness, shape such as circle or rectangle etc, and color.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @group DiagramLayout
  * @groupname DiagramLayout Package DiagramLayout
  * @groupdesc DiagramLayout This package describes diagram layout. This describes how objects are arranged in a coordianate system rather than how they are rendered.
@@ -436,7 +436,7 @@ extends
  *
  * A diagram style describes information such as schematic, geographic, bus-branch etc.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @group DiagramLayout
  * @groupname DiagramLayout Package DiagramLayout
  * @groupdesc DiagramLayout This package describes diagram layout. This describes how objects are arranged in a coordianate system rather than how they are rendered.
@@ -498,7 +498,7 @@ extends
 /**
  * A diagram object for placing free-text or text derived from an associated domain object.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.DiagramObject DiagramObject]] Reference to the superclass object.
  * @param text The text that is displayed by this text diagram object.
  * @group DiagramLayout
  * @groupname DiagramLayout Package DiagramLayout
@@ -566,7 +566,7 @@ extends
  *
  * Themes are used to display or hide certain information (e.g., lakes, borders), while scales are used for hiding or displaying information depending on the current zoom level (hide text when it is too small to be read, or when it exceeds the screen size). This is also called de-cluttering.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param drawingOrder The drawing order for this layer.
  *        The higher the number, the later the layer and the objects within it are rendered.
  * @group DiagramLayout

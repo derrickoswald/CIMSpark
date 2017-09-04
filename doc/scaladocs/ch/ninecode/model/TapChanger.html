@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>TapChanger - CIMReader 2.11-2.1.1-2.2.0 API - ch.ninecode.model.TapChanger</title>
-          <meta name="description" content="TapChanger - CIMReader 2.11 - 2.1.1 - 2.2.0 API - ch.ninecode.model.TapChanger" />
-          <meta name="keywords" content="TapChanger CIMReader 2.11 2.1.1 2.2.0 API ch.ninecode.model.TapChanger" />
+          <title>TapChanger - CIMReader 2.11-2.2.0-2.2.0 API - ch.ninecode.model.TapChanger</title>
+          <meta name="description" content="TapChanger - CIMReader 2.11 - 2.2.0 - 2.2.0 API - ch.ninecode.model.TapChanger" />
+          <meta name="keywords" content="TapChanger CIMReader 2.11 2.2.0 2.2.0 API ch.ninecode.model.TapChanger" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -52,12 +52,12 @@
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Mechanism for changing transformer winding tap positions.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">controlEnabled</dt><dd class="cmt"><p>Specifies the regulation status of the equipment.
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PowerSystemResource.html" class="extype" name="ch.ninecode.model.PowerSystemResource">PowerSystemResource</a> Reference to the superclass object.</p></dd><dt class="param">controlEnabled</dt><dd class="cmt"><p>Specifies the regulation status of the equipment.
        True is regulating, false is not regulating.</p></dd><dt class="param">highStep</dt><dd class="cmt"><p>Highest possible tap step position, advance from neutral.
        The attribute shall be greater than lowStep.</p></dd><dt class="param">initialDelay</dt><dd class="cmt"><p>For an LTC, the delay for initial tap changer operation (first step change)</p></dd><dt class="param">lowStep</dt><dd class="cmt"><p>Lowest possible tap step position, retard from neutral</p></dd><dt class="param">ltcFlag</dt><dd class="cmt"><p>Specifies whether or not a TapChanger has load tap changing capabilities.</p></dd><dt class="param">neutralStep</dt><dd class="cmt"><p>The neutral tap step position for this winding.
        The attribute shall be equal or greater than lowStep and equal or less than highStep.</p></dd><dt class="param">neutralU</dt><dd class="cmt"><p>Voltage at which the winding operates at the neutral tap setting.</p></dd><dt class="param">normalStep</dt><dd class="cmt"><p>The tap step position used in &quot;normal&quot; network operation for this winding.
        For a &quot;Fixed&quot; tap changer indicates the current physical tap setting.</p></dd><dt class="param">step</dt><dd class="cmt"><p>Tap changer position.
-       Starting step for a steady state solution. Non integer values are allowed to support continuous tap variables. The reasons for continuous value are to support study cases where no discrete tap changers has yet been designed, a solutions where a narrow voltage band force the tap step to oscillate or accommodate for a continuous solution as input.</p></dd><dt class="param">subsequentDelay</dt><dd class="cmt"><p>For an LTC, the delay for subsequent tap changer operation (second and later step changes)</p></dd><dt class="param">SvTapStep</dt><dd class="cmt"><p>The tap step state associated with the tap changer.</p></dd><dt class="param">TapChangerControl</dt><dd class="cmt"><p>The regulating control scheme in which this tap changer participates.</p></dd></dl><div class="toggleContainer block">
+       Starting step for a steady state solution. Non integer values are allowed to support continuous tap variables. The reasons for continuous value are to support study cases where no discrete tap changers has yet been designed, a solutions where a narrow voltage band force the tap step to oscillate or accommodate for a continuous solution as input.</p></dd><dt class="param">subsequentDelay</dt><dd class="cmt"><p>For an LTC, the delay for subsequent tap changer operation (second and later step changes)</p></dd><dt class="param">SvTapStep</dt><dd class="cmt"><p><a href="SvTapStep.html" class="extype" name="ch.ninecode.model.SvTapStep">SvTapStep</a> The tap step state associated with the tap changer.</p></dd><dt class="param">TapChangerControl</dt><dd class="cmt"><p><a href="TapChangerControl.html" class="extype" name="ch.ninecode.model.TapChangerControl">TapChangerControl</a> The regulating control scheme in which this tap changer participates.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -129,12 +129,12 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">controlEnabled</dt><dd class="cmt"><p>Specifies the regulation status of the equipment.
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PowerSystemResource.html" class="extype" name="ch.ninecode.model.PowerSystemResource">PowerSystemResource</a> Reference to the superclass object.</p></dd><dt class="param">controlEnabled</dt><dd class="cmt"><p>Specifies the regulation status of the equipment.
        True is regulating, false is not regulating.</p></dd><dt class="param">highStep</dt><dd class="cmt"><p>Highest possible tap step position, advance from neutral.
        The attribute shall be greater than lowStep.</p></dd><dt class="param">initialDelay</dt><dd class="cmt"><p>For an LTC, the delay for initial tap changer operation (first step change)</p></dd><dt class="param">lowStep</dt><dd class="cmt"><p>Lowest possible tap step position, retard from neutral</p></dd><dt class="param">ltcFlag</dt><dd class="cmt"><p>Specifies whether or not a TapChanger has load tap changing capabilities.</p></dd><dt class="param">neutralStep</dt><dd class="cmt"><p>The neutral tap step position for this winding.
        The attribute shall be equal or greater than lowStep and equal or less than highStep.</p></dd><dt class="param">neutralU</dt><dd class="cmt"><p>Voltage at which the winding operates at the neutral tap setting.</p></dd><dt class="param">normalStep</dt><dd class="cmt"><p>The tap step position used in &quot;normal&quot; network operation for this winding.
        For a &quot;Fixed&quot; tap changer indicates the current physical tap setting.</p></dd><dt class="param">step</dt><dd class="cmt"><p>Tap changer position.
-       Starting step for a steady state solution. Non integer values are allowed to support continuous tap variables. The reasons for continuous value are to support study cases where no discrete tap changers has yet been designed, a solutions where a narrow voltage band force the tap step to oscillate or accommodate for a continuous solution as input.</p></dd><dt class="param">subsequentDelay</dt><dd class="cmt"><p>For an LTC, the delay for subsequent tap changer operation (second and later step changes)</p></dd><dt class="param">SvTapStep</dt><dd class="cmt"><p>The tap step state associated with the tap changer.</p></dd><dt class="param">TapChangerControl</dt><dd class="cmt"><p>The regulating control scheme in which this tap changer participates.</p></dd></dl></div>
+       Starting step for a steady state solution. Non integer values are allowed to support continuous tap variables. The reasons for continuous value are to support study cases where no discrete tap changers has yet been designed, a solutions where a narrow voltage band force the tap step to oscillate or accommodate for a continuous solution as input.</p></dd><dt class="param">subsequentDelay</dt><dd class="cmt"><p>For an LTC, the delay for subsequent tap changer operation (second and later step changes)</p></dd><dt class="param">SvTapStep</dt><dd class="cmt"><p><a href="SvTapStep.html" class="extype" name="ch.ninecode.model.SvTapStep">SvTapStep</a> The tap step state associated with the tap changer.</p></dd><dt class="param">TapChangerControl</dt><dd class="cmt"><p><a href="TapChangerControl.html" class="extype" name="ch.ninecode.model.TapChangerControl">TapChangerControl</a> The regulating control scheme in which this tap changer participates.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -229,7 +229,7 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">The tap step state associated with the tap changer.</p>
+      <p class="shortcomment cmt"><a href="SvTapStep.html" class="extype" name="ch.ninecode.model.SvTapStep">SvTapStep</a> The tap step state associated with the tap changer.</p>
     </li><li name="ch.ninecode.model.TapChanger#TapChangerControl" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="TapChangerControl:String"></a>
       <a id="TapChangerControl:String"></a>
@@ -246,7 +246,7 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">The regulating control scheme in which this tap changer participates.</p>
+      <p class="shortcomment cmt"><a href="TapChangerControl.html" class="extype" name="ch.ninecode.model.TapChangerControl">TapChangerControl</a> The regulating control scheme in which this tap changer participates.</p>
     </li><li name="org.apache.spark.sql.Row#anyNull" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="anyNull:Boolean"></a>
       <a id="anyNull:Boolean"></a>
@@ -1221,7 +1221,7 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Reference to the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Reference to the superclass object.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="ch.ninecode.model.TapChanger">TapChanger</a> → <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></dd></dl></div>
+      <p class="shortcomment cmt"><a href="PowerSystemResource.html" class="extype" name="ch.ninecode.model.PowerSystemResource">PowerSystemResource</a> Reference to the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p><a href="PowerSystemResource.html" class="extype" name="ch.ninecode.model.PowerSystemResource">PowerSystemResource</a> Reference to the superclass object.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="ch.ninecode.model.TapChanger">TapChanger</a> → <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>

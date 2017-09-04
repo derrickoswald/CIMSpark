@@ -9,7 +9,7 @@ import ch.ninecode.cim.Parseable
 /**
  * Mechanical load model type 1.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.MechanicalLoadDynamics MechanicalLoadDynamics]] Reference to the superclass object.
  * @param a Speed squared coefficient (a).
  * @param b Speed coefficient (b).
  * @param d Speed to the exponent coefficient (d).
@@ -90,9 +90,9 @@ extends
 /**
  * Mechanical load function block whose behavior is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  *
- * @param sup Reference to the superclass object.
- * @param AsynchronousMachineDynamics Asynchronous machine model with which this mechanical load model is associated.
- * @param SynchronousMachineDynamics Synchronous machine model with which this mechanical load model is associated.
+ * @param sup [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
+ * @param AsynchronousMachineDynamics [[ch.ninecode.model.AsynchronousMachineDynamics AsynchronousMachineDynamics]] Asynchronous machine model with which this mechanical load model is associated.
+ * @param SynchronousMachineDynamics [[ch.ninecode.model.SynchronousMachineDynamics SynchronousMachineDynamics]] Synchronous machine model with which this mechanical load model is associated.
  * @group MechanicalLoadDynamics
  * @groupname MechanicalLoadDynamics Package MechanicalLoadDynamics
  * @groupdesc MechanicalLoadDynamics A mechanical load represents the variation in a motor's shaft torque or power as a function of shaft speed.

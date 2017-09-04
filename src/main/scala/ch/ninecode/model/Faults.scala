@@ -11,8 +11,8 @@ import ch.ninecode.cim.Parseable
  *
  * This class is not used to specify faults internal to the equipment.
  *
- * @param sup Reference to the superclass object.
- * @param Terminal The terminal connecting to the bus to which the fault is applied.
+ * @param sup [[ch.ninecode.model.Fault Fault]] Reference to the superclass object.
+ * @param Terminal [[ch.ninecode.model.Terminal Terminal]] The terminal connecting to the bus to which the fault is applied.
  * @group Faults
  * @groupname Faults Package Faults
  * @groupdesc Faults The package describe faults that may happen to conducting equipment, e.g. tree falling on a power line.
@@ -77,7 +77,7 @@ extends
 /**
  * Abnormal condition causing current flow through conducting equipment, such as caused by equipment failure or short circuits from objects not typically modeled (for example, a tree falling on a line).
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param impedance Fault impedance.
  *        Its usage is described by 'kind'.
  * @param kind The kind of phase fault.
@@ -85,7 +85,7 @@ extends
  *        The fault connections into these phases are further specified by the type of fault.
  * @param FaultCauseTypes All types of fault cause.
  * @param FaultyEquipment Equipment carrying this fault.
- * @param Outage Outage associated with this fault.
+ * @param Outage [[ch.ninecode.model.Outage Outage]] Outage associated with this fault.
  * @group Faults
  * @groupname Faults Package Faults
  * @groupdesc Faults The package describe faults that may happen to conducting equipment, e.g. tree falling on a power line.
@@ -170,7 +170,7 @@ extends
 /**
  * Type of cause of the fault.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @group Faults
  * @groupname Faults Package Faults
  * @groupdesc Faults The package describe faults that may happen to conducting equipment, e.g. tree falling on a power line.
@@ -313,9 +313,9 @@ extends
 /**
  * A fault that occurs on an AC line segment at some point along the length.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Fault Fault]] Reference to the superclass object.
  * @param lengthFromTerminal1 The length to the place where the fault is located starting from terminal with sequence number 1 of the faulted line segment.
- * @param ACLineSegment The line segment of this line fault.
+ * @param ACLineSegment [[ch.ninecode.model.ACLineSegment ACLineSegment]] The line segment of this line fault.
  * @group Faults
  * @groupname Faults Package Faults
  * @groupdesc Faults The package describe faults that may happen to conducting equipment, e.g. tree falling on a power line.

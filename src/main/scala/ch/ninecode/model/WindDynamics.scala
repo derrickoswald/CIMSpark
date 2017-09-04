@@ -11,8 +11,8 @@ import ch.ninecode.cim.Parseable
  *
  * Reference: IEC Standard 61400-27-1 Section 5.6.1.1.
  *
- * @param sup Reference to the superclass object.
- * @param WindGenTurbineType1aIEC Wind turbine type 1A model with which this wind aerodynamic model is associated.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param WindGenTurbineType1aIEC [[ch.ninecode.model.WindGenTurbineType1aIEC WindGenTurbineType1aIEC]] Wind turbine type 1A model with which this wind aerodynamic model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
@@ -89,12 +89,12 @@ extends
  *
  * Reference: IEC Standard 614000-27-1 Section 5.6.1.2.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param ka Aerodynamic gain (<i>k</i><i><sub>a</sub></i>).
  *        It is type dependent parameter.
  * @param thetaomega Initial pitch angle (<i>theta</i><i><sub>omega0</sub></i>).
  *        It is case dependent parameter.
- * @param WindTurbineType3IEC Wind turbine type 3 model with which this wind aerodynamic model is associated.
+ * @param WindTurbineType3IEC [[ch.ninecode.model.WindTurbineType3IEC WindTurbineType3IEC]] Wind turbine type 3 model with which this wind aerodynamic model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
@@ -179,7 +179,7 @@ extends
  *
  * Reference: IEC Standard 614000-27-1 Section 5.6.1.3.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param dpomega Partial derivative of aerodynamic power with respect to changes in WTR speed (<i>dp</i><i><sub>omega</sub></i>).
  *        It is type dependent parameter.
  * @param dptheta Partial derivative of aerodynamic power with respect to changes in pitch angle (<i>dp</i><i><sub>theta</sub></i>).
@@ -194,7 +194,7 @@ extends
  *        It is type dependent parameter.
  * @param thetazero Pitch angle if the wind turbine is not derated (<i>theta</i><i><sub>0</sub></i>).
  *        It is case dependent parameter.
- * @param WindTurbineType3IEC Wind turbine type 3 model with which this wind aerodynamic model is associated.
+ * @param WindTurbineType3IEC [[ch.ninecode.model.WindTurbineType3IEC WindTurbineType3IEC]] Wind turbine type 3 model with which this wind aerodynamic model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
@@ -299,7 +299,7 @@ extends
  *
  * The current limitation model combines the physical limits and the control limits.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param imax Maximum continuous current at the wind turbine terminals (<i>i</i><sub>max</sub>).
  *        It is type dependent parameter.
  * @param imaxdip Maximum current during voltage dip at the wind turbine terminals (<i>i</i><sub>maxdip</sub>).
@@ -318,7 +318,7 @@ extends
  *        It is type dependent parameter.
  * @param upqumax Wind turbine voltage in the operation point where zero reactive current can be delivered (<i>u</i><sub>pqumax</sub>).
  *        It is type dependent parameter.
- * @param WindTurbineType3or4IEC Wind turbine type 3 or 4 model with which this wind control current limitation model is associated.
+ * @param WindTurbineType3or4IEC [[ch.ninecode.model.WindTurbineType3or4IEC WindTurbineType3or4IEC]] Wind turbine type 3 or 4 model with which this wind control current limitation model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
@@ -423,7 +423,7 @@ extends
  *
  * Reference: IEC Standard 61400-27-1 Section 5.6.5.4.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param dpmax Maximum wind turbine power ramp rate (<i>dp</i><sub>max</sub>).
  *        It is type dependent parameter.
  * @param dprefmax Maximum ramp rate of wind turbine reference power (d<i>p</i><sub>refmax</sub>).
@@ -472,7 +472,7 @@ extends
  *        It can be calculated from two mass model parameters. It is type dependent parameter.
  * @param zeta Coefficient for active drive train damping (zeta).
  *        It is type dependent parameter.
- * @param WindTurbineType3IEC Wind turbine type 3 model with which this Wind control P type 3 model is associated.
+ * @param WindTurbineType3IEC [[ch.ninecode.model.WindTurbineType3IEC WindTurbineType3IEC]] Wind turbine type 3 model with which this Wind control P type 3 model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
@@ -641,14 +641,14 @@ extends
  *
  * Reference: IEC Standard 61400-27-1 Section 5.6.5.5.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param dpmaxp4a Maximum wind turbine power ramp rate (<i>dp</i><sub>maxp4A</sub>).
  *        It is project dependent parameter.
  * @param tpordp4a Time constant in power order lag (<i>T</i><sub>pordp4A</sub>).
  *        It is type dependent parameter.
  * @param tufiltp4a Voltage measurement filter time constant (<i>T</i><sub>ufiltp4A</sub>).
  *        It is type dependent parameter.
- * @param WindTurbineType4aIEC Wind turbine type 4A model with which this wind control P type 4A model is associated.
+ * @param WindTurbineType4aIEC [[ch.ninecode.model.WindTurbineType4aIEC WindTurbineType4aIEC]] Wind turbine type 4A model with which this wind control P type 4A model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
@@ -737,7 +737,7 @@ extends
  *
  * Reference: IEC Standard 61400-27-1 Section 5.6.5.6.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param dpmaxp4b Maximum wind turbine power ramp rate (<i>dp</i><sub>maxp4B</sub>).
  *        It is project dependent parameter.
  * @param tpaero Time constant in aerodynamic power response (<i>T</i><sub>paero</sub>).
@@ -746,7 +746,7 @@ extends
  *        It is type dependent parameter.
  * @param tufiltp4b Voltage measurement filter time constant (<i>T</i><sub>ufiltp4B</sub>).
  *        It is type dependent parameter.
- * @param WindTurbineType4bIEC Wind turbine type 4B model with which this wind control P type 4B model is associated.
+ * @param WindTurbineType4bIEC [[ch.ninecode.model.WindTurbineType4bIEC WindTurbineType4bIEC]] Wind turbine type 4B model with which this wind control P type 4B model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
@@ -839,7 +839,7 @@ extends
  *
  * Reference: IEC Standard 61400-27-1 Section 5.6.5.2.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param dthetamax Maximum pitch positive ramp rate (d<i>theta</i><sub>max</sub>).
  *        It is type dependent parameter. Unit = degrees/sec.
  * @param dthetamin Maximum pitch negative ramp rate (d<i>theta</i><sub>min</sub>).
@@ -860,7 +860,7 @@ extends
  *        It is type dependent parameter.
  * @param ttheta Pitch time constant (t<i>theta</i>).
  *        It is type dependent parameter.
- * @param WindTurbineType3IEC Wind turbine type 3 model with which this pitch control model is associated.
+ * @param WindTurbineType3IEC [[ch.ninecode.model.WindTurbineType3IEC WindTurbineType3IEC]] Wind turbine type 3 model with which this pitch control model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
@@ -977,7 +977,7 @@ extends
  *
  * Reference: IEC Standard 61400-27-1 Section 5.6.5.7.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param iqh1 Maximum reactive current injection during dip (i<sub>qh1</sub>).
  *        It is type dependent parameter.
  * @param iqmax Maximum reactive current injection (i<sub>qmax</sub>).
@@ -1024,7 +1024,7 @@ extends
  *        It is project dependent parameter.
  * @param xdroop Inductive component of voltage drop impedance (<i>x</i><sub>droop</sub>).
  *        It is project dependent parameter.
- * @param WindTurbineType3or4IEC Wind turbine type 3 or 4 model with which this reactive control model is associated.
+ * @param WindTurbineType3or4IEC [[ch.ninecode.model.WindTurbineType3or4IEC WindTurbineType3or4IEC]] Wind turbine type 3 or 4 model with which this reactive control model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
@@ -1193,12 +1193,12 @@ extends
  *
  * Reference: IEC Standard 61400-27-1 Section 5.6.5.9.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param qmax Maximum reactive power (<i>q</i><sub>max</sub>).
  *        It is type dependent parameter.
  * @param qmin Minimum reactive power (<i>q</i><sub>min</sub>).
  *        It is type dependent parameter.
- * @param WindTurbineType3or4IEC Wind generator type 3 or 4 model with which this constant Q limitation model is associated.
+ * @param WindTurbineType3or4IEC [[ch.ninecode.model.WindTurbineType3or4IEC WindTurbineType3or4IEC]] Wind generator type 3 or 4 model with which this constant Q limitation model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
@@ -1283,12 +1283,12 @@ extends
  *
  * Reference: IEC Standard 61400-27-1 Section 5.6.5.10.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param tpfiltql Power measurement filter time constant for Q capacity (<i>T</i><sub>pfiltql</sub>).
  *        It is type dependent parameter.
  * @param tufiltql Voltage measurement filter time constant for Q capacity (<i>T</i><sub>ufiltql</sub>).
  *        It is type dependent parameter.
- * @param WindTurbineType3or4IEC Wind generator type 3 or 4 model with which this QP and QU limitation model is associated.
+ * @param WindTurbineType3or4IEC [[ch.ninecode.model.WindTurbineType3or4IEC WindTurbineType3or4IEC]] Wind generator type 3 or 4 model with which this QP and QU limitation model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
@@ -1373,7 +1373,7 @@ extends
  *
  * Reference: IEC Standard 61400-27-1 Section 5.6.5.3.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param kirr Integral gain in rotor resistance PI controller (<i>K</i><sub>Irr</sub>).
  *        It is type dependent parameter.
  * @param komegafilt Filter gain for generator speed measurement (K<sub>omegafilt</sub>).
@@ -1390,7 +1390,7 @@ extends
  *        It is type dependent parameter.
  * @param tpfiltrr Filter time constant for power measurement (<i>T</i><sub>pfiltrr</sub>).
  *        It is type dependent parameter.
- * @param WindGenTurbineType2IEC Wind turbine type 2 model with whitch this wind control rotor resistance model is associated.
+ * @param WindGenTurbineType2IEC [[ch.ninecode.model.WindGenTurbineType2IEC WindGenTurbineType2IEC]] Wind turbine type 2 model with whitch this wind control rotor resistance model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
@@ -1497,20 +1497,20 @@ extends
 /**
  * The class models a look up table for the purpose of wind standard models.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param input Input value (x) for the lookup table function.
  * @param lookupTableFunctionType Type of the lookup table function.
  * @param output Output value (y) for the lookup table function.
  * @param sequence Sequence numbers of the pairs of the input (x) and the output (y) of the lookup table function.
- * @param WindContCurrLimIEC The current control limitation model with which this wind dynamics lookup table is associated.
- * @param WindContPType3IEC The P control type 3 model with which this wind dynamics lookup table is associated.
- * @param WindContQPQULimIEC The QP and QU limitation model with which this wind dynamics lookup table is associated.
- * @param WindContRotorRIEC The rotor resistance control model with which this wind dynamics lookup table is associated.
- * @param WindGenType3bIEC The generator type 3B model with which this wind dynamics lookup table is associated.
- * @param WindPitchContPowerIEC The pitch control power model with which this wind dynamics lookup table is associated.
- * @param WindPlantFreqPcontrolIEC The frequency and active power wind plant control model with which this wind dynamics lookup table is associated.
- * @param WindPlantReactiveControlIEC The voltage and reactive power wind plant control model with which this wind dynamics lookup table is associated.
- * @param WindProtectionIEC The grid protection model with which this wind dynamics lookup table is associated.
+ * @param WindContCurrLimIEC [[ch.ninecode.model.WindContCurrLimIEC WindContCurrLimIEC]] The current control limitation model with which this wind dynamics lookup table is associated.
+ * @param WindContPType3IEC [[ch.ninecode.model.WindContPType3IEC WindContPType3IEC]] The P control type 3 model with which this wind dynamics lookup table is associated.
+ * @param WindContQPQULimIEC [[ch.ninecode.model.WindContQPQULimIEC WindContQPQULimIEC]] The QP and QU limitation model with which this wind dynamics lookup table is associated.
+ * @param WindContRotorRIEC [[ch.ninecode.model.WindContRotorRIEC WindContRotorRIEC]] The rotor resistance control model with which this wind dynamics lookup table is associated.
+ * @param WindGenType3bIEC [[ch.ninecode.model.WindGenType3bIEC WindGenType3bIEC]] The generator type 3B model with which this wind dynamics lookup table is associated.
+ * @param WindPitchContPowerIEC [[ch.ninecode.model.WindPitchContPowerIEC WindPitchContPowerIEC]] The pitch control power model with which this wind dynamics lookup table is associated.
+ * @param WindPlantFreqPcontrolIEC [[ch.ninecode.model.WindPlantFreqPcontrolIEC WindPlantFreqPcontrolIEC]] The frequency and active power wind plant control model with which this wind dynamics lookup table is associated.
+ * @param WindPlantReactiveControlIEC [[ch.ninecode.model.WindPlantReactiveControlIEC WindPlantReactiveControlIEC]] The voltage and reactive power wind plant control model with which this wind dynamics lookup table is associated.
+ * @param WindProtectionIEC [[ch.ninecode.model.WindProtectionIEC WindProtectionIEC]] The grid protection model with which this wind dynamics lookup table is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
@@ -1635,8 +1635,8 @@ extends
  *
  * Reference: IEC Standard 61400-27-1, section 5.5.2.2.
  *
- * @param sup Reference to the superclass object.
- * @param WindAeroConstIEC Wind aerodynamic model associated with this wind turbine type 1A model.
+ * @param sup [[ch.ninecode.model.WindTurbineType1or2IEC WindTurbineType1or2IEC]] Reference to the superclass object.
+ * @param WindAeroConstIEC [[ch.ninecode.model.WindAeroConstIEC WindAeroConstIEC]] Wind aerodynamic model associated with this wind turbine type 1A model.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
@@ -1713,8 +1713,8 @@ extends
  *
  * Reference: IEC Standard 61400-27-1, section 5.5.2.3.
  *
- * @param sup Reference to the superclass object.
- * @param WindPitchContPowerIEC Pitch control power model associated with this wind turbine type 1B model.
+ * @param sup [[ch.ninecode.model.WindTurbineType1or2IEC WindTurbineType1or2IEC]] Reference to the superclass object.
+ * @param WindPitchContPowerIEC [[ch.ninecode.model.WindPitchContPowerIEC WindPitchContPowerIEC]] Pitch control power model associated with this wind turbine type 1B model.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
@@ -1791,9 +1791,9 @@ extends
  *
  * Reference: IEC Standard 61400-27-1, section 5.5.3.
  *
- * @param sup Reference to the superclass object.
- * @param WindContRotorRIEC Wind control rotor resistance model associated with wind turbine type 2 model.
- * @param WindPitchContPowerIEC Pitch control power model associated with this wind turbine type 2 model.
+ * @param sup [[ch.ninecode.model.WindTurbineType1or2IEC WindTurbineType1or2IEC]] Reference to the superclass object.
+ * @param WindContRotorRIEC [[ch.ninecode.model.WindContRotorRIEC WindContRotorRIEC]] Wind control rotor resistance model associated with wind turbine type 2 model.
+ * @param WindPitchContPowerIEC [[ch.ninecode.model.WindPitchContPowerIEC WindPitchContPowerIEC]] Pitch control power model associated with this wind turbine type 2 model.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
@@ -1872,14 +1872,14 @@ extends
 /**
  * Parent class supporting relationships to IEC wind turbines Type 3 generator models of IEC type 3A and 3B.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param dipmax Maximum active current ramp rate (di<sub>pmax</sub>).
  *        It is project dependent parameter.
  * @param diqmax Maximum reactive current ramp rate (di<sub>qmax</sub>).
  *        It is project dependent parameter.
  * @param xs Electromagnetic transient reactance (x<sub>S</sub>).
  *        It is type dependent parameter.
- * @param WindTurbineType3IEC Wind turbine type 3 model with which this wind generator type 3 is associated.
+ * @param WindTurbineType3IEC [[ch.ninecode.model.WindTurbineType3IEC WindTurbineType3IEC]] Wind turbine type 3 model with which this wind generator type 3 is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
@@ -1968,12 +1968,12 @@ extends
  *
  * Reference: IEC Standard 61400-27-1 Section 5.6.3.2.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.WindGenType3IEC WindGenType3IEC]] Reference to the superclass object.
  * @param kpc Current PI controller proportional gain (K<sub>Pc</sub>).
  *        It is type dependent parameter.
  * @param tic Current PI controller integration time constant (T<sub>Ic</sub>).
  *        It is type dependent parameter.
- * @param WindTurbineType4IEC Wind turbine type 4 model with which this wind generator type 3A model is associated.
+ * @param WindTurbineType4IEC [[ch.ninecode.model.WindTurbineType4IEC WindTurbineType4IEC]] Wind turbine type 4 model with which this wind generator type 3A model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
@@ -2058,7 +2058,7 @@ extends
  *
  * Reference: IEC Standard 61400-27-1 Section 5.6.3.3.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.WindGenType3IEC WindGenType3IEC]] Reference to the superclass object.
  * @param mwtcwp Crowbar control mode (<i>M</i><sub>WTcwp</sub>).
  *        <ul>
  *        <li>true = 1 in the model</li>
@@ -2153,7 +2153,7 @@ extends
  *
  * Reference: IEC Standard 61400-27-1 Section 5.6.3.4.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param dipmax Maximum active current ramp rate (di<sub>pmax</sub>).
  *        It is project dependent parameter.
  * @param diqmax Maximum reactive current ramp rate (di<sub>qmax</sub>).
@@ -2162,8 +2162,8 @@ extends
  *        It is case dependent parameter.
  * @param tg Time constant (T<sub>g</sub>).
  *        It is type dependent parameter.
- * @param WindTurbineType4aIEC Wind turbine type 4A model with which this wind generator type 4 model is associated.
- * @param WindTurbineType4bIEC Wind turbine type 4B model with which this wind generator type 4 model is associated.
+ * @param WindTurbineType4aIEC [[ch.ninecode.model.WindTurbineType4aIEC WindTurbineType4aIEC]] Wind turbine type 4A model with which this wind generator type 4 model is associated.
+ * @param WindTurbineType4bIEC [[ch.ninecode.model.WindTurbineType4bIEC WindTurbineType4bIEC]] Wind turbine type 4B model with which this wind generator type 4 model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
@@ -2260,7 +2260,7 @@ extends
  *
  * Reference: IEC Standard 61400-27-1 Section 5.6.2.1.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param cdrt Drive train damping (<i>c</i><i><sub>drt</sub></i><i>)</i>.
  *        It is type dependent parameter.
  * @param hgen Inertia constant of generator (<i>H</i><sub>gen</sub>).
@@ -2269,9 +2269,9 @@ extends
  *        It is type dependent parameter.
  * @param kdrt Drive train stiffness (<i>k</i><i><sub>drt</sub></i>).
  *        It is type dependent parameter.
- * @param WindTurbineType1or2IEC Wind generator type 1 or 2 model with which this wind mechanical model is associated.
- * @param WindTurbineType3IEC Wind turbine Type 3 model with which this wind mechanical model is associated.
- * @param WindTurbineType4bIEC Wind turbine type 4B model with which this wind mechanical model is associated.
+ * @param WindTurbineType1or2IEC [[ch.ninecode.model.WindTurbineType1or2IEC WindTurbineType1or2IEC]] Wind generator type 1 or 2 model with which this wind mechanical model is associated.
+ * @param WindTurbineType3IEC [[ch.ninecode.model.WindTurbineType3IEC WindTurbineType3IEC]] Wind turbine Type 3 model with which this wind mechanical model is associated.
+ * @param WindTurbineType4bIEC [[ch.ninecode.model.WindTurbineType4bIEC WindTurbineType4bIEC]] Wind turbine type 4B model with which this wind mechanical model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
@@ -2372,7 +2372,7 @@ extends
  *
  * Reference: IEC Standard 61400-27-1 Section 5.6.5.1.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param dpmax Rate limit for increasing power (d<i>p</i><sub>max</sub>).
  *        It is type dependent parameter.
  * @param dpmin Rate limit for decreasing power (d<i>p</i><sub>min</sub>).
@@ -2387,8 +2387,8 @@ extends
  *        It is type dependent parameter.
  * @param uuvrt Dip detection threshold (u<sub>UVRT</sub>).
  *        It is type dependent parameter.
- * @param WindGenTurbineType1bIEC Wind turbine type 1B model with which this Pitch control power model is associated.
- * @param WindGenTurbineType2IEC Wind turbine type 2 model with which this Pitch control power model is associated.
+ * @param WindGenTurbineType1bIEC [[ch.ninecode.model.WindGenTurbineType1bIEC WindGenTurbineType1bIEC]] Wind turbine type 1B model with which this Pitch control power model is associated.
+ * @param WindGenTurbineType2IEC [[ch.ninecode.model.WindGenTurbineType2IEC WindGenTurbineType2IEC]] Wind turbine type 2 model with which this Pitch control power model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
@@ -2495,8 +2495,8 @@ extends
 /**
  * Parent class supporting relationships to wind turbines Type 3 and 4 and wind plant IEC and user defined wind plants including their control models.
  *
- * @param sup Reference to the superclass object.
- * @param RemoteInputSignal The remote signal with which this power plant is associated.
+ * @param sup [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
+ * @param RemoteInputSignal [[ch.ninecode.model.RemoteInputSignal RemoteInputSignal]] The remote signal with which this power plant is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
@@ -2573,7 +2573,7 @@ extends
  *
  * Reference: IEC Standard 61400-27-1 Annex D.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param dprefmax Maximum ramp rate of <i>p</i><sub>WTref</sub> request from the plant controller to the wind turbines (<i>dp</i><sub>refmax</sub>).
  *        It is case dependent parameter.
  * @param dprefmin Minimum (negative) ramp rate of <i>p</i><sub>WTref</sub> request from the plant controller to the wind turbines (<i>dp</i><sub>refmin</sub>).
@@ -2604,7 +2604,7 @@ extends
  *        It is project dependent parameter.
  * @param twppfiltp Filter time constant for active power measurement (<i>T</i><sub>WPpfiltp</sub>).
  *        It is project dependent parameter.
- * @param WindPlantIEC Wind plant model with which this wind plant frequency and active power control is associated.
+ * @param WindPlantIEC [[ch.ninecode.model.WindPlantIEC WindPlantIEC]] Wind plant model with which this wind plant frequency and active power control is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
@@ -2741,9 +2741,9 @@ extends
  *
  * Reference: IEC 61400-27-1, Annex D.
  *
- * @param sup Reference to the superclass object.
- * @param WindPlantFreqPcontrolIEC Wind plant frequency and active power control model associated with this wind plant.
- * @param WindPlantReactiveControlIEC Wind plant model with which this wind reactive control is associated.
+ * @param sup [[ch.ninecode.model.WindPlantDynamics WindPlantDynamics]] Reference to the superclass object.
+ * @param WindPlantFreqPcontrolIEC [[ch.ninecode.model.WindPlantFreqPcontrolIEC WindPlantFreqPcontrolIEC]] Wind plant frequency and active power control model associated with this wind plant.
+ * @param WindPlantReactiveControlIEC [[ch.ninecode.model.WindPlantReactiveControlIEC WindPlantReactiveControlIEC]] Wind plant model with which this wind reactive control is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
@@ -2824,7 +2824,7 @@ extends
  *
  * Reference: IEC Standard 61400-27-1 Annex D.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param dxrefmax Maximum positive ramp rate for wind turbine reactive power/voltage reference (<i>dx</i><sub>refmax</sub>).
  *        It is project dependent parameter.
  * @param dxrefmin Maximum negative ramp rate for wind turbine reactive power/voltage reference (<i>dx</i><sub>refmin</sub>).
@@ -2861,7 +2861,7 @@ extends
  *        It is case dependent parameter.
  * @param xrefmin Minimum <i>x</i><sub>WTref</sub> (<i>q</i><sub>WTref</sub> or delta<i>u</i><sub>WTref</sub>) request from the plant controller (<i>x</i><sub>refmin</sub>).
  *        It is project dependent parameter.
- * @param WindPlantIEC Wind plant reactive control model associated with this wind plant.
+ * @param WindPlantIEC [[ch.ninecode.model.WindPlantIEC WindPlantIEC]] Wind plant reactive control model associated with this wind plant.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
@@ -3010,7 +3010,7 @@ extends
  *
  * Reference: IEC Standard 614000-27-1 Section 5.6.6.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param dfimax Maximum rate of change of frequency (<i>dF</i><i><sub>max</sub></i>).
  *        It is type dependent parameter.
  * @param fover Wind turbine over frequency protection activation threshold (<i>f</i><i><sub>over</sub></i>).
@@ -3025,8 +3025,8 @@ extends
  *        It is project dependent parameter.
  * @param uunder Wind turbine under voltage protection activation threshold (<i>u</i><i><sub>under</sub></i>).
  *        It is project dependent parameter.
- * @param WindTurbineType1or2IEC Wind generator type 1 or 2 model with which this wind turbine protection model is associated.
- * @param WindTurbineType3or4IEC Wind generator type 3 or 4 model with which this wind turbine protection model is associated.
+ * @param WindTurbineType1or2IEC [[ch.ninecode.model.WindTurbineType1or2IEC WindTurbineType1or2IEC]] Wind generator type 1 or 2 model with which this wind turbine protection model is associated.
+ * @param WindTurbineType3or4IEC [[ch.ninecode.model.WindTurbineType3or4IEC WindTurbineType3or4IEC]] Wind generator type 3 or 4 model with which this wind turbine protection model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
@@ -3135,14 +3135,14 @@ extends
  *
  * Reference: IEC Standard 61400-27-1 Section 5.6.3.5.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param tpll Time constant for PLL first order filter model (T<sub>PLL</sub>).
  *        It is type dependent parameter.
  * @param upll1 Voltage below which the angle of the voltage is filtered and possibly also frozen (u<sub>PLL1</sub>).
  *        It is type dependent parameter.
  * @param upll2 Voltage (u<sub>PLL2</sub>) below which the angle of the voltage is frozen if u<sub>PLL2 </sub>is smaller or equal to u<sub>PLL1</sub> .
  *        It is type dependent parameter.
- * @param WindTurbineType3or4IEC Wind turbine type 3 or 4 model with which this reference frame rotation model is associated.
+ * @param WindTurbineType3or4IEC [[ch.ninecode.model.WindTurbineType3or4IEC WindTurbineType3or4IEC]] Wind turbine type 3 or 4 model with which this reference frame rotation model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
@@ -3229,9 +3229,9 @@ extends
 /**
  * Parent class supporting relationships to wind turbines Type 1 and 2 and their control models.
  *
- * @param sup Reference to the superclass object.
- * @param AsynchronousMachineDynamics Asynchronous machine model with which this wind generator type 1 or 2 model is associated.
- * @param RemoteInputSignal Remote input signal used by this wind generator Type 1 or Type 2 model.
+ * @param sup [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
+ * @param AsynchronousMachineDynamics [[ch.ninecode.model.AsynchronousMachineDynamics AsynchronousMachineDynamics]] Asynchronous machine model with which this wind generator type 1 or 2 model is associated.
+ * @param RemoteInputSignal [[ch.ninecode.model.RemoteInputSignal RemoteInputSignal]] Remote input signal used by this wind generator Type 1 or Type 2 model.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
@@ -3312,9 +3312,9 @@ extends
  *
  * Generator model for wind turbine of IEC Type 1 or Type 2 is a standard asynchronous generator model.
  *
- * @param sup Reference to the superclass object.
- * @param WindMechIEC Wind mechanical model associated with this wind generator type 1 or 2 model.
- * @param WindProtectionIEC Wind turbune protection model associated with this wind generator type 1 or 2 model.
+ * @param sup [[ch.ninecode.model.WindTurbineType1or2Dynamics WindTurbineType1or2Dynamics]] Reference to the superclass object.
+ * @param WindMechIEC [[ch.ninecode.model.WindMechIEC WindMechIEC]] Wind mechanical model associated with this wind generator type 1 or 2 model.
+ * @param WindProtectionIEC [[ch.ninecode.model.WindProtectionIEC WindProtectionIEC]] Wind turbune protection model associated with this wind generator type 1 or 2 model.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
@@ -3393,13 +3393,13 @@ extends
 /**
  * Parent class supporting relationships to IEC wind turbines Type 3 including their control models.
  *
- * @param sup Reference to the superclass object.
- * @param WindAeroOneDimIEC Wind aerodynamic model associated with this wind generator type 3 model.
- * @param WindAeroTwoDimIEC Wind aerodynamic model associated with this wind turbine type 3 model.
- * @param WindContPType3IEC Wind control P type 3 model associated with this wind turbine type 3 model.
- * @param WindContPitchAngleIEC Wind control pitch angle model associated with this wind turbine type 3.
- * @param WindGenType3IEC Wind generator Type 3 model associated with this wind turbine type 3 model.
- * @param WindMechIEC Wind mechanical model associated with this wind turbine Type 3 model.
+ * @param sup [[ch.ninecode.model.WindTurbineType3or4IEC WindTurbineType3or4IEC]] Reference to the superclass object.
+ * @param WindAeroOneDimIEC [[ch.ninecode.model.WindAeroOneDimIEC WindAeroOneDimIEC]] Wind aerodynamic model associated with this wind generator type 3 model.
+ * @param WindAeroTwoDimIEC [[ch.ninecode.model.WindAeroTwoDimIEC WindAeroTwoDimIEC]] Wind aerodynamic model associated with this wind turbine type 3 model.
+ * @param WindContPType3IEC [[ch.ninecode.model.WindContPType3IEC WindContPType3IEC]] Wind control P type 3 model associated with this wind turbine type 3 model.
+ * @param WindContPitchAngleIEC [[ch.ninecode.model.WindContPitchAngleIEC WindContPitchAngleIEC]] Wind control pitch angle model associated with this wind turbine type 3.
+ * @param WindGenType3IEC [[ch.ninecode.model.WindGenType3IEC WindGenType3IEC]] Wind generator Type 3 model associated with this wind turbine type 3 model.
+ * @param WindMechIEC [[ch.ninecode.model.WindMechIEC WindMechIEC]] Wind mechanical model associated with this wind turbine Type 3 model.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
@@ -3494,10 +3494,10 @@ extends
 /**
  * Parent class supporting relationships to wind turbines Type 3 and 4 and wind plant including their control models.
  *
- * @param sup Reference to the superclass object.
- * @param EnergySource Energy Source (current source) with which this wind Type 3 or 4 dynamics model is asoociated.
- * @param RemoteInputSignal Remote input signal used by these wind turbine Type 3 or 4 models.
- * @param WindPlantDynamics The wind plant with which the wind turbines type 3 or 4 are associated.
+ * @param sup [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
+ * @param EnergySource [[ch.ninecode.model.EnergySource EnergySource]] Energy Source (current source) with which this wind Type 3 or 4 dynamics model is asoociated.
+ * @param RemoteInputSignal [[ch.ninecode.model.RemoteInputSignal RemoteInputSignal]] Remote input signal used by these wind turbine Type 3 or 4 models.
+ * @param WindPlantDynamics [[ch.ninecode.model.WindPlantDynamics WindPlantDynamics]] The wind plant with which the wind turbines type 3 or 4 are associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
@@ -3580,13 +3580,13 @@ extends
 /**
  * Parent class supporting relationships to IEC wind turbines Type 3 and 4 including their control models.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.WindTurbineType3or4Dynamics WindTurbineType3or4Dynamics]] Reference to the superclass object.
  * @param WIndContQIEC Wind control Q model associated with this wind turbine type 3 or 4 model.
- * @param WindContCurrLimIEC Wind control current limitation model associated with this wind turbine type 3 or 4 model.
- * @param WindContQLimIEC Constant Q limitation model associated with this wind generator type 3 or 4 model.
- * @param WindContQPQULimIEC QP and QU limitation model associated with this wind generator type 3 or 4 model.
- * @param WindProtectionIEC Wind turbune protection model associated with this wind generator type 3 or 4 model.
- * @param WindRefFrameRotIEC Reference frame rotation model associated with this wind turbine type 3 or 4 model.
+ * @param WindContCurrLimIEC [[ch.ninecode.model.WindContCurrLimIEC WindContCurrLimIEC]] Wind control current limitation model associated with this wind turbine type 3 or 4 model.
+ * @param WindContQLimIEC [[ch.ninecode.model.WindContQLimIEC WindContQLimIEC]] Constant Q limitation model associated with this wind generator type 3 or 4 model.
+ * @param WindContQPQULimIEC [[ch.ninecode.model.WindContQPQULimIEC WindContQPQULimIEC]] QP and QU limitation model associated with this wind generator type 3 or 4 model.
+ * @param WindProtectionIEC [[ch.ninecode.model.WindProtectionIEC WindProtectionIEC]] Wind turbune protection model associated with this wind generator type 3 or 4 model.
+ * @param WindRefFrameRotIEC [[ch.ninecode.model.WindRefFrameRotIEC WindRefFrameRotIEC]] Reference frame rotation model associated with this wind turbine type 3 or 4 model.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
@@ -3681,8 +3681,8 @@ extends
 /**
  * Parent class supporting relationships to IEC wind turbines Type 4 including their control models.
  *
- * @param sup Reference to the superclass object.
- * @param WindGenType3aIEC Wind generator type 3A model associated with this wind turbine type 4 model.
+ * @param sup [[ch.ninecode.model.WindTurbineType3or4IEC WindTurbineType3or4IEC]] Reference to the superclass object.
+ * @param WindGenType3aIEC [[ch.ninecode.model.WindGenType3aIEC WindGenType3aIEC]] Wind generator type 3A model associated with this wind turbine type 4 model.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
@@ -3759,9 +3759,9 @@ extends
  *
  * Reference: IEC Standard 61400-27-1, section 5.5.5.3.
  *
- * @param sup Reference to the superclass object.
- * @param WindContPType4aIEC Wind control P type 4A model associated with this wind turbine type 4A model.
- * @param WindGenType4IEC Wind generator type 4 model associated with this wind turbine type 4A model.
+ * @param sup [[ch.ninecode.model.WindTurbineType4IEC WindTurbineType4IEC]] Reference to the superclass object.
+ * @param WindContPType4aIEC [[ch.ninecode.model.WindContPType4aIEC WindContPType4aIEC]] Wind control P type 4A model associated with this wind turbine type 4A model.
+ * @param WindGenType4IEC [[ch.ninecode.model.WindGenType4IEC WindGenType4IEC]] Wind generator type 4 model associated with this wind turbine type 4A model.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
@@ -3842,10 +3842,10 @@ extends
  *
  * Reference: IEC Standard 61400-27-1, section 5.5.5.2.
  *
- * @param sup Reference to the superclass object.
- * @param WindContPType4bIEC Wind control P type 4B model associated with this wind turbine type 4B model.
- * @param WindGenType4IEC Wind generator type 4 model associated with this wind turbine type 4B model.
- * @param WindMechIEC Wind mechanical model associated with this wind turbine Type 4B model.
+ * @param sup [[ch.ninecode.model.WindTurbineType4IEC WindTurbineType4IEC]] Reference to the superclass object.
+ * @param WindContPType4bIEC [[ch.ninecode.model.WindContPType4bIEC WindContPType4bIEC]] Wind control P type 4B model associated with this wind turbine type 4B model.
+ * @param WindGenType4IEC [[ch.ninecode.model.WindGenType4IEC WindGenType4IEC]] Wind generator type 4 model associated with this wind turbine type 4B model.
+ * @param WindMechIEC [[ch.ninecode.model.WindMechIEC WindMechIEC]] Wind mechanical model associated with this wind turbine Type 4B model.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:

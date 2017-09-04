@@ -11,7 +11,7 @@ import ch.ninecode.cim.Parseable
  *
  * Ownership of the property may be determined through associations to Organisations and/or ErpPersons.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param demographicKind Demographics around the site.
  * @param externalRecordReference Reference allocated by the governing organisation (such as municipality) to this piece of land that has a formal reference to Surveyor General's records.
  *        The governing organisation is specified in associated Organisation.
@@ -104,10 +104,10 @@ extends
  *
  * Note that the association to Location, Asset, Organisation, etc. for the Grant is inherited from Agreement, a type of Document.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Agreement Agreement]] Reference to the superclass object.
  * @param propertyData Property related information that describes the Grant's land parcel.
  *        For example, it may be a deed book number, deed book page number, and parcel number.
- * @param LandProperty Land property this location grant applies to.
+ * @param LandProperty [[ch.ninecode.model.LandProperty LandProperty]] Land property this location grant applies to.
  * @group InfLocations
  * @groupname InfLocations Package InfLocations
  */
@@ -177,7 +177,7 @@ extends
  *
  * A red line can be associated with any Location object.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @group InfLocations
  * @groupname InfLocations Package InfLocations
@@ -244,7 +244,7 @@ extends
  *
  * Note that the association to Location, Asset, Organisation, etc. for the Grant is inherited from Agreement, a type of Document.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Agreement Agreement]] Reference to the superclass object.
  * @param propertyData Property related information that describes the ROW's land parcel.
  *        For example, it may be a deed book number, deed book page number, and parcel number.
  * @param LandProperties All land properties this right of way applies to.
@@ -315,7 +315,7 @@ extends
 /**
  * Route that is followed, for example by service crews.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @param typ Classification by utility's work management standards and practices.
  * @param Locations <em>undocumented</em>
@@ -392,7 +392,7 @@ extends
  *
  * It may be part of the electrical network, a land area where special restrictions apply, weather areas, etc. For weather, it is an area where a set of relatively homogenous weather measurements apply.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Location Location]] Reference to the superclass object.
  * @param kind Kind of this zone.
  * @group InfLocations
  * @groupname InfLocations Package InfLocations

@@ -11,7 +11,7 @@ import ch.ninecode.cim.Parseable
  *
  * This model represents a supervisory turbine load controller that acts to maintain turbine power at a set value by continuous adjustment of the turbine governor speed-load reference. This model is intended to represent slow reset 'outer loop' controllers managing the action of the turbine governor.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.TurbineLoadControllerDynamics TurbineLoadControllerDynamics]] Reference to the superclass object.
  * @param db Controller dead band (db).
  *        Typical Value = 0.
  * @param emax Maximum control error (Emax) (note 4).
@@ -150,8 +150,8 @@ extends
 /**
  * Turbine load controller function block whose behavior is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  *
- * @param sup Reference to the superclass object.
- * @param TurbineGovernorDynamics Turbine-governor controlled by this turbine load controller.
+ * @param sup [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
+ * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Turbine-governor controlled by this turbine load controller.
  * @group TurbineLoadControllerDynamics
  * @groupname TurbineLoadControllerDynamics Package TurbineLoadControllerDynamics
  * @groupdesc TurbineLoadControllerDynamics A turbine load controller acts to maintain turbine power at a set value by continuous adjustment of the turbine governor speed-load reference.

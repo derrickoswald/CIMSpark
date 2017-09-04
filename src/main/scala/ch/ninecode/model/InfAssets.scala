@@ -11,8 +11,8 @@ import ch.ninecode.cim.Parseable
  *
  * The relationship is to be defined between an independent variable (X-axis) and one or two dependent variables (Y1-axis and Y2-axis).
  *
- * @param sup Reference to the superclass object.
- * @param Specification <em>undocumented</em>
+ * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
+ * @param Specification [[ch.ninecode.model.Specification Specification]] <em>undocumented</em>
  * @group InfAssets
  * @groupname InfAssets Package InfAssets
  * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
@@ -94,13 +94,13 @@ extends
 /**
  * Bushing asset.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Asset Asset]] Reference to the superclass object.
  * @param c1Capacitance Factory measured capacitance, measured between the power factor tap and the bushing conductor.
  * @param c1PowerFactor Factory measured insulation power factor, measured between the power factor tap and the bushing conductor.
  * @param c2Capacitance Factory measured capacitance measured between the power factor tap and ground.
  * @param c2PowerFactor Factory measured insulation power factor, measured between the power factor tap and ground.
  * @param insulationKind Kind of insulation.
- * @param Terminal <em>undocumented</em>
+ * @param Terminal [[ch.ninecode.model.Terminal Terminal]] <em>undocumented</em>
  * @group InfAssets
  * @groupname InfAssets Package InfAssets
  * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
@@ -204,11 +204,11 @@ extends
  *
  * Typical status values are: Acceptable, Minor Deterioration or Moisture Absorption, Major Deterioration or Moisture Absorption, Failed.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @param testKind Kind of test for this bushing.
- * @param Bushing <em>undocumented</em>
- * @param TransformerObservation <em>undocumented</em>
+ * @param Bushing [[ch.ninecode.model.Bushing Bushing]] <em>undocumented</em>
+ * @param TransformerObservation [[ch.ninecode.model.TransformerObservation TransformerObservation]] <em>undocumented</em>
  * @group InfAssets
  * @groupname InfAssets Package InfAssets
  * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
@@ -302,7 +302,7 @@ extends
 /**
  * Enclosure that offers protection to the equipment it contains and/or safety to people/animals outside it.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.AssetContainer AssetContainer]] Reference to the superclass object.
  * @group InfAssets
  * @groupname InfAssets Package InfAssets
  * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
@@ -383,7 +383,7 @@ extends
  *
  * For instance, a transformer may be rated 121kV on the primary, 15kV on the secondary and 4kV on the tertiary winding. These are voltage ratings and the power ratings are generally the same for all three windings and independent of the voltage ratings, there are instances where the tertiary may have a lower power rating.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param coolingKind Kind of cooling system.
  * @param powerRating The power rating associated with type of cooling specified for this stage.
  * @param stage Stage of cooling and associated power rating.
@@ -483,7 +483,7 @@ extends
  *
  * Units and multipliers are specified per dimension.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param orientation A description of the orientation of the object relative to the dimensions.
  *        As an example, a vault may have north-south orientation for the sizeLength measurement and sizeDepth may be the height of the vault.
  * @param sizeDepth Depth measurement.
@@ -592,7 +592,7 @@ extends
 /**
  * A duct contains individual wires in the layout as specified with associated wire spacing instances; number of them gives the number of conductors in this duct.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.AssetContainer AssetContainer]] Reference to the superclass object.
  * @param circuitCount Number of circuits in duct bank.
  *        Refer to associations between a duct (ConductorAsset) and an ACLineSegment to understand which circuits are in which ducts.
  * @group InfAssets
@@ -676,7 +676,7 @@ extends
 /**
  * FACTS device asset.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Asset Asset]] Reference to the superclass object.
  * @param kind Kind of FACTS device.
  * @group InfAssets
  * @groupname InfAssets Package InfAssets
@@ -759,7 +759,7 @@ extends
 /**
  * A facility may contain buildings, storage facilities, switching facilities, power generation, manufacturing facilities, maintenance facilities, etc.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.AssetContainer AssetContainer]] Reference to the superclass object.
  * @param kind Kind of this facility.
  * @group InfAssets
  * @groupname InfAssets Package InfAssets
@@ -842,7 +842,7 @@ extends
 /**
  * An event where an asset has failed to perform its functions within specified parameters.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.ActivityRecord ActivityRecord]] Reference to the superclass object.
  * @param corporateCode Code for asset failure.
  * @param failureIsolationMethod How the asset failure was isolated from the system.
  * @param faultLocatingMethod The method used for locating the faulted part of the asset.
@@ -943,7 +943,7 @@ extends
  *
  * Historical properties may be determined by ActivityRecords associated with the asset.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param account The account to which this actual material item is charged.
  * @param actualPurchaseCost The actual purchase cost of this particular asset.
  * @param costDescription Description of the cost.
@@ -956,7 +956,7 @@ extends
  * @param quantity The quantity of the asset if per unit length, for example conductor.
  * @param valueDateTime Date and time at which the financial value was last established.
  * @param warrantyEndDateTime Date and time warranty on asset expires.
- * @param Asset <em>undocumented</em>
+ * @param Asset [[ch.ninecode.model.Asset Asset]] <em>undocumented</em>
  * @group InfAssets
  * @groupname InfAssets Package InfAssets
  * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
@@ -1082,14 +1082,14 @@ extends
 /**
  * Generic asset or material item that may be used for planning, work or design purposes.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.AssetModel AssetModel]] Reference to the superclass object.
  * @param estimatedUnitCost Estimated unit cost (or cost per unit length) of this type of asset.
  *        It does not include labor to install/construct or configure it.
  * @param quantity The value, unit of measure, and multiplier for the quantity.
  * @param stockItem True if item is a stock item (default).
- * @param CUAsset <em>undocumented</em>
+ * @param CUAsset [[ch.ninecode.model.CUAsset CUAsset]] <em>undocumented</em>
  * @param CUWorkEquipmentAsset <em>undocumented</em>
- * @param TypeAssetCatalogue <em>undocumented</em>
+ * @param TypeAssetCatalogue [[ch.ninecode.model.TypeAssetCatalogue TypeAssetCatalogue]] <em>undocumented</em>
  * @group InfAssets
  * @groupname InfAssets Package InfAssets
  * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
@@ -1193,7 +1193,7 @@ extends
  *
  * It includes the portion of cable under wipes, welds, or other seals.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Asset Asset]] Reference to the superclass object.
  * @param configurationKind Configuration of joint.
  * @param fillKind Material used to fill the joint.
  * @param insulation The type of insulation around the joint, classified according to the utility's asset management standards and practices.
@@ -1286,12 +1286,12 @@ extends
 /**
  * A substance that either (1) provides the means of transmission of a force or effect, such as hydraulic fluid, or (2) is used for a surrounding or enveloping substance, such as oil in a transformer or circuit breaker.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param kind Kind of this medium.
  * @param volumeSpec The volume of the medium specified for this application.
  *        Note that the actual volume is a type of measurement associated witht the asset.
  * @param Assets <em>undocumented</em>
- * @param Specification <em>undocumented</em>
+ * @param Specification [[ch.ninecode.model.Specification Specification]] <em>undocumented</em>
  * @group InfAssets
  * @groupname InfAssets Package InfAssets
  * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
@@ -1385,7 +1385,7 @@ extends
 /**
  * Pole asset.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Structure Structure]] Reference to the superclass object.
  * @param baseKind Kind of base for this pole.
  * @param breastBlock True if a block of material has been attached to base of pole in ground for stability.
  *        This technique is used primarily when anchors can not be used.
@@ -1520,9 +1520,9 @@ extends
 /**
  * Reconditioning information for an asset.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param dateTime Date and time this reconditioning (or a major overhaul) has been performed.
- * @param Asset <em>undocumented</em>
+ * @param Asset [[ch.ninecode.model.Asset Asset]] <em>undocumented</em>
  * @group InfAssets
  * @groupname InfAssets Package InfAssets
  * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
@@ -1608,11 +1608,11 @@ extends
 /**
  * Information regarding the experienced and expected reliability of a specific asset, type of asset, or asset model.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param mTTR Mean time to repair (MTTR - hours).
  * @param momFailureRate Momentary failure rate (temporary failures/kft-year).
  * @param Assets <em>undocumented</em>
- * @param Specification <em>undocumented</em>
+ * @param Specification [[ch.ninecode.model.Specification Specification]] <em>undocumented</em>
  * @group InfAssets
  * @groupname InfAssets Package InfAssets
  * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
@@ -1708,7 +1708,7 @@ extends
  *
  * Examples include documents supplied by manufacturers such as asset installation instructions, asset maintenance instructions, etc.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @group InfAssets
  * @groupname InfAssets Package InfAssets
  * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
@@ -1787,12 +1787,12 @@ extends
 /**
  * Streetlight asset.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Asset Asset]] Reference to the superclass object.
  * @param armLength Length of arm.
  *        Note that a new light may be placed on an existing arm.
  * @param lampKind Lamp kind.
  * @param lightRating Power rating of light.
- * @param Pole Pole to which thiss streetlight is attached.
+ * @param Pole [[ch.ninecode.model.Pole Pole]] Pole to which thiss streetlight is attached.
  * @group InfAssets
  * @groupname InfAssets Package InfAssets
  * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
@@ -1888,7 +1888,7 @@ extends
  *
  * Where applicable, number of conductors can be derived from the number of associated wire spacing instances.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.AssetContainer AssetContainer]] Reference to the superclass object.
  * @param fumigantAppliedDate Date fumigant was last applied.
  * @param fumigantName Name of fumigant.
  * @param height Visible height of structure above ground level for overhead construction (e.g., Pole or Tower) or below ground level for an underground vault, manhole, etc.
@@ -2002,7 +2002,7 @@ extends
 /**
  * Support for structure assets.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Asset Asset]] Reference to the superclass object.
  * @param anchorKind (if anchor) Kind of anchor.
  * @param anchorRodCount (if anchor) Number of rods used.
  * @param anchorRodLength (if anchor) Length of rod used.
@@ -2122,7 +2122,7 @@ extends
  *
  * Dimensions of the Tower are specified in associated DimensionsInfo class.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Structure Structure]] Reference to the superclass object.
  * @param constructionKind Construction structure on the tower.
  * @group InfAssets
  * @groupname InfAssets Package InfAssets
@@ -2207,7 +2207,7 @@ extends
  *
  * Note that some properties may be measured through other means and therefore have measurement values in addition to the observed values recorded here.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param bushingTemp Bushing temperature.
  * @param dga Dissolved Gas Analysis.
  *        Typical values are: Acceptable, Overheating, Corona, Sparking, Arcing.
@@ -2225,7 +2225,7 @@ extends
  * @param status <em>undocumented</em>
  * @param topOilTemp Top oil temperature.
  * @param waterContent Water Content expressed in parts per million.
- * @param Reconditioning <em>undocumented</em>
+ * @param Reconditioning [[ch.ninecode.model.Reconditioning Reconditioning]] <em>undocumented</em>
  * @param Transformer <em>undocumented</em>
  * @group InfAssets
  * @groupname InfAssets Package InfAssets
@@ -2368,7 +2368,7 @@ extends
 /**
  * Underground structure.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Structure Structure]] Reference to the superclass object.
  * @param hasVentilation True if vault is ventilating.
  * @param kind True if vault is ventilating.
  * @param material Primary material of underground structure.
@@ -2466,7 +2466,7 @@ extends
 /**
  * Winding insulation condition as a result of a test.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param insulationPFStatus Status of Winding Insulation Power Factor as of statusDate: Acceptable, Minor Deterioration or Moisture Absorption, Major Deterioration or Moisture Absorption, Failed.
  * @param insulationResistance For testType, status of Winding Insulation Resistance as of statusDate.
  *        Typical values are: Acceptable, Questionable, Failed.
@@ -2474,7 +2474,7 @@ extends
  * @param status <em>undocumented</em>
  * @param FromWinding <em>undocumented</em>
  * @param ToWinding <em>undocumented</em>
- * @param TransformerObservation <em>undocumented</em>
+ * @param TransformerObservation [[ch.ninecode.model.TransformerObservation TransformerObservation]] <em>undocumented</em>
  * @group InfAssets
  * @groupname InfAssets Package InfAssets
  * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.

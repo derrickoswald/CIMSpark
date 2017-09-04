@@ -10,7 +10,8 @@ case class Member (
     multiple: Boolean,
     datatype: String,
     initializer: String,
-    function: String)
+    function: String,
+    referenced_class: String)
 {
 
     def edit (s: String): String =
@@ -34,10 +35,10 @@ case class Member (
     {
         val jd = JavaDoc (comment, 0)
         " * @param " + variable +
+        (if (null == referenced_class) " " else " [[ch.ninecode.model." + referenced_class + " " + referenced_class + "]] ") +
         (if (jd.summary == "")
-            " <em>undocumented</em>"
+            "<em>undocumented</em>"
         else
-            " " + 
             asterisks (edit (jd.summary)) +
             (if (jd.body == "")
                 ""

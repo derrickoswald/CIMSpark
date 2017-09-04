@@ -11,7 +11,7 @@ import ch.ninecode.cim.Parseable
  *
  * It defines both the Real and Reactive power properties (modelled at the PSR level as a GeneratingUnit + SynchronousMachine).
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.GenericAssetModelOrMaterial GenericAssetModelOrMaterial]] Reference to the superclass object.
  * @param maxP Maximum real power limit.
  * @param maxQ Maximum reactive power limit.
  * @param minP Minimum real power generated.
@@ -153,7 +153,7 @@ extends
  *
  * It is not associated with a particular manufacturer.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @group InfTypeAsset
  * @groupname InfTypeAsset Package InfTypeAsset

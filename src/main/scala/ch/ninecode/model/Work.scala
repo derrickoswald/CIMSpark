@@ -9,11 +9,11 @@ import ch.ninecode.cim.Parseable
 /**
  * Common representation for work and work tasks.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param kind Kind of work.
  * @param priority Priority of work.
  * @param statusKind Kind of work status.
- * @param WorkLocation Location for this work/task.
+ * @param WorkLocation [[ch.ninecode.model.WorkLocation WorkLocation]] Location for this work/task.
  * @group Work
  * @groupname Work Package Work
  * @groupdesc Work This package contains the core information classes that support work management and network extension planning applications.
@@ -90,7 +90,7 @@ extends
 /**
  * Location where to perform maintenance work.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.WorkLocation WorkLocation]] Reference to the superclass object.
  * @param block (if applicable) Name, identifier, or description of the block in which work is to occur.
  * @param lot (if applicable) Name, identifier, or description of the lot in which work is to occur.
  * @param nearestIntersection The names of streets at the nearest intersection to work area.
@@ -173,10 +173,10 @@ extends
  *
  * It includes items such as nuts, bolts, brackets, glue, etc.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param quantity Quantity of material used.
- * @param TypeMaterial <em>undocumented</em>
- * @param WorkTask <em>undocumented</em>
+ * @param TypeMaterial [[ch.ninecode.model.TypeMaterial TypeMaterial]] <em>undocumented</em>
+ * @param WorkTask [[ch.ninecode.model.WorkTask WorkTask]] <em>undocumented</em>
  * @group Work
  * @groupname Work Package Work
  * @groupdesc Work This package contains the core information classes that support work management and network extension planning applications.
@@ -249,7 +249,7 @@ extends
 /**
  * Tool asset.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.WorkAsset WorkAsset]] Reference to the superclass object.
  * @param lastCalibrationDate (if applicable) Date the tool was last calibrated.
  * @group Work
  * @groupname Work Package Work
@@ -315,7 +315,7 @@ extends
 /**
  * Vehicle asset.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.WorkAsset WorkAsset]] Reference to the superclass object.
  * @param odometerReadDateTime Date and time the last odometer reading was recorded.
  * @param odometerReading Odometer reading of this vehicle as of the 'odometerReadingDateTime'.
  *        Refer to associated ActivityRecords for earlier readings.
@@ -392,12 +392,12 @@ extends
 /**
  * Document used to request, initiate, track and record work.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.BaseWork BaseWork]] Reference to the superclass object.
  * @param requestDateTime Date and time work was requested.
- * @param BusinessCase <em>undocumented</em>
- * @param ErpProjectAccounting <em>undocumented</em>
- * @param Project <em>undocumented</em>
- * @param WorkBillingInfo <em>undocumented</em>
+ * @param BusinessCase [[ch.ninecode.model.BusinessCase BusinessCase]] <em>undocumented</em>
+ * @param ErpProjectAccounting [[ch.ninecode.model.ErpProjectAccounting ErpProjectAccounting]] <em>undocumented</em>
+ * @param Project [[ch.ninecode.model.Project Project]] <em>undocumented</em>
+ * @param WorkBillingInfo [[ch.ninecode.model.WorkBillingInfo WorkBillingInfo]] <em>undocumented</em>
  * @group Work
  * @groupname Work Package Work
  * @groupdesc Work This package contains the core information classes that support work management and network extension planning applications.
@@ -478,8 +478,8 @@ extends
 /**
  * Asset used to perform work.
  *
- * @param sup Reference to the superclass object.
- * @param Crew Crew using this work asset.
+ * @param sup [[ch.ninecode.model.Asset Asset]] Reference to the superclass object.
+ * @param Crew [[ch.ninecode.model.Crew Crew]] Crew using this work asset.
  * @group Work
  * @groupname Work Package Work
  * @groupdesc Work This package contains the core information classes that support work management and network extension planning applications.
@@ -544,8 +544,8 @@ extends
 /**
  * Information about a particular location for various forms of work.
  *
- * @param sup Reference to the superclass object.
- * @param OneCallRequest <em>undocumented</em>
+ * @param sup [[ch.ninecode.model.Location Location]] Reference to the superclass object.
+ * @param OneCallRequest [[ch.ninecode.model.OneCallRequest OneCallRequest]] <em>undocumented</em>
  * @group Work
  * @groupname Work Package Work
  * @groupdesc Work This package contains the core information classes that support work management and network extension planning applications.
@@ -705,9 +705,9 @@ extends
 /**
  * Time schedule specific to work.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.TimeSchedule TimeSchedule]] Reference to the superclass object.
  * @param kind Kind of this work schedule.
- * @param BaseWork Time schedule for this work or work task.
+ * @param BaseWork [[ch.ninecode.model.BaseWork BaseWork]] Time schedule for this work or work task.
  * @group Work
  * @groupname Work Package Work
  * @groupdesc Work This package contains the core information classes that support work management and network extension planning applications.

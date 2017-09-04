@@ -11,10 +11,10 @@ import ch.ninecode.cim.Parseable
  *
  * Typically used for "bus/branch" case generation. Associated with one or more terminals that are normally connected with the bus name.    The associated terminals are normally connected by non-retained switches. For a ring bus station configuration, all busbar terminals in the ring are typically associated.   For a breaker and a half scheme, both busbars would normally be associated.  For a ring bus, all busbars would normally be associated.  For a "straight" busbar configuration, normally only the main terminal at the busbar would be associated.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param priority Priority of bus name marker for use as topology bus name.
  *        Use 0 for don t care.  Use 1 for highest priority.  Use 2 as priority is less than 1 and so on.
- * @param ReportingGroup The reporting group to which this bus name marker belongs.
+ * @param ReportingGroup [[ch.ninecode.model.ReportingGroup ReportingGroup]] The reporting group to which this bus name marker belongs.
  * @group Topology
  * @groupname Topology Package Topology
  * @groupdesc Topology An extension to the Core Package that in association with the Terminal class models Connectivity, that is the physical definition of how equipment is connected together. In addition it models Topology, that is the logical definition of how equipment is connected via closed switches. The Topology definition is independent of the other electrical characteristics.
@@ -83,9 +83,9 @@ extends
 /**
  * DC bus.
  *
- * @param sup Reference to the superclass object.
- * @param DCEquipmentContainer <em>undocumented</em>
- * @param DCTopologicalIsland <em>undocumented</em>
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param DCEquipmentContainer [[ch.ninecode.model.DCEquipmentContainer DCEquipmentContainer]] <em>undocumented</em>
+ * @param DCTopologicalIsland [[ch.ninecode.model.DCTopologicalIsland DCTopologicalIsland]] <em>undocumented</em>
  * @group Topology
  * @groupname Topology Package Topology
  * @groupdesc Topology An extension to the Core Package that in association with the Terminal class models Connectivity, that is the physical definition of how equipment is connected together. In addition it models Topology, that is the logical definition of how equipment is connected via closed switches. The Topology definition is independent of the other electrical characteristics.
@@ -156,7 +156,7 @@ extends
  *
  * Topological islands can change as the current network state changes: e.g. due to
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param AngleRefTopologicalNode The angle reference for the island.
  *        Normally there is one TopologicalNode that is selected as the angle reference for each island.   Other reference schemes exist, so the association is typically optional.
  * @group Topology
@@ -225,19 +225,19 @@ extends
  *
  * Topological nodes change as the current network state changes (i.e., switches, breakers, etc. change state).
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param pInjection The active power injected into the bus at this location in addition to injections from equipment.
  *        Positive sign means injection into the TopologicalNode (bus).
  * @param qInjection The reactive power injected into the bus at this location in addition to injections from equipment.
  *        Positive sign means injection into the TopologicalNode (bus).
  * @param AngleRefTopologicalIsland The island for which the node is an angle reference.
  *        Normally there is one angle reference node for each island.
- * @param BaseVoltage The base voltage of the topologocial node.
- * @param ConnectivityNodeContainer The connectivity node container to which the toplogical node belongs.
- * @param ReportingGroup The reporting group to which the topological node belongs.
- * @param SvInjection The injection flows state variables associated with the topological node.
- * @param SvVoltage The state voltage associated with the topological node.
- * @param TopologicalIsland A topological node belongs to a topological island.
+ * @param BaseVoltage [[ch.ninecode.model.BaseVoltage BaseVoltage]] The base voltage of the topologocial node.
+ * @param ConnectivityNodeContainer [[ch.ninecode.model.ConnectivityNodeContainer ConnectivityNodeContainer]] The connectivity node container to which the toplogical node belongs.
+ * @param ReportingGroup [[ch.ninecode.model.ReportingGroup ReportingGroup]] The reporting group to which the topological node belongs.
+ * @param SvInjection [[ch.ninecode.model.SvInjection SvInjection]] The injection flows state variables associated with the topological node.
+ * @param SvVoltage [[ch.ninecode.model.SvVoltage SvVoltage]] The state voltage associated with the topological node.
+ * @param TopologicalIsland [[ch.ninecode.model.TopologicalIsland TopologicalIsland]] A topological node belongs to a topological island.
  * @group Topology
  * @groupname Topology Package Topology
  * @groupdesc Topology An extension to the Core Package that in association with the Terminal class models Connectivity, that is the physical definition of how equipment is connected together. In addition it models Topology, that is the logical definition of how equipment is connected via closed switches. The Topology definition is independent of the other electrical characteristics.

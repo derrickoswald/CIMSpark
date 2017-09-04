@@ -9,10 +9,10 @@ import ch.ninecode.cim.Parseable
 /**
  * Action on clearance document as a switching step.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.SwitchingStep SwitchingStep]] Reference to the superclass object.
  * @param kind Clearance action to perform.
  * @param Clearance Clearance associated with this clearance action.
- * @param SwitchingStepGroup Group to which this step belongs.
+ * @param SwitchingStepGroup [[ch.ninecode.model.SwitchingStepGroup SwitchingStepGroup]] Group to which this step belongs.
  * @group Operations
  * @groupname Operations Package Operations
  * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
@@ -87,10 +87,10 @@ extends
  *
  * Tagged equipment is not allowed to be operated.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.SafetyDocument SafetyDocument]] Reference to the superclass object.
  * @param mustBeDeenergised If true, the equipment must be deenergised.
  * @param mustBeGrounded If true, the equipment must be grounded.
- * @param ClearanceAction Clearance action associated with this clearance.
+ * @param ClearanceAction [[ch.ninecode.model.ClearanceAction ClearanceAction]] Clearance action associated with this clearance.
  * @param TaggedPSRs All power system resources tagged through this clearance.
  * @group Operations
  * @groupname Operations Package Operations
@@ -168,10 +168,10 @@ extends
 /**
  * Action on cut as a switching step.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.SwitchingStep SwitchingStep]] Reference to the superclass object.
  * @param kind Switching action to perform.
- * @param Cut Cut on which this action is taken.
- * @param SwitchingStepGroup Group to which this step belongs.
+ * @param Cut [[ch.ninecode.model.Cut Cut]] Cut on which this action is taken.
+ * @param SwitchingStepGroup [[ch.ninecode.model.SwitchingStepGroup SwitchingStepGroup]] Group to which this step belongs.
  * @group Operations
  * @groupname Operations Package Operations
  * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
@@ -244,10 +244,10 @@ extends
 /**
  * Action on energy source as a switching step.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.SwitchingStep SwitchingStep]] Reference to the superclass object.
  * @param kind Switching action to perform.
- * @param EnergySource Energy source on which this action is taken.
- * @param SwitchingStepGroup Group to which this step belongs.
+ * @param EnergySource [[ch.ninecode.model.EnergySource EnergySource]] Energy source on which this action is taken.
+ * @param SwitchingStepGroup [[ch.ninecode.model.SwitchingStepGroup SwitchingStepGroup]] Group to which this step belongs.
  * @group Operations
  * @groupname Operations Package Operations
  * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
@@ -320,8 +320,8 @@ extends
 /**
  * An arbitrary switching step.
  *
- * @param sup Reference to the superclass object.
- * @param SwitchingStepGroup Group to which this step belongs.
+ * @param sup [[ch.ninecode.model.SwitchingStep SwitchingStep]] Reference to the superclass object.
+ * @param SwitchingStepGroup [[ch.ninecode.model.SwitchingStepGroup SwitchingStepGroup]] Group to which this step belongs.
  * @group Operations
  * @groupname Operations Package Operations
  * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
@@ -386,14 +386,14 @@ extends
 /**
  * Action on ground as a switching step.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.SwitchingStep SwitchingStep]] Reference to the superclass object.
  * @param kind Switching action to perform.
  * @param AlongACLineSegment The line segment that this ground action will affect.
  *        This is the only way to access relationship to clamp in case the ground needs to be placed along the line segment.
- * @param Ground Ground on which this action is taken.
+ * @param Ground [[ch.ninecode.model.Ground Ground]] Ground on which this action is taken.
  * @param GroundedEquipment Equipment being grounded with this operation.
  *        In case of placing a ground anywhere along a line segment, you must use the clamp (to get the distance from one terminal), so use the explicit relation with line segment. In all other cases (including placing the ground at a line segment terminal), reference to one or more conducting equipment is sufficient.
- * @param SwitchingStepGroup Group to which this step belongs.
+ * @param SwitchingStepGroup [[ch.ninecode.model.SwitchingStepGroup SwitchingStepGroup]] Group to which this step belongs.
  * @group Operations
  * @groupname Operations Package Operations
  * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
@@ -476,9 +476,9 @@ extends
  *
  * It may have to do with an outage.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param cause Cause of this incident.
- * @param Outage Outage for this incident.
+ * @param Outage [[ch.ninecode.model.Outage Outage]] Outage for this incident.
  * @param Owner Operator who owns this incident.
  * @param Works All works addressing this incident.
  * @group Operations
@@ -557,10 +557,10 @@ extends
 /**
  * Action on jumper as a switching step.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.SwitchingStep SwitchingStep]] Reference to the superclass object.
  * @param kind Switching action to perform.
- * @param Jumper Jumper on which this action is taken.
- * @param SwitchingStepGroup Group to which this step belongs.
+ * @param Jumper [[ch.ninecode.model.Jumper Jumper]] Jumper on which this action is taken.
+ * @param SwitchingStepGroup [[ch.ninecode.model.SwitchingStepGroup SwitchingStepGroup]] Group to which this step belongs.
  * @group Operations
  * @groupname Operations Package Operations
  * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
@@ -706,11 +706,11 @@ extends
  *
  * In the UK, for example, if a breaker or switch ever mal-operates, this is reported centrally and utilities use their asset systems to identify all the installed devices of the same manufacturer's type. They then apply operational restrictions in the operational systems to warn operators of potential problems. After appropriate inspection and maintenance, the operational restrictions may be removed.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param activePeriod Interval during which this restriction is applied.
  * @param restrictedValue Restricted (new) value; includes unit of measure and potentially multiplier.
  * @param Equipments All equipments to which this restriction applies.
- * @param ProductAssetModel Asset model to which this restriction applies.
+ * @param ProductAssetModel [[ch.ninecode.model.ProductAssetModel ProductAssetModel]] Asset model to which this restriction applies.
  * @group Operations
  * @groupname Operations Package Operations
  * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
@@ -787,7 +787,7 @@ extends
 /**
  * Lowered capability because of deterioration or inadequacy (sometimes referred to as derating or partial outage) or other kind of operational rating change.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.OperationalRestriction OperationalRestriction]] Reference to the superclass object.
  * @param changeType Type of operational updated rating, e.g. a derate, a rerate or a return to normal.
  * @param PlannedOutage Planned equipment outage with this updated rating.
  * @group Operations
@@ -860,7 +860,7 @@ extends
  *
  * A non-planned outage may be created upon:
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param actualPeriod Actual outage period; end of the period corresponds to the actual restoration time.
  * @param cancelledDateTime Date and time planned outage has been cancelled.
  * @param cause One or more causes of this outage.
@@ -870,8 +870,8 @@ extends
  * @param isPlanned True if planned, false otherwise (for example due to a breaker trip).
  * @param summary Summary counts of service points (customers) affected by this outage.
  * @param Equipments All equipments associated with this outage.
- * @param Incident Incident reported in trouble call that results in this outage.
- * @param OutageSchedule Outage schedule whose execution will result in this outage.
+ * @param Incident [[ch.ninecode.model.Incident Incident]] Incident reported in trouble call that results in this outage.
+ * @param OutageSchedule [[ch.ninecode.model.OutageSchedule OutageSchedule]] Outage schedule whose execution will result in this outage.
  * @param UsagePoints All usage points associated with this outage.
  * @group Operations
  * @groupname Operations Package Operations
@@ -975,7 +975,7 @@ extends
  *
  * It is used as specification for producing switching plans.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @group Operations
  * @groupname Operations Package Operations
  * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
@@ -1037,9 +1037,9 @@ extends
 /**
  * Event recording the change in operational status of a power system resource; may be for an event that has already occurred or for a planned activity.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.ActivityRecord ActivityRecord]] Reference to the superclass object.
  * @param kind Kind of event.
- * @param PowerSystemResource Power system resource that generated this event.
+ * @param PowerSystemResource [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Power system resource that generated this event.
  * @group Operations
  * @groupname Operations Package Operations
  * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
@@ -1108,8 +1108,8 @@ extends
 /**
  * Document restricting or authorising works on electrical equipment (for example a permit to work, sanction for test, limitation of access, or certificate of isolation), defined based upon organisational practices.
  *
- * @param sup Reference to the superclass object.
- * @param SwitchingPlan Switching plan to which this safety document applies.
+ * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
+ * @param SwitchingPlan [[ch.ninecode.model.SwitchingPlan SwitchingPlan]] Switching plan to which this safety document applies.
  * @group Operations
  * @groupname Operations Package Operations
  * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
@@ -1247,11 +1247,11 @@ extends
 /**
  * Action on switch as a switching step.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.SwitchingStep SwitchingStep]] Reference to the superclass object.
  * @param kind Switching action to perform.
  * @param OperatedSwitch Switch that is the object of this switch action.
  * @param PlannedOutage Planned outage for whose scope this switch action applies.
- * @param SwitchingStepGroup Group to which this step belongs.
+ * @param SwitchingStepGroup [[ch.ninecode.model.SwitchingStepGroup SwitchingStepGroup]] Group to which this step belongs.
  * @group Operations
  * @groupname Operations Package Operations
  * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
@@ -1331,10 +1331,10 @@ extends
  *
  * - bring back in service previously de-energised equipment or part of the network.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.SwitchingStepGroup SwitchingStepGroup]] Reference to the superclass object.
  * @param purpose Purpose of  this plan, such as whether it is to move the state from normal to some abnormal condition, or to restore the normal state after an abnormal condition, or to perform some kind of optimisation such as correction of overload, voltage control, etc.
  * @param rank Ranking in comparison to other switching plans.
- * @param Outage Outage that will be eliminated when this switching plan gets executed.
+ * @param Outage [[ch.ninecode.model.Outage Outage]] Outage that will be eliminated when this switching plan gets executed.
  * @group Operations
  * @groupname Operations Package Operations
  * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
@@ -1413,8 +1413,8 @@ extends
  * @param isFreeSequence If true, the sequence number serves for presentation purposes only, and the activity itself may be executed at any time.
  * @param plannedDateTime Planned date and time of this switching step.
  * @param sequenceNumber Order of this activity in the sequence of activities within the switching plan.
- * @param CrewMember Crew member responsible for this switching step.
- * @param Operator Operator responsible for this switching step.
+ * @param CrewMember [[ch.ninecode.model.CrewMember CrewMember]] Crew member responsible for this switching step.
+ * @param Operator [[ch.ninecode.model.Operator Operator]] Operator responsible for this switching step.
  * @group Operations
  * @groupname Operations Package Operations
  * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
@@ -1503,10 +1503,10 @@ extends
 /**
  * A logical step, grouping atomic switching steps that are important to distinguish when they may change topology (e.g. placing a jumper between two cuts).
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param isFreeSequence If true, the sequence number serves for presentation purposes only, and the activity itself may be executed at any time.
  * @param sequenceNumber Order of this activity in the sequence of activities within the switching plan.
- * @param SwitchingPlan Switching plan to which this group belongs.
+ * @param SwitchingPlan [[ch.ninecode.model.SwitchingPlan SwitchingPlan]] Switching plan to which this group belongs.
  * @group Operations
  * @groupname Operations Package Operations
  * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
@@ -1579,10 +1579,10 @@ extends
 /**
  * Action on operation tag as a switching step.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.SwitchingStep SwitchingStep]] Reference to the superclass object.
  * @param kind Kind of tag action.
- * @param OperationTag Tag associated with this tag action.
- * @param SwitchingStepGroup Group to which this step belongs.
+ * @param OperationTag [[ch.ninecode.model.OperationTag OperationTag]] Tag associated with this tag action.
+ * @param SwitchingStepGroup [[ch.ninecode.model.SwitchingStepGroup SwitchingStepGroup]] Group to which this step belongs.
  * @group Operations
  * @groupname Operations Package Operations
  * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.

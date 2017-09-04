@@ -11,7 +11,7 @@ import ch.ninecode.cim.Parseable
  *
  * The limit characteristic (look �up table) is a single straight-line, the same as UnderexcLimIEEE2 (see Figure 10.4 (p 32), IEEE 421.5-2005 Section 10.2).
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.UnderexcitationLimiterDynamics UnderexcitationLimiterDynamics]] Reference to the superclass object.
  * @param kui Gain Under excitation limiter (Kui).
  *        Typical Value = 0.1.
  * @param p0 Segment P initial point (P0).
@@ -116,7 +116,7 @@ extends
  *
  * Reference: IEEE UEL1 421.5-2005 Section 10.1.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.UnderexcitationLimiterDynamics UnderexcitationLimiterDynamics]] Reference to the superclass object.
  * @param kuc UEL center setting (K<sub>UC</sub>).
  *        Typical Value = 1.38.
  * @param kuf UEL excitation system stabilizer gain (K<sub>UF</sub>).
@@ -267,7 +267,7 @@ extends
  *
  * Reference: IEEE UEL2 421.5-2005 Section 10.2.  (Limit characteristic lookup table shown in Figure 10.4 (p 32) of the standard).
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.UnderexcitationLimiterDynamics UnderexcitationLimiterDynamics]] Reference to the superclass object.
  * @param k1 UEL terminal voltage exponent applied to real power input to UEL limit look-up table (k1).
  *        Typical Value = 2.
  * @param k2 UEL terminal voltage exponent applied to reactive power output from UEL limit look-up table (k2).
@@ -556,7 +556,7 @@ extends
 /**
  * <font color="#0f0f0f">Allis-Chalmers minimum excitation limiter.</font>
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.UnderexcitationLimiterDynamics UnderexcitationLimiterDynamics]] Reference to the superclass object.
  * @param k Minimum excitation limit slope (K) (&gt;0).
  * @param kf2 Differential gain (Kf2).
  * @param km Minimum excitation limit gain (Km).
@@ -647,7 +647,7 @@ extends
 /**
  * <font color="#0f0f0f">Westinghouse minimum excitation limiter.</font>
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.UnderexcitationLimiterDynamics UnderexcitationLimiterDynamics]] Reference to the superclass object.
  * @param kf2 Differential gain (Kf2).
  * @param km Minimum excitation limit gain (Km).
  * @param melmax Minimum excitation limit value (MELMAX).
@@ -743,9 +743,9 @@ extends
 /**
  * Underexcitation limiter function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  *
- * @param sup Reference to the superclass object.
- * @param ExcitationSystemDynamics Excitation system model with which this underexcitation limiter model is associated.
- * @param RemoteInputSignal Remote input signal used by this underexcitation limiter model.
+ * @param sup [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Excitation system model with which this underexcitation limiter model is associated.
+ * @param RemoteInputSignal [[ch.ninecode.model.RemoteInputSignal RemoteInputSignal]] Remote input signal used by this underexcitation limiter model.
  * @group UnderexcitationLimiterDynamics
  * @groupname UnderexcitationLimiterDynamics Package UnderexcitationLimiterDynamics
  * @groupdesc UnderexcitationLimiterDynamics Underexcitation limiters (UELs) act to boost excitation. The UEL typically senses either a combination of voltage and current of the synchronous machine or a combination of real and reactive power. Some UELs utilize a temperature or pressure recalibration feature, in which the UEL characteristic is shifted depending upon the generator cooling gas temperature or pressure.

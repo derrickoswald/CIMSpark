@@ -11,8 +11,8 @@ import ch.ninecode.cim.Parseable
  *
  * This class is used to identify organizations that can participate in market management and/or market operations.
  *
- * @param sup Reference to the superclass object.
- * @param MarketDocument <em>undocumented</em>
+ * @param sup [[ch.ninecode.model.Organisation Organisation]] Reference to the superclass object.
+ * @param MarketDocument [[ch.ninecode.model.MarketDocument MarketDocument]] <em>undocumented</em>
  * @group MarketCommon
  * @groupname MarketCommon Package MarketCommon
  * @groupdesc MarketCommon This package contains the common objects shared by both MarketManagement and MarketOperations packages.
@@ -77,12 +77,12 @@ extends
 /**
  * The external intended behaviour played by a party within the electricity market.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param roleType Defined using an enumerated list of types of market roles for use when a finite list of types are desired.
  * @param status Status of the market role.
  * @param typ The kind of market roles that can be played by parties for given domains within the electricity market.
  *        Types are flexible using dataType of string for free-entry of role types.
- * @param MarketParticipant <em>undocumented</em>
+ * @param MarketParticipant [[ch.ninecode.model.MarketParticipant MarketParticipant]] <em>undocumented</em>
  * @group MarketCommon
  * @groupname MarketCommon Package MarketCommon
  * @groupdesc MarketCommon This package contains the common objects shared by both MarketManagement and MarketOperations packages.
@@ -161,7 +161,7 @@ extends
  *
  * Examples include generating unit, load, and non-physical generator or load.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @param commercialOpDate Resource Commercial Operation Date.
  * @param contingencyAvailFlag contingent operating reserve availiability (Yes/No).
  *        Resource is availiable to participate with capacity in contingency dispatch.
@@ -195,24 +195,24 @@ extends
  * @param startEffectiveDate start effective date
  * @param ACAFlag Indication that this resource is associated with an Adjacent Control Area
  * @param ASSPOptimizationFlag Indication that the resource participates in the optimization process by default.
- * @param AdjacentCASet <em>undocumented</em>
- * @param AggregateNode <em>undocumented</em>
- * @param DefaultBid <em>undocumented</em>
+ * @param AdjacentCASet [[ch.ninecode.model.AdjacentCASet AdjacentCASet]] <em>undocumented</em>
+ * @param AggregateNode [[ch.ninecode.model.AggregateNode AggregateNode]] <em>undocumented</em>
+ * @param DefaultBid [[ch.ninecode.model.DefaultBid DefaultBid]] <em>undocumented</em>
  * @param ECAFlag Indication that this resource is associated with an Embedded Control area
- * @param ForbiddenRegion <em>undocumented</em>
- * @param HostControlArea <em>undocumented</em>
+ * @param ForbiddenRegion [[ch.ninecode.model.ForbiddenRegion ForbiddenRegion]] <em>undocumented</em>
+ * @param HostControlArea [[ch.ninecode.model.HostControlArea HostControlArea]] <em>undocumented</em>
  * @param InterTie <em>undocumented</em>
  * @param LMPMFlag LMPM flag: indicates whether the resource is subject to the LMPM test (Yes/No)
- * @param MktConnectivityNode <em>undocumented</em>
- * @param MktOrganisation <em>undocumented</em>
- * @param Pnode A registered resource injects power at one or more connectivity nodes related to a pnode
- * @param RampRateCurve <em>undocumented</em>
- * @param ResourceCapacity <em>undocumented</em>
- * @param ResourceCertification <em>undocumented</em>
- * @param ResourceVerifiableCosts <em>undocumented</em>
+ * @param MktConnectivityNode [[ch.ninecode.model.MktConnectivityNode MktConnectivityNode]] <em>undocumented</em>
+ * @param MktOrganisation [[ch.ninecode.model.MktOrganisation MktOrganisation]] <em>undocumented</em>
+ * @param Pnode [[ch.ninecode.model.Pnode Pnode]] A registered resource injects power at one or more connectivity nodes related to a pnode
+ * @param RampRateCurve [[ch.ninecode.model.RampRateCurve RampRateCurve]] <em>undocumented</em>
+ * @param ResourceCapacity [[ch.ninecode.model.ResourceCapacity ResourceCapacity]] <em>undocumented</em>
+ * @param ResourceCertification [[ch.ninecode.model.ResourceCertification ResourceCertification]] <em>undocumented</em>
+ * @param ResourceVerifiableCosts [[ch.ninecode.model.ResourceVerifiableCosts ResourceVerifiableCosts]] <em>undocumented</em>
  * @param SMPMFlag SMPM flag: indicates whether the resource is subject to the SMPM test (Yes/No)
- * @param SubControlArea <em>undocumented</em>
- * @param TimeSeries <em>undocumented</em>
+ * @param SubControlArea [[ch.ninecode.model.SubControlArea SubControlArea]] <em>undocumented</em>
+ * @param TimeSeries [[ch.ninecode.model.TimeSeries TimeSeries]] <em>undocumented</em>
  * @group MarketCommon
  * @groupname MarketCommon Package MarketCommon
  * @groupdesc MarketCommon This package contains the common objects shared by both MarketManagement and MarketOperations packages.

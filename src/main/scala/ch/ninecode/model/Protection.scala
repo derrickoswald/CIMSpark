@@ -9,7 +9,7 @@ import ch.ninecode.cim.Parseable
 /**
  * A device that checks current flow values in any direction or designated direction.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.ProtectionEquipment ProtectionEquipment]] Reference to the superclass object.
  * @param currentLimit1 Current limit number one 1 for inverse time pickup.
  * @param currentLimit2 Current limit number 2 for inverse time pickup.
  * @param currentLimit3 Current limit number 3 for inverse time pickup.
@@ -107,7 +107,7 @@ extends
  *
  * Protection equipment are associated with conducting equipment and usually operate circuit breakers.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Equipment Equipment]] Reference to the superclass object.
  * @param highLimit The maximum allowable value.
  * @param lowLimit The minimum allowable value.
  * @param powerDirectionFlag Direction same as positive active power flow value.
@@ -208,10 +208,10 @@ extends
 /**
  * A reclose sequence (open and close) is defined for each possible reclosure of a breaker.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param recloseDelay Indicates the time lapse before the reclose step will execute a reclose.
  * @param recloseStep Indicates the ordinal position of the reclose step relative to other steps in the sequence.
- * @param ProtectedSwitch A breaker may have zero or more automatic reclosures after a trip occurs.
+ * @param ProtectedSwitch [[ch.ninecode.model.ProtectedSwitch ProtectedSwitch]] A breaker may have zero or more automatic reclosures after a trip occurs.
  * @group Protection
  * @groupname Protection Package Protection
  * @groupdesc Protection An extension to the Core and Wires packages that models information for protection equipment such as relays. These entities are used within training simulators and distribution network fault location applications.
@@ -286,7 +286,7 @@ extends
  *
  * Used to prevent the paralleling of non-synchronous topological islands.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.ProtectionEquipment ProtectionEquipment]] Reference to the superclass object.
  * @param maxAngleDiff The maximum allowable voltage vector phase angle difference across the open device.
  * @param maxFreqDiff The maximum allowable frequency difference across the open device.
  * @param maxVoltDiff The maximum allowable difference voltage across the open device.

@@ -205,7 +205,7 @@ extends
  *
  * The IdentifiedObject.name attribute must be non-null.  The value of the attribute shall be used as the TASE.2 Information Reference, as specified by 60870-6-503.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param attr <em>undocumented</em>
  * @param localReference The Local Reference attribute specifies a value agreed upon between sender and receiver of the Information Message.
  *        It further identifies the Information Message.
@@ -283,7 +283,7 @@ extends
  *
  * The name attribute shall be used as the DataValue name used for the exchange.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param attr <em>undocumented</em>
  * @param scope <em>undocumented</em>
  * @group ICCP
@@ -573,7 +573,7 @@ extends
  *
  * Hence the ICCP bilateral (table) descriptions are created by exchanging ICCPProvider data between the parties.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param bilateralTableID Specifies the version of the Bilateral Table configuration that is being exchanged.
  * @param calling Used to indicate if the Provider is responsible for initiating the TASE.2 connection.
  *        If the value is TRUE, the provider is responsible for establishing the association.  If the value is FALSE, the peer provider of the Bilateral Table will need to establish the association.

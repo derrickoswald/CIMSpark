@@ -11,12 +11,12 @@ import ch.ninecode.cim.Parseable
  *
  * Terminals are connected at physical connection points called connectivity nodes.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param connected The connected status is related to a bus-branch model and the topological node to terminal relation.
  *        True implies the terminal is connected to the related topological node and false implies it is not.
  * @param sequenceNumber The orientation of the terminal connections for a multiple terminal conducting equipment.
  *        The sequence numbering starts with 1 and additional terminals should follow in increasing order.   The first terminal is the "starting point" for a two terminal branch.
- * @param BusNameMarker The bus name marker used to name the bus (topological node).
+ * @param BusNameMarker [[ch.ninecode.model.BusNameMarker BusNameMarker]] The bus name marker used to name the bus (topological node).
  * @group Core
  * @groupname Core Package Core
  * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
@@ -91,7 +91,7 @@ extends
  *
  * In case of multiple power networks with different frequencies, e.g. 50 or 60 Hertz each network will have it's own base frequency class. Hence it is assumed that power system objects having different base frequencies appear in separate documents where each document has a single base frequency instance.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param frequency The base frequency.
  * @group Core
  * @groupname Core Package Core
@@ -157,7 +157,7 @@ extends
 /**
  * The BasePower class defines the base power used in the per unit calculations.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param basePower Value used as base power.
  * @group Core
  * @groupname Core Package Core
@@ -223,7 +223,7 @@ extends
 /**
  * Defines a system base voltage which is referenced.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param nominalVoltage The power system resource's base voltage.
  * @group Core
  * @groupname Core Package Core
@@ -289,7 +289,7 @@ extends
 /**
  * Schedule of values at points in time.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param startTime The time for the first time point.
  * @param value1Multiplier Multiplier for value1.
  * @param value1Unit Value1 units of measure.
@@ -377,13 +377,13 @@ extends
  *
  * A bay typically represents a physical grouping related to modularization of equipment.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.EquipmentContainer EquipmentContainer]] Reference to the superclass object.
  * @param bayEnergyMeasFlag Indicates the presence/absence of energy measurements.
  * @param bayPowerMeasFlag Indicates the presence/absence of active/reactive power measurements.
  * @param breakerConfiguration Breaker configuration.
  * @param busBarConfiguration Bus bar configuration.
- * @param Substation Substation containing the bay.
- * @param VoltageLevel The voltage level containing this bay.
+ * @param Substation [[ch.ninecode.model.Substation Substation]] Substation containing the bay.
+ * @param VoltageLevel [[ch.ninecode.model.VoltageLevel VoltageLevel]] The voltage level containing this bay.
  * @group Core
  * @groupname Core Package Core
  * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
@@ -468,12 +468,12 @@ extends
 /**
  * The parts of the AC power system that are designed to carry current or that are conductively connected through terminals.
  *
- * @param sup Reference to the superclass object.
- * @param BaseVoltage Base voltage of this conducting equipment.
+ * @param sup [[ch.ninecode.model.Equipment Equipment]] Reference to the superclass object.
+ * @param BaseVoltage [[ch.ninecode.model.BaseVoltage BaseVoltage]] Base voltage of this conducting equipment.
  *        Use only when there is no voltage level container used and only one base voltage applies.  For example, not used for transformers.
  * @param GroundingAction Action involving grounding operation on this conducting equipment.
  * @param JumpingAction Jumper action involving jumping operation on this conducting equipment.
- * @param SvStatus The status state variable associated with this conducting equipment.
+ * @param SvStatus [[ch.ninecode.model.SvStatus SvStatus]] The status state variable associated with this conducting equipment.
  * @group Core
  * @groupname Core Package Core
  * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
@@ -550,9 +550,9 @@ extends
 /**
  * Connectivity nodes are points where terminals of AC conducting equipment are connected together with zero impedance.
  *
- * @param sup Reference to the superclass object.
- * @param ConnectivityNodeContainer Container of this connectivity node.
- * @param TopologicalNode The topological node to which this connectivity node is assigned.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param ConnectivityNodeContainer [[ch.ninecode.model.ConnectivityNodeContainer ConnectivityNodeContainer]] Container of this connectivity node.
+ * @param TopologicalNode [[ch.ninecode.model.TopologicalNode TopologicalNode]] The topological node to which this connectivity node is assigned.
  *        May depend on the current state of switches in the network.
  * @group Core
  * @groupname Core Package Core
@@ -622,7 +622,7 @@ extends
 /**
  * A base class for all objects that may contain connectivity nodes or topological nodes.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @group Core
  * @groupname Core Package Core
  * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
@@ -684,7 +684,7 @@ extends
 /**
  * A multi-purpose curve or functional relationship between an independent variable (X-axis) and dependent (Y-axis) variables.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param curveStyle The style or shape of the curve.
  * @param xMultiplier Multiplier for X-axis.
  * @param xUnit The X-axis units of measure.
@@ -797,7 +797,7 @@ extends
  * @param y1value The data value of the  first Y-axis variable, depending on the Y-axis units.
  * @param y2value The data value of the second Y-axis variable (if present), depending on the Y-axis units.
  * @param y3value The data value of the third Y-axis variable (if present), depending on the Y-axis units.
- * @param Curve The curve of  this curve data point.
+ * @param Curve [[ch.ninecode.model.Curve Curve]] The curve of  this curve data point.
  * @group Core
  * @groupname Core Package Core
  * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
@@ -878,12 +878,12 @@ extends
 /**
  * The parts of a power system that are physical devices, electronic or mechanical.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @param aggregate The single instance of equipment represents multiple pieces of equipment that have been modeled together as an aggregate.
  *        Examples would be power transformers or synchronous machines operating in parallel modeled as a single aggregate power transformer or aggregate synchronous machine.  This is not to be used to indicate equipment that is part of a group of interdependent equipment produced by a network production program.
  * @param normallyInService If true, the equipment is normally in service.
- * @param EquipmentContainer Container of this equipment.
- * @param WeatherStation <em>undocumented</em>
+ * @param EquipmentContainer [[ch.ninecode.model.EquipmentContainer EquipmentContainer]] Container of this equipment.
+ * @param WeatherStation [[ch.ninecode.model.WeatherStation WeatherStation]] <em>undocumented</em>
  * @group Core
  * @groupname Core Package Core
  * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
@@ -960,7 +960,7 @@ extends
 /**
  * A modeling construct to provide a root class for containing equipment.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.ConnectivityNodeContainer ConnectivityNodeContainer]] Reference to the superclass object.
  * @group Core
  * @groupname Core Package Core
  * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
@@ -1022,7 +1022,7 @@ extends
 /**
  * A geographical region of a power system network model.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @group Core
  * @groupname Core Package Core
  * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
@@ -1168,7 +1168,7 @@ extends
 /**
  * The schedule has time points where the time between them varies.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.BasicIntervalSchedule BasicIntervalSchedule]] Reference to the superclass object.
  * @group Core
  * @groupname Core Package Core
  * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
@@ -1317,8 +1317,8 @@ extends
  *
  * @param sup Reference to the superclass object.
  * @param name Any free text that name the object.
- * @param IdentifiedObject Identified object that this name designates.
- * @param NameType Type of this name.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Identified object that this name designates.
+ * @param NameType [[ch.ninecode.model.NameType NameType]] Type of this name.
  * @group Core
  * @groupname Core Package Core
  * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
@@ -1396,7 +1396,7 @@ extends
  * @param sup Reference to the superclass object.
  * @param description Description of the name type.
  * @param name Name of the name type.
- * @param NameTypeAuthority Authority responsible for managing names of this type.
+ * @param NameTypeAuthority [[ch.ninecode.model.NameTypeAuthority NameTypeAuthority]] Authority responsible for managing names of this type.
  * @group Core
  * @groupname Core Package Core
  * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
@@ -1542,7 +1542,7 @@ extends
  *
  * Note multple operating participants may operate the same power system resource object.   This can be used for modeling jointly owned units where each owner operates as a contractual share.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @group Core
  * @groupname Core Package Core
  * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
@@ -1607,8 +1607,8 @@ extends
  * @param sup Reference to the superclass object.
  * @param percentage Percentage operational ownership between the pair (power system resource and operatging participant) associated with this share.
  *        The total percentage ownership for a power system resource should add to 100%.
- * @param OperatingParticipant The operating participant having this share with the associated power system resource.
- * @param PowerSystemResource The power system resource to which the share applies.
+ * @param OperatingParticipant [[ch.ninecode.model.OperatingParticipant OperatingParticipant]] The operating participant having this share with the associated power system resource.
+ * @param PowerSystemResource [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] The power system resource to which the share applies.
  * @group Core
  * @groupname Core Package Core
  * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
@@ -1683,7 +1683,7 @@ extends
  *
  * This classification mechanism is intended to provide flexibility outside the scope of this standard, i.e. provide customisation that is non standard.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @group Core
  * @groupname Core Package Core
  * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
@@ -1747,10 +1747,10 @@ extends
  *
  * Power system resources can have measurements associated.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param AssetDatasheet Datasheet information for this power system resource.
- * @param Location Location of this power system resource.
- * @param PSRType Custom classification for this power system resource.
+ * @param Location [[ch.ninecode.model.Location Location]] Location of this power system resource.
+ * @param PSRType [[ch.ninecode.model.PSRType PSRType]] Custom classification for this power system resource.
  * @group Core
  * @groupname Core Package Core
  * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
@@ -1823,7 +1823,7 @@ extends
 /**
  * The schedule has time points where the time between them is constant.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.BasicIntervalSchedule BasicIntervalSchedule]] Reference to the superclass object.
  * @param endTime The time for the last time point.
  * @param timeStep The time between each pair of subsequent regular time points in sequence order.
  * @group Core
@@ -1978,9 +1978,9 @@ extends
 /**
  * A reporting group is used for various ad-hoc groupings used for reporting.
  *
- * @param sup Reference to the superclass object.
- * @param PowerSystemResource Power system resources which belong to this reporting group.
- * @param ReportingSuperGroup Reporting super group to which this reporting group belongs.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param PowerSystemResource [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Power system resources which belong to this reporting group.
+ * @param ReportingSuperGroup [[ch.ninecode.model.ReportingSuperGroup ReportingSuperGroup]] Reporting super group to which this reporting group belongs.
  * @group Core
  * @groupname Core Package Core
  * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
@@ -2049,7 +2049,7 @@ extends
 /**
  * A reporting super group, groups reporting groups for a higher level report.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @group Core
  * @groupname Core Package Core
  * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
@@ -2111,7 +2111,7 @@ extends
 /**
  * A subset of a geographical region of a power system network model.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param Region The geographical region to which this sub-geographical region is within.
  * @group Core
  * @groupname Core Package Core
@@ -2177,7 +2177,7 @@ extends
 /**
  * A collection of equipment for purposes other than generation or utilization, through which electric energy in bulk is passed for the purposes of switching or modifying its characteristics.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.EquipmentContainer EquipmentContainer]] Reference to the superclass object.
  * @param Region The SubGeographicalRegion containing the substation.
  * @group Core
  * @groupname Core Package Core
@@ -2245,15 +2245,15 @@ extends
  *
  * Terminals are connected at physical connection points called connectivity nodes.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.ACDCTerminal ACDCTerminal]] Reference to the superclass object.
  * @param phases Represents the normal network phasing condition.
  *        If the attribute is missing three phases (ABC or ABCN) shall be assumed.
- * @param Bushing <em>undocumented</em>
- * @param ConductingEquipment The conducting equipment of the terminal.
+ * @param Bushing [[ch.ninecode.model.Bushing Bushing]] <em>undocumented</em>
+ * @param ConductingEquipment [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] The conducting equipment of the terminal.
  *        Conducting equipment have  terminals that may be connected to other conducting equipment terminals via connectivity nodes or topological nodes.
- * @param ConnectivityNode The connectivity node to which this terminal connects with zero impedance.
- * @param SvPowerFlow The power flow state variable associated with the terminal.
- * @param TopologicalNode The topological node associated with the terminal.
+ * @param ConnectivityNode [[ch.ninecode.model.ConnectivityNode ConnectivityNode]] The connectivity node to which this terminal connects with zero impedance.
+ * @param SvPowerFlow [[ch.ninecode.model.SvPowerFlow SvPowerFlow]] The power flow state variable associated with the terminal.
+ * @param TopologicalNode [[ch.ninecode.model.TopologicalNode TopologicalNode]] The topological node associated with the terminal.
  *        This can be used as an alternative to the connectivity node path to topological node, thus making it unneccesary to model connectivity nodes in some cases.   Note that the if connectivity nodes are in the model, this association would probably not be used as an input specification.
  * @group Core
  * @groupname Core Package Core
@@ -2341,11 +2341,11 @@ extends
  *
  * The equipment typically consist of breakers, busbars, instrumentation, control, regulation and protection devices as well as assemblies of all these.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.EquipmentContainer EquipmentContainer]] Reference to the superclass object.
  * @param highVoltageLimit The bus bar's high voltage limit
  * @param lowVoltageLimit The bus bar's low voltage limit
- * @param BaseVoltage The base voltage used for all equipment within the voltage level.
- * @param Substation The substation of the voltage level.
+ * @param BaseVoltage [[ch.ninecode.model.BaseVoltage BaseVoltage]] The base voltage used for all equipment within the voltage level.
+ * @param Substation [[ch.ninecode.model.Substation Substation]] The substation of the voltage level.
  * @group Core
  * @groupname Core Package Core
  * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.

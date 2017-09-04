@@ -11,15 +11,15 @@ import ch.ninecode.cim.Parseable
  *
  * A CRR is a financial concept that is used to hedge congestion charges.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param cRRcategory CRR category represents 'PTP' for a point-to-point CRR, or 'NSR' for a Network Service Right .
  *        If CRR category is 'PTP', both Source ID and Sink ID fields are required. If CRR category is 'NSR' only one field, either Source ID or Sink ID, shall be not null and the other shall be null. However, the 'NSR' category will include at least three records
  * @param cRRtype Type of the CRR, from the possible type definitions in the CRR System (e.g. 'LSE', 'ETC').
  * @param hedgeType hedger type Obligation or Option
  * @param timeOfUse Time of Use flag of the CRR - Peak (ON), Offpeak (OFF) or all 24 hours (24HR).
  * @param tradeSliceID Segment of the CRR described in the current record
- * @param CRRMarket <em>undocumented</em>
- * @param Flowgate <em>undocumented</em>
+ * @param CRRMarket [[ch.ninecode.model.CRRMarket CRRMarket]] <em>undocumented</em>
+ * @param Flowgate [[ch.ninecode.model.Flowgate Flowgate]] <em>undocumented</em>
  * @group CongestionRevenueRights
  * @groupname CongestionRevenueRights Package CongestionRevenueRights
  * @groupdesc CongestionRevenueRights Congestion rent is a major, highly volatile charge currently faced by many participants in the LMP-based electrical energy markets. For this reason, the ISOs offer congestion revenue rights (CRR), also known as financial transmission rights or transmission congestion contracts. These are financial instruments that allow market participants to hedge against congestion charges when they schedule their generation, load and bilateral energy transactions.
@@ -108,11 +108,11 @@ extends
 /**
  * Identifies a way in which an organisation may participate with a defined Congestion Revenue Right (CRR).
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.OrganisationRole OrganisationRole]] Reference to the superclass object.
  * @param kind Kind of role the organisation is with regards to the congestion revenue rights.
  * @param status Status of congestion revenue rights organisation role.
- * @param CRR <em>undocumented</em>
- * @param MktOrganisation <em>undocumented</em>
+ * @param CRR [[ch.ninecode.model.CRR CRR]] <em>undocumented</em>
+ * @param MktOrganisation [[ch.ninecode.model.MktOrganisation MktOrganisation]] <em>undocumented</em>
  * @group CongestionRevenueRights
  * @groupname CongestionRevenueRights Package CongestionRevenueRights
  * @groupdesc CongestionRevenueRights Congestion rent is a major, highly volatile charge currently faced by many participants in the LMP-based electrical energy markets. For this reason, the ISOs offer congestion revenue rights (CRR), also known as financial transmission rights or transmission congestion contracts. These are financial instruments that allow market participants to hedge against congestion charges when they schedule their generation, load and bilateral energy transactions.
@@ -191,13 +191,13 @@ extends
  *
  * The segment class contains CRR kind, type, quantity, hedger type, time of use flag, and segment period.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param amount Dollar amount = quantity x clearingPrice
  * @param clearingPrice Clearing price of a CRR
  * @param endDateTime segment end date time
  * @param quantity The MW amount associated with the CRR
  * @param startDateTime segment start date time
- * @param CRR <em>undocumented</em>
+ * @param CRR [[ch.ninecode.model.CRR CRR]] <em>undocumented</em>
  * @group CongestionRevenueRights
  * @groupname CongestionRevenueRights Package CongestionRevenueRights
  * @groupdesc CongestionRevenueRights Congestion rent is a major, highly volatile charge currently faced by many participants in the LMP-based electrical energy markets. For this reason, the ISOs offer congestion revenue rights (CRR), also known as financial transmission rights or transmission congestion contracts. These are financial instruments that allow market participants to hedge against congestion charges when they schedule their generation, load and bilateral energy transactions.

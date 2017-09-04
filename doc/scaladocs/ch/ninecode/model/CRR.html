@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>CRR - CIMReader 2.11-2.1.1-2.2.0 API - ch.ninecode.model.CRR</title>
-          <meta name="description" content="CRR - CIMReader 2.11 - 2.1.1 - 2.2.0 API - ch.ninecode.model.CRR" />
-          <meta name="keywords" content="CRR CIMReader 2.11 2.1.1 2.2.0 API ch.ninecode.model.CRR" />
+          <title>CRR - CIMReader 2.11-2.2.0-2.2.0 API - ch.ninecode.model.CRR</title>
+          <meta name="description" content="CRR - CIMReader 2.11 - 2.2.0 - 2.2.0 API - ch.ninecode.model.CRR" />
+          <meta name="keywords" content="CRR CIMReader 2.11 2.2.0 2.2.0 API ch.ninecode.model.CRR" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -52,8 +52,8 @@
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Congestion Revenue Rights (CRR) class that is inherited from a Document class.</p><p>A CRR is a financial concept that is used to hedge congestion charges.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">cRRcategory</dt><dd class="cmt"><p>CRR category represents 'PTP' for a point-to-point CRR, or 'NSR' for a Network Service Right .
-       If CRR category is 'PTP', both Source ID and Sink ID fields are required. If CRR category is 'NSR' only one field, either Source ID or Sink ID, shall be not null and the other shall be null. However, the 'NSR' category will include at least three records</p></dd><dt class="param">cRRtype</dt><dd class="cmt"><p>Type of the CRR, from the possible type definitions in the CRR System (e.g. 'LSE', 'ETC').</p></dd><dt class="param">hedgeType</dt><dd class="cmt"><p>hedger type Obligation or Option</p></dd><dt class="param">timeOfUse</dt><dd class="cmt"><p>Time of Use flag of the CRR - Peak (ON), Offpeak (OFF) or all 24 hours (24HR).</p></dd><dt class="param">tradeSliceID</dt><dd class="cmt"><p>Segment of the CRR described in the current record</p></dd><dt class="param">CRRMarket</dt><dd class="cmt"><p><em>undocumented</em></p></dd><dt class="param">Flowgate</dt><dd class="cmt"><p><em>undocumented</em></p></dd></dl><div class="toggleContainer block">
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a> Reference to the superclass object.</p></dd><dt class="param">cRRcategory</dt><dd class="cmt"><p>CRR category represents 'PTP' for a point-to-point CRR, or 'NSR' for a Network Service Right .
+       If CRR category is 'PTP', both Source ID and Sink ID fields are required. If CRR category is 'NSR' only one field, either Source ID or Sink ID, shall be not null and the other shall be null. However, the 'NSR' category will include at least three records</p></dd><dt class="param">cRRtype</dt><dd class="cmt"><p>Type of the CRR, from the possible type definitions in the CRR System (e.g. 'LSE', 'ETC').</p></dd><dt class="param">hedgeType</dt><dd class="cmt"><p>hedger type Obligation or Option</p></dd><dt class="param">timeOfUse</dt><dd class="cmt"><p>Time of Use flag of the CRR - Peak (ON), Offpeak (OFF) or all 24 hours (24HR).</p></dd><dt class="param">tradeSliceID</dt><dd class="cmt"><p>Segment of the CRR described in the current record</p></dd><dt class="param">CRRMarket</dt><dd class="cmt"><p><a href="CRRMarket.html" class="extype" name="ch.ninecode.model.CRRMarket">CRRMarket</a> <em>undocumented</em></p></dd><dt class="param">Flowgate</dt><dd class="cmt"><p><a href="Flowgate.html" class="extype" name="ch.ninecode.model.Flowgate">Flowgate</a> <em>undocumented</em></p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -125,8 +125,8 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">cRRcategory</dt><dd class="cmt"><p>CRR category represents 'PTP' for a point-to-point CRR, or 'NSR' for a Network Service Right .
-       If CRR category is 'PTP', both Source ID and Sink ID fields are required. If CRR category is 'NSR' only one field, either Source ID or Sink ID, shall be not null and the other shall be null. However, the 'NSR' category will include at least three records</p></dd><dt class="param">cRRtype</dt><dd class="cmt"><p>Type of the CRR, from the possible type definitions in the CRR System (e.g. 'LSE', 'ETC').</p></dd><dt class="param">hedgeType</dt><dd class="cmt"><p>hedger type Obligation or Option</p></dd><dt class="param">timeOfUse</dt><dd class="cmt"><p>Time of Use flag of the CRR - Peak (ON), Offpeak (OFF) or all 24 hours (24HR).</p></dd><dt class="param">tradeSliceID</dt><dd class="cmt"><p>Segment of the CRR described in the current record</p></dd><dt class="param">CRRMarket</dt><dd class="cmt"><p><em>undocumented</em></p></dd><dt class="param">Flowgate</dt><dd class="cmt"><p><em>undocumented</em></p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a> Reference to the superclass object.</p></dd><dt class="param">cRRcategory</dt><dd class="cmt"><p>CRR category represents 'PTP' for a point-to-point CRR, or 'NSR' for a Network Service Right .
+       If CRR category is 'PTP', both Source ID and Sink ID fields are required. If CRR category is 'NSR' only one field, either Source ID or Sink ID, shall be not null and the other shall be null. However, the 'NSR' category will include at least three records</p></dd><dt class="param">cRRtype</dt><dd class="cmt"><p>Type of the CRR, from the possible type definitions in the CRR System (e.g. 'LSE', 'ETC').</p></dd><dt class="param">hedgeType</dt><dd class="cmt"><p>hedger type Obligation or Option</p></dd><dt class="param">timeOfUse</dt><dd class="cmt"><p>Time of Use flag of the CRR - Peak (ON), Offpeak (OFF) or all 24 hours (24HR).</p></dd><dt class="param">tradeSliceID</dt><dd class="cmt"><p>Segment of the CRR described in the current record</p></dd><dt class="param">CRRMarket</dt><dd class="cmt"><p><a href="CRRMarket.html" class="extype" name="ch.ninecode.model.CRRMarket">CRRMarket</a> <em>undocumented</em></p></dd><dt class="param">Flowgate</dt><dd class="cmt"><p><a href="Flowgate.html" class="extype" name="ch.ninecode.model.Flowgate">Flowgate</a> <em>undocumented</em></p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -203,7 +203,7 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"><em>undocumented</em> </em></p><div class="fullcomment"><div class="comment cmt"><p><em>undocumented</em></p></div></div>
+      <p class="shortcomment cmt"><a href="CRRMarket.html" class="extype" name="ch.ninecode.model.CRRMarket">CRRMarket</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="CRRMarket.html" class="extype" name="ch.ninecode.model.CRRMarket">CRRMarket</a> <em>undocumented</em></p></div></div>
     </li><li name="ch.ninecode.model.CRR#Document" visbl="pub" data-isabs="false" fullComment="yes" group="Hierarchy">
       <a id="Document:ch.ninecode.model.Document"></a>
       <a id="Document:Document"></a>
@@ -238,7 +238,7 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"><em>undocumented</em> </em></p><div class="fullcomment"><div class="comment cmt"><p><em>undocumented</em></p></div></div>
+      <p class="shortcomment cmt"><a href="Flowgate.html" class="extype" name="ch.ninecode.model.Flowgate">Flowgate</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="Flowgate.html" class="extype" name="ch.ninecode.model.Flowgate">Flowgate</a> <em>undocumented</em></p></div></div>
     </li><li name="org.apache.spark.sql.Row#anyNull" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="anyNull:Boolean"></a>
       <a id="anyNull:Boolean"></a>
@@ -1090,7 +1090,7 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Reference to the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Reference to the superclass object.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="ch.ninecode.model.CRR">CRR</a> → <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></dd></dl></div>
+      <p class="shortcomment cmt"><a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a> Reference to the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p><a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a> Reference to the superclass object.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="ch.ninecode.model.CRR">CRR</a> → <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>

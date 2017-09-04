@@ -11,7 +11,7 @@ import ch.ninecode.cim.Parseable
  *
  * Each catalogue item is for a specific product (AssetModel) available from a specific supplier.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @group InfAssetInfo
  * @groupname InfAssetInfo Package InfAssetInfo
@@ -78,11 +78,11 @@ extends
  *
  * A single AssetModel may be availble from multiple suppliers. Note that manufacturer and supplier are both types of organisation, which the association is inherited from Document.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param unitCost Unit cost for an asset model from a specific supplier, either for a unit cost or cost per unit length.
  *        Cost is for material or asset only and does not include labor to install/construct or configure it.
- * @param AssetModel <em>undocumented</em>
- * @param AssetModelCatalogue <em>undocumented</em>
+ * @param AssetModel [[ch.ninecode.model.AssetModel AssetModel]] <em>undocumented</em>
+ * @param AssetModelCatalogue [[ch.ninecode.model.AssetModelCatalogue AssetModelCatalogue]] <em>undocumented</em>
  * @group InfAssetInfo
  * @groupname InfAssetInfo Package InfAssetInfo
  */
@@ -154,7 +154,7 @@ extends
 /**
  * Properties of breaker assets.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.OldSwitchInfo OldSwitchInfo]] Reference to the superclass object.
  * @param phaseTrip Phase trip rating.
  * @group InfAssetInfo
  * @groupname InfAssetInfo Package InfAssetInfo
@@ -219,7 +219,7 @@ extends
 /**
  * Properties of a composite switch.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.AssetInfo AssetInfo]] Reference to the superclass object.
  * @param ganged True if multi-phase switch controls all phases concurrently.
  * @param initOpMode Initial operating mode, with the following values: Automatic, Manual.
  * @param interruptingRating Breaking capacity, or short circuit rating, is the maximum rated current which the device can safely interrupt at the rated voltage.
@@ -324,7 +324,7 @@ extends
 /**
  * Properties of current transformer asset.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.AssetInfo AssetInfo]] Reference to the superclass object.
  * @param accuracyClass CT accuracy classification.
  * @param accuracyLimit Accuracy limit.
  * @param coreCount Number of cores.
@@ -464,7 +464,7 @@ extends
 /**
  * Parameters of fault indicator asset.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.AssetInfo AssetInfo]] Reference to the superclass object.
  * @param resetKind Kind of reset mechanisim of this fault indicator.
  * @group InfAssetInfo
  * @groupname InfAssetInfo Package InfAssetInfo
@@ -529,7 +529,7 @@ extends
 /**
  * Properties of switch assets.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.SwitchInfo SwitchInfo]] Reference to the superclass object.
  * @param dielectricStrength The maximum rms voltage that may be applied across an open contact without breaking down the dielectric properties of the switch in the open position.
  * @param loadBreak True if switch has load breaking capabiity.
  *        Unless specified false, this is always assumed to be true for breakers and reclosers.
@@ -781,7 +781,7 @@ extends
 /**
  * Properties of potential transformer asset.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.AssetInfo AssetInfo]] Reference to the superclass object.
  * @param accuracyClass <em>undocumented</em>
  * @param nominalRatio <em>undocumented</em>
  * @param primaryRatio Ratio for the primary winding tap changer.
@@ -876,7 +876,7 @@ extends
 /**
  * Properties of protection equipment asset.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.AssetInfo AssetInfo]] Reference to the superclass object.
  * @param groundTrip Actual ground trip for this type of relay, if applicable.
  * @param phaseTrip Actual phase trip for this type of relay, if applicable.
  * @group InfAssetInfo
@@ -946,7 +946,7 @@ extends
 /**
  * Properties of recloser assets.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.OldSwitchInfo OldSwitchInfo]] Reference to the superclass object.
  * @param groundTripCapable True if device has ground trip capability.
  * @param groundTripNormalEnabled True if normal status of ground trip is enabled.
  * @param groundTripRating Ground trip rating.
@@ -1031,7 +1031,7 @@ extends
 /**
  * Properties of surge arrester.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.AssetInfo AssetInfo]] Reference to the superclass object.
  * @param continuousOperatingVoltage Maximum continuous power frequency voltage allowed on the surge arrester.
  * @param isPolymer If true, the arrester has a polymer housing, porcelain otherwise.
  * @param lightningImpulseDischargeVoltage Residual voltage during an 8x20 microsecond current impulse at the nominal discharge current level.

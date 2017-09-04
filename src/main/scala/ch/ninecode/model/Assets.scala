@@ -88,7 +88,7 @@ extends
  *
  * For electrical network equipment, the role of the asset is defined through PowerSystemResource and its subclasses, defined mainly in the Wires model (refer to IEC61970-301 and model package IEC61970::Wires). Asset description places emphasis on the physical characteristics of the equipment fulfilling that role.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param acceptanceTest Information on acceptance test.
  * @param critical True if asset is considered critical for some reason (for example, a pole with critical attachments).
  * @param electronicAddress Electronic address.
@@ -104,14 +104,14 @@ extends
  * @param typ Utility-specific classification of Asset and its subtypes, according to their corporate standards, practices, and existing IT systems (e.g., for management of assets, maintenance, work, outage, customers, etc.).
  * @param utcNumber Uniquely tracked commodity (UTC) number.
  * @param ActivityRecords All activity records created for this asset.
- * @param AssetContainer Container of this asset.
- * @param AssetInfo Data applicable to this asset.
+ * @param AssetContainer [[ch.ninecode.model.AssetContainer AssetContainer]] Container of this asset.
+ * @param AssetInfo [[ch.ninecode.model.AssetInfo AssetInfo]] Data applicable to this asset.
  * @param AssetPropertyCurves <em>undocumented</em>
- * @param ErpInventory <em>undocumented</em>
- * @param ErpItemMaster <em>undocumented</em>
+ * @param ErpInventory [[ch.ninecode.model.ErpInventory ErpInventory]] <em>undocumented</em>
+ * @param ErpItemMaster [[ch.ninecode.model.ErpItemMaster ErpItemMaster]] <em>undocumented</em>
  * @param ErpRecDeliveryItems <em>undocumented</em>
- * @param FinancialInfo <em>undocumented</em>
- * @param Location Location of this asset.
+ * @param FinancialInfo [[ch.ninecode.model.FinancialInfo FinancialInfo]] <em>undocumented</em>
+ * @param Location [[ch.ninecode.model.Location Location]] Location of this asset.
  * @param OrganisationRoles All roles an organisation plays for this asset.
  * @param PowerSystemResources All power system resources used to electrically model this asset.
  *        For example, transformer asset is electrically modelled with a transformer and its windings and tap changer.
@@ -267,7 +267,7 @@ extends
 /**
  * Asset that is aggregation of other assets such as conductors, transformers, switchgear, land, fences, buildings, equipment, vehicles, etc.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Asset Asset]] Reference to the superclass object.
  * @group Assets
  * @groupname Assets Package Assets
  * @groupdesc Assets This package contains the core information classes that support asset management applications that deal with the physical and lifecycle aspects of various network resources (as opposed to power system resource models defined in IEC61970::Wires package, which support network applications).
@@ -329,7 +329,7 @@ extends
 /**
  * Function performed by an asset.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param configID Configuration specified for this function.
  * @param firmwareID Firmware version.
  * @param hardwareID Hardware version.
@@ -419,8 +419,8 @@ extends
  *
  * - as attributes of a type asset (generic type of an asset as used in designs/extension planning).
  *
- * @param sup Reference to the superclass object.
- * @param AssetModel Asset model described by this data.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param AssetModel [[ch.ninecode.model.AssetModel AssetModel]] Asset model described by this data.
  * @group Assets
  * @groupname Assets Package Assets
  * @groupdesc Assets This package contains the core information classes that support asset management applications that deal with the physical and lifecycle aspects of various network resources (as opposed to power system resource models defined in IEC61970::Wires package, which support network applications).
@@ -487,7 +487,7 @@ extends
  *
  * Examples are trees growing under overhead power lines, a park being located by a substation (i.e., children climb fence to recover a ball), a lake near an overhead distribution line (fishing pole/line contacting power lines), dangerous neighbour, etc.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Hazard Hazard]] Reference to the superclass object.
  * @param Locations The location of this hazard.
  * @group Assets
  * @groupname Assets Package Assets
@@ -555,8 +555,8 @@ extends
  *
  * Datasheet characteristics are available through the associated AssetInfo subclass and can be shared with asset or power system resource instances.
  *
- * @param sup Reference to the superclass object.
- * @param AssetInfo Data applicable to this asset model.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param AssetInfo [[ch.ninecode.model.AssetInfo AssetInfo]] Data applicable to this asset model.
  * @group Assets
  * @groupname Assets Package Assets
  * @groupdesc Assets This package contains the core information classes that support asset management applications that deal with the physical and lifecycle aspects of various network resources (as opposed to power system resource models defined in IEC61970::Wires package, which support network applications).
@@ -621,7 +621,7 @@ extends
 /**
  * Role an organisation plays with respect to asset.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.OrganisationRole OrganisationRole]] Reference to the superclass object.
  * @group Assets
  * @groupname Assets Package Assets
  * @groupdesc Assets This package contains the core information classes that support asset management applications that deal with the physical and lifecycle aspects of various network resources (as opposed to power system resource models defined in IEC61970::Wires package, which support network applications).
@@ -683,7 +683,7 @@ extends
 /**
  * Owner of the asset.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.AssetOrganisationRole AssetOrganisationRole]] Reference to the superclass object.
  * @group Assets
  * @groupname Assets Package Assets
  * @groupdesc Assets This package contains the core information classes that support asset management applications that deal with the physical and lifecycle aspects of various network resources (as opposed to power system resource models defined in IEC61970::Wires package, which support network applications).
@@ -745,7 +745,7 @@ extends
 /**
  * Organisation that is a user of the asset.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.AssetOrganisationRole AssetOrganisationRole]] Reference to the superclass object.
  * @group Assets
  * @groupname Assets Package Assets
  * @groupdesc Assets This package contains the core information classes that support asset management applications that deal with the physical and lifecycle aspects of various network resources (as opposed to power system resource models defined in IEC61970::Wires package, which support network applications).
@@ -807,7 +807,7 @@ extends
 /**
  * Communication media such as fibre optic cable, power-line, telephone, etc.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Asset Asset]] Reference to the superclass object.
  * @group Assets
  * @groupname Assets Package Assets
  * @groupdesc Assets This package contains the core information classes that support asset management applications that deal with the physical and lifecycle aspects of various network resources (as opposed to power system resource models defined in IEC61970::Wires package, which support network applications).
@@ -964,7 +964,7 @@ extends
 /**
  * Organisation that maintains assets.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.AssetOrganisationRole AssetOrganisationRole]] Reference to the superclass object.
  * @group Assets
  * @groupname Assets Package Assets
  * @groupdesc Assets This package contains the core information classes that support asset management applications that deal with the physical and lifecycle aspects of various network resources (as opposed to power system resource models defined in IEC61970::Wires package, which support network applications).
@@ -1026,7 +1026,7 @@ extends
 /**
  * Organisation that manufactures asset products.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.OrganisationRole OrganisationRole]] Reference to the superclass object.
  * @group Assets
  * @groupname Assets Package Assets
  * @groupdesc Assets This package contains the core information classes that support asset management applications that deal with the physical and lifecycle aspects of various network resources (as opposed to power system resource models defined in IEC61970::Wires package, which support network applications).
@@ -1088,7 +1088,7 @@ extends
 /**
  * Documented procedure for various types of work or work tasks on assets.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param instruction Textual description of this procedure.
  * @param kind Kind of procedure.
  * @param sequenceNumber Sequence number in a sequence of procedures being performed.
@@ -1181,10 +1181,10 @@ extends
  *
  * Observed results are captured in associated measurement values and/or values for properties relevant to the type of procedure performed.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param completedDateTime Date and time procedure was completed.
  * @param MeasurementValues <em>undocumented</em>
- * @param Procedure Procedure capturing this data set.
+ * @param Procedure [[ch.ninecode.model.Procedure Procedure]] Procedure capturing this data set.
  * @param TransformerObservations <em>undocumented</em>
  * @group Assets
  * @groupname Assets Package Assets
@@ -1262,14 +1262,14 @@ extends
 /**
  * Asset model by a specific manufacturer.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.AssetModel AssetModel]] Reference to the superclass object.
  * @param corporateStandardKind Kind of corporate standard for this asset model.
  * @param modelNumber Manufacturer's model number.
  * @param modelVersion Version number for product model, which indicates vintage of the product.
  * @param usageKind Intended usage for this asset model.
  * @param weightTotal Total manufactured weight of asset.
- * @param GenericAssetModelOrMaterial Generic asset model or material satisified by this product asset model.
- * @param Manufacturer Manufacturer of this asset model.
+ * @param GenericAssetModelOrMaterial [[ch.ninecode.model.GenericAssetModelOrMaterial GenericAssetModelOrMaterial]] Generic asset model or material satisified by this product asset model.
+ * @param Manufacturer [[ch.ninecode.model.Manufacturer Manufacturer]] Manufacturer of this asset model.
  * @group Assets
  * @groupname Assets Package Assets
  * @groupdesc Assets This package contains the core information classes that support asset management applications that deal with the physical and lifecycle aspects of various network resources (as opposed to power system resource models defined in IEC61970::Wires package, which support network applications).
@@ -1358,12 +1358,12 @@ extends
 /**
  * Physically controls access to AssetContainers.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param appliedDateTime Date and time this seal has been applied.
  * @param condition Condition of seal.
  * @param kind Kind of seal.
  * @param sealNumber (reserved word) Seal number.
- * @param AssetContainer Asset container to which this seal is applied.
+ * @param AssetContainer [[ch.ninecode.model.AssetContainer AssetContainer]] Asset container to which this seal is applied.
  * @group Assets
  * @groupname Assets Package Assets
  * @groupdesc Assets This package contains the core information classes that support asset management applications that deal with the physical and lifecycle aspects of various network resources (as opposed to power system resource models defined in IEC61970::Wires package, which support network applications).

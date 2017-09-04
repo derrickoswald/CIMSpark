@@ -9,7 +9,7 @@ import ch.ninecode.cim.Parseable
 /**
  * Used to define the type of generation for scheduling purposes.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @group InfEnergySource
  * @groupname InfEnergySource Package InfEnergySource
  */

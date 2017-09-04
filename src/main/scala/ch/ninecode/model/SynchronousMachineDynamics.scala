@@ -11,7 +11,7 @@ import ch.ninecode.cim.Parseable
  *
  * The several variations differ in the following ways:
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.SynchronousMachineDynamics SynchronousMachineDynamics]] Reference to the superclass object.
  * @param efdBaseRatio Ratio (Exciter voltage/Generator voltage) of Efd bases of exciter and generator models.
  *        Typical Value = 1.
  * @param ifdBaseType Excitation base system mode.
@@ -110,11 +110,11 @@ extends
  *
  * In this case a SynchronousMachine in the static model is not represented by anything in the dynamics model, instead it is treated as ordinary load.</font>
  *
- * @param sup Reference to the superclass object.
- * @param ExcitationSystemDynamics Excitation system model associated with this synchronous machine model.
- * @param MechanicalLoadDynamics Mechanical load model associated with this synchronous machine model.
- * @param SynchronousMachine Synchronous machine to which synchronous machine dynamics model applies.
- * @param TurbineGovernorDynamics Turbine-governor model associated with this synchronous machine model.
+ * @param sup [[ch.ninecode.model.RotatingMachineDynamics RotatingMachineDynamics]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Excitation system model associated with this synchronous machine model.
+ * @param MechanicalLoadDynamics [[ch.ninecode.model.MechanicalLoadDynamics MechanicalLoadDynamics]] Mechanical load model associated with this synchronous machine model.
+ * @param SynchronousMachine [[ch.ninecode.model.SynchronousMachine SynchronousMachine]] Synchronous machine to which synchronous machine dynamics model applies.
+ * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Turbine-governor model associated with this synchronous machine model.
  * @group SynchronousMachineDynamics
  * @groupname SynchronousMachineDynamics Package SynchronousMachineDynamics
  * @groupdesc SynchronousMachineDynamics For conventional power generating units (e.g., thermal, hydro, combustion turbine), a synchronous machine model represents the electrical characteristics of the generator and the mechanical characteristics of the turbine-generator rotational inertia.  Large industrial motors or groups of similar motors may be represented by individual motor models which are represented as <b>generators with negative active power</b> in the static (power flow) data.  
@@ -219,7 +219,7 @@ extends
  *
  * Are only valid for a simplified model where "Canay" reactance is zero.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.SynchronousMachineDetailed SynchronousMachineDetailed]] Reference to the superclass object.
  * @param r1d D-axis damper 1 winding resistance.
  * @param r1q Q-axis damper 1 winding resistance.
  * @param r2q Q-axis damper 2 winding resistance.
@@ -339,7 +339,7 @@ extends
  *
  * Since internal voltage is held constant, there is no <b>Efd</b> input and any excitation system model will be ignored.  There is also no <b>Ifd</b> output.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.SynchronousMachineDynamics SynchronousMachineDynamics]] Reference to the superclass object.
  * @group SynchronousMachineDynamics
  * @groupname SynchronousMachineDynamics Package SynchronousMachineDynamics
  * @groupdesc SynchronousMachineDynamics For conventional power generating units (e.g., thermal, hydro, combustion turbine), a synchronous machine model represents the electrical characteristics of the generator and the mechanical characteristics of the turbine-generator rotational inertia.  Large industrial motors or groups of similar motors may be represented by individual motor models which are represented as <b>generators with negative active power</b> in the static (power flow) data.  
@@ -437,7 +437,7 @@ extends
  *
  * </ul>
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.SynchronousMachineDetailed SynchronousMachineDetailed]] Reference to the superclass object.
  * @param ks Saturation loading correction factor (Ks) (&gt;= 0).
  *        Used only by Type J model.  Typical Value = 0.
  * @param modelType Type of synchronous machine model used in Dynamic simulation applications.

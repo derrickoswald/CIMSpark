@@ -9,8 +9,8 @@ import ch.ninecode.cim.Parseable
 /**
  * Model of results of market clearing with respect to  Ancillary Service products
  *
- * @param sup Reference to the superclass object.
- * @param MarketCaseClearing <em>undocumented</em>
+ * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
+ * @param MarketCaseClearing [[ch.ninecode.model.MarketCaseClearing MarketCaseClearing]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
@@ -75,7 +75,7 @@ extends
 /**
  * Model various charges to support billing and settlement of
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param calculationLevel Level in charge calculation order.
  * @param configVersion The version of configuration of calculation logic in the settlement.
  * @param deleteStatus <em>undocumented</em>
@@ -93,8 +93,8 @@ extends
  * @param source <em>undocumented</em>
  * @param terminationDate <em>undocumented</em>
  * @param unitOfMeasure The UOM for the current value of the Bill Determinant.
- * @param ChargeProfile <em>undocumented</em>
- * @param MktUserAttribute <em>undocumented</em>
+ * @param ChargeProfile [[ch.ninecode.model.ChargeProfile ChargeProfile]] <em>undocumented</em>
+ * @param MktUserAttribute [[ch.ninecode.model.MktUserAttribute MktUserAttribute]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
@@ -231,14 +231,14 @@ extends
 /**
  * A type of profile for financial charges
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Profile Profile]] Reference to the superclass object.
  * @param frequency The calculation frequency, daily or monthly.
  * @param numberInterval The number of intervals in the profile data.
  * @param typ The type of profile.
  *        It could be amount, price, or quantity.
  * @param unitOfMeasure The unit of measure applied to the value attribute of the profile data.
- * @param Bid <em>undocumented</em>
- * @param BillDeterminant <em>undocumented</em>
+ * @param Bid [[ch.ninecode.model.Bid Bid]] <em>undocumented</em>
+ * @param BillDeterminant [[ch.ninecode.model.BillDeterminant BillDeterminant]] <em>undocumented</em>
  * @param PassTroughBill <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
@@ -332,8 +332,8 @@ extends
  * @param sequence The sequence number of the profile.
  * @param timeStamp The date and time of an interval.
  * @param value The value of an interval given a profile type (amount, price, or quantity), subject to the UOM.
- * @param BillDeterminant <em>undocumented</em>
- * @param ChargeProfile <em>undocumented</em>
+ * @param BillDeterminant [[ch.ninecode.model.BillDeterminant BillDeterminant]] <em>undocumented</em>
+ * @param ChargeProfile [[ch.ninecode.model.ChargeProfile ChargeProfile]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
@@ -414,7 +414,7 @@ extends
 /**
  * Models results of market clearing which call for commitment of units.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
@@ -492,7 +492,7 @@ extends
  * @param updateTimeStamp <em>undocumented</em>
  * @param updateType <em>undocumented</em>
  * @param updateUser <em>undocumented</em>
- * @param RegisteredResource <em>undocumented</em>
+ * @param RegisteredResource [[ch.ninecode.model.RegisteredResource RegisteredResource]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
@@ -597,7 +597,7 @@ extends
 /**
  * Groups all items associated with Binding Constraints and Constraint Violations per interval and market.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
@@ -661,7 +661,7 @@ extends
  *
  * The data includes the constraint type (binding or violated), the solved value for the constraint, and the associated shadow price.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param baseFlow Branch base Power Flow.
  * @param bindingLimit MW Limit.
  * @param clearedValue Cleared MW.
@@ -680,9 +680,9 @@ extends
  *        The SCUC optimization ensures that the MW flow on the Branch Group will not exceed this limit in the relevant direction.
  * @param BGTRResCap Branch Group TR Reservation Capacity - This value is determined in DA and RTM.
  *        It is the amount of spare transmission capacity that is left for the TR holder to use.
- * @param ConstraintClearing <em>undocumented</em>
- * @param Flowgate <em>undocumented</em>
- * @param MktContingency <em>undocumented</em>
+ * @param ConstraintClearing [[ch.ninecode.model.ConstraintClearing ConstraintClearing]] <em>undocumented</em>
+ * @param Flowgate [[ch.ninecode.model.Flowgate Flowgate]] <em>undocumented</em>
+ * @param MktContingency [[ch.ninecode.model.MktContingency MktContingency]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
@@ -949,7 +949,7 @@ extends
  * @param supplementalEnergy Supplemental Energy procure by Real Time Dispatch.
  * @param unitStatus Output results from the case identifying the reason the unit was committed by the software.
  * @param DOT Dispatch operating target value.
- * @param RegisteredResource <em>undocumented</em>
+ * @param RegisteredResource [[ch.ninecode.model.RegisteredResource RegisteredResource]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
@@ -1094,7 +1094,7 @@ extends
 /**
  * Model of ex-post calcultion of MW losses.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
@@ -1163,8 +1163,8 @@ extends
  *        Attribute Usage: Information purposes - Output of LPA engine.
  * @param totalLossMW Total MW losses in the company
  *        Attribute Usage: Information purposes - Output of LPA engine.
- * @param ExPostLoss <em>undocumented</em>
- * @param SubControlArea <em>undocumented</em>
+ * @param ExPostLoss [[ch.ninecode.model.ExPostLoss ExPostLoss]] <em>undocumented</em>
+ * @param SubControlArea [[ch.ninecode.model.SubControlArea SubControlArea]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
@@ -1241,8 +1241,8 @@ extends
 /**
  * Model of ex-post calculation of cleared MW on a regional basis
  *
- * @param sup Reference to the superclass object.
- * @param ExPostMarketRegionResults <em>undocumented</em>
+ * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
+ * @param ExPostMarketRegionResults [[ch.ninecode.model.ExPostMarketRegionResults ExPostMarketRegionResults]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
@@ -1311,8 +1311,8 @@ extends
  *
  * @param sup Reference to the superclass object.
  * @param exPostClearedPrice <em>undocumented</em>
- * @param ExPostMarketRegion <em>undocumented</em>
- * @param MarketRegion <em>undocumented</em>
+ * @param ExPostMarketRegion [[ch.ninecode.model.ExPostMarketRegion ExPostMarketRegion]] <em>undocumented</em>
+ * @param MarketRegion [[ch.ninecode.model.MarketRegion MarketRegion]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
@@ -1385,7 +1385,7 @@ extends
 /**
  * Model of ex-post pricing of nodes
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
  * @param energyPrice market energy price
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
@@ -1460,8 +1460,8 @@ extends
  *        Attribute Usage: 5 min weighted average LMP  to be displayed on UI
  * @param lossLMP Loss component of Location Marginal Price (LMP) in monetary units per MW; loss component of the hourly LMP at a specific pricing node
  *        Attribute Usage: Result of the Security, Pricing, and Dispatch(SPD)/Simultaneous Feasibility Test(SFT) software and denotes the hourly loss component of LMP for each pricing node.
- * @param ExPostPricing <em>undocumented</em>
- * @param Pnode <em>undocumented</em>
+ * @param ExPostPricing [[ch.ninecode.model.ExPostPricing ExPostPricing]] <em>undocumented</em>
+ * @param Pnode [[ch.ninecode.model.Pnode Pnode]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
@@ -1542,7 +1542,7 @@ extends
 /**
  * Model of ex-post pricing of resources.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
@@ -1617,8 +1617,8 @@ extends
  * @param resourceMW Current MW output of the equipment
  *        Attribute Usage: Information purposes - Information purposes - Output of LPA engine.
  * @param status Status of equipment
- * @param ExPostResource <em>undocumented</em>
- * @param RegisteredResource <em>undocumented</em>
+ * @param ExPostResource [[ch.ninecode.model.ExPostResource ExPostResource]] <em>undocumented</em>
+ * @param RegisteredResource [[ch.ninecode.model.RegisteredResource RegisteredResource]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
@@ -1725,7 +1725,7 @@ extends
  *
  * Identifies interval
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
@@ -1793,8 +1793,8 @@ extends
  *        Attribute Usage: hourly load value for the specific area
  * @param totalNetInterchange Amount of interchange for the control zone
  *        Attribute Usage: hourly interchange value for the specific area
- * @param GeneralClearing <em>undocumented</em>
- * @param SubControlArea <em>undocumented</em>
+ * @param GeneralClearing [[ch.ninecode.model.GeneralClearing GeneralClearing]] <em>undocumented</em>
+ * @param SubControlArea [[ch.ninecode.model.SubControlArea SubControlArea]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
@@ -1877,7 +1877,7 @@ extends
  *
  * Identifies interval
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
@@ -1941,7 +1941,7 @@ extends
  *
  * Identifies interval
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
@@ -2005,7 +2005,7 @@ extends
  *
  * Identifies interval
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
  * @param contingencyActive Indication that the system is currently operating in a contingency mode.
  * @param dispatchMode <em>undocumented</em>
  * @group MarketResults
@@ -2093,7 +2093,7 @@ extends
  * @param updateTimeStamp <em>undocumented</em>
  * @param updateType <em>undocumented</em>
  * @param updateUser <em>undocumented</em>
- * @param RegisteredResource <em>undocumented</em>
+ * @param RegisteredResource [[ch.ninecode.model.RegisteredResource RegisteredResource]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
@@ -2211,7 +2211,7 @@ extends
  * @param updateTimeStamp <em>undocumented</em>
  * @param updateType <em>undocumented</em>
  * @param updateUser <em>undocumented</em>
- * @param RegisteredResource <em>undocumented</em>
+ * @param RegisteredResource [[ch.ninecode.model.RegisteredResource RegisteredResource]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
@@ -2300,7 +2300,7 @@ extends
 /**
  * RT only and is published on 5 minute intervals for the previous RT time interval results.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
@@ -2364,10 +2364,10 @@ extends
  *
  * @param sup Reference to the superclass object.
  * @param lossMW <em>undocumented</em>
- * @param HostControlArea <em>undocumented</em>
- * @param LossClearing <em>undocumented</em>
- * @param RUCZone <em>undocumented</em>
- * @param SubControlArea <em>undocumented</em>
+ * @param HostControlArea [[ch.ninecode.model.HostControlArea HostControlArea]] <em>undocumented</em>
+ * @param LossClearing [[ch.ninecode.model.LossClearing LossClearing]] <em>undocumented</em>
+ * @param RUCZone [[ch.ninecode.model.RUCZone RUCZone]] <em>undocumented</em>
+ * @param SubControlArea [[ch.ninecode.model.SubControlArea SubControlArea]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
@@ -2450,7 +2450,7 @@ extends
  *
  * Interval based
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
  * @param mitigationOccuredFlag <em>undocumented</em>
  * @param LMPMFinalFlag <em>undocumented</em>
  * @param SMPMFinalFlag <em>undocumented</em>
@@ -2529,8 +2529,8 @@ extends
  * @param sup Reference to the superclass object.
  * @param resourceStatus Interval Test Status
  *        'N' - not applicable
- * @param MPMTestCategory <em>undocumented</em>
- * @param RegisteredResource <em>undocumented</em>
+ * @param MPMTestCategory [[ch.ninecode.model.MPMTestCategory MPMTestCategory]] <em>undocumented</em>
+ * @param RegisteredResource [[ch.ninecode.model.RegisteredResource RegisteredResource]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
@@ -2609,9 +2609,9 @@ extends
  * @param marginPercent Used to show the Margin % result of the Impact test
  * @param outcome The results of the test.
  *        For the Price, Impact, and Conduct tests, typical values are NA, Pass, Fail, Disable, or Skip.
- * @param AggregatedPnode <em>undocumented</em>
- * @param MPMClearing <em>undocumented</em>
- * @param MPMTestCategory <em>undocumented</em>
+ * @param AggregatedPnode [[ch.ninecode.model.AggregatedPnode AggregatedPnode]] <em>undocumented</em>
+ * @param MPMClearing [[ch.ninecode.model.MPMClearing MPMClearing]] <em>undocumented</em>
+ * @param MPMTestCategory [[ch.ninecode.model.MPMTestCategory MPMTestCategory]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
@@ -2711,9 +2711,9 @@ extends
  * @param reqMaxMW Region requirement maximum limit
  * @param reqMinMW Region requirement minimum limit
  * @param selfScheduleMW Aof AS, selfScheduleMW = AS Self-Provided
- * @param AncillaryServiceClearing <em>undocumented</em>
- * @param MarketProduct <em>undocumented</em>
- * @param MarketRegion <em>undocumented</em>
+ * @param AncillaryServiceClearing [[ch.ninecode.model.AncillaryServiceClearing AncillaryServiceClearing]] <em>undocumented</em>
+ * @param MarketProduct [[ch.ninecode.model.MarketProduct MarketProduct]] <em>undocumented</em>
+ * @param MarketRegion [[ch.ninecode.model.MarketRegion MarketRegion]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
@@ -2852,7 +2852,7 @@ extends
  * @param startUpCost Total Start-up Cost (\$) over the time horizon
  * @param totalCost Total Cost (Energy + AS) cost (\$) by over the time horizon
  * @param totalRucCost The total RUC capacity cost for this interval
- * @param EnergyMarket <em>undocumented</em>
+ * @param EnergyMarket [[ch.ninecode.model.EnergyMarket EnergyMarket]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
@@ -2947,7 +2947,7 @@ extends
  *
  * Each statement along with its line items provide the details of specific charges at any given time.  Used by Billing and Settlement
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param end The end of a bill period.
  * @param referenceNumber The version number of previous statement (in the case of true up).
  * @param start The start of a bill period.
@@ -3033,7 +3033,7 @@ extends
 /**
  * An individual line item on a statement.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param currentAmount Current settlement amount.
  * @param currentISOAmount Current ISO settlement amount.
  * @param currentISOQuantity Current ISO settlement quantity.
@@ -3053,9 +3053,9 @@ extends
  * @param previsouPrice Previous settlement price.
  * @param quantityUOM The unit of measure for the quantity element of the line item.
  * @param ContainerMarketStatementLineItem <em>undocumented</em>
- * @param MarketStatement <em>undocumented</em>
- * @param MktUserAttribute <em>undocumented</em>
- * @param PassThroughBill <em>undocumented</em>
+ * @param MarketStatement [[ch.ninecode.model.MarketStatement MarketStatement]] <em>undocumented</em>
+ * @param MktUserAttribute [[ch.ninecode.model.MktUserAttribute MktUserAttribute]] <em>undocumented</em>
+ * @param PassThroughBill [[ch.ninecode.model.PassThroughBill PassThroughBill]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
@@ -3204,8 +3204,8 @@ extends
 /**
  * Mitigated bid results posted for a given settlement period.
  *
- * @param sup Reference to the superclass object.
- * @param Bid <em>undocumented</em>
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param Bid [[ch.ninecode.model.Bid Bid]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
@@ -3272,7 +3272,7 @@ extends
  *
  * Interval based.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
@@ -3341,7 +3341,7 @@ extends
  * @param segmentMW Mitigated bid segment MW value
  * @param segmentNumber Mitigated Bid Segment Number
  * @param thresholdType <em>undocumented</em>
- * @param Bid <em>undocumented</em>
+ * @param Bid [[ch.ninecode.model.Bid Bid]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
@@ -3426,7 +3426,7 @@ extends
  *
  * 3) Specific charge bill determinants that are externally supplied and used in charge calculations
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param adjustedAmount <em>undocumented</em>
  * @param amount The charge amount of the product/service.
  * @param billEnd Bill period end date
@@ -3452,8 +3452,8 @@ extends
  * @param transactionDate The date the transaction occurs.
  * @param transactionType The type of transaction.
  *        For example, charge customer, bill customer, matching AR/AP, or bill determinant
- * @param MarketStatementLineItem <em>undocumented</em>
- * @param MktUserAttribute <em>undocumented</em>
+ * @param MarketStatementLineItem [[ch.ninecode.model.MarketStatementLineItem MarketStatementLineItem]] <em>undocumented</em>
+ * @param MktUserAttribute [[ch.ninecode.model.MktUserAttribute MktUserAttribute]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
@@ -3618,7 +3618,7 @@ extends
 /**
  * Pricing node clearing results posted for a given settlement period.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
@@ -3691,8 +3691,8 @@ extends
  * @param updateTimeStamp <em>undocumented</em>
  * @param updateType <em>undocumented</em>
  * @param updateUser <em>undocumented</em>
- * @param Pnode <em>undocumented</em>
- * @param PnodeClearing <em>undocumented</em>
+ * @param Pnode [[ch.ninecode.model.Pnode Pnode]] <em>undocumented</em>
+ * @param PnodeClearing [[ch.ninecode.model.PnodeClearing PnodeClearing]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
@@ -3794,7 +3794,7 @@ extends
  * Indicates whether unit is a reliablity must run unit: required to be on to satisfy Grid Code Reliablitiy criteria, load demand, or voltage support.
  *
  * @param sup Reference to the superclass object.
- * @param Bid <em>undocumented</em>
+ * @param Bid [[ch.ninecode.model.Bid Bid]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
@@ -3859,12 +3859,12 @@ extends
 /**
  * RMR Operator's entry of the RMR requirement per market interval.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
  * @param manuallySchedRMRMw The lower of the original pre-dispatch or the AC run schedule (Also known as the RMR Reguirement) becomes the pre-dispatch value.
  * @param updateTimeStamp <em>undocumented</em>
  * @param updateType <em>undocumented</em>
  * @param updateUser <em>undocumented</em>
- * @param RegisteredResource <em>undocumented</em>
+ * @param RegisteredResource [[ch.ninecode.model.RegisteredResource RegisteredResource]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
@@ -3963,7 +3963,7 @@ extends
  * @param RUCCapacity The RUC Capacity of a resource is the difference between (i) the RUC Schedule and (ii) the higher of the DA Schedule and the Minimum Load.
  * @param RUCSchedule The RUC Schedule of a resource is its output level that balances the load forecast used in RUC.
  *        The RUC Schedule in RUC is similar to the DA Schedule in DAM.
- * @param RegisteredResource <em>undocumented</em>
+ * @param RegisteredResource [[ch.ninecode.model.RegisteredResource RegisteredResource]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
@@ -4062,7 +4062,7 @@ extends
  *
  * Class indicates whether a contingency is active and whether the automatic dispatching system is active for this interval of the market solution
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
  * @param contingencyActive Indication that the system is currently operating in a contingency mode.
  * @param dispatchMode <em>undocumented</em>
  * @group MarketResults
@@ -4180,8 +4180,8 @@ extends
  * @param updateTimeStamp <em>undocumented</em>
  * @param updateType <em>undocumented</em>
  * @param updateUser <em>undocumented</em>
- * @param MarketProduct <em>undocumented</em>
- * @param RegisteredResource <em>undocumented</em>
+ * @param MarketProduct [[ch.ninecode.model.MarketProduct MarketProduct]] <em>undocumented</em>
+ * @param RegisteredResource [[ch.ninecode.model.RegisteredResource RegisteredResource]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
@@ -4364,7 +4364,7 @@ extends
  *
  * Associated with ResourceDispatchResults.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
@@ -4447,8 +4447,8 @@ extends
  * @param updateType <em>undocumented</em>
  * @param updateUser <em>undocumented</em>
  * @param upperLimit resource energy ramping upper limit
- * @param RegisteredResource <em>undocumented</em>
- * @param ResourceClearing <em>undocumented</em>
+ * @param RegisteredResource [[ch.ninecode.model.RegisteredResource RegisteredResource]] <em>undocumented</em>
+ * @param ResourceClearing [[ch.ninecode.model.ResourceClearing ResourceClearing]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
@@ -4592,8 +4592,8 @@ extends
  * @param instructionID Unique instruction id per instruction, assigned by the SC and provided to ADS.
  *        ADS passes through.
  * @param intervalStartTime The start of the time interval for which requirement is defined.
- * @param RegisteredResource <em>undocumented</em>
- * @param ResourceClearing <em>undocumented</em>
+ * @param RegisteredResource [[ch.ninecode.model.RegisteredResource RegisteredResource]] <em>undocumented</em>
+ * @param ResourceClearing [[ch.ninecode.model.ResourceClearing ResourceClearing]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
@@ -4687,7 +4687,7 @@ extends
  * @param sup Reference to the superclass object.
  * @param selfSchedMW Cleared value for the specific self schedule type listed.
  * @param selfSchedType Self schedule breakdown type.
- * @param ResourceAwardInstruction <em>undocumented</em>
+ * @param ResourceAwardInstruction [[ch.ninecode.model.ResourceAwardInstruction ResourceAwardInstruction]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
@@ -4760,9 +4760,9 @@ extends
 /**
  * Specifies a settlement run.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param tradeDate The trade date on which the settlement is run.
- * @param EnergyMarket <em>undocumented</em>
+ * @param EnergyMarket [[ch.ninecode.model.EnergyMarket EnergyMarket]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
@@ -4833,7 +4833,7 @@ extends
  *
  * For example, Day Ahead cleared results for the transaction bids for each interval of the market day.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
@@ -4895,11 +4895,11 @@ extends
 /**
  * Contains the cleared results for each TransactionBid submitted to and accepted by the market.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param clearedMW The market transaction megawatt
  * @param clearedPrice The price of the market transaction
- * @param TransactionBid <em>undocumented</em>
- * @param TransactionBidClearing <em>undocumented</em>
+ * @param TransactionBid [[ch.ninecode.model.TransactionBid TransactionBid]] <em>undocumented</em>
+ * @param TransactionBidClearing [[ch.ninecode.model.TransactionBidClearing TransactionBidClearing]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.

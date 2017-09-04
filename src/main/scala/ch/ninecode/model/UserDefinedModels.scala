@@ -9,7 +9,7 @@ import ch.ninecode.cim.Parseable
 /**
  * Asynchronous machine whose dynamic behaviour is described by a user-defined model.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.AsynchronousMachineDynamics AsynchronousMachineDynamics]] Reference to the superclass object.
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
@@ -89,7 +89,7 @@ extends
 /**
  * Discontinuous excitation control function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.DiscontinuousExcitationControlDynamics DiscontinuousExcitationControlDynamics]] Reference to the superclass object.
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
@@ -169,7 +169,7 @@ extends
 /**
  * Excitation system function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
@@ -249,7 +249,7 @@ extends
 /**
  * Load whose dynamic behaviour is described by a user-defined model.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.LoadDynamics LoadDynamics]] Reference to the superclass object.
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
@@ -329,7 +329,7 @@ extends
 /**
  * Mechanical load function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.MechanicalLoadDynamics MechanicalLoadDynamics]] Reference to the superclass object.
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
@@ -409,7 +409,7 @@ extends
 /**
  * Overexcitation limiter system function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.OverexcitationLimiterDynamics OverexcitationLimiterDynamics]] Reference to the superclass object.
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
@@ -489,7 +489,7 @@ extends
 /**
  * Power Factor or VAr controller Type I function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PFVArControllerType1Dynamics PFVArControllerType1Dynamics]] Reference to the superclass object.
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
@@ -569,7 +569,7 @@ extends
 /**
  * Power Factor or VAr controller Type II function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PFVArControllerType2Dynamics PFVArControllerType2Dynamics]] Reference to the superclass object.
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
@@ -649,7 +649,7 @@ extends
 /**
  * <font color="#0f0f0f">Power system stabilizer</font> function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
@@ -739,24 +739,24 @@ extends
  * @param integerParameterValue Used for integer parameter value.
  *        If this attribute is populated, booleanParameterValue and floatParameterValue will not be.
  * @param parameterNumber Sequence number of the parameter among the set of parameters associated with the related proprietary user-defined model.
- * @param AsynchronousMachineUserDefined Proprietary user-defined model with which this parameter is associated.
- * @param DiscontinuousExcitationControlUserDefined Proprietary user-defined model with which this parameter is associated.
- * @param ExcitationSystemUserDefined Proprietary user-defined model with which this parameter is associated.
- * @param LoadUserDefined Proprietary user-defined model with which this parameter is associated.
- * @param MechanicalLoadUserDefined Proprietary user-defined model with which this parameter is associated.
- * @param OverexcitationLimiterUserDefined Proprietary user-defined model with which this parameter is associated.
- * @param PFVArControllerType1UserDefined Proprietary user-defined model with which this parameter is associated.
- * @param PFVArControllerType2UserDefined Proprietary user-defined model with which this parameter is associated.
- * @param PowerSystemStabilizerUserDefined Proprietary user-defined model with which this parameter is associated.
- * @param SynchronousMachineUserDefined Proprietary user-defined model with which this parameter is associated.
- * @param TurbineGovernorUserDefined Proprietary user-defined model with which this parameter is associated.
- * @param TurbineLoadControllerUserDefined Proprietary user-defined model with which this parameter is associated.
- * @param UnderexcitationLimiterUserDefined Proprietary user-defined model with which this parameter is associated.
- * @param VoltageAdjusterUserDefined Proprietary user-defined model with which this parameter is associated.
- * @param VoltageCompensatorUserDefined Proprietary user-defined model with which this parameter is associated.
- * @param WindPlantUserDefined Proprietary user-defined model with which this parameter is associated.
- * @param WindType1or2UserDefined Proprietary user-defined model with which this parameter is associated.
- * @param WindType3or4UserDefined Proprietary user-defined model with which this parameter is associated.
+ * @param AsynchronousMachineUserDefined [[ch.ninecode.model.AsynchronousMachineUserDefined AsynchronousMachineUserDefined]] Proprietary user-defined model with which this parameter is associated.
+ * @param DiscontinuousExcitationControlUserDefined [[ch.ninecode.model.DiscontinuousExcitationControlUserDefined DiscontinuousExcitationControlUserDefined]] Proprietary user-defined model with which this parameter is associated.
+ * @param ExcitationSystemUserDefined [[ch.ninecode.model.ExcitationSystemUserDefined ExcitationSystemUserDefined]] Proprietary user-defined model with which this parameter is associated.
+ * @param LoadUserDefined [[ch.ninecode.model.LoadUserDefined LoadUserDefined]] Proprietary user-defined model with which this parameter is associated.
+ * @param MechanicalLoadUserDefined [[ch.ninecode.model.MechanicalLoadUserDefined MechanicalLoadUserDefined]] Proprietary user-defined model with which this parameter is associated.
+ * @param OverexcitationLimiterUserDefined [[ch.ninecode.model.OverexcitationLimiterUserDefined OverexcitationLimiterUserDefined]] Proprietary user-defined model with which this parameter is associated.
+ * @param PFVArControllerType1UserDefined [[ch.ninecode.model.PFVArControllerType1UserDefined PFVArControllerType1UserDefined]] Proprietary user-defined model with which this parameter is associated.
+ * @param PFVArControllerType2UserDefined [[ch.ninecode.model.PFVArControllerType2UserDefined PFVArControllerType2UserDefined]] Proprietary user-defined model with which this parameter is associated.
+ * @param PowerSystemStabilizerUserDefined [[ch.ninecode.model.PowerSystemStabilizerUserDefined PowerSystemStabilizerUserDefined]] Proprietary user-defined model with which this parameter is associated.
+ * @param SynchronousMachineUserDefined [[ch.ninecode.model.SynchronousMachineUserDefined SynchronousMachineUserDefined]] Proprietary user-defined model with which this parameter is associated.
+ * @param TurbineGovernorUserDefined [[ch.ninecode.model.TurbineGovernorUserDefined TurbineGovernorUserDefined]] Proprietary user-defined model with which this parameter is associated.
+ * @param TurbineLoadControllerUserDefined [[ch.ninecode.model.TurbineLoadControllerUserDefined TurbineLoadControllerUserDefined]] Proprietary user-defined model with which this parameter is associated.
+ * @param UnderexcitationLimiterUserDefined [[ch.ninecode.model.UnderexcitationLimiterUserDefined UnderexcitationLimiterUserDefined]] Proprietary user-defined model with which this parameter is associated.
+ * @param VoltageAdjusterUserDefined [[ch.ninecode.model.VoltageAdjusterUserDefined VoltageAdjusterUserDefined]] Proprietary user-defined model with which this parameter is associated.
+ * @param VoltageCompensatorUserDefined [[ch.ninecode.model.VoltageCompensatorUserDefined VoltageCompensatorUserDefined]] Proprietary user-defined model with which this parameter is associated.
+ * @param WindPlantUserDefined [[ch.ninecode.model.WindPlantUserDefined WindPlantUserDefined]] Proprietary user-defined model with which this parameter is associated.
+ * @param WindType1or2UserDefined [[ch.ninecode.model.WindType1or2UserDefined WindType1or2UserDefined]] Proprietary user-defined model with which this parameter is associated.
+ * @param WindType3or4UserDefined [[ch.ninecode.model.WindType3or4UserDefined WindType3or4UserDefined]] Proprietary user-defined model with which this parameter is associated.
  * @group UserDefinedModels
  * @groupname UserDefinedModels Package UserDefinedModels
  * @groupdesc UserDefinedModels This section contains user-defined dynamic model classes to support the exchange of both proprietary and explicitly defined user-defined models.  
@@ -917,7 +917,7 @@ extends
 /**
  * Synchronous machine whose dynamic behaviour is described by a user-defined model.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.SynchronousMachineDynamics SynchronousMachineDynamics]] Reference to the superclass object.
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
@@ -997,7 +997,7 @@ extends
 /**
  * Turbine-governor function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
@@ -1077,7 +1077,7 @@ extends
 /**
  * Turbine load controller function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.TurbineLoadControllerDynamics TurbineLoadControllerDynamics]] Reference to the superclass object.
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
@@ -1157,7 +1157,7 @@ extends
 /**
  * Underexcitation limiter function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.UnderexcitationLimiterDynamics UnderexcitationLimiterDynamics]] Reference to the superclass object.
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
@@ -1237,7 +1237,7 @@ extends
 /**
  * <font color="#0f0f0f">Voltage adjuster</font> function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.VoltageAdjusterDynamics VoltageAdjusterDynamics]] Reference to the superclass object.
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
@@ -1317,7 +1317,7 @@ extends
 /**
  * Voltage compensator function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.VoltageCompensatorDynamics VoltageCompensatorDynamics]] Reference to the superclass object.
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
@@ -1397,7 +1397,7 @@ extends
 /**
  * Wind plant function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.WindPlantDynamics WindPlantDynamics]] Reference to the superclass object.
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
@@ -1477,7 +1477,7 @@ extends
 /**
  * Wind Type 1 or Type 2 function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.WindTurbineType1or2Dynamics WindTurbineType1or2Dynamics]] Reference to the superclass object.
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
@@ -1557,7 +1557,7 @@ extends
 /**
  * Wind Type 3 or Type 4 function block whose dynamic behaviour is described by <font color="#0f0f0f">a user-defined model.</font>
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.WindTurbineType3or4Dynamics WindTurbineType3or4Dynamics]] Reference to the superclass object.
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.

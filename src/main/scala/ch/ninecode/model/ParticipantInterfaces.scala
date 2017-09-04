@@ -77,7 +77,7 @@ extends
  *
  * Instead, it is simply an aggregation of all LoadBids contained wtihin a specific SubControlArea. This entity should inherit from Bid for representation of the timeframe (startTime, stopTime) and the market type.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Bid Bid]] Reference to the superclass object.
  * @param demandBidMW The Demand Bid Megawatt for the area case.
  *        Attribute Usage: This is Scheduled demand MW in Day Ahead
  * @group ParticipantInterfaces
@@ -148,7 +148,7 @@ extends
  * @param propertyName <em>undocumented</em>
  * @param propertyValue <em>undocumented</em>
  * @param sequence <em>undocumented</em>
- * @param MktUserAttribute <em>undocumented</em>
+ * @param MktUserAttribute [[ch.ninecode.model.MktUserAttribute MktUserAttribute]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
@@ -225,14 +225,14 @@ extends
 /**
  * Represents both bids to purchase and offers to sell energy or ancillary services in an RTO-sponsored market.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param marketType The market type, DAM or RTM.
  * @param startTime Start time and date for which bid applies.
  * @param stopTime Stop time and date for which bid is applicable.
- * @param ActionRequest <em>undocumented</em>
- * @param EnergyMarket <em>undocumented</em>
- * @param MarketParticipant <em>undocumented</em>
- * @param SchedulingCoordinator <em>undocumented</em>
+ * @param ActionRequest [[ch.ninecode.model.ActionRequest ActionRequest]] <em>undocumented</em>
+ * @param EnergyMarket [[ch.ninecode.model.EnergyMarket EnergyMarket]] <em>undocumented</em>
+ * @param MarketParticipant [[ch.ninecode.model.MarketParticipant MarketParticipant]] <em>undocumented</em>
+ * @param SchedulingCoordinator [[ch.ninecode.model.SchedulingCoordinator SchedulingCoordinator]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
@@ -324,7 +324,7 @@ extends
  * @param sup Reference to the superclass object.
  * @param timeIntervalEnd End of the time interval n which bid is valid (yyyy-mm-dd hh24: mi: ss)
  * @param timeIntervalStart Start of the time interval in which bid is valid (yyyy-mm-dd hh24: mi: ss).
- * @param ProductBid <em>undocumented</em>
+ * @param ProductBid [[ch.ninecode.model.ProductBid ProductBid]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
@@ -397,7 +397,7 @@ extends
 /**
  * This class represent the error information for a bid that is detected during bid validation
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param componentType <em>undocumented</em>
  * @param endTime hour wihthin the bid for which the error applies
  * @param errMessage error message
@@ -406,7 +406,7 @@ extends
  * @param msgLevel <em>undocumented</em>
  * @param ruleID <em>undocumented</em>
  * @param startTime hour wihthin the bid for which the error applies
- * @param MarketProduct <em>undocumented</em>
+ * @param MarketProduct [[ch.ninecode.model.MarketProduct MarketProduct]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
@@ -503,8 +503,8 @@ extends
 /**
  * Containment for bid parameters that are dependent on a market product type.
  *
- * @param sup Reference to the superclass object.
- * @param ProductBid <em>undocumented</em>
+ * @param sup [[ch.ninecode.model.RegularIntervalSchedule RegularIntervalSchedule]] Reference to the superclass object.
+ * @param ProductBid [[ch.ninecode.model.ProductBid ProductBid]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
@@ -569,8 +569,8 @@ extends
 /**
  * Containment for bid hourly parameters that are not product dependent.
  *
- * @param sup Reference to the superclass object.
- * @param Bid <em>undocumented</em>
+ * @param sup [[ch.ninecode.model.RegularIntervalSchedule RegularIntervalSchedule]] Reference to the superclass object.
+ * @param Bid [[ch.ninecode.model.Bid Bid]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
@@ -635,7 +635,7 @@ extends
 /**
  * Relationship between unit operating price in \$/hour (Y-axis) and unit output in MW (X-axis).
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
@@ -697,7 +697,7 @@ extends
 /**
  * Defines bid schedules to allow a product bid to use specified bid price curves for different time intervals.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.RegularIntervalSchedule RegularIntervalSchedule]] Reference to the superclass object.
  * @param bidType BID Type:
  *        
  *        I - Initial Bid;
@@ -710,8 +710,8 @@ extends
  *        'M' - Mitigated because of "misconduct" both by SMPM and LMPM
  *        'B' - Mitigated because of "misconduct" both by SMPM and modified by LMLM because of RMR rules
  *        'O' - original
- * @param BidPriceCurve <em>undocumented</em>
- * @param ProductBid <em>undocumented</em>
+ * @param BidPriceCurve [[ch.ninecode.model.BidPriceCurve BidPriceCurve]] <em>undocumented</em>
+ * @param ProductBid [[ch.ninecode.model.ProductBid ProductBid]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
@@ -788,7 +788,7 @@ extends
 /**
  * Defines self schedule values to be used for specified time intervals.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.RegularIntervalSchedule RegularIntervalSchedule]] Reference to the superclass object.
  * @param balancingFlag This is a Y/N flag for a self-schedule of a resource per market per date and hour, using a specific TR ID.
  *        It indicates whether a self-schedule using a TR is balanced with another self-schedule using the same TR ID.
  * @param bidType bidType has two types as the required output of requirements and qualified pre-dispatch.
@@ -804,10 +804,10 @@ extends
  * @param updateType <em>undocumented</em>
  * @param wheelingTransactionReference A unique identifier of a wheeling transaction.
  *        A wheeling transaction is a balanced Energy exchange among Supply and Demand Resources.
- * @param AdjacentCASet <em>undocumented</em>
- * @param HostControlArea <em>undocumented</em>
- * @param ProductBid <em>undocumented</em>
- * @param SubControlArea <em>undocumented</em>
+ * @param AdjacentCASet [[ch.ninecode.model.AdjacentCASet AdjacentCASet]] <em>undocumented</em>
+ * @param HostControlArea [[ch.ninecode.model.HostControlArea HostControlArea]] <em>undocumented</em>
+ * @param ProductBid [[ch.ninecode.model.ProductBid ProductBid]] <em>undocumented</em>
+ * @param SubControlArea [[ch.ninecode.model.SubControlArea SubControlArea]] <em>undocumented</em>
  * @param TransmissionContractRight <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
@@ -931,7 +931,7 @@ extends
  *
  * Of these generating bids, only one generating bid can be scheduled at a time.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
@@ -993,7 +993,7 @@ extends
 /**
  * A Charge Component is a list of configurable charge quality items to feed into settlement calculation and/or bill determinants.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param deleteStatus <em>undocumented</em>
  * @param effectiveDate <em>undocumented</em>
  * @param equation <em>undocumented</em>
@@ -1101,12 +1101,12 @@ extends
  *
  * Examples such as Ancillary Services, Interests, etc.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param effectiveDate <em>undocumented</em>
  * @param marketCode <em>undocumented</em>
  * @param terminationDate <em>undocumented</em>
  * @param ChargeGroupParent A ChargeGroup instance can have relationships with other ChargeGroup instances.
- * @param MktUserAttribute <em>undocumented</em>
+ * @param MktUserAttribute [[ch.ninecode.model.MktUserAttribute MktUserAttribute]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
@@ -1189,7 +1189,7 @@ extends
  *
  * Examples such as: Day Ahead Spinning Reserve Default Invoice Interest Charge, etc.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param chargeOrder <em>undocumented</em>
  * @param chargeVersion <em>undocumented</em>
  * @param effectiveDate <em>undocumented</em>
@@ -1198,9 +1198,9 @@ extends
  * @param terminationDate <em>undocumented</em>
  * @param totalInterval <em>undocumented</em>
  * @param ChargeComponents A ChargeType can have 0-n ChargeComponent and a ChargeComponent can associate to 0-n ChargeType
- * @param ChargeGroup A ChargeGroup can have 0-n ChargeType.
+ * @param ChargeGroup [[ch.ninecode.model.ChargeGroup ChargeGroup]] A ChargeGroup can have 0-n ChargeType.
  *        A ChargeType can associate to 0-n ChargeGroup.
- * @param MktUserAttribute <em>undocumented</em>
+ * @param MktUserAttribute [[ch.ninecode.model.MktUserAttribute MktUserAttribute]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
@@ -1301,7 +1301,7 @@ extends
 /**
  * Response from registered resource acknowleging receipt of dispatch instructions
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param acceptMW The accepted mw amount by the responder. aka response mw.
  * @param acceptStatus The accept status submitted by the responder. enumeration type needs to be defined
  * @param certificationName The Subject DN is the X509 Certificate Subject DN.
@@ -1317,7 +1317,7 @@ extends
  * @param passIndicator The type of run for the market clearing.
  * @param receivedTime Timestamp indicating the time at which the instruction was received.
  * @param startTime start time
- * @param RegisteredResource <em>undocumented</em>
+ * @param RegisteredResource [[ch.ninecode.model.RegisteredResource RegisteredResource]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
@@ -1480,7 +1480,7 @@ extends
 /**
  * Offer to supply energy/ancillary services from a generating unit or resource
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.ResourceBid ResourceBid]] Reference to the superclass object.
  * @param combinedCycleUnitOffer Will indicate if the unit is part of a CC offer or not
  * @param downTimeMax Maximum down time.
  * @param installedCapacity Installed Capacity value
@@ -1504,11 +1504,11 @@ extends
  *        3 - Startup cost as a function of down time
  * @param startupCost Startup cost/price
  * @param upTimeMax Maximum up time.
- * @param BidSet <em>undocumented</em>
- * @param NotificationTimeCurve <em>undocumented</em>
- * @param RegisteredGenerator <em>undocumented</em>
- * @param StartUpCostCurve <em>undocumented</em>
- * @param StartUpTimeCurve <em>undocumented</em>
+ * @param BidSet [[ch.ninecode.model.BidSet BidSet]] <em>undocumented</em>
+ * @param NotificationTimeCurve [[ch.ninecode.model.NotificationTimeCurve NotificationTimeCurve]] <em>undocumented</em>
+ * @param RegisteredGenerator [[ch.ninecode.model.RegisteredGenerator RegisteredGenerator]] <em>undocumented</em>
+ * @param StartUpCostCurve [[ch.ninecode.model.StartUpCostCurve StartUpCostCurve]] <em>undocumented</em>
+ * @param StartUpTimeCurve [[ch.ninecode.model.StartUpTimeCurve StartUpTimeCurve]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
@@ -1659,7 +1659,7 @@ extends
  *
  * The resource could be a RegisteredGenerator or a RegisteredInterTie.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.BidHourlySchedule BidHourlySchedule]] Reference to the superclass object.
  * @param value Flag defining that for this hour in the resource bid the resource shall have an hourly pre-dispatch.
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
@@ -1725,9 +1725,9 @@ extends
 /**
  * This class represents the inter tie bid
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.ResourceBid ResourceBid]] Reference to the superclass object.
  * @param minHourlyBlock_1 The minimum hourly block for an Inter-Tie Resource supplied within the bid.
- * @param RegisteredInterTie <em>undocumented</em>
+ * @param RegisteredInterTie [[ch.ninecode.model.RegisteredInterTie RegisteredInterTie]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
@@ -1804,7 +1804,7 @@ extends
  *        For 5 minute binding dispatches, this is the Goto MW or DOT
  * @param passIndicator Part of the Composite key that downstream app uses to match the instruction
  * @param startTime Part of the Composite key that downstream app uses to match the instruction
- * @param RegisteredInterTie <em>undocumented</em>
+ * @param RegisteredInterTie [[ch.ninecode.model.RegisteredInterTie RegisteredInterTie]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
@@ -1889,7 +1889,7 @@ extends
 /**
  * Offer to supply energy/ancillary services from a load resource (participating load reduces consumption)
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.ResourceBid ResourceBid]] Reference to the superclass object.
  * @param dropRampRate Maximum rate that load can be reduced (MW/minute)
  * @param loadRedInitiationCost load reduction initiation cost
  * @param loadRedInitiationTime load reduction initiation time
@@ -1907,8 +1907,8 @@ extends
  *        Greater chance of this being dynamic than the Metered Value, however, it is requested that Price Setting and Metered Value stay at the same source.  Currently no customers have implemented the metering capability, but if this option is implemented, then Price Setting could become dynamic.  However, Metered Value will remain static.
  * @param reqNoticeTime Time period that is required from an order to reduce a load to the time that it takes to get to the minimum load reduction.
  * @param shutdownCost The fixed cost associated with committing a load reduction.
- * @param AreaLoadBid <em>undocumented</em>
- * @param RegisteredLoad <em>undocumented</em>
+ * @param AreaLoadBid [[ch.ninecode.model.AreaLoadBid AreaLoadBid]] <em>undocumented</em>
+ * @param RegisteredLoad [[ch.ninecode.model.RegisteredLoad RegisteredLoad]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
@@ -2039,7 +2039,7 @@ extends
  * @param mssInstructionID Unique instruction id per instruction, assigned by the SC and provided to ADS.
  *        ADS passes through.
  * @param startTime Instruction Start Time
- * @param RegisteredResource <em>undocumented</em>
+ * @param RegisteredResource [[ch.ninecode.model.RegisteredResource RegisteredResource]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
@@ -2122,8 +2122,8 @@ extends
  *
  * Relationship between price (Y1-axis) vs. MW (X-axis).
  *
- * @param sup Reference to the superclass object.
- * @param LoadBid <em>undocumented</em>
+ * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
+ * @param LoadBid [[ch.ninecode.model.LoadBid LoadBid]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
@@ -2190,7 +2190,7 @@ extends
  *
  * Examples as Market, FERC, RMR,
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param effectiveDate <em>undocumented</em>
  * @param frequencyType <em>undocumented</em>
  * @param invoiceType <em>undocumented</em>
@@ -2199,7 +2199,7 @@ extends
  * @param runType <em>undocumented</em>
  * @param runVersion <em>undocumented</em>
  * @param terminationDate <em>undocumented</em>
- * @param ChargeType A MajorChargeGroup can have 0-n ChargeType.
+ * @param ChargeType [[ch.ninecode.model.ChargeType ChargeType]] A MajorChargeGroup can have 0-n ChargeType.
  *        A ChargeType can associate to 0-n MajorChargeGroup.
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
@@ -2297,11 +2297,11 @@ extends
 /**
  * Signifies an event to trigger one or more activities, such as reading a meter, recalculating a bill, requesting work, when generating units shall be scheduled for maintenance, when a transformer is scheduled to be refurbished, etc.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param category Category of scheduled event.
  * @param duration Duration of the scheduled event, for example, the time to ramp between values.
  * @param status <em>undocumented</em>
- * @param MajorChargeGroup <em>undocumented</em>
+ * @param MajorChargeGroup [[ch.ninecode.model.MajorChargeGroup MajorChargeGroup]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
@@ -2380,7 +2380,7 @@ extends
  *
  * Relationship between crew notification time (Y1-axis) and unit startup time (Y2-axis) vs. unit elapsed down time (X-axis).
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
@@ -2444,7 +2444,7 @@ extends
  *
  * This schedule is assocated with the hourly parameters in a resource bid.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.BidHourlySchedule BidHourlySchedule]] Reference to the superclass object.
  * @param value <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
@@ -2510,9 +2510,9 @@ extends
 /**
  * Component of a bid that pertains to one market product.
  *
- * @param sup Reference to the superclass object.
- * @param Bid A bid comprises one or more product bids of market products
- * @param MarketProduct <em>undocumented</em>
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param Bid [[ch.ninecode.model.Bid Bid]] A bid comprises one or more product bids of market products
+ * @param MarketProduct [[ch.ninecode.model.MarketProduct MarketProduct]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
@@ -2583,7 +2583,7 @@ extends
  *
  * This schedule is assocated with the hourly parameters in a resource bid associated with a specific product within the bid.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.BidHourlyProductSchedule BidHourlyProductSchedule]] Reference to the superclass object.
  * @param value <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
@@ -2651,7 +2651,7 @@ extends
  *
  * Associated with the energy market product type.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.BidHourlyProductSchedule BidHourlyProductSchedule]] Reference to the superclass object.
  * @param value <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
@@ -2719,7 +2719,7 @@ extends
  *
  * This schedule is assocated with the hourly parameters in a resource bid associated with a specific product within the bid.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.BidHourlyProductSchedule BidHourlyProductSchedule]] Reference to the superclass object.
  * @param value <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
@@ -2785,14 +2785,14 @@ extends
 /**
  * Ramp rate as a function of resource MW output
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param condition condition for the ramp rate
  * @param constraintRampType The condition that identifies whether a Generating Resource should be constrained from Ancillary Service provision if its Schedule or Dispatch change across Trading Hours or Trading Intervals requires more than a specified fraction of the duration of the Trading Hour or Trading Interval.
  *        Valid values are Fast/Slow
  * @param rampRateType How ramp rate is applied (e.g. raise or lower, as when applied to a generation resource)
- * @param GeneratingBid <em>undocumented</em>
- * @param InterTieBid <em>undocumented</em>
- * @param LoadBid <em>undocumented</em>
+ * @param GeneratingBid [[ch.ninecode.model.GeneratingBid GeneratingBid]] <em>undocumented</em>
+ * @param InterTieBid [[ch.ninecode.model.InterTieBid InterTieBid]] <em>undocumented</em>
+ * @param LoadBid [[ch.ninecode.model.LoadBid LoadBid]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
@@ -2877,7 +2877,7 @@ extends
 /**
  * Energy bid for generation, load, or virtual type for the whole of the market-trading period (i.e., one day in day ahead market or one hour in the real time market)
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Bid Bid]] Reference to the superclass object.
  * @param aggregationFlag Aggregation flag
  *        0: individual resource level
  *        1: Aggregated node location
@@ -2910,7 +2910,7 @@ extends
  * @param startUpsMaxWeek Maximum number of startups per week.
  * @param virtual True if bid is virtual.
  *        Bid is assumed to be non-virtual if attribute is absent
- * @param BidError <em>undocumented</em>
+ * @param BidError [[ch.ninecode.model.BidError BidError]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
@@ -3037,7 +3037,7 @@ extends
  *
  * Relationship between unit startup cost (Y1-axis) vs. unit elapsed down time (X-axis).
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param RegisteredGenerators <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
@@ -3105,8 +3105,8 @@ extends
  *
  * Relationship between unit startup time (Y1-axis) vs. unit elapsed down time (X-axis).
  *
- * @param sup Reference to the superclass object.
- * @param RegisteredGenerator <em>undocumented</em>
+ * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
+ * @param RegisteredGenerator [[ch.ninecode.model.RegisteredGenerator RegisteredGenerator]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
@@ -3171,7 +3171,7 @@ extends
 /**
  * Inter Scheduling Coordinator Trades to model financial trades which may impact settlement
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param adjustedTradeQuantity The validated and current market accepted trade amount of a physical energy trade.
  * @param counterTradeQuantity MW quantity submitted by counter SC for the same trade
  * @param dependOnTradeName The Depend On IST Name points to the unique IST Name in the chain of physical energy trades.
@@ -3191,12 +3191,12 @@ extends
  * @param tradeStatus Resulting status of the trade following the rule engine processing.
  * @param updateTimeStamp <em>undocumented</em>
  * @param updateUser <em>undocumented</em>
- * @param ActionRequest <em>undocumented</em>
+ * @param ActionRequest [[ch.ninecode.model.ActionRequest ActionRequest]] <em>undocumented</em>
  * @param From_SC <em>undocumented</em>
- * @param Pnode <em>undocumented</em>
- * @param RegisteredGenerator <em>undocumented</em>
+ * @param Pnode [[ch.ninecode.model.Pnode Pnode]] <em>undocumented</em>
+ * @param RegisteredGenerator [[ch.ninecode.model.RegisteredGenerator RegisteredGenerator]] <em>undocumented</em>
  * @param To_SC <em>undocumented</em>
- * @param TradeProduct <em>undocumented</em>
+ * @param TradeProduct [[ch.ninecode.model.TradeProduct TradeProduct]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
@@ -3349,14 +3349,14 @@ extends
 /**
  * Trade error and warning messages associated with the rule engine processing of the submitted trade.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param endTime hour wihthin the trade for which the error applies
  * @param errMessage error message
  * @param errPriority Priority number for the error message
  * @param logTimeStamp Timestamp of logged error/warning message
  * @param ruleID Rule identifier which triggered the error/warning message
  * @param startTime hour wihthin the trade for which the error applies
- * @param Trade <em>undocumented</em>
+ * @param Trade [[ch.ninecode.model.Trade Trade]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
@@ -3533,14 +3533,14 @@ extends
 /**
  * Bilateral or scheduled transactions for energy and ancillary services considered by market clearing process
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Bid Bid]] Reference to the superclass object.
  * @param demandTransaction Set true if this is a demand transaction.
  * @param dispatchable Set true if this is a dispatchable transaction.
  * @param payCongestion Set true if this is a willing to pay transaction.
  *        This flag is used to determine whether a schedule is willing-to-pay-congestion or not.
  * @param Delivery_Pnode <em>undocumented</em>
  * @param Receipt_Pnode <em>undocumented</em>
- * @param TransmissionReservation <em>undocumented</em>
+ * @param TransmissionReservation [[ch.ninecode.model.TransmissionReservation TransmissionReservation]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.

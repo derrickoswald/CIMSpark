@@ -11,8 +11,8 @@ import ch.ninecode.cim.Parseable
  *
  * @param sup Reference to the superclass object.
  * @param typ The coded type of an ACE tariff.
- * @param MarketDocument <em>undocumented</em>
- * @param Unit <em>undocumented</em>
+ * @param MarketDocument [[ch.ninecode.model.MarketDocument MarketDocument]] <em>undocumented</em>
+ * @param Unit [[ch.ninecode.model.Unit_ Unit_]] <em>undocumented</em>
  * @group MarketManagement
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
@@ -89,7 +89,7 @@ extends
  * @param attribute The identification of the formal name of an attribute.
  * @param attributeValue The instance value of the attribute.
  * @param position A sequential value representing a relative sequence number.
- * @param TimeSeries <em>undocumented</em>
+ * @param TimeSeries [[ch.ninecode.model.TimeSeries TimeSeries]] <em>undocumented</em>
  * @group MarketManagement
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
@@ -166,14 +166,14 @@ extends
 /**
  * A class providing the identification and type of an auction.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param allocationMode Identification of the method of allocation in an auction.
  * @param cancelled An indicator that signifies that the auction has been cancelled.
  * @param category The product category of an auction.
  * @param paymentTerms The terms which dictate the determination of the bid payment price.
  * @param rights The rights of use the transmission capacity acquired in an auction.
  * @param typ The kind of the Auction (e.g. implicit, explicit ...).
- * @param TimeSeries <em>undocumented</em>
+ * @param TimeSeries [[ch.ninecode.model.TimeSeries TimeSeries]] <em>undocumented</em>
  * @group MarketManagement
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
@@ -262,7 +262,7 @@ extends
 /**
  * The formal specification of specific characteristics related to a bid.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.TimeSeries TimeSeries]] Reference to the superclass object.
  * @param blockBid Indication that  the values in the period are considered as a whole.
  *        They cannot be changed or subdivided.
  * @param direction The coded identification of the energy flow.
@@ -425,7 +425,7 @@ extends
 /**
  * An area of activity defined within the energy market.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @group MarketManagement
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
@@ -553,7 +553,7 @@ extends
 /**
  * An identification  or eventually the contents of an agreement between two or more parties.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.MarketDocument MarketDocument]] Reference to the superclass object.
  * @group MarketManagement
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
@@ -615,11 +615,11 @@ extends
 /**
  * Electronic document containing the information necessary to satisfy a given business process set of requirements.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param selfMarketDocument <em>undocumented</em>
- * @param AttributeInstanceComponent <em>undocumented</em>
- * @param Domain <em>undocumented</em>
- * @param Period <em>undocumented</em>
+ * @param AttributeInstanceComponent [[ch.ninecode.model.AttributeInstanceComponent AttributeInstanceComponent]] <em>undocumented</em>
+ * @param Domain [[ch.ninecode.model.Domain Domain]] <em>undocumented</em>
+ * @param Period [[ch.ninecode.model.Period Period]] <em>undocumented</em>
  * @group MarketManagement
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
@@ -696,7 +696,7 @@ extends
 /**
  * The identification of an entity where energy products are measured or computed.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @group MarketManagement
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
@@ -760,7 +760,7 @@ extends
  *
  * @param sup Reference to the superclass object.
  * @param status The coded condition or position of an object with regard to its standing.
- * @param TimeSeries <em>undocumented</em>
+ * @param TimeSeries [[ch.ninecode.model.TimeSeries TimeSeries]] <em>undocumented</em>
  * @group MarketManagement
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
@@ -829,9 +829,9 @@ extends
 /**
  * The type of a power system resource.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PSRType PSRType]] Reference to the superclass object.
  * @param psrType The coded type of a power system resource.
- * @param TimeSeries <em>undocumented</em>
+ * @param TimeSeries [[ch.ninecode.model.TimeSeries TimeSeries]] <em>undocumented</em>
  * @group MarketManagement
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
@@ -903,7 +903,7 @@ extends
  * @param sup Reference to the superclass object.
  * @param resolution The number of units of time that compose an individual step within a period.
  * @param timeInterval The start and end date and time for a given interval.
- * @param Reason <em>undocumented</em>
+ * @param Reason [[ch.ninecode.model.Reason Reason]] <em>undocumented</em>
  * @group MarketManagement
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
@@ -982,9 +982,9 @@ extends
  *        This quality may be estimated, not available, as provided, etc.
  * @param quantity Principal quantity identified for a point.
  * @param secondaryQuantity Secondary quantity identified for a point.
- * @param AceTariffType <em>undocumented</em>
- * @param Period <em>undocumented</em>
- * @param TimeSeries <em>undocumented</em>
+ * @param AceTariffType [[ch.ninecode.model.AceTariffType AceTariffType]] <em>undocumented</em>
+ * @param Period [[ch.ninecode.model.Period Period]] <em>undocumented</em>
+ * @param TimeSeries [[ch.ninecode.model.TimeSeries TimeSeries]] <em>undocumented</em>
  * @group MarketManagement
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
@@ -1078,7 +1078,7 @@ extends
  * @param category The category of a price to be used in a price calculation.
  *        The price category is mutually agreed between System Operators.
  * @param direction The direction indicates whether a System Operator pays the Market Parties or inverse.
- * @param Point <em>undocumented</em>
+ * @param Point [[ch.ninecode.model.Point Point]] <em>undocumented</em>
  * @group MarketManagement
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
@@ -1155,11 +1155,11 @@ extends
 /**
  * The formal specification of a set of business transactions having the same business goal.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param classificationType The classification mechanism used to group a set of objects together within a business process.
  *        The grouping may be of a detailed or a summary nature.
  * @param processType The kind of business process.
- * @param MarketDocument <em>undocumented</em>
+ * @param MarketDocument [[ch.ninecode.model.MarketDocument MarketDocument]] <em>undocumented</em>
  * @group MarketManagement
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
@@ -1235,8 +1235,8 @@ extends
  * @param sup Reference to the superclass object.
  * @param code The motivation of an act in coded form.
  * @param text The textual explanation corresponding to the reason code.
- * @param MarketDocument <em>undocumented</em>
- * @param Point <em>undocumented</em>
+ * @param MarketDocument [[ch.ninecode.model.MarketDocument MarketDocument]] <em>undocumented</em>
+ * @param Point [[ch.ninecode.model.Point Point]] <em>undocumented</em>
  * @group MarketManagement
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
@@ -1313,21 +1313,21 @@ extends
 /**
  * A set of regular time-ordered measurements or values of quantitative nature of an individual or collective phenomenon taken at successive, in most cases equidistant, periods / points of time.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param businessType The identification of the nature of the time series.
  * @param cancelledTS An indicator stating that the TimeSeries, identified by the mRID, is cancelled as well as all the values sent in a previous version of the TimeSeries in a previous document.
  * @param curveType The coded representation of the type of curve being described.
  * @param objectAggregation Identification of the object that is the common dominator used to aggregate a time series.
  * @param product The type of the product such as Power, energy, reactive power, transport capacity that is the subject of the time series.
  * @param version Version of the time series.
- * @param DateAndOrTime <em>undocumented</em>
- * @param Domain <em>undocumented</em>
- * @param FlowDirection <em>undocumented</em>
- * @param MarketDocument <em>undocumented</em>
- * @param MarketEvaluationPoint <em>undocumented</em>
- * @param MarketParticipant <em>undocumented</em>
- * @param Period <em>undocumented</em>
- * @param Reason <em>undocumented</em>
+ * @param DateAndOrTime [[ch.ninecode.model.DateAndOrTime DateAndOrTime]] <em>undocumented</em>
+ * @param Domain [[ch.ninecode.model.Domain Domain]] <em>undocumented</em>
+ * @param FlowDirection [[ch.ninecode.model.FlowDirection FlowDirection]] <em>undocumented</em>
+ * @param MarketDocument [[ch.ninecode.model.MarketDocument MarketDocument]] <em>undocumented</em>
+ * @param MarketEvaluationPoint [[ch.ninecode.model.MarketEvaluationPoint MarketEvaluationPoint]] <em>undocumented</em>
+ * @param MarketParticipant [[ch.ninecode.model.MarketParticipant MarketParticipant]] <em>undocumented</em>
+ * @param Period [[ch.ninecode.model.Period Period]] <em>undocumented</em>
+ * @param Reason [[ch.ninecode.model.Reason Reason]] <em>undocumented</em>
  * @group MarketManagement
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
@@ -1446,7 +1446,7 @@ extends
  *
  * @param sup Reference to the superclass object.
  * @param name The coded representation of the unit.
- * @param TimeSeries <em>undocumented</em>
+ * @param TimeSeries [[ch.ninecode.model.TimeSeries TimeSeries]] <em>undocumented</em>
  * @group MarketManagement
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.

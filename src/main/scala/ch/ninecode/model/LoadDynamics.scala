@@ -11,9 +11,9 @@ import ch.ninecode.cim.Parseable
  *
  * A static load model represents the sensitivity of the real and reactive power consumed by the load to the amplitude and frequency of the bus voltage. A dynamic load model can used to represent the aggregate response of the motor components of the load.
  *
- * @param sup Reference to the superclass object.
- * @param LoadMotor Aggregate motor (dynamic) load associated with this aggregate load.
- * @param LoadStatic Aggregate static load associated with this aggregate load.
+ * @param sup [[ch.ninecode.model.LoadDynamics LoadDynamics]] Reference to the superclass object.
+ * @param LoadMotor [[ch.ninecode.model.LoadMotor LoadMotor]] Aggregate motor (dynamic) load associated with this aggregate load.
+ * @param LoadStatic [[ch.ninecode.model.LoadStatic LoadStatic]] Aggregate static load associated with this aggregate load.
  * @group LoadDynamics
  * @groupname LoadDynamics Package LoadDynamics
  * @groupdesc LoadDynamics Dynamic load models are used to represent the dynamic real and reactive load behaviour of a load from the static power flow model.  
@@ -89,7 +89,7 @@ extends
  *
  * The dynamics of the motor are simplified by linearizing the induction machine equations.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.LoadDynamics LoadDynamics]] Reference to the superclass object.
  * @param epfd Active load-frequency dependence index (dynamic) (Epfd).
  *        Typical Value = 1.5.
  * @param epfs Active load-frequency dependence index (static) (Epfs).
@@ -225,7 +225,7 @@ extends
  *
  * Aggregate loads are used to represent all or part of the real and reactive load from one or more loads in the static (power flow) data. This load is usually the aggregation of many individual load devices and the load model is approximate representation of the aggregate response of the load devices to system disturbances. The load model is always applied to individual bus loads (energy consumers) but a single set of load model parameters can used for all loads in the grouping.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @group LoadDynamics
  * @groupname LoadDynamics Package LoadDynamics
  * @groupdesc LoadDynamics Dynamic load models are used to represent the dynamic real and reactive load behaviour of a load from the static power flow model.  
@@ -292,7 +292,7 @@ extends
 /**
  * These load models (known also as generic non-linear dynamic (GNLD) load models) can be used in mid-term and long-term voltage stability simulations (i.e., to study voltage collapse), as they can replace a more detailed representation of aggregate load, including induction motors, thermostatically controlled and static loads.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.LoadDynamics LoadDynamics]] Reference to the superclass object.
  * @param bs Steady state voltage index for reactive power (BS).
  * @param bt Transient voltage index for reactive power (BT).
  * @param genericNonLinearLoadModelType Type of generic non-linear load model.
@@ -405,7 +405,7 @@ extends
  *
  * This model  is used to represent a fraction of an ordinary load as "induction motor load".  It allows load that is treated as ordinary constant power in power flow analysis to be represented by an induction motor in dynamic simulation.  If <b>Lpp</b> = 0. or <b>Lpp</b> = <b>Lp</b>, or <b>Tppo</b> = 0.,  only one cage is represented. Magnetic saturation is not modelled. Either a "one-cage" or "two-cage" model of the induction machine can be modelled. Magnetic saturation is not modelled.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param d Damping factor (D).
  *        Unit = delta P/delta speed.  Typical Value = 2.
  * @param h Inertia constant (H) (not=0).
@@ -432,7 +432,7 @@ extends
  *        Typical Value = 0.1.
  * @param vt Voltage threshold for tripping (Vt).
  *        Typical Value = 0.7.
- * @param LoadAggregate Aggregate load to which this aggregate motor (dynamic) load belongs.
+ * @param LoadAggregate [[ch.ninecode.model.LoadAggregate LoadAggregate]] Aggregate load to which this aggregate motor (dynamic) load belongs.
  * @group LoadDynamics
  * @groupname LoadDynamics Package LoadDynamics
  * @groupdesc LoadDynamics Dynamic load models are used to represent the dynamic real and reactive load behaviour of a load from the static power flow model.  
@@ -554,7 +554,7 @@ extends
 /**
  * General static load model representing the sensitivity of the real and reactive power consumed by the load to the amplitude and frequency of the bus voltage.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param ep1 First term voltage exponent for active power (Ep1).
  *        Used only when .staticLoadModelType = exponential.
  * @param ep2 Second term voltage exponent for active power (Ep2).
@@ -589,7 +589,7 @@ extends
  *        Not used when .staticLoadModelType = constantZ.
  * @param staticLoadModelType Type of static load model.
  *        Typical Value = constantZ.
- * @param LoadAggregate Aggregate load to which this aggregate static load belongs.
+ * @param LoadAggregate [[ch.ninecode.model.LoadAggregate LoadAggregate]] Aggregate load to which this aggregate static load belongs.
  * @group LoadDynamics
  * @groupname LoadDynamics Package LoadDynamics
  * @groupdesc LoadDynamics Dynamic load models are used to represent the dynamic real and reactive load behaviour of a load from the static power flow model.  

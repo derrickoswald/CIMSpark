@@ -9,7 +9,7 @@ import ch.ninecode.cim.Parseable
 /**
  * Organisation that is a commercial bank, agency, or other institution that offers a similar service.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.OrganisationRole OrganisationRole]] Reference to the superclass object.
  * @param bic Bank identifier code as defined in ISO 9362; for use in countries wher IBAN is not yet in operation.
  * @param iban International bank account number defined in ISO 13616; for countries where IBAN is not in operation, the existing BIC or SWIFT codes may be used instead (see ISO 9362).
  * @group InfCommon
@@ -80,10 +80,10 @@ extends
 /**
  * Bank account.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param accountNumber Account reference number.
- * @param Bank Bank that provides this BankAccount.
- * @param ServiceSupplier ServiceSupplier that is owner of this BankAccount.
+ * @param Bank [[ch.ninecode.model.Bank Bank]] Bank that provides this BankAccount.
+ * @param ServiceSupplier [[ch.ninecode.model.ServiceSupplier ServiceSupplier]] ServiceSupplier that is owner of this BankAccount.
  * @group InfCommon
  * @groupname InfCommon Package InfCommon
  * @groupdesc InfCommon This package contains functions common for distribution management.
@@ -158,7 +158,7 @@ extends
  *
  * It is a type of document that typically references a schedule, physical and/or logical resources (assets and/or PowerSystemResources), locations, etc.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @group InfCommon
  * @groupname InfCommon Package InfCommon
  * @groupdesc InfCommon This package contains functions common for distribution management.
@@ -222,7 +222,7 @@ extends
  *
  * A single organisation typically performs many functions, each one described as a role.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.OrganisationRole OrganisationRole]] Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @param typ Classification by utility's corporate standards and practices.
  * @group InfCommon
@@ -295,7 +295,7 @@ extends
  *
  * Examples include overhead electric, underground electric, high pressure gas, etc. This ensures necessary knowledge and skills before being allowed to perform certain types of work.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @param typ Classification by utility's work mangement standards and practices.
  * @param ErpPersons <em>undocumented</em>
@@ -371,7 +371,7 @@ extends
 /**
  * Role an organisation plays with respect to documents.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.OrganisationRole OrganisationRole]] Reference to the superclass object.
  * @group InfCommon
  * @groupname InfCommon Package InfCommon
  * @groupdesc InfCommon This package contains functions common for distribution management.
@@ -433,11 +433,11 @@ extends
 /**
  * A crew is a group of people with specific skills, tools, and vehicles.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Crew Crew]] Reference to the superclass object.
  * @param typ Classification by utility's work management standards and practices.
  * @param Assignments All Assignments for this Crew.
  * @param Locations <em>undocumented</em>
- * @param Route <em>undocumented</em>
+ * @param Route [[ch.ninecode.model.Route Route]] <em>undocumented</em>
  * @param ShiftPatterns <em>undocumented</em>
  * @group InfCommon
  * @groupname InfCommon Package InfCommon
@@ -519,13 +519,13 @@ extends
 /**
  * General purpose information for name and other information to contact people.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Person Person]] Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @param typ Utility-specific classification for this person, according to the utility's corporate standards and practices.
  *        Examples include employee, contractor, agent, not affiliated, etc.
  * @param CustomerData <em>undocumented</em>
- * @param ErpCompetency <em>undocumented</em>
- * @param ErpPersonnel <em>undocumented</em>
+ * @param ErpCompetency [[ch.ninecode.model.ErpCompetency ErpCompetency]] <em>undocumented</em>
+ * @param ErpPersonnel [[ch.ninecode.model.ErpPersonnel ErpPersonnel]] <em>undocumented</em>
  * @param LaborItems <em>undocumented</em>
  * @group InfCommon
  * @groupname InfCommon Package InfCommon
@@ -613,7 +613,7 @@ extends
  *
  * This includes role ups for ogranisations, cost centers, profit centers, regulatory reporting, etc.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.OrganisationRole OrganisationRole]] Reference to the superclass object.
  * @param clientID Identifiers of the organisation held by another organisation, such as a government agency (federal, state, province, city, county), financial institution (Dun and Bradstreet), etc.
  * @group InfCommon
  * @groupname InfCommon Package InfCommon
@@ -679,8 +679,8 @@ extends
 /**
  * Roles played between Persons and Documents.
  *
- * @param sup Reference to the superclass object.
- * @param Person <em>undocumented</em>
+ * @param sup [[ch.ninecode.model.Role Role]] Reference to the superclass object.
+ * @param Person [[ch.ninecode.model.Person Person]] <em>undocumented</em>
  * @group InfCommon
  * @groupname InfCommon Package InfCommon
  * @groupdesc InfCommon This package contains functions common for distribution management.
@@ -745,7 +745,7 @@ extends
 /**
  * Role an organisation plays with respect to persons.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.OrganisationRole OrganisationRole]] Reference to the superclass object.
  * @param clientID Identifiers of the person held by an organisation, such as a government agency (federal, state, province, city, county), financial institutions, etc.
  * @param ErpPerson <em>undocumented</em>
  * @group InfCommon
@@ -818,9 +818,9 @@ extends
  *
  * Examples of roles include: owner, renter, contractor, etc.
  *
- * @param sup Reference to the superclass object.
- * @param LandProperty <em>undocumented</em>
- * @param Person <em>undocumented</em>
+ * @param sup [[ch.ninecode.model.Role Role]] Reference to the superclass object.
+ * @param LandProperty [[ch.ninecode.model.LandProperty LandProperty]] <em>undocumented</em>
+ * @param Person [[ch.ninecode.model.Person Person]] <em>undocumented</em>
  * @group InfCommon
  * @groupname InfCommon Package InfCommon
  * @groupdesc InfCommon This package contains functions common for distribution management.
@@ -889,7 +889,7 @@ extends
 /**
  * Role an organisation plays with respect to property (for example, the organisation may be the owner, renter, occupier, taxiing authority, etc.).
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.OrganisationRole OrganisationRole]] Reference to the superclass object.
  * @group InfCommon
  * @groupname InfCommon Package InfCommon
  * @groupdesc InfCommon This package contains functions common for distribution management.
@@ -1022,7 +1022,7 @@ extends
 /**
  * Enumeration of potential roles that might be played by one object relative to another.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @param typ Type of role.
  * @group InfCommon
@@ -1093,7 +1093,7 @@ extends
 /**
  * Proficiency level of a craft, which is required to operate or maintain a particular type of asset and/or perform certain types of work.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param certificationPeriod Interval between the certification and its expiry.
  * @param effectiveDateTime Date and time the skill became effective.
  * @param level Level of skill for a Craft.

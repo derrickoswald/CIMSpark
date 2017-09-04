@@ -11,7 +11,7 @@ import ch.ninecode.cim.Parseable
  *
  * A wheeling transaction is a balanced Energy exchange among Supply and Demand Resources.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.BidHourlySchedule BidHourlySchedule]] Reference to the superclass object.
  * @param value <em>undocumented</em>
  * @group InfParticipantInterfaces
  * @groupname InfParticipantInterfaces Package InfParticipantInterfaces

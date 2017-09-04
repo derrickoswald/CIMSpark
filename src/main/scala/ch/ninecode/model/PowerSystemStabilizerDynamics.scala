@@ -9,8 +9,8 @@ import ch.ninecode.cim.Parseable
 /**
  * Power system stabilizer function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  *
- * @param sup Reference to the superclass object.
- * @param ExcitationSystemDynamics Excitation system model with which this power system stabilizer model is associated.
+ * @param sup [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Excitation system model with which this power system stabilizer model is associated.
  * @group PowerSystemStabilizerDynamics
  * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
  * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (Vs) to the excitation system model to improve damping of system oscillations.  A variety of input signals may be used depending on the particular design.
@@ -75,7 +75,7 @@ extends
 /**
  * Italian PSS - three input PSS (speed, frequency, power).
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
  * @param kf Frequency power input gain (K<sub>F</sub>).
  *        Typical Value = 5.
  * @param kpe Electric power input gain (K<sub>PE</sub>).
@@ -230,7 +230,7 @@ extends
  *
  * It is a modified version in order to allow representation of various vendors' implementations on PSS type 1A.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
  * @param a1 Notch filter parameter (A1).
  * @param a2 Notch filter parameter (A2).
  * @param a3 Notch filter parameter (A3).
@@ -405,7 +405,7 @@ extends
  *
  * Extra lead/lag (or rate) block added at end (up to 4 lead/lags total).
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
  * @param a Numerator constant (a).
  *        Typical Value = 1.
  * @param inputSignal1Type Type of input signal #1.
@@ -652,7 +652,7 @@ extends
 /**
  * PTI Microprocessor-Based Stabilizer type 1.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
  * @param inputSignal1Type Type of input signal #1.
  *        Typical Value = rotorAngularFrequencyDeviation.
  * @param inputSignal2Type Type of input signal #2.
@@ -805,7 +805,7 @@ extends
 /**
  * Italian PSS - Detailed PSS.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
  * @param ctw2 Selector for Second washout enabling (C<sub>TW2</sub>).
  *        true = second washout filter is bypassed
  *        false = second washout filter in use.
@@ -974,7 +974,7 @@ extends
 /**
  * Power system stabilizer typically associated with ExcELIN2 (though PssIEEE2B or Pss2B can also be used).
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
  * @param apss Coefficient (a_PSS).
  *        Typical Value = 0.1.
  * @param ks1 Gain (Ks1).
@@ -1103,7 +1103,7 @@ extends
  *
  * PSS1A is the generalized form of a PSS with a single input. Some common stabilizer input signals are speed, frequency, and power.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
  * @param a1 PSS signal conditioning frequency filter constant (A1).
  *        Typical Value = 0.061.
  * @param a2 PSS signal conditioning frequency filter constant (A2).
@@ -1238,7 +1238,7 @@ extends
  *
  * This stabilizer model is designed to represent a variety of dual-input stabilizers, which normally use combinations of power and speed or frequency to derive the stabilizing signal.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
  * @param inputSignal1Type Type of input signal #1.
  *        Typical Value = rotorSpeed.
  * @param inputSignal2Type Type of input signal #2.
@@ -1463,7 +1463,7 @@ extends
  *
  * The PSS model PSS3B has dual inputs of electrical power and rotor angular frequency deviation. The signals are used to derive an equivalent mechanical power signal.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
  * @param a1 Notch filter parameter (A1).
  *        Typical Value = 0.359.
  * @param a2 Notch filter parameter (A2).
@@ -1640,7 +1640,7 @@ extends
  *
  * The PSS4B model represents a structure based on multiple working frequency bands. Three separate bands, respectively dedicated to the low-, intermediate- and high-frequency modes of oscillations, are used in this delta-omega (speed input) PSS.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
  * @param bwh1 Notch filter 1 (high-frequency band): Three dB bandwidth (B<sub>wi</sub>).
  * @param bwh2 Notch filter 2 (high-frequency band): Three dB bandwidth (B<sub>wi</sub>).
  * @param bwl1 Notch filter 1 (low-frequency band): Three dB bandwidth (B<sub>wi</sub>).
@@ -2095,7 +2095,7 @@ extends
 /**
  * PTI Microprocessor-Based Stabilizer type 1.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
  * @param dtc Time step related to activation of controls (Dtc).
  *        Typical Value = 0.025.
  * @param dtf Time step frequency calculation (Dtf).
@@ -2222,7 +2222,7 @@ extends
 /**
  * PTI Microprocessor-Based Stabilizer type 3.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
  * @param a0 Filter coefficient (A0).
  * @param a1 Limiter (Al).
  * @param a2 Filter coefficient (A2).
@@ -2468,7 +2468,7 @@ extends
 /**
  * Power sensitive stabilizer model.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
  * @param kx Gain (Kx).
  * @param ta Time constant (Ta).
  * @param tb Time constant (Tb).
@@ -2584,7 +2584,7 @@ extends
 /**
  * Model for Siemens �H infinity� power system stabilizer with generator electrical power input.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
  * @param k Main gain (K).
  *        Typical Value = 1.
  * @param k0 Gain 0 (K0).
@@ -2723,7 +2723,7 @@ extends
 /**
  * PSS Slovakian type � three inputs.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
  * @param k1 Gain P (K1).
  *        Typical Value = -0.3.
  * @param k2 Gain fe (K2).
@@ -2850,7 +2850,7 @@ extends
 /**
  * Dual input Power System Stabilizer, based on IEEE type 2, with modified output limiter defined by WECC (Western Electricity Coordinating Council, USA).
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
  * @param inputSignal1Type Type of input signal #1.
  * @param inputSignal2Type Type of input signal #2.
  * @param k1 Input signal 1 gain  (K<sub>1</sub>).

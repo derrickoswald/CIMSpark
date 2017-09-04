@@ -9,7 +9,7 @@ import ch.ninecode.cim.Parseable
 /**
  * An event threatening system reliability, consisting of one or more contingency elements.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param mustStudy Set true if must study this contingency.
  * @group Contingency
  * @groupname Contingency Package Contingency
@@ -75,8 +75,8 @@ extends
 /**
  * An element of a system event to be studied by contingency analysis, representing a change in status of a single piece of equipment.
  *
- * @param sup Reference to the superclass object.
- * @param Contingency A contingency element belongs to one contingency.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param Contingency [[ch.ninecode.model.Contingency Contingency]] A contingency element belongs to one contingency.
  * @group Contingency
  * @groupname Contingency Package Contingency
  * @groupdesc Contingency Contingencies to be studied.
@@ -141,10 +141,10 @@ extends
 /**
  * A equipment to which the in service status is to change such as a power transformer or AC line segment.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.ContingencyElement ContingencyElement]] Reference to the superclass object.
  * @param contingentStatus The status for the associated equipment when in the contingency state.
  *        This status is independent of the case to which the contingency is originally applied, but defines the equipment status when the contingency is applied.
- * @param Equipment The single piece of equipment to which to apply the contingency.
+ * @param Equipment [[ch.ninecode.model.Equipment Equipment]] The single piece of equipment to which to apply the contingency.
  * @group Contingency
  * @groupname Contingency Package Contingency
  * @groupdesc Contingency Contingencies to be studied.

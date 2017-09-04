@@ -9,7 +9,7 @@ import ch.ninecode.cim.Parseable
 /**
  * Organisation receiving services from service supplier.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.OrganisationRole OrganisationRole]] Reference to the superclass object.
  * @param kind Kind of customer.
  * @param locale Locale designating language to use in communications with this customer.
  * @param priority Priority of the customer.
@@ -113,10 +113,10 @@ extends
  *
  * It contains common information from the various types of customer agreements to create billings (invoices) for a customer and receive payment.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param billingCycle Cycle day on which the associated customer account will normally be billed, used to determine when to produce the billing.
  * @param budgetBill Budget bill code.
- * @param Customer Customer owning this account.
+ * @param Customer [[ch.ninecode.model.Customer Customer]] Customer owning this account.
  * @group Customers
  * @groupname Customers Package Customers
  * @groupdesc Customers This package contains the core information classes that support customer billing applications.
@@ -191,15 +191,15 @@ extends
  *
  * It records certain billing information about the type of service provided at the service location and is used during charge creation to determine the type of service.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Agreement Agreement]] Reference to the superclass object.
  * @param loadMgmt Load management code.
- * @param Customer Customer for this agreement.
- * @param CustomerAccount Customer account owning this agreement.
+ * @param Customer [[ch.ninecode.model.Customer Customer]] Customer for this agreement.
+ * @param CustomerAccount [[ch.ninecode.model.CustomerAccount CustomerAccount]] Customer account owning this agreement.
  * @param PricingStructures All pricing structures applicable to this customer agreement.
- * @param ServiceCategory Service category for this agreement.
+ * @param ServiceCategory [[ch.ninecode.model.ServiceCategory ServiceCategory]] Service category for this agreement.
  * @param ServiceLocations All service locations regulated by this customer agreement.
- * @param ServiceSupplier Service supplier for this customer agreement.
- * @param StandardIndustryCode <em>undocumented</em>
+ * @param ServiceSupplier [[ch.ninecode.model.ServiceSupplier ServiceSupplier]] Service supplier for this customer agreement.
+ * @param StandardIndustryCode [[ch.ninecode.model.StandardIndustryCode StandardIndustryCode]] <em>undocumented</em>
  * @group Customers
  * @groupname Customers Package Customers
  * @groupdesc Customers This package contains the core information classes that support customer billing applications.
@@ -298,8 +298,8 @@ extends
  * @param earliestDateTimeToCall Earliest date time to call the customer.
  * @param latestDateTimeToCall Latest date time to call the customer.
  * @param trigger Trigger for this notification.
- * @param Customer Customer requiring this notification.
- * @param Incident Incident as a subject of this customer notification.
+ * @param Customer [[ch.ninecode.model.Customer Customer]] Customer requiring this notification.
+ * @param Incident [[ch.ninecode.model.Incident Incident]] Incident as a subject of this customer notification.
  * @group Customers
  * @groupname Customers Package Customers
  * @groupdesc Customers This package contains the core information classes that support customer billing applications.
@@ -390,9 +390,9 @@ extends
  *
  * Examples are line down, gas leak, fire, etc.
  *
- * @param sup Reference to the superclass object.
- * @param Incident Incident associated with this hazard.
- * @param TroubleTicket Trouble ticket associated with this hazard.
+ * @param sup [[ch.ninecode.model.Hazard Hazard]] Reference to the superclass object.
+ * @param Incident [[ch.ninecode.model.Incident Incident]] Incident associated with this hazard.
+ * @param TroubleTicket [[ch.ninecode.model.TroubleTicket TroubleTicket]] Trouble ticket associated with this hazard.
  * @group Customers
  * @groupname Customers Package Customers
  * @groupdesc Customers This package contains the core information classes that support customer billing applications.
@@ -463,7 +463,7 @@ extends
  *
  * The reasons for grouping include state, customer classification, site characteristics, classification (i.e. fee price structure, deposit price structure, electric service price structure, etc.) and accounting requirements.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param code Unique user-allocated key for this pricing structure, used by company representatives to identify the correct price structure for allocating to a customer.
  *        For rate schedules it is often prefixed by a state code.
  * @param dailyCeilingUsage Absolute maximum valid non-demand usage quantity used in validating a customer's billed non-demand usage.
@@ -471,7 +471,7 @@ extends
  * @param dailyFloorUsage Absolute minimum valid non-demand usage quantity used in validating a customer's billed non-demand usage.
  * @param revenueKind (accounting) Kind of revenue, often used to determine the grace period allowed, before collection actions are taken on a customer (grace periods vary between revenue classes).
  * @param taxExemption True if this pricing structure is not taxable.
- * @param ServiceCategory Service category to which this pricing structure applies.
+ * @param ServiceCategory [[ch.ninecode.model.ServiceCategory ServiceCategory]] Service category to which this pricing structure applies.
  * @param Tariffs All tariffs used by this pricing structure.
  * @param UsagePoints All service delivery points (with prepayment meter running as a stand-alone device, with no CustomerAgreement or Customer) to which this pricing structure applies.
  * @group Customers
@@ -570,7 +570,7 @@ extends
 /**
  * Category of service provided to the customer.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param kind Kind of service.
  * @group Customers
  * @groupname Customers Package Customers
@@ -636,7 +636,7 @@ extends
 /**
  * A real estate location, commonly referred to as premises.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.WorkLocation WorkLocation]] Reference to the superclass object.
  * @param accessMethod Method for the service person to access this service location.
  *        For example, a description of where to obtain a key if the facility is unmanned and secured.
  * @param needsInspection True if inspection is needed of facilities at this service location.
@@ -717,7 +717,7 @@ extends
  *
  * It has a unique number within the state or province. For rate schedules it is frequently allocated by the affiliated Public utilities commission (PUC).
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param endDate (if tariff became inactive) Date tariff was terminated.
  * @param startDate Date tariff was activated.
  * @param TariffProfiles All tariff profiles using this tariff.

@@ -9,10 +9,10 @@ import ch.ninecode.cim.Parseable
 /**
  * Power Factor or VAr controller Type I function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  *
- * @param sup Reference to the superclass object.
- * @param ExcitationSystemDynamics Excitation system model with which this Power Factor or VAr controller Type I model is associated.
- * @param RemoteInputSignal Remote input signal used by this Power Factor or VAr controller Type I model.
- * @param VoltageAdjusterDynamics Voltage adjuster model associated with this Power Factor or VA controller Type I model.
+ * @param sup [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Excitation system model with which this Power Factor or VAr controller Type I model is associated.
+ * @param RemoteInputSignal [[ch.ninecode.model.RemoteInputSignal RemoteInputSignal]] Remote input signal used by this Power Factor or VAr controller Type I model.
+ * @param VoltageAdjusterDynamics [[ch.ninecode.model.VoltageAdjusterDynamics VoltageAdjusterDynamics]] Voltage adjuster model associated with this Power Factor or VA controller Type I model.
  * @group PFVArControllerType1Dynamics
  * @groupname PFVArControllerType1Dynamics Package PFVArControllerType1Dynamics
  * @groupdesc PFVArControllerType1Dynamics <font color="#0f0f0f">Excitation systems for synchronous machines are sometimes supplied with an optional means of automatically adjusting generator output reactive power (VAr) or power factor (PF) to a user-specified value This can be accomplished with either a reactive power or power factor controller or regulator.  A reactive power or power factor controller is defined as a PF/VAr controller in IEEE Std 421.1 as �A control function that acts through the reference adjuster to modify the voltage regulator set point to maintain the synchronous machine steady-state power factor or reactive power at a predetermined value.� </font>
@@ -89,7 +89,7 @@ extends
  *
  * Reference: IEEE Standard 421.5-2005 Section 11.2.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PFVArControllerType1Dynamics PFVArControllerType1Dynamics]] Reference to the superclass object.
  * @param ovex Overexcitation Flag (<i>OVEX</i>)
  *        true = overexcited
  *        false = underexcited.
@@ -198,7 +198,7 @@ extends
  *
  * Reference: IEEE Standard 421.5-2005 Section 11.3.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PFVArControllerType1Dynamics PFVArControllerType1Dynamics]] Reference to the superclass object.
  * @param tvarc Var controller time delay (<i>T</i><i><sub>VARC</sub></i>).
  *        Typical Value = 5.
  * @param vvar Synchronous machine power factor (<i>V</i><i><sub>VAR</sub></i>).

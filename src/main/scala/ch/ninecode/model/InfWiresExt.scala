@@ -9,7 +9,7 @@ import ch.ninecode.cim.Parseable
 /**
  * SVC asset allows the capacitive and inductive ratings for each phase to be specified individually if required.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.ShuntCompensator ShuntCompensator]] Reference to the superclass object.
  * @param capacitiveRating Maximum capacitive reactive power.
  * @param inductiveRating Maximum inductive reactive power.
  * @group InfWiresExt
@@ -79,7 +79,7 @@ extends
 /**
  * Distribution capacitor bank control settings.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.RegulatingControl RegulatingControl]] Reference to the superclass object.
  * @param branchDirect For VAR, amp, or power factor locally controlled shunt impedances, the flow direction: in, out.
  * @param cellSize The size of the individual units that make up the bank.
  * @param controlKind Kind of control (if any).
@@ -100,7 +100,7 @@ extends
  * @param sensingPhaseCode Phases that are measured for controlling the device.
  * @param switchOperationCycle Time interval between consecutive switching operations.
  * @param vRegLineLine True if regulated voltages are measured line to line, otherwise they are measured line to ground.
- * @param ShuntCompensatorInfo <em>undocumented</em>
+ * @param ShuntCompensatorInfo [[ch.ninecode.model.ShuntCompensatorInfo ShuntCompensatorInfo]] <em>undocumented</em>
  * @group InfWiresExt
  * @groupname InfWiresExt Package InfWiresExt
  */

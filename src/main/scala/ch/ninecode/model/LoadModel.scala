@@ -9,8 +9,8 @@ import ch.ninecode.cim.Parseable
 /**
  * ConformLoad represent loads that follow a daily load change pattern where the pattern can be used to scale the load with a system load.
  *
- * @param sup Reference to the superclass object.
- * @param LoadGroup Group of this ConformLoad.
+ * @param sup [[ch.ninecode.model.EnergyConsumer EnergyConsumer]] Reference to the superclass object.
+ * @param LoadGroup [[ch.ninecode.model.LoadGroup LoadGroup]] Group of this ConformLoad.
  * @group LoadModel
  * @groupname LoadModel Package LoadModel
  * @groupdesc LoadModel This package is responsible for modeling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and daytypes, are also included here.
@@ -77,7 +77,7 @@ extends
 /**
  * A group of loads conforming to an allocation pattern.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.LoadGroup LoadGroup]] Reference to the superclass object.
  * @group LoadModel
  * @groupname LoadModel Package LoadModel
  * @groupdesc LoadModel This package is responsible for modeling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and daytypes, are also included here.
@@ -143,8 +143,8 @@ extends
  *
  * This curve represents a typical pattern of load over the time period for a given day type and season.
  *
- * @param sup Reference to the superclass object.
- * @param ConformLoadGroup The ConformLoadGroup where the ConformLoadSchedule belongs.
+ * @param sup [[ch.ninecode.model.SeasonDayTypeSchedule SeasonDayTypeSchedule]] Reference to the superclass object.
+ * @param ConformLoadGroup [[ch.ninecode.model.ConformLoadGroup ConformLoadGroup]] The ConformLoadGroup where the ConformLoadSchedule belongs.
  * @group LoadModel
  * @groupname LoadModel Package LoadModel
  * @groupdesc LoadModel This package is responsible for modeling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and daytypes, are also included here.
@@ -213,7 +213,7 @@ extends
  *
  * For example it could be used to represent weekdays, weekend, or holidays.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @group LoadModel
  * @groupname LoadModel Package LoadModel
  * @groupdesc LoadModel This package is responsible for modeling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and daytypes, are also included here.
@@ -279,8 +279,8 @@ extends
  *
  * Specializations are intended to support the load allocation function as typically required in energy management systems or planning studies to allocate hypothesized load levels to individual load points for power flow analysis.  Often the energy area can be linked to both measured and forecast load levels.
  *
- * @param sup Reference to the superclass object.
- * @param ControlArea The control area specification that is used for the load forecast.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param ControlArea [[ch.ninecode.model.ControlArea ControlArea]] The control area specification that is used for the load forecast.
  * @group LoadModel
  * @groupname LoadModel Package LoadModel
  * @groupdesc LoadModel This package is responsible for modeling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and daytypes, are also included here.
@@ -347,7 +347,7 @@ extends
 /**
  * The class is the root or first level in a hierarchical structure for grouping of loads for the purpose of load flow load scaling.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.EnergyArea EnergyArea]] Reference to the superclass object.
  * @group LoadModel
  * @groupname LoadModel Package LoadModel
  * @groupdesc LoadModel This package is responsible for modeling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and daytypes, are also included here.
@@ -411,8 +411,8 @@ extends
 /**
  * The class is the third level in a hierarchical structure for grouping of loads for the purpose of load flow load scaling.
  *
- * @param sup Reference to the superclass object.
- * @param SubLoadArea The SubLoadArea where the Loadgroup belongs.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param SubLoadArea [[ch.ninecode.model.SubLoadArea SubLoadArea]] The SubLoadArea where the Loadgroup belongs.
  * @group LoadModel
  * @groupname LoadModel Package LoadModel
  * @groupdesc LoadModel This package is responsible for modeling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and daytypes, are also included here.
@@ -481,7 +481,7 @@ extends
  *
  * This is not related to demand response.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param exponentModel Indicates the exponential voltage dependency model is to be used.
  *        If false, the coefficient model is to be used.
  * @param pConstantCurrent Portion of active power load modeled as constant current.
@@ -600,8 +600,8 @@ extends
 /**
  * NonConformLoad represent loads that do not follow a daily load change pattern and changes are not correlated with the daily load change pattern.
  *
- * @param sup Reference to the superclass object.
- * @param LoadGroup Group of this ConformLoad.
+ * @param sup [[ch.ninecode.model.EnergyConsumer EnergyConsumer]] Reference to the superclass object.
+ * @param LoadGroup [[ch.ninecode.model.LoadGroup LoadGroup]] Group of this ConformLoad.
  * @group LoadModel
  * @groupname LoadModel Package LoadModel
  * @groupdesc LoadModel This package is responsible for modeling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and daytypes, are also included here.
@@ -668,7 +668,7 @@ extends
 /**
  * Loads that do not follow a daily and seasonal load variation pattern.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.LoadGroup LoadGroup]] Reference to the superclass object.
  * @group LoadModel
  * @groupname LoadModel Package LoadModel
  * @groupdesc LoadModel This package is responsible for modeling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and daytypes, are also included here.
@@ -732,8 +732,8 @@ extends
 /**
  * An active power (Y1-axis) and reactive power (Y2-axis) schedule (curves) versus time (X-axis) for non-conforming loads, e.g., large industrial load or power station service (where modeled).
  *
- * @param sup Reference to the superclass object.
- * @param NonConformLoadGroup The NonConformLoadGroup where the NonConformLoadSchedule belongs.
+ * @param sup [[ch.ninecode.model.SeasonDayTypeSchedule SeasonDayTypeSchedule]] Reference to the superclass object.
+ * @param NonConformLoadGroup [[ch.ninecode.model.NonConformLoadGroup NonConformLoadGroup]] The NonConformLoadGroup where the NonConformLoadSchedule belongs.
  * @group LoadModel
  * @groupname LoadModel Package LoadModel
  * @groupdesc LoadModel This package is responsible for modeling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and daytypes, are also included here.
@@ -800,7 +800,7 @@ extends
 /**
  * An area or zone of the power system which is used for load shedding purposes.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @param cutLevel1 First level (amount) of load to cut as a percentage of total zone load.
  * @param cutLevel2 Second level (amount) of load to cut as a percentage of total zone load.
  * @group LoadModel
@@ -873,7 +873,7 @@ extends
 /**
  * A specified time period of the year.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param endDate Date season ends.
  * @param startDate Date season starts.
  * @group LoadModel
@@ -946,9 +946,9 @@ extends
 /**
  * A time schedule covering a 24 hour period, with curve data for a specific type of season and day.
  *
- * @param sup Reference to the superclass object.
- * @param DayType DayType for the Schedule.
- * @param Season Season for the Schedule.
+ * @param sup [[ch.ninecode.model.RegularIntervalSchedule RegularIntervalSchedule]] Reference to the superclass object.
+ * @param DayType [[ch.ninecode.model.DayType DayType]] DayType for the Schedule.
+ * @param Season [[ch.ninecode.model.Season Season]] Season for the Schedule.
  * @group LoadModel
  * @groupname LoadModel Package LoadModel
  * @groupdesc LoadModel This package is responsible for modeling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and daytypes, are also included here.
@@ -1019,7 +1019,7 @@ extends
 /**
  * Station supply with load derived from the station output.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.EnergyConsumer EnergyConsumer]] Reference to the superclass object.
  * @group LoadModel
  * @groupname LoadModel Package LoadModel
  * @groupdesc LoadModel This package is responsible for modeling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and daytypes, are also included here.
@@ -1083,8 +1083,8 @@ extends
 /**
  * The class is the second level in a hierarchical structure for grouping of loads for the purpose of load flow load scaling.
  *
- * @param sup Reference to the superclass object.
- * @param LoadArea The LoadArea where the SubLoadArea belongs.
+ * @param sup [[ch.ninecode.model.EnergyArea EnergyArea]] Reference to the superclass object.
+ * @param LoadArea [[ch.ninecode.model.LoadArea LoadArea]] The LoadArea where the SubLoadArea belongs.
  * @group LoadModel
  * @groupname LoadModel Package LoadModel
  * @groupdesc LoadModel This package is responsible for modeling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and daytypes, are also included here.

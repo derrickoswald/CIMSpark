@@ -9,7 +9,7 @@ import ch.ninecode.cim.Parseable
 /**
  * Model that describes the Congestion Revenue Rights Auction Market
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Market Market]] Reference to the superclass object.
  * @param labelID labelID - an ID for a set of apnodes/pnodes used in a CRR market
  * @group MarketPlan
  * @groupname MarketPlan Package MarketPlan
@@ -77,9 +77,9 @@ extends
  *
  * Energy, Spinning Reserve, Non-Spinning Reserve) with a description of the Market operation control parameters.
  *
- * @param sup Reference to the superclass object.
- * @param MarketResults <em>undocumented</em>
- * @param RTO <em>undocumented</em>
+ * @param sup [[ch.ninecode.model.Market Market]] Reference to the superclass object.
+ * @param MarketResults [[ch.ninecode.model.MarketResults MarketResults]] <em>undocumented</em>
+ * @param RTO [[ch.ninecode.model.RTO RTO]] <em>undocumented</em>
  * @param RegisteredResources <em>undocumented</em>
  * @group MarketPlan
  * @groupname MarketPlan Package MarketPlan
@@ -155,7 +155,7 @@ extends
  *
  * Day Ahead Market, RealTime Market) with a description of the the Market operation control parameters.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param actualEnd Market ending time - actual market end
  * @param actualStart Market starting time - actual market start
  * @param dst True if daylight savings time (DST) is in effect.
@@ -278,9 +278,9 @@ extends
  * @param description Description of the event.
  * @param eventID Actual event ID.
  * @param eventTime Start time of the event.
- * @param MarketRun Market run triggered by this actual event.
+ * @param MarketRun [[ch.ninecode.model.MarketRun MarketRun]] Market run triggered by this actual event.
  *        For example, the DA run is triggered by the actual open bid submission event and terminated by the actual close bid submission event.
- * @param PlannedMarketEvent Planned event executed by this actual event.
+ * @param PlannedMarketEvent [[ch.ninecode.model.PlannedMarketEvent PlannedMarketEvent]] Planned event executed by this actual event.
  * @group MarketPlan
  * @groupname MarketPlan Package MarketPlan
  * @groupdesc MarketPlan Market plan definitions for planned markets, planned market events, actual market runs, actual market events.
@@ -361,11 +361,11 @@ extends
 /**
  * Aggregation of market information relative for a specific time interval.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param intervalEndTime The end of the time interval for which requirement is defined.
  * @param intervalStartTime The start of the time interval for which requirement is defined.
- * @param Market <em>undocumented</em>
- * @param MktActivityRecord <em>undocumented</em>
+ * @param Market [[ch.ninecode.model.Market Market]] <em>undocumented</em>
+ * @param MktActivityRecord [[ch.ninecode.model.MktActivityRecord MktActivityRecord]] <em>undocumented</em>
  * @group MarketPlan
  * @groupname MarketPlan Package MarketPlan
  * @groupdesc MarketPlan Market plan definitions for planned markets, planned market events, actual market runs, actual market events.
@@ -527,7 +527,7 @@ extends
  *
  * Ancillary service product examples include:Regulation UpRegulation DnSpinning ReserveNon-Spinning ReserveOperating Reserve
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param marketProductType Market product type examples:
  *        
  *        EN (Energy)
@@ -538,8 +538,8 @@ extends
  *        RC (RUC)
  * @param rampInterval Ramping time interval for the specific market product type specified by marketProductType attribute.
  *        For example, if marketProductType = EN (from enumeration MarketProductType), then the rampInterval is the ramping time interval for Energy.
- * @param Market <em>undocumented</em>
- * @param MarketRegionResults <em>undocumented</em>
+ * @param Market [[ch.ninecode.model.Market Market]] <em>undocumented</em>
+ * @param MarketRegionResults [[ch.ninecode.model.MarketRegionResults MarketRegionResults]] <em>undocumented</em>
  * @group MarketPlan
  * @groupname MarketPlan Package MarketPlan
  * @groupdesc MarketPlan Market plan definitions for planned markets, planned market events, actual market runs, actual market events.
@@ -634,8 +634,8 @@ extends
  * @param reportedState This is the state of market run activitie as reported by market systems to the market definition services.
  * @param runState This is the state controlled by market defintion service.
  *        possible values could be but not limited by: Open, Close.
- * @param Market <em>undocumented</em>
- * @param PlannedMarket A planned market could have multiple market runs for the reason that a planned market could have a rerun.
+ * @param Market [[ch.ninecode.model.Market Market]] <em>undocumented</em>
+ * @param PlannedMarket [[ch.ninecode.model.PlannedMarket PlannedMarket]] A planned market could have multiple market runs for the reason that a planned market could have a rerun.
  * @group MarketPlan
  * @groupname MarketPlan Package MarketPlan
  * @groupdesc MarketPlan Market plan definitions for planned markets, planned market events, actual market runs, actual market events.
@@ -752,7 +752,7 @@ extends
  *        In todays terms: Market Type: DA, RTM, Trade Date:  1/25/04, Trade Hour: 1-25.
  * @param marketStartTime Market start time.
  * @param marketType Market type.
- * @param MarketPlan a market plan has a number of markets (DA, HA, RT)
+ * @param MarketPlan [[ch.ninecode.model.MarketPlan MarketPlan]] a market plan has a number of markets (DA, HA, RT)
  * @group MarketPlan
  * @groupname MarketPlan Package MarketPlan
  * @groupdesc MarketPlan Market plan definitions for planned markets, planned market events, actual market runs, actual market events.

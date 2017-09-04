@@ -9,10 +9,10 @@ import ch.ninecode.cim.Parseable
 /**
  * Combustion turbine air compressor which is an integral part of a compressed air energy storage (CAES) plant.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @param airCompressorRating Rating of the CAES air compressor.
- * @param CAESPlant An air compressor may be a member of a compressed air energy storage plant.
- * @param CombustionTurbine A CAES air compressor is driven by combustion turbine.
+ * @param CAESPlant [[ch.ninecode.model.CAESPlant CAESPlant]] An air compressor may be a member of a compressed air energy storage plant.
+ * @param CombustionTurbine [[ch.ninecode.model.CombustionTurbine CombustionTurbine]] A CAES air compressor is driven by combustion turbine.
  * @group Production
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
@@ -85,11 +85,11 @@ extends
 /**
  * Compressed air energy storage plant.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @param energyStorageCapacity The rated energy storage capacity.
  * @param ratedCapacityP The CAES plant's gross rated generating capacity.
- * @param AirCompressor An air compressor may be a member of a compressed air energy storage plant.
- * @param ThermalGeneratingUnit A thermal generating unit may be a member of a compressed air energy storage plant.
+ * @param AirCompressor [[ch.ninecode.model.AirCompressor AirCompressor]] An air compressor may be a member of a compressed air energy storage plant.
+ * @param ThermalGeneratingUnit [[ch.ninecode.model.ThermalGeneratingUnit ThermalGeneratingUnit]] A thermal generating unit may be a member of a compressed air energy storage plant.
  * @group Production
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
@@ -168,13 +168,13 @@ extends
  *
  * The steam sendout is typically used for industrial purposes or for municipal heating and cooling.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @param cogenHPSendoutRating The high pressure steam sendout.
  * @param cogenHPSteamRating The high pressure steam rating.
  * @param cogenLPSendoutRating The low pressure steam sendout.
  * @param cogenLPSteamRating The low pressure steam rating.
  * @param ratedP The rated output active power of the cogeneration plant.
- * @param SteamSendoutSchedule A cogeneration plant has a steam sendout schedule.
+ * @param SteamSendoutSchedule [[ch.ninecode.model.SteamSendoutSchedule SteamSendoutSchedule]] A cogeneration plant has a steam sendout schedule.
  * @group Production
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
@@ -259,7 +259,7 @@ extends
 /**
  * A set of combustion turbines and steam turbines where the exhaust heat from the combustion turbines is recovered to make steam for the steam turbines, resulting in greater overall plant efficiency.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @param combCyclePlantRating The combined cycle plant's active power output rating.
  * @group Production
  * @groupname Production Package Production
@@ -327,11 +327,11 @@ extends
  *
  * A unit may have zero or more emission accounts, and will typically have one for tracking usage and one for tracking credits.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param emissionType The type of emission, for example sulfur dioxide (SO2).
  *        The y1AxisUnits of the curve contains the unit of measure (e.g. kg) and the emissionType is the type of emission (e.g. sulfer dioxide).
  * @param emissionValueSource The source of the emission value.
- * @param ThermalGeneratingUnit A thermal generating unit may have one or more emission allowance accounts.
+ * @param ThermalGeneratingUnit [[ch.ninecode.model.ThermalGeneratingUnit ThermalGeneratingUnit]] A thermal generating unit may have one or more emission allowance accounts.
  * @group Production
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
@@ -406,12 +406,12 @@ extends
  *
  * This curve applies when only one type of fuel is being burned.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param emissionContent The emission content per quantity of fuel burned.
  * @param emissionType The type of emission, which also gives the production rate measurement unit.
  *        The y1AxisUnits of the curve contains the unit of measure (e.g. kg) and the emissionType is the type of emission (e.g. sulfer dioxide).
  * @param isNetGrossP Flag is set to true when output is expressed in net active power.
- * @param ThermalGeneratingUnit A thermal generating unit may have  one or more emission curves.
+ * @param ThermalGeneratingUnit [[ch.ninecode.model.ThermalGeneratingUnit ThermalGeneratingUnit]] A thermal generating unit may have  one or more emission curves.
  * @group Production
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
@@ -490,7 +490,7 @@ extends
  *
  * For example, coal, oil, gas, etc.   This a the specific fuels that the generating unit can consume.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param fossilFuelType The type of fossil fuel, such as coal, oil, or gas.
  * @param fuelCost The cost in terms of heat value for the given type of fuel.
  * @param fuelDispatchCost The cost of fuel used for economic dispatching which includes: fuel cost, transportation cost,  and incremental maintenance cost.
@@ -503,7 +503,7 @@ extends
  *        This fuel (e.g., oil) is sometimes used to supplement the base fuel (e.g., coal) at high active power output levels.
  * @param lowBreakpointP The active power output level of the unit at which the given type of fuel is switched off.
  *        This fuel (e.g., oil) is sometimes used to stabilize the base fuel (e.g., coal) at low active power output levels.
- * @param ThermalGeneratingUnit A thermal generating unit may have one or more fossil fuels.
+ * @param ThermalGeneratingUnit [[ch.ninecode.model.ThermalGeneratingUnit ThermalGeneratingUnit]] A thermal generating unit may have one or more fossil fuels.
  * @group Production
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
@@ -608,14 +608,14 @@ extends
 /**
  * The amount of fuel of a given type which is allocated for consumption over a specified period of time.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param fuelAllocationEndDate The end time and date of the fuel allocation schedule.
  * @param fuelAllocationStartDate The start time and date of the fuel allocation schedule.
  * @param fuelType The type of fuel, which also indicates the corresponding measurement unit.
  * @param maxFuelAllocation The maximum amount fuel that is allocated for consumption for the scheduled time period.
  * @param minFuelAllocation The minimum amount fuel that is allocated for consumption for the scheduled time period, e.g., based on a "take-or-pay" contract.
- * @param FossilFuel A fuel allocation schedule must have a fossil fuel.
- * @param ThermalGeneratingUnit A thermal generating unit may have one or more fuel allocation schedules.
+ * @param FossilFuel [[ch.ninecode.model.FossilFuel FossilFuel]] A fuel allocation schedule must have a fossil fuel.
+ * @param ThermalGeneratingUnit [[ch.ninecode.model.ThermalGeneratingUnit ThermalGeneratingUnit]] A thermal generating unit may have one or more fuel allocation schedules.
  * @group Production
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
@@ -706,9 +706,9 @@ extends
  *
  * The operating cost curve for thermal units is derived from heat input and fuel costs. The operating cost curve for hydro units is derived from water flow rates and equivalent water costs.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param isNetGrossP Flag is set to true when output is expressed in net active power.
- * @param GeneratingUnit A generating unit may have one or more cost curves, depending upon fuel mixture and fuel cost.
+ * @param GeneratingUnit [[ch.ninecode.model.GeneratingUnit GeneratingUnit]] A generating unit may have one or more cost curves, depending upon fuel mixture and fuel cost.
  * @group Production
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
@@ -779,8 +779,8 @@ extends
  *
  * The X-axis represents absolute time. The Y1-axis represents the status (0=off-line and unavailable: 1=available: 2=must run: 3=must run at fixed power value: etc.). The Y2-axis represents the must run fixed power value where required.
  *
- * @param sup Reference to the superclass object.
- * @param GeneratingUnit A generating unit may have an operating schedule, indicating the planned operation of the unit.
+ * @param sup [[ch.ninecode.model.RegularIntervalSchedule RegularIntervalSchedule]] Reference to the superclass object.
+ * @param GeneratingUnit [[ch.ninecode.model.GeneratingUnit GeneratingUnit]] A generating unit may have an operating schedule, indicating the planned operation of the unit.
  * @group Production
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
@@ -847,7 +847,7 @@ extends
  *
  * For example, individual machines within a set may be defined for scheduling purposes while a single control signal is derived for the set. In this case there would be a GeneratingUnit for each member of the set and an additional GeneratingUnit corresponding to the set.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Equipment Equipment]] Reference to the superclass object.
  * @param allocSpinResP The planned unused capacity (spinning reserve) which can be used to support emergency load.
  * @param autoCntrlMarginP The planned unused capacity which can be used to support automatic control overruns.
  * @param baseP For dispatchable units, this value represents the economic active power basepoint, for units that are not dispatchable, this value represents the fixed generation value.
@@ -891,7 +891,7 @@ extends
  * @param tieLinePF Generating unit economic participation factor.
  * @param totalEfficiency The efficiency of the unit in converting the fuel into electrical energy.
  * @param variableCost The variable cost component of production per unit of ActivePower.
- * @param GenUnitOpSchedule A generating unit may have an operating schedule, indicating the planned operation of the unit.
+ * @param GenUnitOpSchedule [[ch.ninecode.model.GenUnitOpSchedule GenUnitOpSchedule]] A generating unit may have an operating schedule, indicating the planned operation of the unit.
  * @group Production
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
@@ -1106,8 +1106,8 @@ extends
  *
  * Station service loads, when modeled, should be treated as non-conforming bus loads. There may be more than one curve, depending on the auxiliary equipment that is in service.
  *
- * @param sup Reference to the superclass object.
- * @param GeneratingUnit A generating unit may have a gross active power to net active power curve, describing the losses and auxiliary power requirements of the unit.
+ * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
+ * @param GeneratingUnit [[ch.ninecode.model.GeneratingUnit GeneratingUnit]] A generating unit may have a gross active power to net active power curve, describing the losses and auxiliary power requirements of the unit.
  * @group Production
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
@@ -1174,13 +1174,13 @@ extends
  *
  * The quantity of main fuel used to sustain generation at this output level is prorated for throttling between definition points. The quantity of supplemental fuel used at this output level is fixed and not prorated.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param auxPowerMult Power output - auxiliary power multiplier adjustment factor.
  * @param auxPowerOffset Power output - auxiliary power offset adjustment factor.
  * @param heatInputEff Heat input - efficiency multiplier adjustment factor.
  * @param heatInputOffset Heat input - offset adjustment factor.
  * @param isNetGrossP Flag is set to true when output is expressed in net active power.
- * @param ThermalGeneratingUnit A thermal generating unit may have a heat input curve.
+ * @param ThermalGeneratingUnit [[ch.ninecode.model.ThermalGeneratingUnit ThermalGeneratingUnit]] A thermal generating unit may have a heat input curve.
  * @group Production
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
@@ -1267,9 +1267,9 @@ extends
  *
  * The heat input is from all fuels.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param isNetGrossP Flag is set to true when output is expressed in net active power.
- * @param ThermalGeneratingUnit A thermal generating unit may have a heat rate curve.
+ * @param ThermalGeneratingUnit [[ch.ninecode.model.ThermalGeneratingUnit ThermalGeneratingUnit]] A thermal generating unit may have a heat rate curve.
  * @group Production
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
@@ -1340,8 +1340,8 @@ extends
  *
  * The relationship between efficiency, discharge, head, and power output is expressed as follows:   E =KP/HQ
  *
- * @param sup Reference to the superclass object.
- * @param HydroGeneratingUnit A hydro generating unit has an efficiency curve.
+ * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
+ * @param HydroGeneratingUnit [[ch.ninecode.model.HydroGeneratingUnit HydroGeneratingUnit]] A hydro generating unit has an efficiency curve.
  * @group Production
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
@@ -1406,11 +1406,11 @@ extends
 /**
  * A generating unit whose prime mover is a hydraulic turbine (e.g., Francis, Pelton, Kaplan).
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.GeneratingUnit GeneratingUnit]] Reference to the superclass object.
  * @param energyConversionCapability Energy conversion capability for generating.
  * @param hydroUnitWaterCost The equivalent cost of water that drives the hydro turbine.
- * @param HydroPowerPlant The hydro generating unit belongs to a hydro power plant.
- * @param PenstockLossCurve A hydro generating unit has a penstock loss curve.
+ * @param HydroPowerPlant [[ch.ninecode.model.HydroPowerPlant HydroPowerPlant]] The hydro generating unit belongs to a hydro power plant.
+ * @param PenstockLossCurve [[ch.ninecode.model.PenstockLossCurve PenstockLossCurve]] A hydro generating unit has a penstock loss curve.
  * @group Production
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
@@ -1489,7 +1489,7 @@ extends
  *
  * When generating, the generator turbines receive water from an upper reservoir. When pumping, the pumps receive their water from a lower reservoir.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @param dischargeTravelDelay Water travel delay from tailbay to next downstream hydro power station.
  * @param genRatedP The hydro plant's generating rating active power for rated head conditions.
  * @param hydroPlantStorageType The type of hydro power plant water storage.
@@ -1500,7 +1500,7 @@ extends
  * @param surgeTankCode A code describing the type (or absence) of surge tank that is associated with the hydro power plant.
  * @param surgeTankCrestLevel The level at which the surge tank spills.
  * @param GenSourcePumpDischargeReservoir Generators are supplied water from or pumps discharge water to an upstream reservoir.
- * @param Reservoir Generators discharge water to or pumps are supplied water from a downstream reservoir.
+ * @param Reservoir [[ch.ninecode.model.Reservoir Reservoir]] Generators discharge water to or pumps are supplied water from a downstream reservoir.
  * @group Production
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
@@ -1605,14 +1605,14 @@ extends
 /**
  * A synchronous motor-driven pump, typically associated with a pumped storage plant.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Equipment Equipment]] Reference to the superclass object.
  * @param pumpDischAtMaxHead The pumping discharge under maximum head conditions, usually at full gate.
  * @param pumpDischAtMinHead The pumping discharge under minimum head conditions, usually at full gate.
  * @param pumpPowerAtMaxHead The pumping power under maximum head conditions, usually at full gate.
  * @param pumpPowerAtMinHead The pumping power under minimum head conditions, usually at full gate.
- * @param HydroPowerPlant The hydro pump may be a member of a pumped storage plant or a pump for distributing water.
- * @param HydroPumpOpSchedule The hydro pump has a pumping schedule over time, indicating when pumping is to occur.
- * @param RotatingMachine The synchronous machine drives the turbine which moves the water from a low elevation to a higher elevation.
+ * @param HydroPowerPlant [[ch.ninecode.model.HydroPowerPlant HydroPowerPlant]] The hydro pump may be a member of a pumped storage plant or a pump for distributing water.
+ * @param HydroPumpOpSchedule [[ch.ninecode.model.HydroPumpOpSchedule HydroPumpOpSchedule]] The hydro pump has a pumping schedule over time, indicating when pumping is to occur.
+ * @param RotatingMachine [[ch.ninecode.model.RotatingMachine RotatingMachine]] The synchronous machine drives the turbine which moves the water from a low elevation to a higher elevation.
  *        The direction of machine rotation for pumping may or may not be the same as for generating.
  * @group Production
  * @groupname Production Package Production
@@ -1704,8 +1704,8 @@ extends
  *
  * The unit's operating schedule status is typically given as: (0=unavailable) (1=avilable to startup or shutdown)  (2=must pump).
  *
- * @param sup Reference to the superclass object.
- * @param HydroPump The hydro pump has a pumping schedule over time, indicating when pumping is to occur.
+ * @param sup [[ch.ninecode.model.RegularIntervalSchedule RegularIntervalSchedule]] Reference to the superclass object.
+ * @param HydroPump [[ch.ninecode.model.HydroPump HydroPump]] The hydro pump has a pumping schedule over time, indicating when pumping is to occur.
  * @group Production
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
@@ -1772,9 +1772,9 @@ extends
  *
  * The IHR curve represents the slope of the HeatInputCurve. Note that the "incremental heat rate" and the "heat rate" have the same engineering units.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param isNetGrossP Flag is set to true when output is expressed in net active power.
- * @param ThermalGeneratingUnit A thermal generating unit may have an incremental heat rate curve.
+ * @param ThermalGeneratingUnit [[ch.ninecode.model.ThermalGeneratingUnit ThermalGeneratingUnit]] A thermal generating unit may have an incremental heat rate curve.
  * @group Production
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
@@ -1845,8 +1845,8 @@ extends
  *
  * Typically in one hour increments for up to 10 days. The forecast is given in average cubic meters per second over the time increment.
  *
- * @param sup Reference to the superclass object.
- * @param Reservoir A reservoir may have a "natural" inflow forecast.
+ * @param sup [[ch.ninecode.model.RegularIntervalSchedule RegularIntervalSchedule]] Reference to the superclass object.
+ * @param Reservoir [[ch.ninecode.model.Reservoir Reservoir]] A reservoir may have a "natural" inflow forecast.
  * @group Production
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
@@ -1913,8 +1913,8 @@ extends
  *
  * The  volume is at the y-axis and the reservoir level at the x-axis.
  *
- * @param sup Reference to the superclass object.
- * @param Reservoir A reservoir may have a level versus volume relationship.
+ * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
+ * @param Reservoir [[ch.ninecode.model.Reservoir Reservoir]] A reservoir may have a level versus volume relationship.
  * @group Production
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
@@ -1979,7 +1979,7 @@ extends
 /**
  * A nuclear generating unit.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.GeneratingUnit GeneratingUnit]] Reference to the superclass object.
  * @group Production
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
@@ -2043,8 +2043,8 @@ extends
  *
  * One or more turbines may be connected to the same penstock.
  *
- * @param sup Reference to the superclass object.
- * @param HydroGeneratingUnit A hydro generating unit has a penstock loss curve.
+ * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
+ * @param HydroGeneratingUnit [[ch.ninecode.model.HydroGeneratingUnit HydroGeneratingUnit]] A hydro generating unit has a penstock loss curve.
  * @group Production
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
@@ -2111,7 +2111,7 @@ extends
  *
  * The storage is usually behind some type of dam.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @param activeStorageCapacity Storage volume between the full supply level and the normal minimum operating level.
  * @param energyStorageRating The reservoir's energy storage rating in energy for given head conditions.
  * @param fullSupplyLevel Full supply level, above which water will spill.
@@ -2125,7 +2125,7 @@ extends
  * @param spillwayCrestLength The length of the spillway crest.
  * @param spillwayCrestLevel Spillway crest level above which water will spill.
  * @param SpillsFromReservoir A reservoir may spill into a downstream reservoir.
- * @param TargetLevelSchedule A reservoir may have a water level target schedule.
+ * @param TargetLevelSchedule [[ch.ninecode.model.TargetLevelSchedule TargetLevelSchedule]] A reservoir may have a water level target schedule.
  * @group Production
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
@@ -2238,10 +2238,10 @@ extends
 /**
  * Relationship between the rate in gross active power/minute (Y-axis) at which a unit should be shutdown and its present gross MW output (X-axis).
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param shutdownCost Fixed shutdown cost.
  * @param shutdownDate The date and time of the most recent generating unit shutdown.
- * @param ThermalGeneratingUnit A thermal generating unit may have a shutdown curve.
+ * @param ThermalGeneratingUnit [[ch.ninecode.model.ThermalGeneratingUnit ThermalGeneratingUnit]] A thermal generating unit may have a shutdown curve.
  * @group Production
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
@@ -2314,7 +2314,7 @@ extends
 /**
  * A solar thermal generating unit.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.GeneratingUnit GeneratingUnit]] Reference to the superclass object.
  * @group Production
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
@@ -2376,9 +2376,9 @@ extends
 /**
  * The quantity of ignition fuel (Y-axis) used to restart and repay the auxiliary power consumed versus the number of hours (X-axis) the unit was off line.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param ignitionFuelType Type of ignition fuel.
- * @param StartupModel The unit's startup model may have a startup ignition fuel curve.
+ * @param StartupModel [[ch.ninecode.model.StartupModel StartupModel]] The unit's startup model may have a startup ignition fuel curve.
  * @group Production
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
@@ -2447,9 +2447,9 @@ extends
 /**
  * The quantity of main fuel (Y-axis) used to restart and repay the auxiliary power consumed versus the number of hours (X-axis) the unit was off line.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param mainFuelType Type of main fuel.
- * @param StartupModel The unit's startup model may have a startup main fuel curve.
+ * @param StartupModel [[ch.ninecode.model.StartupModel StartupModel]] The unit's startup model may have a startup main fuel curve.
  * @group Production
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
@@ -2518,9 +2518,9 @@ extends
 /**
  * Rate in gross active power/minute (Y-axis) at which a unit can be loaded versus the number of hours (X-axis) the unit was off line.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param hotStandbyRamp The startup ramp rate in gross for a unit that is on hot standby.
- * @param StartupModel The unit's startup model may have a startup ramp curve.
+ * @param StartupModel [[ch.ninecode.model.StartupModel StartupModel]] The unit's startup model may have a startup ramp curve.
  * @group Production
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
@@ -2589,7 +2589,7 @@ extends
 /**
  * Unit start up characteristics depending on how long the unit has been off line.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param fixedMaintCost Fixed maintenance cost.
  * @param hotStandbyHeat The amount of heat input per time uint required for hot standby operation.
  * @param incrementalMaintCost Incremental maintenance cost.
@@ -2602,10 +2602,10 @@ extends
  * @param startupPriority Startup priority within control area where lower numbers indicate higher priorities.
  *        More than one unit in an area may be assigned the same priority.
  * @param stbyAuxP The unit's auxiliary active power consumption to maintain standby mode.
- * @param StartIgnFuelCurve The unit's startup model may have a startup ignition fuel curve.
- * @param StartMainFuelCurve The unit's startup model may have a startup main fuel curve.
- * @param StartRampCurve The unit's startup model may have a startup ramp curve.
- * @param ThermalGeneratingUnit A thermal generating unit may have a startup model.
+ * @param StartIgnFuelCurve [[ch.ninecode.model.StartIgnFuelCurve StartIgnFuelCurve]] The unit's startup model may have a startup ignition fuel curve.
+ * @param StartMainFuelCurve [[ch.ninecode.model.StartMainFuelCurve StartMainFuelCurve]] The unit's startup model may have a startup main fuel curve.
+ * @param StartRampCurve [[ch.ninecode.model.StartRampCurve StartRampCurve]] The unit's startup model may have a startup ramp curve.
+ * @param ThermalGeneratingUnit [[ch.ninecode.model.ThermalGeneratingUnit ThermalGeneratingUnit]] A thermal generating unit may have a startup model.
  * @group Production
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
@@ -2722,8 +2722,8 @@ extends
 /**
  * The cogeneration plant's steam sendout schedule in volume per time unit.
  *
- * @param sup Reference to the superclass object.
- * @param CogenerationPlant A cogeneration plant has a steam sendout schedule.
+ * @param sup [[ch.ninecode.model.RegularIntervalSchedule RegularIntervalSchedule]] Reference to the superclass object.
+ * @param CogenerationPlant [[ch.ninecode.model.CogenerationPlant CogenerationPlant]] A cogeneration plant has a steam sendout schedule.
  * @group Production
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
@@ -2790,8 +2790,8 @@ extends
  *
  * There could be more than one curve depending on the level of the tailbay reservoir or river level.
  *
- * @param sup Reference to the superclass object.
- * @param HydroGeneratingUnit A hydro generating unit has a tailbay loss curve.
+ * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
+ * @param HydroGeneratingUnit [[ch.ninecode.model.HydroGeneratingUnit HydroGeneratingUnit]] A hydro generating unit has a tailbay loss curve.
  * @group Production
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
@@ -2858,10 +2858,10 @@ extends
  *
  * Typically in one hour increments for up to 10 days.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param highLevelLimit High target level limit, above which the reservoir operation will be penalized.
  * @param lowLevelLimit Low target level limit, below which the reservoir operation will be penalized.
- * @param Reservoir A reservoir may have a water level target schedule.
+ * @param Reservoir [[ch.ninecode.model.Reservoir Reservoir]] A reservoir may have a water level target schedule.
  * @group Production
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
@@ -2934,16 +2934,16 @@ extends
 /**
  * A generating unit whose prime mover could be a steam turbine, combustion turbine, or diesel engine.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.GeneratingUnit GeneratingUnit]] Reference to the superclass object.
  * @param oMCost Operating and maintenance cost for the thermal unit.
- * @param CAESPlant A thermal generating unit may be a member of a compressed air energy storage plant.
- * @param CogenerationPlant A thermal generating unit may be a member of a cogeneration plant.
- * @param CombinedCyclePlant A thermal generating unit may be a member of a combined cycle plant.
- * @param HeatInputCurve A thermal generating unit may have a heat input curve.
- * @param HeatRateCurve A thermal generating unit may have a heat rate curve.
- * @param IncrementalHeatRateCurve A thermal generating unit may have an incremental heat rate curve.
- * @param ShutdownCurve A thermal generating unit may have a shutdown curve.
- * @param StartupModel A thermal generating unit may have a startup model.
+ * @param CAESPlant [[ch.ninecode.model.CAESPlant CAESPlant]] A thermal generating unit may be a member of a compressed air energy storage plant.
+ * @param CogenerationPlant [[ch.ninecode.model.CogenerationPlant CogenerationPlant]] A thermal generating unit may be a member of a cogeneration plant.
+ * @param CombinedCyclePlant [[ch.ninecode.model.CombinedCyclePlant CombinedCyclePlant]] A thermal generating unit may be a member of a combined cycle plant.
+ * @param HeatInputCurve [[ch.ninecode.model.HeatInputCurve HeatInputCurve]] A thermal generating unit may have a heat input curve.
+ * @param HeatRateCurve [[ch.ninecode.model.HeatRateCurve HeatRateCurve]] A thermal generating unit may have a heat rate curve.
+ * @param IncrementalHeatRateCurve [[ch.ninecode.model.IncrementalHeatRateCurve IncrementalHeatRateCurve]] A thermal generating unit may have an incremental heat rate curve.
+ * @param ShutdownCurve [[ch.ninecode.model.ShutdownCurve ShutdownCurve]] A thermal generating unit may have a shutdown curve.
+ * @param StartupModel [[ch.ninecode.model.StartupModel StartupModel]] A thermal generating unit may have a startup model.
  * @group Production
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
@@ -3042,7 +3042,7 @@ extends
  *
  * May be used to represent a single turbine or an aggregation.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.GeneratingUnit GeneratingUnit]] Reference to the superclass object.
  * @param windGenUnitType The kind of wind generating unit
  * @group Production
  * @groupname Production Package Production

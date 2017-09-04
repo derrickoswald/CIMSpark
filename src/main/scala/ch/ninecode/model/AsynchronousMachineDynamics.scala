@@ -15,11 +15,11 @@ import ch.ninecode.cim.Parseable
  *
  * However, some references use the symbol L instead of X. </li>
  *
- * @param sup Reference to the superclass object.
- * @param AsynchronousMachine Asynchronous machine to which this asynchronous machine dynamics model applies.
- * @param MechanicalLoadDynamics Mechanical load model associated with this asynchronous machine model.
- * @param TurbineGovernorDynamics Turbine-governor model associated with this asynchronous machine model.
- * @param WindTurbineType1or2Dynamics Wind generator type 1 or 2 model associated with this asynchronous machine model.
+ * @param sup [[ch.ninecode.model.RotatingMachineDynamics RotatingMachineDynamics]] Reference to the superclass object.
+ * @param AsynchronousMachine [[ch.ninecode.model.AsynchronousMachine AsynchronousMachine]] Asynchronous machine to which this asynchronous machine dynamics model applies.
+ * @param MechanicalLoadDynamics [[ch.ninecode.model.MechanicalLoadDynamics MechanicalLoadDynamics]] Mechanical load model associated with this asynchronous machine model.
+ * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Turbine-governor model associated with this asynchronous machine model.
+ * @param WindTurbineType1or2Dynamics [[ch.ninecode.model.WindTurbineType1or2Dynamics WindTurbineType1or2Dynamics]] Wind generator type 1 or 2 model associated with this asynchronous machine model.
  * @group AsynchronousMachineDynamics
  * @groupname AsynchronousMachineDynamics Package AsynchronousMachineDynamics
  * @groupdesc AsynchronousMachineDynamics An asynchronous machine model represents a (induction) generator or motor with no external connection to the rotor windings, e.g., squirrel-cage induction machine. 
@@ -115,7 +115,7 @@ extends
  *
  * tppo = (xm * xlr1 + xm * xlr2 + xlr1 * xlr2) / (2*pi*nominal frequency * rr2 * (xm + xlr1).
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.AsynchronousMachineDynamics AsynchronousMachineDynamics]] Reference to the superclass object.
  * @param rr1 Damper 1 winding resistance.
  * @param rr2 Damper 2 winding resistance.
  * @param xlr1 Damper 1 winding leakage reactance.
@@ -226,7 +226,7 @@ extends
  *
  * </ul>
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.AsynchronousMachineDynamics AsynchronousMachineDynamics]] Reference to the superclass object.
  * @param tpo Transient rotor time constant (T'o) (&gt; T''o).
  *        Typical Value = 5.
  * @param tppo Subtransient rotor time constant (T''o) (&gt; 0).

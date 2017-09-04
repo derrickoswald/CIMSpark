@@ -9,10 +9,10 @@ import ch.ninecode.cim.Parseable
 /**
  * This class provides the resistive and reactive components of compensation for the generator associated with the IEEE Type 2 voltage compensator for current flow out of one of the other generators in the interconnection.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param rcij <font color="#0f0f0f">Resistive component of compensation of generator associated with this IEEE Type 2 voltage compensator for current flow out of another generator (Rcij).</font>
  * @param xcij <font color="#0f0f0f">Reactive component of compensation of generator associated with this IEEE Type 2 voltage compensator for current flow out of another generator (Xcij).</font>
- * @param SynchronousMachineDynamics Standard synchronous machine out of which current flow is being compensated for.
+ * @param SynchronousMachineDynamics [[ch.ninecode.model.SynchronousMachineDynamics SynchronousMachineDynamics]] Standard synchronous machine out of which current flow is being compensated for.
  * @param VcompIEEEType2 The standard IEEE Type 2 voltage compensator of this compensation.
  * @group VoltageCompensatorDynamics
  * @groupname VoltageCompensatorDynamics Package VoltageCompensatorDynamics
@@ -102,7 +102,7 @@ extends
  *
  * This model is common to all excitation system models described in the IEEE Standard. </font>
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.VoltageCompensatorDynamics VoltageCompensatorDynamics]] Reference to the superclass object.
  * @param rc <font color="#0f0f0f">Resistive component of compensation of a generator (Rc).</font>
  * @param tr <font color="#0f0f0f">Time constant which is used for the combined voltage sensing and compensation signal (Tr).</font>
  * @param xc <font color="#0f0f0f">Reactive component of compensation of a generator (Xc).</font>
@@ -190,7 +190,7 @@ extends
  *
  * This model is designed to cover the following types of compensation: </font>
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.VoltageCompensatorDynamics VoltageCompensatorDynamics]] Reference to the superclass object.
  * @param tr <font color="#0f0f0f">Time constant which is used for the combined voltage sensing and compensation signal (Tr).</font>
  * @group VoltageCompensatorDynamics
  * @groupname VoltageCompensatorDynamics Package VoltageCompensatorDynamics
@@ -266,9 +266,9 @@ extends
 /**
  * Voltage compensator function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  *
- * @param sup Reference to the superclass object.
- * @param ExcitationSystemDynamics Excitation system model with which this voltage compensator is associated.
- * @param RemoteInputSignal Remote input signal used by this voltage compensator model.
+ * @param sup [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Excitation system model with which this voltage compensator is associated.
+ * @param RemoteInputSignal [[ch.ninecode.model.RemoteInputSignal RemoteInputSignal]] Remote input signal used by this voltage compensator model.
  * @group VoltageCompensatorDynamics
  * @groupname VoltageCompensatorDynamics Package VoltageCompensatorDynamics
  * @groupdesc VoltageCompensatorDynamics <font color="#0f0f0f">Synchronous machine terminal voltage transducer and current compensator models</font> adjust the terminal voltage feedback to the excitation system by adding a quantity that is proportional to the terminal current of the generator.  It is linked to a specific generator (synchronous machine).

@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>TransformerEnd - CIMReader 2.11-2.1.1-2.2.0 API - ch.ninecode.model.TransformerEnd</title>
-          <meta name="description" content="TransformerEnd - CIMReader 2.11 - 2.1.1 - 2.2.0 API - ch.ninecode.model.TransformerEnd" />
-          <meta name="keywords" content="TransformerEnd CIMReader 2.11 2.1.1 2.2.0 API ch.ninecode.model.TransformerEnd" />
+          <title>TransformerEnd - CIMReader 2.11-2.2.0-2.2.0 API - ch.ninecode.model.TransformerEnd</title>
+          <meta name="description" content="TransformerEnd - CIMReader 2.11 - 2.2.0 - 2.2.0 API - ch.ninecode.model.TransformerEnd" />
+          <meta name="keywords" content="TransformerEnd CIMReader 2.11 2.2.0 2.2.0 API ch.ninecode.model.TransformerEnd" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -52,11 +52,11 @@
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A conducting connection point of a power transformer.</p><p>It corresponds to a physical transformer winding terminal.  In earlier CIM versions, the TransformerWinding class served a similar purpose, but this class is more flexible because it associates to terminal but is not a specialization of ConductingEquipment.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">bmagSat</dt><dd class="cmt"><p>Core shunt magnetizing susceptance in the saturation region.</p></dd><dt class="param">endNumber</dt><dd class="cmt"><p>Number for this transformer end, corresponding to the end's order in the power transformer vector group or phase angle clock number.
-       Highest voltage winding should be 1.  Each end within a power transformer should have a unique subsequent end number.   Note the transformer end number need not match the terminal sequence number.</p></dd><dt class="param">grounded</dt><dd class="cmt"><p>(for Yn and Zn connections) True if the neutral is solidly grounded.</p></dd><dt class="param">magBaseU</dt><dd class="cmt"><p>The reference voltage at which the magnetizing saturation measurements were made</p></dd><dt class="param">magSatFlux</dt><dd class="cmt"><p>Core magnetizing saturation curve knee flux level.</p></dd><dt class="param">rground</dt><dd class="cmt"><p>(for Yn and Zn connections) Resistance part of neutral impedance where 'grounded' is true.</p></dd><dt class="param">xground</dt><dd class="cmt"><p>(for Yn and Zn connections) Reactive part of neutral impedance where 'grounded' is true.</p></dd><dt class="param">BaseVoltage</dt><dd class="cmt"><p>Base voltage of the transformer end.
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">bmagSat</dt><dd class="cmt"><p>Core shunt magnetizing susceptance in the saturation region.</p></dd><dt class="param">endNumber</dt><dd class="cmt"><p>Number for this transformer end, corresponding to the end's order in the power transformer vector group or phase angle clock number.
+       Highest voltage winding should be 1.  Each end within a power transformer should have a unique subsequent end number.   Note the transformer end number need not match the terminal sequence number.</p></dd><dt class="param">grounded</dt><dd class="cmt"><p>(for Yn and Zn connections) True if the neutral is solidly grounded.</p></dd><dt class="param">magBaseU</dt><dd class="cmt"><p>The reference voltage at which the magnetizing saturation measurements were made</p></dd><dt class="param">magSatFlux</dt><dd class="cmt"><p>Core magnetizing saturation curve knee flux level.</p></dd><dt class="param">rground</dt><dd class="cmt"><p>(for Yn and Zn connections) Resistance part of neutral impedance where 'grounded' is true.</p></dd><dt class="param">xground</dt><dd class="cmt"><p>(for Yn and Zn connections) Reactive part of neutral impedance where 'grounded' is true.</p></dd><dt class="param">BaseVoltage</dt><dd class="cmt"><p><a href="BaseVoltage.html" class="extype" name="ch.ninecode.model.BaseVoltage">BaseVoltage</a> Base voltage of the transformer end.
        This is essential for PU calculation.</p></dd><dt class="param">CoreAdmittance</dt><dd class="cmt"><p>Core admittance of this transformer end, representing magnetising current and core losses.
-       The full values of the transformer should be supplied for one transformer end only.</p></dd><dt class="param">PhaseTapChanger</dt><dd class="cmt"><p>Phase tap changer associated with this transformer end.</p></dd><dt class="param">RatioTapChanger</dt><dd class="cmt"><p>Ratio tap changer associated with this transformer end.</p></dd><dt class="param">StarImpedance</dt><dd class="cmt"><p>(accurate for 2- or 3-winding transformers only) Pi-model impedances of this transformer end.
-       By convention, for a two winding transformer, the full values of the transformer should be entered on the high voltage end (endNumber=1).</p></dd><dt class="param">Terminal</dt><dd class="cmt"><p>Terminal of the power transformer to which this transformer end belongs.</p></dd></dl><div class="toggleContainer block">
+       The full values of the transformer should be supplied for one transformer end only.</p></dd><dt class="param">PhaseTapChanger</dt><dd class="cmt"><p><a href="PhaseTapChanger.html" class="extype" name="ch.ninecode.model.PhaseTapChanger">PhaseTapChanger</a> Phase tap changer associated with this transformer end.</p></dd><dt class="param">RatioTapChanger</dt><dd class="cmt"><p><a href="RatioTapChanger.html" class="extype" name="ch.ninecode.model.RatioTapChanger">RatioTapChanger</a> Ratio tap changer associated with this transformer end.</p></dd><dt class="param">StarImpedance</dt><dd class="cmt"><p>(accurate for 2- or 3-winding transformers only) Pi-model impedances of this transformer end.
+       By convention, for a two winding transformer, the full values of the transformer should be entered on the high voltage end (endNumber=1).</p></dd><dt class="param">Terminal</dt><dd class="cmt"><p><a href="Terminal.html" class="extype" name="ch.ninecode.model.Terminal">Terminal</a> Terminal of the power transformer to which this transformer end belongs.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -128,11 +128,11 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">bmagSat</dt><dd class="cmt"><p>Core shunt magnetizing susceptance in the saturation region.</p></dd><dt class="param">endNumber</dt><dd class="cmt"><p>Number for this transformer end, corresponding to the end's order in the power transformer vector group or phase angle clock number.
-       Highest voltage winding should be 1.  Each end within a power transformer should have a unique subsequent end number.   Note the transformer end number need not match the terminal sequence number.</p></dd><dt class="param">grounded</dt><dd class="cmt"><p>(for Yn and Zn connections) True if the neutral is solidly grounded.</p></dd><dt class="param">magBaseU</dt><dd class="cmt"><p>The reference voltage at which the magnetizing saturation measurements were made</p></dd><dt class="param">magSatFlux</dt><dd class="cmt"><p>Core magnetizing saturation curve knee flux level.</p></dd><dt class="param">rground</dt><dd class="cmt"><p>(for Yn and Zn connections) Resistance part of neutral impedance where 'grounded' is true.</p></dd><dt class="param">xground</dt><dd class="cmt"><p>(for Yn and Zn connections) Reactive part of neutral impedance where 'grounded' is true.</p></dd><dt class="param">BaseVoltage</dt><dd class="cmt"><p>Base voltage of the transformer end.
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">bmagSat</dt><dd class="cmt"><p>Core shunt magnetizing susceptance in the saturation region.</p></dd><dt class="param">endNumber</dt><dd class="cmt"><p>Number for this transformer end, corresponding to the end's order in the power transformer vector group or phase angle clock number.
+       Highest voltage winding should be 1.  Each end within a power transformer should have a unique subsequent end number.   Note the transformer end number need not match the terminal sequence number.</p></dd><dt class="param">grounded</dt><dd class="cmt"><p>(for Yn and Zn connections) True if the neutral is solidly grounded.</p></dd><dt class="param">magBaseU</dt><dd class="cmt"><p>The reference voltage at which the magnetizing saturation measurements were made</p></dd><dt class="param">magSatFlux</dt><dd class="cmt"><p>Core magnetizing saturation curve knee flux level.</p></dd><dt class="param">rground</dt><dd class="cmt"><p>(for Yn and Zn connections) Resistance part of neutral impedance where 'grounded' is true.</p></dd><dt class="param">xground</dt><dd class="cmt"><p>(for Yn and Zn connections) Reactive part of neutral impedance where 'grounded' is true.</p></dd><dt class="param">BaseVoltage</dt><dd class="cmt"><p><a href="BaseVoltage.html" class="extype" name="ch.ninecode.model.BaseVoltage">BaseVoltage</a> Base voltage of the transformer end.
        This is essential for PU calculation.</p></dd><dt class="param">CoreAdmittance</dt><dd class="cmt"><p>Core admittance of this transformer end, representing magnetising current and core losses.
-       The full values of the transformer should be supplied for one transformer end only.</p></dd><dt class="param">PhaseTapChanger</dt><dd class="cmt"><p>Phase tap changer associated with this transformer end.</p></dd><dt class="param">RatioTapChanger</dt><dd class="cmt"><p>Ratio tap changer associated with this transformer end.</p></dd><dt class="param">StarImpedance</dt><dd class="cmt"><p>(accurate for 2- or 3-winding transformers only) Pi-model impedances of this transformer end.
-       By convention, for a two winding transformer, the full values of the transformer should be entered on the high voltage end (endNumber=1).</p></dd><dt class="param">Terminal</dt><dd class="cmt"><p>Terminal of the power transformer to which this transformer end belongs.</p></dd></dl></div>
+       The full values of the transformer should be supplied for one transformer end only.</p></dd><dt class="param">PhaseTapChanger</dt><dd class="cmt"><p><a href="PhaseTapChanger.html" class="extype" name="ch.ninecode.model.PhaseTapChanger">PhaseTapChanger</a> Phase tap changer associated with this transformer end.</p></dd><dt class="param">RatioTapChanger</dt><dd class="cmt"><p><a href="RatioTapChanger.html" class="extype" name="ch.ninecode.model.RatioTapChanger">RatioTapChanger</a> Ratio tap changer associated with this transformer end.</p></dd><dt class="param">StarImpedance</dt><dd class="cmt"><p>(accurate for 2- or 3-winding transformers only) Pi-model impedances of this transformer end.
+       By convention, for a two winding transformer, the full values of the transformer should be entered on the high voltage end (endNumber=1).</p></dd><dt class="param">Terminal</dt><dd class="cmt"><p><a href="Terminal.html" class="extype" name="ch.ninecode.model.Terminal">Terminal</a> Terminal of the power transformer to which this transformer end belongs.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -209,7 +209,7 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Base voltage of the transformer end.</p><div class="fullcomment"><div class="comment cmt"><p>Base voltage of the transformer end.
+      <p class="shortcomment cmt"><a href="BaseVoltage.html" class="extype" name="ch.ninecode.model.BaseVoltage">BaseVoltage</a> Base voltage of the transformer end.</p><div class="fullcomment"><div class="comment cmt"><p><a href="BaseVoltage.html" class="extype" name="ch.ninecode.model.BaseVoltage">BaseVoltage</a> Base voltage of the transformer end.
        This is essential for PU calculation.</p></div></div>
     </li><li name="ch.ninecode.model.TransformerEnd#CoreAdmittance" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="CoreAdmittance:String"></a>
@@ -263,7 +263,7 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Phase tap changer associated with this transformer end.</p>
+      <p class="shortcomment cmt"><a href="PhaseTapChanger.html" class="extype" name="ch.ninecode.model.PhaseTapChanger">PhaseTapChanger</a> Phase tap changer associated with this transformer end.</p>
     </li><li name="ch.ninecode.model.TransformerEnd#RatioTapChanger" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="RatioTapChanger:String"></a>
       <a id="RatioTapChanger:String"></a>
@@ -280,7 +280,7 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Ratio tap changer associated with this transformer end.</p>
+      <p class="shortcomment cmt"><a href="RatioTapChanger.html" class="extype" name="ch.ninecode.model.RatioTapChanger">RatioTapChanger</a> Ratio tap changer associated with this transformer end.</p>
     </li><li name="ch.ninecode.model.TransformerEnd#StarImpedance" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="StarImpedance:String"></a>
       <a id="StarImpedance:String"></a>
@@ -315,7 +315,7 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Terminal of the power transformer to which this transformer end belongs.</p>
+      <p class="shortcomment cmt"><a href="Terminal.html" class="extype" name="ch.ninecode.model.Terminal">Terminal</a> Terminal of the power transformer to which this transformer end belongs.</p>
     </li><li name="org.apache.spark.sql.Row#anyNull" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="anyNull:Boolean"></a>
       <a id="anyNull:Boolean"></a>
@@ -1218,7 +1218,7 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Reference to the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Reference to the superclass object.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="ch.ninecode.model.TransformerEnd">TransformerEnd</a> → <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></dd></dl></div>
+      <p class="shortcomment cmt"><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="ch.ninecode.model.TransformerEnd">TransformerEnd</a> → <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>

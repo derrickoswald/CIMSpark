@@ -9,7 +9,7 @@ import ch.ninecode.cim.Parseable
 /**
  * The result of a problem (typically an asset failure) diagnosis.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.ProcedureDataSet ProcedureDataSet]] Reference to the superclass object.
  * @param effect Effect of problem.
  * @param failureMode Failuer mode, for example: Failure to Insulate; Failure to conduct; Failure to contain oil; Failure to provide ground plane; Other.
  * @param finalCause Cause of problem determined during diagnosis.
@@ -134,7 +134,7 @@ extends
 /**
  * Documents the result of one inspection, for a given attribute of an asset.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.ProcedureDataSet ProcedureDataSet]] Reference to the superclass object.
  * @param locationCondition Description of the conditions of the location where the asset resides.
  * @group InfNewAssets
  * @groupname InfNewAssets Package InfNewAssets
@@ -199,7 +199,7 @@ extends
 /**
  * The result of a maintenance activity, a type of Procedure, for a given attribute of an asset.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.ProcedureDataSet ProcedureDataSet]] Reference to the superclass object.
  * @param conditionAfter Condition of asset just following maintenance procedure.
  * @param conditionBefore Description of the condition of the asset just prior to maintenance being performed.
  * @param maintCode Code for the type of maintenance performed.
@@ -274,7 +274,7 @@ extends
 /**
  * Test results, usually obtained by a lab or other independent organisation.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.ProcedureDataSet ProcedureDataSet]] Reference to the superclass object.
  * @param conclusion Conclusion drawn from test results.
  * @param specimenID Identifier of specimen used in inspection or test.
  * @param specimenToLabDateTime Date and time the specimen was received by the lab.

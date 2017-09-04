@@ -12,8 +12,8 @@ import ch.ninecode.cim.Parseable
  * @param sup Reference to the superclass object.
  * @param priority Priority of a measurement usage.
  *        Lower numbers have first priority.
- * @param AnalogValue The specific analog value used as a source.
- * @param ControlAreaGeneratingUnit The control aread generating unit to which the prioritized measurement assignment is applied.
+ * @param AnalogValue [[ch.ninecode.model.AnalogValue AnalogValue]] The specific analog value used as a source.
+ * @param ControlAreaGeneratingUnit [[ch.ninecode.model.ControlAreaGeneratingUnit ControlAreaGeneratingUnit]] The control aread generating unit to which the prioritized measurement assignment is applied.
  * @group ControlArea
  * @groupname ControlArea Package ControlArea
  * @groupdesc ControlArea The ControlArea package models area specifications which can be used for a variety of purposes.  The package as a whole models potentially overlapping control area specifications for the purpose of actual generation control, load forecast area load capture, or powerflow based analysis.
@@ -89,8 +89,8 @@ extends
  * @param sup Reference to the superclass object.
  * @param priority Priority of a measurement usage.
  *        Lower numbers have first priority.
- * @param AnalogValue The specific analog value used as a source.
- * @param TieFlow The tie flow of the alternate measurements.
+ * @param AnalogValue [[ch.ninecode.model.AnalogValue AnalogValue]] The specific analog value used as a source.
+ * @param TieFlow [[ch.ninecode.model.TieFlow TieFlow]] The tie flow of the alternate measurements.
  * @group ControlArea
  * @groupname ControlArea Package ControlArea
  * @groupdesc ControlArea The ControlArea package models area specifications which can be used for a variety of purposes.  The package as a whole models potentially overlapping control area specifications for the purpose of actual generation control, load forecast area load capture, or powerflow based analysis.
@@ -165,12 +165,12 @@ extends
  *
  * Note that any number of overlapping control area specifications can be superimposed on the physical model.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @param netInterchange The specified positive net interchange into the control area, i.e. positive sign means flow in to the area.
  * @param pTolerance Active power net interchange tolerance
  * @param typ The primary type of control area definition used to determine if this is used for automatic generation control, for planning interchange control, or other purposes.
  *        A control area specified with primary type of automatic generation control could still be forecast and used as an interchange area in power flow analysis.
- * @param EnergyArea The energy area that is forecast from this control area specification.
+ * @param EnergyArea [[ch.ninecode.model.EnergyArea EnergyArea]] The energy area that is forecast from this control area specification.
  * @group ControlArea
  * @groupname ControlArea Package ControlArea
  * @groupdesc ControlArea The ControlArea package models area specifications which can be used for a variety of purposes.  The package as a whole models potentially overlapping control area specifications for the purpose of actual generation control, load forecast area load capture, or powerflow based analysis.
@@ -249,9 +249,9 @@ extends
  *
  * This class is needed so that alternate control area definitions may include the same generating unit.   Note only one instance within a control area should reference a specific generating unit.
  *
- * @param sup Reference to the superclass object.
- * @param ControlArea The parent control area for the generating unit specifications.
- * @param GeneratingUnit The generating unit specified for this control area.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param ControlArea [[ch.ninecode.model.ControlArea ControlArea]] The parent control area for the generating unit specifications.
+ * @param GeneratingUnit [[ch.ninecode.model.GeneratingUnit GeneratingUnit]] The generating unit specified for this control area.
  *        Note that a control area should include a GeneratingUnit only once.
  * @group ControlArea
  * @groupname ControlArea Package ControlArea
@@ -324,8 +324,8 @@ extends
  * @param sup Reference to the superclass object.
  * @param positiveFlowIn True if the flow into the terminal (load convention) is also flow into the control area.
  *        For example, this attribute should be true if using the tie line terminal further away from the control area. For example to represent a tie to a shunt component (like a load or generator) in another area, this is the near end of a branch and this attribute would be specified as false.
- * @param ControlArea The control area of the tie flows.
- * @param Terminal The terminal to which this tie flow belongs.
+ * @param ControlArea [[ch.ninecode.model.ControlArea ControlArea]] The control area of the tie flows.
+ * @param Terminal [[ch.ninecode.model.Terminal Terminal]] The terminal to which this tie flow belongs.
  * @group ControlArea
  * @groupname ControlArea Package ControlArea
  * @groupdesc ControlArea The ControlArea package models area specifications which can be used for a variety of purposes.  The package as a whole models potentially overlapping control area specifications for the purpose of actual generation control, load forecast area load capture, or powerflow based analysis.

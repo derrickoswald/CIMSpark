@@ -100,8 +100,8 @@ extends
  *        NR - Non-Spinning Reserve Capacity;
  *        DAC - Day Ahead Capacity;
  *        DEC - Derate Capacity
- * @param AllocationResult <em>undocumented</em>
- * @param RegisteredResource <em>undocumented</em>
+ * @param AllocationResult [[ch.ninecode.model.AllocationResult AllocationResult]] <em>undocumented</em>
+ * @param RegisteredResource [[ch.ninecode.model.RegisteredResource RegisteredResource]] <em>undocumented</em>
  * @group MarketQualitySystem
  * @groupname MarketQualitySystem Package MarketQualitySystem
  * @groupdesc MarketQualitySystem Post-market accounting, calculation and meter data corrections to reduce invoicing errors and disputes. Reduces manual validation, verification and correction of transactional data that could affect market settlements. Republishing of market results with affected data corrected.
@@ -272,8 +272,8 @@ extends
  * Models Auxillary Values
  *
  * @param sup Reference to the superclass object.
- * @param RegisteredGenerator <em>undocumented</em>
- * @param RegisteredLoad <em>undocumented</em>
+ * @param RegisteredGenerator [[ch.ninecode.model.RegisteredGenerator RegisteredGenerator]] <em>undocumented</em>
+ * @param RegisteredLoad [[ch.ninecode.model.RegisteredLoad RegisteredLoad]] <em>undocumented</em>
  * @group MarketQualitySystem
  * @groupname MarketQualitySystem Package MarketQualitySystem
  * @groupdesc MarketQualitySystem Post-market accounting, calculation and meter data corrections to reduce invoicing errors and disputes. Reduces manual validation, verification and correction of transactional data that could affect market settlements. Republishing of market results with affected data corrected.
@@ -342,7 +342,7 @@ extends
 /**
  * Models Auxillary Values
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.AuxiliaryObject AuxiliaryObject]] Reference to the superclass object.
  * @param availUndispatchedQ <em>undocumented</em>
  * @param incrementalORAvail <em>undocumented</em>
  * @param maxExpostCapacity <em>undocumented</em>
@@ -537,8 +537,8 @@ extends
  * @param sup Reference to the superclass object.
  * @param energyTypeCode <em>undocumented</em>
  * @param expectedMwh <em>undocumented</em>
- * @param ExpectedEnergy <em>undocumented</em>
- * @param RegisteredResource <em>undocumented</em>
+ * @param ExpectedEnergy [[ch.ninecode.model.ExpectedEnergy ExpectedEnergy]] <em>undocumented</em>
+ * @param RegisteredResource [[ch.ninecode.model.RegisteredResource RegisteredResource]] <em>undocumented</em>
  * @group MarketQualitySystem
  * @groupname MarketQualitySystem Package MarketQualitySystem
  * @groupdesc MarketQualitySystem Post-market accounting, calculation and meter data corrections to reduce invoicing errors and disputes. Reduces manual validation, verification and correction of transactional data that could affect market settlements. Republishing of market results with affected data corrected.
@@ -851,8 +851,8 @@ extends
  * @param sup Reference to the superclass object.
  * @param price Utilizes the Market type.
  *        For DA, the price is hourly. For RTM the price is a 5 minute price.
- * @param AggregatedPnode <em>undocumented</em>
- * @param TradingHubPrice <em>undocumented</em>
+ * @param AggregatedPnode [[ch.ninecode.model.AggregatedPnode AggregatedPnode]] <em>undocumented</em>
+ * @param TradingHubPrice [[ch.ninecode.model.TradingHubPrice TradingHubPrice]] <em>undocumented</em>
  * @group MarketQualitySystem
  * @groupname MarketQualitySystem Package MarketQualitySystem
  * @groupdesc MarketQualitySystem Post-market accounting, calculation and meter data corrections to reduce invoicing errors and disputes. Reduces manual validation, verification and correction of transactional data that could affect market settlements. Republishing of market results with affected data corrected.

@@ -9,7 +9,7 @@ import ch.ninecode.cim.Parseable
 /**
  * Records activity for an entity at a point in time; activity may be for an event that has already occurred or for a planned activity.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param createdDateTime Date and time this activity record has been created (different from the 'status.dateTime', which is the time of a status change of the associated object, if applicable).
  * @param reason Reason for event resulting in this activity record, typically supplied when user initiated.
  * @param severity Severity level of event resulting in this activity record.
@@ -97,7 +97,7 @@ extends
  *
  * The specifics of the services are, in turn, defined via one or more service agreements.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param signDate Date this agreement was consummated among associated persons and/or organisations.
  * @param validityInterval Date and time interval this agreement is valid (from going into effect to termination).
  * @group Common
@@ -168,7 +168,7 @@ extends
 /**
  * Meeting time and location.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param callAhead True if requested to call customer when someone is about to arrive at their premises.
  * @param meetingInterval Date and time reserved for appointment.
  * @param Works All works for this appointment.
@@ -244,7 +244,7 @@ extends
 /**
  * Used to report details on creation, change or deletion of an entity or its configuration.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.ActivityRecord ActivityRecord]] Reference to the superclass object.
  * @param effectiveDateTime Date and time this event has or will become effective.
  * @param modifiedBy Source/initiator of modification.
  * @param remark Free text remarks.
@@ -355,7 +355,7 @@ extends
 /**
  * Coordinate reference system.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param crsUrn A Uniform Resource Name (URN) for the coordinate reference system (crs) used to define 'Location.
  *        PositionPoints'.
  * @group Common
@@ -422,9 +422,9 @@ extends
 /**
  * Group of people with specific skills, tools, and vehicles.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param status Status of this crew.
- * @param CrewType Type of this crew.
+ * @param CrewType [[ch.ninecode.model.CrewType CrewType]] Type of this crew.
  * @group Common
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
@@ -493,8 +493,8 @@ extends
 /**
  * Member of a crew.
  *
- * @param sup Reference to the superclass object.
- * @param Crew Crew to which this crew member belongs.
+ * @param sup [[ch.ninecode.model.OperationPersonRole OperationPersonRole]] Reference to the superclass object.
+ * @param Crew [[ch.ninecode.model.Crew Crew]] Crew to which this crew member belongs.
  * @group Common
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
@@ -561,7 +561,7 @@ extends
  *
  * This may be used to determine the type of work the crew can be assigned to. Examples include repair, tree trimming, switching, etc.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @group Common
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
@@ -625,7 +625,7 @@ extends
  *
  * It will frequently contain references to other objects, such as assets, people and power system resources.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param authorName Name of the author of this document.
  * @param comment Free text comment.
  * @param createdDateTime Date and time that this document was created.
@@ -845,7 +845,7 @@ extends
 /**
  * An object or a condition that is a danger for causing loss or perils to an asset and/or people.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param status Status of this hazard.
  * @param typ Type of this hazard.
  * @group Common
@@ -918,7 +918,7 @@ extends
  *
  * It can be defined with one or more postition points (coordinates) in a given coordinate system.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param direction (if applicable) Direction that allows field crews to quickly find a given asset.
  *        For a given location, such as a street address, this is the relative direction in which to find the asset. For example, a streetlight may be located at the 'NW' (northwest) corner of the customer's site, or a usage point may be located on the second floor of an apartment building.
  * @param electronicAddress Electronic address.
@@ -930,7 +930,7 @@ extends
  *        For example, PO Box address may have different ZIP code than that in the 'mainAddress'.
  * @param status Status of this location.
  * @param typ Classification by utility's corporate standards and practices, relative to the location itself (e.g., geographical, functional accounting, etc., not a given property that happens to exist at that location).
- * @param CoordinateSystem Coordinate system used to describe position points of this location.
+ * @param CoordinateSystem [[ch.ninecode.model.CoordinateSystem CoordinateSystem]] Coordinate system used to describe position points of this location.
  * @param Measurements <em>undocumented</em>
  * @group Common
  * @groupname Common Package Common
@@ -1036,7 +1036,7 @@ extends
 /**
  * Person role in the context of utility operations.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PersonRole PersonRole]] Reference to the superclass object.
  * @group Common
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
@@ -1098,7 +1098,7 @@ extends
 /**
  * Control room operator.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.OperationPersonRole OperationPersonRole]] Reference to the superclass object.
  * @group Common
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
@@ -1160,7 +1160,7 @@ extends
 /**
  * Organisation that might have roles as utility, contractor, supplier, manufacturer, customer, etc.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param electronicAddress Electronic address.
  * @param phone1 Phone number.
  * @param phone2 Additional phone number.
@@ -1251,8 +1251,8 @@ extends
 /**
  * Identifies a way in which an organisation may participate in the utility enterprise (e.g., customer, manufacturer, etc).
  *
- * @param sup Reference to the superclass object.
- * @param Organisation Organisation having this role.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param Organisation [[ch.ninecode.model.Organisation Organisation]] Organisation having this role.
  * @group Common
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
@@ -1317,10 +1317,10 @@ extends
 /**
  * Ownership of e.g. asset.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param share Share of this ownership.
- * @param Asset Asset that is object of this ownership.
- * @param AssetOwner Asset owner that is subject in this ownership.
+ * @param Asset [[ch.ninecode.model.Asset Asset]] Asset that is object of this ownership.
+ * @param AssetOwner [[ch.ninecode.model.AssetOwner AssetOwner]] Asset owner that is subject in this ownership.
  * @group Common
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
@@ -1393,7 +1393,7 @@ extends
 /**
  * General purpose information for name and other information to contact people.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param electronicAddress Electronic address.
  * @param firstName Person's first name.
  * @param landlinePhone Landline phone number.
@@ -1573,7 +1573,7 @@ extends
  * @param xPosition X axis position.
  * @param yPosition Y axis position.
  * @param zPosition (if applicable) Z axis position.
- * @param Location Location described by this position point.
+ * @param Location [[ch.ninecode.model.Location Location]] Location described by this position point.
  * @group Common
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
@@ -1811,12 +1811,12 @@ extends
 /**
  * An event to trigger one or more activities, such as reading a meter, recalculating a bill, requesting work, when generating units must be scheduled for maintenance, when a transformer is scheduled to be refurbished, etc.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param duration Duration of the scheduled event, for example, the time to ramp between values.
  * @param status <em>undocumented</em>
  * @param typ Type of scheduled event.
  * @param Assets <em>undocumented</em>
- * @param ScheduledEventData Specification for this scheduled event.
+ * @param ScheduledEventData [[ch.ninecode.model.ScheduledEventData ScheduledEventData]] Specification for this scheduled event.
  * @group Common
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
@@ -1901,7 +1901,7 @@ extends
  * @param estimatedWindow Estimated date and time for activity execution (with earliest possibility of activity initiation and latest possibility of activity completion).
  * @param requestedWindow Requested date and time interval for activity execution.
  * @param status <em>undocumented</em>
- * @param InspectionDataSet <em>undocumented</em>
+ * @param InspectionDataSet [[ch.ninecode.model.InspectionDataSet InspectionDataSet]] <em>undocumented</em>
  * @group Common
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
@@ -2335,14 +2335,14 @@ extends
 /**
  * A point in time within a sequence of points in time relative to a time schedule.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param dateTime Absolute date and time for this time point.
  *        For calendar-based time point, it is typically manually entered, while for interval-based or sequence-based time point it is derived.
  * @param relativeTimeInterval (if interval-based) A point in time relative to scheduled start time in 'TimeSchedule.scheduleInterval.start'.
  * @param sequenceNumber (if sequence-based) Relative sequence number for this time point.
  * @param status Status of this time point.
  * @param window Interval defining the window of time that this time point is valid (for example, seasonal, only on weekends, not on weekends, only 8:00 am to 5:00 pm, etc.).
- * @param TimeSchedule Time schedule owning this time point.
+ * @param TimeSchedule [[ch.ninecode.model.TimeSchedule TimeSchedule]] Time schedule owning this time point.
  * @group Common
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
@@ -2429,7 +2429,7 @@ extends
  *
  * Time schedule is used to perform a single-valued function of time. Use inherited 'type' attribute to give additional information on this schedule, such as: periodic (hourly, daily, weekly, monthly, etc.), day of the month, by date, calendar (specific times and dates).
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param disabled True if this schedule is deactivated (disabled).
  * @param offset The offset from midnight (i.e., 0 h, 0 min, 0 s) for the periodic time points to begin.
  *        For example, for an interval meter that is set up for five minute intervals ('recurrencePeriod'=300=5 min), setting 'offset'=120=2 min would result in scheduled events to read the meter executing at 2 min, 7 min, 12 min, 17 min, 22 min, 27 min, 32 min, 37 min, 42 min, 47 min, 52 min, and 57 min past each hour.
@@ -2611,7 +2611,7 @@ extends
  * @param ProcedureDataSets <em>undocumented</em>
  * @param PropertySpecification <em>undocumented</em>
  * @param RatingSpecification <em>undocumented</em>
- * @param Transaction Transaction for which this snapshot has been recorded.
+ * @param Transaction [[ch.ninecode.model.Transaction Transaction]] Transaction for which this snapshot has been recorded.
  * @group Common
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.

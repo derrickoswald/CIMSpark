@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>Outage - CIMReader 2.11-2.1.1-2.2.0 API - ch.ninecode.model.Outage</title>
-          <meta name="description" content="Outage - CIMReader 2.11 - 2.1.1 - 2.2.0 API - ch.ninecode.model.Outage" />
-          <meta name="keywords" content="Outage CIMReader 2.11 2.1.1 2.2.0 API ch.ninecode.model.Outage" />
+          <title>Outage - CIMReader 2.11-2.2.0-2.2.0 API - ch.ninecode.model.Outage</title>
+          <meta name="description" content="Outage - CIMReader 2.11 - 2.2.0 - 2.2.0 API - ch.ninecode.model.Outage" />
+          <meta name="keywords" content="Outage CIMReader 2.11 2.2.0 2.2.0 API ch.ninecode.model.Outage" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -52,9 +52,9 @@
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Document describing details of an active or planned outage in a part of the electrical network.</p><p>A non-planned outage may be created upon:
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">actualPeriod</dt><dd class="cmt"><p>Actual outage period; end of the period corresponds to the actual restoration time.</p></dd><dt class="param">cancelledDateTime</dt><dd class="cmt"><p>Date and time planned outage has been cancelled.</p></dd><dt class="param">cause</dt><dd class="cmt"><p>One or more causes of this outage.
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a> Reference to the superclass object.</p></dd><dt class="param">actualPeriod</dt><dd class="cmt"><p>Actual outage period; end of the period corresponds to the actual restoration time.</p></dd><dt class="param">cancelledDateTime</dt><dd class="cmt"><p>Date and time planned outage has been cancelled.</p></dd><dt class="param">cause</dt><dd class="cmt"><p>One or more causes of this outage.
        Note: At present, this is a free text; could be replaced with a separate associated class in case we have multiple causes (e.g. OutageCauseType, inheriting from IdentifiedObject).</p></dd><dt class="param">estimatedPeriod</dt><dd class="cmt"><p>Estimated outage period.
-       The start of the period makes sense in case of a planned outage only, whereas the end of the period corresponds to the estimated restoration time in general.</p></dd><dt class="param">isPlanned</dt><dd class="cmt"><p>True if planned, false otherwise (for example due to a breaker trip).</p></dd><dt class="param">summary</dt><dd class="cmt"><p>Summary counts of service points (customers) affected by this outage.</p></dd><dt class="param">Equipments</dt><dd class="cmt"><p>All equipments associated with this outage.</p></dd><dt class="param">Incident</dt><dd class="cmt"><p>Incident reported in trouble call that results in this outage.</p></dd><dt class="param">OutageSchedule</dt><dd class="cmt"><p>Outage schedule whose execution will result in this outage.</p></dd><dt class="param">UsagePoints</dt><dd class="cmt"><p>All usage points associated with this outage.</p></dd></dl><div class="toggleContainer block">
+       The start of the period makes sense in case of a planned outage only, whereas the end of the period corresponds to the estimated restoration time in general.</p></dd><dt class="param">isPlanned</dt><dd class="cmt"><p>True if planned, false otherwise (for example due to a breaker trip).</p></dd><dt class="param">summary</dt><dd class="cmt"><p>Summary counts of service points (customers) affected by this outage.</p></dd><dt class="param">Equipments</dt><dd class="cmt"><p>All equipments associated with this outage.</p></dd><dt class="param">Incident</dt><dd class="cmt"><p><a href="Incident.html" class="extype" name="ch.ninecode.model.Incident">Incident</a> Incident reported in trouble call that results in this outage.</p></dd><dt class="param">OutageSchedule</dt><dd class="cmt"><p><a href="OutageSchedule.html" class="extype" name="ch.ninecode.model.OutageSchedule">OutageSchedule</a> Outage schedule whose execution will result in this outage.</p></dd><dt class="param">UsagePoints</dt><dd class="cmt"><p>All usage points associated with this outage.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -126,9 +126,9 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">actualPeriod</dt><dd class="cmt"><p>Actual outage period; end of the period corresponds to the actual restoration time.</p></dd><dt class="param">cancelledDateTime</dt><dd class="cmt"><p>Date and time planned outage has been cancelled.</p></dd><dt class="param">cause</dt><dd class="cmt"><p>One or more causes of this outage.
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a> Reference to the superclass object.</p></dd><dt class="param">actualPeriod</dt><dd class="cmt"><p>Actual outage period; end of the period corresponds to the actual restoration time.</p></dd><dt class="param">cancelledDateTime</dt><dd class="cmt"><p>Date and time planned outage has been cancelled.</p></dd><dt class="param">cause</dt><dd class="cmt"><p>One or more causes of this outage.
        Note: At present, this is a free text; could be replaced with a separate associated class in case we have multiple causes (e.g. OutageCauseType, inheriting from IdentifiedObject).</p></dd><dt class="param">estimatedPeriod</dt><dd class="cmt"><p>Estimated outage period.
-       The start of the period makes sense in case of a planned outage only, whereas the end of the period corresponds to the estimated restoration time in general.</p></dd><dt class="param">isPlanned</dt><dd class="cmt"><p>True if planned, false otherwise (for example due to a breaker trip).</p></dd><dt class="param">summary</dt><dd class="cmt"><p>Summary counts of service points (customers) affected by this outage.</p></dd><dt class="param">Equipments</dt><dd class="cmt"><p>All equipments associated with this outage.</p></dd><dt class="param">Incident</dt><dd class="cmt"><p>Incident reported in trouble call that results in this outage.</p></dd><dt class="param">OutageSchedule</dt><dd class="cmt"><p>Outage schedule whose execution will result in this outage.</p></dd><dt class="param">UsagePoints</dt><dd class="cmt"><p>All usage points associated with this outage.</p></dd></dl></div>
+       The start of the period makes sense in case of a planned outage only, whereas the end of the period corresponds to the estimated restoration time in general.</p></dd><dt class="param">isPlanned</dt><dd class="cmt"><p>True if planned, false otherwise (for example due to a breaker trip).</p></dd><dt class="param">summary</dt><dd class="cmt"><p>Summary counts of service points (customers) affected by this outage.</p></dd><dt class="param">Equipments</dt><dd class="cmt"><p>All equipments associated with this outage.</p></dd><dt class="param">Incident</dt><dd class="cmt"><p><a href="Incident.html" class="extype" name="ch.ninecode.model.Incident">Incident</a> Incident reported in trouble call that results in this outage.</p></dd><dt class="param">OutageSchedule</dt><dd class="cmt"><p><a href="OutageSchedule.html" class="extype" name="ch.ninecode.model.OutageSchedule">OutageSchedule</a> Outage schedule whose execution will result in this outage.</p></dd><dt class="param">UsagePoints</dt><dd class="cmt"><p>All usage points associated with this outage.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -240,7 +240,7 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Incident reported in trouble call that results in this outage.</p>
+      <p class="shortcomment cmt"><a href="Incident.html" class="extype" name="ch.ninecode.model.Incident">Incident</a> Incident reported in trouble call that results in this outage.</p>
     </li><li name="ch.ninecode.model.Outage#OutageSchedule" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="OutageSchedule:String"></a>
       <a id="OutageSchedule:String"></a>
@@ -257,7 +257,7 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Outage schedule whose execution will result in this outage.</p>
+      <p class="shortcomment cmt"><a href="OutageSchedule.html" class="extype" name="ch.ninecode.model.OutageSchedule">OutageSchedule</a> Outage schedule whose execution will result in this outage.</p>
     </li><li name="ch.ninecode.model.Outage#UsagePoints" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="UsagePoints:List[String]"></a>
       <a id="UsagePoints:List[String]"></a>
@@ -1178,7 +1178,7 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Reference to the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Reference to the superclass object.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="ch.ninecode.model.Outage">Outage</a> → <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></dd></dl></div>
+      <p class="shortcomment cmt"><a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a> Reference to the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p><a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a> Reference to the superclass object.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="ch.ninecode.model.Outage">Outage</a> → <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>

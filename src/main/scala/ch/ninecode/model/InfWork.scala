@@ -11,7 +11,7 @@ import ch.ninecode.cim.Parseable
  *
  * For example, local authority permission for road works.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.WorkDocument WorkDocument]] Reference to the superclass object.
  * @param applicationNumber Permit application number that is used by municipality, state, province, etc.
  * @param effectiveDate Date that permit became official.
  * @param expirationDate Permit expiration date.
@@ -109,7 +109,7 @@ extends
  *
  * TimeSchedules may be set up directly for Assignments or indirectly via the associated WorkTask. Note that these associations are all inherited through the recursive relationship on Document.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.WorkDocument WorkDocument]] Reference to the superclass object.
  * @param effectivePeriod Period between the assignment becoming effective and its expiration.
  * @group InfWork
  * @groupname InfWork Package InfWork
@@ -185,7 +185,7 @@ extends
 /**
  * Business justification for capital expenditures, usually addressing operations and maintenance costs as well.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.WorkDocument WorkDocument]] Reference to the superclass object.
  * @param corporateCode A codified representation of the business case (i.e., codes for highway relocation, replace substation transformers, etc.).
  * @group InfWork
  * @groupname InfWork Package InfWork
@@ -261,7 +261,7 @@ extends
 /**
  * Allowed actions: Install, Remove, Transfer, Abandon, etc.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.WorkIdentifiedObject WorkIdentifiedObject]] Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @group InfWork
  * @groupname InfWork Package InfWork
@@ -337,7 +337,7 @@ extends
 /**
  * Compatible unit for various types of assets such as transformers switches, substation fences, poles, etc..
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.WorkIdentifiedObject WorkIdentifiedObject]] Reference to the superclass object.
  * @param quantity Quantity of the type asset within the CU.
  * @param status <em>undocumented</em>
  * @param typeAssetCode The code for this type of asset.
@@ -428,7 +428,7 @@ extends
 /**
  * Compatible unit contractor item.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.WorkIdentifiedObject WorkIdentifiedObject]] Reference to the superclass object.
  * @param activityCode Activity code identifies a specific and distinguishable unit of work.
  * @param bidAmount The amount that a given contractor will charge for performing this unit of work.
  * @param status <em>undocumented</em>
@@ -519,7 +519,7 @@ extends
 /**
  * A Compatible Unit Group identifies a set of compatible units which may be jointly utilized for estimating and designating jobs.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.WorkIdentifiedObject WorkIdentifiedObject]] Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @param ChildCUGroups <em>undocumented</em>
  * @group InfWork
@@ -600,7 +600,7 @@ extends
 /**
  * Labor code associated with various compatible unit labor items.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.WorkIdentifiedObject WorkIdentifiedObject]] Reference to the superclass object.
  * @param code Labor code.
  * @param status <em>undocumented</em>
  * @group InfWork
@@ -681,12 +681,12 @@ extends
 /**
  * Compatible unit labor item.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.WorkIdentifiedObject WorkIdentifiedObject]] Reference to the superclass object.
  * @param activityCode Activity code identifies a specific and distinguishable unit of work.
  * @param laborDuration Estimated time to perform work.
  * @param laborRate The labor rate applied for work.
  * @param status <em>undocumented</em>
- * @param CULaborCode <em>undocumented</em>
+ * @param CULaborCode [[ch.ninecode.model.CULaborCode CULaborCode]] <em>undocumented</em>
  * @param CompatibleUnits <em>undocumented</em>
  * @param QualificationRequirements <em>undocumented</em>
  * @group InfWork
@@ -789,12 +789,12 @@ extends
  *
  * For example, nuts, bolts, brackets, glue, etc.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.WorkIdentifiedObject WorkIdentifiedObject]] Reference to the superclass object.
  * @param corporateCode Code for material.
  * @param quantity Quantity of the TypeMaterial for this CU, used to determine estimated costs based on a per unit cost or a cost per unit length specified in the TypeMaterial.
  * @param status <em>undocumented</em>
  * @param CompatibleUnits <em>undocumented</em>
- * @param TypeMaterial <em>undocumented</em>
+ * @param TypeMaterial [[ch.ninecode.model.TypeMaterial TypeMaterial]] <em>undocumented</em>
  * @group InfWork
  * @groupname InfWork Package InfWork
  * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
@@ -885,7 +885,7 @@ extends
 /**
  * Compatible unit for various types of WorkEquipmentAssets, including vehicles.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.WorkIdentifiedObject WorkIdentifiedObject]] Reference to the superclass object.
  * @param equipCode The equipment type code.
  * @param rate Standard usage rate for the type of vehicle.
  * @param status <em>undocumented</em>
@@ -981,13 +981,13 @@ extends
 /**
  * Capabilities of a crew.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.WorkIdentifiedObject WorkIdentifiedObject]] Reference to the superclass object.
  * @param performanceFactor Capability performance factor.
  * @param status <em>undocumented</em>
  * @param typ Classification by utility's work management standards and practices.
  * @param validityInterval Date and time interval for which this capability is valid (when it became effective and when it expires).
  * @param Crafts <em>undocumented</em>
- * @param Crew <em>undocumented</em>
+ * @param Crew [[ch.ninecode.model.Crew Crew]] <em>undocumented</em>
  * @param WorkTasks <em>undocumented</em>
  * @group InfWork
  * @groupname InfWork Package InfWork
@@ -1087,16 +1087,16 @@ extends
 /**
  * A pre-planned job model containing labor, material, and accounting requirements for standardized job planning.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.WorkDocument WorkDocument]] Reference to the superclass object.
  * @param estCost Estimated total cost for perfoming CU.
  * @param quantity The quantity, unit of measure, and multiplier at the CU level that applies to the materials.
- * @param CUAllowableAction <em>undocumented</em>
+ * @param CUAllowableAction [[ch.ninecode.model.CUAllowableAction CUAllowableAction]] <em>undocumented</em>
  * @param CUAssets <em>undocumented</em>
- * @param CUGroup <em>undocumented</em>
- * @param CostType <em>undocumented</em>
+ * @param CUGroup [[ch.ninecode.model.CUGroup CUGroup]] <em>undocumented</em>
+ * @param CostType [[ch.ninecode.model.CostType CostType]] <em>undocumented</em>
  * @param DesignLocationCUs <em>undocumented</em>
  * @param Procedures <em>undocumented</em>
- * @param PropertyUnit <em>undocumented</em>
+ * @param PropertyUnit [[ch.ninecode.model.PropertyUnit PropertyUnit]] <em>undocumented</em>
  * @group InfWork
  * @groupname InfWork Package InfWork
  * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
@@ -1203,7 +1203,7 @@ extends
 /**
  * This is to specify the various condition factors for a design that may alter the cost estimate or the allocation.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.WorkIdentifiedObject WorkIdentifiedObject]] Reference to the superclass object.
  * @param cfValue The actual value of the condition factor, such as labor flat fee or percentage.
  * @param kind Kind of this condition factor.
  * @param status <em>undocumented</em>
@@ -1289,14 +1289,14 @@ extends
 /**
  * Contractor information for work task.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.WorkIdentifiedObject WorkIdentifiedObject]] Reference to the superclass object.
  * @param activityCode Activity code identifies a specific and distinguishable unit of work.
  * @param bidAmount The amount that a given contractor will charge for performing this unit of work.
  * @param cost The total amount charged.
  * @param status <em>undocumented</em>
  * @param ErpPayables <em>undocumented</em>
- * @param WorkCostDetail <em>undocumented</em>
- * @param WorkTask <em>undocumented</em>
+ * @param WorkCostDetail [[ch.ninecode.model.WorkCostDetail WorkCostDetail]] <em>undocumented</em>
+ * @param WorkTask [[ch.ninecode.model.WorkTask WorkTask]] <em>undocumented</em>
  * @group InfWork
  * @groupname InfWork Package InfWork
  * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
@@ -1397,7 +1397,7 @@ extends
  *
  * Examples include: material components, building in service, coal sales, overhead, etc.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.WorkIdentifiedObject WorkIdentifiedObject]] Reference to the superclass object.
  * @param amountAssignable True if an amount can be assigned to the resource element (e.g., building in service, transmission plant, software development capital); false otherwise (e.g., internal labor, material components).
  * @param code A codified representation of the resource element.
  * @param level The level of the resource element in the hierarchy of resource elements (recursive relationship).
@@ -1505,13 +1505,13 @@ extends
  *
  * Note that the Version of design is the revision attribute that is inherited from Document.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.WorkDocument WorkDocument]] Reference to the superclass object.
  * @param costEstimate Estimated cost (not price) of design.
  * @param kind Kind of this design.
  * @param price Price to customer for implementing design.
  * @param ConditionFactors <em>undocumented</em>
- * @param ErpQuoteLineItem <em>undocumented</em>
- * @param Work <em>undocumented</em>
+ * @param ErpQuoteLineItem [[ch.ninecode.model.ErpQuoteLineItem ErpQuoteLineItem]] <em>undocumented</em>
+ * @param Work [[ch.ninecode.model.Work Work]] <em>undocumented</em>
  * @group InfWork
  * @groupname InfWork Package InfWork
  * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
@@ -1608,7 +1608,7 @@ extends
  *
  * This includes points and spans.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.WorkIdentifiedObject WorkIdentifiedObject]] Reference to the superclass object.
  * @param spanLength The legth of the span from the previous pole to this pole.
  * @param status <em>undocumented</em>
  * @param ConditionFactors <em>undocumented</em>
@@ -1694,7 +1694,7 @@ extends
 /**
  * Compatible unit at a given design location.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.WorkIdentifiedObject WorkIdentifiedObject]] Reference to the superclass object.
  * @param cuAccount A code that helps direct accounting (capital, expense, or accounting treatment).
  * @param cuAction A code that instructs the crew what action to perform.
  * @param cuQuantity The quantity of the CU being assigned to this location.
@@ -1705,7 +1705,7 @@ extends
  * @param toBeEnergised True if associated electrical equipment is intended to be energized while work is being performed.
  * @param CUGroups <em>undocumented</em>
  * @param ConditionFactors <em>undocumented</em>
- * @param DesignLocation <em>undocumented</em>
+ * @param DesignLocation [[ch.ninecode.model.DesignLocation DesignLocation]] <em>undocumented</em>
  * @param Designs <em>undocumented</em>
  * @param WorkTasks <em>undocumented</em>
  * @group InfWork
@@ -1828,7 +1828,7 @@ extends
  *
  * Questions may be predefined or ad hoc.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.WorkDocument WorkDocument]] Reference to the superclass object.
  * @param answer Answer to question.
  * @param answerDateTime The date and time the quesiton was answered.
  * @param answerRemark Remarks to qualify the answer.
@@ -1935,15 +1935,15 @@ extends
 /**
  * Labor used for work order.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.WorkIdentifiedObject WorkIdentifiedObject]] Reference to the superclass object.
  * @param activityCode Activity code identifies a specific and distinguishable unit of work.
  * @param cost Total cost for labor.
  *        Note that this may not be able to be derived from labor rate and time charged.
  * @param laborDuration Time required to perform work.
  * @param laborRate The labor rate applied for work.
  * @param status <em>undocumented</em>
- * @param WorkCostDetail <em>undocumented</em>
- * @param WorkTask <em>undocumented</em>
+ * @param WorkCostDetail [[ch.ninecode.model.WorkCostDetail WorkCostDetail]] <em>undocumented</em>
+ * @param WorkTask [[ch.ninecode.model.WorkTask WorkTask]] <em>undocumented</em>
  * @group InfWork
  * @groupname InfWork Package InfWork
  * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
@@ -2044,16 +2044,16 @@ extends
  *
  * Examples include rental equipment, labor, materials, contractor costs, permits - anything not covered in a CU.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.WorkIdentifiedObject WorkIdentifiedObject]] Reference to the superclass object.
  * @param account This drives the accounting treatment for this misc. item.
  * @param costPerUnit The cost per unit for this misc. item.
  * @param costType The cost type for accounting, such as material, labor, vehicle, contractor, equipment, overhead.
  * @param externalRefID External reference identifier (e.g. purchase order number, serial number) .
  * @param quantity The quantity of the misc. item being assigned to this location.
  * @param status <em>undocumented</em>
- * @param DesignLocation <em>undocumented</em>
- * @param WorkCostDetail <em>undocumented</em>
- * @param WorkTask <em>undocumented</em>
+ * @param DesignLocation [[ch.ninecode.model.DesignLocation DesignLocation]] <em>undocumented</em>
+ * @param WorkCostDetail [[ch.ninecode.model.WorkCostDetail WorkCostDetail]] <em>undocumented</em>
+ * @param WorkTask [[ch.ninecode.model.WorkTask WorkTask]] <em>undocumented</em>
  * @group InfWork
  * @groupname InfWork Package InfWork
  * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
@@ -2160,7 +2160,7 @@ extends
 /**
  * This document provides information for non-standard items like customer contributions (e.g., customer digs trench), vouchers (e.g., credit), and contractor bids.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.WorkDocument WorkDocument]] Reference to the superclass object.
  * @param amount The projected cost for this item.
  * @group InfWork
  * @groupname InfWork Package InfWork
@@ -2236,11 +2236,11 @@ extends
 /**
  * A set of tasks is required to implement a design.
  *
- * @param sup Reference to the superclass object.
- * @param Design <em>undocumented</em>
- * @param OverheadCost <em>undocumented</em>
+ * @param sup [[ch.ninecode.model.WorkTask WorkTask]] Reference to the superclass object.
+ * @param Design [[ch.ninecode.model.Design Design]] <em>undocumented</em>
+ * @param OverheadCost [[ch.ninecode.model.OverheadCost OverheadCost]] <em>undocumented</em>
  * @param QualificationRequirements <em>undocumented</em>
- * @param WorkFlowStep <em>undocumented</em>
+ * @param WorkFlowStep [[ch.ninecode.model.WorkFlowStep WorkFlowStep]] <em>undocumented</em>
  * @group InfWork
  * @groupname InfWork Package InfWork
  * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
@@ -2327,7 +2327,7 @@ extends
 /**
  * A request for other utilities to mark their underground facilities prior to commencement of construction and/or maintenance.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.WorkDocument WorkDocument]] Reference to the superclass object.
  * @param explosivesUsed True if explosives have been or are planned to be used.
  * @param markedIndicator True if work location has been marked, for example for a dig area.
  * @param markingInstruction Instructions for marking a dig area, if applicable.
@@ -2413,7 +2413,7 @@ extends
 /**
  * Overhead cost applied to work order.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.WorkIdentifiedObject WorkIdentifiedObject]] Reference to the superclass object.
  * @param code Overhead code.
  * @param cost The overhead cost to be applied.
  * @param status <em>undocumented</em>
@@ -2501,10 +2501,10 @@ extends
  *
  * For construction projects and maintenance projects, multiple phases may be performed.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.WorkDocument WorkDocument]] Reference to the superclass object.
  * @param budget Overall project budget.
- * @param BusinessCase <em>undocumented</em>
- * @param ErpProjectAccounting <em>undocumented</em>
+ * @param BusinessCase [[ch.ninecode.model.BusinessCase BusinessCase]] <em>undocumented</em>
+ * @param ErpProjectAccounting [[ch.ninecode.model.ErpProjectAccounting ErpProjectAccounting]] <em>undocumented</em>
  * @param ParentProject <em>undocumented</em>
  * @group InfWork
  * @groupname InfWork Package InfWork
@@ -2592,7 +2592,7 @@ extends
 /**
  * Unit of property for reporting purposes.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.WorkIdentifiedObject WorkIdentifiedObject]] Reference to the superclass object.
  * @param accountingUsage A code that identifies appropriate type of property accounts such as distribution, streetlgihts, communications.
  * @param activityCode Activity code identifies a specific and distinguishable work action.
  * @param propertyAccount Used for property record accounting.
@@ -2689,7 +2689,7 @@ extends
 /**
  * Certain skills are required and must be certified in order for a person (typically a member of a crew) to be qualified to work on types of equipment.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.WorkIdentifiedObject WorkIdentifiedObject]] Reference to the superclass object.
  * @param qualificationID Qualification identifier.
  * @param Specifications <em>undocumented</em>
  * @group InfWork
@@ -2772,7 +2772,7 @@ extends
  *
  * For example, fire protection and scaffolding.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.WorkDocument WorkDocument]] Reference to the superclass object.
  * @param referenceNumber External reference to regulation, if applicable.
  * @group InfWork
  * @groupname InfWork Package InfWork
@@ -2848,7 +2848,7 @@ extends
 /**
  * The patterns of shifts worked by people or crews.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.WorkIdentifiedObject WorkIdentifiedObject]] Reference to the superclass object.
  * @param assignmentType Type of assignement intended to be worked on this shift, for example, temporary, standard, etc.
  * @param cycleCount Number of cycles for a temporary shift.
  * @param status <em>undocumented</em>
@@ -2941,7 +2941,7 @@ extends
  *
  * Any number of MaterialItems manufactured by various vendors may be used to perform this TypeMaterial.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.WorkDocument WorkDocument]] Reference to the superclass object.
  * @param costType The type of cost to which this Material Item belongs.
  * @param estUnitCost The estimated unit cost of this type of material, either for a unit cost or cost per unit length.
  *        Cost is for material or asset only and does not include labor to install/construct or configure it.
@@ -3035,9 +3035,9 @@ extends
  *
  * The way is described in text in the inheritied description attribute.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.WorkIdentifiedObject WorkIdentifiedObject]] Reference to the superclass object.
  * @param status <em>undocumented</em>
- * @param WorkTask <em>undocumented</em>
+ * @param WorkTask [[ch.ninecode.model.WorkTask WorkTask]] <em>undocumented</em>
  * @group InfWork
  * @groupname InfWork Package InfWork
  * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
@@ -3116,18 +3116,18 @@ extends
 /**
  * A collection of all of the individual cost items collected from multiple sources.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.WorkDocument WorkDocument]] Reference to the superclass object.
  * @param amount Amount in designated currency for work, either a total or an individual element.
  *        As defined in the attribute "type," multiple instances are applicable to each work for: planned cost, actual cost, authorized cost, budgeted cost, forecasted cost, other.
  * @param isDebit True if 'amount' is a debit, false if it is a credit.
  * @param transactionDateTime Date and time that 'amount' is posted to the work.
- * @param CostType <em>undocumented</em>
- * @param Design <em>undocumented</em>
- * @param ErpProjectAccounting <em>undocumented</em>
- * @param OverheadCost <em>undocumented</em>
+ * @param CostType [[ch.ninecode.model.CostType CostType]] <em>undocumented</em>
+ * @param Design [[ch.ninecode.model.Design Design]] <em>undocumented</em>
+ * @param ErpProjectAccounting [[ch.ninecode.model.ErpProjectAccounting ErpProjectAccounting]] <em>undocumented</em>
+ * @param OverheadCost [[ch.ninecode.model.OverheadCost OverheadCost]] <em>undocumented</em>
  * @param PropertyUnits <em>undocumented</em>
- * @param WorkCostSummary <em>undocumented</em>
- * @param WorkTask <em>undocumented</em>
+ * @param WorkCostSummary [[ch.ninecode.model.WorkCostSummary WorkCostSummary]] <em>undocumented</em>
+ * @param WorkTask [[ch.ninecode.model.WorkTask WorkTask]] <em>undocumented</em>
  * @param Works <em>undocumented</em>
  * @group InfWork
  * @groupname InfWork Package InfWork
@@ -3245,8 +3245,8 @@ extends
  *
  * For example, total labor.
  *
- * @param sup Reference to the superclass object.
- * @param WorkCostDetail <em>undocumented</em>
+ * @param sup [[ch.ninecode.model.WorkDocument WorkDocument]] Reference to the superclass object.
+ * @param WorkCostDetail [[ch.ninecode.model.WorkCostDetail WorkCostDetail]] <em>undocumented</em>
  * @group InfWork
  * @groupname InfWork Package InfWork
  * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
@@ -3323,7 +3323,7 @@ extends
  *
  * If any subclass gets normative and needs inheritance, it will inherit directly from Document.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @group InfWork
  * @groupname InfWork Package InfWork
  * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
@@ -3395,10 +3395,10 @@ extends
 /**
  * A pre-defined set of work steps for a given type of work.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.WorkIdentifiedObject WorkIdentifiedObject]] Reference to the superclass object.
  * @param sequenceNumber Used to define dependencies of each work flow step, which is for the instance of WorkTask associated with a given instance of WorkFlow.
  * @param status <em>undocumented</em>
- * @param Work <em>undocumented</em>
+ * @param Work [[ch.ninecode.model.Work Work]] <em>undocumented</em>
  * @group InfWork
  * @groupname InfWork Package InfWork
  * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
@@ -3483,7 +3483,7 @@ extends
  *
  * If any subclass gets normative and needs inheritance, it will inherit directly from IdentifiedObject.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @group InfWork
  * @groupname InfWork Package InfWork
  * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
@@ -3555,7 +3555,7 @@ extends
 /**
  * A type of ActivityRecord that records information about the status of an item, such as a Work or WorkTask, at a point in time.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.ActivityRecord ActivityRecord]] Reference to the superclass object.
  * @param percentComplete Estimated percentage of completion of this individual work task or overall work order.
  * @group InfWork
  * @groupname InfWork Package InfWork

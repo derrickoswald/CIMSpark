@@ -11,7 +11,7 @@ import ch.ninecode.cim.Parseable
  *
  * Identifies interval
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
  * @group InfMarketResults
  * @groupname InfMarketResults Package InfMarketResults
  */
@@ -77,8 +77,8 @@ extends
  * @param sup Reference to the superclass object.
  * @param baseMW Net Actual MW Flow
  * @param clearedValue Net Dispatched MW
- * @param Flowgate <em>undocumented</em>
- * @param InterTieClearing <em>undocumented</em>
+ * @param Flowgate [[ch.ninecode.model.Flowgate Flowgate]] <em>undocumented</em>
+ * @param InterTieClearing [[ch.ninecode.model.InterTieClearing InterTieClearing]] <em>undocumented</em>
  * @group InfMarketResults
  * @groupname InfMarketResults Package InfMarketResults
  */
@@ -154,7 +154,7 @@ extends
 /**
  * Market case clearing results are posted for a given settlement period.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
  * @param caseType Settlement period:
  *        'DA - Bid-in'
  *        'DA - Reliability'
@@ -237,7 +237,7 @@ extends
 /**
  * Binding security constrained clearing results posted for a given settlement period.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
  * @param mwFlow Optimal MW flow
  * @param mwLimit Binding MW limit.
  * @param shadowPrice Security constraint shadow price.

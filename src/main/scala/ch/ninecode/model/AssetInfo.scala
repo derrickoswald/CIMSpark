@@ -9,7 +9,7 @@ import ch.ninecode.cim.Parseable
 /**
  * Busbar section data.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.AssetInfo AssetInfo]] Reference to the superclass object.
  * @param ratedCurrent Rated current.
  * @param ratedVoltage Rated voltage.
  * @group AssetInfo
@@ -80,7 +80,7 @@ extends
 /**
  * Cable data.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.WireInfo WireInfo]] Reference to the superclass object.
  * @param constructionKind Kind of construction of this cable.
  * @param diameterOverCore Diameter over the core, including any semi-con screen; should be the insulating layer's inside diameter.
  * @param diameterOverInsulation Diameter over the insulating layer, excluding outer screen.
@@ -191,7 +191,7 @@ extends
 /**
  * Concentric neutral cable data.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.CableInfo CableInfo]] Reference to the superclass object.
  * @param diameterOverNeutral Diameter over the concentric neutral strands.
  * @param neutralStrandCount Number of concentric neutral strands.
  * @param neutralStrandGmr Geometric mean radius of the neutral strand.
@@ -279,7 +279,7 @@ extends
  *
  * They include exciting current and core loss measurements from applying voltage to one winding. The excitation may be positive sequence or zero sequence. The test may be repeated at different voltages to measure saturation.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.TransformerTest TransformerTest]] Reference to the superclass object.
  * @param energisedEndVoltage Voltage applied to the winding (end) during test.
  * @param excitingCurrent Exciting current measured from a positive-sequence or single-phase excitation test.
  * @param excitingCurrentZero Exciting current measured from a zero-sequence open-circuit excitation test.
@@ -372,7 +372,7 @@ extends
  *
  * They include induced voltage and phase shift measurements on open-circuit windings, with voltage applied to the energised end. For three-phase windings, the excitation can be a positive sequence (the default) or a zero sequence.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.TransformerTest TransformerTest]] Reference to the superclass object.
  * @param energisedEndStep Tap step number for the energised end of the test pair.
  * @param energisedEndVoltage Voltage applied to the winding (end) during test.
  * @param openEndStep Tap step number for the open end of the test pair.
@@ -468,7 +468,7 @@ extends
 /**
  * Overhead wire data.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.WireInfo WireInfo]] Reference to the superclass object.
  * @group AssetInfo
  * @groupname AssetInfo Package AssetInfo
  * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
@@ -530,7 +530,7 @@ extends
 /**
  * Set of power transformer data, from an equipment library.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.AssetInfo AssetInfo]] Reference to the superclass object.
  * @group AssetInfo
  * @groupname AssetInfo Package AssetInfo
  * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
@@ -594,7 +594,7 @@ extends
  *
  * They include load losses and leakage impedances. For three-phase windings, the excitation can be a positive sequence (the default) or a zero sequence. There shall be at least one grounded winding.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.TransformerTest TransformerTest]] Reference to the superclass object.
  * @param energisedEndStep Tap step number for the energised end of the test pair.
  * @param groundedEndStep Tap step number for the grounded end of the test pair.
  * @param leakageImpedance Leakage impedance measured from a positive-sequence or single-phase short-circuit test.
@@ -691,12 +691,12 @@ extends
 /**
  * Properties of shunt capacitor, shunt reactor or switchable bank of shunt capacitor or reactor assets.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.AssetInfo AssetInfo]] Reference to the superclass object.
  * @param maxPowerLoss Maximum allowed apparent power loss.
  * @param ratedCurrent Rated current.
  * @param ratedReactivePower Rated reactive power.
  * @param ratedVoltage Rated voltage.
- * @param ShuntCompensatorControl <em>undocumented</em>
+ * @param ShuntCompensatorControl [[ch.ninecode.model.ShuntCompensatorControl ShuntCompensatorControl]] <em>undocumented</em>
  * @group AssetInfo
  * @groupname AssetInfo Package AssetInfo
  * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
@@ -777,7 +777,7 @@ extends
 /**
  * Switch data.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.AssetInfo AssetInfo]] Reference to the superclass object.
  * @param breakingCapacity The maximum fault current a breaking device can break safely under prescribed conditions of use.
  * @param isSinglePhase If true, it is a single phase switch.
  * @param isUnganged If true, the switch is not ganged (i.e., a switch phase may be operated separately from other phases).
@@ -863,7 +863,7 @@ extends
 /**
  * Tap changer data.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.AssetInfo AssetInfo]] Reference to the superclass object.
  * @param bil Basic Insulation Level (BIL) expressed as the impulse crest voltage of a nominal wave, typically 1.2 X 50 microsecond.
  *        This is a measure of the ability of the insulation to withstand very high voltage surges.
  * @param ctRating Built-in current transformer primary rating.
@@ -1000,7 +1000,7 @@ extends
 /**
  * Tape shield cable data.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.CableInfo CableInfo]] Reference to the superclass object.
  * @param tapeLap Percentage of the tape shield width that overlaps in each wrap, typically 10% to 25%.
  * @param tapeThickness Thickness of the tape shield, before wrapping.
  * @group AssetInfo
@@ -1071,7 +1071,7 @@ extends
 /**
  * Transformer end data.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.AssetInfo AssetInfo]] Reference to the superclass object.
  * @param connectionKind Kind of connection.
  * @param emergencyS Apparent power that the winding can carry under emergency conditions (also called long-term emergency power).
  * @param endNumber Number for this transformer end, corresponding to the end's order in the PowerTransformer.vectorGroup attribute.
@@ -1086,8 +1086,8 @@ extends
  * @param CoreAdmittance Core admittance calculated from this transformer end datasheet, representing magnetising current and core losses.
  *        The full values of the transformer should be supplied for one transformer end info only.
  * @param ToMeshImpedances All mesh impedances between this 'from' and other 'to' transformer ends.
- * @param TransformerStarImpedance Transformer star impedance calculated from this transformer end datasheet.
- * @param TransformerTankInfo Transformer tank data that this end description is part of.
+ * @param TransformerStarImpedance [[ch.ninecode.model.TransformerStarImpedance TransformerStarImpedance]] Transformer star impedance calculated from this transformer end datasheet.
+ * @param TransformerTankInfo [[ch.ninecode.model.TransformerTankInfo TransformerTankInfo]] Transformer tank data that this end description is part of.
  * @group AssetInfo
  * @groupname AssetInfo Package AssetInfo
  * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
@@ -1200,8 +1200,8 @@ extends
 /**
  * Set of transformer tank data, from an equipment library.
  *
- * @param sup Reference to the superclass object.
- * @param PowerTransformerInfo Power transformer data that this tank description is part of.
+ * @param sup [[ch.ninecode.model.AssetInfo AssetInfo]] Reference to the superclass object.
+ * @param PowerTransformerInfo [[ch.ninecode.model.PowerTransformerInfo PowerTransformerInfo]] Power transformer data that this tank description is part of.
  * @group AssetInfo
  * @groupname AssetInfo Package AssetInfo
  * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
@@ -1266,7 +1266,7 @@ extends
 /**
  * Test result for transformer ends, such as short-circuit, open-circuit (excitation) or no-load test.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param basePower Base power at which the tests are conducted, usually equal to the rateds of one of the involved transformer ends.
  * @param temperature Temperature at which the test is conducted.
  * @group AssetInfo
@@ -1337,7 +1337,7 @@ extends
 /**
  * Wire data that can be specified per line segment phase, or for the line segment as a whole in case its phases all have the same wire characteristics.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.AssetInfo AssetInfo]] Reference to the superclass object.
  * @param coreRadius (if there is a different core material) Radius of the central core.
  * @param coreStrandCount (if used) Number of strands in the steel core.
  * @param gmr Geometric mean radius.
@@ -1479,11 +1479,11 @@ extends
 /**
  * Identification, spacing and configuration of the wires of a conductor with respect to a structure.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param phase Single phase or neutral designation for the wire with this position.
  * @param xCoord Signed horizontal distance from the wire at this position to a common reference point.
  * @param yCoord Signed vertical distance from the wire at this position: above ground (positive value) or burial depth below ground (negative value).
- * @param WireSpacingInfo Wire spacing data this wire position belongs to.
+ * @param WireSpacingInfo [[ch.ninecode.model.WireSpacingInfo WireSpacingInfo]] Wire spacing data this wire position belongs to.
  * @group AssetInfo
  * @groupname AssetInfo Package AssetInfo
  * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
@@ -1562,12 +1562,12 @@ extends
  *
  * Number of phases can be derived from the number of associated wire positions whose phase is not neutral.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.AssetInfo AssetInfo]] Reference to the superclass object.
  * @param isCable If true, this spacing data describes a cable.
  * @param phaseWireCount Number of wire sub-conductors in the symmetrical bundle (typically between 1 and 4).
  * @param phaseWireSpacing Distance between wire sub-conductors in a symmetrical bundle.
  * @param usage Usage of the associated wires.
- * @param DuctBank <em>undocumented</em>
+ * @param DuctBank [[ch.ninecode.model.DuctBank DuctBank]] <em>undocumented</em>
  * @param Structures <em>undocumented</em>
  * @group AssetInfo
  * @groupname AssetInfo Package AssetInfo

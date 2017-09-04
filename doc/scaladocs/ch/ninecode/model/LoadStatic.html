@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>LoadStatic - CIMReader 2.11-2.1.1-2.2.0 API - ch.ninecode.model.LoadStatic</title>
-          <meta name="description" content="LoadStatic - CIMReader 2.11 - 2.1.1 - 2.2.0 API - ch.ninecode.model.LoadStatic" />
-          <meta name="keywords" content="LoadStatic CIMReader 2.11 2.1.1 2.2.0 API ch.ninecode.model.LoadStatic" />
+          <title>LoadStatic - CIMReader 2.11-2.2.0-2.2.0 API - ch.ninecode.model.LoadStatic</title>
+          <meta name="description" content="LoadStatic - CIMReader 2.11 - 2.2.0 - 2.2.0 API - ch.ninecode.model.LoadStatic" />
+          <meta name="keywords" content="LoadStatic CIMReader 2.11 2.2.0 2.2.0 API ch.ninecode.model.LoadStatic" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -52,7 +52,7 @@
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>General static load model representing the sensitivity of the real and reactive power consumed by the load to the amplitude and frequency of the bus voltage.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">ep1</dt><dd class="cmt"><p>First term voltage exponent for active power (Ep1).
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">ep1</dt><dd class="cmt"><p>First term voltage exponent for active power (Ep1).
        Used only when .staticLoadModelType = exponential.</p></dd><dt class="param">ep2</dt><dd class="cmt"><p>Second term voltage exponent for active power (Ep2).
        Used only when .staticLoadModelType = exponential.</p></dd><dt class="param">ep3</dt><dd class="cmt"><p>Third term voltage exponent for active power (Ep3).
        Used only when .staticLoadModelType = exponential.</p></dd><dt class="param">eq1</dt><dd class="cmt"><p>First term voltage exponent for reactive power (Eq1).
@@ -69,7 +69,7 @@
        Not used when .staticLoadModelType = constantZ.</p></dd><dt class="param">kq4</dt><dd class="cmt"><p>Frequency coefficient for reactive power (Kq4).
        Must be non-zero when .staticLoadModelType = ZIP2.  Not used for all other values of .staticLoadModelType.</p></dd><dt class="param">kqf</dt><dd class="cmt"><p>Frequency deviation coefficient for reactive power (Kqf).
        Not used when .staticLoadModelType = constantZ.</p></dd><dt class="param">staticLoadModelType</dt><dd class="cmt"><p>Type of static load model.
-       Typical Value = constantZ.</p></dd><dt class="param">LoadAggregate</dt><dd class="cmt"><p>Aggregate load to which this aggregate static load belongs.</p></dd></dl><div class="toggleContainer block">
+       Typical Value = constantZ.</p></dd><dt class="param">LoadAggregate</dt><dd class="cmt"><p><a href="LoadAggregate.html" class="extype" name="ch.ninecode.model.LoadAggregate">LoadAggregate</a> Aggregate load to which this aggregate static load belongs.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -141,7 +141,7 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">ep1</dt><dd class="cmt"><p>First term voltage exponent for active power (Ep1).
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">ep1</dt><dd class="cmt"><p>First term voltage exponent for active power (Ep1).
        Used only when .staticLoadModelType = exponential.</p></dd><dt class="param">ep2</dt><dd class="cmt"><p>Second term voltage exponent for active power (Ep2).
        Used only when .staticLoadModelType = exponential.</p></dd><dt class="param">ep3</dt><dd class="cmt"><p>Third term voltage exponent for active power (Ep3).
        Used only when .staticLoadModelType = exponential.</p></dd><dt class="param">eq1</dt><dd class="cmt"><p>First term voltage exponent for reactive power (Eq1).
@@ -158,7 +158,7 @@
        Not used when .staticLoadModelType = constantZ.</p></dd><dt class="param">kq4</dt><dd class="cmt"><p>Frequency coefficient for reactive power (Kq4).
        Must be non-zero when .staticLoadModelType = ZIP2.  Not used for all other values of .staticLoadModelType.</p></dd><dt class="param">kqf</dt><dd class="cmt"><p>Frequency deviation coefficient for reactive power (Kqf).
        Not used when .staticLoadModelType = constantZ.</p></dd><dt class="param">staticLoadModelType</dt><dd class="cmt"><p>Type of static load model.
-       Typical Value = constantZ.</p></dd><dt class="param">LoadAggregate</dt><dd class="cmt"><p>Aggregate load to which this aggregate static load belongs.</p></dd></dl></div>
+       Typical Value = constantZ.</p></dd><dt class="param">LoadAggregate</dt><dd class="cmt"><p><a href="LoadAggregate.html" class="extype" name="ch.ninecode.model.LoadAggregate">LoadAggregate</a> Aggregate load to which this aggregate static load belongs.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -253,7 +253,7 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Aggregate load to which this aggregate static load belongs.</p>
+      <p class="shortcomment cmt"><a href="LoadAggregate.html" class="extype" name="ch.ninecode.model.LoadAggregate">LoadAggregate</a> Aggregate load to which this aggregate static load belongs.</p>
     </li><li name="org.apache.spark.sql.Row#anyNull" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="anyNull:Boolean"></a>
       <a id="anyNull:Boolean"></a>
@@ -1359,7 +1359,7 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Reference to the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Reference to the superclass object.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="ch.ninecode.model.LoadStatic">LoadStatic</a> → <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></dd></dl></div>
+      <p class="shortcomment cmt"><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="ch.ninecode.model.LoadStatic">LoadStatic</a> → <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>

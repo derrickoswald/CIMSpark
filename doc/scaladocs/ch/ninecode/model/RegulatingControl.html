@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>RegulatingControl - CIMReader 2.11-2.1.1-2.2.0 API - ch.ninecode.model.RegulatingControl</title>
-          <meta name="description" content="RegulatingControl - CIMReader 2.11 - 2.1.1 - 2.2.0 API - ch.ninecode.model.RegulatingControl" />
-          <meta name="keywords" content="RegulatingControl CIMReader 2.11 2.1.1 2.2.0 API ch.ninecode.model.RegulatingControl" />
+          <title>RegulatingControl - CIMReader 2.11-2.2.0-2.2.0 API - ch.ninecode.model.RegulatingControl</title>
+          <meta name="description" content="RegulatingControl - CIMReader 2.11 - 2.2.0 - 2.2.0 API - ch.ninecode.model.RegulatingControl" />
+          <meta name="keywords" content="RegulatingControl CIMReader 2.11 2.2.0 2.2.0 API ch.ninecode.model.RegulatingControl" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -52,11 +52,11 @@
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Specifies a set of equipment that works together to control a power system quantity such as voltage or flow.</p><p>Remote bus voltage control is possible by specifying the controlled terminal located at some place remote from the controlling equipment.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">discrete</dt><dd class="cmt"><p>The regulation is performed in a discrete mode.
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PowerSystemResource.html" class="extype" name="ch.ninecode.model.PowerSystemResource">PowerSystemResource</a> Reference to the superclass object.</p></dd><dt class="param">discrete</dt><dd class="cmt"><p>The regulation is performed in a discrete mode.
        This applies to equipment with discrete controls, e.g. tap changers and shunt compensators.</p></dd><dt class="param">enabled</dt><dd class="cmt"><p>The flag tells if regulation is enabled.</p></dd><dt class="param">mode</dt><dd class="cmt"><p>The regulating control mode presently available.
        This specification allows for determining the kind of regulation without need for obtaining the units from a schedule.</p></dd><dt class="param">monitoredPhase</dt><dd class="cmt"><p>Phase voltage controlling this regulator, measured at regulator location.</p></dd><dt class="param">targetDeadband</dt><dd class="cmt"><p>This is a deadband used with discrete control to avoid excessive update of controls like tap changers and shunt compensator banks while regulating.
        The units of those appropriate for the mode.</p></dd><dt class="param">targetValue</dt><dd class="cmt"><p>The target value specified for case input.
-       This value can be used for the target value without the use of schedules. The value has the units appropriate to the mode attribute.</p></dd><dt class="param">targetValueUnitMultiplier</dt><dd class="cmt"><p>Specify the multiplier for used for the targetValue.</p></dd><dt class="param">Terminal</dt><dd class="cmt"><p>The terminal associated with this regulating control.
+       This value can be used for the target value without the use of schedules. The value has the units appropriate to the mode attribute.</p></dd><dt class="param">targetValueUnitMultiplier</dt><dd class="cmt"><p>Specify the multiplier for used for the targetValue.</p></dd><dt class="param">Terminal</dt><dd class="cmt"><p><a href="Terminal.html" class="extype" name="ch.ninecode.model.Terminal">Terminal</a> The terminal associated with this regulating control.
        The terminal is associated instead of a node, since the terminal could connect into either a topological node (bus in bus-branch model) or a connectivity node (detailed switch model).  Sometimes it is useful to model regulation at a terminal of a bus bar object since the bus bar can be present in both a bus-branch model or a model with switch detail.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
@@ -129,11 +129,11 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">discrete</dt><dd class="cmt"><p>The regulation is performed in a discrete mode.
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PowerSystemResource.html" class="extype" name="ch.ninecode.model.PowerSystemResource">PowerSystemResource</a> Reference to the superclass object.</p></dd><dt class="param">discrete</dt><dd class="cmt"><p>The regulation is performed in a discrete mode.
        This applies to equipment with discrete controls, e.g. tap changers and shunt compensators.</p></dd><dt class="param">enabled</dt><dd class="cmt"><p>The flag tells if regulation is enabled.</p></dd><dt class="param">mode</dt><dd class="cmt"><p>The regulating control mode presently available.
        This specification allows for determining the kind of regulation without need for obtaining the units from a schedule.</p></dd><dt class="param">monitoredPhase</dt><dd class="cmt"><p>Phase voltage controlling this regulator, measured at regulator location.</p></dd><dt class="param">targetDeadband</dt><dd class="cmt"><p>This is a deadband used with discrete control to avoid excessive update of controls like tap changers and shunt compensator banks while regulating.
        The units of those appropriate for the mode.</p></dd><dt class="param">targetValue</dt><dd class="cmt"><p>The target value specified for case input.
-       This value can be used for the target value without the use of schedules. The value has the units appropriate to the mode attribute.</p></dd><dt class="param">targetValueUnitMultiplier</dt><dd class="cmt"><p>Specify the multiplier for used for the targetValue.</p></dd><dt class="param">Terminal</dt><dd class="cmt"><p>The terminal associated with this regulating control.
+       This value can be used for the target value without the use of schedules. The value has the units appropriate to the mode attribute.</p></dd><dt class="param">targetValueUnitMultiplier</dt><dd class="cmt"><p>Specify the multiplier for used for the targetValue.</p></dd><dt class="param">Terminal</dt><dd class="cmt"><p><a href="Terminal.html" class="extype" name="ch.ninecode.model.Terminal">Terminal</a> The terminal associated with this regulating control.
        The terminal is associated instead of a node, since the terminal could connect into either a topological node (bus in bus-branch model) or a connectivity node (detailed switch model).  Sometimes it is useful to model regulation at a terminal of a bus bar object since the bus bar can be present in both a bus-branch model or a model with switch detail.</p></dd></dl></div>
     </li></ol>
             </div>
@@ -229,7 +229,7 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">The terminal associated with this regulating control.</p><div class="fullcomment"><div class="comment cmt"><p>The terminal associated with this regulating control.
+      <p class="shortcomment cmt"><a href="Terminal.html" class="extype" name="ch.ninecode.model.Terminal">Terminal</a> The terminal associated with this regulating control.</p><div class="fullcomment"><div class="comment cmt"><p><a href="Terminal.html" class="extype" name="ch.ninecode.model.Terminal">Terminal</a> The terminal associated with this regulating control.
        The terminal is associated instead of a node, since the terminal could connect into either a topological node (bus in bus-branch model) or a connectivity node (detailed switch model).  Sometimes it is useful to model regulation at a terminal of a bus bar object since the bus bar can be present in both a bus-branch model or a model with switch detail.</p></div></div>
     </li><li name="org.apache.spark.sql.Row#anyNull" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="anyNull:Boolean"></a>
@@ -1100,7 +1100,7 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Reference to the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Reference to the superclass object.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="ch.ninecode.model.RegulatingControl">RegulatingControl</a> → <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></dd></dl></div>
+      <p class="shortcomment cmt"><a href="PowerSystemResource.html" class="extype" name="ch.ninecode.model.PowerSystemResource">PowerSystemResource</a> Reference to the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p><a href="PowerSystemResource.html" class="extype" name="ch.ninecode.model.PowerSystemResource">PowerSystemResource</a> Reference to the superclass object.</p></div><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="" class="extype" name="ch.ninecode.model.RegulatingControl">RegulatingControl</a> → <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>

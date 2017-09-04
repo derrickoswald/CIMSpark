@@ -11,7 +11,7 @@ import ch.ninecode.cim.Parseable
  *
  * Approves and implements energy transactions. Verifies both Inter-Control Area and Intra-Control Area transactions for the power system  before granting approval (and implementing) the transactions.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Organisation Organisation]] Reference to the superclass object.
  * @param CAChildOf A ControlAreaOperator has a collection of tie points that ring the ControlArea, called a TieLine.
  * @param ControlledBy A ControlAreaCompany controls a ControlArea.
  * @group InfFinancial
@@ -82,7 +82,7 @@ extends
 /**
  * The energy buyer in the energy marketplace.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Organisation Organisation]] Reference to the superclass object.
  * @group InfFinancial
  * @groupname InfFinancial Package InfFinancial
  * @groupdesc InfFinancial This package is responsible for Settlement and Billing. These classes represent the legal entities who participate in formal or informal agreements.
@@ -144,7 +144,7 @@ extends
 /**
  * The energy seller in the energy marketplace.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Organisation Organisation]] Reference to the superclass object.
  * @group InfFinancial
  * @groupname InfFinancial Package InfFinancial
  * @groupdesc InfFinancial This package is responsible for Settlement and Billing. These classes represent the legal entities who participate in formal or informal agreements.
@@ -206,10 +206,10 @@ extends
 /**
  * A type of agreement that provides the default method by which interchange schedules are to be integrated to obtain hourly MWh schedules for accounting.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Agreement Agreement]] Reference to the superclass object.
  * @param defaultIntegrationMethod The default method by which interchange schedules are to be integrated to obtain hourly MWh schedules for accounting.
  *        Method #1 is to integrate the instantaneous schedule between the hourly boundaries. Method #2 compensates for any up/down ramping that occurs across the hourly boundary (this is called block accounting).
- * @param MktOrganisation <em>undocumented</em>
+ * @param MktOrganisation [[ch.ninecode.model.MktOrganisation MktOrganisation]] <em>undocumented</em>
  * @group InfFinancial
  * @groupname InfFinancial Package InfFinancial
  * @groupdesc InfFinancial This package is responsible for Settlement and Billing. These classes represent the legal entities who participate in formal or informal agreements.
@@ -278,7 +278,7 @@ extends
 /**
  * Matches buyers and sellers, and secures transmission (and other ancillary services) needed to complete the energy transaction.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Organisation Organisation]] Reference to the superclass object.
  * @group InfFinancial
  * @groupname InfFinancial Package InfFinancial
  * @groupdesc InfFinancial This package is responsible for Settlement and Billing. These classes represent the legal entities who participate in formal or informal agreements.
@@ -340,7 +340,7 @@ extends
 /**
  * Contracts for services offered commercially.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Agreement Agreement]] Reference to the superclass object.
  * @group InfFinancial
  * @groupname InfFinancial Package InfFinancial
  * @groupdesc InfFinancial This package is responsible for Settlement and Billing. These classes represent the legal entities who participate in formal or informal agreements.
@@ -475,7 +475,7 @@ extends
  *
  * Posts information for transmission paths and AvailableTransmissionCapacities  on a reservation node.  Buys and sells its products and services on the same reservation node.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Organisation Organisation]] Reference to the superclass object.
  * @group InfFinancial
  * @groupname InfFinancial Package InfFinancial
  * @groupdesc InfFinancial This package is responsible for Settlement and Billing. These classes represent the legal entities who participate in formal or informal agreements.

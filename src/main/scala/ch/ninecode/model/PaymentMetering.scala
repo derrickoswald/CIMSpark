@@ -168,14 +168,14 @@ extends
 /**
  * Variable and dynamic part of auxiliary agreement, generally representing the current state of the account related to the outstanding balance defined in auxiliary agreement.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param balance The total amount currently remaining on this account that is required to be paid in order to settle the account to zero.
  *        This excludes any due amounts not yet paid.
  * @param due Current amounts now due for payment on this account.
  * @param lastCredit Details of the last credit transaction performed on this account.
  * @param lastDebit Details of the last debit transaction performed on this account.
  * @param principleAmount The initial principle amount, with which this account was instantiated.
- * @param AuxiliaryAgreement Auxiliary agreement regulating this account.
+ * @param AuxiliaryAgreement [[ch.ninecode.model.AuxiliaryAgreement AuxiliaryAgreement]] Auxiliary agreement regulating this account.
  * @param Charges All charges levied on this account.
  * @group PaymentMetering
  * @groupname PaymentMetering Package PaymentMetering
@@ -267,7 +267,7 @@ extends
  *
  * Typically this is used to collect revenue owed by the customer for other services or arrears accrued with the utility for other services. It is typically linked to a prepaid token purchase transaction, thus forcing the customer to make a payment towards settlement of the auxiliary account balance whenever the customer needs to purchase a prepaid token for electricity.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Agreement Agreement]] Reference to the superclass object.
  * @param arrearsInterest The interest per annum to be charged prorata on 'AuxiliaryAccount.dueArrears' at the end of each 'payCycle'.
  * @param auxCycle The frequency for automatically recurring auxiliary charges, where 'AuxiliaryAccount.initialCharge' is recursively added to 'AuxiliaryAccount.dueCurrent' at the start of each 'auxCycle'.
  *        For example: on a specified date and time; hourly; daily; weekly; monthly; 3-monthly; 6-monthly; 12-monthly; etc.
@@ -282,7 +282,7 @@ extends
  *        Note that there may be multiple tokens vended per vending transaction, but this is not relevant.
  * @param vendPortionArrear The percentage of the transaction amount that has to be collected from each vending transaction towards settlement of this auxiliary agreement when payments are in arrears.
  *        Note that there may be multiple tokens vended per vending transaction, but this is not relevant.
- * @param CustomerAgreement Customer agreement this (non-service related) auxiliary agreement refers to.
+ * @param CustomerAgreement [[ch.ninecode.model.CustomerAgreement CustomerAgreement]] Customer agreement this (non-service related) auxiliary agreement refers to.
  * @group PaymentMetering
  * @groupname PaymentMetering Package PaymentMetering
  * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
@@ -474,7 +474,7 @@ extends
  * @param cvNumber The card verification number.
  * @param expiryDate The date when this card expires.
  * @param pan The primary account number.
- * @param Tender Payment tender this card is being used for.
+ * @param Tender [[ch.ninecode.model.Tender Tender]] Payment tender this card is being used for.
  * @group PaymentMetering
  * @groupname PaymentMetering Package PaymentMetering
  * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
@@ -557,7 +557,7 @@ extends
  *
  * Cashier is under the exclusive management control of Vendor.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param electronicAddress Electronic address.
  * @group PaymentMetering
  * @groupname PaymentMetering Package PaymentMetering
@@ -623,10 +623,10 @@ extends
 /**
  * The operating shift for a cashier, during which the cashier may transact against the cashier shift, subject to vendor shift being open.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Shift Shift]] Reference to the superclass object.
  * @param cashFloat The amount of cash that the cashier brings to start the shift and that will be taken away at the end of the shift; i.e. the cash float does not get banked.
- * @param Cashier Cashier operating this shift.
- * @param PointOfSale Point of sale that is in operation during this shift.
+ * @param Cashier [[ch.ninecode.model.Cashier Cashier]] Cashier operating this shift.
+ * @param PointOfSale [[ch.ninecode.model.PointOfSale PointOfSale]] Point of sale that is in operation during this shift.
  * @group PaymentMetering
  * @groupname PaymentMetering Package PaymentMetering
  * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
@@ -701,7 +701,7 @@ extends
  *
  * The total charge amount applicable to this instance of charge is the sum of fixed and variable portion.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param fixedPortion The fixed portion of this charge element.
  * @param kind The kind of charge to be applied.
  * @param variablePortion The variable portion of this charge element, calculated as a percentage of the total amount of a parent charge.
@@ -788,7 +788,7 @@ extends
  * @param date Date when cheque becomes valid.
  * @param kind Kind of cheque.
  * @param micrNumber The magnetic ink character recognition number printed on the cheque.
- * @param Tender Payment tender the cheque is being used for.
+ * @param Tender [[ch.ninecode.model.Tender Tender]] Payment tender the cheque is being used for.
  * @group PaymentMetering
  * @groupname PaymentMetering Package PaymentMetering
  * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
@@ -1127,10 +1127,10 @@ extends
  *
  * Transactions via vendor shift debit the account and bank deposits via bank statement credit the account.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param currentBalance The current operating balance of this account.
  * @param provisionalBalance The balance of this account after taking into account any pending debits from VendorShift.merchantDebitAmount and pending credits from BankStatement.merchantCreditAmount or credits (see also BankStatement attributes and VendorShift attributes).
- * @param MerchantAgreement Merchant agreement that instantiated this merchant account.
+ * @param MerchantAgreement [[ch.ninecode.model.MerchantAgreement MerchantAgreement]] Merchant agreement that instantiated this merchant account.
  * @param Transactors All transactors this merchant account is registered with.
  * @group PaymentMetering
  * @groupname PaymentMetering Package PaymentMetering
@@ -1210,7 +1210,7 @@ extends
  *
  * The merchant is accountable to the supplier for revenue collected at point of sale.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Agreement Agreement]] Reference to the superclass object.
  * @group PaymentMetering
  * @groupname PaymentMetering Package PaymentMetering
  * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
@@ -1272,7 +1272,7 @@ extends
 /**
  * Logical point where transactions take place with operational interaction between cashier and the payment system; in certain cases the point of sale interacts directly with the end customer, in which case the cashier might not be a real person: for example a self-service kiosk or over the internet.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param location Local description for where this point of sale is physically located.
  * @group PaymentMetering
  * @groupname PaymentMetering Package PaymentMetering
@@ -1338,11 +1338,11 @@ extends
 /**
  * Record of total receipted payment from customer.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param isBankable True if this receipted payment is manually bankable, otherwise it is an electronic funds transfer.
  * @param line Receipted amount with rounding, date and note.
- * @param CashierShift Cashier shift during which this receipt was recorded.
- * @param VendorShift Vendor shift during which this receipt was recorded.
+ * @param CashierShift [[ch.ninecode.model.CashierShift CashierShift]] Cashier shift during which this receipt was recorded.
+ * @param VendorShift [[ch.ninecode.model.VendorShift VendorShift]] Vendor shift during which this receipt was recorded.
  * @group PaymentMetering
  * @groupname PaymentMetering Package PaymentMetering
  * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
@@ -1419,7 +1419,7 @@ extends
 /**
  * Organisation that provides services to customers.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.OrganisationRole OrganisationRole]] Reference to the superclass object.
  * @param issuerIdentificationNumber Unique transaction reference prefix number issued to an entity by the International Organization for Standardization for the purpose of tagging onto electronic financial transactions, as defined in ISO/IEC 7812-1 and ISO/IEC 7812-2.
  * @param kind Kind of supplier.
  * @group PaymentMetering
@@ -1492,7 +1492,7 @@ extends
  *
  * Whether the shift is open/closed can be derived from attributes 'activityInterval.start' and 'activityInterval.end'.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param activityInterval Interval for activity of this shift.
  * @param receiptsGrandTotalBankable Total of amounts receipted during this shift that can be manually banked (cash and cheques for example).
  *        Values are obtained from Receipt attributes:
@@ -1590,7 +1590,7 @@ extends
  *
  * Inherited 'status.value' is defined in the context of the utility's business rules, for example: active, inactive, etc.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param tariffCycle The frequency at which the tariff charge schedule is repeated.
  *        Examples are: once off on a specified date and time; hourly; daily; weekly; monthly; 3-monthly; 6-monthly; 12-monthly; etc. At the end of each cycle, the business rules are reset to start from the beginning again.
  * @param ConsumptionTariffIntervals All consumption tariff intervals used to define this tariff profile.
@@ -1669,13 +1669,13 @@ extends
  *
  * The payment is thus that part of the Tender that goes towards settlement of a particular transaction.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param amount Amount tendered by customer.
  * @param change Difference between amount tendered by customer and the amount charged by point of sale.
  * @param kind Kind of tender from customer.
- * @param Card Card used to tender payment.
- * @param Cheque Cheque used to tender payment.
- * @param Receipt Receipt that recorded this receiving of a payment in the form of tenders.
+ * @param Card [[ch.ninecode.model.Card Card]] Card used to tender payment.
+ * @param Cheque [[ch.ninecode.model.Cheque Cheque]] Cheque used to tender payment.
+ * @param Receipt [[ch.ninecode.model.Receipt Receipt]] Receipt that recorded this receiving of a payment in the form of tenders.
  * @group PaymentMetering
  * @groupname PaymentMetering Package PaymentMetering
  * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
@@ -1839,7 +1839,7 @@ extends
 /**
  * The record of details of payment for service or token sale.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param diverseReference Formal reference for use with diverse payment (traffic fine for example).
  * @param donorReference Reference to the entity that is the source of 'amount' (for example: customer for token purchase; or supplier for free issue token).
  * @param kind Kind of transaction.
@@ -1848,13 +1848,13 @@ extends
  * @param reversedId (if 'kind' is transactionReversal) Reference to the original transaction that is being reversed by this transaction.
  * @param serviceUnitsEnergy Actual amount of service units that is being paid for.
  * @param serviceUnitsError Number of service units not reflected in 'serviceUnitsEnergy' due to process rounding or truncating errors.
- * @param AuxiliaryAccount Auxiliary account for this payment transaction.
- * @param CashierShift Cashier shift during which this transaction was recorded.
- * @param CustomerAccount Customer account for this payment transaction.
- * @param Meter Meter for this vending transaction.
- * @param PricingStructure Pricing structure applicable for this transaction.
- * @param Receipt The receipted payment for which this transaction has been recorded.
- * @param VendorShift Vendor shift during which this transaction was recorded.
+ * @param AuxiliaryAccount [[ch.ninecode.model.AuxiliaryAccount AuxiliaryAccount]] Auxiliary account for this payment transaction.
+ * @param CashierShift [[ch.ninecode.model.CashierShift CashierShift]] Cashier shift during which this transaction was recorded.
+ * @param CustomerAccount [[ch.ninecode.model.CustomerAccount CustomerAccount]] Customer account for this payment transaction.
+ * @param Meter [[ch.ninecode.model.Meter Meter]] Meter for this vending transaction.
+ * @param PricingStructure [[ch.ninecode.model.PricingStructure PricingStructure]] Pricing structure applicable for this transaction.
+ * @param Receipt [[ch.ninecode.model.Receipt Receipt]] The receipted payment for which this transaction has been recorded.
+ * @param VendorShift [[ch.ninecode.model.VendorShift VendorShift]] Vendor shift during which this transaction was recorded.
  * @group PaymentMetering
  * @groupname PaymentMetering Package PaymentMetering
  * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
@@ -1975,7 +1975,7 @@ extends
 /**
  * The entity that ultimately executes the transaction and which is in control of the process; typically this is embodied in secure software running on a server that may employ secure hardware encryption devices for secure transaction processing.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @group PaymentMetering
  * @groupname PaymentMetering Package PaymentMetering
  * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
@@ -2039,7 +2039,7 @@ extends
  *
  * The vendor has a private contract with and is managed by the merchant which is a type of organisation. The vendor is accountable to the merchant for revenue collected, and the merchant is in turn accountable to the supplier.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @group PaymentMetering
  * @groupname PaymentMetering Package PaymentMetering
  * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
@@ -2103,12 +2103,12 @@ extends
  *
  * It aggregates transactions and receipts during the shift and periodically debits a merchant account. The totals in vendor shift should always be the sum of totals aggregated in all cashier shifts that were open under the particular vendor shift.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Shift Shift]] Reference to the superclass object.
  * @param merchantDebitAmount The amount that is to be debited from the merchant account for this vendor shift.
  *        This amount reflects the sum(PaymentTransaction.transactionAmount).
  * @param posted If true, merchantDebitAmount has been debited from MerchantAccount; typically happens at the end of VendorShift when it closes.
- * @param MerchantAccount Merchant account this vendor shift periodically debits (based on aggregated transactions).
- * @param Vendor Vendor that opens and owns this vendor shift.
+ * @param MerchantAccount [[ch.ninecode.model.MerchantAccount MerchantAccount]] Merchant account this vendor shift periodically debits (based on aggregated transactions).
+ * @param Vendor [[ch.ninecode.model.Vendor Vendor]] Vendor that opens and owns this vendor shift.
  * @group PaymentMetering
  * @groupname PaymentMetering Package PaymentMetering
  * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.

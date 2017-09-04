@@ -11,7 +11,7 @@ import ch.ninecode.cim.Parseable
  *
  * For symmetrical, transposed 3ph lines, it is sufficient to use  attributes of the line segment, which describe impedances and admittances for the entire length of the segment.  Additionally impedances can be computed by using length and associated per length impedances.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Conductor Conductor]] Reference to the superclass object.
  * @param b0ch Zero sequence shunt (charging) susceptance, uniformly distributed, of the entire line section.
  * @param bch Positive sequence shunt (charging) susceptance, uniformly distributed, of the entire line section.
  *        This value represents the full charging over the full length of the line.
@@ -25,7 +25,7 @@ import ch.ninecode.cim.Parseable
  * @param x0 Zero sequence series reactance of the entire line section.
  * @param LineGroundingAction Ground action involving clamp usage (for the case when the ground is applied along the line segment instead of at its terminals).
  * @param LineJumpingAction Jumper action involving clamp usage (for the case when the jumper is applied along the line segment instead of at its terminals).
- * @param PerLengthImpedance Per-length impedance of this line segment.
+ * @param PerLengthImpedance [[ch.ninecode.model.PerLengthImpedance PerLengthImpedance]] Per-length impedance of this line segment.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -134,9 +134,9 @@ extends
 /**
  * Represents a single wire of an alternating current line segment.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @param phase The phase connection of the wire at both ends.
- * @param ACLineSegment The line segment to which the phase belongs.
+ * @param ACLineSegment [[ch.ninecode.model.ACLineSegment ACLineSegment]] The line segment to which the phase belongs.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -207,7 +207,7 @@ extends
  *
  * Also known as an induction machine with no external connection to the rotor windings, e.g squirrel-cage induction machine.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.RotatingMachine RotatingMachine]] Reference to the superclass object.
  * @param asynchronousMachineType Indicates the type of Asynchronous Machine (motor or generator).
  * @param converterFedDrive Indicates whether the machine is a converter fed drive.
  *        Used for short circuit data exchange according to IEC 60909
@@ -236,7 +236,7 @@ extends
  * @param xp Transient reactance (unsaturated) (greater than or equal to xpp).
  * @param xpp Sub-transient reactance (unsaturated) (greather than Xl).
  * @param xs Synchronous reactance (greather than xp).
- * @param AsynchronousMachineDynamics Asynchronous machine dynamics model used to describe dynamic behavior of this asynchronous machine.
+ * @param AsynchronousMachineDynamics [[ch.ninecode.model.AsynchronousMachineDynamics AsynchronousMachineDynamics]] Asynchronous machine dynamics model used to describe dynamic behavior of this asynchronous machine.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -381,7 +381,7 @@ extends
 /**
  * A mechanical switching device capable of making, carrying, and breaking currents under normal circuit conditions and also making, carrying for a specified time, and breaking currents under specified abnormal circuit conditions e.g.  those of short circuit.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.ProtectedSwitch ProtectedSwitch]] Reference to the superclass object.
  * @param inTransitTime The transition time from open to close.
  * @group Wires
  * @groupname Wires Package Wires
@@ -449,10 +449,10 @@ extends
  *
  * Voltage measurements are typically obtained from VoltageTransformers that are connected to busbar sections. A bus bar section may have many physical terminals but for analysis is modelled with exactly one logical terminal.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Connector Connector]] Reference to the superclass object.
  * @param ipMax Maximum allowable peak short-circuit current of busbar (Ipmax in the IEC 60909-0).
  *        Mechanical limit of the busbar in the substation itself. Used for short circuit data exchange according to IEC 60909
- * @param VoltageControlZone A VoltageControlZone is controlled by a designated BusbarSection.
+ * @param VoltageControlZone [[ch.ninecode.model.VoltageControlZone VoltageControlZone]] A VoltageControlZone is controlled by a designated BusbarSection.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -523,9 +523,9 @@ extends
  *
  * A Clamp does not cut the line segment.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] Reference to the superclass object.
  * @param lengthFromTerminal1 The length to the place where the clamp is located starting from side one of the line segment, i.e. the line segment terminal with sequence number equal to 1.
- * @param ACLineSegment The line segment to which the clamp is connected.
+ * @param ACLineSegment [[ch.ninecode.model.ACLineSegment ACLineSegment]] The line segment to which the clamp is connected.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -596,7 +596,7 @@ extends
  *
  * These are typically found in medium voltage distribution networks.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Equipment Equipment]] Reference to the superclass object.
  * @param compositeSwitchType An alphanumeric code that can be used as a reference to extra information such as the description of the interlocking scheme if any.
  * @group Wires
  * @groupname Wires Package Wires
@@ -662,7 +662,7 @@ extends
 /**
  * Combination of conducting material with consistent electrical characteristics, building a single electrical system, used to carry current between points in the power system.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] Reference to the superclass object.
  * @param len Segment length for calculating line section capabilities
  * @group Wires
  * @groupname Wires Package Wires
@@ -728,7 +728,7 @@ extends
 /**
  * A conductor, or group of conductors, with negligible impedance, that serve to connect other conducting equipment within a single substation and are modelled with a single logical terminal.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] Reference to the superclass object.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -792,10 +792,10 @@ extends
  *
  * The cut appears as a switch inserted between these two parts and connects them together. As the cut is normally open there is no galvanic connection between the two line segment parts. But it is possible to close the cut to get galvanic connection.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Switch Switch]] Reference to the superclass object.
  * @param lengthFromTerminal1 The length to the place where the cut is located starting from side one of the cut line segment, i.e. the line segment Terminal with sequenceNumber equal to 1.
- * @param ACLineSegment The line segment to which the cut is applied.
- * @param CutAction Action taken with this cut.
+ * @param ACLineSegment [[ch.ninecode.model.ACLineSegment ACLineSegment]] The line segment to which the cut is applied.
+ * @param CutAction [[ch.ninecode.model.CutAction CutAction]] Action taken with this cut.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -870,7 +870,7 @@ extends
  *
  * It is required to open or close circuits when negligible current is broken or made.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Switch Switch]] Reference to the superclass object.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -934,7 +934,7 @@ extends
  *
  * An earth fault compensator device modeled with a single terminal implies a second terminal solidly connected to ground.  If two terminals are modeled, the ground is not assumed and normal connection rules apply.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] Reference to the superclass object.
  * @param r Nominal resistance of device.
  * @group Wires
  * @groupname Wires Package Wires
@@ -1000,7 +1000,7 @@ extends
 /**
  * Generic user of energy - a  point of consumption on the power system model.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] Reference to the superclass object.
  * @param customerCount Number of individual customers represented by this demand.
  * @param grounded Used for Yn and Zn connections.
  *        True if the neutral is solidly grounded.
@@ -1017,10 +1017,10 @@ extends
  *        Load sign convention is used, i.e. positive sign means flow out from a node.
  * @param qfixedPct Fixed reactive power as per cent of load group fixed reactive power.
  *        Load sign convention is used, i.e. positive sign means flow out from a node.
- * @param LoadDynamics Load dynamics model used to describe dynamic behavior of this energy consumer.
+ * @param LoadDynamics [[ch.ninecode.model.LoadDynamics LoadDynamics]] Load dynamics model used to describe dynamic behavior of this energy consumer.
  * @param LoadResponse The load response characteristic of this load.
  *        If missing, this load is assumed to be constant power.
- * @param PowerCutZone The  energy consumer is assigned to this power cut zone.
+ * @param PowerCutZone [[ch.ninecode.model.PowerCutZone PowerCutZone]] The  energy consumer is assigned to this power cut zone.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -1129,7 +1129,7 @@ extends
 /**
  * A single phase of an energy consumer.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @param pfixed Active power of the load that is a fixed quantity.
  *        Load sign convention is used, i.e. positive sign means flow out from a node.
  * @param pfixedPct Fixed active power as per cent of load group fixed active power.
@@ -1140,7 +1140,7 @@ extends
  *        Load sign convention is used, i.e. positive sign means flow out from a node.
  * @param qfixedPct Fixed reactive power as per cent of load group fixed reactive power.
  *        Load sign convention is used, i.e. positive sign means flow out from a node.
- * @param EnergyConsumer The energy consumer to which this phase belongs.
+ * @param EnergyConsumer [[ch.ninecode.model.EnergyConsumer EnergyConsumer]] The energy consumer to which this phase belongs.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -1225,7 +1225,7 @@ extends
 /**
  * A generic equivalent for an energy supplier on a transmission or distribution voltage level.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] Reference to the superclass object.
  * @param activePower High voltage source active injection.
  *        Load sign convention is used, i.e. positive sign means flow out from a node.
  * @param nominalVoltage Phase-to-phase nominal voltage.
@@ -1239,9 +1239,9 @@ extends
  * @param x Positive sequence Thevenin reactance.
  * @param x0 Zero sequence Thevenin reactance.
  * @param xn Negative sequence Thevenin reactance.
- * @param EnergySchedulingType Energy Scheduling Type of an Energy Source
- * @param EnergySourceAction Action taken with this energy source.
- * @param WindTurbineType3or4Dynamics Wind generator Type 3 or 4 dynamics model associated with this energy source.
+ * @param EnergySchedulingType [[ch.ninecode.model.EnergySchedulingType EnergySchedulingType]] Energy Scheduling Type of an Energy Source
+ * @param EnergySourceAction [[ch.ninecode.model.EnergySourceAction EnergySourceAction]] Action taken with this energy source.
+ * @param WindTurbineType3or4Dynamics [[ch.ninecode.model.WindTurbineType3or4Dynamics WindTurbineType3or4Dynamics]] Wind generator Type 3 or 4 dynamics model associated with this energy source.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -1358,7 +1358,7 @@ extends
 /**
  * This class represents external network and it is used for IEC 60909 calculations.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.RegulatingCondEq RegulatingCondEq]] Reference to the superclass object.
  * @param governorSCD Power Frequency Bias.
  *        This is the change in power injection divided by the change in frequency and negated.  A positive value of the power frequency bias provides additional power injection upon a drop in frequency.
  * @param ikSecond Indicates whether initial symmetrical short-circuit current and power have been calculated according to IEC (Ik").
@@ -1524,7 +1524,7 @@ extends
  *
  * One converts from F1 to DC, the other converts the DC to F2.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.RegulatingCondEq RegulatingCondEq]] Reference to the superclass object.
  * @param frequency Frequency on the AC side.
  * @param maxP The maximum active power on the DC side at which the frequence converter should operate.
  * @param maxU The maximum voltage on the DC side at which the frequency converter should operate.
@@ -1612,7 +1612,7 @@ extends
  *
  * A fuse is considered a switching device because it breaks current.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Switch Switch]] Reference to the superclass object.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -1676,8 +1676,8 @@ extends
  *
  * The power system model can have any number of grounds.
  *
- * @param sup Reference to the superclass object.
- * @param GroundAction Action taken with this ground.
+ * @param sup [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] Reference to the superclass object.
+ * @param GroundAction [[ch.ninecode.model.GroundAction GroundAction]] Action taken with this ground.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -1742,7 +1742,7 @@ extends
 /**
  * A manually operated or motor operated mechanical switching device used for isolating a circuit or equipment from ground.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Switch Switch]] Reference to the superclass object.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -1804,7 +1804,7 @@ extends
 /**
  * A fixed impedance device used for grounding.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.EarthFaultCompensator EarthFaultCompensator]] Reference to the superclass object.
  * @param x Reactance of device.
  * @group Wires
  * @groupname Wires Package Wires
@@ -1872,8 +1872,8 @@ extends
  *
  * Note that zero-impedance branches can potentially be modeled by other equipment types.
  *
- * @param sup Reference to the superclass object.
- * @param JumperAction Action taken with this jumper.
+ * @param sup [[ch.ninecode.model.Switch Switch]] Reference to the superclass object.
+ * @param JumperAction [[ch.ninecode.model.JumperAction JumperAction]] Action taken with this jumper.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -1938,7 +1938,7 @@ extends
 /**
  * A point where one or more conducting equipments are connected with zero resistance.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Connector Connector]] Reference to the superclass object.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -2000,7 +2000,7 @@ extends
 /**
  * Contains equipment beyond a substation belonging to a power transmission line.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.EquipmentContainer EquipmentContainer]] Reference to the superclass object.
  * @param Region The sub-geographical region of the line.
  * @group Wires
  * @groupname Wires Package Wires
@@ -2066,7 +2066,7 @@ extends
 /**
  * A linear shunt compensator has banks or sections with equal admittance values.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.ShuntCompensator ShuntCompensator]] Reference to the superclass object.
  * @param b0PerSection Zero sequence shunt (charging) susceptance per section
  * @param bPerSection Positive sequence shunt (charging) susceptance per section
  * @param g0PerSection Zero sequence shunt (charging) conductance per section
@@ -2147,7 +2147,7 @@ extends
 /**
  * A per phase linear shunt compensator has banks or sections with equal admittance values.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.ShuntCompensatorPhase ShuntCompensatorPhase]] Reference to the superclass object.
  * @param bPerSection Susceptance per section of the phase if shunt compensator is wye connected.
  *        Susceptance per section phase to phase if shunt compensator is delta connected.
  * @param gPerSection Conductance per section for this phase if shunt compensator is wye connected.
@@ -2220,7 +2220,7 @@ extends
 /**
  * A mechanical switching device capable of making, carrying, and breaking currents under normal operating conditions.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.ProtectedSwitch ProtectedSwitch]] Reference to the superclass object.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -2282,7 +2282,7 @@ extends
 /**
  * This class represents the zero sequence line mutual coupling.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param b0ch Zero sequence mutual coupling shunt (charging) susceptance, uniformly distributed, of the entire line section.
  * @param distance11 Distance to the start of the coupled region from the first line's terminal having sequence number equal to 1.
  * @param distance12 Distance to the end of the coupled region from the first line's terminal with sequence number equal to 1.
@@ -2394,7 +2394,7 @@ extends
 /**
  * A non linear shunt compensator has bank or section admittance values that differs.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.ShuntCompensator ShuntCompensator]] Reference to the superclass object.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -2456,7 +2456,7 @@ extends
 /**
  * A per phase non linear shunt compensator has bank or section admittance values that differs.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.ShuntCompensatorPhase ShuntCompensatorPhase]] Reference to the superclass object.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -2522,7 +2522,7 @@ extends
  * @param b Positive sequence shunt (charging) susceptance per section
  * @param g Positive sequence shunt (charging) conductance per section
  * @param sectionNumber The number of the section.
- * @param NonlinearShuntCompensatorPhase Non-linear shunt compensator phase owning this point.
+ * @param NonlinearShuntCompensatorPhase [[ch.ninecode.model.NonlinearShuntCompensatorPhase NonlinearShuntCompensatorPhase]] Non-linear shunt compensator phase owning this point.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -2605,7 +2605,7 @@ extends
  * @param g Positive sequence shunt (charging) conductance per section
  * @param g0 Zero sequence shunt (charging) conductance per section
  * @param sectionNumber The number of the section.
- * @param NonlinearShuntCompensator Non-linear shunt compensator owning this point.
+ * @param NonlinearShuntCompensator [[ch.ninecode.model.NonlinearShuntCompensator NonlinearShuntCompensator]] Non-linear shunt compensator owning this point.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -2690,7 +2690,7 @@ extends
 /**
  * Common type for per-length impedance electrical catalogues.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PerLengthLineParameter PerLengthLineParameter]] Reference to the superclass object.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -2752,8 +2752,8 @@ extends
 /**
  * Common type for per-length electrical catalogues describing line parameters.
  *
- * @param sup Reference to the superclass object.
- * @param WireSpacingInfo Wire spacing datasheet used to calculate this per-length parameter.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param WireSpacingInfo [[ch.ninecode.model.WireSpacingInfo WireSpacingInfo]] Wire spacing datasheet used to calculate this per-length parameter.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -2818,7 +2818,7 @@ extends
 /**
  * Impedance and admittance parameters per unit length for n-wire unbalanced lines, in matrix form.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PerLengthImpedance PerLengthImpedance]] Reference to the superclass object.
  * @param conductorCount Number of phase, neutral, and other wires retained.
  *        Constrains the number of matrix elements and the phase codes that can be used with this matrix.
  * @group Wires
@@ -2887,7 +2887,7 @@ extends
  *
  * For 1-phase lines, define x=x0=xself. For 2-phase lines, define x=xs-xm and x0=xs+xm.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PerLengthImpedance PerLengthImpedance]] Reference to the superclass object.
  * @param b0ch Zero sequence shunt (charging) susceptance, per unit of length.
  * @param bch Positive sequence shunt (charging) susceptance, per unit of length.
  * @param g0ch Zero sequence shunt (charging) conductance, per unit of length.
@@ -2988,7 +2988,7 @@ extends
 /**
  * A tunable impedance device normally used to offset line charging during single line faults in an ungrounded section of network.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.EarthFaultCompensator EarthFaultCompensator]] Reference to the superclass object.
  * @param mode The mode of operation of the Petersen coil.
  * @param nominalU The nominal voltage for which the coil is designed.
  * @param offsetCurrent The offset current that the Petersen coil controller is operating from the resonant point.
@@ -3176,8 +3176,8 @@ extends
  *
  * This phase tap model may also impact the voltage magnitude.
  *
- * @param sup Reference to the superclass object.
- * @param TransformerEnd Transformer end to which this phase tap changer belongs.
+ * @param sup [[ch.ninecode.model.TapChanger TapChanger]] Reference to the superclass object.
+ * @param TransformerEnd [[ch.ninecode.model.TransformerEnd TransformerEnd]] Transformer end to which this phase tap changer belongs.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -3244,7 +3244,7 @@ extends
  *
  * The angle between the primary side voltage and the difference voltage is named the winding connection angle. The phase shift depends on both the difference voltage magnitude and the winding connection angle.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PhaseTapChangerNonLinear PhaseTapChangerNonLinear]] Reference to the superclass object.
  * @param windingConnectionAngle The phase angle between the in-phase winding and the out-of -phase winding used for creating phase shift.
  *        The out-of-phase winding produces what is known as the difference voltage.  Setting this angle to 90 degrees is not the same as a symmemtrical transformer.
  * @group Wires
@@ -3313,7 +3313,7 @@ extends
  *
  * This is a mathematical model that is an approximation of a real phase tap changer.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PhaseTapChanger PhaseTapChanger]] Reference to the superclass object.
  * @param stepPhaseShiftIncrement Phase shift per step position.
  *        A positive value indicates a positive phase shift from the winding where the tap is located to the other winding (for a two-winding transformer).
  * @param xMax The reactance depend on the tap position according to a "u" shaped curve.
@@ -3394,7 +3394,7 @@ extends
  *
  * This is a base class for the symmetrical and asymmetrical phase tap changer models. The details of these models can be found in the IEC 61970-301 document.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PhaseTapChanger PhaseTapChanger]] Reference to the superclass object.
  * @param voltageStepIncrement The voltage step increment on the out of phase winding specified in percent of nominal voltage of the transformer end.
  * @param xMax The reactance depend on the tap position according to a "u" shaped curve.
  *        The maximum reactance (xMax) appear at the low and high tap positions.
@@ -3474,7 +3474,7 @@ extends
  *
  * The difference voltage magnitude is the base in an equal-sided triangle where the sides corresponds to the primary and secondary voltages. The phase angle difference corresponds to the top angle and can be expressed as twice the arctangent of half the total difference voltage.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PhaseTapChangerNonLinear PhaseTapChangerNonLinear]] Reference to the superclass object.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -3536,7 +3536,7 @@ extends
 /**
  * Describes a tabular curve for how the phase angle difference and impedance varies with the tap step.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -3598,9 +3598,9 @@ extends
 /**
  * Describes each tap step in the phase tap changer tabular curve.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.TapChangerTablePoint TapChangerTablePoint]] Reference to the superclass object.
  * @param angle The angle difference in degrees.
- * @param PhaseTapChangerTable The table of this point.
+ * @param PhaseTapChangerTable [[ch.ninecode.model.PhaseTapChangerTable PhaseTapChangerTable]] The table of this point.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -3732,7 +3732,7 @@ extends
 /**
  * A Plant is a collection of equipment for purposes of generation.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.EquipmentContainer EquipmentContainer]] Reference to the superclass object.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -3796,7 +3796,7 @@ extends
  *
  * Transformers can be used to control voltage and phase shift (active power flow).
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] Reference to the superclass object.
  * @param beforeShCircuitHighestOperatingCurrent The highest operating current (Ib in the IEC 60909-0) before short circuit (depends on network configuration and relevant reliability philosophy).
  *        It is used for calculation of the impedance correction factor KT defined in IEC 60909-0.
  * @param beforeShCircuitHighestOperatingVoltage The highest operating voltage (Ub in the IEC 60909-0) before short circuit.
@@ -3901,7 +3901,7 @@ extends
  *
  * The impedance values r, r0, x, and x0 of a PowerTransformerEnd represents a star equivalent as follows
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.TransformerEnd TransformerEnd]] Reference to the superclass object.
  * @param b Magnetizing branch susceptance (B mag).
  *        The value can be positive or negative.
  * @param b0 Zero sequence magnetizing branch susceptance.
@@ -3919,7 +3919,7 @@ extends
  *        A high voltage side, as given by TransformerEnd.endNumber, shall have a ratedU that is greater or equal than ratedU for the lower voltage sides.
  * @param x Positive sequence series reactance (star-model) of the transformer end.
  * @param x0 Zero sequence series reactance of the transformer end.
- * @param PowerTransformer The power transformer of this power transformer end.
+ * @param PowerTransformer [[ch.ninecode.model.PowerTransformer PowerTransformer]] The power transformer of this power transformer end.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -4032,7 +4032,7 @@ extends
 /**
  * A ProtectedSwitch is a switching device that can be operated by ProtectionEquipment.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Switch Switch]] Reference to the superclass object.
  * @param breakingCapacity The maximum fault current a breaking device can break safely under prescribed conditions of use.
  * @group Wires
  * @groupname Wires Package Wires
@@ -4098,11 +4098,11 @@ extends
 /**
  * A tap changer that changes the voltage ratio impacting the voltage magnitude but not the phase angle across the transformer.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.TapChanger TapChanger]] Reference to the superclass object.
  * @param stepVoltageIncrement Tap step increment, in per cent of nominal voltage, per step position.
  * @param tculControlMode Specifies the regulation control mode (voltage or reactive) of the RatioTapChanger.
- * @param RatioTapChangerTable The tap ratio table for this ratio  tap changer.
- * @param TransformerEnd Transformer end to which this ratio tap changer belongs.
+ * @param RatioTapChangerTable [[ch.ninecode.model.RatioTapChangerTable RatioTapChangerTable]] The tap ratio table for this ratio  tap changer.
+ * @param TransformerEnd [[ch.ninecode.model.TransformerEnd TransformerEnd]] Transformer end to which this ratio tap changer belongs.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -4179,7 +4179,7 @@ extends
 /**
  * Describes a curve for how the voltage magnitude and impedance varies with the tap step.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -4241,8 +4241,8 @@ extends
 /**
  * Describes each tap step in the ratio tap changer tabular curve.
  *
- * @param sup Reference to the superclass object.
- * @param RatioTapChangerTable Table of this point.
+ * @param sup [[ch.ninecode.model.TapChangerTablePoint TapChangerTablePoint]] Reference to the superclass object.
+ * @param RatioTapChangerTable [[ch.ninecode.model.RatioTapChangerTable RatioTapChangerTable]] Table of this point.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -4309,7 +4309,7 @@ extends
  *
  * For each active power value there is a corresponding high and low reactive power limit  value. Typically there will be a separate curve for each coolant condition, such as hydrogen pressure.  The Y1 axis values represent reactive minimum and the Y2 axis values represent reactive maximum.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param coolantTemperature The machine's coolant temperature (e.g., ambient air or stator circulating water).
  * @param hydrogenPressure The hydrogen coolant pressure
  * @group Wires
@@ -4380,7 +4380,7 @@ extends
 /**
  * Pole-mounted fault interrupter with built-in phase and ground relays, current transformer (CT), and supplemental controls.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.ProtectedSwitch ProtectedSwitch]] Reference to the superclass object.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -4442,10 +4442,10 @@ extends
 /**
  * A type of conducting equipment that can regulate a quantity (i.e. voltage or flow) at a specific point in the network.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] Reference to the superclass object.
  * @param controlEnabled Specifies the regulation status of the equipment.
  *        True is regulating, false is not regulating.
- * @param RegulatingControl The regulating control scheme in which this equipment participates.
+ * @param RegulatingControl [[ch.ninecode.model.RegulatingControl RegulatingControl]] The regulating control scheme in which this equipment participates.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -4516,7 +4516,7 @@ extends
  *
  * Remote bus voltage control is possible by specifying the controlled terminal located at some place remote from the controlling equipment.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @param discrete The regulation is performed in a discrete mode.
  *        This applies to equipment with discrete controls, e.g. tap changers and shunt compensators.
  * @param enabled The flag tells if regulation is enabled.
@@ -4528,7 +4528,7 @@ extends
  * @param targetValue The target value specified for case input.
  *        This value can be used for the target value without the use of schedules. The value has the units appropriate to the mode attribute.
  * @param targetValueUnitMultiplier Specify the multiplier for used for the targetValue.
- * @param Terminal The terminal associated with this regulating control.
+ * @param Terminal [[ch.ninecode.model.Terminal Terminal]] The terminal associated with this regulating control.
  *        The terminal is associated instead of a node, since the terminal could connect into either a topological node (bus in bus-branch model) or a connectivity node (detailed switch model).  Sometimes it is useful to model regulation at a terminal of a bus bar object since the bus bar can be present in both a bus-branch model or a model with switch detail.
  * @group Wires
  * @groupname Wires Package Wires
@@ -4622,8 +4622,8 @@ extends
 /**
  * A pre-established pattern over time for a controlled variable, e.g., busbar voltage.
  *
- * @param sup Reference to the superclass object.
- * @param RegulatingControl Regulating controls that have this Schedule.
+ * @param sup [[ch.ninecode.model.SeasonDayTypeSchedule SeasonDayTypeSchedule]] Reference to the superclass object.
+ * @param RegulatingControl [[ch.ninecode.model.RegulatingControl RegulatingControl]] Regulating controls that have this Schedule.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -4688,7 +4688,7 @@ extends
 /**
  * A rotating machine which may be used as a generator or motor.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.RegulatingCondEq RegulatingCondEq]] Reference to the superclass object.
  * @param p Active power injection.
  *        Load sign convention is used, i.e. positive sign means flow out from a node.
  * @param q Reactive power injection.
@@ -4699,8 +4699,8 @@ extends
  *        The attribute shall have a positive value.
  * @param ratedU Rated voltage (nameplate data, Ur in IEC 60909-0).
  *        It is primarily used for short circuit data exchange according to IEC 60909.
- * @param GeneratingUnit A synchronous machine may operate as a generator and as such becomes a member of a generating unit.
- * @param HydroPump The synchronous machine drives the turbine which moves the water from a low elevation to a higher elevation.
+ * @param GeneratingUnit [[ch.ninecode.model.GeneratingUnit GeneratingUnit]] A synchronous machine may operate as a generator and as such becomes a member of a generating unit.
+ * @param HydroPump [[ch.ninecode.model.HydroPump HydroPump]] The synchronous machine drives the turbine which moves the water from a low elevation to a higher elevation.
  *        The direction of machine rotation for pumping may or may not be the same as for generating.
  * @group Wires
  * @groupname Wires Package Wires
@@ -4792,7 +4792,7 @@ extends
  *
  * It may, or may not, have load breaking capability. Its primary purpose is to provide fault sectionalising at locations where the fault current is either too high, or too low, for proper coordination of fuses.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Switch Switch]] Reference to the superclass object.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -4856,7 +4856,7 @@ extends
  *
  * It is a two terminal device.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] Reference to the superclass object.
  * @param r Positive sequence resistance.
  * @param r0 Zero sequence resistance.
  * @param varistorPresent Describe if a metal oxide varistor (mov) for over voltage protection is configured at the series compensator.
@@ -4954,7 +4954,7 @@ extends
  *
  * A section of a shunt compensator is an individual capacitor or reactor.  A negative value for reactivePerSection indicates that the compensator is a reactor. ShuntCompensator is a single terminal device.  Ground is implied.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.RegulatingCondEq RegulatingCondEq]] Reference to the superclass object.
  * @param aVRDelay Time delay required for the device to be connected or disconnected by automatic voltage regulation (AVR).
  * @param grounded Used for Yn and Zn connections.
  *        True if the neutral is solidly grounded.
@@ -4968,7 +4968,7 @@ extends
  * @param switchOnCount The switch on count since the capacitor count was last reset or initialized.
  * @param switchOnDate The date and time when the capacitor bank was last switched on.
  * @param voltageSensitivity Voltage sensitivity required for the device to regulate the bus voltage, in voltage/reactive power.
- * @param SvShuntCompensatorSections The state for the number of shunt compensator sections in service.
+ * @param SvShuntCompensatorSections [[ch.ninecode.model.SvShuntCompensatorSections SvShuntCompensatorSections]] The state for the number of shunt compensator sections in service.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -5073,12 +5073,12 @@ extends
 /**
  * Single phase of a multi-phase shunt compensator when its attributes might be different per phase.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @param maximumSections The maximum number of sections that may be switched in for this phase.
  * @param normalSections For the capacitor phase, the normal number of sections switched in.
  * @param phase Phase of this shunt compensator component.
  *        If the shunt compensator is wye connected, the connection is from the indicated phase to the central ground or neutral point.  If the shunt compensator is delta connected, the phase indicates a shunt compensator connected from the indicated phase to the next logical non-neutral phase.
- * @param ShuntCompensator Shunt compensator of this shunt compensator phase.
+ * @param ShuntCompensator [[ch.ninecode.model.ShuntCompensator ShuntCompensator]] Shunt compensator of this shunt compensator phase.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -5157,7 +5157,7 @@ extends
  *
  * The SVC typically consists of a stepdown transformer, filter, thyristor-controlled reactor, and thyristor-switched capacitor arms.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.RegulatingCondEq RegulatingCondEq]] Reference to the superclass object.
  * @param capacitiveRating Maximum available capacitive reactance.
  * @param inductiveRating Maximum available inductive reactance.
  * @param q Reactive power injection.
@@ -5252,7 +5252,7 @@ extends
  *
  * All switches are two terminal devices including grounding switches.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] Reference to the superclass object.
  * @param normalOpen The attribute is used in cases when no Measurement for the status value is present.
  *        If the Switch has a status measurement the Discrete.normalValue is expected to match with the Switch.normalOpen.
  * @param open The attribute tells if the switch is considered open when used as input to topology processing.
@@ -5261,9 +5261,9 @@ extends
  *        The flow through retained switches will normally be calculated in power flow.
  * @param switchOnCount The switch on count since the switch was last reset or initialized.
  * @param switchOnDate The date and time when the switch was last switched on.
- * @param CompositeSwitch Composite switch to which this Switch belongs.
- * @param Outage Current outage of this protective device.
- * @param SwitchAction Action changing status of this switch.
+ * @param CompositeSwitch [[ch.ninecode.model.CompositeSwitch CompositeSwitch]] Composite switch to which this Switch belongs.
+ * @param Outage [[ch.ninecode.model.Outage Outage]] Current outage of this protective device.
+ * @param SwitchAction [[ch.ninecode.model.SwitchAction SwitchAction]] Action changing status of this switch.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -5360,7 +5360,7 @@ extends
 /**
  * Single phase of a multi-phase switch when its attributes might be different per phase.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @param closed The attribute tells if the switch is considered closed when used as input to topology processing.
  * @param normalOpen Used in cases when no Measurement for the status value is present.
  *        If the SwitchPhase has a status measurement the Discrete.normalValue is expected to match with this value.
@@ -5368,7 +5368,7 @@ extends
  *        Should be a phase contained in that terminal&rsquo;s phases attribute.
  * @param phaseSide2 Phase of this SwitchPhase on the side with terminal sequence number equal 2.
  *        Should be a phase contained in that terminal&rsquo;s Terminal.phases attribute.
- * @param Switch The switch of the switch phase.
+ * @param Switch [[ch.ninecode.model.Switch Switch]] The switch of the switch phase.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -5451,8 +5451,8 @@ extends
  *
  * If RegularTimePoint.value1 is 0, the switch is open.  If 1, the switch is closed.
  *
- * @param sup Reference to the superclass object.
- * @param Switch A SwitchSchedule is associated with a Switch.
+ * @param sup [[ch.ninecode.model.SeasonDayTypeSchedule SeasonDayTypeSchedule]] Reference to the superclass object.
+ * @param Switch [[ch.ninecode.model.Switch Switch]] A SwitchSchedule is associated with a Switch.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -5519,7 +5519,7 @@ extends
  *
  * It is a single machine operating either as a generator or synchronous condenser or pump.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.RotatingMachine RotatingMachine]] Reference to the superclass object.
  * @param aVRToManualLag Time delay required when switching from Automatic Voltage Regulation (AVR) to Manual for a lagging MVAr violation.
  * @param aVRToManualLead Time delay required when switching from Automatic Voltage Regulation (AVR) to Manual for a leading MVAr violation.
  * @param baseQ Default base reactive power value.
@@ -5565,7 +5565,7 @@ extends
  * @param x0 Zero sequence reactance of the synchronous machine.
  * @param x2 Negative sequence reactance.
  * @param InitialReactiveCapabilityCurve The default reactive capability curve for use by a synchronous machine.
- * @param SynchronousMachineDynamics Synchronous machine dynamics model used to describe dynamic behavior of this synchronous machine.
+ * @param SynchronousMachineDynamics [[ch.ninecode.model.SynchronousMachineDynamics SynchronousMachineDynamics]] Synchronous machine dynamics model used to describe dynamic behavior of this synchronous machine.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -5754,7 +5754,7 @@ extends
 /**
  * Mechanism for changing transformer winding tap positions.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @param controlEnabled Specifies the regulation status of the equipment.
  *        True is regulating, false is not regulating.
  * @param highStep Highest possible tap step position, advance from neutral.
@@ -5770,8 +5770,8 @@ extends
  * @param step Tap changer position.
  *        Starting step for a steady state solution. Non integer values are allowed to support continuous tap variables. The reasons for continuous value are to support study cases where no discrete tap changers has yet been designed, a solutions where a narrow voltage band force the tap step to oscillate or accommodate for a continuous solution as input.
  * @param subsequentDelay For an LTC, the delay for subsequent tap changer operation (second and later step changes)
- * @param SvTapStep The tap step state associated with the tap changer.
- * @param TapChangerControl The regulating control scheme in which this tap changer participates.
+ * @param SvTapStep [[ch.ninecode.model.SvTapStep SvTapStep]] The tap step state associated with the tap changer.
+ * @param TapChangerControl [[ch.ninecode.model.TapChangerControl TapChangerControl]] The regulating control scheme in which this tap changer participates.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -5880,7 +5880,7 @@ extends
 /**
  * Describes behavior specific to tap changers, e.g. how the voltage at the end of a line varies with the load level and compensation of the voltage drop by tap adjustment.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.RegulatingControl RegulatingControl]] Reference to the superclass object.
  * @param limitVoltage Maximum allowed regulated voltage on the PT secondary, regardless of line drop compensation.
  *        Sometimes referred to as first-house protection.
  * @param lineDropCompensation If true, the line drop compensation is to be applied.
@@ -6055,8 +6055,8 @@ extends
 /**
  * A pre-established pattern over time for a tap step.
  *
- * @param sup Reference to the superclass object.
- * @param TapChanger A TapSchedule is associated with a TapChanger.
+ * @param sup [[ch.ninecode.model.SeasonDayTypeSchedule SeasonDayTypeSchedule]] Reference to the superclass object.
+ * @param TapChanger [[ch.ninecode.model.TapChanger TapChanger]] A TapSchedule is associated with a TapChanger.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -6123,13 +6123,13 @@ extends
  *
  * Used to specify the core admittance of a transformer in a manner that can be shared among power transformers.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param b Magnetizing branch susceptance (B mag).
  *        The value can be positive or negative.
  * @param b0 Zero sequence magnetizing branch susceptance.
  * @param g Magnetizing branch conductance (G mag).
  * @param g0 Zero sequence magnetizing branch conductance.
- * @param TransformerEndInfo Transformer end datasheet used to calculate this core admittance.
+ * @param TransformerEndInfo [[ch.ninecode.model.TransformerEndInfo TransformerEndInfo]] Transformer end datasheet used to calculate this core admittance.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -6212,7 +6212,7 @@ extends
  *
  * It corresponds to a physical transformer winding terminal.  In earlier CIM versions, the TransformerWinding class served a similar purpose, but this class is more flexible because it associates to terminal but is not a specialization of ConductingEquipment.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param bmagSat Core shunt magnetizing susceptance in the saturation region.
  * @param endNumber Number for this transformer end, corresponding to the end's order in the power transformer vector group or phase angle clock number.
  *        Highest voltage winding should be 1.  Each end within a power transformer should have a unique subsequent end number.   Note the transformer end number need not match the terminal sequence number.
@@ -6221,15 +6221,15 @@ extends
  * @param magSatFlux Core magnetizing saturation curve knee flux level.
  * @param rground (for Yn and Zn connections) Resistance part of neutral impedance where 'grounded' is true.
  * @param xground (for Yn and Zn connections) Reactive part of neutral impedance where 'grounded' is true.
- * @param BaseVoltage Base voltage of the transformer end.
+ * @param BaseVoltage [[ch.ninecode.model.BaseVoltage BaseVoltage]] Base voltage of the transformer end.
  *        This is essential for PU calculation.
  * @param CoreAdmittance Core admittance of this transformer end, representing magnetising current and core losses.
  *        The full values of the transformer should be supplied for one transformer end only.
- * @param PhaseTapChanger Phase tap changer associated with this transformer end.
- * @param RatioTapChanger Ratio tap changer associated with this transformer end.
+ * @param PhaseTapChanger [[ch.ninecode.model.PhaseTapChanger PhaseTapChanger]] Phase tap changer associated with this transformer end.
+ * @param RatioTapChanger [[ch.ninecode.model.RatioTapChanger RatioTapChanger]] Ratio tap changer associated with this transformer end.
  * @param StarImpedance (accurate for 2- or 3-winding transformers only) Pi-model impedances of this transformer end.
  *        By convention, for a two winding transformer, the full values of the transformer should be entered on the high voltage end (endNumber=1).
- * @param Terminal Terminal of the power transformer to which this transformer end belongs.
+ * @param Terminal [[ch.ninecode.model.Terminal Terminal]] Terminal of the power transformer to which this transformer end belongs.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -6344,7 +6344,7 @@ extends
  *
  * The typical case is that this class describes the impedance between two transformer ends pair-wise, i.e. the cardinalities at both tranformer end associations are 1. But in cases where two or more transformer ends are modeled the cardinalities are larger than 1.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param r Resistance between the 'from' and the 'to' end, seen from the 'from' end.
  * @param r0 Zero-sequence resistance between the 'from' and the 'to' end, seen from the 'from' end.
  * @param x Reactance between the 'from' and the 'to' end, seen from the 'from' end.
@@ -6439,12 +6439,12 @@ extends
  *
  * For transformers with 4 or more windings, you must use TransformerMeshImpedance class.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param r Resistance of the transformer end.
  * @param r0 Zero sequence series resistance of the transformer end.
  * @param x Positive sequence series reactance of the transformer end.
  * @param x0 Zero sequence series reactance of the transformer end.
- * @param TransformerEndInfo Transformer end datasheet used to calculate this transformer star impedance.
+ * @param TransformerEndInfo [[ch.ninecode.model.TransformerEndInfo TransformerEndInfo]] Transformer end datasheet used to calculate this transformer star impedance.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -6527,8 +6527,8 @@ extends
  *
  * These windings are bound on a common core and place in the same tank. Transformer tank can be used to model both single-phase and 3-phase transformers.
  *
- * @param sup Reference to the superclass object.
- * @param PowerTransformer Bank this transformer belongs to.
+ * @param sup [[ch.ninecode.model.Equipment Equipment]] Reference to the superclass object.
+ * @param PowerTransformer [[ch.ninecode.model.PowerTransformer PowerTransformer]] Bank this transformer belongs to.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -6593,9 +6593,9 @@ extends
 /**
  * Transformer tank end represents an individual winding for unbalanced models or for transformer tanks connected into a bank (and bank is modelled with the PowerTransformer).
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.TransformerEnd TransformerEnd]] Reference to the superclass object.
  * @param phases Describes the phases carried by a conducting equipment.
- * @param TransformerTank Transformer this winding belongs to.
+ * @param TransformerTank [[ch.ninecode.model.TransformerTank TransformerTank]] Transformer this winding belongs to.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -6666,9 +6666,9 @@ extends
  *
  * A voltage control zone consists of a collection of substations with a designated bus bar section whose voltage will be controlled.
  *
- * @param sup Reference to the superclass object.
- * @param BusbarSection A VoltageControlZone is controlled by a designated BusbarSection.
- * @param RegulationSchedule A VoltageControlZone may have a  voltage regulation schedule.
+ * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
+ * @param BusbarSection [[ch.ninecode.model.BusbarSection BusbarSection]] A VoltageControlZone is controlled by a designated BusbarSection.
+ * @param RegulationSchedule [[ch.ninecode.model.RegulationSchedule RegulationSchedule]] A VoltageControlZone may have a  voltage regulation schedule.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.

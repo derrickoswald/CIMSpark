@@ -9,7 +9,7 @@ import ch.ninecode.cim.Parseable
 /**
  * A unit with valves for three phases, together with unit control equipment, essential protective and switching devices, DC storage capacitors, phase reactors and auxiliaries, if any, used for conversion.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] Reference to the superclass object.
  * @param baseS Base apparent power of the converter pole.
  * @param idc Converter DC current, also called Id.
  *        Converter state variable, result from power flow.
@@ -181,9 +181,9 @@ extends
  *
  * The AC/DC converter is electrically connected also to the AC side. The AC connection is inherited from the AC conducting equipment in the same way as any other AC equipment. The AC/DC converter DC terminal is separate from generic DC terminal to restrict the connection with the AC side to AC/DC converter and so that no other DC conducting equipment can be connected to the AC side.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.DCBaseTerminal DCBaseTerminal]] Reference to the superclass object.
  * @param polarity Represents the normal network polarity condition.
- * @param DCConductingEquipment <em>undocumented</em>
+ * @param DCConductingEquipment [[ch.ninecode.model.DCConductingEquipment DCConductingEquipment]] <em>undocumented</em>
  * @group DC
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
@@ -252,7 +252,7 @@ extends
 /**
  * DC side of the current source converter (CSC).
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.ACDCConverter ACDCConverter]] Reference to the superclass object.
  * @param alpha Firing angle, typical value between 10 and 18 degrees for a rectifier.
  *        CSC state variable, result from power flow.
  * @param gamma Extinction angle.
@@ -398,9 +398,9 @@ extends
  *
  * DC terminals are connected at one physical DC node that may have multiple DC terminals connected. A DC node is similar to an AC connectivity node. The model enforces that DC connections are distinct from AC connections.
  *
- * @param sup Reference to the superclass object.
- * @param DCNode <em>undocumented</em>
- * @param DCTopologicalNode See association end Terminal.
+ * @param sup [[ch.ninecode.model.ACDCTerminal ACDCTerminal]] Reference to the superclass object.
+ * @param DCNode [[ch.ninecode.model.DCNode DCNode]] <em>undocumented</em>
+ * @param DCTopologicalNode [[ch.ninecode.model.DCTopologicalNode DCTopologicalNode]] See association end Terminal.
  *        TopologicalNode.
  * @group DC
  * @groupname DC Package DC
@@ -470,7 +470,7 @@ extends
 /**
  * A breaker within a DC system.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.DCSwitch DCSwitch]] Reference to the superclass object.
  * @group DC
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
@@ -532,7 +532,7 @@ extends
 /**
  * A busbar within a DC system.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.DCConductingEquipment DCConductingEquipment]] Reference to the superclass object.
  * @group DC
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
@@ -596,7 +596,7 @@ extends
  *
  * It has typically positive and negative pole terminals and a ground.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.DCConductingEquipment DCConductingEquipment]] Reference to the superclass object.
  * @group DC
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
@@ -658,7 +658,7 @@ extends
 /**
  * The parts of the DC power system that are designed to carry current or that are conductively connected through DC terminals.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Equipment Equipment]] Reference to the superclass object.
  * @group DC
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
@@ -720,9 +720,9 @@ extends
 /**
  * Indivisible operative unit comprising all equipment between the point of common coupling on the AC side and the point of common coupling � DC side, essentially one or more converters, together with one or more converter transformers, converter control equipment, essential protective and switching devices and auxiliaries, if any, used for conversion.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.DCEquipmentContainer DCEquipmentContainer]] Reference to the superclass object.
  * @param operationMode <em>undocumented</em>
- * @param Substation <em>undocumented</em>
+ * @param Substation [[ch.ninecode.model.Substation Substation]] <em>undocumented</em>
  * @group DC
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
@@ -791,7 +791,7 @@ extends
 /**
  * A disconnector within a DC system.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.DCSwitch DCSwitch]] Reference to the superclass object.
  * @group DC
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
@@ -855,7 +855,7 @@ extends
  *
  * The class differ from the EquipmentContaner for AC in that it may also contain DCNodes. Hence it can contain both AC and DC equipment.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.EquipmentContainer EquipmentContainer]] Reference to the superclass object.
  * @group DC
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
@@ -917,7 +917,7 @@ extends
 /**
  * A ground within a DC system.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.DCConductingEquipment DCConductingEquipment]] Reference to the superclass object.
  * @param inductance Inductance to ground.
  * @param r Resistance to ground.
  * @group DC
@@ -988,7 +988,7 @@ extends
 /**
  * Overhead lines and/or cables connecting two or more HVDC substations.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.DCEquipmentContainer DCEquipmentContainer]] Reference to the superclass object.
  * @param Region <em>undocumented</em>
  * @group DC
  * @groupname DC Package DC
@@ -1054,7 +1054,7 @@ extends
 /**
  * A wire or combination of wires not insulated from one another, with consistent electrical characteristics, used to carry direct current between points in the DC region of the power system.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.DCConductingEquipment DCConductingEquipment]] Reference to the superclass object.
  * @param capacitance Capacitance of the DC line segment.
  *        Significant for cables only.
  * @param inductance Inductance of the DC line segment.
@@ -1142,9 +1142,9 @@ extends
 /**
  * DC nodes are points where terminals of DC conducting equipment are connected together with zero impedance.
  *
- * @param sup Reference to the superclass object.
- * @param DCEquipmentContainer <em>undocumented</em>
- * @param DCTopologicalNode See association end ConnectivityNode.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param DCEquipmentContainer [[ch.ninecode.model.DCEquipmentContainer DCEquipmentContainer]] <em>undocumented</em>
+ * @param DCTopologicalNode [[ch.ninecode.model.DCTopologicalNode DCTopologicalNode]] See association end ConnectivityNode.
  *        TopologicalNode.
  * @group DC
  * @groupname DC Package DC
@@ -1216,7 +1216,7 @@ extends
  *
  * Needed for transient and short circuit studies.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.DCConductingEquipment DCConductingEquipment]] Reference to the superclass object.
  * @param inductance Inductance of the device.
  * @param ratedUdc Rated DC device voltage.
  *        Converter configuration data used in power flow.
@@ -1295,7 +1295,7 @@ extends
  *
  * Needed for transient and short circuit studies.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.DCConductingEquipment DCConductingEquipment]] Reference to the superclass object.
  * @param capacitance Capacitance of the DC shunt.
  * @param ratedUdc Rated DC device voltage.
  *        Converter configuration data used in power flow.
@@ -1372,7 +1372,7 @@ extends
 /**
  * A switch within the DC system.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.DCConductingEquipment DCConductingEquipment]] Reference to the superclass object.
  * @group DC
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
@@ -1434,8 +1434,8 @@ extends
 /**
  * An electrical connection point to generic DC conducting equipment.
  *
- * @param sup Reference to the superclass object.
- * @param DCConductingEquipment <em>undocumented</em>
+ * @param sup [[ch.ninecode.model.DCBaseTerminal DCBaseTerminal]] Reference to the superclass object.
+ * @param DCConductingEquipment [[ch.ninecode.model.DCConductingEquipment DCConductingEquipment]] <em>undocumented</em>
  * @group DC
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
@@ -1502,7 +1502,7 @@ extends
  *
  * DC topological islands can change as the current network state changes: e.g. due to
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @group DC
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
@@ -1635,7 +1635,7 @@ extends
 /**
  * The P-Q capability curve for a voltage source converter, with P on x-axis and Qmin and Qmax on y1-axis and y2-axis.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @group DC
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
@@ -1697,7 +1697,7 @@ extends
 /**
  * DC side of the voltage source converter (VSC).
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.ACDCConverter ACDCConverter]] Reference to the superclass object.
  * @param delta Angle between uf and uc.
  *        Converter state variable used in power flow.
  * @param droop Droop constant; pu value is obtained as D [kV/MW] x Sb / Ubdc.

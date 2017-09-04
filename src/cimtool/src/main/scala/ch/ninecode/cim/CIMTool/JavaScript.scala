@@ -26,7 +26,7 @@ case class JavaScript (parser: ModelParser, pkg: Package)
             val attributes = parser.attributes.getOrElse(cls._1, List[Attribute]())
             val s = new StringBuilder ()
             if (null != cls._2.note)
-                s.append (JavaDoc (cls._2.note, 8).asText ())
+                s.append (JavaDoc (cls._2.note, 8).asText)
             s.append ("        function parse_")
             s.append (name)
             s.append (""" (context, sub)
@@ -55,7 +55,7 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                |""".stripMargin)
             for (attribute <- attributes)
             {
-                s.append (JavaDoc (attribute.notes, 12).asText ())
+                s.append (JavaDoc (attribute.notes, 12).asText)
                 val n = attribute.name.replace ("""/""", """\/""")
                 s.append ("""            obj["""");
                 s.append (attribute.name);
@@ -90,7 +90,7 @@ case class JavaScript (parser: ModelParser, pkg: Package)
             for (role <- roles)
                 if (role.upper == 1)
                 {
-                    s.append (JavaDoc (role.note, 12).asText ())
+                    s.append (JavaDoc (role.note, 12).asText)
                     val n = role.name.replace ("""/""", """\/""")
                     s.append ("""            obj["""");
                     s.append (role.name);
@@ -147,7 +147,7 @@ case class JavaScript (parser: ModelParser, pkg: Package)
             v.append (includes)
             v.append ("""],
                 |""".stripMargin)
-            v.append (JavaDoc (pkg.notes, 4).asText ())
+            v.append (JavaDoc (pkg.notes, 4).asText)
             v.append ("""    function (base""")
             val parameters = r.mkString (", ")
             if (parameters != "")

@@ -9,17 +9,17 @@ import ch.ninecode.cim.Parseable
 /**
  * Supports connection to a terminal associated with a remote bus from which an input signal of a specific type is coming.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param remoteSignalType Type of input signal.
- * @param DiscontinuousExcitationControlDynamics Discontinuous excitation control model using this remote input signal.
- * @param PFVArControllerType1Dynamics Power Factor or VAr controller Type I model using this remote input signal.
- * @param PowerSystemStabilizerDynamics Power system stabilizer model using this remote input signal.
- * @param Terminal Remote terminal with which this input signal is associated.
- * @param UnderexcitationLimiterDynamics Underexcitation limiter model using this remote input signal.
- * @param VoltageCompensatorDynamics Voltage compensator model using this remote input signal.
- * @param WindPlantDynamics The wind plant using the remote signal.
- * @param WindTurbineType1or2Dynamics Wind generator Type 1 or Type 2 model using this remote input signal.
- * @param WindTurbineType3or4Dynamics Wind turbine Type 3 or 4 models using this remote input signal.
+ * @param DiscontinuousExcitationControlDynamics [[ch.ninecode.model.DiscontinuousExcitationControlDynamics DiscontinuousExcitationControlDynamics]] Discontinuous excitation control model using this remote input signal.
+ * @param PFVArControllerType1Dynamics [[ch.ninecode.model.PFVArControllerType1Dynamics PFVArControllerType1Dynamics]] Power Factor or VAr controller Type I model using this remote input signal.
+ * @param PowerSystemStabilizerDynamics [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Power system stabilizer model using this remote input signal.
+ * @param Terminal [[ch.ninecode.model.Terminal Terminal]] Remote terminal with which this input signal is associated.
+ * @param UnderexcitationLimiterDynamics [[ch.ninecode.model.UnderexcitationLimiterDynamics UnderexcitationLimiterDynamics]] Underexcitation limiter model using this remote input signal.
+ * @param VoltageCompensatorDynamics [[ch.ninecode.model.VoltageCompensatorDynamics VoltageCompensatorDynamics]] Voltage compensator model using this remote input signal.
+ * @param WindPlantDynamics [[ch.ninecode.model.WindPlantDynamics WindPlantDynamics]] The wind plant using the remote signal.
+ * @param WindTurbineType1or2Dynamics [[ch.ninecode.model.WindTurbineType1or2Dynamics WindTurbineType1or2Dynamics]] Wind generator Type 1 or Type 2 model using this remote input signal.
+ * @param WindTurbineType3or4Dynamics [[ch.ninecode.model.WindTurbineType3or4Dynamics WindTurbineType3or4Dynamics]] Wind turbine Type 3 or 4 models using this remote input signal.
  * @group StandardInterconnections
  * @groupname StandardInterconnections Package StandardInterconnections
  * @groupdesc StandardInterconnections This section describes the standard interconnections for various types of equipment. These interconnections are understood by the application programs and can be identified based on the presence of one of the key classes with a relationship to the static power flow model: SynchronousMachineDynamics, AsynchronousMachineDynamics, EnergyConsumerDynamics or WindTurbineType3or4Dynamics. 

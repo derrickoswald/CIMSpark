@@ -9,7 +9,7 @@ import ch.ninecode.cim.Parseable
 /**
  * Accumulator represents an accumulated (counted) Measurement, e.g. an energy value.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Measurement Measurement]] Reference to the superclass object.
  * @param maxValue Normal value range maximum for any of the MeasurementValue.values.
  *        Used for scaling, e.g. in bar graphs or of telemetered raw values.
  * @param LimitSets A measurement may have zero or more limit ranges defined for it.
@@ -81,10 +81,10 @@ extends
 /**
  * Limit values for Accumulator measurements.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Limit Limit]] Reference to the superclass object.
  * @param value The value to supervise against.
  *        The value is positive.
- * @param LimitSet The set of limits.
+ * @param LimitSet [[ch.ninecode.model.LimitSet LimitSet]] The set of limits.
  * @group Meas
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
@@ -153,7 +153,7 @@ extends
 /**
  * An AccumulatorLimitSet specifies a set of Limits that are associated with an Accumulator measurement.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.LimitSet LimitSet]] Reference to the superclass object.
  * @group Meas
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
@@ -215,8 +215,8 @@ extends
 /**
  * This command reset the counter value to zero.
  *
- * @param sup Reference to the superclass object.
- * @param AccumulatorValue The accumulator value that is reset by the command.
+ * @param sup [[ch.ninecode.model.Control Control]] Reference to the superclass object.
+ * @param AccumulatorValue [[ch.ninecode.model.AccumulatorValue AccumulatorValue]] The accumulator value that is reset by the command.
  * @group Meas
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
@@ -281,11 +281,11 @@ extends
 /**
  * AccumulatorValue represents an accumulated (counted) MeasurementValue.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.MeasurementValue MeasurementValue]] Reference to the superclass object.
  * @param value The value to supervise.
  *        The value is positive.
- * @param Accumulator Measurement to which this value is connected.
- * @param AccumulatorReset The command that reset the accumulator value.
+ * @param Accumulator [[ch.ninecode.model.Accumulator Accumulator]] Measurement to which this value is connected.
+ * @param AccumulatorReset [[ch.ninecode.model.AccumulatorReset AccumulatorReset]] The command that reset the accumulator value.
  * @group Meas
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
@@ -358,7 +358,7 @@ extends
 /**
  * Analog represents an analog Measurement.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Measurement Measurement]] Reference to the superclass object.
  * @param maxValue Normal value range maximum for any of the MeasurementValue.values.
  *        Used for scaling, e.g. in bar graphs or of telemetered raw values.
  * @param minValue Normal value range minimum for any of the MeasurementValue.values.
@@ -446,12 +446,12 @@ extends
 /**
  * An analog control used for supervisory control.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Control Control]] Reference to the superclass object.
  * @param maxValue Normal value range maximum for any of the Control.value.
  *        Used for scaling, e.g. in bar graphs.
  * @param minValue Normal value range minimum for any of the Control.value.
  *        Used for scaling, e.g. in bar graphs.
- * @param AnalogValue The MeasurementValue that is controlled.
+ * @param AnalogValue [[ch.ninecode.model.AnalogValue AnalogValue]] The MeasurementValue that is controlled.
  * @group Meas
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
@@ -524,9 +524,9 @@ extends
 /**
  * Limit values for Analog measurements.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Limit Limit]] Reference to the superclass object.
  * @param value The value to supervise against.
- * @param LimitSet The set of limits.
+ * @param LimitSet [[ch.ninecode.model.LimitSet LimitSet]] The set of limits.
  * @group Meas
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
@@ -595,7 +595,7 @@ extends
 /**
  * An AnalogLimitSet specifies a set of Limits that are associated with an Analog measurement.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.LimitSet LimitSet]] Reference to the superclass object.
  * @group Meas
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
@@ -657,10 +657,10 @@ extends
 /**
  * AnalogValue represents an analog MeasurementValue.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.MeasurementValue MeasurementValue]] Reference to the superclass object.
  * @param value The value to supervise.
- * @param Analog Measurement to which this value is connected.
- * @param AnalogControl The Control variable associated with the MeasurementValue.
+ * @param Analog [[ch.ninecode.model.Analog Analog]] Measurement to which this value is connected.
+ * @param AnalogControl [[ch.ninecode.model.AnalogControl AnalogControl]] The Control variable associated with the MeasurementValue.
  * @group Meas
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
@@ -733,11 +733,11 @@ extends
 /**
  * A Command is a discrete control used for supervisory control.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Control Control]] Reference to the superclass object.
  * @param normalValue Normal value for Control.value e.g. used for percentage scaling.
  * @param value The value representing the actuator output.
- * @param DiscreteValue The MeasurementValue that is controlled.
- * @param ValueAliasSet The ValueAliasSet used for translation of a Control value to a name.
+ * @param DiscreteValue [[ch.ninecode.model.DiscreteValue DiscreteValue]] The MeasurementValue that is controlled.
+ * @param ValueAliasSet [[ch.ninecode.model.ValueAliasSet ValueAliasSet]] The ValueAliasSet used for translation of a Control value to a name.
  * @group Meas
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
@@ -816,15 +816,15 @@ extends
  *
  * It represents control outputs that are used to change the state in a process, e.g. close or open breaker, a set point value or a raise lower command.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param controlType Specifies the type of Control, e.g.
  *        BreakerOn/Off, GeneratorVoltageSetPoint, TieLineFlow etc. The ControlType.name shall be unique among all specified types and describe the type.
  * @param operationInProgress Indicates that a client is currently sending control commands that has not completed.
  * @param timeStamp The last time a control output was sent.
  * @param unitMultiplier The unit multiplier of the controlled quantity.
  * @param unitSymbol The unit of measure of the controlled quantity.
- * @param PowerSystemResource Regulating device governed by this control output.
- * @param RemoteControl The remote point controlling the physical actuator.
+ * @param PowerSystemResource [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Regulating device governed by this control output.
+ * @param RemoteControl [[ch.ninecode.model.RemoteControl RemoteControl]] The remote point controlling the physical actuator.
  * @group Meas
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
@@ -913,13 +913,13 @@ extends
 /**
  * Discrete represents a discrete Measurement, i.e. a Measurement representing discrete values, e.g. a Breaker position.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Measurement Measurement]] Reference to the superclass object.
  * @param maxValue Normal value range maximum for any of the MeasurementValue.values.
  *        Used for scaling, e.g. in bar graphs or of telemetered raw values.
  * @param minValue Normal value range minimum for any of the MeasurementValue.values.
  *        Used for scaling, e.g. in bar graphs or of telemetered raw values.
  * @param normalValue Normal measurement value, e.g., used for percentage calculations.
- * @param ValueAliasSet The ValueAliasSet used for translation of a MeasurementValue.value to a name.
+ * @param ValueAliasSet [[ch.ninecode.model.ValueAliasSet ValueAliasSet]] The ValueAliasSet used for translation of a MeasurementValue.value to a name.
  * @group Meas
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
@@ -1056,10 +1056,10 @@ extends
 /**
  * DiscreteValue represents a discrete MeasurementValue.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.MeasurementValue MeasurementValue]] Reference to the superclass object.
  * @param value The value to supervise.
- * @param Command The Control variable associated with the MeasurementValue.
- * @param Discrete Measurement to which this value is connected.
+ * @param Command [[ch.ninecode.model.Command Command]] The Control variable associated with the MeasurementValue.
+ * @param Discrete [[ch.ninecode.model.Discrete Discrete]] Measurement to which this value is connected.
  * @group Meas
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
@@ -1134,7 +1134,7 @@ extends
  *
  * A Measurement typically has several limits that are kept together by the LimitSet class. The actual meaning and use of a Limit instance (i.e., if it is an alarm or warning limit or if it is a high or low limit) is not captured in the Limit class. However the name of a Limit instance may indicate both meaning and use.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @group Meas
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
@@ -1198,7 +1198,7 @@ extends
  *
  * A Measurement may have several LimitSets corresponding to seasonal or other changing conditions. The condition is captured in the name and description attributes. The same LimitSet may be used for several Measurements. In particular percentage limits are used this way.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param isPercentageLimits Tells if the limit values are in percentage of normalValue or the specified Unit for Measurements and Controls.
  * @group Meas
  * @groupname Meas Package Meas
@@ -1266,16 +1266,16 @@ extends
  *
  * Any piece of equipment may contain Measurements, e.g. a substation may have temperature measurements and door open indications, a transformer may have oil temperature and tank pressure measurements, a bay may contain a number of power flow measurements and a Breaker may contain a switch status measurement.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param measurementType Specifies the type of measurement.
  *        For example, this specifies if the measurement represents an indoor temperature, outdoor temperature, bus voltage, line flow, etc.
  * @param phases Indicates to which phases the measurement applies and avoids the need to use 'measurementType' to also encode phase information (which would explode the types).
  *        The phase information in Measurement, along with 'measurementType' and 'phases' uniquely defines a Measurement for a device, based on normal network phase. Their meaning will not change when the computed energizing phasing is changed due to jumpers or other reasons.
  * @param unitMultiplier The unit multiplier of the measured quantity.
  * @param unitSymbol The unit of measure of the measured quantity.
- * @param Asset <em>undocumented</em>
- * @param PowerSystemResource The power system resource that contains the measurement.
- * @param Terminal One or more measurements may be associated with a terminal in the network.
+ * @param Asset [[ch.ninecode.model.Asset Asset]] <em>undocumented</em>
+ * @param PowerSystemResource [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] The power system resource that contains the measurement.
+ * @param Terminal [[ch.ninecode.model.Terminal Terminal]] One or more measurements may be associated with a terminal in the network.
  * @group Meas
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
@@ -1366,15 +1366,15 @@ extends
  *
  * A state value is an instance of a measurement from a specific source. Measurements can be associated with many state values, each representing a different source for the measurement.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param attr <em>undocumented</em>
  * @param sensorAccuracy The limit, expressed as a percentage of the sensor maximum, that errors will not exceed when the sensor is used under  reference conditions.
  * @param timeStamp The time when the value was last updated
  * @param ErpPerson <em>undocumented</em>
- * @param MeasurementValueQuality A MeasurementValue has a MeasurementValueQuality associated with it.
- * @param MeasurementValueSource A reference to the type of source that updates the MeasurementValue, e.g.
+ * @param MeasurementValueQuality [[ch.ninecode.model.MeasurementValueQuality MeasurementValueQuality]] A MeasurementValue has a MeasurementValueQuality associated with it.
+ * @param MeasurementValueSource [[ch.ninecode.model.MeasurementValueSource MeasurementValueSource]] A reference to the type of source that updates the MeasurementValue, e.g.
  *        SCADA, CCLink, manual, etc. User conventions for the names of sources are contained in the introduction to IEC 61970-301.
- * @param RemoteSource Link to the physical telemetered point associated with this measurement.
+ * @param RemoteSource [[ch.ninecode.model.RemoteSource RemoteSource]] Link to the physical telemetered point associated with this measurement.
  * @group Meas
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
@@ -1465,8 +1465,8 @@ extends
  *
  * Bits 0-10 are defined for substation automation in draft IEC 61850 part 7-3. Bits 11-15 are reserved for future expansion by that document. Bits 16-31 are reserved for EMS applications.
  *
- * @param sup Reference to the superclass object.
- * @param MeasurementValue A MeasurementValue has a MeasurementValueQuality associated with it.
+ * @param sup [[ch.ninecode.model.Quality61850 Quality61850]] Reference to the superclass object.
+ * @param MeasurementValue [[ch.ninecode.model.MeasurementValue MeasurementValue]] A MeasurementValue has a MeasurementValueQuality associated with it.
  * @group Meas
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
@@ -1533,7 +1533,7 @@ extends
  *
  * User conventions for how to use the MeasurementValueSource attributes are described in the introduction to IEC 61970-301.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @group Meas
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
@@ -1720,8 +1720,8 @@ extends
 /**
  * An analog control that increase or decrease a set point value with pulses.
  *
- * @param sup Reference to the superclass object.
- * @param ValueAliasSet The ValueAliasSet used for translation of a Control value to a name.
+ * @param sup [[ch.ninecode.model.AnalogControl AnalogControl]] Reference to the superclass object.
+ * @param ValueAliasSet [[ch.ninecode.model.ValueAliasSet ValueAliasSet]] The ValueAliasSet used for translation of a Control value to a name.
  * @group Meas
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
@@ -1786,7 +1786,7 @@ extends
 /**
  * An analog control that issue a set point value.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.AnalogControl AnalogControl]] Reference to the superclass object.
  * @param normalValue Normal value for Control.value e.g. used for percentage scaling.
  * @param value The value representing the actuator output.
  * @group Meas
@@ -1857,7 +1857,7 @@ extends
 /**
  * StringMeasurement represents a measurement with values of type string.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.Measurement Measurement]] Reference to the superclass object.
  * @group Meas
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
@@ -1919,9 +1919,9 @@ extends
 /**
  * StringMeasurementValue represents a measurement value of type string.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.MeasurementValue MeasurementValue]] Reference to the superclass object.
  * @param value The value to supervise.
- * @param StringMeasurement Measurement to which this value is connected.
+ * @param StringMeasurement [[ch.ninecode.model.StringMeasurement StringMeasurement]] Measurement to which this value is connected.
  * @group Meas
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
@@ -1992,7 +1992,7 @@ extends
  *
  * Each ValueAliasSet has a name, description etc. A specific Measurement may represent a discrete state like Open, Closed, Intermediate etc. This requires a translation from the MeasurementValue.value number to a string, e.g. 0-&gt;"Invalid", 1-&gt;"Open", 2-&gt;"Closed", 3-&gt;"Intermediate". Each ValueToAlias member in ValueAliasSet.Value describe a mapping for one particular value to a name.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @group Meas
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
@@ -2054,9 +2054,9 @@ extends
 /**
  * Describes the translation of one particular value into a name, e.g. 1 as "Open".
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param value The value that is mapped.
- * @param ValueAliasSet The ValueAliasSet having the ValueToAlias mappings.
+ * @param ValueAliasSet [[ch.ninecode.model.ValueAliasSet ValueAliasSet]] The ValueAliasSet having the ValueToAlias mappings.
  * @group Meas
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
