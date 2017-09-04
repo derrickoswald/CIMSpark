@@ -31,7 +31,8 @@ services:
       - "8020:8020" # hdfs port, as in: hdfs dfs -fs hdfs://sandbox:8020 -ls
       - "8032:8032"
       - "8042:8042"
-      - "8081:8080"
+      - "8080:8080"
+      - "8081:8081"
       - "8088:8088"
       - "10000:10000" # Thriftserver JDBC port
       - "10001:10001" # Thriftserver HTTP protocol JDBC port
@@ -41,6 +42,7 @@ services:
       - ./../../../data:/opt/data # map sample data file directory to /opt/data within the container
       - ./../../../private_data:/opt/private_data # map private sample data file directory to /opt/private_data within the container
       - ./../../../target:/opt/code # map compilation output directory to /opt/code within the container
+      - /opt/apache-tomee-plus-7.0.2:/opt/tomee
   worker:
     image: derrickoswald/spark-docker
     command: start-spark worker sandbox
@@ -55,3 +57,4 @@ services:
       - ./../../../data:/opt/data # map sample data file directory to /opt/data within the container
       - ./../../../private_data:/opt/private_data # map private sample data file directory to /opt/private_data within the container
       - ./../../../target:/opt/code # map compilation output directory to /opt/code within the container
+      - /opt/apache-tomee-plus-7.0.2:/opt/tomee

@@ -24,6 +24,10 @@ pom.xml.releaseBackup
 pom.xml.next
 release.properties
 
+# SBT files ( -Xss4m )
+.jvmopts
+project/
+
 # customer data files #
 private_data/
 

@@ -1,11 +1,6 @@
 package ch.ninecode.cim
 
-import java.io.File
 import java.net.URI
-import java.nio.charset.StandardCharsets
-import java.nio.file
-import java.nio.file.Files
-import java.nio.file.Paths
 import java.time.LocalDateTime
 
 import org.apache.hadoop.conf.Configuration
@@ -15,7 +10,7 @@ import org.apache.hadoop.fs.Path
 import org.apache.spark.rdd.RDD
 import org.apache.spark.rdd.RDD.rddToPairRDDFunctions
 import org.apache.spark.sql.SparkSession
-import org.slf4j.LoggerFactory
+import org.slf4j.{Logger, LoggerFactory}
 import ch.ninecode.model._
 
 /**
@@ -24,9 +19,9 @@ import ch.ninecode.model._
 class CIMExport (spark: SparkSession) extends CIMRDD with Serializable
 {
     implicit val session: SparkSession = spark
-    implicit val log = LoggerFactory.getLogger (getClass)
+    implicit val log: Logger = LoggerFactory.getLogger (getClass)
     val configuration: Configuration = spark.sparkContext.hadoopConfiguration
-    val hdfs = FileSystem.get (configuration)
+    val hdfs: FileSystem = FileSystem.get (configuration)
 
     def merge (source: String, destination: String): Unit =
     {
@@ -39,7 +34,7 @@ class CIMExport (spark: SparkSession) extends CIMRDD with Serializable
      * @example
      * {{{
      * // enter Spark shell environment
-     * spark-shell --master spark://sandbox:7077 --executor-memory 4g --driver-memory 1g --conf spark.sql.warehouse.dir=file:/tmp/spark-warehouse --jars /opt/code/CIMReader-2.11-2.0.2-2.1.0.jar
+     * spark-shell --master spark://sandbox:7077 --executor-memory 4g --driver-memory 1g --conf spark.sql.warehouse.dir=file:/tmp/spark-warehouse --jars /opt/code/CIMReader-2.11-2.2.0-2.2.0.jar
      *
      * // read the large CIM file
      * import scala.collection.mutable.HashMap
@@ -166,10 +161,22 @@ class CIMExport (spark: SparkSession) extends CIMRDD with Serializable
 
             // get assets
             val eq = equipment.map (_.Equipment).union (eea.map (_.GeneratingUnit.Equipment))
-            val assets = get[Asset].flatMap (x => x.PowerSystemResources.map (y => (y, x))).join (eq.keyBy (_.PowerSystemResource.id)).map (_._2._1)
-            val lifecycles = get[LifecycleDate].keyBy (_.id).join (assets.keyBy (_.lifecycle)).map (_._2._1)
-            val ownership = get[Ownership].keyBy (_.Asset).join (assets.keyBy (_.id)).map (_._2._1)
-            val owners = get[AssetOwner].keyBy (_.id).join (ownership.keyBy (_.AssetOwner)).map (_._2._1).distinct
+            val assets = if (null != get[Asset])
+                get[Asset].flatMap (x => x.PowerSystemResources.map (y => (y, x))).join (eq.keyBy (_.PowerSystemResource.id)).map (_._2._1)
+            else
+                spark.sparkContext.emptyRDD[Asset]
+            val lifecycles = if (null != get[LifecycleDate])
+                get[LifecycleDate].keyBy (_.id).join (assets.keyBy (_.lifecycle)).map (_._2._1)
+            else
+                spark.sparkContext.emptyRDD[LifecycleDate]
+            val ownership: RDD[Ownership] = if (null != get[Ownership])
+                get[Ownership].keyBy (_.Asset).join (assets.keyBy (_.id)).map (_._2._1)
+            else
+                spark.sparkContext.emptyRDD[Ownership]
+            val owners = if (null != get[AssetOwner])
+                get[AssetOwner].keyBy (_.id).join (ownership.keyBy (_.AssetOwner)).map (_._2._1).distinct
+            else
+                spark.sparkContext.emptyRDD[AssetOwner]
 
             // create an RDD of mRID
             val ids =
