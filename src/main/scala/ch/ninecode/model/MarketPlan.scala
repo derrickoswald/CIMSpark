@@ -80,7 +80,7 @@ extends
  * @param sup [[ch.ninecode.model.Market Market]] Reference to the superclass object.
  * @param MarketResults [[ch.ninecode.model.MarketResults MarketResults]] <em>undocumented</em>
  * @param RTO [[ch.ninecode.model.RTO RTO]] <em>undocumented</em>
- * @param RegisteredResources <em>undocumented</em>
+ * @param RegisteredResources [[ch.ninecode.model.RegisteredResource RegisteredResource]] <em>undocumented</em>
  * @group MarketPlan
  * @groupname MarketPlan Package MarketPlan
  * @groupdesc MarketPlan Market plan definitions for planned markets, planned market events, actual market runs, actual market events.

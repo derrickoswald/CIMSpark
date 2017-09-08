@@ -216,7 +216,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.LimitDependency LimitDependency]] Reference to the superclass object.
  * @param limitScalingPercent The associated source limit is scaled by this value to compute the limit of the dependency model.
- * @param SourceOperationalLimit <em>undocumented</em>
+ * @param SourceOperationalLimit [[ch.ninecode.model.OperationalLimit OperationalLimit]] <em>undocumented</em>
  * @group InfOperationalLimits
  * @groupname InfOperationalLimits Package InfOperationalLimits
  * @groupdesc InfOperationalLimits The description of computed or dynamic limits.
@@ -291,8 +291,8 @@ extends
  * @param sup Reference to the superclass object.
  * @param scalingPercent The percentage scaling of the source limit to compute the target limit.
  *        Applys to operational limits within an operaitonal limit set when both source and target operational limit types exist.
- * @param SourceOperationalLimitType <em>undocumented</em>
- * @param TargetOperationalLimit <em>undocumented</em>
+ * @param SourceOperationalLimitType [[ch.ninecode.model.OperationalLimitType OperationalLimitType]] <em>undocumented</em>
+ * @param TargetOperationalLimit [[ch.ninecode.model.OperationalLimitType OperationalLimitType]] <em>undocumented</em>
  * @group InfOperationalLimits
  * @groupname InfOperationalLimits Package InfOperationalLimits
  * @groupdesc InfOperationalLimits The description of computed or dynamic limits.

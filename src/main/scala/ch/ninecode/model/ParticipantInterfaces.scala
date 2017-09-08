@@ -808,7 +808,7 @@ extends
  * @param HostControlArea [[ch.ninecode.model.HostControlArea HostControlArea]] <em>undocumented</em>
  * @param ProductBid [[ch.ninecode.model.ProductBid ProductBid]] <em>undocumented</em>
  * @param SubControlArea [[ch.ninecode.model.SubControlArea SubControlArea]] <em>undocumented</em>
- * @param TransmissionContractRight <em>undocumented</em>
+ * @param TransmissionContractRight [[ch.ninecode.model.ContractRight ContractRight]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
@@ -1002,7 +1002,7 @@ extends
  * @param sum <em>undocumented</em>
  * @param terminationDate <em>undocumented</em>
  * @param typ <em>undocumented</em>
- * @param BillDeterminants A BillDeterminant can have 0-n ChargeComponent and a ChargeComponent can associate to 0-n BillDeterminant.
+ * @param BillDeterminants [[ch.ninecode.model.BillDeterminant BillDeterminant]] A BillDeterminant can have 0-n ChargeComponent and a ChargeComponent can associate to 0-n BillDeterminant.
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
@@ -1105,7 +1105,7 @@ extends
  * @param effectiveDate <em>undocumented</em>
  * @param marketCode <em>undocumented</em>
  * @param terminationDate <em>undocumented</em>
- * @param ChargeGroupParent A ChargeGroup instance can have relationships with other ChargeGroup instances.
+ * @param ChargeGroupParent [[ch.ninecode.model.ChargeGroup ChargeGroup]] A ChargeGroup instance can have relationships with other ChargeGroup instances.
  * @param MktUserAttribute [[ch.ninecode.model.MktUserAttribute MktUserAttribute]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
@@ -1197,7 +1197,7 @@ extends
  * @param frequencyType <em>undocumented</em>
  * @param terminationDate <em>undocumented</em>
  * @param totalInterval <em>undocumented</em>
- * @param ChargeComponents A ChargeType can have 0-n ChargeComponent and a ChargeComponent can associate to 0-n ChargeType
+ * @param ChargeComponents [[ch.ninecode.model.ChargeComponent ChargeComponent]] A ChargeType can have 0-n ChargeComponent and a ChargeComponent can associate to 0-n ChargeType
  * @param ChargeGroup [[ch.ninecode.model.ChargeGroup ChargeGroup]] A ChargeGroup can have 0-n ChargeType.
  *        A ChargeType can associate to 0-n ChargeGroup.
  * @param MktUserAttribute [[ch.ninecode.model.MktUserAttribute MktUserAttribute]] <em>undocumented</em>
@@ -3038,7 +3038,7 @@ extends
  * Relationship between unit startup cost (Y1-axis) vs. unit elapsed down time (X-axis).
  *
  * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
- * @param RegisteredGenerators <em>undocumented</em>
+ * @param RegisteredGenerators [[ch.ninecode.model.RegisteredGenerator RegisteredGenerator]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
@@ -3179,10 +3179,10 @@ extends
  * @param marketType <em>undocumented</em>
  * @param startTime Start time and date for which trade applies.
  * @param stopTime Stop time and date for which trade is applicable.
- * @param submitFromSchedulingCoordinator <em>undocumented</em>
+ * @param submitFromSchedulingCoordinator [[ch.ninecode.model.SchedulingCoordinator SchedulingCoordinator]] <em>undocumented</em>
  * @param submitFromTimeStamp Timestamp of submittal of submit From Scheduling Coordinator Trade to Market Participant Bid Submittal
  * @param submitFromUser Userid of the submit From Scheduling Coordinator trade
- * @param submitToSchedulingCoordinator <em>undocumented</em>
+ * @param submitToSchedulingCoordinator [[ch.ninecode.model.SchedulingCoordinator SchedulingCoordinator]] <em>undocumented</em>
  * @param submitToTimeStamp Timestamp of submittal of submit To Scheduling Coordinator Trade to Market Participant Bid Submittal
  * @param submitToUser_1 Userid of the submit To Scheduling Coordinator trade
  * @param tradeQuantity tradeQuantity:
@@ -3192,10 +3192,10 @@ extends
  * @param updateTimeStamp <em>undocumented</em>
  * @param updateUser <em>undocumented</em>
  * @param ActionRequest [[ch.ninecode.model.ActionRequest ActionRequest]] <em>undocumented</em>
- * @param From_SC <em>undocumented</em>
+ * @param From_SC [[ch.ninecode.model.SchedulingCoordinator SchedulingCoordinator]] <em>undocumented</em>
  * @param Pnode [[ch.ninecode.model.Pnode Pnode]] <em>undocumented</em>
  * @param RegisteredGenerator [[ch.ninecode.model.RegisteredGenerator RegisteredGenerator]] <em>undocumented</em>
- * @param To_SC <em>undocumented</em>
+ * @param To_SC [[ch.ninecode.model.SchedulingCoordinator SchedulingCoordinator]] <em>undocumented</em>
  * @param TradeProduct [[ch.ninecode.model.TradeProduct TradeProduct]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
@@ -3538,8 +3538,8 @@ extends
  * @param dispatchable Set true if this is a dispatchable transaction.
  * @param payCongestion Set true if this is a willing to pay transaction.
  *        This flag is used to determine whether a schedule is willing-to-pay-congestion or not.
- * @param Delivery_Pnode <em>undocumented</em>
- * @param Receipt_Pnode <em>undocumented</em>
+ * @param Delivery_Pnode [[ch.ninecode.model.Pnode Pnode]] <em>undocumented</em>
+ * @param Receipt_Pnode [[ch.ninecode.model.Pnode Pnode]] <em>undocumented</em>
  * @param TransmissionReservation [[ch.ninecode.model.TransmissionReservation TransmissionReservation]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces

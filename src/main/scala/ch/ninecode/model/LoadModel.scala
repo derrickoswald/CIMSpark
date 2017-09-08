@@ -10,7 +10,7 @@ import ch.ninecode.cim.Parseable
  * ConformLoad represent loads that follow a daily load change pattern where the pattern can be used to scale the load with a system load.
  *
  * @param sup [[ch.ninecode.model.EnergyConsumer EnergyConsumer]] Reference to the superclass object.
- * @param LoadGroup [[ch.ninecode.model.LoadGroup LoadGroup]] Group of this ConformLoad.
+ * @param LoadGroup [[ch.ninecode.model.ConformLoadGroup ConformLoadGroup]] Group of this ConformLoad.
  * @group LoadModel
  * @groupname LoadModel Package LoadModel
  * @groupdesc LoadModel This package is responsible for modeling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and daytypes, are also included here.
@@ -601,7 +601,7 @@ extends
  * NonConformLoad represent loads that do not follow a daily load change pattern and changes are not correlated with the daily load change pattern.
  *
  * @param sup [[ch.ninecode.model.EnergyConsumer EnergyConsumer]] Reference to the superclass object.
- * @param LoadGroup [[ch.ninecode.model.LoadGroup LoadGroup]] Group of this ConformLoad.
+ * @param LoadGroup [[ch.ninecode.model.NonConformLoadGroup NonConformLoadGroup]] Group of this ConformLoad.
  * @group LoadModel
  * @groupname LoadModel Package LoadModel
  * @groupdesc LoadModel This package is responsible for modeling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and daytypes, are also included here.

@@ -15,6 +15,44 @@ import ch.ninecode.model._
 
 /**
  * Export a (subset) of CIM data.
+ *
+ * @example
+ * {{{
+ * // enter Spark shell environment
+ * spark-shell --master spark://sandbox:7077 --executor-memory 4g --driver-memory 1g --conf spark.sql.warehouse.dir=file:/tmp/spark-warehouse --jars /opt/code/CIMReader-2.11-2.2.0-2.2.0.jar
+ *
+ * // read the large CIM file
+ * import scala.collection.mutable.HashMap
+ * import org.apache.spark.rdd.RDD
+ * import ch.ninecode.cim._
+ * import ch.ninecode.model._
+ * val opts = new HashMap[String,String] ()
+ * opts.put("StorageLevel", "MEMORY_AND_DISK_SER")
+ * val element = spark.read.format ("ch.ninecode.cim").options (opts).load ("hdfs://sandbox:8020/data/bkw_cim_export_equipmentsstripe2.rdf")
+ * element.count
+ *
+ * // process topology with islands
+ * val ntp = new CIMNetworkTopologyProcessor (spark, org.apache.spark.storage.StorageLevel.MEMORY_AND_DISK_SER)
+ * val elements2 = ntp.process (true)
+ * elements2.count
+ *
+ * // get the name of the transformer's low voltage pin TopologicalNode
+ * val terminals = sc.getPersistentRDDs.filter(_._2.name == "Terminal").head._2.asInstanceOf[RDD[Terminal]]
+ * val NSpin = terminals.filter (x => x.ConductingEquipment == "TRA7872" && x.ACDCTerminal.sequenceNumber == 2)
+ * println (NSpin.first.TopologicalNode)
+ * MUI452395_topo
+ *
+ * // get the name of the trafokreis TopologicalIsland
+ * val nodes = sc.getPersistentRDDs.filter(_._2.name == "TopologicalNode").head._2.asInstanceOf[RDD[TopologicalNode]]
+ * val NSnode = nodes.filter (_.id == "MUI452395_topo")
+ * println (NSnode.first.TopologicalIsland)
+ * TRA7872_terminal_2_topo
+ *
+ * // export the reduced CIM file
+ * val export = new CIMExport (spark)
+ * export.exportIsland ("TRA7872_terminal_2_topo", "TRA7872.rdf")
+ * }}}
+ *
  */
 class CIMExport (spark: SparkSession) extends CIMRDD with Serializable
 {
@@ -30,43 +68,6 @@ class CIMExport (spark: SparkSession) extends CIMRDD with Serializable
 
     /**
      * Export elements.
-     *
-     * @example
-     * {{{
-     * // enter Spark shell environment
-     * spark-shell --master spark://sandbox:7077 --executor-memory 4g --driver-memory 1g --conf spark.sql.warehouse.dir=file:/tmp/spark-warehouse --jars /opt/code/CIMReader-2.11-2.2.0-2.2.0.jar
-     *
-     * // read the large CIM file
-     * import scala.collection.mutable.HashMap
-     * import org.apache.spark.rdd.RDD
-     * import ch.ninecode.cim._
-     * import ch.ninecode.model._
-     * val opts = new HashMap[String,String] ()
-     * opts.put("StorageLevel", "MEMORY_AND_DISK_SER")
-     * val element = spark.read.format ("ch.ninecode.cim").options (opts).load ("hdfs://sandbox:8020/data/bkw_cim_export_equipmentsstripe2.rdf")
-     * element.count
-     *
-     * // process topology with islands
-     * val ntp = new CIMNetworkTopologyProcessor (spark, org.apache.spark.storage.StorageLevel.MEMORY_AND_DISK_SER)
-     * val elements2 = ntp.process (true)
-     * elements2.count
-     *
-     * // get the name of the transformer's low voltage pin TopologicalNode
-     * val terminals = sc.getPersistentRDDs.filter(_._2.name == "Terminal").head._2.asInstanceOf[RDD[Terminal]]
-     * val NSpin = terminals.filter (x => x.ConductingEquipment == "TRA7872" && x.ACDCTerminal.sequenceNumber == 2)
-     * println (NSpin.first.TopologicalNode)
-     * MUI452395_topo
-     *
-     * // get the name of the trafokreis TopologicalIsland
-     * val nodes = sc.getPersistentRDDs.filter(_._2.name == "TopologicalNode").head._2.asInstanceOf[RDD[TopologicalNode]]
-     * val NSnode = nodes.filter (_.id == "MUI452395_topo")
-     * println (NSnode.first.TopologicalIsland)
-     * TRA7872_terminal_2_topo
-     *
-     * // export the reduced CIM file
-     * val export = new CIMExport (spark)
-     * export.exportIsland ("TRA7872_terminal_2_topo", "TRA7872.rdf")
-     * }}}
      *
      * @param elements The elements to export.
      * @param filename The name of the file to write.

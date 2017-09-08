@@ -351,9 +351,9 @@ extends
  * @param noLoadCostEligibilityFlag <em>undocumented</em>
  * @param startUpCost <em>undocumented</em>
  * @param startUpCostEligibilityFlag <em>undocumented</em>
- * @param AuxillaryCost <em>undocumented</em>
- * @param FiveMinAuxillaryData <em>undocumented</em>
- * @param TenMinAuxillaryData <em>undocumented</em>
+ * @param AuxillaryCost [[ch.ninecode.model.AuxiliaryCost AuxiliaryCost]] <em>undocumented</em>
+ * @param FiveMinAuxillaryData [[ch.ninecode.model.FiveMinAuxiliaryData FiveMinAuxiliaryData]] <em>undocumented</em>
+ * @param TenMinAuxillaryData [[ch.ninecode.model.TenMinAuxiliaryData TenMinAuxiliaryData]] <em>undocumented</em>
  * @group MarketQualitySystem
  * @groupname MarketQualitySystem Package MarketQualitySystem
  * @groupdesc MarketQualitySystem Post-market accounting, calculation and meter data corrections to reduce invoicing errors and disputes. Reduces manual validation, verification and correction of transactional data that could affect market settlements. Republishing of market results with affected data corrected.

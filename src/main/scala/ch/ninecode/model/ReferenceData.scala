@@ -704,8 +704,8 @@ extends
  * @param sup Reference to the superclass object.
  * @param upTransition Flag indicating whether this is an UP transition.
  *        If not, it is a DOWN transition.
- * @param FromConfiguration <em>undocumented</em>
- * @param ToConfiguration <em>undocumented</em>
+ * @param FromConfiguration [[ch.ninecode.model.CombinedCycleConfiguration CombinedCycleConfiguration]] <em>undocumented</em>
+ * @param ToConfiguration [[ch.ninecode.model.CombinedCycleConfiguration CombinedCycleConfiguration]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -850,7 +850,7 @@ extends
  * @param sourceFlag This value will be set to YES if the referenced Cnode is defined as the source point in the contract.
  * @param Flowgate [[ch.ninecode.model.Flowgate Flowgate]] <em>undocumented</em>
  * @param RegisteredResource [[ch.ninecode.model.RegisteredResource RegisteredResource]] <em>undocumented</em>
- * @param TransmissionContractRight <em>undocumented</em>
+ * @param TransmissionContractRight [[ch.ninecode.model.ContractRight ContractRight]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -965,8 +965,8 @@ extends
  * @param physicalRightsRTM Flag to indicate this contract provides physical rights in the RT Market
  * @param startEffectiveDate start effective date
  * @param startupLeadTime Start up lead time
- * @param Chain_TransmissionRightChain <em>undocumented</em>
- * @param Ind_TransmissionRightChain <em>undocumented</em>
+ * @param Chain_TransmissionRightChain [[ch.ninecode.model.TransmissionRightChain TransmissionRightChain]] <em>undocumented</em>
+ * @param Ind_TransmissionRightChain [[ch.ninecode.model.TransmissionRightChain TransmissionRightChain]] <em>undocumented</em>
  * @param RTO [[ch.ninecode.model.RTO RTO]] <em>undocumented</em>
  * @param SchedulingCoordinator [[ch.ninecode.model.SchedulingCoordinator SchedulingCoordinator]] <em>undocumented</em>
  * @param TRType Transmission Right type - is this an individual contract right or a chain contract right.
@@ -1231,13 +1231,13 @@ extends
  * @param importMWRating Import MW rating
  * @param startEffectiveDate start effective date
  * @param CRR [[ch.ninecode.model.CRR CRR]] <em>undocumented</em>
- * @param From_SubControlArea <em>undocumented</em>
+ * @param From_SubControlArea [[ch.ninecode.model.SubControlArea SubControlArea]] <em>undocumented</em>
  * @param GenericConstraints [[ch.ninecode.model.GenericConstraints GenericConstraints]] <em>undocumented</em>
  * @param HostControlArea [[ch.ninecode.model.HostControlArea HostControlArea]] <em>undocumented</em>
  * @param MktLine [[ch.ninecode.model.MktLine MktLine]] <em>undocumented</em>
  * @param MktPowerTransformer [[ch.ninecode.model.MktPowerTransformer MktPowerTransformer]] <em>undocumented</em>
  * @param SecurityConstraints [[ch.ninecode.model.SecurityConstraints SecurityConstraints]] <em>undocumented</em>
- * @param To_SubControlArea <em>undocumented</em>
+ * @param To_SubControlArea [[ch.ninecode.model.SubControlArea SubControlArea]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -1996,7 +1996,7 @@ extends
  * @param frequencyBiasFactor The control area's frequency bias factor, in MW/0.1 Hz, for automatic generation control (AGC)
  * @param startEffectiveDate start effective date
  * @param AdjacentCASet [[ch.ninecode.model.AdjacentCASet AdjacentCASet]] <em>undocumented</em>
- * @param Controls A ControlAreaCompany controls a ControlArea.
+ * @param Controls [[ch.ninecode.model.ControlAreaOperator ControlAreaOperator]] A ControlAreaCompany controls a ControlArea.
  * @param RTO [[ch.ninecode.model.RTO RTO]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
@@ -3098,7 +3098,7 @@ extends
  * @param effectiveDateTime Date and time the skill became effective.
  * @param level Level of skill for a Craft.
  * @param MarketPerson [[ch.ninecode.model.MarketPerson MarketPerson]] <em>undocumented</em>
- * @param MarketQualificationRequirements <em>undocumented</em>
+ * @param MarketQualificationRequirements [[ch.ninecode.model.MarketQualificationRequirement MarketQualificationRequirement]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -3448,8 +3448,8 @@ extends
  *        An indication which set of generator participation factors should be used to re-allocate generation in this contingency
  * @param screeningFlag sceening flag for outage
  *        Flag that indicated whether screening is bypassed for the contingency
- * @param TransferInterfaceSolutionA <em>undocumented</em>
- * @param TransferInterfaceSolutionB <em>undocumented</em>
+ * @param TransferInterfaceSolutionA [[ch.ninecode.model.TransferInterfaceSolution TransferInterfaceSolution]] <em>undocumented</em>
+ * @param TransferInterfaceSolutionB [[ch.ninecode.model.TransferInterfaceSolution TransferInterfaceSolution]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -3935,8 +3935,8 @@ extends
  *        'Non-Spin Region'
  *        'Price Hub'
  * @param RTO [[ch.ninecode.model.RTO RTO]] <em>undocumented</em>
- * @param SinkCRRSegment <em>undocumented</em>
- * @param SourceCRRSegment <em>undocumented</em>
+ * @param SinkCRRSegment [[ch.ninecode.model.CRRSegment CRRSegment]] <em>undocumented</em>
+ * @param SourceCRRSegment [[ch.ninecode.model.CRRSegment CRRSegment]] <em>undocumented</em>
  * @param SubControlArea [[ch.ninecode.model.SubControlArea SubControlArea]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
@@ -5913,7 +5913,7 @@ extends
  * @param sup [[ch.ninecode.model.MktOrganisation MktOrganisation]] Reference to the superclass object.
  * @param scid This is the short name or Scheduling Coordinator ID field.
  * @param LoadRatio [[ch.ninecode.model.LoadRatio LoadRatio]] <em>undocumented</em>
- * @param MktOrgansation <em>undocumented</em>
+ * @param MktOrgansation [[ch.ninecode.model.MktOrganisation MktOrganisation]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -5987,7 +5987,7 @@ extends
  * Describing users of a Scheduling Coordinator
  *
  * @param sup Reference to the superclass object.
- * @param attr <em>undocumented</em>
+ * @param attr [[ch.ninecode.model.SchedulingCoordinator SchedulingCoordinator]] <em>undocumented</em>
  * @param endEffectiveDate Login ID Expiration Date
  * @param loginID Login ID
  * @param loginRole Assigned roles (these are roles with either Read or Read/Write privileges on different Market Systems)
@@ -6297,7 +6297,7 @@ extends
  * @param quadraticCoefficient Loss estimate quadratic coefficient
  * @param startEffectiveDate start effective date
  * @param AdjacentCASet [[ch.ninecode.model.AdjacentCASet AdjacentCASet]] <em>undocumented</em>
- * @param AreaReserveSpecification <em>undocumented</em>
+ * @param AreaReserveSpecification [[ch.ninecode.model.AreaReserveSpec AreaReserveSpec]] <em>undocumented</em>
  * @param HostControlArea [[ch.ninecode.model.HostControlArea HostControlArea]] The interchange area  may operate as a control area
  * @param RTO [[ch.ninecode.model.RTO RTO]] <em>undocumented</em>
  * @group ReferenceData
@@ -6426,7 +6426,7 @@ extends
  * @param precedence An indicator of the order a resource should be substituted.
  *        The lower the number the higher the precedence.
  * @param RegisteredResource [[ch.ninecode.model.RegisteredResource RegisteredResource]] <em>undocumented</em>
- * @param TransmissionContractRight <em>undocumented</em>
+ * @param TransmissionContractRight [[ch.ninecode.model.ContractRight ContractRight]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -6577,7 +6577,7 @@ extends
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param endEffectiveDate end effective date
  * @param startEffectiveDate start effective date
- * @param Chain_ContractRight <em>undocumented</em>
+ * @param Chain_ContractRight [[ch.ninecode.model.ContractRight ContractRight]] <em>undocumented</em>
  * @param RTO [[ch.ninecode.model.RTO RTO]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData

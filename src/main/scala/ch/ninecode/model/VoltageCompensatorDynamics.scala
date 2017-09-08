@@ -13,7 +13,7 @@ import ch.ninecode.cim.Parseable
  * @param rcij <font color="#0f0f0f">Resistive component of compensation of generator associated with this IEEE Type 2 voltage compensator for current flow out of another generator (Rcij).</font>
  * @param xcij <font color="#0f0f0f">Reactive component of compensation of generator associated with this IEEE Type 2 voltage compensator for current flow out of another generator (Xcij).</font>
  * @param SynchronousMachineDynamics [[ch.ninecode.model.SynchronousMachineDynamics SynchronousMachineDynamics]] Standard synchronous machine out of which current flow is being compensated for.
- * @param VcompIEEEType2 The standard IEEE Type 2 voltage compensator of this compensation.
+ * @param VcompIEEEType2 [[ch.ninecode.model.VCompIEEEType2 VCompIEEEType2]] The standard IEEE Type 2 voltage compensator of this compensation.
  * @group VoltageCompensatorDynamics
  * @groupname VoltageCompensatorDynamics Package VoltageCompensatorDynamics
  * @groupdesc VoltageCompensatorDynamics <font color="#0f0f0f">Synchronous machine terminal voltage transducer and current compensator models</font> adjust the terminal voltage feedback to the excitation system by adding a quantity that is proportional to the terminal current of the generator.  It is linked to a specific generator (synchronous machine).

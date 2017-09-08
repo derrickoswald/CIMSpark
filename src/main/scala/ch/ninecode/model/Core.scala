@@ -471,8 +471,8 @@ extends
  * @param sup [[ch.ninecode.model.Equipment Equipment]] Reference to the superclass object.
  * @param BaseVoltage [[ch.ninecode.model.BaseVoltage BaseVoltage]] Base voltage of this conducting equipment.
  *        Use only when there is no voltage level container used and only one base voltage applies.  For example, not used for transformers.
- * @param GroundingAction Action involving grounding operation on this conducting equipment.
- * @param JumpingAction Jumper action involving jumping operation on this conducting equipment.
+ * @param GroundingAction [[ch.ninecode.model.GroundAction GroundAction]] Action involving grounding operation on this conducting equipment.
+ * @param JumpingAction [[ch.ninecode.model.JumperAction JumperAction]] Jumper action involving jumping operation on this conducting equipment.
  * @param SvStatus [[ch.ninecode.model.SvStatus SvStatus]] The status state variable associated with this conducting equipment.
  * @group Core
  * @groupname Core Package Core
@@ -1236,7 +1236,7 @@ extends
  *        The meaning of the value is defined by the derived type of the associated schedule.
  * @param value2 The second value at the time.
  *        The meaning of the value is defined by the derived type of the associated schedule.
- * @param IntervalSchedule An IrregularTimePoint belongs to an IrregularIntervalSchedule.
+ * @param IntervalSchedule [[ch.ninecode.model.IrregularIntervalSchedule IrregularIntervalSchedule]] An IrregularTimePoint belongs to an IrregularIntervalSchedule.
  * @group Core
  * @groupname Core Package Core
  * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
@@ -1748,7 +1748,7 @@ extends
  * Power system resources can have measurements associated.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param AssetDatasheet Datasheet information for this power system resource.
+ * @param AssetDatasheet [[ch.ninecode.model.AssetInfo AssetInfo]] Datasheet information for this power system resource.
  * @param Location [[ch.ninecode.model.Location Location]] Location of this power system resource.
  * @param PSRType [[ch.ninecode.model.PSRType PSRType]] Custom classification for this power system resource.
  * @group Core
@@ -1901,7 +1901,7 @@ extends
  *        The meaning of the value is defined by the derived type of the associated schedule.
  * @param value2 The second value at the time.
  *        The meaning of the value is defined by the derived type of the associated schedule.
- * @param IntervalSchedule Regular interval schedule containing this time point.
+ * @param IntervalSchedule [[ch.ninecode.model.RegularIntervalSchedule RegularIntervalSchedule]] Regular interval schedule containing this time point.
  * @group Core
  * @groupname Core Package Core
  * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
@@ -2112,7 +2112,7 @@ extends
  * A subset of a geographical region of a power system network model.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param Region The geographical region to which this sub-geographical region is within.
+ * @param Region [[ch.ninecode.model.GeographicalRegion GeographicalRegion]] The geographical region to which this sub-geographical region is within.
  * @group Core
  * @groupname Core Package Core
  * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
@@ -2178,7 +2178,7 @@ extends
  * A collection of equipment for purposes other than generation or utilization, through which electric energy in bulk is passed for the purposes of switching or modifying its characteristics.
  *
  * @param sup [[ch.ninecode.model.EquipmentContainer EquipmentContainer]] Reference to the superclass object.
- * @param Region The SubGeographicalRegion containing the substation.
+ * @param Region [[ch.ninecode.model.SubGeographicalRegion SubGeographicalRegion]] The SubGeographicalRegion containing the substation.
  * @group Core
  * @groupname Core Package Core
  * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.

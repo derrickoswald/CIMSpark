@@ -128,7 +128,7 @@ extends
  * @param lineVersion Version number of the bill run.
  * @param netAmount Net line item charge amount.
  * @param previousAmount Previous line item charge amount.
- * @param ContainerMarketInvoiceLineItem <em>undocumented</em>
+ * @param ContainerMarketInvoiceLineItem [[ch.ninecode.model.MarketInvoiceLineItem MarketInvoiceLineItem]] <em>undocumented</em>
  * @param MarketInvoice [[ch.ninecode.model.MarketInvoice MarketInvoice]] <em>undocumented</em>
  * @param Settlement [[ch.ninecode.model.Settlement Settlement]] <em>undocumented</em>
  * @group MarketOpCommon
@@ -471,7 +471,7 @@ extends
  * @param startEffectiveDate start effective date
  * @param IndividualPnode [[ch.ninecode.model.IndividualPnode IndividualPnode]] <em>undocumented</em>
  * @param RTO [[ch.ninecode.model.RTO RTO]] <em>undocumented</em>
- * @param SysLoadDistribuFactor <em>undocumented</em>
+ * @param SysLoadDistribuFactor [[ch.ninecode.model.SysLoadDistributionFactor SysLoadDistributionFactor]] <em>undocumented</em>
  * @group MarketOpCommon
  * @groupname MarketOpCommon Package MarketOpCommon
  * @groupdesc MarketOpCommon This package contains the common objects shared by MarketOperations packages.
@@ -813,8 +813,8 @@ extends
  * Subclass of IEC61970:Meas:Measurement
  *
  * @param sup [[ch.ninecode.model.Measurement Measurement]] Reference to the superclass object.
- * @param ByTiePoint A measurement is made on the B side of a tie point
- * @param ForTiePoint A measurement is made on the A side of a tie point
+ * @param ByTiePoint [[ch.ninecode.model.TiePoint TiePoint]] A measurement is made on the B side of a tie point
+ * @param ForTiePoint [[ch.ninecode.model.TiePoint TiePoint]] A measurement is made on the A side of a tie point
  * @param Pnode [[ch.ninecode.model.Pnode Pnode]] <em>undocumented</em>
  * @group MarketOpCommon
  * @groupname MarketOpCommon Package MarketOpCommon
@@ -990,8 +990,8 @@ extends
  * Subclass of IEC61970:Wires:PowerTransformer
  *
  * @param sup [[ch.ninecode.model.PowerTransformer PowerTransformer]] Reference to the superclass object.
- * @param EndAFlow <em>undocumented</em>
- * @param EndBFlow <em>undocumented</em>
+ * @param EndAFlow [[ch.ninecode.model.BranchEndFlow BranchEndFlow]] <em>undocumented</em>
+ * @param EndBFlow [[ch.ninecode.model.BranchEndFlow BranchEndFlow]] <em>undocumented</em>
  * @group MarketOpCommon
  * @groupname MarketOpCommon Package MarketOpCommon
  * @groupdesc MarketOpCommon This package contains the common objects shared by MarketOperations packages.

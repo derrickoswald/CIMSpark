@@ -206,7 +206,7 @@ extends
  * The IdentifiedObject.name attribute must be non-null.  The value of the attribute shall be used as the TASE.2 Information Reference, as specified by 60870-6-503.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param attr <em>undocumented</em>
+ * @param attr [[ch.ninecode.model.TASE2BilateralTable TASE2BilateralTable]] <em>undocumented</em>
  * @param localReference The Local Reference attribute specifies a value agreed upon between sender and receiver of the Information Message.
  *        It further identifies the Information Message.
  * @param scope <em>undocumented</em>
@@ -284,7 +284,7 @@ extends
  * The name attribute shall be used as the DataValue name used for the exchange.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param attr <em>undocumented</em>
+ * @param attr [[ch.ninecode.model.TASE2BilateralTable TASE2BilateralTable]] <em>undocumented</em>
  * @param scope <em>undocumented</em>
  * @group ICCP
  * @groupname ICCP Package ICCP

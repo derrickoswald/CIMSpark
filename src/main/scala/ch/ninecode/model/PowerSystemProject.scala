@@ -10,7 +10,7 @@ import ch.ninecode.cim.Parseable
  * A (document/collection) that describe a set of changes to the network.
  *
  * @param sup Reference to the superclass object.
- * @param attr <em>undocumented</em>
+ * @param attr [[ch.ninecode.model.DifferenceModel DifferenceModel]] <em>undocumented</em>
  * @param description <em>undocumented</em>
  * @param name <em>undocumented</em>
  * @param priority Priority between competing projects.
@@ -19,7 +19,7 @@ import ch.ninecode.cim.Parseable
  * @param typ Type of project.
  * @param version Version of the project.
  *        Changes to a project is not modeled. So the project with the highest version are the valid/latest project. Only positive numbers equal or higher than 1 are allowed.
- * @param Project [[ch.ninecode.model.Project Project]] <em>undocumented</em>
+ * @param Project [[ch.ninecode.model.PowerSystemProject PowerSystemProject]] <em>undocumented</em>
  * @group PowerSystemProject
  * @groupname PowerSystemProject Package PowerSystemProject
  * @groupdesc PowerSystemProject The package describes how power system model data is managed and evolve over time in projects.
@@ -200,7 +200,7 @@ extends
  * A collection of dependent projects.
  *
  * @param sup [[ch.ninecode.model.PowerSystemProject PowerSystemProject]] Reference to the superclass object.
- * @param Project [[ch.ninecode.model.Project Project]] <em>undocumented</em>
+ * @param Project [[ch.ninecode.model.PowerSystemProject PowerSystemProject]] <em>undocumented</em>
  * @group PowerSystemProject
  * @groupname PowerSystemProject Package PowerSystemProject
  * @groupdesc PowerSystemProject The package describes how power system model data is managed and evolve over time in projects.

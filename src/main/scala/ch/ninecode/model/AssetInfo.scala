@@ -285,7 +285,7 @@ extends
  * @param excitingCurrentZero Exciting current measured from a zero-sequence open-circuit excitation test.
  * @param loss Losses measured from a positive-sequence or single-phase excitation test.
  * @param lossZero Losses measured from a zero-sequence excitation test.
- * @param EnergisedEnd Transformer end that current is applied to in this no-load test.
+ * @param EnergisedEnd [[ch.ninecode.model.TransformerEndInfo TransformerEndInfo]] Transformer end that current is applied to in this no-load test.
  * @group AssetInfo
  * @groupname AssetInfo Package AssetInfo
  * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
@@ -378,8 +378,8 @@ extends
  * @param openEndStep Tap step number for the open end of the test pair.
  * @param openEndVoltage Voltage measured at the open-circuited end, with the energised end set to rated voltage and all other ends open.
  * @param phaseShift Phase shift measured at the open end with the energised end set to rated voltage and all other ends open.
- * @param EnergisedEnd Transformer end that current is applied to in this open-circuit test.
- * @param OpenEnd Transformer end measured for induced voltage and angle in this open-circuit test.
+ * @param EnergisedEnd [[ch.ninecode.model.TransformerEndInfo TransformerEndInfo]] Transformer end that current is applied to in this open-circuit test.
+ * @param OpenEnd [[ch.ninecode.model.TransformerEndInfo TransformerEndInfo]] Transformer end measured for induced voltage and angle in this open-circuit test.
  * @group AssetInfo
  * @groupname AssetInfo Package AssetInfo
  * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
@@ -601,7 +601,7 @@ extends
  * @param leakageImpedanceZero Leakage impedance measured from a zero-sequence short-circuit test.
  * @param loss Load losses from a positive-sequence or single-phase short-circuit test.
  * @param lossZero Load losses from a zero-sequence short-circuit test.
- * @param EnergisedEnd Transformer end that voltage is applied to in this short-circuit test.
+ * @param EnergisedEnd [[ch.ninecode.model.TransformerEndInfo TransformerEndInfo]] Transformer end that voltage is applied to in this short-circuit test.
  *        The test voltage is chosen to induce rated current in the energised end.
  * @group AssetInfo
  * @groupname AssetInfo Package AssetInfo
@@ -1083,9 +1083,9 @@ extends
  * @param ratedS Normal apparent power rating.
  * @param ratedU Rated voltage: phase-phase for three-phase windings, and either phase-phase or phase-neutral for single-phase windings.
  * @param shortTermS Apparent power that this winding can carry for a short period of time (in emergency).
- * @param CoreAdmittance Core admittance calculated from this transformer end datasheet, representing magnetising current and core losses.
+ * @param CoreAdmittance [[ch.ninecode.model.TransformerCoreAdmittance TransformerCoreAdmittance]] Core admittance calculated from this transformer end datasheet, representing magnetising current and core losses.
  *        The full values of the transformer should be supplied for one transformer end info only.
- * @param ToMeshImpedances All mesh impedances between this 'from' and other 'to' transformer ends.
+ * @param ToMeshImpedances [[ch.ninecode.model.TransformerMeshImpedance TransformerMeshImpedance]] All mesh impedances between this 'from' and other 'to' transformer ends.
  * @param TransformerStarImpedance [[ch.ninecode.model.TransformerStarImpedance TransformerStarImpedance]] Transformer star impedance calculated from this transformer end datasheet.
  * @param TransformerTankInfo [[ch.ninecode.model.TransformerTankInfo TransformerTankInfo]] Transformer tank data that this end description is part of.
  * @group AssetInfo
@@ -1354,7 +1354,7 @@ extends
  * @param ratedCurrent Current carrying capacity of the wire under stated thermal conditions.
  * @param sizeDescription Describes the wire gauge or cross section (e.g., 4/0, #2, 336.5).
  * @param strandCount Number of strands in the conductor.
- * @param PerLengthParameters All per-length parameters calculated from this wire datasheet.
+ * @param PerLengthParameters [[ch.ninecode.model.PerLengthLineParameter PerLengthLineParameter]] All per-length parameters calculated from this wire datasheet.
  * @group AssetInfo
  * @groupname AssetInfo Package AssetInfo
  * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
@@ -1568,7 +1568,7 @@ extends
  * @param phaseWireSpacing Distance between wire sub-conductors in a symmetrical bundle.
  * @param usage Usage of the associated wires.
  * @param DuctBank [[ch.ninecode.model.DuctBank DuctBank]] <em>undocumented</em>
- * @param Structures <em>undocumented</em>
+ * @param Structures [[ch.ninecode.model.Structure Structure]] <em>undocumented</em>
  * @group AssetInfo
  * @groupname AssetInfo Package AssetInfo
  * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.

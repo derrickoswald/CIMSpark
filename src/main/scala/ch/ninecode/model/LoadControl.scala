@@ -23,7 +23,7 @@ import ch.ninecode.cim.Parseable
  * @param isRemoteAutoReconOp If set true and if reconnection can be operated remotely, then the operation happens automatically.
  *        If set false and if reconnection can be operated remotely, then the operation happens manually.
  * @param rcdInfo Information on remote connect disconnect switch.
- * @param Switches <em>undocumented</em>
+ * @param Switches [[ch.ninecode.model.Switch Switch]] <em>undocumented</em>
  * @group LoadControl
  * @groupname LoadControl Package LoadControl
  * @groupdesc LoadControl This package is an extension of the Metering package and contains the information classes that support specialised applications such as demand-side management using load control equipment. These classes are generally associated with the point where a service is delivered to the customer.

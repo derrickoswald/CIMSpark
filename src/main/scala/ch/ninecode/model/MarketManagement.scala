@@ -616,7 +616,7 @@ extends
  * Electronic document containing the information necessary to satisfy a given business process set of requirements.
  *
  * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
- * @param selfMarketDocument <em>undocumented</em>
+ * @param selfMarketDocument [[ch.ninecode.model.MarketDocument MarketDocument]] <em>undocumented</em>
  * @param AttributeInstanceComponent [[ch.ninecode.model.AttributeInstanceComponent AttributeInstanceComponent]] <em>undocumented</em>
  * @param Domain [[ch.ninecode.model.Domain Domain]] <em>undocumented</em>
  * @param Period [[ch.ninecode.model.Period Period]] <em>undocumented</em>

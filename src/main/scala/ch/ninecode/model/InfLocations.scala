@@ -17,8 +17,8 @@ import ch.ninecode.cim.Parseable
  *        The governing organisation is specified in associated Organisation.
  * @param kind Kind of (land) property, categorised according to its main functional use from the utility's perspective.
  * @param status <em>undocumented</em>
- * @param AssetContainers <em>undocumented</em>
- * @param Locations The spatail description of a piece of property.
+ * @param AssetContainers [[ch.ninecode.model.AssetContainer AssetContainer]] <em>undocumented</em>
+ * @param Locations [[ch.ninecode.model.Location Location]] The spatail description of a piece of property.
  * @group InfLocations
  * @groupname InfLocations Package InfLocations
  */
@@ -247,7 +247,7 @@ extends
  * @param sup [[ch.ninecode.model.Agreement Agreement]] Reference to the superclass object.
  * @param propertyData Property related information that describes the ROW's land parcel.
  *        For example, it may be a deed book number, deed book page number, and parcel number.
- * @param LandProperties All land properties this right of way applies to.
+ * @param LandProperties [[ch.ninecode.model.LandProperty LandProperty]] All land properties this right of way applies to.
  * @group InfLocations
  * @groupname InfLocations Package InfLocations
  */
@@ -318,7 +318,7 @@ extends
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @param typ Classification by utility's work management standards and practices.
- * @param Locations <em>undocumented</em>
+ * @param Locations [[ch.ninecode.model.Location Location]] <em>undocumented</em>
  * @group InfLocations
  * @groupname InfLocations Package InfLocations
  */

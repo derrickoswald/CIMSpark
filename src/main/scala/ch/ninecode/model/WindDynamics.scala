@@ -3581,7 +3581,7 @@ extends
  * Parent class supporting relationships to IEC wind turbines Type 3 and 4 including their control models.
  *
  * @param sup [[ch.ninecode.model.WindTurbineType3or4Dynamics WindTurbineType3or4Dynamics]] Reference to the superclass object.
- * @param WIndContQIEC Wind control Q model associated with this wind turbine type 3 or 4 model.
+ * @param WIndContQIEC [[ch.ninecode.model.WindContQIEC WindContQIEC]] Wind control Q model associated with this wind turbine type 3 or 4 model.
  * @param WindContCurrLimIEC [[ch.ninecode.model.WindContCurrLimIEC WindContCurrLimIEC]] Wind control current limitation model associated with this wind turbine type 3 or 4 model.
  * @param WindContQLimIEC [[ch.ninecode.model.WindContQLimIEC WindContQLimIEC]] Constant Q limitation model associated with this wind generator type 3 or 4 model.
  * @param WindContQPQULimIEC [[ch.ninecode.model.WindContQPQULimIEC WindContQPQULimIEC]] QP and QU limitation model associated with this wind generator type 3 or 4 model.

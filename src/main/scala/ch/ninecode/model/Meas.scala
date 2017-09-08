@@ -12,7 +12,7 @@ import ch.ninecode.cim.Parseable
  * @param sup [[ch.ninecode.model.Measurement Measurement]] Reference to the superclass object.
  * @param maxValue Normal value range maximum for any of the MeasurementValue.values.
  *        Used for scaling, e.g. in bar graphs or of telemetered raw values.
- * @param LimitSets A measurement may have zero or more limit ranges defined for it.
+ * @param LimitSets [[ch.ninecode.model.AccumulatorLimitSet AccumulatorLimitSet]] A measurement may have zero or more limit ranges defined for it.
  * @group Meas
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
@@ -84,7 +84,7 @@ extends
  * @param sup [[ch.ninecode.model.Limit Limit]] Reference to the superclass object.
  * @param value The value to supervise against.
  *        The value is positive.
- * @param LimitSet [[ch.ninecode.model.LimitSet LimitSet]] The set of limits.
+ * @param LimitSet [[ch.ninecode.model.AccumulatorLimitSet AccumulatorLimitSet]] The set of limits.
  * @group Meas
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
@@ -365,7 +365,7 @@ extends
  *        Used for scaling, e.g. in bar graphs or of telemetered raw values.
  * @param normalValue Normal measurement value, e.g., used for percentage calculations.
  * @param positiveFlowIn If true then this measurement is an active power, reactive power or current with the convention that a positive value measured at the Terminal means power is flowing into the related PowerSystemResource.
- * @param LimitSets A measurement may have zero or more limit ranges defined for it.
+ * @param LimitSets [[ch.ninecode.model.AnalogLimitSet AnalogLimitSet]] A measurement may have zero or more limit ranges defined for it.
  * @group Meas
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
@@ -526,7 +526,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.Limit Limit]] Reference to the superclass object.
  * @param value The value to supervise against.
- * @param LimitSet [[ch.ninecode.model.LimitSet LimitSet]] The set of limits.
+ * @param LimitSet [[ch.ninecode.model.AnalogLimitSet AnalogLimitSet]] The set of limits.
  * @group Meas
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
@@ -1275,7 +1275,7 @@ extends
  * @param unitSymbol The unit of measure of the measured quantity.
  * @param Asset [[ch.ninecode.model.Asset Asset]] <em>undocumented</em>
  * @param PowerSystemResource [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] The power system resource that contains the measurement.
- * @param Terminal [[ch.ninecode.model.Terminal Terminal]] One or more measurements may be associated with a terminal in the network.
+ * @param Terminal [[ch.ninecode.model.ACDCTerminal ACDCTerminal]] One or more measurements may be associated with a terminal in the network.
  * @group Meas
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
@@ -1367,10 +1367,10 @@ extends
  * A state value is an instance of a measurement from a specific source. Measurements can be associated with many state values, each representing a different source for the measurement.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param attr <em>undocumented</em>
+ * @param attr [[ch.ninecode.model.ICCPIndicationPoint ICCPIndicationPoint]] <em>undocumented</em>
  * @param sensorAccuracy The limit, expressed as a percentage of the sensor maximum, that errors will not exceed when the sensor is used under  reference conditions.
  * @param timeStamp The time when the value was last updated
- * @param ErpPerson <em>undocumented</em>
+ * @param ErpPerson [[ch.ninecode.model.OldPerson OldPerson]] <em>undocumented</em>
  * @param MeasurementValueQuality [[ch.ninecode.model.MeasurementValueQuality MeasurementValueQuality]] A MeasurementValue has a MeasurementValueQuality associated with it.
  * @param MeasurementValueSource [[ch.ninecode.model.MeasurementValueSource MeasurementValueSource]] A reference to the type of source that updates the MeasurementValue, e.g.
  *        SCADA, CCLink, manual, etc. User conventions for the names of sources are contained in the introduction to IEC 61970-301.

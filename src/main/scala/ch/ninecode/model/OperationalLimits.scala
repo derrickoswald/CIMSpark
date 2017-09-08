@@ -380,7 +380,7 @@ extends
  * The sub class value attribute shall be positive.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param LimitDependencyModel The limit dependency models which are used to calculate this limit.
+ * @param LimitDependencyModel [[ch.ninecode.model.LimitDependency LimitDependency]] The limit dependency models which are used to calculate this limit.
  *        If no limit dependencies are specified then the native limit value is used.
  * @param OperationalLimitSet [[ch.ninecode.model.OperationalLimitSet OperationalLimitSet]] The limit set to which the limit values belong.
  * @param OperationalLimitType [[ch.ninecode.model.OperationalLimitType OperationalLimitType]] The limit type associated with this limit.
@@ -460,7 +460,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param Equipment [[ch.ninecode.model.Equipment Equipment]] The equipment to which the limit set applies.
- * @param Terminal [[ch.ninecode.model.Terminal Terminal]] <em>undocumented</em>
+ * @param Terminal [[ch.ninecode.model.ACDCTerminal ACDCTerminal]] <em>undocumented</em>
  * @group OperationalLimits
  * @groupname OperationalLimits Package OperationalLimits
  * @groupdesc OperationalLimits This package models a specification of limits associated with equipment and other operational entities.
@@ -533,7 +533,7 @@ extends
  * @param acceptableDuration The nominal acceptable duration of the limit.
  *        Limits are commonly expressed in terms of the a time limit for which the limit is normally acceptable.   The actual acceptable duration of a specific limit may depend on other local factors such as temperature or wind speed.
  * @param direction The direction of the limit.
- * @param TargetOperationalLimitmTypeScaling <em>undocumented</em>
+ * @param TargetOperationalLimitmTypeScaling [[ch.ninecode.model.OperatonalLimitTypeScaling OperatonalLimitTypeScaling]] <em>undocumented</em>
  * @group OperationalLimits
  * @groupname OperationalLimits Package OperationalLimits
  * @groupdesc OperationalLimits This package models a specification of limits associated with equipment and other operational entities.

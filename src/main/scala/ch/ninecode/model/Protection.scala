@@ -114,8 +114,8 @@ extends
  * @param relayDelayTime The time delay from detection of abnormal conditions to relay operation.
  * @param unitMultiplier The unit multiplier of the value.
  * @param unitSymbol The unit of measure of the value.
- * @param ConductingEquipments Protection equipment may be used to protect specific conducting equipment.
- * @param ProtectedSwitches Protected switches operated by this ProtectionEquipment.
+ * @param ConductingEquipments [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] Protection equipment may be used to protect specific conducting equipment.
+ * @param ProtectedSwitches [[ch.ninecode.model.ProtectedSwitch ProtectedSwitch]] Protected switches operated by this ProtectionEquipment.
  * @group Protection
  * @groupname Protection Package Protection
  * @groupdesc Protection An extension to the Core and Wires packages that models information for protection equipment such as relays. These entities are used within training simulators and distribution network fault location applications.

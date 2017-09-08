@@ -83,8 +83,8 @@ extends
  * @param kind The kind of phase fault.
  * @param phases The phases participating in the fault.
  *        The fault connections into these phases are further specified by the type of fault.
- * @param FaultCauseTypes All types of fault cause.
- * @param FaultyEquipment Equipment carrying this fault.
+ * @param FaultCauseTypes [[ch.ninecode.model.FaultCauseType FaultCauseType]] All types of fault cause.
+ * @param FaultyEquipment [[ch.ninecode.model.Equipment Equipment]] Equipment carrying this fault.
  * @param Outage [[ch.ninecode.model.Outage Outage]] Outage associated with this fault.
  * @group Faults
  * @groupname Faults Package Faults

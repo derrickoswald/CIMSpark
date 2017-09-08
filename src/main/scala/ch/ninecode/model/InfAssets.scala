@@ -387,7 +387,7 @@ extends
  * @param coolingKind Kind of cooling system.
  * @param powerRating The power rating associated with type of cooling specified for this stage.
  * @param stage Stage of cooling and associated power rating.
- * @param Reconditionings <em>undocumented</em>
+ * @param Reconditionings [[ch.ninecode.model.Reconditioning Reconditioning]] <em>undocumented</em>
  * @group InfAssets
  * @groupname InfAssets Package InfAssets
  * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
@@ -490,7 +490,7 @@ extends
  * @param sizeDiameter Diameter measurement.
  * @param sizeLength Length measurement.
  * @param sizeWidth Width measurement.
- * @param Specifications <em>undocumented</em>
+ * @param Specifications [[ch.ninecode.model.Specification Specification]] <em>undocumented</em>
  * @group InfAssets
  * @groupname InfAssets Package InfAssets
  * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
@@ -1088,7 +1088,7 @@ extends
  * @param quantity The value, unit of measure, and multiplier for the quantity.
  * @param stockItem True if item is a stock item (default).
  * @param CUAsset [[ch.ninecode.model.CUAsset CUAsset]] <em>undocumented</em>
- * @param CUWorkEquipmentAsset <em>undocumented</em>
+ * @param CUWorkEquipmentAsset [[ch.ninecode.model.CUWorkEquipmentItem CUWorkEquipmentItem]] <em>undocumented</em>
  * @param TypeAssetCatalogue [[ch.ninecode.model.TypeAssetCatalogue TypeAssetCatalogue]] <em>undocumented</em>
  * @group InfAssets
  * @groupname InfAssets Package InfAssets
@@ -1290,7 +1290,7 @@ extends
  * @param kind Kind of this medium.
  * @param volumeSpec The volume of the medium specified for this application.
  *        Note that the actual volume is a type of measurement associated witht the asset.
- * @param Assets <em>undocumented</em>
+ * @param Assets [[ch.ninecode.model.Asset Asset]] <em>undocumented</em>
  * @param Specification [[ch.ninecode.model.Specification Specification]] <em>undocumented</em>
  * @group InfAssets
  * @groupname InfAssets Package InfAssets
@@ -1611,7 +1611,7 @@ extends
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param mTTR Mean time to repair (MTTR - hours).
  * @param momFailureRate Momentary failure rate (temporary failures/kft-year).
- * @param Assets <em>undocumented</em>
+ * @param Assets [[ch.ninecode.model.Asset Asset]] <em>undocumented</em>
  * @param Specification [[ch.ninecode.model.Specification Specification]] <em>undocumented</em>
  * @group InfAssets
  * @groupname InfAssets Package InfAssets
@@ -2010,7 +2010,7 @@ extends
  * @param kind Kind of structure support.
  * @param len Length of this support structure.
  * @param size1 Size of this support structure.
- * @param SecuredStructure <em>undocumented</em>
+ * @param SecuredStructure [[ch.ninecode.model.Structure Structure]] <em>undocumented</em>
  * @group InfAssets
  * @groupname InfAssets Package InfAssets
  * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
@@ -2226,7 +2226,7 @@ extends
  * @param topOilTemp Top oil temperature.
  * @param waterContent Water Content expressed in parts per million.
  * @param Reconditioning [[ch.ninecode.model.Reconditioning Reconditioning]] <em>undocumented</em>
- * @param Transformer <em>undocumented</em>
+ * @param Transformer [[ch.ninecode.model.TransformerTank TransformerTank]] <em>undocumented</em>
  * @group InfAssets
  * @groupname InfAssets Package InfAssets
  * @groupdesc InfAssets The package is used to define asset-level models for objects. Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
@@ -2472,8 +2472,8 @@ extends
  *        Typical values are: Acceptable, Questionable, Failed.
  * @param leakageReactance As of statusDate, the leakage reactance measured at the "from" winding with the "to" winding short-circuited and all other windings open-circuited.
  * @param status <em>undocumented</em>
- * @param FromWinding <em>undocumented</em>
- * @param ToWinding <em>undocumented</em>
+ * @param FromWinding [[ch.ninecode.model.TransformerEnd TransformerEnd]] <em>undocumented</em>
+ * @param ToWinding [[ch.ninecode.model.TransformerEnd TransformerEnd]] <em>undocumented</em>
  * @param TransformerObservation [[ch.ninecode.model.TransformerObservation TransformerObservation]] <em>undocumented</em>
  * @group InfAssets
  * @groupname InfAssets Package InfAssets

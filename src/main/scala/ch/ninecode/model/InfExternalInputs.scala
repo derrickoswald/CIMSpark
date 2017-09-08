@@ -222,7 +222,7 @@ extends
  * Ancillary service requirements for a market.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param RTOs <em>undocumented</em>
+ * @param RTOs [[ch.ninecode.model.RTO RTO]] <em>undocumented</em>
  * @param ResourceGroup [[ch.ninecode.model.ResourceGroup ResourceGroup]] <em>undocumented</em>
  * @group InfExternalInputs
  * @groupname InfExternalInputs Package InfExternalInputs

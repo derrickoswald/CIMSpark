@@ -159,8 +159,7 @@ case class Scala (parser: ModelParser, pkg: Package)
         val name = role.name
         val variable = valid_role_name (role)
         val comment = role.note
-        val ref = parser.classes.filter (x => x._2.name == name)
-        val referenced_class = if (ref.isEmpty) null else valid_class_name (ref.head._2.name)
+        val referenced_class = valid_class_name (role.dst.name)
         if (role.upper == 1)
             Member (name, variable, false, comment, true, false, "String", "null", "", referenced_class)
         else

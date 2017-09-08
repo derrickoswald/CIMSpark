@@ -341,7 +341,7 @@ extends
  * @param quantity Quantity of the type asset within the CU.
  * @param status <em>undocumented</em>
  * @param typeAssetCode The code for this type of asset.
- * @param TypeAsset <em>undocumented</em>
+ * @param TypeAsset [[ch.ninecode.model.GenericAssetModelOrMaterial GenericAssetModelOrMaterial]] <em>undocumented</em>
  * @group InfWork
  * @groupname InfWork Package InfWork
  * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
@@ -432,7 +432,7 @@ extends
  * @param activityCode Activity code identifies a specific and distinguishable unit of work.
  * @param bidAmount The amount that a given contractor will charge for performing this unit of work.
  * @param status <em>undocumented</em>
- * @param CompatibleUnits <em>undocumented</em>
+ * @param CompatibleUnits [[ch.ninecode.model.CompatibleUnit CompatibleUnit]] <em>undocumented</em>
  * @group InfWork
  * @groupname InfWork Package InfWork
  * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
@@ -521,7 +521,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.WorkIdentifiedObject WorkIdentifiedObject]] Reference to the superclass object.
  * @param status <em>undocumented</em>
- * @param ChildCUGroups <em>undocumented</em>
+ * @param ChildCUGroups [[ch.ninecode.model.CUGroup CUGroup]] <em>undocumented</em>
  * @group InfWork
  * @groupname InfWork Package InfWork
  * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
@@ -687,8 +687,8 @@ extends
  * @param laborRate The labor rate applied for work.
  * @param status <em>undocumented</em>
  * @param CULaborCode [[ch.ninecode.model.CULaborCode CULaborCode]] <em>undocumented</em>
- * @param CompatibleUnits <em>undocumented</em>
- * @param QualificationRequirements <em>undocumented</em>
+ * @param CompatibleUnits [[ch.ninecode.model.CompatibleUnit CompatibleUnit]] <em>undocumented</em>
+ * @param QualificationRequirements [[ch.ninecode.model.QualificationRequirement QualificationRequirement]] <em>undocumented</em>
  * @group InfWork
  * @groupname InfWork Package InfWork
  * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
@@ -793,7 +793,7 @@ extends
  * @param corporateCode Code for material.
  * @param quantity Quantity of the TypeMaterial for this CU, used to determine estimated costs based on a per unit cost or a cost per unit length specified in the TypeMaterial.
  * @param status <em>undocumented</em>
- * @param CompatibleUnits <em>undocumented</em>
+ * @param CompatibleUnits [[ch.ninecode.model.CompatibleUnit CompatibleUnit]] <em>undocumented</em>
  * @param TypeMaterial [[ch.ninecode.model.TypeMaterial TypeMaterial]] <em>undocumented</em>
  * @group InfWork
  * @groupname InfWork Package InfWork
@@ -889,8 +889,8 @@ extends
  * @param equipCode The equipment type code.
  * @param rate Standard usage rate for the type of vehicle.
  * @param status <em>undocumented</em>
- * @param CompatibleUnits <em>undocumented</em>
- * @param TypeAsset <em>undocumented</em>
+ * @param CompatibleUnits [[ch.ninecode.model.CompatibleUnit CompatibleUnit]] <em>undocumented</em>
+ * @param TypeAsset [[ch.ninecode.model.GenericAssetModelOrMaterial GenericAssetModelOrMaterial]] <em>undocumented</em>
  * @group InfWork
  * @groupname InfWork Package InfWork
  * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
@@ -986,9 +986,9 @@ extends
  * @param status <em>undocumented</em>
  * @param typ Classification by utility's work management standards and practices.
  * @param validityInterval Date and time interval for which this capability is valid (when it became effective and when it expires).
- * @param Crafts <em>undocumented</em>
- * @param Crew [[ch.ninecode.model.Crew Crew]] <em>undocumented</em>
- * @param WorkTasks <em>undocumented</em>
+ * @param Crafts [[ch.ninecode.model.Craft Craft]] <em>undocumented</em>
+ * @param Crew [[ch.ninecode.model.OldCrew OldCrew]] <em>undocumented</em>
+ * @param WorkTasks [[ch.ninecode.model.OldWorkTask OldWorkTask]] <em>undocumented</em>
  * @group InfWork
  * @groupname InfWork Package InfWork
  * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
@@ -1091,11 +1091,11 @@ extends
  * @param estCost Estimated total cost for perfoming CU.
  * @param quantity The quantity, unit of measure, and multiplier at the CU level that applies to the materials.
  * @param CUAllowableAction [[ch.ninecode.model.CUAllowableAction CUAllowableAction]] <em>undocumented</em>
- * @param CUAssets <em>undocumented</em>
+ * @param CUAssets [[ch.ninecode.model.CUAsset CUAsset]] <em>undocumented</em>
  * @param CUGroup [[ch.ninecode.model.CUGroup CUGroup]] <em>undocumented</em>
  * @param CostType [[ch.ninecode.model.CostType CostType]] <em>undocumented</em>
- * @param DesignLocationCUs <em>undocumented</em>
- * @param Procedures <em>undocumented</em>
+ * @param DesignLocationCUs [[ch.ninecode.model.DesignLocationCU DesignLocationCU]] <em>undocumented</em>
+ * @param Procedures [[ch.ninecode.model.Procedure Procedure]] <em>undocumented</em>
  * @param PropertyUnit [[ch.ninecode.model.PropertyUnit PropertyUnit]] <em>undocumented</em>
  * @group InfWork
  * @groupname InfWork Package InfWork
@@ -1294,9 +1294,9 @@ extends
  * @param bidAmount The amount that a given contractor will charge for performing this unit of work.
  * @param cost The total amount charged.
  * @param status <em>undocumented</em>
- * @param ErpPayables <em>undocumented</em>
+ * @param ErpPayables [[ch.ninecode.model.ErpPayable ErpPayable]] <em>undocumented</em>
  * @param WorkCostDetail [[ch.ninecode.model.WorkCostDetail WorkCostDetail]] <em>undocumented</em>
- * @param WorkTask [[ch.ninecode.model.WorkTask WorkTask]] <em>undocumented</em>
+ * @param WorkTask [[ch.ninecode.model.OldWorkTask OldWorkTask]] <em>undocumented</em>
  * @group InfWork
  * @groupname InfWork Package InfWork
  * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
@@ -1403,8 +1403,8 @@ extends
  * @param level The level of the resource element in the hierarchy of resource elements (recursive relationship).
  * @param stage The stage for which this costType applies: estimated design, estimated actual or actual actual.
  * @param status <em>undocumented</em>
- * @param ErpJournalEntries <em>undocumented</em>
- * @param ParentCostType <em>undocumented</em>
+ * @param ErpJournalEntries [[ch.ninecode.model.ErpJournalEntry ErpJournalEntry]] <em>undocumented</em>
+ * @param ParentCostType [[ch.ninecode.model.CostType CostType]] <em>undocumented</em>
  * @group InfWork
  * @groupname InfWork Package InfWork
  * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
@@ -1509,7 +1509,7 @@ extends
  * @param costEstimate Estimated cost (not price) of design.
  * @param kind Kind of this design.
  * @param price Price to customer for implementing design.
- * @param ConditionFactors <em>undocumented</em>
+ * @param ConditionFactors [[ch.ninecode.model.ConditionFactor ConditionFactor]] <em>undocumented</em>
  * @param ErpQuoteLineItem [[ch.ninecode.model.ErpQuoteLineItem ErpQuoteLineItem]] <em>undocumented</em>
  * @param Work [[ch.ninecode.model.Work Work]] <em>undocumented</em>
  * @group InfWork
@@ -1611,7 +1611,7 @@ extends
  * @param sup [[ch.ninecode.model.WorkIdentifiedObject WorkIdentifiedObject]] Reference to the superclass object.
  * @param spanLength The legth of the span from the previous pole to this pole.
  * @param status <em>undocumented</em>
- * @param ConditionFactors <em>undocumented</em>
+ * @param ConditionFactors [[ch.ninecode.model.ConditionFactor ConditionFactor]] <em>undocumented</em>
  * @group InfWork
  * @groupname InfWork Package InfWork
  * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
@@ -1703,11 +1703,11 @@ extends
  * @param removalDate Year when a CU that represents an asset is removed.
  * @param status <em>undocumented</em>
  * @param toBeEnergised True if associated electrical equipment is intended to be energized while work is being performed.
- * @param CUGroups <em>undocumented</em>
- * @param ConditionFactors <em>undocumented</em>
+ * @param CUGroups [[ch.ninecode.model.CUGroup CUGroup]] <em>undocumented</em>
+ * @param ConditionFactors [[ch.ninecode.model.ConditionFactor ConditionFactor]] <em>undocumented</em>
  * @param DesignLocation [[ch.ninecode.model.DesignLocation DesignLocation]] <em>undocumented</em>
- * @param Designs <em>undocumented</em>
- * @param WorkTasks <em>undocumented</em>
+ * @param Designs [[ch.ninecode.model.Design Design]] <em>undocumented</em>
+ * @param WorkTasks [[ch.ninecode.model.OldWorkTask OldWorkTask]] <em>undocumented</em>
  * @group InfWork
  * @groupname InfWork Package InfWork
  * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
@@ -1943,7 +1943,7 @@ extends
  * @param laborRate The labor rate applied for work.
  * @param status <em>undocumented</em>
  * @param WorkCostDetail [[ch.ninecode.model.WorkCostDetail WorkCostDetail]] <em>undocumented</em>
- * @param WorkTask [[ch.ninecode.model.WorkTask WorkTask]] <em>undocumented</em>
+ * @param WorkTask [[ch.ninecode.model.OldWorkTask OldWorkTask]] <em>undocumented</em>
  * @group InfWork
  * @groupname InfWork Package InfWork
  * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
@@ -2053,7 +2053,7 @@ extends
  * @param status <em>undocumented</em>
  * @param DesignLocation [[ch.ninecode.model.DesignLocation DesignLocation]] <em>undocumented</em>
  * @param WorkCostDetail [[ch.ninecode.model.WorkCostDetail WorkCostDetail]] <em>undocumented</em>
- * @param WorkTask [[ch.ninecode.model.WorkTask WorkTask]] <em>undocumented</em>
+ * @param WorkTask [[ch.ninecode.model.OldWorkTask OldWorkTask]] <em>undocumented</em>
  * @group InfWork
  * @groupname InfWork Package InfWork
  * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
@@ -2239,7 +2239,7 @@ extends
  * @param sup [[ch.ninecode.model.WorkTask WorkTask]] Reference to the superclass object.
  * @param Design [[ch.ninecode.model.Design Design]] <em>undocumented</em>
  * @param OverheadCost [[ch.ninecode.model.OverheadCost OverheadCost]] <em>undocumented</em>
- * @param QualificationRequirements <em>undocumented</em>
+ * @param QualificationRequirements [[ch.ninecode.model.QualificationRequirement QualificationRequirement]] <em>undocumented</em>
  * @param WorkFlowStep [[ch.ninecode.model.WorkFlowStep WorkFlowStep]] <em>undocumented</em>
  * @group InfWork
  * @groupname InfWork Package InfWork
@@ -2505,7 +2505,7 @@ extends
  * @param budget Overall project budget.
  * @param BusinessCase [[ch.ninecode.model.BusinessCase BusinessCase]] <em>undocumented</em>
  * @param ErpProjectAccounting [[ch.ninecode.model.ErpProjectAccounting ErpProjectAccounting]] <em>undocumented</em>
- * @param ParentProject <em>undocumented</em>
+ * @param ParentProject [[ch.ninecode.model.Project Project]] <em>undocumented</em>
  * @group InfWork
  * @groupname InfWork Package InfWork
  * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
@@ -2598,7 +2598,7 @@ extends
  * @param propertyAccount Used for property record accounting.
  *        For example, in the USA, this would be a FERC account.
  * @param status <em>undocumented</em>
- * @param CUMaterialItems <em>undocumented</em>
+ * @param CUMaterialItems [[ch.ninecode.model.CUMaterialItem CUMaterialItem]] <em>undocumented</em>
  * @group InfWork
  * @groupname InfWork Package InfWork
  * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
@@ -2691,7 +2691,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.WorkIdentifiedObject WorkIdentifiedObject]] Reference to the superclass object.
  * @param qualificationID Qualification identifier.
- * @param Specifications <em>undocumented</em>
+ * @param Specifications [[ch.ninecode.model.Specification Specification]] <em>undocumented</em>
  * @group InfWork
  * @groupname InfWork Package InfWork
  * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
@@ -3037,7 +3037,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.WorkIdentifiedObject WorkIdentifiedObject]] Reference to the superclass object.
  * @param status <em>undocumented</em>
- * @param WorkTask [[ch.ninecode.model.WorkTask WorkTask]] <em>undocumented</em>
+ * @param WorkTask [[ch.ninecode.model.OldWorkTask OldWorkTask]] <em>undocumented</em>
  * @group InfWork
  * @groupname InfWork Package InfWork
  * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
@@ -3125,10 +3125,10 @@ extends
  * @param Design [[ch.ninecode.model.Design Design]] <em>undocumented</em>
  * @param ErpProjectAccounting [[ch.ninecode.model.ErpProjectAccounting ErpProjectAccounting]] <em>undocumented</em>
  * @param OverheadCost [[ch.ninecode.model.OverheadCost OverheadCost]] <em>undocumented</em>
- * @param PropertyUnits <em>undocumented</em>
+ * @param PropertyUnits [[ch.ninecode.model.PropertyUnit PropertyUnit]] <em>undocumented</em>
  * @param WorkCostSummary [[ch.ninecode.model.WorkCostSummary WorkCostSummary]] <em>undocumented</em>
- * @param WorkTask [[ch.ninecode.model.WorkTask WorkTask]] <em>undocumented</em>
- * @param Works <em>undocumented</em>
+ * @param WorkTask [[ch.ninecode.model.OldWorkTask OldWorkTask]] <em>undocumented</em>
+ * @param Works [[ch.ninecode.model.Work Work]] <em>undocumented</em>
  * @group InfWork
  * @groupname InfWork Package InfWork
  * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.

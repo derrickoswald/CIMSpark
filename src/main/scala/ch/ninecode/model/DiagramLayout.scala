@@ -118,7 +118,7 @@ extends
  * @param Diagram [[ch.ninecode.model.Diagram Diagram]] A diagram object is part of a diagram.
  * @param DiagramObjectStyle [[ch.ninecode.model.DiagramObjectStyle DiagramObjectStyle]] A diagram object has a style associated that provides a reference for the style used in the originating system.
  * @param IdentifiedObject_attr [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] The domain object to which this diagram object is associated.
- * @param VisibilityLayers A diagram object can be part of multiple visibility layers.
+ * @param VisibilityLayers [[ch.ninecode.model.VisibilityLayer VisibilityLayer]] A diagram object can be part of multiple visibility layers.
  * @group DiagramLayout
  * @groupname DiagramLayout Package DiagramLayout
  * @groupdesc DiagramLayout This package describes diagram layout. This describes how objects are arranged in a coordianate system rather than how they are rendered.

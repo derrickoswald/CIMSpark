@@ -176,7 +176,7 @@ extends
  * @param lastDebit Details of the last debit transaction performed on this account.
  * @param principleAmount The initial principle amount, with which this account was instantiated.
  * @param AuxiliaryAgreement [[ch.ninecode.model.AuxiliaryAgreement AuxiliaryAgreement]] Auxiliary agreement regulating this account.
- * @param Charges All charges levied on this account.
+ * @param Charges [[ch.ninecode.model.Charge Charge]] All charges levied on this account.
  * @group PaymentMetering
  * @groupname PaymentMetering Package PaymentMetering
  * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
@@ -705,7 +705,7 @@ extends
  * @param fixedPortion The fixed portion of this charge element.
  * @param kind The kind of charge to be applied.
  * @param variablePortion The variable portion of this charge element, calculated as a percentage of the total amount of a parent charge.
- * @param ParentCharge Parent of this charge sub-component.
+ * @param ParentCharge [[ch.ninecode.model.Charge Charge]] Parent of this charge sub-component.
  * @group PaymentMetering
  * @groupname PaymentMetering Package PaymentMetering
  * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
@@ -879,8 +879,8 @@ extends
  * @param sequenceNumber A sequential reference that defines the identity of this interval and its relative position with respect to other intervals in a sequence of intervals.
  * @param startValue The lowest level of consumption that defines the starting point of this interval.
  *        The interval extends to the start of the next interval or until it is reset to the start of the first interval by TariffProfile.tariffCycle.
- * @param Charges All charges used to define this consumption tariff interval.
- * @param TouTariffIntervals All time of use tariff intervals influenced by this consumption tariff interval.
+ * @param Charges [[ch.ninecode.model.Charge Charge]] All charges used to define this consumption tariff interval.
+ * @param TouTariffIntervals [[ch.ninecode.model.TimeTariffInterval TimeTariffInterval]] All time of use tariff intervals influenced by this consumption tariff interval.
  * @group PaymentMetering
  * @groupname PaymentMetering Package PaymentMetering
  * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
@@ -1131,7 +1131,7 @@ extends
  * @param currentBalance The current operating balance of this account.
  * @param provisionalBalance The balance of this account after taking into account any pending debits from VendorShift.merchantDebitAmount and pending credits from BankStatement.merchantCreditAmount or credits (see also BankStatement attributes and VendorShift attributes).
  * @param MerchantAgreement [[ch.ninecode.model.MerchantAgreement MerchantAgreement]] Merchant agreement that instantiated this merchant account.
- * @param Transactors All transactors this merchant account is registered with.
+ * @param Transactors [[ch.ninecode.model.Transactor Transactor]] All transactors this merchant account is registered with.
  * @group PaymentMetering
  * @groupname PaymentMetering Package PaymentMetering
  * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
@@ -1593,8 +1593,8 @@ extends
  * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param tariffCycle The frequency at which the tariff charge schedule is repeated.
  *        Examples are: once off on a specified date and time; hourly; daily; weekly; monthly; 3-monthly; 6-monthly; 12-monthly; etc. At the end of each cycle, the business rules are reset to start from the beginning again.
- * @param ConsumptionTariffIntervals All consumption tariff intervals used to define this tariff profile.
- * @param TimeTariffIntervals All time tariff intervals used to define this tariff profile.
+ * @param ConsumptionTariffIntervals [[ch.ninecode.model.ConsumptionTariffInterval ConsumptionTariffInterval]] All consumption tariff intervals used to define this tariff profile.
+ * @param TimeTariffIntervals [[ch.ninecode.model.TimeTariffInterval TimeTariffInterval]] All time tariff intervals used to define this tariff profile.
  * @group PaymentMetering
  * @groupname PaymentMetering Package PaymentMetering
  * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
@@ -1766,7 +1766,7 @@ extends
  * @param sequenceNumber A sequential reference that defines the identity of this interval and its relative position with respect to other intervals in a sequence of intervals.
  * @param startTime A real time marker that defines the starting time (typically it is the time of day) for this interval.
  *        The interval extends to the start of the next interval or until it is reset to the start of the first interval by TariffProfile.tariffCycle.
- * @param Charges All charges used to define this time tariff interval.
+ * @param Charges [[ch.ninecode.model.Charge Charge]] All charges used to define this time tariff interval.
  * @group PaymentMetering
  * @groupname PaymentMetering Package PaymentMetering
  * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.

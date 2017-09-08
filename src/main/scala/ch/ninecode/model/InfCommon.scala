@@ -298,7 +298,7 @@ extends
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @param typ Classification by utility's work mangement standards and practices.
- * @param ErpPersons <em>undocumented</em>
+ * @param ErpPersons [[ch.ninecode.model.OldPerson OldPerson]] <em>undocumented</em>
  * @group InfCommon
  * @groupname InfCommon Package InfCommon
  * @groupdesc InfCommon This package contains functions common for distribution management.
@@ -435,10 +435,10 @@ extends
  *
  * @param sup [[ch.ninecode.model.Crew Crew]] Reference to the superclass object.
  * @param typ Classification by utility's work management standards and practices.
- * @param Assignments All Assignments for this Crew.
- * @param Locations <em>undocumented</em>
+ * @param Assignments [[ch.ninecode.model.Assignment Assignment]] All Assignments for this Crew.
+ * @param Locations [[ch.ninecode.model.Location Location]] <em>undocumented</em>
  * @param Route [[ch.ninecode.model.Route Route]] <em>undocumented</em>
- * @param ShiftPatterns <em>undocumented</em>
+ * @param ShiftPatterns [[ch.ninecode.model.ShiftPattern ShiftPattern]] <em>undocumented</em>
  * @group InfCommon
  * @groupname InfCommon Package InfCommon
  * @groupdesc InfCommon This package contains functions common for distribution management.
@@ -523,10 +523,10 @@ extends
  * @param status <em>undocumented</em>
  * @param typ Utility-specific classification for this person, according to the utility's corporate standards and practices.
  *        Examples include employee, contractor, agent, not affiliated, etc.
- * @param CustomerData <em>undocumented</em>
+ * @param CustomerData [[ch.ninecode.model.Customer Customer]] <em>undocumented</em>
  * @param ErpCompetency [[ch.ninecode.model.ErpCompetency ErpCompetency]] <em>undocumented</em>
  * @param ErpPersonnel [[ch.ninecode.model.ErpPersonnel ErpPersonnel]] <em>undocumented</em>
- * @param LaborItems <em>undocumented</em>
+ * @param LaborItems [[ch.ninecode.model.LaborItem LaborItem]] <em>undocumented</em>
  * @group InfCommon
  * @groupname InfCommon Package InfCommon
  * @groupdesc InfCommon This package contains functions common for distribution management.
@@ -680,7 +680,7 @@ extends
  * Roles played between Persons and Documents.
  *
  * @param sup [[ch.ninecode.model.Role Role]] Reference to the superclass object.
- * @param Person [[ch.ninecode.model.Person Person]] <em>undocumented</em>
+ * @param Person [[ch.ninecode.model.OldPerson OldPerson]] <em>undocumented</em>
  * @group InfCommon
  * @groupname InfCommon Package InfCommon
  * @groupdesc InfCommon This package contains functions common for distribution management.
@@ -747,7 +747,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.OrganisationRole OrganisationRole]] Reference to the superclass object.
  * @param clientID Identifiers of the person held by an organisation, such as a government agency (federal, state, province, city, county), financial institutions, etc.
- * @param ErpPerson <em>undocumented</em>
+ * @param ErpPerson [[ch.ninecode.model.OldPerson OldPerson]] <em>undocumented</em>
  * @group InfCommon
  * @groupname InfCommon Package InfCommon
  * @groupdesc InfCommon This package contains functions common for distribution management.
@@ -820,7 +820,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.Role Role]] Reference to the superclass object.
  * @param LandProperty [[ch.ninecode.model.LandProperty LandProperty]] <em>undocumented</em>
- * @param Person [[ch.ninecode.model.Person Person]] <em>undocumented</em>
+ * @param Person [[ch.ninecode.model.OldPerson OldPerson]] <em>undocumented</em>
  * @group InfCommon
  * @groupname InfCommon Package InfCommon
  * @groupdesc InfCommon This package contains functions common for distribution management.
@@ -1097,9 +1097,9 @@ extends
  * @param certificationPeriod Interval between the certification and its expiry.
  * @param effectiveDateTime Date and time the skill became effective.
  * @param level Level of skill for a Craft.
- * @param Crafts <em>undocumented</em>
- * @param ErpPerson <em>undocumented</em>
- * @param QualificationRequirements <em>undocumented</em>
+ * @param Crafts [[ch.ninecode.model.Craft Craft]] <em>undocumented</em>
+ * @param ErpPerson [[ch.ninecode.model.OldPerson OldPerson]] <em>undocumented</em>
+ * @param QualificationRequirements [[ch.ninecode.model.QualificationRequirement QualificationRequirement]] <em>undocumented</em>
  * @group InfCommon
  * @groupname InfCommon Package InfCommon
  * @groupdesc InfCommon This package contains functions common for distribution management.

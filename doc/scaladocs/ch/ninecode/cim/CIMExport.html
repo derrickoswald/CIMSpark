@@ -50,7 +50,36 @@
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Export a (subset) of CIM data.
-</p></div><div class="toggleContainer block">
+</p></div><dl class="attributes block"> <div class="block">Example:
+               <ol><li class="cmt"><p></p><pre><span class="cmt">// enter Spark shell environment</span>
+spark-shell --master spark:<span class="cmt">//sandbox:7077 --executor-memory 4g --driver-memory 1g --conf spark.sql.warehouse.dir=file:/tmp/spark-warehouse --jars /opt/code/CIMReader-2.11-2.2.0-2.2.0.jar</span>
+<span class="cmt">// read the large CIM file</span>
+<span class="kw">import</span> scala.collection.mutable.HashMap
+<span class="kw">import</span> org.apache.spark.rdd.RDD
+<span class="kw">import</span> ch.ninecode.cim._
+<span class="kw">import</span> ch.ninecode.model._
+<span class="kw">val</span> opts = <span class="kw">new</span> HashMap[<span class="std">String</span>,<span class="std">String</span>] ()
+opts.put(<span class="lit">"StorageLevel"</span>, <span class="lit">"MEMORY_AND_DISK_SER"</span>)
+<span class="kw">val</span> element = spark.read.format (<span class="lit">"ch.ninecode.cim"</span>).options (opts).load (<span class="lit">"hdfs://sandbox:8020/data/bkw_cim_export_equipmentsstripe2.rdf"</span>)
+element.count
+<span class="cmt">// process topology with islands</span>
+<span class="kw">val</span> ntp = <span class="kw">new</span> CIMNetworkTopologyProcessor (spark, org.apache.spark.storage.StorageLevel.MEMORY_AND_DISK_SER)
+<span class="kw">val</span> elements2 = ntp.process (<span class="kw">true</span>)
+elements2.count
+<span class="cmt">// get the name of the transformer's low voltage pin TopologicalNode</span>
+<span class="kw">val</span> terminals = sc.getPersistentRDDs.filter(_._2.name == <span class="lit">"Terminal"</span>).head._2.asInstanceOf[RDD[Terminal]]
+<span class="kw">val</span> NSpin = terminals.filter (x <span class="kw">=&gt;</span> x.ConductingEquipment == <span class="lit">"TRA7872"</span> &amp;&amp; x.ACDCTerminal.sequenceNumber == <span class="num">2</span>)
+println (NSpin.first.TopologicalNode)
+MUI452395_topo
+<span class="cmt">// get the name of the trafokreis TopologicalIsland</span>
+<span class="kw">val</span> nodes = sc.getPersistentRDDs.filter(_._2.name == <span class="lit">"TopologicalNode"</span>).head._2.asInstanceOf[RDD[TopologicalNode]]
+<span class="kw">val</span> NSnode = nodes.filter (_.id == <span class="lit">"MUI452395_topo"</span>)
+println (NSnode.first.TopologicalIsland)
+TRA7872_terminal_2_topo
+<span class="cmt">// export the reduced CIM file</span>
+<span class="kw">val</span> export = <span class="kw">new</span> CIMExport (spark)
+export.exportIsland (<span class="lit">"TRA7872_terminal_2_topo"</span>, <span class="lit">"TRA7872.rdf"</span>)</pre></li></ol>
+            </div></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <a href="CIMRDD.html" class="extype" name="ch.ninecode.cim.CIMRDD">CIMRDD</a>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -274,36 +303,7 @@
       </a>
     </span>
       <p class="shortcomment cmt">Export elements.</p><div class="fullcomment"><div class="comment cmt"><p>Export elements.
-</p></div><dl class="paramcmts block"><dt class="param">elements</dt><dd class="cmt"><p>The elements to export.</p></dd><dt class="param">filename</dt><dd class="cmt"><p>The name of the file to write.</p></dd><dt class="param">about</dt><dd class="cmt"><p>The about string for the CIM file header.</p></dd></dl><dl class="attributes block"> <div class="block">Example:
-               <ol><li class="cmt"><p></p><pre><span class="cmt">// enter Spark shell environment</span>
-spark-shell --master spark:<span class="cmt">//sandbox:7077 --executor-memory 4g --driver-memory 1g --conf spark.sql.warehouse.dir=file:/tmp/spark-warehouse --jars /opt/code/CIMReader-2.11-2.2.0-2.2.0.jar</span>
-<span class="cmt">// read the large CIM file</span>
-<span class="kw">import</span> scala.collection.mutable.HashMap
-<span class="kw">import</span> org.apache.spark.rdd.RDD
-<span class="kw">import</span> ch.ninecode.cim._
-<span class="kw">import</span> ch.ninecode.model._
-<span class="kw">val</span> opts = <span class="kw">new</span> HashMap[<span class="std">String</span>,<span class="std">String</span>] ()
-opts.put(<span class="lit">"StorageLevel"</span>, <span class="lit">"MEMORY_AND_DISK_SER"</span>)
-<span class="kw">val</span> element = spark.read.format (<span class="lit">"ch.ninecode.cim"</span>).options (opts).load (<span class="lit">"hdfs://sandbox:8020/data/bkw_cim_export_equipmentsstripe2.rdf"</span>)
-element.count
-<span class="cmt">// process topology with islands</span>
-<span class="kw">val</span> ntp = <span class="kw">new</span> CIMNetworkTopologyProcessor (spark, org.apache.spark.storage.StorageLevel.MEMORY_AND_DISK_SER)
-<span class="kw">val</span> elements2 = ntp.process (<span class="kw">true</span>)
-elements2.count
-<span class="cmt">// get the name of the transformer's low voltage pin TopologicalNode</span>
-<span class="kw">val</span> terminals = sc.getPersistentRDDs.filter(_._2.name == <span class="lit">"Terminal"</span>).head._2.asInstanceOf[RDD[Terminal]]
-<span class="kw">val</span> NSpin = terminals.filter (x <span class="kw">=&gt;</span> x.ConductingEquipment == <span class="lit">"TRA7872"</span> &amp;&amp; x.ACDCTerminal.sequenceNumber == <span class="num">2</span>)
-println (NSpin.first.TopologicalNode)
-MUI452395_topo
-<span class="cmt">// get the name of the trafokreis TopologicalIsland</span>
-<span class="kw">val</span> nodes = sc.getPersistentRDDs.filter(_._2.name == <span class="lit">"TopologicalNode"</span>).head._2.asInstanceOf[RDD[TopologicalNode]]
-<span class="kw">val</span> NSnode = nodes.filter (_.id == <span class="lit">"MUI452395_topo"</span>)
-println (NSnode.first.TopologicalIsland)
-TRA7872_terminal_2_topo
-<span class="cmt">// export the reduced CIM file</span>
-<span class="kw">val</span> export = <span class="kw">new</span> CIMExport (spark)
-export.exportIsland (<span class="lit">"TRA7872_terminal_2_topo"</span>, <span class="lit">"TRA7872.rdf"</span>)</pre></li></ol>
-            </div></dl></div>
+</p></div><dl class="paramcmts block"><dt class="param">elements</dt><dd class="cmt"><p>The elements to export.</p></dd><dt class="param">filename</dt><dd class="cmt"><p>The name of the file to write.</p></dd><dt class="param">about</dt><dd class="cmt"><p>The about string for the CIM file header.</p></dd></dl></div>
     </li><li name="ch.ninecode.cim.CIMExport#exportAll" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="exportAll(filename:String,about:String):Unit"></a>
       <a id="exportAll(String,String):Unit"></a>

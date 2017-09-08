@@ -1499,7 +1499,7 @@ extends
  * @param pumpRatedP The hydro plant's pumping rating active power for rated head conditions.
  * @param surgeTankCode A code describing the type (or absence) of surge tank that is associated with the hydro power plant.
  * @param surgeTankCrestLevel The level at which the surge tank spills.
- * @param GenSourcePumpDischargeReservoir Generators are supplied water from or pumps discharge water to an upstream reservoir.
+ * @param GenSourcePumpDischargeReservoir [[ch.ninecode.model.Reservoir Reservoir]] Generators are supplied water from or pumps discharge water to an upstream reservoir.
  * @param Reservoir [[ch.ninecode.model.Reservoir Reservoir]] Generators discharge water to or pumps are supplied water from a downstream reservoir.
  * @group Production
  * @groupname Production Package Production
@@ -2124,7 +2124,7 @@ extends
  * @param spillwayCapacity The flow capacity of the spillway in cubic meters per second.
  * @param spillwayCrestLength The length of the spillway crest.
  * @param spillwayCrestLevel Spillway crest level above which water will spill.
- * @param SpillsFromReservoir A reservoir may spill into a downstream reservoir.
+ * @param SpillsFromReservoir [[ch.ninecode.model.Reservoir Reservoir]] A reservoir may spill into a downstream reservoir.
  * @param TargetLevelSchedule [[ch.ninecode.model.TargetLevelSchedule TargetLevelSchedule]] A reservoir may have a water level target schedule.
  * @group Production
  * @groupname Production Package Production

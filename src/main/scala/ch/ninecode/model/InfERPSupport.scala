@@ -158,7 +158,7 @@ extends
  * @param sup [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
  * @param DesignLocation [[ch.ninecode.model.DesignLocation DesignLocation]] <em>undocumented</em>
  * @param ErpBOM [[ch.ninecode.model.ErpBOM ErpBOM]] <em>undocumented</em>
- * @param TypeAsset <em>undocumented</em>
+ * @param TypeAsset [[ch.ninecode.model.GenericAssetModelOrMaterial GenericAssetModelOrMaterial]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
@@ -864,14 +864,14 @@ extends
  * @param lineVersion Version number of the bill run.
  * @param netAmount Net line item charge amount.
  * @param previousAmount Previous line item charge amount.
- * @param ContainerErpInvoiceLineItem <em>undocumented</em>
+ * @param ContainerErpInvoiceLineItem [[ch.ninecode.model.ErpInvoiceLineItem ErpInvoiceLineItem]] <em>undocumented</em>
  * @param ErpInvoice [[ch.ninecode.model.ErpInvoice ErpInvoice]] <em>undocumented</em>
  * @param ErpPayableLineItem [[ch.ninecode.model.ErpPayableLineItem ErpPayableLineItem]] <em>undocumented</em>
- * @param ErpPayments <em>undocumented</em>
+ * @param ErpPayments [[ch.ninecode.model.ErpPayment ErpPayment]] <em>undocumented</em>
  * @param ErpQuoteLineItem [[ch.ninecode.model.ErpQuoteLineItem ErpQuoteLineItem]] <em>undocumented</em>
  * @param ErpRecDelvLineItem [[ch.ninecode.model.ErpRecDelvLineItem ErpRecDelvLineItem]] <em>undocumented</em>
  * @param ErpRecLineItem [[ch.ninecode.model.ErpRecLineItem ErpRecLineItem]] <em>undocumented</em>
- * @param UserAttributes <em>undocumented</em>
+ * @param UserAttributes [[ch.ninecode.model.UserAttribute UserAttribute]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
@@ -1007,7 +1007,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
  * @param status <em>undocumented</em>
- * @param TypeAsset <em>undocumented</em>
+ * @param TypeAsset [[ch.ninecode.model.GenericAssetModelOrMaterial GenericAssetModelOrMaterial]] <em>undocumented</em>
  * @param TypeMaterial [[ch.ninecode.model.TypeMaterial TypeMaterial]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
@@ -1346,7 +1346,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
  * @param status <em>undocumented</em>
- * @param ErpLedBudLineItem_attr [[ch.ninecode.model.ErpLedBudLineItem ErpLedBudLineItem]] <em>undocumented</em>
+ * @param ErpLedBudLineItem_attr [[ch.ninecode.model.ErpLedgerEntry ErpLedgerEntry]] <em>undocumented</em>
  * @param ErpLedgerBudget [[ch.ninecode.model.ErpLedgerBudget ErpLedgerBudget]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
@@ -1570,10 +1570,10 @@ extends
  * @param postedDateTime Date and time this entry was posted to the ledger.
  * @param status <em>undocumented</em>
  * @param transactionDateTime Date and time journal entry was recorded.
- * @param ErpJounalEntry <em>undocumented</em>
+ * @param ErpJounalEntry [[ch.ninecode.model.ErpJournalEntry ErpJournalEntry]] <em>undocumented</em>
  * @param ErpLedger [[ch.ninecode.model.ErpLedger ErpLedger]] <em>undocumented</em>
- * @param ErpLedgerEntry_attr [[ch.ninecode.model.ErpLedgerEntry ErpLedgerEntry]] <em>undocumented</em>
- * @param UserAttributes <em>undocumented</em>
+ * @param ErpLedgerEntry_attr [[ch.ninecode.model.ErpLedBudLineItem ErpLedBudLineItem]] <em>undocumented</em>
+ * @param UserAttributes [[ch.ninecode.model.UserAttribute UserAttribute]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
@@ -1682,7 +1682,7 @@ extends
  * @param sup [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
  * @param AssetModelCatalogueItem [[ch.ninecode.model.AssetModelCatalogueItem AssetModelCatalogueItem]] <em>undocumented</em>
  * @param ErpPurchaseOrder [[ch.ninecode.model.ErpPurchaseOrder ErpPurchaseOrder]] <em>undocumented</em>
- * @param ErpRecDelLineItem <em>undocumented</em>
+ * @param ErpRecDelLineItem [[ch.ninecode.model.ErpRecDelvLineItem ErpRecDelvLineItem]] <em>undocumented</em>
  * @param ErpReqLineItem [[ch.ninecode.model.ErpReqLineItem ErpReqLineItem]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
@@ -1837,9 +1837,9 @@ extends
  * @param sup [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @param ErpInvoiceLineItem [[ch.ninecode.model.ErpInvoiceLineItem ErpInvoiceLineItem]] <em>undocumented</em>
- * @param ErpJournalEntries <em>undocumented</em>
+ * @param ErpJournalEntries [[ch.ninecode.model.ErpJournalEntry ErpJournalEntry]] <em>undocumented</em>
  * @param ErpPayable [[ch.ninecode.model.ErpPayable ErpPayable]] <em>undocumented</em>
- * @param ErpPayments <em>undocumented</em>
+ * @param ErpPayments [[ch.ninecode.model.ErpPayment ErpPayment]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
@@ -2464,8 +2464,8 @@ extends
  * @param sup [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @param ErpInvoiceLineItem [[ch.ninecode.model.ErpInvoiceLineItem ErpInvoiceLineItem]] <em>undocumented</em>
- * @param ErpJournalEntries <em>undocumented</em>
- * @param ErpPayments <em>undocumented</em>
+ * @param ErpJournalEntries [[ch.ninecode.model.ErpJournalEntry ErpJournalEntry]] <em>undocumented</em>
+ * @param ErpPayments [[ch.ninecode.model.ErpPayment ErpPayment]] <em>undocumented</em>
  * @param ErpReceivable [[ch.ninecode.model.ErpReceivable ErpReceivable]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
@@ -2699,7 +2699,7 @@ extends
  * @param ErpPOLineItem [[ch.ninecode.model.ErpPOLineItem ErpPOLineItem]] <em>undocumented</em>
  * @param ErpQuoteLineItem [[ch.ninecode.model.ErpQuoteLineItem ErpQuoteLineItem]] <em>undocumented</em>
  * @param ErpRequisition [[ch.ninecode.model.ErpRequisition ErpRequisition]] <em>undocumented</em>
- * @param TypeAsset <em>undocumented</em>
+ * @param TypeAsset [[ch.ninecode.model.GenericAssetModelOrMaterial GenericAssetModelOrMaterial]] <em>undocumented</em>
  * @param TypeMaterial [[ch.ninecode.model.TypeMaterial TypeMaterial]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport

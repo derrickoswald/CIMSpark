@@ -467,7 +467,7 @@ extends
  * An output from one gate represent an input to another gate.
  *
  * @param sup [[ch.ninecode.model.GateInputPin GateInputPin]] Reference to the superclass object.
- * @param GateOutput <em>undocumented</em>
+ * @param GateOutput [[ch.ninecode.model.Gate Gate]] <em>undocumented</em>
  * @group InfSIPS
  * @groupname InfSIPS Package InfSIPS
  * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS)
@@ -678,8 +678,8 @@ extends
  * @param enabled The status of the class set by operation or by signal.
  *        Optional field that will override other status fields.
  * @param normalEnabled The default/normal value used when other active signal/values are missing.
- * @param GateComCondition <em>undocumented</em>
- * @param GateEnabledCondition <em>undocumented</em>
+ * @param GateComCondition [[ch.ninecode.model.Gate Gate]] <em>undocumented</em>
+ * @param GateEnabledCondition [[ch.ninecode.model.Gate Gate]] <em>undocumented</em>
  * @param ProtectionEquipment [[ch.ninecode.model.ProtectionEquipment ProtectionEquipment]] <em>undocumented</em>
  * @param ProtectiveActionCollection [[ch.ninecode.model.ProtectiveActionCollection ProtectiveActionCollection]] <em>undocumented</em>
  * @group InfSIPS
@@ -1086,7 +1086,7 @@ extends
  *        Optional field that will override other status fields.
  * @param kind Kind of Remedial Action Scheme (RAS)
  * @param normalArmed The default/normal value used when other active signal/values are missing.
- * @param GateArmed <em>undocumented</em>
+ * @param GateArmed [[ch.ninecode.model.Gate Gate]] <em>undocumented</em>
  * @group InfSIPS
  * @groupname InfSIPS Package InfSIPS
  * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS)
@@ -1241,9 +1241,9 @@ extends
  * @param normalArmed The default/normal value used when other active signal/values are missing.
  * @param priority Priority of trigger. 0 = don t care (default) 1 = highest priority. 2 is less than 1 and so on.
  *        A trigger with the highest priority will trigger first.
- * @param GateArmed <em>undocumented</em>
- * @param GateComCondition <em>undocumented</em>
- * @param GateTrigger <em>undocumented</em>
+ * @param GateArmed [[ch.ninecode.model.Gate Gate]] <em>undocumented</em>
+ * @param GateComCondition [[ch.ninecode.model.Gate Gate]] <em>undocumented</em>
+ * @param GateTrigger [[ch.ninecode.model.Gate Gate]] <em>undocumented</em>
  * @param ProtectiveActionCollection [[ch.ninecode.model.ProtectiveActionCollection ProtectiveActionCollection]] <em>undocumented</em>
  * @param Stage [[ch.ninecode.model.Stage Stage]] <em>undocumented</em>
  * @group InfSIPS
@@ -1339,7 +1339,7 @@ extends
  * A conditions that can trigger remedial actions.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param GateTrigger <em>undocumented</em>
+ * @param GateTrigger [[ch.ninecode.model.Gate Gate]] <em>undocumented</em>
  * @param RemedialActionScheme [[ch.ninecode.model.RemedialActionScheme RemedialActionScheme]] <em>undocumented</em>
  * @group InfSIPS
  * @groupname InfSIPS Package InfSIPS

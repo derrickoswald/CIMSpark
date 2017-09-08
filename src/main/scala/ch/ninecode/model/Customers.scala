@@ -18,7 +18,7 @@ import ch.ninecode.cim.Parseable
  * @param status Status of this customer.
  * @param vip (use 'priority' instead) True if this is an important customer.
  *        Importance is for matters different than those in 'specialNeed' attribute.
- * @param Works All the works performed for this customer.
+ * @param Works [[ch.ninecode.model.Work Work]] All the works performed for this customer.
  * @group Customers
  * @groupname Customers Package Customers
  * @groupdesc Customers This package contains the core information classes that support customer billing applications.
@@ -195,9 +195,9 @@ extends
  * @param loadMgmt Load management code.
  * @param Customer [[ch.ninecode.model.Customer Customer]] Customer for this agreement.
  * @param CustomerAccount [[ch.ninecode.model.CustomerAccount CustomerAccount]] Customer account owning this agreement.
- * @param PricingStructures All pricing structures applicable to this customer agreement.
+ * @param PricingStructures [[ch.ninecode.model.PricingStructure PricingStructure]] All pricing structures applicable to this customer agreement.
  * @param ServiceCategory [[ch.ninecode.model.ServiceCategory ServiceCategory]] Service category for this agreement.
- * @param ServiceLocations All service locations regulated by this customer agreement.
+ * @param ServiceLocations [[ch.ninecode.model.ServiceLocation ServiceLocation]] All service locations regulated by this customer agreement.
  * @param ServiceSupplier [[ch.ninecode.model.ServiceSupplier ServiceSupplier]] Service supplier for this customer agreement.
  * @param StandardIndustryCode [[ch.ninecode.model.StandardIndustryCode StandardIndustryCode]] <em>undocumented</em>
  * @group Customers
@@ -472,8 +472,8 @@ extends
  * @param revenueKind (accounting) Kind of revenue, often used to determine the grace period allowed, before collection actions are taken on a customer (grace periods vary between revenue classes).
  * @param taxExemption True if this pricing structure is not taxable.
  * @param ServiceCategory [[ch.ninecode.model.ServiceCategory ServiceCategory]] Service category to which this pricing structure applies.
- * @param Tariffs All tariffs used by this pricing structure.
- * @param UsagePoints All service delivery points (with prepayment meter running as a stand-alone device, with no CustomerAgreement or Customer) to which this pricing structure applies.
+ * @param Tariffs [[ch.ninecode.model.Tariff Tariff]] All tariffs used by this pricing structure.
+ * @param UsagePoints [[ch.ninecode.model.UsagePoint UsagePoint]] All service delivery points (with prepayment meter running as a stand-alone device, with no CustomerAgreement or Customer) to which this pricing structure applies.
  * @group Customers
  * @groupname Customers Package Customers
  * @groupdesc Customers This package contains the core information classes that support customer billing applications.
@@ -720,7 +720,7 @@ extends
  * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param endDate (if tariff became inactive) Date tariff was terminated.
  * @param startDate Date tariff was activated.
- * @param TariffProfiles All tariff profiles using this tariff.
+ * @param TariffProfiles [[ch.ninecode.model.TariffProfile TariffProfile]] All tariff profiles using this tariff.
  * @group Customers
  * @groupname Customers Package Customers
  * @groupdesc Customers This package contains the core information classes that support customer billing applications.

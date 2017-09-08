@@ -45,7 +45,7 @@ import ch.ninecode.cim.Parseable
  *        Converter state variable, result from power flow.
  * @param valveU0 Valve threshold voltage, also called Uvalve.
  *        Forward voltage drop when the valve is conducting. Used in loss calculations, i.e. the switchLoss depends on numberOfValves * valveU0.
- * @param PccTerminal Point of common coupling terminal for this converter DC side.
+ * @param PccTerminal [[ch.ninecode.model.Terminal Terminal]] Point of common coupling terminal for this converter DC side.
  *        It is typically the terminal on the power transformer (or switch) closest to the AC network. The power flow measurement must be the sum of all flows into the transformer.
  * @group DC
  * @groupname DC Package DC
@@ -183,7 +183,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.DCBaseTerminal DCBaseTerminal]] Reference to the superclass object.
  * @param polarity Represents the normal network polarity condition.
- * @param DCConductingEquipment [[ch.ninecode.model.DCConductingEquipment DCConductingEquipment]] <em>undocumented</em>
+ * @param DCConductingEquipment [[ch.ninecode.model.ACDCConverter ACDCConverter]] <em>undocumented</em>
  * @group DC
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
@@ -989,7 +989,7 @@ extends
  * Overhead lines and/or cables connecting two or more HVDC substations.
  *
  * @param sup [[ch.ninecode.model.DCEquipmentContainer DCEquipmentContainer]] Reference to the superclass object.
- * @param Region <em>undocumented</em>
+ * @param Region [[ch.ninecode.model.SubGeographicalRegion SubGeographicalRegion]] <em>undocumented</em>
  * @group DC
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
@@ -1061,7 +1061,7 @@ extends
  *        Neglectable compared with DCSeriesDevice used for smoothing.
  * @param len Segment length for calculating line section capabilities.
  * @param resistance Resistance of the DC line segment.
- * @param PerLengthParameter Set of per-length parameters for this line segment.
+ * @param PerLengthParameter [[ch.ninecode.model.PerLengthDCLineParameter PerLengthDCLineParameter]] Set of per-length parameters for this line segment.
  * @group DC
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
@@ -1714,7 +1714,7 @@ extends
  * @param targetUpcc Voltage target in AC grid, at point of common coupling.
  * @param uf Line-to-line voltage on the valve side of the converter transformer.
  *        Converter state variable, result from power flow.
- * @param CapabilityCurve Capability curve of this converter.
+ * @param CapabilityCurve [[ch.ninecode.model.VsCapabilityCurve VsCapabilityCurve]] Capability curve of this converter.
  * @group DC
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.

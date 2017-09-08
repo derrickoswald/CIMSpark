@@ -469,7 +469,7 @@ extends
  * Use CurveSchedule XAxisUnits to specify MW or MVA.
  *
  * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
- * @param MWLimitSchedules <em>undocumented</em>
+ * @param MWLimitSchedules [[ch.ninecode.model.MWLimitSchedule MWLimitSchedule]] <em>undocumented</em>
  * @param MktContingency [[ch.ninecode.model.MktContingency MktContingency]] <em>undocumented</em>
  * @param SecurityConstraintSum [[ch.ninecode.model.SecurityConstraintSum SecurityConstraintSum]] <em>undocumented</em>
  * @group ExternalInputs
@@ -1009,7 +1009,7 @@ extends
  * @param marketType <em>undocumented</em>
  * @param GenDistributionFactor [[ch.ninecode.model.GenDistributionFactor GenDistributionFactor]] <em>undocumented</em>
  * @param LoadDistributionFactor [[ch.ninecode.model.LoadDistributionFactor LoadDistributionFactor]] <em>undocumented</em>
- * @param SysLoadDistribuFactor <em>undocumented</em>
+ * @param SysLoadDistribuFactor [[ch.ninecode.model.SysLoadDistributionFactor SysLoadDistributionFactor]] <em>undocumented</em>
  * @group ExternalInputs
  * @groupname ExternalInputs Package ExternalInputs
  * @groupdesc ExternalInputs Inputs to the market system from external sources.
@@ -1348,11 +1348,11 @@ extends
  * @param reason Reason for energy transaction.
  * @param receiptPointP Receipt point active power.
  * @param state { Approve | Deny | Study }
- * @param EnergyPriceCurves <em>undocumented</em>
+ * @param EnergyPriceCurves [[ch.ninecode.model.EnergyPriceCurve EnergyPriceCurve]] <em>undocumented</em>
  * @param EnergyProduct [[ch.ninecode.model.EnergyProduct EnergyProduct]] The "Source" for an EnergyTransaction is an EnergyProduct which is injected into a ControlArea.
  *        Typically this is a ServicePoint.
- * @param Export_SubControlArea Energy is transferred between interchange areas
- * @param Import_SubControlArea Energy is transferred between interchange areas
+ * @param Export_SubControlArea [[ch.ninecode.model.SubControlArea SubControlArea]] Energy is transferred between interchange areas
+ * @param Import_SubControlArea [[ch.ninecode.model.SubControlArea SubControlArea]] Energy is transferred between interchange areas
  * @param TransmissionReservation [[ch.ninecode.model.TransmissionReservation TransmissionReservation]] <em>undocumented</em>
  * @group ExternalInputs
  * @groupname ExternalInputs Package ExternalInputs
@@ -1821,7 +1821,7 @@ extends
  * @param outOfMarketType To indicate an out-of-market (OOM) schedule.
  * @param scheduleType Schedule type.
  * @param wcrID Wheeling Counter-Resource ID (required when Schedule Type=Wheel).
- * @param InterTie <em>undocumented</em>
+ * @param InterTie [[ch.ninecode.model.SchedulingPoint SchedulingPoint]] <em>undocumented</em>
  * @param RegisteredInterTie [[ch.ninecode.model.RegisteredInterTie RegisteredInterTie]] <em>undocumented</em>
  * @group ExternalInputs
  * @groupname ExternalInputs Package ExternalInputs
@@ -2154,7 +2154,7 @@ extends
  * Maximum MW and optionally Minimum MW (Y1 and Y2, respectively)
  *
  * @param sup Reference to the superclass object.
- * @param SecurityConstraintLimit <em>undocumented</em>
+ * @param SecurityConstraintLimit [[ch.ninecode.model.ContingencyConstraintLimit ContingencyConstraintLimit]] <em>undocumented</em>
  * @group ExternalInputs
  * @groupname ExternalInputs Package ExternalInputs
  * @groupdesc ExternalInputs Inputs to the market system from external sources.
@@ -2220,8 +2220,8 @@ extends
  * Subclass of IEC61970:Wires:ACLineSegment
  *
  * @param sup [[ch.ninecode.model.ACLineSegment ACLineSegment]] Reference to the superclass object.
- * @param EndAFlow <em>undocumented</em>
- * @param EndBFlow <em>undocumented</em>
+ * @param EndAFlow [[ch.ninecode.model.BranchEndFlow BranchEndFlow]] <em>undocumented</em>
+ * @param EndBFlow [[ch.ninecode.model.BranchEndFlow BranchEndFlow]] <em>undocumented</em>
  * @group ExternalInputs
  * @groupname ExternalInputs Package ExternalInputs
  * @groupdesc ExternalInputs Inputs to the market system from external sources.
@@ -2621,8 +2621,8 @@ extends
  * Subclass of IEC61970:Wires:SeriesCompensator
  *
  * @param sup [[ch.ninecode.model.SeriesCompensator SeriesCompensator]] Reference to the superclass object.
- * @param EndAFlow <em>undocumented</em>
- * @param EndBFlow <em>undocumented</em>
+ * @param EndAFlow [[ch.ninecode.model.BranchEndFlow BranchEndFlow]] <em>undocumented</em>
+ * @param EndBFlow [[ch.ninecode.model.BranchEndFlow BranchEndFlow]] <em>undocumented</em>
  * @group ExternalInputs
  * @groupname ExternalInputs Package ExternalInputs
  * @groupdesc ExternalInputs Inputs to the market system from external sources.
@@ -3738,7 +3738,7 @@ extends
  * @param sup Reference to the superclass object.
  * @param entitlement The entitlement
  * @param startOperatingDate Operating date and hour when the entitlement applies
- * @param TransmissionContractRight <em>undocumented</em>
+ * @param TransmissionContractRight [[ch.ninecode.model.ContractRight ContractRight]] <em>undocumented</em>
  * @group ExternalInputs
  * @groupname ExternalInputs Package ExternalInputs
  * @groupdesc ExternalInputs Inputs to the market system from external sources.
@@ -4064,9 +4064,9 @@ extends
  * @param transferLimit Transfer Interface + Limit
  *        Attribute Usage: The absoloute of the maximum flow on the transfer interface.
  *        This is a positive MW value.
- * @param MktContingencyB <em>undocumented</em>
+ * @param MktContingencyB [[ch.ninecode.model.MktContingency MktContingency]] <em>undocumented</em>
  * @param TransferInterface [[ch.ninecode.model.TransferInterface TransferInterface]] <em>undocumented</em>
- * @param _MktContingencyA <em>undocumented</em>
+ * @param _MktContingencyA [[ch.ninecode.model.MktContingency MktContingency]] <em>undocumented</em>
  * @group ExternalInputs
  * @groupname ExternalInputs Package ExternalInputs
  * @groupdesc ExternalInputs Inputs to the market system from external sources.
@@ -4363,9 +4363,9 @@ extends
  * @param availTransferCapability The available transmission capability of a transmission path for the reference direction.
  * @param parallelPathFlag Flag which indicates if the transmission path is also a designated interconnection "parallel path".
  * @param totalTransferCapability The total transmission capability of a transmission path in the reference direction.
- * @param DeliveryPoint A transmission path has a "point-of-delivery" service point
- * @param For A TransmissionPath is contained in a TransmissionCorridor.
- * @param PointOfReceipt A transmission path has a "point-of-receipt" service point
+ * @param DeliveryPoint [[ch.ninecode.model.ServicePoint ServicePoint]] A transmission path has a "point-of-delivery" service point
+ * @param For [[ch.ninecode.model.TransmissionCorridor TransmissionCorridor]] A TransmissionPath is contained in a TransmissionCorridor.
+ * @param PointOfReceipt [[ch.ninecode.model.ServicePoint ServicePoint]] A transmission path has a "point-of-receipt" service point
  * @group ExternalInputs
  * @groupname ExternalInputs Package ExternalInputs
  * @groupdesc ExternalInputs Inputs to the market system from external sources.
@@ -4452,8 +4452,8 @@ extends
  *
  * @param sup Reference to the superclass object.
  * @param EnergyTransaction [[ch.ninecode.model.EnergyTransaction EnergyTransaction]] <em>undocumented</em>
- * @param Sink <em>undocumented</em>
- * @param Source [[ch.ninecode.model.Source Source]] <em>undocumented</em>
+ * @param Sink [[ch.ninecode.model.ServicePoint ServicePoint]] <em>undocumented</em>
+ * @param Source [[ch.ninecode.model.ServicePoint ServicePoint]] <em>undocumented</em>
  * @param TransactionBid [[ch.ninecode.model.TransactionBid TransactionBid]] <em>undocumented</em>
  * @param TransmissionPath [[ch.ninecode.model.TransmissionPath TransmissionPath]] <em>undocumented</em>
  * @group ExternalInputs
@@ -4550,7 +4550,7 @@ extends
  * @param statusDate Time and date for resourceStatus
  * @param timeInStatus Time in market trading intervals the resource is in the state as of the end of the previous clearing period.
  * @param timeInterval Time interval
- * @param GeneratingUnit [[ch.ninecode.model.GeneratingUnit GeneratingUnit]] <em>undocumented</em>
+ * @param GeneratingUnit [[ch.ninecode.model.RegisteredGenerator RegisteredGenerator]] <em>undocumented</em>
  * @group ExternalInputs
  * @groupname ExternalInputs Package ExternalInputs
  * @groupdesc ExternalInputs Inputs to the market system from external sources.

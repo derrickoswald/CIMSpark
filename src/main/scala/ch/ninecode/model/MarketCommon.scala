@@ -201,7 +201,7 @@ extends
  * @param ECAFlag Indication that this resource is associated with an Embedded Control area
  * @param ForbiddenRegion [[ch.ninecode.model.ForbiddenRegion ForbiddenRegion]] <em>undocumented</em>
  * @param HostControlArea [[ch.ninecode.model.HostControlArea HostControlArea]] <em>undocumented</em>
- * @param InterTie <em>undocumented</em>
+ * @param InterTie [[ch.ninecode.model.SchedulingPoint SchedulingPoint]] <em>undocumented</em>
  * @param LMPMFlag LMPM flag: indicates whether the resource is subject to the LMPM test (Yes/No)
  * @param MktConnectivityNode [[ch.ninecode.model.MktConnectivityNode MktConnectivityNode]] <em>undocumented</em>
  * @param MktOrganisation [[ch.ninecode.model.MktOrganisation MktOrganisation]] <em>undocumented</em>

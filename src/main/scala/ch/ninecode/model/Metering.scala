@@ -459,9 +459,9 @@ extends
  * @param typ Type of demand response program; examples are CPP (critical-peak pricing), RTP (real-time pricing), DLC (direct load control), DBP (demand bidding program), BIP (base interruptible program).
  *        Note that possible types change a lot and it would be impossible to enumerate them all.
  * @param validityInterval Interval within which the program is valid.
- * @param CustomerAgreements All customer agreements through which the customer is enrolled in this demand response program.
- * @param EndDeviceGroups All groups of end devices enrolled in this demand response program.
- * @param UsagePointGroups All usage point groups enrolled in this demand response program.
+ * @param CustomerAgreements [[ch.ninecode.model.CustomerAgreement CustomerAgreement]] All customer agreements through which the customer is enrolled in this demand response program.
+ * @param EndDeviceGroups [[ch.ninecode.model.EndDeviceGroup EndDeviceGroup]] All groups of end devices enrolled in this demand response program.
+ * @param UsagePointGroups [[ch.ninecode.model.UsagePointGroup UsagePointGroup]] All usage point groups enrolled in this demand response program.
  * @group Metering
  * @groupname Metering Package Metering
  * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
@@ -905,9 +905,9 @@ extends
  *        For example, load control actions performed by a PAN device in response to demand response event information sent to a PAN gateway server.
  * @param EndDeviceAction [[ch.ninecode.model.EndDeviceAction EndDeviceAction]] End device action issued by this end device control.
  * @param EndDeviceControlType [[ch.ninecode.model.EndDeviceControlType EndDeviceControlType]] Type of this end device control.
- * @param EndDevices All end devices receiving commands from this end device control.
- * @param UsagePointGroups All usage point groups receiving commands from this end device control.
- * @param UsagePoints All usage points receiving commands from this end device control.
+ * @param EndDevices [[ch.ninecode.model.EndDevice EndDevice]] All end devices receiving commands from this end device control.
+ * @param UsagePointGroups [[ch.ninecode.model.UsagePointGroup UsagePointGroup]] All usage point groups receiving commands from this end device control.
+ * @param UsagePoints [[ch.ninecode.model.UsagePoint UsagePoint]] All usage points receiving commands from this end device control.
  * @group Metering
  * @groupname Metering Package Metering
  * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
@@ -1443,8 +1443,8 @@ extends
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param typ Type of this group.
- * @param EndDeviceControls All end device controls sending commands to this end device group.
- * @param EndDevices All end devices this end device group refers to.
+ * @param EndDeviceControls [[ch.ninecode.model.EndDeviceControl EndDeviceControl]] All end device controls sending commands to this end device group.
+ * @param EndDevices [[ch.ninecode.model.EndDevice EndDevice]] All end devices this end device group refers to.
  * @group Metering
  * @groupname Metering Package Metering
  * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
@@ -1687,7 +1687,7 @@ extends
  * Contained interval readings may need conversion through the application of an offset and a scalar defined in associated pending.
  *
  * @param sup Reference to the superclass object.
- * @param IntervalReadings Interval reading contained in this block.
+ * @param IntervalReadings [[ch.ninecode.model.IntervalReading IntervalReading]] Interval reading contained in this block.
  * @param MeterReading [[ch.ninecode.model.MeterReading MeterReading]] Meter reading containing this interval block.
  * @param PendingCalculation [[ch.ninecode.model.PendingCalculation PendingCalculation]] Pending calculation to apply to interval reading values contained by this block (after which the resulting reading type is different than the original because it reflects the conversion result).
  * @param ReadingType [[ch.ninecode.model.ReadingType ReadingType]] Type information for interval reading values contained in this block.
@@ -2064,7 +2064,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.Work Work]] Reference to the superclass object.
  * @param Meter [[ch.ninecode.model.Meter Meter]] Meter on which this non-replacement work is performed.
- * @param OldMeter Old meter replaced by this work.
+ * @param OldMeter [[ch.ninecode.model.Meter Meter]] Old meter replaced by this work.
  * @param UsagePoint [[ch.ninecode.model.UsagePoint UsagePoint]] Usage point to which this meter service work applies.
  * @group Metering
  * @groupname Metering Package Metering
@@ -2140,7 +2140,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param reason Reason for this metrology requirement being specified.
- * @param UsagePoints All usage points having this metrology requirement.
+ * @param UsagePoints [[ch.ninecode.model.UsagePoint UsagePoint]] All usage points having this metrology requirement.
  * @group Metering
  * @groupname Metering Package Metering
  * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
@@ -2788,7 +2788,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.BaseReading BaseReading]] Reference to the superclass object.
  * @param reason Reason for this reading being taken.
- * @param MeterReadings All meter readings (sets of values) containing this reading value.
+ * @param MeterReadings [[ch.ninecode.model.MeterReading MeterReading]] All meter readings (sets of values) containing this reading value.
  * @param ReadingType [[ch.ninecode.model.ReadingType ReadingType]] Type information for this reading value.
  * @group Metering
  * @groupname Metering Package Metering
@@ -2941,7 +2941,7 @@ extends
  * @param comment Elaboration on the quality code.
  * @param source System acting as the source of the quality code.
  * @param timeStamp Date and time at which the quality code was assigned or ascertained.
- * @param Reading [[ch.ninecode.model.Reading Reading]] Reading value to which this quality applies.
+ * @param Reading [[ch.ninecode.model.BaseReading BaseReading]] Reading value to which this quality applies.
  * @param ReadingQualityType [[ch.ninecode.model.ReadingQualityType ReadingQualityType]] Type of this reading quality.
  * @group Metering
  * @groupname Metering Package Metering
@@ -3527,7 +3527,7 @@ extends
  * @param servicePriority Priority of service for this usage point.
  *        Note that usage points at the same service location can have different priorities.
  * @param CustomerAgreement [[ch.ninecode.model.CustomerAgreement CustomerAgreement]] Customer agreement regulating this service delivery point.
- * @param Equipments All equipment connecting this usage point to the electrical grid.
+ * @param Equipments [[ch.ninecode.model.Equipment Equipment]] All equipment connecting this usage point to the electrical grid.
  * @param ServiceCategory [[ch.ninecode.model.ServiceCategory ServiceCategory]] Service category delivered by this usage point.
  * @param ServiceLocation [[ch.ninecode.model.ServiceLocation ServiceLocation]] Service location where the service delivered by this usage point is consumed.
  * @param ServiceSupplier [[ch.ninecode.model.ServiceSupplier ServiceSupplier]] ServiceSupplier (utility) utilising this usage point to deliver a service.
@@ -3688,7 +3688,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param typ Type of this group.
- * @param UsagePoints All usage points in this group.
+ * @param UsagePoints [[ch.ninecode.model.UsagePoint UsagePoint]] All usage points in this group.
  * @group Metering
  * @groupname Metering Package Metering
  * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.

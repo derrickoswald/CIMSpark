@@ -966,7 +966,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @param primeMoverRating Rating of prime mover.
- * @param SynchronousMachines Synchronous machines this Prime mover drives.
+ * @param SynchronousMachines [[ch.ninecode.model.SynchronousMachine SynchronousMachine]] Synchronous machines this Prime mover drives.
  * @group GenerationTrainingSimulation
  * @groupname GenerationTrainingSimulation Package GenerationTrainingSimulation
  * @groupdesc GenerationTrainingSimulation The Generation Dynamics package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
@@ -1037,7 +1037,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @param steamSupplyRating Rating of steam supply.
- * @param SteamTurbines Steam turbines may have steam supplied by a steam supply.
+ * @param SteamTurbines [[ch.ninecode.model.SteamTurbine SteamTurbine]] Steam turbines may have steam supplied by a steam supply.
  * @group GenerationTrainingSimulation
  * @groupname GenerationTrainingSimulation Package GenerationTrainingSimulation
  * @groupdesc GenerationTrainingSimulation The Generation Dynamics package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.

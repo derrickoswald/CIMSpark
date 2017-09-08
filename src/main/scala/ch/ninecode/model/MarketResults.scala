@@ -239,7 +239,7 @@ extends
  * @param unitOfMeasure The unit of measure applied to the value attribute of the profile data.
  * @param Bid [[ch.ninecode.model.Bid Bid]] <em>undocumented</em>
  * @param BillDeterminant [[ch.ninecode.model.BillDeterminant BillDeterminant]] <em>undocumented</em>
- * @param PassTroughBill <em>undocumented</em>
+ * @param PassTroughBill [[ch.ninecode.model.PassThroughBill PassThroughBill]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
@@ -827,7 +827,7 @@ extends
  * @param updateTimeStamp <em>undocumented</em>
  * @param updateType <em>undocumented</em>
  * @param updateUser <em>undocumented</em>
- * @param RegisteredResouce <em>undocumented</em>
+ * @param RegisteredResouce [[ch.ninecode.model.RegisteredResource RegisteredResource]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
@@ -3052,7 +3052,7 @@ extends
  * @param previousQuantity Previous settlement quantity, subject to the UOM.
  * @param previsouPrice Previous settlement price.
  * @param quantityUOM The unit of measure for the quantity element of the line item.
- * @param ContainerMarketStatementLineItem <em>undocumented</em>
+ * @param ContainerMarketStatementLineItem [[ch.ninecode.model.MarketStatementLineItem MarketStatementLineItem]] <em>undocumented</em>
  * @param MarketStatement [[ch.ninecode.model.MarketStatement MarketStatement]] <em>undocumented</em>
  * @param MktUserAttribute [[ch.ninecode.model.MktUserAttribute MktUserAttribute]] <em>undocumented</em>
  * @param PassThroughBill [[ch.ninecode.model.PassThroughBill PassThroughBill]] <em>undocumented</em>

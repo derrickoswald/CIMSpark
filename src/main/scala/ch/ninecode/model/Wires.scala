@@ -23,8 +23,8 @@ import ch.ninecode.cim.Parseable
  *        Used for short circuit data exchange according to IEC 60909
  * @param x Positive sequence series reactance of the entire line section.
  * @param x0 Zero sequence series reactance of the entire line section.
- * @param LineGroundingAction Ground action involving clamp usage (for the case when the ground is applied along the line segment instead of at its terminals).
- * @param LineJumpingAction Jumper action involving clamp usage (for the case when the jumper is applied along the line segment instead of at its terminals).
+ * @param LineGroundingAction [[ch.ninecode.model.GroundAction GroundAction]] Ground action involving clamp usage (for the case when the ground is applied along the line segment instead of at its terminals).
+ * @param LineJumpingAction [[ch.ninecode.model.JumperAction JumperAction]] Jumper action involving clamp usage (for the case when the jumper is applied along the line segment instead of at its terminals).
  * @param PerLengthImpedance [[ch.ninecode.model.PerLengthImpedance PerLengthImpedance]] Per-length impedance of this line segment.
  * @group Wires
  * @groupname Wires Package Wires
@@ -1018,7 +1018,7 @@ extends
  * @param qfixedPct Fixed reactive power as per cent of load group fixed reactive power.
  *        Load sign convention is used, i.e. positive sign means flow out from a node.
  * @param LoadDynamics [[ch.ninecode.model.LoadDynamics LoadDynamics]] Load dynamics model used to describe dynamic behavior of this energy consumer.
- * @param LoadResponse The load response characteristic of this load.
+ * @param LoadResponse [[ch.ninecode.model.LoadResponseCharacteristic LoadResponseCharacteristic]] The load response characteristic of this load.
  *        If missing, this load is assumed to be constant power.
  * @param PowerCutZone [[ch.ninecode.model.PowerCutZone PowerCutZone]] The  energy consumer is assigned to this power cut zone.
  * @group Wires
@@ -2001,7 +2001,7 @@ extends
  * Contains equipment beyond a substation belonging to a power transmission line.
  *
  * @param sup [[ch.ninecode.model.EquipmentContainer EquipmentContainer]] Reference to the superclass object.
- * @param Region The sub-geographical region of the line.
+ * @param Region [[ch.ninecode.model.SubGeographicalRegion SubGeographicalRegion]] The sub-geographical region of the line.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -2291,9 +2291,9 @@ extends
  * @param g0ch Zero sequence mutual coupling shunt (charging) conductance, uniformly distributed, of the entire line section.
  * @param r0 Zero sequence branch-to-branch mutual impedance coupling, resistance.
  * @param x0 Zero sequence branch-to-branch mutual impedance coupling, reactance.
- * @param First_Terminal The starting terminal for the calculation of distances along the first branch of the mutual coupling.
+ * @param First_Terminal [[ch.ninecode.model.Terminal Terminal]] The starting terminal for the calculation of distances along the first branch of the mutual coupling.
  *        Normally MutualCoupling would only be used for terminals of AC line segments.  The first and second terminals of a mutual coupling should point to different AC line segments.
- * @param Second_Terminal The starting terminal for the calculation of distances along the second branch of the mutual coupling.
+ * @param Second_Terminal [[ch.ninecode.model.Terminal Terminal]] The starting terminal for the calculation of distances along the second branch of the mutual coupling.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -3093,7 +3093,7 @@ extends
  * @param sequenceNumber Column-wise element index, assuming a symmetrical matrix.
  *        Ranges from 1 to N + N*(N-1)/2.
  * @param x Reactance matrix element value, per length of unit.
- * @param PhaseImpedance Conductor phase impedance to which this data belongs.
+ * @param PhaseImpedance [[ch.ninecode.model.PerLengthPhaseImpedance PerLengthPhaseImpedance]] Conductor phase impedance to which this data belongs.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -5564,7 +5564,7 @@ extends
  *        This attribute is used to describe the operating voltage of the generating unit.
  * @param x0 Zero sequence reactance of the synchronous machine.
  * @param x2 Negative sequence reactance.
- * @param InitialReactiveCapabilityCurve The default reactive capability curve for use by a synchronous machine.
+ * @param InitialReactiveCapabilityCurve [[ch.ninecode.model.ReactiveCapabilityCurve ReactiveCapabilityCurve]] The default reactive capability curve for use by a synchronous machine.
  * @param SynchronousMachineDynamics [[ch.ninecode.model.SynchronousMachineDynamics SynchronousMachineDynamics]] Synchronous machine dynamics model used to describe dynamic behavior of this synchronous machine.
  * @group Wires
  * @groupname Wires Package Wires
@@ -6223,11 +6223,11 @@ extends
  * @param xground (for Yn and Zn connections) Reactive part of neutral impedance where 'grounded' is true.
  * @param BaseVoltage [[ch.ninecode.model.BaseVoltage BaseVoltage]] Base voltage of the transformer end.
  *        This is essential for PU calculation.
- * @param CoreAdmittance Core admittance of this transformer end, representing magnetising current and core losses.
+ * @param CoreAdmittance [[ch.ninecode.model.TransformerCoreAdmittance TransformerCoreAdmittance]] Core admittance of this transformer end, representing magnetising current and core losses.
  *        The full values of the transformer should be supplied for one transformer end only.
  * @param PhaseTapChanger [[ch.ninecode.model.PhaseTapChanger PhaseTapChanger]] Phase tap changer associated with this transformer end.
  * @param RatioTapChanger [[ch.ninecode.model.RatioTapChanger RatioTapChanger]] Ratio tap changer associated with this transformer end.
- * @param StarImpedance (accurate for 2- or 3-winding transformers only) Pi-model impedances of this transformer end.
+ * @param StarImpedance [[ch.ninecode.model.TransformerStarImpedance TransformerStarImpedance]] (accurate for 2- or 3-winding transformers only) Pi-model impedances of this transformer end.
  *        By convention, for a two winding transformer, the full values of the transformer should be entered on the high voltage end (endNumber=1).
  * @param Terminal [[ch.ninecode.model.Terminal Terminal]] Terminal of the power transformer to which this transformer end belongs.
  * @group Wires
@@ -6349,9 +6349,9 @@ extends
  * @param r0 Zero-sequence resistance between the 'from' and the 'to' end, seen from the 'from' end.
  * @param x Reactance between the 'from' and the 'to' end, seen from the 'from' end.
  * @param x0 Zero-sequence reactance between the 'from' and the 'to' end, seen from the 'from' end.
- * @param FromTransformerEnd From end this mesh impedance is connected to.
+ * @param FromTransformerEnd [[ch.ninecode.model.TransformerEnd TransformerEnd]] From end this mesh impedance is connected to.
  *        It determines the voltage reference.
- * @param FromTransformerEndInfo 'from' transformer end datasheet this mesh impedance is calculated from.
+ * @param FromTransformerEndInfo [[ch.ninecode.model.TransformerEndInfo TransformerEndInfo]] 'from' transformer end datasheet this mesh impedance is calculated from.
  *        It determines the voltage reference.
  * @group Wires
  * @groupname Wires Package Wires

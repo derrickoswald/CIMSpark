@@ -12,8 +12,8 @@ import ch.ninecode.cim.Parseable
  * Approves and implements energy transactions. Verifies both Inter-Control Area and Intra-Control Area transactions for the power system  before granting approval (and implementing) the transactions.
  *
  * @param sup [[ch.ninecode.model.Organisation Organisation]] Reference to the superclass object.
- * @param CAChildOf A ControlAreaOperator has a collection of tie points that ring the ControlArea, called a TieLine.
- * @param ControlledBy A ControlAreaCompany controls a ControlArea.
+ * @param CAChildOf [[ch.ninecode.model.TieLine TieLine]] A ControlAreaOperator has a collection of tie points that ring the ControlArea, called a TieLine.
+ * @param ControlledBy [[ch.ninecode.model.HostControlArea HostControlArea]] A ControlAreaCompany controls a ControlArea.
  * @group InfFinancial
  * @groupname InfFinancial Package InfFinancial
  * @groupdesc InfFinancial This package is responsible for Settlement and Billing. These classes represent the legal entities who participate in formal or informal agreements.

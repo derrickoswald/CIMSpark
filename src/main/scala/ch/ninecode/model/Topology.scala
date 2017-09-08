@@ -157,7 +157,7 @@ extends
  * Topological islands can change as the current network state changes: e.g. due to
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param AngleRefTopologicalNode The angle reference for the island.
+ * @param AngleRefTopologicalNode [[ch.ninecode.model.TopologicalNode TopologicalNode]] The angle reference for the island.
  *        Normally there is one TopologicalNode that is selected as the angle reference for each island.   Other reference schemes exist, so the association is typically optional.
  * @group Topology
  * @groupname Topology Package Topology
@@ -230,7 +230,7 @@ extends
  *        Positive sign means injection into the TopologicalNode (bus).
  * @param qInjection The reactive power injected into the bus at this location in addition to injections from equipment.
  *        Positive sign means injection into the TopologicalNode (bus).
- * @param AngleRefTopologicalIsland The island for which the node is an angle reference.
+ * @param AngleRefTopologicalIsland [[ch.ninecode.model.TopologicalIsland TopologicalIsland]] The island for which the node is an angle reference.
  *        Normally there is one angle reference node for each island.
  * @param BaseVoltage [[ch.ninecode.model.BaseVoltage BaseVoltage]] The base voltage of the topologocial node.
  * @param ConnectivityNodeContainer [[ch.ninecode.model.ConnectivityNodeContainer ConnectivityNodeContainer]] The connectivity node container to which the toplogical node belongs.

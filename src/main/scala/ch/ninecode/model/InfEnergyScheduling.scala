@@ -337,8 +337,8 @@ extends
  * @param dynSchedSignRev Dynamic schedule sign reversal required (true/false)
  * @param dynSchedStatus The "active" or "inactive" status of the dynamic schedule
  * @param MktMeasurement [[ch.ninecode.model.MktMeasurement MktMeasurement]] <em>undocumented</em>
- * @param Receive_SubControlArea A control area can receive dynamic schedules from other control areas
- * @param Send_SubControlArea A control area can send dynamic schedules to other control areas
+ * @param Receive_SubControlArea [[ch.ninecode.model.SubControlArea SubControlArea]] A control area can receive dynamic schedules from other control areas
+ * @param Send_SubControlArea [[ch.ninecode.model.SubControlArea SubControlArea]] A control area can send dynamic schedules to other control areas
  * @group InfEnergyScheduling
  * @groupname InfEnergyScheduling Package InfEnergyScheduling
  * @groupdesc InfEnergyScheduling This package provides the capability to schedule and account for transactions for the exchange of electric power between companies. It includes transations for megawatts which are generated, consumed, lost, passed through, sold and purchased. These classes are used by Accounting and Billing for Energy, Generation Capacity, Transmission, and Ancillary Services.
@@ -421,8 +421,8 @@ extends
  *
  * @param sup [[ch.ninecode.model.Agreement Agreement]] Reference to the superclass object.
  * @param GenerationProvider [[ch.ninecode.model.GenerationProvider GenerationProvider]] <em>undocumented</em>
- * @param ResoldBy_Marketer A Marketer may resell an EnergyProduct.
- * @param TitleHeldBy_Marketer A Marketer holds title to an EnergyProduct.
+ * @param ResoldBy_Marketer [[ch.ninecode.model.Marketer Marketer]] A Marketer may resell an EnergyProduct.
+ * @param TitleHeldBy_Marketer [[ch.ninecode.model.Marketer Marketer]] A Marketer holds title to an EnergyProduct.
  * @group InfEnergyScheduling
  * @groupname InfEnergyScheduling Package InfEnergyScheduling
  * @groupdesc InfEnergyScheduling This package provides the capability to schedule and account for transactions for the exchange of electric power between companies. It includes transations for megawatts which are generated, consumed, lost, passed through, sold and purchased. These classes are used by Accounting and Billing for Energy, Generation Capacity, Transmission, and Ancillary Services.
@@ -633,7 +633,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.Profile Profile]] Reference to the superclass object.
  * @param EnergyTransaction [[ch.ninecode.model.EnergyTransaction EnergyTransaction]] An EnergyTransaction may have a LossProfile.
- * @param HasLoss_1 Part of the LossProfile for an EnergyTransaction may be a loss for a TransmissionProvider.
+ * @param HasLoss_1 [[ch.ninecode.model.TransmissionProvider TransmissionProvider]] Part of the LossProfile for an EnergyTransaction may be a loss for a TransmissionProvider.
  *        If so, the TransmissionProvider must be one of the participating entities in the EnergyTransaction.
  * @group InfEnergyScheduling
  * @groupname InfEnergyScheduling Package InfEnergyScheduling

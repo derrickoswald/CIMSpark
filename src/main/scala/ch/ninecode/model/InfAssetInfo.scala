@@ -81,7 +81,7 @@ extends
  * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param unitCost Unit cost for an asset model from a specific supplier, either for a unit cost or cost per unit length.
  *        Cost is for material or asset only and does not include labor to install/construct or configure it.
- * @param AssetModel [[ch.ninecode.model.AssetModel AssetModel]] <em>undocumented</em>
+ * @param AssetModel [[ch.ninecode.model.ProductAssetModel ProductAssetModel]] <em>undocumented</em>
  * @param AssetModelCatalogue [[ch.ninecode.model.AssetModelCatalogue AssetModelCatalogue]] <em>undocumented</em>
  * @group InfAssetInfo
  * @groupname InfAssetInfo Package InfAssetInfo

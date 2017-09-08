@@ -92,7 +92,7 @@ extends
  * @param pymtPlanAmt Monthly amortized amount due during each billing cycle for the CustomerAccount balance for which the Payment Plan is set-up.
  * @param pymtPlanType Type of payment plan.
  * @param CustomerAccount [[ch.ninecode.model.CustomerAccount CustomerAccount]] <em>undocumented</em>
- * @param ErpInvoiceLineItems <em>undocumented</em>
+ * @param ErpInvoiceLineItems [[ch.ninecode.model.ErpInvoiceLineItem ErpInvoiceLineItem]] <em>undocumented</em>
  * @group InfCustomers
  * @groupname InfCustomers Package InfCustomers
  * @groupdesc InfCustomers The package is used to define detailed customer models.
@@ -587,7 +587,7 @@ extends
  * @param receivedDateTime Date payment was received from client.
  * @param workPrice Amount of bill.
  * @param CustomerAccount [[ch.ninecode.model.CustomerAccount CustomerAccount]] <em>undocumented</em>
- * @param ErpLineItems <em>undocumented</em>
+ * @param ErpLineItems [[ch.ninecode.model.ErpInvoiceLineItem ErpInvoiceLineItem]] <em>undocumented</em>
  * @group InfCustomers
  * @groupname InfCustomers Package InfCustomers
  * @groupdesc InfCustomers The package is used to define detailed customer models.

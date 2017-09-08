@@ -171,7 +171,7 @@ extends
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param callAhead True if requested to call customer when someone is about to arrive at their premises.
  * @param meetingInterval Date and time reserved for appointment.
- * @param Works All works for this appointment.
+ * @param Works [[ch.ninecode.model.Work Work]] All works for this appointment.
  * @group Common
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
@@ -248,13 +248,13 @@ extends
  * @param effectiveDateTime Date and time this event has or will become effective.
  * @param modifiedBy Source/initiator of modification.
  * @param remark Free text remarks.
- * @param ChangedAsset Asset whose change resulted in this configuration event.
- * @param ChangedDocument Document whose change resulted in this configuration event.
- * @param ChangedLocation Location whose change resulted in this configuration event.
- * @param ChangedOrganisationRole Organisation role whose change resulted in this configuration event.
- * @param ChangedPersonRole Person role whose change resulted in this configuration event.
- * @param ChangedServiceCategory Service category whose change resulted in this configuration event.
- * @param ChangedUsagePoint Usage point whose change resulted in this configuration event.
+ * @param ChangedAsset [[ch.ninecode.model.Asset Asset]] Asset whose change resulted in this configuration event.
+ * @param ChangedDocument [[ch.ninecode.model.Document Document]] Document whose change resulted in this configuration event.
+ * @param ChangedLocation [[ch.ninecode.model.Location Location]] Location whose change resulted in this configuration event.
+ * @param ChangedOrganisationRole [[ch.ninecode.model.OrganisationRole OrganisationRole]] Organisation role whose change resulted in this configuration event.
+ * @param ChangedPersonRole [[ch.ninecode.model.PersonRole PersonRole]] Person role whose change resulted in this configuration event.
+ * @param ChangedServiceCategory [[ch.ninecode.model.ServiceCategory ServiceCategory]] Service category whose change resulted in this configuration event.
+ * @param ChangedUsagePoint [[ch.ninecode.model.UsagePoint UsagePoint]] Usage point whose change resulted in this configuration event.
  * @group Common
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
@@ -931,7 +931,7 @@ extends
  * @param status Status of this location.
  * @param typ Classification by utility's corporate standards and practices, relative to the location itself (e.g., geographical, functional accounting, etc., not a given property that happens to exist at that location).
  * @param CoordinateSystem [[ch.ninecode.model.CoordinateSystem CoordinateSystem]] Coordinate system used to describe position points of this location.
- * @param Measurements <em>undocumented</em>
+ * @param Measurements [[ch.ninecode.model.Measurement Measurement]] <em>undocumented</em>
  * @group Common
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
@@ -1166,7 +1166,7 @@ extends
  * @param phone2 Additional phone number.
  * @param postalAddress Postal address, potentially different than 'streetAddress' (e.g., another city).
  * @param streetAddress Street address.
- * @param ActivityRecords <em>undocumented</em>
+ * @param ActivityRecords [[ch.ninecode.model.ActivityRecord ActivityRecord]] <em>undocumented</em>
  * @group Common
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
@@ -1815,7 +1815,7 @@ extends
  * @param duration Duration of the scheduled event, for example, the time to ramp between values.
  * @param status <em>undocumented</em>
  * @param typ Type of scheduled event.
- * @param Assets <em>undocumented</em>
+ * @param Assets [[ch.ninecode.model.Asset Asset]] <em>undocumented</em>
  * @param ScheduledEventData [[ch.ninecode.model.ScheduledEventData ScheduledEventData]] Specification for this scheduled event.
  * @group Common
  * @groupname Common Package Common
@@ -2608,9 +2608,9 @@ extends
  * @param name Name of an attribute.
  * @param sequenceNumber Sequence number for this attribute in a list of attributes.
  * @param value Value of an attribute, including unit information.
- * @param ProcedureDataSets <em>undocumented</em>
- * @param PropertySpecification <em>undocumented</em>
- * @param RatingSpecification <em>undocumented</em>
+ * @param ProcedureDataSets [[ch.ninecode.model.ProcedureDataSet ProcedureDataSet]] <em>undocumented</em>
+ * @param PropertySpecification [[ch.ninecode.model.Specification Specification]] <em>undocumented</em>
+ * @param RatingSpecification [[ch.ninecode.model.Specification Specification]] <em>undocumented</em>
  * @param Transaction [[ch.ninecode.model.Transaction Transaction]] Transaction for which this snapshot has been recorded.
  * @group Common
  * @groupname Common Package Common

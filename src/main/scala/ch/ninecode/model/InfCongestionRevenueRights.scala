@@ -16,7 +16,7 @@ import ch.ninecode.cim.Parseable
  * @param optimized Fixed (covers re-configuration, grandfathering) or Optimized (up for sale/purchase
  * @param EnergyPriceCurve [[ch.ninecode.model.EnergyPriceCurve EnergyPriceCurve]] <em>undocumented</em>
  * @param Flowgate [[ch.ninecode.model.Flowgate Flowgate]] <em>undocumented</em>
- * @param Pnodes <em>undocumented</em>
+ * @param Pnodes [[ch.ninecode.model.Pnode Pnode]] <em>undocumented</em>
  * @param _class Peak, Off-peak, 24-hour
  * @group InfCongestionRevenueRights
  * @groupname InfCongestionRevenueRights Package InfCongestionRevenueRights
