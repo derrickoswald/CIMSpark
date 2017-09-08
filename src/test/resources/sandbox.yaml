@@ -19,6 +19,7 @@ services:
   sandbox:
     container_name: spark_master
     image: derrickoswald/spark-docker
+#    image: derrickoswald/spark-docker:2.1.1
     command: start-spark master
     environment:
       HDFS_USER: ${USER} # use value of environment variable "USER" as Spark owner/operator
@@ -45,6 +46,7 @@ services:
       - /opt/apache-tomee-plus-7.0.2:/opt/tomee
   worker:
     image: derrickoswald/spark-docker
+#    image: derrickoswald/spark-docker:2.1.1
     command: start-spark worker sandbox
     environment:
       HDFS_USER: ${USER} # use value of environment variable "USER" as Spark owner/operator 
