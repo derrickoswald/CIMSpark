@@ -1,162 +1,59 @@
 package ch.ninecode.cim.CIMTool
 
-import scala.collection.mutable.Map
-import scala.collection.mutable.Set
-import scala.collection.mutable.SortedSet
 import java.io.File
 import java.nio.file.{Files, Paths}
 import java.nio.charset.StandardCharsets
 
-import com.healthmarketscience.jackcess._
+import com.healthmarketscience.jackcess.Database
+import com.healthmarketscience.jackcess.DatabaseBuilder
+import com.healthmarketscience.jackcess.Table
 
-/**
- * CIM package.
- * @param xuid Unique identifier in the model.
- * @param name The package name.
- * @param global Flag indicating whether or not it is a global package.
- * @param notes Textual notes attached to the package.
- * @param parent The parent package if any, otherwise <code>null</code>.
- */
-case class Package (
-    xuid: String,
-    name: String,
-    global: Boolean,
-    notes: String,
-    var parent: Package = null)
-
-/**
- * CIM class.
- * @param xuid Unique identifier in the model.
- * @param name The class name.
- * @param note Textual notes attached to the class.
- * @param pkg Containing package.
- * @param stereotype UML stereotype for the class.
- */
-case class Class (
-    xuid: String,
-    name: String,
-    note: String,
-    pkg: Package,
-    stereotype: String,
-    var sup: Class = null)
-
-/**
- * CIM attribute for a class.
- * @param xuid Unique identifier in the model.
- * @param name The attribute name.
- * @param pkg Containing package.
- * @param cls Containing class.
- * @param notes Textual notes attached to the attribute.
- * @param classifier Domain Object class if any.
- * @param dflt The default value for the attribute.
- */
-case class Attribute (
-    xuid: String,
-    name: String,
-    pkg: Package,
-    cls: Class,
-    notes: String,
-    typ: String,
-    classifier: Class,
-    dflt: String)
-
-/**
- * CIM relationship role.
- * @param xuid Unique identifier in the model.
- * @param name The attribute name.
- * @param src Source class.
- * @param dst Destination class.
- * @param note Textual notes attached to the relationship.
- * @param card Cardinality of the relationship.
- * @param aggregate TBD.
- * @param sideA TBD.
- * @param mate Corresponding relationship end on the other class.
- */
-case class Role (
-    xuid: String,
-    name: String,
-    src: Class,
-    dst: Class,
-    note: String,
-    card: String,
-    aggregate: Boolean,
-    sideA: Boolean,
-    var mate: Role = null)
-{
-    def upper = if (card.equals ("1") || card.endsWith ("..1")) 1 else 0
-    def lower = if (card.equals ("*") || card.startsWith ("0..")) 0 else 1
-    override def hashCode: Int = xuid.hashCode
-    override def toString: String = "" + name + " from " + src.name + " to " + dst.name
-}
-
-case class Domain (
-
-    xuid: String,
-
-    name: String,
-
-    note: String,
-
-    stereotype: String,
-
-    enumeration: scala.collection.immutable.Set[String],
-
-    value: String,
-
-    unit: String,
-
-    multiplier: String,
-
-    denominatorUnit: String,
-
-    denominatorMultiplier: String)
-
+import scala.collection.mutable
 
 case class ModelParser (db: Database)
 {
-    val packages = Map[Int,Package]()
-    val classes = Map[Int,Class]()
-    val attributes = Map[Int,List[Attribute]]()
-    val roles = Set[Role]()
-    val domains = Set[Domain]()
+    val packages: mutable.Map[Int, Package] = mutable.Map[Int,Package]()
+    val classes: mutable.Map[Int, Class] = mutable.Map[Int,Class]()
+    val attributes: mutable.Map[Int, List[Attribute]] = mutable.Map[Int,List[Attribute]]()
+    val roles: mutable.Set[Role] = mutable.Set[Role]()
+    val domains: mutable.Set[Domain] = mutable.Set[Domain]()
 
-    def getPackageTable = db.getTable ("t_package")
-    def getObjectTable = db.getTable ("t_object")
-    def getConnectorTable = db.getTable ("t_connector")
-    def getAttributeTable = db.getTable ("t_attribute")
-    def globalPackage = packages.find (_._2.global) match { case Some (p) => p._2 case _ => null }
+    lazy val getPackageTable: Table = db.getTable ("t_package")
+    lazy val getObjectTable: Table = db.getTable ("t_object")
+    lazy val getConnectorTable: Table = db.getTable ("t_connector")
+    lazy val getAttributeTable: Table = db.getTable ("t_attribute")
+    lazy val globalPackage: Package = packages.find (_._2.global) match { case Some (p) => p._2 case _ => null }
 
-    def gatherPackageIDs =
+    def gatherPackageIDs (): Unit =
     {
         val it = getPackageTable.iterator ()
-        while (it.hasNext ())
+        while (it.hasNext)
         {
-            val row = new Row (it.next ())
+            val row = Row (it.next ())
             val global = row.getName.equals ("Model")
             val pkg = Package (row.getXUID, row.getName, global, row.getNotes)
             packages.put (row.getPackageID, pkg)
         }
     }
 
-    def extractPackages =
+    def extractPackages (): Unit =
     {
         val it = getPackageTable.iterator ()
-        while (it.hasNext ())
+        while (it.hasNext)
         {
-            val row = new Row (it.next ())
+            val row = Row (it.next ())
             val pkg = packages(row.getPackageID)
             if (!pkg.global)
                 pkg.parent = packages.getOrElse (row.getParentID, globalPackage)
         }
     }
 
-
-    def extractClasses =
+    def extractClasses (): Unit =
     {
         val it = getObjectTable.iterator ()
-        while (it.hasNext ())
+        while (it.hasNext)
         {
-            val row = new Row (it.next ())
+            val row = Row (it.next ())
             if (row.getObjectType.equals ("Class") || row.getObjectType.equals ("Enumeration"))
             {
                 val pkg = packages.getOrElse (row.getPackageID, globalPackage)
@@ -167,12 +64,12 @@ case class ModelParser (db: Database)
         }
     }
 
-    def extractAttributes
+    def extractAttributes (): Unit =
     {
         val it = getAttributeTable.iterator ()
-        while (it.hasNext ())
+        while (it.hasNext)
         {
-            val row = new Row (it.next ())
+            val row = Row (it.next ())
             val cls_id = row.getObjectID
             val cls = classes.getOrElse (cls_id, null)
             if (null != cls)
@@ -190,12 +87,12 @@ case class ModelParser (db: Database)
         }
     }
 
-    def extractAssociations
+    def extractAssociations (): Unit =
     {
         val it = getConnectorTable.iterator ()
-        while (it.hasNext ())
+        while (it.hasNext)
         {
-            val row = new Row (it.next ())
+            val row = Row (it.next ())
             val typ = row.getConnectorType
             if (typ.equals ("Generalization") || typ.equals ("Association") || typ.equals ("Aggregation"))
             {
@@ -207,8 +104,8 @@ case class ModelParser (db: Database)
                         src.sup  = dst
                     else
                     {
-                        val rolea = Role (row.getXUID, row.getDestRole, src, dst, row.getDestRoleNote, row.getDestCard, row.getDestIsAggregate, true)
-                        val roleb = Role (row.getXUID, row.getSourceRole, dst, src, row.getSourceRoleNote, row.getSourceCard, row.getSourceIsAggregate, false)
+                        val rolea = Role (row.getXUID, row.getDestRole, src, dst, row.getDestRoleNote, row.getDestCard, row.getDestIsAggregate, sideA = true)
+                        val roleb = Role (row.getXUID, row.getSourceRole, dst, src, row.getSourceRoleNote, row.getSourceCard, row.getSourceIsAggregate, sideA = false)
                         rolea.mate = roleb
                         roleb.mate = rolea
                         roles.add (rolea)
@@ -219,15 +116,15 @@ case class ModelParser (db: Database)
         }
     }
 
-    def extractDomains
+    def extractDomains (): Unit =
     {
         packages.find (p => p._2.name == "Domain" || p._2.name == "DomainProfile") match
         {
             case Some (pkg) =>
                 val it = getObjectTable.iterator ()
-                while (it.hasNext ())
+                while (it.hasNext)
                 {
-                    val row = new Row (it.next ())
+                    val row = Row (it.next ())
                     if (row.getObjectType.equals ("Class") && (row.getPackageID == pkg._1))
                     {
                         val cls_id = row.getObjectID
@@ -263,39 +160,39 @@ case class ModelParser (db: Database)
         }
     }
 
-    def showPackages =
+    def showPackages (): Unit =
     {
         for (pkg <- packages)
             println (pkg._2)
     }
 
-    def showClasses =
+    def showClasses (): Unit =
     {
         for (cls <- classes)
             println (cls._2)
     }
 
-    def showAttributes =
+    def showAttributes (): Unit =
     {
         for (class_attributes <- attributes)
             for (attribute <- class_attributes._2)
                 println (attribute)
     }
 
-    def showRoles =
+    def showRoles (): Unit =
     {
         for (role <- roles)
             println (role)
     }
 
-    def run =
+    def run (): Unit =
     {
-        gatherPackageIDs
-        extractPackages
-        extractClasses
-        extractAttributes
-        extractAssociations
-        extractDomains
+        gatherPackageIDs ()
+        extractPackages ()
+        extractClasses ()
+        extractAttributes ()
+        extractAssociations ()
+        extractDomains ()
     }
 }
 
@@ -316,7 +213,7 @@ object ModelParser
         }
 
         val parser = ModelParser (DatabaseBuilder.open (new File ("private_data/" + file)))
-        parser.run
+        parser.run ()
 //        println ("Packages: " + parser.packages.size)
 //        parser.showPackages
 //        println ("Classes: " + parser.classes.size)
@@ -330,11 +227,7 @@ object ModelParser
         dir.mkdir
         if (SCALA)
         {
-            implicit val ordering = new Ordering[(String, Int)]
-            {
-               def compare (a: (String, Int), b: (String, Int)) = a._1.compareTo (b._1)
-            }
-            val packages = SortedSet[(String, Int)]()
+            val packages = mutable.SortedSet[(String, Int)]()
             for (pkg <- parser.packages)
             {
                 val scala = Scala (parser, pkg._2)

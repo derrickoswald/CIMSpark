@@ -1,13 +1,12 @@
 package ch.ninecode.cim.CIMTool
 
-import scala.collection.mutable.Set
-import scala.collection.mutable.SortedSet
+import scala.collection.mutable
 
 case class Scala (parser: ModelParser, pkg: Package)
 {
     val parses: Iterable[(String, String)] =
     {
-        val ret = Set[(String, String)]()
+        val ret = mutable.Set[(String, String)]()
 
         for (cls <- parser.classes.filter (_._2.pkg == pkg))
             ret.add (("cim:" + cls._2.name, "parse_" + cls._2.name.replace ("-", "_")))
@@ -480,11 +479,7 @@ case class Scala (parser: ModelParser, pkg: Package)
     {
         val classes = parser.classes.filter (x => x._2.pkg == pkg)
 
-        implicit val ordering = new Ordering[(String, Int)]
-        {
-           def compare (a: (String, Int), b: (String, Int)): Int = a._1.compareTo (b._1)
-        }
-        val case_classes = SortedSet[(String,Int)]()
+        val case_classes = mutable.SortedSet[(String,Int)]()
         for (cls <- classes)
         {
             // special handling for domains, datatypes, primitives and enumerations
@@ -510,7 +505,7 @@ case class Scala (parser: ModelParser, pkg: Package)
                 def many_to_many: Boolean = (role.card == "0..*") && (role.mate.card == "0..*") && role.sideA
                 role.src == cls && ((role.upper == 1) || many_to_many)
             }
-            implicit val ordering = new Ordering[Member]
+            implicit val ordering: Ordering[Member] = new Ordering[Member]
             {
                def compare (a: Member, b: Member): Int =
                    if (a.name == "sup")
@@ -531,7 +526,7 @@ case class Scala (parser: ModelParser, pkg: Package)
             }
             val sup = Member ("sup", "sup", true, "Reference to the superclass object.", false, false, if (null != cls.sup) cls.sup.name else "BasicElement", "null", "", if (null == cls.sup) null else valid_class_name (cls.sup.name))
             val members =
-                SortedSet[Member](sup) ++
+                mutable.SortedSet[Member](sup) ++
                     parser.attributes.getOrElse(c._2, List[Attribute]()).filter(myattribute).map(details).toSet
                         .union(parser.roles.filter(myrole).map(details))
 
