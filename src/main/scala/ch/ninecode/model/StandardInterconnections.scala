@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * Supports connection to a terminal associated with a remote bus from which an input signal of a specific type is coming.
@@ -119,6 +120,16 @@ extends
             WindTurbineType3or4Dynamics (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("DiscontinuousExcitationControlDynamics", "DiscontinuousExcitationControlDynamics", false),
+        Relationship ("PFVArControllerType1Dynamics", "PFVArControllerType1Dynamics", false),
+        Relationship ("PowerSystemStabilizerDynamics", "PowerSystemStabilizerDynamics", false),
+        Relationship ("Terminal", "Terminal", false),
+        Relationship ("UnderexcitationLimiterDynamics", "UnderexcitationLimiterDynamics", false),
+        Relationship ("VoltageCompensatorDynamics", "VoltageCompensatorDynamics", false),
+        Relationship ("WindPlantDynamics", "WindPlantDynamics", false),
+        Relationship ("WindTurbineType1or2Dynamics", "WindTurbineType1or2Dynamics", false),
+        Relationship ("WindTurbineType3or4Dynamics", "WindTurbineType3or4Dynamics", false))
 }
 
 private[ninecode] object _StandardInterconnections

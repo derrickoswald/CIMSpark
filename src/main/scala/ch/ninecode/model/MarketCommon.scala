@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * An identification of a party acting in a electricity market business process.
@@ -72,6 +73,8 @@ extends
             MarketDocument (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("MarketDocument", "MarketDocument", true))
 }
 
 /**
@@ -154,6 +157,8 @@ extends
             MarketParticipant (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("MarketParticipant", "MarketParticipant", true))
 }
 
 /**
@@ -436,6 +441,22 @@ extends
             TimeSeries (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("AdjacentCASet", "AdjacentCASet", false),
+        Relationship ("AggregateNode", "AggregateNode", true),
+        Relationship ("DefaultBid", "DefaultBid", false),
+        Relationship ("ForbiddenRegion", "ForbiddenRegion", true),
+        Relationship ("HostControlArea", "HostControlArea", false),
+        Relationship ("InterTie", "SchedulingPoint", true),
+        Relationship ("MktConnectivityNode", "MktConnectivityNode", false),
+        Relationship ("MktOrganisation", "MktOrganisation", false),
+        Relationship ("Pnode", "Pnode", false),
+        Relationship ("RampRateCurve", "RampRateCurve", true),
+        Relationship ("ResourceCapacity", "ResourceCapacity", true),
+        Relationship ("ResourceCertification", "ResourceCertification", true),
+        Relationship ("ResourceVerifiableCosts", "ResourceVerifiableCosts", false),
+        Relationship ("SubControlArea", "SubControlArea", true),
+        Relationship ("TimeSeries", "TimeSeries", true))
 }
 
 private[ninecode] object _MarketCommon

@@ -281,10 +281,16 @@ object Parser
     val rddex: Pattern = Pattern.compile ("""\s*<(""" + namespace + """:[^>\.\s]+)([>\s][\s\S]*?)<\/\1>\s*""") // important to consume leading and trailing whitespace
 }
 
+case class Relationship (
+    field: String,
+    clazz: String,
+    multiple: Boolean)
+
 case class ClassInfo (
     name: String,
     parseable: Parseable[Product],
-    subsetter: CIMSubsetter[_ <: Product])
+    subsetter: CIMSubsetter[_ <: Product],
+    relations: List[Relationship])
 
 /**
  * Typed base class for registration and subsetting.
@@ -308,8 +314,9 @@ extends
     val runtime_class: Class[_] = classTag[A].runtimeClass
     val classname: String = runtime_class.getName
     val cls: String = classname.substring (classname.lastIndexOf (".") + 1)
+    val relations: List[Relationship]
     def register: ClassInfo =
-        ClassInfo (Parser.namespace + ":" + cls, this.asInstanceOf[Parseable[Product]], new CIMSubsetter[A]())
+        ClassInfo (cls, this.asInstanceOf[Parseable[Product]], new CIMSubsetter[A](), relations)
 }
 
 // Classes are organized by CIM package in .scala files and arranged alphabetically within the package.
@@ -338,7 +345,7 @@ class CHIM (val xml: String, val start: Long = 0L, val finish: Long = 0L, val fi
     val encoder: CharsetEncoder = Charset.forName ("UTF-8").newEncoder ()
     var value: Element = _
 
-    def classes: List[ClassInfo] =
+    lazy val classes: List[ClassInfo] =
         List (
             _AssetInfo.register,
             _Assets.register,
@@ -427,8 +434,8 @@ class CHIM (val xml: String, val start: Long = 0L, val finish: Long = 0L, val fi
             _Wires.register,
             _Work.register
         ).flatten
-    val parsers: List[(String, Parseable[Product])] = classes.map (x => (x.name, x.parseable))
-    val lookup: HashMap[String, Parseable[Product]] = HashMap (parsers: _*)
+    lazy val parsers: List[(String, Parseable[Product])] = classes.map (x => (Parser.namespace + ":" + x.name, x.parseable))
+    lazy val lookup: HashMap[String, Parseable[Product]] = HashMap (parsers: _*)
 
     def progress (): Float =
     {

@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * Logical gate than support logical operation based on the input.
@@ -70,6 +71,7 @@ extends
             kind (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -169,6 +171,8 @@ extends
             Gate (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Gate", "Gate", false))
 }
 
 /**
@@ -235,6 +239,7 @@ extends
             kind (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -319,6 +324,9 @@ extends
             MeasurementCalculator (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Measurement", "Measurement", false),
+        Relationship ("MeasurementCalculator", "MeasurementCalculator", false))
 }
 
 /**
@@ -390,6 +398,8 @@ extends
             BranchGroup (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("BranchGroup", "BranchGroup", false))
 }
 
 /**
@@ -461,6 +471,8 @@ extends
             Equipment (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Equipment", "Equipment", false))
 }
 
 /**
@@ -527,6 +539,8 @@ extends
             GateOutput (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("GateOutput", "Gate", false))
 }
 
 /**
@@ -598,6 +612,9 @@ extends
             MeasurementCalculator (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Measurement", "Measurement", false),
+        Relationship ("MeasurementCalculator", "MeasurementCalculator", false))
 }
 
 /**
@@ -669,6 +686,8 @@ extends
             Terminal (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Terminal", "Terminal", false))
 }
 
 /**
@@ -761,6 +780,11 @@ extends
             ProtectiveActionCollection (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("GateComCondition", "Gate", false),
+        Relationship ("GateEnabledCondition", "Gate", false),
+        Relationship ("ProtectionEquipment", "ProtectionEquipment", false),
+        Relationship ("ProtectiveActionCollection", "ProtectiveActionCollection", false))
 }
 
 /**
@@ -866,6 +890,10 @@ extends
             Measurement (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ConductingEquipment", "ConductingEquipment", false),
+        Relationship ("DCConductingEquipment", "DCConductingEquipment", false),
+        Relationship ("Measurement", "Measurement", false))
 }
 
 /**
@@ -928,6 +956,7 @@ extends
             IdentifiedObject.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -999,6 +1028,8 @@ extends
             Equipment (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Equipment", "Equipment", false))
 }
 
 /**
@@ -1076,6 +1107,8 @@ extends
             RegulatingControl (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("RegulatingControl", "RegulatingControl", false))
 }
 
 /**
@@ -1158,6 +1191,8 @@ extends
             GateArmed (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("GateArmed", "Gate", false))
 }
 
 /**
@@ -1230,6 +1265,8 @@ extends
             RemedialActionScheme (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("RemedialActionScheme", "RemedialActionScheme", false))
 }
 
 /**
@@ -1333,6 +1370,12 @@ extends
             Stage (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("GateArmed", "Gate", false),
+        Relationship ("GateComCondition", "Gate", false),
+        Relationship ("GateTrigger", "Gate", false),
+        Relationship ("ProtectiveActionCollection", "ProtectiveActionCollection", false),
+        Relationship ("Stage", "Stage", false))
 }
 
 /**
@@ -1404,6 +1447,9 @@ extends
             RemedialActionScheme (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("GateTrigger", "Gate", false),
+        Relationship ("RemedialActionScheme", "RemedialActionScheme", false))
 }
 
 private[ninecode] object _InfSIPS

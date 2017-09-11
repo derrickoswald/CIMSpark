@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * Financial Transmission Rights (FTR) regarding transmission capacity at a flowgate.
@@ -104,6 +105,10 @@ extends
             _class (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("EnergyPriceCurve", "EnergyPriceCurve", false),
+        Relationship ("Flowgate", "Flowgate", false),
+        Relationship ("Pnodes", "Pnode", true))
 }
 
 /**
@@ -184,6 +189,10 @@ extends
             MktOrganisation (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Flowgate", "Flowgate", false),
+        Relationship ("MktMeasurement", "MktMeasurement", false),
+        Relationship ("MktOrganisation", "MktOrganisation", true))
 }
 
 private[ninecode] object _InfCongestionRevenueRights

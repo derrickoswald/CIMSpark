@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * A wire or combination of wires, with consistent electrical characteristics, building a single electrical system, used to carry alternating current between points in the power system.
@@ -129,6 +130,10 @@ extends
             PerLengthImpedance (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("LineGroundingAction", "GroundAction", false),
+        Relationship ("LineJumpingAction", "JumperAction", false),
+        Relationship ("PerLengthImpedance", "PerLengthImpedance", false))
 }
 
 /**
@@ -200,6 +205,8 @@ extends
             ACLineSegment (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ACLineSegment", "ACLineSegment", false))
 }
 
 /**
@@ -376,6 +383,8 @@ extends
             AsynchronousMachineDynamics (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("AsynchronousMachineDynamics", "AsynchronousMachineDynamics", false))
 }
 
 /**
@@ -442,6 +451,7 @@ extends
             toDouble (inTransitTime (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -516,6 +526,8 @@ extends
             VoltageControlZone (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("VoltageControlZone", "VoltageControlZone", false))
 }
 
 /**
@@ -589,6 +601,8 @@ extends
             ACLineSegment (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ACLineSegment", "ACLineSegment", false))
 }
 
 /**
@@ -657,6 +671,7 @@ extends
             compositeSwitchType (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -723,6 +738,7 @@ extends
             toDouble (len (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -785,6 +801,7 @@ extends
             ConductingEquipment.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -863,6 +880,9 @@ extends
             CutAction (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ACLineSegment", "ACLineSegment", false),
+        Relationship ("CutAction", "CutAction", false))
 }
 
 /**
@@ -927,6 +947,7 @@ extends
             Switch.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -995,6 +1016,7 @@ extends
             toDouble (r (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1124,6 +1146,10 @@ extends
             PowerCutZone (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("LoadDynamics", "LoadDynamics", false),
+        Relationship ("LoadResponse", "LoadResponseCharacteristic", false),
+        Relationship ("PowerCutZone", "PowerCutZone", false))
 }
 
 /**
@@ -1220,6 +1246,8 @@ extends
             EnergyConsumer (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("EnergyConsumer", "EnergyConsumer", false))
 }
 
 /**
@@ -1353,6 +1381,10 @@ extends
             WindTurbineType3or4Dynamics (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("EnergySchedulingType", "EnergySchedulingType", false),
+        Relationship ("EnergySourceAction", "EnergySourceAction", false),
+        Relationship ("WindTurbineType3or4Dynamics", "WindTurbineType3or4Dynamics", false))
 }
 
 /**
@@ -1517,6 +1549,7 @@ extends
             toDouble (voltageFactor (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1605,6 +1638,7 @@ extends
             toDouble (minU (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1669,6 +1703,7 @@ extends
             Switch.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1737,6 +1772,8 @@ extends
             GroundAction (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("GroundAction", "GroundAction", false))
 }
 
 /**
@@ -1799,6 +1836,7 @@ extends
             Switch.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1865,6 +1903,7 @@ extends
             toDouble (x (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1933,6 +1972,8 @@ extends
             JumperAction (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("JumperAction", "JumperAction", false))
 }
 
 /**
@@ -1995,6 +2036,7 @@ extends
             Connector.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2061,6 +2103,8 @@ extends
             Region (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Region", "SubGeographicalRegion", false))
 }
 
 /**
@@ -2142,6 +2186,7 @@ extends
             toDouble (gPerSection (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2215,6 +2260,7 @@ extends
             toDouble (gPerSection (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2277,6 +2323,7 @@ extends
             ProtectedSwitch.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2389,6 +2436,9 @@ extends
             Second_Terminal (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("First_Terminal", "Terminal", false),
+        Relationship ("Second_Terminal", "Terminal", false))
 }
 
 /**
@@ -2451,6 +2501,7 @@ extends
             ShuntCompensator.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2513,6 +2564,7 @@ extends
             ShuntCompensatorPhase.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2594,6 +2646,8 @@ extends
             NonlinearShuntCompensatorPhase (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("NonlinearShuntCompensatorPhase", "NonlinearShuntCompensatorPhase", false))
 }
 
 /**
@@ -2685,6 +2739,8 @@ extends
             NonlinearShuntCompensator (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("NonlinearShuntCompensator", "NonlinearShuntCompensator", false))
 }
 
 /**
@@ -2747,6 +2803,7 @@ extends
             PerLengthLineParameter.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2813,6 +2870,8 @@ extends
             WireSpacingInfo (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("WireSpacingInfo", "WireSpacingInfo", false))
 }
 
 /**
@@ -2880,6 +2939,7 @@ extends
             toInteger (conductorCount (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2983,6 +3043,7 @@ extends
             toDouble (x0 (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -3082,6 +3143,7 @@ extends
             toDouble (xGroundNominal (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -3169,6 +3231,8 @@ extends
             PhaseImpedance (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("PhaseImpedance", "PerLengthPhaseImpedance", false))
 }
 
 /**
@@ -3237,6 +3301,8 @@ extends
             TransformerEnd (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("TransformerEnd", "TransformerEnd", false))
 }
 
 /**
@@ -3306,6 +3372,7 @@ extends
             toDouble (windingConnectionAngle (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -3387,6 +3454,7 @@ extends
             toDouble (xMin (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -3467,6 +3535,7 @@ extends
             toDouble (xMin (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -3531,6 +3600,7 @@ extends
             PhaseTapChangerNonLinear.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -3593,6 +3663,7 @@ extends
             IdentifiedObject.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -3664,6 +3735,8 @@ extends
             PhaseTapChangerTable (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("PhaseTapChangerTable", "PhaseTapChangerTable", false))
 }
 
 /**
@@ -3727,6 +3800,8 @@ extends
             PhaseTapChangerTable (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("PhaseTapChangerTable", "PhaseTapChangerTable", false))
 }
 
 /**
@@ -3789,6 +3864,7 @@ extends
             EquipmentContainer.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -3894,6 +3970,7 @@ extends
             vectorGroup (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -4027,6 +4104,8 @@ extends
             PowerTransformer (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("PowerTransformer", "PowerTransformer", false))
 }
 
 /**
@@ -4093,6 +4172,7 @@ extends
             toDouble (breakingCapacity (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -4174,6 +4254,9 @@ extends
             TransformerEnd (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("RatioTapChangerTable", "RatioTapChangerTable", false),
+        Relationship ("TransformerEnd", "TransformerEnd", false))
 }
 
 /**
@@ -4236,6 +4319,7 @@ extends
             IdentifiedObject.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -4302,6 +4386,8 @@ extends
             RatioTapChangerTable (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("RatioTapChangerTable", "RatioTapChangerTable", false))
 }
 
 /**
@@ -4375,6 +4461,7 @@ extends
             toDouble (hydrogenPressure (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -4437,6 +4524,7 @@ extends
             ProtectedSwitch.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -4509,6 +4597,8 @@ extends
             RegulatingControl (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("RegulatingControl", "RegulatingControl", false))
 }
 
 /**
@@ -4617,6 +4707,8 @@ extends
             Terminal (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Terminal", "Terminal", false))
 }
 
 /**
@@ -4683,6 +4775,8 @@ extends
             RegulatingControl (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("RegulatingControl", "RegulatingControl", false))
 }
 
 /**
@@ -4785,6 +4879,9 @@ extends
             HydroPump (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("GeneratingUnit", "GeneratingUnit", false),
+        Relationship ("HydroPump", "HydroPump", false))
 }
 
 /**
@@ -4849,6 +4946,7 @@ extends
             Switch.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -4947,6 +5045,7 @@ extends
             toDouble (x0 (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -5068,6 +5167,8 @@ extends
             SvShuntCompensatorSections (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("SvShuntCompensatorSections", "SvShuntCompensatorSections", false))
 }
 
 /**
@@ -5150,6 +5251,8 @@ extends
             ShuntCompensator (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ShuntCompensator", "ShuntCompensator", false))
 }
 
 /**
@@ -5245,6 +5348,7 @@ extends
             toDouble (voltageSetPoint (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -5355,6 +5459,10 @@ extends
             SwitchAction (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("CompositeSwitch", "CompositeSwitch", false),
+        Relationship ("Outage", "Outage", false),
+        Relationship ("SwitchAction", "SwitchAction", false))
 }
 
 /**
@@ -5444,6 +5552,8 @@ extends
             Switch (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Switch", "Switch", false))
 }
 
 /**
@@ -5512,6 +5622,8 @@ extends
             Switch (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Switch", "Switch", false))
 }
 
 /**
@@ -5749,6 +5861,9 @@ extends
             SynchronousMachineDynamics (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("InitialReactiveCapabilityCurve", "ReactiveCapabilityCurve", false),
+        Relationship ("SynchronousMachineDynamics", "SynchronousMachineDynamics", false))
 }
 
 /**
@@ -5875,6 +5990,9 @@ extends
             TapChangerControl (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("SvTapStep", "SvTapStep", false),
+        Relationship ("TapChangerControl", "TapChangerControl", false))
 }
 
 /**
@@ -5967,6 +6085,7 @@ extends
             toDouble (reverseLineDropX (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -6050,6 +6169,7 @@ extends
             toDouble (x (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -6116,6 +6236,8 @@ extends
             TapChanger (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("TapChanger", "TapChanger", false))
 }
 
 /**
@@ -6205,6 +6327,8 @@ extends
             TransformerEndInfo (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("TransformerEndInfo", "TransformerEndInfo", false))
 }
 
 /**
@@ -6337,6 +6461,13 @@ extends
             Terminal (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("BaseVoltage", "BaseVoltage", false),
+        Relationship ("CoreAdmittance", "TransformerCoreAdmittance", false),
+        Relationship ("PhaseTapChanger", "PhaseTapChanger", false),
+        Relationship ("RatioTapChanger", "RatioTapChanger", false),
+        Relationship ("StarImpedance", "TransformerStarImpedance", false),
+        Relationship ("Terminal", "Terminal", false))
 }
 
 /**
@@ -6432,6 +6563,9 @@ extends
             FromTransformerEndInfo (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("FromTransformerEnd", "TransformerEnd", false),
+        Relationship ("FromTransformerEndInfo", "TransformerEndInfo", false))
 }
 
 /**
@@ -6520,6 +6654,8 @@ extends
             TransformerEndInfo (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("TransformerEndInfo", "TransformerEndInfo", false))
 }
 
 /**
@@ -6588,6 +6724,8 @@ extends
             PowerTransformer (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("PowerTransformer", "PowerTransformer", false))
 }
 
 /**
@@ -6659,6 +6797,8 @@ extends
             TransformerTank (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("TransformerTank", "TransformerTank", false))
 }
 
 /**
@@ -6732,6 +6872,9 @@ extends
             RegulationSchedule (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("BusbarSection", "BusbarSection", false),
+        Relationship ("RegulationSchedule", "RegulationSchedule", false))
 }
 
 private[ninecode] object _Wires

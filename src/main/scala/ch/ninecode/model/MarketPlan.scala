@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * Model that describes the Congestion Revenue Rights Auction Market
@@ -70,6 +71,7 @@ extends
             labelID (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -148,6 +150,10 @@ extends
             RegisteredResources (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("MarketResults", "MarketResults", false),
+        Relationship ("RTO", "RTO", false),
+        Relationship ("RegisteredResources", "RegisteredResource", true))
 }
 
 /**
@@ -269,6 +275,7 @@ extends
             tradingPeriod (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -356,6 +363,9 @@ extends
             PlannedMarketEvent (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("MarketRun", "MarketRun", false),
+        Relationship ("PlannedMarketEvent", "PlannedMarketEvent", false))
 }
 
 /**
@@ -437,6 +447,9 @@ extends
             MktActivityRecord (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Market", "Market", false),
+        Relationship ("MktActivityRecord", "MktActivityRecord", true))
 }
 
 /**
@@ -520,6 +533,7 @@ extends
             tradingDay (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -611,6 +625,9 @@ extends
             MarketRegionResults (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Market", "Market", false),
+        Relationship ("MarketRegionResults", "MarketRegionResults", false))
 }
 
 /**
@@ -739,6 +756,9 @@ extends
             PlannedMarket (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Market", "Market", false),
+        Relationship ("PlannedMarket", "PlannedMarket", false))
 }
 
 /**
@@ -828,6 +848,8 @@ extends
             MarketPlan (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("MarketPlan", "MarketPlan", false))
 }
 
 /**
@@ -912,6 +934,7 @@ extends
             toInteger (plannedTime (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 private[ninecode] object _MarketPlan

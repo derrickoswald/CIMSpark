@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * Asynchronous machine whose dynamic behaviour is described by a user-defined model.
@@ -84,6 +85,7 @@ extends
             toBoolean (proprietary (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -164,6 +166,7 @@ extends
             toBoolean (proprietary (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -244,6 +247,7 @@ extends
             toBoolean (proprietary (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -324,6 +328,7 @@ extends
             toBoolean (proprietary (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -404,6 +409,7 @@ extends
             toBoolean (proprietary (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -484,6 +490,7 @@ extends
             toBoolean (proprietary (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -564,6 +571,7 @@ extends
             toBoolean (proprietary (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -644,6 +652,7 @@ extends
             toBoolean (proprietary (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -724,6 +733,7 @@ extends
             toBoolean (proprietary (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -912,6 +922,25 @@ extends
             WindType3or4UserDefined (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("AsynchronousMachineUserDefined", "AsynchronousMachineUserDefined", false),
+        Relationship ("DiscontinuousExcitationControlUserDefined", "DiscontinuousExcitationControlUserDefined", false),
+        Relationship ("ExcitationSystemUserDefined", "ExcitationSystemUserDefined", false),
+        Relationship ("LoadUserDefined", "LoadUserDefined", false),
+        Relationship ("MechanicalLoadUserDefined", "MechanicalLoadUserDefined", false),
+        Relationship ("OverexcitationLimiterUserDefined", "OverexcitationLimiterUserDefined", false),
+        Relationship ("PFVArControllerType1UserDefined", "PFVArControllerType1UserDefined", false),
+        Relationship ("PFVArControllerType2UserDefined", "PFVArControllerType2UserDefined", false),
+        Relationship ("PowerSystemStabilizerUserDefined", "PowerSystemStabilizerUserDefined", false),
+        Relationship ("SynchronousMachineUserDefined", "SynchronousMachineUserDefined", false),
+        Relationship ("TurbineGovernorUserDefined", "TurbineGovernorUserDefined", false),
+        Relationship ("TurbineLoadControllerUserDefined", "TurbineLoadControllerUserDefined", false),
+        Relationship ("UnderexcitationLimiterUserDefined", "UnderexcitationLimiterUserDefined", false),
+        Relationship ("VoltageAdjusterUserDefined", "VoltageAdjusterUserDefined", false),
+        Relationship ("VoltageCompensatorUserDefined", "VoltageCompensatorUserDefined", false),
+        Relationship ("WindPlantUserDefined", "WindPlantUserDefined", false),
+        Relationship ("WindType1or2UserDefined", "WindType1or2UserDefined", false),
+        Relationship ("WindType3or4UserDefined", "WindType3or4UserDefined", false))
 }
 
 /**
@@ -992,6 +1021,7 @@ extends
             toBoolean (proprietary (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1072,6 +1102,7 @@ extends
             toBoolean (proprietary (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1152,6 +1183,7 @@ extends
             toBoolean (proprietary (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1232,6 +1264,7 @@ extends
             toBoolean (proprietary (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1312,6 +1345,7 @@ extends
             toBoolean (proprietary (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1392,6 +1426,7 @@ extends
             toBoolean (proprietary (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1472,6 +1507,7 @@ extends
             toBoolean (proprietary (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1552,6 +1588,7 @@ extends
             toBoolean (proprietary (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1632,6 +1669,7 @@ extends
             toBoolean (proprietary (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 private[ninecode] object _UserDefinedModels

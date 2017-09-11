@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * Records activity for an entity at a point in time; activity may be for an event that has already occurred or for a planned activity.
@@ -90,6 +91,7 @@ extends
             typ (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -163,6 +165,7 @@ extends
             validityInterval (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -239,6 +242,8 @@ extends
             Works (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Works", "Work", true))
 }
 
 /**
@@ -350,6 +355,14 @@ extends
             ChangedUsagePoint (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ChangedAsset", "Asset", false),
+        Relationship ("ChangedDocument", "Document", false),
+        Relationship ("ChangedLocation", "Location", false),
+        Relationship ("ChangedOrganisationRole", "OrganisationRole", false),
+        Relationship ("ChangedPersonRole", "PersonRole", false),
+        Relationship ("ChangedServiceCategory", "ServiceCategory", false),
+        Relationship ("ChangedUsagePoint", "UsagePoint", false))
 }
 
 /**
@@ -417,6 +430,7 @@ extends
             crsUrn (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -488,6 +502,8 @@ extends
             CrewType (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("CrewType", "CrewType", false))
 }
 
 /**
@@ -554,6 +570,8 @@ extends
             Crew (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Crew", "Crew", false))
 }
 
 /**
@@ -618,6 +636,7 @@ extends
             IdentifiedObject.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -739,6 +758,7 @@ extends
             typ (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -840,6 +860,7 @@ extends
             web (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -911,6 +932,7 @@ extends
             typ (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1031,6 +1053,9 @@ extends
             Measurements (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("CoordinateSystem", "CoordinateSystem", false),
+        Relationship ("Measurements", "Measurement", true))
 }
 
 /**
@@ -1093,6 +1118,7 @@ extends
             PersonRole.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1155,6 +1181,7 @@ extends
             OperationPersonRole.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1246,6 +1273,8 @@ extends
             ActivityRecords (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ActivityRecords", "ActivityRecord", true))
 }
 
 /**
@@ -1312,6 +1341,8 @@ extends
             Organisation (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Organisation", "Organisation", false))
 }
 
 /**
@@ -1388,6 +1419,9 @@ extends
             AssetOwner (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Asset", "Asset", false),
+        Relationship ("AssetOwner", "AssetOwner", false))
 }
 
 /**
@@ -1494,6 +1528,7 @@ extends
             suffix (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1561,6 +1596,9 @@ extends
             Person (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Appointments", "Appointment", true),
+        Relationship ("Person", "Person", false))
 }
 
 /**
@@ -1649,6 +1687,8 @@ extends
             Location (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Location", "Location", false))
 }
 
 /**
@@ -1730,6 +1770,7 @@ extends
             townDetail (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1806,6 +1847,7 @@ extends
             typ (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1892,6 +1934,9 @@ extends
             ScheduledEventData (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Assets", "Asset", true),
+        Relationship ("ScheduledEventData", "ScheduledEventData", false))
 }
 
 /**
@@ -1973,6 +2018,8 @@ extends
             InspectionDataSet (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("InspectionDataSet", "InspectionDataSet", false))
 }
 
 /**
@@ -2054,6 +2101,7 @@ extends
             value (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2130,6 +2178,7 @@ extends
             townDetail (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2244,6 +2293,7 @@ extends
             toBoolean (withinTownLimits (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2330,6 +2380,7 @@ extends
             localNumber (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2422,6 +2473,8 @@ extends
             TimeSchedule (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("TimeSchedule", "TimeSchedule", false))
 }
 
 /**
@@ -2512,6 +2565,7 @@ extends
             scheduleInterval (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2599,6 +2653,7 @@ extends
             stateOrProvince (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2695,6 +2750,11 @@ extends
             Transaction (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ProcedureDataSets", "ProcedureDataSet", true),
+        Relationship ("PropertySpecification", "Specification", false),
+        Relationship ("RatingSpecification", "Specification", false),
+        Relationship ("Transaction", "Transaction", false))
 }
 
 private[ninecode] object _Common

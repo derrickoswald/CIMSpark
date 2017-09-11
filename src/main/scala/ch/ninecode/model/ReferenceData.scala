@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * Goups Adjacent Control Areas
@@ -90,6 +91,9 @@ extends
             RTO (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("HostControlArea", "HostControlArea", false),
+        Relationship ("RTO", "RTO", false))
 }
 
 /**
@@ -189,6 +193,10 @@ extends
             SubControlArea (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Pnode", "Pnode", true),
+        Relationship ("RTO", "RTO", false),
+        Relationship ("SubControlArea", "SubControlArea", true))
 }
 
 /**
@@ -275,6 +283,9 @@ extends
             TACArea (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("PnodeDistributionFactor", "PnodeDistributionFactor", false),
+        Relationship ("TACArea", "TACArea", true))
 }
 
 /**
@@ -371,6 +382,8 @@ extends
             MarketProduct (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("MarketProduct", "MarketProduct", false))
 }
 
 /**
@@ -464,6 +477,11 @@ extends
             SubControlArea (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("AggregateNode", "AggregateNode", false),
+        Relationship ("HostControlArea", "HostControlArea", false),
+        Relationship ("MktConnectivityNode", "MktConnectivityNode", false),
+        Relationship ("SubControlArea", "SubControlArea", false))
 }
 
 /**
@@ -547,6 +565,8 @@ extends
             toBoolean (StartupFlag (context), context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("CombinedCycleLogicalConfiguration", "CombinedCycleLogicalConfiguration", false))
 }
 
 /**
@@ -628,6 +648,9 @@ extends
             MktThermalGeneratingUnit (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("CombinedCycleConfiguration", "CombinedCycleConfiguration", false),
+        Relationship ("MktThermalGeneratingUnit", "MktThermalGeneratingUnit", false))
 }
 
 /**
@@ -696,6 +719,8 @@ extends
             MktCombinedCyclePlant (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("MktCombinedCyclePlant", "MktCombinedCyclePlant", false))
 }
 
 /**
@@ -773,6 +798,9 @@ extends
             ToConfiguration (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("FromConfiguration", "CombinedCycleConfiguration", false),
+        Relationship ("ToConfiguration", "CombinedCycleConfiguration", false))
 }
 
 /**
@@ -839,6 +867,8 @@ extends
             IndividualPnode (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("IndividualPnode", "IndividualPnode", true))
 }
 
 /**
@@ -930,6 +960,10 @@ extends
             TransmissionContractRight (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Flowgate", "Flowgate", false),
+        Relationship ("RegisteredResource", "RegisteredResource", false),
+        Relationship ("TransmissionContractRight", "ContractRight", false))
 }
 
 /**
@@ -1138,6 +1172,11 @@ extends
             TRType (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Chain_TransmissionRightChain", "TransmissionRightChain", false),
+        Relationship ("Ind_TransmissionRightChain", "TransmissionRightChain", false),
+        Relationship ("RTO", "RTO", false),
+        Relationship ("SchedulingCoordinator", "SchedulingCoordinator", false))
 }
 
 /**
@@ -1219,6 +1258,9 @@ extends
             SubControlArea (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("RegisteredResource", "RegisteredResource", true),
+        Relationship ("SubControlArea", "SubControlArea", true))
 }
 
 /**
@@ -1345,6 +1387,15 @@ extends
             To_SubControlArea (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("CRR", "CRR", false),
+        Relationship ("From_SubControlArea", "SubControlArea", false),
+        Relationship ("GenericConstraints", "GenericConstraints", false),
+        Relationship ("HostControlArea", "HostControlArea", false),
+        Relationship ("MktLine", "MktLine", true),
+        Relationship ("MktPowerTransformer", "MktPowerTransformer", true),
+        Relationship ("SecurityConstraints", "SecurityConstraints", false),
+        Relationship ("To_SubControlArea", "SubControlArea", false))
 }
 
 /**
@@ -1411,6 +1462,8 @@ extends
             FlowgateValue (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("FlowgateValue", "FlowgateValue", false))
 }
 
 /**
@@ -1495,6 +1548,8 @@ extends
             Flowgate (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Flowgate", "Flowgate", false))
 }
 
 /**
@@ -1598,6 +1653,9 @@ extends
             FlowgatePartner (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Flowgate", "Flowgate", false),
+        Relationship ("FlowgatePartner", "FlowgatePartner", false))
 }
 
 /**
@@ -1681,6 +1739,7 @@ extends
             toDouble (lowMW (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1749,6 +1808,8 @@ extends
             RegisteredResource (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("RegisteredResource", "RegisteredResource", false))
 }
 
 /**
@@ -1815,6 +1876,8 @@ extends
             RegisteredGenerator (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("RegisteredGenerator", "RegisteredGenerator", false))
 }
 
 /**
@@ -1911,6 +1974,10 @@ extends
             RTO (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("GasPrice", "GasPrice", false),
+        Relationship ("OilPrice", "OilPrice", false),
+        Relationship ("RTO", "RTO", false))
 }
 
 /**
@@ -1982,6 +2049,8 @@ extends
             FuelRegion (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("FuelRegion", "FuelRegion", false))
 }
 
 /**
@@ -2085,6 +2154,10 @@ extends
             RTO (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("AdjacentCASet", "AdjacentCASet", false),
+        Relationship ("Controls", "ControlAreaOperator", false),
+        Relationship ("RTO", "RTO", false))
 }
 
 /**
@@ -2161,6 +2234,10 @@ extends
             MktConnectivityNode (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("GenDistributionFactor", "GenDistributionFactor", false),
+        Relationship ("LoadDistributionFactor", "LoadDistributionFactor", false),
+        Relationship ("MktConnectivityNode", "MktConnectivityNode", false))
 }
 
 /**
@@ -2225,6 +2302,7 @@ extends
             AggregateNode.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2306,6 +2384,8 @@ extends
             SchedulingCoordinator (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("SchedulingCoordinator", "SchedulingCoordinator", false))
 }
 
 /**
@@ -2375,6 +2455,7 @@ extends
             loadReductionTimeCurveType (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2441,6 +2522,8 @@ extends
             RTO (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("RTO", "RTO", false))
 }
 
 /**
@@ -2527,6 +2610,7 @@ extends
             testMethod (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2613,6 +2697,9 @@ extends
             RegisteredResource (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("MPMTestCategory", "MPMTestCategory", false),
+        Relationship ("RegisteredResource", "RegisteredResource", true))
 }
 
 /**
@@ -2721,6 +2808,8 @@ extends
             RTO (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("RTO", "RTO", false))
 }
 
 /**
@@ -2804,6 +2893,8 @@ extends
             MeteredSubSystem (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("MeteredSubSystem", "MeteredSubSystem", false))
 }
 
 /**
@@ -2936,6 +3027,7 @@ extends
             userID (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -3024,6 +3116,7 @@ extends
             statusType (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -3088,6 +3181,7 @@ extends
             AggregateNode.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -3174,6 +3268,9 @@ extends
             MarketQualificationRequirements (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("MarketPerson", "MarketPerson", false),
+        Relationship ("MarketQualificationRequirements", "MarketQualificationRequirement", true))
 }
 
 /**
@@ -3238,6 +3335,7 @@ extends
             Curve.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -3304,6 +3402,8 @@ extends
             MSSAggregation (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("MSSAggregation", "MSSAggregation", false))
 }
 
 /**
@@ -3372,6 +3472,8 @@ extends
             AggregatedPnode (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("AggregatedPnode", "AggregatedPnode", false))
 }
 
 /**
@@ -3434,6 +3536,7 @@ extends
             ConductingEquipment.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -3529,6 +3632,9 @@ extends
             TransferInterfaceSolutionB (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("TransferInterfaceSolutionA", "TransferInterfaceSolution", false),
+        Relationship ("TransferInterfaceSolutionB", "TransferInterfaceSolution", false))
 }
 
 /**
@@ -3600,6 +3706,9 @@ extends
             ResourceVerifiableCosts (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("RegisteredGenerator", "RegisteredGenerator", false),
+        Relationship ("ResourceVerifiableCosts", "ResourceVerifiableCosts", false))
 }
 
 /**
@@ -3662,6 +3771,7 @@ extends
             ThermalGeneratingUnit.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -3733,6 +3843,8 @@ extends
             FuelRegion (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("FuelRegion", "FuelRegion", false))
 }
 
 /**
@@ -3819,6 +3931,9 @@ extends
             Pnode (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("MktOrganisation", "MktOrganisation", false),
+        Relationship ("Pnode", "Pnode", false))
 }
 
 /**
@@ -3915,6 +4030,9 @@ extends
             RegisteredResource (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("MktOrganisation", "MktOrganisation", false),
+        Relationship ("RegisteredResource", "RegisteredResource", false))
 }
 
 /**
@@ -4029,6 +4147,11 @@ extends
             SubControlArea (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("RTO", "RTO", false),
+        Relationship ("SinkCRRSegment", "CRRSegment", true),
+        Relationship ("SourceCRRSegment", "CRRSegment", true),
+        Relationship ("SubControlArea", "SubControlArea", false))
 }
 
 /**
@@ -4121,6 +4244,9 @@ extends
             IndividualPnode (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("BidDistributionFactor", "BidDistributionFactor", false),
+        Relationship ("IndividualPnode", "IndividualPnode", false))
 }
 
 /**
@@ -4187,6 +4313,8 @@ extends
             RegisteredGenerator (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("RegisteredGenerator", "RegisteredGenerator", false))
 }
 
 /**
@@ -4253,6 +4381,8 @@ extends
             RegisteredGenerator (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("RegisteredGenerator", "RegisteredGenerator", false))
 }
 
 /**
@@ -4319,6 +4449,8 @@ extends
             RegisteredGenerator (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("RegisteredGenerator", "RegisteredGenerator", false))
 }
 
 /**
@@ -4385,6 +4517,8 @@ extends
             RegisteredGenerator (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("RegisteredGenerator", "RegisteredGenerator", false))
 }
 
 /**
@@ -4451,6 +4585,8 @@ extends
             RegisteredGenerator (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("RegisteredGenerator", "RegisteredGenerator", false))
 }
 
 /**
@@ -4513,6 +4649,7 @@ extends
             MktOrganisation.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -4577,6 +4714,7 @@ extends
             AggregateNode.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -5043,6 +5181,21 @@ extends
             StartUpTimeCurve (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("EnergyPriceIndex", "EnergyPriceIndex", false),
+        Relationship ("FuelCostCurve", "FuelCostCurve", false),
+        Relationship ("FuelRegion", "FuelRegion", false),
+        Relationship ("LocalReliabilityArea", "LocalReliabilityArea", false),
+        Relationship ("MktHeatRateCurve", "MktHeatRateCurve", false),
+        Relationship ("RMRHeatRateCurve", "RMRHeatRateCurve", false),
+        Relationship ("RMRStartUpCostCurve", "RMRStartUpCostCurve", false),
+        Relationship ("RMRStartUpEnergyCurve", "RMRStartUpEnergyCurve", false),
+        Relationship ("RMRStartUpFuelCurve", "RMRStartUpFuelCurve", false),
+        Relationship ("RMRStartUpTimeCurve", "RMRStartUpTimeCurve", false),
+        Relationship ("RegulatingLimit", "RegulatingLimit", false),
+        Relationship ("StartUpEnergyCurve", "StartUpEnergyCurve", false),
+        Relationship ("StartUpFuelCurve", "StartUpFuelCurve", false),
+        Relationship ("StartUpTimeCurve", "StartUpTimeCurve", false))
 }
 
 /**
@@ -5139,6 +5292,9 @@ extends
             InterTieBid (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Flowgate", "Flowgate", false),
+        Relationship ("InterTieBid", "InterTieBid", false))
 }
 
 /**
@@ -5316,6 +5472,10 @@ extends
             NPLCustomLoadAggregation (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("LoadReductionPriceCurve", "LoadReductionPriceCurve", true),
+        Relationship ("LoadReductionTimeCurve", "LoadReductionTimeCurve", true),
+        Relationship ("MktLoadArea", "MktLoadArea", false))
 }
 
 /**
@@ -5392,6 +5552,8 @@ extends
             RegisteredGenerator (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("RegisteredGenerator", "RegisteredGenerator", false))
 }
 
 /**
@@ -5488,6 +5650,8 @@ extends
             RegisteredResource (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("RegisteredResource", "RegisteredResource", false))
 }
 
 /**
@@ -5580,6 +5744,7 @@ extends
             toDouble (minimumCapacity (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -5681,6 +5846,8 @@ extends
             ResourceVerifiableCosts (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ResourceVerifiableCosts", "ResourceVerifiableCosts", false))
 }
 
 /**
@@ -5827,6 +5994,8 @@ extends
             ResourceVerifiableCosts (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ResourceVerifiableCosts", "ResourceVerifiableCosts", false))
 }
 
 /**
@@ -5903,6 +6072,10 @@ extends
             ResourceOperationMaintenanceCost (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("MktHeatRateCurve", "MktHeatRateCurve", false),
+        Relationship ("RegisteredResource", "RegisteredResource", false),
+        Relationship ("ResourceOperationMaintenanceCost", "ResourceOperationMaintenanceCost", false))
 }
 
 /**
@@ -5981,6 +6154,9 @@ extends
             MktOrgansation (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("LoadRatio", "LoadRatio", false),
+        Relationship ("MktOrgansation", "MktOrganisation", false))
 }
 
 /**
@@ -6067,6 +6243,8 @@ extends
             startEffectiveDate (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("attr", "SchedulingCoordinator", false))
 }
 
 /**
@@ -6143,6 +6321,8 @@ extends
             Flowgate (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Flowgate", "Flowgate", false))
 }
 
 /**
@@ -6211,6 +6391,8 @@ extends
             RegisteredGenerator (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("RegisteredGenerator", "RegisteredGenerator", false))
 }
 
 /**
@@ -6277,6 +6459,8 @@ extends
             RegisteredGenerator (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("RegisteredGenerator", "RegisteredGenerator", false))
 }
 
 /**
@@ -6415,6 +6599,11 @@ extends
             RTO (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("AdjacentCASet", "AdjacentCASet", false),
+        Relationship ("AreaReserveSpecification", "AreaReserveSpec", false),
+        Relationship ("HostControlArea", "HostControlArea", false),
+        Relationship ("RTO", "RTO", false))
 }
 
 /**
@@ -6494,6 +6683,9 @@ extends
             TransmissionContractRight (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("RegisteredResource", "RegisteredResource", false),
+        Relationship ("TransmissionContractRight", "ContractRight", false))
 }
 
 /**
@@ -6567,6 +6759,7 @@ extends
             startEffectiveDate (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -6650,6 +6843,9 @@ extends
             RTO (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Chain_ContractRight", "ContractRight", false),
+        Relationship ("RTO", "RTO", false))
 }
 
 /**
@@ -6716,6 +6912,8 @@ extends
             RegisteredInterTie (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("RegisteredInterTie", "RegisteredInterTie", true))
 }
 
 private[ninecode] object _ReferenceData

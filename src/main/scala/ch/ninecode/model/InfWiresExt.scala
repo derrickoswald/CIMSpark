@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * SVC asset allows the capacitive and inductive ratings for each phase to be specified individually if required.
@@ -74,6 +75,7 @@ extends
             toDouble (inductiveRating (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -227,6 +229,8 @@ extends
             ShuntCompensatorInfo (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ShuntCompensatorInfo", "ShuntCompensatorInfo", false))
 }
 
 private[ninecode] object _InfWiresExt

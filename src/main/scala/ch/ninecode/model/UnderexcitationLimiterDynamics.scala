@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * This model can be derived from UnderexcLimIEEE2.
@@ -109,6 +110,7 @@ extends
             toDouble (vuimin (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -260,6 +262,7 @@ extends
             toDouble (vurmax (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -551,6 +554,7 @@ extends
             toDouble (vulmin (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -642,6 +646,7 @@ extends
             toDouble (tm (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -738,6 +743,7 @@ extends
             toDouble (tm (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -809,6 +815,9 @@ extends
             RemoteInputSignal (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ExcitationSystemDynamics", "ExcitationSystemDynamics", false),
+        Relationship ("RemoteInputSignal", "RemoteInputSignal", false))
 }
 
 private[ninecode] object _UnderexcitationLimiterDynamics

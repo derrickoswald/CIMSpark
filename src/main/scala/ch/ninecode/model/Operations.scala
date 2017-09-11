@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * Action on clearance document as a switching step.
@@ -80,6 +81,9 @@ extends
             SwitchingStepGroup (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Clearance", "ClearanceDocument", false),
+        Relationship ("SwitchingStepGroup", "SwitchingStepGroup", false))
 }
 
 /**
@@ -163,6 +167,9 @@ extends
             TaggedPSRs (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ClearanceAction", "ClearanceAction", false),
+        Relationship ("TaggedPSRs", "PowerSystemResource", true))
 }
 
 /**
@@ -239,6 +246,9 @@ extends
             SwitchingStepGroup (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Cut", "Cut", false),
+        Relationship ("SwitchingStepGroup", "SwitchingStepGroup", false))
 }
 
 /**
@@ -315,6 +325,9 @@ extends
             SwitchingStepGroup (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("EnergySource", "EnergySource", false),
+        Relationship ("SwitchingStepGroup", "SwitchingStepGroup", false))
 }
 
 /**
@@ -381,6 +394,8 @@ extends
             SwitchingStepGroup (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("SwitchingStepGroup", "SwitchingStepGroup", false))
 }
 
 /**
@@ -469,6 +484,11 @@ extends
             SwitchingStepGroup (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("AlongACLineSegment", "ACLineSegment", false),
+        Relationship ("Ground", "Ground", false),
+        Relationship ("GroundedEquipment", "ConductingEquipment", false),
+        Relationship ("SwitchingStepGroup", "SwitchingStepGroup", false))
 }
 
 /**
@@ -552,6 +572,10 @@ extends
             Works (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Outage", "Outage", false),
+        Relationship ("Owner", "Operator", false),
+        Relationship ("Works", "Work", true))
 }
 
 /**
@@ -628,6 +652,9 @@ extends
             SwitchingStepGroup (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Jumper", "Jumper", false),
+        Relationship ("SwitchingStepGroup", "SwitchingStepGroup", false))
 }
 
 /**
@@ -699,6 +726,10 @@ extends
             TagAction (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Asset", "Asset", false),
+        Relationship ("PowerSystemResource", "PowerSystemResource", false),
+        Relationship ("TagAction", "TagAction", false))
 }
 
 /**
@@ -782,6 +813,9 @@ extends
             ProductAssetModel (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Equipments", "Equipment", true),
+        Relationship ("ProductAssetModel", "ProductAssetModel", false))
 }
 
 /**
@@ -853,6 +887,8 @@ extends
             PlannedOutage (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("PlannedOutage", "Outage", false))
 }
 
 /**
@@ -968,6 +1004,11 @@ extends
             UsagePoints (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Equipments", "Equipment", true),
+        Relationship ("Incident", "Incident", false),
+        Relationship ("OutageSchedule", "OutageSchedule", false),
+        Relationship ("UsagePoints", "UsagePoint", true))
 }
 
 /**
@@ -1032,6 +1073,7 @@ extends
             Document.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1103,6 +1145,8 @@ extends
             PowerSystemResource (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("PowerSystemResource", "PowerSystemResource", false))
 }
 
 /**
@@ -1169,6 +1213,8 @@ extends
             SwitchingPlan (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("SwitchingPlan", "SwitchingPlan", false))
 }
 
 /**
@@ -1242,6 +1288,7 @@ extends
             toInteger (totalCount (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1323,6 +1370,10 @@ extends
             SwitchingStepGroup (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("OperatedSwitch", "Switch", false),
+        Relationship ("PlannedOutage", "Outage", false),
+        Relationship ("SwitchingStepGroup", "SwitchingStepGroup", false))
 }
 
 /**
@@ -1402,6 +1453,8 @@ extends
             Outage (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Outage", "Outage", false))
 }
 
 /**
@@ -1498,6 +1551,9 @@ extends
             Operator (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("CrewMember", "CrewMember", false),
+        Relationship ("Operator", "Operator", false))
 }
 
 /**
@@ -1574,6 +1630,8 @@ extends
             SwitchingPlan (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("SwitchingPlan", "SwitchingPlan", false))
 }
 
 /**
@@ -1650,6 +1708,9 @@ extends
             SwitchingStepGroup (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("OperationTag", "OperationTag", false),
+        Relationship ("SwitchingStepGroup", "SwitchingStepGroup", false))
 }
 
 private[ninecode] object _Operations

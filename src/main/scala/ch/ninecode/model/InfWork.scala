@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * A permit is sometimes needed to provide legal access to land or equipment.
@@ -102,6 +103,7 @@ extends
             permitID (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -180,6 +182,7 @@ extends
             effectivePeriod (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -256,6 +259,7 @@ extends
             corporateCode (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -332,6 +336,7 @@ extends
             status (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -423,6 +428,8 @@ extends
             TypeAsset (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("TypeAsset", "GenericAssetModelOrMaterial", false))
 }
 
 /**
@@ -514,6 +521,8 @@ extends
             CompatibleUnits (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("CompatibleUnits", "CompatibleUnit", true))
 }
 
 /**
@@ -595,6 +604,8 @@ extends
             ChildCUGroups (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ChildCUGroups", "CUGroup", true))
 }
 
 /**
@@ -676,6 +687,7 @@ extends
             status (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -782,6 +794,10 @@ extends
             QualificationRequirements (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("CULaborCode", "CULaborCode", false),
+        Relationship ("CompatibleUnits", "CompatibleUnit", true),
+        Relationship ("QualificationRequirements", "QualificationRequirement", true))
 }
 
 /**
@@ -880,6 +896,9 @@ extends
             TypeMaterial (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("CompatibleUnits", "CompatibleUnit", true),
+        Relationship ("TypeMaterial", "TypeMaterial", false))
 }
 
 /**
@@ -976,6 +995,9 @@ extends
             TypeAsset (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("CompatibleUnits", "CompatibleUnit", true),
+        Relationship ("TypeAsset", "GenericAssetModelOrMaterial", false))
 }
 
 /**
@@ -1082,6 +1104,10 @@ extends
             WorkTasks (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Crafts", "Craft", true),
+        Relationship ("Crew", "OldCrew", false),
+        Relationship ("WorkTasks", "OldWorkTask", true))
 }
 
 /**
@@ -1198,6 +1224,14 @@ extends
             PropertyUnit (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("CUAllowableAction", "CUAllowableAction", false),
+        Relationship ("CUAssets", "CUAsset", true),
+        Relationship ("CUGroup", "CUGroup", false),
+        Relationship ("CostType", "CostType", false),
+        Relationship ("DesignLocationCUs", "DesignLocationCU", true),
+        Relationship ("Procedures", "Procedure", true),
+        Relationship ("PropertyUnit", "PropertyUnit", false))
 }
 
 /**
@@ -1284,6 +1318,7 @@ extends
             status (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1390,6 +1425,10 @@ extends
             WorkTask (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ErpPayables", "ErpPayable", true),
+        Relationship ("WorkCostDetail", "WorkCostDetail", false),
+        Relationship ("WorkTask", "OldWorkTask", false))
 }
 
 /**
@@ -1498,6 +1537,9 @@ extends
             ParentCostType (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ErpJournalEntries", "ErpJournalEntry", true),
+        Relationship ("ParentCostType", "CostType", false))
 }
 
 /**
@@ -1601,6 +1643,10 @@ extends
             Work (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ConditionFactors", "ConditionFactor", true),
+        Relationship ("ErpQuoteLineItem", "ErpQuoteLineItem", false),
+        Relationship ("Work", "Work", false))
 }
 
 /**
@@ -1689,6 +1735,8 @@ extends
             ConditionFactors (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ConditionFactors", "ConditionFactor", true))
 }
 
 /**
@@ -1821,6 +1869,12 @@ extends
             WorkTasks (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("CUGroups", "CUGroup", true),
+        Relationship ("ConditionFactors", "ConditionFactor", true),
+        Relationship ("DesignLocation", "DesignLocation", false),
+        Relationship ("Designs", "Design", true),
+        Relationship ("WorkTasks", "OldWorkTask", true))
 }
 
 /**
@@ -1930,6 +1984,7 @@ extends
             questionType (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2037,6 +2092,9 @@ extends
             WorkTask (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("WorkCostDetail", "WorkCostDetail", false),
+        Relationship ("WorkTask", "OldWorkTask", false))
 }
 
 /**
@@ -2155,6 +2213,10 @@ extends
             WorkTask (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("DesignLocation", "DesignLocation", false),
+        Relationship ("WorkCostDetail", "WorkCostDetail", false),
+        Relationship ("WorkTask", "OldWorkTask", false))
 }
 
 /**
@@ -2231,6 +2293,7 @@ extends
             toDouble (amount (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2322,6 +2385,11 @@ extends
             WorkFlowStep (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Design", "Design", false),
+        Relationship ("OverheadCost", "OverheadCost", false),
+        Relationship ("QualificationRequirements", "QualificationRequirement", true),
+        Relationship ("WorkFlowStep", "WorkFlowStep", false))
 }
 
 /**
@@ -2408,6 +2476,7 @@ extends
             markingInstruction (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2494,6 +2563,7 @@ extends
             status (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2587,6 +2657,10 @@ extends
             ParentProject (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("BusinessCase", "BusinessCase", false),
+        Relationship ("ErpProjectAccounting", "ErpProjectAccounting", false),
+        Relationship ("ParentProject", "Project", false))
 }
 
 /**
@@ -2684,6 +2758,8 @@ extends
             CUMaterialItems (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("CUMaterialItems", "CUMaterialItem", true))
 }
 
 /**
@@ -2765,6 +2841,8 @@ extends
             Specifications (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Specifications", "Specification", true))
 }
 
 /**
@@ -2843,6 +2921,7 @@ extends
             referenceNumber (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2934,6 +3013,7 @@ extends
             validityInterval (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -3028,6 +3108,7 @@ extends
             toBoolean (stockItem (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -3111,6 +3192,8 @@ extends
             WorkTask (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("WorkTask", "OldWorkTask", false))
 }
 
 /**
@@ -3238,6 +3321,15 @@ extends
             Works (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("CostType", "CostType", false),
+        Relationship ("Design", "Design", false),
+        Relationship ("ErpProjectAccounting", "ErpProjectAccounting", false),
+        Relationship ("OverheadCost", "OverheadCost", false),
+        Relationship ("PropertyUnits", "PropertyUnit", true),
+        Relationship ("WorkCostSummary", "WorkCostSummary", false),
+        Relationship ("WorkTask", "OldWorkTask", false),
+        Relationship ("Works", "Work", true))
 }
 
 /**
@@ -3316,6 +3408,8 @@ extends
             WorkCostDetail (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("WorkCostDetail", "WorkCostDetail", false))
 }
 
 /**
@@ -3390,6 +3484,7 @@ extends
             Document.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -3476,6 +3571,8 @@ extends
             Work (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Work", "Work", false))
 }
 
 /**
@@ -3550,6 +3647,7 @@ extends
             IdentifiedObject.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -3626,6 +3724,7 @@ extends
             toDouble (percentComplete (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 private[ninecode] object _InfWork

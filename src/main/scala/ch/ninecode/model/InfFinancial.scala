@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * Operates the Control Area.
@@ -77,6 +78,9 @@ extends
             ControlledBy (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("CAChildOf", "TieLine", true),
+        Relationship ("ControlledBy", "HostControlArea", false))
 }
 
 /**
@@ -139,6 +143,7 @@ extends
             Organisation.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -201,6 +206,7 @@ extends
             Organisation.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -273,6 +279,8 @@ extends
             MktOrganisation (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("MktOrganisation", "MktOrganisation", true))
 }
 
 /**
@@ -335,6 +343,7 @@ extends
             Organisation.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -397,6 +406,7 @@ extends
             Agreement.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -468,6 +478,9 @@ extends
             TransmissionProvider (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("LocationFor", "TransmissionPath", true),
+        Relationship ("TransmissionProvider", "TransmissionProvider", false))
 }
 
 /**
@@ -532,6 +545,7 @@ extends
             Organisation.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 private[ninecode] object _InfFinancial

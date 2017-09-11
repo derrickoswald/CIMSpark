@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * Organisation that is a commercial bank, agency, or other institution that offers a similar service.
@@ -75,6 +76,7 @@ extends
             iban (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -151,6 +153,9 @@ extends
             ServiceSupplier (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Bank", "Bank", false),
+        Relationship ("ServiceSupplier", "ServiceSupplier", false))
 }
 
 /**
@@ -215,6 +220,7 @@ extends
             Document.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -288,6 +294,7 @@ extends
             typ (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -366,6 +373,8 @@ extends
             ErpPersons (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ErpPersons", "OldPerson", true))
 }
 
 /**
@@ -428,6 +437,7 @@ extends
             OrganisationRole.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -514,6 +524,11 @@ extends
             ShiftPatterns (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Assignments", "Assignment", true),
+        Relationship ("Locations", "Location", true),
+        Relationship ("Route", "Route", false),
+        Relationship ("ShiftPatterns", "ShiftPattern", true))
 }
 
 /**
@@ -606,6 +621,11 @@ extends
             LaborItems (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("CustomerData", "Customer", false),
+        Relationship ("ErpCompetency", "ErpCompetency", false),
+        Relationship ("ErpPersonnel", "ErpPersonnel", false),
+        Relationship ("LaborItems", "LaborItem", true))
 }
 
 /**
@@ -674,6 +694,7 @@ extends
             clientID (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -740,6 +761,8 @@ extends
             Person (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Person", "OldPerson", false))
 }
 
 /**
@@ -811,6 +834,8 @@ extends
             ErpPerson (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ErpPerson", "OldPerson", false))
 }
 
 /**
@@ -884,6 +909,9 @@ extends
             Person (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("LandProperty", "LandProperty", false),
+        Relationship ("Person", "OldPerson", false))
 }
 
 /**
@@ -946,6 +974,7 @@ extends
             OrganisationRole.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1017,6 +1046,7 @@ extends
             toDouble (numerator (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1088,6 +1118,7 @@ extends
             typ (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1179,6 +1210,10 @@ extends
             QualificationRequirements (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Crafts", "Craft", true),
+        Relationship ("ErpPerson", "OldPerson", false),
+        Relationship ("QualificationRequirements", "QualificationRequirement", true))
 }
 
 private[ninecode] object _InfCommon

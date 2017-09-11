@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * Model of results of market clearing with respect to  Ancillary Service products
@@ -70,6 +71,8 @@ extends
             MarketCaseClearing (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("MarketCaseClearing", "MarketCaseClearing", false))
 }
 
 /**
@@ -226,6 +229,9 @@ extends
             MktUserAttribute (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ChargeProfile", "ChargeProfile", false),
+        Relationship ("MktUserAttribute", "MktUserAttribute", true))
 }
 
 /**
@@ -323,6 +329,10 @@ extends
             PassTroughBill (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Bid", "Bid", false),
+        Relationship ("BillDeterminant", "BillDeterminant", false),
+        Relationship ("PassTroughBill", "PassThroughBill", false))
 }
 
 /**
@@ -409,6 +419,9 @@ extends
             ChargeProfile (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("BillDeterminant", "BillDeterminant", false),
+        Relationship ("ChargeProfile", "ChargeProfile", false))
 }
 
 /**
@@ -471,6 +484,7 @@ extends
             MarketFactors.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -592,6 +606,8 @@ extends
             RegisteredResource (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("RegisteredResource", "RegisteredResource", false))
 }
 
 /**
@@ -654,6 +670,7 @@ extends
             MarketFactors.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -810,6 +827,10 @@ extends
             MktContingency (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ConstraintClearing", "ConstraintClearing", false),
+        Relationship ("Flowgate", "Flowgate", false),
+        Relationship ("MktContingency", "MktContingency", false))
 }
 
 /**
@@ -915,6 +936,8 @@ extends
             RegisteredResouce (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("RegisteredResouce", "RegisteredResource", false))
 }
 
 /**
@@ -1089,6 +1112,8 @@ extends
             RegisteredResource (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("RegisteredResource", "RegisteredResource", false))
 }
 
 /**
@@ -1151,6 +1176,7 @@ extends
             MarketFactors.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1236,6 +1262,9 @@ extends
             SubControlArea (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ExPostLoss", "ExPostLoss", false),
+        Relationship ("SubControlArea", "SubControlArea", false))
 }
 
 /**
@@ -1302,6 +1331,8 @@ extends
             ExPostMarketRegionResults (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ExPostMarketRegionResults", "ExPostMarketRegionResults", false))
 }
 
 /**
@@ -1380,6 +1411,9 @@ extends
             MarketRegion (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ExPostMarketRegion", "ExPostMarketRegion", false),
+        Relationship ("MarketRegion", "MarketRegion", false))
 }
 
 /**
@@ -1446,6 +1480,7 @@ extends
             toDouble (energyPrice (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1537,6 +1572,9 @@ extends
             Pnode (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ExPostPricing", "ExPostPricing", false),
+        Relationship ("Pnode", "Pnode", false))
 }
 
 /**
@@ -1599,6 +1637,7 @@ extends
             MarketFactors.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1718,6 +1757,9 @@ extends
             RegisteredResource (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ExPostResource", "ExPostResource", false),
+        Relationship ("RegisteredResource", "RegisteredResource", false))
 }
 
 /**
@@ -1782,6 +1824,7 @@ extends
             MarketFactors.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1870,6 +1913,9 @@ extends
             SubControlArea (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("GeneralClearing", "GeneralClearing", false),
+        Relationship ("SubControlArea", "SubControlArea", false))
 }
 
 /**
@@ -1934,6 +1980,7 @@ extends
             MarketFactors.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1998,6 +2045,7 @@ extends
             MarketFactors.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2071,6 +2119,7 @@ extends
             dispatchMode (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2197,6 +2246,8 @@ extends
             RegisteredResource (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("RegisteredResource", "RegisteredResource", false))
 }
 
 /**
@@ -2295,6 +2346,8 @@ extends
             RegisteredResource (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("RegisteredResource", "RegisteredResource", false))
 }
 
 /**
@@ -2357,6 +2410,7 @@ extends
             MarketFactors.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2443,6 +2497,11 @@ extends
             SubControlArea (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("HostControlArea", "HostControlArea", false),
+        Relationship ("LossClearing", "LossClearing", false),
+        Relationship ("RUCZone", "RUCZone", false),
+        Relationship ("SubControlArea", "SubControlArea", false))
 }
 
 /**
@@ -2521,6 +2580,7 @@ extends
             SMPMFinalFlag (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2598,6 +2658,9 @@ extends
             RegisteredResource (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("MPMTestCategory", "MPMTestCategory", false),
+        Relationship ("RegisteredResource", "RegisteredResource", false))
 }
 
 /**
@@ -2687,6 +2750,10 @@ extends
             MPMTestCategory (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("AggregatedPnode", "AggregatedPnode", false),
+        Relationship ("MPMClearing", "MPMClearing", false),
+        Relationship ("MPMTestCategory", "MPMTestCategory", false))
 }
 
 /**
@@ -2837,6 +2904,10 @@ extends
             MarketRegion (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("AncillaryServiceClearing", "AncillaryServiceClearing", false),
+        Relationship ("MarketProduct", "MarketProduct", false),
+        Relationship ("MarketRegion", "MarketRegion", false))
 }
 
 /**
@@ -2940,6 +3011,8 @@ extends
             EnergyMarket (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("EnergyMarket", "EnergyMarket", false))
 }
 
 /**
@@ -3028,6 +3101,7 @@ extends
             transactionDate (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -3199,6 +3273,11 @@ extends
             PassThroughBill (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ContainerMarketStatementLineItem", "MarketStatementLineItem", false),
+        Relationship ("MarketStatement", "MarketStatement", false),
+        Relationship ("MktUserAttribute", "MktUserAttribute", true),
+        Relationship ("PassThroughBill", "PassThroughBill", false))
 }
 
 /**
@@ -3265,6 +3344,8 @@ extends
             Bid (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Bid", "Bid", false))
 }
 
 /**
@@ -3329,6 +3410,7 @@ extends
             MarketFactors.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -3417,6 +3499,8 @@ extends
             Bid (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Bid", "Bid", false))
 }
 
 /**
@@ -3613,6 +3697,9 @@ extends
             MktUserAttribute (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("MarketStatementLineItem", "MarketStatementLineItem", false),
+        Relationship ("MktUserAttribute", "MktUserAttribute", true))
 }
 
 /**
@@ -3675,6 +3762,7 @@ extends
             MarketFactors.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -3788,6 +3876,9 @@ extends
             PnodeClearing (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Pnode", "Pnode", false),
+        Relationship ("PnodeClearing", "PnodeClearing", false))
 }
 
 /**
@@ -3854,6 +3945,8 @@ extends
             Bid (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Bid", "Bid", false))
 }
 
 /**
@@ -3940,6 +4033,8 @@ extends
             RegisteredResource (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("RegisteredResource", "RegisteredResource", false))
 }
 
 /**
@@ -4055,6 +4150,8 @@ extends
             RegisteredResource (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("RegisteredResource", "RegisteredResource", false))
 }
 
 /**
@@ -4128,6 +4225,7 @@ extends
             dispatchMode (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -4357,6 +4455,9 @@ extends
             RegisteredResource (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("MarketProduct", "MarketProduct", false),
+        Relationship ("RegisteredResource", "RegisteredResource", false))
 }
 
 /**
@@ -4421,6 +4522,7 @@ extends
             MarketFactors.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -4580,6 +4682,9 @@ extends
             ResourceClearing (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("RegisteredResource", "RegisteredResource", false),
+        Relationship ("ResourceClearing", "ResourceClearing", false))
 }
 
 /**
@@ -4677,6 +4782,9 @@ extends
             ResourceClearing (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("RegisteredResource", "RegisteredResource", false),
+        Relationship ("ResourceClearing", "ResourceClearing", false))
 }
 
 /**
@@ -4755,6 +4863,8 @@ extends
             ResourceAwardInstruction (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ResourceAwardInstruction", "ResourceAwardInstruction", false))
 }
 
 /**
@@ -4826,6 +4936,8 @@ extends
             EnergyMarket (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("EnergyMarket", "EnergyMarket", false))
 }
 
 /**
@@ -4890,6 +5002,7 @@ extends
             MarketFactors.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -4971,6 +5084,9 @@ extends
             TransactionBidClearing (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("TransactionBid", "TransactionBid", false),
+        Relationship ("TransactionBidClearing", "TransactionBidClearing", false))
 }
 
 private[ninecode] object _MarketResults

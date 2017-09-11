@@ -6,7 +6,7 @@
 #       docker-compose down
 #
 # Note: for more worker nodes use:
-#       docker-compose scale worker=2
+#       docker-compose up --scale worker=2&
 #
 # Note: to start a shell on the cluster use:
 #       docker exec --interactive --tty spark_master bash

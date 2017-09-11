@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * The diagram being exchanged.
@@ -97,6 +98,8 @@ extends
             DiagramStyle (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("DiagramStyle", "DiagramStyle", false))
 }
 
 /**
@@ -210,6 +213,11 @@ extends
             VisibilityLayers (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Diagram", "Diagram", false),
+        Relationship ("DiagramObjectStyle", "DiagramObjectStyle", false),
+        Relationship ("IdentifiedObject_attr", "IdentifiedObject", false),
+        Relationship ("VisibilityLayers", "VisibilityLayer", true))
 }
 
 /**
@@ -272,6 +280,7 @@ extends
             BasicElement.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -365,6 +374,9 @@ extends
             DiagramObjectGluePoint (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("DiagramObject", "DiagramObject", false),
+        Relationship ("DiagramObjectGluePoint", "DiagramObjectGluePoint", false))
 }
 
 /**
@@ -429,6 +441,7 @@ extends
             IdentifiedObject.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -493,6 +506,7 @@ extends
             IdentifiedObject.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -559,6 +573,7 @@ extends
             text (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -628,6 +643,7 @@ extends
             toInteger (drawingOrder (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 private[ninecode] object _DiagramLayout

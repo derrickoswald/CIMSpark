@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * An electrical connection point (AC or DC) to a piece of conducting equipment.
@@ -84,6 +85,8 @@ extends
             BusNameMarker (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("BusNameMarker", "BusNameMarker", false))
 }
 
 /**
@@ -152,6 +155,7 @@ extends
             toDouble (frequency (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -218,6 +222,7 @@ extends
             toDouble (basePower (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -284,6 +289,7 @@ extends
             toDouble (nominalVoltage (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -370,6 +376,7 @@ extends
             value2Unit (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -463,6 +470,9 @@ extends
             VoltageLevel (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Substation", "Substation", false),
+        Relationship ("VoltageLevel", "VoltageLevel", false))
 }
 
 /**
@@ -545,6 +555,11 @@ extends
             SvStatus (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("BaseVoltage", "BaseVoltage", false),
+        Relationship ("GroundingAction", "GroundAction", false),
+        Relationship ("JumpingAction", "JumperAction", false),
+        Relationship ("SvStatus", "SvStatus", false))
 }
 
 /**
@@ -617,6 +632,9 @@ extends
             TopologicalNode (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ConnectivityNodeContainer", "ConnectivityNodeContainer", false),
+        Relationship ("TopologicalNode", "TopologicalNode", false))
 }
 
 /**
@@ -679,6 +697,7 @@ extends
             PowerSystemResource.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -785,6 +804,7 @@ extends
             y3Unit (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -873,6 +893,8 @@ extends
             Curve (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Curve", "Curve", false))
 }
 
 /**
@@ -955,6 +977,9 @@ extends
             WeatherStation (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("EquipmentContainer", "EquipmentContainer", false),
+        Relationship ("WeatherStation", "WeatherStation", true))
 }
 
 /**
@@ -1017,6 +1042,7 @@ extends
             ConnectivityNodeContainer.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1079,6 +1105,7 @@ extends
             IdentifiedObject.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1163,6 +1190,7 @@ extends
             name (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1225,6 +1253,7 @@ extends
             BasicIntervalSchedule.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1308,6 +1337,8 @@ extends
             IntervalSchedule (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("IntervalSchedule", "IrregularIntervalSchedule", false))
 }
 
 /**
@@ -1386,6 +1417,9 @@ extends
             NameType (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("IdentifiedObject", "IdentifiedObject", false),
+        Relationship ("NameType", "NameType", false))
 }
 
 /**
@@ -1464,6 +1498,8 @@ extends
             NameTypeAuthority (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("NameTypeAuthority", "NameTypeAuthority", false))
 }
 
 /**
@@ -1535,6 +1571,7 @@ extends
             name (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1599,6 +1636,7 @@ extends
             IdentifiedObject.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1676,6 +1714,9 @@ extends
             PowerSystemResource (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("OperatingParticipant", "OperatingParticipant", false),
+        Relationship ("PowerSystemResource", "PowerSystemResource", false))
 }
 
 /**
@@ -1740,6 +1781,7 @@ extends
             IdentifiedObject.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1818,6 +1860,10 @@ extends
             PSRType (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("AssetDatasheet", "AssetInfo", false),
+        Relationship ("Location", "Location", false),
+        Relationship ("PSRType", "PSRType", false))
 }
 
 /**
@@ -1889,6 +1935,7 @@ extends
             toDouble (timeStep (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1973,6 +2020,8 @@ extends
             IntervalSchedule (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("IntervalSchedule", "RegularIntervalSchedule", false))
 }
 
 /**
@@ -2044,6 +2093,9 @@ extends
             ReportingSuperGroup (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("PowerSystemResource", "PowerSystemResource", true),
+        Relationship ("ReportingSuperGroup", "ReportingSuperGroup", false))
 }
 
 /**
@@ -2106,6 +2158,7 @@ extends
             IdentifiedObject.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2172,6 +2225,8 @@ extends
             Region (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Region", "GeographicalRegion", false))
 }
 
 /**
@@ -2238,6 +2293,8 @@ extends
             Region (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Region", "SubGeographicalRegion", false))
 }
 
 /**
@@ -2334,6 +2391,12 @@ extends
             TopologicalNode (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Bushing", "Bushing", false),
+        Relationship ("ConductingEquipment", "ConductingEquipment", false),
+        Relationship ("ConnectivityNode", "ConnectivityNode", false),
+        Relationship ("SvPowerFlow", "SvPowerFlow", false),
+        Relationship ("TopologicalNode", "TopologicalNode", false))
 }
 
 /**
@@ -2417,6 +2480,9 @@ extends
             Substation (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("BaseVoltage", "BaseVoltage", false),
+        Relationship ("Substation", "Substation", false))
 }
 
 private[ninecode] object _Core

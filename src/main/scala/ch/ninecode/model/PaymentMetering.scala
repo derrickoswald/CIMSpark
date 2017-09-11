@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * Credit/debit movements for an account.
@@ -82,6 +83,7 @@ extends
             reason (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -163,6 +165,7 @@ extends
             toDouble (value (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -260,6 +263,9 @@ extends
             Charges (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("AuxiliaryAgreement", "AuxiliaryAgreement", false),
+        Relationship ("Charges", "Charge", true))
 }
 
 /**
@@ -378,6 +384,8 @@ extends
             CustomerAgreement (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("CustomerAgreement", "CustomerAgreement", false))
 }
 
 /**
@@ -464,6 +472,7 @@ extends
             holderName (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -550,6 +559,8 @@ extends
             Tender (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Tender", "Tender", false))
 }
 
 /**
@@ -618,6 +629,7 @@ extends
             electronicAddress (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -694,6 +706,9 @@ extends
             PointOfSale (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Cashier", "Cashier", false),
+        Relationship ("PointOfSale", "PointOfSale", false))
 }
 
 /**
@@ -777,6 +792,8 @@ extends
             ParentCharge (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ParentCharge", "Charge", false))
 }
 
 /**
@@ -868,6 +885,8 @@ extends
             Tender (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Tender", "Tender", false))
 }
 
 /**
@@ -952,6 +971,9 @@ extends
             TouTariffIntervals (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Charges", "Charge", true),
+        Relationship ("TouTariffIntervals", "TimeTariffInterval", true))
 }
 
 /**
@@ -1039,6 +1061,7 @@ extends
             toDouble (principle (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1120,6 +1143,7 @@ extends
             toDouble (rounding (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1203,6 +1227,9 @@ extends
             Transactors (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("MerchantAgreement", "MerchantAgreement", false),
+        Relationship ("Transactors", "Transactor", true))
 }
 
 /**
@@ -1267,6 +1294,7 @@ extends
             Agreement.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1333,6 +1361,7 @@ extends
             location (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1414,6 +1443,9 @@ extends
             VendorShift (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("CashierShift", "CashierShift", false),
+        Relationship ("VendorShift", "VendorShift", false))
 }
 
 /**
@@ -1485,6 +1517,7 @@ extends
             kind (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1583,6 +1616,7 @@ extends
             toDouble (transactionsGrandTotalRounding (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1662,6 +1696,9 @@ extends
             TimeTariffIntervals (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ConsumptionTariffIntervals", "ConsumptionTariffInterval", true),
+        Relationship ("TimeTariffIntervals", "TimeTariffInterval", true))
 }
 
 /**
@@ -1755,6 +1792,10 @@ extends
             Receipt (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Card", "Card", false),
+        Relationship ("Cheque", "Cheque", false),
+        Relationship ("Receipt", "Receipt", false))
 }
 
 /**
@@ -1834,6 +1875,8 @@ extends
             Charges (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Charges", "Charge", true))
 }
 
 /**
@@ -1970,6 +2013,14 @@ extends
             VendorShift (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("AuxiliaryAccount", "AuxiliaryAccount", false),
+        Relationship ("CashierShift", "CashierShift", false),
+        Relationship ("CustomerAccount", "CustomerAccount", false),
+        Relationship ("Meter", "Meter", false),
+        Relationship ("PricingStructure", "PricingStructure", false),
+        Relationship ("Receipt", "Receipt", false),
+        Relationship ("VendorShift", "VendorShift", false))
 }
 
 /**
@@ -2032,6 +2083,7 @@ extends
             IdentifiedObject.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2096,6 +2148,7 @@ extends
             IdentifiedObject.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2180,6 +2233,9 @@ extends
             Vendor (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("MerchantAccount", "MerchantAccount", false),
+        Relationship ("Vendor", "Vendor", false))
 }
 
 private[ninecode] object _PaymentMetering

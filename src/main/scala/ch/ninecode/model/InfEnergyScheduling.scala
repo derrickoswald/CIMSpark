@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * The control area's reserve specification.
@@ -97,6 +98,7 @@ extends
             Description (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -181,6 +183,8 @@ extends
             InternalControlArea (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("InternalControlArea", "InternalControlArea", false))
 }
 
 /**
@@ -258,6 +262,8 @@ extends
             InternalControlArea (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("InternalControlArea", "InternalControlArea", false))
 }
 
 /**
@@ -326,6 +332,8 @@ extends
             EnergyTransaction (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("EnergyTransaction", "EnergyTransaction", false))
 }
 
 /**
@@ -414,6 +422,10 @@ extends
             Send_SubControlArea (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("MktMeasurement", "MktMeasurement", false),
+        Relationship ("Receive_SubControlArea", "SubControlArea", false),
+        Relationship ("Send_SubControlArea", "SubControlArea", false))
 }
 
 /**
@@ -490,6 +502,10 @@ extends
             TitleHeldBy_Marketer (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("GenerationProvider", "GenerationProvider", false),
+        Relationship ("ResoldBy_Marketer", "Marketer", true),
+        Relationship ("TitleHeldBy_Marketer", "Marketer", false))
 }
 
 /**
@@ -558,6 +574,8 @@ extends
             SubControlArea (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("SubControlArea", "SubControlArea", false))
 }
 
 /**
@@ -626,6 +644,8 @@ extends
             CurrentScheduledInterchange (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("CurrentScheduledInterchange", "CurrentScheduledInterchange", false))
 }
 
 /**
@@ -698,6 +718,9 @@ extends
             HasLoss_1 (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("EnergyTransaction", "EnergyTransaction", false),
+        Relationship ("HasLoss_1", "TransmissionProvider", false))
 }
 
 /**
@@ -773,6 +796,11 @@ extends
             SideB_SubControlArea (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("EnergyTransaction", "EnergyTransaction", false),
+        Relationship ("ParentOfB", "CustomerConsumer", false),
+        Relationship ("SideA_SubControlArea", "SubControlArea", false),
+        Relationship ("SideB_SubControlArea", "SubControlArea", false))
 }
 
 /**
@@ -835,6 +863,7 @@ extends
             PowerSystemResource.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -901,6 +930,8 @@ extends
             TransmissionCorridor (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("TransmissionCorridor", "TransmissionCorridor", false))
 }
 
 private[ninecode] object _InfEnergyScheduling

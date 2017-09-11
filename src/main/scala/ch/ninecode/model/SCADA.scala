@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * The connection to remote units is through one or more communication links.
@@ -69,6 +70,7 @@ extends
             PowerSystemResource.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -151,6 +153,8 @@ extends
             Control (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Control", "Control", false))
 }
 
 /**
@@ -220,6 +224,8 @@ extends
             RemoteUnit (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("RemoteUnit", "RemoteUnit", false))
 }
 
 /**
@@ -307,6 +313,8 @@ extends
             MeasurementValue (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("MeasurementValue", "MeasurementValue", false))
 }
 
 /**
@@ -376,6 +384,7 @@ extends
             remoteUnitType (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 private[ninecode] object _SCADA

@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * AuxiliaryEquipment describe equipment that is not performing any primary functions but support for the equipment performing the primary function.
@@ -72,6 +73,8 @@ extends
             Terminal (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Terminal", "Terminal", false))
 }
 
 /**
@@ -160,6 +163,7 @@ extends
             usage (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -224,6 +228,7 @@ extends
             AuxiliaryEquipment.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -286,6 +291,7 @@ extends
             Sensor.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -369,6 +375,7 @@ extends
             typ (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -431,6 +438,7 @@ extends
             AuxiliaryEquipment.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -493,6 +501,7 @@ extends
             AuxiliaryEquipment.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -555,6 +564,7 @@ extends
             AuxiliaryEquipment.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 private[ninecode] object _AuxiliaryEquipment

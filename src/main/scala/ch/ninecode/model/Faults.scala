@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * A fault applied at the terminal, external to the equipment.
@@ -72,6 +73,8 @@ extends
             Terminal (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Terminal", "Terminal", false))
 }
 
 /**
@@ -165,6 +168,10 @@ extends
             Outage (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("FaultCauseTypes", "FaultCauseType", true),
+        Relationship ("FaultyEquipment", "Equipment", false),
+        Relationship ("Outage", "Outage", false))
 }
 
 /**
@@ -227,6 +234,7 @@ extends
             IdentifiedObject.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -308,6 +316,7 @@ extends
             toDouble (xLineToLine (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -379,6 +388,8 @@ extends
             ACLineSegment (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ACLineSegment", "ACLineSegment", false))
 }
 
 private[ninecode] object _Faults

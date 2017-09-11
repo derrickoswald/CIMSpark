@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * Boiling water reactor used as a steam supply to a steam turbine.
@@ -170,6 +171,7 @@ extends
             toDouble (upperLimit (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -236,6 +238,8 @@ extends
             CombustionTurbine (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("CombustionTurbine", "CombustionTurbine", false))
 }
 
 /**
@@ -355,6 +359,10 @@ extends
             HeatRecoveryBoiler (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("AirCompressor", "AirCompressor", false),
+        Relationship ("CTTempActivePowerCurve", "CTTempActivePowerCurve", false),
+        Relationship ("HeatRecoveryBoiler", "HeatRecoveryBoiler", false))
 }
 
 /**
@@ -421,6 +429,7 @@ extends
             toDouble (drumBoilerRating (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -614,6 +623,7 @@ extends
             toDouble (throttlePressureSP (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -680,6 +690,7 @@ extends
             toDouble (steamSupplyRating2 (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -798,6 +809,7 @@ extends
             toDouble (waterStartingTime (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -959,6 +971,7 @@ extends
             toDouble (throttlePressureSP (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1030,6 +1043,8 @@ extends
             SynchronousMachines (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("SynchronousMachines", "SynchronousMachine", true))
 }
 
 /**
@@ -1101,6 +1116,8 @@ extends
             SteamTurbines (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("SteamTurbines", "SteamTurbine", true))
 }
 
 /**
@@ -1222,6 +1239,7 @@ extends
             toDouble (steamChestTC (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1284,6 +1302,7 @@ extends
             FossilSteamSupply.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1346,6 +1365,7 @@ extends
             FossilSteamSupply.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 private[ninecode] object _GenerationTrainingSimulation

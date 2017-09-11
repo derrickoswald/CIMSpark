@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * Common representation for reading values.
@@ -87,6 +88,7 @@ extends
             value (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -165,6 +167,9 @@ extends
             Register (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ReadingType", "ReadingType", false),
+        Relationship ("Register", "Register", false))
 }
 
 /**
@@ -251,6 +256,8 @@ extends
             ComModule (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ComModule", "ComModule", false))
 }
 
 /**
@@ -329,6 +336,7 @@ extends
             toDouble (timeZoneOffset (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -450,6 +458,7 @@ extends
             toBoolean (isWaterHeater (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -537,6 +546,10 @@ extends
             UsagePointGroups (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("CustomerAgreements", "CustomerAgreement", true),
+        Relationship ("EndDeviceGroups", "EndDeviceGroup", true),
+        Relationship ("UsagePointGroups", "UsagePointGroup", true))
 }
 
 /**
@@ -646,6 +659,11 @@ extends
             UsagePoint (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Customer", "Customer", false),
+        Relationship ("EndDeviceInfo", "EndDeviceInfo", false),
+        Relationship ("ServiceLocation", "ServiceLocation", false),
+        Relationship ("UsagePoint", "UsagePoint", false))
 }
 
 /**
@@ -732,6 +750,8 @@ extends
             EndDeviceControl (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("EndDeviceControl", "EndDeviceControl", false))
 }
 
 /**
@@ -883,6 +903,7 @@ extends
             toBoolean (waterMetering (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1019,6 +1040,12 @@ extends
             UsagePoints (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("EndDeviceAction", "EndDeviceAction", false),
+        Relationship ("EndDeviceControlType", "EndDeviceControlType", false),
+        Relationship ("EndDevices", "EndDevice", true),
+        Relationship ("UsagePointGroups", "UsagePointGroup", true),
+        Relationship ("UsagePoints", "UsagePoint", true))
 }
 
 /**
@@ -1104,6 +1131,7 @@ extends
             typ (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1201,6 +1229,11 @@ extends
             UsagePoint (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("EndDevice", "EndDevice", false),
+        Relationship ("EndDeviceEventType", "EndDeviceEventType", false),
+        Relationship ("MeterReading", "MeterReading", false),
+        Relationship ("UsagePoint", "UsagePoint", false))
 }
 
 /**
@@ -1277,6 +1310,8 @@ extends
             EndDeviceEvent (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("EndDeviceEvent", "EndDeviceEvent", false))
 }
 
 /**
@@ -1363,6 +1398,7 @@ extends
             typ (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1434,6 +1470,8 @@ extends
             EndDevice (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("EndDevice", "EndDevice", false))
 }
 
 /**
@@ -1512,6 +1550,9 @@ extends
             EndDevices (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("EndDeviceControls", "EndDeviceControl", true),
+        Relationship ("EndDevices", "EndDevice", true))
 }
 
 /**
@@ -1598,6 +1639,7 @@ extends
             toDouble (ratedVoltage (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1679,6 +1721,7 @@ extends
             randomisation (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1762,6 +1805,11 @@ extends
             ReadingType (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("IntervalReadings", "IntervalReading", true),
+        Relationship ("MeterReading", "MeterReading", false),
+        Relationship ("PendingCalculation", "PendingCalculation", false),
+        Relationship ("ReadingType", "ReadingType", false))
 }
 
 /**
@@ -1826,6 +1874,7 @@ extends
             BaseReading.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1895,6 +1944,7 @@ extends
             formNumber (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1971,6 +2021,8 @@ extends
             Meter (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Meter", "Meter", false))
 }
 
 /**
@@ -2057,6 +2109,10 @@ extends
             UsagePoint (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("CustomerAgreement", "CustomerAgreement", false),
+        Relationship ("Meter", "Meter", false),
+        Relationship ("UsagePoint", "UsagePoint", false))
 }
 
 /**
@@ -2133,6 +2189,10 @@ extends
             UsagePoint (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Meter", "Meter", false),
+        Relationship ("OldMeter", "Meter", false),
+        Relationship ("UsagePoint", "UsagePoint", false))
 }
 
 /**
@@ -2204,6 +2264,8 @@ extends
             UsagePoints (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("UsagePoints", "UsagePoint", true))
 }
 
 /**
@@ -2333,6 +2395,7 @@ extends
             toDouble (heatingSetpoint (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2414,6 +2477,7 @@ extends
             transmissionMode (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2480,6 +2544,7 @@ extends
             toInteger (providerID (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2613,6 +2678,8 @@ extends
             PanPricing (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("PanPricing", "PanPricing", false))
 }
 
 /**
@@ -2707,6 +2774,8 @@ extends
             ReadingType (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ReadingType", "ReadingType", false))
 }
 
 /**
@@ -2779,6 +2848,7 @@ extends
             toInteger (numerator (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2857,6 +2927,9 @@ extends
             ReadingType (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("MeterReadings", "MeterReading", true),
+        Relationship ("ReadingType", "ReadingType", false))
 }
 
 /**
@@ -2930,6 +3003,7 @@ extends
             toInteger (numerator (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -3018,6 +3092,9 @@ extends
             ReadingQualityType (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Reading", "BaseReading", false),
+        Relationship ("ReadingQualityType", "ReadingQualityType", false))
 }
 
 /**
@@ -3096,6 +3173,7 @@ extends
             systemId (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -3257,6 +3335,9 @@ extends
             PendingCalculation (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Channel", "Channel", false),
+        Relationship ("PendingCalculation", "PendingCalculation", false))
 }
 
 /**
@@ -3350,6 +3431,8 @@ extends
             EndDeviceFunction (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("EndDeviceFunction", "EndDeviceFunction", false))
 }
 
 /**
@@ -3426,6 +3509,8 @@ extends
             UsagePoint (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("UsagePoint", "UsagePoint", false))
 }
 
 /**
@@ -3494,6 +3579,7 @@ extends
             kind (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -3679,6 +3765,13 @@ extends
             UsagePointLocation (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("CustomerAgreement", "CustomerAgreement", false),
+        Relationship ("Equipments", "Equipment", true),
+        Relationship ("ServiceCategory", "ServiceCategory", false),
+        Relationship ("ServiceLocation", "ServiceLocation", false),
+        Relationship ("ServiceSupplier", "ServiceSupplier", false),
+        Relationship ("UsagePointLocation", "UsagePointLocation", false))
 }
 
 /**
@@ -3752,6 +3845,8 @@ extends
             UsagePoints (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("UsagePoints", "UsagePoint", true))
 }
 
 /**
@@ -3830,6 +3925,7 @@ extends
             siteAccessProblem (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 private[ninecode] object _Metering

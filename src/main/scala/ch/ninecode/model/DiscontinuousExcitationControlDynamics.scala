@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * The class represents IEEE Type DEC1A discontinuous excitation control model that boosts generator excitation to a level higher than that demanded by the voltage regulator and stabilizer immediately following a system fault.
@@ -176,6 +177,7 @@ extends
             toDouble (_val (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -266,6 +268,7 @@ extends
             toDouble (vk (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -341,6 +344,7 @@ extends
             toDouble (vtmin (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -414,6 +418,9 @@ extends
             RemoteInputSignal (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ExcitationSystemDynamics", "ExcitationSystemDynamics", false),
+        Relationship ("RemoteInputSignal", "RemoteInputSignal", false))
 }
 
 private[ninecode] object _DiscontinuousExcitationControlDynamics

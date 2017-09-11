@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * An Asset Property that is described through curves rather than as a data point.
@@ -89,6 +90,8 @@ extends
             Specification (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Specification", "Specification", false))
 }
 
 /**
@@ -197,6 +200,8 @@ extends
             Terminal (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Terminal", "Terminal", false))
 }
 
 /**
@@ -297,6 +302,9 @@ extends
             TransformerObservation (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Bushing", "Bushing", false),
+        Relationship ("TransformerObservation", "TransformerObservation", false))
 }
 
 /**
@@ -376,6 +384,7 @@ extends
             AssetContainer.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -476,6 +485,8 @@ extends
             Reconditionings (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Reconditionings", "Reconditioning", true))
 }
 
 /**
@@ -587,6 +598,8 @@ extends
             Specifications (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Specifications", "Specification", true))
 }
 
 /**
@@ -671,6 +684,7 @@ extends
             toInteger (circuitCount (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -754,6 +768,7 @@ extends
             kind (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -837,6 +852,7 @@ extends
             kind (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -936,6 +952,7 @@ extends
             location (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1077,6 +1094,8 @@ extends
             Asset (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Asset", "Asset", false))
 }
 
 /**
@@ -1186,6 +1205,10 @@ extends
             TypeAssetCatalogue (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("CUAsset", "CUAsset", false),
+        Relationship ("CUWorkEquipmentAsset", "CUWorkEquipmentItem", false),
+        Relationship ("TypeAssetCatalogue", "TypeAssetCatalogue", false))
 }
 
 /**
@@ -1281,6 +1304,7 @@ extends
             insulation (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1380,6 +1404,9 @@ extends
             Specification (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Assets", "Asset", true),
+        Relationship ("Specification", "Specification", false))
 }
 
 /**
@@ -1515,6 +1542,7 @@ extends
             treatmentKind (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1603,6 +1631,8 @@ extends
             Asset (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Asset", "Asset", false))
 }
 
 /**
@@ -1701,6 +1731,9 @@ extends
             Specification (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Assets", "Asset", true),
+        Relationship ("Specification", "Specification", false))
 }
 
 /**
@@ -1782,6 +1815,7 @@ extends
             Document.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1881,6 +1915,8 @@ extends
             Pole (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Pole", "Pole", false))
 }
 
 /**
@@ -1997,6 +2033,7 @@ extends
             weedRemovedDate (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2115,6 +2152,8 @@ extends
             SecuredStructure (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("SecuredStructure", "Structure", false))
 }
 
 /**
@@ -2200,6 +2239,7 @@ extends
             constructionKind (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2363,6 +2403,9 @@ extends
             Transformer (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Reconditioning", "Reconditioning", false),
+        Relationship ("Transformer", "TransformerTank", false))
 }
 
 /**
@@ -2461,6 +2504,7 @@ extends
             sealingWarrantyExpiresDate (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2575,6 +2619,10 @@ extends
             TransformerObservation (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("FromWinding", "TransformerEnd", false),
+        Relationship ("ToWinding", "TransformerEnd", false),
+        Relationship ("TransformerObservation", "TransformerObservation", false))
 }
 
 private[ninecode] object _InfAssets

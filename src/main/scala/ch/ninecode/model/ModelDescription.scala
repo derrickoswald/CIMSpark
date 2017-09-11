@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * Identity contain comon descriptive information.
@@ -80,6 +81,7 @@ extends
             toInteger (version (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -143,6 +145,7 @@ extends
             uri (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -210,6 +213,9 @@ extends
             reverseDifferences (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("forwardDifferences", "Statements", false),
+        Relationship ("reverseDifferences", "Statements", false))
 }
 
 /**
@@ -270,6 +276,7 @@ extends
             FullModelDocumentElement.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -330,6 +337,7 @@ extends
             BasicElement.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -421,6 +429,9 @@ extends
             Supersedes (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("DependentOn", "Model", true),
+        Relationship ("Supersedes", "Model", true))
 }
 
 /**
@@ -488,6 +499,7 @@ extends
             version (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -548,6 +560,7 @@ extends
             FullModelDocumentElement.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 private[ninecode] object _ModelDescription

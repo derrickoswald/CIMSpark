@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * The result of a problem (typically an asset failure) diagnosis.
@@ -129,6 +130,7 @@ extends
             rootRemark (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -194,6 +196,7 @@ extends
             locationCondition (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -269,6 +272,7 @@ extends
             maintCode (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -344,6 +348,7 @@ extends
             specimenToLabDateTime (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 private[ninecode] object _InfNewAssets

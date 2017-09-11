@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * ConformLoad represent loads that follow a daily load change pattern where the pattern can be used to scale the load with a system load.
@@ -72,6 +73,8 @@ extends
             LoadGroup (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("LoadGroup", "ConformLoadGroup", false))
 }
 
 /**
@@ -136,6 +139,7 @@ extends
             LoadGroup.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -206,6 +210,8 @@ extends
             ConformLoadGroup (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ConformLoadGroup", "ConformLoadGroup", false))
 }
 
 /**
@@ -272,6 +278,7 @@ extends
             IdentifiedObject.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -342,6 +349,8 @@ extends
             ControlArea (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ControlArea", "ControlArea", false))
 }
 
 /**
@@ -406,6 +415,7 @@ extends
             EnergyArea.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -474,6 +484,8 @@ extends
             SubLoadArea (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("SubLoadArea", "SubLoadArea", false))
 }
 
 /**
@@ -595,6 +607,7 @@ extends
             toDouble (qVoltageExponent (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -663,6 +676,8 @@ extends
             LoadGroup (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("LoadGroup", "NonConformLoadGroup", false))
 }
 
 /**
@@ -727,6 +742,7 @@ extends
             LoadGroup.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -795,6 +811,8 @@ extends
             NonConformLoadGroup (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("NonConformLoadGroup", "NonConformLoadGroup", false))
 }
 
 /**
@@ -868,6 +886,7 @@ extends
             toDouble (cutLevel2 (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -941,6 +960,7 @@ extends
             startDate (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1014,6 +1034,9 @@ extends
             Season (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("DayType", "DayType", false),
+        Relationship ("Season", "Season", false))
 }
 
 /**
@@ -1078,6 +1101,7 @@ extends
             EnergyConsumer.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1146,6 +1170,8 @@ extends
             LoadArea (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("LoadArea", "LoadArea", false))
 }
 
 private[ninecode] object _LoadModel

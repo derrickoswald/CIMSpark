@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * The class represents IEEE Voltage Adjuster which is used to represent the voltage adjuster in either a power factor or var control system.
@@ -104,6 +105,7 @@ extends
             toDouble (vadjmin (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -172,6 +174,8 @@ extends
             PFVArControllerType1Dynamics (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("PFVArControllerType1Dynamics", "PFVArControllerType1Dynamics", false))
 }
 
 private[ninecode] object _VoltageAdjusterDynamics

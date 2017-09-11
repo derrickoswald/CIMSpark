@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * Compliance events are used for reporting regulatory or contract compliance issues and/or variances.
@@ -72,6 +73,7 @@ extends
             deadline (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -188,6 +190,9 @@ extends
             ErpInvoiceLineItems (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("CustomerAccount", "CustomerAccount", false),
+        Relationship ("ErpInvoiceLineItems", "ErpInvoiceLineItem", true))
 }
 
 /**
@@ -252,6 +257,7 @@ extends
             Agreement.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -358,6 +364,7 @@ extends
             toDouble (voltLimitViolCost (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -441,6 +448,7 @@ extends
             serviceRequirement (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -509,6 +517,7 @@ extends
             code (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -571,6 +580,7 @@ extends
             Curve.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -679,6 +689,9 @@ extends
             ErpLineItems (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("CustomerAccount", "CustomerAccount", false),
+        Relationship ("ErpLineItems", "ErpInvoiceLineItem", true))
 }
 
 private[ninecode] object _InfCustomers

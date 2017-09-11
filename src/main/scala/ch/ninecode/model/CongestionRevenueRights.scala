@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * Congestion Revenue Rights (CRR) class that is inherited from a Document class.
@@ -103,6 +104,9 @@ extends
             Flowgate (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("CRRMarket", "CRRMarket", false),
+        Relationship ("Flowgate", "Flowgate", false))
 }
 
 /**
@@ -184,6 +188,9 @@ extends
             MktOrganisation (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("CRR", "CRR", false),
+        Relationship ("MktOrganisation", "MktOrganisation", false))
 }
 
 /**
@@ -277,6 +284,8 @@ extends
             CRR (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("CRR", "CRR", false))
 }
 
 private[ninecode] object _CongestionRevenueRights

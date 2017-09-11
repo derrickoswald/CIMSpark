@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * IEC 61968 version number assigned to this UML model.
@@ -77,6 +78,7 @@ extends
             version (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 private[ninecode] object _IEC61968

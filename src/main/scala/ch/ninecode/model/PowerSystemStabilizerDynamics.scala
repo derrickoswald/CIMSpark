@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * Power system stabilizer function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
@@ -70,6 +71,8 @@ extends
             ExcitationSystemDynamics (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ExcitationSystemDynamics", "ExcitationSystemDynamics", false))
 }
 
 /**
@@ -223,6 +226,7 @@ extends
             toDouble (vsmx (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -398,6 +402,7 @@ extends
             toDouble (vrmin (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -647,6 +652,7 @@ extends
             toDouble (vstmin (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -800,6 +806,7 @@ extends
             toDouble (vcu (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -969,6 +976,7 @@ extends
             toDouble (vsmx (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1096,6 +1104,7 @@ extends
             toDouble (ts6 (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1231,6 +1240,7 @@ extends
             toDouble (vrmin (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1456,6 +1466,7 @@ extends
             toDouble (vstmin (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1633,6 +1644,7 @@ extends
             toDouble (vstmin (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2090,6 +2102,7 @@ extends
             toDouble (vstmin (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2217,6 +2230,7 @@ extends
             toDouble (tp (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2463,6 +2477,7 @@ extends
             toDouble (tp (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2579,6 +2594,7 @@ extends
             toDouble (vsmin (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2718,6 +2734,7 @@ extends
             toDouble (vsmin (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2845,6 +2862,7 @@ extends
             toDouble (vsmin (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2996,6 +3014,7 @@ extends
             toDouble (vsmin (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 private[ninecode] object _PowerSystemStabilizerDynamics

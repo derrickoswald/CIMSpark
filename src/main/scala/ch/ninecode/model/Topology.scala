@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * Used to apply user standard names to topology buses.
@@ -78,6 +79,8 @@ extends
             ReportingGroup (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ReportingGroup", "ReportingGroup", false))
 }
 
 /**
@@ -149,6 +152,9 @@ extends
             DCTopologicalIsland (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("DCEquipmentContainer", "DCEquipmentContainer", false),
+        Relationship ("DCTopologicalIsland", "DCTopologicalIsland", false))
 }
 
 /**
@@ -218,6 +224,8 @@ extends
             AngleRefTopologicalNode (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("AngleRefTopologicalNode", "TopologicalNode", false))
 }
 
 /**
@@ -329,6 +337,14 @@ extends
             TopologicalIsland (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("AngleRefTopologicalIsland", "TopologicalIsland", false),
+        Relationship ("BaseVoltage", "BaseVoltage", false),
+        Relationship ("ConnectivityNodeContainer", "ConnectivityNodeContainer", false),
+        Relationship ("ReportingGroup", "ReportingGroup", false),
+        Relationship ("SvInjection", "SvInjection", false),
+        Relationship ("SvVoltage", "SvVoltage", false),
+        Relationship ("TopologicalIsland", "TopologicalIsland", false))
 }
 
 private[ninecode] object _Topology

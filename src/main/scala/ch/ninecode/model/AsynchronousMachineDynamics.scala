@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * Asynchronous machine whose behaviour is described by reference to a standard model expressed in either time constant reactance form or equivalent circuit form <font color="#0f0f0f">or by definition of a user-defined model.</font>
@@ -95,6 +96,11 @@ extends
             WindTurbineType1or2Dynamics (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("AsynchronousMachine", "AsynchronousMachine", false),
+        Relationship ("MechanicalLoadDynamics", "MechanicalLoadDynamics", false),
+        Relationship ("TurbineGovernorDynamics", "TurbineGovernorDynamics", false),
+        Relationship ("WindTurbineType1or2Dynamics", "WindTurbineType1or2Dynamics", false))
 }
 
 /**
@@ -200,6 +206,7 @@ extends
             toDouble (xm (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -316,6 +323,7 @@ extends
             toDouble (xs (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 private[ninecode] object _AsynchronousMachineDynamics

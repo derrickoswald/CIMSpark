@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * Interval between two dates.
@@ -79,6 +80,7 @@ extends
             start (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -154,6 +156,7 @@ extends
             start (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -233,6 +236,7 @@ extends
             toDouble (value (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -313,6 +317,7 @@ extends
             toDouble (value (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -393,6 +398,7 @@ extends
             toInteger (value (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -468,6 +474,7 @@ extends
             start (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -548,6 +555,7 @@ extends
             value (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -623,6 +631,7 @@ extends
             start (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 private[ninecode] object _Domain

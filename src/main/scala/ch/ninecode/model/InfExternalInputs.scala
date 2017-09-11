@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * Requirements for minimum amount of reserve and/or regulation to be supplied by a set of qualified resources.
@@ -79,6 +80,10 @@ extends
             SensitivityPriceCurve (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("MarketProduct", "MarketProduct", false),
+        Relationship ("ReserveReqCurve", "ReserveReqCurve", false),
+        Relationship ("SensitivityPriceCurve", "SensitivityPriceCurve", false))
 }
 
 /**
@@ -146,6 +151,8 @@ extends
             ReserveReq (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ReserveReq", "ReserveReq", false))
 }
 
 /**
@@ -216,6 +223,7 @@ extends
             typ (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -286,6 +294,9 @@ extends
             ResourceGroup (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("RTOs", "RTO", true),
+        Relationship ("ResourceGroup", "ResourceGroup", false))
 }
 
 /**
@@ -353,6 +364,8 @@ extends
             ReserveReq (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ReserveReq", "ReserveReq", false))
 }
 
 private[ninecode] object _InfExternalInputs

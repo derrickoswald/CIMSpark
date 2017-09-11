@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * This is a environmental based limit dependency model for calculating operational limits.
@@ -67,6 +68,7 @@ extends
             LimitDependency.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -140,6 +142,9 @@ extends
             SeriesEquipmentDependentLimit (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Equipment", "Equipment", false),
+        Relationship ("SeriesEquipmentDependentLimit", "SeriesEquipmentDependentLimit", false))
 }
 
 /**
@@ -209,6 +214,8 @@ extends
             Equipment (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Equipment", "Equipment", false))
 }
 
 /**
@@ -281,6 +288,8 @@ extends
             SourceOperationalLimit (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("SourceOperationalLimit", "OperationalLimit", false))
 }
 
 /**
@@ -361,6 +370,9 @@ extends
             TargetOperationalLimit (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("SourceOperationalLimitType", "OperationalLimitType", false),
+        Relationship ("TargetOperationalLimit", "OperationalLimitType", false))
 }
 
 /**
@@ -425,6 +437,7 @@ extends
             toDouble (value (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -492,6 +505,7 @@ extends
             toDouble (value (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -559,6 +573,7 @@ extends
             toDouble (value (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -620,6 +635,7 @@ extends
             LimitDependency.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -693,6 +709,9 @@ extends
             Season (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ScheduledLimitDependency", "ScheduledLimitDependency", false),
+        Relationship ("Season", "Season", false))
 }
 
 /**
@@ -760,6 +779,7 @@ extends
             toDouble (value (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -825,6 +845,7 @@ extends
             LimitDependency.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -902,6 +923,8 @@ extends
             TemperatureDependentLimitTable (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("TemperatureDependentLimitTable", "TemperatureDependentLimitTable", false))
 }
 
 /**
@@ -965,6 +988,7 @@ extends
             EnvironmentalDependentLimit.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1052,6 +1076,7 @@ extends
             toDouble (coefficient4 (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1115,6 +1140,7 @@ extends
             PowerSystemResource.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 private[ninecode] object _InfOperationalLimits

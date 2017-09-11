@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * A Modeling Authority is an entity responsible for supplying and maintaining the data defining a specific set of objects in a network model.
@@ -66,6 +67,7 @@ extends
             BasicElement.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -134,6 +136,8 @@ extends
             ModelingAuthority (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ModelingAuthority", "ModelingAuthority", false))
 }
 
 private[ninecode] object _ModelAuthority

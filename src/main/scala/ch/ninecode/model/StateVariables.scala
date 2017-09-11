@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * An abstract class for state variables.
@@ -66,6 +67,7 @@ extends
             BasicElement.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -146,6 +148,8 @@ extends
             TopologicalNode (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("TopologicalNode", "TopologicalNode", false))
 }
 
 /**
@@ -226,6 +230,8 @@ extends
             Terminal (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Terminal", "Terminal", false))
 }
 
 /**
@@ -298,6 +304,8 @@ extends
             ShuntCompensator (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ShuntCompensator", "ShuntCompensator", false))
 }
 
 /**
@@ -369,6 +377,8 @@ extends
             ConductingEquipment (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ConductingEquipment", "ConductingEquipment", false))
 }
 
 /**
@@ -443,6 +453,8 @@ extends
             TapChanger (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("TapChanger", "TapChanger", false))
 }
 
 /**
@@ -519,6 +531,8 @@ extends
             TopologicalNode (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("TopologicalNode", "TopologicalNode", false))
 }
 
 private[ninecode] object _StateVariables

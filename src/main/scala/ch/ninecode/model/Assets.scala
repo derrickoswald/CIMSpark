@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * Acceptance test for assets.
@@ -81,6 +82,7 @@ extends
             typ (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -262,6 +264,18 @@ extends
             PowerSystemResources (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ActivityRecords", "ActivityRecord", true),
+        Relationship ("AssetContainer", "AssetContainer", false),
+        Relationship ("AssetInfo", "AssetInfo", false),
+        Relationship ("AssetPropertyCurves", "AssetPropertyCurve", true),
+        Relationship ("ErpInventory", "ErpInventory", false),
+        Relationship ("ErpItemMaster", "ErpItemMaster", false),
+        Relationship ("ErpRecDeliveryItems", "ErpRecDelvLineItem", true),
+        Relationship ("FinancialInfo", "FinancialInfo", false),
+        Relationship ("Location", "Location", false),
+        Relationship ("OrganisationRoles", "AssetOrganisationRole", true),
+        Relationship ("PowerSystemResources", "PowerSystemResource", true))
 }
 
 /**
@@ -324,6 +338,7 @@ extends
             Asset.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -410,6 +425,7 @@ extends
             programID (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -480,6 +496,8 @@ extends
             AssetModel (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("AssetModel", "AssetModel", false))
 }
 
 /**
@@ -548,6 +566,8 @@ extends
             Locations (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Locations", "Location", true))
 }
 
 /**
@@ -616,6 +636,8 @@ extends
             AssetInfo (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("AssetInfo", "AssetInfo", false))
 }
 
 /**
@@ -678,6 +700,7 @@ extends
             OrganisationRole.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -740,6 +763,7 @@ extends
             AssetOrganisationRole.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -802,6 +826,7 @@ extends
             AssetOrganisationRole.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -864,6 +889,7 @@ extends
             Asset.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -959,6 +985,7 @@ extends
             retiredDate (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1021,6 +1048,7 @@ extends
             AssetOrganisationRole.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1083,6 +1111,7 @@ extends
             OrganisationRole.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1174,6 +1203,10 @@ extends
             Measurements (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Assets", "Asset", true),
+        Relationship ("Limits", "Limit", true),
+        Relationship ("Measurements", "Measurement", true))
 }
 
 /**
@@ -1257,6 +1290,10 @@ extends
             TransformerObservations (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("MeasurementValues", "MeasurementValue", true),
+        Relationship ("Procedure", "Procedure", false),
+        Relationship ("TransformerObservations", "TransformerObservation", true))
 }
 
 /**
@@ -1353,6 +1390,9 @@ extends
             Manufacturer (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("GenericAssetModelOrMaterial", "GenericAssetModelOrMaterial", false),
+        Relationship ("Manufacturer", "Manufacturer", false))
 }
 
 /**
@@ -1439,6 +1479,8 @@ extends
             AssetContainer (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("AssetContainer", "AssetContainer", false))
 }
 
 private[ninecode] object _Assets

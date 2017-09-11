@@ -24,6 +24,9 @@ import ch.ninecode.model.Element
  */
 class CIMSubsetter[A <: Product : ClassTag : TypeTag] () extends Serializable
 {
+    type basetype = A
+    type rddtype = RDD[A]
+
     val runtime_class: Class[_] = classTag[A].runtimeClass
 
     val classname: String = runtime_class.getName
@@ -46,7 +49,7 @@ class CIMSubsetter[A <: Product : ClassTag : TypeTag] () extends Serializable
             subclass (x)
     }
 
-    def subset (rdd: RDD[Element], storage: StorageLevel, context: SparkContext): RDD[A] =
+    def subset (rdd: RDD[Element], storage: StorageLevel, context: SparkContext): rddtype =
     {
         val subrdd = rdd.collect[A] (pf)
         subrdd.name = cls

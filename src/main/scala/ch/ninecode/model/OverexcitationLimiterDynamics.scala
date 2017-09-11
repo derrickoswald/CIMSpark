@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * Different from LimIEEEOEL, LimOEL2 has a fixed pickup threshold and reduces the excitation set-point by mean of non-windup integral regulator.
@@ -91,6 +92,7 @@ extends
             toDouble (voimin (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -190,6 +192,7 @@ extends
             toDouble (kramp (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -310,6 +313,7 @@ extends
             toDouble (vlow (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -437,6 +441,7 @@ extends
             toDouble (vlow (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -503,6 +508,8 @@ extends
             ExcitationSystemDynamics (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ExcitationSystemDynamics", "ExcitationSystemDynamics", false))
 }
 
 private[ninecode] object _OverexcitationLimiterDynamics

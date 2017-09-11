@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * An event threatening system reliability, consisting of one or more contingency elements.
@@ -70,6 +71,7 @@ extends
             toBoolean (mustStudy (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -136,6 +138,8 @@ extends
             Contingency (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Contingency", "Contingency", false))
 }
 
 /**
@@ -208,6 +212,8 @@ extends
             Equipment (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Equipment", "Equipment", false))
 }
 
 private[ninecode] object _Contingency

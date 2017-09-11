@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * A prioritized measurement to be used for the generating unit in the control area specificaiton.
@@ -81,6 +82,9 @@ extends
             ControlAreaGeneratingUnit (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("AnalogValue", "AnalogValue", false),
+        Relationship ("ControlAreaGeneratingUnit", "ControlAreaGeneratingUnit", false))
 }
 
 /**
@@ -158,6 +162,9 @@ extends
             TieFlow (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("AnalogValue", "AnalogValue", false),
+        Relationship ("TieFlow", "TieFlow", false))
 }
 
 /**
@@ -242,6 +249,8 @@ extends
             EnergyArea (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("EnergyArea", "EnergyArea", false))
 }
 
 /**
@@ -316,6 +325,9 @@ extends
             GeneratingUnit (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ControlArea", "ControlArea", false),
+        Relationship ("GeneratingUnit", "GeneratingUnit", false))
 }
 
 /**
@@ -393,6 +405,9 @@ extends
             Terminal (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ControlArea", "ControlArea", false),
+        Relationship ("Terminal", "Terminal", false))
 }
 
 private[ninecode] object _ControlArea

@@ -770,10 +770,21 @@ case class Scala (parser: ModelParser, pkg: Package)
                         s.append (""", context)""")
                 }
             }
-
             s.append ("""
             |        )
             |    }
+            |""".stripMargin)
+            s.append ("""    val relations: List[Relationship] = List (""")
+            val relationships = members.filter (member => (member.name != "sup") && (null != member.referenced_class))
+            if (relationships.nonEmpty)
+            {
+                s.append ("""
+                    |""".stripMargin)
+                s.append (relationships.map (
+                    member => """        Relationship ("%s", "%s", %s)""".format (member.variable, member.referenced_class, member.multiple)).mkString (",\n"))
+            }
+            s.append (""")""")
+            s.append ("""
             |}
             |
             |""".stripMargin)
@@ -792,6 +803,7 @@ case class Scala (parser: ModelParser, pkg: Package)
             |import ch.ninecode.cim.ClassInfo
             |import ch.ninecode.cim.Context
             |import ch.ninecode.cim.Parseable
+            |import ch.ninecode.cim.Relationship
             |
             |""".stripMargin)
             v.append (p.toString)

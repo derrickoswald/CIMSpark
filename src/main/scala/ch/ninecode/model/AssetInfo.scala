@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * Busbar section data.
@@ -75,6 +76,7 @@ extends
             toDouble (ratedVoltage (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -186,6 +188,7 @@ extends
             shieldMaterial (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -272,6 +275,7 @@ extends
             toDouble (neutralStrandRadius (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -365,6 +369,8 @@ extends
             EnergisedEnd (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("EnergisedEnd", "TransformerEndInfo", false))
 }
 
 /**
@@ -463,6 +469,9 @@ extends
             OpenEnd (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("EnergisedEnd", "TransformerEndInfo", false),
+        Relationship ("OpenEnd", "TransformerEndInfo", false))
 }
 
 /**
@@ -525,6 +534,7 @@ extends
             WireInfo.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -587,6 +597,7 @@ extends
             AssetInfo.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -686,6 +697,8 @@ extends
             EnergisedEnd (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("EnergisedEnd", "TransformerEndInfo", false))
 }
 
 /**
@@ -772,6 +785,8 @@ extends
             ShuntCompensatorControl (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ShuntCompensatorControl", "ShuntCompensatorControl", false))
 }
 
 /**
@@ -858,6 +873,7 @@ extends
             toDouble (ratedVoltage (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -995,6 +1011,7 @@ extends
             toDouble (stepVoltageIncrement (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1066,6 +1083,7 @@ extends
             toDouble (tapeThickness (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1195,6 +1213,11 @@ extends
             TransformerTankInfo (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("CoreAdmittance", "TransformerCoreAdmittance", false),
+        Relationship ("ToMeshImpedances", "TransformerMeshImpedance", true),
+        Relationship ("TransformerStarImpedance", "TransformerStarImpedance", false),
+        Relationship ("TransformerTankInfo", "TransformerTankInfo", false))
 }
 
 /**
@@ -1261,6 +1284,8 @@ extends
             PowerTransformerInfo (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("PowerTransformerInfo", "PowerTransformerInfo", false))
 }
 
 /**
@@ -1332,6 +1357,7 @@ extends
             toDouble (temperature (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1474,6 +1500,8 @@ extends
             PerLengthParameters (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("PerLengthParameters", "PerLengthLineParameter", true))
 }
 
 /**
@@ -1555,6 +1583,8 @@ extends
             WireSpacingInfo (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("WireSpacingInfo", "WireSpacingInfo", false))
 }
 
 /**
@@ -1648,6 +1678,9 @@ extends
             Structures (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("DuctBank", "DuctBank", false),
+        Relationship ("Structures", "Structure", true))
 }
 
 private[ninecode] object _AssetInfo

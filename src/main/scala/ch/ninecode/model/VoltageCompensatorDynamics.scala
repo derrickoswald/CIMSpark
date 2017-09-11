@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * This class provides the resistive and reactive components of compensation for the generator associated with the IEEE Type 2 voltage compensator for current flow out of one of the other generators in the interconnection.
@@ -95,6 +96,9 @@ extends
             VcompIEEEType2 (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("SynchronousMachineDynamics", "SynchronousMachineDynamics", false),
+        Relationship ("VcompIEEEType2", "VCompIEEEType2", false))
 }
 
 /**
@@ -183,6 +187,7 @@ extends
             toDouble (xc (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -261,6 +266,7 @@ extends
             toDouble (tr (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -342,6 +348,9 @@ extends
             RemoteInputSignal (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ExcitationSystemDynamics", "ExcitationSystemDynamics", false),
+        Relationship ("RemoteInputSignal", "RemoteInputSignal", false))
 }
 
 private[ninecode] object _VoltageCompensatorDynamics

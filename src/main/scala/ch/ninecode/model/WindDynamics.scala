@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * The constant aerodynamic torque model assumes that the aerodynamic torque is constant.
@@ -82,6 +83,8 @@ extends
             WindGenTurbineType1aIEC (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("WindGenTurbineType1aIEC", "WindGenTurbineType1aIEC", false))
 }
 
 /**
@@ -172,6 +175,8 @@ extends
             WindTurbineType3IEC (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("WindTurbineType3IEC", "WindTurbineType3IEC", false))
 }
 
 /**
@@ -292,6 +297,8 @@ extends
             WindTurbineType3IEC (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("WindTurbineType3IEC", "WindTurbineType3IEC", false))
 }
 
 /**
@@ -416,6 +423,8 @@ extends
             WindTurbineType3or4IEC (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("WindTurbineType3or4IEC", "WindTurbineType3or4IEC", false))
 }
 
 /**
@@ -634,6 +643,8 @@ extends
             WindTurbineType3IEC (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("WindTurbineType3IEC", "WindTurbineType3IEC", false))
 }
 
 /**
@@ -730,6 +741,8 @@ extends
             WindTurbineType4aIEC (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("WindTurbineType4aIEC", "WindTurbineType4aIEC", false))
 }
 
 /**
@@ -832,6 +845,8 @@ extends
             WindTurbineType4bIEC (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("WindTurbineType4bIEC", "WindTurbineType4bIEC", false))
 }
 
 /**
@@ -970,6 +985,8 @@ extends
             WindTurbineType3IEC (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("WindTurbineType3IEC", "WindTurbineType3IEC", false))
 }
 
 /**
@@ -1186,6 +1203,8 @@ extends
             WindTurbineType3or4IEC (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("WindTurbineType3or4IEC", "WindTurbineType3or4IEC", false))
 }
 
 /**
@@ -1276,6 +1295,8 @@ extends
             WindTurbineType3or4IEC (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("WindTurbineType3or4IEC", "WindTurbineType3or4IEC", false))
 }
 
 /**
@@ -1366,6 +1387,8 @@ extends
             WindTurbineType3or4IEC (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("WindTurbineType3or4IEC", "WindTurbineType3or4IEC", false))
 }
 
 /**
@@ -1492,6 +1515,8 @@ extends
             WindGenTurbineType2IEC (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("WindGenTurbineType2IEC", "WindGenTurbineType2IEC", false))
 }
 
 /**
@@ -1628,6 +1653,16 @@ extends
             WindProtectionIEC (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("WindContCurrLimIEC", "WindContCurrLimIEC", false),
+        Relationship ("WindContPType3IEC", "WindContPType3IEC", false),
+        Relationship ("WindContQPQULimIEC", "WindContQPQULimIEC", false),
+        Relationship ("WindContRotorRIEC", "WindContRotorRIEC", false),
+        Relationship ("WindGenType3bIEC", "WindGenType3bIEC", false),
+        Relationship ("WindPitchContPowerIEC", "WindPitchContPowerIEC", false),
+        Relationship ("WindPlantFreqPcontrolIEC", "WindPlantFreqPcontrolIEC", false),
+        Relationship ("WindPlantReactiveControlIEC", "WindPlantReactiveControlIEC", false),
+        Relationship ("WindProtectionIEC", "WindProtectionIEC", false))
 }
 
 /**
@@ -1706,6 +1741,8 @@ extends
             WindAeroConstIEC (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("WindAeroConstIEC", "WindAeroConstIEC", false))
 }
 
 /**
@@ -1784,6 +1821,8 @@ extends
             WindPitchContPowerIEC (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("WindPitchContPowerIEC", "WindPitchContPowerIEC", false))
 }
 
 /**
@@ -1867,6 +1906,9 @@ extends
             WindPitchContPowerIEC (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("WindContRotorRIEC", "WindContRotorRIEC", false),
+        Relationship ("WindPitchContPowerIEC", "WindPitchContPowerIEC", false))
 }
 
 /**
@@ -1961,6 +2003,8 @@ extends
             WindTurbineType3IEC (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("WindTurbineType3IEC", "WindTurbineType3IEC", false))
 }
 
 /**
@@ -2051,6 +2095,8 @@ extends
             WindTurbineType4IEC (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("WindTurbineType4IEC", "WindTurbineType4IEC", false))
 }
 
 /**
@@ -2146,6 +2192,7 @@ extends
             toDouble (two (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2253,6 +2300,9 @@ extends
             WindTurbineType4bIEC (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("WindTurbineType4aIEC", "WindTurbineType4aIEC", false),
+        Relationship ("WindTurbineType4bIEC", "WindTurbineType4bIEC", false))
 }
 
 /**
@@ -2365,6 +2415,10 @@ extends
             WindTurbineType4bIEC (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("WindTurbineType1or2IEC", "WindTurbineType1or2IEC", false),
+        Relationship ("WindTurbineType3IEC", "WindTurbineType3IEC", false),
+        Relationship ("WindTurbineType4bIEC", "WindTurbineType4bIEC", false))
 }
 
 /**
@@ -2490,6 +2544,9 @@ extends
             WindGenTurbineType2IEC (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("WindGenTurbineType1bIEC", "WindGenTurbineType1bIEC", false),
+        Relationship ("WindGenTurbineType2IEC", "WindGenTurbineType2IEC", false))
 }
 
 /**
@@ -2566,6 +2623,8 @@ extends
             RemoteInputSignal (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("RemoteInputSignal", "RemoteInputSignal", false))
 }
 
 /**
@@ -2734,6 +2793,8 @@ extends
             WindPlantIEC (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("WindPlantIEC", "WindPlantIEC", false))
 }
 
 /**
@@ -2817,6 +2878,9 @@ extends
             WindPlantReactiveControlIEC (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("WindPlantFreqPcontrolIEC", "WindPlantFreqPcontrolIEC", false),
+        Relationship ("WindPlantReactiveControlIEC", "WindPlantReactiveControlIEC", false))
 }
 
 /**
@@ -3003,6 +3067,8 @@ extends
             WindPlantIEC (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("WindPlantIEC", "WindPlantIEC", false))
 }
 
 /**
@@ -3128,6 +3194,9 @@ extends
             WindTurbineType3or4IEC (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("WindTurbineType1or2IEC", "WindTurbineType1or2IEC", false),
+        Relationship ("WindTurbineType3or4IEC", "WindTurbineType3or4IEC", false))
 }
 
 /**
@@ -3224,6 +3293,8 @@ extends
             WindTurbineType3or4IEC (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("WindTurbineType3or4IEC", "WindTurbineType3or4IEC", false))
 }
 
 /**
@@ -3305,6 +3376,9 @@ extends
             RemoteInputSignal (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("AsynchronousMachineDynamics", "AsynchronousMachineDynamics", false),
+        Relationship ("RemoteInputSignal", "RemoteInputSignal", false))
 }
 
 /**
@@ -3388,6 +3462,9 @@ extends
             WindProtectionIEC (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("WindMechIEC", "WindMechIEC", false),
+        Relationship ("WindProtectionIEC", "WindProtectionIEC", false))
 }
 
 /**
@@ -3489,6 +3566,13 @@ extends
             WindMechIEC (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("WindAeroOneDimIEC", "WindAeroOneDimIEC", false),
+        Relationship ("WindAeroTwoDimIEC", "WindAeroTwoDimIEC", false),
+        Relationship ("WindContPType3IEC", "WindContPType3IEC", false),
+        Relationship ("WindContPitchAngleIEC", "WindContPitchAngleIEC", false),
+        Relationship ("WindGenType3IEC", "WindGenType3IEC", false),
+        Relationship ("WindMechIEC", "WindMechIEC", false))
 }
 
 /**
@@ -3575,6 +3659,10 @@ extends
             WindPlantDynamics (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("EnergySource", "EnergySource", false),
+        Relationship ("RemoteInputSignal", "RemoteInputSignal", false),
+        Relationship ("WindPlantDynamics", "WindPlantDynamics", false))
 }
 
 /**
@@ -3676,6 +3764,13 @@ extends
             WindRefFrameRotIEC (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("WIndContQIEC", "WindContQIEC", false),
+        Relationship ("WindContCurrLimIEC", "WindContCurrLimIEC", false),
+        Relationship ("WindContQLimIEC", "WindContQLimIEC", false),
+        Relationship ("WindContQPQULimIEC", "WindContQPQULimIEC", false),
+        Relationship ("WindProtectionIEC", "WindProtectionIEC", false),
+        Relationship ("WindRefFrameRotIEC", "WindRefFrameRotIEC", false))
 }
 
 /**
@@ -3752,6 +3847,8 @@ extends
             WindGenType3aIEC (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("WindGenType3aIEC", "WindGenType3aIEC", false))
 }
 
 /**
@@ -3835,6 +3932,9 @@ extends
             WindGenType4IEC (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("WindContPType4aIEC", "WindContPType4aIEC", false),
+        Relationship ("WindGenType4IEC", "WindGenType4IEC", false))
 }
 
 /**
@@ -3923,6 +4023,10 @@ extends
             WindMechIEC (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("WindContPType4bIEC", "WindContPType4bIEC", false),
+        Relationship ("WindGenType4IEC", "WindGenType4IEC", false),
+        Relationship ("WindMechIEC", "WindMechIEC", false))
 }
 
 private[ninecode] object _WindDynamics

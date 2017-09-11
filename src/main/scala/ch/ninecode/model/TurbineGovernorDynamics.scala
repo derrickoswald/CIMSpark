@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * General model for any prime mover with a PID governor, used primarily for combustion turbine and combined cycle units.
@@ -281,6 +282,7 @@ extends
             toBoolean (wfspd (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -684,6 +686,7 @@ extends
             toBoolean (wfspd (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -806,6 +809,7 @@ extends
             toDouble (vmin (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1073,6 +1077,7 @@ extends
             toDouble (vmin (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1305,6 +1310,7 @@ extends
             toBoolean (z (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1494,6 +1500,7 @@ extends
             toDouble (ty (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1623,6 +1630,7 @@ extends
             toDouble (tv (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1855,6 +1863,7 @@ extends
             toDouble (tt (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2002,6 +2011,7 @@ extends
             toDouble (velm (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2239,6 +2249,7 @@ extends
             toDouble (uo (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2522,6 +2533,7 @@ extends
             toDouble (velop (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2815,6 +2827,7 @@ extends
             toDouble (uo (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -3090,6 +3103,7 @@ extends
             toDouble (velop (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -3319,6 +3333,7 @@ extends
             toDouble (zsfc (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -3428,6 +3443,7 @@ extends
             toDouble (t4 (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -3649,6 +3665,7 @@ extends
             toDouble (uo (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -3912,6 +3929,7 @@ extends
             toDouble (velop (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -4110,6 +4128,7 @@ extends
             toDouble (velmin (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -4349,6 +4368,7 @@ extends
             toDouble (zsfc (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -4666,6 +4686,7 @@ extends
             toDouble (velop (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -5019,6 +5040,7 @@ extends
             toDouble (tw (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -5202,6 +5224,7 @@ extends
             toDouble (velmin (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -5313,6 +5336,7 @@ extends
             toDouble (vmin (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -5616,6 +5640,7 @@ extends
             toBoolean (valve (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -5727,6 +5752,7 @@ extends
             toDouble (t2 (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -5892,6 +5918,7 @@ extends
             toDouble (t5lp (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -6165,6 +6192,7 @@ extends
             toDouble (wwmin (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -6294,6 +6322,7 @@ extends
             toDouble (vmin (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -6471,6 +6500,7 @@ extends
             toDouble (uo (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -6840,6 +6870,7 @@ extends
             toDouble (ympmx (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -7030,6 +7061,7 @@ extends
             toDouble (uo (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -7154,6 +7186,7 @@ extends
             toDouble (t6 (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -7227,6 +7260,9 @@ extends
             TurbineLoadControllerDynamics (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("AsynchronousMachineDynamics", "AsynchronousMachineDynamics", false),
+        Relationship ("TurbineLoadControllerDynamics", "TurbineLoadControllerDynamics", false))
 }
 
 private[ninecode] object _TurbineGovernorDynamics

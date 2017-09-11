@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * Bilateral transaction
@@ -112,6 +113,7 @@ extends
             transactionType (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -178,6 +180,7 @@ extends
             toDouble (factor (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -305,6 +308,7 @@ extends
             toDouble (certifiedSpinMw (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 private[ninecode] object _InfMarketOperations

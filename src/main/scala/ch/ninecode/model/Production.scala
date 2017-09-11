@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * Combustion turbine air compressor which is an integral part of a compressed air energy storage (CAES) plant.
@@ -80,6 +81,9 @@ extends
             CombustionTurbine (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("CAESPlant", "CAESPlant", false),
+        Relationship ("CombustionTurbine", "CombustionTurbine", false))
 }
 
 /**
@@ -161,6 +165,9 @@ extends
             ThermalGeneratingUnit (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("AirCompressor", "AirCompressor", false),
+        Relationship ("ThermalGeneratingUnit", "ThermalGeneratingUnit", false))
 }
 
 /**
@@ -254,6 +261,8 @@ extends
             SteamSendoutSchedule (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("SteamSendoutSchedule", "SteamSendoutSchedule", false))
 }
 
 /**
@@ -320,6 +329,7 @@ extends
             toDouble (combCyclePlantRating (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -399,6 +409,8 @@ extends
             ThermalGeneratingUnit (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ThermalGeneratingUnit", "ThermalGeneratingUnit", false))
 }
 
 /**
@@ -483,6 +495,8 @@ extends
             ThermalGeneratingUnit (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ThermalGeneratingUnit", "ThermalGeneratingUnit", false))
 }
 
 /**
@@ -603,6 +617,8 @@ extends
             ThermalGeneratingUnit (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ThermalGeneratingUnit", "ThermalGeneratingUnit", false))
 }
 
 /**
@@ -699,6 +715,9 @@ extends
             ThermalGeneratingUnit (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("FossilFuel", "FossilFuel", false),
+        Relationship ("ThermalGeneratingUnit", "ThermalGeneratingUnit", false))
 }
 
 /**
@@ -772,6 +791,8 @@ extends
             GeneratingUnit (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("GeneratingUnit", "GeneratingUnit", false))
 }
 
 /**
@@ -840,6 +861,8 @@ extends
             GeneratingUnit (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("GeneratingUnit", "GeneratingUnit", false))
 }
 
 /**
@@ -1099,6 +1122,8 @@ extends
             GenUnitOpSchedule (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("GenUnitOpSchedule", "GenUnitOpSchedule", false))
 }
 
 /**
@@ -1167,6 +1192,8 @@ extends
             GeneratingUnit (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("GeneratingUnit", "GeneratingUnit", false))
 }
 
 /**
@@ -1260,6 +1287,8 @@ extends
             ThermalGeneratingUnit (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ThermalGeneratingUnit", "ThermalGeneratingUnit", false))
 }
 
 /**
@@ -1333,6 +1362,8 @@ extends
             ThermalGeneratingUnit (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ThermalGeneratingUnit", "ThermalGeneratingUnit", false))
 }
 
 /**
@@ -1401,6 +1432,8 @@ extends
             HydroGeneratingUnit (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("HydroGeneratingUnit", "HydroGeneratingUnit", false))
 }
 
 /**
@@ -1482,6 +1515,9 @@ extends
             PenstockLossCurve (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("HydroPowerPlant", "HydroPowerPlant", false),
+        Relationship ("PenstockLossCurve", "PenstockLossCurve", false))
 }
 
 /**
@@ -1600,6 +1636,9 @@ extends
             Reservoir (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("GenSourcePumpDischargeReservoir", "Reservoir", false),
+        Relationship ("Reservoir", "Reservoir", false))
 }
 
 /**
@@ -1697,6 +1736,10 @@ extends
             RotatingMachine (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("HydroPowerPlant", "HydroPowerPlant", false),
+        Relationship ("HydroPumpOpSchedule", "HydroPumpOpSchedule", false),
+        Relationship ("RotatingMachine", "RotatingMachine", false))
 }
 
 /**
@@ -1765,6 +1808,8 @@ extends
             HydroPump (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("HydroPump", "HydroPump", false))
 }
 
 /**
@@ -1838,6 +1883,8 @@ extends
             ThermalGeneratingUnit (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ThermalGeneratingUnit", "ThermalGeneratingUnit", false))
 }
 
 /**
@@ -1906,6 +1953,8 @@ extends
             Reservoir (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Reservoir", "Reservoir", false))
 }
 
 /**
@@ -1974,6 +2023,8 @@ extends
             Reservoir (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Reservoir", "Reservoir", false))
 }
 
 /**
@@ -2036,6 +2087,7 @@ extends
             GeneratingUnit.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2104,6 +2156,8 @@ extends
             HydroGeneratingUnit (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("HydroGeneratingUnit", "HydroGeneratingUnit", false))
 }
 
 /**
@@ -2233,6 +2287,9 @@ extends
             TargetLevelSchedule (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("SpillsFromReservoir", "Reservoir", false),
+        Relationship ("TargetLevelSchedule", "TargetLevelSchedule", false))
 }
 
 /**
@@ -2309,6 +2366,8 @@ extends
             ThermalGeneratingUnit (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ThermalGeneratingUnit", "ThermalGeneratingUnit", false))
 }
 
 /**
@@ -2371,6 +2430,7 @@ extends
             GeneratingUnit.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2442,6 +2502,8 @@ extends
             StartupModel (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("StartupModel", "StartupModel", false))
 }
 
 /**
@@ -2513,6 +2575,8 @@ extends
             StartupModel (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("StartupModel", "StartupModel", false))
 }
 
 /**
@@ -2584,6 +2648,8 @@ extends
             StartupModel (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("StartupModel", "StartupModel", false))
 }
 
 /**
@@ -2717,6 +2783,11 @@ extends
             ThermalGeneratingUnit (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("StartIgnFuelCurve", "StartIgnFuelCurve", false),
+        Relationship ("StartMainFuelCurve", "StartMainFuelCurve", false),
+        Relationship ("StartRampCurve", "StartRampCurve", false),
+        Relationship ("ThermalGeneratingUnit", "ThermalGeneratingUnit", false))
 }
 
 /**
@@ -2783,6 +2854,8 @@ extends
             CogenerationPlant (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("CogenerationPlant", "CogenerationPlant", false))
 }
 
 /**
@@ -2851,6 +2924,8 @@ extends
             HydroGeneratingUnit (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("HydroGeneratingUnit", "HydroGeneratingUnit", false))
 }
 
 /**
@@ -2929,6 +3004,8 @@ extends
             Reservoir (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Reservoir", "Reservoir", false))
 }
 
 /**
@@ -3035,6 +3112,15 @@ extends
             StartupModel (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("CAESPlant", "CAESPlant", false),
+        Relationship ("CogenerationPlant", "CogenerationPlant", false),
+        Relationship ("CombinedCyclePlant", "CombinedCyclePlant", false),
+        Relationship ("HeatInputCurve", "HeatInputCurve", false),
+        Relationship ("HeatRateCurve", "HeatRateCurve", false),
+        Relationship ("IncrementalHeatRateCurve", "IncrementalHeatRateCurve", false),
+        Relationship ("ShutdownCurve", "ShutdownCurve", false),
+        Relationship ("StartupModel", "StartupModel", false))
 }
 
 /**
@@ -3103,6 +3189,7 @@ extends
             windGenUnitType (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 private[ninecode] object _Production

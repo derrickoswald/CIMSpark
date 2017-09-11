@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * Action request against an existing Trade.
@@ -70,6 +71,7 @@ extends
             actionName (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -139,6 +141,7 @@ extends
             toDouble (demandBidMW (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -220,6 +223,8 @@ extends
             MktUserAttribute (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("MktUserAttribute", "MktUserAttribute", false))
 }
 
 /**
@@ -316,6 +321,11 @@ extends
             SchedulingCoordinator (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ActionRequest", "ActionRequest", false),
+        Relationship ("EnergyMarket", "EnergyMarket", false),
+        Relationship ("MarketParticipant", "MarketParticipant", false),
+        Relationship ("SchedulingCoordinator", "SchedulingCoordinator", false))
 }
 
 /**
@@ -392,6 +402,8 @@ extends
             ProductBid (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ProductBid", "ProductBid", false))
 }
 
 /**
@@ -498,6 +510,8 @@ extends
             MarketProduct (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("MarketProduct", "MarketProduct", false))
 }
 
 /**
@@ -564,6 +578,8 @@ extends
             ProductBid (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ProductBid", "ProductBid", false))
 }
 
 /**
@@ -630,6 +646,8 @@ extends
             Bid (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Bid", "Bid", false))
 }
 
 /**
@@ -692,6 +710,7 @@ extends
             Curve.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -783,6 +802,9 @@ extends
             ProductBid (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("BidPriceCurve", "BidPriceCurve", false),
+        Relationship ("ProductBid", "ProductBid", false))
 }
 
 /**
@@ -924,6 +946,12 @@ extends
             TransmissionContractRight (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("AdjacentCASet", "AdjacentCASet", false),
+        Relationship ("HostControlArea", "HostControlArea", false),
+        Relationship ("ProductBid", "ProductBid", false),
+        Relationship ("SubControlArea", "SubControlArea", false),
+        Relationship ("TransmissionContractRight", "ContractRight", false))
 }
 
 /**
@@ -988,6 +1016,7 @@ extends
             IdentifiedObject.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1094,6 +1123,8 @@ extends
             BillDeterminants (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("BillDeterminants", "BillDeterminant", true))
 }
 
 /**
@@ -1182,6 +1213,9 @@ extends
             MktUserAttribute (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ChargeGroupParent", "ChargeGroup", false),
+        Relationship ("MktUserAttribute", "MktUserAttribute", true))
 }
 
 /**
@@ -1296,6 +1330,10 @@ extends
             MktUserAttribute (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ChargeComponents", "ChargeComponent", true),
+        Relationship ("ChargeGroup", "ChargeGroup", true),
+        Relationship ("MktUserAttribute", "MktUserAttribute", true))
 }
 
 /**
@@ -1413,6 +1451,8 @@ extends
             RegisteredResource (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("RegisteredResource", "RegisteredResource", false))
 }
 
 /**
@@ -1475,6 +1515,7 @@ extends
             BasicElement.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1652,6 +1693,12 @@ extends
             StartUpTimeCurve (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("BidSet", "BidSet", false),
+        Relationship ("NotificationTimeCurve", "NotificationTimeCurve", false),
+        Relationship ("RegisteredGenerator", "RegisteredGenerator", false),
+        Relationship ("StartUpCostCurve", "StartUpCostCurve", false),
+        Relationship ("StartUpTimeCurve", "StartUpTimeCurve", false))
 }
 
 /**
@@ -1720,6 +1767,7 @@ extends
             toBoolean (value (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1791,6 +1839,8 @@ extends
             RegisteredInterTie (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("RegisteredInterTie", "RegisteredInterTie", false))
 }
 
 /**
@@ -1884,6 +1934,8 @@ extends
             RegisteredInterTie (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("RegisteredInterTie", "RegisteredInterTie", false))
 }
 
 /**
@@ -2028,6 +2080,9 @@ extends
             RegisteredLoad (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("AreaLoadBid", "AreaLoadBid", false),
+        Relationship ("RegisteredLoad", "RegisteredLoad", false))
 }
 
 /**
@@ -2115,6 +2170,8 @@ extends
             RegisteredResource (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("RegisteredResource", "RegisteredResource", false))
 }
 
 /**
@@ -2183,6 +2240,8 @@ extends
             LoadBid (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("LoadBid", "LoadBid", false))
 }
 
 /**
@@ -2292,6 +2351,8 @@ extends
             ChargeType (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ChargeType", "ChargeType", true))
 }
 
 /**
@@ -2373,6 +2434,8 @@ extends
             MajorChargeGroup (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("MajorChargeGroup", "MajorChargeGroup", false))
 }
 
 /**
@@ -2437,6 +2500,7 @@ extends
             Curve.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2505,6 +2569,7 @@ extends
             toBoolean (value (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2576,6 +2641,9 @@ extends
             MarketProduct (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Bid", "Bid", false),
+        Relationship ("MarketProduct", "MarketProduct", false))
 }
 
 /**
@@ -2644,6 +2712,7 @@ extends
             toDouble (value (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2712,6 +2781,7 @@ extends
             toDouble (value (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2780,6 +2850,7 @@ extends
             toDouble (value (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2872,6 +2943,10 @@ extends
             LoadBid (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("GeneratingBid", "GeneratingBid", false),
+        Relationship ("InterTieBid", "InterTieBid", false),
+        Relationship ("LoadBid", "LoadBid", false))
 }
 
 /**
@@ -3030,6 +3105,8 @@ extends
             BidError (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("BidError", "BidError", true))
 }
 
 /**
@@ -3098,6 +3175,8 @@ extends
             RegisteredGenerators (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("RegisteredGenerators", "RegisteredGenerator", true))
 }
 
 /**
@@ -3166,6 +3245,8 @@ extends
             RegisteredGenerator (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("RegisteredGenerator", "RegisteredGenerator", false))
 }
 
 /**
@@ -3344,6 +3425,15 @@ extends
             TradeProduct (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ActionRequest", "ActionRequest", false),
+        Relationship ("From_SC", "SchedulingCoordinator", false),
+        Relationship ("Pnode", "Pnode", false),
+        Relationship ("RegisteredGenerator", "RegisteredGenerator", false),
+        Relationship ("To_SC", "SchedulingCoordinator", false),
+        Relationship ("TradeProduct", "TradeProduct", false),
+        Relationship ("submitFromSchedulingCoordinator", "SchedulingCoordinator", false),
+        Relationship ("submitToSchedulingCoordinator", "SchedulingCoordinator", false))
 }
 
 /**
@@ -3440,6 +3530,8 @@ extends
             Trade (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Trade", "Trade", false))
 }
 
 /**
@@ -3528,6 +3620,7 @@ extends
             tradeType (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -3620,6 +3713,10 @@ extends
             TransmissionReservation (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Delivery_Pnode", "Pnode", false),
+        Relationship ("Receipt_Pnode", "Pnode", false),
+        Relationship ("TransmissionReservation", "TransmissionReservation", false))
 }
 
 private[ninecode] object _ParticipantInterfaces

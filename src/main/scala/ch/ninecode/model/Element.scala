@@ -2,6 +2,7 @@ package ch.ninecode.model
 
 import java.util.regex.Pattern
 
+import ch.ninecode.cim.Relationship
 import org.apache.spark.sql.Row
 import org.apache.spark.sql.types.SQLUserDefinedType
 
@@ -174,6 +175,7 @@ object BasicElement
     {
         new BasicElement (null, mRID (context))
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -235,4 +237,5 @@ extends
             context.start,
             context.end)
     }
+    val relations: List[Relationship] = List ()
 }

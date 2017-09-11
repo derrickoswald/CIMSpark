@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * Models Market clearing results.
@@ -82,6 +83,7 @@ extends
             updateUser (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -185,6 +187,9 @@ extends
             RegisteredResource (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("AllocationResult", "AllocationResult", false),
+        Relationship ("RegisteredResource", "RegisteredResource", false))
 }
 
 /**
@@ -266,6 +271,7 @@ extends
             updateUser (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -337,6 +343,9 @@ extends
             RegisteredLoad (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("RegisteredGenerator", "RegisteredGenerator", false),
+        Relationship ("RegisteredLoad", "RegisteredLoad", false))
 }
 
 /**
@@ -453,6 +462,10 @@ extends
             TenMinAuxillaryData (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("AuxillaryCost", "AuxiliaryCost", false),
+        Relationship ("FiveMinAuxillaryData", "FiveMinAuxiliaryData", false),
+        Relationship ("TenMinAuxillaryData", "TenMinAuxiliaryData", false))
 }
 
 /**
@@ -529,6 +542,7 @@ extends
             updateUser (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -610,6 +624,9 @@ extends
             RegisteredResource (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ExpectedEnergy", "ExpectedEnergy", false),
+        Relationship ("RegisteredResource", "RegisteredResource", false))
 }
 
 /**
@@ -686,6 +703,7 @@ extends
             updateUser (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -762,6 +780,7 @@ extends
             updateUser (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -843,6 +862,7 @@ extends
             updateUser (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -920,6 +940,9 @@ extends
             TradingHubPrice (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("AggregatedPnode", "AggregatedPnode", false),
+        Relationship ("TradingHubPrice", "TradingHubPrice", false))
 }
 
 private[ninecode] object _MarketQualitySystem

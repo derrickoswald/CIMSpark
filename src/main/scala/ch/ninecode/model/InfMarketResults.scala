@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * Model of market clearing related to results at the inter-ties.
@@ -67,6 +68,7 @@ extends
             MarketFactors.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -149,6 +151,9 @@ extends
             InterTieClearing (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Flowgate", "Flowgate", false),
+        Relationship ("InterTieClearing", "InterTieClearing", false))
 }
 
 /**
@@ -232,6 +237,7 @@ extends
             postedDate (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -307,6 +313,7 @@ extends
             toDouble (shadowPrice (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 private[ninecode] object _InfMarketResults

@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * Information that generally describes the Bill of Material Structure and its contents for a utility.
@@ -77,6 +78,8 @@ extends
             Design (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Design", "Design", false))
 }
 
 /**
@@ -150,6 +153,7 @@ extends
             bankABA (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -231,6 +235,10 @@ extends
             TypeAsset (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("DesignLocation", "DesignLocation", false),
+        Relationship ("ErpBOM", "ErpBOM", false),
+        Relationship ("TypeAsset", "GenericAssetModelOrMaterial", false))
 }
 
 /**
@@ -300,6 +308,7 @@ extends
             ErpDocument.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -369,6 +378,7 @@ extends
             ErpIdentifiedObject.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -438,6 +448,7 @@ extends
             Document.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -505,6 +516,7 @@ extends
             ErpDocument.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -574,6 +586,7 @@ extends
             IdentifiedObject.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -652,6 +665,8 @@ extends
             Asset (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Asset", "Asset", false))
 }
 
 /**
@@ -730,6 +745,8 @@ extends
             AssetModel (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("AssetModel", "AssetModel", false))
 }
 
 /**
@@ -849,6 +866,8 @@ extends
             CustomerAccount (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("CustomerAccount", "CustomerAccount", false))
 }
 
 /**
@@ -1000,6 +1019,15 @@ extends
             UserAttributes (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ContainerErpInvoiceLineItem", "ErpInvoiceLineItem", false),
+        Relationship ("ErpInvoice", "ErpInvoice", false),
+        Relationship ("ErpPayableLineItem", "ErpPayableLineItem", false),
+        Relationship ("ErpPayments", "ErpPayment", true),
+        Relationship ("ErpQuoteLineItem", "ErpQuoteLineItem", false),
+        Relationship ("ErpRecDelvLineItem", "ErpRecDelvLineItem", false),
+        Relationship ("ErpRecLineItem", "ErpRecLineItem", false),
+        Relationship ("UserAttributes", "UserAttribute", true))
 }
 
 /**
@@ -1081,6 +1109,9 @@ extends
             TypeMaterial (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("TypeAsset", "GenericAssetModelOrMaterial", false),
+        Relationship ("TypeMaterial", "TypeMaterial", false))
 }
 
 /**
@@ -1159,6 +1190,8 @@ extends
             Asset (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Asset", "Asset", false))
 }
 
 /**
@@ -1228,6 +1261,7 @@ extends
             ErpDocument.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1339,6 +1373,10 @@ extends
             ErpLedgerEntry (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ErpInvoiceLineItem", "ErpInvoiceLineItem", false),
+        Relationship ("ErpJournal", "ErpJournal", false),
+        Relationship ("ErpLedgerEntry", "ErpLedgerEntry", false))
 }
 
 /**
@@ -1420,6 +1458,9 @@ extends
             ErpLedgerBudget (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ErpLedBudLineItem_attr", "ErpLedgerEntry", false),
+        Relationship ("ErpLedgerBudget", "ErpLedgerBudget", false))
 }
 
 /**
@@ -1489,6 +1530,7 @@ extends
             ErpDocument.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1558,6 +1600,7 @@ extends
             ErpDocument.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1674,6 +1717,11 @@ extends
             UserAttributes (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ErpJounalEntry", "ErpJournalEntry", false),
+        Relationship ("ErpLedger", "ErpLedger", false),
+        Relationship ("ErpLedgerEntry_attr", "ErpLedBudLineItem", false),
+        Relationship ("UserAttributes", "UserAttribute", true))
 }
 
 /**
@@ -1760,6 +1808,11 @@ extends
             ErpReqLineItem (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("AssetModelCatalogueItem", "AssetModelCatalogueItem", false),
+        Relationship ("ErpPurchaseOrder", "ErpPurchaseOrder", false),
+        Relationship ("ErpRecDelLineItem", "ErpRecDelvLineItem", false),
+        Relationship ("ErpReqLineItem", "ErpReqLineItem", false))
 }
 
 /**
@@ -1829,6 +1882,7 @@ extends
             ErpDocument.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1920,6 +1974,11 @@ extends
             ErpPayments (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ErpInvoiceLineItem", "ErpInvoiceLineItem", false),
+        Relationship ("ErpJournalEntries", "ErpJournalEntry", true),
+        Relationship ("ErpPayable", "ErpPayable", false),
+        Relationship ("ErpPayments", "ErpPayment", true))
 }
 
 /**
@@ -1993,6 +2052,7 @@ extends
             termsPayment (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2064,6 +2124,7 @@ extends
             status (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2133,6 +2194,7 @@ extends
             ErpDocument.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2202,6 +2264,7 @@ extends
             ErpDocument.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2271,6 +2334,7 @@ extends
             ErpDocument.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2368,6 +2432,12 @@ extends
             ErpReqLineItem (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("AssetModelCatalogueItem", "AssetModelCatalogueItem", false),
+        Relationship ("Design", "Design", false),
+        Relationship ("ErpInvoiceLineItem", "ErpInvoiceLineItem", false),
+        Relationship ("ErpQuote", "ErpQuote", false),
+        Relationship ("ErpReqLineItem", "ErpReqLineItem", false))
 }
 
 /**
@@ -2456,6 +2526,10 @@ extends
             ErpReceiveDelivery (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ErpInvoiceLineItem", "ErpInvoiceLineItem", false),
+        Relationship ("ErpPOLineItem", "ErpPOLineItem", false),
+        Relationship ("ErpReceiveDelivery", "ErpReceiveDelivery", false))
 }
 
 /**
@@ -2547,6 +2621,11 @@ extends
             ErpReceivable (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ErpInvoiceLineItem", "ErpInvoiceLineItem", false),
+        Relationship ("ErpJournalEntries", "ErpJournalEntry", true),
+        Relationship ("ErpPayments", "ErpPayment", true),
+        Relationship ("ErpReceivable", "ErpReceivable", false))
 }
 
 /**
@@ -2616,6 +2695,7 @@ extends
             ErpDocument.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2685,6 +2765,7 @@ extends
             ErpDocument.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2801,6 +2882,12 @@ extends
             TypeMaterial (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ErpPOLineItem", "ErpPOLineItem", false),
+        Relationship ("ErpQuoteLineItem", "ErpQuoteLineItem", false),
+        Relationship ("ErpRequisition", "ErpRequisition", false),
+        Relationship ("TypeAsset", "GenericAssetModelOrMaterial", false),
+        Relationship ("TypeMaterial", "TypeMaterial", false))
 }
 
 /**
@@ -2870,6 +2957,7 @@ extends
             ErpDocument.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2939,6 +3027,7 @@ extends
             ErpDocument.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -3017,6 +3106,8 @@ extends
             LandProperty (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("LandProperty", "LandProperty", false))
 }
 
 /**
@@ -3098,6 +3189,9 @@ extends
             ErpTimeSheet (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ErpProjectAccounting", "ErpProjectAccounting", false),
+        Relationship ("ErpTimeSheet", "ErpTimeSheet", false))
 }
 
 /**
@@ -3167,6 +3261,7 @@ extends
             ErpDocument.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 private[ninecode] object _InfERPSupport

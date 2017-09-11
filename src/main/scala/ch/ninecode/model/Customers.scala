@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * Organisation receiving services from service supplier.
@@ -106,6 +107,8 @@ extends
             Works (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Works", "Work", true))
 }
 
 /**
@@ -184,6 +187,8 @@ extends
             Customer (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Customer", "Customer", false))
 }
 
 /**
@@ -287,6 +292,14 @@ extends
             StandardIndustryCode (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Customer", "Customer", false),
+        Relationship ("CustomerAccount", "CustomerAccount", false),
+        Relationship ("PricingStructures", "PricingStructure", true),
+        Relationship ("ServiceCategory", "ServiceCategory", false),
+        Relationship ("ServiceLocations", "ServiceLocation", true),
+        Relationship ("ServiceSupplier", "ServiceSupplier", false),
+        Relationship ("StandardIndustryCode", "StandardIndustryCode", false))
 }
 
 /**
@@ -383,6 +396,9 @@ extends
             Incident (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Customer", "Customer", false),
+        Relationship ("Incident", "Incident", false))
 }
 
 /**
@@ -456,6 +472,9 @@ extends
             TroubleTicket (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Incident", "Incident", false),
+        Relationship ("TroubleTicket", "TroubleTicket", false))
 }
 
 /**
@@ -565,6 +584,10 @@ extends
             UsagePoints (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ServiceCategory", "ServiceCategory", false),
+        Relationship ("Tariffs", "Tariff", true),
+        Relationship ("UsagePoints", "UsagePoint", true))
 }
 
 /**
@@ -631,6 +654,7 @@ extends
             kind (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -710,6 +734,7 @@ extends
             siteAccessProblem (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -788,6 +813,8 @@ extends
             TariffProfiles (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("TariffProfiles", "TariffProfile", true))
 }
 
 /**
@@ -879,6 +906,10 @@ extends
             Notification (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Customer", "Customer", false),
+        Relationship ("Incident", "Incident", false),
+        Relationship ("Notification", "CustomerNotification", false))
 }
 
 private[ninecode] object _Customers

@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * Limit on active power flow.
@@ -70,6 +71,7 @@ extends
             toDouble (value (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -136,6 +138,7 @@ extends
             toDouble (value (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -229,6 +232,7 @@ extends
             toBoolean (monitorReactivePower (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -306,6 +310,9 @@ extends
             Terminal (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("BranchGroup", "BranchGroup", false),
+        Relationship ("Terminal", "Terminal", false))
 }
 
 /**
@@ -372,6 +379,7 @@ extends
             toDouble (value (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -451,6 +459,10 @@ extends
             OperationalLimitType (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("LimitDependencyModel", "LimitDependency", true),
+        Relationship ("OperationalLimitSet", "OperationalLimitSet", false),
+        Relationship ("OperationalLimitType", "OperationalLimitType", false))
 }
 
 /**
@@ -524,6 +536,9 @@ extends
             Terminal (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Equipment", "Equipment", false),
+        Relationship ("Terminal", "ACDCTerminal", false))
 }
 
 /**
@@ -601,6 +616,8 @@ extends
             TargetOperationalLimitmTypeScaling (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("TargetOperationalLimitmTypeScaling", "OperatonalLimitTypeScaling", false))
 }
 
 /**
@@ -668,6 +685,7 @@ extends
             toDouble (value (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 private[ninecode] object _OperationalLimits

@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * Common representation for work and work tasks.
@@ -85,6 +86,8 @@ extends
             WorkLocation (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("WorkLocation", "WorkLocation", false))
 }
 
 /**
@@ -166,6 +169,7 @@ extends
             subdivision (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -244,6 +248,9 @@ extends
             WorkTask (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("TypeMaterial", "TypeMaterial", false),
+        Relationship ("WorkTask", "WorkTask", false))
 }
 
 /**
@@ -310,6 +317,7 @@ extends
             lastCalibrationDate (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -387,6 +395,7 @@ extends
             usageKind (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -473,6 +482,11 @@ extends
             WorkBillingInfo (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("BusinessCase", "BusinessCase", false),
+        Relationship ("ErpProjectAccounting", "ErpProjectAccounting", false),
+        Relationship ("Project", "Project", false),
+        Relationship ("WorkBillingInfo", "WorkBillingInfo", false))
 }
 
 /**
@@ -539,6 +553,8 @@ extends
             Crew (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Crew", "Crew", false))
 }
 
 /**
@@ -605,6 +621,8 @@ extends
             OneCallRequest (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("OneCallRequest", "OneCallRequest", false))
 }
 
 /**
@@ -700,6 +718,12 @@ extends
             Work (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Assets", "Asset", true),
+        Relationship ("Crews", "Crew", true),
+        Relationship ("OldAsset", "Asset", false),
+        Relationship ("SwitchingPlan", "SwitchingPlan", false),
+        Relationship ("Work", "Work", false))
 }
 
 /**
@@ -771,6 +795,8 @@ extends
             BaseWork (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("BaseWork", "BaseWork", false))
 }
 
 private[ninecode] object _Work

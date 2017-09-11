@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * The Area Control Error tariff type that is applied or used.
@@ -80,6 +81,9 @@ extends
             Unit (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("MarketDocument", "MarketDocument", true),
+        Relationship ("Unit", "Unit_", true))
 }
 
 /**
@@ -161,6 +165,8 @@ extends
             TimeSeries (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("TimeSeries", "TimeSeries", true))
 }
 
 /**
@@ -257,6 +263,8 @@ extends
             TimeSeries (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("TimeSeries", "TimeSeries", true))
 }
 
 /**
@@ -349,6 +357,7 @@ extends
             toDouble (stepIncrementQuantity (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -420,6 +429,7 @@ extends
             time (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -482,6 +492,7 @@ extends
             IdentifiedObject.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -548,6 +559,7 @@ extends
             direction (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -610,6 +622,7 @@ extends
             MarketDocument.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -691,6 +704,11 @@ extends
             Period (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("AttributeInstanceComponent", "AttributeInstanceComponent", true),
+        Relationship ("Domain", "Domain", true),
+        Relationship ("Period", "Period", true),
+        Relationship ("selfMarketDocument", "MarketDocument", true))
 }
 
 /**
@@ -753,6 +771,7 @@ extends
             IdentifiedObject.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -824,6 +843,8 @@ extends
             TimeSeries (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("TimeSeries", "TimeSeries", true))
 }
 
 /**
@@ -895,6 +916,8 @@ extends
             TimeSeries (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("TimeSeries", "TimeSeries", true))
 }
 
 /**
@@ -971,6 +994,8 @@ extends
             Reason (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Reason", "Reason", true))
 }
 
 /**
@@ -1068,6 +1093,10 @@ extends
             TimeSeries (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("AceTariffType", "AceTariffType", true),
+        Relationship ("Period", "Period", false),
+        Relationship ("TimeSeries", "TimeSeries", true))
 }
 
 /**
@@ -1150,6 +1179,8 @@ extends
             Point (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Point", "Point", false))
 }
 
 /**
@@ -1227,6 +1258,8 @@ extends
             MarketDocument (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("MarketDocument", "MarketDocument", true))
 }
 
 /**
@@ -1308,6 +1341,9 @@ extends
             Point (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("MarketDocument", "MarketDocument", true),
+        Relationship ("Point", "Point", true))
 }
 
 /**
@@ -1439,6 +1475,15 @@ extends
             Reason (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("DateAndOrTime", "DateAndOrTime", true),
+        Relationship ("Domain", "Domain", true),
+        Relationship ("FlowDirection", "FlowDirection", true),
+        Relationship ("MarketDocument", "MarketDocument", true),
+        Relationship ("MarketEvaluationPoint", "MarketEvaluationPoint", true),
+        Relationship ("MarketParticipant", "MarketParticipant", true),
+        Relationship ("Period", "Period", true),
+        Relationship ("Reason", "Reason", true))
 }
 
 /**
@@ -1510,6 +1555,8 @@ extends
             TimeSeries (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("TimeSeries", "TimeSeries", true))
 }
 
 private[ninecode] object _MarketManagement

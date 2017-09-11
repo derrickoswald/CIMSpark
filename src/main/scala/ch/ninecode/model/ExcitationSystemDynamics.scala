@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * Modified IEEE AC1A alternator-supplied rectifier excitation system with different rate feedback source.
@@ -199,6 +200,7 @@ extends
             toDouble (vrmin (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -432,6 +434,7 @@ extends
             toDouble (vrmin (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -649,6 +652,7 @@ extends
             toDouble (vlv (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -764,6 +768,7 @@ extends
             toDouble (vrmin (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -933,6 +938,7 @@ extends
             toDouble (vrmin (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1132,6 +1138,7 @@ extends
             toDouble (vrmin (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1361,6 +1368,7 @@ extends
             toBoolean (vtmult (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1514,6 +1522,7 @@ extends
             toDouble (vrmx (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1649,6 +1658,7 @@ extends
             toDouble (vrmx (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1790,6 +1800,7 @@ extends
             toDouble (vrmx (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1925,6 +1936,7 @@ extends
             toDouble (vrmx (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2074,6 +2086,7 @@ extends
             toDouble (vrmx (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2153,6 +2166,7 @@ extends
             toDouble (ta (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2340,6 +2354,7 @@ extends
             toDouble (vmin5 (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2471,6 +2486,7 @@ extends
             toDouble (xe (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2582,6 +2598,7 @@ extends
             toDouble (vrmin (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2751,6 +2768,7 @@ extends
             toDouble (vrmin (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2924,6 +2942,7 @@ extends
             toBoolean (vtlim (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -3085,6 +3104,7 @@ extends
             toDouble (vrmin (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -3234,6 +3254,7 @@ extends
             toDouble (vrmin (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -3387,6 +3408,7 @@ extends
             toDouble (xe (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -3612,6 +3634,7 @@ extends
             toDouble (xp (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -3745,6 +3768,7 @@ extends
             toDouble (tr (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -3916,6 +3940,7 @@ extends
             toDouble (vrmin (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -4105,6 +4130,7 @@ extends
             toDouble (vrmin (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -4294,6 +4320,7 @@ extends
             toDouble (vfemax (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -4411,6 +4438,7 @@ extends
             toDouble (vrmin (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -4558,6 +4586,7 @@ extends
             toDouble (vrmin (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -4753,6 +4782,7 @@ extends
             toDouble (vrmin (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -4972,6 +5002,7 @@ extends
             toDouble (vrmin (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -5143,6 +5174,7 @@ extends
             toDouble (vrmin (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -5304,6 +5336,7 @@ extends
             toDouble (vrmin (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -5465,6 +5498,7 @@ extends
             toDouble (vrmin (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -5594,6 +5628,7 @@ extends
             toDouble (vrmin (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -5775,6 +5810,7 @@ extends
             toDouble (vrmin (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -5954,6 +5990,7 @@ extends
             toDouble (vrmin (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -6097,6 +6134,7 @@ extends
             toDouble (vrmin (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -6280,6 +6318,7 @@ extends
             toDouble (xl (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -6439,6 +6478,7 @@ extends
             toDouble (xl (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -6604,6 +6644,7 @@ extends
             toDouble (vrmin (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -6751,6 +6792,7 @@ extends
             toDouble (vrmin (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -6904,6 +6946,7 @@ extends
             toDouble (vrmin (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -7060,6 +7103,7 @@ extends
             toDouble (vrmin (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -7261,6 +7305,7 @@ extends
             toDouble (vrmin (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -7540,6 +7585,7 @@ extends
             toDouble (xc (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -7650,6 +7696,7 @@ extends
             toDouble (te (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -7771,6 +7818,7 @@ extends
             toDouble (te (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -8026,6 +8074,7 @@ extends
             toDouble (yp (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -8195,6 +8244,7 @@ extends
             toDouble (xe (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -8348,6 +8398,7 @@ extends
             toDouble (vrmin (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -8529,6 +8580,7 @@ extends
             toDouble (xl (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -8708,6 +8760,7 @@ extends
             toDouble (xl (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -8913,6 +8966,7 @@ extends
             toDouble (xc (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -9070,6 +9124,7 @@ extends
             toDouble (vrmin (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -9171,6 +9226,15 @@ extends
             VoltageCompensatorDynamics (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("DiscontinuousExcitationControlDynamics", "DiscontinuousExcitationControlDynamics", false),
+        Relationship ("OverexcitationLimiterDynamics", "OverexcitationLimiterDynamics", false),
+        Relationship ("PFVArControllerType1Dynamics", "PFVArControllerType1Dynamics", false),
+        Relationship ("PFVArControllerType2Dynamics", "PFVArControllerType2Dynamics", false),
+        Relationship ("PowerSystemStabilizerDynamics", "PowerSystemStabilizerDynamics", false),
+        Relationship ("SynchronousMachineDynamics", "SynchronousMachineDynamics", false),
+        Relationship ("UnderexcitationLimiterDynamics", "UnderexcitationLimiterDynamics", false),
+        Relationship ("VoltageCompensatorDynamics", "VoltageCompensatorDynamics", false))
 }
 
 private[ninecode] object _ExcitationSystemDynamics

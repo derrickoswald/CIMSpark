@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * Accumulator represents an accumulated (counted) Measurement, e.g. an energy value.
@@ -76,6 +77,8 @@ extends
             LimitSets (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("LimitSets", "AccumulatorLimitSet", true))
 }
 
 /**
@@ -148,6 +151,8 @@ extends
             LimitSet (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("LimitSet", "AccumulatorLimitSet", false))
 }
 
 /**
@@ -210,6 +215,7 @@ extends
             LimitSet.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -276,6 +282,8 @@ extends
             AccumulatorValue (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("AccumulatorValue", "AccumulatorValue", false))
 }
 
 /**
@@ -353,6 +361,9 @@ extends
             AccumulatorReset (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Accumulator", "Accumulator", false),
+        Relationship ("AccumulatorReset", "AccumulatorReset", false))
 }
 
 /**
@@ -441,6 +452,8 @@ extends
             LimitSets (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("LimitSets", "AnalogLimitSet", true))
 }
 
 /**
@@ -519,6 +532,8 @@ extends
             AnalogValue (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("AnalogValue", "AnalogValue", false))
 }
 
 /**
@@ -590,6 +605,8 @@ extends
             LimitSet (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("LimitSet", "AnalogLimitSet", false))
 }
 
 /**
@@ -652,6 +669,7 @@ extends
             LimitSet.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -728,6 +746,9 @@ extends
             AnalogControl (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Analog", "Analog", false),
+        Relationship ("AnalogControl", "AnalogControl", false))
 }
 
 /**
@@ -809,6 +830,9 @@ extends
             ValueAliasSet (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("DiscreteValue", "DiscreteValue", false),
+        Relationship ("ValueAliasSet", "ValueAliasSet", false))
 }
 
 /**
@@ -908,6 +932,9 @@ extends
             RemoteControl (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("PowerSystemResource", "PowerSystemResource", false),
+        Relationship ("RemoteControl", "RemoteControl", false))
 }
 
 /**
@@ -991,6 +1018,8 @@ extends
             ValueAliasSet (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ValueAliasSet", "ValueAliasSet", false))
 }
 
 /**
@@ -1051,6 +1080,7 @@ extends
             Command.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1127,6 +1157,9 @@ extends
             Discrete (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Command", "Command", false),
+        Relationship ("Discrete", "Discrete", false))
 }
 
 /**
@@ -1191,6 +1224,7 @@ extends
             IdentifiedObject.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1259,6 +1293,7 @@ extends
             toBoolean (isPercentageLimits (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1359,6 +1394,10 @@ extends
             Terminal (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Asset", "Asset", false),
+        Relationship ("PowerSystemResource", "PowerSystemResource", false),
+        Relationship ("Terminal", "ACDCTerminal", false))
 }
 
 /**
@@ -1458,6 +1497,12 @@ extends
             RemoteSource (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ErpPerson", "OldPerson", false),
+        Relationship ("MeasurementValueQuality", "MeasurementValueQuality", false),
+        Relationship ("MeasurementValueSource", "MeasurementValueSource", false),
+        Relationship ("RemoteSource", "RemoteSource", false),
+        Relationship ("attr", "ICCPIndicationPoint", false))
 }
 
 /**
@@ -1526,6 +1571,8 @@ extends
             MeasurementValue (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("MeasurementValue", "MeasurementValue", false))
 }
 
 /**
@@ -1590,6 +1637,7 @@ extends
             IdentifiedObject.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1715,6 +1763,7 @@ extends
             validity (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1781,6 +1830,8 @@ extends
             ValueAliasSet (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ValueAliasSet", "ValueAliasSet", false))
 }
 
 /**
@@ -1852,6 +1903,7 @@ extends
             toDouble (value (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1914,6 +1966,7 @@ extends
             Measurement.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1985,6 +2038,8 @@ extends
             StringMeasurement (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("StringMeasurement", "StringMeasurement", false))
 }
 
 /**
@@ -2049,6 +2104,7 @@ extends
             IdentifiedObject.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -2120,6 +2176,8 @@ extends
             ValueAliasSet (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ValueAliasSet", "ValueAliasSet", false))
 }
 
 private[ninecode] object _Meas

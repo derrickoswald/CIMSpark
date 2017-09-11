@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * A roll up of invoice line items.
@@ -113,6 +114,7 @@ extends
             transferType (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -234,6 +236,10 @@ extends
             Settlement (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ContainerMarketInvoiceLineItem", "MarketInvoiceLineItem", false),
+        Relationship ("MarketInvoice", "MarketInvoice", false),
+        Relationship ("Settlement", "Settlement", true))
 }
 
 /**
@@ -298,6 +304,7 @@ extends
             BasicElement.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -399,6 +406,9 @@ extends
             Settlement (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("MarketLedger", "MarketLedger", false),
+        Relationship ("Settlement", "Settlement", true))
 }
 
 /**
@@ -461,6 +471,7 @@ extends
             ActivityRecord.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -547,6 +558,10 @@ extends
             SysLoadDistribuFactor (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("IndividualPnode", "IndividualPnode", false),
+        Relationship ("RTO", "RTO", false),
+        Relationship ("SysLoadDistribuFactor", "SysLoadDistributionFactor", false))
 }
 
 /**
@@ -613,6 +628,8 @@ extends
             RegisteredLoad (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("RegisteredLoad", "RegisteredLoad", false))
 }
 
 /**
@@ -679,6 +696,8 @@ extends
             RegisteredGenerator (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("RegisteredGenerator", "RegisteredGenerator", false))
 }
 
 /**
@@ -745,6 +764,8 @@ extends
             TransmissionRightOfWay (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("TransmissionRightOfWay", "TransmissionRightOfWay", false))
 }
 
 /**
@@ -807,6 +828,7 @@ extends
             LoadArea.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -883,6 +905,10 @@ extends
             Pnode (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ByTiePoint", "TiePoint", false),
+        Relationship ("ForTiePoint", "TiePoint", false),
+        Relationship ("Pnode", "Pnode", false))
 }
 
 /**
@@ -984,6 +1010,8 @@ extends
             MarketPerson (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("MarketPerson", "MarketPerson", true))
 }
 
 /**
@@ -1055,6 +1083,9 @@ extends
             EndBFlow (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("EndAFlow", "BranchEndFlow", false),
+        Relationship ("EndBFlow", "BranchEndFlow", false))
 }
 
 /**
@@ -1131,6 +1162,8 @@ extends
             Flowgate (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Flowgate", "Flowgate", false))
 }
 
 /**
@@ -1193,6 +1226,7 @@ extends
             UserAttribute.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 private[ninecode] object _MarketOpCommon

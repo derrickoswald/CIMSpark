@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * A unit with valves for three phases, together with unit control equipment, essential protective and switching devices, DC storage capacitors, phase reactors and auxiliaries, if any, used for conversion.
@@ -174,6 +175,8 @@ extends
             PccTerminal (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("PccTerminal", "Terminal", false))
 }
 
 /**
@@ -247,6 +250,8 @@ extends
             DCConductingEquipment (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("DCConductingEquipment", "ACDCConverter", false))
 }
 
 /**
@@ -391,6 +396,7 @@ extends
             toDouble (targetIdc (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -465,6 +471,9 @@ extends
             DCTopologicalNode (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("DCNode", "DCNode", false),
+        Relationship ("DCTopologicalNode", "DCTopologicalNode", false))
 }
 
 /**
@@ -527,6 +536,7 @@ extends
             DCSwitch.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -589,6 +599,7 @@ extends
             DCConductingEquipment.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -653,6 +664,7 @@ extends
             DCConductingEquipment.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -715,6 +727,7 @@ extends
             Equipment.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -786,6 +799,8 @@ extends
             Substation (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Substation", "Substation", false))
 }
 
 /**
@@ -848,6 +863,7 @@ extends
             DCSwitch.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -912,6 +928,7 @@ extends
             EquipmentContainer.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -983,6 +1000,7 @@ extends
             toDouble (r (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1049,6 +1067,8 @@ extends
             Region (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Region", "SubGeographicalRegion", false))
 }
 
 /**
@@ -1137,6 +1157,8 @@ extends
             PerLengthParameter (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("PerLengthParameter", "PerLengthDCLineParameter", false))
 }
 
 /**
@@ -1209,6 +1231,9 @@ extends
             DCTopologicalNode (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("DCEquipmentContainer", "DCEquipmentContainer", false),
+        Relationship ("DCTopologicalNode", "DCTopologicalNode", false))
 }
 
 /**
@@ -1288,6 +1313,7 @@ extends
             toDouble (resistance (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1367,6 +1393,7 @@ extends
             toDouble (resistance (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1429,6 +1456,7 @@ extends
             DCConductingEquipment.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1495,6 +1523,8 @@ extends
             DCConductingEquipment (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("DCConductingEquipment", "DCConductingEquipment", false))
 }
 
 /**
@@ -1559,6 +1589,7 @@ extends
             IdentifiedObject.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1630,6 +1661,7 @@ extends
             toDouble (resistance (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1692,6 +1724,7 @@ extends
             Curve.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1818,6 +1851,8 @@ extends
             CapabilityCurve (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("CapabilityCurve", "VsCapabilityCurve", false))
 }
 
 private[ninecode] object _DC

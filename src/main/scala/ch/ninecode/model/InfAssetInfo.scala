@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * Catalogue of available types of products and materials that are used to build or install, maintain or operate an Asset.
@@ -71,6 +72,7 @@ extends
             status (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -149,6 +151,9 @@ extends
             AssetModelCatalogue (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("AssetModel", "ProductAssetModel", false),
+        Relationship ("AssetModelCatalogue", "AssetModelCatalogue", false))
 }
 
 /**
@@ -214,6 +219,7 @@ extends
             toDouble (phaseTrip (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -319,6 +325,7 @@ extends
             toInteger (switchStateCount (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -459,6 +466,7 @@ extends
             usage (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -524,6 +532,7 @@ extends
             resetKind (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -620,6 +629,7 @@ extends
             toDouble (withstandCurrent (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -694,6 +704,7 @@ extends
             windingInsulationKind (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -776,6 +787,7 @@ extends
             oilPreservationKind (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -871,6 +883,7 @@ extends
             tertiaryRatio (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -941,6 +954,7 @@ extends
             toDouble (phaseTrip (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1026,6 +1040,7 @@ extends
             toInteger (recloseLockoutCount (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -1134,6 +1149,7 @@ extends
             toDouble (switchingImpulseDischargeVoltage (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 private[ninecode] object _InfAssetInfo

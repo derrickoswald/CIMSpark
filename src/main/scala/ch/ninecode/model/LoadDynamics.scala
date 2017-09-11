@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * Standard aggregate load model comprised of static and/or dynamic components.
@@ -82,6 +83,9 @@ extends
             LoadStatic (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("LoadMotor", "LoadMotor", false),
+        Relationship ("LoadStatic", "LoadStatic", false))
 }
 
 /**
@@ -216,6 +220,7 @@ extends
             toDouble (pfrac (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -287,6 +292,7 @@ extends
             IdentifiedObject.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -398,6 +404,7 @@ extends
             toDouble (tq (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -549,6 +556,8 @@ extends
             LoadAggregate (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("LoadAggregate", "LoadAggregate", false))
 }
 
 /**
@@ -722,6 +731,8 @@ extends
             LoadAggregate (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("LoadAggregate", "LoadAggregate", false))
 }
 
 private[ninecode] object _LoadDynamics

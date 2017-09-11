@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * The version of dependencies description among top level subpackages of the combined CIM model.
@@ -79,6 +80,7 @@ extends
             version (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 private[ninecode] object _PackageDependencies

@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * The class represents equivalent branches.
@@ -159,6 +160,7 @@ extends
             toDouble (zeroX21 (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -227,6 +229,8 @@ extends
             EquivalentNetwork (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("EquivalentNetwork", "EquivalentNetwork", false))
 }
 
 /**
@@ -381,6 +385,8 @@ extends
             ReactiveCapabilityCurve (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ReactiveCapabilityCurve", "ReactiveCapabilityCurve", false))
 }
 
 /**
@@ -445,6 +451,7 @@ extends
             ConnectivityNodeContainer.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -516,6 +523,7 @@ extends
             toDouble (g (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 private[ninecode] object _Equivalents

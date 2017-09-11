@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
 
@@ -66,6 +67,8 @@ extends
             attr (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("attr", "Command", false))
 }
 
 /**
@@ -132,6 +135,8 @@ extends
             deviceClass (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("attr", "ICCPIndicationPoint", false))
 }
 
 /**
@@ -198,6 +203,8 @@ extends
             typ (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("attr", "ICCPControlPoint", false))
 }
 
 /**
@@ -276,6 +283,8 @@ extends
             scope (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("attr", "TASE2BilateralTable", true))
 }
 
 /**
@@ -348,6 +357,8 @@ extends
             scope (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("attr", "TASE2BilateralTable", false))
 }
 
 /**
@@ -414,6 +425,8 @@ extends
             typ (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("attr", "AnalogControl", false))
 }
 
 /**
@@ -492,6 +505,8 @@ extends
             subnet (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("attr", "TASE2BilateralTable", false))
 }
 
 /**
@@ -566,6 +581,7 @@ extends
             osiTsel (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -650,6 +666,7 @@ extends
             tase2version (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -716,6 +733,7 @@ extends
             toInteger (port (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 private[ninecode] object _ICCP

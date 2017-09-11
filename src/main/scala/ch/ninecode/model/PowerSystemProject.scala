@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * A (document/collection) that describe a set of changes to the network.
@@ -107,6 +108,9 @@ extends
             Project (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Project", "PowerSystemProject", false),
+        Relationship ("attr", "DifferenceModel", false))
 }
 
 /**
@@ -194,6 +198,8 @@ extends
             stepType (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("attr", "PowerSystemProject", false))
 }
 
 /**
@@ -260,6 +266,8 @@ extends
             Project (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Project", "PowerSystemProject", false))
 }
 
 /**
@@ -351,6 +359,7 @@ extends
             stepType (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 private[ninecode] object _PowerSystemProject

@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * All synchronous machine detailed types use a subset of the same data parameters and input/output variables.
@@ -93,6 +94,7 @@ extends
             toDouble (saturationFactorQAxis (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -188,6 +190,11 @@ extends
             TurbineGovernorDynamics (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("ExcitationSystemDynamics", "ExcitationSystemDynamics", false),
+        Relationship ("MechanicalLoadDynamics", "MechanicalLoadDynamics", false),
+        Relationship ("SynchronousMachine", "SynchronousMachine", false),
+        Relationship ("TurbineGovernorDynamics", "TurbineGovernorDynamics", true))
 }
 
 /**
@@ -332,6 +339,7 @@ extends
             toDouble (xfd (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -398,6 +406,7 @@ extends
             SynchronousMachineDynamics.parse (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -577,6 +586,7 @@ extends
             toDouble (xQuadTrans (context), context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 private[ninecode] object _SynchronousMachineDynamics

@@ -5,6 +5,7 @@ import org.apache.spark.sql.Row
 import ch.ninecode.cim.ClassInfo
 import ch.ninecode.cim.Context
 import ch.ninecode.cim.Parseable
+import ch.ninecode.cim.Relationship
 
 /**
  * Information about a particular piece of (land) property such as its use.
@@ -97,6 +98,9 @@ extends
             Locations (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("AssetContainers", "AssetContainer", true),
+        Relationship ("Locations", "Location", true))
 }
 
 /**
@@ -170,6 +174,8 @@ extends
             LandProperty (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("LandProperty", "LandProperty", false))
 }
 
 /**
@@ -237,6 +243,7 @@ extends
             status (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -310,6 +317,8 @@ extends
             LandProperties (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("LandProperties", "LandProperty", true))
 }
 
 /**
@@ -385,6 +394,8 @@ extends
             Locations (context)
         )
     }
+    val relations: List[Relationship] = List (
+        Relationship ("Locations", "Location", true))
 }
 
 /**
@@ -452,6 +463,7 @@ extends
             kind (context)
         )
     }
+    val relations: List[Relationship] = List ()
 }
 
 private[ninecode] object _InfLocations
