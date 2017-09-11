@@ -345,7 +345,7 @@ class CIMNetworkTopologyProcessor (spark: SparkSession, storage: StorageLevel) e
                     name,  // mRID: String
                     cn.id  // name: String
                 ),
-                "" // AngleRefTopologicalNode: String
+                null // AngleRefTopologicalNode: String
             )
         )
     }
@@ -369,18 +369,18 @@ class CIMNetworkTopologyProcessor (spark: SparkSession, storage: StorageLevel) e
                     name
                 ),
                 arg._1.toString, // aliasName: String
-                "", // description: String
+                null, // description: String
                 name,  // mRID: String
-                ""  // name: String
+                null  // name: String
             ),
             0.0, // pInjection: Double,
             0.0, // qInjection: Double,
-            "", // AngleRefTopologicalIsland: String,
-            "", // BaseVoltage: String,
-            "", // ConnectivityNodeContainer: String,
-            "", // ReportingGroup: String,
-            "", // SvInjection: String,
-            "", // SvVoltage: String,
+            null, // AngleRefTopologicalIsland: String,
+            null, // BaseVoltage: String,
+            null, // ConnectivityNodeContainer: String,
+            null, // ReportingGroup: String,
+            null, // SvInjection: String,
+            null, // SvVoltage: String,
             island  // TopologicalIsland: String
         )
     }

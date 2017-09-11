@@ -19,10 +19,10 @@ import org.scalatest.Suites
  * 7) Interpret the generated file (default: java.hprof.txt).
  */
 class TestSuite extends Suites (
-//    new CIMSuite,
-//    new CIMRDDSuite,
-//    new CIMSparkSuite,
-//    new CIMNetworkTopologyProcessorSuite,
-//    new CIMExportSuite,
+    new CIMSuite,
+    new CIMRDDSuite,
+    new CIMSparkSuite,
+    new CIMNetworkTopologyProcessorSuite,
+    new CIMExportSuite,
     new CIMIntegrityCheckSuite
 )

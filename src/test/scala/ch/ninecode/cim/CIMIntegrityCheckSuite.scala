@@ -14,7 +14,7 @@ class CIMIntegrityCheckSuite extends ch.ninecode.SparkSuite
         implicit spark: SparkSession ⇒
 
         val filename =
-            FILE_DEPOT + "bkw_cim_export_haelig" + ".rdf"
+            FILE_DEPOT + "TRA5200" + ".rdf"
         val options = new util.HashMap[String, String] ().asInstanceOf[util.Map[String,String]]
         val elements = readFile (filename, options)
         println (elements.count + " elements")

@@ -1,16 +1,21 @@
 package ch.ninecode
 
-import java.net.{Inet4Address, InetAddress, NetworkInterface}
+import java.net.Inet4Address
+import java.net.InetAddress
+import java.net.NetworkInterface
 import java.util
-import java.util.{HashMap, Map}
 
 import scala.collection.JavaConverters._
-import scala.reflect.{ClassTag, classTag}
+import scala.reflect.ClassTag
+import scala.reflect.classTag
+
 import org.apache.spark.SparkConf
 import org.apache.spark.rdd.RDD
-import org.apache.spark.sql.{DataFrame, SQLContext, SparkSession}
+import org.apache.spark.sql.DataFrame
+import org.apache.spark.sql.SparkSession
+
 import org.scalatest.Outcome
-import org.scalatest.fixture.FunSuite
+import org.scalatest.fixture
 
 import ch.ninecode.cim.CHIM
 import ch.ninecode.cim.CuttingEdge
@@ -20,7 +25,7 @@ import ch.ninecode.cim.Extremum
 import ch.ninecode.cim.PostEdge
 import ch.ninecode.model._
 
-class SparkSuite extends FunSuite
+class SparkSuite extends fixture.FunSuite
 {
     type FixtureParam = SparkSession
 
@@ -123,7 +128,7 @@ class SparkSuite extends FunSuite
         finally session.stop() // clean up the fixture
     }
 
-    def readFile (filename: String, options: Map[String, String] = new HashMap[String, String] ().asInstanceOf[Map[String,String]])(implicit spark: SparkSession): DataFrame =
+    def readFile (filename: String, options: util.Map[String, String] = new util.HashMap[String, String] ())(implicit spark: SparkSession): DataFrame =
     {
         options.put ("path", filename)
         options.put ("StorageLevel", "MEMORY_AND_DISK_SER")
@@ -150,7 +155,7 @@ class SparkSuite extends FunSuite
         val rdd: collection.Map[Int, RDD[_]] = spark.sparkContext.getPersistentRDDs
         rdd.find (_._2.name == name) match
         {
-            case Some ((index: Int, rdd: RDD[_])) =>
+            case Some ((_, rdd: RDD[_])) =>
                 rdd.asInstanceOf[RDD[T]]
             case Some (_) =>
                 null

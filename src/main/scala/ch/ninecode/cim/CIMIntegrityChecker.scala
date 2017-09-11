@@ -35,7 +35,7 @@ class Worker[C <: Product, P <: Product] (relation: Relationship, child: String,
         method.setAccessible (true)
 
         val items = method.invoke (obj).asInstanceOf[List[String]]
-        if (null != items)
+        if (null != items && items.nonEmpty)
             items.map ((_, obj))
         else
             List ()
@@ -50,7 +50,7 @@ class Worker[C <: Product, P <: Product] (relation: Relationship, child: String,
         method.invoke (obj).toString // container.id
     }
 
-    def message (child: String, parent: String) (problem: (String, Product)): String = // problem: (String, String)): String =
+    def message (child: String, field: String, parent: String) (problem: (String, Product)): String =
     {
         val key = problem._1
         val obj = problem._2
@@ -58,6 +58,9 @@ class Worker[C <: Product, P <: Product] (relation: Relationship, child: String,
         s.append (child)
         s.append (" ")
         s.append (primary_key (obj)) // equipment.id
+        s.append (" field ")
+        s.append (field)
+        s.append (" ")
         s.append (" references ")
         s.append (parent)
         s.append (" ")
@@ -83,7 +86,7 @@ class Worker[C <: Product, P <: Product] (relation: Relationship, child: String,
         else
             children
 
-        missing.map (message (child, parent)).collect.mkString ("\n")
+        missing.map (message (child, relation.field, parent)).collect.mkString ("\n")
     }
 }
 /**
@@ -106,7 +109,7 @@ class CIMIntegrityChecker (spark: SparkSession) extends CIMRDD with Serializable
         type parent = companion.subsetter.basetype
         type parentrdd = companion.subsetter.rddtype
 
-        log.error ("%s.%s => %s".format (info.name, relation.field, relation.clazz))
+        log.info ("%s.%s => %s".format (info.name, relation.field, relation.clazz))
         val cc: collection.Map[Int, RDD[_]] = spark.sparkContext.getPersistentRDDs.filter (_._2.name == info.name)
         if (cc.nonEmpty)
         {

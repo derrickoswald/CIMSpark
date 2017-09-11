@@ -1,14 +1,14 @@
 package ch.ninecode.cim
 
-import java.util.{HashMap, Map}
+import java.util
 
 import org.apache.spark.sql.SparkSession
-
 import ch.ninecode.model._
 
 class CIMExportSuite extends ch.ninecode.SparkSuite
 {
     val FILE_DEPOT = "data/"
+    val PRIVATE_FILE_DEPOT = "private_data/"
 
     test ("Basic")
     {
@@ -87,10 +87,26 @@ voltage +
 
         val filename =
             FILE_DEPOT + "NIS_CIM_Export_NS_INITIAL_FILL_Oberiberg" + ".rdf"
-        val options = new HashMap[String, String] ().asInstanceOf[Map[String,String]]
+        val options = new util.HashMap[String, String] ().asInstanceOf[util.Map[String,String]]
         val elements = readFile (filename, options)
         println (elements.count + " elements")
         val export = new CIMExport (spark)
         export.exportAll ("target/" + "NIS_CIM_Export_NS_INITIAL_FILL_Oberiberg" + ".rdf")
+    }
+
+    test ("ExportIsland")
+    {
+        implicit spark: SparkSession ⇒
+
+        val filename =
+            PRIVATE_FILE_DEPOT + "bkw_cim_export_haelig" + ".rdf"
+        val options = new util.HashMap[String, String] ().asInstanceOf[util.Map[String,String]]
+        val elements = readFile (filename, options)
+        println (elements.count + " elements")
+        val ntp = new CIMNetworkTopologyProcessor (spark, org.apache.spark.storage.StorageLevel.MEMORY_AND_DISK_SER)
+        val elements2 = ntp.process (true)
+        println (elements2.count + " elements")
+        val export = new CIMExport (spark)
+        export.exportIsland ("TRA5200_terminal_2_topo", "target/" + "TRA5200" + ".rdf")
     }
 }
