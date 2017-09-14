@@ -109,7 +109,7 @@ From within the interactive shell in the master container, to start the Spark sh
 either change to any subdirectory (i.e. ```cd /opt```) or
 add the warehouse.dir configuration as shown here] 
 ```
-spark-shell --master spark://sandbox:7077 --executor-memory 4g --driver-memory 1g --conf spark.sql.warehouse.dir=file:/tmp/spark-warehouse --jars /opt/code/CIMReader-2.11-2.0.2-2.0.1.jar
+spark-shell --master spark://sandbox:7077 --executor-memory 4g --driver-memory 1g --conf spark.sql.warehouse.dir=file:/tmp/spark-warehouse --jars /opt/code/CIMReader-2.11-2.0.2-2.2.1.jar
 ```
 This should print out the Scala shell welcome screen with cool ASCII art:
 ```
@@ -223,7 +223,7 @@ there is a stand-alone application built in to the CIMReader called CIMServerJDB
 The program can be executed usng spark-submit with the name of the CIMServerJDBC jar file
 that includes all necessary dependencies and the CIM file:
 
-    spark-submit /opt/code/CIMServerJDBC-2.11-2.0.2-2.0.1-jar-with-dependencies.jar "hdfs://sandbox:8020/data/NIS_CIM_Export_sias_current_20160816_V7_bruegg.rdf"
+    spark-submit /opt/code/CIMServerJDBC-2.11-2.0.2-2.2.1-jar-with-dependencies.jar "hdfs://sandbox:8020/data/NIS_CIM_Export_sias_current_20160816_V7_bruegg.rdf"
     ...
     Press [Return] to exit...
 
