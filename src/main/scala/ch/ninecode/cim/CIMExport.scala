@@ -14,9 +14,35 @@ import org.slf4j.{Logger, LoggerFactory}
 import ch.ninecode.model._
 
 /**
- * Export a (subset) of CIM data.
+ * Export (a subset of) CIM data.
  *
- * @example
+ * @example Export entire deduplicated CIM file with it's topology
+ * {{{
+ * // enter Spark shell environment
+ * spark-shell --master spark://sandbox:7077 --executor-memory 4g --driver-memory 1g --conf spark.sql.warehouse.dir=file:/tmp/spark-warehouse --jars /opt/code/CIMReader-2.11-2.2.0-2.2.0.jar
+ *
+ * // read the large CIM file
+ * import scala.collection.mutable.HashMap
+ * import org.apache.spark.rdd.RDD
+ * import ch.ninecode.cim._
+ * import ch.ninecode.model._
+ * val opts = new HashMap[String,String] ()
+ * opts.put("StorageLevel", "MEMORY_AND_DISK_SER")
+ * opts.put("ch.ninecode.cim.do_deduplication", "true")
+ * val element = spark.read.format ("ch.ninecode.cim").options (opts).load ("hdfs://sandbox:8020/data/bkw_cim_export_equipmentsstripe1.rdf,hdfs://sandbox:8020/data/bkw_cim_export_equipmentsstripe2.rdf, etc.")
+ * element.count
+ *
+ * // process topology (your choice of with or without islands)
+ * val ntp = new CIMNetworkTopologyProcessor (spark, org.apache.spark.storage.StorageLevel.MEMORY_AND_DISK_SER)
+ * val elements2 = ntp.process (true)
+ * elements2.count
+ *
+ * // export the complete CIM file
+ * val export = new CIMExport (spark)
+ * export.exportAll ("bkw_cim_export_equipment.rdf")
+ * }}}
+ *
+ * @example Export one transformer area (trafokreis)
  * {{{
  * // enter Spark shell environment
  * spark-shell --master spark://sandbox:7077 --executor-memory 4g --driver-memory 1g --conf spark.sql.warehouse.dir=file:/tmp/spark-warehouse --jars /opt/code/CIMReader-2.11-2.2.0-2.2.0.jar
@@ -99,6 +125,7 @@ class CIMExport (spark: SparkSession) extends CIMRDD with Serializable
         val ss = head.union (guts).union (tail)
         ss.saveAsTextFile (txt)
         merge (txt, file.toUri.toString)
+        hdfs.delete (directory, true)
     }
 
     /**

@@ -45,7 +45,7 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">ClassInfo</span><span class="params">(<span name="name">name: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="parseable">parseable: <a href="Parseable.html" class="extype" name="ch.ninecode.cim.Parseable">Parseable</a>[<span class="extype" name="scala.Product">Product</span>]</span>, <span name="subsetter">subsetter: <a href="CIMSubsetter.html" class="extype" name="ch.ninecode.cim.CIMSubsetter">CIMSubsetter</a>[_ &lt;: <span class="extype" name="scala.Product">Product</span>]</span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">ClassInfo</span><span class="params">(<span name="name">name: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="parseable">parseable: <a href="Parseable.html" class="extype" name="ch.ninecode.cim.Parseable">Parseable</a>[<span class="extype" name="scala.Product">Product</span>]</span>, <span name="subsetter">subsetter: <a href="CIMSubsetter.html" class="extype" name="ch.ninecode.cim.CIMSubsetter">CIMSubsetter</a>[_ &lt;: <span class="extype" name="scala.Product">Product</span>]</span>, <span name="relations">relations: <span class="extype" name="scala.List">List</span>[<a href="Relationship.html" class="extype" name="ch.ninecode.cim.Relationship">Relationship</a>]</span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
@@ -89,7 +89,7 @@
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
               <ol><li name="ch.ninecode.cim.ClassInfo#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="&lt;init&gt;(name:String,parseable:ch.ninecode.cim.Parseable[Product],subsetter:ch.ninecode.cim.CIMSubsetter[_&lt;:Product]):ch.ninecode.cim.ClassInfo"></a>
+      <a id="&lt;init&gt;(name:String,parseable:ch.ninecode.cim.Parseable[Product],subsetter:ch.ninecode.cim.CIMSubsetter[_&lt;:Product],relations:List[ch.ninecode.cim.Relationship]):ch.ninecode.cim.ClassInfo"></a>
       <a id="&lt;init&gt;:ClassInfo"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -97,10 +97,10 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">ClassInfo</span><span class="params">(<span name="name">name: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="parseable">parseable: <a href="Parseable.html" class="extype" name="ch.ninecode.cim.Parseable">Parseable</a>[<span class="extype" name="scala.Product">Product</span>]</span>, <span name="subsetter">subsetter: <a href="CIMSubsetter.html" class="extype" name="ch.ninecode.cim.CIMSubsetter">CIMSubsetter</a>[_ &lt;: <span class="extype" name="scala.Product">Product</span>]</span>)</span>
+        <span class="name">ClassInfo</span><span class="params">(<span name="name">name: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="parseable">parseable: <a href="Parseable.html" class="extype" name="ch.ninecode.cim.Parseable">Parseable</a>[<span class="extype" name="scala.Product">Product</span>]</span>, <span name="subsetter">subsetter: <a href="CIMSubsetter.html" class="extype" name="ch.ninecode.cim.CIMSubsetter">CIMSubsetter</a>[_ &lt;: <span class="extype" name="scala.Product">Product</span>]</span>, <span name="relations">relations: <span class="extype" name="scala.List">List</span>[<a href="Relationship.html" class="extype" name="ch.ninecode.cim.Relationship">Relationship</a>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.ClassInfo@&lt;init&gt;(name:String,parseable:ch.ninecode.cim.Parseable[Product],subsetter:ch.ninecode.cim.CIMSubsetter[_&lt;:Product]):ch.ninecode.cim.ClassInfo" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.ClassInfo@&lt;init&gt;(name:String,parseable:ch.ninecode.cim.Parseable[Product],subsetter:ch.ninecode.cim.CIMSubsetter[_&lt;:Product],relations:List[ch.ninecode.cim.Relationship]):ch.ninecode.cim.ClassInfo" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -360,6 +360,23 @@
       </span>
       </h4><span class="permalink">
       <a href="../../../index.html#ch.ninecode.cim.ClassInfo@parseable:ch.ninecode.cim.Parseable[Product]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.cim.ClassInfo#relations" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="relations:List[ch.ninecode.cim.Relationship]"></a>
+      <a id="relations:List[Relationship]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">relations</span><span class="result">: <span class="extype" name="scala.List">List</span>[<a href="Relationship.html" class="extype" name="ch.ninecode.cim.Relationship">Relationship</a>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.ClassInfo@relations:List[ch.ninecode.cim.Relationship]" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>

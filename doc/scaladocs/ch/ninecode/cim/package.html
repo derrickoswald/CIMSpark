@@ -198,9 +198,9 @@ the DataFileWriter
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Export a (subset) of CIM data.</p><div class="fullcomment"><div class="comment cmt"><p>Export a (subset) of CIM data.
-</p></div><dl class="attributes block"> <div class="block">Example:
-               <ol><li class="cmt"><p></p><pre><span class="cmt">// enter Spark shell environment</span>
+      <p class="shortcomment cmt">Export (a subset of) CIM data.</p><div class="fullcomment"><div class="comment cmt"><p>Export (a subset of) CIM data.
+</p></div><dl class="attributes block"> <div class="block">Examples:
+               <ol><li class="cmt"><p>Export one transformer area (trafokreis)</p><pre><span class="cmt">// enter Spark shell environment</span>
 spark-shell --master spark:<span class="cmt">//sandbox:7077 --executor-memory 4g --driver-memory 1g --conf spark.sql.warehouse.dir=file:/tmp/spark-warehouse --jars /opt/code/CIMReader-2.11-2.2.0-2.2.0.jar</span>
 <span class="cmt">// read the large CIM file</span>
 <span class="kw">import</span> scala.collection.mutable.HashMap
@@ -227,7 +227,25 @@ println (NSnode.first.TopologicalIsland)
 TRA7872_terminal_2_topo
 <span class="cmt">// export the reduced CIM file</span>
 <span class="kw">val</span> export = <span class="kw">new</span> CIMExport (spark)
-export.exportIsland (<span class="lit">"TRA7872_terminal_2_topo"</span>, <span class="lit">"TRA7872.rdf"</span>)</pre></li></ol>
+export.exportIsland (<span class="lit">"TRA7872_terminal_2_topo"</span>, <span class="lit">"TRA7872.rdf"</span>)</pre></li>, <li class="cmt"><p>Export entire deduplicated CIM file with it's topology</p><pre><span class="cmt">// enter Spark shell environment</span>
+spark-shell --master spark:<span class="cmt">//sandbox:7077 --executor-memory 4g --driver-memory 1g --conf spark.sql.warehouse.dir=file:/tmp/spark-warehouse --jars /opt/code/CIMReader-2.11-2.2.0-2.2.0.jar</span>
+<span class="cmt">// read the large CIM file</span>
+<span class="kw">import</span> scala.collection.mutable.HashMap
+<span class="kw">import</span> org.apache.spark.rdd.RDD
+<span class="kw">import</span> ch.ninecode.cim._
+<span class="kw">import</span> ch.ninecode.model._
+<span class="kw">val</span> opts = <span class="kw">new</span> HashMap[<span class="std">String</span>,<span class="std">String</span>] ()
+opts.put(<span class="lit">"StorageLevel"</span>, <span class="lit">"MEMORY_AND_DISK_SER"</span>)
+opts.put(<span class="lit">"ch.ninecode.cim.do_deduplication"</span>, <span class="lit">"true"</span>)
+<span class="kw">val</span> element = spark.read.format (<span class="lit">"ch.ninecode.cim"</span>).options (opts).load (<span class="lit">"hdfs://sandbox:8020/data/bkw_cim_export_equipmentsstripe1.rdf,hdfs://sandbox:8020/data/bkw_cim_export_equipmentsstripe2.rdf, etc."</span>)
+element.count
+<span class="cmt">// process topology (your choice of with or without islands)</span>
+<span class="kw">val</span> ntp = <span class="kw">new</span> CIMNetworkTopologyProcessor (spark, org.apache.spark.storage.StorageLevel.MEMORY_AND_DISK_SER)
+<span class="kw">val</span> elements2 = ntp.process (<span class="kw">true</span>)
+elements2.count
+<span class="cmt">// export the complete CIM file</span>
+<span class="kw">val</span> export = <span class="kw">new</span> CIMExport (spark)
+export.exportAll (<span class="lit">"bkw_cim_export_equipment.rdf"</span>)</pre></li></ol>
             </div></dl></div>
     </li><li name="ch.ninecode.cim.CIMFileFormat" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="CIMFileFormatextendsFileFormat"></a>
@@ -263,6 +281,23 @@ export.exportIsland (<span class="lit">"TRA7872_terminal_2_topo"</span>, <span c
       </a>
     </span>
       
+    </li><li name="ch.ninecode.cim.CIMIntegrityChecker" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CIMIntegrityCheckerextendsCIMRDDwithSerializable"></a>
+      <a id="CIMIntegrityChecker:CIMIntegrityChecker"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="CIMIntegrityChecker.html"><span class="name">CIMIntegrityChecker</span></a><span class="result"> extends <a href="CIMRDD.html" class="extype" name="ch.ninecode.cim.CIMRDD">CIMRDD</a> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.package@CIMIntegrityCheckerextendsCIMRDDwithSerializable" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Check relationships in CIM data.</p>
     </li><li name="ch.ninecode.cim.CIMJoin" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="CIMJoinextendsCIMRDDwithSerializable"></a>
       <a id="CIMJoin:CIMJoin"></a>
@@ -409,7 +444,7 @@ for the CIM case classes.
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <a href="ClassInfo.html"><span class="name">ClassInfo</span></a><span class="params">(<span name="name">name: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="parseable">parseable: <a href="Parseable.html" class="extype" name="ch.ninecode.cim.Parseable">Parseable</a>[<span class="extype" name="scala.Product">Product</span>]</span>, <span name="subsetter">subsetter: <a href="CIMSubsetter.html" class="extype" name="ch.ninecode.cim.CIMSubsetter">CIMSubsetter</a>[_ &lt;: <span class="extype" name="scala.Product">Product</span>]</span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <a href="ClassInfo.html"><span class="name">ClassInfo</span></a><span class="params">(<span name="name">name: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="parseable">parseable: <a href="Parseable.html" class="extype" name="ch.ninecode.cim.Parseable">Parseable</a>[<span class="extype" name="scala.Product">Product</span>]</span>, <span name="subsetter">subsetter: <a href="CIMSubsetter.html" class="extype" name="ch.ninecode.cim.CIMSubsetter">CIMSubsetter</a>[_ &lt;: <span class="extype" name="scala.Product">Product</span>]</span>, <span name="relations">relations: <span class="extype" name="scala.List">List</span>[<a href="Relationship.html" class="extype" name="ch.ninecode.cim.Relationship">Relationship</a>]</span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4><span class="permalink">
       <a href="../../../index.html#ch.ninecode.cim.package@ClassInfoextendsProductwithSerializable" title="Permalink" target="_top">
@@ -569,6 +604,23 @@ Other methods are helpers for parsing the regular XML structure of CIM rdf files
       </a>
     </span>
       
+    </li><li name="ch.ninecode.cim.Relationship" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="RelationshipextendsProductwithSerializable"></a>
+      <a id="Relationship:Relationship"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="Relationship.html"><span class="name">Relationship</span></a><span class="params">(<span name="field">field: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="clazz">clazz: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="multiple">multiple: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.package@RelationshipextendsProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
     </li><li name="ch.ninecode.cim.SerializableObject" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="SerializableObjectextendsSerializablewithProduct"></a>
       <a id="SerializableObject:SerializableObject"></a>
@@ -621,6 +673,23 @@ Other methods are helpers for parsing the regular XML structure of CIM rdf files
     </span>
       <p class="shortcomment cmt">Vertex data for topological processing.</p><div class="fullcomment"><div class="comment cmt"><p>Vertex data for topological processing.
 </p></div><dl class="paramcmts block"><dt class="param">island</dt><dd class="cmt"><p>the minimum (hash code) of all connected ConnectivityNode (single topological island)</p></dd><dt class="param">island_label</dt><dd class="cmt"><p>a user friendly label for the island</p></dd><dt class="param">node</dt><dd class="cmt"><p>the minimum (hash code) of equivalent ConnectivityNode (a single topological node)</p></dd><dt class="param">node_label</dt><dd class="cmt"><p>a user friendly label for the node</p></dd></dl></div>
+    </li><li name="ch.ninecode.cim.Worker" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Worker[C&lt;:Product,P&lt;:Product]extendsSerializable"></a>
+      <a id="Worker[C&lt;:Product,P&lt;:Product]:Worker[C,P]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="Worker.html"><span class="name">Worker</span></a><span class="tparams">[<span name="C">C &lt;: <span class="extype" name="scala.Product">Product</span></span>, <span name="P">P &lt;: <span class="extype" name="scala.Product">Product</span></span>]</span><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.package@Worker[C&lt;:Product,P&lt;:Product]extendsSerializable" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
     </li></ol>
             </div>
 
