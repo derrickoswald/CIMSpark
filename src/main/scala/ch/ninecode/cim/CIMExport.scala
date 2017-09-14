@@ -19,7 +19,7 @@ import ch.ninecode.model._
  * @example Export entire deduplicated CIM file with it's topology
  * {{{
  * // enter Spark shell environment
- * spark-shell --master spark://sandbox:7077 --executor-memory 4g --driver-memory 1g --conf spark.sql.warehouse.dir=file:/tmp/spark-warehouse --jars /opt/code/CIMReader-2.11-2.2.0-2.2.1.jar
+ * spark-shell --master spark://sandbox:7077 --executor-memory 4g --driver-memory 1g --conf spark.sql.warehouse.dir=file:/tmp/spark-warehouse --jars /opt/code/CIMReader-2.11-2.1.1-2.2.1.jar
  *
  * // read the large CIM file
  * import scala.collection.mutable.HashMap
@@ -45,7 +45,7 @@ import ch.ninecode.model._
  * @example Export one transformer area (trafokreis)
  * {{{
  * // enter Spark shell environment
- * spark-shell --master spark://sandbox:7077 --executor-memory 4g --driver-memory 1g --conf spark.sql.warehouse.dir=file:/tmp/spark-warehouse --jars /opt/code/CIMReader-2.11-2.2.0-2.2.1.jar
+ * spark-shell --master spark://sandbox:7077 --executor-memory 4g --driver-memory 1g --conf spark.sql.warehouse.dir=file:/tmp/spark-warehouse --jars /opt/code/CIMReader-2.11-2.1.1-2.2.1.jar
  *
  * // read the large CIM file
  * import scala.collection.mutable.HashMap
