@@ -3,7 +3,6 @@ package ch.ninecode.cim
 import java.util
 
 import org.apache.spark.sql.SparkSession
-import org.apache.spark.rdd.RDD
 
 class CIMIntegrityCheckSuite extends ch.ninecode.SparkSuite
 {
