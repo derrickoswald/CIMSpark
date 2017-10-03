@@ -56,7 +56,7 @@ class CIMInputFormat extends FileInputFormat[String, Element]
     {
         log.info ("createRecordReader")
         log.info ("split: " + split.toString)
-        log.info ("context: " + context.toString)
+        log.info ("context: " + context.getTaskAttemptID.toString)
         new CIMRecordReader ()
     }
 }

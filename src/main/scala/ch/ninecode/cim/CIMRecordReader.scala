@@ -1,11 +1,12 @@
 package ch.ninecode.cim
 
 import org.apache.commons.logging.{Log, LogFactory}
+import org.apache.hadoop.io.Text
 import org.apache.hadoop.mapreduce.InputSplit
 import org.apache.hadoop.mapreduce.RecordReader
 import org.apache.hadoop.mapreduce.TaskAttemptContext
 import org.apache.hadoop.mapreduce.lib.input.FileSplit
-import org.apache.hadoop.io.Text
+
 import ch.ninecode.model.Element
 
 class CIMRecordReader extends RecordReader[String, Element]
@@ -17,7 +18,7 @@ class CIMRecordReader extends RecordReader[String, Element]
     {
         log.info ("initialize")
         log.info ("genericSplit: " + genericSplit.toString)
-        log.info ("context: " + context.toString)
+        log.info ("context: " + context.getTaskAttemptID.toString)
         val job = context.getConfiguration
         val split = genericSplit.asInstanceOf[FileSplit]
         val start = split.getStart
@@ -66,7 +67,7 @@ class CIMRecordReader extends RecordReader[String, Element]
         // ToDo: using first here is approximate,
         // the real character count would require reading the complete file
         // from 0 to (start + first) and converting to characters
-        log.info ("XML text starting at byte offset " + (start + first) + " of length " + len + " characters begins with: " + xml.substring (0, 120))
+        log.debug ("XML text starting at byte offset " + (start + first) + " of length " + len + " characters begins with: " + xml.substring (0, 120))
         cim = new CHIM (xml, first, first + len, start, start + bytes)
     }
 

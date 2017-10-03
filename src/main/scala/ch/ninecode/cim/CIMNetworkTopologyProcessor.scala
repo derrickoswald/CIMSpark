@@ -11,58 +11,9 @@ import org.apache.spark.rdd.RDD.rddToPairRDDFunctions
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.storage.StorageLevel
 import org.slf4j.LoggerFactory
+import org.slf4j.Logger
 
 import ch.ninecode.model._
-
-/**
- * Edge data for topological processing.
- *
- * @param id_seq_1 the mRID of terminal 0
- * @param id_cn_1 the connectivity node of terminal 0
- * @param id_seq_2 the mRID of terminal 1 (or N in the case of multi-terminal devices)
- * @param id_cn_2 the connectivity node of terminal 1 (or N in the case of multi-terminal devices)
- * @param id_equ the [[ch.ninecode.model.ConductingEquipment]] object associated with the terminals
- * @param isZero <code>true</code> if there is no electrical difference between the terminals, i.e. a closed switch,
- *        which means the terminals are the same topological node
- * @param isConnected <code>true</code> if there is a connection between the terminals, i.e. a cable,
- *        which means the terminals are the same topological island
- */
-case class CuttingEdge (
-    id_seq_1: String,
-    id_cn_1: String,
-    id_seq_2: String,
-    id_cn_2: String,
-    id_equ: String,
-    isZero: Boolean,
-    isConnected: Boolean) extends Serializable
-
-/**
- * Vertex data for topological processing.
- *
- * @param island the minimum (hash code) of all connected ConnectivityNode (single topological island)
- * @param island_label a user friendly label for the island
- * @param node the minimum (hash code) of equivalent ConnectivityNode (a single topological node)
- * @param node_label a user friendly label for the node
- */
-case class TopologicalData (var island: VertexId = Long.MaxValue, var island_label: String = "", var node: VertexId = Long.MaxValue, var node_label: String = "") extends Serializable
-{
-    /**
-     * Generate an appropriate name for the topological node based on the node label.
-     *
-     * @return The best guess as to what the topological node should be called.
-     */
-    def name: String =
-    {
-        if (node_label.endsWith ("_node_fuse"))
-            node_label.substring (0, node_label.length - "_node_fuse".length) + "_fuse_topo"
-        else if (node_label.endsWith ("_fuse_node"))
-            node_label.substring (0, node_label.length - "_fuse_node".length) + "_fuse_topo"
-        else if (node_label.endsWith ("_node"))
-            node_label.substring (0, node_label.length - "_node".length) + "_topo"
-        else
-            node_label + "_topo"
-    }
-}
 
 /**
  * Create a topology.
@@ -89,11 +40,17 @@ case class TopologicalData (var island: VertexId = Long.MaxValue, var island_lab
  *
  * @param spark The session with CIM RDD defined, for which the topology should be calculated
  * @param storage The storage level for new and replaced CIM RDD.
+ * @param debug Adds additional tests during topology processing:
+ *
+ - unique VertexId for every ConnectivityNode mRID (checks the hash function)
+ - all edges reference existing ConnectivityNode elements (checks for completeness)
+ - no voltage transitions (checks that edges that are joined have the same BaseVoltage)
+ *
  */
-class CIMNetworkTopologyProcessor (spark: SparkSession, storage: StorageLevel) extends CIMRDD with Serializable
+class CIMNetworkTopologyProcessor (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMORY_AND_DISK_SER, debug: Boolean = false) extends CIMRDD with Serializable
 {
-    private implicit val session = spark
-    private implicit val log = LoggerFactory.getLogger(getClass)
+    private implicit val session: SparkSession = spark
+    private implicit val log: Logger = LoggerFactory.getLogger(getClass)
 
     // function to see if the nodes for an element are topologically connected
     def isSameNode (element: Element): Boolean =
@@ -134,7 +91,7 @@ class CIMNetworkTopologyProcessor (spark: SparkSession, storage: StorageLevel) e
             case "Conductor" =>
                 true
             case _ =>
-                log.warn ("topological node processor encountered edge with unhandled class '" + cls +"', assumed conducting")
+                log.warn ("topological node processor encountered edge with unhandled class '" + cls +"', assumed zero impedance")
                 true
         }
     }
@@ -180,9 +137,9 @@ class CIMNetworkTopologyProcessor (spark: SparkSession, storage: StorageLevel) e
         }
     }
 
-    def edge_operator (arg: (Element, Iterable[Terminal])): List[CuttingEdge] =
+    def edge_operator (arg: (Element, Iterable[Terminal])): List[CIMEdgeData] =
     {
-        var ret = List[CuttingEdge] ()
+        var ret = List[CIMEdgeData] ()
 
         // get the ConductingEquipment
         var equipment = arg._1
@@ -191,24 +148,24 @@ class CIMNetworkTopologyProcessor (spark: SparkSession, storage: StorageLevel) e
         if (null != equipment)
         {
             // make an array of terminals sorted by sequence number
-            val terminals = arg._2.toArray.sortBy (_.ACDCTerminal.sequenceNumber)
+            val terminals = arg._2.filter (x ⇒ (null != x.ConnectivityNode) && ("" != x.ConnectivityNode)).toArray.sortBy (_.ACDCTerminal.sequenceNumber)
             // make an edge for each pair of terminals
-            if (null != terminals(0).ConnectivityNode)  // eliminate edges without two connectivity nodes
+            if (terminals.length >= 2) // eliminate edges without two connectivity nodes
                 for (i <- 1 until terminals.length) // eliminate edges with only one terminal
                 {
                     // check if this edge connects its nodes
                     val identical = isSameNode (arg._1)
                     // check if this edge has its nodes in the same island
                     val connected = isSameIsland (arg._1)
-                    if (null != terminals(i).ConnectivityNode) // eliminate edges without two connectivity nodes
-                        ret = ret :+ CuttingEdge (
-                                terminals(0).ACDCTerminal.IdentifiedObject.mRID,
-                                terminals(0).ConnectivityNode,
-                                terminals(i).ACDCTerminal.IdentifiedObject.mRID,
-                                terminals(i).ConnectivityNode,
-                                terminals(0).ConductingEquipment,
-                                identical,
-                                connected)
+                    ret = ret :+ CIMEdgeData (
+                            terminals(0).ACDCTerminal.IdentifiedObject.mRID,
+                            terminals(0).ConnectivityNode,
+                            terminals(i).ACDCTerminal.IdentifiedObject.mRID,
+                            terminals(i).ConnectivityNode,
+                            equipment.id, // terminals(n).ConductingEquipment,
+                            equipment.asInstanceOf[ConductingEquipment].BaseVoltage,
+                            identical,
+                            connected)
                 }
         }
         //else // shouldn't happen, terminals always reference ConductingEquipment, right?
@@ -227,68 +184,103 @@ class CIMNetworkTopologyProcessor (spark: SparkSession, storage: StorageLevel) e
         h
     }
 
-    def make_graph_edges (e: CuttingEdge): Edge[CuttingEdge] = Edge (vertex_id (e.id_cn_1), vertex_id (e.id_cn_2), e)
+    def make_graph_edges (e: CIMEdgeData): Edge[CIMEdgeData] = Edge (vertex_id (e.id_cn_1), vertex_id (e.id_cn_2), e)
 
-    def to_vertex (n: ConnectivityNode): (VertexId, TopologicalData) =
+    def to_vertex (n: ConnectivityNode): (VertexId, CIMVertexData) =
     {
         val v = vertex_id (n.id)
-        (v, TopologicalData (0.asInstanceOf[VertexId], "", v, n.id))
+        (v, CIMVertexData (0.asInstanceOf[VertexId], "", v, n.id, null))
     }
 
-    def make_graph (): Graph[TopologicalData, CuttingEdge] =
+    def make_graph (): Graph[CIMVertexData, CIMEdgeData] =
     {
         // get the terminals keyed by equipment
         val terms = get[Terminal].groupBy (_.ConductingEquipment)
 
         // map elements with their terminal 'pairs' to edges
-        val edges = get[Element]("Elements").keyBy (_.id).join (terms)
+        val edges: RDD[Edge[CIMEdgeData]] = get[Element]("Elements").keyBy (_.id).join (terms)
             .flatMapValues (edge_operator).values.map (make_graph_edges)
 
         // get the vertices
-        val vertices = get[ConnectivityNode].map (to_vertex)
+        val vertices: RDD[(VertexId, CIMVertexData)] = get[ConnectivityNode].map (to_vertex)
+
+        if (debug)
+        {
+            // check for uniqueness of VertexId
+            val duplicates: RDD[(VertexId, Iterable[CIMVertexData])] = vertices.groupByKey.filter (_._2.size > 1)
+            if (!duplicates.isEmpty ())
+                duplicates.collect.map (x ⇒ { log.error ("VertexId clash (%d) for %s and %s".format (x._1, x._2.head.node_label, x._2.tail.head.node_label)); 1 })
+
+            // check for missing vertices
+            val cn: RDD[(String, String)] = edges.flatMap (x ⇒ List ((x.attr.id_cn_1, x.attr.id_equ), (x.attr.id_cn_2, x.attr.id_equ)))
+            val missing = cn.leftOuterJoin (vertices.keyBy (_._2.node_label)).filter (_._2._2 match { case None ⇒ true case _ ⇒ false } ).map (x ⇒ (x._2._1, x._1))
+            if (!missing.isEmpty)
+                missing.collect. map (x ⇒ { log.error ("%s missing ConnectivityNode %s".format (x._1, x._2)); 1 })
+        }
 
         // construct the initial graph from the edges
-        Graph.apply (vertices, edges, TopologicalData (), storage, storage).cache
+        Graph.apply (vertices, edges, CIMVertexData (), storage, storage).cache
     }
 
-    def identifyNodes (graph: Graph[TopologicalData, CuttingEdge]): Graph[TopologicalData, CuttingEdge] =
+    def identifyNodes (graph: Graph[CIMVertexData, CIMEdgeData]): Graph[CIMVertexData, CIMEdgeData] =
     {
-        def vertex_program (id: VertexId, data: TopologicalData, message: TopologicalData): TopologicalData =
+        def vertex_program (id: VertexId, data: CIMVertexData, message: CIMVertexData): CIMVertexData =
         {
             if (null != message) // not initialization call?
                 if (data.node > message.node)
                 {
                     data.node = message.node
                     data.node_label = message.node_label
+                    data.voltage = message.voltage
                 }
-
             data
         }
 
-        def send_message (triplet: EdgeTriplet[TopologicalData, CuttingEdge]): Iterator[(VertexId, TopologicalData)] =
+        def send_message (triplet: EdgeTriplet[CIMVertexData, CIMEdgeData]): Iterator[(VertexId, CIMVertexData)] =
         {
             if (!triplet.attr.isZero)
                 Iterator.empty // send no message across a topological boundary
             else
+            {
+                if (debug)
+                    if ((null != triplet.srcAttr.voltage) && (null != triplet.dstAttr.voltage))
+                        if (triplet.srcAttr.voltage != triplet.dstAttr.voltage)
+                            log.error ("conflicting node voltages across edge %s, %s:%s, %s:%s".format (triplet.attr.id_equ, triplet.srcAttr.node_label, triplet.srcAttr.voltage, triplet.dstAttr.node_label, triplet.dstAttr.voltage))
                 if (triplet.srcAttr.node < triplet.dstAttr.node)
-                    Iterator ((triplet.dstId, triplet.srcAttr))
+                {
+                    if (debug && log.isDebugEnabled)
+                        log.debug ("%s: from src:%d to dst:%d %s ---> %s".format (triplet.attr.id_equ, triplet.srcId, triplet.dstId, triplet.srcAttr.toString, triplet.dstAttr.toString))
+                    Iterator ((triplet.dstId, triplet.srcAttr.copy (voltage = triplet.attr.voltage)))
+                }
                 else if (triplet.srcAttr.node > triplet.dstAttr.node)
-                    Iterator ((triplet.srcId, triplet.dstAttr))
+                {
+                    if (debug && log.isDebugEnabled)
+                        log.debug ("%s: from dst:%d to src:%d %s ---> %s".format (triplet.attr.id_equ, triplet.dstId, triplet.srcId,  triplet.dstAttr.toString, triplet.srcAttr.toString))
+                    Iterator ((triplet.srcId, triplet.dstAttr.copy (voltage = triplet.attr.voltage)))
+                }
                 else
                     Iterator.empty
+            }
         }
 
-        def merge_message (a: TopologicalData, b: TopologicalData): TopologicalData = if (a.node <= b.node) a else b
+        def merge_message (a: CIMVertexData, b: CIMVertexData): CIMVertexData =
+        {
+            if (debug)
+                if ((null != a.voltage) && (null != b.voltage))
+                    if (a.voltage != b.voltage)
+                        log.error ("conflicting node voltages, merging: %s into %s".format (if (a.node <= b.node) b.node_label + ":" + b.voltage else a.node_label + ":" + a.voltage, if (a.node <= b.node) a.node_label + ":" + a.voltage else b.node_label + ":" + b.voltage))
+            if (a.node <= b.node) a else b
+        }
 
         // traverse the graph with the Pregel algorithm
         // assigns the minimum VertexId of all electrically identical nodes (node)
         // Note: on the first pass through the Pregel algorithm all nodes get a null message
-        graph.pregel[TopologicalData] (null, 10000, EdgeDirection.Either) (vertex_program, send_message, merge_message).cache
+        graph.pregel[CIMVertexData] (null, 10000, EdgeDirection.Either) (vertex_program, send_message, merge_message).cache
     }
 
-    def to_islands (nodes: Iterable[((TopologicalData,ConnectivityNode),Option[(Terminal, Element)])]): (VertexId, TopologicalIsland) =
+    def to_islands (nodes: Iterable[((CIMVertexData,ConnectivityNode),Option[(Terminal, Element)])]): (VertexId, TopologicalIsland) =
     {
-        def op (current: (List[Terminal],ConnectivityNode), data: ((TopologicalData,ConnectivityNode),Option[(Terminal, Element)])): (List[Terminal],ConnectivityNode) =
+        def op (current: (List[Terminal],ConnectivityNode), data: ((CIMVertexData,ConnectivityNode),Option[(Terminal, Element)])): (List[Terminal],ConnectivityNode) =
         {
             data._2 match
             {
@@ -327,7 +319,7 @@ class CIMNetworkTopologyProcessor (spark: SparkSession, storage: StorageLevel) e
                 case _ =>
                     cn.id
             }
-        val name = base + "_topo"
+        val name = base + "_island"
         val island = nodes.head._1._1.island
         (
             island,
@@ -350,7 +342,7 @@ class CIMNetworkTopologyProcessor (spark: SparkSession, storage: StorageLevel) e
         )
     }
 
-    def to_nodes (arg: (VertexId, TopologicalData, Option[TopologicalIsland])): TopologicalNode =
+    def to_nodes (arg: (VertexId, CIMVertexData, Option[TopologicalIsland])): TopologicalNode =
     {
         val name = arg._2.name
         val island = arg._3 match
@@ -385,7 +377,7 @@ class CIMNetworkTopologyProcessor (spark: SparkSession, storage: StorageLevel) e
         )
     }
 
-    def update_cn (arg: (ConnectivityNode,Option[TopologicalData])): ConnectivityNode =
+    def update_cn (arg: (ConnectivityNode,Option[CIMVertexData])): ConnectivityNode =
     {
         val c = arg._1
         arg._2 match
@@ -401,7 +393,7 @@ class CIMNetworkTopologyProcessor (spark: SparkSession, storage: StorageLevel) e
         }
     }
 
-    def update_terminals (arg: (Terminal,Option[TopologicalData])): Terminal =
+    def update_terminals (arg: (Terminal,Option[CIMVertexData])): Terminal =
     {
         val t = arg._1
         arg._2 match
@@ -421,9 +413,9 @@ class CIMNetworkTopologyProcessor (spark: SparkSession, storage: StorageLevel) e
         }
     }
 
-    def identifyIslands (graph: Graph[TopologicalData, CuttingEdge]): Graph[TopologicalData, CuttingEdge] =
+    def identifyIslands (graph: Graph[CIMVertexData, CIMEdgeData]): Graph[CIMVertexData, CIMEdgeData] =
     {
-        def vertex_program (id: VertexId, attr: TopologicalData, msg: TopologicalData): TopologicalData =
+        def vertex_program (id: VertexId, attr: CIMVertexData, msg: CIMVertexData): CIMVertexData =
         {
             if (null == msg)
             {
@@ -441,7 +433,7 @@ class CIMNetworkTopologyProcessor (spark: SparkSession, storage: StorageLevel) e
             attr
         }
 
-        def send_message (triplet: EdgeTriplet[TopologicalData, CuttingEdge]): Iterator[(VertexId, TopologicalData)] =
+        def send_message (triplet: EdgeTriplet[CIMVertexData, CIMEdgeData]): Iterator[(VertexId, CIMVertexData)] =
         {
             if (!triplet.attr.isConnected)
                 Iterator.empty // send no message across a topological boundary
@@ -454,18 +446,18 @@ class CIMNetworkTopologyProcessor (spark: SparkSession, storage: StorageLevel) e
                     Iterator.empty
         }
 
-        def merge_message (a: TopologicalData, b: TopologicalData): TopologicalData = if (a.island < b.island) a else b
+        def merge_message (a: CIMVertexData, b: CIMVertexData): CIMVertexData = if (a.island < b.island) a else b
 
-        def boundary (edge: (Edge[CuttingEdge], TopologicalData, TopologicalData)): Boolean = edge._2.node != edge._3.node
+        def boundary (edge: (Edge[CIMEdgeData], CIMVertexData, CIMVertexData)): Boolean = edge._2.node != edge._3.node
 
-        def make_graph_edges (edge: (Edge[CuttingEdge], TopologicalData, TopologicalData)): Edge[CuttingEdge] =
+        def make_graph_edges (edge: (Edge[CIMEdgeData], CIMVertexData, CIMVertexData)): Edge[CIMEdgeData] =
             Edge (edge._2.node, edge._3.node, edge._1.attr)
 
-        def update_vertices (id: VertexId, vertex: TopologicalData, island: Option[TopologicalData]): TopologicalData =
+        def update_vertices (id: VertexId, vertex: CIMVertexData, island: Option[CIMVertexData]): CIMVertexData =
         {
             island match
             {
-                case Some (data: TopologicalData) =>
+                case Some (data: CIMVertexData) =>
                     vertex.island = data.island
                     vertex.island_label = data.island_label
                 case None => // should never happen
@@ -475,11 +467,11 @@ class CIMNetworkTopologyProcessor (spark: SparkSession, storage: StorageLevel) e
             vertex
         }
 
-        def mapper (d: (VertexId, ((VertexId, TopologicalData), Option[TopologicalData]))): (VertexId, TopologicalData) =
+        def mapper (d: (VertexId, ((VertexId, CIMVertexData), Option[CIMVertexData]))): (VertexId, CIMVertexData) =
         {
             val td = d._2._2 match
             {
-                case Some (data: TopologicalData) =>
+                case Some (data: CIMVertexData) =>
                     data
                 case None => // this will happen if no edges are connected to a node, use the "no-island" default
                     d._2._1._2
@@ -498,10 +490,10 @@ class CIMNetworkTopologyProcessor (spark: SparkSession, storage: StorageLevel) e
         // construct the topological graph from the edges
         val edges = boundaries.map (make_graph_edges)
         val vertices = boundaries.map (_._2).union (boundaries.map (_._3)).distinct.keyBy (_.node)
-        val topo_graph = Graph.apply[TopologicalData, CuttingEdge](vertices, edges, TopologicalData (), storage, storage)
+        val topo_graph = Graph.apply[CIMVertexData, CIMEdgeData](vertices, edges, CIMVertexData (), storage, storage)
 
         // run the Pregel algorithm over the reduced topological graph
-        val g = topo_graph.pregel[TopologicalData] (null, 10000, EdgeDirection.Either) (vertex_program, send_message, merge_message)
+        val g = topo_graph.pregel[CIMVertexData] (null, 10000, EdgeDirection.Either) (vertex_program, send_message, merge_message)
 
         // update the original graph with the islands
         val v = graph.vertices.keyBy (_._2.node).leftOuterJoin (g.vertices.values.keyBy (_.node)).map (mapper)

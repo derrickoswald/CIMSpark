@@ -159,7 +159,7 @@ with
                 // p.s. Scala's type system is a shit show of kludgy code
                 if (names.contains (subsetter.cls))
                 {
-                    log.info ("building " + subsetter.cls)
+                    log.debug ("building " + subsetter.cls)
                     subsetter.make (spark.sqlContext, elements, _StorageLevel)
                 }
             }

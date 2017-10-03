@@ -1,16 +1,15 @@
 package ch.ninecode.cim
 
-import java.util.HashMap
-import java.util.Map
+import java.util
 
-import org.apache.spark.SparkConf
 import org.apache.spark.sql.DataFrame
 import org.apache.spark.sql.SQLContext
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.storage.StorageLevel
-import org.scalatest.fixture.FunSuite
 
-import ch.ninecode.model._
+import ch.ninecode.model.ConnectivityNode
+import ch.ninecode.model.TopologicalIsland
+import ch.ninecode.model.TopologicalNode
 
 class CIMNetworkTopologyProcessorSuite extends ch.ninecode.SparkSuite
 {
@@ -23,13 +22,13 @@ class CIMNetworkTopologyProcessorSuite extends ch.ninecode.SparkSuite
         val start = System.nanoTime ()
 
         val filename =
-            PRIVATE_FILE_DEPOT + "NIS_CIM_Export_sias_current_20161220_Kiental im Oberland_V11_assets_preview" + ".rdf"
+            PRIVATE_FILE_DEPOT + "NIS_CIM_Export_sias_current_20161220_Kiental im Oberland_V11_assets_preview.rdf"
         val elements = readFile (filename)
         println (elements.count () + " elements")
         val read = System.nanoTime ()
 
-        // set up for execution
-        val topo = new CIMNetworkTopologyProcessor (session, StorageLevel.MEMORY_AND_DISK_SER)
+            // set up for execution
+        val topo = new CIMNetworkTopologyProcessor (session, StorageLevel.MEMORY_AND_DISK_SER, true)
         topo.process (false)
 
         val process = System.nanoTime ()
@@ -55,7 +54,7 @@ class CIMNetworkTopologyProcessorSuite extends ch.ninecode.SparkSuite
         val read = System.nanoTime ()
 
         // set up for execution
-        val topo = new CIMNetworkTopologyProcessor (session, StorageLevel.MEMORY_AND_DISK_SER)
+        val topo = new CIMNetworkTopologyProcessor (session, StorageLevel.MEMORY_AND_DISK_SER, true)
         topo.process (true)
 
         val process = System.nanoTime ()
@@ -63,6 +62,7 @@ class CIMNetworkTopologyProcessorSuite extends ch.ninecode.SparkSuite
         val islands = session.sparkContext.getPersistentRDDs.filter(_._2.name == "TopologicalIsland").head._2.asInstanceOf[org.apache.spark.rdd.RDD[TopologicalIsland]]
         println (islands.take (10).mkString ("\n"))
 
+        println ("read : " + (read - start) / 1e9 + " seconds")
         println ("process: " + (process - read) / 1e9 + " seconds")
     }
 
@@ -72,8 +72,7 @@ class CIMNetworkTopologyProcessorSuite extends ch.ninecode.SparkSuite
 
         def readFileAuto (context: SQLContext, filename: String): DataFrame =
         {
-            val files = filename.split (",")
-            val options = new HashMap[String, String] ().asInstanceOf[Map[String,String]]
+            val options = new util.HashMap[String, String] ().asInstanceOf[util.Map[String,String]]
             options.put ("ch.ninecode.cim.do_topo_islands", "true")
             readFile (filename, options)
         }

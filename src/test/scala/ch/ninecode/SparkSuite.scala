@@ -8,22 +8,13 @@ import java.util
 import scala.collection.JavaConverters._
 import scala.reflect.ClassTag
 import scala.reflect.classTag
-
 import org.apache.spark.SparkConf
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.DataFrame
 import org.apache.spark.sql.SparkSession
-
 import org.scalatest.Outcome
 import org.scalatest.fixture
-
-import ch.ninecode.cim.CHIM
-import ch.ninecode.cim.CuttingEdge
-import ch.ninecode.cim.TopologicalData
-import ch.ninecode.cim.PreEdge
-import ch.ninecode.cim.Extremum
-import ch.ninecode.cim.PostEdge
-import ch.ninecode.model._
+import ch.ninecode.cim.CIMClasses
 
 class SparkSuite extends fixture.FunSuite
 {
@@ -111,15 +102,7 @@ class SparkSuite extends fixture.FunSuite
         configuration.set ("spark.executor.memory", "4g")
         configuration.set ("spark.ui.port", "4041")
         configuration.set ("spark.ui.showConsoleProgress", "false")
-
-        // register low level classes
-        configuration.registerKryoClasses (Array (classOf[Element], classOf[BasicElement], classOf[Unknown]))
-        // register CIM case classes
-        CHIM.apply_to_all_classes { x => configuration.registerKryoClasses (Array (x.runtime_class)) }
-        // register topological classes
-        configuration.registerKryoClasses (Array (classOf[CuttingEdge], classOf[TopologicalData]))
-        // register edge related classes
-        configuration.registerKryoClasses (Array (classOf[PreEdge], classOf[Extremum], classOf[PostEdge]))
+        configuration.registerKryoClasses (CIMClasses.list)
 
         val session = SparkSession.builder ().config (configuration).getOrCreate () // create the fixture
         session.sparkContext.setLogLevel ("ERROR") // Valid log levels include: ALL, DEBUG, ERROR, FATAL, INFO, OFF, TRACE, WARN

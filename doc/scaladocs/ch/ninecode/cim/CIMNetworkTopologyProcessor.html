@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>CIMNetworkTopologyProcessor - CIMReader 2.11-2.2.0-2.2.1 API - ch.ninecode.cim.CIMNetworkTopologyProcessor</title>
-          <meta name="description" content="CIMNetworkTopologyProcessor - CIMReader 2.11 - 2.2.0 - 2.2.1 API - ch.ninecode.cim.CIMNetworkTopologyProcessor" />
-          <meta name="keywords" content="CIMNetworkTopologyProcessor CIMReader 2.11 2.2.0 2.2.1 API ch.ninecode.cim.CIMNetworkTopologyProcessor" />
+          <title>CIMNetworkTopologyProcessor - CIMReader 2.11-2.2.0-2.3.0 API - ch.ninecode.cim.CIMNetworkTopologyProcessor</title>
+          <meta name="description" content="CIMNetworkTopologyProcessor - CIMReader 2.11 - 2.2.0 - 2.3.0 API - ch.ninecode.cim.CIMNetworkTopologyProcessor" />
+          <meta name="keywords" content="CIMNetworkTopologyProcessor CIMReader 2.11 2.2.0 2.3.0 API ch.ninecode.cim.CIMNetworkTopologyProcessor" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -96,7 +96,7 @@ connections between electrical elements.</p><p>Based on ConnectivityNode element
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
               <ol><li name="ch.ninecode.cim.CIMNetworkTopologyProcessor#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(spark:org.apache.spark.sql.SparkSession,storage:org.apache.spark.storage.StorageLevel):ch.ninecode.cim.CIMNetworkTopologyProcessor"></a>
+      <a id="&lt;init&gt;(spark:org.apache.spark.sql.SparkSession,storage:org.apache.spark.storage.StorageLevel,debug:Boolean):ch.ninecode.cim.CIMNetworkTopologyProcessor"></a>
       <a id="&lt;init&gt;:CIMNetworkTopologyProcessor"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -104,14 +104,14 @@ connections between electrical elements.</p><p>Based on ConnectivityNode element
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">CIMNetworkTopologyProcessor</span><span class="params">(<span name="spark">spark: <span class="extype" name="org.apache.spark.sql.SparkSession">SparkSession</span></span>, <span name="storage">storage: <span class="extype" name="org.apache.spark.storage.StorageLevel">StorageLevel</span></span>)</span>
+        <span class="name">CIMNetworkTopologyProcessor</span><span class="params">(<span name="spark">spark: <span class="extype" name="org.apache.spark.sql.SparkSession">SparkSession</span></span>, <span name="storage">storage: <span class="extype" name="org.apache.spark.storage.StorageLevel">StorageLevel</span> = <span class="symbol"><span class="name"><a href="../../../org/package.html">StorageLevel.MEMORY_AND_DISK_SER</a></span></span></span>, <span name="debug">debug: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.CIMNetworkTopologyProcessor@&lt;init&gt;(spark:org.apache.spark.sql.SparkSession,storage:org.apache.spark.storage.StorageLevel):ch.ninecode.cim.CIMNetworkTopologyProcessor" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.CIMNetworkTopologyProcessor@&lt;init&gt;(spark:org.apache.spark.sql.SparkSession,storage:org.apache.spark.storage.StorageLevel,debug:Boolean):ch.ninecode.cim.CIMNetworkTopologyProcessor" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">spark</dt><dd class="cmt"><p>The session with CIM RDD defined, for which the topology should be calculated</p></dd><dt class="param">storage</dt><dd class="cmt"><p>The storage level for new and replaced CIM RDD.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">spark</dt><dd class="cmt"><p>The session with CIM RDD defined, for which the topology should be calculated</p></dd><dt class="param">storage</dt><dd class="cmt"><p>The storage level for new and replaced CIM RDD.</p></dd><dt class="param">debug</dt><dd class="cmt"><p>Adds additional tests during topology processing:</p><ul><li>unique VertexId for every ConnectivityNode mRID (checks the hash function)</li><li>all edges reference existing ConnectivityNode elements (checks for completeness)</li><li>no voltage transitions (checks that edges that are joined have the same BaseVoltage)</li></ul></dd></dl></div>
     </li></ol>
             </div>
 
@@ -213,18 +213,18 @@ connections between electrical elements.</p><p>Based on ConnectivityNode element
               
         </dd></dl></div>
     </li><li name="ch.ninecode.cim.CIMNetworkTopologyProcessor#edge_operator" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="edge_operator(arg:(ch.ninecode.model.Element,Iterable[ch.ninecode.model.Terminal])):List[ch.ninecode.cim.CuttingEdge]"></a>
-      <a id="edge_operator((Element,Iterable[Terminal])):List[CuttingEdge]"></a>
+      <a id="edge_operator(arg:(ch.ninecode.model.Element,Iterable[ch.ninecode.model.Terminal])):List[ch.ninecode.cim.CIMEdgeData]"></a>
+      <a id="edge_operator((Element,Iterable[Terminal])):List[CIMEdgeData]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">edge_operator</span><span class="params">(<span name="arg">arg: (<a href="../model/Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Iterable">Iterable</span>[<a href="../model/Terminal.html" class="extype" name="ch.ninecode.model.Terminal">Terminal</a>])</span>)</span><span class="result">: <span class="extype" name="scala.List">List</span>[<a href="CuttingEdge.html" class="extype" name="ch.ninecode.cim.CuttingEdge">CuttingEdge</a>]</span>
+        <span class="name">edge_operator</span><span class="params">(<span name="arg">arg: (<a href="../model/Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Iterable">Iterable</span>[<a href="../model/Terminal.html" class="extype" name="ch.ninecode.model.Terminal">Terminal</a>])</span>)</span><span class="result">: <span class="extype" name="scala.List">List</span>[<a href="CIMEdgeData.html" class="extype" name="ch.ninecode.cim.CIMEdgeData">CIMEdgeData</a>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.CIMNetworkTopologyProcessor@edge_operator(arg:(ch.ninecode.model.Element,Iterable[ch.ninecode.model.Terminal])):List[ch.ninecode.cim.CuttingEdge]" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.CIMNetworkTopologyProcessor@edge_operator(arg:(ch.ninecode.model.Element,Iterable[ch.ninecode.model.Terminal])):List[ch.ninecode.cim.CIMEdgeData]" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -361,35 +361,35 @@ currently it is named Elements (plural), so this method must be used:</p><pre><s
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
     </li><li name="ch.ninecode.cim.CIMNetworkTopologyProcessor#identifyIslands" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="identifyIslands(graph:org.apache.spark.graphx.Graph[ch.ninecode.cim.TopologicalData,ch.ninecode.cim.CuttingEdge]):org.apache.spark.graphx.Graph[ch.ninecode.cim.TopologicalData,ch.ninecode.cim.CuttingEdge]"></a>
-      <a id="identifyIslands(Graph[TopologicalData,CuttingEdge]):Graph[TopologicalData,CuttingEdge]"></a>
+      <a id="identifyIslands(graph:org.apache.spark.graphx.Graph[ch.ninecode.cim.CIMVertexData,ch.ninecode.cim.CIMEdgeData]):org.apache.spark.graphx.Graph[ch.ninecode.cim.CIMVertexData,ch.ninecode.cim.CIMEdgeData]"></a>
+      <a id="identifyIslands(Graph[CIMVertexData,CIMEdgeData]):Graph[CIMVertexData,CIMEdgeData]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">identifyIslands</span><span class="params">(<span name="graph">graph: <span class="extype" name="org.apache.spark.graphx.Graph">Graph</span>[<a href="TopologicalData.html" class="extype" name="ch.ninecode.cim.TopologicalData">TopologicalData</a>, <a href="CuttingEdge.html" class="extype" name="ch.ninecode.cim.CuttingEdge">CuttingEdge</a>]</span>)</span><span class="result">: <span class="extype" name="org.apache.spark.graphx.Graph">Graph</span>[<a href="TopologicalData.html" class="extype" name="ch.ninecode.cim.TopologicalData">TopologicalData</a>, <a href="CuttingEdge.html" class="extype" name="ch.ninecode.cim.CuttingEdge">CuttingEdge</a>]</span>
+        <span class="name">identifyIslands</span><span class="params">(<span name="graph">graph: <span class="extype" name="org.apache.spark.graphx.Graph">Graph</span>[<a href="CIMVertexData.html" class="extype" name="ch.ninecode.cim.CIMVertexData">CIMVertexData</a>, <a href="CIMEdgeData.html" class="extype" name="ch.ninecode.cim.CIMEdgeData">CIMEdgeData</a>]</span>)</span><span class="result">: <span class="extype" name="org.apache.spark.graphx.Graph">Graph</span>[<a href="CIMVertexData.html" class="extype" name="ch.ninecode.cim.CIMVertexData">CIMVertexData</a>, <a href="CIMEdgeData.html" class="extype" name="ch.ninecode.cim.CIMEdgeData">CIMEdgeData</a>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.CIMNetworkTopologyProcessor@identifyIslands(graph:org.apache.spark.graphx.Graph[ch.ninecode.cim.TopologicalData,ch.ninecode.cim.CuttingEdge]):org.apache.spark.graphx.Graph[ch.ninecode.cim.TopologicalData,ch.ninecode.cim.CuttingEdge]" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.CIMNetworkTopologyProcessor@identifyIslands(graph:org.apache.spark.graphx.Graph[ch.ninecode.cim.CIMVertexData,ch.ninecode.cim.CIMEdgeData]):org.apache.spark.graphx.Graph[ch.ninecode.cim.CIMVertexData,ch.ninecode.cim.CIMEdgeData]" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       
     </li><li name="ch.ninecode.cim.CIMNetworkTopologyProcessor#identifyNodes" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="identifyNodes(graph:org.apache.spark.graphx.Graph[ch.ninecode.cim.TopologicalData,ch.ninecode.cim.CuttingEdge]):org.apache.spark.graphx.Graph[ch.ninecode.cim.TopologicalData,ch.ninecode.cim.CuttingEdge]"></a>
-      <a id="identifyNodes(Graph[TopologicalData,CuttingEdge]):Graph[TopologicalData,CuttingEdge]"></a>
+      <a id="identifyNodes(graph:org.apache.spark.graphx.Graph[ch.ninecode.cim.CIMVertexData,ch.ninecode.cim.CIMEdgeData]):org.apache.spark.graphx.Graph[ch.ninecode.cim.CIMVertexData,ch.ninecode.cim.CIMEdgeData]"></a>
+      <a id="identifyNodes(Graph[CIMVertexData,CIMEdgeData]):Graph[CIMVertexData,CIMEdgeData]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">identifyNodes</span><span class="params">(<span name="graph">graph: <span class="extype" name="org.apache.spark.graphx.Graph">Graph</span>[<a href="TopologicalData.html" class="extype" name="ch.ninecode.cim.TopologicalData">TopologicalData</a>, <a href="CuttingEdge.html" class="extype" name="ch.ninecode.cim.CuttingEdge">CuttingEdge</a>]</span>)</span><span class="result">: <span class="extype" name="org.apache.spark.graphx.Graph">Graph</span>[<a href="TopologicalData.html" class="extype" name="ch.ninecode.cim.TopologicalData">TopologicalData</a>, <a href="CuttingEdge.html" class="extype" name="ch.ninecode.cim.CuttingEdge">CuttingEdge</a>]</span>
+        <span class="name">identifyNodes</span><span class="params">(<span name="graph">graph: <span class="extype" name="org.apache.spark.graphx.Graph">Graph</span>[<a href="CIMVertexData.html" class="extype" name="ch.ninecode.cim.CIMVertexData">CIMVertexData</a>, <a href="CIMEdgeData.html" class="extype" name="ch.ninecode.cim.CIMEdgeData">CIMEdgeData</a>]</span>)</span><span class="result">: <span class="extype" name="org.apache.spark.graphx.Graph">Graph</span>[<a href="CIMVertexData.html" class="extype" name="ch.ninecode.cim.CIMVertexData">CIMVertexData</a>, <a href="CIMEdgeData.html" class="extype" name="ch.ninecode.cim.CIMEdgeData">CIMEdgeData</a>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.CIMNetworkTopologyProcessor@identifyNodes(graph:org.apache.spark.graphx.Graph[ch.ninecode.cim.TopologicalData,ch.ninecode.cim.CuttingEdge]):org.apache.spark.graphx.Graph[ch.ninecode.cim.TopologicalData,ch.ninecode.cim.CuttingEdge]" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.CIMNetworkTopologyProcessor@identifyNodes(graph:org.apache.spark.graphx.Graph[ch.ninecode.cim.CIMVertexData,ch.ninecode.cim.CIMEdgeData]):org.apache.spark.graphx.Graph[ch.ninecode.cim.CIMVertexData,ch.ninecode.cim.CIMEdgeData]" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -446,35 +446,35 @@ currently it is named Elements (plural), so this method must be used:</p><pre><s
     </span>
       
     </li><li name="ch.ninecode.cim.CIMNetworkTopologyProcessor#make_graph" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="make_graph():org.apache.spark.graphx.Graph[ch.ninecode.cim.TopologicalData,ch.ninecode.cim.CuttingEdge]"></a>
-      <a id="make_graph():Graph[TopologicalData,CuttingEdge]"></a>
+      <a id="make_graph():org.apache.spark.graphx.Graph[ch.ninecode.cim.CIMVertexData,ch.ninecode.cim.CIMEdgeData]"></a>
+      <a id="make_graph():Graph[CIMVertexData,CIMEdgeData]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">make_graph</span><span class="params">()</span><span class="result">: <span class="extype" name="org.apache.spark.graphx.Graph">Graph</span>[<a href="TopologicalData.html" class="extype" name="ch.ninecode.cim.TopologicalData">TopologicalData</a>, <a href="CuttingEdge.html" class="extype" name="ch.ninecode.cim.CuttingEdge">CuttingEdge</a>]</span>
+        <span class="name">make_graph</span><span class="params">()</span><span class="result">: <span class="extype" name="org.apache.spark.graphx.Graph">Graph</span>[<a href="CIMVertexData.html" class="extype" name="ch.ninecode.cim.CIMVertexData">CIMVertexData</a>, <a href="CIMEdgeData.html" class="extype" name="ch.ninecode.cim.CIMEdgeData">CIMEdgeData</a>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.CIMNetworkTopologyProcessor@make_graph():org.apache.spark.graphx.Graph[ch.ninecode.cim.TopologicalData,ch.ninecode.cim.CuttingEdge]" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.CIMNetworkTopologyProcessor@make_graph():org.apache.spark.graphx.Graph[ch.ninecode.cim.CIMVertexData,ch.ninecode.cim.CIMEdgeData]" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       
     </li><li name="ch.ninecode.cim.CIMNetworkTopologyProcessor#make_graph_edges" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="make_graph_edges(e:ch.ninecode.cim.CuttingEdge):org.apache.spark.graphx.Edge[ch.ninecode.cim.CuttingEdge]"></a>
-      <a id="make_graph_edges(CuttingEdge):Edge[CuttingEdge]"></a>
+      <a id="make_graph_edges(e:ch.ninecode.cim.CIMEdgeData):org.apache.spark.graphx.Edge[ch.ninecode.cim.CIMEdgeData]"></a>
+      <a id="make_graph_edges(CIMEdgeData):Edge[CIMEdgeData]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">make_graph_edges</span><span class="params">(<span name="e">e: <a href="CuttingEdge.html" class="extype" name="ch.ninecode.cim.CuttingEdge">CuttingEdge</a></span>)</span><span class="result">: <span class="extype" name="org.apache.spark.graphx.Edge">Edge</span>[<a href="CuttingEdge.html" class="extype" name="ch.ninecode.cim.CuttingEdge">CuttingEdge</a>]</span>
+        <span class="name">make_graph_edges</span><span class="params">(<span name="e">e: <a href="CIMEdgeData.html" class="extype" name="ch.ninecode.cim.CIMEdgeData">CIMEdgeData</a></span>)</span><span class="result">: <span class="extype" name="org.apache.spark.graphx.Edge">Edge</span>[<a href="CIMEdgeData.html" class="extype" name="ch.ninecode.cim.CIMEdgeData">CIMEdgeData</a>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.CIMNetworkTopologyProcessor@make_graph_edges(e:ch.ninecode.cim.CuttingEdge):org.apache.spark.graphx.Edge[ch.ninecode.cim.CuttingEdge]" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.CIMNetworkTopologyProcessor@make_graph_edges(e:ch.ninecode.cim.CIMEdgeData):org.apache.spark.graphx.Edge[ch.ninecode.cim.CIMEdgeData]" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -639,86 +639,86 @@ Otherwise it calls the <a href="#process(identify_islands:Boolean):org.apache.sp
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
     </li><li name="ch.ninecode.cim.CIMNetworkTopologyProcessor#to_islands" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="to_islands(nodes:Iterable[((ch.ninecode.cim.TopologicalData,ch.ninecode.model.ConnectivityNode),Option[(ch.ninecode.model.Terminal,ch.ninecode.model.Element)])]):(org.apache.spark.graphx.VertexId,ch.ninecode.model.TopologicalIsland)"></a>
-      <a id="to_islands(Iterable[((TopologicalData,ConnectivityNode),Option[(Terminal,Element)])]):(VertexId,TopologicalIsland)"></a>
+      <a id="to_islands(nodes:Iterable[((ch.ninecode.cim.CIMVertexData,ch.ninecode.model.ConnectivityNode),Option[(ch.ninecode.model.Terminal,ch.ninecode.model.Element)])]):(org.apache.spark.graphx.VertexId,ch.ninecode.model.TopologicalIsland)"></a>
+      <a id="to_islands(Iterable[((CIMVertexData,ConnectivityNode),Option[(Terminal,Element)])]):(VertexId,TopologicalIsland)"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">to_islands</span><span class="params">(<span name="nodes">nodes: <span class="extype" name="scala.Iterable">Iterable</span>[((<a href="TopologicalData.html" class="extype" name="ch.ninecode.cim.TopologicalData">TopologicalData</a>, <a href="../model/ConnectivityNode.html" class="extype" name="ch.ninecode.model.ConnectivityNode">ConnectivityNode</a>), <span class="extype" name="scala.Option">Option</span>[(<a href="../model/Terminal.html" class="extype" name="ch.ninecode.model.Terminal">Terminal</a>, <a href="../model/Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>)])]</span>)</span><span class="result">: (<span class="extype" name="org.apache.spark.graphx.VertexId">VertexId</span>, <a href="../model/TopologicalIsland.html" class="extype" name="ch.ninecode.model.TopologicalIsland">TopologicalIsland</a>)</span>
+        <span class="name">to_islands</span><span class="params">(<span name="nodes">nodes: <span class="extype" name="scala.Iterable">Iterable</span>[((<a href="CIMVertexData.html" class="extype" name="ch.ninecode.cim.CIMVertexData">CIMVertexData</a>, <a href="../model/ConnectivityNode.html" class="extype" name="ch.ninecode.model.ConnectivityNode">ConnectivityNode</a>), <span class="extype" name="scala.Option">Option</span>[(<a href="../model/Terminal.html" class="extype" name="ch.ninecode.model.Terminal">Terminal</a>, <a href="../model/Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>)])]</span>)</span><span class="result">: (<span class="extype" name="org.apache.spark.graphx.VertexId">VertexId</span>, <a href="../model/TopologicalIsland.html" class="extype" name="ch.ninecode.model.TopologicalIsland">TopologicalIsland</a>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.CIMNetworkTopologyProcessor@to_islands(nodes:Iterable[((ch.ninecode.cim.TopologicalData,ch.ninecode.model.ConnectivityNode),Option[(ch.ninecode.model.Terminal,ch.ninecode.model.Element)])]):(org.apache.spark.graphx.VertexId,ch.ninecode.model.TopologicalIsland)" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.CIMNetworkTopologyProcessor@to_islands(nodes:Iterable[((ch.ninecode.cim.CIMVertexData,ch.ninecode.model.ConnectivityNode),Option[(ch.ninecode.model.Terminal,ch.ninecode.model.Element)])]):(org.apache.spark.graphx.VertexId,ch.ninecode.model.TopologicalIsland)" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       
     </li><li name="ch.ninecode.cim.CIMNetworkTopologyProcessor#to_nodes" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="to_nodes(arg:(org.apache.spark.graphx.VertexId,ch.ninecode.cim.TopologicalData,Option[ch.ninecode.model.TopologicalIsland])):ch.ninecode.model.TopologicalNode"></a>
-      <a id="to_nodes((VertexId,TopologicalData,Option[TopologicalIsland])):TopologicalNode"></a>
+      <a id="to_nodes(arg:(org.apache.spark.graphx.VertexId,ch.ninecode.cim.CIMVertexData,Option[ch.ninecode.model.TopologicalIsland])):ch.ninecode.model.TopologicalNode"></a>
+      <a id="to_nodes((VertexId,CIMVertexData,Option[TopologicalIsland])):TopologicalNode"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">to_nodes</span><span class="params">(<span name="arg">arg: (<span class="extype" name="org.apache.spark.graphx.VertexId">VertexId</span>, <a href="TopologicalData.html" class="extype" name="ch.ninecode.cim.TopologicalData">TopologicalData</a>, <span class="extype" name="scala.Option">Option</span>[<a href="../model/TopologicalIsland.html" class="extype" name="ch.ninecode.model.TopologicalIsland">TopologicalIsland</a>])</span>)</span><span class="result">: <a href="../model/TopologicalNode.html" class="extype" name="ch.ninecode.model.TopologicalNode">TopologicalNode</a></span>
+        <span class="name">to_nodes</span><span class="params">(<span name="arg">arg: (<span class="extype" name="org.apache.spark.graphx.VertexId">VertexId</span>, <a href="CIMVertexData.html" class="extype" name="ch.ninecode.cim.CIMVertexData">CIMVertexData</a>, <span class="extype" name="scala.Option">Option</span>[<a href="../model/TopologicalIsland.html" class="extype" name="ch.ninecode.model.TopologicalIsland">TopologicalIsland</a>])</span>)</span><span class="result">: <a href="../model/TopologicalNode.html" class="extype" name="ch.ninecode.model.TopologicalNode">TopologicalNode</a></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.CIMNetworkTopologyProcessor@to_nodes(arg:(org.apache.spark.graphx.VertexId,ch.ninecode.cim.TopologicalData,Option[ch.ninecode.model.TopologicalIsland])):ch.ninecode.model.TopologicalNode" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.CIMNetworkTopologyProcessor@to_nodes(arg:(org.apache.spark.graphx.VertexId,ch.ninecode.cim.CIMVertexData,Option[ch.ninecode.model.TopologicalIsland])):ch.ninecode.model.TopologicalNode" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       
     </li><li name="ch.ninecode.cim.CIMNetworkTopologyProcessor#to_vertex" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="to_vertex(n:ch.ninecode.model.ConnectivityNode):(org.apache.spark.graphx.VertexId,ch.ninecode.cim.TopologicalData)"></a>
-      <a id="to_vertex(ConnectivityNode):(VertexId,TopologicalData)"></a>
+      <a id="to_vertex(n:ch.ninecode.model.ConnectivityNode):(org.apache.spark.graphx.VertexId,ch.ninecode.cim.CIMVertexData)"></a>
+      <a id="to_vertex(ConnectivityNode):(VertexId,CIMVertexData)"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">to_vertex</span><span class="params">(<span name="n">n: <a href="../model/ConnectivityNode.html" class="extype" name="ch.ninecode.model.ConnectivityNode">ConnectivityNode</a></span>)</span><span class="result">: (<span class="extype" name="org.apache.spark.graphx.VertexId">VertexId</span>, <a href="TopologicalData.html" class="extype" name="ch.ninecode.cim.TopologicalData">TopologicalData</a>)</span>
+        <span class="name">to_vertex</span><span class="params">(<span name="n">n: <a href="../model/ConnectivityNode.html" class="extype" name="ch.ninecode.model.ConnectivityNode">ConnectivityNode</a></span>)</span><span class="result">: (<span class="extype" name="org.apache.spark.graphx.VertexId">VertexId</span>, <a href="CIMVertexData.html" class="extype" name="ch.ninecode.cim.CIMVertexData">CIMVertexData</a>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.CIMNetworkTopologyProcessor@to_vertex(n:ch.ninecode.model.ConnectivityNode):(org.apache.spark.graphx.VertexId,ch.ninecode.cim.TopologicalData)" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.CIMNetworkTopologyProcessor@to_vertex(n:ch.ninecode.model.ConnectivityNode):(org.apache.spark.graphx.VertexId,ch.ninecode.cim.CIMVertexData)" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       
     </li><li name="ch.ninecode.cim.CIMNetworkTopologyProcessor#update_cn" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="update_cn(arg:(ch.ninecode.model.ConnectivityNode,Option[ch.ninecode.cim.TopologicalData])):ch.ninecode.model.ConnectivityNode"></a>
-      <a id="update_cn((ConnectivityNode,Option[TopologicalData])):ConnectivityNode"></a>
+      <a id="update_cn(arg:(ch.ninecode.model.ConnectivityNode,Option[ch.ninecode.cim.CIMVertexData])):ch.ninecode.model.ConnectivityNode"></a>
+      <a id="update_cn((ConnectivityNode,Option[CIMVertexData])):ConnectivityNode"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">update_cn</span><span class="params">(<span name="arg">arg: (<a href="../model/ConnectivityNode.html" class="extype" name="ch.ninecode.model.ConnectivityNode">ConnectivityNode</a>, <span class="extype" name="scala.Option">Option</span>[<a href="TopologicalData.html" class="extype" name="ch.ninecode.cim.TopologicalData">TopologicalData</a>])</span>)</span><span class="result">: <a href="../model/ConnectivityNode.html" class="extype" name="ch.ninecode.model.ConnectivityNode">ConnectivityNode</a></span>
+        <span class="name">update_cn</span><span class="params">(<span name="arg">arg: (<a href="../model/ConnectivityNode.html" class="extype" name="ch.ninecode.model.ConnectivityNode">ConnectivityNode</a>, <span class="extype" name="scala.Option">Option</span>[<a href="CIMVertexData.html" class="extype" name="ch.ninecode.cim.CIMVertexData">CIMVertexData</a>])</span>)</span><span class="result">: <a href="../model/ConnectivityNode.html" class="extype" name="ch.ninecode.model.ConnectivityNode">ConnectivityNode</a></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.CIMNetworkTopologyProcessor@update_cn(arg:(ch.ninecode.model.ConnectivityNode,Option[ch.ninecode.cim.TopologicalData])):ch.ninecode.model.ConnectivityNode" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.CIMNetworkTopologyProcessor@update_cn(arg:(ch.ninecode.model.ConnectivityNode,Option[ch.ninecode.cim.CIMVertexData])):ch.ninecode.model.ConnectivityNode" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       
     </li><li name="ch.ninecode.cim.CIMNetworkTopologyProcessor#update_terminals" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="update_terminals(arg:(ch.ninecode.model.Terminal,Option[ch.ninecode.cim.TopologicalData])):ch.ninecode.model.Terminal"></a>
-      <a id="update_terminals((Terminal,Option[TopologicalData])):Terminal"></a>
+      <a id="update_terminals(arg:(ch.ninecode.model.Terminal,Option[ch.ninecode.cim.CIMVertexData])):ch.ninecode.model.Terminal"></a>
+      <a id="update_terminals((Terminal,Option[CIMVertexData])):Terminal"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">update_terminals</span><span class="params">(<span name="arg">arg: (<a href="../model/Terminal.html" class="extype" name="ch.ninecode.model.Terminal">Terminal</a>, <span class="extype" name="scala.Option">Option</span>[<a href="TopologicalData.html" class="extype" name="ch.ninecode.cim.TopologicalData">TopologicalData</a>])</span>)</span><span class="result">: <a href="../model/Terminal.html" class="extype" name="ch.ninecode.model.Terminal">Terminal</a></span>
+        <span class="name">update_terminals</span><span class="params">(<span name="arg">arg: (<a href="../model/Terminal.html" class="extype" name="ch.ninecode.model.Terminal">Terminal</a>, <span class="extype" name="scala.Option">Option</span>[<a href="CIMVertexData.html" class="extype" name="ch.ninecode.cim.CIMVertexData">CIMVertexData</a>])</span>)</span><span class="result">: <a href="../model/Terminal.html" class="extype" name="ch.ninecode.model.Terminal">Terminal</a></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.CIMNetworkTopologyProcessor@update_terminals(arg:(ch.ninecode.model.Terminal,Option[ch.ninecode.cim.TopologicalData])):ch.ninecode.model.Terminal" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.CIMNetworkTopologyProcessor@update_terminals(arg:(ch.ninecode.model.Terminal,Option[ch.ninecode.cim.CIMVertexData])):ch.ninecode.model.Terminal" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>

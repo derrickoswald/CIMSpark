@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>cim - CIMReader 2.11-2.2.0-2.2.1 API - ch.ninecode.cim</title>
-          <meta name="description" content="cim - CIMReader 2.11 - 2.2.0 - 2.2.1 API - ch.ninecode.cim" />
-          <meta name="keywords" content="cim CIMReader 2.11 2.2.0 2.2.1 API ch.ninecode.cim" />
+          <title>cim - CIMReader 2.11-2.2.0-2.3.0 API - ch.ninecode.cim</title>
+          <meta name="description" content="cim - CIMReader 2.11 - 2.2.0 - 2.3.0 API - ch.ninecode.cim" />
+          <meta name="keywords" content="cim CIMReader 2.11 2.2.0 2.3.0 API ch.ninecode.cim" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -165,6 +165,26 @@ the DataFileWriter
       </a>
     </span>
       
+    </li><li name="ch.ninecode.cim.CIMEdgeData" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="CIMEdgeDataextendsSerializablewithProduct"></a>
+      <a id="CIMEdgeData:CIMEdgeData"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="CIMEdgeData.html"><span class="name">CIMEdgeData</span></a><span class="params">(<span name="id_seq_1">id_seq_1: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="id_cn_1">id_cn_1: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="id_seq_2">id_seq_2: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="id_cn_2">id_cn_2: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="id_equ">id_equ: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="voltage">voltage: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="isZero">isZero: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="isConnected">isConnected: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span> with <span class="extype" name="scala.Product">Product</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.package@CIMEdgeDataextendsSerializablewithProduct" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Edge data for topological processing.</p><div class="fullcomment"><div class="comment cmt"><p>Edge data for topological processing.
+</p></div><dl class="paramcmts block"><dt class="param">id_seq_1</dt><dd class="cmt"><p>the mRID of terminal 0</p></dd><dt class="param">id_cn_1</dt><dd class="cmt"><p>the connectivity node of terminal 0</p></dd><dt class="param">id_seq_2</dt><dd class="cmt"><p>the mRID of terminal 1 (or N in the case of multi-terminal devices)</p></dd><dt class="param">id_cn_2</dt><dd class="cmt"><p>the connectivity node of terminal 1 (or N in the case of multi-terminal devices)</p></dd><dt class="param">id_equ</dt><dd class="cmt"><p>the <a href="../model/ConductingEquipment.html" class="extype" name="ch.ninecode.model.ConductingEquipment">ch.ninecode.model.ConductingEquipment</a> object associated with the terminals</p></dd><dt class="param">isZero</dt><dd class="cmt"><p><code>true</code> if there is no electrical difference between the terminals, i.e. a closed switch,
+       which means the terminals are the same topological node</p></dd><dt class="param">isConnected</dt><dd class="cmt"><p><code>true</code> if there is a connection between the terminals, i.e. a cable,
+       which means the terminals are the same topological island</p></dd></dl></div>
     </li><li name="ch.ninecode.cim.CIMEdges" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="CIMEdgesextendsCIMRDDwithSerializable"></a>
       <a id="CIMEdges:CIMEdges"></a>
@@ -435,6 +455,24 @@ to create another RDD of just those elements, and creates a DataFrame of that RD
 and registers it as a temporary table for access via SQL (e.g. JDBC and SparkR::sql()).</p><p>Note: This must be serializable and can't depend on the companion objects
 for the CIM case classes.
 </p></div></div>
+    </li><li name="ch.ninecode.cim.CIMVertexData" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="CIMVertexDataextendsSerializablewithProduct"></a>
+      <a id="CIMVertexData:CIMVertexData"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="CIMVertexData.html"><span class="name">CIMVertexData</span></a><span class="params">(<span name="island">island: <span class="extype" name="org.apache.spark.graphx.VertexId">VertexId</span> = <span class="symbol">Long.MaxValue</span></span>, <span name="island_label">island_label: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;&quot;</span></span>, <span name="node">node: <span class="extype" name="org.apache.spark.graphx.VertexId">VertexId</span> = <span class="symbol">Long.MaxValue</span></span>, <span name="node_label">node_label: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;&quot;</span></span>, <span name="voltage">voltage: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">null</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span> with <span class="extype" name="scala.Product">Product</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.package@CIMVertexDataextendsSerializablewithProduct" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Vertex data for topological processing.</p><div class="fullcomment"><div class="comment cmt"><p>Vertex data for topological processing.
+</p></div><dl class="paramcmts block"><dt class="param">island</dt><dd class="cmt"><p>the minimum (hash code) of all connected ConnectivityNode (single topological island)</p></dd><dt class="param">island_label</dt><dd class="cmt"><p>a user friendly label for the island</p></dd><dt class="param">node</dt><dd class="cmt"><p>the minimum (hash code) of equivalent ConnectivityNode (a single topological node)</p></dd><dt class="param">node_label</dt><dd class="cmt"><p>a user friendly label for the node</p></dd></dl></div>
     </li><li name="ch.ninecode.cim.ClassInfo" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="ClassInfoextendsProductwithSerializable"></a>
       <a id="ClassInfo:ClassInfo"></a>
@@ -472,26 +510,6 @@ for the CIM case classes.
 Contains the raw XML, indexes at which to start and stop parsing,
 the line number index of newlines within the XML,
 text coverage set (in debug) and error messages raised while parsing.</p></div></div>
-    </li><li name="ch.ninecode.cim.CuttingEdge" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="CuttingEdgeextendsSerializablewithProduct"></a>
-      <a id="CuttingEdge:CuttingEdge"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">case class</span>
-      </span>
-      <span class="symbol">
-        <a href="CuttingEdge.html"><span class="name">CuttingEdge</span></a><span class="params">(<span name="id_seq_1">id_seq_1: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="id_cn_1">id_cn_1: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="id_seq_2">id_seq_2: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="id_cn_2">id_cn_2: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="id_equ">id_equ: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="isZero">isZero: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="isConnected">isConnected: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span> with <span class="extype" name="scala.Product">Product</span></span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.package@CuttingEdgeextendsSerializablewithProduct" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <p class="shortcomment cmt">Edge data for topological processing.</p><div class="fullcomment"><div class="comment cmt"><p>Edge data for topological processing.
-</p></div><dl class="paramcmts block"><dt class="param">id_seq_1</dt><dd class="cmt"><p>the mRID of terminal 0</p></dd><dt class="param">id_cn_1</dt><dd class="cmt"><p>the connectivity node of terminal 0</p></dd><dt class="param">id_seq_2</dt><dd class="cmt"><p>the mRID of terminal 1 (or N in the case of multi-terminal devices)</p></dd><dt class="param">id_cn_2</dt><dd class="cmt"><p>the connectivity node of terminal 1 (or N in the case of multi-terminal devices)</p></dd><dt class="param">id_equ</dt><dd class="cmt"><p>the <a href="../model/ConductingEquipment.html" class="extype" name="ch.ninecode.model.ConductingEquipment">ch.ninecode.model.ConductingEquipment</a> object associated with the terminals</p></dd><dt class="param">isZero</dt><dd class="cmt"><p><code>true</code> if there is no electrical difference between the terminals, i.e. a closed switch,
-       which means the terminals are the same topological node</p></dd><dt class="param">isConnected</dt><dd class="cmt"><p><code>true</code> if there is a connection between the terminals, i.e. a cable,
-       which means the terminals are the same topological island</p></dd></dl></div>
     </li><li name="ch.ninecode.cim.DefaultSource" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="DefaultSourceextendsRelationProvider"></a>
       <a id="DefaultSource:DefaultSource"></a>
@@ -655,24 +673,6 @@ Other methods are helpers for parsing the regular XML structure of CIM rdf files
       </a>
     </span>
       
-    </li><li name="ch.ninecode.cim.TopologicalData" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="TopologicalDataextendsSerializablewithProduct"></a>
-      <a id="TopologicalData:TopologicalData"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">case class</span>
-      </span>
-      <span class="symbol">
-        <a href="TopologicalData.html"><span class="name">TopologicalData</span></a><span class="params">(<span name="island">island: <span class="extype" name="org.apache.spark.graphx.VertexId">VertexId</span> = <span class="symbol">Long.MaxValue</span></span>, <span name="island_label">island_label: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;&quot;</span></span>, <span name="node">node: <span class="extype" name="org.apache.spark.graphx.VertexId">VertexId</span> = <span class="symbol">Long.MaxValue</span></span>, <span name="node_label">node_label: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;&quot;</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span> with <span class="extype" name="scala.Product">Product</span></span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.package@TopologicalDataextendsSerializablewithProduct" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <p class="shortcomment cmt">Vertex data for topological processing.</p><div class="fullcomment"><div class="comment cmt"><p>Vertex data for topological processing.
-</p></div><dl class="paramcmts block"><dt class="param">island</dt><dd class="cmt"><p>the minimum (hash code) of all connected ConnectivityNode (single topological island)</p></dd><dt class="param">island_label</dt><dd class="cmt"><p>a user friendly label for the island</p></dd><dt class="param">node</dt><dd class="cmt"><p>the minimum (hash code) of equivalent ConnectivityNode (a single topological node)</p></dd><dt class="param">node_label</dt><dd class="cmt"><p>a user friendly label for the node</p></dd></dl></div>
     </li><li name="ch.ninecode.cim.Worker" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="Worker[C&lt;:Product,P&lt;:Product]extendsSerializable"></a>
       <a id="Worker[C&lt;:Product,P&lt;:Product]:Worker[C,P]"></a>
@@ -714,6 +714,23 @@ Other methods are helpers for parsing the regular XML structure of CIM rdf files
       </a>
     </span>
       
+    </li><li name="ch.ninecode.cim.CIMClasses" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CIMClasses"></a>
+      <a id="CIMClasses:CIMClasses"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="CIMClasses$.html"><span class="name">CIMClasses</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.package@CIMClasses" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Get a list of classes suitable for Kryo registration.</p>
     </li><li name="ch.ninecode.cim.CIMServerJDBC" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="CIMServerJDBC"></a>
       <a id="CIMServerJDBC:CIMServerJDBC"></a>

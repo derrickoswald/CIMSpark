@@ -12,10 +12,7 @@ import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.hive.thriftserver.HiveThriftServer2
 import org.apache.spark.storage.StorageLevel
 import org.slf4j.LoggerFactory
-
-import ch.ninecode.model.BasicElement
-import ch.ninecode.model.Element
-import ch.ninecode.model.Unknown
+import scopt.OptionParser
 
 /**
  * Application to expose CIM files as a Hive database.
@@ -63,17 +60,17 @@ import ch.ninecode.model.Unknown
  */
 object CIMServerJDBC
 {
-    val properties =
+    val properties: Properties =
     {
         val in = this.getClass.getResourceAsStream ("/app.properties")
-        val p = new Properties ();
+        val p = new Properties ()
         p.load (in)
-        in.close
+        in.close ()
         p
     }
-    val APPLICATION_NAME = getClass.getName.substring (getClass.getName.lastIndexOf (".") + 1, getClass.getName.length - 1)
-    val APPLICATION_VERSION = properties.getProperty ("version")
-    val SPARK = properties.getProperty ("spark")
+    val APPLICATION_NAME: String = getClass.getName.substring (getClass.getName.lastIndexOf (".") + 1, getClass.getName.length - 1)
+    val APPLICATION_VERSION: String = properties.getProperty ("version")
+    val SPARK: String = properties.getProperty ("spark")
 
     private val log = LoggerFactory.getLogger (APPLICATION_NAME)
 
@@ -82,7 +79,7 @@ object CIMServerJDBC
         type LogLevels = Value
         val ALL, DEBUG, ERROR, FATAL, INFO, OFF, TRACE, WARN = Value
     }
-    implicit val LogLevelsRead: scopt.Read[LogLevels.Value] = scopt.Read.reads (LogLevels.withName (_))
+    implicit val LogLevelsRead: scopt.Read[LogLevels.Value] = scopt.Read.reads (LogLevels.withName)
 
     implicit val mapRead: scopt.Read[Map[String,String]] = scopt.Read.reads (
     (s) =>
@@ -110,7 +107,7 @@ object CIMServerJDBC
         files: Seq[String] = Seq()
     )
 
-    val parser = new scopt.OptionParser[Arguments](APPLICATION_NAME)
+    val parser: OptionParser[Arguments] = new scopt.OptionParser[Arguments](APPLICATION_NAME)
     {
         head (APPLICATION_NAME, APPLICATION_VERSION)
 
@@ -156,7 +153,7 @@ object CIMServerJDBC
     def jarForObject (obj: Object): String =
     {
         // see https://stackoverflow.com/questions/320542/how-to-get-the-path-of-a-running-jar-file
-        var ret = obj.getClass.getProtectionDomain ().getCodeSource ().getLocation ().getPath ()
+        var ret = obj.getClass.getProtectionDomain.getCodeSource.getLocation.getPath
         try
         {
             ret = URLDecoder.decode (ret, "UTF-8")
@@ -175,7 +172,7 @@ object CIMServerJDBC
             ret = name
         }
 
-        return (ret)
+        ret
     }
 
     def main (args:Array[String])
@@ -191,8 +188,8 @@ object CIMServerJDBC
                 configuration.setAppName (APPLICATION_NAME)
                 if ("" != arguments.master)
                     configuration.setMaster (arguments.master)
-                if (arguments.opts.size != 0)
-                    arguments.opts.map ((pair: Tuple2[String, String]) => configuration.set (pair._1, pair._2))
+                if (arguments.opts.nonEmpty)
+                    arguments.opts.map ((pair: (String, String)) => configuration.set (pair._1, pair._2))
                 // get the necessary jar files to send to the cluster
                 if ("" != arguments.master)
                 {
@@ -201,16 +198,7 @@ object CIMServerJDBC
                 }
 
                 if (StorageLevel.fromString (arguments.storage).useDisk)
-                {
-                    // register low level classes
-                    configuration.registerKryoClasses (Array (classOf[Element], classOf[BasicElement], classOf[Unknown]))
-                    // register CIM case classes
-                    CHIM.apply_to_all_classes { x => configuration.registerKryoClasses (Array (x.runtime_class)) }
-                    // register edge related classes
-                    configuration.registerKryoClasses (Array (classOf[PreEdge], classOf[Extremum], classOf[PostEdge]))
-                    // register topological classes
-                    configuration.registerKryoClasses (Array (classOf[CuttingEdge], classOf[TopologicalData]))
-                }
+                    configuration.registerKryoClasses (CIMClasses.list)
                 configuration.set ("spark.ui.showConsoleProgress", "false")
                 configuration.set ("spark.sql.hive.thriftServer.singleSession", "true")
                 // set the host and port if specified, otherwise use the default of localhost:10004
@@ -258,7 +246,7 @@ object CIMServerJDBC
                     log.info ("serving tables:")
                     val tables = session.sqlContext.tableNames ()
                     for (table <- tables)
-                       log.info (table.toString ())
+                       log.info (table.toString)
 
 //                    log.info ("tables #2")
 //                    val dataframe = session.sqlContext.sql ("show tables")
@@ -270,7 +258,7 @@ object CIMServerJDBC
                 }
                 finally
                 {
-                    session.stop ();
+                    session.stop ()
                 }
                 sys.exit (0)
             case None =>
