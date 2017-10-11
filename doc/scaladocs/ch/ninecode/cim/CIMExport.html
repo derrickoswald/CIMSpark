@@ -70,15 +70,15 @@ elements2.count
 <span class="kw">val</span> terminals = sc.getPersistentRDDs.filter(_._2.name == <span class="lit">"Terminal"</span>).head._2.asInstanceOf[RDD[Terminal]]
 <span class="kw">val</span> NSpin = terminals.filter (x <span class="kw">=&gt;</span> x.ConductingEquipment == <span class="lit">"TRA7872"</span> &amp;&amp; x.ACDCTerminal.sequenceNumber == <span class="num">2</span>)
 println (NSpin.first.TopologicalNode)
-MUI452395_topo
+MUI452395_island
 <span class="cmt">// get the name of the trafokreis TopologicalIsland</span>
 <span class="kw">val</span> nodes = sc.getPersistentRDDs.filter(_._2.name == <span class="lit">"TopologicalNode"</span>).head._2.asInstanceOf[RDD[TopologicalNode]]
-<span class="kw">val</span> NSnode = nodes.filter (_.id == <span class="lit">"MUI452395_topo"</span>)
+<span class="kw">val</span> NSnode = nodes.filter (_.id == <span class="lit">"MUI452395_island"</span>)
 println (NSnode.first.TopologicalIsland)
-TRA7872_terminal_2_topo
+TRA7872_terminal_2_island
 <span class="cmt">// export the reduced CIM file</span>
 <span class="kw">val</span> export = <span class="kw">new</span> CIMExport (spark)
-export.exportIsland (<span class="lit">"TRA7872_terminal_2_topo"</span>, <span class="lit">"TRA7872.rdf"</span>)</pre></li>, <li class="cmt"><p>Export entire deduplicated CIM file with it's topology</p><pre><span class="cmt">// enter Spark shell environment</span>
+export.exportIsland (<span class="lit">"TRA7872_terminal_2_island"</span>, <span class="lit">"TRA7872.rdf"</span>)</pre></li>, <li class="cmt"><p>Export entire deduplicated CIM file with it's topology</p><pre><span class="cmt">// enter Spark shell environment</span>
 spark-shell --master spark:<span class="cmt">//sandbox:7077 --executor-memory 4g --driver-memory 1g --conf spark.sql.warehouse.dir=file:/tmp/spark-warehouse --jars /opt/code/CIMReader-2.11-2.2.0-2.2.1.jar</span>
 <span class="cmt">// read the large CIM file</span>
 <span class="kw">import</span> scala.collection.mutable.HashMap
@@ -253,23 +253,6 @@ export.exportAll (<span class="lit">"bkw_cim_export_equipment.rdf"</span>)</pre>
     </span>)</span>
               
         </dd></dl></div>
-    </li><li name="ch.ninecode.cim.CIMExport#configuration" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="configuration:org.apache.hadoop.conf.Configuration"></a>
-      <a id="configuration:Configuration"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">configuration</span><span class="result">: <span class="extype" name="org.apache.hadoop.conf.Configuration">Configuration</span></span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.CIMExport@configuration:org.apache.hadoop.conf.Configuration" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      
     </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a>
       <a id="eq(AnyRef):Boolean"></a>
@@ -341,6 +324,23 @@ export.exportAll (<span class="lit">"bkw_cim_export_equipment.rdf"</span>)</pre>
       <p class="shortcomment cmt">Export all CIM elements.</p><div class="fullcomment"><div class="comment cmt"><p>Export all CIM elements.</p><p>Useful after doing some processing, such as stripe de-duplicating or topological processing,
 to avoid having to redo that processing again.
 </p></div><dl class="paramcmts block"><dt class="param">filename</dt><dd class="cmt"><p>The name of the file to write.</p></dd><dt class="param">about</dt><dd class="cmt"><p>The about string for the CIM file header.</p></dd></dl></div>
+    </li><li name="ch.ninecode.cim.CIMExport#exportAllIslands" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="exportAllIslands(directory:String):Int"></a>
+      <a id="exportAllIslands(String):Int"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">exportAllIslands</span><span class="params">(<span name="directory">directory: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;simulation/&quot;</span></span>)</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.CIMExport@exportAllIslands(directory:String):Int" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Export every topological island.</p><div class="fullcomment"><div class="comment cmt"><p>Export every topological island.</p></div><dl class="paramcmts block"><dt class="param">directory</dt><dd class="cmt"><p>The name of the directory to write the CIM files.</p></dd><dt>returns</dt><dd class="cmt"><p>the number of islands processed</p></dd></dl></div>
     </li><li name="ch.ninecode.cim.CIMExport#exportIsland" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="exportIsland(island:String,filename:String):Unit"></a>
       <a id="exportIsland(String,String):Unit"></a>
@@ -455,23 +455,6 @@ currently it is named Elements (plural), so this method must be used:</p><pre><s
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
-    </li><li name="ch.ninecode.cim.CIMExport#hdfs" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="hdfs:org.apache.hadoop.fs.FileSystem"></a>
-      <a id="hdfs:FileSystem"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">val</span>
-      </span>
-      <span class="symbol">
-        <span class="name">hdfs</span><span class="result">: <span class="extype" name="org.apache.hadoop.fs.FileSystem">FileSystem</span></span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.CIMExport@hdfs:org.apache.hadoop.fs.FileSystem" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      
     </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isInstanceOf[T0]:Boolean"></a>
       <a id="isInstanceOf[T0]:Boolean"></a>

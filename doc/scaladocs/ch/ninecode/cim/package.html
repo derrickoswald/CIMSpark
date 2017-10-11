@@ -239,15 +239,15 @@ elements2.count
 <span class="kw">val</span> terminals = sc.getPersistentRDDs.filter(_._2.name == <span class="lit">"Terminal"</span>).head._2.asInstanceOf[RDD[Terminal]]
 <span class="kw">val</span> NSpin = terminals.filter (x <span class="kw">=&gt;</span> x.ConductingEquipment == <span class="lit">"TRA7872"</span> &amp;&amp; x.ACDCTerminal.sequenceNumber == <span class="num">2</span>)
 println (NSpin.first.TopologicalNode)
-MUI452395_topo
+MUI452395_island
 <span class="cmt">// get the name of the trafokreis TopologicalIsland</span>
 <span class="kw">val</span> nodes = sc.getPersistentRDDs.filter(_._2.name == <span class="lit">"TopologicalNode"</span>).head._2.asInstanceOf[RDD[TopologicalNode]]
-<span class="kw">val</span> NSnode = nodes.filter (_.id == <span class="lit">"MUI452395_topo"</span>)
+<span class="kw">val</span> NSnode = nodes.filter (_.id == <span class="lit">"MUI452395_island"</span>)
 println (NSnode.first.TopologicalIsland)
-TRA7872_terminal_2_topo
+TRA7872_terminal_2_island
 <span class="cmt">// export the reduced CIM file</span>
 <span class="kw">val</span> export = <span class="kw">new</span> CIMExport (spark)
-export.exportIsland (<span class="lit">"TRA7872_terminal_2_topo"</span>, <span class="lit">"TRA7872.rdf"</span>)</pre></li>, <li class="cmt"><p>Export entire deduplicated CIM file with it's topology</p><pre><span class="cmt">// enter Spark shell environment</span>
+export.exportIsland (<span class="lit">"TRA7872_terminal_2_island"</span>, <span class="lit">"TRA7872.rdf"</span>)</pre></li>, <li class="cmt"><p>Export entire deduplicated CIM file with it's topology</p><pre><span class="cmt">// enter Spark shell environment</span>
 spark-shell --master spark:<span class="cmt">//sandbox:7077 --executor-memory 4g --driver-memory 1g --conf spark.sql.warehouse.dir=file:/tmp/spark-warehouse --jars /opt/code/CIMReader-2.11-2.2.0-2.2.1.jar</span>
 <span class="cmt">// read the large CIM file</span>
 <span class="kw">import</span> scala.collection.mutable.HashMap

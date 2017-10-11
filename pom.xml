@@ -4,7 +4,7 @@
     <groupId>ch.ninecode.cim</groupId>
     <artifactId>CIMReader</artifactId>
     <!-- version>${version.dependency.scala}-${version.dependency.spark}-CIMREADER_VERSION</version -->
-    <version>2.11-2.1.1-2.3.0</version>
+    <version>2.11-2.2.0-2.3.0</version>
     <name>${project.artifactId}</name>
     <description>Expose CIM data files as Spark RDD</description>
     <inceptionYear>2015</inceptionYear>
@@ -76,7 +76,7 @@
         <version.dependency.scalalibrary>2.11.8</version.dependency.scalalibrary>
         <version.dependency.scalatest>3.0.3</version.dependency.scalatest>
         <version.dependency.scopt>3.6.0</version.dependency.scopt>
-        <version.dependency.spark>2.1.1</version.dependency.spark>
+        <version.dependency.spark>2.2.0</version.dependency.spark>
     </properties>
     <dependencies>
         <dependency>
