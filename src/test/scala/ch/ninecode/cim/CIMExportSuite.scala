@@ -107,6 +107,22 @@ voltage +
         val elements2 = ntp.process (true)
         println (elements2.count + " elements")
         val export = new CIMExport (spark)
-        export.exportIsland ("TRA5200_terminal_2_topo", "target/" + "TRA5200" + ".rdf")
+        export.exportIsland ("TRA5200_terminal_2_island", "target/" + "TRA5200" + ".rdf")
+    }
+
+    test ("ExportAllIslands")
+    {
+        implicit spark: SparkSession ⇒
+
+            val filename =
+                PRIVATE_FILE_DEPOT + "bkw_cim_export_haelig" + ".rdf"
+            val options = new util.HashMap[String, String] ().asInstanceOf[util.Map[String,String]]
+            val elements = readFile (filename, options)
+            println (elements.count + " elements")
+            val ntp = new CIMNetworkTopologyProcessor (spark, org.apache.spark.storage.StorageLevel.MEMORY_AND_DISK_SER)
+            val elements2 = ntp.process (true)
+            println (elements2.count + " elements")
+            val export = new CIMExport (spark)
+            export.exportAllIslands ("target/simulation")
     }
 }

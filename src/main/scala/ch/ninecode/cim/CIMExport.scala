@@ -66,17 +66,17 @@ import ch.ninecode.model._
  * val terminals = sc.getPersistentRDDs.filter(_._2.name == "Terminal").head._2.asInstanceOf[RDD[Terminal]]
  * val NSpin = terminals.filter (x => x.ConductingEquipment == "TRA7872" && x.ACDCTerminal.sequenceNumber == 2)
  * println (NSpin.first.TopologicalNode)
- * MUI452395_topo
+ * MUI452395_island
  *
  * // get the name of the trafokreis TopologicalIsland
  * val nodes = sc.getPersistentRDDs.filter(_._2.name == "TopologicalNode").head._2.asInstanceOf[RDD[TopologicalNode]]
- * val NSnode = nodes.filter (_.id == "MUI452395_topo")
+ * val NSnode = nodes.filter (_.id == "MUI452395_island")
  * println (NSnode.first.TopologicalIsland)
- * TRA7872_terminal_2_topo
+ * TRA7872_terminal_2_island
  *
  * // export the reduced CIM file
  * val export = new CIMExport (spark)
- * export.exportIsland ("TRA7872_terminal_2_topo", "TRA7872.rdf")
+ * export.exportIsland ("TRA7872_terminal_2_island", "TRA7872.rdf")
  * }}}
  *
  */
@@ -84,11 +84,11 @@ class CIMExport (spark: SparkSession) extends CIMRDD with Serializable
 {
     implicit val session: SparkSession = spark
     implicit val log: Logger = LoggerFactory.getLogger (getClass)
-    val configuration: Configuration = spark.sparkContext.hadoopConfiguration
-    val hdfs: FileSystem = FileSystem.get (configuration)
 
     def merge (source: String, destination: String): Unit =
     {
+        val configuration: Configuration = spark.sparkContext.hadoopConfiguration
+        val hdfs: FileSystem = FileSystem.get (configuration)
         FileUtil.copyMerge (hdfs, new Path (source), hdfs, new Path (destination), false, configuration, null)
     }
 
@@ -113,11 +113,15 @@ class CIMExport (spark: SparkSession) extends CIMRDD with Serializable
 		<md:Model.profile>https://github.com/derrickoswald/CIMReader</md:Model.profile>
 	</md:FullModel>"""
         val tailer = """</rdf:RDF>"""
+
+        // setup
+        val configuration: Configuration = spark.sparkContext.hadoopConfiguration
         val hdfs = FileSystem.get (URI.create (configuration.get ("fs.defaultFS")), configuration)
         val directory: Path = new Path (hdfs.getWorkingDirectory, temp)
         hdfs.delete (directory, true)
         val file = new Path (filename)
         hdfs.delete (file, false)
+        // write the file
         val txt = directory.toUri.toString
         val head = spark.sparkContext.makeRDD (List[String] (header))
         val tail = spark.sparkContext.makeRDD (List[String] (tailer))
@@ -125,7 +129,12 @@ class CIMExport (spark: SparkSession) extends CIMRDD with Serializable
         val ss = head.union (guts).union (tail)
         ss.saveAsTextFile (txt)
         merge (txt, file.toUri.toString)
+        // clean up temporary directory
         hdfs.delete (directory, true)
+        // delete the stupid .crc file
+        val index = filename.lastIndexOf ("/")
+        val crc = if (-1 != index) filename.substring (0, index + 1) + "." + filename.substring (index + 1) + ".crc" else "." + filename + ".crc"
+        hdfs.delete (new Path (crc), false)
     }
 
     /**
@@ -135,7 +144,8 @@ class CIMExport (spark: SparkSession) extends CIMRDD with Serializable
      */
     def exportIsland (island: String, filename: String): Unit =
     {
-        val someislands = get[TopologicalIsland].filter (_.id == island)
+        val allislands = get[TopologicalIsland]
+        val someislands = allislands.filter (_.id == island)
         if (someislands.isEmpty())
             log.error (island + " not found")
         else
@@ -254,7 +264,7 @@ class CIMExport (spark: SparkSession) extends CIMRDD with Serializable
 
             // get the elements
             val elements = get[Element]("Elements").keyBy (_.id).join (ids).map (_._2._1)
-            export (elements, filename, island)
+            export (elements, filename, island, "/tmp/" + island + ".rdf")
         }
     }
 
@@ -271,5 +281,18 @@ class CIMExport (spark: SparkSession) extends CIMRDD with Serializable
     {
         val elements = get[Element]("Elements")
         export (elements, filename, about)
+    }
+
+    /**
+     * Export every topological island.
+     * @param directory The name of the directory to write the CIM files.
+     * @return the number of islands processed
+     */
+    def exportAllIslands (directory: String = "simulation/"): Int =
+    {
+        val dir = if (directory.endsWith ("/")) directory else directory + "/"
+        val allislands = get[TopologicalIsland].map (_.id).collect
+        val islands = allislands.map (island ⇒ { exportIsland (island, dir + island + ".rdf"); 1})
+        islands.sum
     }
 }
