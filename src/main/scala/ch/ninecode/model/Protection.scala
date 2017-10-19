@@ -41,6 +41,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -60,20 +66,22 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:CurrentRelay.currentLimit1>" + currentLimit1 + "</cim:CurrentRelay.currentLimit1>\n" +
-        "\t\t<cim:CurrentRelay.currentLimit2>" + currentLimit2 + "</cim:CurrentRelay.currentLimit2>\n" +
-        "\t\t<cim:CurrentRelay.currentLimit3>" + currentLimit3 + "</cim:CurrentRelay.currentLimit3>\n" +
-        "\t\t<cim:CurrentRelay.inverseTimeFlag>" + inverseTimeFlag + "</cim:CurrentRelay.inverseTimeFlag>\n" +
-        "\t\t<cim:CurrentRelay.timeDelay1>" + timeDelay1 + "</cim:CurrentRelay.timeDelay1>\n" +
-        "\t\t<cim:CurrentRelay.timeDelay2>" + timeDelay2 + "</cim:CurrentRelay.timeDelay2>\n" +
-        "\t\t<cim:CurrentRelay.timeDelay3>" + timeDelay3 + "</cim:CurrentRelay.timeDelay3>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = CurrentRelay.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (CurrentRelay.fields (position), value)
+        emitelem (0, currentLimit1)
+        emitelem (1, currentLimit2)
+        emitelem (2, currentLimit3)
+        emitelem (3, inverseTimeFlag)
+        emitelem (4, timeDelay1)
+        emitelem (5, timeDelay2)
+        emitelem (6, timeDelay3)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:CurrentRelay rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:CurrentRelay>"
+        "\t<cim:CurrentRelay rdf:ID=\"%s\">\n%s\t</cim:CurrentRelay>".format (id, export_fields)
     }
 }
 
@@ -81,27 +89,44 @@ object CurrentRelay
 extends
     Parseable[CurrentRelay]
 {
-    val currentLimit1 = parse_element (element ("""CurrentRelay.currentLimit1"""))
-    val currentLimit2 = parse_element (element ("""CurrentRelay.currentLimit2"""))
-    val currentLimit3 = parse_element (element ("""CurrentRelay.currentLimit3"""))
-    val inverseTimeFlag = parse_element (element ("""CurrentRelay.inverseTimeFlag"""))
-    val timeDelay1 = parse_element (element ("""CurrentRelay.timeDelay1"""))
-    val timeDelay2 = parse_element (element ("""CurrentRelay.timeDelay2"""))
-    val timeDelay3 = parse_element (element ("""CurrentRelay.timeDelay3"""))
+    val fields: Array[String] = Array[String] (
+        "currentLimit1",
+        "currentLimit2",
+        "currentLimit3",
+        "inverseTimeFlag",
+        "timeDelay1",
+        "timeDelay2",
+        "timeDelay3"
+    )
+    val currentLimit1: Fielder = parse_element (element (cls, fields(0)))
+    val currentLimit2: Fielder = parse_element (element (cls, fields(1)))
+    val currentLimit3: Fielder = parse_element (element (cls, fields(2)))
+    val inverseTimeFlag: Fielder = parse_element (element (cls, fields(3)))
+    val timeDelay1: Fielder = parse_element (element (cls, fields(4)))
+    val timeDelay2: Fielder = parse_element (element (cls, fields(5)))
+    val timeDelay3: Fielder = parse_element (element (cls, fields(6)))
+
     def parse (context: Context): CurrentRelay =
     {
-        CurrentRelay(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = CurrentRelay (
             ProtectionEquipment.parse (context),
-            toDouble (currentLimit1 (context), context),
-            toDouble (currentLimit2 (context), context),
-            toDouble (currentLimit3 (context), context),
-            toBoolean (inverseTimeFlag (context), context),
-            toDouble (timeDelay1 (context), context),
-            toDouble (timeDelay2 (context), context),
-            toDouble (timeDelay3 (context), context)
+            toDouble (mask (currentLimit1 (), 0)),
+            toDouble (mask (currentLimit2 (), 1)),
+            toDouble (mask (currentLimit3 (), 2)),
+            toBoolean (mask (inverseTimeFlag (), 3)),
+            toDouble (mask (timeDelay1 (), 4)),
+            toDouble (mask (timeDelay2 (), 5)),
+            toDouble (mask (timeDelay3 (), 6))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -142,6 +167,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, false, 0.0, null, null, List(), List()) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -161,21 +192,25 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ProtectionEquipment.highLimit>" + highLimit + "</cim:ProtectionEquipment.highLimit>\n" +
-        "\t\t<cim:ProtectionEquipment.lowLimit>" + lowLimit + "</cim:ProtectionEquipment.lowLimit>\n" +
-        "\t\t<cim:ProtectionEquipment.powerDirectionFlag>" + powerDirectionFlag + "</cim:ProtectionEquipment.powerDirectionFlag>\n" +
-        "\t\t<cim:ProtectionEquipment.relayDelayTime>" + relayDelayTime + "</cim:ProtectionEquipment.relayDelayTime>\n" +
-        (if (null != unitMultiplier) "\t\t<cim:ProtectionEquipment.unitMultiplier rdf:resource=\"#" + unitMultiplier + "\"/>\n" else "") +
-        (if (null != unitSymbol) "\t\t<cim:ProtectionEquipment.unitSymbol rdf:resource=\"#" + unitSymbol + "\"/>\n" else "") +
-        (if (null != ConductingEquipments) ConductingEquipments.map (x => "\t\t<cim:ProtectionEquipment.ConductingEquipments rdf:resource=\"#" + x + "\"/>\n").mkString else "") +
-        (if (null != ProtectedSwitches) ProtectedSwitches.map (x => "\t\t<cim:ProtectionEquipment.ProtectedSwitches rdf:resource=\"#" + x + "\"/>\n").mkString else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ProtectionEquipment.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ProtectionEquipment.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ProtectionEquipment.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ProtectionEquipment.fields (position), x))
+        emitelem (0, highLimit)
+        emitelem (1, lowLimit)
+        emitelem (2, powerDirectionFlag)
+        emitelem (3, relayDelayTime)
+        emitattr (4, unitMultiplier)
+        emitattr (5, unitSymbol)
+        emitattrs (6, ConductingEquipments)
+        emitattrs (7, ProtectedSwitches)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ProtectionEquipment rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ProtectionEquipment>"
+        "\t<cim:ProtectionEquipment rdf:ID=\"%s\">\n%s\t</cim:ProtectionEquipment>".format (id, export_fields)
     }
 }
 
@@ -183,31 +218,49 @@ object ProtectionEquipment
 extends
     Parseable[ProtectionEquipment]
 {
-    val highLimit = parse_element (element ("""ProtectionEquipment.highLimit"""))
-    val lowLimit = parse_element (element ("""ProtectionEquipment.lowLimit"""))
-    val powerDirectionFlag = parse_element (element ("""ProtectionEquipment.powerDirectionFlag"""))
-    val relayDelayTime = parse_element (element ("""ProtectionEquipment.relayDelayTime"""))
-    val unitMultiplier = parse_attribute (attribute ("""ProtectionEquipment.unitMultiplier"""))
-    val unitSymbol = parse_attribute (attribute ("""ProtectionEquipment.unitSymbol"""))
-    val ConductingEquipments = parse_attributes (attribute ("""ProtectionEquipment.ConductingEquipments"""))
-    val ProtectedSwitches = parse_attributes (attribute ("""ProtectionEquipment.ProtectedSwitches"""))
+    val fields: Array[String] = Array[String] (
+        "highLimit",
+        "lowLimit",
+        "powerDirectionFlag",
+        "relayDelayTime",
+        "unitMultiplier",
+        "unitSymbol",
+        "ConductingEquipments",
+        "ProtectedSwitches"
+    )
+    val highLimit: Fielder = parse_element (element (cls, fields(0)))
+    val lowLimit: Fielder = parse_element (element (cls, fields(1)))
+    val powerDirectionFlag: Fielder = parse_element (element (cls, fields(2)))
+    val relayDelayTime: Fielder = parse_element (element (cls, fields(3)))
+    val unitMultiplier: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val unitSymbol: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val ConductingEquipments: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
+    val ProtectedSwitches: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
+
     def parse (context: Context): ProtectionEquipment =
     {
-        ProtectionEquipment(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        def masks (field: Fields, position: Int): List[String] = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ProtectionEquipment (
             Equipment.parse (context),
-            toDouble (highLimit (context), context),
-            toDouble (lowLimit (context), context),
-            toBoolean (powerDirectionFlag (context), context),
-            toDouble (relayDelayTime (context), context),
-            unitMultiplier (context),
-            unitSymbol (context),
-            ConductingEquipments (context),
-            ProtectedSwitches (context)
+            toDouble (mask (highLimit (), 0)),
+            toDouble (mask (lowLimit (), 1)),
+            toBoolean (mask (powerDirectionFlag (), 2)),
+            toDouble (mask (relayDelayTime (), 3)),
+            mask (unitMultiplier (), 4),
+            mask (unitSymbol (), 5),
+            masks (ConductingEquipments (), 6),
+            masks (ProtectedSwitches (), 7)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("ConductingEquipments", "ConductingEquipment", true),
-        Relationship ("ProtectedSwitches", "ProtectedSwitch", true))
+        Relationship ("ProtectedSwitches", "ProtectedSwitch", true)
+    )
 }
 
 /**
@@ -236,6 +289,12 @@ extends
      */
     def this () = { this (null, 0.0, 0, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -255,16 +314,19 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:RecloseSequence.recloseDelay>" + recloseDelay + "</cim:RecloseSequence.recloseDelay>\n" +
-        "\t\t<cim:RecloseSequence.recloseStep>" + recloseStep + "</cim:RecloseSequence.recloseStep>\n" +
-        (if (null != ProtectedSwitch) "\t\t<cim:RecloseSequence.ProtectedSwitch rdf:resource=\"#" + ProtectedSwitch + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = RecloseSequence.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (RecloseSequence.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (RecloseSequence.fields (position), value)
+        emitelem (0, recloseDelay)
+        emitelem (1, recloseStep)
+        emitattr (2, ProtectedSwitch)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:RecloseSequence rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:RecloseSequence>"
+        "\t<cim:RecloseSequence rdf:ID=\"%s\">\n%s\t</cim:RecloseSequence>".format (id, export_fields)
     }
 }
 
@@ -272,20 +334,32 @@ object RecloseSequence
 extends
     Parseable[RecloseSequence]
 {
-    val recloseDelay = parse_element (element ("""RecloseSequence.recloseDelay"""))
-    val recloseStep = parse_element (element ("""RecloseSequence.recloseStep"""))
-    val ProtectedSwitch = parse_attribute (attribute ("""RecloseSequence.ProtectedSwitch"""))
+    val fields: Array[String] = Array[String] (
+        "recloseDelay",
+        "recloseStep",
+        "ProtectedSwitch"
+    )
+    val recloseDelay: Fielder = parse_element (element (cls, fields(0)))
+    val recloseStep: Fielder = parse_element (element (cls, fields(1)))
+    val ProtectedSwitch: Fielder = parse_attribute (attribute (cls, fields(2)))
+
     def parse (context: Context): RecloseSequence =
     {
-        RecloseSequence(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = RecloseSequence (
             IdentifiedObject.parse (context),
-            toDouble (recloseDelay (context), context),
-            toInteger (recloseStep (context), context),
-            ProtectedSwitch (context)
+            toDouble (mask (recloseDelay (), 0)),
+            toInteger (mask (recloseStep (), 1)),
+            mask (ProtectedSwitch (), 2)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("ProtectedSwitch", "ProtectedSwitch", false))
+        Relationship ("ProtectedSwitch", "ProtectedSwitch", false)
+    )
 }
 
 /**
@@ -316,6 +390,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -335,16 +415,18 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:SynchrocheckRelay.maxAngleDiff>" + maxAngleDiff + "</cim:SynchrocheckRelay.maxAngleDiff>\n" +
-        "\t\t<cim:SynchrocheckRelay.maxFreqDiff>" + maxFreqDiff + "</cim:SynchrocheckRelay.maxFreqDiff>\n" +
-        "\t\t<cim:SynchrocheckRelay.maxVoltDiff>" + maxVoltDiff + "</cim:SynchrocheckRelay.maxVoltDiff>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = SynchrocheckRelay.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (SynchrocheckRelay.fields (position), value)
+        emitelem (0, maxAngleDiff)
+        emitelem (1, maxFreqDiff)
+        emitelem (2, maxVoltDiff)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:SynchrocheckRelay rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:SynchrocheckRelay>"
+        "\t<cim:SynchrocheckRelay rdf:ID=\"%s\">\n%s\t</cim:SynchrocheckRelay>".format (id, export_fields)
     }
 }
 
@@ -352,19 +434,32 @@ object SynchrocheckRelay
 extends
     Parseable[SynchrocheckRelay]
 {
-    val maxAngleDiff = parse_element (element ("""SynchrocheckRelay.maxAngleDiff"""))
-    val maxFreqDiff = parse_element (element ("""SynchrocheckRelay.maxFreqDiff"""))
-    val maxVoltDiff = parse_element (element ("""SynchrocheckRelay.maxVoltDiff"""))
+    val fields: Array[String] = Array[String] (
+        "maxAngleDiff",
+        "maxFreqDiff",
+        "maxVoltDiff"
+    )
+    val maxAngleDiff: Fielder = parse_element (element (cls, fields(0)))
+    val maxFreqDiff: Fielder = parse_element (element (cls, fields(1)))
+    val maxVoltDiff: Fielder = parse_element (element (cls, fields(2)))
+
     def parse (context: Context): SynchrocheckRelay =
     {
-        SynchrocheckRelay(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = SynchrocheckRelay (
             ProtectionEquipment.parse (context),
-            toDouble (maxAngleDiff (context), context),
-            toDouble (maxFreqDiff (context), context),
-            toDouble (maxVoltDiff (context), context)
+            toDouble (mask (maxAngleDiff (), 0)),
+            toDouble (mask (maxFreqDiff (), 1)),
+            toDouble (mask (maxVoltDiff (), 2))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 private[ninecode] object _Protection

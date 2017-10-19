@@ -189,9 +189,15 @@ class CIMExport (spark: SparkSession) extends CIMRDD with Serializable
             val name_auth = get[NameTypeAuthority].keyBy (_.id).join (name_type.keyBy (_.NameTypeAuthority)).map (_._2._1).distinct
             val mst_addr = get[StreetAddress].keyBy (_.id).join (mst.keyBy (_.WorkLocation.Location.secondaryAddress)).map (_._2._1)
             val mst_town = get[TownDetail].keyBy (_.id).join (mst_addr.keyBy (_.townDetail)).map (_._2._1)
-            val mst_street = get[StreetDetail].keyBy (_.id).join (mst_addr.keyBy (_.streetDetail)).map (_._2._1)
-            val mst_status = get[Status].keyBy (_.id).join (mst_addr.keyBy (_.status)).map (_._2._1)
             val mst_point = get[PositionPoint].keyBy (_.Location).join (mst.keyBy (_.id)).map (_._2._1)
+            val mst_street = if (null != get[StreetDetail])
+                get[StreetDetail].keyBy (_.id).join (mst_addr.keyBy (_.streetDetail)).map (_._2._1)
+            else
+                spark.sparkContext.emptyRDD[StreetDetail]
+            val mst_status = if (null != get[Status])
+                get[Status].keyBy (_.id).join (mst_addr.keyBy (_.status)).map (_._2._1)
+            else
+                spark.sparkContext.emptyRDD[Status]
 
             // SolarGeneratingUnit
             val eea_s = get[StringQuantity].keyBy (_.value).join (mst.keyBy (_.id)).map (_._2._1)

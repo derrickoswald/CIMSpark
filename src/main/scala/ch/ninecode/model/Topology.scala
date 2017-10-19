@@ -34,6 +34,12 @@ extends
      */
     def this () = { this (null, 0, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -53,15 +59,18 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:BusNameMarker.priority>" + priority + "</cim:BusNameMarker.priority>\n" +
-        (if (null != ReportingGroup) "\t\t<cim:BusNameMarker.ReportingGroup rdf:resource=\"#" + ReportingGroup + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = BusNameMarker.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (BusNameMarker.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (BusNameMarker.fields (position), value)
+        emitelem (0, priority)
+        emitattr (1, ReportingGroup)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:BusNameMarker rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:BusNameMarker>"
+        "\t<cim:BusNameMarker rdf:ID=\"%s\">\n%s\t</cim:BusNameMarker>".format (id, export_fields)
     }
 }
 
@@ -69,18 +78,29 @@ object BusNameMarker
 extends
     Parseable[BusNameMarker]
 {
-    val priority = parse_element (element ("""BusNameMarker.priority"""))
-    val ReportingGroup = parse_attribute (attribute ("""BusNameMarker.ReportingGroup"""))
+    val fields: Array[String] = Array[String] (
+        "priority",
+        "ReportingGroup"
+    )
+    val priority: Fielder = parse_element (element (cls, fields(0)))
+    val ReportingGroup: Fielder = parse_attribute (attribute (cls, fields(1)))
+
     def parse (context: Context): BusNameMarker =
     {
-        BusNameMarker(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = BusNameMarker (
             IdentifiedObject.parse (context),
-            toInteger (priority (context), context),
-            ReportingGroup (context)
+            toInteger (mask (priority (), 0)),
+            mask (ReportingGroup (), 1)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("ReportingGroup", "ReportingGroup", false))
+        Relationship ("ReportingGroup", "ReportingGroup", false)
+    )
 }
 
 /**
@@ -107,6 +127,12 @@ extends
      */
     def this () = { this (null, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -126,15 +152,17 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != DCEquipmentContainer) "\t\t<cim:DCTopologicalNode.DCEquipmentContainer rdf:resource=\"#" + DCEquipmentContainer + "\"/>\n" else "") +
-        (if (null != DCTopologicalIsland) "\t\t<cim:DCTopologicalNode.DCTopologicalIsland rdf:resource=\"#" + DCTopologicalIsland + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = DCTopologicalNode.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (DCTopologicalNode.fields (position), value)
+        emitattr (0, DCEquipmentContainer)
+        emitattr (1, DCTopologicalIsland)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:DCTopologicalNode rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:DCTopologicalNode>"
+        "\t<cim:DCTopologicalNode rdf:ID=\"%s\">\n%s\t</cim:DCTopologicalNode>".format (id, export_fields)
     }
 }
 
@@ -142,19 +170,30 @@ object DCTopologicalNode
 extends
     Parseable[DCTopologicalNode]
 {
-    val DCEquipmentContainer = parse_attribute (attribute ("""DCTopologicalNode.DCEquipmentContainer"""))
-    val DCTopologicalIsland = parse_attribute (attribute ("""DCTopologicalNode.DCTopologicalIsland"""))
+    val fields: Array[String] = Array[String] (
+        "DCEquipmentContainer",
+        "DCTopologicalIsland"
+    )
+    val DCEquipmentContainer: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val DCTopologicalIsland: Fielder = parse_attribute (attribute (cls, fields(1)))
+
     def parse (context: Context): DCTopologicalNode =
     {
-        DCTopologicalNode(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = DCTopologicalNode (
             IdentifiedObject.parse (context),
-            DCEquipmentContainer (context),
-            DCTopologicalIsland (context)
+            mask (DCEquipmentContainer (), 0),
+            mask (DCTopologicalIsland (), 1)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("DCEquipmentContainer", "DCEquipmentContainer", false),
-        Relationship ("DCTopologicalIsland", "DCTopologicalIsland", false))
+        Relationship ("DCTopologicalIsland", "DCTopologicalIsland", false)
+    )
 }
 
 /**
@@ -182,6 +221,12 @@ extends
      */
     def this () = { this (null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -201,14 +246,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != AngleRefTopologicalNode) "\t\t<cim:TopologicalIsland.AngleRefTopologicalNode rdf:resource=\"#" + AngleRefTopologicalNode + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = TopologicalIsland.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TopologicalIsland.fields (position), value)
+        emitattr (0, AngleRefTopologicalNode)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:TopologicalIsland rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:TopologicalIsland>"
+        "\t<cim:TopologicalIsland rdf:ID=\"%s\">\n%s\t</cim:TopologicalIsland>".format (id, export_fields)
     }
 }
 
@@ -216,16 +263,26 @@ object TopologicalIsland
 extends
     Parseable[TopologicalIsland]
 {
-    val AngleRefTopologicalNode = parse_attribute (attribute ("""TopologicalIsland.AngleRefTopologicalNode"""))
+    val fields: Array[String] = Array[String] (
+        "AngleRefTopologicalNode"
+    )
+    val AngleRefTopologicalNode: Fielder = parse_attribute (attribute (cls, fields(0)))
+
     def parse (context: Context): TopologicalIsland =
     {
-        TopologicalIsland(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = TopologicalIsland (
             IdentifiedObject.parse (context),
-            AngleRefTopologicalNode (context)
+            mask (AngleRefTopologicalNode (), 0)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("AngleRefTopologicalNode", "TopologicalNode", false))
+        Relationship ("AngleRefTopologicalNode", "TopologicalNode", false)
+    )
 }
 
 /**
@@ -271,6 +328,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, null, null, null, null, null, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -290,22 +353,25 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:TopologicalNode.pInjection>" + pInjection + "</cim:TopologicalNode.pInjection>\n" +
-        "\t\t<cim:TopologicalNode.qInjection>" + qInjection + "</cim:TopologicalNode.qInjection>\n" +
-        (if (null != AngleRefTopologicalIsland) "\t\t<cim:TopologicalNode.AngleRefTopologicalIsland rdf:resource=\"#" + AngleRefTopologicalIsland + "\"/>\n" else "") +
-        (if (null != BaseVoltage) "\t\t<cim:TopologicalNode.BaseVoltage rdf:resource=\"#" + BaseVoltage + "\"/>\n" else "") +
-        (if (null != ConnectivityNodeContainer) "\t\t<cim:TopologicalNode.ConnectivityNodeContainer rdf:resource=\"#" + ConnectivityNodeContainer + "\"/>\n" else "") +
-        (if (null != ReportingGroup) "\t\t<cim:TopologicalNode.ReportingGroup rdf:resource=\"#" + ReportingGroup + "\"/>\n" else "") +
-        (if (null != SvInjection) "\t\t<cim:TopologicalNode.SvInjection rdf:resource=\"#" + SvInjection + "\"/>\n" else "") +
-        (if (null != SvVoltage) "\t\t<cim:TopologicalNode.SvVoltage rdf:resource=\"#" + SvVoltage + "\"/>\n" else "") +
-        (if (null != TopologicalIsland) "\t\t<cim:TopologicalNode.TopologicalIsland rdf:resource=\"#" + TopologicalIsland + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = TopologicalNode.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TopologicalNode.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TopologicalNode.fields (position), value)
+        emitelem (0, pInjection)
+        emitelem (1, qInjection)
+        emitattr (2, AngleRefTopologicalIsland)
+        emitattr (3, BaseVoltage)
+        emitattr (4, ConnectivityNodeContainer)
+        emitattr (5, ReportingGroup)
+        emitattr (6, SvInjection)
+        emitattr (7, SvVoltage)
+        emitattr (8, TopologicalIsland)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:TopologicalNode rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:TopologicalNode>"
+        "\t<cim:TopologicalNode rdf:ID=\"%s\">\n%s\t</cim:TopologicalNode>".format (id, export_fields)
     }
 }
 
@@ -313,29 +379,46 @@ object TopologicalNode
 extends
     Parseable[TopologicalNode]
 {
-    val pInjection = parse_element (element ("""TopologicalNode.pInjection"""))
-    val qInjection = parse_element (element ("""TopologicalNode.qInjection"""))
-    val AngleRefTopologicalIsland = parse_attribute (attribute ("""TopologicalNode.AngleRefTopologicalIsland"""))
-    val BaseVoltage = parse_attribute (attribute ("""TopologicalNode.BaseVoltage"""))
-    val ConnectivityNodeContainer = parse_attribute (attribute ("""TopologicalNode.ConnectivityNodeContainer"""))
-    val ReportingGroup = parse_attribute (attribute ("""TopologicalNode.ReportingGroup"""))
-    val SvInjection = parse_attribute (attribute ("""TopologicalNode.SvInjection"""))
-    val SvVoltage = parse_attribute (attribute ("""TopologicalNode.SvVoltage"""))
-    val TopologicalIsland = parse_attribute (attribute ("""TopologicalNode.TopologicalIsland"""))
+    val fields: Array[String] = Array[String] (
+        "pInjection",
+        "qInjection",
+        "AngleRefTopologicalIsland",
+        "BaseVoltage",
+        "ConnectivityNodeContainer",
+        "ReportingGroup",
+        "SvInjection",
+        "SvVoltage",
+        "TopologicalIsland"
+    )
+    val pInjection: Fielder = parse_element (element (cls, fields(0)))
+    val qInjection: Fielder = parse_element (element (cls, fields(1)))
+    val AngleRefTopologicalIsland: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val BaseVoltage: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val ConnectivityNodeContainer: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val ReportingGroup: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val SvInjection: Fielder = parse_attribute (attribute (cls, fields(6)))
+    val SvVoltage: Fielder = parse_attribute (attribute (cls, fields(7)))
+    val TopologicalIsland: Fielder = parse_attribute (attribute (cls, fields(8)))
+
     def parse (context: Context): TopologicalNode =
     {
-        TopologicalNode(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = TopologicalNode (
             IdentifiedObject.parse (context),
-            toDouble (pInjection (context), context),
-            toDouble (qInjection (context), context),
-            AngleRefTopologicalIsland (context),
-            BaseVoltage (context),
-            ConnectivityNodeContainer (context),
-            ReportingGroup (context),
-            SvInjection (context),
-            SvVoltage (context),
-            TopologicalIsland (context)
+            toDouble (mask (pInjection (), 0)),
+            toDouble (mask (qInjection (), 1)),
+            mask (AngleRefTopologicalIsland (), 2),
+            mask (BaseVoltage (), 3),
+            mask (ConnectivityNodeContainer (), 4),
+            mask (ReportingGroup (), 5),
+            mask (SvInjection (), 6),
+            mask (SvVoltage (), 7),
+            mask (TopologicalIsland (), 8)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("AngleRefTopologicalIsland", "TopologicalIsland", false),
@@ -344,7 +427,8 @@ extends
         Relationship ("ReportingGroup", "ReportingGroup", false),
         Relationship ("SvInjection", "SvInjection", false),
         Relationship ("SvVoltage", "SvVoltage", false),
-        Relationship ("TopologicalIsland", "TopologicalIsland", false))
+        Relationship ("TopologicalIsland", "TopologicalIsland", false)
+    )
 }
 
 private[ninecode] object _Topology

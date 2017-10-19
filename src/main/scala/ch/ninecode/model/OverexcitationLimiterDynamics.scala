@@ -41,6 +41,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -60,17 +66,19 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:OverexcLim2.ifdlim>" + ifdlim + "</cim:OverexcLim2.ifdlim>\n" +
-        "\t\t<cim:OverexcLim2.koi>" + koi + "</cim:OverexcLim2.koi>\n" +
-        "\t\t<cim:OverexcLim2.voimax>" + voimax + "</cim:OverexcLim2.voimax>\n" +
-        "\t\t<cim:OverexcLim2.voimin>" + voimin + "</cim:OverexcLim2.voimin>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = OverexcLim2.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (OverexcLim2.fields (position), value)
+        emitelem (0, ifdlim)
+        emitelem (1, koi)
+        emitelem (2, voimax)
+        emitelem (3, voimin)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:OverexcLim2 rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:OverexcLim2>"
+        "\t<cim:OverexcLim2 rdf:ID=\"%s\">\n%s\t</cim:OverexcLim2>".format (id, export_fields)
     }
 }
 
@@ -78,21 +86,35 @@ object OverexcLim2
 extends
     Parseable[OverexcLim2]
 {
-    val ifdlim = parse_element (element ("""OverexcLim2.ifdlim"""))
-    val koi = parse_element (element ("""OverexcLim2.koi"""))
-    val voimax = parse_element (element ("""OverexcLim2.voimax"""))
-    val voimin = parse_element (element ("""OverexcLim2.voimin"""))
+    val fields: Array[String] = Array[String] (
+        "ifdlim",
+        "koi",
+        "voimax",
+        "voimin"
+    )
+    val ifdlim: Fielder = parse_element (element (cls, fields(0)))
+    val koi: Fielder = parse_element (element (cls, fields(1)))
+    val voimax: Fielder = parse_element (element (cls, fields(2)))
+    val voimin: Fielder = parse_element (element (cls, fields(3)))
+
     def parse (context: Context): OverexcLim2 =
     {
-        OverexcLim2(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = OverexcLim2 (
             OverexcitationLimiterDynamics.parse (context),
-            toDouble (ifdlim (context), context),
-            toDouble (koi (context), context),
-            toDouble (voimax (context), context),
-            toDouble (voimin (context), context)
+            toDouble (mask (ifdlim (), 0)),
+            toDouble (mask (koi (), 1)),
+            toDouble (mask (voimax (), 2)),
+            toDouble (mask (voimin (), 3))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -135,6 +157,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -154,19 +182,21 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:OverexcLimIEEE.hyst>" + hyst + "</cim:OverexcLimIEEE.hyst>\n" +
-        "\t\t<cim:OverexcLimIEEE.ifdlim>" + ifdlim + "</cim:OverexcLimIEEE.ifdlim>\n" +
-        "\t\t<cim:OverexcLimIEEE.ifdmax>" + ifdmax + "</cim:OverexcLimIEEE.ifdmax>\n" +
-        "\t\t<cim:OverexcLimIEEE.itfpu>" + itfpu + "</cim:OverexcLimIEEE.itfpu>\n" +
-        "\t\t<cim:OverexcLimIEEE.kcd>" + kcd + "</cim:OverexcLimIEEE.kcd>\n" +
-        "\t\t<cim:OverexcLimIEEE.kramp>" + kramp + "</cim:OverexcLimIEEE.kramp>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = OverexcLimIEEE.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (OverexcLimIEEE.fields (position), value)
+        emitelem (0, hyst)
+        emitelem (1, ifdlim)
+        emitelem (2, ifdmax)
+        emitelem (3, itfpu)
+        emitelem (4, kcd)
+        emitelem (5, kramp)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:OverexcLimIEEE rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:OverexcLimIEEE>"
+        "\t<cim:OverexcLimIEEE rdf:ID=\"%s\">\n%s\t</cim:OverexcLimIEEE>".format (id, export_fields)
     }
 }
 
@@ -174,25 +204,41 @@ object OverexcLimIEEE
 extends
     Parseable[OverexcLimIEEE]
 {
-    val hyst = parse_element (element ("""OverexcLimIEEE.hyst"""))
-    val ifdlim = parse_element (element ("""OverexcLimIEEE.ifdlim"""))
-    val ifdmax = parse_element (element ("""OverexcLimIEEE.ifdmax"""))
-    val itfpu = parse_element (element ("""OverexcLimIEEE.itfpu"""))
-    val kcd = parse_element (element ("""OverexcLimIEEE.kcd"""))
-    val kramp = parse_element (element ("""OverexcLimIEEE.kramp"""))
+    val fields: Array[String] = Array[String] (
+        "hyst",
+        "ifdlim",
+        "ifdmax",
+        "itfpu",
+        "kcd",
+        "kramp"
+    )
+    val hyst: Fielder = parse_element (element (cls, fields(0)))
+    val ifdlim: Fielder = parse_element (element (cls, fields(1)))
+    val ifdmax: Fielder = parse_element (element (cls, fields(2)))
+    val itfpu: Fielder = parse_element (element (cls, fields(3)))
+    val kcd: Fielder = parse_element (element (cls, fields(4)))
+    val kramp: Fielder = parse_element (element (cls, fields(5)))
+
     def parse (context: Context): OverexcLimIEEE =
     {
-        OverexcLimIEEE(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = OverexcLimIEEE (
             OverexcitationLimiterDynamics.parse (context),
-            toDouble (hyst (context), context),
-            toDouble (ifdlim (context), context),
-            toDouble (ifdmax (context), context),
-            toDouble (itfpu (context), context),
-            toDouble (kcd (context), context),
-            toDouble (kramp (context), context)
+            toDouble (mask (hyst (), 0)),
+            toDouble (mask (ifdlim (), 1)),
+            toDouble (mask (ifdmax (), 2)),
+            toDouble (mask (itfpu (), 3)),
+            toDouble (mask (kcd (), 4)),
+            toDouble (mask (kramp (), 5))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -244,6 +290,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -263,23 +315,25 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:OverexcLimX1.efd1>" + efd1 + "</cim:OverexcLimX1.efd1>\n" +
-        "\t\t<cim:OverexcLimX1.efd2>" + efd2 + "</cim:OverexcLimX1.efd2>\n" +
-        "\t\t<cim:OverexcLimX1.efd3>" + efd3 + "</cim:OverexcLimX1.efd3>\n" +
-        "\t\t<cim:OverexcLimX1.efddes>" + efddes + "</cim:OverexcLimX1.efddes>\n" +
-        "\t\t<cim:OverexcLimX1.efdrated>" + efdrated + "</cim:OverexcLimX1.efdrated>\n" +
-        "\t\t<cim:OverexcLimX1.kmx>" + kmx + "</cim:OverexcLimX1.kmx>\n" +
-        "\t\t<cim:OverexcLimX1.t1>" + t1 + "</cim:OverexcLimX1.t1>\n" +
-        "\t\t<cim:OverexcLimX1.t2>" + t2 + "</cim:OverexcLimX1.t2>\n" +
-        "\t\t<cim:OverexcLimX1.t3>" + t3 + "</cim:OverexcLimX1.t3>\n" +
-        "\t\t<cim:OverexcLimX1.vlow>" + vlow + "</cim:OverexcLimX1.vlow>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = OverexcLimX1.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (OverexcLimX1.fields (position), value)
+        emitelem (0, efd1)
+        emitelem (1, efd2)
+        emitelem (2, efd3)
+        emitelem (3, efddes)
+        emitelem (4, efdrated)
+        emitelem (5, kmx)
+        emitelem (6, t1)
+        emitelem (7, t2)
+        emitelem (8, t3)
+        emitelem (9, vlow)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:OverexcLimX1 rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:OverexcLimX1>"
+        "\t<cim:OverexcLimX1 rdf:ID=\"%s\">\n%s\t</cim:OverexcLimX1>".format (id, export_fields)
     }
 }
 
@@ -287,33 +341,53 @@ object OverexcLimX1
 extends
     Parseable[OverexcLimX1]
 {
-    val efd1 = parse_element (element ("""OverexcLimX1.efd1"""))
-    val efd2 = parse_element (element ("""OverexcLimX1.efd2"""))
-    val efd3 = parse_element (element ("""OverexcLimX1.efd3"""))
-    val efddes = parse_element (element ("""OverexcLimX1.efddes"""))
-    val efdrated = parse_element (element ("""OverexcLimX1.efdrated"""))
-    val kmx = parse_element (element ("""OverexcLimX1.kmx"""))
-    val t1 = parse_element (element ("""OverexcLimX1.t1"""))
-    val t2 = parse_element (element ("""OverexcLimX1.t2"""))
-    val t3 = parse_element (element ("""OverexcLimX1.t3"""))
-    val vlow = parse_element (element ("""OverexcLimX1.vlow"""))
+    val fields: Array[String] = Array[String] (
+        "efd1",
+        "efd2",
+        "efd3",
+        "efddes",
+        "efdrated",
+        "kmx",
+        "t1",
+        "t2",
+        "t3",
+        "vlow"
+    )
+    val efd1: Fielder = parse_element (element (cls, fields(0)))
+    val efd2: Fielder = parse_element (element (cls, fields(1)))
+    val efd3: Fielder = parse_element (element (cls, fields(2)))
+    val efddes: Fielder = parse_element (element (cls, fields(3)))
+    val efdrated: Fielder = parse_element (element (cls, fields(4)))
+    val kmx: Fielder = parse_element (element (cls, fields(5)))
+    val t1: Fielder = parse_element (element (cls, fields(6)))
+    val t2: Fielder = parse_element (element (cls, fields(7)))
+    val t3: Fielder = parse_element (element (cls, fields(8)))
+    val vlow: Fielder = parse_element (element (cls, fields(9)))
+
     def parse (context: Context): OverexcLimX1 =
     {
-        OverexcLimX1(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = OverexcLimX1 (
             OverexcitationLimiterDynamics.parse (context),
-            toDouble (efd1 (context), context),
-            toDouble (efd2 (context), context),
-            toDouble (efd3 (context), context),
-            toDouble (efddes (context), context),
-            toDouble (efdrated (context), context),
-            toDouble (kmx (context), context),
-            toDouble (t1 (context), context),
-            toDouble (t2 (context), context),
-            toDouble (t3 (context), context),
-            toDouble (vlow (context), context)
+            toDouble (mask (efd1 (), 0)),
+            toDouble (mask (efd2 (), 1)),
+            toDouble (mask (efd3 (), 2)),
+            toDouble (mask (efddes (), 3)),
+            toDouble (mask (efdrated (), 4)),
+            toDouble (mask (kmx (), 5)),
+            toDouble (mask (t1 (), 6)),
+            toDouble (mask (t2 (), 7)),
+            toDouble (mask (t3 (), 8)),
+            toDouble (mask (vlow (), 9))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -369,6 +443,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -388,24 +468,26 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:OverexcLimX2.efd1>" + efd1 + "</cim:OverexcLimX2.efd1>\n" +
-        "\t\t<cim:OverexcLimX2.efd2>" + efd2 + "</cim:OverexcLimX2.efd2>\n" +
-        "\t\t<cim:OverexcLimX2.efd3>" + efd3 + "</cim:OverexcLimX2.efd3>\n" +
-        "\t\t<cim:OverexcLimX2.efddes>" + efddes + "</cim:OverexcLimX2.efddes>\n" +
-        "\t\t<cim:OverexcLimX2.efdrated>" + efdrated + "</cim:OverexcLimX2.efdrated>\n" +
-        "\t\t<cim:OverexcLimX2.kmx>" + kmx + "</cim:OverexcLimX2.kmx>\n" +
-        "\t\t<cim:OverexcLimX2.m>" + m + "</cim:OverexcLimX2.m>\n" +
-        "\t\t<cim:OverexcLimX2.t1>" + t1 + "</cim:OverexcLimX2.t1>\n" +
-        "\t\t<cim:OverexcLimX2.t2>" + t2 + "</cim:OverexcLimX2.t2>\n" +
-        "\t\t<cim:OverexcLimX2.t3>" + t3 + "</cim:OverexcLimX2.t3>\n" +
-        "\t\t<cim:OverexcLimX2.vlow>" + vlow + "</cim:OverexcLimX2.vlow>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = OverexcLimX2.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (OverexcLimX2.fields (position), value)
+        emitelem (0, efd1)
+        emitelem (1, efd2)
+        emitelem (2, efd3)
+        emitelem (3, efddes)
+        emitelem (4, efdrated)
+        emitelem (5, kmx)
+        emitelem (6, m)
+        emitelem (7, t1)
+        emitelem (8, t2)
+        emitelem (9, t3)
+        emitelem (10, vlow)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:OverexcLimX2 rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:OverexcLimX2>"
+        "\t<cim:OverexcLimX2 rdf:ID=\"%s\">\n%s\t</cim:OverexcLimX2>".format (id, export_fields)
     }
 }
 
@@ -413,35 +495,56 @@ object OverexcLimX2
 extends
     Parseable[OverexcLimX2]
 {
-    val efd1 = parse_element (element ("""OverexcLimX2.efd1"""))
-    val efd2 = parse_element (element ("""OverexcLimX2.efd2"""))
-    val efd3 = parse_element (element ("""OverexcLimX2.efd3"""))
-    val efddes = parse_element (element ("""OverexcLimX2.efddes"""))
-    val efdrated = parse_element (element ("""OverexcLimX2.efdrated"""))
-    val kmx = parse_element (element ("""OverexcLimX2.kmx"""))
-    val m = parse_element (element ("""OverexcLimX2.m"""))
-    val t1 = parse_element (element ("""OverexcLimX2.t1"""))
-    val t2 = parse_element (element ("""OverexcLimX2.t2"""))
-    val t3 = parse_element (element ("""OverexcLimX2.t3"""))
-    val vlow = parse_element (element ("""OverexcLimX2.vlow"""))
+    val fields: Array[String] = Array[String] (
+        "efd1",
+        "efd2",
+        "efd3",
+        "efddes",
+        "efdrated",
+        "kmx",
+        "m",
+        "t1",
+        "t2",
+        "t3",
+        "vlow"
+    )
+    val efd1: Fielder = parse_element (element (cls, fields(0)))
+    val efd2: Fielder = parse_element (element (cls, fields(1)))
+    val efd3: Fielder = parse_element (element (cls, fields(2)))
+    val efddes: Fielder = parse_element (element (cls, fields(3)))
+    val efdrated: Fielder = parse_element (element (cls, fields(4)))
+    val kmx: Fielder = parse_element (element (cls, fields(5)))
+    val m: Fielder = parse_element (element (cls, fields(6)))
+    val t1: Fielder = parse_element (element (cls, fields(7)))
+    val t2: Fielder = parse_element (element (cls, fields(8)))
+    val t3: Fielder = parse_element (element (cls, fields(9)))
+    val vlow: Fielder = parse_element (element (cls, fields(10)))
+
     def parse (context: Context): OverexcLimX2 =
     {
-        OverexcLimX2(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = OverexcLimX2 (
             OverexcitationLimiterDynamics.parse (context),
-            toDouble (efd1 (context), context),
-            toDouble (efd2 (context), context),
-            toDouble (efd3 (context), context),
-            toDouble (efddes (context), context),
-            toDouble (efdrated (context), context),
-            toDouble (kmx (context), context),
-            toBoolean (m (context), context),
-            toDouble (t1 (context), context),
-            toDouble (t2 (context), context),
-            toDouble (t3 (context), context),
-            toDouble (vlow (context), context)
+            toDouble (mask (efd1 (), 0)),
+            toDouble (mask (efd2 (), 1)),
+            toDouble (mask (efd3 (), 2)),
+            toDouble (mask (efddes (), 3)),
+            toDouble (mask (efdrated (), 4)),
+            toDouble (mask (kmx (), 5)),
+            toBoolean (mask (m (), 6)),
+            toDouble (mask (t1 (), 7)),
+            toDouble (mask (t2 (), 8)),
+            toDouble (mask (t3 (), 9)),
+            toDouble (mask (vlow (), 10))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -466,6 +569,12 @@ extends
      */
     def this () = { this (null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -485,14 +594,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != ExcitationSystemDynamics) "\t\t<cim:OverexcitationLimiterDynamics.ExcitationSystemDynamics rdf:resource=\"#" + ExcitationSystemDynamics + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = OverexcitationLimiterDynamics.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (OverexcitationLimiterDynamics.fields (position), value)
+        emitattr (0, ExcitationSystemDynamics)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:OverexcitationLimiterDynamics rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:OverexcitationLimiterDynamics>"
+        "\t<cim:OverexcitationLimiterDynamics rdf:ID=\"%s\">\n%s\t</cim:OverexcitationLimiterDynamics>".format (id, export_fields)
     }
 }
 
@@ -500,16 +611,26 @@ object OverexcitationLimiterDynamics
 extends
     Parseable[OverexcitationLimiterDynamics]
 {
-    val ExcitationSystemDynamics = parse_attribute (attribute ("""OverexcitationLimiterDynamics.ExcitationSystemDynamics"""))
+    val fields: Array[String] = Array[String] (
+        "ExcitationSystemDynamics"
+    )
+    val ExcitationSystemDynamics: Fielder = parse_attribute (attribute (cls, fields(0)))
+
     def parse (context: Context): OverexcitationLimiterDynamics =
     {
-        OverexcitationLimiterDynamics(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = OverexcitationLimiterDynamics (
             DynamicsFunctionBlock.parse (context),
-            ExcitationSystemDynamics (context)
+            mask (ExcitationSystemDynamics (), 0)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("ExcitationSystemDynamics", "ExcitationSystemDynamics", false))
+        Relationship ("ExcitationSystemDynamics", "ExcitationSystemDynamics", false)
+    )
 }
 
 private[ninecode] object _OverexcitationLimiterDynamics

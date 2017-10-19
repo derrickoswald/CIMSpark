@@ -41,6 +41,12 @@ extends
      */
     def this () = { this (null, null, null, null, null, List(), List()) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -60,19 +66,23 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != demographicKind) "\t\t<cim:LandProperty.demographicKind rdf:resource=\"#" + demographicKind + "\"/>\n" else "") +
-        (if (null != externalRecordReference) "\t\t<cim:LandProperty.externalRecordReference>" + externalRecordReference + "</cim:LandProperty.externalRecordReference>\n" else "") +
-        (if (null != kind) "\t\t<cim:LandProperty.kind rdf:resource=\"#" + kind + "\"/>\n" else "") +
-        (if (null != status) "\t\t<cim:LandProperty.status rdf:resource=\"#" + status + "\"/>\n" else "") +
-        (if (null != AssetContainers) AssetContainers.map (x => "\t\t<cim:LandProperty.AssetContainers rdf:resource=\"#" + x + "\"/>\n").mkString else "") +
-        (if (null != Locations) Locations.map (x => "\t\t<cim:LandProperty.Locations rdf:resource=\"#" + x + "\"/>\n").mkString else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = LandProperty.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (LandProperty.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (LandProperty.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (LandProperty.fields (position), x))
+        emitattr (0, demographicKind)
+        emitelem (1, externalRecordReference)
+        emitattr (2, kind)
+        emitattr (3, status)
+        emitattrs (4, AssetContainers)
+        emitattrs (5, Locations)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:LandProperty rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:LandProperty>"
+        "\t<cim:LandProperty rdf:ID=\"%s\">\n%s\t</cim:LandProperty>".format (id, export_fields)
     }
 }
 
@@ -80,27 +90,43 @@ object LandProperty
 extends
     Parseable[LandProperty]
 {
-    val demographicKind = parse_attribute (attribute ("""LandProperty.demographicKind"""))
-    val externalRecordReference = parse_element (element ("""LandProperty.externalRecordReference"""))
-    val kind = parse_attribute (attribute ("""LandProperty.kind"""))
-    val status = parse_attribute (attribute ("""LandProperty.status"""))
-    val AssetContainers = parse_attributes (attribute ("""LandProperty.AssetContainers"""))
-    val Locations = parse_attributes (attribute ("""LandProperty.Locations"""))
+    val fields: Array[String] = Array[String] (
+        "demographicKind",
+        "externalRecordReference",
+        "kind",
+        "status",
+        "AssetContainers",
+        "Locations"
+    )
+    val demographicKind: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val externalRecordReference: Fielder = parse_element (element (cls, fields(1)))
+    val kind: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val status: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val AssetContainers: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val Locations: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
+
     def parse (context: Context): LandProperty =
     {
-        LandProperty(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        def masks (field: Fields, position: Int): List[String] = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = LandProperty (
             IdentifiedObject.parse (context),
-            demographicKind (context),
-            externalRecordReference (context),
-            kind (context),
-            status (context),
-            AssetContainers (context),
-            Locations (context)
+            mask (demographicKind (), 0),
+            mask (externalRecordReference (), 1),
+            mask (kind (), 2),
+            mask (status (), 3),
+            masks (AssetContainers (), 4),
+            masks (Locations (), 5)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("AssetContainers", "AssetContainer", true),
-        Relationship ("Locations", "Location", true))
+        Relationship ("Locations", "Location", true)
+    )
 }
 
 /**
@@ -129,6 +155,12 @@ extends
      */
     def this () = { this (null, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -148,15 +180,18 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != propertyData) "\t\t<cim:LocationGrant.propertyData>" + propertyData + "</cim:LocationGrant.propertyData>\n" else "") +
-        (if (null != LandProperty) "\t\t<cim:LocationGrant.LandProperty rdf:resource=\"#" + LandProperty + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = LocationGrant.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (LocationGrant.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (LocationGrant.fields (position), value)
+        emitelem (0, propertyData)
+        emitattr (1, LandProperty)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:LocationGrant rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:LocationGrant>"
+        "\t<cim:LocationGrant rdf:ID=\"%s\">\n%s\t</cim:LocationGrant>".format (id, export_fields)
     }
 }
 
@@ -164,18 +199,29 @@ object LocationGrant
 extends
     Parseable[LocationGrant]
 {
-    val propertyData = parse_element (element ("""LocationGrant.propertyData"""))
-    val LandProperty = parse_attribute (attribute ("""LocationGrant.LandProperty"""))
+    val fields: Array[String] = Array[String] (
+        "propertyData",
+        "LandProperty"
+    )
+    val propertyData: Fielder = parse_element (element (cls, fields(0)))
+    val LandProperty: Fielder = parse_attribute (attribute (cls, fields(1)))
+
     def parse (context: Context): LocationGrant =
     {
-        LocationGrant(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = LocationGrant (
             Agreement.parse (context),
-            propertyData (context),
-            LandProperty (context)
+            mask (propertyData (), 0),
+            mask (LandProperty (), 1)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("LandProperty", "LandProperty", false))
+        Relationship ("LandProperty", "LandProperty", false)
+    )
 }
 
 /**
@@ -201,6 +247,12 @@ extends
      */
     def this () = { this (null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -220,14 +272,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != status) "\t\t<cim:RedLine.status rdf:resource=\"#" + status + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = RedLine.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (RedLine.fields (position), value)
+        emitattr (0, status)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:RedLine rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:RedLine>"
+        "\t<cim:RedLine rdf:ID=\"%s\">\n%s\t</cim:RedLine>".format (id, export_fields)
     }
 }
 
@@ -235,15 +289,26 @@ object RedLine
 extends
     Parseable[RedLine]
 {
-    val status = parse_attribute (attribute ("""RedLine.status"""))
+    val fields: Array[String] = Array[String] (
+        "status"
+    )
+    val status: Fielder = parse_attribute (attribute (cls, fields(0)))
+
     def parse (context: Context): RedLine =
     {
-        RedLine(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = RedLine (
             IdentifiedObject.parse (context),
-            status (context)
+            mask (status (), 0)
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -272,6 +337,12 @@ extends
      */
     def this () = { this (null, null, List()) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -291,15 +362,18 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != propertyData) "\t\t<cim:RightOfWay.propertyData>" + propertyData + "</cim:RightOfWay.propertyData>\n" else "") +
-        (if (null != LandProperties) LandProperties.map (x => "\t\t<cim:RightOfWay.LandProperties rdf:resource=\"#" + x + "\"/>\n").mkString else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = RightOfWay.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (RightOfWay.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (RightOfWay.fields (position), x))
+        emitelem (0, propertyData)
+        emitattrs (1, LandProperties)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:RightOfWay rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:RightOfWay>"
+        "\t<cim:RightOfWay rdf:ID=\"%s\">\n%s\t</cim:RightOfWay>".format (id, export_fields)
     }
 }
 
@@ -307,18 +381,30 @@ object RightOfWay
 extends
     Parseable[RightOfWay]
 {
-    val propertyData = parse_element (element ("""RightOfWay.propertyData"""))
-    val LandProperties = parse_attributes (attribute ("""RightOfWay.LandProperties"""))
+    val fields: Array[String] = Array[String] (
+        "propertyData",
+        "LandProperties"
+    )
+    val propertyData: Fielder = parse_element (element (cls, fields(0)))
+    val LandProperties: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+
     def parse (context: Context): RightOfWay =
     {
-        RightOfWay(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        def masks (field: Fields, position: Int): List[String] = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = RightOfWay (
             Agreement.parse (context),
-            propertyData (context),
-            LandProperties (context)
+            mask (propertyData (), 0),
+            masks (LandProperties (), 1)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("LandProperties", "LandProperty", true))
+        Relationship ("LandProperties", "LandProperty", true)
+    )
 }
 
 /**
@@ -346,6 +432,12 @@ extends
      */
     def this () = { this (null, null, null, List()) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -365,16 +457,20 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != status) "\t\t<cim:Route.status rdf:resource=\"#" + status + "\"/>\n" else "") +
-        (if (null != typ) "\t\t<cim:Route.type>" + typ + "</cim:Route.type>\n" else "") +
-        (if (null != Locations) Locations.map (x => "\t\t<cim:Route.Locations rdf:resource=\"#" + x + "\"/>\n").mkString else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = Route.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Route.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Route.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Route.fields (position), x))
+        emitattr (0, status)
+        emitelem (1, typ)
+        emitattrs (2, Locations)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:Route rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:Route>"
+        "\t<cim:Route rdf:ID=\"%s\">\n%s\t</cim:Route>".format (id, export_fields)
     }
 }
 
@@ -382,20 +478,33 @@ object Route
 extends
     Parseable[Route]
 {
-    val status = parse_attribute (attribute ("""Route.status"""))
-    val typ = parse_element (element ("""Route.type"""))
-    val Locations = parse_attributes (attribute ("""Route.Locations"""))
+    val fields: Array[String] = Array[String] (
+        "status",
+        "type",
+        "Locations"
+    )
+    val status: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val typ: Fielder = parse_element (element (cls, fields(1)))
+    val Locations: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+
     def parse (context: Context): Route =
     {
-        Route(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        def masks (field: Fields, position: Int): List[String] = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = Route (
             IdentifiedObject.parse (context),
-            status (context),
-            typ (context),
-            Locations (context)
+            mask (status (), 0),
+            mask (typ (), 1),
+            masks (Locations (), 2)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("Locations", "Location", true))
+        Relationship ("Locations", "Location", true)
+    )
 }
 
 /**
@@ -421,6 +530,12 @@ extends
      */
     def this () = { this (null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -440,14 +555,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != kind) "\t\t<cim:Zone.kind rdf:resource=\"#" + kind + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = Zone.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Zone.fields (position), value)
+        emitattr (0, kind)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:Zone rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:Zone>"
+        "\t<cim:Zone rdf:ID=\"%s\">\n%s\t</cim:Zone>".format (id, export_fields)
     }
 }
 
@@ -455,15 +572,26 @@ object Zone
 extends
     Parseable[Zone]
 {
-    val kind = parse_attribute (attribute ("""Zone.kind"""))
+    val fields: Array[String] = Array[String] (
+        "kind"
+    )
+    val kind: Fielder = parse_attribute (attribute (cls, fields(0)))
+
     def parse (context: Context): Zone =
     {
-        Zone(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = Zone (
             Location.parse (context),
-            kind (context)
+            mask (kind (), 0)
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 private[ninecode] object _InfLocations

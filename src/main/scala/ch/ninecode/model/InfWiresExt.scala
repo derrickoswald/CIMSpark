@@ -30,6 +30,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -49,15 +55,17 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:SVC.capacitiveRating>" + capacitiveRating + "</cim:SVC.capacitiveRating>\n" +
-        "\t\t<cim:SVC.inductiveRating>" + inductiveRating + "</cim:SVC.inductiveRating>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = SVC.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (SVC.fields (position), value)
+        emitelem (0, capacitiveRating)
+        emitelem (1, inductiveRating)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:SVC rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:SVC>"
+        "\t<cim:SVC rdf:ID=\"%s\">\n%s\t</cim:SVC>".format (id, export_fields)
     }
 }
 
@@ -65,17 +73,29 @@ object SVC
 extends
     Parseable[SVC]
 {
-    val capacitiveRating = parse_element (element ("""SVC.capacitiveRating"""))
-    val inductiveRating = parse_element (element ("""SVC.inductiveRating"""))
+    val fields: Array[String] = Array[String] (
+        "capacitiveRating",
+        "inductiveRating"
+    )
+    val capacitiveRating: Fielder = parse_element (element (cls, fields(0)))
+    val inductiveRating: Fielder = parse_element (element (cls, fields(1)))
+
     def parse (context: Context): SVC =
     {
-        SVC(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = SVC (
             ShuntCompensator.parse (context),
-            toDouble (capacitiveRating (context), context),
-            toDouble (inductiveRating (context), context)
+            toDouble (mask (capacitiveRating (), 0)),
+            toDouble (mask (inductiveRating (), 1))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -136,6 +156,12 @@ extends
      */
     def this () = { this (null, 0, 0.0, null, 0.0, null, null, null, false, 0.0, 0, false, null, 0, null, null, 0.0, false, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -155,31 +181,34 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ShuntCompensatorControl.branchDirect>" + branchDirect + "</cim:ShuntCompensatorControl.branchDirect>\n" +
-        "\t\t<cim:ShuntCompensatorControl.cellSize>" + cellSize + "</cim:ShuntCompensatorControl.cellSize>\n" +
-        (if (null != controlKind) "\t\t<cim:ShuntCompensatorControl.controlKind rdf:resource=\"#" + controlKind + "\"/>\n" else "") +
-        "\t\t<cim:ShuntCompensatorControl.highVoltageOverride>" + highVoltageOverride + "</cim:ShuntCompensatorControl.highVoltageOverride>\n" +
-        (if (null != localControlKind) "\t\t<cim:ShuntCompensatorControl.localControlKind rdf:resource=\"#" + localControlKind + "\"/>\n" else "") +
-        (if (null != localOffLevel) "\t\t<cim:ShuntCompensatorControl.localOffLevel>" + localOffLevel + "</cim:ShuntCompensatorControl.localOffLevel>\n" else "") +
-        (if (null != localOnLevel) "\t\t<cim:ShuntCompensatorControl.localOnLevel>" + localOnLevel + "</cim:ShuntCompensatorControl.localOnLevel>\n" else "") +
-        "\t\t<cim:ShuntCompensatorControl.localOverride>" + localOverride + "</cim:ShuntCompensatorControl.localOverride>\n" +
-        "\t\t<cim:ShuntCompensatorControl.lowVoltageOverride>" + lowVoltageOverride + "</cim:ShuntCompensatorControl.lowVoltageOverride>\n" +
-        "\t\t<cim:ShuntCompensatorControl.maxSwitchOperationCount>" + maxSwitchOperationCount + "</cim:ShuntCompensatorControl.maxSwitchOperationCount>\n" +
-        "\t\t<cim:ShuntCompensatorControl.normalOpen>" + normalOpen + "</cim:ShuntCompensatorControl.normalOpen>\n" +
-        (if (null != regBranch) "\t\t<cim:ShuntCompensatorControl.regBranch>" + regBranch + "</cim:ShuntCompensatorControl.regBranch>\n" else "") +
-        "\t\t<cim:ShuntCompensatorControl.regBranchEnd>" + regBranchEnd + "</cim:ShuntCompensatorControl.regBranchEnd>\n" +
-        (if (null != regBranchKind) "\t\t<cim:ShuntCompensatorControl.regBranchKind rdf:resource=\"#" + regBranchKind + "\"/>\n" else "") +
-        (if (null != sensingPhaseCode) "\t\t<cim:ShuntCompensatorControl.sensingPhaseCode rdf:resource=\"#" + sensingPhaseCode + "\"/>\n" else "") +
-        "\t\t<cim:ShuntCompensatorControl.switchOperationCycle>" + switchOperationCycle + "</cim:ShuntCompensatorControl.switchOperationCycle>\n" +
-        "\t\t<cim:ShuntCompensatorControl.vRegLineLine>" + vRegLineLine + "</cim:ShuntCompensatorControl.vRegLineLine>\n" +
-        (if (null != ShuntCompensatorInfo) "\t\t<cim:ShuntCompensatorControl.ShuntCompensatorInfo rdf:resource=\"#" + ShuntCompensatorInfo + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ShuntCompensatorControl.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ShuntCompensatorControl.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ShuntCompensatorControl.fields (position), value)
+        emitelem (0, branchDirect)
+        emitelem (1, cellSize)
+        emitattr (2, controlKind)
+        emitelem (3, highVoltageOverride)
+        emitattr (4, localControlKind)
+        emitelem (5, localOffLevel)
+        emitelem (6, localOnLevel)
+        emitelem (7, localOverride)
+        emitelem (8, lowVoltageOverride)
+        emitelem (9, maxSwitchOperationCount)
+        emitelem (10, normalOpen)
+        emitelem (11, regBranch)
+        emitelem (12, regBranchEnd)
+        emitattr (13, regBranchKind)
+        emitattr (14, sensingPhaseCode)
+        emitelem (15, switchOperationCycle)
+        emitelem (16, vRegLineLine)
+        emitattr (17, ShuntCompensatorInfo)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ShuntCompensatorControl rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ShuntCompensatorControl>"
+        "\t<cim:ShuntCompensatorControl rdf:ID=\"%s\">\n%s\t</cim:ShuntCompensatorControl>".format (id, export_fields)
     }
 }
 
@@ -187,50 +216,77 @@ object ShuntCompensatorControl
 extends
     Parseable[ShuntCompensatorControl]
 {
-    val branchDirect = parse_element (element ("""ShuntCompensatorControl.branchDirect"""))
-    val cellSize = parse_element (element ("""ShuntCompensatorControl.cellSize"""))
-    val controlKind = parse_attribute (attribute ("""ShuntCompensatorControl.controlKind"""))
-    val highVoltageOverride = parse_element (element ("""ShuntCompensatorControl.highVoltageOverride"""))
-    val localControlKind = parse_attribute (attribute ("""ShuntCompensatorControl.localControlKind"""))
-    val localOffLevel = parse_element (element ("""ShuntCompensatorControl.localOffLevel"""))
-    val localOnLevel = parse_element (element ("""ShuntCompensatorControl.localOnLevel"""))
-    val localOverride = parse_element (element ("""ShuntCompensatorControl.localOverride"""))
-    val lowVoltageOverride = parse_element (element ("""ShuntCompensatorControl.lowVoltageOverride"""))
-    val maxSwitchOperationCount = parse_element (element ("""ShuntCompensatorControl.maxSwitchOperationCount"""))
-    val normalOpen = parse_element (element ("""ShuntCompensatorControl.normalOpen"""))
-    val regBranch = parse_element (element ("""ShuntCompensatorControl.regBranch"""))
-    val regBranchEnd = parse_element (element ("""ShuntCompensatorControl.regBranchEnd"""))
-    val regBranchKind = parse_attribute (attribute ("""ShuntCompensatorControl.regBranchKind"""))
-    val sensingPhaseCode = parse_attribute (attribute ("""ShuntCompensatorControl.sensingPhaseCode"""))
-    val switchOperationCycle = parse_element (element ("""ShuntCompensatorControl.switchOperationCycle"""))
-    val vRegLineLine = parse_element (element ("""ShuntCompensatorControl.vRegLineLine"""))
-    val ShuntCompensatorInfo = parse_attribute (attribute ("""ShuntCompensatorControl.ShuntCompensatorInfo"""))
+    val fields: Array[String] = Array[String] (
+        "branchDirect",
+        "cellSize",
+        "controlKind",
+        "highVoltageOverride",
+        "localControlKind",
+        "localOffLevel",
+        "localOnLevel",
+        "localOverride",
+        "lowVoltageOverride",
+        "maxSwitchOperationCount",
+        "normalOpen",
+        "regBranch",
+        "regBranchEnd",
+        "regBranchKind",
+        "sensingPhaseCode",
+        "switchOperationCycle",
+        "vRegLineLine",
+        "ShuntCompensatorInfo"
+    )
+    val branchDirect: Fielder = parse_element (element (cls, fields(0)))
+    val cellSize: Fielder = parse_element (element (cls, fields(1)))
+    val controlKind: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val highVoltageOverride: Fielder = parse_element (element (cls, fields(3)))
+    val localControlKind: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val localOffLevel: Fielder = parse_element (element (cls, fields(5)))
+    val localOnLevel: Fielder = parse_element (element (cls, fields(6)))
+    val localOverride: Fielder = parse_element (element (cls, fields(7)))
+    val lowVoltageOverride: Fielder = parse_element (element (cls, fields(8)))
+    val maxSwitchOperationCount: Fielder = parse_element (element (cls, fields(9)))
+    val normalOpen: Fielder = parse_element (element (cls, fields(10)))
+    val regBranch: Fielder = parse_element (element (cls, fields(11)))
+    val regBranchEnd: Fielder = parse_element (element (cls, fields(12)))
+    val regBranchKind: Fielder = parse_attribute (attribute (cls, fields(13)))
+    val sensingPhaseCode: Fielder = parse_attribute (attribute (cls, fields(14)))
+    val switchOperationCycle: Fielder = parse_element (element (cls, fields(15)))
+    val vRegLineLine: Fielder = parse_element (element (cls, fields(16)))
+    val ShuntCompensatorInfo: Fielder = parse_attribute (attribute (cls, fields(17)))
+
     def parse (context: Context): ShuntCompensatorControl =
     {
-        ShuntCompensatorControl(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ShuntCompensatorControl (
             RegulatingControl.parse (context),
-            toInteger (branchDirect (context), context),
-            toDouble (cellSize (context), context),
-            controlKind (context),
-            toDouble (highVoltageOverride (context), context),
-            localControlKind (context),
-            localOffLevel (context),
-            localOnLevel (context),
-            toBoolean (localOverride (context), context),
-            toDouble (lowVoltageOverride (context), context),
-            toInteger (maxSwitchOperationCount (context), context),
-            toBoolean (normalOpen (context), context),
-            regBranch (context),
-            toInteger (regBranchEnd (context), context),
-            regBranchKind (context),
-            sensingPhaseCode (context),
-            toDouble (switchOperationCycle (context), context),
-            toBoolean (vRegLineLine (context), context),
-            ShuntCompensatorInfo (context)
+            toInteger (mask (branchDirect (), 0)),
+            toDouble (mask (cellSize (), 1)),
+            mask (controlKind (), 2),
+            toDouble (mask (highVoltageOverride (), 3)),
+            mask (localControlKind (), 4),
+            mask (localOffLevel (), 5),
+            mask (localOnLevel (), 6),
+            toBoolean (mask (localOverride (), 7)),
+            toDouble (mask (lowVoltageOverride (), 8)),
+            toInteger (mask (maxSwitchOperationCount (), 9)),
+            toBoolean (mask (normalOpen (), 10)),
+            mask (regBranch (), 11),
+            toInteger (mask (regBranchEnd (), 12)),
+            mask (regBranchKind (), 13),
+            mask (sensingPhaseCode (), 14),
+            toDouble (mask (switchOperationCycle (), 15)),
+            toBoolean (mask (vRegLineLine (), 16)),
+            mask (ShuntCompensatorInfo (), 17)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("ShuntCompensatorInfo", "ShuntCompensatorInfo", false))
+        Relationship ("ShuntCompensatorInfo", "ShuntCompensatorInfo", false)
+    )
 }
 
 private[ninecode] object _InfWiresExt

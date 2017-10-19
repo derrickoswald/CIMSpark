@@ -30,6 +30,12 @@ extends
      */
     def this () = { this (null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -49,14 +55,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != value) "\t\t<cim:WheelingReferenceSchedule.value>" + value + "</cim:WheelingReferenceSchedule.value>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = WheelingReferenceSchedule.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WheelingReferenceSchedule.fields (position), value)
+        emitelem (0, value)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:WheelingReferenceSchedule rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:WheelingReferenceSchedule>"
+        "\t<cim:WheelingReferenceSchedule rdf:ID=\"%s\">\n%s\t</cim:WheelingReferenceSchedule>".format (id, export_fields)
     }
 }
 
@@ -64,15 +72,26 @@ object WheelingReferenceSchedule
 extends
     Parseable[WheelingReferenceSchedule]
 {
-    val value = parse_element (element ("""WheelingReferenceSchedule.value"""))
+    val fields: Array[String] = Array[String] (
+        "value"
+    )
+    val value: Fielder = parse_element (element (cls, fields(0)))
+
     def parse (context: Context): WheelingReferenceSchedule =
     {
-        WheelingReferenceSchedule(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = WheelingReferenceSchedule (
             BidHourlySchedule.parse (context),
-            value (context)
+            mask (value (), 0)
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 private[ninecode] object _InfParticipantInterfaces

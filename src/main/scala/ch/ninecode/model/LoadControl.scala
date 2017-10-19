@@ -50,6 +50,12 @@ extends
      */
     def this () = { this (null, 0, false, false, false, false, false, false, null, List()) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -69,22 +75,26 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ConnectDisconnectFunction.eventCount>" + eventCount + "</cim:ConnectDisconnectFunction.eventCount>\n" +
-        "\t\t<cim:ConnectDisconnectFunction.isConnected>" + isConnected + "</cim:ConnectDisconnectFunction.isConnected>\n" +
-        "\t\t<cim:ConnectDisconnectFunction.isDelayedDiscon>" + isDelayedDiscon + "</cim:ConnectDisconnectFunction.isDelayedDiscon>\n" +
-        "\t\t<cim:ConnectDisconnectFunction.isLocalAutoDisconOp>" + isLocalAutoDisconOp + "</cim:ConnectDisconnectFunction.isLocalAutoDisconOp>\n" +
-        "\t\t<cim:ConnectDisconnectFunction.isLocalAutoReconOp>" + isLocalAutoReconOp + "</cim:ConnectDisconnectFunction.isLocalAutoReconOp>\n" +
-        "\t\t<cim:ConnectDisconnectFunction.isRemoteAutoDisconOp>" + isRemoteAutoDisconOp + "</cim:ConnectDisconnectFunction.isRemoteAutoDisconOp>\n" +
-        "\t\t<cim:ConnectDisconnectFunction.isRemoteAutoReconOp>" + isRemoteAutoReconOp + "</cim:ConnectDisconnectFunction.isRemoteAutoReconOp>\n" +
-        (if (null != rcdInfo) "\t\t<cim:ConnectDisconnectFunction.rcdInfo rdf:resource=\"#" + rcdInfo + "\"/>\n" else "") +
-        (if (null != Switches) Switches.map (x => "\t\t<cim:ConnectDisconnectFunction.Switches rdf:resource=\"#" + x + "\"/>\n").mkString else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ConnectDisconnectFunction.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ConnectDisconnectFunction.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ConnectDisconnectFunction.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ConnectDisconnectFunction.fields (position), x))
+        emitelem (0, eventCount)
+        emitelem (1, isConnected)
+        emitelem (2, isDelayedDiscon)
+        emitelem (3, isLocalAutoDisconOp)
+        emitelem (4, isLocalAutoReconOp)
+        emitelem (5, isRemoteAutoDisconOp)
+        emitelem (6, isRemoteAutoReconOp)
+        emitattr (7, rcdInfo)
+        emitattrs (8, Switches)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ConnectDisconnectFunction rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ConnectDisconnectFunction>"
+        "\t<cim:ConnectDisconnectFunction rdf:ID=\"%s\">\n%s\t</cim:ConnectDisconnectFunction>".format (id, export_fields)
     }
 }
 
@@ -92,32 +102,51 @@ object ConnectDisconnectFunction
 extends
     Parseable[ConnectDisconnectFunction]
 {
-    val eventCount = parse_element (element ("""ConnectDisconnectFunction.eventCount"""))
-    val isConnected = parse_element (element ("""ConnectDisconnectFunction.isConnected"""))
-    val isDelayedDiscon = parse_element (element ("""ConnectDisconnectFunction.isDelayedDiscon"""))
-    val isLocalAutoDisconOp = parse_element (element ("""ConnectDisconnectFunction.isLocalAutoDisconOp"""))
-    val isLocalAutoReconOp = parse_element (element ("""ConnectDisconnectFunction.isLocalAutoReconOp"""))
-    val isRemoteAutoDisconOp = parse_element (element ("""ConnectDisconnectFunction.isRemoteAutoDisconOp"""))
-    val isRemoteAutoReconOp = parse_element (element ("""ConnectDisconnectFunction.isRemoteAutoReconOp"""))
-    val rcdInfo = parse_attribute (attribute ("""ConnectDisconnectFunction.rcdInfo"""))
-    val Switches = parse_attributes (attribute ("""ConnectDisconnectFunction.Switches"""))
+    val fields: Array[String] = Array[String] (
+        "eventCount",
+        "isConnected",
+        "isDelayedDiscon",
+        "isLocalAutoDisconOp",
+        "isLocalAutoReconOp",
+        "isRemoteAutoDisconOp",
+        "isRemoteAutoReconOp",
+        "rcdInfo",
+        "Switches"
+    )
+    val eventCount: Fielder = parse_element (element (cls, fields(0)))
+    val isConnected: Fielder = parse_element (element (cls, fields(1)))
+    val isDelayedDiscon: Fielder = parse_element (element (cls, fields(2)))
+    val isLocalAutoDisconOp: Fielder = parse_element (element (cls, fields(3)))
+    val isLocalAutoReconOp: Fielder = parse_element (element (cls, fields(4)))
+    val isRemoteAutoDisconOp: Fielder = parse_element (element (cls, fields(5)))
+    val isRemoteAutoReconOp: Fielder = parse_element (element (cls, fields(6)))
+    val rcdInfo: Fielder = parse_attribute (attribute (cls, fields(7)))
+    val Switches: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
+
     def parse (context: Context): ConnectDisconnectFunction =
     {
-        ConnectDisconnectFunction(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        def masks (field: Fields, position: Int): List[String] = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ConnectDisconnectFunction (
             EndDeviceFunction.parse (context),
-            toInteger (eventCount (context), context),
-            toBoolean (isConnected (context), context),
-            toBoolean (isDelayedDiscon (context), context),
-            toBoolean (isLocalAutoDisconOp (context), context),
-            toBoolean (isLocalAutoReconOp (context), context),
-            toBoolean (isRemoteAutoDisconOp (context), context),
-            toBoolean (isRemoteAutoReconOp (context), context),
-            rcdInfo (context),
-            Switches (context)
+            toInteger (mask (eventCount (), 0)),
+            toBoolean (mask (isConnected (), 1)),
+            toBoolean (mask (isDelayedDiscon (), 2)),
+            toBoolean (mask (isLocalAutoDisconOp (), 3)),
+            toBoolean (mask (isLocalAutoReconOp (), 4)),
+            toBoolean (mask (isRemoteAutoDisconOp (), 5)),
+            toBoolean (mask (isRemoteAutoReconOp (), 6)),
+            mask (rcdInfo (), 7),
+            masks (Switches (), 8)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("Switches", "Switch", true))
+        Relationship ("Switches", "Switch", true)
+    )
 }
 
 /**
@@ -164,6 +193,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, null, 0.0, false, false, false, false, false, 0.0, false) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -183,25 +218,27 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:RemoteConnectDisconnectInfo.armedTimeout>" + armedTimeout + "</cim:RemoteConnectDisconnectInfo.armedTimeout>\n" +
-        "\t\t<cim:RemoteConnectDisconnectInfo.customerVoltageLimit>" + customerVoltageLimit + "</cim:RemoteConnectDisconnectInfo.customerVoltageLimit>\n" +
-        "\t\t<cim:RemoteConnectDisconnectInfo.energyLimit>" + energyLimit + "</cim:RemoteConnectDisconnectInfo.energyLimit>\n" +
-        (if (null != energyUsageStartDateTime) "\t\t<cim:RemoteConnectDisconnectInfo.energyUsageStartDateTime>" + energyUsageStartDateTime + "</cim:RemoteConnectDisconnectInfo.energyUsageStartDateTime>\n" else "") +
-        "\t\t<cim:RemoteConnectDisconnectInfo.energyUsageWarning>" + energyUsageWarning + "</cim:RemoteConnectDisconnectInfo.energyUsageWarning>\n" +
-        "\t\t<cim:RemoteConnectDisconnectInfo.isArmConnect>" + isArmConnect + "</cim:RemoteConnectDisconnectInfo.isArmConnect>\n" +
-        "\t\t<cim:RemoteConnectDisconnectInfo.isArmDisconnect>" + isArmDisconnect + "</cim:RemoteConnectDisconnectInfo.isArmDisconnect>\n" +
-        "\t\t<cim:RemoteConnectDisconnectInfo.isEnergyLimiting>" + isEnergyLimiting + "</cim:RemoteConnectDisconnectInfo.isEnergyLimiting>\n" +
-        "\t\t<cim:RemoteConnectDisconnectInfo.needsPowerLimitCheck>" + needsPowerLimitCheck + "</cim:RemoteConnectDisconnectInfo.needsPowerLimitCheck>\n" +
-        "\t\t<cim:RemoteConnectDisconnectInfo.needsVoltageLimitCheck>" + needsVoltageLimitCheck + "</cim:RemoteConnectDisconnectInfo.needsVoltageLimitCheck>\n" +
-        "\t\t<cim:RemoteConnectDisconnectInfo.powerLimit>" + powerLimit + "</cim:RemoteConnectDisconnectInfo.powerLimit>\n" +
-        "\t\t<cim:RemoteConnectDisconnectInfo.usePushbutton>" + usePushbutton + "</cim:RemoteConnectDisconnectInfo.usePushbutton>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = RemoteConnectDisconnectInfo.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (RemoteConnectDisconnectInfo.fields (position), value)
+        emitelem (0, armedTimeout)
+        emitelem (1, customerVoltageLimit)
+        emitelem (2, energyLimit)
+        emitelem (3, energyUsageStartDateTime)
+        emitelem (4, energyUsageWarning)
+        emitelem (5, isArmConnect)
+        emitelem (6, isArmDisconnect)
+        emitelem (7, isEnergyLimiting)
+        emitelem (8, needsPowerLimitCheck)
+        emitelem (9, needsVoltageLimitCheck)
+        emitelem (10, powerLimit)
+        emitelem (11, usePushbutton)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:RemoteConnectDisconnectInfo rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:RemoteConnectDisconnectInfo>"
+        "\t<cim:RemoteConnectDisconnectInfo rdf:ID=\"%s\">\n%s\t</cim:RemoteConnectDisconnectInfo>".format (id, export_fields)
     }
 }
 
@@ -209,37 +246,59 @@ object RemoteConnectDisconnectInfo
 extends
     Parseable[RemoteConnectDisconnectInfo]
 {
-    val armedTimeout = parse_element (element ("""RemoteConnectDisconnectInfo.armedTimeout"""))
-    val customerVoltageLimit = parse_element (element ("""RemoteConnectDisconnectInfo.customerVoltageLimit"""))
-    val energyLimit = parse_element (element ("""RemoteConnectDisconnectInfo.energyLimit"""))
-    val energyUsageStartDateTime = parse_element (element ("""RemoteConnectDisconnectInfo.energyUsageStartDateTime"""))
-    val energyUsageWarning = parse_element (element ("""RemoteConnectDisconnectInfo.energyUsageWarning"""))
-    val isArmConnect = parse_element (element ("""RemoteConnectDisconnectInfo.isArmConnect"""))
-    val isArmDisconnect = parse_element (element ("""RemoteConnectDisconnectInfo.isArmDisconnect"""))
-    val isEnergyLimiting = parse_element (element ("""RemoteConnectDisconnectInfo.isEnergyLimiting"""))
-    val needsPowerLimitCheck = parse_element (element ("""RemoteConnectDisconnectInfo.needsPowerLimitCheck"""))
-    val needsVoltageLimitCheck = parse_element (element ("""RemoteConnectDisconnectInfo.needsVoltageLimitCheck"""))
-    val powerLimit = parse_element (element ("""RemoteConnectDisconnectInfo.powerLimit"""))
-    val usePushbutton = parse_element (element ("""RemoteConnectDisconnectInfo.usePushbutton"""))
+    val fields: Array[String] = Array[String] (
+        "armedTimeout",
+        "customerVoltageLimit",
+        "energyLimit",
+        "energyUsageStartDateTime",
+        "energyUsageWarning",
+        "isArmConnect",
+        "isArmDisconnect",
+        "isEnergyLimiting",
+        "needsPowerLimitCheck",
+        "needsVoltageLimitCheck",
+        "powerLimit",
+        "usePushbutton"
+    )
+    val armedTimeout: Fielder = parse_element (element (cls, fields(0)))
+    val customerVoltageLimit: Fielder = parse_element (element (cls, fields(1)))
+    val energyLimit: Fielder = parse_element (element (cls, fields(2)))
+    val energyUsageStartDateTime: Fielder = parse_element (element (cls, fields(3)))
+    val energyUsageWarning: Fielder = parse_element (element (cls, fields(4)))
+    val isArmConnect: Fielder = parse_element (element (cls, fields(5)))
+    val isArmDisconnect: Fielder = parse_element (element (cls, fields(6)))
+    val isEnergyLimiting: Fielder = parse_element (element (cls, fields(7)))
+    val needsPowerLimitCheck: Fielder = parse_element (element (cls, fields(8)))
+    val needsVoltageLimitCheck: Fielder = parse_element (element (cls, fields(9)))
+    val powerLimit: Fielder = parse_element (element (cls, fields(10)))
+    val usePushbutton: Fielder = parse_element (element (cls, fields(11)))
+
     def parse (context: Context): RemoteConnectDisconnectInfo =
     {
-        RemoteConnectDisconnectInfo(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = RemoteConnectDisconnectInfo (
             BasicElement.parse (context),
-            toDouble (armedTimeout (context), context),
-            toDouble (customerVoltageLimit (context), context),
-            toDouble (energyLimit (context), context),
-            energyUsageStartDateTime (context),
-            toDouble (energyUsageWarning (context), context),
-            toBoolean (isArmConnect (context), context),
-            toBoolean (isArmDisconnect (context), context),
-            toBoolean (isEnergyLimiting (context), context),
-            toBoolean (needsPowerLimitCheck (context), context),
-            toBoolean (needsVoltageLimitCheck (context), context),
-            toDouble (powerLimit (context), context),
-            toBoolean (usePushbutton (context), context)
+            toDouble (mask (armedTimeout (), 0)),
+            toDouble (mask (customerVoltageLimit (), 1)),
+            toDouble (mask (energyLimit (), 2)),
+            mask (energyUsageStartDateTime (), 3),
+            toDouble (mask (energyUsageWarning (), 4)),
+            toBoolean (mask (isArmConnect (), 5)),
+            toBoolean (mask (isArmDisconnect (), 6)),
+            toBoolean (mask (isEnergyLimiting (), 7)),
+            toBoolean (mask (needsPowerLimitCheck (), 8)),
+            toBoolean (mask (needsVoltageLimitCheck (), 9)),
+            toDouble (mask (powerLimit (), 10)),
+            toBoolean (mask (usePushbutton (), 11))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 private[ninecode] object _LoadControl

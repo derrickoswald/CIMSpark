@@ -28,6 +28,12 @@ extends
      */
     def this () = { this (null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -47,14 +53,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        ""
+        sup.export_fields
     }
     override def export: String =
     {
-        "\t<cim:InterTieClearing rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:InterTieClearing>"
+        "\t<cim:InterTieClearing rdf:ID=\"%s\">\n%s\t</cim:InterTieClearing>".format (id, export_fields)
     }
 }
 
@@ -62,13 +65,18 @@ object InterTieClearing
 extends
     Parseable[InterTieClearing]
 {
+
     def parse (context: Context): InterTieClearing =
     {
-        InterTieClearing(
+        implicit val ctx: Context = context
+        val ret = InterTieClearing (
             MarketFactors.parse (context)
         )
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -100,6 +108,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -119,17 +133,20 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:InterTieResults.baseMW>" + baseMW + "</cim:InterTieResults.baseMW>\n" +
-        "\t\t<cim:InterTieResults.clearedValue>" + clearedValue + "</cim:InterTieResults.clearedValue>\n" +
-        (if (null != Flowgate) "\t\t<cim:InterTieResults.Flowgate rdf:resource=\"#" + Flowgate + "\"/>\n" else "") +
-        (if (null != InterTieClearing) "\t\t<cim:InterTieResults.InterTieClearing rdf:resource=\"#" + InterTieClearing + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = InterTieResults.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (InterTieResults.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (InterTieResults.fields (position), value)
+        emitelem (0, baseMW)
+        emitelem (1, clearedValue)
+        emitattr (2, Flowgate)
+        emitattr (3, InterTieClearing)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:InterTieResults rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:InterTieResults>"
+        "\t<cim:InterTieResults rdf:ID=\"%s\">\n%s\t</cim:InterTieResults>".format (id, export_fields)
     }
 }
 
@@ -137,23 +154,36 @@ object InterTieResults
 extends
     Parseable[InterTieResults]
 {
-    val baseMW = parse_element (element ("""InterTieResults.baseMW"""))
-    val clearedValue = parse_element (element ("""InterTieResults.clearedValue"""))
-    val Flowgate = parse_attribute (attribute ("""InterTieResults.Flowgate"""))
-    val InterTieClearing = parse_attribute (attribute ("""InterTieResults.InterTieClearing"""))
+    val fields: Array[String] = Array[String] (
+        "baseMW",
+        "clearedValue",
+        "Flowgate",
+        "InterTieClearing"
+    )
+    val baseMW: Fielder = parse_element (element (cls, fields(0)))
+    val clearedValue: Fielder = parse_element (element (cls, fields(1)))
+    val Flowgate: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val InterTieClearing: Fielder = parse_attribute (attribute (cls, fields(3)))
+
     def parse (context: Context): InterTieResults =
     {
-        InterTieResults(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = InterTieResults (
             BasicElement.parse (context),
-            toDouble (baseMW (context), context),
-            toDouble (clearedValue (context), context),
-            Flowgate (context),
-            InterTieClearing (context)
+            toDouble (mask (baseMW (), 0)),
+            toDouble (mask (clearedValue (), 1)),
+            mask (Flowgate (), 2),
+            mask (InterTieClearing (), 3)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("Flowgate", "Flowgate", false),
-        Relationship ("InterTieClearing", "InterTieClearing", false))
+        Relationship ("InterTieClearing", "InterTieClearing", false)
+    )
 }
 
 /**
@@ -189,6 +219,12 @@ extends
      */
     def this () = { this (null, null, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -208,16 +244,18 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != caseType) "\t\t<cim:MarketCaseClearing.caseType>" + caseType + "</cim:MarketCaseClearing.caseType>\n" else "") +
-        (if (null != modifiedDate) "\t\t<cim:MarketCaseClearing.modifiedDate>" + modifiedDate + "</cim:MarketCaseClearing.modifiedDate>\n" else "") +
-        (if (null != postedDate) "\t\t<cim:MarketCaseClearing.postedDate>" + postedDate + "</cim:MarketCaseClearing.postedDate>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = MarketCaseClearing.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (MarketCaseClearing.fields (position), value)
+        emitelem (0, caseType)
+        emitelem (1, modifiedDate)
+        emitelem (2, postedDate)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:MarketCaseClearing rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:MarketCaseClearing>"
+        "\t<cim:MarketCaseClearing rdf:ID=\"%s\">\n%s\t</cim:MarketCaseClearing>".format (id, export_fields)
     }
 }
 
@@ -225,19 +263,32 @@ object MarketCaseClearing
 extends
     Parseable[MarketCaseClearing]
 {
-    val caseType = parse_element (element ("""MarketCaseClearing.caseType"""))
-    val modifiedDate = parse_element (element ("""MarketCaseClearing.modifiedDate"""))
-    val postedDate = parse_element (element ("""MarketCaseClearing.postedDate"""))
+    val fields: Array[String] = Array[String] (
+        "caseType",
+        "modifiedDate",
+        "postedDate"
+    )
+    val caseType: Fielder = parse_element (element (cls, fields(0)))
+    val modifiedDate: Fielder = parse_element (element (cls, fields(1)))
+    val postedDate: Fielder = parse_element (element (cls, fields(2)))
+
     def parse (context: Context): MarketCaseClearing =
     {
-        MarketCaseClearing(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = MarketCaseClearing (
             MarketFactors.parse (context),
-            caseType (context),
-            modifiedDate (context),
-            postedDate (context)
+            mask (caseType (), 0),
+            mask (modifiedDate (), 1),
+            mask (postedDate (), 2)
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -265,6 +316,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -284,16 +341,18 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:SecurityConstraintsClearing.mwFlow>" + mwFlow + "</cim:SecurityConstraintsClearing.mwFlow>\n" +
-        "\t\t<cim:SecurityConstraintsClearing.mwLimit>" + mwLimit + "</cim:SecurityConstraintsClearing.mwLimit>\n" +
-        "\t\t<cim:SecurityConstraintsClearing.shadowPrice>" + shadowPrice + "</cim:SecurityConstraintsClearing.shadowPrice>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = SecurityConstraintsClearing.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (SecurityConstraintsClearing.fields (position), value)
+        emitelem (0, mwFlow)
+        emitelem (1, mwLimit)
+        emitelem (2, shadowPrice)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:SecurityConstraintsClearing rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:SecurityConstraintsClearing>"
+        "\t<cim:SecurityConstraintsClearing rdf:ID=\"%s\">\n%s\t</cim:SecurityConstraintsClearing>".format (id, export_fields)
     }
 }
 
@@ -301,19 +360,32 @@ object SecurityConstraintsClearing
 extends
     Parseable[SecurityConstraintsClearing]
 {
-    val mwFlow = parse_element (element ("""SecurityConstraintsClearing.mwFlow"""))
-    val mwLimit = parse_element (element ("""SecurityConstraintsClearing.mwLimit"""))
-    val shadowPrice = parse_element (element ("""SecurityConstraintsClearing.shadowPrice"""))
+    val fields: Array[String] = Array[String] (
+        "mwFlow",
+        "mwLimit",
+        "shadowPrice"
+    )
+    val mwFlow: Fielder = parse_element (element (cls, fields(0)))
+    val mwLimit: Fielder = parse_element (element (cls, fields(1)))
+    val shadowPrice: Fielder = parse_element (element (cls, fields(2)))
+
     def parse (context: Context): SecurityConstraintsClearing =
     {
-        SecurityConstraintsClearing(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = SecurityConstraintsClearing (
             MarketFactors.parse (context),
-            toDouble (mwFlow (context), context),
-            toDouble (mwLimit (context), context),
-            toDouble (shadowPrice (context), context)
+            toDouble (mask (mwFlow (), 0)),
+            toDouble (mask (mwLimit (), 1)),
+            toDouble (mask (shadowPrice (), 2))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 private[ninecode] object _InfMarketResults

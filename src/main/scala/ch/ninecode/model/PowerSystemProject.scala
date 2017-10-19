@@ -11,13 +11,13 @@ import ch.ninecode.cim.Relationship
  * A (document/collection) that describe a set of changes to the network.
  *
  * @param sup Reference to the superclass object.
- * @param attr [[ch.ninecode.model.DifferenceModel DifferenceModel]] <em>undocumented</em>
  * @param description <em>undocumented</em>
  * @param name <em>undocumented</em>
  * @param priority Priority between competing projects.
  *        Use 0 for don t care.  Use 1 for highest priority.  Use 2 as priority is less than 1 and so on.
  * @param state Describes the state the project realisation are from starting planning until it is commissioned if not cancelled.
  * @param typ Type of project.
+ * @param unknown [[ch.ninecode.model.DifferenceModel DifferenceModel]] <em>undocumented</em>
  * @param version Version of the project.
  *        Changes to a project is not modeled. So the project with the highest version are the valid/latest project. Only positive numbers equal or higher than 1 are allowed.
  * @param Project [[ch.ninecode.model.PowerSystemProject PowerSystemProject]] <em>undocumented</em>
@@ -28,12 +28,12 @@ import ch.ninecode.cim.Relationship
 case class PowerSystemProject
 (
     override val sup: BasicElement,
-    attr: String,
     description: String,
     name: String,
     priority: Int,
     state: String,
     typ: String,
+    unknown: String,
     version: Int,
     Project: String
 )
@@ -43,7 +43,13 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, 0, null, null, 0, null) }
+    def this () = { this (null, null, null, 0, null, null, null, 0, null) }
+    /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
     /**
      * Return the superclass object.
      *
@@ -64,21 +70,24 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != attr) "\t\t<cim:PowerSystemProject. rdf:resource=\"#" + attr + "\"/>\n" else "") +
-        (if (null != description) "\t\t<cim:PowerSystemProject.description>" + description + "</cim:PowerSystemProject.description>\n" else "") +
-        (if (null != name) "\t\t<cim:PowerSystemProject.name>" + name + "</cim:PowerSystemProject.name>\n" else "") +
-        "\t\t<cim:PowerSystemProject.priority>" + priority + "</cim:PowerSystemProject.priority>\n" +
-        (if (null != state) "\t\t<cim:PowerSystemProject.state rdf:resource=\"#" + state + "\"/>\n" else "") +
-        (if (null != typ) "\t\t<cim:PowerSystemProject.type>" + typ + "</cim:PowerSystemProject.type>\n" else "") +
-        "\t\t<cim:PowerSystemProject.version>" + version + "</cim:PowerSystemProject.version>\n" +
-        (if (null != Project) "\t\t<cim:PowerSystemProject.Project rdf:resource=\"#" + Project + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = PowerSystemProject.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PowerSystemProject.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PowerSystemProject.fields (position), value)
+        emitelem (0, description)
+        emitelem (1, name)
+        emitelem (2, priority)
+        emitattr (3, state)
+        emitelem (4, typ)
+        emitattr (5, unknown)
+        emitelem (6, version)
+        emitattr (7, Project)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:PowerSystemProject rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:PowerSystemProject>"
+        "\t<cim:PowerSystemProject rdf:ID=\"%s\">\n%s\t</cim:PowerSystemProject>".format (id, export_fields)
     }
 }
 
@@ -86,31 +95,48 @@ object PowerSystemProject
 extends
     Parseable[PowerSystemProject]
 {
-    val attr = parse_attribute (attribute ("""PowerSystemProject."""))
-    val description = parse_element (element ("""PowerSystemProject.description"""))
-    val name = parse_element (element ("""PowerSystemProject.name"""))
-    val priority = parse_element (element ("""PowerSystemProject.priority"""))
-    val state = parse_attribute (attribute ("""PowerSystemProject.state"""))
-    val typ = parse_element (element ("""PowerSystemProject.type"""))
-    val version = parse_element (element ("""PowerSystemProject.version"""))
-    val Project = parse_attribute (attribute ("""PowerSystemProject.Project"""))
+    val fields: Array[String] = Array[String] (
+        "description",
+        "name",
+        "priority",
+        "state",
+        "type",
+        "",
+        "version",
+        "Project"
+    )
+    val description: Fielder = parse_element (element (cls, fields(0)))
+    val name: Fielder = parse_element (element (cls, fields(1)))
+    val priority: Fielder = parse_element (element (cls, fields(2)))
+    val state: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val typ: Fielder = parse_element (element (cls, fields(4)))
+    val unknown: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val version: Fielder = parse_element (element (cls, fields(6)))
+    val Project: Fielder = parse_attribute (attribute (cls, fields(7)))
+
     def parse (context: Context): PowerSystemProject =
     {
-        PowerSystemProject(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = PowerSystemProject (
             BasicElement.parse (context),
-            attr (context),
-            description (context),
-            name (context),
-            toInteger (priority (context), context),
-            state (context),
-            typ (context),
-            toInteger (version (context), context),
-            Project (context)
+            mask (description (), 0),
+            mask (name (), 1),
+            toInteger (mask (priority (), 2)),
+            mask (state (), 3),
+            mask (typ (), 4),
+            mask (unknown (), 5),
+            toInteger (mask (version (), 6)),
+            mask (Project (), 7)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("Project", "PowerSystemProject", false),
-        Relationship ("attr", "DifferenceModel", false))
+        Relationship ("unknown", "DifferenceModel", false),
+        Relationship ("Project", "PowerSystemProject", false)
+    )
 }
 
 /**
@@ -124,11 +150,11 @@ case class PowerSystemProjectSchedule
     override val sup: BasicElement,
     actualEnd: String,
     actualStart: String,
-    attr: String,
     scheduledEnd: String,
     scheduledStart: String,
     status: String,
-    stepType: String
+    stepType: String,
+    unknown: String
 )
 extends
     Element
@@ -137,6 +163,12 @@ extends
      * Zero args constructor.
      */
     def this () = { this (null, null, null, null, null, null, null, null) }
+    /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
     /**
      * Return the superclass object.
      *
@@ -157,20 +189,23 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != actualEnd) "\t\t<cim:PowerSystemProjectSchedule.actualEnd>" + actualEnd + "</cim:PowerSystemProjectSchedule.actualEnd>\n" else "") +
-        (if (null != actualStart) "\t\t<cim:PowerSystemProjectSchedule.actualStart>" + actualStart + "</cim:PowerSystemProjectSchedule.actualStart>\n" else "") +
-        (if (null != attr) "\t\t<cim:PowerSystemProjectSchedule. rdf:resource=\"#" + attr + "\"/>\n" else "") +
-        (if (null != scheduledEnd) "\t\t<cim:PowerSystemProjectSchedule.scheduledEnd>" + scheduledEnd + "</cim:PowerSystemProjectSchedule.scheduledEnd>\n" else "") +
-        (if (null != scheduledStart) "\t\t<cim:PowerSystemProjectSchedule.scheduledStart>" + scheduledStart + "</cim:PowerSystemProjectSchedule.scheduledStart>\n" else "") +
-        (if (null != status) "\t\t<cim:PowerSystemProjectSchedule.status rdf:resource=\"#" + status + "\"/>\n" else "") +
-        (if (null != stepType) "\t\t<cim:PowerSystemProjectSchedule.stepType rdf:resource=\"#" + stepType + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = PowerSystemProjectSchedule.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PowerSystemProjectSchedule.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PowerSystemProjectSchedule.fields (position), value)
+        emitelem (0, actualEnd)
+        emitelem (1, actualStart)
+        emitelem (2, scheduledEnd)
+        emitelem (3, scheduledStart)
+        emitattr (4, status)
+        emitattr (5, stepType)
+        emitattr (6, unknown)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:PowerSystemProjectSchedule rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:PowerSystemProjectSchedule>"
+        "\t<cim:PowerSystemProjectSchedule rdf:ID=\"%s\">\n%s\t</cim:PowerSystemProjectSchedule>".format (id, export_fields)
     }
 }
 
@@ -178,28 +213,44 @@ object PowerSystemProjectSchedule
 extends
     Parseable[PowerSystemProjectSchedule]
 {
-    val actualEnd = parse_element (element ("""PowerSystemProjectSchedule.actualEnd"""))
-    val actualStart = parse_element (element ("""PowerSystemProjectSchedule.actualStart"""))
-    val attr = parse_attribute (attribute ("""PowerSystemProjectSchedule."""))
-    val scheduledEnd = parse_element (element ("""PowerSystemProjectSchedule.scheduledEnd"""))
-    val scheduledStart = parse_element (element ("""PowerSystemProjectSchedule.scheduledStart"""))
-    val status = parse_attribute (attribute ("""PowerSystemProjectSchedule.status"""))
-    val stepType = parse_attribute (attribute ("""PowerSystemProjectSchedule.stepType"""))
+    val fields: Array[String] = Array[String] (
+        "actualEnd",
+        "actualStart",
+        "scheduledEnd",
+        "scheduledStart",
+        "status",
+        "stepType",
+        ""
+    )
+    val actualEnd: Fielder = parse_element (element (cls, fields(0)))
+    val actualStart: Fielder = parse_element (element (cls, fields(1)))
+    val scheduledEnd: Fielder = parse_element (element (cls, fields(2)))
+    val scheduledStart: Fielder = parse_element (element (cls, fields(3)))
+    val status: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val stepType: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val unknown: Fielder = parse_attribute (attribute (cls, fields(6)))
+
     def parse (context: Context): PowerSystemProjectSchedule =
     {
-        PowerSystemProjectSchedule(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = PowerSystemProjectSchedule (
             BasicElement.parse (context),
-            actualEnd (context),
-            actualStart (context),
-            attr (context),
-            scheduledEnd (context),
-            scheduledStart (context),
-            status (context),
-            stepType (context)
+            mask (actualEnd (), 0),
+            mask (actualStart (), 1),
+            mask (scheduledEnd (), 2),
+            mask (scheduledStart (), 3),
+            mask (status (), 4),
+            mask (stepType (), 5),
+            mask (unknown (), 6)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("attr", "PowerSystemProject", false))
+        Relationship ("unknown", "PowerSystemProject", false)
+    )
 }
 
 /**
@@ -224,6 +275,12 @@ extends
      */
     def this () = { this (null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -243,14 +300,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != Project) "\t\t<cim:PowerSystemSubProject.Project rdf:resource=\"#" + Project + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = PowerSystemSubProject.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PowerSystemSubProject.fields (position), value)
+        emitattr (0, Project)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:PowerSystemSubProject rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:PowerSystemSubProject>"
+        "\t<cim:PowerSystemSubProject rdf:ID=\"%s\">\n%s\t</cim:PowerSystemSubProject>".format (id, export_fields)
     }
 }
 
@@ -258,16 +317,26 @@ object PowerSystemSubProject
 extends
     Parseable[PowerSystemSubProject]
 {
-    val Project = parse_attribute (attribute ("""PowerSystemSubProject.Project"""))
+    val fields: Array[String] = Array[String] (
+        "Project"
+    )
+    val Project: Fielder = parse_attribute (attribute (cls, fields(0)))
+
     def parse (context: Context): PowerSystemSubProject =
     {
-        PowerSystemSubProject(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = PowerSystemSubProject (
             PowerSystemProject.parse (context),
-            Project (context)
+            mask (Project (), 0)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("Project", "PowerSystemProject", false))
+        Relationship ("Project", "PowerSystemProject", false)
+    )
 }
 
 /**
@@ -302,6 +371,12 @@ extends
      */
     def this () = { this (null, null, null, null, null, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -321,19 +396,22 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != actualEnd) "\t\t<cim:ProjectStep.actualEnd>" + actualEnd + "</cim:ProjectStep.actualEnd>\n" else "") +
-        (if (null != actualStart) "\t\t<cim:ProjectStep.actualStart>" + actualStart + "</cim:ProjectStep.actualStart>\n" else "") +
-        (if (null != scheduledEnd) "\t\t<cim:ProjectStep.scheduledEnd>" + scheduledEnd + "</cim:ProjectStep.scheduledEnd>\n" else "") +
-        (if (null != scheduledStart) "\t\t<cim:ProjectStep.scheduledStart>" + scheduledStart + "</cim:ProjectStep.scheduledStart>\n" else "") +
-        (if (null != status) "\t\t<cim:ProjectStep.status rdf:resource=\"#" + status + "\"/>\n" else "") +
-        (if (null != stepType) "\t\t<cim:ProjectStep.stepType rdf:resource=\"#" + stepType + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ProjectStep.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ProjectStep.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ProjectStep.fields (position), value)
+        emitelem (0, actualEnd)
+        emitelem (1, actualStart)
+        emitelem (2, scheduledEnd)
+        emitelem (3, scheduledStart)
+        emitattr (4, status)
+        emitattr (5, stepType)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ProjectStep rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ProjectStep>"
+        "\t<cim:ProjectStep rdf:ID=\"%s\">\n%s\t</cim:ProjectStep>".format (id, export_fields)
     }
 }
 
@@ -341,25 +419,41 @@ object ProjectStep
 extends
     Parseable[ProjectStep]
 {
-    val actualEnd = parse_element (element ("""ProjectStep.actualEnd"""))
-    val actualStart = parse_element (element ("""ProjectStep.actualStart"""))
-    val scheduledEnd = parse_element (element ("""ProjectStep.scheduledEnd"""))
-    val scheduledStart = parse_element (element ("""ProjectStep.scheduledStart"""))
-    val status = parse_attribute (attribute ("""ProjectStep.status"""))
-    val stepType = parse_attribute (attribute ("""ProjectStep.stepType"""))
+    val fields: Array[String] = Array[String] (
+        "actualEnd",
+        "actualStart",
+        "scheduledEnd",
+        "scheduledStart",
+        "status",
+        "stepType"
+    )
+    val actualEnd: Fielder = parse_element (element (cls, fields(0)))
+    val actualStart: Fielder = parse_element (element (cls, fields(1)))
+    val scheduledEnd: Fielder = parse_element (element (cls, fields(2)))
+    val scheduledStart: Fielder = parse_element (element (cls, fields(3)))
+    val status: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val stepType: Fielder = parse_attribute (attribute (cls, fields(5)))
+
     def parse (context: Context): ProjectStep =
     {
-        ProjectStep(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ProjectStep (
             BasicElement.parse (context),
-            actualEnd (context),
-            actualStart (context),
-            scheduledEnd (context),
-            scheduledStart (context),
-            status (context),
-            stepType (context)
+            mask (actualEnd (), 0),
+            mask (actualStart (), 1),
+            mask (scheduledEnd (), 2),
+            mask (scheduledStart (), 3),
+            mask (status (), 4),
+            mask (stepType (), 5)
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 private[ninecode] object _PowerSystemProject

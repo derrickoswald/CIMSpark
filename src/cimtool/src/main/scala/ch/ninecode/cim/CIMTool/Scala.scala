@@ -26,7 +26,7 @@ case class Scala (parser: ModelParser, pkg: Package)
             case "length" => "len"
             case "Boolean" => "Boolean_"
             case "String" => "String_"
-            case "" => "attr" // ToDo: WTF?
+            case "" => "unknown" // ToDo: WTF?
             case _ =>
                 val identifier = (if (s.charAt (0).isDigit) "_" else "") +
                 s.replace (" ", "_").replace ("-", "_").replace ("""/""", """_""").replace (""".""", """_""").replace (""",""", """_""")
@@ -55,7 +55,7 @@ case class Scala (parser: ModelParser, pkg: Package)
             case "char" => "char1"
             case "default" => "default1"
             case "native" => "native1"
-            case "" => "attr" // ToDo: WTF?
+            case "" => "unknown" // ToDo: WTF?
             case _ => 
                 val identifier = (if (s.charAt (0).isDigit) "_" else "") +
                 s.replace (" ", "_").replace ("-", "_").replace ("""/""", """_""").replace (""".""", """_""").replace (""",""", """_""").replace (""":""", """_""").replace ("""(""", """_""").replace (""")""", """_""")
@@ -88,7 +88,7 @@ case class Scala (parser: ModelParser, pkg: Package)
             case "char" => "char1"
             case "default" => "default1"
             case "native" => "native1"
-            case "" => "attr" // ToDo: WTF?
+            case "" => "unknown" // ToDo: WTF?
             case _ => 
                 val identifier = (if (s.charAt (0).isDigit) "_" else "") +
                 s.replace (" ", "_").replace ("-", "_").replace ("""/""", """_""").replace (""".""", """_""").replace (""",""", """_""")
@@ -165,316 +165,6 @@ case class Scala (parser: ModelParser, pkg: Package)
             Member (name, variable, false, comment, true, true, "List[String]", "List()", "", referenced_class)
     }
 
-//val valid_classes = """ACLineSegment
-//ACLineSegmentPhase
-//AsynchronousMachine
-//Breaker
-//BusbarSection
-//Clamp
-//CompositeSwitch
-//Conductor
-//Connector
-//Cut
-//Disconnector
-//EarthFaultCompensator
-//EnergyConsumer
-//EnergyConsumerPhase
-//EnergySource
-//ExternalNetworkInjection
-//FrequencyConverter
-//Fuse
-//Ground
-//GroundDisconnector
-//GroundingImpedance
-//Jumper
-//Junction
-//Line
-//LinearShuntCompensator
-//LinearShuntCompensatorPhase
-//LoadBreakSwitch
-//MutualCoupling
-//NonLinearShuntCompensator
-//NonLinearShuntCompensatorPhase
-//NonlinearShuntCompensatorPhasePoint
-//NonlinearShuntCompensatorPoint
-//PerLengthImpedance
-//PerLengthLineParameter
-//PerLengthPhaseImpedance
-//PerLengthSequenceImpedance
-//PetersenCoil
-//PhaseImpedanceData
-//PhaseTapChanger
-//PhaseTapChangerAsymmetrical
-//PhaseTapChangerLinear
-//PhaseTapChangerNonLinear
-//PhaseTapChangerSymmetrical
-//PhaseTapChangerTable
-//PhaseTapChangerTablePoint
-//PhaseTapChangerTabular
-//Plant
-//PowerTransformer
-//PowerTransformerEnd
-//ProtectedSwitch
-//RatioTapChanger
-//RatioTapChangerTable
-//RatioTapChangerTablePoint
-//ReactiveCapabilityCurve
-//Recloser
-//RegulatingCondEq
-//RegulatingControl
-//RegulationSchedule
-//RotatingMachine
-//Sectionaliser
-//SeriesCompensator
-//ShuntCompensator
-//ShuntCompensatorPhase
-//StaticVarCompensator
-//Switch
-//SwitchPhase
-//SwitchSchedule
-//SynchronousMachine
-//TapChanger
-//TapChangerControl
-//TapChangerTablePoint
-//TapSchedule
-//TransformerCoreAdmittance
-//TransformerEnd
-//TransformerMeshImpedance
-//TransformerStarImpedance
-//TransformerTank
-//TransformerTankEnd
-//VoltageControlZone
-//Diagram
-//DiagramObject
-//DiagramObjectGluePoint
-//DiagramObjectPoint
-//DiagramObjectStyle
-//DiagramStyle
-//TextDiagramObject
-//VisibilityLayer
-//StringQuantity
-//SeasonDayTypeSchedule
-//GeneratingUnit
-//SolarGeneratingUnit
-//BusNameMarker
-//DCTopologicalNode
-//TopologicalIsland
-//TopologicalNode
-//AssetPropertyCurve
-//Bushing
-//BushingInsulationPF
-//Cabinet
-//CoolingPowerRating
-//DimensionsInfo
-//DuctBank
-//FACTSDevice
-//Facility
-//FailureEvent
-//FinancialInfo
-//GenericAssetModelOrMaterial
-//Joint
-//Medium
-//Pole
-//Reconditioning
-//ReliabilityInfo
-//Specification
-//Streetlight
-//Structure
-//StructureSupport
-//Tower
-//TransformerObservation
-//UndergroundStructure
-//WindingInsulation
-//ActivityRecord
-//Agreement
-//Appointment
-//ConfigurationEvent
-//CoordinateSystem
-//Crew
-//CrewMember
-//CrewType
-//Document
-//ElectronicAddress
-//Hazard
-//Location
-//OperationPersonRole
-//Operator
-//Organisation
-//OrganisationRole
-//Ownership
-//Person
-//PersonRole
-//PositionPoint
-//PostalAddress
-//Priority
-//ScheduledEvent
-//ScheduledEventData
-//Status
-//StreetAddress
-//StreetDetail
-//TelephoneNumber
-//TimePoint
-//TimeSchedule
-//TownDetail
-//UserAttribute
-//BaseReading
-//Channel
-//ComFunction
-//ComModule
-//ControlledAppliance
-//DemandResponseProgram
-//EndDevice
-//EndDeviceAction
-//EndDeviceCapability
-//EndDeviceControl
-//EndDeviceControlType
-//EndDeviceEvent
-//EndDeviceEventDetail
-//EndDeviceEventType
-//EndDeviceFunction
-//EndDeviceGroup
-//EndDeviceInfo
-//EndDeviceTiming
-//IntervalBlock
-//IntervalReading
-//Meter
-//MeterMultiplier
-//MeterReading
-//MeterServiceWork
-//MetrologyRequirement
-//PanDemandResponse
-//PanDisplay
-//PanPricing
-//PanPricingDetail
-//PendingCalculation
-//RationalNumber
-//Reading
-//ReadingInterharmonic
-//ReadingQuality
-//ReadingQualityType
-//ReadingType
-//Register
-//ServiceMultiplier
-//SimpleEndDeviceFunction
-//UsagePoint
-//UsagePointGroup
-//UsagePointLocation
-//CurrentRelay
-//ProtectionEquipment
-//Accumulator
-//AccumulatorLimit
-//AccumulatorLimitSet
-//AccumulatorReset
-//AccumulatorValue
-//Analog
-//AnalogControl
-//AnalogLimit
-//AnalogLimitSet
-//AnalogValue
-//Command
-//Control
-//Discrete
-//DiscreteCommand
-//DiscreteValue
-//Limit
-//LimitSet
-//Measurement
-//MeasurementValue
-//MeasurementValueQuality
-//MeasurementValueSource
-//Quality61850
-//RaiseLowerCommand
-//SetPoint
-//StringMeasurement
-//StringMeasurementValue
-//ValueAliasSet
-//ValueToAlias
-//Customer
-//CustomerAccount
-//CustomerAgreement
-//PricingStructure
-//ServiceCategory
-//ServiceLocation
-//Tariff
-//BasicElement
-//Unknown(
-//ACDCTerminal
-//BaseFrequency
-//BasePower
-//BaseVoltage
-//BasicIntervalSchedule
-//Bay
-//ConductingEquipment
-//ConnectivityNode
-//ConnectivityNodeContainer
-//Curve
-//CurveData
-//Equipment
-//EquipmentContainer
-//GeographicalRegion
-//IdentifiedObject
-//IrregularIntervalSchedule
-//IrregularTimePoint
-//Name
-//NameType
-//NameTypeAuthority
-//OperatingParticipant
-//OperatingShare
-//PSRType
-//PowerSystemResource
-//RegularIntervalSchedule
-//RegularTimePoint
-//ReportingGroup
-//ReportingSuperGroup
-//SubGeographicalRegion
-//Substation
-//Terminal
-//VoltageLevel
-//BusbarSectionInfo
-//CableInfo
-//ConcentricNeutralCableInfo
-//NoLoadTest
-//OpenCircuitTest
-//OverheadWireInfo
-//PowerTransformerInfo
-//ShortCircuitTest
-//ShuntCompensatorInfo
-//SwitchInfo
-//TapChangerInfo
-//TapeShieldCableInfo
-//TransformerEndInfo
-//TransformerTankInfo
-//TransformerTest
-//WireInfo
-//WirePosition
-//WireSpacingInfo
-//MktSwitch
-//StateVariable
-//SvStatus
-//BaseWork
-//Work
-//WorkLocation
-//ConnectDisconnectFunction
-//RemoteConnectDisconnectInfo
-//AcceptanceTest
-//Asset
-//AssetContainer
-//AssetFunction
-//AssetInfo
-//AssetLocationHazard
-//AssetModel
-//AssetOrganisationRole
-//AssetOwner
-//AssetUser
-//ComMedia
-//LifecycleDate
-//Maintainer
-//Manufacturer
-//Procedure
-//ProcedureDataSet
-//ProductAssetModel
-//Seal""".split ("\n")
-
     def asText (): String =
     {
         val classes = parser.classes.filter (x => x._2.pkg == pkg)
@@ -525,11 +215,12 @@ case class Scala (parser: ModelParser, pkg: Package)
                                a.variable.compareTo (b.variable)
             }
             val sup = Member ("sup", "sup", true, "Reference to the superclass object.", false, false, if (null != cls.sup) cls.sup.name else "BasicElement", "null", "", if (null == cls.sup) null else valid_class_name (cls.sup.name))
-            val members =
+            val members: mutable.SortedSet[Member] =
                 mutable.SortedSet[Member](sup) ++
                     parser.attributes.getOrElse(c._2, List[Attribute]()).filter(myattribute).map(details).toSet
                         .union(parser.roles.filter(myrole).map(details))
-
+            val fields: mutable.SortedSet[Member] = members.filter ("sup" != _.name)
+            val isLong: Boolean = fields.size > 32
             val s = new StringBuilder ()
             val n = if (null != pkg.notes) pkg.notes else ""
             s.append (JavaDoc (cls.note, 0, members, pkg.name, "Package " + pkg.name, n).asText)
@@ -566,8 +257,13 @@ case class Scala (parser: ModelParser, pkg: Package)
             |    def this () = { this (""".stripMargin)
             s.append (initializers.toString)
             s.append (""") }
-            |""".stripMargin)
-            s.append ("""    /**
+            |    /**
+            |     * Valid fields bitmap.
+            |     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+            |     * Field order is specified by the @see{#fields} array.
+            |     */
+            |    var bitfields: %s = -1
+            |    /**
             |     * Return the superclass object.
             |     *
             |     * @return The typed superclass nested object.
@@ -575,7 +271,7 @@ case class Scala (parser: ModelParser, pkg: Package)
             |     * @groupname Hierarchy Class Hierarchy Related
             |     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
             |     */
-            |    def """.stripMargin)
+            |    def """.stripMargin.format (if (isLong) "Long" else "Int"))
             if (null != cls.sup)
             {
                 s.append (cls.sup.name)
@@ -600,194 +296,93 @@ case class Scala (parser: ModelParser, pkg: Package)
             |    override def length: Int = productArity
             |    override def export_fields: String =
             |    {
-            |        sup.export_fields +
-            |""".stripMargin)
-            var more = members.size
-            if (2 > more)
-                s.append ("""        ""
-                |""".stripMargin)
+            |""".stripMargin.format (name))
+            if (fields.exists (_.name != sup))
+            {
+                s.append ("""        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+                    |        implicit val clz: String = %s.cls
+                    |        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+                    |""".stripMargin.format (name))
+                if (fields.exists (!_.reference))
+                    s.append ("        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (%s.fields (position), value)\n".format (name))
+                if (fields.exists (x ⇒ x.reference && !x.multiple))
+                    s.append ("        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (%s.fields (position), value)\n".format (name))
+                if (fields.exists (_.multiple))
+                    s.append ("        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (%s.fields (position), x))\n".format (name))
+                s.append (fields.iterator.zipWithIndex.map (x ⇒ (if (x._1.multiple) "emitattrs" else if (x._1.reference) "emitattr" else "emitelem") + " (" + x._2 + ", " + x._1.variable + ")").mkString ("        ", "\n        ", "\n"))
+                s.append ("        s.toString\n")
+            }
             else
-                for (product <- members)
-                {
-                    if (product.name != "sup" && product.variable != "mRID")
-                    {
-                        val nullable = product.reference || ("String" == product.datatype)
-                        s.append ("""        """)
-                        if (nullable)
-                        {
-                            s.append ("""(if (null != """)
-                            s.append (product.variable)
-                            s.append (""") """)
-                        }
-                        if (product.multiple)
-                        {
-                            s.append (product.variable)
-                            s.append (""".map (x => """)
-                        }
-                        s.append (""""\t\t<cim:""")
-                        s.append (cls.name)
-                        s.append (""".""")
-                        s.append (product.name)
-                        if (product.reference)
-                        {
-                            s.append (""" rdf:resource=\"#" + """)
-                            if (product.multiple)
-                                s.append ("""x""")
-                            else
-                                s.append (product.variable)
-                            s.append (""" + "\"/>""")
-                        }
-                        else
-                        {
-                            s.append (""">" + """)
-                            s.append (product.variable)
-                            s.append (""" + "</cim:""")
-                            s.append (cls.name)
-                            s.append (""".""")
-                            s.append (product.name)
-                            s.append (""">""")
-                        }
-                        s.append ("""\n"""")
-                        if (nullable)
-                        {
-                            if (product.multiple)
-                                s.append (""").mkString""")
-                            s.append (""" else "")""")
-                        }
-                        if (more > 1)
-                            s.append (""" +
-                            |""".stripMargin)
-                        else
-                            s.append ("""
-                            |""".stripMargin)
-                    }
-                    more = more - 1
-                }
-            s.append ("""|    }
+                s.append ("        sup.export_fields\n")
+            s.append ("""    }
             |    override def export: String =
             |    {
-            |        "\t<cim:""".stripMargin)
-            s.append (cls.name)
-            s.append (""" rdf:ID=\"" + id + "\">\n" +
-            |""".stripMargin)
-            s.append ("""|        export_fields +
-            |        "\t</cim:""".stripMargin)
-            s.append (cls.name)
-            s.append (""">"
+            |        "\t<cim:%s rdf:ID=\"%s\">\n%s\t</cim:%s>".format (id, export_fields)
             |    }
             |}
-            |
-            |object """.stripMargin)
-            s.append (name)
+            |""".stripMargin.format (cls.name, "%s", "%s", cls.name))
             s.append ("""
+            |object %s
             |extends
-            |    Parseable[""".stripMargin)
-            s.append (name)
-            s.append ("""]
+            |    Parseable[%s]
             |{
-            |""".stripMargin)
-            for (product <- members)
-            {
-                if (product.name != "sup")
-                {
-                    s.append ("""    val """.stripMargin)
-                    s.append (product.variable)
-                    if (product.reference)
-                        if (product.multiple)
-                            s.append (""" = parse_attributes (attribute ("""")
-                        else
-                            s.append (""" = parse_attribute (attribute ("""")
-                    else
-                        s.append (""" = parse_element (element ("""")
-                    s.append ("""""""")
-                    s.append (name)
-                    s.append (""".""")
-                    s.append (product.name)
-                    s.append ("""""""")
-                    s.append (""""))
-                    |""".stripMargin)
-                }
-            }
+            |""".stripMargin.format (name, name))
 
-            s.append ("""    def parse (context: Context): """)
-            s.append (name)
-            s.append (""" =
+            val any = members.exists (_.name != "sup")
+            if (any)
+            {
+                // add the fields map
+                s.append (fields.iterator.map ("\"" + _.name + "\"").mkString ("    val fields: Array[String] = Array[String] (\n        ", ",\n        ", "\n    )\n"))
+                // output the field parsers
+                def pa (m: Member): String =
+                {
+                    if (m.reference)
+                        if (m.multiple)
+                            "parse_attributes (attribute"
+                        else
+                            "parse_attribute (attribute"
+                    else
+                        "parse_element (element"
+                }
+                s.append (fields.iterator.zipWithIndex.map (x ⇒ "val " + x._1.variable + ": %s = ".format (if (x._1.multiple) "FielderMultiple" else "Fielder") + pa (x._1) + " (cls, fields(" + x._2 + ")))").mkString ("    ", "\n    ", "\n"))
+            }
+            // output the parse method
+            s.append ("""
+            |    def parse (context: Context): %s =
             |    {
-            |        """.stripMargin)
+            |        implicit val ctx: Context = context
+            |""".stripMargin.format (name))
+            if (any)
+            {
+                s.append ("        var fields: %s = 0%s\n".format (if (isLong) "Long" else "Int", if (isLong) "L" else ""))
+                if (members.exists (x ⇒ x.name != "sup" && !x.multiple))
+                    s.append ("        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1%s << position; field._1 }\n".format (if (isLong) "L" else ""))
+                if (members.exists (_.multiple))
+                    s.append ("        def masks (field: Fields, position: Int): List[String] = { if (field._2) fields |= 1 << position; field._1 }\n")
+            }
             if (identified_object)
-            {
-                s.append ("""val base = """)
-                s.append (sup.datatype)
-                s.append (""".parse (context)
-                |        """.stripMargin)
-            }
-            s.append (name)
-            s.append ("""(""")
-            for (product <- members)
-            {
-                if (product.name != "sup") s.append (""",""")
-                s.append ("""
-                |            """.stripMargin)
+                s.append ("        val base = BasicElement.parse (context)\n")
+            s.append ("        val ret = %s (\n".format (name))
+            // add field parser calls
+            s.append (
                 if (identified_object)
-                {
-                    if (product.name == "sup")
-                    {
-                        s.append ("base")
-                    }
-                    else if (product.name == "mRID")
-                    {
-                        s.append ("base.id")
-                    }
-                    else
-                    {
-                        if (product.function != "")
-                        {
-                            s.append (product.function)
-                            s.append (""" (""")
-                        }
-                        s.append (product.variable)
-                        s.append (""" (context)""")
-                        if (product.function != "")
-                            s.append (""", context)""")
-                    }
-                }
+                    members.iterator.zipWithIndex.map (x ⇒ (x._1, if (x._1.name == "sup") "base" else if (x._1.name == "mRID") "base.id" else "mask (" + x._1.variable + " (), " + (x._2 - 1) + ")"))
+                        .map (x ⇒ if (x._1.function != "") x._1.function + " (" + x._2 + ")" else x._2).mkString ("            ", ",\n            ", "\n")
                 else
-                {
-                    if (product.function != "")
-                    {
-                        s.append (product.function)
-                        s.append (""" (""")
-                    }
-                    if (product.name == "sup")
-                    {
-                        s.append (product.datatype)
-                        s.append (""".parse""")
-                    }
-                    else
-                        s.append (product.variable)
-                    s.append (""" (context)""")
-                    if (product.function != "")
-                        s.append (""", context)""")
-                }
-            }
-            s.append ("""
-            |        )
-            |    }
-            |""".stripMargin)
-            s.append ("""    val relations: List[Relationship] = List (""")
+                    members.iterator.zipWithIndex.map (x ⇒ (x._1, if (x._1.name == "sup") x._1.datatype + ".parse (context)" else (if (x._1.multiple) "masks" else "mask") + " (" + x._1.variable + " (), " + (x._2 - 1) + ")"))
+                        .map (x ⇒ if (x._1.function != "") x._1.function + " (" + x._2 + ")" else x._2).mkString ("            ", ",\n            ", "\n")
+            )
+            s.append ("        )\n")
+            if (any)
+                s.append ("        ret.bitfields = fields\n")
+            s.append ("        ret\n    }\n")
+            // output the relations list
             val relationships = members.filter (member => (member.name != "sup") && (null != member.referenced_class))
-            if (relationships.nonEmpty)
-            {
-                s.append ("""
-                    |""".stripMargin)
-                s.append (relationships.map (
-                    member => """        Relationship ("%s", "%s", %s)""".format (member.variable, member.referenced_class, member.multiple)).mkString (",\n"))
-            }
-            s.append (""")""")
-            s.append ("""
-            |}
-            |
-            |""".stripMargin)
+            s.append (relationships.iterator.map (
+                member => """        Relationship ("%s", "%s", %s)""".format (member.variable, member.referenced_class, member.multiple)).mkString ("    val relations: List[Relationship] = List (\n", ",\n", "\n    )\n"))
+            s.append ("""}
+                |
+                |""".stripMargin)
 
             p.append (s)
         }

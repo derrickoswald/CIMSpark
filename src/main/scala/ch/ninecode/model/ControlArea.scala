@@ -34,6 +34,12 @@ extends
      */
     def this () = { this (null, 0, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -53,16 +59,19 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:AltGeneratingUnitMeas.priority>" + priority + "</cim:AltGeneratingUnitMeas.priority>\n" +
-        (if (null != AnalogValue) "\t\t<cim:AltGeneratingUnitMeas.AnalogValue rdf:resource=\"#" + AnalogValue + "\"/>\n" else "") +
-        (if (null != ControlAreaGeneratingUnit) "\t\t<cim:AltGeneratingUnitMeas.ControlAreaGeneratingUnit rdf:resource=\"#" + ControlAreaGeneratingUnit + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = AltGeneratingUnitMeas.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (AltGeneratingUnitMeas.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (AltGeneratingUnitMeas.fields (position), value)
+        emitelem (0, priority)
+        emitattr (1, AnalogValue)
+        emitattr (2, ControlAreaGeneratingUnit)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:AltGeneratingUnitMeas rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:AltGeneratingUnitMeas>"
+        "\t<cim:AltGeneratingUnitMeas rdf:ID=\"%s\">\n%s\t</cim:AltGeneratingUnitMeas>".format (id, export_fields)
     }
 }
 
@@ -70,21 +79,33 @@ object AltGeneratingUnitMeas
 extends
     Parseable[AltGeneratingUnitMeas]
 {
-    val priority = parse_element (element ("""AltGeneratingUnitMeas.priority"""))
-    val AnalogValue = parse_attribute (attribute ("""AltGeneratingUnitMeas.AnalogValue"""))
-    val ControlAreaGeneratingUnit = parse_attribute (attribute ("""AltGeneratingUnitMeas.ControlAreaGeneratingUnit"""))
+    val fields: Array[String] = Array[String] (
+        "priority",
+        "AnalogValue",
+        "ControlAreaGeneratingUnit"
+    )
+    val priority: Fielder = parse_element (element (cls, fields(0)))
+    val AnalogValue: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val ControlAreaGeneratingUnit: Fielder = parse_attribute (attribute (cls, fields(2)))
+
     def parse (context: Context): AltGeneratingUnitMeas =
     {
-        AltGeneratingUnitMeas(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = AltGeneratingUnitMeas (
             BasicElement.parse (context),
-            toInteger (priority (context), context),
-            AnalogValue (context),
-            ControlAreaGeneratingUnit (context)
+            toInteger (mask (priority (), 0)),
+            mask (AnalogValue (), 1),
+            mask (ControlAreaGeneratingUnit (), 2)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("AnalogValue", "AnalogValue", false),
-        Relationship ("ControlAreaGeneratingUnit", "ControlAreaGeneratingUnit", false))
+        Relationship ("ControlAreaGeneratingUnit", "ControlAreaGeneratingUnit", false)
+    )
 }
 
 /**
@@ -114,6 +135,12 @@ extends
      */
     def this () = { this (null, 0, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -133,16 +160,19 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:AltTieMeas.priority>" + priority + "</cim:AltTieMeas.priority>\n" +
-        (if (null != AnalogValue) "\t\t<cim:AltTieMeas.AnalogValue rdf:resource=\"#" + AnalogValue + "\"/>\n" else "") +
-        (if (null != TieFlow) "\t\t<cim:AltTieMeas.TieFlow rdf:resource=\"#" + TieFlow + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = AltTieMeas.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (AltTieMeas.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (AltTieMeas.fields (position), value)
+        emitelem (0, priority)
+        emitattr (1, AnalogValue)
+        emitattr (2, TieFlow)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:AltTieMeas rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:AltTieMeas>"
+        "\t<cim:AltTieMeas rdf:ID=\"%s\">\n%s\t</cim:AltTieMeas>".format (id, export_fields)
     }
 }
 
@@ -150,21 +180,33 @@ object AltTieMeas
 extends
     Parseable[AltTieMeas]
 {
-    val priority = parse_element (element ("""AltTieMeas.priority"""))
-    val AnalogValue = parse_attribute (attribute ("""AltTieMeas.AnalogValue"""))
-    val TieFlow = parse_attribute (attribute ("""AltTieMeas.TieFlow"""))
+    val fields: Array[String] = Array[String] (
+        "priority",
+        "AnalogValue",
+        "TieFlow"
+    )
+    val priority: Fielder = parse_element (element (cls, fields(0)))
+    val AnalogValue: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val TieFlow: Fielder = parse_attribute (attribute (cls, fields(2)))
+
     def parse (context: Context): AltTieMeas =
     {
-        AltTieMeas(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = AltTieMeas (
             BasicElement.parse (context),
-            toInteger (priority (context), context),
-            AnalogValue (context),
-            TieFlow (context)
+            toInteger (mask (priority (), 0)),
+            mask (AnalogValue (), 1),
+            mask (TieFlow (), 2)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("AnalogValue", "AnalogValue", false),
-        Relationship ("TieFlow", "TieFlow", false))
+        Relationship ("TieFlow", "TieFlow", false)
+    )
 }
 
 /**
@@ -198,6 +240,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -217,17 +265,20 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ControlArea.netInterchange>" + netInterchange + "</cim:ControlArea.netInterchange>\n" +
-        "\t\t<cim:ControlArea.pTolerance>" + pTolerance + "</cim:ControlArea.pTolerance>\n" +
-        (if (null != typ) "\t\t<cim:ControlArea.type rdf:resource=\"#" + typ + "\"/>\n" else "") +
-        (if (null != EnergyArea) "\t\t<cim:ControlArea.EnergyArea rdf:resource=\"#" + EnergyArea + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ControlArea.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ControlArea.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ControlArea.fields (position), value)
+        emitelem (0, netInterchange)
+        emitelem (1, pTolerance)
+        emitattr (2, typ)
+        emitattr (3, EnergyArea)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ControlArea rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ControlArea>"
+        "\t<cim:ControlArea rdf:ID=\"%s\">\n%s\t</cim:ControlArea>".format (id, export_fields)
     }
 }
 
@@ -235,22 +286,35 @@ object ControlArea
 extends
     Parseable[ControlArea]
 {
-    val netInterchange = parse_element (element ("""ControlArea.netInterchange"""))
-    val pTolerance = parse_element (element ("""ControlArea.pTolerance"""))
-    val typ = parse_attribute (attribute ("""ControlArea.type"""))
-    val EnergyArea = parse_attribute (attribute ("""ControlArea.EnergyArea"""))
+    val fields: Array[String] = Array[String] (
+        "netInterchange",
+        "pTolerance",
+        "type",
+        "EnergyArea"
+    )
+    val netInterchange: Fielder = parse_element (element (cls, fields(0)))
+    val pTolerance: Fielder = parse_element (element (cls, fields(1)))
+    val typ: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val EnergyArea: Fielder = parse_attribute (attribute (cls, fields(3)))
+
     def parse (context: Context): ControlArea =
     {
-        ControlArea(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ControlArea (
             PowerSystemResource.parse (context),
-            toDouble (netInterchange (context), context),
-            toDouble (pTolerance (context), context),
-            typ (context),
-            EnergyArea (context)
+            toDouble (mask (netInterchange (), 0)),
+            toDouble (mask (pTolerance (), 1)),
+            mask (typ (), 2),
+            mask (EnergyArea (), 3)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("EnergyArea", "EnergyArea", false))
+        Relationship ("EnergyArea", "EnergyArea", false)
+    )
 }
 
 /**
@@ -280,6 +344,12 @@ extends
      */
     def this () = { this (null, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -299,15 +369,17 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != ControlArea) "\t\t<cim:ControlAreaGeneratingUnit.ControlArea rdf:resource=\"#" + ControlArea + "\"/>\n" else "") +
-        (if (null != GeneratingUnit) "\t\t<cim:ControlAreaGeneratingUnit.GeneratingUnit rdf:resource=\"#" + GeneratingUnit + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ControlAreaGeneratingUnit.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ControlAreaGeneratingUnit.fields (position), value)
+        emitattr (0, ControlArea)
+        emitattr (1, GeneratingUnit)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ControlAreaGeneratingUnit rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ControlAreaGeneratingUnit>"
+        "\t<cim:ControlAreaGeneratingUnit rdf:ID=\"%s\">\n%s\t</cim:ControlAreaGeneratingUnit>".format (id, export_fields)
     }
 }
 
@@ -315,19 +387,30 @@ object ControlAreaGeneratingUnit
 extends
     Parseable[ControlAreaGeneratingUnit]
 {
-    val ControlArea = parse_attribute (attribute ("""ControlAreaGeneratingUnit.ControlArea"""))
-    val GeneratingUnit = parse_attribute (attribute ("""ControlAreaGeneratingUnit.GeneratingUnit"""))
+    val fields: Array[String] = Array[String] (
+        "ControlArea",
+        "GeneratingUnit"
+    )
+    val ControlArea: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val GeneratingUnit: Fielder = parse_attribute (attribute (cls, fields(1)))
+
     def parse (context: Context): ControlAreaGeneratingUnit =
     {
-        ControlAreaGeneratingUnit(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ControlAreaGeneratingUnit (
             IdentifiedObject.parse (context),
-            ControlArea (context),
-            GeneratingUnit (context)
+            mask (ControlArea (), 0),
+            mask (GeneratingUnit (), 1)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("ControlArea", "ControlArea", false),
-        Relationship ("GeneratingUnit", "GeneratingUnit", false))
+        Relationship ("GeneratingUnit", "GeneratingUnit", false)
+    )
 }
 
 /**
@@ -357,6 +440,12 @@ extends
      */
     def this () = { this (null, false, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -376,16 +465,19 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:TieFlow.positiveFlowIn>" + positiveFlowIn + "</cim:TieFlow.positiveFlowIn>\n" +
-        (if (null != ControlArea) "\t\t<cim:TieFlow.ControlArea rdf:resource=\"#" + ControlArea + "\"/>\n" else "") +
-        (if (null != Terminal) "\t\t<cim:TieFlow.Terminal rdf:resource=\"#" + Terminal + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = TieFlow.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TieFlow.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TieFlow.fields (position), value)
+        emitelem (0, positiveFlowIn)
+        emitattr (1, ControlArea)
+        emitattr (2, Terminal)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:TieFlow rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:TieFlow>"
+        "\t<cim:TieFlow rdf:ID=\"%s\">\n%s\t</cim:TieFlow>".format (id, export_fields)
     }
 }
 
@@ -393,21 +485,33 @@ object TieFlow
 extends
     Parseable[TieFlow]
 {
-    val positiveFlowIn = parse_element (element ("""TieFlow.positiveFlowIn"""))
-    val ControlArea = parse_attribute (attribute ("""TieFlow.ControlArea"""))
-    val Terminal = parse_attribute (attribute ("""TieFlow.Terminal"""))
+    val fields: Array[String] = Array[String] (
+        "positiveFlowIn",
+        "ControlArea",
+        "Terminal"
+    )
+    val positiveFlowIn: Fielder = parse_element (element (cls, fields(0)))
+    val ControlArea: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val Terminal: Fielder = parse_attribute (attribute (cls, fields(2)))
+
     def parse (context: Context): TieFlow =
     {
-        TieFlow(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = TieFlow (
             BasicElement.parse (context),
-            toBoolean (positiveFlowIn (context), context),
-            ControlArea (context),
-            Terminal (context)
+            toBoolean (mask (positiveFlowIn (), 0)),
+            mask (ControlArea (), 1),
+            mask (Terminal (), 2)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("ControlArea", "ControlArea", false),
-        Relationship ("Terminal", "Terminal", false))
+        Relationship ("Terminal", "Terminal", false)
+    )
 }
 
 private[ninecode] object _ControlArea

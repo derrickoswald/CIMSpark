@@ -29,6 +29,12 @@ extends
      */
     def this () = { this (null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -48,14 +54,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != labelID) "\t\t<cim:CRRMarket.labelID>" + labelID + "</cim:CRRMarket.labelID>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = CRRMarket.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (CRRMarket.fields (position), value)
+        emitelem (0, labelID)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:CRRMarket rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:CRRMarket>"
+        "\t<cim:CRRMarket rdf:ID=\"%s\">\n%s\t</cim:CRRMarket>".format (id, export_fields)
     }
 }
 
@@ -63,15 +71,26 @@ object CRRMarket
 extends
     Parseable[CRRMarket]
 {
-    val labelID = parse_element (element ("""CRRMarket.labelID"""))
+    val fields: Array[String] = Array[String] (
+        "labelID"
+    )
+    val labelID: Fielder = parse_element (element (cls, fields(0)))
+
     def parse (context: Context): CRRMarket =
     {
-        CRRMarket(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = CRRMarket (
             Market.parse (context),
-            labelID (context)
+            mask (labelID (), 0)
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -102,6 +121,12 @@ extends
      */
     def this () = { this (null, null, null, List()) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -121,16 +146,19 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != MarketResults) "\t\t<cim:EnergyMarket.MarketResults rdf:resource=\"#" + MarketResults + "\"/>\n" else "") +
-        (if (null != RTO) "\t\t<cim:EnergyMarket.RTO rdf:resource=\"#" + RTO + "\"/>\n" else "") +
-        (if (null != RegisteredResources) RegisteredResources.map (x => "\t\t<cim:EnergyMarket.RegisteredResources rdf:resource=\"#" + x + "\"/>\n").mkString else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = EnergyMarket.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (EnergyMarket.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (EnergyMarket.fields (position), x))
+        emitattr (0, MarketResults)
+        emitattr (1, RTO)
+        emitattrs (2, RegisteredResources)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:EnergyMarket rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:EnergyMarket>"
+        "\t<cim:EnergyMarket rdf:ID=\"%s\">\n%s\t</cim:EnergyMarket>".format (id, export_fields)
     }
 }
 
@@ -138,22 +166,35 @@ object EnergyMarket
 extends
     Parseable[EnergyMarket]
 {
-    val MarketResults = parse_attribute (attribute ("""EnergyMarket.MarketResults"""))
-    val RTO = parse_attribute (attribute ("""EnergyMarket.RTO"""))
-    val RegisteredResources = parse_attributes (attribute ("""EnergyMarket.RegisteredResources"""))
+    val fields: Array[String] = Array[String] (
+        "MarketResults",
+        "RTO",
+        "RegisteredResources"
+    )
+    val MarketResults: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val RTO: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val RegisteredResources: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+
     def parse (context: Context): EnergyMarket =
     {
-        EnergyMarket(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        def masks (field: Fields, position: Int): List[String] = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = EnergyMarket (
             Market.parse (context),
-            MarketResults (context),
-            RTO (context),
-            RegisteredResources (context)
+            mask (MarketResults (), 0),
+            mask (RTO (), 1),
+            masks (RegisteredResources (), 2)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("MarketResults", "MarketResults", false),
         Relationship ("RTO", "RTO", false),
-        Relationship ("RegisteredResources", "RegisteredResource", true))
+        Relationship ("RegisteredResources", "RegisteredResource", true)
+    )
 }
 
 /**
@@ -206,6 +247,12 @@ extends
      */
     def this () = { this (null, null, null, false, null, null, null, null, 0.0, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -225,23 +272,25 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != actualEnd) "\t\t<cim:Market.actualEnd>" + actualEnd + "</cim:Market.actualEnd>\n" else "") +
-        (if (null != actualStart) "\t\t<cim:Market.actualStart>" + actualStart + "</cim:Market.actualStart>\n" else "") +
-        "\t\t<cim:Market.dst>" + dst + "</cim:Market.dst>\n" +
-        (if (null != end) "\t\t<cim:Market.end>" + end + "</cim:Market.end>\n" else "") +
-        (if (null != localTimeZone) "\t\t<cim:Market.localTimeZone>" + localTimeZone + "</cim:Market.localTimeZone>\n" else "") +
-        (if (null != start) "\t\t<cim:Market.start>" + start + "</cim:Market.start>\n" else "") +
-        (if (null != status) "\t\t<cim:Market.status>" + status + "</cim:Market.status>\n" else "") +
-        "\t\t<cim:Market.timeIntervalLength>" + timeIntervalLength + "</cim:Market.timeIntervalLength>\n" +
-        (if (null != tradingDay) "\t\t<cim:Market.tradingDay>" + tradingDay + "</cim:Market.tradingDay>\n" else "") +
-        (if (null != tradingPeriod) "\t\t<cim:Market.tradingPeriod>" + tradingPeriod + "</cim:Market.tradingPeriod>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = Market.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Market.fields (position), value)
+        emitelem (0, actualEnd)
+        emitelem (1, actualStart)
+        emitelem (2, dst)
+        emitelem (3, end)
+        emitelem (4, localTimeZone)
+        emitelem (5, start)
+        emitelem (6, status)
+        emitelem (7, timeIntervalLength)
+        emitelem (8, tradingDay)
+        emitelem (9, tradingPeriod)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:Market rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:Market>"
+        "\t<cim:Market rdf:ID=\"%s\">\n%s\t</cim:Market>".format (id, export_fields)
     }
 }
 
@@ -249,33 +298,53 @@ object Market
 extends
     Parseable[Market]
 {
-    val actualEnd = parse_element (element ("""Market.actualEnd"""))
-    val actualStart = parse_element (element ("""Market.actualStart"""))
-    val dst = parse_element (element ("""Market.dst"""))
-    val end = parse_element (element ("""Market.end"""))
-    val localTimeZone = parse_element (element ("""Market.localTimeZone"""))
-    val start = parse_element (element ("""Market.start"""))
-    val status = parse_element (element ("""Market.status"""))
-    val timeIntervalLength = parse_element (element ("""Market.timeIntervalLength"""))
-    val tradingDay = parse_element (element ("""Market.tradingDay"""))
-    val tradingPeriod = parse_element (element ("""Market.tradingPeriod"""))
+    val fields: Array[String] = Array[String] (
+        "actualEnd",
+        "actualStart",
+        "dst",
+        "end",
+        "localTimeZone",
+        "start",
+        "status",
+        "timeIntervalLength",
+        "tradingDay",
+        "tradingPeriod"
+    )
+    val actualEnd: Fielder = parse_element (element (cls, fields(0)))
+    val actualStart: Fielder = parse_element (element (cls, fields(1)))
+    val dst: Fielder = parse_element (element (cls, fields(2)))
+    val end: Fielder = parse_element (element (cls, fields(3)))
+    val localTimeZone: Fielder = parse_element (element (cls, fields(4)))
+    val start: Fielder = parse_element (element (cls, fields(5)))
+    val status: Fielder = parse_element (element (cls, fields(6)))
+    val timeIntervalLength: Fielder = parse_element (element (cls, fields(7)))
+    val tradingDay: Fielder = parse_element (element (cls, fields(8)))
+    val tradingPeriod: Fielder = parse_element (element (cls, fields(9)))
+
     def parse (context: Context): Market =
     {
-        Market(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = Market (
             IdentifiedObject.parse (context),
-            actualEnd (context),
-            actualStart (context),
-            toBoolean (dst (context), context),
-            end (context),
-            localTimeZone (context),
-            start (context),
-            status (context),
-            toDouble (timeIntervalLength (context), context),
-            tradingDay (context),
-            tradingPeriod (context)
+            mask (actualEnd (), 0),
+            mask (actualStart (), 1),
+            toBoolean (mask (dst (), 2)),
+            mask (end (), 3),
+            mask (localTimeZone (), 4),
+            mask (start (), 5),
+            mask (status (), 6),
+            toDouble (mask (timeIntervalLength (), 7)),
+            mask (tradingDay (), 8),
+            mask (tradingPeriod (), 9)
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -309,6 +378,12 @@ extends
      */
     def this () = { this (null, null, null, null, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -328,18 +403,21 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != description) "\t\t<cim:MarketActualEvent.description>" + description + "</cim:MarketActualEvent.description>\n" else "") +
-        (if (null != eventID) "\t\t<cim:MarketActualEvent.eventID>" + eventID + "</cim:MarketActualEvent.eventID>\n" else "") +
-        (if (null != eventTime) "\t\t<cim:MarketActualEvent.eventTime>" + eventTime + "</cim:MarketActualEvent.eventTime>\n" else "") +
-        (if (null != MarketRun) "\t\t<cim:MarketActualEvent.MarketRun rdf:resource=\"#" + MarketRun + "\"/>\n" else "") +
-        (if (null != PlannedMarketEvent) "\t\t<cim:MarketActualEvent.PlannedMarketEvent rdf:resource=\"#" + PlannedMarketEvent + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = MarketActualEvent.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (MarketActualEvent.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (MarketActualEvent.fields (position), value)
+        emitelem (0, description)
+        emitelem (1, eventID)
+        emitelem (2, eventTime)
+        emitattr (3, MarketRun)
+        emitattr (4, PlannedMarketEvent)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:MarketActualEvent rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:MarketActualEvent>"
+        "\t<cim:MarketActualEvent rdf:ID=\"%s\">\n%s\t</cim:MarketActualEvent>".format (id, export_fields)
     }
 }
 
@@ -347,25 +425,39 @@ object MarketActualEvent
 extends
     Parseable[MarketActualEvent]
 {
-    val description = parse_element (element ("""MarketActualEvent.description"""))
-    val eventID = parse_element (element ("""MarketActualEvent.eventID"""))
-    val eventTime = parse_element (element ("""MarketActualEvent.eventTime"""))
-    val MarketRun = parse_attribute (attribute ("""MarketActualEvent.MarketRun"""))
-    val PlannedMarketEvent = parse_attribute (attribute ("""MarketActualEvent.PlannedMarketEvent"""))
+    val fields: Array[String] = Array[String] (
+        "description",
+        "eventID",
+        "eventTime",
+        "MarketRun",
+        "PlannedMarketEvent"
+    )
+    val description: Fielder = parse_element (element (cls, fields(0)))
+    val eventID: Fielder = parse_element (element (cls, fields(1)))
+    val eventTime: Fielder = parse_element (element (cls, fields(2)))
+    val MarketRun: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val PlannedMarketEvent: Fielder = parse_attribute (attribute (cls, fields(4)))
+
     def parse (context: Context): MarketActualEvent =
     {
-        MarketActualEvent(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = MarketActualEvent (
             BasicElement.parse (context),
-            description (context),
-            eventID (context),
-            eventTime (context),
-            MarketRun (context),
-            PlannedMarketEvent (context)
+            mask (description (), 0),
+            mask (eventID (), 1),
+            mask (eventTime (), 2),
+            mask (MarketRun (), 3),
+            mask (PlannedMarketEvent (), 4)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("MarketRun", "MarketRun", false),
-        Relationship ("PlannedMarketEvent", "PlannedMarketEvent", false))
+        Relationship ("PlannedMarketEvent", "PlannedMarketEvent", false)
+    )
 }
 
 /**
@@ -396,6 +488,12 @@ extends
      */
     def this () = { this (null, null, null, null, List()) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -415,17 +513,21 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != intervalEndTime) "\t\t<cim:MarketFactors.intervalEndTime>" + intervalEndTime + "</cim:MarketFactors.intervalEndTime>\n" else "") +
-        (if (null != intervalStartTime) "\t\t<cim:MarketFactors.intervalStartTime>" + intervalStartTime + "</cim:MarketFactors.intervalStartTime>\n" else "") +
-        (if (null != Market) "\t\t<cim:MarketFactors.Market rdf:resource=\"#" + Market + "\"/>\n" else "") +
-        (if (null != MktActivityRecord) MktActivityRecord.map (x => "\t\t<cim:MarketFactors.MktActivityRecord rdf:resource=\"#" + x + "\"/>\n").mkString else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = MarketFactors.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (MarketFactors.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (MarketFactors.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (MarketFactors.fields (position), x))
+        emitelem (0, intervalEndTime)
+        emitelem (1, intervalStartTime)
+        emitattr (2, Market)
+        emitattrs (3, MktActivityRecord)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:MarketFactors rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:MarketFactors>"
+        "\t<cim:MarketFactors rdf:ID=\"%s\">\n%s\t</cim:MarketFactors>".format (id, export_fields)
     }
 }
 
@@ -433,23 +535,37 @@ object MarketFactors
 extends
     Parseable[MarketFactors]
 {
-    val intervalEndTime = parse_element (element ("""MarketFactors.intervalEndTime"""))
-    val intervalStartTime = parse_element (element ("""MarketFactors.intervalStartTime"""))
-    val Market = parse_attribute (attribute ("""MarketFactors.Market"""))
-    val MktActivityRecord = parse_attributes (attribute ("""MarketFactors.MktActivityRecord"""))
+    val fields: Array[String] = Array[String] (
+        "intervalEndTime",
+        "intervalStartTime",
+        "Market",
+        "MktActivityRecord"
+    )
+    val intervalEndTime: Fielder = parse_element (element (cls, fields(0)))
+    val intervalStartTime: Fielder = parse_element (element (cls, fields(1)))
+    val Market: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val MktActivityRecord: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+
     def parse (context: Context): MarketFactors =
     {
-        MarketFactors(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        def masks (field: Fields, position: Int): List[String] = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = MarketFactors (
             Document.parse (context),
-            intervalEndTime (context),
-            intervalStartTime (context),
-            Market (context),
-            MktActivityRecord (context)
+            mask (intervalEndTime (), 0),
+            mask (intervalStartTime (), 1),
+            mask (Market (), 2),
+            masks (MktActivityRecord (), 3)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("Market", "Market", false),
-        Relationship ("MktActivityRecord", "MktActivityRecord", true))
+        Relationship ("MktActivityRecord", "MktActivityRecord", true)
+    )
 }
 
 /**
@@ -482,6 +598,12 @@ extends
      */
     def this () = { this (null, null, null, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -501,17 +623,19 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != description) "\t\t<cim:MarketPlan.description>" + description + "</cim:MarketPlan.description>\n" else "") +
-        (if (null != marketPlanID) "\t\t<cim:MarketPlan.marketPlanID>" + marketPlanID + "</cim:MarketPlan.marketPlanID>\n" else "") +
-        (if (null != name) "\t\t<cim:MarketPlan.name>" + name + "</cim:MarketPlan.name>\n" else "") +
-        (if (null != tradingDay) "\t\t<cim:MarketPlan.tradingDay>" + tradingDay + "</cim:MarketPlan.tradingDay>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = MarketPlan.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (MarketPlan.fields (position), value)
+        emitelem (0, description)
+        emitelem (1, marketPlanID)
+        emitelem (2, name)
+        emitelem (3, tradingDay)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:MarketPlan rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:MarketPlan>"
+        "\t<cim:MarketPlan rdf:ID=\"%s\">\n%s\t</cim:MarketPlan>".format (id, export_fields)
     }
 }
 
@@ -519,21 +643,35 @@ object MarketPlan
 extends
     Parseable[MarketPlan]
 {
-    val description = parse_element (element ("""MarketPlan.description"""))
-    val marketPlanID = parse_element (element ("""MarketPlan.marketPlanID"""))
-    val name = parse_element (element ("""MarketPlan.name"""))
-    val tradingDay = parse_element (element ("""MarketPlan.tradingDay"""))
+    val fields: Array[String] = Array[String] (
+        "description",
+        "marketPlanID",
+        "name",
+        "tradingDay"
+    )
+    val description: Fielder = parse_element (element (cls, fields(0)))
+    val marketPlanID: Fielder = parse_element (element (cls, fields(1)))
+    val name: Fielder = parse_element (element (cls, fields(2)))
+    val tradingDay: Fielder = parse_element (element (cls, fields(3)))
+
     def parse (context: Context): MarketPlan =
     {
-        MarketPlan(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = MarketPlan (
             BasicElement.parse (context),
-            description (context),
-            marketPlanID (context),
-            name (context),
-            tradingDay (context)
+            mask (description (), 0),
+            mask (marketPlanID (), 1),
+            mask (name (), 2),
+            mask (tradingDay (), 3)
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -574,6 +712,12 @@ extends
      */
     def this () = { this (null, null, 0.0, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -593,17 +737,20 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != marketProductType) "\t\t<cim:MarketProduct.marketProductType rdf:resource=\"#" + marketProductType + "\"/>\n" else "") +
-        "\t\t<cim:MarketProduct.rampInterval>" + rampInterval + "</cim:MarketProduct.rampInterval>\n" +
-        (if (null != Market) "\t\t<cim:MarketProduct.Market rdf:resource=\"#" + Market + "\"/>\n" else "") +
-        (if (null != MarketRegionResults) "\t\t<cim:MarketProduct.MarketRegionResults rdf:resource=\"#" + MarketRegionResults + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = MarketProduct.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (MarketProduct.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (MarketProduct.fields (position), value)
+        emitattr (0, marketProductType)
+        emitelem (1, rampInterval)
+        emitattr (2, Market)
+        emitattr (3, MarketRegionResults)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:MarketProduct rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:MarketProduct>"
+        "\t<cim:MarketProduct rdf:ID=\"%s\">\n%s\t</cim:MarketProduct>".format (id, export_fields)
     }
 }
 
@@ -611,23 +758,36 @@ object MarketProduct
 extends
     Parseable[MarketProduct]
 {
-    val marketProductType = parse_attribute (attribute ("""MarketProduct.marketProductType"""))
-    val rampInterval = parse_element (element ("""MarketProduct.rampInterval"""))
-    val Market = parse_attribute (attribute ("""MarketProduct.Market"""))
-    val MarketRegionResults = parse_attribute (attribute ("""MarketProduct.MarketRegionResults"""))
+    val fields: Array[String] = Array[String] (
+        "marketProductType",
+        "rampInterval",
+        "Market",
+        "MarketRegionResults"
+    )
+    val marketProductType: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val rampInterval: Fielder = parse_element (element (cls, fields(1)))
+    val Market: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val MarketRegionResults: Fielder = parse_attribute (attribute (cls, fields(3)))
+
     def parse (context: Context): MarketProduct =
     {
-        MarketProduct(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = MarketProduct (
             IdentifiedObject.parse (context),
-            marketProductType (context),
-            toDouble (rampInterval (context), context),
-            Market (context),
-            MarketRegionResults (context)
+            mask (marketProductType (), 0),
+            toDouble (mask (rampInterval (), 1)),
+            mask (Market (), 2),
+            mask (MarketRegionResults (), 3)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("Market", "Market", false),
-        Relationship ("MarketRegionResults", "MarketRegionResults", false))
+        Relationship ("MarketRegionResults", "MarketRegionResults", false)
+    )
 }
 
 /**
@@ -681,6 +841,12 @@ extends
      */
     def this () = { this (null, null, null, false, null, null, null, null, null, null, null, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -700,25 +866,28 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != executionType) "\t\t<cim:MarketRun.executionType rdf:resource=\"#" + executionType + "\"/>\n" else "") +
-        (if (null != marketApprovalTime) "\t\t<cim:MarketRun.marketApprovalTime>" + marketApprovalTime + "</cim:MarketRun.marketApprovalTime>\n" else "") +
-        "\t\t<cim:MarketRun.marketApprovedStatus>" + marketApprovedStatus + "</cim:MarketRun.marketApprovedStatus>\n" +
-        (if (null != marketEndTime) "\t\t<cim:MarketRun.marketEndTime>" + marketEndTime + "</cim:MarketRun.marketEndTime>\n" else "") +
-        (if (null != marketID) "\t\t<cim:MarketRun.marketID>" + marketID + "</cim:MarketRun.marketID>\n" else "") +
-        (if (null != marketRunID) "\t\t<cim:MarketRun.marketRunID>" + marketRunID + "</cim:MarketRun.marketRunID>\n" else "") +
-        (if (null != marketStartTime) "\t\t<cim:MarketRun.marketStartTime>" + marketStartTime + "</cim:MarketRun.marketStartTime>\n" else "") +
-        (if (null != marketType) "\t\t<cim:MarketRun.marketType rdf:resource=\"#" + marketType + "\"/>\n" else "") +
-        (if (null != reportedState) "\t\t<cim:MarketRun.reportedState>" + reportedState + "</cim:MarketRun.reportedState>\n" else "") +
-        (if (null != runState) "\t\t<cim:MarketRun.runState>" + runState + "</cim:MarketRun.runState>\n" else "") +
-        (if (null != Market) "\t\t<cim:MarketRun.Market rdf:resource=\"#" + Market + "\"/>\n" else "") +
-        (if (null != PlannedMarket) "\t\t<cim:MarketRun.PlannedMarket rdf:resource=\"#" + PlannedMarket + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = MarketRun.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (MarketRun.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (MarketRun.fields (position), value)
+        emitattr (0, executionType)
+        emitelem (1, marketApprovalTime)
+        emitelem (2, marketApprovedStatus)
+        emitelem (3, marketEndTime)
+        emitelem (4, marketID)
+        emitelem (5, marketRunID)
+        emitelem (6, marketStartTime)
+        emitattr (7, marketType)
+        emitelem (8, reportedState)
+        emitelem (9, runState)
+        emitattr (10, Market)
+        emitattr (11, PlannedMarket)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:MarketRun rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:MarketRun>"
+        "\t<cim:MarketRun rdf:ID=\"%s\">\n%s\t</cim:MarketRun>".format (id, export_fields)
     }
 }
 
@@ -726,39 +895,60 @@ object MarketRun
 extends
     Parseable[MarketRun]
 {
-    val executionType = parse_attribute (attribute ("""MarketRun.executionType"""))
-    val marketApprovalTime = parse_element (element ("""MarketRun.marketApprovalTime"""))
-    val marketApprovedStatus = parse_element (element ("""MarketRun.marketApprovedStatus"""))
-    val marketEndTime = parse_element (element ("""MarketRun.marketEndTime"""))
-    val marketID = parse_element (element ("""MarketRun.marketID"""))
-    val marketRunID = parse_element (element ("""MarketRun.marketRunID"""))
-    val marketStartTime = parse_element (element ("""MarketRun.marketStartTime"""))
-    val marketType = parse_attribute (attribute ("""MarketRun.marketType"""))
-    val reportedState = parse_element (element ("""MarketRun.reportedState"""))
-    val runState = parse_element (element ("""MarketRun.runState"""))
-    val Market = parse_attribute (attribute ("""MarketRun.Market"""))
-    val PlannedMarket = parse_attribute (attribute ("""MarketRun.PlannedMarket"""))
+    val fields: Array[String] = Array[String] (
+        "executionType",
+        "marketApprovalTime",
+        "marketApprovedStatus",
+        "marketEndTime",
+        "marketID",
+        "marketRunID",
+        "marketStartTime",
+        "marketType",
+        "reportedState",
+        "runState",
+        "Market",
+        "PlannedMarket"
+    )
+    val executionType: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val marketApprovalTime: Fielder = parse_element (element (cls, fields(1)))
+    val marketApprovedStatus: Fielder = parse_element (element (cls, fields(2)))
+    val marketEndTime: Fielder = parse_element (element (cls, fields(3)))
+    val marketID: Fielder = parse_element (element (cls, fields(4)))
+    val marketRunID: Fielder = parse_element (element (cls, fields(5)))
+    val marketStartTime: Fielder = parse_element (element (cls, fields(6)))
+    val marketType: Fielder = parse_attribute (attribute (cls, fields(7)))
+    val reportedState: Fielder = parse_element (element (cls, fields(8)))
+    val runState: Fielder = parse_element (element (cls, fields(9)))
+    val Market: Fielder = parse_attribute (attribute (cls, fields(10)))
+    val PlannedMarket: Fielder = parse_attribute (attribute (cls, fields(11)))
+
     def parse (context: Context): MarketRun =
     {
-        MarketRun(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = MarketRun (
             BasicElement.parse (context),
-            executionType (context),
-            marketApprovalTime (context),
-            toBoolean (marketApprovedStatus (context), context),
-            marketEndTime (context),
-            marketID (context),
-            marketRunID (context),
-            marketStartTime (context),
-            marketType (context),
-            reportedState (context),
-            runState (context),
-            Market (context),
-            PlannedMarket (context)
+            mask (executionType (), 0),
+            mask (marketApprovalTime (), 1),
+            toBoolean (mask (marketApprovedStatus (), 2)),
+            mask (marketEndTime (), 3),
+            mask (marketID (), 4),
+            mask (marketRunID (), 5),
+            mask (marketStartTime (), 6),
+            mask (marketType (), 7),
+            mask (reportedState (), 8),
+            mask (runState (), 9),
+            mask (Market (), 10),
+            mask (PlannedMarket (), 11)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("Market", "Market", false),
-        Relationship ("PlannedMarket", "PlannedMarket", false))
+        Relationship ("PlannedMarket", "PlannedMarket", false)
+    )
 }
 
 /**
@@ -794,6 +984,12 @@ extends
      */
     def this () = { this (null, null, null, null, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -813,18 +1009,21 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != marketEndTime) "\t\t<cim:PlannedMarket.marketEndTime>" + marketEndTime + "</cim:PlannedMarket.marketEndTime>\n" else "") +
-        (if (null != marketID) "\t\t<cim:PlannedMarket.marketID>" + marketID + "</cim:PlannedMarket.marketID>\n" else "") +
-        (if (null != marketStartTime) "\t\t<cim:PlannedMarket.marketStartTime>" + marketStartTime + "</cim:PlannedMarket.marketStartTime>\n" else "") +
-        (if (null != marketType) "\t\t<cim:PlannedMarket.marketType rdf:resource=\"#" + marketType + "\"/>\n" else "") +
-        (if (null != MarketPlan) "\t\t<cim:PlannedMarket.MarketPlan rdf:resource=\"#" + MarketPlan + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = PlannedMarket.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PlannedMarket.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PlannedMarket.fields (position), value)
+        emitelem (0, marketEndTime)
+        emitelem (1, marketID)
+        emitelem (2, marketStartTime)
+        emitattr (3, marketType)
+        emitattr (4, MarketPlan)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:PlannedMarket rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:PlannedMarket>"
+        "\t<cim:PlannedMarket rdf:ID=\"%s\">\n%s\t</cim:PlannedMarket>".format (id, export_fields)
     }
 }
 
@@ -832,24 +1031,38 @@ object PlannedMarket
 extends
     Parseable[PlannedMarket]
 {
-    val marketEndTime = parse_element (element ("""PlannedMarket.marketEndTime"""))
-    val marketID = parse_element (element ("""PlannedMarket.marketID"""))
-    val marketStartTime = parse_element (element ("""PlannedMarket.marketStartTime"""))
-    val marketType = parse_attribute (attribute ("""PlannedMarket.marketType"""))
-    val MarketPlan = parse_attribute (attribute ("""PlannedMarket.MarketPlan"""))
+    val fields: Array[String] = Array[String] (
+        "marketEndTime",
+        "marketID",
+        "marketStartTime",
+        "marketType",
+        "MarketPlan"
+    )
+    val marketEndTime: Fielder = parse_element (element (cls, fields(0)))
+    val marketID: Fielder = parse_element (element (cls, fields(1)))
+    val marketStartTime: Fielder = parse_element (element (cls, fields(2)))
+    val marketType: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val MarketPlan: Fielder = parse_attribute (attribute (cls, fields(4)))
+
     def parse (context: Context): PlannedMarket =
     {
-        PlannedMarket(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = PlannedMarket (
             BasicElement.parse (context),
-            marketEndTime (context),
-            marketID (context),
-            marketStartTime (context),
-            marketType (context),
-            MarketPlan (context)
+            mask (marketEndTime (), 0),
+            mask (marketID (), 1),
+            mask (marketStartTime (), 2),
+            mask (marketType (), 3),
+            mask (MarketPlan (), 4)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("MarketPlan", "MarketPlan", false))
+        Relationship ("MarketPlan", "MarketPlan", false)
+    )
 }
 
 /**
@@ -883,6 +1096,12 @@ extends
      */
     def this () = { this (null, null, null, null, 0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -902,17 +1121,19 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != description) "\t\t<cim:PlannedMarketEvent.description>" + description + "</cim:PlannedMarketEvent.description>\n" else "") +
-        (if (null != eventType) "\t\t<cim:PlannedMarketEvent.eventType>" + eventType + "</cim:PlannedMarketEvent.eventType>\n" else "") +
-        (if (null != plannedEventID) "\t\t<cim:PlannedMarketEvent.plannedEventID>" + plannedEventID + "</cim:PlannedMarketEvent.plannedEventID>\n" else "") +
-        "\t\t<cim:PlannedMarketEvent.plannedTime>" + plannedTime + "</cim:PlannedMarketEvent.plannedTime>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = PlannedMarketEvent.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PlannedMarketEvent.fields (position), value)
+        emitelem (0, description)
+        emitelem (1, eventType)
+        emitelem (2, plannedEventID)
+        emitelem (3, plannedTime)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:PlannedMarketEvent rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:PlannedMarketEvent>"
+        "\t<cim:PlannedMarketEvent rdf:ID=\"%s\">\n%s\t</cim:PlannedMarketEvent>".format (id, export_fields)
     }
 }
 
@@ -920,21 +1141,35 @@ object PlannedMarketEvent
 extends
     Parseable[PlannedMarketEvent]
 {
-    val description = parse_element (element ("""PlannedMarketEvent.description"""))
-    val eventType = parse_element (element ("""PlannedMarketEvent.eventType"""))
-    val plannedEventID = parse_element (element ("""PlannedMarketEvent.plannedEventID"""))
-    val plannedTime = parse_element (element ("""PlannedMarketEvent.plannedTime"""))
+    val fields: Array[String] = Array[String] (
+        "description",
+        "eventType",
+        "plannedEventID",
+        "plannedTime"
+    )
+    val description: Fielder = parse_element (element (cls, fields(0)))
+    val eventType: Fielder = parse_element (element (cls, fields(1)))
+    val plannedEventID: Fielder = parse_element (element (cls, fields(2)))
+    val plannedTime: Fielder = parse_element (element (cls, fields(3)))
+
     def parse (context: Context): PlannedMarketEvent =
     {
-        PlannedMarketEvent(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = PlannedMarketEvent (
             BasicElement.parse (context),
-            description (context),
-            eventType (context),
-            plannedEventID (context),
-            toInteger (plannedTime (context), context)
+            mask (description (), 0),
+            mask (eventType (), 1),
+            mask (plannedEventID (), 2),
+            toInteger (mask (plannedTime (), 3))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 private[ninecode] object _MarketPlan

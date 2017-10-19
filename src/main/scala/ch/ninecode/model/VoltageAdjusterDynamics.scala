@@ -48,6 +48,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -67,19 +73,21 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:VAdjIEEE.adjslew>" + adjslew + "</cim:VAdjIEEE.adjslew>\n" +
-        "\t\t<cim:VAdjIEEE.taoff>" + taoff + "</cim:VAdjIEEE.taoff>\n" +
-        "\t\t<cim:VAdjIEEE.taon>" + taon + "</cim:VAdjIEEE.taon>\n" +
-        "\t\t<cim:VAdjIEEE.vadjf>" + vadjf + "</cim:VAdjIEEE.vadjf>\n" +
-        "\t\t<cim:VAdjIEEE.vadjmax>" + vadjmax + "</cim:VAdjIEEE.vadjmax>\n" +
-        "\t\t<cim:VAdjIEEE.vadjmin>" + vadjmin + "</cim:VAdjIEEE.vadjmin>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = VAdjIEEE.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (VAdjIEEE.fields (position), value)
+        emitelem (0, adjslew)
+        emitelem (1, taoff)
+        emitelem (2, taon)
+        emitelem (3, vadjf)
+        emitelem (4, vadjmax)
+        emitelem (5, vadjmin)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:VAdjIEEE rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:VAdjIEEE>"
+        "\t<cim:VAdjIEEE rdf:ID=\"%s\">\n%s\t</cim:VAdjIEEE>".format (id, export_fields)
     }
 }
 
@@ -87,25 +95,41 @@ object VAdjIEEE
 extends
     Parseable[VAdjIEEE]
 {
-    val adjslew = parse_element (element ("""VAdjIEEE.adjslew"""))
-    val taoff = parse_element (element ("""VAdjIEEE.taoff"""))
-    val taon = parse_element (element ("""VAdjIEEE.taon"""))
-    val vadjf = parse_element (element ("""VAdjIEEE.vadjf"""))
-    val vadjmax = parse_element (element ("""VAdjIEEE.vadjmax"""))
-    val vadjmin = parse_element (element ("""VAdjIEEE.vadjmin"""))
+    val fields: Array[String] = Array[String] (
+        "adjslew",
+        "taoff",
+        "taon",
+        "vadjf",
+        "vadjmax",
+        "vadjmin"
+    )
+    val adjslew: Fielder = parse_element (element (cls, fields(0)))
+    val taoff: Fielder = parse_element (element (cls, fields(1)))
+    val taon: Fielder = parse_element (element (cls, fields(2)))
+    val vadjf: Fielder = parse_element (element (cls, fields(3)))
+    val vadjmax: Fielder = parse_element (element (cls, fields(4)))
+    val vadjmin: Fielder = parse_element (element (cls, fields(5)))
+
     def parse (context: Context): VAdjIEEE =
     {
-        VAdjIEEE(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = VAdjIEEE (
             VoltageAdjusterDynamics.parse (context),
-            toDouble (adjslew (context), context),
-            toDouble (taoff (context), context),
-            toDouble (taon (context), context),
-            toDouble (vadjf (context), context),
-            toDouble (vadjmax (context), context),
-            toDouble (vadjmin (context), context)
+            toDouble (mask (adjslew (), 0)),
+            toDouble (mask (taoff (), 1)),
+            toDouble (mask (taon (), 2)),
+            toDouble (mask (vadjf (), 3)),
+            toDouble (mask (vadjmax (), 4)),
+            toDouble (mask (vadjmin (), 5))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -132,6 +156,12 @@ extends
      */
     def this () = { this (null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -151,14 +181,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != PFVArControllerType1Dynamics) "\t\t<cim:VoltageAdjusterDynamics.PFVArControllerType1Dynamics rdf:resource=\"#" + PFVArControllerType1Dynamics + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = VoltageAdjusterDynamics.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (VoltageAdjusterDynamics.fields (position), value)
+        emitattr (0, PFVArControllerType1Dynamics)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:VoltageAdjusterDynamics rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:VoltageAdjusterDynamics>"
+        "\t<cim:VoltageAdjusterDynamics rdf:ID=\"%s\">\n%s\t</cim:VoltageAdjusterDynamics>".format (id, export_fields)
     }
 }
 
@@ -166,16 +198,26 @@ object VoltageAdjusterDynamics
 extends
     Parseable[VoltageAdjusterDynamics]
 {
-    val PFVArControllerType1Dynamics = parse_attribute (attribute ("""VoltageAdjusterDynamics.PFVArControllerType1Dynamics"""))
+    val fields: Array[String] = Array[String] (
+        "PFVArControllerType1Dynamics"
+    )
+    val PFVArControllerType1Dynamics: Fielder = parse_attribute (attribute (cls, fields(0)))
+
     def parse (context: Context): VoltageAdjusterDynamics =
     {
-        VoltageAdjusterDynamics(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = VoltageAdjusterDynamics (
             DynamicsFunctionBlock.parse (context),
-            PFVArControllerType1Dynamics (context)
+            mask (PFVArControllerType1Dynamics (), 0)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("PFVArControllerType1Dynamics", "PFVArControllerType1Dynamics", false))
+        Relationship ("PFVArControllerType1Dynamics", "PFVArControllerType1Dynamics", false)
+    )
 }
 
 private[ninecode] object _VoltageAdjusterDynamics

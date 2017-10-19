@@ -35,6 +35,12 @@ extends
      */
     def this () = { this (null, null, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -54,16 +60,18 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != ExcitationSystemDynamics) "\t\t<cim:PFVArControllerType1Dynamics.ExcitationSystemDynamics rdf:resource=\"#" + ExcitationSystemDynamics + "\"/>\n" else "") +
-        (if (null != RemoteInputSignal) "\t\t<cim:PFVArControllerType1Dynamics.RemoteInputSignal rdf:resource=\"#" + RemoteInputSignal + "\"/>\n" else "") +
-        (if (null != VoltageAdjusterDynamics) "\t\t<cim:PFVArControllerType1Dynamics.VoltageAdjusterDynamics rdf:resource=\"#" + VoltageAdjusterDynamics + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = PFVArControllerType1Dynamics.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PFVArControllerType1Dynamics.fields (position), value)
+        emitattr (0, ExcitationSystemDynamics)
+        emitattr (1, RemoteInputSignal)
+        emitattr (2, VoltageAdjusterDynamics)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:PFVArControllerType1Dynamics rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:PFVArControllerType1Dynamics>"
+        "\t<cim:PFVArControllerType1Dynamics rdf:ID=\"%s\">\n%s\t</cim:PFVArControllerType1Dynamics>".format (id, export_fields)
     }
 }
 
@@ -71,22 +79,34 @@ object PFVArControllerType1Dynamics
 extends
     Parseable[PFVArControllerType1Dynamics]
 {
-    val ExcitationSystemDynamics = parse_attribute (attribute ("""PFVArControllerType1Dynamics.ExcitationSystemDynamics"""))
-    val RemoteInputSignal = parse_attribute (attribute ("""PFVArControllerType1Dynamics.RemoteInputSignal"""))
-    val VoltageAdjusterDynamics = parse_attribute (attribute ("""PFVArControllerType1Dynamics.VoltageAdjusterDynamics"""))
+    val fields: Array[String] = Array[String] (
+        "ExcitationSystemDynamics",
+        "RemoteInputSignal",
+        "VoltageAdjusterDynamics"
+    )
+    val ExcitationSystemDynamics: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val RemoteInputSignal: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val VoltageAdjusterDynamics: Fielder = parse_attribute (attribute (cls, fields(2)))
+
     def parse (context: Context): PFVArControllerType1Dynamics =
     {
-        PFVArControllerType1Dynamics(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = PFVArControllerType1Dynamics (
             DynamicsFunctionBlock.parse (context),
-            ExcitationSystemDynamics (context),
-            RemoteInputSignal (context),
-            VoltageAdjusterDynamics (context)
+            mask (ExcitationSystemDynamics (), 0),
+            mask (RemoteInputSignal (), 1),
+            mask (VoltageAdjusterDynamics (), 2)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("ExcitationSystemDynamics", "ExcitationSystemDynamics", false),
         Relationship ("RemoteInputSignal", "RemoteInputSignal", false),
-        Relationship ("VoltageAdjusterDynamics", "VoltageAdjusterDynamics", false))
+        Relationship ("VoltageAdjusterDynamics", "VoltageAdjusterDynamics", false)
+    )
 }
 
 /**
@@ -133,6 +153,12 @@ extends
      */
     def this () = { this (null, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -152,21 +178,23 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:PFVArType1IEEEPFController.ovex>" + ovex + "</cim:PFVArType1IEEEPFController.ovex>\n" +
-        "\t\t<cim:PFVArType1IEEEPFController.tpfc>" + tpfc + "</cim:PFVArType1IEEEPFController.tpfc>\n" +
-        "\t\t<cim:PFVArType1IEEEPFController.vitmin>" + vitmin + "</cim:PFVArType1IEEEPFController.vitmin>\n" +
-        "\t\t<cim:PFVArType1IEEEPFController.vpf>" + vpf + "</cim:PFVArType1IEEEPFController.vpf>\n" +
-        "\t\t<cim:PFVArType1IEEEPFController.vpfcbw>" + vpfcbw + "</cim:PFVArType1IEEEPFController.vpfcbw>\n" +
-        "\t\t<cim:PFVArType1IEEEPFController.vpfref>" + vpfref + "</cim:PFVArType1IEEEPFController.vpfref>\n" +
-        "\t\t<cim:PFVArType1IEEEPFController.vvtmax>" + vvtmax + "</cim:PFVArType1IEEEPFController.vvtmax>\n" +
-        "\t\t<cim:PFVArType1IEEEPFController.vvtmin>" + vvtmin + "</cim:PFVArType1IEEEPFController.vvtmin>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = PFVArType1IEEEPFController.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PFVArType1IEEEPFController.fields (position), value)
+        emitelem (0, ovex)
+        emitelem (1, tpfc)
+        emitelem (2, vitmin)
+        emitelem (3, vpf)
+        emitelem (4, vpfcbw)
+        emitelem (5, vpfref)
+        emitelem (6, vvtmax)
+        emitelem (7, vvtmin)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:PFVArType1IEEEPFController rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:PFVArType1IEEEPFController>"
+        "\t<cim:PFVArType1IEEEPFController rdf:ID=\"%s\">\n%s\t</cim:PFVArType1IEEEPFController>".format (id, export_fields)
     }
 }
 
@@ -174,29 +202,47 @@ object PFVArType1IEEEPFController
 extends
     Parseable[PFVArType1IEEEPFController]
 {
-    val ovex = parse_element (element ("""PFVArType1IEEEPFController.ovex"""))
-    val tpfc = parse_element (element ("""PFVArType1IEEEPFController.tpfc"""))
-    val vitmin = parse_element (element ("""PFVArType1IEEEPFController.vitmin"""))
-    val vpf = parse_element (element ("""PFVArType1IEEEPFController.vpf"""))
-    val vpfcbw = parse_element (element ("""PFVArType1IEEEPFController.vpfcbw"""))
-    val vpfref = parse_element (element ("""PFVArType1IEEEPFController.vpfref"""))
-    val vvtmax = parse_element (element ("""PFVArType1IEEEPFController.vvtmax"""))
-    val vvtmin = parse_element (element ("""PFVArType1IEEEPFController.vvtmin"""))
+    val fields: Array[String] = Array[String] (
+        "ovex",
+        "tpfc",
+        "vitmin",
+        "vpf",
+        "vpfcbw",
+        "vpfref",
+        "vvtmax",
+        "vvtmin"
+    )
+    val ovex: Fielder = parse_element (element (cls, fields(0)))
+    val tpfc: Fielder = parse_element (element (cls, fields(1)))
+    val vitmin: Fielder = parse_element (element (cls, fields(2)))
+    val vpf: Fielder = parse_element (element (cls, fields(3)))
+    val vpfcbw: Fielder = parse_element (element (cls, fields(4)))
+    val vpfref: Fielder = parse_element (element (cls, fields(5)))
+    val vvtmax: Fielder = parse_element (element (cls, fields(6)))
+    val vvtmin: Fielder = parse_element (element (cls, fields(7)))
+
     def parse (context: Context): PFVArType1IEEEPFController =
     {
-        PFVArType1IEEEPFController(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = PFVArType1IEEEPFController (
             PFVArControllerType1Dynamics.parse (context),
-            toBoolean (ovex (context), context),
-            toDouble (tpfc (context), context),
-            toDouble (vitmin (context), context),
-            toDouble (vpf (context), context),
-            toDouble (vpfcbw (context), context),
-            toDouble (vpfref (context), context),
-            toDouble (vvtmax (context), context),
-            toDouble (vvtmin (context), context)
+            toBoolean (mask (ovex (), 0)),
+            toDouble (mask (tpfc (), 1)),
+            toDouble (mask (vitmin (), 2)),
+            toDouble (mask (vpf (), 3)),
+            toDouble (mask (vpfcbw (), 4)),
+            toDouble (mask (vpfref (), 5)),
+            toDouble (mask (vvtmax (), 6)),
+            toDouble (mask (vvtmin (), 7))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -237,6 +283,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -256,19 +308,21 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:PFVArType1IEEEVArController.tvarc>" + tvarc + "</cim:PFVArType1IEEEVArController.tvarc>\n" +
-        "\t\t<cim:PFVArType1IEEEVArController.vvar>" + vvar + "</cim:PFVArType1IEEEVArController.vvar>\n" +
-        "\t\t<cim:PFVArType1IEEEVArController.vvarcbw>" + vvarcbw + "</cim:PFVArType1IEEEVArController.vvarcbw>\n" +
-        "\t\t<cim:PFVArType1IEEEVArController.vvarref>" + vvarref + "</cim:PFVArType1IEEEVArController.vvarref>\n" +
-        "\t\t<cim:PFVArType1IEEEVArController.vvtmax>" + vvtmax + "</cim:PFVArType1IEEEVArController.vvtmax>\n" +
-        "\t\t<cim:PFVArType1IEEEVArController.vvtmin>" + vvtmin + "</cim:PFVArType1IEEEVArController.vvtmin>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = PFVArType1IEEEVArController.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PFVArType1IEEEVArController.fields (position), value)
+        emitelem (0, tvarc)
+        emitelem (1, vvar)
+        emitelem (2, vvarcbw)
+        emitelem (3, vvarref)
+        emitelem (4, vvtmax)
+        emitelem (5, vvtmin)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:PFVArType1IEEEVArController rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:PFVArType1IEEEVArController>"
+        "\t<cim:PFVArType1IEEEVArController rdf:ID=\"%s\">\n%s\t</cim:PFVArType1IEEEVArController>".format (id, export_fields)
     }
 }
 
@@ -276,25 +330,41 @@ object PFVArType1IEEEVArController
 extends
     Parseable[PFVArType1IEEEVArController]
 {
-    val tvarc = parse_element (element ("""PFVArType1IEEEVArController.tvarc"""))
-    val vvar = parse_element (element ("""PFVArType1IEEEVArController.vvar"""))
-    val vvarcbw = parse_element (element ("""PFVArType1IEEEVArController.vvarcbw"""))
-    val vvarref = parse_element (element ("""PFVArType1IEEEVArController.vvarref"""))
-    val vvtmax = parse_element (element ("""PFVArType1IEEEVArController.vvtmax"""))
-    val vvtmin = parse_element (element ("""PFVArType1IEEEVArController.vvtmin"""))
+    val fields: Array[String] = Array[String] (
+        "tvarc",
+        "vvar",
+        "vvarcbw",
+        "vvarref",
+        "vvtmax",
+        "vvtmin"
+    )
+    val tvarc: Fielder = parse_element (element (cls, fields(0)))
+    val vvar: Fielder = parse_element (element (cls, fields(1)))
+    val vvarcbw: Fielder = parse_element (element (cls, fields(2)))
+    val vvarref: Fielder = parse_element (element (cls, fields(3)))
+    val vvtmax: Fielder = parse_element (element (cls, fields(4)))
+    val vvtmin: Fielder = parse_element (element (cls, fields(5)))
+
     def parse (context: Context): PFVArType1IEEEVArController =
     {
-        PFVArType1IEEEVArController(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = PFVArType1IEEEVArController (
             PFVArControllerType1Dynamics.parse (context),
-            toDouble (tvarc (context), context),
-            toDouble (vvar (context), context),
-            toDouble (vvarcbw (context), context),
-            toDouble (vvarref (context), context),
-            toDouble (vvtmax (context), context),
-            toDouble (vvtmin (context), context)
+            toDouble (mask (tvarc (), 0)),
+            toDouble (mask (vvar (), 1)),
+            toDouble (mask (vvarcbw (), 2)),
+            toDouble (mask (vvarref (), 3)),
+            toDouble (mask (vvtmax (), 4)),
+            toDouble (mask (vvtmin (), 5))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 private[ninecode] object _PFVArControllerType1Dynamics

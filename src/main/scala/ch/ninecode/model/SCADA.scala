@@ -30,6 +30,12 @@ extends
      */
     def this () = { this (null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -49,14 +55,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        ""
+        sup.export_fields
     }
     override def export: String =
     {
-        "\t<cim:CommunicationLink rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:CommunicationLink>"
+        "\t<cim:CommunicationLink rdf:ID=\"%s\">\n%s\t</cim:CommunicationLink>".format (id, export_fields)
     }
 }
 
@@ -64,13 +67,18 @@ object CommunicationLink
 extends
     Parseable[CommunicationLink]
 {
+
     def parse (context: Context): CommunicationLink =
     {
-        CommunicationLink(
+        implicit val ctx: Context = context
+        val ret = CommunicationLink (
             PowerSystemResource.parse (context)
         )
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -102,6 +110,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, false, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -121,17 +135,20 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:RemoteControl.actuatorMaximum>" + actuatorMaximum + "</cim:RemoteControl.actuatorMaximum>\n" +
-        "\t\t<cim:RemoteControl.actuatorMinimum>" + actuatorMinimum + "</cim:RemoteControl.actuatorMinimum>\n" +
-        "\t\t<cim:RemoteControl.remoteControlled>" + remoteControlled + "</cim:RemoteControl.remoteControlled>\n" +
-        (if (null != Control) "\t\t<cim:RemoteControl.Control rdf:resource=\"#" + Control + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = RemoteControl.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (RemoteControl.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (RemoteControl.fields (position), value)
+        emitelem (0, actuatorMaximum)
+        emitelem (1, actuatorMinimum)
+        emitelem (2, remoteControlled)
+        emitattr (3, Control)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:RemoteControl rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:RemoteControl>"
+        "\t<cim:RemoteControl rdf:ID=\"%s\">\n%s\t</cim:RemoteControl>".format (id, export_fields)
     }
 }
 
@@ -139,22 +156,35 @@ object RemoteControl
 extends
     Parseable[RemoteControl]
 {
-    val actuatorMaximum = parse_element (element ("""RemoteControl.actuatorMaximum"""))
-    val actuatorMinimum = parse_element (element ("""RemoteControl.actuatorMinimum"""))
-    val remoteControlled = parse_element (element ("""RemoteControl.remoteControlled"""))
-    val Control = parse_attribute (attribute ("""RemoteControl.Control"""))
+    val fields: Array[String] = Array[String] (
+        "actuatorMaximum",
+        "actuatorMinimum",
+        "remoteControlled",
+        "Control"
+    )
+    val actuatorMaximum: Fielder = parse_element (element (cls, fields(0)))
+    val actuatorMinimum: Fielder = parse_element (element (cls, fields(1)))
+    val remoteControlled: Fielder = parse_element (element (cls, fields(2)))
+    val Control: Fielder = parse_attribute (attribute (cls, fields(3)))
+
     def parse (context: Context): RemoteControl =
     {
-        RemoteControl(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = RemoteControl (
             RemotePoint.parse (context),
-            toDouble (actuatorMaximum (context), context),
-            toDouble (actuatorMinimum (context), context),
-            toBoolean (remoteControlled (context), context),
-            Control (context)
+            toDouble (mask (actuatorMaximum (), 0)),
+            toDouble (mask (actuatorMinimum (), 1)),
+            toBoolean (mask (remoteControlled (), 2)),
+            mask (Control (), 3)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("Control", "Control", false))
+        Relationship ("Control", "Control", false)
+    )
 }
 
 /**
@@ -182,6 +212,12 @@ extends
      */
     def this () = { this (null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -201,14 +237,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != RemoteUnit) "\t\t<cim:RemotePoint.RemoteUnit rdf:resource=\"#" + RemoteUnit + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = RemotePoint.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (RemotePoint.fields (position), value)
+        emitattr (0, RemoteUnit)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:RemotePoint rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:RemotePoint>"
+        "\t<cim:RemotePoint rdf:ID=\"%s\">\n%s\t</cim:RemotePoint>".format (id, export_fields)
     }
 }
 
@@ -216,16 +254,26 @@ object RemotePoint
 extends
     Parseable[RemotePoint]
 {
-    val RemoteUnit = parse_attribute (attribute ("""RemotePoint.RemoteUnit"""))
+    val fields: Array[String] = Array[String] (
+        "RemoteUnit"
+    )
+    val RemoteUnit: Fielder = parse_attribute (attribute (cls, fields(0)))
+
     def parse (context: Context): RemotePoint =
     {
-        RemotePoint(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = RemotePoint (
             IdentifiedObject.parse (context),
-            RemoteUnit (context)
+            mask (RemoteUnit (), 0)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("RemoteUnit", "RemoteUnit", false))
+        Relationship ("RemoteUnit", "RemoteUnit", false)
+    )
 }
 
 /**
@@ -259,6 +307,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -278,18 +332,21 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:RemoteSource.deadband>" + deadband + "</cim:RemoteSource.deadband>\n" +
-        "\t\t<cim:RemoteSource.scanInterval>" + scanInterval + "</cim:RemoteSource.scanInterval>\n" +
-        "\t\t<cim:RemoteSource.sensorMaximum>" + sensorMaximum + "</cim:RemoteSource.sensorMaximum>\n" +
-        "\t\t<cim:RemoteSource.sensorMinimum>" + sensorMinimum + "</cim:RemoteSource.sensorMinimum>\n" +
-        (if (null != MeasurementValue) "\t\t<cim:RemoteSource.MeasurementValue rdf:resource=\"#" + MeasurementValue + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = RemoteSource.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (RemoteSource.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (RemoteSource.fields (position), value)
+        emitelem (0, deadband)
+        emitelem (1, scanInterval)
+        emitelem (2, sensorMaximum)
+        emitelem (3, sensorMinimum)
+        emitattr (4, MeasurementValue)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:RemoteSource rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:RemoteSource>"
+        "\t<cim:RemoteSource rdf:ID=\"%s\">\n%s\t</cim:RemoteSource>".format (id, export_fields)
     }
 }
 
@@ -297,24 +354,38 @@ object RemoteSource
 extends
     Parseable[RemoteSource]
 {
-    val deadband = parse_element (element ("""RemoteSource.deadband"""))
-    val scanInterval = parse_element (element ("""RemoteSource.scanInterval"""))
-    val sensorMaximum = parse_element (element ("""RemoteSource.sensorMaximum"""))
-    val sensorMinimum = parse_element (element ("""RemoteSource.sensorMinimum"""))
-    val MeasurementValue = parse_attribute (attribute ("""RemoteSource.MeasurementValue"""))
+    val fields: Array[String] = Array[String] (
+        "deadband",
+        "scanInterval",
+        "sensorMaximum",
+        "sensorMinimum",
+        "MeasurementValue"
+    )
+    val deadband: Fielder = parse_element (element (cls, fields(0)))
+    val scanInterval: Fielder = parse_element (element (cls, fields(1)))
+    val sensorMaximum: Fielder = parse_element (element (cls, fields(2)))
+    val sensorMinimum: Fielder = parse_element (element (cls, fields(3)))
+    val MeasurementValue: Fielder = parse_attribute (attribute (cls, fields(4)))
+
     def parse (context: Context): RemoteSource =
     {
-        RemoteSource(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = RemoteSource (
             RemotePoint.parse (context),
-            toDouble (deadband (context), context),
-            toDouble (scanInterval (context), context),
-            toDouble (sensorMaximum (context), context),
-            toDouble (sensorMinimum (context), context),
-            MeasurementValue (context)
+            toDouble (mask (deadband (), 0)),
+            toDouble (mask (scanInterval (), 1)),
+            toDouble (mask (sensorMaximum (), 2)),
+            toDouble (mask (sensorMinimum (), 3)),
+            mask (MeasurementValue (), 4)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("MeasurementValue", "MeasurementValue", false))
+        Relationship ("MeasurementValue", "MeasurementValue", false)
+    )
 }
 
 /**
@@ -342,6 +413,12 @@ extends
      */
     def this () = { this (null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -361,14 +438,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != remoteUnitType) "\t\t<cim:RemoteUnit.remoteUnitType rdf:resource=\"#" + remoteUnitType + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = RemoteUnit.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (RemoteUnit.fields (position), value)
+        emitattr (0, remoteUnitType)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:RemoteUnit rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:RemoteUnit>"
+        "\t<cim:RemoteUnit rdf:ID=\"%s\">\n%s\t</cim:RemoteUnit>".format (id, export_fields)
     }
 }
 
@@ -376,15 +455,26 @@ object RemoteUnit
 extends
     Parseable[RemoteUnit]
 {
-    val remoteUnitType = parse_attribute (attribute ("""RemoteUnit.remoteUnitType"""))
+    val fields: Array[String] = Array[String] (
+        "remoteUnitType"
+    )
+    val remoteUnitType: Fielder = parse_attribute (attribute (cls, fields(0)))
+
     def parse (context: Context): RemoteUnit =
     {
-        RemoteUnit(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = RemoteUnit (
             PowerSystemResource.parse (context),
-            remoteUnitType (context)
+            mask (remoteUnitType (), 0)
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 private[ninecode] object _SCADA

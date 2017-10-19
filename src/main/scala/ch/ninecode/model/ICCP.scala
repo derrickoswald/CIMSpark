@@ -15,7 +15,7 @@ import ch.ninecode.cim.Relationship
 case class ICCPCommandPoint
 (
     override val sup: ICCPControlPoint,
-    attr: String
+    unknown: String
 )
 extends
     Element
@@ -24,6 +24,12 @@ extends
      * Zero args constructor.
      */
     def this () = { this (null, null) }
+    /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
     /**
      * Return the superclass object.
      *
@@ -44,14 +50,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != attr) "\t\t<cim:ICCPCommandPoint. rdf:resource=\"#" + attr + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ICCPCommandPoint.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ICCPCommandPoint.fields (position), value)
+        emitattr (0, unknown)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ICCPCommandPoint rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ICCPCommandPoint>"
+        "\t<cim:ICCPCommandPoint rdf:ID=\"%s\">\n%s\t</cim:ICCPCommandPoint>".format (id, export_fields)
     }
 }
 
@@ -59,16 +67,26 @@ object ICCPCommandPoint
 extends
     Parseable[ICCPCommandPoint]
 {
-    val attr = parse_attribute (attribute ("""ICCPCommandPoint."""))
+    val fields: Array[String] = Array[String] (
+        ""
+    )
+    val unknown: Fielder = parse_attribute (attribute (cls, fields(0)))
+
     def parse (context: Context): ICCPCommandPoint =
     {
-        ICCPCommandPoint(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ICCPCommandPoint (
             ICCPControlPoint.parse (context),
-            attr (context)
+            mask (unknown (), 0)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("attr", "Command", false))
+        Relationship ("unknown", "Command", false)
+    )
 }
 
 /**
@@ -79,8 +97,8 @@ extends
 case class ICCPControlPoint
 (
     override val sup: ICCPPoint,
-    attr: String,
-    deviceClass: String
+    deviceClass: String,
+    unknown: String
 )
 extends
     Element
@@ -89,6 +107,12 @@ extends
      * Zero args constructor.
      */
     def this () = { this (null, null, null) }
+    /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
     /**
      * Return the superclass object.
      *
@@ -109,15 +133,17 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != attr) "\t\t<cim:ICCPControlPoint. rdf:resource=\"#" + attr + "\"/>\n" else "") +
-        (if (null != deviceClass) "\t\t<cim:ICCPControlPoint.deviceClass rdf:resource=\"#" + deviceClass + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ICCPControlPoint.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ICCPControlPoint.fields (position), value)
+        emitattr (0, deviceClass)
+        emitattr (1, unknown)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ICCPControlPoint rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ICCPControlPoint>"
+        "\t<cim:ICCPControlPoint rdf:ID=\"%s\">\n%s\t</cim:ICCPControlPoint>".format (id, export_fields)
     }
 }
 
@@ -125,18 +151,29 @@ object ICCPControlPoint
 extends
     Parseable[ICCPControlPoint]
 {
-    val attr = parse_attribute (attribute ("""ICCPControlPoint."""))
-    val deviceClass = parse_attribute (attribute ("""ICCPControlPoint.deviceClass"""))
+    val fields: Array[String] = Array[String] (
+        "deviceClass",
+        ""
+    )
+    val deviceClass: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val unknown: Fielder = parse_attribute (attribute (cls, fields(1)))
+
     def parse (context: Context): ICCPControlPoint =
     {
-        ICCPControlPoint(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ICCPControlPoint (
             ICCPPoint.parse (context),
-            attr (context),
-            deviceClass (context)
+            mask (deviceClass (), 0),
+            mask (unknown (), 1)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("attr", "ICCPIndicationPoint", false))
+        Relationship ("unknown", "ICCPIndicationPoint", false)
+    )
 }
 
 /**
@@ -147,8 +184,8 @@ extends
 case class ICCPIndicationPoint
 (
     override val sup: ICCPPoint,
-    attr: String,
-    typ: String
+    typ: String,
+    unknown: String
 )
 extends
     Element
@@ -157,6 +194,12 @@ extends
      * Zero args constructor.
      */
     def this () = { this (null, null, null) }
+    /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
     /**
      * Return the superclass object.
      *
@@ -177,15 +220,17 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != attr) "\t\t<cim:ICCPIndicationPoint. rdf:resource=\"#" + attr + "\"/>\n" else "") +
-        (if (null != typ) "\t\t<cim:ICCPIndicationPoint.type rdf:resource=\"#" + typ + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ICCPIndicationPoint.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ICCPIndicationPoint.fields (position), value)
+        emitattr (0, typ)
+        emitattr (1, unknown)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ICCPIndicationPoint rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ICCPIndicationPoint>"
+        "\t<cim:ICCPIndicationPoint rdf:ID=\"%s\">\n%s\t</cim:ICCPIndicationPoint>".format (id, export_fields)
     }
 }
 
@@ -193,18 +238,29 @@ object ICCPIndicationPoint
 extends
     Parseable[ICCPIndicationPoint]
 {
-    val attr = parse_attribute (attribute ("""ICCPIndicationPoint."""))
-    val typ = parse_attribute (attribute ("""ICCPIndicationPoint.type"""))
+    val fields: Array[String] = Array[String] (
+        "type",
+        ""
+    )
+    val typ: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val unknown: Fielder = parse_attribute (attribute (cls, fields(1)))
+
     def parse (context: Context): ICCPIndicationPoint =
     {
-        ICCPIndicationPoint(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ICCPIndicationPoint (
             ICCPPoint.parse (context),
-            attr (context),
-            typ (context)
+            mask (typ (), 0),
+            mask (unknown (), 1)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("attr", "ICCPControlPoint", false))
+        Relationship ("unknown", "ICCPControlPoint", false)
+    )
 }
 
 /**
@@ -213,19 +269,19 @@ extends
  * The IdentifiedObject.name attribute must be non-null.  The value of the attribute shall be used as the TASE.2 Information Reference, as specified by 60870-6-503.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param attr [[ch.ninecode.model.TASE2BilateralTable TASE2BilateralTable]] <em>undocumented</em>
  * @param localReference The Local Reference attribute specifies a value agreed upon between sender and receiver of the Information Message.
  *        It further identifies the Information Message.
  * @param scope <em>undocumented</em>
+ * @param unknown [[ch.ninecode.model.TASE2BilateralTable TASE2BilateralTable]] <em>undocumented</em>
  * @group ICCP
  * @groupname ICCP Package ICCP
  */
 case class ICCPInformationMessage
 (
     override val sup: IdentifiedObject,
-    attr: List[String],
     localReference: String,
-    scope: String
+    scope: String,
+    unknown: List[String]
 )
 extends
     Element
@@ -233,7 +289,13 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, List(), null, null) }
+    def this () = { this (null, null, null, List()) }
+    /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
     /**
      * Return the superclass object.
      *
@@ -254,16 +316,20 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != attr) attr.map (x => "\t\t<cim:ICCPInformationMessage. rdf:resource=\"#" + x + "\"/>\n").mkString else "") +
-        (if (null != localReference) "\t\t<cim:ICCPInformationMessage.localReference>" + localReference + "</cim:ICCPInformationMessage.localReference>\n" else "") +
-        (if (null != scope) "\t\t<cim:ICCPInformationMessage.scope rdf:resource=\"#" + scope + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ICCPInformationMessage.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ICCPInformationMessage.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ICCPInformationMessage.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ICCPInformationMessage.fields (position), x))
+        emitelem (0, localReference)
+        emitattr (1, scope)
+        emitattrs (2, unknown)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ICCPInformationMessage rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ICCPInformationMessage>"
+        "\t<cim:ICCPInformationMessage rdf:ID=\"%s\">\n%s\t</cim:ICCPInformationMessage>".format (id, export_fields)
     }
 }
 
@@ -271,20 +337,33 @@ object ICCPInformationMessage
 extends
     Parseable[ICCPInformationMessage]
 {
-    val attr = parse_attributes (attribute ("""ICCPInformationMessage."""))
-    val localReference = parse_element (element ("""ICCPInformationMessage.localReference"""))
-    val scope = parse_attribute (attribute ("""ICCPInformationMessage.scope"""))
+    val fields: Array[String] = Array[String] (
+        "localReference",
+        "scope",
+        ""
+    )
+    val localReference: Fielder = parse_element (element (cls, fields(0)))
+    val scope: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val unknown: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+
     def parse (context: Context): ICCPInformationMessage =
     {
-        ICCPInformationMessage(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        def masks (field: Fields, position: Int): List[String] = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ICCPInformationMessage (
             IdentifiedObject.parse (context),
-            attr (context),
-            localReference (context),
-            scope (context)
+            mask (localReference (), 0),
+            mask (scope (), 1),
+            masks (unknown (), 2)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("attr", "TASE2BilateralTable", true))
+        Relationship ("unknown", "TASE2BilateralTable", true)
+    )
 }
 
 /**
@@ -293,16 +372,16 @@ extends
  * The name attribute shall be used as the DataValue name used for the exchange.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param attr [[ch.ninecode.model.TASE2BilateralTable TASE2BilateralTable]] <em>undocumented</em>
  * @param scope <em>undocumented</em>
+ * @param unknown [[ch.ninecode.model.TASE2BilateralTable TASE2BilateralTable]] <em>undocumented</em>
  * @group ICCP
  * @groupname ICCP Package ICCP
  */
 case class ICCPPoint
 (
     override val sup: IdentifiedObject,
-    attr: String,
-    scope: String
+    scope: String,
+    unknown: String
 )
 extends
     Element
@@ -311,6 +390,12 @@ extends
      * Zero args constructor.
      */
     def this () = { this (null, null, null) }
+    /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
     /**
      * Return the superclass object.
      *
@@ -331,15 +416,17 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != attr) "\t\t<cim:ICCPPoint. rdf:resource=\"#" + attr + "\"/>\n" else "") +
-        (if (null != scope) "\t\t<cim:ICCPPoint.scope rdf:resource=\"#" + scope + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ICCPPoint.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ICCPPoint.fields (position), value)
+        emitattr (0, scope)
+        emitattr (1, unknown)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ICCPPoint rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ICCPPoint>"
+        "\t<cim:ICCPPoint rdf:ID=\"%s\">\n%s\t</cim:ICCPPoint>".format (id, export_fields)
     }
 }
 
@@ -347,18 +434,29 @@ object ICCPPoint
 extends
     Parseable[ICCPPoint]
 {
-    val attr = parse_attribute (attribute ("""ICCPPoint."""))
-    val scope = parse_attribute (attribute ("""ICCPPoint.scope"""))
+    val fields: Array[String] = Array[String] (
+        "scope",
+        ""
+    )
+    val scope: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val unknown: Fielder = parse_attribute (attribute (cls, fields(1)))
+
     def parse (context: Context): ICCPPoint =
     {
-        ICCPPoint(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ICCPPoint (
             IdentifiedObject.parse (context),
-            attr (context),
-            scope (context)
+            mask (scope (), 0),
+            mask (unknown (), 1)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("attr", "TASE2BilateralTable", false))
+        Relationship ("unknown", "TASE2BilateralTable", false)
+    )
 }
 
 /**
@@ -369,8 +467,8 @@ extends
 case class ICCPSetPoint
 (
     override val sup: ICCPControlPoint,
-    attr: String,
-    typ: String
+    typ: String,
+    unknown: String
 )
 extends
     Element
@@ -379,6 +477,12 @@ extends
      * Zero args constructor.
      */
     def this () = { this (null, null, null) }
+    /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
     /**
      * Return the superclass object.
      *
@@ -399,15 +503,17 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != attr) "\t\t<cim:ICCPSetPoint. rdf:resource=\"#" + attr + "\"/>\n" else "") +
-        (if (null != typ) "\t\t<cim:ICCPSetPoint.type rdf:resource=\"#" + typ + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ICCPSetPoint.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ICCPSetPoint.fields (position), value)
+        emitattr (0, typ)
+        emitattr (1, unknown)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ICCPSetPoint rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ICCPSetPoint>"
+        "\t<cim:ICCPSetPoint rdf:ID=\"%s\">\n%s\t</cim:ICCPSetPoint>".format (id, export_fields)
     }
 }
 
@@ -415,18 +521,29 @@ object ICCPSetPoint
 extends
     Parseable[ICCPSetPoint]
 {
-    val attr = parse_attribute (attribute ("""ICCPSetPoint."""))
-    val typ = parse_attribute (attribute ("""ICCPSetPoint.type"""))
+    val fields: Array[String] = Array[String] (
+        "type",
+        ""
+    )
+    val typ: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val unknown: Fielder = parse_attribute (attribute (cls, fields(1)))
+
     def parse (context: Context): ICCPSetPoint =
     {
-        ICCPSetPoint(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ICCPSetPoint (
             ICCPControlPoint.parse (context),
-            attr (context),
-            typ (context)
+            mask (typ (), 0),
+            mask (unknown (), 1)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("attr", "AnalogControl", false))
+        Relationship ("unknown", "AnalogControl", false)
+    )
 }
 
 /**
@@ -439,9 +556,9 @@ case class IPAccessPoint
     override val sup: BasicElement,
     address: String,
     addressType: String,
-    attr: String,
     gateway: String,
-    subnet: String
+    subnet: String,
+    unknown: String
 )
 extends
     Element
@@ -450,6 +567,12 @@ extends
      * Zero args constructor.
      */
     def this () = { this (null, null, null, null, null, null) }
+    /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
     /**
      * Return the superclass object.
      *
@@ -470,18 +593,21 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != address) "\t\t<cim:IPAccessPoint.address>" + address + "</cim:IPAccessPoint.address>\n" else "") +
-        (if (null != addressType) "\t\t<cim:IPAccessPoint.addressType rdf:resource=\"#" + addressType + "\"/>\n" else "") +
-        (if (null != attr) "\t\t<cim:IPAccessPoint. rdf:resource=\"#" + attr + "\"/>\n" else "") +
-        (if (null != gateway) "\t\t<cim:IPAccessPoint.gateway>" + gateway + "</cim:IPAccessPoint.gateway>\n" else "") +
-        (if (null != subnet) "\t\t<cim:IPAccessPoint.subnet>" + subnet + "</cim:IPAccessPoint.subnet>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = IPAccessPoint.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (IPAccessPoint.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (IPAccessPoint.fields (position), value)
+        emitelem (0, address)
+        emitattr (1, addressType)
+        emitelem (2, gateway)
+        emitelem (3, subnet)
+        emitattr (4, unknown)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:IPAccessPoint rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:IPAccessPoint>"
+        "\t<cim:IPAccessPoint rdf:ID=\"%s\">\n%s\t</cim:IPAccessPoint>".format (id, export_fields)
     }
 }
 
@@ -489,24 +615,38 @@ object IPAccessPoint
 extends
     Parseable[IPAccessPoint]
 {
-    val address = parse_element (element ("""IPAccessPoint.address"""))
-    val addressType = parse_attribute (attribute ("""IPAccessPoint.addressType"""))
-    val attr = parse_attribute (attribute ("""IPAccessPoint."""))
-    val gateway = parse_element (element ("""IPAccessPoint.gateway"""))
-    val subnet = parse_element (element ("""IPAccessPoint.subnet"""))
+    val fields: Array[String] = Array[String] (
+        "address",
+        "addressType",
+        "gateway",
+        "subnet",
+        ""
+    )
+    val address: Fielder = parse_element (element (cls, fields(0)))
+    val addressType: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val gateway: Fielder = parse_element (element (cls, fields(2)))
+    val subnet: Fielder = parse_element (element (cls, fields(3)))
+    val unknown: Fielder = parse_attribute (attribute (cls, fields(4)))
+
     def parse (context: Context): IPAccessPoint =
     {
-        IPAccessPoint(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = IPAccessPoint (
             BasicElement.parse (context),
-            address (context),
-            addressType (context),
-            attr (context),
-            gateway (context),
-            subnet (context)
+            mask (address (), 0),
+            mask (addressType (), 1),
+            mask (gateway (), 2),
+            mask (subnet (), 3),
+            mask (unknown (), 4)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("attr", "TASE2BilateralTable", false))
+        Relationship ("unknown", "TASE2BilateralTable", false)
+    )
 }
 
 /**
@@ -530,6 +670,12 @@ extends
      */
     def this () = { this (null, null, null, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -549,17 +695,20 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != ap) "\t\t<cim:ISOUpperLayer.ap rdf:resource=\"#" + ap + "\"/>\n" else "") +
-        (if (null != osiPsel) "\t\t<cim:ISOUpperLayer.osiPsel>" + osiPsel + "</cim:ISOUpperLayer.osiPsel>\n" else "") +
-        (if (null != osiSsel) "\t\t<cim:ISOUpperLayer.osiSsel>" + osiSsel + "</cim:ISOUpperLayer.osiSsel>\n" else "") +
-        (if (null != osiTsel) "\t\t<cim:ISOUpperLayer.osiTsel>" + osiTsel + "</cim:ISOUpperLayer.osiTsel>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ISOUpperLayer.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ISOUpperLayer.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ISOUpperLayer.fields (position), value)
+        emitattr (0, ap)
+        emitelem (1, osiPsel)
+        emitelem (2, osiSsel)
+        emitelem (3, osiTsel)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ISOUpperLayer rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ISOUpperLayer>"
+        "\t<cim:ISOUpperLayer rdf:ID=\"%s\">\n%s\t</cim:ISOUpperLayer>".format (id, export_fields)
     }
 }
 
@@ -567,21 +716,35 @@ object ISOUpperLayer
 extends
     Parseable[ISOUpperLayer]
 {
-    val ap = parse_attribute (attribute ("""ISOUpperLayer.ap"""))
-    val osiPsel = parse_element (element ("""ISOUpperLayer.osiPsel"""))
-    val osiSsel = parse_element (element ("""ISOUpperLayer.osiSsel"""))
-    val osiTsel = parse_element (element ("""ISOUpperLayer.osiTsel"""))
+    val fields: Array[String] = Array[String] (
+        "ap",
+        "osiPsel",
+        "osiSsel",
+        "osiTsel"
+    )
+    val ap: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val osiPsel: Fielder = parse_element (element (cls, fields(1)))
+    val osiSsel: Fielder = parse_element (element (cls, fields(2)))
+    val osiTsel: Fielder = parse_element (element (cls, fields(3)))
+
     def parse (context: Context): ISOUpperLayer =
     {
-        ISOUpperLayer(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ISOUpperLayer (
             TCPAcessPoint.parse (context),
-            ap (context),
-            osiPsel (context),
-            osiSsel (context),
-            osiTsel (context)
+            mask (ap (), 0),
+            mask (osiPsel (), 1),
+            mask (osiSsel (), 2),
+            mask (osiTsel (), 3)
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -615,6 +778,12 @@ extends
      */
     def this () = { this (null, null, false, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -634,17 +803,19 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != bilateralTableID) "\t\t<cim:TASE2BilateralTable.bilateralTableID>" + bilateralTableID + "</cim:TASE2BilateralTable.bilateralTableID>\n" else "") +
-        "\t\t<cim:TASE2BilateralTable.calling>" + calling + "</cim:TASE2BilateralTable.calling>\n" +
-        (if (null != nameOfICC) "\t\t<cim:TASE2BilateralTable.nameOfICC>" + nameOfICC + "</cim:TASE2BilateralTable.nameOfICC>\n" else "") +
-        (if (null != tase2version) "\t\t<cim:TASE2BilateralTable.tase2version>" + tase2version + "</cim:TASE2BilateralTable.tase2version>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = TASE2BilateralTable.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TASE2BilateralTable.fields (position), value)
+        emitelem (0, bilateralTableID)
+        emitelem (1, calling)
+        emitelem (2, nameOfICC)
+        emitelem (3, tase2version)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:TASE2BilateralTable rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:TASE2BilateralTable>"
+        "\t<cim:TASE2BilateralTable rdf:ID=\"%s\">\n%s\t</cim:TASE2BilateralTable>".format (id, export_fields)
     }
 }
 
@@ -652,21 +823,35 @@ object TASE2BilateralTable
 extends
     Parseable[TASE2BilateralTable]
 {
-    val bilateralTableID = parse_element (element ("""TASE2BilateralTable.bilateralTableID"""))
-    val calling = parse_element (element ("""TASE2BilateralTable.calling"""))
-    val nameOfICC = parse_element (element ("""TASE2BilateralTable.nameOfICC"""))
-    val tase2version = parse_element (element ("""TASE2BilateralTable.tase2version"""))
+    val fields: Array[String] = Array[String] (
+        "bilateralTableID",
+        "calling",
+        "nameOfICC",
+        "tase2version"
+    )
+    val bilateralTableID: Fielder = parse_element (element (cls, fields(0)))
+    val calling: Fielder = parse_element (element (cls, fields(1)))
+    val nameOfICC: Fielder = parse_element (element (cls, fields(2)))
+    val tase2version: Fielder = parse_element (element (cls, fields(3)))
+
     def parse (context: Context): TASE2BilateralTable =
     {
-        TASE2BilateralTable(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = TASE2BilateralTable (
             IdentifiedObject.parse (context),
-            bilateralTableID (context),
-            toBoolean (calling (context), context),
-            nameOfICC (context),
-            tase2version (context)
+            mask (bilateralTableID (), 0),
+            toBoolean (mask (calling (), 1)),
+            mask (nameOfICC (), 2),
+            mask (tase2version (), 3)
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -688,6 +873,12 @@ extends
      */
     def this () = { this (null, 0, 0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -707,15 +898,17 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:TCPAcessPoint.keepAliveTime>" + keepAliveTime + "</cim:TCPAcessPoint.keepAliveTime>\n" +
-        "\t\t<cim:TCPAcessPoint.port>" + port + "</cim:TCPAcessPoint.port>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = TCPAcessPoint.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TCPAcessPoint.fields (position), value)
+        emitelem (0, keepAliveTime)
+        emitelem (1, port)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:TCPAcessPoint rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:TCPAcessPoint>"
+        "\t<cim:TCPAcessPoint rdf:ID=\"%s\">\n%s\t</cim:TCPAcessPoint>".format (id, export_fields)
     }
 }
 
@@ -723,17 +916,29 @@ object TCPAcessPoint
 extends
     Parseable[TCPAcessPoint]
 {
-    val keepAliveTime = parse_element (element ("""TCPAcessPoint.keepAliveTime"""))
-    val port = parse_element (element ("""TCPAcessPoint.port"""))
+    val fields: Array[String] = Array[String] (
+        "keepAliveTime",
+        "port"
+    )
+    val keepAliveTime: Fielder = parse_element (element (cls, fields(0)))
+    val port: Fielder = parse_element (element (cls, fields(1)))
+
     def parse (context: Context): TCPAcessPoint =
     {
-        TCPAcessPoint(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = TCPAcessPoint (
             IPAccessPoint.parse (context),
-            toInteger (keepAliveTime (context), context),
-            toInteger (port (context), context)
+            toInteger (mask (keepAliveTime (), 0)),
+            toInteger (mask (port (), 1))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 private[ninecode] object _ICCP

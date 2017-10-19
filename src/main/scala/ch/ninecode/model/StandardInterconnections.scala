@@ -51,6 +51,12 @@ extends
      */
     def this () = { this (null, null, null, null, null, null, null, null, null, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -70,23 +76,25 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != remoteSignalType) "\t\t<cim:RemoteInputSignal.remoteSignalType rdf:resource=\"#" + remoteSignalType + "\"/>\n" else "") +
-        (if (null != DiscontinuousExcitationControlDynamics) "\t\t<cim:RemoteInputSignal.DiscontinuousExcitationControlDynamics rdf:resource=\"#" + DiscontinuousExcitationControlDynamics + "\"/>\n" else "") +
-        (if (null != PFVArControllerType1Dynamics) "\t\t<cim:RemoteInputSignal.PFVArControllerType1Dynamics rdf:resource=\"#" + PFVArControllerType1Dynamics + "\"/>\n" else "") +
-        (if (null != PowerSystemStabilizerDynamics) "\t\t<cim:RemoteInputSignal.PowerSystemStabilizerDynamics rdf:resource=\"#" + PowerSystemStabilizerDynamics + "\"/>\n" else "") +
-        (if (null != Terminal) "\t\t<cim:RemoteInputSignal.Terminal rdf:resource=\"#" + Terminal + "\"/>\n" else "") +
-        (if (null != UnderexcitationLimiterDynamics) "\t\t<cim:RemoteInputSignal.UnderexcitationLimiterDynamics rdf:resource=\"#" + UnderexcitationLimiterDynamics + "\"/>\n" else "") +
-        (if (null != VoltageCompensatorDynamics) "\t\t<cim:RemoteInputSignal.VoltageCompensatorDynamics rdf:resource=\"#" + VoltageCompensatorDynamics + "\"/>\n" else "") +
-        (if (null != WindPlantDynamics) "\t\t<cim:RemoteInputSignal.WindPlantDynamics rdf:resource=\"#" + WindPlantDynamics + "\"/>\n" else "") +
-        (if (null != WindTurbineType1or2Dynamics) "\t\t<cim:RemoteInputSignal.WindTurbineType1or2Dynamics rdf:resource=\"#" + WindTurbineType1or2Dynamics + "\"/>\n" else "") +
-        (if (null != WindTurbineType3or4Dynamics) "\t\t<cim:RemoteInputSignal.WindTurbineType3or4Dynamics rdf:resource=\"#" + WindTurbineType3or4Dynamics + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = RemoteInputSignal.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (RemoteInputSignal.fields (position), value)
+        emitattr (0, remoteSignalType)
+        emitattr (1, DiscontinuousExcitationControlDynamics)
+        emitattr (2, PFVArControllerType1Dynamics)
+        emitattr (3, PowerSystemStabilizerDynamics)
+        emitattr (4, Terminal)
+        emitattr (5, UnderexcitationLimiterDynamics)
+        emitattr (6, VoltageCompensatorDynamics)
+        emitattr (7, WindPlantDynamics)
+        emitattr (8, WindTurbineType1or2Dynamics)
+        emitattr (9, WindTurbineType3or4Dynamics)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:RemoteInputSignal rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:RemoteInputSignal>"
+        "\t<cim:RemoteInputSignal rdf:ID=\"%s\">\n%s\t</cim:RemoteInputSignal>".format (id, export_fields)
     }
 }
 
@@ -94,31 +102,49 @@ object RemoteInputSignal
 extends
     Parseable[RemoteInputSignal]
 {
-    val remoteSignalType = parse_attribute (attribute ("""RemoteInputSignal.remoteSignalType"""))
-    val DiscontinuousExcitationControlDynamics = parse_attribute (attribute ("""RemoteInputSignal.DiscontinuousExcitationControlDynamics"""))
-    val PFVArControllerType1Dynamics = parse_attribute (attribute ("""RemoteInputSignal.PFVArControllerType1Dynamics"""))
-    val PowerSystemStabilizerDynamics = parse_attribute (attribute ("""RemoteInputSignal.PowerSystemStabilizerDynamics"""))
-    val Terminal = parse_attribute (attribute ("""RemoteInputSignal.Terminal"""))
-    val UnderexcitationLimiterDynamics = parse_attribute (attribute ("""RemoteInputSignal.UnderexcitationLimiterDynamics"""))
-    val VoltageCompensatorDynamics = parse_attribute (attribute ("""RemoteInputSignal.VoltageCompensatorDynamics"""))
-    val WindPlantDynamics = parse_attribute (attribute ("""RemoteInputSignal.WindPlantDynamics"""))
-    val WindTurbineType1or2Dynamics = parse_attribute (attribute ("""RemoteInputSignal.WindTurbineType1or2Dynamics"""))
-    val WindTurbineType3or4Dynamics = parse_attribute (attribute ("""RemoteInputSignal.WindTurbineType3or4Dynamics"""))
+    val fields: Array[String] = Array[String] (
+        "remoteSignalType",
+        "DiscontinuousExcitationControlDynamics",
+        "PFVArControllerType1Dynamics",
+        "PowerSystemStabilizerDynamics",
+        "Terminal",
+        "UnderexcitationLimiterDynamics",
+        "VoltageCompensatorDynamics",
+        "WindPlantDynamics",
+        "WindTurbineType1or2Dynamics",
+        "WindTurbineType3or4Dynamics"
+    )
+    val remoteSignalType: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val DiscontinuousExcitationControlDynamics: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val PFVArControllerType1Dynamics: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val PowerSystemStabilizerDynamics: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val Terminal: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val UnderexcitationLimiterDynamics: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val VoltageCompensatorDynamics: Fielder = parse_attribute (attribute (cls, fields(6)))
+    val WindPlantDynamics: Fielder = parse_attribute (attribute (cls, fields(7)))
+    val WindTurbineType1or2Dynamics: Fielder = parse_attribute (attribute (cls, fields(8)))
+    val WindTurbineType3or4Dynamics: Fielder = parse_attribute (attribute (cls, fields(9)))
+
     def parse (context: Context): RemoteInputSignal =
     {
-        RemoteInputSignal(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = RemoteInputSignal (
             IdentifiedObject.parse (context),
-            remoteSignalType (context),
-            DiscontinuousExcitationControlDynamics (context),
-            PFVArControllerType1Dynamics (context),
-            PowerSystemStabilizerDynamics (context),
-            Terminal (context),
-            UnderexcitationLimiterDynamics (context),
-            VoltageCompensatorDynamics (context),
-            WindPlantDynamics (context),
-            WindTurbineType1or2Dynamics (context),
-            WindTurbineType3or4Dynamics (context)
+            mask (remoteSignalType (), 0),
+            mask (DiscontinuousExcitationControlDynamics (), 1),
+            mask (PFVArControllerType1Dynamics (), 2),
+            mask (PowerSystemStabilizerDynamics (), 3),
+            mask (Terminal (), 4),
+            mask (UnderexcitationLimiterDynamics (), 5),
+            mask (VoltageCompensatorDynamics (), 6),
+            mask (WindPlantDynamics (), 7),
+            mask (WindTurbineType1or2Dynamics (), 8),
+            mask (WindTurbineType3or4Dynamics (), 9)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("DiscontinuousExcitationControlDynamics", "DiscontinuousExcitationControlDynamics", false),
@@ -129,7 +155,8 @@ extends
         Relationship ("VoltageCompensatorDynamics", "VoltageCompensatorDynamics", false),
         Relationship ("WindPlantDynamics", "WindPlantDynamics", false),
         Relationship ("WindTurbineType1or2Dynamics", "WindTurbineType1or2Dynamics", false),
-        Relationship ("WindTurbineType3or4Dynamics", "WindTurbineType3or4Dynamics", false))
+        Relationship ("WindTurbineType3or4Dynamics", "WindTurbineType3or4Dynamics", false)
+    )
 }
 
 private[ninecode] object _StandardInterconnections

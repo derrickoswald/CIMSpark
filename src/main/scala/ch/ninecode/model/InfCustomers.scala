@@ -31,6 +31,12 @@ extends
      */
     def this () = { this (null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -50,14 +56,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != deadline) "\t\t<cim:ComplianceEvent.deadline>" + deadline + "</cim:ComplianceEvent.deadline>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ComplianceEvent.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ComplianceEvent.fields (position), value)
+        emitelem (0, deadline)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ComplianceEvent rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ComplianceEvent>"
+        "\t<cim:ComplianceEvent rdf:ID=\"%s\">\n%s\t</cim:ComplianceEvent>".format (id, export_fields)
     }
 }
 
@@ -65,15 +73,26 @@ object ComplianceEvent
 extends
     Parseable[ComplianceEvent]
 {
-    val deadline = parse_element (element ("""ComplianceEvent.deadline"""))
+    val fields: Array[String] = Array[String] (
+        "deadline"
+    )
+    val deadline: Fielder = parse_element (element (cls, fields(0)))
+
     def parse (context: Context): ComplianceEvent =
     {
-        ComplianceEvent(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ComplianceEvent (
             ActivityRecord.parse (context),
-            deadline (context)
+            mask (deadline (), 0)
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -121,6 +140,12 @@ extends
      */
     def this () = { this (null, null, null, null, 0.0, null, 0.0, 0.0, null, null, List()) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -140,23 +165,27 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != billingDate) "\t\t<cim:CustomerBillingInfo.billingDate>" + billingDate + "</cim:CustomerBillingInfo.billingDate>\n" else "") +
-        (if (null != dueDate) "\t\t<cim:CustomerBillingInfo.dueDate>" + dueDate + "</cim:CustomerBillingInfo.dueDate>\n" else "") +
-        (if (null != kind) "\t\t<cim:CustomerBillingInfo.kind rdf:resource=\"#" + kind + "\"/>\n" else "") +
-        "\t\t<cim:CustomerBillingInfo.lastPaymentAmt>" + lastPaymentAmt + "</cim:CustomerBillingInfo.lastPaymentAmt>\n" +
-        (if (null != lastPaymentDate) "\t\t<cim:CustomerBillingInfo.lastPaymentDate>" + lastPaymentDate + "</cim:CustomerBillingInfo.lastPaymentDate>\n" else "") +
-        "\t\t<cim:CustomerBillingInfo.outBalance>" + outBalance + "</cim:CustomerBillingInfo.outBalance>\n" +
-        "\t\t<cim:CustomerBillingInfo.pymtPlanAmt>" + pymtPlanAmt + "</cim:CustomerBillingInfo.pymtPlanAmt>\n" +
-        (if (null != pymtPlanType) "\t\t<cim:CustomerBillingInfo.pymtPlanType>" + pymtPlanType + "</cim:CustomerBillingInfo.pymtPlanType>\n" else "") +
-        (if (null != CustomerAccount) "\t\t<cim:CustomerBillingInfo.CustomerAccount rdf:resource=\"#" + CustomerAccount + "\"/>\n" else "") +
-        (if (null != ErpInvoiceLineItems) ErpInvoiceLineItems.map (x => "\t\t<cim:CustomerBillingInfo.ErpInvoiceLineItems rdf:resource=\"#" + x + "\"/>\n").mkString else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = CustomerBillingInfo.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (CustomerBillingInfo.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (CustomerBillingInfo.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (CustomerBillingInfo.fields (position), x))
+        emitelem (0, billingDate)
+        emitelem (1, dueDate)
+        emitattr (2, kind)
+        emitelem (3, lastPaymentAmt)
+        emitelem (4, lastPaymentDate)
+        emitelem (5, outBalance)
+        emitelem (6, pymtPlanAmt)
+        emitelem (7, pymtPlanType)
+        emitattr (8, CustomerAccount)
+        emitattrs (9, ErpInvoiceLineItems)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:CustomerBillingInfo rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:CustomerBillingInfo>"
+        "\t<cim:CustomerBillingInfo rdf:ID=\"%s\">\n%s\t</cim:CustomerBillingInfo>".format (id, export_fields)
     }
 }
 
@@ -164,35 +193,55 @@ object CustomerBillingInfo
 extends
     Parseable[CustomerBillingInfo]
 {
-    val billingDate = parse_element (element ("""CustomerBillingInfo.billingDate"""))
-    val dueDate = parse_element (element ("""CustomerBillingInfo.dueDate"""))
-    val kind = parse_attribute (attribute ("""CustomerBillingInfo.kind"""))
-    val lastPaymentAmt = parse_element (element ("""CustomerBillingInfo.lastPaymentAmt"""))
-    val lastPaymentDate = parse_element (element ("""CustomerBillingInfo.lastPaymentDate"""))
-    val outBalance = parse_element (element ("""CustomerBillingInfo.outBalance"""))
-    val pymtPlanAmt = parse_element (element ("""CustomerBillingInfo.pymtPlanAmt"""))
-    val pymtPlanType = parse_element (element ("""CustomerBillingInfo.pymtPlanType"""))
-    val CustomerAccount = parse_attribute (attribute ("""CustomerBillingInfo.CustomerAccount"""))
-    val ErpInvoiceLineItems = parse_attributes (attribute ("""CustomerBillingInfo.ErpInvoiceLineItems"""))
+    val fields: Array[String] = Array[String] (
+        "billingDate",
+        "dueDate",
+        "kind",
+        "lastPaymentAmt",
+        "lastPaymentDate",
+        "outBalance",
+        "pymtPlanAmt",
+        "pymtPlanType",
+        "CustomerAccount",
+        "ErpInvoiceLineItems"
+    )
+    val billingDate: Fielder = parse_element (element (cls, fields(0)))
+    val dueDate: Fielder = parse_element (element (cls, fields(1)))
+    val kind: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val lastPaymentAmt: Fielder = parse_element (element (cls, fields(3)))
+    val lastPaymentDate: Fielder = parse_element (element (cls, fields(4)))
+    val outBalance: Fielder = parse_element (element (cls, fields(5)))
+    val pymtPlanAmt: Fielder = parse_element (element (cls, fields(6)))
+    val pymtPlanType: Fielder = parse_element (element (cls, fields(7)))
+    val CustomerAccount: Fielder = parse_attribute (attribute (cls, fields(8)))
+    val ErpInvoiceLineItems: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
+
     def parse (context: Context): CustomerBillingInfo =
     {
-        CustomerBillingInfo(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        def masks (field: Fields, position: Int): List[String] = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = CustomerBillingInfo (
             Document.parse (context),
-            billingDate (context),
-            dueDate (context),
-            kind (context),
-            toDouble (lastPaymentAmt (context), context),
-            lastPaymentDate (context),
-            toDouble (outBalance (context), context),
-            toDouble (pymtPlanAmt (context), context),
-            pymtPlanType (context),
-            CustomerAccount (context),
-            ErpInvoiceLineItems (context)
+            mask (billingDate (), 0),
+            mask (dueDate (), 1),
+            mask (kind (), 2),
+            toDouble (mask (lastPaymentAmt (), 3)),
+            mask (lastPaymentDate (), 4),
+            toDouble (mask (outBalance (), 5)),
+            toDouble (mask (pymtPlanAmt (), 6)),
+            mask (pymtPlanType (), 7),
+            mask (CustomerAccount (), 8),
+            masks (ErpInvoiceLineItems (), 9)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("CustomerAccount", "CustomerAccount", false),
-        Relationship ("ErpInvoiceLineItems", "ErpInvoiceLineItem", true))
+        Relationship ("ErpInvoiceLineItems", "ErpInvoiceLineItem", true)
+    )
 }
 
 /**
@@ -217,6 +266,12 @@ extends
      */
     def this () = { this (null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -236,14 +291,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        ""
+        sup.export_fields
     }
     override def export: String =
     {
-        "\t<cim:ExternalCustomerAgreement rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExternalCustomerAgreement>"
+        "\t<cim:ExternalCustomerAgreement rdf:ID=\"%s\">\n%s\t</cim:ExternalCustomerAgreement>".format (id, export_fields)
     }
 }
 
@@ -251,13 +303,18 @@ object ExternalCustomerAgreement
 extends
     Parseable[ExternalCustomerAgreement]
 {
+
     def parse (context: Context): ExternalCustomerAgreement =
     {
-        ExternalCustomerAgreement(
+        implicit val ctx: Context = context
+        val ret = ExternalCustomerAgreement (
             Agreement.parse (context)
         )
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -298,6 +355,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -317,22 +380,24 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:PowerQualityPricing.emergencyHighVoltLimit>" + emergencyHighVoltLimit + "</cim:PowerQualityPricing.emergencyHighVoltLimit>\n" +
-        "\t\t<cim:PowerQualityPricing.emergencyLowVoltLimit>" + emergencyLowVoltLimit + "</cim:PowerQualityPricing.emergencyLowVoltLimit>\n" +
-        "\t\t<cim:PowerQualityPricing.normalHighVoltLimit>" + normalHighVoltLimit + "</cim:PowerQualityPricing.normalHighVoltLimit>\n" +
-        "\t\t<cim:PowerQualityPricing.normalLowVoltLimit>" + normalLowVoltLimit + "</cim:PowerQualityPricing.normalLowVoltLimit>\n" +
-        "\t\t<cim:PowerQualityPricing.powerFactorMin>" + powerFactorMin + "</cim:PowerQualityPricing.powerFactorMin>\n" +
-        "\t\t<cim:PowerQualityPricing.valueUninterruptedServiceEnergy>" + valueUninterruptedServiceEnergy + "</cim:PowerQualityPricing.valueUninterruptedServiceEnergy>\n" +
-        "\t\t<cim:PowerQualityPricing.valueUninterruptedServiceP>" + valueUninterruptedServiceP + "</cim:PowerQualityPricing.valueUninterruptedServiceP>\n" +
-        "\t\t<cim:PowerQualityPricing.voltImbalanceViolCost>" + voltImbalanceViolCost + "</cim:PowerQualityPricing.voltImbalanceViolCost>\n" +
-        "\t\t<cim:PowerQualityPricing.voltLimitViolCost>" + voltLimitViolCost + "</cim:PowerQualityPricing.voltLimitViolCost>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = PowerQualityPricing.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PowerQualityPricing.fields (position), value)
+        emitelem (0, emergencyHighVoltLimit)
+        emitelem (1, emergencyLowVoltLimit)
+        emitelem (2, normalHighVoltLimit)
+        emitelem (3, normalLowVoltLimit)
+        emitelem (4, powerFactorMin)
+        emitelem (5, valueUninterruptedServiceEnergy)
+        emitelem (6, valueUninterruptedServiceP)
+        emitelem (7, voltImbalanceViolCost)
+        emitelem (8, voltLimitViolCost)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:PowerQualityPricing rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:PowerQualityPricing>"
+        "\t<cim:PowerQualityPricing rdf:ID=\"%s\">\n%s\t</cim:PowerQualityPricing>".format (id, export_fields)
     }
 }
 
@@ -340,31 +405,50 @@ object PowerQualityPricing
 extends
     Parseable[PowerQualityPricing]
 {
-    val emergencyHighVoltLimit = parse_element (element ("""PowerQualityPricing.emergencyHighVoltLimit"""))
-    val emergencyLowVoltLimit = parse_element (element ("""PowerQualityPricing.emergencyLowVoltLimit"""))
-    val normalHighVoltLimit = parse_element (element ("""PowerQualityPricing.normalHighVoltLimit"""))
-    val normalLowVoltLimit = parse_element (element ("""PowerQualityPricing.normalLowVoltLimit"""))
-    val powerFactorMin = parse_element (element ("""PowerQualityPricing.powerFactorMin"""))
-    val valueUninterruptedServiceEnergy = parse_element (element ("""PowerQualityPricing.valueUninterruptedServiceEnergy"""))
-    val valueUninterruptedServiceP = parse_element (element ("""PowerQualityPricing.valueUninterruptedServiceP"""))
-    val voltImbalanceViolCost = parse_element (element ("""PowerQualityPricing.voltImbalanceViolCost"""))
-    val voltLimitViolCost = parse_element (element ("""PowerQualityPricing.voltLimitViolCost"""))
+    val fields: Array[String] = Array[String] (
+        "emergencyHighVoltLimit",
+        "emergencyLowVoltLimit",
+        "normalHighVoltLimit",
+        "normalLowVoltLimit",
+        "powerFactorMin",
+        "valueUninterruptedServiceEnergy",
+        "valueUninterruptedServiceP",
+        "voltImbalanceViolCost",
+        "voltLimitViolCost"
+    )
+    val emergencyHighVoltLimit: Fielder = parse_element (element (cls, fields(0)))
+    val emergencyLowVoltLimit: Fielder = parse_element (element (cls, fields(1)))
+    val normalHighVoltLimit: Fielder = parse_element (element (cls, fields(2)))
+    val normalLowVoltLimit: Fielder = parse_element (element (cls, fields(3)))
+    val powerFactorMin: Fielder = parse_element (element (cls, fields(4)))
+    val valueUninterruptedServiceEnergy: Fielder = parse_element (element (cls, fields(5)))
+    val valueUninterruptedServiceP: Fielder = parse_element (element (cls, fields(6)))
+    val voltImbalanceViolCost: Fielder = parse_element (element (cls, fields(7)))
+    val voltLimitViolCost: Fielder = parse_element (element (cls, fields(8)))
+
     def parse (context: Context): PowerQualityPricing =
     {
-        PowerQualityPricing(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = PowerQualityPricing (
             Document.parse (context),
-            toDouble (emergencyHighVoltLimit (context), context),
-            toDouble (emergencyLowVoltLimit (context), context),
-            toDouble (normalHighVoltLimit (context), context),
-            toDouble (normalLowVoltLimit (context), context),
-            toDouble (powerFactorMin (context), context),
-            toDouble (valueUninterruptedServiceEnergy (context), context),
-            toDouble (valueUninterruptedServiceP (context), context),
-            toDouble (voltImbalanceViolCost (context), context),
-            toDouble (voltLimitViolCost (context), context)
+            toDouble (mask (emergencyHighVoltLimit (), 0)),
+            toDouble (mask (emergencyLowVoltLimit (), 1)),
+            toDouble (mask (normalHighVoltLimit (), 2)),
+            toDouble (mask (normalLowVoltLimit (), 3)),
+            toDouble (mask (powerFactorMin (), 4)),
+            toDouble (mask (valueUninterruptedServiceEnergy (), 5)),
+            toDouble (mask (valueUninterruptedServiceP (), 6)),
+            toDouble (mask (voltImbalanceViolCost (), 7)),
+            toDouble (mask (voltLimitViolCost (), 8))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -397,6 +481,12 @@ extends
      */
     def this () = { this (null, null, false, 0.0, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -416,17 +506,20 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != applicationPeriod) "\t\t<cim:ServiceGuarantee.applicationPeriod rdf:resource=\"#" + applicationPeriod + "\"/>\n" else "") +
-        "\t\t<cim:ServiceGuarantee.automaticPay>" + automaticPay + "</cim:ServiceGuarantee.automaticPay>\n" +
-        "\t\t<cim:ServiceGuarantee.payAmount>" + payAmount + "</cim:ServiceGuarantee.payAmount>\n" +
-        (if (null != serviceRequirement) "\t\t<cim:ServiceGuarantee.serviceRequirement>" + serviceRequirement + "</cim:ServiceGuarantee.serviceRequirement>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ServiceGuarantee.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ServiceGuarantee.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ServiceGuarantee.fields (position), value)
+        emitattr (0, applicationPeriod)
+        emitelem (1, automaticPay)
+        emitelem (2, payAmount)
+        emitelem (3, serviceRequirement)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ServiceGuarantee rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ServiceGuarantee>"
+        "\t<cim:ServiceGuarantee rdf:ID=\"%s\">\n%s\t</cim:ServiceGuarantee>".format (id, export_fields)
     }
 }
 
@@ -434,21 +527,35 @@ object ServiceGuarantee
 extends
     Parseable[ServiceGuarantee]
 {
-    val applicationPeriod = parse_attribute (attribute ("""ServiceGuarantee.applicationPeriod"""))
-    val automaticPay = parse_element (element ("""ServiceGuarantee.automaticPay"""))
-    val payAmount = parse_element (element ("""ServiceGuarantee.payAmount"""))
-    val serviceRequirement = parse_element (element ("""ServiceGuarantee.serviceRequirement"""))
+    val fields: Array[String] = Array[String] (
+        "applicationPeriod",
+        "automaticPay",
+        "payAmount",
+        "serviceRequirement"
+    )
+    val applicationPeriod: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val automaticPay: Fielder = parse_element (element (cls, fields(1)))
+    val payAmount: Fielder = parse_element (element (cls, fields(2)))
+    val serviceRequirement: Fielder = parse_element (element (cls, fields(3)))
+
     def parse (context: Context): ServiceGuarantee =
     {
-        ServiceGuarantee(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ServiceGuarantee (
             Document.parse (context),
-            applicationPeriod (context),
-            toBoolean (automaticPay (context), context),
-            toDouble (payAmount (context), context),
-            serviceRequirement (context)
+            mask (applicationPeriod (), 0),
+            toBoolean (mask (automaticPay (), 1)),
+            toDouble (mask (payAmount (), 2)),
+            mask (serviceRequirement (), 3)
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -475,6 +582,12 @@ extends
      */
     def this () = { this (null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -494,14 +607,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != code) "\t\t<cim:StandardIndustryCode.code>" + code + "</cim:StandardIndustryCode.code>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = StandardIndustryCode.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (StandardIndustryCode.fields (position), value)
+        emitelem (0, code)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:StandardIndustryCode rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:StandardIndustryCode>"
+        "\t<cim:StandardIndustryCode rdf:ID=\"%s\">\n%s\t</cim:StandardIndustryCode>".format (id, export_fields)
     }
 }
 
@@ -509,15 +624,26 @@ object StandardIndustryCode
 extends
     Parseable[StandardIndustryCode]
 {
-    val code = parse_element (element ("""StandardIndustryCode.code"""))
+    val fields: Array[String] = Array[String] (
+        "code"
+    )
+    val code: Fielder = parse_element (element (cls, fields(0)))
+
     def parse (context: Context): StandardIndustryCode =
     {
-        StandardIndustryCode(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = StandardIndustryCode (
             Document.parse (context),
-            code (context)
+            mask (code (), 0)
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -540,6 +666,12 @@ extends
      */
     def this () = { this (null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -559,14 +691,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        ""
+        sup.export_fields
     }
     override def export: String =
     {
-        "\t<cim:SubscribePowerCurve rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:SubscribePowerCurve>"
+        "\t<cim:SubscribePowerCurve rdf:ID=\"%s\">\n%s\t</cim:SubscribePowerCurve>".format (id, export_fields)
     }
 }
 
@@ -574,13 +703,18 @@ object SubscribePowerCurve
 extends
     Parseable[SubscribePowerCurve]
 {
+
     def parse (context: Context): SubscribePowerCurve =
     {
-        SubscribePowerCurve(
+        implicit val ctx: Context = context
+        val ret = SubscribePowerCurve (
             Curve.parse (context)
         )
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -623,6 +757,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, null, null, null, 0.0, null, List()) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -642,22 +782,26 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:WorkBillingInfo.costEstimate>" + costEstimate + "</cim:WorkBillingInfo.costEstimate>\n" +
-        "\t\t<cim:WorkBillingInfo.deposit>" + deposit + "</cim:WorkBillingInfo.deposit>\n" +
-        "\t\t<cim:WorkBillingInfo.discount>" + discount + "</cim:WorkBillingInfo.discount>\n" +
-        (if (null != dueDateTime) "\t\t<cim:WorkBillingInfo.dueDateTime>" + dueDateTime + "</cim:WorkBillingInfo.dueDateTime>\n" else "") +
-        (if (null != issueDateTime) "\t\t<cim:WorkBillingInfo.issueDateTime>" + issueDateTime + "</cim:WorkBillingInfo.issueDateTime>\n" else "") +
-        (if (null != receivedDateTime) "\t\t<cim:WorkBillingInfo.receivedDateTime>" + receivedDateTime + "</cim:WorkBillingInfo.receivedDateTime>\n" else "") +
-        "\t\t<cim:WorkBillingInfo.workPrice>" + workPrice + "</cim:WorkBillingInfo.workPrice>\n" +
-        (if (null != CustomerAccount) "\t\t<cim:WorkBillingInfo.CustomerAccount rdf:resource=\"#" + CustomerAccount + "\"/>\n" else "") +
-        (if (null != ErpLineItems) ErpLineItems.map (x => "\t\t<cim:WorkBillingInfo.ErpLineItems rdf:resource=\"#" + x + "\"/>\n").mkString else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = WorkBillingInfo.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WorkBillingInfo.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WorkBillingInfo.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (WorkBillingInfo.fields (position), x))
+        emitelem (0, costEstimate)
+        emitelem (1, deposit)
+        emitelem (2, discount)
+        emitelem (3, dueDateTime)
+        emitelem (4, issueDateTime)
+        emitelem (5, receivedDateTime)
+        emitelem (6, workPrice)
+        emitattr (7, CustomerAccount)
+        emitattrs (8, ErpLineItems)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:WorkBillingInfo rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:WorkBillingInfo>"
+        "\t<cim:WorkBillingInfo rdf:ID=\"%s\">\n%s\t</cim:WorkBillingInfo>".format (id, export_fields)
     }
 }
 
@@ -665,33 +809,52 @@ object WorkBillingInfo
 extends
     Parseable[WorkBillingInfo]
 {
-    val costEstimate = parse_element (element ("""WorkBillingInfo.costEstimate"""))
-    val deposit = parse_element (element ("""WorkBillingInfo.deposit"""))
-    val discount = parse_element (element ("""WorkBillingInfo.discount"""))
-    val dueDateTime = parse_element (element ("""WorkBillingInfo.dueDateTime"""))
-    val issueDateTime = parse_element (element ("""WorkBillingInfo.issueDateTime"""))
-    val receivedDateTime = parse_element (element ("""WorkBillingInfo.receivedDateTime"""))
-    val workPrice = parse_element (element ("""WorkBillingInfo.workPrice"""))
-    val CustomerAccount = parse_attribute (attribute ("""WorkBillingInfo.CustomerAccount"""))
-    val ErpLineItems = parse_attributes (attribute ("""WorkBillingInfo.ErpLineItems"""))
+    val fields: Array[String] = Array[String] (
+        "costEstimate",
+        "deposit",
+        "discount",
+        "dueDateTime",
+        "issueDateTime",
+        "receivedDateTime",
+        "workPrice",
+        "CustomerAccount",
+        "ErpLineItems"
+    )
+    val costEstimate: Fielder = parse_element (element (cls, fields(0)))
+    val deposit: Fielder = parse_element (element (cls, fields(1)))
+    val discount: Fielder = parse_element (element (cls, fields(2)))
+    val dueDateTime: Fielder = parse_element (element (cls, fields(3)))
+    val issueDateTime: Fielder = parse_element (element (cls, fields(4)))
+    val receivedDateTime: Fielder = parse_element (element (cls, fields(5)))
+    val workPrice: Fielder = parse_element (element (cls, fields(6)))
+    val CustomerAccount: Fielder = parse_attribute (attribute (cls, fields(7)))
+    val ErpLineItems: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
+
     def parse (context: Context): WorkBillingInfo =
     {
-        WorkBillingInfo(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        def masks (field: Fields, position: Int): List[String] = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = WorkBillingInfo (
             Document.parse (context),
-            toDouble (costEstimate (context), context),
-            toDouble (deposit (context), context),
-            toDouble (discount (context), context),
-            dueDateTime (context),
-            issueDateTime (context),
-            receivedDateTime (context),
-            toDouble (workPrice (context), context),
-            CustomerAccount (context),
-            ErpLineItems (context)
+            toDouble (mask (costEstimate (), 0)),
+            toDouble (mask (deposit (), 1)),
+            toDouble (mask (discount (), 2)),
+            mask (dueDateTime (), 3),
+            mask (issueDateTime (), 4),
+            mask (receivedDateTime (), 5),
+            toDouble (mask (workPrice (), 6)),
+            mask (CustomerAccount (), 7),
+            masks (ErpLineItems (), 8)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("CustomerAccount", "CustomerAccount", false),
-        Relationship ("ErpLineItems", "ErpInvoiceLineItem", true))
+        Relationship ("ErpLineItems", "ErpInvoiceLineItem", true)
+    )
 }
 
 private[ninecode] object _InfCustomers

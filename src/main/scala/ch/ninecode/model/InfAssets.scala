@@ -48,6 +48,12 @@ extends
      */
     def this () = { this (null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -67,14 +73,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != Specification) "\t\t<cim:AssetPropertyCurve.Specification rdf:resource=\"#" + Specification + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = AssetPropertyCurve.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (AssetPropertyCurve.fields (position), value)
+        emitattr (0, Specification)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:AssetPropertyCurve rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:AssetPropertyCurve>"
+        "\t<cim:AssetPropertyCurve rdf:ID=\"%s\">\n%s\t</cim:AssetPropertyCurve>".format (id, export_fields)
     }
 }
 
@@ -82,16 +90,26 @@ object AssetPropertyCurve
 extends
     Parseable[AssetPropertyCurve]
 {
-    val Specification = parse_attribute (attribute ("""AssetPropertyCurve.Specification"""))
+    val fields: Array[String] = Array[String] (
+        "Specification"
+    )
+    val Specification: Fielder = parse_attribute (attribute (cls, fields(0)))
+
     def parse (context: Context): AssetPropertyCurve =
     {
-        AssetPropertyCurve(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = AssetPropertyCurve (
             Curve.parse (context),
-            Specification (context)
+            mask (Specification (), 0)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("Specification", "Specification", false))
+        Relationship ("Specification", "Specification", false)
+    )
 }
 
 /**
@@ -143,6 +161,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -162,19 +186,22 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:Bushing.c1Capacitance>" + c1Capacitance + "</cim:Bushing.c1Capacitance>\n" +
-        "\t\t<cim:Bushing.c1PowerFactor>" + c1PowerFactor + "</cim:Bushing.c1PowerFactor>\n" +
-        "\t\t<cim:Bushing.c2Capacitance>" + c2Capacitance + "</cim:Bushing.c2Capacitance>\n" +
-        "\t\t<cim:Bushing.c2PowerFactor>" + c2PowerFactor + "</cim:Bushing.c2PowerFactor>\n" +
-        (if (null != insulationKind) "\t\t<cim:Bushing.insulationKind rdf:resource=\"#" + insulationKind + "\"/>\n" else "") +
-        (if (null != Terminal) "\t\t<cim:Bushing.Terminal rdf:resource=\"#" + Terminal + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = Bushing.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Bushing.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Bushing.fields (position), value)
+        emitelem (0, c1Capacitance)
+        emitelem (1, c1PowerFactor)
+        emitelem (2, c2Capacitance)
+        emitelem (3, c2PowerFactor)
+        emitattr (4, insulationKind)
+        emitattr (5, Terminal)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:Bushing rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:Bushing>"
+        "\t<cim:Bushing rdf:ID=\"%s\">\n%s\t</cim:Bushing>".format (id, export_fields)
     }
 }
 
@@ -182,26 +209,41 @@ object Bushing
 extends
     Parseable[Bushing]
 {
-    val c1Capacitance = parse_element (element ("""Bushing.c1Capacitance"""))
-    val c1PowerFactor = parse_element (element ("""Bushing.c1PowerFactor"""))
-    val c2Capacitance = parse_element (element ("""Bushing.c2Capacitance"""))
-    val c2PowerFactor = parse_element (element ("""Bushing.c2PowerFactor"""))
-    val insulationKind = parse_attribute (attribute ("""Bushing.insulationKind"""))
-    val Terminal = parse_attribute (attribute ("""Bushing.Terminal"""))
+    val fields: Array[String] = Array[String] (
+        "c1Capacitance",
+        "c1PowerFactor",
+        "c2Capacitance",
+        "c2PowerFactor",
+        "insulationKind",
+        "Terminal"
+    )
+    val c1Capacitance: Fielder = parse_element (element (cls, fields(0)))
+    val c1PowerFactor: Fielder = parse_element (element (cls, fields(1)))
+    val c2Capacitance: Fielder = parse_element (element (cls, fields(2)))
+    val c2PowerFactor: Fielder = parse_element (element (cls, fields(3)))
+    val insulationKind: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val Terminal: Fielder = parse_attribute (attribute (cls, fields(5)))
+
     def parse (context: Context): Bushing =
     {
-        Bushing(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = Bushing (
             Asset.parse (context),
-            toDouble (c1Capacitance (context), context),
-            toDouble (c1PowerFactor (context), context),
-            toDouble (c2Capacitance (context), context),
-            toDouble (c2PowerFactor (context), context),
-            insulationKind (context),
-            Terminal (context)
+            toDouble (mask (c1Capacitance (), 0)),
+            toDouble (mask (c1PowerFactor (), 1)),
+            toDouble (mask (c2Capacitance (), 2)),
+            toDouble (mask (c2PowerFactor (), 3)),
+            mask (insulationKind (), 4),
+            mask (Terminal (), 5)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("Terminal", "Terminal", false))
+        Relationship ("Terminal", "Terminal", false)
+    )
 }
 
 /**
@@ -251,6 +293,12 @@ extends
      */
     def this () = { this (null, null, null, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -270,17 +318,19 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != status) "\t\t<cim:BushingInsulationPF.status rdf:resource=\"#" + status + "\"/>\n" else "") +
-        (if (null != testKind) "\t\t<cim:BushingInsulationPF.testKind rdf:resource=\"#" + testKind + "\"/>\n" else "") +
-        (if (null != Bushing) "\t\t<cim:BushingInsulationPF.Bushing rdf:resource=\"#" + Bushing + "\"/>\n" else "") +
-        (if (null != TransformerObservation) "\t\t<cim:BushingInsulationPF.TransformerObservation rdf:resource=\"#" + TransformerObservation + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = BushingInsulationPF.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (BushingInsulationPF.fields (position), value)
+        emitattr (0, status)
+        emitattr (1, testKind)
+        emitattr (2, Bushing)
+        emitattr (3, TransformerObservation)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:BushingInsulationPF rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:BushingInsulationPF>"
+        "\t<cim:BushingInsulationPF rdf:ID=\"%s\">\n%s\t</cim:BushingInsulationPF>".format (id, export_fields)
     }
 }
 
@@ -288,23 +338,36 @@ object BushingInsulationPF
 extends
     Parseable[BushingInsulationPF]
 {
-    val status = parse_attribute (attribute ("""BushingInsulationPF.status"""))
-    val testKind = parse_attribute (attribute ("""BushingInsulationPF.testKind"""))
-    val Bushing = parse_attribute (attribute ("""BushingInsulationPF.Bushing"""))
-    val TransformerObservation = parse_attribute (attribute ("""BushingInsulationPF.TransformerObservation"""))
+    val fields: Array[String] = Array[String] (
+        "status",
+        "testKind",
+        "Bushing",
+        "TransformerObservation"
+    )
+    val status: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val testKind: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val Bushing: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val TransformerObservation: Fielder = parse_attribute (attribute (cls, fields(3)))
+
     def parse (context: Context): BushingInsulationPF =
     {
-        BushingInsulationPF(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = BushingInsulationPF (
             IdentifiedObject.parse (context),
-            status (context),
-            testKind (context),
-            Bushing (context),
-            TransformerObservation (context)
+            mask (status (), 0),
+            mask (testKind (), 1),
+            mask (Bushing (), 2),
+            mask (TransformerObservation (), 3)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("Bushing", "Bushing", false),
-        Relationship ("TransformerObservation", "TransformerObservation", false))
+        Relationship ("TransformerObservation", "TransformerObservation", false)
+    )
 }
 
 /**
@@ -344,6 +407,12 @@ extends
      */
     def this () = { this (null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -363,14 +432,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        ""
+        sup.export_fields
     }
     override def export: String =
     {
-        "\t<cim:Cabinet rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:Cabinet>"
+        "\t<cim:Cabinet rdf:ID=\"%s\">\n%s\t</cim:Cabinet>".format (id, export_fields)
     }
 }
 
@@ -378,13 +444,18 @@ object Cabinet
 extends
     Parseable[Cabinet]
 {
+
     def parse (context: Context): Cabinet =
     {
-        Cabinet(
+        implicit val ctx: Context = context
+        val ret = Cabinet (
             AssetContainer.parse (context)
         )
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -434,6 +505,12 @@ extends
      */
     def this () = { this (null, null, 0.0, 0, List()) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -453,17 +530,21 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != coolingKind) "\t\t<cim:CoolingPowerRating.coolingKind rdf:resource=\"#" + coolingKind + "\"/>\n" else "") +
-        "\t\t<cim:CoolingPowerRating.powerRating>" + powerRating + "</cim:CoolingPowerRating.powerRating>\n" +
-        "\t\t<cim:CoolingPowerRating.stage>" + stage + "</cim:CoolingPowerRating.stage>\n" +
-        (if (null != Reconditionings) Reconditionings.map (x => "\t\t<cim:CoolingPowerRating.Reconditionings rdf:resource=\"#" + x + "\"/>\n").mkString else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = CoolingPowerRating.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (CoolingPowerRating.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (CoolingPowerRating.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (CoolingPowerRating.fields (position), x))
+        emitattr (0, coolingKind)
+        emitelem (1, powerRating)
+        emitelem (2, stage)
+        emitattrs (3, Reconditionings)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:CoolingPowerRating rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:CoolingPowerRating>"
+        "\t<cim:CoolingPowerRating rdf:ID=\"%s\">\n%s\t</cim:CoolingPowerRating>".format (id, export_fields)
     }
 }
 
@@ -471,22 +552,36 @@ object CoolingPowerRating
 extends
     Parseable[CoolingPowerRating]
 {
-    val coolingKind = parse_attribute (attribute ("""CoolingPowerRating.coolingKind"""))
-    val powerRating = parse_element (element ("""CoolingPowerRating.powerRating"""))
-    val stage = parse_element (element ("""CoolingPowerRating.stage"""))
-    val Reconditionings = parse_attributes (attribute ("""CoolingPowerRating.Reconditionings"""))
+    val fields: Array[String] = Array[String] (
+        "coolingKind",
+        "powerRating",
+        "stage",
+        "Reconditionings"
+    )
+    val coolingKind: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val powerRating: Fielder = parse_element (element (cls, fields(1)))
+    val stage: Fielder = parse_element (element (cls, fields(2)))
+    val Reconditionings: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+
     def parse (context: Context): CoolingPowerRating =
     {
-        CoolingPowerRating(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        def masks (field: Fields, position: Int): List[String] = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = CoolingPowerRating (
             IdentifiedObject.parse (context),
-            coolingKind (context),
-            toDouble (powerRating (context), context),
-            toInteger (stage (context), context),
-            Reconditionings (context)
+            mask (coolingKind (), 0),
+            toDouble (mask (powerRating (), 1)),
+            toInteger (mask (stage (), 2)),
+            masks (Reconditionings (), 3)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("Reconditionings", "Reconditioning", true))
+        Relationship ("Reconditionings", "Reconditioning", true)
+    )
 }
 
 /**
@@ -541,6 +636,12 @@ extends
      */
     def this () = { this (null, null, 0.0, 0.0, 0.0, 0.0, List()) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -560,19 +661,22 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != orientation) "\t\t<cim:DimensionsInfo.orientation>" + orientation + "</cim:DimensionsInfo.orientation>\n" else "") +
-        "\t\t<cim:DimensionsInfo.sizeDepth>" + sizeDepth + "</cim:DimensionsInfo.sizeDepth>\n" +
-        "\t\t<cim:DimensionsInfo.sizeDiameter>" + sizeDiameter + "</cim:DimensionsInfo.sizeDiameter>\n" +
-        "\t\t<cim:DimensionsInfo.sizeLength>" + sizeLength + "</cim:DimensionsInfo.sizeLength>\n" +
-        "\t\t<cim:DimensionsInfo.sizeWidth>" + sizeWidth + "</cim:DimensionsInfo.sizeWidth>\n" +
-        (if (null != Specifications) Specifications.map (x => "\t\t<cim:DimensionsInfo.Specifications rdf:resource=\"#" + x + "\"/>\n").mkString else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = DimensionsInfo.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (DimensionsInfo.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (DimensionsInfo.fields (position), x))
+        emitelem (0, orientation)
+        emitelem (1, sizeDepth)
+        emitelem (2, sizeDiameter)
+        emitelem (3, sizeLength)
+        emitelem (4, sizeWidth)
+        emitattrs (5, Specifications)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:DimensionsInfo rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:DimensionsInfo>"
+        "\t<cim:DimensionsInfo rdf:ID=\"%s\">\n%s\t</cim:DimensionsInfo>".format (id, export_fields)
     }
 }
 
@@ -580,26 +684,42 @@ object DimensionsInfo
 extends
     Parseable[DimensionsInfo]
 {
-    val orientation = parse_element (element ("""DimensionsInfo.orientation"""))
-    val sizeDepth = parse_element (element ("""DimensionsInfo.sizeDepth"""))
-    val sizeDiameter = parse_element (element ("""DimensionsInfo.sizeDiameter"""))
-    val sizeLength = parse_element (element ("""DimensionsInfo.sizeLength"""))
-    val sizeWidth = parse_element (element ("""DimensionsInfo.sizeWidth"""))
-    val Specifications = parse_attributes (attribute ("""DimensionsInfo.Specifications"""))
+    val fields: Array[String] = Array[String] (
+        "orientation",
+        "sizeDepth",
+        "sizeDiameter",
+        "sizeLength",
+        "sizeWidth",
+        "Specifications"
+    )
+    val orientation: Fielder = parse_element (element (cls, fields(0)))
+    val sizeDepth: Fielder = parse_element (element (cls, fields(1)))
+    val sizeDiameter: Fielder = parse_element (element (cls, fields(2)))
+    val sizeLength: Fielder = parse_element (element (cls, fields(3)))
+    val sizeWidth: Fielder = parse_element (element (cls, fields(4)))
+    val Specifications: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
+
     def parse (context: Context): DimensionsInfo =
     {
-        DimensionsInfo(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        def masks (field: Fields, position: Int): List[String] = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = DimensionsInfo (
             IdentifiedObject.parse (context),
-            orientation (context),
-            toDouble (sizeDepth (context), context),
-            toDouble (sizeDiameter (context), context),
-            toDouble (sizeLength (context), context),
-            toDouble (sizeWidth (context), context),
-            Specifications (context)
+            mask (orientation (), 0),
+            toDouble (mask (sizeDepth (), 1)),
+            toDouble (mask (sizeDiameter (), 2)),
+            toDouble (mask (sizeLength (), 3)),
+            toDouble (mask (sizeWidth (), 4)),
+            masks (Specifications (), 5)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("Specifications", "Specification", true))
+        Relationship ("Specifications", "Specification", true)
+    )
 }
 
 /**
@@ -642,6 +762,12 @@ extends
      */
     def this () = { this (null, 0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -661,14 +787,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:DuctBank.circuitCount>" + circuitCount + "</cim:DuctBank.circuitCount>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = DuctBank.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (DuctBank.fields (position), value)
+        emitelem (0, circuitCount)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:DuctBank rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:DuctBank>"
+        "\t<cim:DuctBank rdf:ID=\"%s\">\n%s\t</cim:DuctBank>".format (id, export_fields)
     }
 }
 
@@ -676,15 +804,26 @@ object DuctBank
 extends
     Parseable[DuctBank]
 {
-    val circuitCount = parse_element (element ("""DuctBank.circuitCount"""))
+    val fields: Array[String] = Array[String] (
+        "circuitCount"
+    )
+    val circuitCount: Fielder = parse_element (element (cls, fields(0)))
+
     def parse (context: Context): DuctBank =
     {
-        DuctBank(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = DuctBank (
             AssetContainer.parse (context),
-            toInteger (circuitCount (context), context)
+            toInteger (mask (circuitCount (), 0))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -726,6 +865,12 @@ extends
      */
     def this () = { this (null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -745,14 +890,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != kind) "\t\t<cim:FACTSDevice.kind rdf:resource=\"#" + kind + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = FACTSDevice.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (FACTSDevice.fields (position), value)
+        emitattr (0, kind)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:FACTSDevice rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:FACTSDevice>"
+        "\t<cim:FACTSDevice rdf:ID=\"%s\">\n%s\t</cim:FACTSDevice>".format (id, export_fields)
     }
 }
 
@@ -760,15 +907,26 @@ object FACTSDevice
 extends
     Parseable[FACTSDevice]
 {
-    val kind = parse_attribute (attribute ("""FACTSDevice.kind"""))
+    val fields: Array[String] = Array[String] (
+        "kind"
+    )
+    val kind: Fielder = parse_attribute (attribute (cls, fields(0)))
+
     def parse (context: Context): FACTSDevice =
     {
-        FACTSDevice(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = FACTSDevice (
             Asset.parse (context),
-            kind (context)
+            mask (kind (), 0)
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -810,6 +968,12 @@ extends
      */
     def this () = { this (null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -829,14 +993,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != kind) "\t\t<cim:Facility.kind>" + kind + "</cim:Facility.kind>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = Facility.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Facility.fields (position), value)
+        emitelem (0, kind)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:Facility rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:Facility>"
+        "\t<cim:Facility rdf:ID=\"%s\">\n%s\t</cim:Facility>".format (id, export_fields)
     }
 }
 
@@ -844,15 +1010,26 @@ object Facility
 extends
     Parseable[Facility]
 {
-    val kind = parse_element (element ("""Facility.kind"""))
+    val fields: Array[String] = Array[String] (
+        "kind"
+    )
+    val kind: Fielder = parse_element (element (cls, fields(0)))
+
     def parse (context: Context): Facility =
     {
-        Facility(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = Facility (
             AssetContainer.parse (context),
-            kind (context)
+            mask (kind (), 0)
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -901,6 +1078,12 @@ extends
      */
     def this () = { this (null, null, null, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -920,17 +1103,20 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != corporateCode) "\t\t<cim:FailureEvent.corporateCode>" + corporateCode + "</cim:FailureEvent.corporateCode>\n" else "") +
-        (if (null != failureIsolationMethod) "\t\t<cim:FailureEvent.failureIsolationMethod rdf:resource=\"#" + failureIsolationMethod + "\"/>\n" else "") +
-        (if (null != faultLocatingMethod) "\t\t<cim:FailureEvent.faultLocatingMethod>" + faultLocatingMethod + "</cim:FailureEvent.faultLocatingMethod>\n" else "") +
-        (if (null != location) "\t\t<cim:FailureEvent.location>" + location + "</cim:FailureEvent.location>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = FailureEvent.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (FailureEvent.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (FailureEvent.fields (position), value)
+        emitelem (0, corporateCode)
+        emitattr (1, failureIsolationMethod)
+        emitelem (2, faultLocatingMethod)
+        emitelem (3, location)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:FailureEvent rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:FailureEvent>"
+        "\t<cim:FailureEvent rdf:ID=\"%s\">\n%s\t</cim:FailureEvent>".format (id, export_fields)
     }
 }
 
@@ -938,21 +1124,35 @@ object FailureEvent
 extends
     Parseable[FailureEvent]
 {
-    val corporateCode = parse_element (element ("""FailureEvent.corporateCode"""))
-    val failureIsolationMethod = parse_attribute (attribute ("""FailureEvent.failureIsolationMethod"""))
-    val faultLocatingMethod = parse_element (element ("""FailureEvent.faultLocatingMethod"""))
-    val location = parse_element (element ("""FailureEvent.location"""))
+    val fields: Array[String] = Array[String] (
+        "corporateCode",
+        "failureIsolationMethod",
+        "faultLocatingMethod",
+        "location"
+    )
+    val corporateCode: Fielder = parse_element (element (cls, fields(0)))
+    val failureIsolationMethod: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val faultLocatingMethod: Fielder = parse_element (element (cls, fields(2)))
+    val location: Fielder = parse_element (element (cls, fields(3)))
+
     def parse (context: Context): FailureEvent =
     {
-        FailureEvent(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = FailureEvent (
             ActivityRecord.parse (context),
-            corporateCode (context),
-            failureIsolationMethod (context),
-            faultLocatingMethod (context),
-            location (context)
+            mask (corporateCode (), 0),
+            mask (failureIsolationMethod (), 1),
+            mask (faultLocatingMethod (), 2),
+            mask (location (), 3)
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -1019,6 +1219,12 @@ extends
      */
     def this () = { this (null, null, 0.0, null, null, 0.0, null, null, null, null, null, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -1038,25 +1244,28 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != account) "\t\t<cim:FinancialInfo.account>" + account + "</cim:FinancialInfo.account>\n" else "") +
-        "\t\t<cim:FinancialInfo.actualPurchaseCost>" + actualPurchaseCost + "</cim:FinancialInfo.actualPurchaseCost>\n" +
-        (if (null != costDescription) "\t\t<cim:FinancialInfo.costDescription>" + costDescription + "</cim:FinancialInfo.costDescription>\n" else "") +
-        (if (null != costType) "\t\t<cim:FinancialInfo.costType>" + costType + "</cim:FinancialInfo.costType>\n" else "") +
-        "\t\t<cim:FinancialInfo.financialValue>" + financialValue + "</cim:FinancialInfo.financialValue>\n" +
-        (if (null != plantTransferDateTime) "\t\t<cim:FinancialInfo.plantTransferDateTime>" + plantTransferDateTime + "</cim:FinancialInfo.plantTransferDateTime>\n" else "") +
-        (if (null != purchaseDateTime) "\t\t<cim:FinancialInfo.purchaseDateTime>" + purchaseDateTime + "</cim:FinancialInfo.purchaseDateTime>\n" else "") +
-        (if (null != purchaseOrderNumber) "\t\t<cim:FinancialInfo.purchaseOrderNumber>" + purchaseOrderNumber + "</cim:FinancialInfo.purchaseOrderNumber>\n" else "") +
-        (if (null != quantity) "\t\t<cim:FinancialInfo.quantity rdf:resource=\"#" + quantity + "\"/>\n" else "") +
-        (if (null != valueDateTime) "\t\t<cim:FinancialInfo.valueDateTime>" + valueDateTime + "</cim:FinancialInfo.valueDateTime>\n" else "") +
-        (if (null != warrantyEndDateTime) "\t\t<cim:FinancialInfo.warrantyEndDateTime>" + warrantyEndDateTime + "</cim:FinancialInfo.warrantyEndDateTime>\n" else "") +
-        (if (null != Asset) "\t\t<cim:FinancialInfo.Asset rdf:resource=\"#" + Asset + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = FinancialInfo.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (FinancialInfo.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (FinancialInfo.fields (position), value)
+        emitelem (0, account)
+        emitelem (1, actualPurchaseCost)
+        emitelem (2, costDescription)
+        emitelem (3, costType)
+        emitelem (4, financialValue)
+        emitelem (5, plantTransferDateTime)
+        emitelem (6, purchaseDateTime)
+        emitelem (7, purchaseOrderNumber)
+        emitattr (8, quantity)
+        emitelem (9, valueDateTime)
+        emitelem (10, warrantyEndDateTime)
+        emitattr (11, Asset)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:FinancialInfo rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:FinancialInfo>"
+        "\t<cim:FinancialInfo rdf:ID=\"%s\">\n%s\t</cim:FinancialInfo>".format (id, export_fields)
     }
 }
 
@@ -1064,38 +1273,59 @@ object FinancialInfo
 extends
     Parseable[FinancialInfo]
 {
-    val account = parse_element (element ("""FinancialInfo.account"""))
-    val actualPurchaseCost = parse_element (element ("""FinancialInfo.actualPurchaseCost"""))
-    val costDescription = parse_element (element ("""FinancialInfo.costDescription"""))
-    val costType = parse_element (element ("""FinancialInfo.costType"""))
-    val financialValue = parse_element (element ("""FinancialInfo.financialValue"""))
-    val plantTransferDateTime = parse_element (element ("""FinancialInfo.plantTransferDateTime"""))
-    val purchaseDateTime = parse_element (element ("""FinancialInfo.purchaseDateTime"""))
-    val purchaseOrderNumber = parse_element (element ("""FinancialInfo.purchaseOrderNumber"""))
-    val quantity = parse_attribute (attribute ("""FinancialInfo.quantity"""))
-    val valueDateTime = parse_element (element ("""FinancialInfo.valueDateTime"""))
-    val warrantyEndDateTime = parse_element (element ("""FinancialInfo.warrantyEndDateTime"""))
-    val Asset = parse_attribute (attribute ("""FinancialInfo.Asset"""))
+    val fields: Array[String] = Array[String] (
+        "account",
+        "actualPurchaseCost",
+        "costDescription",
+        "costType",
+        "financialValue",
+        "plantTransferDateTime",
+        "purchaseDateTime",
+        "purchaseOrderNumber",
+        "quantity",
+        "valueDateTime",
+        "warrantyEndDateTime",
+        "Asset"
+    )
+    val account: Fielder = parse_element (element (cls, fields(0)))
+    val actualPurchaseCost: Fielder = parse_element (element (cls, fields(1)))
+    val costDescription: Fielder = parse_element (element (cls, fields(2)))
+    val costType: Fielder = parse_element (element (cls, fields(3)))
+    val financialValue: Fielder = parse_element (element (cls, fields(4)))
+    val plantTransferDateTime: Fielder = parse_element (element (cls, fields(5)))
+    val purchaseDateTime: Fielder = parse_element (element (cls, fields(6)))
+    val purchaseOrderNumber: Fielder = parse_element (element (cls, fields(7)))
+    val quantity: Fielder = parse_attribute (attribute (cls, fields(8)))
+    val valueDateTime: Fielder = parse_element (element (cls, fields(9)))
+    val warrantyEndDateTime: Fielder = parse_element (element (cls, fields(10)))
+    val Asset: Fielder = parse_attribute (attribute (cls, fields(11)))
+
     def parse (context: Context): FinancialInfo =
     {
-        FinancialInfo(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = FinancialInfo (
             IdentifiedObject.parse (context),
-            account (context),
-            toDouble (actualPurchaseCost (context), context),
-            costDescription (context),
-            costType (context),
-            toDouble (financialValue (context), context),
-            plantTransferDateTime (context),
-            purchaseDateTime (context),
-            purchaseOrderNumber (context),
-            quantity (context),
-            valueDateTime (context),
-            warrantyEndDateTime (context),
-            Asset (context)
+            mask (account (), 0),
+            toDouble (mask (actualPurchaseCost (), 1)),
+            mask (costDescription (), 2),
+            mask (costType (), 3),
+            toDouble (mask (financialValue (), 4)),
+            mask (plantTransferDateTime (), 5),
+            mask (purchaseDateTime (), 6),
+            mask (purchaseOrderNumber (), 7),
+            mask (quantity (), 8),
+            mask (valueDateTime (), 9),
+            mask (warrantyEndDateTime (), 10),
+            mask (Asset (), 11)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("Asset", "Asset", false))
+        Relationship ("Asset", "Asset", false)
+    )
 }
 
 /**
@@ -1148,6 +1378,12 @@ extends
      */
     def this () = { this (null, 0.0, null, false, null, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -1167,19 +1403,22 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:GenericAssetModelOrMaterial.estimatedUnitCost>" + estimatedUnitCost + "</cim:GenericAssetModelOrMaterial.estimatedUnitCost>\n" +
-        (if (null != quantity) "\t\t<cim:GenericAssetModelOrMaterial.quantity rdf:resource=\"#" + quantity + "\"/>\n" else "") +
-        "\t\t<cim:GenericAssetModelOrMaterial.stockItem>" + stockItem + "</cim:GenericAssetModelOrMaterial.stockItem>\n" +
-        (if (null != CUAsset) "\t\t<cim:GenericAssetModelOrMaterial.CUAsset rdf:resource=\"#" + CUAsset + "\"/>\n" else "") +
-        (if (null != CUWorkEquipmentAsset) "\t\t<cim:GenericAssetModelOrMaterial.CUWorkEquipmentAsset rdf:resource=\"#" + CUWorkEquipmentAsset + "\"/>\n" else "") +
-        (if (null != TypeAssetCatalogue) "\t\t<cim:GenericAssetModelOrMaterial.TypeAssetCatalogue rdf:resource=\"#" + TypeAssetCatalogue + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = GenericAssetModelOrMaterial.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GenericAssetModelOrMaterial.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (GenericAssetModelOrMaterial.fields (position), value)
+        emitelem (0, estimatedUnitCost)
+        emitattr (1, quantity)
+        emitelem (2, stockItem)
+        emitattr (3, CUAsset)
+        emitattr (4, CUWorkEquipmentAsset)
+        emitattr (5, TypeAssetCatalogue)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:GenericAssetModelOrMaterial rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:GenericAssetModelOrMaterial>"
+        "\t<cim:GenericAssetModelOrMaterial rdf:ID=\"%s\">\n%s\t</cim:GenericAssetModelOrMaterial>".format (id, export_fields)
     }
 }
 
@@ -1187,28 +1426,43 @@ object GenericAssetModelOrMaterial
 extends
     Parseable[GenericAssetModelOrMaterial]
 {
-    val estimatedUnitCost = parse_element (element ("""GenericAssetModelOrMaterial.estimatedUnitCost"""))
-    val quantity = parse_attribute (attribute ("""GenericAssetModelOrMaterial.quantity"""))
-    val stockItem = parse_element (element ("""GenericAssetModelOrMaterial.stockItem"""))
-    val CUAsset = parse_attribute (attribute ("""GenericAssetModelOrMaterial.CUAsset"""))
-    val CUWorkEquipmentAsset = parse_attribute (attribute ("""GenericAssetModelOrMaterial.CUWorkEquipmentAsset"""))
-    val TypeAssetCatalogue = parse_attribute (attribute ("""GenericAssetModelOrMaterial.TypeAssetCatalogue"""))
+    val fields: Array[String] = Array[String] (
+        "estimatedUnitCost",
+        "quantity",
+        "stockItem",
+        "CUAsset",
+        "CUWorkEquipmentAsset",
+        "TypeAssetCatalogue"
+    )
+    val estimatedUnitCost: Fielder = parse_element (element (cls, fields(0)))
+    val quantity: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val stockItem: Fielder = parse_element (element (cls, fields(2)))
+    val CUAsset: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val CUWorkEquipmentAsset: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val TypeAssetCatalogue: Fielder = parse_attribute (attribute (cls, fields(5)))
+
     def parse (context: Context): GenericAssetModelOrMaterial =
     {
-        GenericAssetModelOrMaterial(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = GenericAssetModelOrMaterial (
             AssetModel.parse (context),
-            toDouble (estimatedUnitCost (context), context),
-            quantity (context),
-            toBoolean (stockItem (context), context),
-            CUAsset (context),
-            CUWorkEquipmentAsset (context),
-            TypeAssetCatalogue (context)
+            toDouble (mask (estimatedUnitCost (), 0)),
+            mask (quantity (), 1),
+            toBoolean (mask (stockItem (), 2)),
+            mask (CUAsset (), 3),
+            mask (CUWorkEquipmentAsset (), 4),
+            mask (TypeAssetCatalogue (), 5)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("CUAsset", "CUAsset", false),
         Relationship ("CUWorkEquipmentAsset", "CUWorkEquipmentItem", false),
-        Relationship ("TypeAssetCatalogue", "TypeAssetCatalogue", false))
+        Relationship ("TypeAssetCatalogue", "TypeAssetCatalogue", false)
+    )
 }
 
 /**
@@ -1256,6 +1510,12 @@ extends
      */
     def this () = { this (null, null, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -1275,16 +1535,19 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != configurationKind) "\t\t<cim:Joint.configurationKind rdf:resource=\"#" + configurationKind + "\"/>\n" else "") +
-        (if (null != fillKind) "\t\t<cim:Joint.fillKind rdf:resource=\"#" + fillKind + "\"/>\n" else "") +
-        (if (null != insulation) "\t\t<cim:Joint.insulation>" + insulation + "</cim:Joint.insulation>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = Joint.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Joint.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Joint.fields (position), value)
+        emitattr (0, configurationKind)
+        emitattr (1, fillKind)
+        emitelem (2, insulation)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:Joint rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:Joint>"
+        "\t<cim:Joint rdf:ID=\"%s\">\n%s\t</cim:Joint>".format (id, export_fields)
     }
 }
 
@@ -1292,19 +1555,32 @@ object Joint
 extends
     Parseable[Joint]
 {
-    val configurationKind = parse_attribute (attribute ("""Joint.configurationKind"""))
-    val fillKind = parse_attribute (attribute ("""Joint.fillKind"""))
-    val insulation = parse_element (element ("""Joint.insulation"""))
+    val fields: Array[String] = Array[String] (
+        "configurationKind",
+        "fillKind",
+        "insulation"
+    )
+    val configurationKind: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val fillKind: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val insulation: Fielder = parse_element (element (cls, fields(2)))
+
     def parse (context: Context): Joint =
     {
-        Joint(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = Joint (
             Asset.parse (context),
-            configurationKind (context),
-            fillKind (context),
-            insulation (context)
+            mask (configurationKind (), 0),
+            mask (fillKind (), 1),
+            mask (insulation (), 2)
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -1353,6 +1629,12 @@ extends
      */
     def this () = { this (null, null, 0.0, List(), null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -1372,17 +1654,21 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != kind) "\t\t<cim:Medium.kind rdf:resource=\"#" + kind + "\"/>\n" else "") +
-        "\t\t<cim:Medium.volumeSpec>" + volumeSpec + "</cim:Medium.volumeSpec>\n" +
-        (if (null != Assets) Assets.map (x => "\t\t<cim:Medium.Assets rdf:resource=\"#" + x + "\"/>\n").mkString else "") +
-        (if (null != Specification) "\t\t<cim:Medium.Specification rdf:resource=\"#" + Specification + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = Medium.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Medium.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Medium.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Medium.fields (position), x))
+        emitattr (0, kind)
+        emitelem (1, volumeSpec)
+        emitattrs (2, Assets)
+        emitattr (3, Specification)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:Medium rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:Medium>"
+        "\t<cim:Medium rdf:ID=\"%s\">\n%s\t</cim:Medium>".format (id, export_fields)
     }
 }
 
@@ -1390,23 +1676,37 @@ object Medium
 extends
     Parseable[Medium]
 {
-    val kind = parse_attribute (attribute ("""Medium.kind"""))
-    val volumeSpec = parse_element (element ("""Medium.volumeSpec"""))
-    val Assets = parse_attributes (attribute ("""Medium.Assets"""))
-    val Specification = parse_attribute (attribute ("""Medium.Specification"""))
+    val fields: Array[String] = Array[String] (
+        "kind",
+        "volumeSpec",
+        "Assets",
+        "Specification"
+    )
+    val kind: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val volumeSpec: Fielder = parse_element (element (cls, fields(1)))
+    val Assets: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val Specification: Fielder = parse_attribute (attribute (cls, fields(3)))
+
     def parse (context: Context): Medium =
     {
-        Medium(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        def masks (field: Fields, position: Int): List[String] = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = Medium (
             IdentifiedObject.parse (context),
-            kind (context),
-            toDouble (volumeSpec (context), context),
-            Assets (context),
-            Specification (context)
+            mask (kind (), 0),
+            toDouble (mask (volumeSpec (), 1)),
+            masks (Assets (), 2),
+            mask (Specification (), 3)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("Assets", "Asset", true),
-        Relationship ("Specification", "Specification", false))
+        Relationship ("Specification", "Specification", false)
+    )
 }
 
 /**
@@ -1470,6 +1770,12 @@ extends
      */
     def this () = { this (null, null, false, null, null, 0.0, null, 0.0, null, null, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -1489,24 +1795,27 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != baseKind) "\t\t<cim:Pole.baseKind rdf:resource=\"#" + baseKind + "\"/>\n" else "") +
-        "\t\t<cim:Pole.breastBlock>" + breastBlock + "</cim:Pole.breastBlock>\n" +
-        (if (null != classification) "\t\t<cim:Pole.classification>" + classification + "</cim:Pole.classification>\n" else "") +
-        (if (null != construction) "\t\t<cim:Pole.construction>" + construction + "</cim:Pole.construction>\n" else "") +
-        "\t\t<cim:Pole.diameter>" + diameter + "</cim:Pole.diameter>\n" +
-        (if (null != jpaReference) "\t\t<cim:Pole.jpaReference>" + jpaReference + "</cim:Pole.jpaReference>\n" else "") +
-        "\t\t<cim:Pole.length>" + len + "</cim:Pole.length>\n" +
-        (if (null != preservativeKind) "\t\t<cim:Pole.preservativeKind rdf:resource=\"#" + preservativeKind + "\"/>\n" else "") +
-        (if (null != speciesType) "\t\t<cim:Pole.speciesType>" + speciesType + "</cim:Pole.speciesType>\n" else "") +
-        (if (null != treatedDateTime) "\t\t<cim:Pole.treatedDateTime>" + treatedDateTime + "</cim:Pole.treatedDateTime>\n" else "") +
-        (if (null != treatmentKind) "\t\t<cim:Pole.treatmentKind rdf:resource=\"#" + treatmentKind + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = Pole.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Pole.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Pole.fields (position), value)
+        emitattr (0, baseKind)
+        emitelem (1, breastBlock)
+        emitelem (2, classification)
+        emitelem (3, construction)
+        emitelem (4, diameter)
+        emitelem (5, jpaReference)
+        emitelem (6, len)
+        emitattr (7, preservativeKind)
+        emitelem (8, speciesType)
+        emitelem (9, treatedDateTime)
+        emitattr (10, treatmentKind)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:Pole rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:Pole>"
+        "\t<cim:Pole rdf:ID=\"%s\">\n%s\t</cim:Pole>".format (id, export_fields)
     }
 }
 
@@ -1514,35 +1823,56 @@ object Pole
 extends
     Parseable[Pole]
 {
-    val baseKind = parse_attribute (attribute ("""Pole.baseKind"""))
-    val breastBlock = parse_element (element ("""Pole.breastBlock"""))
-    val classification = parse_element (element ("""Pole.classification"""))
-    val construction = parse_element (element ("""Pole.construction"""))
-    val diameter = parse_element (element ("""Pole.diameter"""))
-    val jpaReference = parse_element (element ("""Pole.jpaReference"""))
-    val len = parse_element (element ("""Pole.length"""))
-    val preservativeKind = parse_attribute (attribute ("""Pole.preservativeKind"""))
-    val speciesType = parse_element (element ("""Pole.speciesType"""))
-    val treatedDateTime = parse_element (element ("""Pole.treatedDateTime"""))
-    val treatmentKind = parse_attribute (attribute ("""Pole.treatmentKind"""))
+    val fields: Array[String] = Array[String] (
+        "baseKind",
+        "breastBlock",
+        "classification",
+        "construction",
+        "diameter",
+        "jpaReference",
+        "length",
+        "preservativeKind",
+        "speciesType",
+        "treatedDateTime",
+        "treatmentKind"
+    )
+    val baseKind: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val breastBlock: Fielder = parse_element (element (cls, fields(1)))
+    val classification: Fielder = parse_element (element (cls, fields(2)))
+    val construction: Fielder = parse_element (element (cls, fields(3)))
+    val diameter: Fielder = parse_element (element (cls, fields(4)))
+    val jpaReference: Fielder = parse_element (element (cls, fields(5)))
+    val len: Fielder = parse_element (element (cls, fields(6)))
+    val preservativeKind: Fielder = parse_attribute (attribute (cls, fields(7)))
+    val speciesType: Fielder = parse_element (element (cls, fields(8)))
+    val treatedDateTime: Fielder = parse_element (element (cls, fields(9)))
+    val treatmentKind: Fielder = parse_attribute (attribute (cls, fields(10)))
+
     def parse (context: Context): Pole =
     {
-        Pole(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = Pole (
             Structure.parse (context),
-            baseKind (context),
-            toBoolean (breastBlock (context), context),
-            classification (context),
-            construction (context),
-            toDouble (diameter (context), context),
-            jpaReference (context),
-            toDouble (len (context), context),
-            preservativeKind (context),
-            speciesType (context),
-            treatedDateTime (context),
-            treatmentKind (context)
+            mask (baseKind (), 0),
+            toBoolean (mask (breastBlock (), 1)),
+            mask (classification (), 2),
+            mask (construction (), 3),
+            toDouble (mask (diameter (), 4)),
+            mask (jpaReference (), 5),
+            toDouble (mask (len (), 6)),
+            mask (preservativeKind (), 7),
+            mask (speciesType (), 8),
+            mask (treatedDateTime (), 9),
+            mask (treatmentKind (), 10)
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -1586,6 +1916,12 @@ extends
      */
     def this () = { this (null, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -1605,15 +1941,18 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != dateTime) "\t\t<cim:Reconditioning.dateTime>" + dateTime + "</cim:Reconditioning.dateTime>\n" else "") +
-        (if (null != Asset) "\t\t<cim:Reconditioning.Asset rdf:resource=\"#" + Asset + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = Reconditioning.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Reconditioning.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Reconditioning.fields (position), value)
+        emitelem (0, dateTime)
+        emitattr (1, Asset)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:Reconditioning rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:Reconditioning>"
+        "\t<cim:Reconditioning rdf:ID=\"%s\">\n%s\t</cim:Reconditioning>".format (id, export_fields)
     }
 }
 
@@ -1621,18 +1960,29 @@ object Reconditioning
 extends
     Parseable[Reconditioning]
 {
-    val dateTime = parse_element (element ("""Reconditioning.dateTime"""))
-    val Asset = parse_attribute (attribute ("""Reconditioning.Asset"""))
+    val fields: Array[String] = Array[String] (
+        "dateTime",
+        "Asset"
+    )
+    val dateTime: Fielder = parse_element (element (cls, fields(0)))
+    val Asset: Fielder = parse_attribute (attribute (cls, fields(1)))
+
     def parse (context: Context): Reconditioning =
     {
-        Reconditioning(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = Reconditioning (
             IdentifiedObject.parse (context),
-            dateTime (context),
-            Asset (context)
+            mask (dateTime (), 0),
+            mask (Asset (), 1)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("Asset", "Asset", false))
+        Relationship ("Asset", "Asset", false)
+    )
 }
 
 /**
@@ -1680,6 +2030,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, List(), null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -1699,17 +2055,21 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ReliabilityInfo.mTTR>" + mTTR + "</cim:ReliabilityInfo.mTTR>\n" +
-        "\t\t<cim:ReliabilityInfo.momFailureRate>" + momFailureRate + "</cim:ReliabilityInfo.momFailureRate>\n" +
-        (if (null != Assets) Assets.map (x => "\t\t<cim:ReliabilityInfo.Assets rdf:resource=\"#" + x + "\"/>\n").mkString else "") +
-        (if (null != Specification) "\t\t<cim:ReliabilityInfo.Specification rdf:resource=\"#" + Specification + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ReliabilityInfo.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ReliabilityInfo.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ReliabilityInfo.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ReliabilityInfo.fields (position), x))
+        emitelem (0, mTTR)
+        emitelem (1, momFailureRate)
+        emitattrs (2, Assets)
+        emitattr (3, Specification)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ReliabilityInfo rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ReliabilityInfo>"
+        "\t<cim:ReliabilityInfo rdf:ID=\"%s\">\n%s\t</cim:ReliabilityInfo>".format (id, export_fields)
     }
 }
 
@@ -1717,23 +2077,37 @@ object ReliabilityInfo
 extends
     Parseable[ReliabilityInfo]
 {
-    val mTTR = parse_element (element ("""ReliabilityInfo.mTTR"""))
-    val momFailureRate = parse_element (element ("""ReliabilityInfo.momFailureRate"""))
-    val Assets = parse_attributes (attribute ("""ReliabilityInfo.Assets"""))
-    val Specification = parse_attribute (attribute ("""ReliabilityInfo.Specification"""))
+    val fields: Array[String] = Array[String] (
+        "mTTR",
+        "momFailureRate",
+        "Assets",
+        "Specification"
+    )
+    val mTTR: Fielder = parse_element (element (cls, fields(0)))
+    val momFailureRate: Fielder = parse_element (element (cls, fields(1)))
+    val Assets: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val Specification: Fielder = parse_attribute (attribute (cls, fields(3)))
+
     def parse (context: Context): ReliabilityInfo =
     {
-        ReliabilityInfo(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        def masks (field: Fields, position: Int): List[String] = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ReliabilityInfo (
             IdentifiedObject.parse (context),
-            toDouble (mTTR (context), context),
-            toDouble (momFailureRate (context), context),
-            Assets (context),
-            Specification (context)
+            toDouble (mask (mTTR (), 0)),
+            toDouble (mask (momFailureRate (), 1)),
+            masks (Assets (), 2),
+            mask (Specification (), 3)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("Assets", "Asset", true),
-        Relationship ("Specification", "Specification", false))
+        Relationship ("Specification", "Specification", false)
+    )
 }
 
 /**
@@ -1775,6 +2149,12 @@ extends
      */
     def this () = { this (null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -1794,14 +2174,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        ""
+        sup.export_fields
     }
     override def export: String =
     {
-        "\t<cim:Specification rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:Specification>"
+        "\t<cim:Specification rdf:ID=\"%s\">\n%s\t</cim:Specification>".format (id, export_fields)
     }
 }
 
@@ -1809,13 +2186,18 @@ object Specification
 extends
     Parseable[Specification]
 {
+
     def parse (context: Context): Specification =
     {
-        Specification(
+        implicit val ctx: Context = context
+        val ret = Specification (
             Document.parse (context)
         )
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -1864,6 +2246,12 @@ extends
      */
     def this () = { this (null, 0.0, null, 0.0, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -1883,17 +2271,20 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:Streetlight.armLength>" + armLength + "</cim:Streetlight.armLength>\n" +
-        (if (null != lampKind) "\t\t<cim:Streetlight.lampKind rdf:resource=\"#" + lampKind + "\"/>\n" else "") +
-        "\t\t<cim:Streetlight.lightRating>" + lightRating + "</cim:Streetlight.lightRating>\n" +
-        (if (null != Pole) "\t\t<cim:Streetlight.Pole rdf:resource=\"#" + Pole + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = Streetlight.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Streetlight.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Streetlight.fields (position), value)
+        emitelem (0, armLength)
+        emitattr (1, lampKind)
+        emitelem (2, lightRating)
+        emitattr (3, Pole)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:Streetlight rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:Streetlight>"
+        "\t<cim:Streetlight rdf:ID=\"%s\">\n%s\t</cim:Streetlight>".format (id, export_fields)
     }
 }
 
@@ -1901,22 +2292,35 @@ object Streetlight
 extends
     Parseable[Streetlight]
 {
-    val armLength = parse_element (element ("""Streetlight.armLength"""))
-    val lampKind = parse_attribute (attribute ("""Streetlight.lampKind"""))
-    val lightRating = parse_element (element ("""Streetlight.lightRating"""))
-    val Pole = parse_attribute (attribute ("""Streetlight.Pole"""))
+    val fields: Array[String] = Array[String] (
+        "armLength",
+        "lampKind",
+        "lightRating",
+        "Pole"
+    )
+    val armLength: Fielder = parse_element (element (cls, fields(0)))
+    val lampKind: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val lightRating: Fielder = parse_element (element (cls, fields(2)))
+    val Pole: Fielder = parse_attribute (attribute (cls, fields(3)))
+
     def parse (context: Context): Streetlight =
     {
-        Streetlight(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = Streetlight (
             Asset.parse (context),
-            toDouble (armLength (context), context),
-            lampKind (context),
-            toDouble (lightRating (context), context),
-            Pole (context)
+            toDouble (mask (armLength (), 0)),
+            mask (lampKind (), 1),
+            toDouble (mask (lightRating (), 2)),
+            mask (Pole (), 3)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("Pole", "Pole", false))
+        Relationship ("Pole", "Pole", false)
+    )
 }
 
 /**
@@ -1973,6 +2377,12 @@ extends
      */
     def this () = { this (null, null, null, 0.0, null, 0.0, false, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -1992,20 +2402,23 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != fumigantAppliedDate) "\t\t<cim:Structure.fumigantAppliedDate>" + fumigantAppliedDate + "</cim:Structure.fumigantAppliedDate>\n" else "") +
-        (if (null != fumigantName) "\t\t<cim:Structure.fumigantName>" + fumigantName + "</cim:Structure.fumigantName>\n" else "") +
-        "\t\t<cim:Structure.height>" + height + "</cim:Structure.height>\n" +
-        (if (null != materialKind) "\t\t<cim:Structure.materialKind rdf:resource=\"#" + materialKind + "\"/>\n" else "") +
-        "\t\t<cim:Structure.ratedVoltage>" + ratedVoltage + "</cim:Structure.ratedVoltage>\n" +
-        "\t\t<cim:Structure.removeWeed>" + removeWeed + "</cim:Structure.removeWeed>\n" +
-        (if (null != weedRemovedDate) "\t\t<cim:Structure.weedRemovedDate>" + weedRemovedDate + "</cim:Structure.weedRemovedDate>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = Structure.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Structure.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Structure.fields (position), value)
+        emitelem (0, fumigantAppliedDate)
+        emitelem (1, fumigantName)
+        emitelem (2, height)
+        emitattr (3, materialKind)
+        emitelem (4, ratedVoltage)
+        emitelem (5, removeWeed)
+        emitelem (6, weedRemovedDate)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:Structure rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:Structure>"
+        "\t<cim:Structure rdf:ID=\"%s\">\n%s\t</cim:Structure>".format (id, export_fields)
     }
 }
 
@@ -2013,27 +2426,44 @@ object Structure
 extends
     Parseable[Structure]
 {
-    val fumigantAppliedDate = parse_element (element ("""Structure.fumigantAppliedDate"""))
-    val fumigantName = parse_element (element ("""Structure.fumigantName"""))
-    val height = parse_element (element ("""Structure.height"""))
-    val materialKind = parse_attribute (attribute ("""Structure.materialKind"""))
-    val ratedVoltage = parse_element (element ("""Structure.ratedVoltage"""))
-    val removeWeed = parse_element (element ("""Structure.removeWeed"""))
-    val weedRemovedDate = parse_element (element ("""Structure.weedRemovedDate"""))
+    val fields: Array[String] = Array[String] (
+        "fumigantAppliedDate",
+        "fumigantName",
+        "height",
+        "materialKind",
+        "ratedVoltage",
+        "removeWeed",
+        "weedRemovedDate"
+    )
+    val fumigantAppliedDate: Fielder = parse_element (element (cls, fields(0)))
+    val fumigantName: Fielder = parse_element (element (cls, fields(1)))
+    val height: Fielder = parse_element (element (cls, fields(2)))
+    val materialKind: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val ratedVoltage: Fielder = parse_element (element (cls, fields(4)))
+    val removeWeed: Fielder = parse_element (element (cls, fields(5)))
+    val weedRemovedDate: Fielder = parse_element (element (cls, fields(6)))
+
     def parse (context: Context): Structure =
     {
-        Structure(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = Structure (
             AssetContainer.parse (context),
-            fumigantAppliedDate (context),
-            fumigantName (context),
-            toDouble (height (context), context),
-            materialKind (context),
-            toDouble (ratedVoltage (context), context),
-            toBoolean (removeWeed (context), context),
-            weedRemovedDate (context)
+            mask (fumigantAppliedDate (), 0),
+            mask (fumigantName (), 1),
+            toDouble (mask (height (), 2)),
+            mask (materialKind (), 3),
+            toDouble (mask (ratedVoltage (), 4)),
+            toBoolean (mask (removeWeed (), 5)),
+            mask (weedRemovedDate (), 6)
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -2089,6 +2519,12 @@ extends
      */
     def this () = { this (null, null, 0, 0.0, 0.0, null, 0.0, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -2108,21 +2544,24 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != anchorKind) "\t\t<cim:StructureSupport.anchorKind rdf:resource=\"#" + anchorKind + "\"/>\n" else "") +
-        "\t\t<cim:StructureSupport.anchorRodCount>" + anchorRodCount + "</cim:StructureSupport.anchorRodCount>\n" +
-        "\t\t<cim:StructureSupport.anchorRodLength>" + anchorRodLength + "</cim:StructureSupport.anchorRodLength>\n" +
-        "\t\t<cim:StructureSupport.direction>" + direction + "</cim:StructureSupport.direction>\n" +
-        (if (null != kind) "\t\t<cim:StructureSupport.kind rdf:resource=\"#" + kind + "\"/>\n" else "") +
-        "\t\t<cim:StructureSupport.length>" + len + "</cim:StructureSupport.length>\n" +
-        (if (null != size1) "\t\t<cim:StructureSupport.size>" + size1 + "</cim:StructureSupport.size>\n" else "") +
-        (if (null != SecuredStructure) "\t\t<cim:StructureSupport.SecuredStructure rdf:resource=\"#" + SecuredStructure + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = StructureSupport.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (StructureSupport.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (StructureSupport.fields (position), value)
+        emitattr (0, anchorKind)
+        emitelem (1, anchorRodCount)
+        emitelem (2, anchorRodLength)
+        emitelem (3, direction)
+        emitattr (4, kind)
+        emitelem (5, len)
+        emitelem (6, size1)
+        emitattr (7, SecuredStructure)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:StructureSupport rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:StructureSupport>"
+        "\t<cim:StructureSupport rdf:ID=\"%s\">\n%s\t</cim:StructureSupport>".format (id, export_fields)
     }
 }
 
@@ -2130,30 +2569,47 @@ object StructureSupport
 extends
     Parseable[StructureSupport]
 {
-    val anchorKind = parse_attribute (attribute ("""StructureSupport.anchorKind"""))
-    val anchorRodCount = parse_element (element ("""StructureSupport.anchorRodCount"""))
-    val anchorRodLength = parse_element (element ("""StructureSupport.anchorRodLength"""))
-    val direction = parse_element (element ("""StructureSupport.direction"""))
-    val kind = parse_attribute (attribute ("""StructureSupport.kind"""))
-    val len = parse_element (element ("""StructureSupport.length"""))
-    val size1 = parse_element (element ("""StructureSupport.size"""))
-    val SecuredStructure = parse_attribute (attribute ("""StructureSupport.SecuredStructure"""))
+    val fields: Array[String] = Array[String] (
+        "anchorKind",
+        "anchorRodCount",
+        "anchorRodLength",
+        "direction",
+        "kind",
+        "length",
+        "size",
+        "SecuredStructure"
+    )
+    val anchorKind: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val anchorRodCount: Fielder = parse_element (element (cls, fields(1)))
+    val anchorRodLength: Fielder = parse_element (element (cls, fields(2)))
+    val direction: Fielder = parse_element (element (cls, fields(3)))
+    val kind: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val len: Fielder = parse_element (element (cls, fields(5)))
+    val size1: Fielder = parse_element (element (cls, fields(6)))
+    val SecuredStructure: Fielder = parse_attribute (attribute (cls, fields(7)))
+
     def parse (context: Context): StructureSupport =
     {
-        StructureSupport(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = StructureSupport (
             Asset.parse (context),
-            anchorKind (context),
-            toInteger (anchorRodCount (context), context),
-            toDouble (anchorRodLength (context), context),
-            toDouble (direction (context), context),
-            kind (context),
-            toDouble (len (context), context),
-            size1 (context),
-            SecuredStructure (context)
+            mask (anchorKind (), 0),
+            toInteger (mask (anchorRodCount (), 1)),
+            toDouble (mask (anchorRodLength (), 2)),
+            toDouble (mask (direction (), 3)),
+            mask (kind (), 4),
+            toDouble (mask (len (), 5)),
+            mask (size1 (), 6),
+            mask (SecuredStructure (), 7)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("SecuredStructure", "Structure", false))
+        Relationship ("SecuredStructure", "Structure", false)
+    )
 }
 
 /**
@@ -2197,6 +2653,12 @@ extends
      */
     def this () = { this (null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -2216,14 +2678,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != constructionKind) "\t\t<cim:Tower.constructionKind rdf:resource=\"#" + constructionKind + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = Tower.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Tower.fields (position), value)
+        emitattr (0, constructionKind)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:Tower rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:Tower>"
+        "\t<cim:Tower rdf:ID=\"%s\">\n%s\t</cim:Tower>".format (id, export_fields)
     }
 }
 
@@ -2231,15 +2695,26 @@ object Tower
 extends
     Parseable[Tower]
 {
-    val constructionKind = parse_attribute (attribute ("""Tower.constructionKind"""))
+    val fields: Array[String] = Array[String] (
+        "constructionKind"
+    )
+    val constructionKind: Fielder = parse_attribute (attribute (cls, fields(0)))
+
     def parse (context: Context): Tower =
     {
-        Tower(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = Tower (
             Structure.parse (context),
-            constructionKind (context)
+            mask (constructionKind (), 0)
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -2316,6 +2791,12 @@ extends
      */
     def this () = { this (null, 0.0, null, null, null, 0.0, null, 0.0, null, null, null, null, null, 0.0, null, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -2335,29 +2816,32 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:TransformerObservation.bushingTemp>" + bushingTemp + "</cim:TransformerObservation.bushingTemp>\n" +
-        (if (null != dga) "\t\t<cim:TransformerObservation.dga>" + dga + "</cim:TransformerObservation.dga>\n" else "") +
-        (if (null != freqResp) "\t\t<cim:TransformerObservation.freqResp>" + freqResp + "</cim:TransformerObservation.freqResp>\n" else "") +
-        (if (null != furfuralDP) "\t\t<cim:TransformerObservation.furfuralDP>" + furfuralDP + "</cim:TransformerObservation.furfuralDP>\n" else "") +
-        "\t\t<cim:TransformerObservation.hotSpotTemp>" + hotSpotTemp + "</cim:TransformerObservation.hotSpotTemp>\n" +
-        (if (null != oilColor) "\t\t<cim:TransformerObservation.oilColor>" + oilColor + "</cim:TransformerObservation.oilColor>\n" else "") +
-        "\t\t<cim:TransformerObservation.oilDielectricStrength>" + oilDielectricStrength + "</cim:TransformerObservation.oilDielectricStrength>\n" +
-        (if (null != oilIFT) "\t\t<cim:TransformerObservation.oilIFT>" + oilIFT + "</cim:TransformerObservation.oilIFT>\n" else "") +
-        (if (null != oilLevel) "\t\t<cim:TransformerObservation.oilLevel>" + oilLevel + "</cim:TransformerObservation.oilLevel>\n" else "") +
-        (if (null != oilNeutralizationNumber) "\t\t<cim:TransformerObservation.oilNeutralizationNumber>" + oilNeutralizationNumber + "</cim:TransformerObservation.oilNeutralizationNumber>\n" else "") +
-        (if (null != pumpVibration) "\t\t<cim:TransformerObservation.pumpVibration>" + pumpVibration + "</cim:TransformerObservation.pumpVibration>\n" else "") +
-        (if (null != status) "\t\t<cim:TransformerObservation.status rdf:resource=\"#" + status + "\"/>\n" else "") +
-        "\t\t<cim:TransformerObservation.topOilTemp>" + topOilTemp + "</cim:TransformerObservation.topOilTemp>\n" +
-        (if (null != waterContent) "\t\t<cim:TransformerObservation.waterContent>" + waterContent + "</cim:TransformerObservation.waterContent>\n" else "") +
-        (if (null != Reconditioning) "\t\t<cim:TransformerObservation.Reconditioning rdf:resource=\"#" + Reconditioning + "\"/>\n" else "") +
-        (if (null != Transformer) "\t\t<cim:TransformerObservation.Transformer rdf:resource=\"#" + Transformer + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = TransformerObservation.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TransformerObservation.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TransformerObservation.fields (position), value)
+        emitelem (0, bushingTemp)
+        emitelem (1, dga)
+        emitelem (2, freqResp)
+        emitelem (3, furfuralDP)
+        emitelem (4, hotSpotTemp)
+        emitelem (5, oilColor)
+        emitelem (6, oilDielectricStrength)
+        emitelem (7, oilIFT)
+        emitelem (8, oilLevel)
+        emitelem (9, oilNeutralizationNumber)
+        emitelem (10, pumpVibration)
+        emitattr (11, status)
+        emitelem (12, topOilTemp)
+        emitelem (13, waterContent)
+        emitattr (14, Reconditioning)
+        emitattr (15, Transformer)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:TransformerObservation rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:TransformerObservation>"
+        "\t<cim:TransformerObservation rdf:ID=\"%s\">\n%s\t</cim:TransformerObservation>".format (id, export_fields)
     }
 }
 
@@ -2365,47 +2849,72 @@ object TransformerObservation
 extends
     Parseable[TransformerObservation]
 {
-    val bushingTemp = parse_element (element ("""TransformerObservation.bushingTemp"""))
-    val dga = parse_element (element ("""TransformerObservation.dga"""))
-    val freqResp = parse_element (element ("""TransformerObservation.freqResp"""))
-    val furfuralDP = parse_element (element ("""TransformerObservation.furfuralDP"""))
-    val hotSpotTemp = parse_element (element ("""TransformerObservation.hotSpotTemp"""))
-    val oilColor = parse_element (element ("""TransformerObservation.oilColor"""))
-    val oilDielectricStrength = parse_element (element ("""TransformerObservation.oilDielectricStrength"""))
-    val oilIFT = parse_element (element ("""TransformerObservation.oilIFT"""))
-    val oilLevel = parse_element (element ("""TransformerObservation.oilLevel"""))
-    val oilNeutralizationNumber = parse_element (element ("""TransformerObservation.oilNeutralizationNumber"""))
-    val pumpVibration = parse_element (element ("""TransformerObservation.pumpVibration"""))
-    val status = parse_attribute (attribute ("""TransformerObservation.status"""))
-    val topOilTemp = parse_element (element ("""TransformerObservation.topOilTemp"""))
-    val waterContent = parse_element (element ("""TransformerObservation.waterContent"""))
-    val Reconditioning = parse_attribute (attribute ("""TransformerObservation.Reconditioning"""))
-    val Transformer = parse_attribute (attribute ("""TransformerObservation.Transformer"""))
+    val fields: Array[String] = Array[String] (
+        "bushingTemp",
+        "dga",
+        "freqResp",
+        "furfuralDP",
+        "hotSpotTemp",
+        "oilColor",
+        "oilDielectricStrength",
+        "oilIFT",
+        "oilLevel",
+        "oilNeutralizationNumber",
+        "pumpVibration",
+        "status",
+        "topOilTemp",
+        "waterContent",
+        "Reconditioning",
+        "Transformer"
+    )
+    val bushingTemp: Fielder = parse_element (element (cls, fields(0)))
+    val dga: Fielder = parse_element (element (cls, fields(1)))
+    val freqResp: Fielder = parse_element (element (cls, fields(2)))
+    val furfuralDP: Fielder = parse_element (element (cls, fields(3)))
+    val hotSpotTemp: Fielder = parse_element (element (cls, fields(4)))
+    val oilColor: Fielder = parse_element (element (cls, fields(5)))
+    val oilDielectricStrength: Fielder = parse_element (element (cls, fields(6)))
+    val oilIFT: Fielder = parse_element (element (cls, fields(7)))
+    val oilLevel: Fielder = parse_element (element (cls, fields(8)))
+    val oilNeutralizationNumber: Fielder = parse_element (element (cls, fields(9)))
+    val pumpVibration: Fielder = parse_element (element (cls, fields(10)))
+    val status: Fielder = parse_attribute (attribute (cls, fields(11)))
+    val topOilTemp: Fielder = parse_element (element (cls, fields(12)))
+    val waterContent: Fielder = parse_element (element (cls, fields(13)))
+    val Reconditioning: Fielder = parse_attribute (attribute (cls, fields(14)))
+    val Transformer: Fielder = parse_attribute (attribute (cls, fields(15)))
+
     def parse (context: Context): TransformerObservation =
     {
-        TransformerObservation(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = TransformerObservation (
             IdentifiedObject.parse (context),
-            toDouble (bushingTemp (context), context),
-            dga (context),
-            freqResp (context),
-            furfuralDP (context),
-            toDouble (hotSpotTemp (context), context),
-            oilColor (context),
-            toDouble (oilDielectricStrength (context), context),
-            oilIFT (context),
-            oilLevel (context),
-            oilNeutralizationNumber (context),
-            pumpVibration (context),
-            status (context),
-            toDouble (topOilTemp (context), context),
-            waterContent (context),
-            Reconditioning (context),
-            Transformer (context)
+            toDouble (mask (bushingTemp (), 0)),
+            mask (dga (), 1),
+            mask (freqResp (), 2),
+            mask (furfuralDP (), 3),
+            toDouble (mask (hotSpotTemp (), 4)),
+            mask (oilColor (), 5),
+            toDouble (mask (oilDielectricStrength (), 6)),
+            mask (oilIFT (), 7),
+            mask (oilLevel (), 8),
+            mask (oilNeutralizationNumber (), 9),
+            mask (pumpVibration (), 10),
+            mask (status (), 11),
+            toDouble (mask (topOilTemp (), 12)),
+            mask (waterContent (), 13),
+            mask (Reconditioning (), 14),
+            mask (Transformer (), 15)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("Reconditioning", "Reconditioning", false),
-        Relationship ("Transformer", "TransformerTank", false))
+        Relationship ("Transformer", "TransformerTank", false)
+    )
 }
 
 /**
@@ -2453,6 +2962,12 @@ extends
      */
     def this () = { this (null, false, null, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -2472,17 +2987,20 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:UndergroundStructure.hasVentilation>" + hasVentilation + "</cim:UndergroundStructure.hasVentilation>\n" +
-        (if (null != kind) "\t\t<cim:UndergroundStructure.kind rdf:resource=\"#" + kind + "\"/>\n" else "") +
-        (if (null != material) "\t\t<cim:UndergroundStructure.material>" + material + "</cim:UndergroundStructure.material>\n" else "") +
-        (if (null != sealingWarrantyExpiresDate) "\t\t<cim:UndergroundStructure.sealingWarrantyExpiresDate>" + sealingWarrantyExpiresDate + "</cim:UndergroundStructure.sealingWarrantyExpiresDate>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = UndergroundStructure.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (UndergroundStructure.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (UndergroundStructure.fields (position), value)
+        emitelem (0, hasVentilation)
+        emitattr (1, kind)
+        emitelem (2, material)
+        emitelem (3, sealingWarrantyExpiresDate)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:UndergroundStructure rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:UndergroundStructure>"
+        "\t<cim:UndergroundStructure rdf:ID=\"%s\">\n%s\t</cim:UndergroundStructure>".format (id, export_fields)
     }
 }
 
@@ -2490,21 +3008,35 @@ object UndergroundStructure
 extends
     Parseable[UndergroundStructure]
 {
-    val hasVentilation = parse_element (element ("""UndergroundStructure.hasVentilation"""))
-    val kind = parse_attribute (attribute ("""UndergroundStructure.kind"""))
-    val material = parse_element (element ("""UndergroundStructure.material"""))
-    val sealingWarrantyExpiresDate = parse_element (element ("""UndergroundStructure.sealingWarrantyExpiresDate"""))
+    val fields: Array[String] = Array[String] (
+        "hasVentilation",
+        "kind",
+        "material",
+        "sealingWarrantyExpiresDate"
+    )
+    val hasVentilation: Fielder = parse_element (element (cls, fields(0)))
+    val kind: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val material: Fielder = parse_element (element (cls, fields(2)))
+    val sealingWarrantyExpiresDate: Fielder = parse_element (element (cls, fields(3)))
+
     def parse (context: Context): UndergroundStructure =
     {
-        UndergroundStructure(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = UndergroundStructure (
             Structure.parse (context),
-            toBoolean (hasVentilation (context), context),
-            kind (context),
-            material (context),
-            sealingWarrantyExpiresDate (context)
+            toBoolean (mask (hasVentilation (), 0)),
+            mask (kind (), 1),
+            mask (material (), 2),
+            mask (sealingWarrantyExpiresDate (), 3)
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -2559,6 +3091,12 @@ extends
      */
     def this () = { this (null, null, null, 0.0, null, null, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -2578,20 +3116,23 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != insulationPFStatus) "\t\t<cim:WindingInsulation.insulationPFStatus>" + insulationPFStatus + "</cim:WindingInsulation.insulationPFStatus>\n" else "") +
-        (if (null != insulationResistance) "\t\t<cim:WindingInsulation.insulationResistance>" + insulationResistance + "</cim:WindingInsulation.insulationResistance>\n" else "") +
-        "\t\t<cim:WindingInsulation.leakageReactance>" + leakageReactance + "</cim:WindingInsulation.leakageReactance>\n" +
-        (if (null != status) "\t\t<cim:WindingInsulation.status rdf:resource=\"#" + status + "\"/>\n" else "") +
-        (if (null != FromWinding) "\t\t<cim:WindingInsulation.FromWinding rdf:resource=\"#" + FromWinding + "\"/>\n" else "") +
-        (if (null != ToWinding) "\t\t<cim:WindingInsulation.ToWinding rdf:resource=\"#" + ToWinding + "\"/>\n" else "") +
-        (if (null != TransformerObservation) "\t\t<cim:WindingInsulation.TransformerObservation rdf:resource=\"#" + TransformerObservation + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = WindingInsulation.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindingInsulation.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindingInsulation.fields (position), value)
+        emitelem (0, insulationPFStatus)
+        emitelem (1, insulationResistance)
+        emitelem (2, leakageReactance)
+        emitattr (3, status)
+        emitattr (4, FromWinding)
+        emitattr (5, ToWinding)
+        emitattr (6, TransformerObservation)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:WindingInsulation rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:WindingInsulation>"
+        "\t<cim:WindingInsulation rdf:ID=\"%s\">\n%s\t</cim:WindingInsulation>".format (id, export_fields)
     }
 }
 
@@ -2599,30 +3140,46 @@ object WindingInsulation
 extends
     Parseable[WindingInsulation]
 {
-    val insulationPFStatus = parse_element (element ("""WindingInsulation.insulationPFStatus"""))
-    val insulationResistance = parse_element (element ("""WindingInsulation.insulationResistance"""))
-    val leakageReactance = parse_element (element ("""WindingInsulation.leakageReactance"""))
-    val status = parse_attribute (attribute ("""WindingInsulation.status"""))
-    val FromWinding = parse_attribute (attribute ("""WindingInsulation.FromWinding"""))
-    val ToWinding = parse_attribute (attribute ("""WindingInsulation.ToWinding"""))
-    val TransformerObservation = parse_attribute (attribute ("""WindingInsulation.TransformerObservation"""))
+    val fields: Array[String] = Array[String] (
+        "insulationPFStatus",
+        "insulationResistance",
+        "leakageReactance",
+        "status",
+        "FromWinding",
+        "ToWinding",
+        "TransformerObservation"
+    )
+    val insulationPFStatus: Fielder = parse_element (element (cls, fields(0)))
+    val insulationResistance: Fielder = parse_element (element (cls, fields(1)))
+    val leakageReactance: Fielder = parse_element (element (cls, fields(2)))
+    val status: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val FromWinding: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val ToWinding: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val TransformerObservation: Fielder = parse_attribute (attribute (cls, fields(6)))
+
     def parse (context: Context): WindingInsulation =
     {
-        WindingInsulation(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = WindingInsulation (
             IdentifiedObject.parse (context),
-            insulationPFStatus (context),
-            insulationResistance (context),
-            toDouble (leakageReactance (context), context),
-            status (context),
-            FromWinding (context),
-            ToWinding (context),
-            TransformerObservation (context)
+            mask (insulationPFStatus (), 0),
+            mask (insulationResistance (), 1),
+            toDouble (mask (leakageReactance (), 2)),
+            mask (status (), 3),
+            mask (FromWinding (), 4),
+            mask (ToWinding (), 5),
+            mask (TransformerObservation (), 6)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("FromWinding", "TransformerEnd", false),
         Relationship ("ToWinding", "TransformerEnd", false),
-        Relationship ("TransformerObservation", "TransformerObservation", false))
+        Relationship ("TransformerObservation", "TransformerObservation", false)
+    )
 }
 
 private[ninecode] object _InfAssets

@@ -50,6 +50,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -69,20 +75,22 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:UnderexcLim2Simplified.kui>" + kui + "</cim:UnderexcLim2Simplified.kui>\n" +
-        "\t\t<cim:UnderexcLim2Simplified.p0>" + p0 + "</cim:UnderexcLim2Simplified.p0>\n" +
-        "\t\t<cim:UnderexcLim2Simplified.p1>" + p1 + "</cim:UnderexcLim2Simplified.p1>\n" +
-        "\t\t<cim:UnderexcLim2Simplified.q0>" + q0 + "</cim:UnderexcLim2Simplified.q0>\n" +
-        "\t\t<cim:UnderexcLim2Simplified.q1>" + q1 + "</cim:UnderexcLim2Simplified.q1>\n" +
-        "\t\t<cim:UnderexcLim2Simplified.vuimax>" + vuimax + "</cim:UnderexcLim2Simplified.vuimax>\n" +
-        "\t\t<cim:UnderexcLim2Simplified.vuimin>" + vuimin + "</cim:UnderexcLim2Simplified.vuimin>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = UnderexcLim2Simplified.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (UnderexcLim2Simplified.fields (position), value)
+        emitelem (0, kui)
+        emitelem (1, p0)
+        emitelem (2, p1)
+        emitelem (3, q0)
+        emitelem (4, q1)
+        emitelem (5, vuimax)
+        emitelem (6, vuimin)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:UnderexcLim2Simplified rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:UnderexcLim2Simplified>"
+        "\t<cim:UnderexcLim2Simplified rdf:ID=\"%s\">\n%s\t</cim:UnderexcLim2Simplified>".format (id, export_fields)
     }
 }
 
@@ -90,27 +98,44 @@ object UnderexcLim2Simplified
 extends
     Parseable[UnderexcLim2Simplified]
 {
-    val kui = parse_element (element ("""UnderexcLim2Simplified.kui"""))
-    val p0 = parse_element (element ("""UnderexcLim2Simplified.p0"""))
-    val p1 = parse_element (element ("""UnderexcLim2Simplified.p1"""))
-    val q0 = parse_element (element ("""UnderexcLim2Simplified.q0"""))
-    val q1 = parse_element (element ("""UnderexcLim2Simplified.q1"""))
-    val vuimax = parse_element (element ("""UnderexcLim2Simplified.vuimax"""))
-    val vuimin = parse_element (element ("""UnderexcLim2Simplified.vuimin"""))
+    val fields: Array[String] = Array[String] (
+        "kui",
+        "p0",
+        "p1",
+        "q0",
+        "q1",
+        "vuimax",
+        "vuimin"
+    )
+    val kui: Fielder = parse_element (element (cls, fields(0)))
+    val p0: Fielder = parse_element (element (cls, fields(1)))
+    val p1: Fielder = parse_element (element (cls, fields(2)))
+    val q0: Fielder = parse_element (element (cls, fields(3)))
+    val q1: Fielder = parse_element (element (cls, fields(4)))
+    val vuimax: Fielder = parse_element (element (cls, fields(5)))
+    val vuimin: Fielder = parse_element (element (cls, fields(6)))
+
     def parse (context: Context): UnderexcLim2Simplified =
     {
-        UnderexcLim2Simplified(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = UnderexcLim2Simplified (
             UnderexcitationLimiterDynamics.parse (context),
-            toDouble (kui (context), context),
-            toDouble (p0 (context), context),
-            toDouble (p1 (context), context),
-            toDouble (q0 (context), context),
-            toDouble (q1 (context), context),
-            toDouble (vuimax (context), context),
-            toDouble (vuimin (context), context)
+            toDouble (mask (kui (), 0)),
+            toDouble (mask (p0 (), 1)),
+            toDouble (mask (p1 (), 2)),
+            toDouble (mask (q0 (), 3)),
+            toDouble (mask (q1 (), 4)),
+            toDouble (mask (vuimax (), 5)),
+            toDouble (mask (vuimin (), 6))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -178,6 +203,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -197,28 +228,30 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:UnderexcLimIEEE1.kuc>" + kuc + "</cim:UnderexcLimIEEE1.kuc>\n" +
-        "\t\t<cim:UnderexcLimIEEE1.kuf>" + kuf + "</cim:UnderexcLimIEEE1.kuf>\n" +
-        "\t\t<cim:UnderexcLimIEEE1.kui>" + kui + "</cim:UnderexcLimIEEE1.kui>\n" +
-        "\t\t<cim:UnderexcLimIEEE1.kul>" + kul + "</cim:UnderexcLimIEEE1.kul>\n" +
-        "\t\t<cim:UnderexcLimIEEE1.kur>" + kur + "</cim:UnderexcLimIEEE1.kur>\n" +
-        "\t\t<cim:UnderexcLimIEEE1.tu1>" + tu1 + "</cim:UnderexcLimIEEE1.tu1>\n" +
-        "\t\t<cim:UnderexcLimIEEE1.tu2>" + tu2 + "</cim:UnderexcLimIEEE1.tu2>\n" +
-        "\t\t<cim:UnderexcLimIEEE1.tu3>" + tu3 + "</cim:UnderexcLimIEEE1.tu3>\n" +
-        "\t\t<cim:UnderexcLimIEEE1.tu4>" + tu4 + "</cim:UnderexcLimIEEE1.tu4>\n" +
-        "\t\t<cim:UnderexcLimIEEE1.vucmax>" + vucmax + "</cim:UnderexcLimIEEE1.vucmax>\n" +
-        "\t\t<cim:UnderexcLimIEEE1.vuimax>" + vuimax + "</cim:UnderexcLimIEEE1.vuimax>\n" +
-        "\t\t<cim:UnderexcLimIEEE1.vuimin>" + vuimin + "</cim:UnderexcLimIEEE1.vuimin>\n" +
-        "\t\t<cim:UnderexcLimIEEE1.vulmax>" + vulmax + "</cim:UnderexcLimIEEE1.vulmax>\n" +
-        "\t\t<cim:UnderexcLimIEEE1.vulmin>" + vulmin + "</cim:UnderexcLimIEEE1.vulmin>\n" +
-        "\t\t<cim:UnderexcLimIEEE1.vurmax>" + vurmax + "</cim:UnderexcLimIEEE1.vurmax>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = UnderexcLimIEEE1.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (UnderexcLimIEEE1.fields (position), value)
+        emitelem (0, kuc)
+        emitelem (1, kuf)
+        emitelem (2, kui)
+        emitelem (3, kul)
+        emitelem (4, kur)
+        emitelem (5, tu1)
+        emitelem (6, tu2)
+        emitelem (7, tu3)
+        emitelem (8, tu4)
+        emitelem (9, vucmax)
+        emitelem (10, vuimax)
+        emitelem (11, vuimin)
+        emitelem (12, vulmax)
+        emitelem (13, vulmin)
+        emitelem (14, vurmax)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:UnderexcLimIEEE1 rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:UnderexcLimIEEE1>"
+        "\t<cim:UnderexcLimIEEE1 rdf:ID=\"%s\">\n%s\t</cim:UnderexcLimIEEE1>".format (id, export_fields)
     }
 }
 
@@ -226,43 +259,68 @@ object UnderexcLimIEEE1
 extends
     Parseable[UnderexcLimIEEE1]
 {
-    val kuc = parse_element (element ("""UnderexcLimIEEE1.kuc"""))
-    val kuf = parse_element (element ("""UnderexcLimIEEE1.kuf"""))
-    val kui = parse_element (element ("""UnderexcLimIEEE1.kui"""))
-    val kul = parse_element (element ("""UnderexcLimIEEE1.kul"""))
-    val kur = parse_element (element ("""UnderexcLimIEEE1.kur"""))
-    val tu1 = parse_element (element ("""UnderexcLimIEEE1.tu1"""))
-    val tu2 = parse_element (element ("""UnderexcLimIEEE1.tu2"""))
-    val tu3 = parse_element (element ("""UnderexcLimIEEE1.tu3"""))
-    val tu4 = parse_element (element ("""UnderexcLimIEEE1.tu4"""))
-    val vucmax = parse_element (element ("""UnderexcLimIEEE1.vucmax"""))
-    val vuimax = parse_element (element ("""UnderexcLimIEEE1.vuimax"""))
-    val vuimin = parse_element (element ("""UnderexcLimIEEE1.vuimin"""))
-    val vulmax = parse_element (element ("""UnderexcLimIEEE1.vulmax"""))
-    val vulmin = parse_element (element ("""UnderexcLimIEEE1.vulmin"""))
-    val vurmax = parse_element (element ("""UnderexcLimIEEE1.vurmax"""))
+    val fields: Array[String] = Array[String] (
+        "kuc",
+        "kuf",
+        "kui",
+        "kul",
+        "kur",
+        "tu1",
+        "tu2",
+        "tu3",
+        "tu4",
+        "vucmax",
+        "vuimax",
+        "vuimin",
+        "vulmax",
+        "vulmin",
+        "vurmax"
+    )
+    val kuc: Fielder = parse_element (element (cls, fields(0)))
+    val kuf: Fielder = parse_element (element (cls, fields(1)))
+    val kui: Fielder = parse_element (element (cls, fields(2)))
+    val kul: Fielder = parse_element (element (cls, fields(3)))
+    val kur: Fielder = parse_element (element (cls, fields(4)))
+    val tu1: Fielder = parse_element (element (cls, fields(5)))
+    val tu2: Fielder = parse_element (element (cls, fields(6)))
+    val tu3: Fielder = parse_element (element (cls, fields(7)))
+    val tu4: Fielder = parse_element (element (cls, fields(8)))
+    val vucmax: Fielder = parse_element (element (cls, fields(9)))
+    val vuimax: Fielder = parse_element (element (cls, fields(10)))
+    val vuimin: Fielder = parse_element (element (cls, fields(11)))
+    val vulmax: Fielder = parse_element (element (cls, fields(12)))
+    val vulmin: Fielder = parse_element (element (cls, fields(13)))
+    val vurmax: Fielder = parse_element (element (cls, fields(14)))
+
     def parse (context: Context): UnderexcLimIEEE1 =
     {
-        UnderexcLimIEEE1(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = UnderexcLimIEEE1 (
             UnderexcitationLimiterDynamics.parse (context),
-            toDouble (kuc (context), context),
-            toDouble (kuf (context), context),
-            toDouble (kui (context), context),
-            toDouble (kul (context), context),
-            toDouble (kur (context), context),
-            toDouble (tu1 (context), context),
-            toDouble (tu2 (context), context),
-            toDouble (tu3 (context), context),
-            toDouble (tu4 (context), context),
-            toDouble (vucmax (context), context),
-            toDouble (vuimax (context), context),
-            toDouble (vuimin (context), context),
-            toDouble (vulmax (context), context),
-            toDouble (vulmin (context), context),
-            toDouble (vurmax (context), context)
+            toDouble (mask (kuc (), 0)),
+            toDouble (mask (kuf (), 1)),
+            toDouble (mask (kui (), 2)),
+            toDouble (mask (kul (), 3)),
+            toDouble (mask (kur (), 4)),
+            toDouble (mask (tu1 (), 5)),
+            toDouble (mask (tu2 (), 6)),
+            toDouble (mask (tu3 (), 7)),
+            toDouble (mask (tu4 (), 8)),
+            toDouble (mask (vucmax (), 9)),
+            toDouble (mask (vuimax (), 10)),
+            toDouble (mask (vuimin (), 11)),
+            toDouble (mask (vulmax (), 12)),
+            toDouble (mask (vulmin (), 13)),
+            toDouble (mask (vurmax (), 14))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -395,6 +453,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Long = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -414,53 +478,55 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:UnderexcLimIEEE2.k1>" + k1 + "</cim:UnderexcLimIEEE2.k1>\n" +
-        "\t\t<cim:UnderexcLimIEEE2.k2>" + k2 + "</cim:UnderexcLimIEEE2.k2>\n" +
-        "\t\t<cim:UnderexcLimIEEE2.kfb>" + kfb + "</cim:UnderexcLimIEEE2.kfb>\n" +
-        "\t\t<cim:UnderexcLimIEEE2.kuf>" + kuf + "</cim:UnderexcLimIEEE2.kuf>\n" +
-        "\t\t<cim:UnderexcLimIEEE2.kui>" + kui + "</cim:UnderexcLimIEEE2.kui>\n" +
-        "\t\t<cim:UnderexcLimIEEE2.kul>" + kul + "</cim:UnderexcLimIEEE2.kul>\n" +
-        "\t\t<cim:UnderexcLimIEEE2.p0>" + p0 + "</cim:UnderexcLimIEEE2.p0>\n" +
-        "\t\t<cim:UnderexcLimIEEE2.p1>" + p1 + "</cim:UnderexcLimIEEE2.p1>\n" +
-        "\t\t<cim:UnderexcLimIEEE2.p10>" + p10 + "</cim:UnderexcLimIEEE2.p10>\n" +
-        "\t\t<cim:UnderexcLimIEEE2.p2>" + p2 + "</cim:UnderexcLimIEEE2.p2>\n" +
-        "\t\t<cim:UnderexcLimIEEE2.p3>" + p3 + "</cim:UnderexcLimIEEE2.p3>\n" +
-        "\t\t<cim:UnderexcLimIEEE2.p4>" + p4 + "</cim:UnderexcLimIEEE2.p4>\n" +
-        "\t\t<cim:UnderexcLimIEEE2.p5>" + p5 + "</cim:UnderexcLimIEEE2.p5>\n" +
-        "\t\t<cim:UnderexcLimIEEE2.p6>" + p6 + "</cim:UnderexcLimIEEE2.p6>\n" +
-        "\t\t<cim:UnderexcLimIEEE2.p7>" + p7 + "</cim:UnderexcLimIEEE2.p7>\n" +
-        "\t\t<cim:UnderexcLimIEEE2.p8>" + p8 + "</cim:UnderexcLimIEEE2.p8>\n" +
-        "\t\t<cim:UnderexcLimIEEE2.p9>" + p9 + "</cim:UnderexcLimIEEE2.p9>\n" +
-        "\t\t<cim:UnderexcLimIEEE2.q0>" + q0 + "</cim:UnderexcLimIEEE2.q0>\n" +
-        "\t\t<cim:UnderexcLimIEEE2.q1>" + q1 + "</cim:UnderexcLimIEEE2.q1>\n" +
-        "\t\t<cim:UnderexcLimIEEE2.q10>" + q10 + "</cim:UnderexcLimIEEE2.q10>\n" +
-        "\t\t<cim:UnderexcLimIEEE2.q2>" + q2 + "</cim:UnderexcLimIEEE2.q2>\n" +
-        "\t\t<cim:UnderexcLimIEEE2.q3>" + q3 + "</cim:UnderexcLimIEEE2.q3>\n" +
-        "\t\t<cim:UnderexcLimIEEE2.q4>" + q4 + "</cim:UnderexcLimIEEE2.q4>\n" +
-        "\t\t<cim:UnderexcLimIEEE2.q5>" + q5 + "</cim:UnderexcLimIEEE2.q5>\n" +
-        "\t\t<cim:UnderexcLimIEEE2.q6>" + q6 + "</cim:UnderexcLimIEEE2.q6>\n" +
-        "\t\t<cim:UnderexcLimIEEE2.q7>" + q7 + "</cim:UnderexcLimIEEE2.q7>\n" +
-        "\t\t<cim:UnderexcLimIEEE2.q8>" + q8 + "</cim:UnderexcLimIEEE2.q8>\n" +
-        "\t\t<cim:UnderexcLimIEEE2.q9>" + q9 + "</cim:UnderexcLimIEEE2.q9>\n" +
-        "\t\t<cim:UnderexcLimIEEE2.tu1>" + tu1 + "</cim:UnderexcLimIEEE2.tu1>\n" +
-        "\t\t<cim:UnderexcLimIEEE2.tu2>" + tu2 + "</cim:UnderexcLimIEEE2.tu2>\n" +
-        "\t\t<cim:UnderexcLimIEEE2.tu3>" + tu3 + "</cim:UnderexcLimIEEE2.tu3>\n" +
-        "\t\t<cim:UnderexcLimIEEE2.tu4>" + tu4 + "</cim:UnderexcLimIEEE2.tu4>\n" +
-        "\t\t<cim:UnderexcLimIEEE2.tul>" + tul + "</cim:UnderexcLimIEEE2.tul>\n" +
-        "\t\t<cim:UnderexcLimIEEE2.tup>" + tup + "</cim:UnderexcLimIEEE2.tup>\n" +
-        "\t\t<cim:UnderexcLimIEEE2.tuq>" + tuq + "</cim:UnderexcLimIEEE2.tuq>\n" +
-        "\t\t<cim:UnderexcLimIEEE2.tuv>" + tuv + "</cim:UnderexcLimIEEE2.tuv>\n" +
-        "\t\t<cim:UnderexcLimIEEE2.vuimax>" + vuimax + "</cim:UnderexcLimIEEE2.vuimax>\n" +
-        "\t\t<cim:UnderexcLimIEEE2.vuimin>" + vuimin + "</cim:UnderexcLimIEEE2.vuimin>\n" +
-        "\t\t<cim:UnderexcLimIEEE2.vulmax>" + vulmax + "</cim:UnderexcLimIEEE2.vulmax>\n" +
-        "\t\t<cim:UnderexcLimIEEE2.vulmin>" + vulmin + "</cim:UnderexcLimIEEE2.vulmin>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = UnderexcLimIEEE2.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (UnderexcLimIEEE2.fields (position), value)
+        emitelem (0, k1)
+        emitelem (1, k2)
+        emitelem (2, kfb)
+        emitelem (3, kuf)
+        emitelem (4, kui)
+        emitelem (5, kul)
+        emitelem (6, p0)
+        emitelem (7, p1)
+        emitelem (8, p10)
+        emitelem (9, p2)
+        emitelem (10, p3)
+        emitelem (11, p4)
+        emitelem (12, p5)
+        emitelem (13, p6)
+        emitelem (14, p7)
+        emitelem (15, p8)
+        emitelem (16, p9)
+        emitelem (17, q0)
+        emitelem (18, q1)
+        emitelem (19, q10)
+        emitelem (20, q2)
+        emitelem (21, q3)
+        emitelem (22, q4)
+        emitelem (23, q5)
+        emitelem (24, q6)
+        emitelem (25, q7)
+        emitelem (26, q8)
+        emitelem (27, q9)
+        emitelem (28, tu1)
+        emitelem (29, tu2)
+        emitelem (30, tu3)
+        emitelem (31, tu4)
+        emitelem (32, tul)
+        emitelem (33, tup)
+        emitelem (34, tuq)
+        emitelem (35, tuv)
+        emitelem (36, vuimax)
+        emitelem (37, vuimin)
+        emitelem (38, vulmax)
+        emitelem (39, vulmin)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:UnderexcLimIEEE2 rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:UnderexcLimIEEE2>"
+        "\t<cim:UnderexcLimIEEE2 rdf:ID=\"%s\">\n%s\t</cim:UnderexcLimIEEE2>".format (id, export_fields)
     }
 }
 
@@ -468,93 +534,143 @@ object UnderexcLimIEEE2
 extends
     Parseable[UnderexcLimIEEE2]
 {
-    val k1 = parse_element (element ("""UnderexcLimIEEE2.k1"""))
-    val k2 = parse_element (element ("""UnderexcLimIEEE2.k2"""))
-    val kfb = parse_element (element ("""UnderexcLimIEEE2.kfb"""))
-    val kuf = parse_element (element ("""UnderexcLimIEEE2.kuf"""))
-    val kui = parse_element (element ("""UnderexcLimIEEE2.kui"""))
-    val kul = parse_element (element ("""UnderexcLimIEEE2.kul"""))
-    val p0 = parse_element (element ("""UnderexcLimIEEE2.p0"""))
-    val p1 = parse_element (element ("""UnderexcLimIEEE2.p1"""))
-    val p10 = parse_element (element ("""UnderexcLimIEEE2.p10"""))
-    val p2 = parse_element (element ("""UnderexcLimIEEE2.p2"""))
-    val p3 = parse_element (element ("""UnderexcLimIEEE2.p3"""))
-    val p4 = parse_element (element ("""UnderexcLimIEEE2.p4"""))
-    val p5 = parse_element (element ("""UnderexcLimIEEE2.p5"""))
-    val p6 = parse_element (element ("""UnderexcLimIEEE2.p6"""))
-    val p7 = parse_element (element ("""UnderexcLimIEEE2.p7"""))
-    val p8 = parse_element (element ("""UnderexcLimIEEE2.p8"""))
-    val p9 = parse_element (element ("""UnderexcLimIEEE2.p9"""))
-    val q0 = parse_element (element ("""UnderexcLimIEEE2.q0"""))
-    val q1 = parse_element (element ("""UnderexcLimIEEE2.q1"""))
-    val q10 = parse_element (element ("""UnderexcLimIEEE2.q10"""))
-    val q2 = parse_element (element ("""UnderexcLimIEEE2.q2"""))
-    val q3 = parse_element (element ("""UnderexcLimIEEE2.q3"""))
-    val q4 = parse_element (element ("""UnderexcLimIEEE2.q4"""))
-    val q5 = parse_element (element ("""UnderexcLimIEEE2.q5"""))
-    val q6 = parse_element (element ("""UnderexcLimIEEE2.q6"""))
-    val q7 = parse_element (element ("""UnderexcLimIEEE2.q7"""))
-    val q8 = parse_element (element ("""UnderexcLimIEEE2.q8"""))
-    val q9 = parse_element (element ("""UnderexcLimIEEE2.q9"""))
-    val tu1 = parse_element (element ("""UnderexcLimIEEE2.tu1"""))
-    val tu2 = parse_element (element ("""UnderexcLimIEEE2.tu2"""))
-    val tu3 = parse_element (element ("""UnderexcLimIEEE2.tu3"""))
-    val tu4 = parse_element (element ("""UnderexcLimIEEE2.tu4"""))
-    val tul = parse_element (element ("""UnderexcLimIEEE2.tul"""))
-    val tup = parse_element (element ("""UnderexcLimIEEE2.tup"""))
-    val tuq = parse_element (element ("""UnderexcLimIEEE2.tuq"""))
-    val tuv = parse_element (element ("""UnderexcLimIEEE2.tuv"""))
-    val vuimax = parse_element (element ("""UnderexcLimIEEE2.vuimax"""))
-    val vuimin = parse_element (element ("""UnderexcLimIEEE2.vuimin"""))
-    val vulmax = parse_element (element ("""UnderexcLimIEEE2.vulmax"""))
-    val vulmin = parse_element (element ("""UnderexcLimIEEE2.vulmin"""))
+    val fields: Array[String] = Array[String] (
+        "k1",
+        "k2",
+        "kfb",
+        "kuf",
+        "kui",
+        "kul",
+        "p0",
+        "p1",
+        "p10",
+        "p2",
+        "p3",
+        "p4",
+        "p5",
+        "p6",
+        "p7",
+        "p8",
+        "p9",
+        "q0",
+        "q1",
+        "q10",
+        "q2",
+        "q3",
+        "q4",
+        "q5",
+        "q6",
+        "q7",
+        "q8",
+        "q9",
+        "tu1",
+        "tu2",
+        "tu3",
+        "tu4",
+        "tul",
+        "tup",
+        "tuq",
+        "tuv",
+        "vuimax",
+        "vuimin",
+        "vulmax",
+        "vulmin"
+    )
+    val k1: Fielder = parse_element (element (cls, fields(0)))
+    val k2: Fielder = parse_element (element (cls, fields(1)))
+    val kfb: Fielder = parse_element (element (cls, fields(2)))
+    val kuf: Fielder = parse_element (element (cls, fields(3)))
+    val kui: Fielder = parse_element (element (cls, fields(4)))
+    val kul: Fielder = parse_element (element (cls, fields(5)))
+    val p0: Fielder = parse_element (element (cls, fields(6)))
+    val p1: Fielder = parse_element (element (cls, fields(7)))
+    val p10: Fielder = parse_element (element (cls, fields(8)))
+    val p2: Fielder = parse_element (element (cls, fields(9)))
+    val p3: Fielder = parse_element (element (cls, fields(10)))
+    val p4: Fielder = parse_element (element (cls, fields(11)))
+    val p5: Fielder = parse_element (element (cls, fields(12)))
+    val p6: Fielder = parse_element (element (cls, fields(13)))
+    val p7: Fielder = parse_element (element (cls, fields(14)))
+    val p8: Fielder = parse_element (element (cls, fields(15)))
+    val p9: Fielder = parse_element (element (cls, fields(16)))
+    val q0: Fielder = parse_element (element (cls, fields(17)))
+    val q1: Fielder = parse_element (element (cls, fields(18)))
+    val q10: Fielder = parse_element (element (cls, fields(19)))
+    val q2: Fielder = parse_element (element (cls, fields(20)))
+    val q3: Fielder = parse_element (element (cls, fields(21)))
+    val q4: Fielder = parse_element (element (cls, fields(22)))
+    val q5: Fielder = parse_element (element (cls, fields(23)))
+    val q6: Fielder = parse_element (element (cls, fields(24)))
+    val q7: Fielder = parse_element (element (cls, fields(25)))
+    val q8: Fielder = parse_element (element (cls, fields(26)))
+    val q9: Fielder = parse_element (element (cls, fields(27)))
+    val tu1: Fielder = parse_element (element (cls, fields(28)))
+    val tu2: Fielder = parse_element (element (cls, fields(29)))
+    val tu3: Fielder = parse_element (element (cls, fields(30)))
+    val tu4: Fielder = parse_element (element (cls, fields(31)))
+    val tul: Fielder = parse_element (element (cls, fields(32)))
+    val tup: Fielder = parse_element (element (cls, fields(33)))
+    val tuq: Fielder = parse_element (element (cls, fields(34)))
+    val tuv: Fielder = parse_element (element (cls, fields(35)))
+    val vuimax: Fielder = parse_element (element (cls, fields(36)))
+    val vuimin: Fielder = parse_element (element (cls, fields(37)))
+    val vulmax: Fielder = parse_element (element (cls, fields(38)))
+    val vulmin: Fielder = parse_element (element (cls, fields(39)))
+
     def parse (context: Context): UnderexcLimIEEE2 =
     {
-        UnderexcLimIEEE2(
+        implicit val ctx: Context = context
+        var fields: Long = 0L
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1L << position; field._1 }
+        val ret = UnderexcLimIEEE2 (
             UnderexcitationLimiterDynamics.parse (context),
-            toDouble (k1 (context), context),
-            toDouble (k2 (context), context),
-            toDouble (kfb (context), context),
-            toDouble (kuf (context), context),
-            toDouble (kui (context), context),
-            toDouble (kul (context), context),
-            toDouble (p0 (context), context),
-            toDouble (p1 (context), context),
-            toDouble (p10 (context), context),
-            toDouble (p2 (context), context),
-            toDouble (p3 (context), context),
-            toDouble (p4 (context), context),
-            toDouble (p5 (context), context),
-            toDouble (p6 (context), context),
-            toDouble (p7 (context), context),
-            toDouble (p8 (context), context),
-            toDouble (p9 (context), context),
-            toDouble (q0 (context), context),
-            toDouble (q1 (context), context),
-            toDouble (q10 (context), context),
-            toDouble (q2 (context), context),
-            toDouble (q3 (context), context),
-            toDouble (q4 (context), context),
-            toDouble (q5 (context), context),
-            toDouble (q6 (context), context),
-            toDouble (q7 (context), context),
-            toDouble (q8 (context), context),
-            toDouble (q9 (context), context),
-            toDouble (tu1 (context), context),
-            toDouble (tu2 (context), context),
-            toDouble (tu3 (context), context),
-            toDouble (tu4 (context), context),
-            toDouble (tul (context), context),
-            toDouble (tup (context), context),
-            toDouble (tuq (context), context),
-            toDouble (tuv (context), context),
-            toDouble (vuimax (context), context),
-            toDouble (vuimin (context), context),
-            toDouble (vulmax (context), context),
-            toDouble (vulmin (context), context)
+            toDouble (mask (k1 (), 0)),
+            toDouble (mask (k2 (), 1)),
+            toDouble (mask (kfb (), 2)),
+            toDouble (mask (kuf (), 3)),
+            toDouble (mask (kui (), 4)),
+            toDouble (mask (kul (), 5)),
+            toDouble (mask (p0 (), 6)),
+            toDouble (mask (p1 (), 7)),
+            toDouble (mask (p10 (), 8)),
+            toDouble (mask (p2 (), 9)),
+            toDouble (mask (p3 (), 10)),
+            toDouble (mask (p4 (), 11)),
+            toDouble (mask (p5 (), 12)),
+            toDouble (mask (p6 (), 13)),
+            toDouble (mask (p7 (), 14)),
+            toDouble (mask (p8 (), 15)),
+            toDouble (mask (p9 (), 16)),
+            toDouble (mask (q0 (), 17)),
+            toDouble (mask (q1 (), 18)),
+            toDouble (mask (q10 (), 19)),
+            toDouble (mask (q2 (), 20)),
+            toDouble (mask (q3 (), 21)),
+            toDouble (mask (q4 (), 22)),
+            toDouble (mask (q5 (), 23)),
+            toDouble (mask (q6 (), 24)),
+            toDouble (mask (q7 (), 25)),
+            toDouble (mask (q8 (), 26)),
+            toDouble (mask (q9 (), 27)),
+            toDouble (mask (tu1 (), 28)),
+            toDouble (mask (tu2 (), 29)),
+            toDouble (mask (tu3 (), 30)),
+            toDouble (mask (tu4 (), 31)),
+            toDouble (mask (tul (), 32)),
+            toDouble (mask (tup (), 33)),
+            toDouble (mask (tuq (), 34)),
+            toDouble (mask (tuv (), 35)),
+            toDouble (mask (vuimax (), 36)),
+            toDouble (mask (vuimin (), 37)),
+            toDouble (mask (vulmax (), 38)),
+            toDouble (mask (vulmin (), 39))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -589,6 +705,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -608,19 +730,21 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:UnderexcLimX1.k>" + k + "</cim:UnderexcLimX1.k>\n" +
-        "\t\t<cim:UnderexcLimX1.kf2>" + kf2 + "</cim:UnderexcLimX1.kf2>\n" +
-        "\t\t<cim:UnderexcLimX1.km>" + km + "</cim:UnderexcLimX1.km>\n" +
-        "\t\t<cim:UnderexcLimX1.melmax>" + melmax + "</cim:UnderexcLimX1.melmax>\n" +
-        "\t\t<cim:UnderexcLimX1.tf2>" + tf2 + "</cim:UnderexcLimX1.tf2>\n" +
-        "\t\t<cim:UnderexcLimX1.tm>" + tm + "</cim:UnderexcLimX1.tm>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = UnderexcLimX1.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (UnderexcLimX1.fields (position), value)
+        emitelem (0, k)
+        emitelem (1, kf2)
+        emitelem (2, km)
+        emitelem (3, melmax)
+        emitelem (4, tf2)
+        emitelem (5, tm)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:UnderexcLimX1 rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:UnderexcLimX1>"
+        "\t<cim:UnderexcLimX1 rdf:ID=\"%s\">\n%s\t</cim:UnderexcLimX1>".format (id, export_fields)
     }
 }
 
@@ -628,25 +752,41 @@ object UnderexcLimX1
 extends
     Parseable[UnderexcLimX1]
 {
-    val k = parse_element (element ("""UnderexcLimX1.k"""))
-    val kf2 = parse_element (element ("""UnderexcLimX1.kf2"""))
-    val km = parse_element (element ("""UnderexcLimX1.km"""))
-    val melmax = parse_element (element ("""UnderexcLimX1.melmax"""))
-    val tf2 = parse_element (element ("""UnderexcLimX1.tf2"""))
-    val tm = parse_element (element ("""UnderexcLimX1.tm"""))
+    val fields: Array[String] = Array[String] (
+        "k",
+        "kf2",
+        "km",
+        "melmax",
+        "tf2",
+        "tm"
+    )
+    val k: Fielder = parse_element (element (cls, fields(0)))
+    val kf2: Fielder = parse_element (element (cls, fields(1)))
+    val km: Fielder = parse_element (element (cls, fields(2)))
+    val melmax: Fielder = parse_element (element (cls, fields(3)))
+    val tf2: Fielder = parse_element (element (cls, fields(4)))
+    val tm: Fielder = parse_element (element (cls, fields(5)))
+
     def parse (context: Context): UnderexcLimX1 =
     {
-        UnderexcLimX1(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = UnderexcLimX1 (
             UnderexcitationLimiterDynamics.parse (context),
-            toDouble (k (context), context),
-            toDouble (kf2 (context), context),
-            toDouble (km (context), context),
-            toDouble (melmax (context), context),
-            toDouble (tf2 (context), context),
-            toDouble (tm (context), context)
+            toDouble (mask (k (), 0)),
+            toDouble (mask (kf2 (), 1)),
+            toDouble (mask (km (), 2)),
+            toDouble (mask (melmax (), 3)),
+            toDouble (mask (tf2 (), 4)),
+            toDouble (mask (tm (), 5))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -683,6 +823,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -702,20 +848,22 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:UnderexcLimX2.kf2>" + kf2 + "</cim:UnderexcLimX2.kf2>\n" +
-        "\t\t<cim:UnderexcLimX2.km>" + km + "</cim:UnderexcLimX2.km>\n" +
-        "\t\t<cim:UnderexcLimX2.melmax>" + melmax + "</cim:UnderexcLimX2.melmax>\n" +
-        "\t\t<cim:UnderexcLimX2.qo>" + qo + "</cim:UnderexcLimX2.qo>\n" +
-        "\t\t<cim:UnderexcLimX2.r>" + r + "</cim:UnderexcLimX2.r>\n" +
-        "\t\t<cim:UnderexcLimX2.tf2>" + tf2 + "</cim:UnderexcLimX2.tf2>\n" +
-        "\t\t<cim:UnderexcLimX2.tm>" + tm + "</cim:UnderexcLimX2.tm>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = UnderexcLimX2.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (UnderexcLimX2.fields (position), value)
+        emitelem (0, kf2)
+        emitelem (1, km)
+        emitelem (2, melmax)
+        emitelem (3, qo)
+        emitelem (4, r)
+        emitelem (5, tf2)
+        emitelem (6, tm)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:UnderexcLimX2 rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:UnderexcLimX2>"
+        "\t<cim:UnderexcLimX2 rdf:ID=\"%s\">\n%s\t</cim:UnderexcLimX2>".format (id, export_fields)
     }
 }
 
@@ -723,27 +871,44 @@ object UnderexcLimX2
 extends
     Parseable[UnderexcLimX2]
 {
-    val kf2 = parse_element (element ("""UnderexcLimX2.kf2"""))
-    val km = parse_element (element ("""UnderexcLimX2.km"""))
-    val melmax = parse_element (element ("""UnderexcLimX2.melmax"""))
-    val qo = parse_element (element ("""UnderexcLimX2.qo"""))
-    val r = parse_element (element ("""UnderexcLimX2.r"""))
-    val tf2 = parse_element (element ("""UnderexcLimX2.tf2"""))
-    val tm = parse_element (element ("""UnderexcLimX2.tm"""))
+    val fields: Array[String] = Array[String] (
+        "kf2",
+        "km",
+        "melmax",
+        "qo",
+        "r",
+        "tf2",
+        "tm"
+    )
+    val kf2: Fielder = parse_element (element (cls, fields(0)))
+    val km: Fielder = parse_element (element (cls, fields(1)))
+    val melmax: Fielder = parse_element (element (cls, fields(2)))
+    val qo: Fielder = parse_element (element (cls, fields(3)))
+    val r: Fielder = parse_element (element (cls, fields(4)))
+    val tf2: Fielder = parse_element (element (cls, fields(5)))
+    val tm: Fielder = parse_element (element (cls, fields(6)))
+
     def parse (context: Context): UnderexcLimX2 =
     {
-        UnderexcLimX2(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = UnderexcLimX2 (
             UnderexcitationLimiterDynamics.parse (context),
-            toDouble (kf2 (context), context),
-            toDouble (km (context), context),
-            toDouble (melmax (context), context),
-            toDouble (qo (context), context),
-            toDouble (r (context), context),
-            toDouble (tf2 (context), context),
-            toDouble (tm (context), context)
+            toDouble (mask (kf2 (), 0)),
+            toDouble (mask (km (), 1)),
+            toDouble (mask (melmax (), 2)),
+            toDouble (mask (qo (), 3)),
+            toDouble (mask (r (), 4)),
+            toDouble (mask (tf2 (), 5)),
+            toDouble (mask (tm (), 6))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -770,6 +935,12 @@ extends
      */
     def this () = { this (null, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -789,15 +960,17 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != ExcitationSystemDynamics) "\t\t<cim:UnderexcitationLimiterDynamics.ExcitationSystemDynamics rdf:resource=\"#" + ExcitationSystemDynamics + "\"/>\n" else "") +
-        (if (null != RemoteInputSignal) "\t\t<cim:UnderexcitationLimiterDynamics.RemoteInputSignal rdf:resource=\"#" + RemoteInputSignal + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = UnderexcitationLimiterDynamics.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (UnderexcitationLimiterDynamics.fields (position), value)
+        emitattr (0, ExcitationSystemDynamics)
+        emitattr (1, RemoteInputSignal)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:UnderexcitationLimiterDynamics rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:UnderexcitationLimiterDynamics>"
+        "\t<cim:UnderexcitationLimiterDynamics rdf:ID=\"%s\">\n%s\t</cim:UnderexcitationLimiterDynamics>".format (id, export_fields)
     }
 }
 
@@ -805,19 +978,30 @@ object UnderexcitationLimiterDynamics
 extends
     Parseable[UnderexcitationLimiterDynamics]
 {
-    val ExcitationSystemDynamics = parse_attribute (attribute ("""UnderexcitationLimiterDynamics.ExcitationSystemDynamics"""))
-    val RemoteInputSignal = parse_attribute (attribute ("""UnderexcitationLimiterDynamics.RemoteInputSignal"""))
+    val fields: Array[String] = Array[String] (
+        "ExcitationSystemDynamics",
+        "RemoteInputSignal"
+    )
+    val ExcitationSystemDynamics: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val RemoteInputSignal: Fielder = parse_attribute (attribute (cls, fields(1)))
+
     def parse (context: Context): UnderexcitationLimiterDynamics =
     {
-        UnderexcitationLimiterDynamics(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = UnderexcitationLimiterDynamics (
             DynamicsFunctionBlock.parse (context),
-            ExcitationSystemDynamics (context),
-            RemoteInputSignal (context)
+            mask (ExcitationSystemDynamics (), 0),
+            mask (RemoteInputSignal (), 1)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("ExcitationSystemDynamics", "ExcitationSystemDynamics", false),
-        Relationship ("RemoteInputSignal", "RemoteInputSignal", false))
+        Relationship ("RemoteInputSignal", "RemoteInputSignal", false)
+    )
 }
 
 private[ninecode] object _UnderexcitationLimiterDynamics

@@ -43,6 +43,12 @@ extends
      */
     def this () = { this (null, 0.0, null, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -62,17 +68,20 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:SynchronousMachineDetailed.efdBaseRatio>" + efdBaseRatio + "</cim:SynchronousMachineDetailed.efdBaseRatio>\n" +
-        (if (null != ifdBaseType) "\t\t<cim:SynchronousMachineDetailed.ifdBaseType rdf:resource=\"#" + ifdBaseType + "\"/>\n" else "") +
-        "\t\t<cim:SynchronousMachineDetailed.saturationFactor120QAxis>" + saturationFactor120QAxis + "</cim:SynchronousMachineDetailed.saturationFactor120QAxis>\n" +
-        "\t\t<cim:SynchronousMachineDetailed.saturationFactorQAxis>" + saturationFactorQAxis + "</cim:SynchronousMachineDetailed.saturationFactorQAxis>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = SynchronousMachineDetailed.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (SynchronousMachineDetailed.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (SynchronousMachineDetailed.fields (position), value)
+        emitelem (0, efdBaseRatio)
+        emitattr (1, ifdBaseType)
+        emitelem (2, saturationFactor120QAxis)
+        emitelem (3, saturationFactorQAxis)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:SynchronousMachineDetailed rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:SynchronousMachineDetailed>"
+        "\t<cim:SynchronousMachineDetailed rdf:ID=\"%s\">\n%s\t</cim:SynchronousMachineDetailed>".format (id, export_fields)
     }
 }
 
@@ -80,21 +89,35 @@ object SynchronousMachineDetailed
 extends
     Parseable[SynchronousMachineDetailed]
 {
-    val efdBaseRatio = parse_element (element ("""SynchronousMachineDetailed.efdBaseRatio"""))
-    val ifdBaseType = parse_attribute (attribute ("""SynchronousMachineDetailed.ifdBaseType"""))
-    val saturationFactor120QAxis = parse_element (element ("""SynchronousMachineDetailed.saturationFactor120QAxis"""))
-    val saturationFactorQAxis = parse_element (element ("""SynchronousMachineDetailed.saturationFactorQAxis"""))
+    val fields: Array[String] = Array[String] (
+        "efdBaseRatio",
+        "ifdBaseType",
+        "saturationFactor120QAxis",
+        "saturationFactorQAxis"
+    )
+    val efdBaseRatio: Fielder = parse_element (element (cls, fields(0)))
+    val ifdBaseType: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val saturationFactor120QAxis: Fielder = parse_element (element (cls, fields(2)))
+    val saturationFactorQAxis: Fielder = parse_element (element (cls, fields(3)))
+
     def parse (context: Context): SynchronousMachineDetailed =
     {
-        SynchronousMachineDetailed(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = SynchronousMachineDetailed (
             SynchronousMachineDynamics.parse (context),
-            toDouble (efdBaseRatio (context), context),
-            ifdBaseType (context),
-            toDouble (saturationFactor120QAxis (context), context),
-            toDouble (saturationFactorQAxis (context), context)
+            toDouble (mask (efdBaseRatio (), 0)),
+            mask (ifdBaseType (), 1),
+            toDouble (mask (saturationFactor120QAxis (), 2)),
+            toDouble (mask (saturationFactorQAxis (), 3))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -139,6 +162,12 @@ extends
      */
     def this () = { this (null, null, null, null, List()) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -158,17 +187,20 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != ExcitationSystemDynamics) "\t\t<cim:SynchronousMachineDynamics.ExcitationSystemDynamics rdf:resource=\"#" + ExcitationSystemDynamics + "\"/>\n" else "") +
-        (if (null != MechanicalLoadDynamics) "\t\t<cim:SynchronousMachineDynamics.MechanicalLoadDynamics rdf:resource=\"#" + MechanicalLoadDynamics + "\"/>\n" else "") +
-        (if (null != SynchronousMachine) "\t\t<cim:SynchronousMachineDynamics.SynchronousMachine rdf:resource=\"#" + SynchronousMachine + "\"/>\n" else "") +
-        (if (null != TurbineGovernorDynamics) TurbineGovernorDynamics.map (x => "\t\t<cim:SynchronousMachineDynamics.TurbineGovernorDynamics rdf:resource=\"#" + x + "\"/>\n").mkString else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = SynchronousMachineDynamics.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (SynchronousMachineDynamics.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (SynchronousMachineDynamics.fields (position), x))
+        emitattr (0, ExcitationSystemDynamics)
+        emitattr (1, MechanicalLoadDynamics)
+        emitattr (2, SynchronousMachine)
+        emitattrs (3, TurbineGovernorDynamics)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:SynchronousMachineDynamics rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:SynchronousMachineDynamics>"
+        "\t<cim:SynchronousMachineDynamics rdf:ID=\"%s\">\n%s\t</cim:SynchronousMachineDynamics>".format (id, export_fields)
     }
 }
 
@@ -176,25 +208,39 @@ object SynchronousMachineDynamics
 extends
     Parseable[SynchronousMachineDynamics]
 {
-    val ExcitationSystemDynamics = parse_attribute (attribute ("""SynchronousMachineDynamics.ExcitationSystemDynamics"""))
-    val MechanicalLoadDynamics = parse_attribute (attribute ("""SynchronousMachineDynamics.MechanicalLoadDynamics"""))
-    val SynchronousMachine = parse_attribute (attribute ("""SynchronousMachineDynamics.SynchronousMachine"""))
-    val TurbineGovernorDynamics = parse_attributes (attribute ("""SynchronousMachineDynamics.TurbineGovernorDynamics"""))
+    val fields: Array[String] = Array[String] (
+        "ExcitationSystemDynamics",
+        "MechanicalLoadDynamics",
+        "SynchronousMachine",
+        "TurbineGovernorDynamics"
+    )
+    val ExcitationSystemDynamics: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val MechanicalLoadDynamics: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val SynchronousMachine: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val TurbineGovernorDynamics: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+
     def parse (context: Context): SynchronousMachineDynamics =
     {
-        SynchronousMachineDynamics(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        def masks (field: Fields, position: Int): List[String] = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = SynchronousMachineDynamics (
             RotatingMachineDynamics.parse (context),
-            ExcitationSystemDynamics (context),
-            MechanicalLoadDynamics (context),
-            SynchronousMachine (context),
-            TurbineGovernorDynamics (context)
+            mask (ExcitationSystemDynamics (), 0),
+            mask (MechanicalLoadDynamics (), 1),
+            mask (SynchronousMachine (), 2),
+            masks (TurbineGovernorDynamics (), 3)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("ExcitationSystemDynamics", "ExcitationSystemDynamics", false),
         Relationship ("MechanicalLoadDynamics", "MechanicalLoadDynamics", false),
         Relationship ("SynchronousMachine", "SynchronousMachine", false),
-        Relationship ("TurbineGovernorDynamics", "TurbineGovernorDynamics", true))
+        Relationship ("TurbineGovernorDynamics", "TurbineGovernorDynamics", true)
+    )
 }
 
 /**
@@ -267,6 +313,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -286,24 +338,26 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:SynchronousMachineEquivalentCircuit.r1d>" + r1d + "</cim:SynchronousMachineEquivalentCircuit.r1d>\n" +
-        "\t\t<cim:SynchronousMachineEquivalentCircuit.r1q>" + r1q + "</cim:SynchronousMachineEquivalentCircuit.r1q>\n" +
-        "\t\t<cim:SynchronousMachineEquivalentCircuit.r2q>" + r2q + "</cim:SynchronousMachineEquivalentCircuit.r2q>\n" +
-        "\t\t<cim:SynchronousMachineEquivalentCircuit.rfd>" + rfd + "</cim:SynchronousMachineEquivalentCircuit.rfd>\n" +
-        "\t\t<cim:SynchronousMachineEquivalentCircuit.x1d>" + x1d + "</cim:SynchronousMachineEquivalentCircuit.x1d>\n" +
-        "\t\t<cim:SynchronousMachineEquivalentCircuit.x1q>" + x1q + "</cim:SynchronousMachineEquivalentCircuit.x1q>\n" +
-        "\t\t<cim:SynchronousMachineEquivalentCircuit.x2q>" + x2q + "</cim:SynchronousMachineEquivalentCircuit.x2q>\n" +
-        "\t\t<cim:SynchronousMachineEquivalentCircuit.xad>" + xad + "</cim:SynchronousMachineEquivalentCircuit.xad>\n" +
-        "\t\t<cim:SynchronousMachineEquivalentCircuit.xaq>" + xaq + "</cim:SynchronousMachineEquivalentCircuit.xaq>\n" +
-        "\t\t<cim:SynchronousMachineEquivalentCircuit.xf1d>" + xf1d + "</cim:SynchronousMachineEquivalentCircuit.xf1d>\n" +
-        "\t\t<cim:SynchronousMachineEquivalentCircuit.xfd>" + xfd + "</cim:SynchronousMachineEquivalentCircuit.xfd>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = SynchronousMachineEquivalentCircuit.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (SynchronousMachineEquivalentCircuit.fields (position), value)
+        emitelem (0, r1d)
+        emitelem (1, r1q)
+        emitelem (2, r2q)
+        emitelem (3, rfd)
+        emitelem (4, x1d)
+        emitelem (5, x1q)
+        emitelem (6, x2q)
+        emitelem (7, xad)
+        emitelem (8, xaq)
+        emitelem (9, xf1d)
+        emitelem (10, xfd)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:SynchronousMachineEquivalentCircuit rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:SynchronousMachineEquivalentCircuit>"
+        "\t<cim:SynchronousMachineEquivalentCircuit rdf:ID=\"%s\">\n%s\t</cim:SynchronousMachineEquivalentCircuit>".format (id, export_fields)
     }
 }
 
@@ -311,35 +365,56 @@ object SynchronousMachineEquivalentCircuit
 extends
     Parseable[SynchronousMachineEquivalentCircuit]
 {
-    val r1d = parse_element (element ("""SynchronousMachineEquivalentCircuit.r1d"""))
-    val r1q = parse_element (element ("""SynchronousMachineEquivalentCircuit.r1q"""))
-    val r2q = parse_element (element ("""SynchronousMachineEquivalentCircuit.r2q"""))
-    val rfd = parse_element (element ("""SynchronousMachineEquivalentCircuit.rfd"""))
-    val x1d = parse_element (element ("""SynchronousMachineEquivalentCircuit.x1d"""))
-    val x1q = parse_element (element ("""SynchronousMachineEquivalentCircuit.x1q"""))
-    val x2q = parse_element (element ("""SynchronousMachineEquivalentCircuit.x2q"""))
-    val xad = parse_element (element ("""SynchronousMachineEquivalentCircuit.xad"""))
-    val xaq = parse_element (element ("""SynchronousMachineEquivalentCircuit.xaq"""))
-    val xf1d = parse_element (element ("""SynchronousMachineEquivalentCircuit.xf1d"""))
-    val xfd = parse_element (element ("""SynchronousMachineEquivalentCircuit.xfd"""))
+    val fields: Array[String] = Array[String] (
+        "r1d",
+        "r1q",
+        "r2q",
+        "rfd",
+        "x1d",
+        "x1q",
+        "x2q",
+        "xad",
+        "xaq",
+        "xf1d",
+        "xfd"
+    )
+    val r1d: Fielder = parse_element (element (cls, fields(0)))
+    val r1q: Fielder = parse_element (element (cls, fields(1)))
+    val r2q: Fielder = parse_element (element (cls, fields(2)))
+    val rfd: Fielder = parse_element (element (cls, fields(3)))
+    val x1d: Fielder = parse_element (element (cls, fields(4)))
+    val x1q: Fielder = parse_element (element (cls, fields(5)))
+    val x2q: Fielder = parse_element (element (cls, fields(6)))
+    val xad: Fielder = parse_element (element (cls, fields(7)))
+    val xaq: Fielder = parse_element (element (cls, fields(8)))
+    val xf1d: Fielder = parse_element (element (cls, fields(9)))
+    val xfd: Fielder = parse_element (element (cls, fields(10)))
+
     def parse (context: Context): SynchronousMachineEquivalentCircuit =
     {
-        SynchronousMachineEquivalentCircuit(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = SynchronousMachineEquivalentCircuit (
             SynchronousMachineDetailed.parse (context),
-            toDouble (r1d (context), context),
-            toDouble (r1q (context), context),
-            toDouble (r2q (context), context),
-            toDouble (rfd (context), context),
-            toDouble (x1d (context), context),
-            toDouble (x1q (context), context),
-            toDouble (x2q (context), context),
-            toDouble (xad (context), context),
-            toDouble (xaq (context), context),
-            toDouble (xf1d (context), context),
-            toDouble (xfd (context), context)
+            toDouble (mask (r1d (), 0)),
+            toDouble (mask (r1q (), 1)),
+            toDouble (mask (r2q (), 2)),
+            toDouble (mask (rfd (), 3)),
+            toDouble (mask (x1d (), 4)),
+            toDouble (mask (x1q (), 5)),
+            toDouble (mask (x2q (), 6)),
+            toDouble (mask (xad (), 7)),
+            toDouble (mask (xaq (), 8)),
+            toDouble (mask (xf1d (), 9)),
+            toDouble (mask (xfd (), 10))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -366,6 +441,12 @@ extends
      */
     def this () = { this (null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -385,14 +466,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        ""
+        sup.export_fields
     }
     override def export: String =
     {
-        "\t<cim:SynchronousMachineSimplified rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:SynchronousMachineSimplified>"
+        "\t<cim:SynchronousMachineSimplified rdf:ID=\"%s\">\n%s\t</cim:SynchronousMachineSimplified>".format (id, export_fields)
     }
 }
 
@@ -400,13 +478,18 @@ object SynchronousMachineSimplified
 extends
     Parseable[SynchronousMachineSimplified]
 {
+
     def parse (context: Context): SynchronousMachineSimplified =
     {
-        SynchronousMachineSimplified(
+        implicit val ctx: Context = context
+        val ret = SynchronousMachineSimplified (
             SynchronousMachineDynamics.parse (context)
         )
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -505,6 +588,12 @@ extends
      */
     def this () = { this (null, 0.0, null, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -524,27 +613,30 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:SynchronousMachineTimeConstantReactance.ks>" + ks + "</cim:SynchronousMachineTimeConstantReactance.ks>\n" +
-        (if (null != modelType) "\t\t<cim:SynchronousMachineTimeConstantReactance.modelType rdf:resource=\"#" + modelType + "\"/>\n" else "") +
-        (if (null != rotorType) "\t\t<cim:SynchronousMachineTimeConstantReactance.rotorType rdf:resource=\"#" + rotorType + "\"/>\n" else "") +
-        "\t\t<cim:SynchronousMachineTimeConstantReactance.tc>" + tc + "</cim:SynchronousMachineTimeConstantReactance.tc>\n" +
-        "\t\t<cim:SynchronousMachineTimeConstantReactance.tpdo>" + tpdo + "</cim:SynchronousMachineTimeConstantReactance.tpdo>\n" +
-        "\t\t<cim:SynchronousMachineTimeConstantReactance.tppdo>" + tppdo + "</cim:SynchronousMachineTimeConstantReactance.tppdo>\n" +
-        "\t\t<cim:SynchronousMachineTimeConstantReactance.tppqo>" + tppqo + "</cim:SynchronousMachineTimeConstantReactance.tppqo>\n" +
-        "\t\t<cim:SynchronousMachineTimeConstantReactance.tpqo>" + tpqo + "</cim:SynchronousMachineTimeConstantReactance.tpqo>\n" +
-        "\t\t<cim:SynchronousMachineTimeConstantReactance.xDirectSubtrans>" + xDirectSubtrans + "</cim:SynchronousMachineTimeConstantReactance.xDirectSubtrans>\n" +
-        "\t\t<cim:SynchronousMachineTimeConstantReactance.xDirectSync>" + xDirectSync + "</cim:SynchronousMachineTimeConstantReactance.xDirectSync>\n" +
-        "\t\t<cim:SynchronousMachineTimeConstantReactance.xDirectTrans>" + xDirectTrans + "</cim:SynchronousMachineTimeConstantReactance.xDirectTrans>\n" +
-        "\t\t<cim:SynchronousMachineTimeConstantReactance.xQuadSubtrans>" + xQuadSubtrans + "</cim:SynchronousMachineTimeConstantReactance.xQuadSubtrans>\n" +
-        "\t\t<cim:SynchronousMachineTimeConstantReactance.xQuadSync>" + xQuadSync + "</cim:SynchronousMachineTimeConstantReactance.xQuadSync>\n" +
-        "\t\t<cim:SynchronousMachineTimeConstantReactance.xQuadTrans>" + xQuadTrans + "</cim:SynchronousMachineTimeConstantReactance.xQuadTrans>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = SynchronousMachineTimeConstantReactance.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (SynchronousMachineTimeConstantReactance.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (SynchronousMachineTimeConstantReactance.fields (position), value)
+        emitelem (0, ks)
+        emitattr (1, modelType)
+        emitattr (2, rotorType)
+        emitelem (3, tc)
+        emitelem (4, tpdo)
+        emitelem (5, tppdo)
+        emitelem (6, tppqo)
+        emitelem (7, tpqo)
+        emitelem (8, xDirectSubtrans)
+        emitelem (9, xDirectSync)
+        emitelem (10, xDirectTrans)
+        emitelem (11, xQuadSubtrans)
+        emitelem (12, xQuadSync)
+        emitelem (13, xQuadTrans)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:SynchronousMachineTimeConstantReactance rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:SynchronousMachineTimeConstantReactance>"
+        "\t<cim:SynchronousMachineTimeConstantReactance rdf:ID=\"%s\">\n%s\t</cim:SynchronousMachineTimeConstantReactance>".format (id, export_fields)
     }
 }
 
@@ -552,41 +644,65 @@ object SynchronousMachineTimeConstantReactance
 extends
     Parseable[SynchronousMachineTimeConstantReactance]
 {
-    val ks = parse_element (element ("""SynchronousMachineTimeConstantReactance.ks"""))
-    val modelType = parse_attribute (attribute ("""SynchronousMachineTimeConstantReactance.modelType"""))
-    val rotorType = parse_attribute (attribute ("""SynchronousMachineTimeConstantReactance.rotorType"""))
-    val tc = parse_element (element ("""SynchronousMachineTimeConstantReactance.tc"""))
-    val tpdo = parse_element (element ("""SynchronousMachineTimeConstantReactance.tpdo"""))
-    val tppdo = parse_element (element ("""SynchronousMachineTimeConstantReactance.tppdo"""))
-    val tppqo = parse_element (element ("""SynchronousMachineTimeConstantReactance.tppqo"""))
-    val tpqo = parse_element (element ("""SynchronousMachineTimeConstantReactance.tpqo"""))
-    val xDirectSubtrans = parse_element (element ("""SynchronousMachineTimeConstantReactance.xDirectSubtrans"""))
-    val xDirectSync = parse_element (element ("""SynchronousMachineTimeConstantReactance.xDirectSync"""))
-    val xDirectTrans = parse_element (element ("""SynchronousMachineTimeConstantReactance.xDirectTrans"""))
-    val xQuadSubtrans = parse_element (element ("""SynchronousMachineTimeConstantReactance.xQuadSubtrans"""))
-    val xQuadSync = parse_element (element ("""SynchronousMachineTimeConstantReactance.xQuadSync"""))
-    val xQuadTrans = parse_element (element ("""SynchronousMachineTimeConstantReactance.xQuadTrans"""))
+    val fields: Array[String] = Array[String] (
+        "ks",
+        "modelType",
+        "rotorType",
+        "tc",
+        "tpdo",
+        "tppdo",
+        "tppqo",
+        "tpqo",
+        "xDirectSubtrans",
+        "xDirectSync",
+        "xDirectTrans",
+        "xQuadSubtrans",
+        "xQuadSync",
+        "xQuadTrans"
+    )
+    val ks: Fielder = parse_element (element (cls, fields(0)))
+    val modelType: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val rotorType: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val tc: Fielder = parse_element (element (cls, fields(3)))
+    val tpdo: Fielder = parse_element (element (cls, fields(4)))
+    val tppdo: Fielder = parse_element (element (cls, fields(5)))
+    val tppqo: Fielder = parse_element (element (cls, fields(6)))
+    val tpqo: Fielder = parse_element (element (cls, fields(7)))
+    val xDirectSubtrans: Fielder = parse_element (element (cls, fields(8)))
+    val xDirectSync: Fielder = parse_element (element (cls, fields(9)))
+    val xDirectTrans: Fielder = parse_element (element (cls, fields(10)))
+    val xQuadSubtrans: Fielder = parse_element (element (cls, fields(11)))
+    val xQuadSync: Fielder = parse_element (element (cls, fields(12)))
+    val xQuadTrans: Fielder = parse_element (element (cls, fields(13)))
+
     def parse (context: Context): SynchronousMachineTimeConstantReactance =
     {
-        SynchronousMachineTimeConstantReactance(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = SynchronousMachineTimeConstantReactance (
             SynchronousMachineDetailed.parse (context),
-            toDouble (ks (context), context),
-            modelType (context),
-            rotorType (context),
-            toDouble (tc (context), context),
-            toDouble (tpdo (context), context),
-            toDouble (tppdo (context), context),
-            toDouble (tppqo (context), context),
-            toDouble (tpqo (context), context),
-            toDouble (xDirectSubtrans (context), context),
-            toDouble (xDirectSync (context), context),
-            toDouble (xDirectTrans (context), context),
-            toDouble (xQuadSubtrans (context), context),
-            toDouble (xQuadSync (context), context),
-            toDouble (xQuadTrans (context), context)
+            toDouble (mask (ks (), 0)),
+            mask (modelType (), 1),
+            mask (rotorType (), 2),
+            toDouble (mask (tc (), 3)),
+            toDouble (mask (tpdo (), 4)),
+            toDouble (mask (tppdo (), 5)),
+            toDouble (mask (tppqo (), 6)),
+            toDouble (mask (tpqo (), 7)),
+            toDouble (mask (xDirectSubtrans (), 8)),
+            toDouble (mask (xDirectSync (), 9)),
+            toDouble (mask (xDirectTrans (), 10)),
+            toDouble (mask (xQuadSubtrans (), 11)),
+            toDouble (mask (xQuadSync (), 12)),
+            toDouble (mask (xQuadTrans (), 13))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 private[ninecode] object _SynchronousMachineDynamics

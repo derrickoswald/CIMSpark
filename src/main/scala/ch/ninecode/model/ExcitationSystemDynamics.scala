@@ -95,6 +95,12 @@ extends
      */
     def this () = { this (null, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -114,35 +120,37 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ExcAC1A.hvlvgates>" + hvlvgates + "</cim:ExcAC1A.hvlvgates>\n" +
-        "\t\t<cim:ExcAC1A.ka>" + ka + "</cim:ExcAC1A.ka>\n" +
-        "\t\t<cim:ExcAC1A.kc>" + kc + "</cim:ExcAC1A.kc>\n" +
-        "\t\t<cim:ExcAC1A.kd>" + kd + "</cim:ExcAC1A.kd>\n" +
-        "\t\t<cim:ExcAC1A.ke>" + ke + "</cim:ExcAC1A.ke>\n" +
-        "\t\t<cim:ExcAC1A.kf>" + kf + "</cim:ExcAC1A.kf>\n" +
-        "\t\t<cim:ExcAC1A.kf1>" + kf1 + "</cim:ExcAC1A.kf1>\n" +
-        "\t\t<cim:ExcAC1A.kf2>" + kf2 + "</cim:ExcAC1A.kf2>\n" +
-        "\t\t<cim:ExcAC1A.ks>" + ks + "</cim:ExcAC1A.ks>\n" +
-        "\t\t<cim:ExcAC1A.seve1>" + seve1 + "</cim:ExcAC1A.seve1>\n" +
-        "\t\t<cim:ExcAC1A.seve2>" + seve2 + "</cim:ExcAC1A.seve2>\n" +
-        "\t\t<cim:ExcAC1A.ta>" + ta + "</cim:ExcAC1A.ta>\n" +
-        "\t\t<cim:ExcAC1A.tb>" + tb + "</cim:ExcAC1A.tb>\n" +
-        "\t\t<cim:ExcAC1A.tc>" + tc + "</cim:ExcAC1A.tc>\n" +
-        "\t\t<cim:ExcAC1A.te>" + te + "</cim:ExcAC1A.te>\n" +
-        "\t\t<cim:ExcAC1A.tf>" + tf + "</cim:ExcAC1A.tf>\n" +
-        "\t\t<cim:ExcAC1A.vamax>" + vamax + "</cim:ExcAC1A.vamax>\n" +
-        "\t\t<cim:ExcAC1A.vamin>" + vamin + "</cim:ExcAC1A.vamin>\n" +
-        "\t\t<cim:ExcAC1A.ve1>" + ve1 + "</cim:ExcAC1A.ve1>\n" +
-        "\t\t<cim:ExcAC1A.ve2>" + ve2 + "</cim:ExcAC1A.ve2>\n" +
-        "\t\t<cim:ExcAC1A.vrmax>" + vrmax + "</cim:ExcAC1A.vrmax>\n" +
-        "\t\t<cim:ExcAC1A.vrmin>" + vrmin + "</cim:ExcAC1A.vrmin>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcAC1A.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcAC1A.fields (position), value)
+        emitelem (0, hvlvgates)
+        emitelem (1, ka)
+        emitelem (2, kc)
+        emitelem (3, kd)
+        emitelem (4, ke)
+        emitelem (5, kf)
+        emitelem (6, kf1)
+        emitelem (7, kf2)
+        emitelem (8, ks)
+        emitelem (9, seve1)
+        emitelem (10, seve2)
+        emitelem (11, ta)
+        emitelem (12, tb)
+        emitelem (13, tc)
+        emitelem (14, te)
+        emitelem (15, tf)
+        emitelem (16, vamax)
+        emitelem (17, vamin)
+        emitelem (18, ve1)
+        emitelem (19, ve2)
+        emitelem (20, vrmax)
+        emitelem (21, vrmin)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ExcAC1A rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcAC1A>"
+        "\t<cim:ExcAC1A rdf:ID=\"%s\">\n%s\t</cim:ExcAC1A>".format (id, export_fields)
     }
 }
 
@@ -150,57 +158,89 @@ object ExcAC1A
 extends
     Parseable[ExcAC1A]
 {
-    val hvlvgates = parse_element (element ("""ExcAC1A.hvlvgates"""))
-    val ka = parse_element (element ("""ExcAC1A.ka"""))
-    val kc = parse_element (element ("""ExcAC1A.kc"""))
-    val kd = parse_element (element ("""ExcAC1A.kd"""))
-    val ke = parse_element (element ("""ExcAC1A.ke"""))
-    val kf = parse_element (element ("""ExcAC1A.kf"""))
-    val kf1 = parse_element (element ("""ExcAC1A.kf1"""))
-    val kf2 = parse_element (element ("""ExcAC1A.kf2"""))
-    val ks = parse_element (element ("""ExcAC1A.ks"""))
-    val seve1 = parse_element (element ("""ExcAC1A.seve1"""))
-    val seve2 = parse_element (element ("""ExcAC1A.seve2"""))
-    val ta = parse_element (element ("""ExcAC1A.ta"""))
-    val tb = parse_element (element ("""ExcAC1A.tb"""))
-    val tc = parse_element (element ("""ExcAC1A.tc"""))
-    val te = parse_element (element ("""ExcAC1A.te"""))
-    val tf = parse_element (element ("""ExcAC1A.tf"""))
-    val vamax = parse_element (element ("""ExcAC1A.vamax"""))
-    val vamin = parse_element (element ("""ExcAC1A.vamin"""))
-    val ve1 = parse_element (element ("""ExcAC1A.ve1"""))
-    val ve2 = parse_element (element ("""ExcAC1A.ve2"""))
-    val vrmax = parse_element (element ("""ExcAC1A.vrmax"""))
-    val vrmin = parse_element (element ("""ExcAC1A.vrmin"""))
+    val fields: Array[String] = Array[String] (
+        "hvlvgates",
+        "ka",
+        "kc",
+        "kd",
+        "ke",
+        "kf",
+        "kf1",
+        "kf2",
+        "ks",
+        "seve1",
+        "seve2",
+        "ta",
+        "tb",
+        "tc",
+        "te",
+        "tf",
+        "vamax",
+        "vamin",
+        "ve1",
+        "ve2",
+        "vrmax",
+        "vrmin"
+    )
+    val hvlvgates: Fielder = parse_element (element (cls, fields(0)))
+    val ka: Fielder = parse_element (element (cls, fields(1)))
+    val kc: Fielder = parse_element (element (cls, fields(2)))
+    val kd: Fielder = parse_element (element (cls, fields(3)))
+    val ke: Fielder = parse_element (element (cls, fields(4)))
+    val kf: Fielder = parse_element (element (cls, fields(5)))
+    val kf1: Fielder = parse_element (element (cls, fields(6)))
+    val kf2: Fielder = parse_element (element (cls, fields(7)))
+    val ks: Fielder = parse_element (element (cls, fields(8)))
+    val seve1: Fielder = parse_element (element (cls, fields(9)))
+    val seve2: Fielder = parse_element (element (cls, fields(10)))
+    val ta: Fielder = parse_element (element (cls, fields(11)))
+    val tb: Fielder = parse_element (element (cls, fields(12)))
+    val tc: Fielder = parse_element (element (cls, fields(13)))
+    val te: Fielder = parse_element (element (cls, fields(14)))
+    val tf: Fielder = parse_element (element (cls, fields(15)))
+    val vamax: Fielder = parse_element (element (cls, fields(16)))
+    val vamin: Fielder = parse_element (element (cls, fields(17)))
+    val ve1: Fielder = parse_element (element (cls, fields(18)))
+    val ve2: Fielder = parse_element (element (cls, fields(19)))
+    val vrmax: Fielder = parse_element (element (cls, fields(20)))
+    val vrmin: Fielder = parse_element (element (cls, fields(21)))
+
     def parse (context: Context): ExcAC1A =
     {
-        ExcAC1A(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ExcAC1A (
             ExcitationSystemDynamics.parse (context),
-            toBoolean (hvlvgates (context), context),
-            toDouble (ka (context), context),
-            toDouble (kc (context), context),
-            toDouble (kd (context), context),
-            toDouble (ke (context), context),
-            toDouble (kf (context), context),
-            toDouble (kf1 (context), context),
-            toDouble (kf2 (context), context),
-            toDouble (ks (context), context),
-            toDouble (seve1 (context), context),
-            toDouble (seve2 (context), context),
-            toDouble (ta (context), context),
-            toDouble (tb (context), context),
-            toDouble (tc (context), context),
-            toDouble (te (context), context),
-            toDouble (tf (context), context),
-            toDouble (vamax (context), context),
-            toDouble (vamin (context), context),
-            toDouble (ve1 (context), context),
-            toDouble (ve2 (context), context),
-            toDouble (vrmax (context), context),
-            toDouble (vrmin (context), context)
+            toBoolean (mask (hvlvgates (), 0)),
+            toDouble (mask (ka (), 1)),
+            toDouble (mask (kc (), 2)),
+            toDouble (mask (kd (), 3)),
+            toDouble (mask (ke (), 4)),
+            toDouble (mask (kf (), 5)),
+            toDouble (mask (kf1 (), 6)),
+            toDouble (mask (kf2 (), 7)),
+            toDouble (mask (ks (), 8)),
+            toDouble (mask (seve1 (), 9)),
+            toDouble (mask (seve2 (), 10)),
+            toDouble (mask (ta (), 11)),
+            toDouble (mask (tb (), 12)),
+            toDouble (mask (tc (), 13)),
+            toDouble (mask (te (), 14)),
+            toDouble (mask (tf (), 15)),
+            toDouble (mask (vamax (), 16)),
+            toDouble (mask (vamin (), 17)),
+            toDouble (mask (ve1 (), 18)),
+            toDouble (mask (ve2 (), 19)),
+            toDouble (mask (vrmax (), 20)),
+            toDouble (mask (vrmin (), 21))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -311,6 +351,12 @@ extends
      */
     def this () = { this (null, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -330,41 +376,43 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ExcAC2A.hvgate>" + hvgate + "</cim:ExcAC2A.hvgate>\n" +
-        "\t\t<cim:ExcAC2A.ka>" + ka + "</cim:ExcAC2A.ka>\n" +
-        "\t\t<cim:ExcAC2A.kb>" + kb + "</cim:ExcAC2A.kb>\n" +
-        "\t\t<cim:ExcAC2A.kb1>" + kb1 + "</cim:ExcAC2A.kb1>\n" +
-        "\t\t<cim:ExcAC2A.kc>" + kc + "</cim:ExcAC2A.kc>\n" +
-        "\t\t<cim:ExcAC2A.kd>" + kd + "</cim:ExcAC2A.kd>\n" +
-        "\t\t<cim:ExcAC2A.ke>" + ke + "</cim:ExcAC2A.ke>\n" +
-        "\t\t<cim:ExcAC2A.kf>" + kf + "</cim:ExcAC2A.kf>\n" +
-        "\t\t<cim:ExcAC2A.kh>" + kh + "</cim:ExcAC2A.kh>\n" +
-        "\t\t<cim:ExcAC2A.kl>" + kl + "</cim:ExcAC2A.kl>\n" +
-        "\t\t<cim:ExcAC2A.kl1>" + kl1 + "</cim:ExcAC2A.kl1>\n" +
-        "\t\t<cim:ExcAC2A.ks>" + ks + "</cim:ExcAC2A.ks>\n" +
-        "\t\t<cim:ExcAC2A.lvgate>" + lvgate + "</cim:ExcAC2A.lvgate>\n" +
-        "\t\t<cim:ExcAC2A.seve1>" + seve1 + "</cim:ExcAC2A.seve1>\n" +
-        "\t\t<cim:ExcAC2A.seve2>" + seve2 + "</cim:ExcAC2A.seve2>\n" +
-        "\t\t<cim:ExcAC2A.ta>" + ta + "</cim:ExcAC2A.ta>\n" +
-        "\t\t<cim:ExcAC2A.tb>" + tb + "</cim:ExcAC2A.tb>\n" +
-        "\t\t<cim:ExcAC2A.tc>" + tc + "</cim:ExcAC2A.tc>\n" +
-        "\t\t<cim:ExcAC2A.te>" + te + "</cim:ExcAC2A.te>\n" +
-        "\t\t<cim:ExcAC2A.tf>" + tf + "</cim:ExcAC2A.tf>\n" +
-        "\t\t<cim:ExcAC2A.vamax>" + vamax + "</cim:ExcAC2A.vamax>\n" +
-        "\t\t<cim:ExcAC2A.vamin>" + vamin + "</cim:ExcAC2A.vamin>\n" +
-        "\t\t<cim:ExcAC2A.ve1>" + ve1 + "</cim:ExcAC2A.ve1>\n" +
-        "\t\t<cim:ExcAC2A.ve2>" + ve2 + "</cim:ExcAC2A.ve2>\n" +
-        "\t\t<cim:ExcAC2A.vfemax>" + vfemax + "</cim:ExcAC2A.vfemax>\n" +
-        "\t\t<cim:ExcAC2A.vlr>" + vlr + "</cim:ExcAC2A.vlr>\n" +
-        "\t\t<cim:ExcAC2A.vrmax>" + vrmax + "</cim:ExcAC2A.vrmax>\n" +
-        "\t\t<cim:ExcAC2A.vrmin>" + vrmin + "</cim:ExcAC2A.vrmin>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcAC2A.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcAC2A.fields (position), value)
+        emitelem (0, hvgate)
+        emitelem (1, ka)
+        emitelem (2, kb)
+        emitelem (3, kb1)
+        emitelem (4, kc)
+        emitelem (5, kd)
+        emitelem (6, ke)
+        emitelem (7, kf)
+        emitelem (8, kh)
+        emitelem (9, kl)
+        emitelem (10, kl1)
+        emitelem (11, ks)
+        emitelem (12, lvgate)
+        emitelem (13, seve1)
+        emitelem (14, seve2)
+        emitelem (15, ta)
+        emitelem (16, tb)
+        emitelem (17, tc)
+        emitelem (18, te)
+        emitelem (19, tf)
+        emitelem (20, vamax)
+        emitelem (21, vamin)
+        emitelem (22, ve1)
+        emitelem (23, ve2)
+        emitelem (24, vfemax)
+        emitelem (25, vlr)
+        emitelem (26, vrmax)
+        emitelem (27, vrmin)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ExcAC2A rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcAC2A>"
+        "\t<cim:ExcAC2A rdf:ID=\"%s\">\n%s\t</cim:ExcAC2A>".format (id, export_fields)
     }
 }
 
@@ -372,69 +420,107 @@ object ExcAC2A
 extends
     Parseable[ExcAC2A]
 {
-    val hvgate = parse_element (element ("""ExcAC2A.hvgate"""))
-    val ka = parse_element (element ("""ExcAC2A.ka"""))
-    val kb = parse_element (element ("""ExcAC2A.kb"""))
-    val kb1 = parse_element (element ("""ExcAC2A.kb1"""))
-    val kc = parse_element (element ("""ExcAC2A.kc"""))
-    val kd = parse_element (element ("""ExcAC2A.kd"""))
-    val ke = parse_element (element ("""ExcAC2A.ke"""))
-    val kf = parse_element (element ("""ExcAC2A.kf"""))
-    val kh = parse_element (element ("""ExcAC2A.kh"""))
-    val kl = parse_element (element ("""ExcAC2A.kl"""))
-    val kl1 = parse_element (element ("""ExcAC2A.kl1"""))
-    val ks = parse_element (element ("""ExcAC2A.ks"""))
-    val lvgate = parse_element (element ("""ExcAC2A.lvgate"""))
-    val seve1 = parse_element (element ("""ExcAC2A.seve1"""))
-    val seve2 = parse_element (element ("""ExcAC2A.seve2"""))
-    val ta = parse_element (element ("""ExcAC2A.ta"""))
-    val tb = parse_element (element ("""ExcAC2A.tb"""))
-    val tc = parse_element (element ("""ExcAC2A.tc"""))
-    val te = parse_element (element ("""ExcAC2A.te"""))
-    val tf = parse_element (element ("""ExcAC2A.tf"""))
-    val vamax = parse_element (element ("""ExcAC2A.vamax"""))
-    val vamin = parse_element (element ("""ExcAC2A.vamin"""))
-    val ve1 = parse_element (element ("""ExcAC2A.ve1"""))
-    val ve2 = parse_element (element ("""ExcAC2A.ve2"""))
-    val vfemax = parse_element (element ("""ExcAC2A.vfemax"""))
-    val vlr = parse_element (element ("""ExcAC2A.vlr"""))
-    val vrmax = parse_element (element ("""ExcAC2A.vrmax"""))
-    val vrmin = parse_element (element ("""ExcAC2A.vrmin"""))
+    val fields: Array[String] = Array[String] (
+        "hvgate",
+        "ka",
+        "kb",
+        "kb1",
+        "kc",
+        "kd",
+        "ke",
+        "kf",
+        "kh",
+        "kl",
+        "kl1",
+        "ks",
+        "lvgate",
+        "seve1",
+        "seve2",
+        "ta",
+        "tb",
+        "tc",
+        "te",
+        "tf",
+        "vamax",
+        "vamin",
+        "ve1",
+        "ve2",
+        "vfemax",
+        "vlr",
+        "vrmax",
+        "vrmin"
+    )
+    val hvgate: Fielder = parse_element (element (cls, fields(0)))
+    val ka: Fielder = parse_element (element (cls, fields(1)))
+    val kb: Fielder = parse_element (element (cls, fields(2)))
+    val kb1: Fielder = parse_element (element (cls, fields(3)))
+    val kc: Fielder = parse_element (element (cls, fields(4)))
+    val kd: Fielder = parse_element (element (cls, fields(5)))
+    val ke: Fielder = parse_element (element (cls, fields(6)))
+    val kf: Fielder = parse_element (element (cls, fields(7)))
+    val kh: Fielder = parse_element (element (cls, fields(8)))
+    val kl: Fielder = parse_element (element (cls, fields(9)))
+    val kl1: Fielder = parse_element (element (cls, fields(10)))
+    val ks: Fielder = parse_element (element (cls, fields(11)))
+    val lvgate: Fielder = parse_element (element (cls, fields(12)))
+    val seve1: Fielder = parse_element (element (cls, fields(13)))
+    val seve2: Fielder = parse_element (element (cls, fields(14)))
+    val ta: Fielder = parse_element (element (cls, fields(15)))
+    val tb: Fielder = parse_element (element (cls, fields(16)))
+    val tc: Fielder = parse_element (element (cls, fields(17)))
+    val te: Fielder = parse_element (element (cls, fields(18)))
+    val tf: Fielder = parse_element (element (cls, fields(19)))
+    val vamax: Fielder = parse_element (element (cls, fields(20)))
+    val vamin: Fielder = parse_element (element (cls, fields(21)))
+    val ve1: Fielder = parse_element (element (cls, fields(22)))
+    val ve2: Fielder = parse_element (element (cls, fields(23)))
+    val vfemax: Fielder = parse_element (element (cls, fields(24)))
+    val vlr: Fielder = parse_element (element (cls, fields(25)))
+    val vrmax: Fielder = parse_element (element (cls, fields(26)))
+    val vrmin: Fielder = parse_element (element (cls, fields(27)))
+
     def parse (context: Context): ExcAC2A =
     {
-        ExcAC2A(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ExcAC2A (
             ExcitationSystemDynamics.parse (context),
-            toBoolean (hvgate (context), context),
-            toDouble (ka (context), context),
-            toDouble (kb (context), context),
-            toDouble (kb1 (context), context),
-            toDouble (kc (context), context),
-            toDouble (kd (context), context),
-            toDouble (ke (context), context),
-            toDouble (kf (context), context),
-            toDouble (kh (context), context),
-            toDouble (kl (context), context),
-            toDouble (kl1 (context), context),
-            toDouble (ks (context), context),
-            toBoolean (lvgate (context), context),
-            toDouble (seve1 (context), context),
-            toDouble (seve2 (context), context),
-            toDouble (ta (context), context),
-            toDouble (tb (context), context),
-            toDouble (tc (context), context),
-            toDouble (te (context), context),
-            toDouble (tf (context), context),
-            toDouble (vamax (context), context),
-            toDouble (vamin (context), context),
-            toDouble (ve1 (context), context),
-            toDouble (ve2 (context), context),
-            toDouble (vfemax (context), context),
-            toDouble (vlr (context), context),
-            toDouble (vrmax (context), context),
-            toDouble (vrmin (context), context)
+            toBoolean (mask (hvgate (), 0)),
+            toDouble (mask (ka (), 1)),
+            toDouble (mask (kb (), 2)),
+            toDouble (mask (kb1 (), 3)),
+            toDouble (mask (kc (), 4)),
+            toDouble (mask (kd (), 5)),
+            toDouble (mask (ke (), 6)),
+            toDouble (mask (kf (), 7)),
+            toDouble (mask (kh (), 8)),
+            toDouble (mask (kl (), 9)),
+            toDouble (mask (kl1 (), 10)),
+            toDouble (mask (ks (), 11)),
+            toBoolean (mask (lvgate (), 12)),
+            toDouble (mask (seve1 (), 13)),
+            toDouble (mask (seve2 (), 14)),
+            toDouble (mask (ta (), 15)),
+            toDouble (mask (tb (), 16)),
+            toDouble (mask (tc (), 17)),
+            toDouble (mask (te (), 18)),
+            toDouble (mask (tf (), 19)),
+            toDouble (mask (vamax (), 20)),
+            toDouble (mask (vamin (), 21)),
+            toDouble (mask (ve1 (), 22)),
+            toDouble (mask (ve2 (), 23)),
+            toDouble (mask (vfemax (), 24)),
+            toDouble (mask (vlr (), 25)),
+            toDouble (mask (vrmax (), 26)),
+            toDouble (mask (vrmin (), 27))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -535,6 +621,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -554,39 +646,41 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ExcAC3A.efdn>" + efdn + "</cim:ExcAC3A.efdn>\n" +
-        "\t\t<cim:ExcAC3A.ka>" + ka + "</cim:ExcAC3A.ka>\n" +
-        "\t\t<cim:ExcAC3A.kc>" + kc + "</cim:ExcAC3A.kc>\n" +
-        "\t\t<cim:ExcAC3A.kd>" + kd + "</cim:ExcAC3A.kd>\n" +
-        "\t\t<cim:ExcAC3A.ke>" + ke + "</cim:ExcAC3A.ke>\n" +
-        "\t\t<cim:ExcAC3A.kf>" + kf + "</cim:ExcAC3A.kf>\n" +
-        "\t\t<cim:ExcAC3A.kf1>" + kf1 + "</cim:ExcAC3A.kf1>\n" +
-        "\t\t<cim:ExcAC3A.kf2>" + kf2 + "</cim:ExcAC3A.kf2>\n" +
-        "\t\t<cim:ExcAC3A.klv>" + klv + "</cim:ExcAC3A.klv>\n" +
-        "\t\t<cim:ExcAC3A.kn>" + kn + "</cim:ExcAC3A.kn>\n" +
-        "\t\t<cim:ExcAC3A.kr>" + kr + "</cim:ExcAC3A.kr>\n" +
-        "\t\t<cim:ExcAC3A.ks>" + ks + "</cim:ExcAC3A.ks>\n" +
-        "\t\t<cim:ExcAC3A.seve1>" + seve1 + "</cim:ExcAC3A.seve1>\n" +
-        "\t\t<cim:ExcAC3A.seve2>" + seve2 + "</cim:ExcAC3A.seve2>\n" +
-        "\t\t<cim:ExcAC3A.ta>" + ta + "</cim:ExcAC3A.ta>\n" +
-        "\t\t<cim:ExcAC3A.tb>" + tb + "</cim:ExcAC3A.tb>\n" +
-        "\t\t<cim:ExcAC3A.tc>" + tc + "</cim:ExcAC3A.tc>\n" +
-        "\t\t<cim:ExcAC3A.te>" + te + "</cim:ExcAC3A.te>\n" +
-        "\t\t<cim:ExcAC3A.tf>" + tf + "</cim:ExcAC3A.tf>\n" +
-        "\t\t<cim:ExcAC3A.vamax>" + vamax + "</cim:ExcAC3A.vamax>\n" +
-        "\t\t<cim:ExcAC3A.vamin>" + vamin + "</cim:ExcAC3A.vamin>\n" +
-        "\t\t<cim:ExcAC3A.ve1>" + ve1 + "</cim:ExcAC3A.ve1>\n" +
-        "\t\t<cim:ExcAC3A.ve2>" + ve2 + "</cim:ExcAC3A.ve2>\n" +
-        "\t\t<cim:ExcAC3A.vemin>" + vemin + "</cim:ExcAC3A.vemin>\n" +
-        "\t\t<cim:ExcAC3A.vfemax>" + vfemax + "</cim:ExcAC3A.vfemax>\n" +
-        "\t\t<cim:ExcAC3A.vlv>" + vlv + "</cim:ExcAC3A.vlv>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcAC3A.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcAC3A.fields (position), value)
+        emitelem (0, efdn)
+        emitelem (1, ka)
+        emitelem (2, kc)
+        emitelem (3, kd)
+        emitelem (4, ke)
+        emitelem (5, kf)
+        emitelem (6, kf1)
+        emitelem (7, kf2)
+        emitelem (8, klv)
+        emitelem (9, kn)
+        emitelem (10, kr)
+        emitelem (11, ks)
+        emitelem (12, seve1)
+        emitelem (13, seve2)
+        emitelem (14, ta)
+        emitelem (15, tb)
+        emitelem (16, tc)
+        emitelem (17, te)
+        emitelem (18, tf)
+        emitelem (19, vamax)
+        emitelem (20, vamin)
+        emitelem (21, ve1)
+        emitelem (22, ve2)
+        emitelem (23, vemin)
+        emitelem (24, vfemax)
+        emitelem (25, vlv)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ExcAC3A rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcAC3A>"
+        "\t<cim:ExcAC3A rdf:ID=\"%s\">\n%s\t</cim:ExcAC3A>".format (id, export_fields)
     }
 }
 
@@ -594,65 +688,101 @@ object ExcAC3A
 extends
     Parseable[ExcAC3A]
 {
-    val efdn = parse_element (element ("""ExcAC3A.efdn"""))
-    val ka = parse_element (element ("""ExcAC3A.ka"""))
-    val kc = parse_element (element ("""ExcAC3A.kc"""))
-    val kd = parse_element (element ("""ExcAC3A.kd"""))
-    val ke = parse_element (element ("""ExcAC3A.ke"""))
-    val kf = parse_element (element ("""ExcAC3A.kf"""))
-    val kf1 = parse_element (element ("""ExcAC3A.kf1"""))
-    val kf2 = parse_element (element ("""ExcAC3A.kf2"""))
-    val klv = parse_element (element ("""ExcAC3A.klv"""))
-    val kn = parse_element (element ("""ExcAC3A.kn"""))
-    val kr = parse_element (element ("""ExcAC3A.kr"""))
-    val ks = parse_element (element ("""ExcAC3A.ks"""))
-    val seve1 = parse_element (element ("""ExcAC3A.seve1"""))
-    val seve2 = parse_element (element ("""ExcAC3A.seve2"""))
-    val ta = parse_element (element ("""ExcAC3A.ta"""))
-    val tb = parse_element (element ("""ExcAC3A.tb"""))
-    val tc = parse_element (element ("""ExcAC3A.tc"""))
-    val te = parse_element (element ("""ExcAC3A.te"""))
-    val tf = parse_element (element ("""ExcAC3A.tf"""))
-    val vamax = parse_element (element ("""ExcAC3A.vamax"""))
-    val vamin = parse_element (element ("""ExcAC3A.vamin"""))
-    val ve1 = parse_element (element ("""ExcAC3A.ve1"""))
-    val ve2 = parse_element (element ("""ExcAC3A.ve2"""))
-    val vemin = parse_element (element ("""ExcAC3A.vemin"""))
-    val vfemax = parse_element (element ("""ExcAC3A.vfemax"""))
-    val vlv = parse_element (element ("""ExcAC3A.vlv"""))
+    val fields: Array[String] = Array[String] (
+        "efdn",
+        "ka",
+        "kc",
+        "kd",
+        "ke",
+        "kf",
+        "kf1",
+        "kf2",
+        "klv",
+        "kn",
+        "kr",
+        "ks",
+        "seve1",
+        "seve2",
+        "ta",
+        "tb",
+        "tc",
+        "te",
+        "tf",
+        "vamax",
+        "vamin",
+        "ve1",
+        "ve2",
+        "vemin",
+        "vfemax",
+        "vlv"
+    )
+    val efdn: Fielder = parse_element (element (cls, fields(0)))
+    val ka: Fielder = parse_element (element (cls, fields(1)))
+    val kc: Fielder = parse_element (element (cls, fields(2)))
+    val kd: Fielder = parse_element (element (cls, fields(3)))
+    val ke: Fielder = parse_element (element (cls, fields(4)))
+    val kf: Fielder = parse_element (element (cls, fields(5)))
+    val kf1: Fielder = parse_element (element (cls, fields(6)))
+    val kf2: Fielder = parse_element (element (cls, fields(7)))
+    val klv: Fielder = parse_element (element (cls, fields(8)))
+    val kn: Fielder = parse_element (element (cls, fields(9)))
+    val kr: Fielder = parse_element (element (cls, fields(10)))
+    val ks: Fielder = parse_element (element (cls, fields(11)))
+    val seve1: Fielder = parse_element (element (cls, fields(12)))
+    val seve2: Fielder = parse_element (element (cls, fields(13)))
+    val ta: Fielder = parse_element (element (cls, fields(14)))
+    val tb: Fielder = parse_element (element (cls, fields(15)))
+    val tc: Fielder = parse_element (element (cls, fields(16)))
+    val te: Fielder = parse_element (element (cls, fields(17)))
+    val tf: Fielder = parse_element (element (cls, fields(18)))
+    val vamax: Fielder = parse_element (element (cls, fields(19)))
+    val vamin: Fielder = parse_element (element (cls, fields(20)))
+    val ve1: Fielder = parse_element (element (cls, fields(21)))
+    val ve2: Fielder = parse_element (element (cls, fields(22)))
+    val vemin: Fielder = parse_element (element (cls, fields(23)))
+    val vfemax: Fielder = parse_element (element (cls, fields(24)))
+    val vlv: Fielder = parse_element (element (cls, fields(25)))
+
     def parse (context: Context): ExcAC3A =
     {
-        ExcAC3A(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ExcAC3A (
             ExcitationSystemDynamics.parse (context),
-            toDouble (efdn (context), context),
-            toDouble (ka (context), context),
-            toDouble (kc (context), context),
-            toDouble (kd (context), context),
-            toDouble (ke (context), context),
-            toDouble (kf (context), context),
-            toDouble (kf1 (context), context),
-            toDouble (kf2 (context), context),
-            toDouble (klv (context), context),
-            toDouble (kn (context), context),
-            toDouble (kr (context), context),
-            toDouble (ks (context), context),
-            toDouble (seve1 (context), context),
-            toDouble (seve2 (context), context),
-            toDouble (ta (context), context),
-            toDouble (tb (context), context),
-            toDouble (tc (context), context),
-            toDouble (te (context), context),
-            toDouble (tf (context), context),
-            toDouble (vamax (context), context),
-            toDouble (vamin (context), context),
-            toDouble (ve1 (context), context),
-            toDouble (ve2 (context), context),
-            toDouble (vemin (context), context),
-            toDouble (vfemax (context), context),
-            toDouble (vlv (context), context)
+            toDouble (mask (efdn (), 0)),
+            toDouble (mask (ka (), 1)),
+            toDouble (mask (kc (), 2)),
+            toDouble (mask (kd (), 3)),
+            toDouble (mask (ke (), 4)),
+            toDouble (mask (kf (), 5)),
+            toDouble (mask (kf1 (), 6)),
+            toDouble (mask (kf2 (), 7)),
+            toDouble (mask (klv (), 8)),
+            toDouble (mask (kn (), 9)),
+            toDouble (mask (kr (), 10)),
+            toDouble (mask (ks (), 11)),
+            toDouble (mask (seve1 (), 12)),
+            toDouble (mask (seve2 (), 13)),
+            toDouble (mask (ta (), 14)),
+            toDouble (mask (tb (), 15)),
+            toDouble (mask (tc (), 16)),
+            toDouble (mask (te (), 17)),
+            toDouble (mask (tf (), 18)),
+            toDouble (mask (vamax (), 19)),
+            toDouble (mask (vamin (), 20)),
+            toDouble (mask (ve1 (), 21)),
+            toDouble (mask (ve2 (), 22)),
+            toDouble (mask (vemin (), 23)),
+            toDouble (mask (vfemax (), 24)),
+            toDouble (mask (vlv (), 25))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -702,6 +832,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -721,22 +857,24 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ExcAC4A.ka>" + ka + "</cim:ExcAC4A.ka>\n" +
-        "\t\t<cim:ExcAC4A.kc>" + kc + "</cim:ExcAC4A.kc>\n" +
-        "\t\t<cim:ExcAC4A.ta>" + ta + "</cim:ExcAC4A.ta>\n" +
-        "\t\t<cim:ExcAC4A.tb>" + tb + "</cim:ExcAC4A.tb>\n" +
-        "\t\t<cim:ExcAC4A.tc>" + tc + "</cim:ExcAC4A.tc>\n" +
-        "\t\t<cim:ExcAC4A.vimax>" + vimax + "</cim:ExcAC4A.vimax>\n" +
-        "\t\t<cim:ExcAC4A.vimin>" + vimin + "</cim:ExcAC4A.vimin>\n" +
-        "\t\t<cim:ExcAC4A.vrmax>" + vrmax + "</cim:ExcAC4A.vrmax>\n" +
-        "\t\t<cim:ExcAC4A.vrmin>" + vrmin + "</cim:ExcAC4A.vrmin>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcAC4A.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcAC4A.fields (position), value)
+        emitelem (0, ka)
+        emitelem (1, kc)
+        emitelem (2, ta)
+        emitelem (3, tb)
+        emitelem (4, tc)
+        emitelem (5, vimax)
+        emitelem (6, vimin)
+        emitelem (7, vrmax)
+        emitelem (8, vrmin)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ExcAC4A rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcAC4A>"
+        "\t<cim:ExcAC4A rdf:ID=\"%s\">\n%s\t</cim:ExcAC4A>".format (id, export_fields)
     }
 }
 
@@ -744,31 +882,50 @@ object ExcAC4A
 extends
     Parseable[ExcAC4A]
 {
-    val ka = parse_element (element ("""ExcAC4A.ka"""))
-    val kc = parse_element (element ("""ExcAC4A.kc"""))
-    val ta = parse_element (element ("""ExcAC4A.ta"""))
-    val tb = parse_element (element ("""ExcAC4A.tb"""))
-    val tc = parse_element (element ("""ExcAC4A.tc"""))
-    val vimax = parse_element (element ("""ExcAC4A.vimax"""))
-    val vimin = parse_element (element ("""ExcAC4A.vimin"""))
-    val vrmax = parse_element (element ("""ExcAC4A.vrmax"""))
-    val vrmin = parse_element (element ("""ExcAC4A.vrmin"""))
+    val fields: Array[String] = Array[String] (
+        "ka",
+        "kc",
+        "ta",
+        "tb",
+        "tc",
+        "vimax",
+        "vimin",
+        "vrmax",
+        "vrmin"
+    )
+    val ka: Fielder = parse_element (element (cls, fields(0)))
+    val kc: Fielder = parse_element (element (cls, fields(1)))
+    val ta: Fielder = parse_element (element (cls, fields(2)))
+    val tb: Fielder = parse_element (element (cls, fields(3)))
+    val tc: Fielder = parse_element (element (cls, fields(4)))
+    val vimax: Fielder = parse_element (element (cls, fields(5)))
+    val vimin: Fielder = parse_element (element (cls, fields(6)))
+    val vrmax: Fielder = parse_element (element (cls, fields(7)))
+    val vrmin: Fielder = parse_element (element (cls, fields(8)))
+
     def parse (context: Context): ExcAC4A =
     {
-        ExcAC4A(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ExcAC4A (
             ExcitationSystemDynamics.parse (context),
-            toDouble (ka (context), context),
-            toDouble (kc (context), context),
-            toDouble (ta (context), context),
-            toDouble (tb (context), context),
-            toDouble (tc (context), context),
-            toDouble (vimax (context), context),
-            toDouble (vimin (context), context),
-            toDouble (vrmax (context), context),
-            toDouble (vrmin (context), context)
+            toDouble (mask (ka (), 0)),
+            toDouble (mask (kc (), 1)),
+            toDouble (mask (ta (), 2)),
+            toDouble (mask (tb (), 3)),
+            toDouble (mask (tc (), 4)),
+            toDouble (mask (vimax (), 5)),
+            toDouble (mask (vimin (), 6)),
+            toDouble (mask (vrmax (), 7)),
+            toDouble (mask (vrmin (), 8))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -845,6 +1002,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -864,31 +1027,33 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ExcAC5A.a>" + a + "</cim:ExcAC5A.a>\n" +
-        "\t\t<cim:ExcAC5A.efd1>" + efd1 + "</cim:ExcAC5A.efd1>\n" +
-        "\t\t<cim:ExcAC5A.efd2>" + efd2 + "</cim:ExcAC5A.efd2>\n" +
-        "\t\t<cim:ExcAC5A.ka>" + ka + "</cim:ExcAC5A.ka>\n" +
-        "\t\t<cim:ExcAC5A.ke>" + ke + "</cim:ExcAC5A.ke>\n" +
-        "\t\t<cim:ExcAC5A.kf>" + kf + "</cim:ExcAC5A.kf>\n" +
-        "\t\t<cim:ExcAC5A.ks>" + ks + "</cim:ExcAC5A.ks>\n" +
-        "\t\t<cim:ExcAC5A.seefd1>" + seefd1 + "</cim:ExcAC5A.seefd1>\n" +
-        "\t\t<cim:ExcAC5A.seefd2>" + seefd2 + "</cim:ExcAC5A.seefd2>\n" +
-        "\t\t<cim:ExcAC5A.ta>" + ta + "</cim:ExcAC5A.ta>\n" +
-        "\t\t<cim:ExcAC5A.tb>" + tb + "</cim:ExcAC5A.tb>\n" +
-        "\t\t<cim:ExcAC5A.tc>" + tc + "</cim:ExcAC5A.tc>\n" +
-        "\t\t<cim:ExcAC5A.te>" + te + "</cim:ExcAC5A.te>\n" +
-        "\t\t<cim:ExcAC5A.tf1>" + tf1 + "</cim:ExcAC5A.tf1>\n" +
-        "\t\t<cim:ExcAC5A.tf2>" + tf2 + "</cim:ExcAC5A.tf2>\n" +
-        "\t\t<cim:ExcAC5A.tf3>" + tf3 + "</cim:ExcAC5A.tf3>\n" +
-        "\t\t<cim:ExcAC5A.vrmax>" + vrmax + "</cim:ExcAC5A.vrmax>\n" +
-        "\t\t<cim:ExcAC5A.vrmin>" + vrmin + "</cim:ExcAC5A.vrmin>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcAC5A.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcAC5A.fields (position), value)
+        emitelem (0, a)
+        emitelem (1, efd1)
+        emitelem (2, efd2)
+        emitelem (3, ka)
+        emitelem (4, ke)
+        emitelem (5, kf)
+        emitelem (6, ks)
+        emitelem (7, seefd1)
+        emitelem (8, seefd2)
+        emitelem (9, ta)
+        emitelem (10, tb)
+        emitelem (11, tc)
+        emitelem (12, te)
+        emitelem (13, tf1)
+        emitelem (14, tf2)
+        emitelem (15, tf3)
+        emitelem (16, vrmax)
+        emitelem (17, vrmin)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ExcAC5A rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcAC5A>"
+        "\t<cim:ExcAC5A rdf:ID=\"%s\">\n%s\t</cim:ExcAC5A>".format (id, export_fields)
     }
 }
 
@@ -896,49 +1061,77 @@ object ExcAC5A
 extends
     Parseable[ExcAC5A]
 {
-    val a = parse_element (element ("""ExcAC5A.a"""))
-    val efd1 = parse_element (element ("""ExcAC5A.efd1"""))
-    val efd2 = parse_element (element ("""ExcAC5A.efd2"""))
-    val ka = parse_element (element ("""ExcAC5A.ka"""))
-    val ke = parse_element (element ("""ExcAC5A.ke"""))
-    val kf = parse_element (element ("""ExcAC5A.kf"""))
-    val ks = parse_element (element ("""ExcAC5A.ks"""))
-    val seefd1 = parse_element (element ("""ExcAC5A.seefd1"""))
-    val seefd2 = parse_element (element ("""ExcAC5A.seefd2"""))
-    val ta = parse_element (element ("""ExcAC5A.ta"""))
-    val tb = parse_element (element ("""ExcAC5A.tb"""))
-    val tc = parse_element (element ("""ExcAC5A.tc"""))
-    val te = parse_element (element ("""ExcAC5A.te"""))
-    val tf1 = parse_element (element ("""ExcAC5A.tf1"""))
-    val tf2 = parse_element (element ("""ExcAC5A.tf2"""))
-    val tf3 = parse_element (element ("""ExcAC5A.tf3"""))
-    val vrmax = parse_element (element ("""ExcAC5A.vrmax"""))
-    val vrmin = parse_element (element ("""ExcAC5A.vrmin"""))
+    val fields: Array[String] = Array[String] (
+        "a",
+        "efd1",
+        "efd2",
+        "ka",
+        "ke",
+        "kf",
+        "ks",
+        "seefd1",
+        "seefd2",
+        "ta",
+        "tb",
+        "tc",
+        "te",
+        "tf1",
+        "tf2",
+        "tf3",
+        "vrmax",
+        "vrmin"
+    )
+    val a: Fielder = parse_element (element (cls, fields(0)))
+    val efd1: Fielder = parse_element (element (cls, fields(1)))
+    val efd2: Fielder = parse_element (element (cls, fields(2)))
+    val ka: Fielder = parse_element (element (cls, fields(3)))
+    val ke: Fielder = parse_element (element (cls, fields(4)))
+    val kf: Fielder = parse_element (element (cls, fields(5)))
+    val ks: Fielder = parse_element (element (cls, fields(6)))
+    val seefd1: Fielder = parse_element (element (cls, fields(7)))
+    val seefd2: Fielder = parse_element (element (cls, fields(8)))
+    val ta: Fielder = parse_element (element (cls, fields(9)))
+    val tb: Fielder = parse_element (element (cls, fields(10)))
+    val tc: Fielder = parse_element (element (cls, fields(11)))
+    val te: Fielder = parse_element (element (cls, fields(12)))
+    val tf1: Fielder = parse_element (element (cls, fields(13)))
+    val tf2: Fielder = parse_element (element (cls, fields(14)))
+    val tf3: Fielder = parse_element (element (cls, fields(15)))
+    val vrmax: Fielder = parse_element (element (cls, fields(16)))
+    val vrmin: Fielder = parse_element (element (cls, fields(17)))
+
     def parse (context: Context): ExcAC5A =
     {
-        ExcAC5A(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ExcAC5A (
             ExcitationSystemDynamics.parse (context),
-            toDouble (a (context), context),
-            toDouble (efd1 (context), context),
-            toDouble (efd2 (context), context),
-            toDouble (ka (context), context),
-            toDouble (ke (context), context),
-            toDouble (kf (context), context),
-            toDouble (ks (context), context),
-            toDouble (seefd1 (context), context),
-            toDouble (seefd2 (context), context),
-            toDouble (ta (context), context),
-            toDouble (tb (context), context),
-            toDouble (tc (context), context),
-            toDouble (te (context), context),
-            toDouble (tf1 (context), context),
-            toDouble (tf2 (context), context),
-            toDouble (tf3 (context), context),
-            toDouble (vrmax (context), context),
-            toDouble (vrmin (context), context)
+            toDouble (mask (a (), 0)),
+            toDouble (mask (efd1 (), 1)),
+            toDouble (mask (efd2 (), 2)),
+            toDouble (mask (ka (), 3)),
+            toDouble (mask (ke (), 4)),
+            toDouble (mask (kf (), 5)),
+            toDouble (mask (ks (), 6)),
+            toDouble (mask (seefd1 (), 7)),
+            toDouble (mask (seefd2 (), 8)),
+            toDouble (mask (ta (), 9)),
+            toDouble (mask (tb (), 10)),
+            toDouble (mask (tc (), 11)),
+            toDouble (mask (te (), 12)),
+            toDouble (mask (tf1 (), 13)),
+            toDouble (mask (tf2 (), 14)),
+            toDouble (mask (tf3 (), 15)),
+            toDouble (mask (vrmax (), 16)),
+            toDouble (mask (vrmin (), 17))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -1030,6 +1223,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -1049,36 +1248,38 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ExcAC6A.ka>" + ka + "</cim:ExcAC6A.ka>\n" +
-        "\t\t<cim:ExcAC6A.kc>" + kc + "</cim:ExcAC6A.kc>\n" +
-        "\t\t<cim:ExcAC6A.kd>" + kd + "</cim:ExcAC6A.kd>\n" +
-        "\t\t<cim:ExcAC6A.ke>" + ke + "</cim:ExcAC6A.ke>\n" +
-        "\t\t<cim:ExcAC6A.kh>" + kh + "</cim:ExcAC6A.kh>\n" +
-        "\t\t<cim:ExcAC6A.ks>" + ks + "</cim:ExcAC6A.ks>\n" +
-        "\t\t<cim:ExcAC6A.seve1>" + seve1 + "</cim:ExcAC6A.seve1>\n" +
-        "\t\t<cim:ExcAC6A.seve2>" + seve2 + "</cim:ExcAC6A.seve2>\n" +
-        "\t\t<cim:ExcAC6A.ta>" + ta + "</cim:ExcAC6A.ta>\n" +
-        "\t\t<cim:ExcAC6A.tb>" + tb + "</cim:ExcAC6A.tb>\n" +
-        "\t\t<cim:ExcAC6A.tc>" + tc + "</cim:ExcAC6A.tc>\n" +
-        "\t\t<cim:ExcAC6A.te>" + te + "</cim:ExcAC6A.te>\n" +
-        "\t\t<cim:ExcAC6A.th>" + th + "</cim:ExcAC6A.th>\n" +
-        "\t\t<cim:ExcAC6A.tj>" + tj + "</cim:ExcAC6A.tj>\n" +
-        "\t\t<cim:ExcAC6A.tk>" + tk + "</cim:ExcAC6A.tk>\n" +
-        "\t\t<cim:ExcAC6A.vamax>" + vamax + "</cim:ExcAC6A.vamax>\n" +
-        "\t\t<cim:ExcAC6A.vamin>" + vamin + "</cim:ExcAC6A.vamin>\n" +
-        "\t\t<cim:ExcAC6A.ve1>" + ve1 + "</cim:ExcAC6A.ve1>\n" +
-        "\t\t<cim:ExcAC6A.ve2>" + ve2 + "</cim:ExcAC6A.ve2>\n" +
-        "\t\t<cim:ExcAC6A.vfelim>" + vfelim + "</cim:ExcAC6A.vfelim>\n" +
-        "\t\t<cim:ExcAC6A.vhmax>" + vhmax + "</cim:ExcAC6A.vhmax>\n" +
-        "\t\t<cim:ExcAC6A.vrmax>" + vrmax + "</cim:ExcAC6A.vrmax>\n" +
-        "\t\t<cim:ExcAC6A.vrmin>" + vrmin + "</cim:ExcAC6A.vrmin>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcAC6A.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcAC6A.fields (position), value)
+        emitelem (0, ka)
+        emitelem (1, kc)
+        emitelem (2, kd)
+        emitelem (3, ke)
+        emitelem (4, kh)
+        emitelem (5, ks)
+        emitelem (6, seve1)
+        emitelem (7, seve2)
+        emitelem (8, ta)
+        emitelem (9, tb)
+        emitelem (10, tc)
+        emitelem (11, te)
+        emitelem (12, th)
+        emitelem (13, tj)
+        emitelem (14, tk)
+        emitelem (15, vamax)
+        emitelem (16, vamin)
+        emitelem (17, ve1)
+        emitelem (18, ve2)
+        emitelem (19, vfelim)
+        emitelem (20, vhmax)
+        emitelem (21, vrmax)
+        emitelem (22, vrmin)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ExcAC6A rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcAC6A>"
+        "\t<cim:ExcAC6A rdf:ID=\"%s\">\n%s\t</cim:ExcAC6A>".format (id, export_fields)
     }
 }
 
@@ -1086,59 +1287,92 @@ object ExcAC6A
 extends
     Parseable[ExcAC6A]
 {
-    val ka = parse_element (element ("""ExcAC6A.ka"""))
-    val kc = parse_element (element ("""ExcAC6A.kc"""))
-    val kd = parse_element (element ("""ExcAC6A.kd"""))
-    val ke = parse_element (element ("""ExcAC6A.ke"""))
-    val kh = parse_element (element ("""ExcAC6A.kh"""))
-    val ks = parse_element (element ("""ExcAC6A.ks"""))
-    val seve1 = parse_element (element ("""ExcAC6A.seve1"""))
-    val seve2 = parse_element (element ("""ExcAC6A.seve2"""))
-    val ta = parse_element (element ("""ExcAC6A.ta"""))
-    val tb = parse_element (element ("""ExcAC6A.tb"""))
-    val tc = parse_element (element ("""ExcAC6A.tc"""))
-    val te = parse_element (element ("""ExcAC6A.te"""))
-    val th = parse_element (element ("""ExcAC6A.th"""))
-    val tj = parse_element (element ("""ExcAC6A.tj"""))
-    val tk = parse_element (element ("""ExcAC6A.tk"""))
-    val vamax = parse_element (element ("""ExcAC6A.vamax"""))
-    val vamin = parse_element (element ("""ExcAC6A.vamin"""))
-    val ve1 = parse_element (element ("""ExcAC6A.ve1"""))
-    val ve2 = parse_element (element ("""ExcAC6A.ve2"""))
-    val vfelim = parse_element (element ("""ExcAC6A.vfelim"""))
-    val vhmax = parse_element (element ("""ExcAC6A.vhmax"""))
-    val vrmax = parse_element (element ("""ExcAC6A.vrmax"""))
-    val vrmin = parse_element (element ("""ExcAC6A.vrmin"""))
+    val fields: Array[String] = Array[String] (
+        "ka",
+        "kc",
+        "kd",
+        "ke",
+        "kh",
+        "ks",
+        "seve1",
+        "seve2",
+        "ta",
+        "tb",
+        "tc",
+        "te",
+        "th",
+        "tj",
+        "tk",
+        "vamax",
+        "vamin",
+        "ve1",
+        "ve2",
+        "vfelim",
+        "vhmax",
+        "vrmax",
+        "vrmin"
+    )
+    val ka: Fielder = parse_element (element (cls, fields(0)))
+    val kc: Fielder = parse_element (element (cls, fields(1)))
+    val kd: Fielder = parse_element (element (cls, fields(2)))
+    val ke: Fielder = parse_element (element (cls, fields(3)))
+    val kh: Fielder = parse_element (element (cls, fields(4)))
+    val ks: Fielder = parse_element (element (cls, fields(5)))
+    val seve1: Fielder = parse_element (element (cls, fields(6)))
+    val seve2: Fielder = parse_element (element (cls, fields(7)))
+    val ta: Fielder = parse_element (element (cls, fields(8)))
+    val tb: Fielder = parse_element (element (cls, fields(9)))
+    val tc: Fielder = parse_element (element (cls, fields(10)))
+    val te: Fielder = parse_element (element (cls, fields(11)))
+    val th: Fielder = parse_element (element (cls, fields(12)))
+    val tj: Fielder = parse_element (element (cls, fields(13)))
+    val tk: Fielder = parse_element (element (cls, fields(14)))
+    val vamax: Fielder = parse_element (element (cls, fields(15)))
+    val vamin: Fielder = parse_element (element (cls, fields(16)))
+    val ve1: Fielder = parse_element (element (cls, fields(17)))
+    val ve2: Fielder = parse_element (element (cls, fields(18)))
+    val vfelim: Fielder = parse_element (element (cls, fields(19)))
+    val vhmax: Fielder = parse_element (element (cls, fields(20)))
+    val vrmax: Fielder = parse_element (element (cls, fields(21)))
+    val vrmin: Fielder = parse_element (element (cls, fields(22)))
+
     def parse (context: Context): ExcAC6A =
     {
-        ExcAC6A(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ExcAC6A (
             ExcitationSystemDynamics.parse (context),
-            toDouble (ka (context), context),
-            toDouble (kc (context), context),
-            toDouble (kd (context), context),
-            toDouble (ke (context), context),
-            toDouble (kh (context), context),
-            toDouble (ks (context), context),
-            toDouble (seve1 (context), context),
-            toDouble (seve2 (context), context),
-            toDouble (ta (context), context),
-            toDouble (tb (context), context),
-            toDouble (tc (context), context),
-            toDouble (te (context), context),
-            toDouble (th (context), context),
-            toDouble (tj (context), context),
-            toDouble (tk (context), context),
-            toDouble (vamax (context), context),
-            toDouble (vamin (context), context),
-            toDouble (ve1 (context), context),
-            toDouble (ve2 (context), context),
-            toDouble (vfelim (context), context),
-            toDouble (vhmax (context), context),
-            toDouble (vrmax (context), context),
-            toDouble (vrmin (context), context)
+            toDouble (mask (ka (), 0)),
+            toDouble (mask (kc (), 1)),
+            toDouble (mask (kd (), 2)),
+            toDouble (mask (ke (), 3)),
+            toDouble (mask (kh (), 4)),
+            toDouble (mask (ks (), 5)),
+            toDouble (mask (seve1 (), 6)),
+            toDouble (mask (seve2 (), 7)),
+            toDouble (mask (ta (), 8)),
+            toDouble (mask (tb (), 9)),
+            toDouble (mask (tc (), 10)),
+            toDouble (mask (te (), 11)),
+            toDouble (mask (th (), 12)),
+            toDouble (mask (tj (), 13)),
+            toDouble (mask (tk (), 14)),
+            toDouble (mask (vamax (), 15)),
+            toDouble (mask (vamin (), 16)),
+            toDouble (mask (ve1 (), 17)),
+            toDouble (mask (ve2 (), 18)),
+            toDouble (mask (vfelim (), 19)),
+            toDouble (mask (vhmax (), 20)),
+            toDouble (mask (vrmax (), 21)),
+            toDouble (mask (vrmin (), 22))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -1248,6 +1482,12 @@ extends
      */
     def this () = { this (null, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -1267,40 +1507,42 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ExcAC8B.inlim>" + inlim + "</cim:ExcAC8B.inlim>\n" +
-        "\t\t<cim:ExcAC8B.ka>" + ka + "</cim:ExcAC8B.ka>\n" +
-        "\t\t<cim:ExcAC8B.kc>" + kc + "</cim:ExcAC8B.kc>\n" +
-        "\t\t<cim:ExcAC8B.kd>" + kd + "</cim:ExcAC8B.kd>\n" +
-        "\t\t<cim:ExcAC8B.kdr>" + kdr + "</cim:ExcAC8B.kdr>\n" +
-        "\t\t<cim:ExcAC8B.ke>" + ke + "</cim:ExcAC8B.ke>\n" +
-        "\t\t<cim:ExcAC8B.kir>" + kir + "</cim:ExcAC8B.kir>\n" +
-        "\t\t<cim:ExcAC8B.kpr>" + kpr + "</cim:ExcAC8B.kpr>\n" +
-        "\t\t<cim:ExcAC8B.ks>" + ks + "</cim:ExcAC8B.ks>\n" +
-        "\t\t<cim:ExcAC8B.pidlim>" + pidlim + "</cim:ExcAC8B.pidlim>\n" +
-        "\t\t<cim:ExcAC8B.seve1>" + seve1 + "</cim:ExcAC8B.seve1>\n" +
-        "\t\t<cim:ExcAC8B.seve2>" + seve2 + "</cim:ExcAC8B.seve2>\n" +
-        "\t\t<cim:ExcAC8B.ta>" + ta + "</cim:ExcAC8B.ta>\n" +
-        "\t\t<cim:ExcAC8B.tdr>" + tdr + "</cim:ExcAC8B.tdr>\n" +
-        "\t\t<cim:ExcAC8B.te>" + te + "</cim:ExcAC8B.te>\n" +
-        "\t\t<cim:ExcAC8B.telim>" + telim + "</cim:ExcAC8B.telim>\n" +
-        "\t\t<cim:ExcAC8B.ve1>" + ve1 + "</cim:ExcAC8B.ve1>\n" +
-        "\t\t<cim:ExcAC8B.ve2>" + ve2 + "</cim:ExcAC8B.ve2>\n" +
-        "\t\t<cim:ExcAC8B.vemin>" + vemin + "</cim:ExcAC8B.vemin>\n" +
-        "\t\t<cim:ExcAC8B.vfemax>" + vfemax + "</cim:ExcAC8B.vfemax>\n" +
-        "\t\t<cim:ExcAC8B.vimax>" + vimax + "</cim:ExcAC8B.vimax>\n" +
-        "\t\t<cim:ExcAC8B.vimin>" + vimin + "</cim:ExcAC8B.vimin>\n" +
-        "\t\t<cim:ExcAC8B.vpidmax>" + vpidmax + "</cim:ExcAC8B.vpidmax>\n" +
-        "\t\t<cim:ExcAC8B.vpidmin>" + vpidmin + "</cim:ExcAC8B.vpidmin>\n" +
-        "\t\t<cim:ExcAC8B.vrmax>" + vrmax + "</cim:ExcAC8B.vrmax>\n" +
-        "\t\t<cim:ExcAC8B.vrmin>" + vrmin + "</cim:ExcAC8B.vrmin>\n" +
-        "\t\t<cim:ExcAC8B.vtmult>" + vtmult + "</cim:ExcAC8B.vtmult>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcAC8B.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcAC8B.fields (position), value)
+        emitelem (0, inlim)
+        emitelem (1, ka)
+        emitelem (2, kc)
+        emitelem (3, kd)
+        emitelem (4, kdr)
+        emitelem (5, ke)
+        emitelem (6, kir)
+        emitelem (7, kpr)
+        emitelem (8, ks)
+        emitelem (9, pidlim)
+        emitelem (10, seve1)
+        emitelem (11, seve2)
+        emitelem (12, ta)
+        emitelem (13, tdr)
+        emitelem (14, te)
+        emitelem (15, telim)
+        emitelem (16, ve1)
+        emitelem (17, ve2)
+        emitelem (18, vemin)
+        emitelem (19, vfemax)
+        emitelem (20, vimax)
+        emitelem (21, vimin)
+        emitelem (22, vpidmax)
+        emitelem (23, vpidmin)
+        emitelem (24, vrmax)
+        emitelem (25, vrmin)
+        emitelem (26, vtmult)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ExcAC8B rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcAC8B>"
+        "\t<cim:ExcAC8B rdf:ID=\"%s\">\n%s\t</cim:ExcAC8B>".format (id, export_fields)
     }
 }
 
@@ -1308,67 +1550,104 @@ object ExcAC8B
 extends
     Parseable[ExcAC8B]
 {
-    val inlim = parse_element (element ("""ExcAC8B.inlim"""))
-    val ka = parse_element (element ("""ExcAC8B.ka"""))
-    val kc = parse_element (element ("""ExcAC8B.kc"""))
-    val kd = parse_element (element ("""ExcAC8B.kd"""))
-    val kdr = parse_element (element ("""ExcAC8B.kdr"""))
-    val ke = parse_element (element ("""ExcAC8B.ke"""))
-    val kir = parse_element (element ("""ExcAC8B.kir"""))
-    val kpr = parse_element (element ("""ExcAC8B.kpr"""))
-    val ks = parse_element (element ("""ExcAC8B.ks"""))
-    val pidlim = parse_element (element ("""ExcAC8B.pidlim"""))
-    val seve1 = parse_element (element ("""ExcAC8B.seve1"""))
-    val seve2 = parse_element (element ("""ExcAC8B.seve2"""))
-    val ta = parse_element (element ("""ExcAC8B.ta"""))
-    val tdr = parse_element (element ("""ExcAC8B.tdr"""))
-    val te = parse_element (element ("""ExcAC8B.te"""))
-    val telim = parse_element (element ("""ExcAC8B.telim"""))
-    val ve1 = parse_element (element ("""ExcAC8B.ve1"""))
-    val ve2 = parse_element (element ("""ExcAC8B.ve2"""))
-    val vemin = parse_element (element ("""ExcAC8B.vemin"""))
-    val vfemax = parse_element (element ("""ExcAC8B.vfemax"""))
-    val vimax = parse_element (element ("""ExcAC8B.vimax"""))
-    val vimin = parse_element (element ("""ExcAC8B.vimin"""))
-    val vpidmax = parse_element (element ("""ExcAC8B.vpidmax"""))
-    val vpidmin = parse_element (element ("""ExcAC8B.vpidmin"""))
-    val vrmax = parse_element (element ("""ExcAC8B.vrmax"""))
-    val vrmin = parse_element (element ("""ExcAC8B.vrmin"""))
-    val vtmult = parse_element (element ("""ExcAC8B.vtmult"""))
+    val fields: Array[String] = Array[String] (
+        "inlim",
+        "ka",
+        "kc",
+        "kd",
+        "kdr",
+        "ke",
+        "kir",
+        "kpr",
+        "ks",
+        "pidlim",
+        "seve1",
+        "seve2",
+        "ta",
+        "tdr",
+        "te",
+        "telim",
+        "ve1",
+        "ve2",
+        "vemin",
+        "vfemax",
+        "vimax",
+        "vimin",
+        "vpidmax",
+        "vpidmin",
+        "vrmax",
+        "vrmin",
+        "vtmult"
+    )
+    val inlim: Fielder = parse_element (element (cls, fields(0)))
+    val ka: Fielder = parse_element (element (cls, fields(1)))
+    val kc: Fielder = parse_element (element (cls, fields(2)))
+    val kd: Fielder = parse_element (element (cls, fields(3)))
+    val kdr: Fielder = parse_element (element (cls, fields(4)))
+    val ke: Fielder = parse_element (element (cls, fields(5)))
+    val kir: Fielder = parse_element (element (cls, fields(6)))
+    val kpr: Fielder = parse_element (element (cls, fields(7)))
+    val ks: Fielder = parse_element (element (cls, fields(8)))
+    val pidlim: Fielder = parse_element (element (cls, fields(9)))
+    val seve1: Fielder = parse_element (element (cls, fields(10)))
+    val seve2: Fielder = parse_element (element (cls, fields(11)))
+    val ta: Fielder = parse_element (element (cls, fields(12)))
+    val tdr: Fielder = parse_element (element (cls, fields(13)))
+    val te: Fielder = parse_element (element (cls, fields(14)))
+    val telim: Fielder = parse_element (element (cls, fields(15)))
+    val ve1: Fielder = parse_element (element (cls, fields(16)))
+    val ve2: Fielder = parse_element (element (cls, fields(17)))
+    val vemin: Fielder = parse_element (element (cls, fields(18)))
+    val vfemax: Fielder = parse_element (element (cls, fields(19)))
+    val vimax: Fielder = parse_element (element (cls, fields(20)))
+    val vimin: Fielder = parse_element (element (cls, fields(21)))
+    val vpidmax: Fielder = parse_element (element (cls, fields(22)))
+    val vpidmin: Fielder = parse_element (element (cls, fields(23)))
+    val vrmax: Fielder = parse_element (element (cls, fields(24)))
+    val vrmin: Fielder = parse_element (element (cls, fields(25)))
+    val vtmult: Fielder = parse_element (element (cls, fields(26)))
+
     def parse (context: Context): ExcAC8B =
     {
-        ExcAC8B(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ExcAC8B (
             ExcitationSystemDynamics.parse (context),
-            toBoolean (inlim (context), context),
-            toDouble (ka (context), context),
-            toDouble (kc (context), context),
-            toDouble (kd (context), context),
-            toDouble (kdr (context), context),
-            toDouble (ke (context), context),
-            toDouble (kir (context), context),
-            toDouble (kpr (context), context),
-            toDouble (ks (context), context),
-            toBoolean (pidlim (context), context),
-            toDouble (seve1 (context), context),
-            toDouble (seve2 (context), context),
-            toDouble (ta (context), context),
-            toDouble (tdr (context), context),
-            toDouble (te (context), context),
-            toBoolean (telim (context), context),
-            toDouble (ve1 (context), context),
-            toDouble (ve2 (context), context),
-            toDouble (vemin (context), context),
-            toDouble (vfemax (context), context),
-            toDouble (vimax (context), context),
-            toDouble (vimin (context), context),
-            toDouble (vpidmax (context), context),
-            toDouble (vpidmin (context), context),
-            toDouble (vrmax (context), context),
-            toDouble (vrmin (context), context),
-            toBoolean (vtmult (context), context)
+            toBoolean (mask (inlim (), 0)),
+            toDouble (mask (ka (), 1)),
+            toDouble (mask (kc (), 2)),
+            toDouble (mask (kd (), 3)),
+            toDouble (mask (kdr (), 4)),
+            toDouble (mask (ke (), 5)),
+            toDouble (mask (kir (), 6)),
+            toDouble (mask (kpr (), 7)),
+            toDouble (mask (ks (), 8)),
+            toBoolean (mask (pidlim (), 9)),
+            toDouble (mask (seve1 (), 10)),
+            toDouble (mask (seve2 (), 11)),
+            toDouble (mask (ta (), 12)),
+            toDouble (mask (tdr (), 13)),
+            toDouble (mask (te (), 14)),
+            toBoolean (mask (telim (), 15)),
+            toDouble (mask (ve1 (), 16)),
+            toDouble (mask (ve2 (), 17)),
+            toDouble (mask (vemin (), 18)),
+            toDouble (mask (vfemax (), 19)),
+            toDouble (mask (vimax (), 20)),
+            toDouble (mask (vimin (), 21)),
+            toDouble (mask (vpidmax (), 22)),
+            toDouble (mask (vpidmin (), 23)),
+            toDouble (mask (vrmax (), 24)),
+            toDouble (mask (vrmin (), 25)),
+            toBoolean (mask (vtmult (), 26))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -1441,6 +1720,12 @@ extends
      */
     def this () = { this (null, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -1460,27 +1745,29 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ExcANS.blint>" + blint + "</cim:ExcANS.blint>\n" +
-        "\t\t<cim:ExcANS.ifmn>" + ifmn + "</cim:ExcANS.ifmn>\n" +
-        "\t\t<cim:ExcANS.ifmx>" + ifmx + "</cim:ExcANS.ifmx>\n" +
-        "\t\t<cim:ExcANS.k2>" + k2 + "</cim:ExcANS.k2>\n" +
-        "\t\t<cim:ExcANS.k3>" + k3 + "</cim:ExcANS.k3>\n" +
-        "\t\t<cim:ExcANS.kce>" + kce + "</cim:ExcANS.kce>\n" +
-        "\t\t<cim:ExcANS.krvecc>" + krvecc + "</cim:ExcANS.krvecc>\n" +
-        "\t\t<cim:ExcANS.kvfif>" + kvfif + "</cim:ExcANS.kvfif>\n" +
-        "\t\t<cim:ExcANS.t1>" + t1 + "</cim:ExcANS.t1>\n" +
-        "\t\t<cim:ExcANS.t2>" + t2 + "</cim:ExcANS.t2>\n" +
-        "\t\t<cim:ExcANS.t3>" + t3 + "</cim:ExcANS.t3>\n" +
-        "\t\t<cim:ExcANS.tb>" + tb + "</cim:ExcANS.tb>\n" +
-        "\t\t<cim:ExcANS.vrmn>" + vrmn + "</cim:ExcANS.vrmn>\n" +
-        "\t\t<cim:ExcANS.vrmx>" + vrmx + "</cim:ExcANS.vrmx>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcANS.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcANS.fields (position), value)
+        emitelem (0, blint)
+        emitelem (1, ifmn)
+        emitelem (2, ifmx)
+        emitelem (3, k2)
+        emitelem (4, k3)
+        emitelem (5, kce)
+        emitelem (6, krvecc)
+        emitelem (7, kvfif)
+        emitelem (8, t1)
+        emitelem (9, t2)
+        emitelem (10, t3)
+        emitelem (11, tb)
+        emitelem (12, vrmn)
+        emitelem (13, vrmx)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ExcANS rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcANS>"
+        "\t<cim:ExcANS rdf:ID=\"%s\">\n%s\t</cim:ExcANS>".format (id, export_fields)
     }
 }
 
@@ -1488,41 +1775,65 @@ object ExcANS
 extends
     Parseable[ExcANS]
 {
-    val blint = parse_element (element ("""ExcANS.blint"""))
-    val ifmn = parse_element (element ("""ExcANS.ifmn"""))
-    val ifmx = parse_element (element ("""ExcANS.ifmx"""))
-    val k2 = parse_element (element ("""ExcANS.k2"""))
-    val k3 = parse_element (element ("""ExcANS.k3"""))
-    val kce = parse_element (element ("""ExcANS.kce"""))
-    val krvecc = parse_element (element ("""ExcANS.krvecc"""))
-    val kvfif = parse_element (element ("""ExcANS.kvfif"""))
-    val t1 = parse_element (element ("""ExcANS.t1"""))
-    val t2 = parse_element (element ("""ExcANS.t2"""))
-    val t3 = parse_element (element ("""ExcANS.t3"""))
-    val tb = parse_element (element ("""ExcANS.tb"""))
-    val vrmn = parse_element (element ("""ExcANS.vrmn"""))
-    val vrmx = parse_element (element ("""ExcANS.vrmx"""))
+    val fields: Array[String] = Array[String] (
+        "blint",
+        "ifmn",
+        "ifmx",
+        "k2",
+        "k3",
+        "kce",
+        "krvecc",
+        "kvfif",
+        "t1",
+        "t2",
+        "t3",
+        "tb",
+        "vrmn",
+        "vrmx"
+    )
+    val blint: Fielder = parse_element (element (cls, fields(0)))
+    val ifmn: Fielder = parse_element (element (cls, fields(1)))
+    val ifmx: Fielder = parse_element (element (cls, fields(2)))
+    val k2: Fielder = parse_element (element (cls, fields(3)))
+    val k3: Fielder = parse_element (element (cls, fields(4)))
+    val kce: Fielder = parse_element (element (cls, fields(5)))
+    val krvecc: Fielder = parse_element (element (cls, fields(6)))
+    val kvfif: Fielder = parse_element (element (cls, fields(7)))
+    val t1: Fielder = parse_element (element (cls, fields(8)))
+    val t2: Fielder = parse_element (element (cls, fields(9)))
+    val t3: Fielder = parse_element (element (cls, fields(10)))
+    val tb: Fielder = parse_element (element (cls, fields(11)))
+    val vrmn: Fielder = parse_element (element (cls, fields(12)))
+    val vrmx: Fielder = parse_element (element (cls, fields(13)))
+
     def parse (context: Context): ExcANS =
     {
-        ExcANS(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ExcANS (
             ExcitationSystemDynamics.parse (context),
-            toInteger (blint (context), context),
-            toDouble (ifmn (context), context),
-            toDouble (ifmx (context), context),
-            toDouble (k2 (context), context),
-            toDouble (k3 (context), context),
-            toDouble (kce (context), context),
-            toInteger (krvecc (context), context),
-            toInteger (kvfif (context), context),
-            toDouble (t1 (context), context),
-            toDouble (t2 (context), context),
-            toDouble (t3 (context), context),
-            toDouble (tb (context), context),
-            toDouble (vrmn (context), context),
-            toDouble (vrmx (context), context)
+            toInteger (mask (blint (), 0)),
+            toDouble (mask (ifmn (), 1)),
+            toDouble (mask (ifmx (), 2)),
+            toDouble (mask (k2 (), 3)),
+            toDouble (mask (k3 (), 4)),
+            toDouble (mask (kce (), 5)),
+            toInteger (mask (krvecc (), 6)),
+            toInteger (mask (kvfif (), 7)),
+            toDouble (mask (t1 (), 8)),
+            toDouble (mask (t2 (), 9)),
+            toDouble (mask (t3 (), 10)),
+            toDouble (mask (tb (), 11)),
+            toDouble (mask (vrmn (), 12)),
+            toDouble (mask (vrmx (), 13))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -1583,6 +1894,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -1602,25 +1919,27 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ExcAVR1.e1>" + e1 + "</cim:ExcAVR1.e1>\n" +
-        "\t\t<cim:ExcAVR1.e2>" + e2 + "</cim:ExcAVR1.e2>\n" +
-        "\t\t<cim:ExcAVR1.ka>" + ka + "</cim:ExcAVR1.ka>\n" +
-        "\t\t<cim:ExcAVR1.kf>" + kf + "</cim:ExcAVR1.kf>\n" +
-        "\t\t<cim:ExcAVR1.se1>" + se1 + "</cim:ExcAVR1.se1>\n" +
-        "\t\t<cim:ExcAVR1.se2>" + se2 + "</cim:ExcAVR1.se2>\n" +
-        "\t\t<cim:ExcAVR1.ta>" + ta + "</cim:ExcAVR1.ta>\n" +
-        "\t\t<cim:ExcAVR1.tb>" + tb + "</cim:ExcAVR1.tb>\n" +
-        "\t\t<cim:ExcAVR1.te>" + te + "</cim:ExcAVR1.te>\n" +
-        "\t\t<cim:ExcAVR1.tf>" + tf + "</cim:ExcAVR1.tf>\n" +
-        "\t\t<cim:ExcAVR1.vrmn>" + vrmn + "</cim:ExcAVR1.vrmn>\n" +
-        "\t\t<cim:ExcAVR1.vrmx>" + vrmx + "</cim:ExcAVR1.vrmx>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcAVR1.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcAVR1.fields (position), value)
+        emitelem (0, e1)
+        emitelem (1, e2)
+        emitelem (2, ka)
+        emitelem (3, kf)
+        emitelem (4, se1)
+        emitelem (5, se2)
+        emitelem (6, ta)
+        emitelem (7, tb)
+        emitelem (8, te)
+        emitelem (9, tf)
+        emitelem (10, vrmn)
+        emitelem (11, vrmx)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ExcAVR1 rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcAVR1>"
+        "\t<cim:ExcAVR1 rdf:ID=\"%s\">\n%s\t</cim:ExcAVR1>".format (id, export_fields)
     }
 }
 
@@ -1628,37 +1947,59 @@ object ExcAVR1
 extends
     Parseable[ExcAVR1]
 {
-    val e1 = parse_element (element ("""ExcAVR1.e1"""))
-    val e2 = parse_element (element ("""ExcAVR1.e2"""))
-    val ka = parse_element (element ("""ExcAVR1.ka"""))
-    val kf = parse_element (element ("""ExcAVR1.kf"""))
-    val se1 = parse_element (element ("""ExcAVR1.se1"""))
-    val se2 = parse_element (element ("""ExcAVR1.se2"""))
-    val ta = parse_element (element ("""ExcAVR1.ta"""))
-    val tb = parse_element (element ("""ExcAVR1.tb"""))
-    val te = parse_element (element ("""ExcAVR1.te"""))
-    val tf = parse_element (element ("""ExcAVR1.tf"""))
-    val vrmn = parse_element (element ("""ExcAVR1.vrmn"""))
-    val vrmx = parse_element (element ("""ExcAVR1.vrmx"""))
+    val fields: Array[String] = Array[String] (
+        "e1",
+        "e2",
+        "ka",
+        "kf",
+        "se1",
+        "se2",
+        "ta",
+        "tb",
+        "te",
+        "tf",
+        "vrmn",
+        "vrmx"
+    )
+    val e1: Fielder = parse_element (element (cls, fields(0)))
+    val e2: Fielder = parse_element (element (cls, fields(1)))
+    val ka: Fielder = parse_element (element (cls, fields(2)))
+    val kf: Fielder = parse_element (element (cls, fields(3)))
+    val se1: Fielder = parse_element (element (cls, fields(4)))
+    val se2: Fielder = parse_element (element (cls, fields(5)))
+    val ta: Fielder = parse_element (element (cls, fields(6)))
+    val tb: Fielder = parse_element (element (cls, fields(7)))
+    val te: Fielder = parse_element (element (cls, fields(8)))
+    val tf: Fielder = parse_element (element (cls, fields(9)))
+    val vrmn: Fielder = parse_element (element (cls, fields(10)))
+    val vrmx: Fielder = parse_element (element (cls, fields(11)))
+
     def parse (context: Context): ExcAVR1 =
     {
-        ExcAVR1(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ExcAVR1 (
             ExcitationSystemDynamics.parse (context),
-            toDouble (e1 (context), context),
-            toDouble (e2 (context), context),
-            toDouble (ka (context), context),
-            toDouble (kf (context), context),
-            toDouble (se1 (context), context),
-            toDouble (se2 (context), context),
-            toDouble (ta (context), context),
-            toDouble (tb (context), context),
-            toDouble (te (context), context),
-            toDouble (tf (context), context),
-            toDouble (vrmn (context), context),
-            toDouble (vrmx (context), context)
+            toDouble (mask (e1 (), 0)),
+            toDouble (mask (e2 (), 1)),
+            toDouble (mask (ka (), 2)),
+            toDouble (mask (kf (), 3)),
+            toDouble (mask (se1 (), 4)),
+            toDouble (mask (se2 (), 5)),
+            toDouble (mask (ta (), 6)),
+            toDouble (mask (tb (), 7)),
+            toDouble (mask (te (), 8)),
+            toDouble (mask (tf (), 9)),
+            toDouble (mask (vrmn (), 10)),
+            toDouble (mask (vrmx (), 11))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -1722,6 +2063,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -1741,26 +2088,28 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ExcAVR2.e1>" + e1 + "</cim:ExcAVR2.e1>\n" +
-        "\t\t<cim:ExcAVR2.e2>" + e2 + "</cim:ExcAVR2.e2>\n" +
-        "\t\t<cim:ExcAVR2.ka>" + ka + "</cim:ExcAVR2.ka>\n" +
-        "\t\t<cim:ExcAVR2.kf>" + kf + "</cim:ExcAVR2.kf>\n" +
-        "\t\t<cim:ExcAVR2.se1>" + se1 + "</cim:ExcAVR2.se1>\n" +
-        "\t\t<cim:ExcAVR2.se2>" + se2 + "</cim:ExcAVR2.se2>\n" +
-        "\t\t<cim:ExcAVR2.ta>" + ta + "</cim:ExcAVR2.ta>\n" +
-        "\t\t<cim:ExcAVR2.tb>" + tb + "</cim:ExcAVR2.tb>\n" +
-        "\t\t<cim:ExcAVR2.te>" + te + "</cim:ExcAVR2.te>\n" +
-        "\t\t<cim:ExcAVR2.tf1>" + tf1 + "</cim:ExcAVR2.tf1>\n" +
-        "\t\t<cim:ExcAVR2.tf2>" + tf2 + "</cim:ExcAVR2.tf2>\n" +
-        "\t\t<cim:ExcAVR2.vrmn>" + vrmn + "</cim:ExcAVR2.vrmn>\n" +
-        "\t\t<cim:ExcAVR2.vrmx>" + vrmx + "</cim:ExcAVR2.vrmx>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcAVR2.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcAVR2.fields (position), value)
+        emitelem (0, e1)
+        emitelem (1, e2)
+        emitelem (2, ka)
+        emitelem (3, kf)
+        emitelem (4, se1)
+        emitelem (5, se2)
+        emitelem (6, ta)
+        emitelem (7, tb)
+        emitelem (8, te)
+        emitelem (9, tf1)
+        emitelem (10, tf2)
+        emitelem (11, vrmn)
+        emitelem (12, vrmx)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ExcAVR2 rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcAVR2>"
+        "\t<cim:ExcAVR2 rdf:ID=\"%s\">\n%s\t</cim:ExcAVR2>".format (id, export_fields)
     }
 }
 
@@ -1768,39 +2117,62 @@ object ExcAVR2
 extends
     Parseable[ExcAVR2]
 {
-    val e1 = parse_element (element ("""ExcAVR2.e1"""))
-    val e2 = parse_element (element ("""ExcAVR2.e2"""))
-    val ka = parse_element (element ("""ExcAVR2.ka"""))
-    val kf = parse_element (element ("""ExcAVR2.kf"""))
-    val se1 = parse_element (element ("""ExcAVR2.se1"""))
-    val se2 = parse_element (element ("""ExcAVR2.se2"""))
-    val ta = parse_element (element ("""ExcAVR2.ta"""))
-    val tb = parse_element (element ("""ExcAVR2.tb"""))
-    val te = parse_element (element ("""ExcAVR2.te"""))
-    val tf1 = parse_element (element ("""ExcAVR2.tf1"""))
-    val tf2 = parse_element (element ("""ExcAVR2.tf2"""))
-    val vrmn = parse_element (element ("""ExcAVR2.vrmn"""))
-    val vrmx = parse_element (element ("""ExcAVR2.vrmx"""))
+    val fields: Array[String] = Array[String] (
+        "e1",
+        "e2",
+        "ka",
+        "kf",
+        "se1",
+        "se2",
+        "ta",
+        "tb",
+        "te",
+        "tf1",
+        "tf2",
+        "vrmn",
+        "vrmx"
+    )
+    val e1: Fielder = parse_element (element (cls, fields(0)))
+    val e2: Fielder = parse_element (element (cls, fields(1)))
+    val ka: Fielder = parse_element (element (cls, fields(2)))
+    val kf: Fielder = parse_element (element (cls, fields(3)))
+    val se1: Fielder = parse_element (element (cls, fields(4)))
+    val se2: Fielder = parse_element (element (cls, fields(5)))
+    val ta: Fielder = parse_element (element (cls, fields(6)))
+    val tb: Fielder = parse_element (element (cls, fields(7)))
+    val te: Fielder = parse_element (element (cls, fields(8)))
+    val tf1: Fielder = parse_element (element (cls, fields(9)))
+    val tf2: Fielder = parse_element (element (cls, fields(10)))
+    val vrmn: Fielder = parse_element (element (cls, fields(11)))
+    val vrmx: Fielder = parse_element (element (cls, fields(12)))
+
     def parse (context: Context): ExcAVR2 =
     {
-        ExcAVR2(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ExcAVR2 (
             ExcitationSystemDynamics.parse (context),
-            toDouble (e1 (context), context),
-            toDouble (e2 (context), context),
-            toDouble (ka (context), context),
-            toDouble (kf (context), context),
-            toDouble (se1 (context), context),
-            toDouble (se2 (context), context),
-            toDouble (ta (context), context),
-            toDouble (tb (context), context),
-            toDouble (te (context), context),
-            toDouble (tf1 (context), context),
-            toDouble (tf2 (context), context),
-            toDouble (vrmn (context), context),
-            toDouble (vrmx (context), context)
+            toDouble (mask (e1 (), 0)),
+            toDouble (mask (e2 (), 1)),
+            toDouble (mask (ka (), 2)),
+            toDouble (mask (kf (), 3)),
+            toDouble (mask (se1 (), 4)),
+            toDouble (mask (se2 (), 5)),
+            toDouble (mask (ta (), 6)),
+            toDouble (mask (tb (), 7)),
+            toDouble (mask (te (), 8)),
+            toDouble (mask (tf1 (), 9)),
+            toDouble (mask (tf2 (), 10)),
+            toDouble (mask (vrmn (), 11)),
+            toDouble (mask (vrmx (), 12))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -1861,6 +2233,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -1880,25 +2258,27 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ExcAVR3.e1>" + e1 + "</cim:ExcAVR3.e1>\n" +
-        "\t\t<cim:ExcAVR3.e2>" + e2 + "</cim:ExcAVR3.e2>\n" +
-        "\t\t<cim:ExcAVR3.ka>" + ka + "</cim:ExcAVR3.ka>\n" +
-        "\t\t<cim:ExcAVR3.se1>" + se1 + "</cim:ExcAVR3.se1>\n" +
-        "\t\t<cim:ExcAVR3.se2>" + se2 + "</cim:ExcAVR3.se2>\n" +
-        "\t\t<cim:ExcAVR3.t1>" + t1 + "</cim:ExcAVR3.t1>\n" +
-        "\t\t<cim:ExcAVR3.t2>" + t2 + "</cim:ExcAVR3.t2>\n" +
-        "\t\t<cim:ExcAVR3.t3>" + t3 + "</cim:ExcAVR3.t3>\n" +
-        "\t\t<cim:ExcAVR3.t4>" + t4 + "</cim:ExcAVR3.t4>\n" +
-        "\t\t<cim:ExcAVR3.te>" + te + "</cim:ExcAVR3.te>\n" +
-        "\t\t<cim:ExcAVR3.vrmn>" + vrmn + "</cim:ExcAVR3.vrmn>\n" +
-        "\t\t<cim:ExcAVR3.vrmx>" + vrmx + "</cim:ExcAVR3.vrmx>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcAVR3.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcAVR3.fields (position), value)
+        emitelem (0, e1)
+        emitelem (1, e2)
+        emitelem (2, ka)
+        emitelem (3, se1)
+        emitelem (4, se2)
+        emitelem (5, t1)
+        emitelem (6, t2)
+        emitelem (7, t3)
+        emitelem (8, t4)
+        emitelem (9, te)
+        emitelem (10, vrmn)
+        emitelem (11, vrmx)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ExcAVR3 rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcAVR3>"
+        "\t<cim:ExcAVR3 rdf:ID=\"%s\">\n%s\t</cim:ExcAVR3>".format (id, export_fields)
     }
 }
 
@@ -1906,37 +2286,59 @@ object ExcAVR3
 extends
     Parseable[ExcAVR3]
 {
-    val e1 = parse_element (element ("""ExcAVR3.e1"""))
-    val e2 = parse_element (element ("""ExcAVR3.e2"""))
-    val ka = parse_element (element ("""ExcAVR3.ka"""))
-    val se1 = parse_element (element ("""ExcAVR3.se1"""))
-    val se2 = parse_element (element ("""ExcAVR3.se2"""))
-    val t1 = parse_element (element ("""ExcAVR3.t1"""))
-    val t2 = parse_element (element ("""ExcAVR3.t2"""))
-    val t3 = parse_element (element ("""ExcAVR3.t3"""))
-    val t4 = parse_element (element ("""ExcAVR3.t4"""))
-    val te = parse_element (element ("""ExcAVR3.te"""))
-    val vrmn = parse_element (element ("""ExcAVR3.vrmn"""))
-    val vrmx = parse_element (element ("""ExcAVR3.vrmx"""))
+    val fields: Array[String] = Array[String] (
+        "e1",
+        "e2",
+        "ka",
+        "se1",
+        "se2",
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "te",
+        "vrmn",
+        "vrmx"
+    )
+    val e1: Fielder = parse_element (element (cls, fields(0)))
+    val e2: Fielder = parse_element (element (cls, fields(1)))
+    val ka: Fielder = parse_element (element (cls, fields(2)))
+    val se1: Fielder = parse_element (element (cls, fields(3)))
+    val se2: Fielder = parse_element (element (cls, fields(4)))
+    val t1: Fielder = parse_element (element (cls, fields(5)))
+    val t2: Fielder = parse_element (element (cls, fields(6)))
+    val t3: Fielder = parse_element (element (cls, fields(7)))
+    val t4: Fielder = parse_element (element (cls, fields(8)))
+    val te: Fielder = parse_element (element (cls, fields(9)))
+    val vrmn: Fielder = parse_element (element (cls, fields(10)))
+    val vrmx: Fielder = parse_element (element (cls, fields(11)))
+
     def parse (context: Context): ExcAVR3 =
     {
-        ExcAVR3(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ExcAVR3 (
             ExcitationSystemDynamics.parse (context),
-            toDouble (e1 (context), context),
-            toDouble (e2 (context), context),
-            toDouble (ka (context), context),
-            toDouble (se1 (context), context),
-            toDouble (se2 (context), context),
-            toDouble (t1 (context), context),
-            toDouble (t2 (context), context),
-            toDouble (t3 (context), context),
-            toDouble (t4 (context), context),
-            toDouble (te (context), context),
-            toDouble (vrmn (context), context),
-            toDouble (vrmx (context), context)
+            toDouble (mask (e1 (), 0)),
+            toDouble (mask (e2 (), 1)),
+            toDouble (mask (ka (), 2)),
+            toDouble (mask (se1 (), 3)),
+            toDouble (mask (se2 (), 4)),
+            toDouble (mask (t1 (), 5)),
+            toDouble (mask (t2 (), 6)),
+            toDouble (mask (t3 (), 7)),
+            toDouble (mask (t4 (), 8)),
+            toDouble (mask (te (), 9)),
+            toDouble (mask (vrmn (), 10)),
+            toDouble (mask (vrmx (), 11))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -2005,6 +2407,12 @@ extends
      */
     def this () = { this (null, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -2024,27 +2432,29 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ExcAVR4.imul>" + imul + "</cim:ExcAVR4.imul>\n" +
-        "\t\t<cim:ExcAVR4.ka>" + ka + "</cim:ExcAVR4.ka>\n" +
-        "\t\t<cim:ExcAVR4.ke>" + ke + "</cim:ExcAVR4.ke>\n" +
-        "\t\t<cim:ExcAVR4.kif>" + kif + "</cim:ExcAVR4.kif>\n" +
-        "\t\t<cim:ExcAVR4.t1>" + t1 + "</cim:ExcAVR4.t1>\n" +
-        "\t\t<cim:ExcAVR4.t1if>" + t1if + "</cim:ExcAVR4.t1if>\n" +
-        "\t\t<cim:ExcAVR4.t2>" + t2 + "</cim:ExcAVR4.t2>\n" +
-        "\t\t<cim:ExcAVR4.t3>" + t3 + "</cim:ExcAVR4.t3>\n" +
-        "\t\t<cim:ExcAVR4.t4>" + t4 + "</cim:ExcAVR4.t4>\n" +
-        "\t\t<cim:ExcAVR4.tif>" + tif + "</cim:ExcAVR4.tif>\n" +
-        "\t\t<cim:ExcAVR4.vfmn>" + vfmn + "</cim:ExcAVR4.vfmn>\n" +
-        "\t\t<cim:ExcAVR4.vfmx>" + vfmx + "</cim:ExcAVR4.vfmx>\n" +
-        "\t\t<cim:ExcAVR4.vrmn>" + vrmn + "</cim:ExcAVR4.vrmn>\n" +
-        "\t\t<cim:ExcAVR4.vrmx>" + vrmx + "</cim:ExcAVR4.vrmx>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcAVR4.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcAVR4.fields (position), value)
+        emitelem (0, imul)
+        emitelem (1, ka)
+        emitelem (2, ke)
+        emitelem (3, kif)
+        emitelem (4, t1)
+        emitelem (5, t1if)
+        emitelem (6, t2)
+        emitelem (7, t3)
+        emitelem (8, t4)
+        emitelem (9, tif)
+        emitelem (10, vfmn)
+        emitelem (11, vfmx)
+        emitelem (12, vrmn)
+        emitelem (13, vrmx)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ExcAVR4 rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcAVR4>"
+        "\t<cim:ExcAVR4 rdf:ID=\"%s\">\n%s\t</cim:ExcAVR4>".format (id, export_fields)
     }
 }
 
@@ -2052,41 +2462,65 @@ object ExcAVR4
 extends
     Parseable[ExcAVR4]
 {
-    val imul = parse_element (element ("""ExcAVR4.imul"""))
-    val ka = parse_element (element ("""ExcAVR4.ka"""))
-    val ke = parse_element (element ("""ExcAVR4.ke"""))
-    val kif = parse_element (element ("""ExcAVR4.kif"""))
-    val t1 = parse_element (element ("""ExcAVR4.t1"""))
-    val t1if = parse_element (element ("""ExcAVR4.t1if"""))
-    val t2 = parse_element (element ("""ExcAVR4.t2"""))
-    val t3 = parse_element (element ("""ExcAVR4.t3"""))
-    val t4 = parse_element (element ("""ExcAVR4.t4"""))
-    val tif = parse_element (element ("""ExcAVR4.tif"""))
-    val vfmn = parse_element (element ("""ExcAVR4.vfmn"""))
-    val vfmx = parse_element (element ("""ExcAVR4.vfmx"""))
-    val vrmn = parse_element (element ("""ExcAVR4.vrmn"""))
-    val vrmx = parse_element (element ("""ExcAVR4.vrmx"""))
+    val fields: Array[String] = Array[String] (
+        "imul",
+        "ka",
+        "ke",
+        "kif",
+        "t1",
+        "t1if",
+        "t2",
+        "t3",
+        "t4",
+        "tif",
+        "vfmn",
+        "vfmx",
+        "vrmn",
+        "vrmx"
+    )
+    val imul: Fielder = parse_element (element (cls, fields(0)))
+    val ka: Fielder = parse_element (element (cls, fields(1)))
+    val ke: Fielder = parse_element (element (cls, fields(2)))
+    val kif: Fielder = parse_element (element (cls, fields(3)))
+    val t1: Fielder = parse_element (element (cls, fields(4)))
+    val t1if: Fielder = parse_element (element (cls, fields(5)))
+    val t2: Fielder = parse_element (element (cls, fields(6)))
+    val t3: Fielder = parse_element (element (cls, fields(7)))
+    val t4: Fielder = parse_element (element (cls, fields(8)))
+    val tif: Fielder = parse_element (element (cls, fields(9)))
+    val vfmn: Fielder = parse_element (element (cls, fields(10)))
+    val vfmx: Fielder = parse_element (element (cls, fields(11)))
+    val vrmn: Fielder = parse_element (element (cls, fields(12)))
+    val vrmx: Fielder = parse_element (element (cls, fields(13)))
+
     def parse (context: Context): ExcAVR4 =
     {
-        ExcAVR4(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ExcAVR4 (
             ExcitationSystemDynamics.parse (context),
-            toBoolean (imul (context), context),
-            toDouble (ka (context), context),
-            toDouble (ke (context), context),
-            toDouble (kif (context), context),
-            toDouble (t1 (context), context),
-            toDouble (t1if (context), context),
-            toDouble (t2 (context), context),
-            toDouble (t3 (context), context),
-            toDouble (t4 (context), context),
-            toDouble (tif (context), context),
-            toDouble (vfmn (context), context),
-            toDouble (vfmx (context), context),
-            toDouble (vrmn (context), context),
-            toDouble (vrmx (context), context)
+            toBoolean (mask (imul (), 0)),
+            toDouble (mask (ka (), 1)),
+            toDouble (mask (ke (), 2)),
+            toDouble (mask (kif (), 3)),
+            toDouble (mask (t1 (), 4)),
+            toDouble (mask (t1if (), 5)),
+            toDouble (mask (t2 (), 6)),
+            toDouble (mask (t3 (), 7)),
+            toDouble (mask (t4 (), 8)),
+            toDouble (mask (tif (), 9)),
+            toDouble (mask (vfmn (), 10)),
+            toDouble (mask (vfmx (), 11)),
+            toDouble (mask (vrmn (), 12)),
+            toDouble (mask (vrmx (), 13))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -2118,6 +2552,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -2137,16 +2577,18 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ExcAVR5.ka>" + ka + "</cim:ExcAVR5.ka>\n" +
-        "\t\t<cim:ExcAVR5.rex>" + rex + "</cim:ExcAVR5.rex>\n" +
-        "\t\t<cim:ExcAVR5.ta>" + ta + "</cim:ExcAVR5.ta>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcAVR5.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcAVR5.fields (position), value)
+        emitelem (0, ka)
+        emitelem (1, rex)
+        emitelem (2, ta)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ExcAVR5 rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcAVR5>"
+        "\t<cim:ExcAVR5 rdf:ID=\"%s\">\n%s\t</cim:ExcAVR5>".format (id, export_fields)
     }
 }
 
@@ -2154,19 +2596,32 @@ object ExcAVR5
 extends
     Parseable[ExcAVR5]
 {
-    val ka = parse_element (element ("""ExcAVR5.ka"""))
-    val rex = parse_element (element ("""ExcAVR5.rex"""))
-    val ta = parse_element (element ("""ExcAVR5.ta"""))
+    val fields: Array[String] = Array[String] (
+        "ka",
+        "rex",
+        "ta"
+    )
+    val ka: Fielder = parse_element (element (cls, fields(0)))
+    val rex: Fielder = parse_element (element (cls, fields(1)))
+    val ta: Fielder = parse_element (element (cls, fields(2)))
+
     def parse (context: Context): ExcAVR5 =
     {
-        ExcAVR5(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ExcAVR5 (
             ExcitationSystemDynamics.parse (context),
-            toDouble (ka (context), context),
-            toDouble (rex (context), context),
-            toDouble (ta (context), context)
+            toDouble (mask (ka (), 0)),
+            toDouble (mask (rex (), 1)),
+            toDouble (mask (ta (), 2))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -2252,6 +2707,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -2271,34 +2732,36 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ExcAVR7.a1>" + a1 + "</cim:ExcAVR7.a1>\n" +
-        "\t\t<cim:ExcAVR7.a2>" + a2 + "</cim:ExcAVR7.a2>\n" +
-        "\t\t<cim:ExcAVR7.a3>" + a3 + "</cim:ExcAVR7.a3>\n" +
-        "\t\t<cim:ExcAVR7.a4>" + a4 + "</cim:ExcAVR7.a4>\n" +
-        "\t\t<cim:ExcAVR7.a5>" + a5 + "</cim:ExcAVR7.a5>\n" +
-        "\t\t<cim:ExcAVR7.a6>" + a6 + "</cim:ExcAVR7.a6>\n" +
-        "\t\t<cim:ExcAVR7.k1>" + k1 + "</cim:ExcAVR7.k1>\n" +
-        "\t\t<cim:ExcAVR7.k3>" + k3 + "</cim:ExcAVR7.k3>\n" +
-        "\t\t<cim:ExcAVR7.k5>" + k5 + "</cim:ExcAVR7.k5>\n" +
-        "\t\t<cim:ExcAVR7.t1>" + t1 + "</cim:ExcAVR7.t1>\n" +
-        "\t\t<cim:ExcAVR7.t2>" + t2 + "</cim:ExcAVR7.t2>\n" +
-        "\t\t<cim:ExcAVR7.t3>" + t3 + "</cim:ExcAVR7.t3>\n" +
-        "\t\t<cim:ExcAVR7.t4>" + t4 + "</cim:ExcAVR7.t4>\n" +
-        "\t\t<cim:ExcAVR7.t5>" + t5 + "</cim:ExcAVR7.t5>\n" +
-        "\t\t<cim:ExcAVR7.t6>" + t6 + "</cim:ExcAVR7.t6>\n" +
-        "\t\t<cim:ExcAVR7.vmax1>" + vmax1 + "</cim:ExcAVR7.vmax1>\n" +
-        "\t\t<cim:ExcAVR7.vmax3>" + vmax3 + "</cim:ExcAVR7.vmax3>\n" +
-        "\t\t<cim:ExcAVR7.vmax5>" + vmax5 + "</cim:ExcAVR7.vmax5>\n" +
-        "\t\t<cim:ExcAVR7.vmin1>" + vmin1 + "</cim:ExcAVR7.vmin1>\n" +
-        "\t\t<cim:ExcAVR7.vmin3>" + vmin3 + "</cim:ExcAVR7.vmin3>\n" +
-        "\t\t<cim:ExcAVR7.vmin5>" + vmin5 + "</cim:ExcAVR7.vmin5>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcAVR7.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcAVR7.fields (position), value)
+        emitelem (0, a1)
+        emitelem (1, a2)
+        emitelem (2, a3)
+        emitelem (3, a4)
+        emitelem (4, a5)
+        emitelem (5, a6)
+        emitelem (6, k1)
+        emitelem (7, k3)
+        emitelem (8, k5)
+        emitelem (9, t1)
+        emitelem (10, t2)
+        emitelem (11, t3)
+        emitelem (12, t4)
+        emitelem (13, t5)
+        emitelem (14, t6)
+        emitelem (15, vmax1)
+        emitelem (16, vmax3)
+        emitelem (17, vmax5)
+        emitelem (18, vmin1)
+        emitelem (19, vmin3)
+        emitelem (20, vmin5)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ExcAVR7 rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcAVR7>"
+        "\t<cim:ExcAVR7 rdf:ID=\"%s\">\n%s\t</cim:ExcAVR7>".format (id, export_fields)
     }
 }
 
@@ -2306,55 +2769,86 @@ object ExcAVR7
 extends
     Parseable[ExcAVR7]
 {
-    val a1 = parse_element (element ("""ExcAVR7.a1"""))
-    val a2 = parse_element (element ("""ExcAVR7.a2"""))
-    val a3 = parse_element (element ("""ExcAVR7.a3"""))
-    val a4 = parse_element (element ("""ExcAVR7.a4"""))
-    val a5 = parse_element (element ("""ExcAVR7.a5"""))
-    val a6 = parse_element (element ("""ExcAVR7.a6"""))
-    val k1 = parse_element (element ("""ExcAVR7.k1"""))
-    val k3 = parse_element (element ("""ExcAVR7.k3"""))
-    val k5 = parse_element (element ("""ExcAVR7.k5"""))
-    val t1 = parse_element (element ("""ExcAVR7.t1"""))
-    val t2 = parse_element (element ("""ExcAVR7.t2"""))
-    val t3 = parse_element (element ("""ExcAVR7.t3"""))
-    val t4 = parse_element (element ("""ExcAVR7.t4"""))
-    val t5 = parse_element (element ("""ExcAVR7.t5"""))
-    val t6 = parse_element (element ("""ExcAVR7.t6"""))
-    val vmax1 = parse_element (element ("""ExcAVR7.vmax1"""))
-    val vmax3 = parse_element (element ("""ExcAVR7.vmax3"""))
-    val vmax5 = parse_element (element ("""ExcAVR7.vmax5"""))
-    val vmin1 = parse_element (element ("""ExcAVR7.vmin1"""))
-    val vmin3 = parse_element (element ("""ExcAVR7.vmin3"""))
-    val vmin5 = parse_element (element ("""ExcAVR7.vmin5"""))
+    val fields: Array[String] = Array[String] (
+        "a1",
+        "a2",
+        "a3",
+        "a4",
+        "a5",
+        "a6",
+        "k1",
+        "k3",
+        "k5",
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "vmax1",
+        "vmax3",
+        "vmax5",
+        "vmin1",
+        "vmin3",
+        "vmin5"
+    )
+    val a1: Fielder = parse_element (element (cls, fields(0)))
+    val a2: Fielder = parse_element (element (cls, fields(1)))
+    val a3: Fielder = parse_element (element (cls, fields(2)))
+    val a4: Fielder = parse_element (element (cls, fields(3)))
+    val a5: Fielder = parse_element (element (cls, fields(4)))
+    val a6: Fielder = parse_element (element (cls, fields(5)))
+    val k1: Fielder = parse_element (element (cls, fields(6)))
+    val k3: Fielder = parse_element (element (cls, fields(7)))
+    val k5: Fielder = parse_element (element (cls, fields(8)))
+    val t1: Fielder = parse_element (element (cls, fields(9)))
+    val t2: Fielder = parse_element (element (cls, fields(10)))
+    val t3: Fielder = parse_element (element (cls, fields(11)))
+    val t4: Fielder = parse_element (element (cls, fields(12)))
+    val t5: Fielder = parse_element (element (cls, fields(13)))
+    val t6: Fielder = parse_element (element (cls, fields(14)))
+    val vmax1: Fielder = parse_element (element (cls, fields(15)))
+    val vmax3: Fielder = parse_element (element (cls, fields(16)))
+    val vmax5: Fielder = parse_element (element (cls, fields(17)))
+    val vmin1: Fielder = parse_element (element (cls, fields(18)))
+    val vmin3: Fielder = parse_element (element (cls, fields(19)))
+    val vmin5: Fielder = parse_element (element (cls, fields(20)))
+
     def parse (context: Context): ExcAVR7 =
     {
-        ExcAVR7(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ExcAVR7 (
             ExcitationSystemDynamics.parse (context),
-            toDouble (a1 (context), context),
-            toDouble (a2 (context), context),
-            toDouble (a3 (context), context),
-            toDouble (a4 (context), context),
-            toDouble (a5 (context), context),
-            toDouble (a6 (context), context),
-            toDouble (k1 (context), context),
-            toDouble (k3 (context), context),
-            toDouble (k5 (context), context),
-            toDouble (t1 (context), context),
-            toDouble (t2 (context), context),
-            toDouble (t3 (context), context),
-            toDouble (t4 (context), context),
-            toDouble (t5 (context), context),
-            toDouble (t6 (context), context),
-            toDouble (vmax1 (context), context),
-            toDouble (vmax3 (context), context),
-            toDouble (vmax5 (context), context),
-            toDouble (vmin1 (context), context),
-            toDouble (vmin3 (context), context),
-            toDouble (vmin5 (context), context)
+            toDouble (mask (a1 (), 0)),
+            toDouble (mask (a2 (), 1)),
+            toDouble (mask (a3 (), 2)),
+            toDouble (mask (a4 (), 3)),
+            toDouble (mask (a5 (), 4)),
+            toDouble (mask (a6 (), 5)),
+            toDouble (mask (k1 (), 6)),
+            toDouble (mask (k3 (), 7)),
+            toDouble (mask (k5 (), 8)),
+            toDouble (mask (t1 (), 9)),
+            toDouble (mask (t2 (), 10)),
+            toDouble (mask (t3 (), 11)),
+            toDouble (mask (t4 (), 12)),
+            toDouble (mask (t5 (), 13)),
+            toDouble (mask (t6 (), 14)),
+            toDouble (mask (vmax1 (), 15)),
+            toDouble (mask (vmax3 (), 16)),
+            toDouble (mask (vmax5 (), 17)),
+            toDouble (mask (vmin1 (), 18)),
+            toDouble (mask (vmin3 (), 19)),
+            toDouble (mask (vmin5 (), 20))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -2414,6 +2908,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -2433,24 +2933,26 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ExcBBC.efdmax>" + efdmax + "</cim:ExcBBC.efdmax>\n" +
-        "\t\t<cim:ExcBBC.efdmin>" + efdmin + "</cim:ExcBBC.efdmin>\n" +
-        "\t\t<cim:ExcBBC.k>" + k + "</cim:ExcBBC.k>\n" +
-        "\t\t<cim:ExcBBC.switch>" + switch1 + "</cim:ExcBBC.switch>\n" +
-        "\t\t<cim:ExcBBC.t1>" + t1 + "</cim:ExcBBC.t1>\n" +
-        "\t\t<cim:ExcBBC.t2>" + t2 + "</cim:ExcBBC.t2>\n" +
-        "\t\t<cim:ExcBBC.t3>" + t3 + "</cim:ExcBBC.t3>\n" +
-        "\t\t<cim:ExcBBC.t4>" + t4 + "</cim:ExcBBC.t4>\n" +
-        "\t\t<cim:ExcBBC.vrmax>" + vrmax + "</cim:ExcBBC.vrmax>\n" +
-        "\t\t<cim:ExcBBC.vrmin>" + vrmin + "</cim:ExcBBC.vrmin>\n" +
-        "\t\t<cim:ExcBBC.xe>" + xe + "</cim:ExcBBC.xe>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcBBC.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcBBC.fields (position), value)
+        emitelem (0, efdmax)
+        emitelem (1, efdmin)
+        emitelem (2, k)
+        emitelem (3, switch1)
+        emitelem (4, t1)
+        emitelem (5, t2)
+        emitelem (6, t3)
+        emitelem (7, t4)
+        emitelem (8, vrmax)
+        emitelem (9, vrmin)
+        emitelem (10, xe)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ExcBBC rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcBBC>"
+        "\t<cim:ExcBBC rdf:ID=\"%s\">\n%s\t</cim:ExcBBC>".format (id, export_fields)
     }
 }
 
@@ -2458,35 +2960,56 @@ object ExcBBC
 extends
     Parseable[ExcBBC]
 {
-    val efdmax = parse_element (element ("""ExcBBC.efdmax"""))
-    val efdmin = parse_element (element ("""ExcBBC.efdmin"""))
-    val k = parse_element (element ("""ExcBBC.k"""))
-    val switch1 = parse_element (element ("""ExcBBC.switch"""))
-    val t1 = parse_element (element ("""ExcBBC.t1"""))
-    val t2 = parse_element (element ("""ExcBBC.t2"""))
-    val t3 = parse_element (element ("""ExcBBC.t3"""))
-    val t4 = parse_element (element ("""ExcBBC.t4"""))
-    val vrmax = parse_element (element ("""ExcBBC.vrmax"""))
-    val vrmin = parse_element (element ("""ExcBBC.vrmin"""))
-    val xe = parse_element (element ("""ExcBBC.xe"""))
+    val fields: Array[String] = Array[String] (
+        "efdmax",
+        "efdmin",
+        "k",
+        "switch",
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "vrmax",
+        "vrmin",
+        "xe"
+    )
+    val efdmax: Fielder = parse_element (element (cls, fields(0)))
+    val efdmin: Fielder = parse_element (element (cls, fields(1)))
+    val k: Fielder = parse_element (element (cls, fields(2)))
+    val switch1: Fielder = parse_element (element (cls, fields(3)))
+    val t1: Fielder = parse_element (element (cls, fields(4)))
+    val t2: Fielder = parse_element (element (cls, fields(5)))
+    val t3: Fielder = parse_element (element (cls, fields(6)))
+    val t4: Fielder = parse_element (element (cls, fields(7)))
+    val vrmax: Fielder = parse_element (element (cls, fields(8)))
+    val vrmin: Fielder = parse_element (element (cls, fields(9)))
+    val xe: Fielder = parse_element (element (cls, fields(10)))
+
     def parse (context: Context): ExcBBC =
     {
-        ExcBBC(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ExcBBC (
             ExcitationSystemDynamics.parse (context),
-            toDouble (efdmax (context), context),
-            toDouble (efdmin (context), context),
-            toDouble (k (context), context),
-            toBoolean (switch1 (context), context),
-            toDouble (t1 (context), context),
-            toDouble (t2 (context), context),
-            toDouble (t3 (context), context),
-            toDouble (t4 (context), context),
-            toDouble (vrmax (context), context),
-            toDouble (vrmin (context), context),
-            toDouble (xe (context), context)
+            toDouble (mask (efdmax (), 0)),
+            toDouble (mask (efdmin (), 1)),
+            toDouble (mask (k (), 2)),
+            toBoolean (mask (switch1 (), 3)),
+            toDouble (mask (t1 (), 4)),
+            toDouble (mask (t2 (), 5)),
+            toDouble (mask (t3 (), 6)),
+            toDouble (mask (t4 (), 7)),
+            toDouble (mask (vrmax (), 8)),
+            toDouble (mask (vrmin (), 9)),
+            toDouble (mask (xe (), 10))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -2529,6 +3052,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -2548,23 +3077,25 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ExcCZ.efdmax>" + efdmax + "</cim:ExcCZ.efdmax>\n" +
-        "\t\t<cim:ExcCZ.efdmin>" + efdmin + "</cim:ExcCZ.efdmin>\n" +
-        "\t\t<cim:ExcCZ.ka>" + ka + "</cim:ExcCZ.ka>\n" +
-        "\t\t<cim:ExcCZ.ke>" + ke + "</cim:ExcCZ.ke>\n" +
-        "\t\t<cim:ExcCZ.kp>" + kp + "</cim:ExcCZ.kp>\n" +
-        "\t\t<cim:ExcCZ.ta>" + ta + "</cim:ExcCZ.ta>\n" +
-        "\t\t<cim:ExcCZ.tc>" + tc + "</cim:ExcCZ.tc>\n" +
-        "\t\t<cim:ExcCZ.te>" + te + "</cim:ExcCZ.te>\n" +
-        "\t\t<cim:ExcCZ.vrmax>" + vrmax + "</cim:ExcCZ.vrmax>\n" +
-        "\t\t<cim:ExcCZ.vrmin>" + vrmin + "</cim:ExcCZ.vrmin>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcCZ.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcCZ.fields (position), value)
+        emitelem (0, efdmax)
+        emitelem (1, efdmin)
+        emitelem (2, ka)
+        emitelem (3, ke)
+        emitelem (4, kp)
+        emitelem (5, ta)
+        emitelem (6, tc)
+        emitelem (7, te)
+        emitelem (8, vrmax)
+        emitelem (9, vrmin)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ExcCZ rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcCZ>"
+        "\t<cim:ExcCZ rdf:ID=\"%s\">\n%s\t</cim:ExcCZ>".format (id, export_fields)
     }
 }
 
@@ -2572,33 +3103,53 @@ object ExcCZ
 extends
     Parseable[ExcCZ]
 {
-    val efdmax = parse_element (element ("""ExcCZ.efdmax"""))
-    val efdmin = parse_element (element ("""ExcCZ.efdmin"""))
-    val ka = parse_element (element ("""ExcCZ.ka"""))
-    val ke = parse_element (element ("""ExcCZ.ke"""))
-    val kp = parse_element (element ("""ExcCZ.kp"""))
-    val ta = parse_element (element ("""ExcCZ.ta"""))
-    val tc = parse_element (element ("""ExcCZ.tc"""))
-    val te = parse_element (element ("""ExcCZ.te"""))
-    val vrmax = parse_element (element ("""ExcCZ.vrmax"""))
-    val vrmin = parse_element (element ("""ExcCZ.vrmin"""))
+    val fields: Array[String] = Array[String] (
+        "efdmax",
+        "efdmin",
+        "ka",
+        "ke",
+        "kp",
+        "ta",
+        "tc",
+        "te",
+        "vrmax",
+        "vrmin"
+    )
+    val efdmax: Fielder = parse_element (element (cls, fields(0)))
+    val efdmin: Fielder = parse_element (element (cls, fields(1)))
+    val ka: Fielder = parse_element (element (cls, fields(2)))
+    val ke: Fielder = parse_element (element (cls, fields(3)))
+    val kp: Fielder = parse_element (element (cls, fields(4)))
+    val ta: Fielder = parse_element (element (cls, fields(5)))
+    val tc: Fielder = parse_element (element (cls, fields(6)))
+    val te: Fielder = parse_element (element (cls, fields(7)))
+    val vrmax: Fielder = parse_element (element (cls, fields(8)))
+    val vrmin: Fielder = parse_element (element (cls, fields(9)))
+
     def parse (context: Context): ExcCZ =
     {
-        ExcCZ(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ExcCZ (
             ExcitationSystemDynamics.parse (context),
-            toDouble (efdmax (context), context),
-            toDouble (efdmin (context), context),
-            toDouble (ka (context), context),
-            toDouble (ke (context), context),
-            toDouble (kp (context), context),
-            toDouble (ta (context), context),
-            toDouble (tc (context), context),
-            toDouble (te (context), context),
-            toDouble (vrmax (context), context),
-            toDouble (vrmin (context), context)
+            toDouble (mask (efdmax (), 0)),
+            toDouble (mask (efdmin (), 1)),
+            toDouble (mask (ka (), 2)),
+            toDouble (mask (ke (), 3)),
+            toDouble (mask (kp (), 4)),
+            toDouble (mask (ta (), 5)),
+            toDouble (mask (tc (), 6)),
+            toDouble (mask (te (), 7)),
+            toDouble (mask (vrmax (), 8)),
+            toDouble (mask (vrmin (), 9))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -2675,6 +3226,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -2694,31 +3251,33 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ExcDC1A.edfmax>" + edfmax + "</cim:ExcDC1A.edfmax>\n" +
-        "\t\t<cim:ExcDC1A.efd1>" + efd1 + "</cim:ExcDC1A.efd1>\n" +
-        "\t\t<cim:ExcDC1A.efd2>" + efd2 + "</cim:ExcDC1A.efd2>\n" +
-        "\t\t<cim:ExcDC1A.efdmin>" + efdmin + "</cim:ExcDC1A.efdmin>\n" +
-        "\t\t<cim:ExcDC1A.exclim>" + exclim + "</cim:ExcDC1A.exclim>\n" +
-        "\t\t<cim:ExcDC1A.ka>" + ka + "</cim:ExcDC1A.ka>\n" +
-        "\t\t<cim:ExcDC1A.ke>" + ke + "</cim:ExcDC1A.ke>\n" +
-        "\t\t<cim:ExcDC1A.kf>" + kf + "</cim:ExcDC1A.kf>\n" +
-        "\t\t<cim:ExcDC1A.ks>" + ks + "</cim:ExcDC1A.ks>\n" +
-        "\t\t<cim:ExcDC1A.seefd1>" + seefd1 + "</cim:ExcDC1A.seefd1>\n" +
-        "\t\t<cim:ExcDC1A.seefd2>" + seefd2 + "</cim:ExcDC1A.seefd2>\n" +
-        "\t\t<cim:ExcDC1A.ta>" + ta + "</cim:ExcDC1A.ta>\n" +
-        "\t\t<cim:ExcDC1A.tb>" + tb + "</cim:ExcDC1A.tb>\n" +
-        "\t\t<cim:ExcDC1A.tc>" + tc + "</cim:ExcDC1A.tc>\n" +
-        "\t\t<cim:ExcDC1A.te>" + te + "</cim:ExcDC1A.te>\n" +
-        "\t\t<cim:ExcDC1A.tf>" + tf + "</cim:ExcDC1A.tf>\n" +
-        "\t\t<cim:ExcDC1A.vrmax>" + vrmax + "</cim:ExcDC1A.vrmax>\n" +
-        "\t\t<cim:ExcDC1A.vrmin>" + vrmin + "</cim:ExcDC1A.vrmin>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcDC1A.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcDC1A.fields (position), value)
+        emitelem (0, edfmax)
+        emitelem (1, efd1)
+        emitelem (2, efd2)
+        emitelem (3, efdmin)
+        emitelem (4, exclim)
+        emitelem (5, ka)
+        emitelem (6, ke)
+        emitelem (7, kf)
+        emitelem (8, ks)
+        emitelem (9, seefd1)
+        emitelem (10, seefd2)
+        emitelem (11, ta)
+        emitelem (12, tb)
+        emitelem (13, tc)
+        emitelem (14, te)
+        emitelem (15, tf)
+        emitelem (16, vrmax)
+        emitelem (17, vrmin)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ExcDC1A rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcDC1A>"
+        "\t<cim:ExcDC1A rdf:ID=\"%s\">\n%s\t</cim:ExcDC1A>".format (id, export_fields)
     }
 }
 
@@ -2726,49 +3285,77 @@ object ExcDC1A
 extends
     Parseable[ExcDC1A]
 {
-    val edfmax = parse_element (element ("""ExcDC1A.edfmax"""))
-    val efd1 = parse_element (element ("""ExcDC1A.efd1"""))
-    val efd2 = parse_element (element ("""ExcDC1A.efd2"""))
-    val efdmin = parse_element (element ("""ExcDC1A.efdmin"""))
-    val exclim = parse_element (element ("""ExcDC1A.exclim"""))
-    val ka = parse_element (element ("""ExcDC1A.ka"""))
-    val ke = parse_element (element ("""ExcDC1A.ke"""))
-    val kf = parse_element (element ("""ExcDC1A.kf"""))
-    val ks = parse_element (element ("""ExcDC1A.ks"""))
-    val seefd1 = parse_element (element ("""ExcDC1A.seefd1"""))
-    val seefd2 = parse_element (element ("""ExcDC1A.seefd2"""))
-    val ta = parse_element (element ("""ExcDC1A.ta"""))
-    val tb = parse_element (element ("""ExcDC1A.tb"""))
-    val tc = parse_element (element ("""ExcDC1A.tc"""))
-    val te = parse_element (element ("""ExcDC1A.te"""))
-    val tf = parse_element (element ("""ExcDC1A.tf"""))
-    val vrmax = parse_element (element ("""ExcDC1A.vrmax"""))
-    val vrmin = parse_element (element ("""ExcDC1A.vrmin"""))
+    val fields: Array[String] = Array[String] (
+        "edfmax",
+        "efd1",
+        "efd2",
+        "efdmin",
+        "exclim",
+        "ka",
+        "ke",
+        "kf",
+        "ks",
+        "seefd1",
+        "seefd2",
+        "ta",
+        "tb",
+        "tc",
+        "te",
+        "tf",
+        "vrmax",
+        "vrmin"
+    )
+    val edfmax: Fielder = parse_element (element (cls, fields(0)))
+    val efd1: Fielder = parse_element (element (cls, fields(1)))
+    val efd2: Fielder = parse_element (element (cls, fields(2)))
+    val efdmin: Fielder = parse_element (element (cls, fields(3)))
+    val exclim: Fielder = parse_element (element (cls, fields(4)))
+    val ka: Fielder = parse_element (element (cls, fields(5)))
+    val ke: Fielder = parse_element (element (cls, fields(6)))
+    val kf: Fielder = parse_element (element (cls, fields(7)))
+    val ks: Fielder = parse_element (element (cls, fields(8)))
+    val seefd1: Fielder = parse_element (element (cls, fields(9)))
+    val seefd2: Fielder = parse_element (element (cls, fields(10)))
+    val ta: Fielder = parse_element (element (cls, fields(11)))
+    val tb: Fielder = parse_element (element (cls, fields(12)))
+    val tc: Fielder = parse_element (element (cls, fields(13)))
+    val te: Fielder = parse_element (element (cls, fields(14)))
+    val tf: Fielder = parse_element (element (cls, fields(15)))
+    val vrmax: Fielder = parse_element (element (cls, fields(16)))
+    val vrmin: Fielder = parse_element (element (cls, fields(17)))
+
     def parse (context: Context): ExcDC1A =
     {
-        ExcDC1A(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ExcDC1A (
             ExcitationSystemDynamics.parse (context),
-            toDouble (edfmax (context), context),
-            toDouble (efd1 (context), context),
-            toDouble (efd2 (context), context),
-            toDouble (efdmin (context), context),
-            toBoolean (exclim (context), context),
-            toDouble (ka (context), context),
-            toDouble (ke (context), context),
-            toDouble (kf (context), context),
-            toDouble (ks (context), context),
-            toDouble (seefd1 (context), context),
-            toDouble (seefd2 (context), context),
-            toDouble (ta (context), context),
-            toDouble (tb (context), context),
-            toDouble (tc (context), context),
-            toDouble (te (context), context),
-            toDouble (tf (context), context),
-            toDouble (vrmax (context), context),
-            toDouble (vrmin (context), context)
+            toDouble (mask (edfmax (), 0)),
+            toDouble (mask (efd1 (), 1)),
+            toDouble (mask (efd2 (), 2)),
+            toDouble (mask (efdmin (), 3)),
+            toBoolean (mask (exclim (), 4)),
+            toDouble (mask (ka (), 5)),
+            toDouble (mask (ke (), 6)),
+            toDouble (mask (kf (), 7)),
+            toDouble (mask (ks (), 8)),
+            toDouble (mask (seefd1 (), 9)),
+            toDouble (mask (seefd2 (), 10)),
+            toDouble (mask (ta (), 11)),
+            toDouble (mask (tb (), 12)),
+            toDouble (mask (tc (), 13)),
+            toDouble (mask (te (), 14)),
+            toDouble (mask (tf (), 15)),
+            toDouble (mask (vrmax (), 16)),
+            toDouble (mask (vrmin (), 17))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -2849,6 +3436,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -2868,31 +3461,33 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ExcDC2A.efd1>" + efd1 + "</cim:ExcDC2A.efd1>\n" +
-        "\t\t<cim:ExcDC2A.efd2>" + efd2 + "</cim:ExcDC2A.efd2>\n" +
-        "\t\t<cim:ExcDC2A.exclim>" + exclim + "</cim:ExcDC2A.exclim>\n" +
-        "\t\t<cim:ExcDC2A.ka>" + ka + "</cim:ExcDC2A.ka>\n" +
-        "\t\t<cim:ExcDC2A.ke>" + ke + "</cim:ExcDC2A.ke>\n" +
-        "\t\t<cim:ExcDC2A.kf>" + kf + "</cim:ExcDC2A.kf>\n" +
-        "\t\t<cim:ExcDC2A.ks>" + ks + "</cim:ExcDC2A.ks>\n" +
-        "\t\t<cim:ExcDC2A.seefd1>" + seefd1 + "</cim:ExcDC2A.seefd1>\n" +
-        "\t\t<cim:ExcDC2A.seefd2>" + seefd2 + "</cim:ExcDC2A.seefd2>\n" +
-        "\t\t<cim:ExcDC2A.ta>" + ta + "</cim:ExcDC2A.ta>\n" +
-        "\t\t<cim:ExcDC2A.tb>" + tb + "</cim:ExcDC2A.tb>\n" +
-        "\t\t<cim:ExcDC2A.tc>" + tc + "</cim:ExcDC2A.tc>\n" +
-        "\t\t<cim:ExcDC2A.te>" + te + "</cim:ExcDC2A.te>\n" +
-        "\t\t<cim:ExcDC2A.tf>" + tf + "</cim:ExcDC2A.tf>\n" +
-        "\t\t<cim:ExcDC2A.tf1>" + tf1 + "</cim:ExcDC2A.tf1>\n" +
-        "\t\t<cim:ExcDC2A.vrmax>" + vrmax + "</cim:ExcDC2A.vrmax>\n" +
-        "\t\t<cim:ExcDC2A.vrmin>" + vrmin + "</cim:ExcDC2A.vrmin>\n" +
-        "\t\t<cim:ExcDC2A.vtlim>" + vtlim + "</cim:ExcDC2A.vtlim>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcDC2A.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcDC2A.fields (position), value)
+        emitelem (0, efd1)
+        emitelem (1, efd2)
+        emitelem (2, exclim)
+        emitelem (3, ka)
+        emitelem (4, ke)
+        emitelem (5, kf)
+        emitelem (6, ks)
+        emitelem (7, seefd1)
+        emitelem (8, seefd2)
+        emitelem (9, ta)
+        emitelem (10, tb)
+        emitelem (11, tc)
+        emitelem (12, te)
+        emitelem (13, tf)
+        emitelem (14, tf1)
+        emitelem (15, vrmax)
+        emitelem (16, vrmin)
+        emitelem (17, vtlim)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ExcDC2A rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcDC2A>"
+        "\t<cim:ExcDC2A rdf:ID=\"%s\">\n%s\t</cim:ExcDC2A>".format (id, export_fields)
     }
 }
 
@@ -2900,49 +3495,77 @@ object ExcDC2A
 extends
     Parseable[ExcDC2A]
 {
-    val efd1 = parse_element (element ("""ExcDC2A.efd1"""))
-    val efd2 = parse_element (element ("""ExcDC2A.efd2"""))
-    val exclim = parse_element (element ("""ExcDC2A.exclim"""))
-    val ka = parse_element (element ("""ExcDC2A.ka"""))
-    val ke = parse_element (element ("""ExcDC2A.ke"""))
-    val kf = parse_element (element ("""ExcDC2A.kf"""))
-    val ks = parse_element (element ("""ExcDC2A.ks"""))
-    val seefd1 = parse_element (element ("""ExcDC2A.seefd1"""))
-    val seefd2 = parse_element (element ("""ExcDC2A.seefd2"""))
-    val ta = parse_element (element ("""ExcDC2A.ta"""))
-    val tb = parse_element (element ("""ExcDC2A.tb"""))
-    val tc = parse_element (element ("""ExcDC2A.tc"""))
-    val te = parse_element (element ("""ExcDC2A.te"""))
-    val tf = parse_element (element ("""ExcDC2A.tf"""))
-    val tf1 = parse_element (element ("""ExcDC2A.tf1"""))
-    val vrmax = parse_element (element ("""ExcDC2A.vrmax"""))
-    val vrmin = parse_element (element ("""ExcDC2A.vrmin"""))
-    val vtlim = parse_element (element ("""ExcDC2A.vtlim"""))
+    val fields: Array[String] = Array[String] (
+        "efd1",
+        "efd2",
+        "exclim",
+        "ka",
+        "ke",
+        "kf",
+        "ks",
+        "seefd1",
+        "seefd2",
+        "ta",
+        "tb",
+        "tc",
+        "te",
+        "tf",
+        "tf1",
+        "vrmax",
+        "vrmin",
+        "vtlim"
+    )
+    val efd1: Fielder = parse_element (element (cls, fields(0)))
+    val efd2: Fielder = parse_element (element (cls, fields(1)))
+    val exclim: Fielder = parse_element (element (cls, fields(2)))
+    val ka: Fielder = parse_element (element (cls, fields(3)))
+    val ke: Fielder = parse_element (element (cls, fields(4)))
+    val kf: Fielder = parse_element (element (cls, fields(5)))
+    val ks: Fielder = parse_element (element (cls, fields(6)))
+    val seefd1: Fielder = parse_element (element (cls, fields(7)))
+    val seefd2: Fielder = parse_element (element (cls, fields(8)))
+    val ta: Fielder = parse_element (element (cls, fields(9)))
+    val tb: Fielder = parse_element (element (cls, fields(10)))
+    val tc: Fielder = parse_element (element (cls, fields(11)))
+    val te: Fielder = parse_element (element (cls, fields(12)))
+    val tf: Fielder = parse_element (element (cls, fields(13)))
+    val tf1: Fielder = parse_element (element (cls, fields(14)))
+    val vrmax: Fielder = parse_element (element (cls, fields(15)))
+    val vrmin: Fielder = parse_element (element (cls, fields(16)))
+    val vtlim: Fielder = parse_element (element (cls, fields(17)))
+
     def parse (context: Context): ExcDC2A =
     {
-        ExcDC2A(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ExcDC2A (
             ExcitationSystemDynamics.parse (context),
-            toDouble (efd1 (context), context),
-            toDouble (efd2 (context), context),
-            toBoolean (exclim (context), context),
-            toDouble (ka (context), context),
-            toDouble (ke (context), context),
-            toDouble (kf (context), context),
-            toDouble (ks (context), context),
-            toDouble (seefd1 (context), context),
-            toDouble (seefd2 (context), context),
-            toDouble (ta (context), context),
-            toDouble (tb (context), context),
-            toDouble (tc (context), context),
-            toDouble (te (context), context),
-            toDouble (tf (context), context),
-            toDouble (tf1 (context), context),
-            toDouble (vrmax (context), context),
-            toDouble (vrmin (context), context),
-            toBoolean (vtlim (context), context)
+            toDouble (mask (efd1 (), 0)),
+            toDouble (mask (efd2 (), 1)),
+            toBoolean (mask (exclim (), 2)),
+            toDouble (mask (ka (), 3)),
+            toDouble (mask (ke (), 4)),
+            toDouble (mask (kf (), 5)),
+            toDouble (mask (ks (), 6)),
+            toDouble (mask (seefd1 (), 7)),
+            toDouble (mask (seefd2 (), 8)),
+            toDouble (mask (ta (), 9)),
+            toDouble (mask (tb (), 10)),
+            toDouble (mask (tc (), 11)),
+            toDouble (mask (te (), 12)),
+            toDouble (mask (tf (), 13)),
+            toDouble (mask (tf1 (), 14)),
+            toDouble (mask (vrmax (), 15)),
+            toDouble (mask (vrmin (), 16)),
+            toBoolean (mask (vtlim (), 17))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -3017,6 +3640,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, false, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -3036,29 +3665,31 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ExcDC3A.edfmax>" + edfmax + "</cim:ExcDC3A.edfmax>\n" +
-        "\t\t<cim:ExcDC3A.efd1>" + efd1 + "</cim:ExcDC3A.efd1>\n" +
-        "\t\t<cim:ExcDC3A.efd2>" + efd2 + "</cim:ExcDC3A.efd2>\n" +
-        "\t\t<cim:ExcDC3A.efdlim>" + efdlim + "</cim:ExcDC3A.efdlim>\n" +
-        "\t\t<cim:ExcDC3A.efdmin>" + efdmin + "</cim:ExcDC3A.efdmin>\n" +
-        "\t\t<cim:ExcDC3A.exclim>" + exclim + "</cim:ExcDC3A.exclim>\n" +
-        "\t\t<cim:ExcDC3A.ke>" + ke + "</cim:ExcDC3A.ke>\n" +
-        "\t\t<cim:ExcDC3A.kr>" + kr + "</cim:ExcDC3A.kr>\n" +
-        "\t\t<cim:ExcDC3A.ks>" + ks + "</cim:ExcDC3A.ks>\n" +
-        "\t\t<cim:ExcDC3A.kv>" + kv + "</cim:ExcDC3A.kv>\n" +
-        "\t\t<cim:ExcDC3A.seefd1>" + seefd1 + "</cim:ExcDC3A.seefd1>\n" +
-        "\t\t<cim:ExcDC3A.seefd2>" + seefd2 + "</cim:ExcDC3A.seefd2>\n" +
-        "\t\t<cim:ExcDC3A.te>" + te + "</cim:ExcDC3A.te>\n" +
-        "\t\t<cim:ExcDC3A.trh>" + trh + "</cim:ExcDC3A.trh>\n" +
-        "\t\t<cim:ExcDC3A.vrmax>" + vrmax + "</cim:ExcDC3A.vrmax>\n" +
-        "\t\t<cim:ExcDC3A.vrmin>" + vrmin + "</cim:ExcDC3A.vrmin>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcDC3A.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcDC3A.fields (position), value)
+        emitelem (0, edfmax)
+        emitelem (1, efd1)
+        emitelem (2, efd2)
+        emitelem (3, efdlim)
+        emitelem (4, efdmin)
+        emitelem (5, exclim)
+        emitelem (6, ke)
+        emitelem (7, kr)
+        emitelem (8, ks)
+        emitelem (9, kv)
+        emitelem (10, seefd1)
+        emitelem (11, seefd2)
+        emitelem (12, te)
+        emitelem (13, trh)
+        emitelem (14, vrmax)
+        emitelem (15, vrmin)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ExcDC3A rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcDC3A>"
+        "\t<cim:ExcDC3A rdf:ID=\"%s\">\n%s\t</cim:ExcDC3A>".format (id, export_fields)
     }
 }
 
@@ -3066,45 +3697,71 @@ object ExcDC3A
 extends
     Parseable[ExcDC3A]
 {
-    val edfmax = parse_element (element ("""ExcDC3A.edfmax"""))
-    val efd1 = parse_element (element ("""ExcDC3A.efd1"""))
-    val efd2 = parse_element (element ("""ExcDC3A.efd2"""))
-    val efdlim = parse_element (element ("""ExcDC3A.efdlim"""))
-    val efdmin = parse_element (element ("""ExcDC3A.efdmin"""))
-    val exclim = parse_element (element ("""ExcDC3A.exclim"""))
-    val ke = parse_element (element ("""ExcDC3A.ke"""))
-    val kr = parse_element (element ("""ExcDC3A.kr"""))
-    val ks = parse_element (element ("""ExcDC3A.ks"""))
-    val kv = parse_element (element ("""ExcDC3A.kv"""))
-    val seefd1 = parse_element (element ("""ExcDC3A.seefd1"""))
-    val seefd2 = parse_element (element ("""ExcDC3A.seefd2"""))
-    val te = parse_element (element ("""ExcDC3A.te"""))
-    val trh = parse_element (element ("""ExcDC3A.trh"""))
-    val vrmax = parse_element (element ("""ExcDC3A.vrmax"""))
-    val vrmin = parse_element (element ("""ExcDC3A.vrmin"""))
+    val fields: Array[String] = Array[String] (
+        "edfmax",
+        "efd1",
+        "efd2",
+        "efdlim",
+        "efdmin",
+        "exclim",
+        "ke",
+        "kr",
+        "ks",
+        "kv",
+        "seefd1",
+        "seefd2",
+        "te",
+        "trh",
+        "vrmax",
+        "vrmin"
+    )
+    val edfmax: Fielder = parse_element (element (cls, fields(0)))
+    val efd1: Fielder = parse_element (element (cls, fields(1)))
+    val efd2: Fielder = parse_element (element (cls, fields(2)))
+    val efdlim: Fielder = parse_element (element (cls, fields(3)))
+    val efdmin: Fielder = parse_element (element (cls, fields(4)))
+    val exclim: Fielder = parse_element (element (cls, fields(5)))
+    val ke: Fielder = parse_element (element (cls, fields(6)))
+    val kr: Fielder = parse_element (element (cls, fields(7)))
+    val ks: Fielder = parse_element (element (cls, fields(8)))
+    val kv: Fielder = parse_element (element (cls, fields(9)))
+    val seefd1: Fielder = parse_element (element (cls, fields(10)))
+    val seefd2: Fielder = parse_element (element (cls, fields(11)))
+    val te: Fielder = parse_element (element (cls, fields(12)))
+    val trh: Fielder = parse_element (element (cls, fields(13)))
+    val vrmax: Fielder = parse_element (element (cls, fields(14)))
+    val vrmin: Fielder = parse_element (element (cls, fields(15)))
+
     def parse (context: Context): ExcDC3A =
     {
-        ExcDC3A(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ExcDC3A (
             ExcitationSystemDynamics.parse (context),
-            toDouble (edfmax (context), context),
-            toDouble (efd1 (context), context),
-            toDouble (efd2 (context), context),
-            toBoolean (efdlim (context), context),
-            toDouble (efdmin (context), context),
-            toBoolean (exclim (context), context),
-            toDouble (ke (context), context),
-            toDouble (kr (context), context),
-            toDouble (ks (context), context),
-            toDouble (kv (context), context),
-            toDouble (seefd1 (context), context),
-            toDouble (seefd2 (context), context),
-            toDouble (te (context), context),
-            toDouble (trh (context), context),
-            toDouble (vrmax (context), context),
-            toDouble (vrmin (context), context)
+            toDouble (mask (edfmax (), 0)),
+            toDouble (mask (efd1 (), 1)),
+            toDouble (mask (efd2 (), 2)),
+            toBoolean (mask (efdlim (), 3)),
+            toDouble (mask (efdmin (), 4)),
+            toBoolean (mask (exclim (), 5)),
+            toDouble (mask (ke (), 6)),
+            toDouble (mask (kr (), 7)),
+            toDouble (mask (ks (), 8)),
+            toDouble (mask (kv (), 9)),
+            toDouble (mask (seefd1 (), 10)),
+            toDouble (mask (seefd2 (), 11)),
+            toDouble (mask (te (), 12)),
+            toDouble (mask (trh (), 13)),
+            toDouble (mask (vrmax (), 14)),
+            toDouble (mask (vrmin (), 15))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -3173,6 +3830,12 @@ extends
      */
     def this () = { this (null, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -3192,27 +3855,29 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ExcDC3A1.exclim>" + exclim + "</cim:ExcDC3A1.exclim>\n" +
-        "\t\t<cim:ExcDC3A1.ka>" + ka + "</cim:ExcDC3A1.ka>\n" +
-        "\t\t<cim:ExcDC3A1.ke>" + ke + "</cim:ExcDC3A1.ke>\n" +
-        "\t\t<cim:ExcDC3A1.kf>" + kf + "</cim:ExcDC3A1.kf>\n" +
-        "\t\t<cim:ExcDC3A1.ki>" + ki + "</cim:ExcDC3A1.ki>\n" +
-        "\t\t<cim:ExcDC3A1.kp>" + kp + "</cim:ExcDC3A1.kp>\n" +
-        "\t\t<cim:ExcDC3A1.ta>" + ta + "</cim:ExcDC3A1.ta>\n" +
-        "\t\t<cim:ExcDC3A1.te>" + te + "</cim:ExcDC3A1.te>\n" +
-        "\t\t<cim:ExcDC3A1.tf>" + tf + "</cim:ExcDC3A1.tf>\n" +
-        "\t\t<cim:ExcDC3A1.vb1max>" + vb1max + "</cim:ExcDC3A1.vb1max>\n" +
-        "\t\t<cim:ExcDC3A1.vblim>" + vblim + "</cim:ExcDC3A1.vblim>\n" +
-        "\t\t<cim:ExcDC3A1.vbmax>" + vbmax + "</cim:ExcDC3A1.vbmax>\n" +
-        "\t\t<cim:ExcDC3A1.vrmax>" + vrmax + "</cim:ExcDC3A1.vrmax>\n" +
-        "\t\t<cim:ExcDC3A1.vrmin>" + vrmin + "</cim:ExcDC3A1.vrmin>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcDC3A1.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcDC3A1.fields (position), value)
+        emitelem (0, exclim)
+        emitelem (1, ka)
+        emitelem (2, ke)
+        emitelem (3, kf)
+        emitelem (4, ki)
+        emitelem (5, kp)
+        emitelem (6, ta)
+        emitelem (7, te)
+        emitelem (8, tf)
+        emitelem (9, vb1max)
+        emitelem (10, vblim)
+        emitelem (11, vbmax)
+        emitelem (12, vrmax)
+        emitelem (13, vrmin)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ExcDC3A1 rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcDC3A1>"
+        "\t<cim:ExcDC3A1 rdf:ID=\"%s\">\n%s\t</cim:ExcDC3A1>".format (id, export_fields)
     }
 }
 
@@ -3220,41 +3885,65 @@ object ExcDC3A1
 extends
     Parseable[ExcDC3A1]
 {
-    val exclim = parse_element (element ("""ExcDC3A1.exclim"""))
-    val ka = parse_element (element ("""ExcDC3A1.ka"""))
-    val ke = parse_element (element ("""ExcDC3A1.ke"""))
-    val kf = parse_element (element ("""ExcDC3A1.kf"""))
-    val ki = parse_element (element ("""ExcDC3A1.ki"""))
-    val kp = parse_element (element ("""ExcDC3A1.kp"""))
-    val ta = parse_element (element ("""ExcDC3A1.ta"""))
-    val te = parse_element (element ("""ExcDC3A1.te"""))
-    val tf = parse_element (element ("""ExcDC3A1.tf"""))
-    val vb1max = parse_element (element ("""ExcDC3A1.vb1max"""))
-    val vblim = parse_element (element ("""ExcDC3A1.vblim"""))
-    val vbmax = parse_element (element ("""ExcDC3A1.vbmax"""))
-    val vrmax = parse_element (element ("""ExcDC3A1.vrmax"""))
-    val vrmin = parse_element (element ("""ExcDC3A1.vrmin"""))
+    val fields: Array[String] = Array[String] (
+        "exclim",
+        "ka",
+        "ke",
+        "kf",
+        "ki",
+        "kp",
+        "ta",
+        "te",
+        "tf",
+        "vb1max",
+        "vblim",
+        "vbmax",
+        "vrmax",
+        "vrmin"
+    )
+    val exclim: Fielder = parse_element (element (cls, fields(0)))
+    val ka: Fielder = parse_element (element (cls, fields(1)))
+    val ke: Fielder = parse_element (element (cls, fields(2)))
+    val kf: Fielder = parse_element (element (cls, fields(3)))
+    val ki: Fielder = parse_element (element (cls, fields(4)))
+    val kp: Fielder = parse_element (element (cls, fields(5)))
+    val ta: Fielder = parse_element (element (cls, fields(6)))
+    val te: Fielder = parse_element (element (cls, fields(7)))
+    val tf: Fielder = parse_element (element (cls, fields(8)))
+    val vb1max: Fielder = parse_element (element (cls, fields(9)))
+    val vblim: Fielder = parse_element (element (cls, fields(10)))
+    val vbmax: Fielder = parse_element (element (cls, fields(11)))
+    val vrmax: Fielder = parse_element (element (cls, fields(12)))
+    val vrmin: Fielder = parse_element (element (cls, fields(13)))
+
     def parse (context: Context): ExcDC3A1 =
     {
-        ExcDC3A1(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ExcDC3A1 (
             ExcitationSystemDynamics.parse (context),
-            toBoolean (exclim (context), context),
-            toDouble (ka (context), context),
-            toDouble (ke (context), context),
-            toDouble (kf (context), context),
-            toDouble (ki (context), context),
-            toDouble (kp (context), context),
-            toDouble (ta (context), context),
-            toDouble (te (context), context),
-            toDouble (tf (context), context),
-            toDouble (vb1max (context), context),
-            toBoolean (vblim (context), context),
-            toDouble (vbmax (context), context),
-            toDouble (vrmax (context), context),
-            toDouble (vrmin (context), context)
+            toBoolean (mask (exclim (), 0)),
+            toDouble (mask (ka (), 1)),
+            toDouble (mask (ke (), 2)),
+            toDouble (mask (kf (), 3)),
+            toDouble (mask (ki (), 4)),
+            toDouble (mask (kp (), 5)),
+            toDouble (mask (ta (), 6)),
+            toDouble (mask (te (), 7)),
+            toDouble (mask (tf (), 8)),
+            toDouble (mask (vb1max (), 9)),
+            toBoolean (mask (vblim (), 10)),
+            toDouble (mask (vbmax (), 11)),
+            toDouble (mask (vrmax (), 12)),
+            toDouble (mask (vrmin (), 13))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -3324,6 +4013,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -3343,28 +4038,30 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ExcELIN1.dpnf>" + dpnf + "</cim:ExcELIN1.dpnf>\n" +
-        "\t\t<cim:ExcELIN1.efmax>" + efmax + "</cim:ExcELIN1.efmax>\n" +
-        "\t\t<cim:ExcELIN1.efmin>" + efmin + "</cim:ExcELIN1.efmin>\n" +
-        "\t\t<cim:ExcELIN1.ks1>" + ks1 + "</cim:ExcELIN1.ks1>\n" +
-        "\t\t<cim:ExcELIN1.ks2>" + ks2 + "</cim:ExcELIN1.ks2>\n" +
-        "\t\t<cim:ExcELIN1.smax>" + smax + "</cim:ExcELIN1.smax>\n" +
-        "\t\t<cim:ExcELIN1.tfi>" + tfi + "</cim:ExcELIN1.tfi>\n" +
-        "\t\t<cim:ExcELIN1.tnu>" + tnu + "</cim:ExcELIN1.tnu>\n" +
-        "\t\t<cim:ExcELIN1.ts1>" + ts1 + "</cim:ExcELIN1.ts1>\n" +
-        "\t\t<cim:ExcELIN1.ts2>" + ts2 + "</cim:ExcELIN1.ts2>\n" +
-        "\t\t<cim:ExcELIN1.tsw>" + tsw + "</cim:ExcELIN1.tsw>\n" +
-        "\t\t<cim:ExcELIN1.vpi>" + vpi + "</cim:ExcELIN1.vpi>\n" +
-        "\t\t<cim:ExcELIN1.vpnf>" + vpnf + "</cim:ExcELIN1.vpnf>\n" +
-        "\t\t<cim:ExcELIN1.vpu>" + vpu + "</cim:ExcELIN1.vpu>\n" +
-        "\t\t<cim:ExcELIN1.xe>" + xe + "</cim:ExcELIN1.xe>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcELIN1.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcELIN1.fields (position), value)
+        emitelem (0, dpnf)
+        emitelem (1, efmax)
+        emitelem (2, efmin)
+        emitelem (3, ks1)
+        emitelem (4, ks2)
+        emitelem (5, smax)
+        emitelem (6, tfi)
+        emitelem (7, tnu)
+        emitelem (8, ts1)
+        emitelem (9, ts2)
+        emitelem (10, tsw)
+        emitelem (11, vpi)
+        emitelem (12, vpnf)
+        emitelem (13, vpu)
+        emitelem (14, xe)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ExcELIN1 rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcELIN1>"
+        "\t<cim:ExcELIN1 rdf:ID=\"%s\">\n%s\t</cim:ExcELIN1>".format (id, export_fields)
     }
 }
 
@@ -3372,43 +4069,68 @@ object ExcELIN1
 extends
     Parseable[ExcELIN1]
 {
-    val dpnf = parse_element (element ("""ExcELIN1.dpnf"""))
-    val efmax = parse_element (element ("""ExcELIN1.efmax"""))
-    val efmin = parse_element (element ("""ExcELIN1.efmin"""))
-    val ks1 = parse_element (element ("""ExcELIN1.ks1"""))
-    val ks2 = parse_element (element ("""ExcELIN1.ks2"""))
-    val smax = parse_element (element ("""ExcELIN1.smax"""))
-    val tfi = parse_element (element ("""ExcELIN1.tfi"""))
-    val tnu = parse_element (element ("""ExcELIN1.tnu"""))
-    val ts1 = parse_element (element ("""ExcELIN1.ts1"""))
-    val ts2 = parse_element (element ("""ExcELIN1.ts2"""))
-    val tsw = parse_element (element ("""ExcELIN1.tsw"""))
-    val vpi = parse_element (element ("""ExcELIN1.vpi"""))
-    val vpnf = parse_element (element ("""ExcELIN1.vpnf"""))
-    val vpu = parse_element (element ("""ExcELIN1.vpu"""))
-    val xe = parse_element (element ("""ExcELIN1.xe"""))
+    val fields: Array[String] = Array[String] (
+        "dpnf",
+        "efmax",
+        "efmin",
+        "ks1",
+        "ks2",
+        "smax",
+        "tfi",
+        "tnu",
+        "ts1",
+        "ts2",
+        "tsw",
+        "vpi",
+        "vpnf",
+        "vpu",
+        "xe"
+    )
+    val dpnf: Fielder = parse_element (element (cls, fields(0)))
+    val efmax: Fielder = parse_element (element (cls, fields(1)))
+    val efmin: Fielder = parse_element (element (cls, fields(2)))
+    val ks1: Fielder = parse_element (element (cls, fields(3)))
+    val ks2: Fielder = parse_element (element (cls, fields(4)))
+    val smax: Fielder = parse_element (element (cls, fields(5)))
+    val tfi: Fielder = parse_element (element (cls, fields(6)))
+    val tnu: Fielder = parse_element (element (cls, fields(7)))
+    val ts1: Fielder = parse_element (element (cls, fields(8)))
+    val ts2: Fielder = parse_element (element (cls, fields(9)))
+    val tsw: Fielder = parse_element (element (cls, fields(10)))
+    val vpi: Fielder = parse_element (element (cls, fields(11)))
+    val vpnf: Fielder = parse_element (element (cls, fields(12)))
+    val vpu: Fielder = parse_element (element (cls, fields(13)))
+    val xe: Fielder = parse_element (element (cls, fields(14)))
+
     def parse (context: Context): ExcELIN1 =
     {
-        ExcELIN1(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ExcELIN1 (
             ExcitationSystemDynamics.parse (context),
-            toDouble (dpnf (context), context),
-            toDouble (efmax (context), context),
-            toDouble (efmin (context), context),
-            toDouble (ks1 (context), context),
-            toDouble (ks2 (context), context),
-            toDouble (smax (context), context),
-            toDouble (tfi (context), context),
-            toDouble (tnu (context), context),
-            toDouble (ts1 (context), context),
-            toDouble (ts2 (context), context),
-            toDouble (tsw (context), context),
-            toDouble (vpi (context), context),
-            toDouble (vpnf (context), context),
-            toDouble (vpu (context), context),
-            toDouble (xe (context), context)
+            toDouble (mask (dpnf (), 0)),
+            toDouble (mask (efmax (), 1)),
+            toDouble (mask (efmin (), 2)),
+            toDouble (mask (ks1 (), 3)),
+            toDouble (mask (ks2 (), 4)),
+            toDouble (mask (smax (), 5)),
+            toDouble (mask (tfi (), 6)),
+            toDouble (mask (tnu (), 7)),
+            toDouble (mask (ts1 (), 8)),
+            toDouble (mask (ts2 (), 9)),
+            toDouble (mask (tsw (), 10)),
+            toDouble (mask (vpi (), 11)),
+            toDouble (mask (vpnf (), 12)),
+            toDouble (mask (vpu (), 13)),
+            toDouble (mask (xe (), 14))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -3514,6 +4236,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -3533,40 +4261,42 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ExcELIN2.efdbas>" + efdbas + "</cim:ExcELIN2.efdbas>\n" +
-        "\t\t<cim:ExcELIN2.iefmax>" + iefmax + "</cim:ExcELIN2.iefmax>\n" +
-        "\t\t<cim:ExcELIN2.iefmax2>" + iefmax2 + "</cim:ExcELIN2.iefmax2>\n" +
-        "\t\t<cim:ExcELIN2.iefmin>" + iefmin + "</cim:ExcELIN2.iefmin>\n" +
-        "\t\t<cim:ExcELIN2.k1>" + k1 + "</cim:ExcELIN2.k1>\n" +
-        "\t\t<cim:ExcELIN2.k1ec>" + k1ec + "</cim:ExcELIN2.k1ec>\n" +
-        "\t\t<cim:ExcELIN2.k2>" + k2 + "</cim:ExcELIN2.k2>\n" +
-        "\t\t<cim:ExcELIN2.k3>" + k3 + "</cim:ExcELIN2.k3>\n" +
-        "\t\t<cim:ExcELIN2.k4>" + k4 + "</cim:ExcELIN2.k4>\n" +
-        "\t\t<cim:ExcELIN2.kd1>" + kd1 + "</cim:ExcELIN2.kd1>\n" +
-        "\t\t<cim:ExcELIN2.ke2>" + ke2 + "</cim:ExcELIN2.ke2>\n" +
-        "\t\t<cim:ExcELIN2.ketb>" + ketb + "</cim:ExcELIN2.ketb>\n" +
-        "\t\t<cim:ExcELIN2.pid1max>" + pid1max + "</cim:ExcELIN2.pid1max>\n" +
-        "\t\t<cim:ExcELIN2.seve1>" + seve1 + "</cim:ExcELIN2.seve1>\n" +
-        "\t\t<cim:ExcELIN2.seve2>" + seve2 + "</cim:ExcELIN2.seve2>\n" +
-        "\t\t<cim:ExcELIN2.tb1>" + tb1 + "</cim:ExcELIN2.tb1>\n" +
-        "\t\t<cim:ExcELIN2.te>" + te + "</cim:ExcELIN2.te>\n" +
-        "\t\t<cim:ExcELIN2.te2>" + te2 + "</cim:ExcELIN2.te2>\n" +
-        "\t\t<cim:ExcELIN2.ti1>" + ti1 + "</cim:ExcELIN2.ti1>\n" +
-        "\t\t<cim:ExcELIN2.ti3>" + ti3 + "</cim:ExcELIN2.ti3>\n" +
-        "\t\t<cim:ExcELIN2.ti4>" + ti4 + "</cim:ExcELIN2.ti4>\n" +
-        "\t\t<cim:ExcELIN2.tr4>" + tr4 + "</cim:ExcELIN2.tr4>\n" +
-        "\t\t<cim:ExcELIN2.upmax>" + upmax + "</cim:ExcELIN2.upmax>\n" +
-        "\t\t<cim:ExcELIN2.upmin>" + upmin + "</cim:ExcELIN2.upmin>\n" +
-        "\t\t<cim:ExcELIN2.ve1>" + ve1 + "</cim:ExcELIN2.ve1>\n" +
-        "\t\t<cim:ExcELIN2.ve2>" + ve2 + "</cim:ExcELIN2.ve2>\n" +
-        "\t\t<cim:ExcELIN2.xp>" + xp + "</cim:ExcELIN2.xp>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcELIN2.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcELIN2.fields (position), value)
+        emitelem (0, efdbas)
+        emitelem (1, iefmax)
+        emitelem (2, iefmax2)
+        emitelem (3, iefmin)
+        emitelem (4, k1)
+        emitelem (5, k1ec)
+        emitelem (6, k2)
+        emitelem (7, k3)
+        emitelem (8, k4)
+        emitelem (9, kd1)
+        emitelem (10, ke2)
+        emitelem (11, ketb)
+        emitelem (12, pid1max)
+        emitelem (13, seve1)
+        emitelem (14, seve2)
+        emitelem (15, tb1)
+        emitelem (16, te)
+        emitelem (17, te2)
+        emitelem (18, ti1)
+        emitelem (19, ti3)
+        emitelem (20, ti4)
+        emitelem (21, tr4)
+        emitelem (22, upmax)
+        emitelem (23, upmin)
+        emitelem (24, ve1)
+        emitelem (25, ve2)
+        emitelem (26, xp)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ExcELIN2 rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcELIN2>"
+        "\t<cim:ExcELIN2 rdf:ID=\"%s\">\n%s\t</cim:ExcELIN2>".format (id, export_fields)
     }
 }
 
@@ -3574,67 +4304,104 @@ object ExcELIN2
 extends
     Parseable[ExcELIN2]
 {
-    val efdbas = parse_element (element ("""ExcELIN2.efdbas"""))
-    val iefmax = parse_element (element ("""ExcELIN2.iefmax"""))
-    val iefmax2 = parse_element (element ("""ExcELIN2.iefmax2"""))
-    val iefmin = parse_element (element ("""ExcELIN2.iefmin"""))
-    val k1 = parse_element (element ("""ExcELIN2.k1"""))
-    val k1ec = parse_element (element ("""ExcELIN2.k1ec"""))
-    val k2 = parse_element (element ("""ExcELIN2.k2"""))
-    val k3 = parse_element (element ("""ExcELIN2.k3"""))
-    val k4 = parse_element (element ("""ExcELIN2.k4"""))
-    val kd1 = parse_element (element ("""ExcELIN2.kd1"""))
-    val ke2 = parse_element (element ("""ExcELIN2.ke2"""))
-    val ketb = parse_element (element ("""ExcELIN2.ketb"""))
-    val pid1max = parse_element (element ("""ExcELIN2.pid1max"""))
-    val seve1 = parse_element (element ("""ExcELIN2.seve1"""))
-    val seve2 = parse_element (element ("""ExcELIN2.seve2"""))
-    val tb1 = parse_element (element ("""ExcELIN2.tb1"""))
-    val te = parse_element (element ("""ExcELIN2.te"""))
-    val te2 = parse_element (element ("""ExcELIN2.te2"""))
-    val ti1 = parse_element (element ("""ExcELIN2.ti1"""))
-    val ti3 = parse_element (element ("""ExcELIN2.ti3"""))
-    val ti4 = parse_element (element ("""ExcELIN2.ti4"""))
-    val tr4 = parse_element (element ("""ExcELIN2.tr4"""))
-    val upmax = parse_element (element ("""ExcELIN2.upmax"""))
-    val upmin = parse_element (element ("""ExcELIN2.upmin"""))
-    val ve1 = parse_element (element ("""ExcELIN2.ve1"""))
-    val ve2 = parse_element (element ("""ExcELIN2.ve2"""))
-    val xp = parse_element (element ("""ExcELIN2.xp"""))
+    val fields: Array[String] = Array[String] (
+        "efdbas",
+        "iefmax",
+        "iefmax2",
+        "iefmin",
+        "k1",
+        "k1ec",
+        "k2",
+        "k3",
+        "k4",
+        "kd1",
+        "ke2",
+        "ketb",
+        "pid1max",
+        "seve1",
+        "seve2",
+        "tb1",
+        "te",
+        "te2",
+        "ti1",
+        "ti3",
+        "ti4",
+        "tr4",
+        "upmax",
+        "upmin",
+        "ve1",
+        "ve2",
+        "xp"
+    )
+    val efdbas: Fielder = parse_element (element (cls, fields(0)))
+    val iefmax: Fielder = parse_element (element (cls, fields(1)))
+    val iefmax2: Fielder = parse_element (element (cls, fields(2)))
+    val iefmin: Fielder = parse_element (element (cls, fields(3)))
+    val k1: Fielder = parse_element (element (cls, fields(4)))
+    val k1ec: Fielder = parse_element (element (cls, fields(5)))
+    val k2: Fielder = parse_element (element (cls, fields(6)))
+    val k3: Fielder = parse_element (element (cls, fields(7)))
+    val k4: Fielder = parse_element (element (cls, fields(8)))
+    val kd1: Fielder = parse_element (element (cls, fields(9)))
+    val ke2: Fielder = parse_element (element (cls, fields(10)))
+    val ketb: Fielder = parse_element (element (cls, fields(11)))
+    val pid1max: Fielder = parse_element (element (cls, fields(12)))
+    val seve1: Fielder = parse_element (element (cls, fields(13)))
+    val seve2: Fielder = parse_element (element (cls, fields(14)))
+    val tb1: Fielder = parse_element (element (cls, fields(15)))
+    val te: Fielder = parse_element (element (cls, fields(16)))
+    val te2: Fielder = parse_element (element (cls, fields(17)))
+    val ti1: Fielder = parse_element (element (cls, fields(18)))
+    val ti3: Fielder = parse_element (element (cls, fields(19)))
+    val ti4: Fielder = parse_element (element (cls, fields(20)))
+    val tr4: Fielder = parse_element (element (cls, fields(21)))
+    val upmax: Fielder = parse_element (element (cls, fields(22)))
+    val upmin: Fielder = parse_element (element (cls, fields(23)))
+    val ve1: Fielder = parse_element (element (cls, fields(24)))
+    val ve2: Fielder = parse_element (element (cls, fields(25)))
+    val xp: Fielder = parse_element (element (cls, fields(26)))
+
     def parse (context: Context): ExcELIN2 =
     {
-        ExcELIN2(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ExcELIN2 (
             ExcitationSystemDynamics.parse (context),
-            toDouble (efdbas (context), context),
-            toDouble (iefmax (context), context),
-            toDouble (iefmax2 (context), context),
-            toDouble (iefmin (context), context),
-            toDouble (k1 (context), context),
-            toDouble (k1ec (context), context),
-            toDouble (k2 (context), context),
-            toDouble (k3 (context), context),
-            toDouble (k4 (context), context),
-            toDouble (kd1 (context), context),
-            toDouble (ke2 (context), context),
-            toDouble (ketb (context), context),
-            toDouble (pid1max (context), context),
-            toDouble (seve1 (context), context),
-            toDouble (seve2 (context), context),
-            toDouble (tb1 (context), context),
-            toDouble (te (context), context),
-            toDouble (te2 (context), context),
-            toDouble (ti1 (context), context),
-            toDouble (ti3 (context), context),
-            toDouble (ti4 (context), context),
-            toDouble (tr4 (context), context),
-            toDouble (upmax (context), context),
-            toDouble (upmin (context), context),
-            toDouble (ve1 (context), context),
-            toDouble (ve2 (context), context),
-            toDouble (xp (context), context)
+            toDouble (mask (efdbas (), 0)),
+            toDouble (mask (iefmax (), 1)),
+            toDouble (mask (iefmax2 (), 2)),
+            toDouble (mask (iefmin (), 3)),
+            toDouble (mask (k1 (), 4)),
+            toDouble (mask (k1ec (), 5)),
+            toDouble (mask (k2 (), 6)),
+            toDouble (mask (k3 (), 7)),
+            toDouble (mask (k4 (), 8)),
+            toDouble (mask (kd1 (), 9)),
+            toDouble (mask (ke2 (), 10)),
+            toDouble (mask (ketb (), 11)),
+            toDouble (mask (pid1max (), 12)),
+            toDouble (mask (seve1 (), 13)),
+            toDouble (mask (seve2 (), 14)),
+            toDouble (mask (tb1 (), 15)),
+            toDouble (mask (te (), 16)),
+            toDouble (mask (te2 (), 17)),
+            toDouble (mask (ti1 (), 18)),
+            toDouble (mask (ti3 (), 19)),
+            toDouble (mask (ti4 (), 20)),
+            toDouble (mask (tr4 (), 21)),
+            toDouble (mask (upmax (), 22)),
+            toDouble (mask (upmin (), 23)),
+            toDouble (mask (ve1 (), 24)),
+            toDouble (mask (ve2 (), 25)),
+            toDouble (mask (xp (), 26))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -3693,6 +4460,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -3712,25 +4485,27 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ExcHU.ae>" + ae + "</cim:ExcHU.ae>\n" +
-        "\t\t<cim:ExcHU.ai>" + ai + "</cim:ExcHU.ai>\n" +
-        "\t\t<cim:ExcHU.atr>" + atr + "</cim:ExcHU.atr>\n" +
-        "\t\t<cim:ExcHU.emax>" + emax + "</cim:ExcHU.emax>\n" +
-        "\t\t<cim:ExcHU.emin>" + emin + "</cim:ExcHU.emin>\n" +
-        "\t\t<cim:ExcHU.imax>" + imax + "</cim:ExcHU.imax>\n" +
-        "\t\t<cim:ExcHU.imin>" + imin + "</cim:ExcHU.imin>\n" +
-        "\t\t<cim:ExcHU.ke>" + ke + "</cim:ExcHU.ke>\n" +
-        "\t\t<cim:ExcHU.ki>" + ki + "</cim:ExcHU.ki>\n" +
-        "\t\t<cim:ExcHU.te>" + te + "</cim:ExcHU.te>\n" +
-        "\t\t<cim:ExcHU.ti>" + ti + "</cim:ExcHU.ti>\n" +
-        "\t\t<cim:ExcHU.tr>" + tr + "</cim:ExcHU.tr>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcHU.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcHU.fields (position), value)
+        emitelem (0, ae)
+        emitelem (1, ai)
+        emitelem (2, atr)
+        emitelem (3, emax)
+        emitelem (4, emin)
+        emitelem (5, imax)
+        emitelem (6, imin)
+        emitelem (7, ke)
+        emitelem (8, ki)
+        emitelem (9, te)
+        emitelem (10, ti)
+        emitelem (11, tr)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ExcHU rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcHU>"
+        "\t<cim:ExcHU rdf:ID=\"%s\">\n%s\t</cim:ExcHU>".format (id, export_fields)
     }
 }
 
@@ -3738,37 +4513,59 @@ object ExcHU
 extends
     Parseable[ExcHU]
 {
-    val ae = parse_element (element ("""ExcHU.ae"""))
-    val ai = parse_element (element ("""ExcHU.ai"""))
-    val atr = parse_element (element ("""ExcHU.atr"""))
-    val emax = parse_element (element ("""ExcHU.emax"""))
-    val emin = parse_element (element ("""ExcHU.emin"""))
-    val imax = parse_element (element ("""ExcHU.imax"""))
-    val imin = parse_element (element ("""ExcHU.imin"""))
-    val ke = parse_element (element ("""ExcHU.ke"""))
-    val ki = parse_element (element ("""ExcHU.ki"""))
-    val te = parse_element (element ("""ExcHU.te"""))
-    val ti = parse_element (element ("""ExcHU.ti"""))
-    val tr = parse_element (element ("""ExcHU.tr"""))
+    val fields: Array[String] = Array[String] (
+        "ae",
+        "ai",
+        "atr",
+        "emax",
+        "emin",
+        "imax",
+        "imin",
+        "ke",
+        "ki",
+        "te",
+        "ti",
+        "tr"
+    )
+    val ae: Fielder = parse_element (element (cls, fields(0)))
+    val ai: Fielder = parse_element (element (cls, fields(1)))
+    val atr: Fielder = parse_element (element (cls, fields(2)))
+    val emax: Fielder = parse_element (element (cls, fields(3)))
+    val emin: Fielder = parse_element (element (cls, fields(4)))
+    val imax: Fielder = parse_element (element (cls, fields(5)))
+    val imin: Fielder = parse_element (element (cls, fields(6)))
+    val ke: Fielder = parse_element (element (cls, fields(7)))
+    val ki: Fielder = parse_element (element (cls, fields(8)))
+    val te: Fielder = parse_element (element (cls, fields(9)))
+    val ti: Fielder = parse_element (element (cls, fields(10)))
+    val tr: Fielder = parse_element (element (cls, fields(11)))
+
     def parse (context: Context): ExcHU =
     {
-        ExcHU(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ExcHU (
             ExcitationSystemDynamics.parse (context),
-            toDouble (ae (context), context),
-            toDouble (ai (context), context),
-            toDouble (atr (context), context),
-            toDouble (emax (context), context),
-            toDouble (emin (context), context),
-            toDouble (imax (context), context),
-            toDouble (imin (context), context),
-            toDouble (ke (context), context),
-            toDouble (ki (context), context),
-            toDouble (te (context), context),
-            toDouble (ti (context), context),
-            toDouble (tr (context), context)
+            toDouble (mask (ae (), 0)),
+            toDouble (mask (ai (), 1)),
+            toDouble (mask (atr (), 2)),
+            toDouble (mask (emax (), 3)),
+            toDouble (mask (emin (), 4)),
+            toDouble (mask (imax (), 5)),
+            toDouble (mask (imin (), 6)),
+            toDouble (mask (ke (), 7)),
+            toDouble (mask (ki (), 8)),
+            toDouble (mask (te (), 9)),
+            toDouble (mask (ti (), 10)),
+            toDouble (mask (tr (), 11))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -3847,6 +4644,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -3866,31 +4669,33 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ExcIEEEAC1A.ka>" + ka + "</cim:ExcIEEEAC1A.ka>\n" +
-        "\t\t<cim:ExcIEEEAC1A.kc>" + kc + "</cim:ExcIEEEAC1A.kc>\n" +
-        "\t\t<cim:ExcIEEEAC1A.kd>" + kd + "</cim:ExcIEEEAC1A.kd>\n" +
-        "\t\t<cim:ExcIEEEAC1A.ke>" + ke + "</cim:ExcIEEEAC1A.ke>\n" +
-        "\t\t<cim:ExcIEEEAC1A.kf>" + kf + "</cim:ExcIEEEAC1A.kf>\n" +
-        "\t\t<cim:ExcIEEEAC1A.seve1>" + seve1 + "</cim:ExcIEEEAC1A.seve1>\n" +
-        "\t\t<cim:ExcIEEEAC1A.seve2>" + seve2 + "</cim:ExcIEEEAC1A.seve2>\n" +
-        "\t\t<cim:ExcIEEEAC1A.ta>" + ta + "</cim:ExcIEEEAC1A.ta>\n" +
-        "\t\t<cim:ExcIEEEAC1A.tb>" + tb + "</cim:ExcIEEEAC1A.tb>\n" +
-        "\t\t<cim:ExcIEEEAC1A.tc>" + tc + "</cim:ExcIEEEAC1A.tc>\n" +
-        "\t\t<cim:ExcIEEEAC1A.te>" + te + "</cim:ExcIEEEAC1A.te>\n" +
-        "\t\t<cim:ExcIEEEAC1A.tf>" + tf + "</cim:ExcIEEEAC1A.tf>\n" +
-        "\t\t<cim:ExcIEEEAC1A.vamax>" + vamax + "</cim:ExcIEEEAC1A.vamax>\n" +
-        "\t\t<cim:ExcIEEEAC1A.vamin>" + vamin + "</cim:ExcIEEEAC1A.vamin>\n" +
-        "\t\t<cim:ExcIEEEAC1A.ve1>" + ve1 + "</cim:ExcIEEEAC1A.ve1>\n" +
-        "\t\t<cim:ExcIEEEAC1A.ve2>" + ve2 + "</cim:ExcIEEEAC1A.ve2>\n" +
-        "\t\t<cim:ExcIEEEAC1A.vrmax>" + vrmax + "</cim:ExcIEEEAC1A.vrmax>\n" +
-        "\t\t<cim:ExcIEEEAC1A.vrmin>" + vrmin + "</cim:ExcIEEEAC1A.vrmin>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcIEEEAC1A.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcIEEEAC1A.fields (position), value)
+        emitelem (0, ka)
+        emitelem (1, kc)
+        emitelem (2, kd)
+        emitelem (3, ke)
+        emitelem (4, kf)
+        emitelem (5, seve1)
+        emitelem (6, seve2)
+        emitelem (7, ta)
+        emitelem (8, tb)
+        emitelem (9, tc)
+        emitelem (10, te)
+        emitelem (11, tf)
+        emitelem (12, vamax)
+        emitelem (13, vamin)
+        emitelem (14, ve1)
+        emitelem (15, ve2)
+        emitelem (16, vrmax)
+        emitelem (17, vrmin)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ExcIEEEAC1A rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcIEEEAC1A>"
+        "\t<cim:ExcIEEEAC1A rdf:ID=\"%s\">\n%s\t</cim:ExcIEEEAC1A>".format (id, export_fields)
     }
 }
 
@@ -3898,49 +4703,77 @@ object ExcIEEEAC1A
 extends
     Parseable[ExcIEEEAC1A]
 {
-    val ka = parse_element (element ("""ExcIEEEAC1A.ka"""))
-    val kc = parse_element (element ("""ExcIEEEAC1A.kc"""))
-    val kd = parse_element (element ("""ExcIEEEAC1A.kd"""))
-    val ke = parse_element (element ("""ExcIEEEAC1A.ke"""))
-    val kf = parse_element (element ("""ExcIEEEAC1A.kf"""))
-    val seve1 = parse_element (element ("""ExcIEEEAC1A.seve1"""))
-    val seve2 = parse_element (element ("""ExcIEEEAC1A.seve2"""))
-    val ta = parse_element (element ("""ExcIEEEAC1A.ta"""))
-    val tb = parse_element (element ("""ExcIEEEAC1A.tb"""))
-    val tc = parse_element (element ("""ExcIEEEAC1A.tc"""))
-    val te = parse_element (element ("""ExcIEEEAC1A.te"""))
-    val tf = parse_element (element ("""ExcIEEEAC1A.tf"""))
-    val vamax = parse_element (element ("""ExcIEEEAC1A.vamax"""))
-    val vamin = parse_element (element ("""ExcIEEEAC1A.vamin"""))
-    val ve1 = parse_element (element ("""ExcIEEEAC1A.ve1"""))
-    val ve2 = parse_element (element ("""ExcIEEEAC1A.ve2"""))
-    val vrmax = parse_element (element ("""ExcIEEEAC1A.vrmax"""))
-    val vrmin = parse_element (element ("""ExcIEEEAC1A.vrmin"""))
+    val fields: Array[String] = Array[String] (
+        "ka",
+        "kc",
+        "kd",
+        "ke",
+        "kf",
+        "seve1",
+        "seve2",
+        "ta",
+        "tb",
+        "tc",
+        "te",
+        "tf",
+        "vamax",
+        "vamin",
+        "ve1",
+        "ve2",
+        "vrmax",
+        "vrmin"
+    )
+    val ka: Fielder = parse_element (element (cls, fields(0)))
+    val kc: Fielder = parse_element (element (cls, fields(1)))
+    val kd: Fielder = parse_element (element (cls, fields(2)))
+    val ke: Fielder = parse_element (element (cls, fields(3)))
+    val kf: Fielder = parse_element (element (cls, fields(4)))
+    val seve1: Fielder = parse_element (element (cls, fields(5)))
+    val seve2: Fielder = parse_element (element (cls, fields(6)))
+    val ta: Fielder = parse_element (element (cls, fields(7)))
+    val tb: Fielder = parse_element (element (cls, fields(8)))
+    val tc: Fielder = parse_element (element (cls, fields(9)))
+    val te: Fielder = parse_element (element (cls, fields(10)))
+    val tf: Fielder = parse_element (element (cls, fields(11)))
+    val vamax: Fielder = parse_element (element (cls, fields(12)))
+    val vamin: Fielder = parse_element (element (cls, fields(13)))
+    val ve1: Fielder = parse_element (element (cls, fields(14)))
+    val ve2: Fielder = parse_element (element (cls, fields(15)))
+    val vrmax: Fielder = parse_element (element (cls, fields(16)))
+    val vrmin: Fielder = parse_element (element (cls, fields(17)))
+
     def parse (context: Context): ExcIEEEAC1A =
     {
-        ExcIEEEAC1A(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ExcIEEEAC1A (
             ExcitationSystemDynamics.parse (context),
-            toDouble (ka (context), context),
-            toDouble (kc (context), context),
-            toDouble (kd (context), context),
-            toDouble (ke (context), context),
-            toDouble (kf (context), context),
-            toDouble (seve1 (context), context),
-            toDouble (seve2 (context), context),
-            toDouble (ta (context), context),
-            toDouble (tb (context), context),
-            toDouble (tc (context), context),
-            toDouble (te (context), context),
-            toDouble (tf (context), context),
-            toDouble (vamax (context), context),
-            toDouble (vamin (context), context),
-            toDouble (ve1 (context), context),
-            toDouble (ve2 (context), context),
-            toDouble (vrmax (context), context),
-            toDouble (vrmin (context), context)
+            toDouble (mask (ka (), 0)),
+            toDouble (mask (kc (), 1)),
+            toDouble (mask (kd (), 2)),
+            toDouble (mask (ke (), 3)),
+            toDouble (mask (kf (), 4)),
+            toDouble (mask (seve1 (), 5)),
+            toDouble (mask (seve2 (), 6)),
+            toDouble (mask (ta (), 7)),
+            toDouble (mask (tb (), 8)),
+            toDouble (mask (tc (), 9)),
+            toDouble (mask (te (), 10)),
+            toDouble (mask (tf (), 11)),
+            toDouble (mask (vamax (), 12)),
+            toDouble (mask (vamin (), 13)),
+            toDouble (mask (ve1 (), 14)),
+            toDouble (mask (ve2 (), 15)),
+            toDouble (mask (vrmax (), 16)),
+            toDouble (mask (vrmin (), 17))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -4028,6 +4861,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -4047,34 +4886,36 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ExcIEEEAC2A.ka>" + ka + "</cim:ExcIEEEAC2A.ka>\n" +
-        "\t\t<cim:ExcIEEEAC2A.kb>" + kb + "</cim:ExcIEEEAC2A.kb>\n" +
-        "\t\t<cim:ExcIEEEAC2A.kc>" + kc + "</cim:ExcIEEEAC2A.kc>\n" +
-        "\t\t<cim:ExcIEEEAC2A.kd>" + kd + "</cim:ExcIEEEAC2A.kd>\n" +
-        "\t\t<cim:ExcIEEEAC2A.ke>" + ke + "</cim:ExcIEEEAC2A.ke>\n" +
-        "\t\t<cim:ExcIEEEAC2A.kf>" + kf + "</cim:ExcIEEEAC2A.kf>\n" +
-        "\t\t<cim:ExcIEEEAC2A.kh>" + kh + "</cim:ExcIEEEAC2A.kh>\n" +
-        "\t\t<cim:ExcIEEEAC2A.seve1>" + seve1 + "</cim:ExcIEEEAC2A.seve1>\n" +
-        "\t\t<cim:ExcIEEEAC2A.seve2>" + seve2 + "</cim:ExcIEEEAC2A.seve2>\n" +
-        "\t\t<cim:ExcIEEEAC2A.ta>" + ta + "</cim:ExcIEEEAC2A.ta>\n" +
-        "\t\t<cim:ExcIEEEAC2A.tb>" + tb + "</cim:ExcIEEEAC2A.tb>\n" +
-        "\t\t<cim:ExcIEEEAC2A.tc>" + tc + "</cim:ExcIEEEAC2A.tc>\n" +
-        "\t\t<cim:ExcIEEEAC2A.te>" + te + "</cim:ExcIEEEAC2A.te>\n" +
-        "\t\t<cim:ExcIEEEAC2A.tf>" + tf + "</cim:ExcIEEEAC2A.tf>\n" +
-        "\t\t<cim:ExcIEEEAC2A.vamax>" + vamax + "</cim:ExcIEEEAC2A.vamax>\n" +
-        "\t\t<cim:ExcIEEEAC2A.vamin>" + vamin + "</cim:ExcIEEEAC2A.vamin>\n" +
-        "\t\t<cim:ExcIEEEAC2A.ve1>" + ve1 + "</cim:ExcIEEEAC2A.ve1>\n" +
-        "\t\t<cim:ExcIEEEAC2A.ve2>" + ve2 + "</cim:ExcIEEEAC2A.ve2>\n" +
-        "\t\t<cim:ExcIEEEAC2A.vfemax>" + vfemax + "</cim:ExcIEEEAC2A.vfemax>\n" +
-        "\t\t<cim:ExcIEEEAC2A.vrmax>" + vrmax + "</cim:ExcIEEEAC2A.vrmax>\n" +
-        "\t\t<cim:ExcIEEEAC2A.vrmin>" + vrmin + "</cim:ExcIEEEAC2A.vrmin>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcIEEEAC2A.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcIEEEAC2A.fields (position), value)
+        emitelem (0, ka)
+        emitelem (1, kb)
+        emitelem (2, kc)
+        emitelem (3, kd)
+        emitelem (4, ke)
+        emitelem (5, kf)
+        emitelem (6, kh)
+        emitelem (7, seve1)
+        emitelem (8, seve2)
+        emitelem (9, ta)
+        emitelem (10, tb)
+        emitelem (11, tc)
+        emitelem (12, te)
+        emitelem (13, tf)
+        emitelem (14, vamax)
+        emitelem (15, vamin)
+        emitelem (16, ve1)
+        emitelem (17, ve2)
+        emitelem (18, vfemax)
+        emitelem (19, vrmax)
+        emitelem (20, vrmin)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ExcIEEEAC2A rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcIEEEAC2A>"
+        "\t<cim:ExcIEEEAC2A rdf:ID=\"%s\">\n%s\t</cim:ExcIEEEAC2A>".format (id, export_fields)
     }
 }
 
@@ -4082,55 +4923,86 @@ object ExcIEEEAC2A
 extends
     Parseable[ExcIEEEAC2A]
 {
-    val ka = parse_element (element ("""ExcIEEEAC2A.ka"""))
-    val kb = parse_element (element ("""ExcIEEEAC2A.kb"""))
-    val kc = parse_element (element ("""ExcIEEEAC2A.kc"""))
-    val kd = parse_element (element ("""ExcIEEEAC2A.kd"""))
-    val ke = parse_element (element ("""ExcIEEEAC2A.ke"""))
-    val kf = parse_element (element ("""ExcIEEEAC2A.kf"""))
-    val kh = parse_element (element ("""ExcIEEEAC2A.kh"""))
-    val seve1 = parse_element (element ("""ExcIEEEAC2A.seve1"""))
-    val seve2 = parse_element (element ("""ExcIEEEAC2A.seve2"""))
-    val ta = parse_element (element ("""ExcIEEEAC2A.ta"""))
-    val tb = parse_element (element ("""ExcIEEEAC2A.tb"""))
-    val tc = parse_element (element ("""ExcIEEEAC2A.tc"""))
-    val te = parse_element (element ("""ExcIEEEAC2A.te"""))
-    val tf = parse_element (element ("""ExcIEEEAC2A.tf"""))
-    val vamax = parse_element (element ("""ExcIEEEAC2A.vamax"""))
-    val vamin = parse_element (element ("""ExcIEEEAC2A.vamin"""))
-    val ve1 = parse_element (element ("""ExcIEEEAC2A.ve1"""))
-    val ve2 = parse_element (element ("""ExcIEEEAC2A.ve2"""))
-    val vfemax = parse_element (element ("""ExcIEEEAC2A.vfemax"""))
-    val vrmax = parse_element (element ("""ExcIEEEAC2A.vrmax"""))
-    val vrmin = parse_element (element ("""ExcIEEEAC2A.vrmin"""))
+    val fields: Array[String] = Array[String] (
+        "ka",
+        "kb",
+        "kc",
+        "kd",
+        "ke",
+        "kf",
+        "kh",
+        "seve1",
+        "seve2",
+        "ta",
+        "tb",
+        "tc",
+        "te",
+        "tf",
+        "vamax",
+        "vamin",
+        "ve1",
+        "ve2",
+        "vfemax",
+        "vrmax",
+        "vrmin"
+    )
+    val ka: Fielder = parse_element (element (cls, fields(0)))
+    val kb: Fielder = parse_element (element (cls, fields(1)))
+    val kc: Fielder = parse_element (element (cls, fields(2)))
+    val kd: Fielder = parse_element (element (cls, fields(3)))
+    val ke: Fielder = parse_element (element (cls, fields(4)))
+    val kf: Fielder = parse_element (element (cls, fields(5)))
+    val kh: Fielder = parse_element (element (cls, fields(6)))
+    val seve1: Fielder = parse_element (element (cls, fields(7)))
+    val seve2: Fielder = parse_element (element (cls, fields(8)))
+    val ta: Fielder = parse_element (element (cls, fields(9)))
+    val tb: Fielder = parse_element (element (cls, fields(10)))
+    val tc: Fielder = parse_element (element (cls, fields(11)))
+    val te: Fielder = parse_element (element (cls, fields(12)))
+    val tf: Fielder = parse_element (element (cls, fields(13)))
+    val vamax: Fielder = parse_element (element (cls, fields(14)))
+    val vamin: Fielder = parse_element (element (cls, fields(15)))
+    val ve1: Fielder = parse_element (element (cls, fields(16)))
+    val ve2: Fielder = parse_element (element (cls, fields(17)))
+    val vfemax: Fielder = parse_element (element (cls, fields(18)))
+    val vrmax: Fielder = parse_element (element (cls, fields(19)))
+    val vrmin: Fielder = parse_element (element (cls, fields(20)))
+
     def parse (context: Context): ExcIEEEAC2A =
     {
-        ExcIEEEAC2A(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ExcIEEEAC2A (
             ExcitationSystemDynamics.parse (context),
-            toDouble (ka (context), context),
-            toDouble (kb (context), context),
-            toDouble (kc (context), context),
-            toDouble (kd (context), context),
-            toDouble (ke (context), context),
-            toDouble (kf (context), context),
-            toDouble (kh (context), context),
-            toDouble (seve1 (context), context),
-            toDouble (seve2 (context), context),
-            toDouble (ta (context), context),
-            toDouble (tb (context), context),
-            toDouble (tc (context), context),
-            toDouble (te (context), context),
-            toDouble (tf (context), context),
-            toDouble (vamax (context), context),
-            toDouble (vamin (context), context),
-            toDouble (ve1 (context), context),
-            toDouble (ve2 (context), context),
-            toDouble (vfemax (context), context),
-            toDouble (vrmax (context), context),
-            toDouble (vrmin (context), context)
+            toDouble (mask (ka (), 0)),
+            toDouble (mask (kb (), 1)),
+            toDouble (mask (kc (), 2)),
+            toDouble (mask (kd (), 3)),
+            toDouble (mask (ke (), 4)),
+            toDouble (mask (kf (), 5)),
+            toDouble (mask (kh (), 6)),
+            toDouble (mask (seve1 (), 7)),
+            toDouble (mask (seve2 (), 8)),
+            toDouble (mask (ta (), 9)),
+            toDouble (mask (tb (), 10)),
+            toDouble (mask (tc (), 11)),
+            toDouble (mask (te (), 12)),
+            toDouble (mask (tf (), 13)),
+            toDouble (mask (vamax (), 14)),
+            toDouble (mask (vamin (), 15)),
+            toDouble (mask (ve1 (), 16)),
+            toDouble (mask (ve2 (), 17)),
+            toDouble (mask (vfemax (), 18)),
+            toDouble (mask (vrmax (), 19)),
+            toDouble (mask (vrmin (), 20))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -4218,6 +5090,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -4237,34 +5115,36 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ExcIEEEAC3A.efdn>" + efdn + "</cim:ExcIEEEAC3A.efdn>\n" +
-        "\t\t<cim:ExcIEEEAC3A.ka>" + ka + "</cim:ExcIEEEAC3A.ka>\n" +
-        "\t\t<cim:ExcIEEEAC3A.kc>" + kc + "</cim:ExcIEEEAC3A.kc>\n" +
-        "\t\t<cim:ExcIEEEAC3A.kd>" + kd + "</cim:ExcIEEEAC3A.kd>\n" +
-        "\t\t<cim:ExcIEEEAC3A.ke>" + ke + "</cim:ExcIEEEAC3A.ke>\n" +
-        "\t\t<cim:ExcIEEEAC3A.kf>" + kf + "</cim:ExcIEEEAC3A.kf>\n" +
-        "\t\t<cim:ExcIEEEAC3A.kn>" + kn + "</cim:ExcIEEEAC3A.kn>\n" +
-        "\t\t<cim:ExcIEEEAC3A.kr>" + kr + "</cim:ExcIEEEAC3A.kr>\n" +
-        "\t\t<cim:ExcIEEEAC3A.seve1>" + seve1 + "</cim:ExcIEEEAC3A.seve1>\n" +
-        "\t\t<cim:ExcIEEEAC3A.seve2>" + seve2 + "</cim:ExcIEEEAC3A.seve2>\n" +
-        "\t\t<cim:ExcIEEEAC3A.ta>" + ta + "</cim:ExcIEEEAC3A.ta>\n" +
-        "\t\t<cim:ExcIEEEAC3A.tb>" + tb + "</cim:ExcIEEEAC3A.tb>\n" +
-        "\t\t<cim:ExcIEEEAC3A.tc>" + tc + "</cim:ExcIEEEAC3A.tc>\n" +
-        "\t\t<cim:ExcIEEEAC3A.te>" + te + "</cim:ExcIEEEAC3A.te>\n" +
-        "\t\t<cim:ExcIEEEAC3A.tf>" + tf + "</cim:ExcIEEEAC3A.tf>\n" +
-        "\t\t<cim:ExcIEEEAC3A.vamax>" + vamax + "</cim:ExcIEEEAC3A.vamax>\n" +
-        "\t\t<cim:ExcIEEEAC3A.vamin>" + vamin + "</cim:ExcIEEEAC3A.vamin>\n" +
-        "\t\t<cim:ExcIEEEAC3A.ve1>" + ve1 + "</cim:ExcIEEEAC3A.ve1>\n" +
-        "\t\t<cim:ExcIEEEAC3A.ve2>" + ve2 + "</cim:ExcIEEEAC3A.ve2>\n" +
-        "\t\t<cim:ExcIEEEAC3A.vemin>" + vemin + "</cim:ExcIEEEAC3A.vemin>\n" +
-        "\t\t<cim:ExcIEEEAC3A.vfemax>" + vfemax + "</cim:ExcIEEEAC3A.vfemax>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcIEEEAC3A.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcIEEEAC3A.fields (position), value)
+        emitelem (0, efdn)
+        emitelem (1, ka)
+        emitelem (2, kc)
+        emitelem (3, kd)
+        emitelem (4, ke)
+        emitelem (5, kf)
+        emitelem (6, kn)
+        emitelem (7, kr)
+        emitelem (8, seve1)
+        emitelem (9, seve2)
+        emitelem (10, ta)
+        emitelem (11, tb)
+        emitelem (12, tc)
+        emitelem (13, te)
+        emitelem (14, tf)
+        emitelem (15, vamax)
+        emitelem (16, vamin)
+        emitelem (17, ve1)
+        emitelem (18, ve2)
+        emitelem (19, vemin)
+        emitelem (20, vfemax)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ExcIEEEAC3A rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcIEEEAC3A>"
+        "\t<cim:ExcIEEEAC3A rdf:ID=\"%s\">\n%s\t</cim:ExcIEEEAC3A>".format (id, export_fields)
     }
 }
 
@@ -4272,55 +5152,86 @@ object ExcIEEEAC3A
 extends
     Parseable[ExcIEEEAC3A]
 {
-    val efdn = parse_element (element ("""ExcIEEEAC3A.efdn"""))
-    val ka = parse_element (element ("""ExcIEEEAC3A.ka"""))
-    val kc = parse_element (element ("""ExcIEEEAC3A.kc"""))
-    val kd = parse_element (element ("""ExcIEEEAC3A.kd"""))
-    val ke = parse_element (element ("""ExcIEEEAC3A.ke"""))
-    val kf = parse_element (element ("""ExcIEEEAC3A.kf"""))
-    val kn = parse_element (element ("""ExcIEEEAC3A.kn"""))
-    val kr = parse_element (element ("""ExcIEEEAC3A.kr"""))
-    val seve1 = parse_element (element ("""ExcIEEEAC3A.seve1"""))
-    val seve2 = parse_element (element ("""ExcIEEEAC3A.seve2"""))
-    val ta = parse_element (element ("""ExcIEEEAC3A.ta"""))
-    val tb = parse_element (element ("""ExcIEEEAC3A.tb"""))
-    val tc = parse_element (element ("""ExcIEEEAC3A.tc"""))
-    val te = parse_element (element ("""ExcIEEEAC3A.te"""))
-    val tf = parse_element (element ("""ExcIEEEAC3A.tf"""))
-    val vamax = parse_element (element ("""ExcIEEEAC3A.vamax"""))
-    val vamin = parse_element (element ("""ExcIEEEAC3A.vamin"""))
-    val ve1 = parse_element (element ("""ExcIEEEAC3A.ve1"""))
-    val ve2 = parse_element (element ("""ExcIEEEAC3A.ve2"""))
-    val vemin = parse_element (element ("""ExcIEEEAC3A.vemin"""))
-    val vfemax = parse_element (element ("""ExcIEEEAC3A.vfemax"""))
+    val fields: Array[String] = Array[String] (
+        "efdn",
+        "ka",
+        "kc",
+        "kd",
+        "ke",
+        "kf",
+        "kn",
+        "kr",
+        "seve1",
+        "seve2",
+        "ta",
+        "tb",
+        "tc",
+        "te",
+        "tf",
+        "vamax",
+        "vamin",
+        "ve1",
+        "ve2",
+        "vemin",
+        "vfemax"
+    )
+    val efdn: Fielder = parse_element (element (cls, fields(0)))
+    val ka: Fielder = parse_element (element (cls, fields(1)))
+    val kc: Fielder = parse_element (element (cls, fields(2)))
+    val kd: Fielder = parse_element (element (cls, fields(3)))
+    val ke: Fielder = parse_element (element (cls, fields(4)))
+    val kf: Fielder = parse_element (element (cls, fields(5)))
+    val kn: Fielder = parse_element (element (cls, fields(6)))
+    val kr: Fielder = parse_element (element (cls, fields(7)))
+    val seve1: Fielder = parse_element (element (cls, fields(8)))
+    val seve2: Fielder = parse_element (element (cls, fields(9)))
+    val ta: Fielder = parse_element (element (cls, fields(10)))
+    val tb: Fielder = parse_element (element (cls, fields(11)))
+    val tc: Fielder = parse_element (element (cls, fields(12)))
+    val te: Fielder = parse_element (element (cls, fields(13)))
+    val tf: Fielder = parse_element (element (cls, fields(14)))
+    val vamax: Fielder = parse_element (element (cls, fields(15)))
+    val vamin: Fielder = parse_element (element (cls, fields(16)))
+    val ve1: Fielder = parse_element (element (cls, fields(17)))
+    val ve2: Fielder = parse_element (element (cls, fields(18)))
+    val vemin: Fielder = parse_element (element (cls, fields(19)))
+    val vfemax: Fielder = parse_element (element (cls, fields(20)))
+
     def parse (context: Context): ExcIEEEAC3A =
     {
-        ExcIEEEAC3A(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ExcIEEEAC3A (
             ExcitationSystemDynamics.parse (context),
-            toDouble (efdn (context), context),
-            toDouble (ka (context), context),
-            toDouble (kc (context), context),
-            toDouble (kd (context), context),
-            toDouble (ke (context), context),
-            toDouble (kf (context), context),
-            toDouble (kn (context), context),
-            toDouble (kr (context), context),
-            toDouble (seve1 (context), context),
-            toDouble (seve2 (context), context),
-            toDouble (ta (context), context),
-            toDouble (tb (context), context),
-            toDouble (tc (context), context),
-            toDouble (te (context), context),
-            toDouble (tf (context), context),
-            toDouble (vamax (context), context),
-            toDouble (vamin (context), context),
-            toDouble (ve1 (context), context),
-            toDouble (ve2 (context), context),
-            toDouble (vemin (context), context),
-            toDouble (vfemax (context), context)
+            toDouble (mask (efdn (), 0)),
+            toDouble (mask (ka (), 1)),
+            toDouble (mask (kc (), 2)),
+            toDouble (mask (kd (), 3)),
+            toDouble (mask (ke (), 4)),
+            toDouble (mask (kf (), 5)),
+            toDouble (mask (kn (), 6)),
+            toDouble (mask (kr (), 7)),
+            toDouble (mask (seve1 (), 8)),
+            toDouble (mask (seve2 (), 9)),
+            toDouble (mask (ta (), 10)),
+            toDouble (mask (tb (), 11)),
+            toDouble (mask (tc (), 12)),
+            toDouble (mask (te (), 13)),
+            toDouble (mask (tf (), 14)),
+            toDouble (mask (vamax (), 15)),
+            toDouble (mask (vamin (), 16)),
+            toDouble (mask (ve1 (), 17)),
+            toDouble (mask (ve2 (), 18)),
+            toDouble (mask (vemin (), 19)),
+            toDouble (mask (vfemax (), 20))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -4372,6 +5283,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -4391,22 +5308,24 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ExcIEEEAC4A.ka>" + ka + "</cim:ExcIEEEAC4A.ka>\n" +
-        "\t\t<cim:ExcIEEEAC4A.kc>" + kc + "</cim:ExcIEEEAC4A.kc>\n" +
-        "\t\t<cim:ExcIEEEAC4A.ta>" + ta + "</cim:ExcIEEEAC4A.ta>\n" +
-        "\t\t<cim:ExcIEEEAC4A.tb>" + tb + "</cim:ExcIEEEAC4A.tb>\n" +
-        "\t\t<cim:ExcIEEEAC4A.tc>" + tc + "</cim:ExcIEEEAC4A.tc>\n" +
-        "\t\t<cim:ExcIEEEAC4A.vimax>" + vimax + "</cim:ExcIEEEAC4A.vimax>\n" +
-        "\t\t<cim:ExcIEEEAC4A.vimin>" + vimin + "</cim:ExcIEEEAC4A.vimin>\n" +
-        "\t\t<cim:ExcIEEEAC4A.vrmax>" + vrmax + "</cim:ExcIEEEAC4A.vrmax>\n" +
-        "\t\t<cim:ExcIEEEAC4A.vrmin>" + vrmin + "</cim:ExcIEEEAC4A.vrmin>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcIEEEAC4A.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcIEEEAC4A.fields (position), value)
+        emitelem (0, ka)
+        emitelem (1, kc)
+        emitelem (2, ta)
+        emitelem (3, tb)
+        emitelem (4, tc)
+        emitelem (5, vimax)
+        emitelem (6, vimin)
+        emitelem (7, vrmax)
+        emitelem (8, vrmin)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ExcIEEEAC4A rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcIEEEAC4A>"
+        "\t<cim:ExcIEEEAC4A rdf:ID=\"%s\">\n%s\t</cim:ExcIEEEAC4A>".format (id, export_fields)
     }
 }
 
@@ -4414,31 +5333,50 @@ object ExcIEEEAC4A
 extends
     Parseable[ExcIEEEAC4A]
 {
-    val ka = parse_element (element ("""ExcIEEEAC4A.ka"""))
-    val kc = parse_element (element ("""ExcIEEEAC4A.kc"""))
-    val ta = parse_element (element ("""ExcIEEEAC4A.ta"""))
-    val tb = parse_element (element ("""ExcIEEEAC4A.tb"""))
-    val tc = parse_element (element ("""ExcIEEEAC4A.tc"""))
-    val vimax = parse_element (element ("""ExcIEEEAC4A.vimax"""))
-    val vimin = parse_element (element ("""ExcIEEEAC4A.vimin"""))
-    val vrmax = parse_element (element ("""ExcIEEEAC4A.vrmax"""))
-    val vrmin = parse_element (element ("""ExcIEEEAC4A.vrmin"""))
+    val fields: Array[String] = Array[String] (
+        "ka",
+        "kc",
+        "ta",
+        "tb",
+        "tc",
+        "vimax",
+        "vimin",
+        "vrmax",
+        "vrmin"
+    )
+    val ka: Fielder = parse_element (element (cls, fields(0)))
+    val kc: Fielder = parse_element (element (cls, fields(1)))
+    val ta: Fielder = parse_element (element (cls, fields(2)))
+    val tb: Fielder = parse_element (element (cls, fields(3)))
+    val tc: Fielder = parse_element (element (cls, fields(4)))
+    val vimax: Fielder = parse_element (element (cls, fields(5)))
+    val vimin: Fielder = parse_element (element (cls, fields(6)))
+    val vrmax: Fielder = parse_element (element (cls, fields(7)))
+    val vrmin: Fielder = parse_element (element (cls, fields(8)))
+
     def parse (context: Context): ExcIEEEAC4A =
     {
-        ExcIEEEAC4A(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ExcIEEEAC4A (
             ExcitationSystemDynamics.parse (context),
-            toDouble (ka (context), context),
-            toDouble (kc (context), context),
-            toDouble (ta (context), context),
-            toDouble (tb (context), context),
-            toDouble (tc (context), context),
-            toDouble (vimax (context), context),
-            toDouble (vimin (context), context),
-            toDouble (vrmax (context), context),
-            toDouble (vrmin (context), context)
+            toDouble (mask (ka (), 0)),
+            toDouble (mask (kc (), 1)),
+            toDouble (mask (ta (), 2)),
+            toDouble (mask (tb (), 3)),
+            toDouble (mask (tc (), 4)),
+            toDouble (mask (vimax (), 5)),
+            toDouble (mask (vimin (), 6)),
+            toDouble (mask (vrmax (), 7)),
+            toDouble (mask (vrmin (), 8))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -4505,6 +5443,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -4524,27 +5468,29 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ExcIEEEAC5A.efd1>" + efd1 + "</cim:ExcIEEEAC5A.efd1>\n" +
-        "\t\t<cim:ExcIEEEAC5A.efd2>" + efd2 + "</cim:ExcIEEEAC5A.efd2>\n" +
-        "\t\t<cim:ExcIEEEAC5A.ka>" + ka + "</cim:ExcIEEEAC5A.ka>\n" +
-        "\t\t<cim:ExcIEEEAC5A.ke>" + ke + "</cim:ExcIEEEAC5A.ke>\n" +
-        "\t\t<cim:ExcIEEEAC5A.kf>" + kf + "</cim:ExcIEEEAC5A.kf>\n" +
-        "\t\t<cim:ExcIEEEAC5A.seefd1>" + seefd1 + "</cim:ExcIEEEAC5A.seefd1>\n" +
-        "\t\t<cim:ExcIEEEAC5A.seefd2>" + seefd2 + "</cim:ExcIEEEAC5A.seefd2>\n" +
-        "\t\t<cim:ExcIEEEAC5A.ta>" + ta + "</cim:ExcIEEEAC5A.ta>\n" +
-        "\t\t<cim:ExcIEEEAC5A.te>" + te + "</cim:ExcIEEEAC5A.te>\n" +
-        "\t\t<cim:ExcIEEEAC5A.tf1>" + tf1 + "</cim:ExcIEEEAC5A.tf1>\n" +
-        "\t\t<cim:ExcIEEEAC5A.tf2>" + tf2 + "</cim:ExcIEEEAC5A.tf2>\n" +
-        "\t\t<cim:ExcIEEEAC5A.tf3>" + tf3 + "</cim:ExcIEEEAC5A.tf3>\n" +
-        "\t\t<cim:ExcIEEEAC5A.vrmax>" + vrmax + "</cim:ExcIEEEAC5A.vrmax>\n" +
-        "\t\t<cim:ExcIEEEAC5A.vrmin>" + vrmin + "</cim:ExcIEEEAC5A.vrmin>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcIEEEAC5A.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcIEEEAC5A.fields (position), value)
+        emitelem (0, efd1)
+        emitelem (1, efd2)
+        emitelem (2, ka)
+        emitelem (3, ke)
+        emitelem (4, kf)
+        emitelem (5, seefd1)
+        emitelem (6, seefd2)
+        emitelem (7, ta)
+        emitelem (8, te)
+        emitelem (9, tf1)
+        emitelem (10, tf2)
+        emitelem (11, tf3)
+        emitelem (12, vrmax)
+        emitelem (13, vrmin)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ExcIEEEAC5A rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcIEEEAC5A>"
+        "\t<cim:ExcIEEEAC5A rdf:ID=\"%s\">\n%s\t</cim:ExcIEEEAC5A>".format (id, export_fields)
     }
 }
 
@@ -4552,41 +5498,65 @@ object ExcIEEEAC5A
 extends
     Parseable[ExcIEEEAC5A]
 {
-    val efd1 = parse_element (element ("""ExcIEEEAC5A.efd1"""))
-    val efd2 = parse_element (element ("""ExcIEEEAC5A.efd2"""))
-    val ka = parse_element (element ("""ExcIEEEAC5A.ka"""))
-    val ke = parse_element (element ("""ExcIEEEAC5A.ke"""))
-    val kf = parse_element (element ("""ExcIEEEAC5A.kf"""))
-    val seefd1 = parse_element (element ("""ExcIEEEAC5A.seefd1"""))
-    val seefd2 = parse_element (element ("""ExcIEEEAC5A.seefd2"""))
-    val ta = parse_element (element ("""ExcIEEEAC5A.ta"""))
-    val te = parse_element (element ("""ExcIEEEAC5A.te"""))
-    val tf1 = parse_element (element ("""ExcIEEEAC5A.tf1"""))
-    val tf2 = parse_element (element ("""ExcIEEEAC5A.tf2"""))
-    val tf3 = parse_element (element ("""ExcIEEEAC5A.tf3"""))
-    val vrmax = parse_element (element ("""ExcIEEEAC5A.vrmax"""))
-    val vrmin = parse_element (element ("""ExcIEEEAC5A.vrmin"""))
+    val fields: Array[String] = Array[String] (
+        "efd1",
+        "efd2",
+        "ka",
+        "ke",
+        "kf",
+        "seefd1",
+        "seefd2",
+        "ta",
+        "te",
+        "tf1",
+        "tf2",
+        "tf3",
+        "vrmax",
+        "vrmin"
+    )
+    val efd1: Fielder = parse_element (element (cls, fields(0)))
+    val efd2: Fielder = parse_element (element (cls, fields(1)))
+    val ka: Fielder = parse_element (element (cls, fields(2)))
+    val ke: Fielder = parse_element (element (cls, fields(3)))
+    val kf: Fielder = parse_element (element (cls, fields(4)))
+    val seefd1: Fielder = parse_element (element (cls, fields(5)))
+    val seefd2: Fielder = parse_element (element (cls, fields(6)))
+    val ta: Fielder = parse_element (element (cls, fields(7)))
+    val te: Fielder = parse_element (element (cls, fields(8)))
+    val tf1: Fielder = parse_element (element (cls, fields(9)))
+    val tf2: Fielder = parse_element (element (cls, fields(10)))
+    val tf3: Fielder = parse_element (element (cls, fields(11)))
+    val vrmax: Fielder = parse_element (element (cls, fields(12)))
+    val vrmin: Fielder = parse_element (element (cls, fields(13)))
+
     def parse (context: Context): ExcIEEEAC5A =
     {
-        ExcIEEEAC5A(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ExcIEEEAC5A (
             ExcitationSystemDynamics.parse (context),
-            toDouble (efd1 (context), context),
-            toDouble (efd2 (context), context),
-            toDouble (ka (context), context),
-            toDouble (ke (context), context),
-            toDouble (kf (context), context),
-            toDouble (seefd1 (context), context),
-            toDouble (seefd2 (context), context),
-            toDouble (ta (context), context),
-            toDouble (te (context), context),
-            toDouble (tf1 (context), context),
-            toDouble (tf2 (context), context),
-            toDouble (tf3 (context), context),
-            toDouble (vrmax (context), context),
-            toDouble (vrmin (context), context)
+            toDouble (mask (efd1 (), 0)),
+            toDouble (mask (efd2 (), 1)),
+            toDouble (mask (ka (), 2)),
+            toDouble (mask (ke (), 3)),
+            toDouble (mask (kf (), 4)),
+            toDouble (mask (seefd1 (), 5)),
+            toDouble (mask (seefd2 (), 6)),
+            toDouble (mask (ta (), 7)),
+            toDouble (mask (te (), 8)),
+            toDouble (mask (tf1 (), 9)),
+            toDouble (mask (tf2 (), 10)),
+            toDouble (mask (tf3 (), 11)),
+            toDouble (mask (vrmax (), 12)),
+            toDouble (mask (vrmin (), 13))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -4677,6 +5647,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -4696,35 +5672,37 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ExcIEEEAC6A.ka>" + ka + "</cim:ExcIEEEAC6A.ka>\n" +
-        "\t\t<cim:ExcIEEEAC6A.kc>" + kc + "</cim:ExcIEEEAC6A.kc>\n" +
-        "\t\t<cim:ExcIEEEAC6A.kd>" + kd + "</cim:ExcIEEEAC6A.kd>\n" +
-        "\t\t<cim:ExcIEEEAC6A.ke>" + ke + "</cim:ExcIEEEAC6A.ke>\n" +
-        "\t\t<cim:ExcIEEEAC6A.kh>" + kh + "</cim:ExcIEEEAC6A.kh>\n" +
-        "\t\t<cim:ExcIEEEAC6A.seve1>" + seve1 + "</cim:ExcIEEEAC6A.seve1>\n" +
-        "\t\t<cim:ExcIEEEAC6A.seve2>" + seve2 + "</cim:ExcIEEEAC6A.seve2>\n" +
-        "\t\t<cim:ExcIEEEAC6A.ta>" + ta + "</cim:ExcIEEEAC6A.ta>\n" +
-        "\t\t<cim:ExcIEEEAC6A.tb>" + tb + "</cim:ExcIEEEAC6A.tb>\n" +
-        "\t\t<cim:ExcIEEEAC6A.tc>" + tc + "</cim:ExcIEEEAC6A.tc>\n" +
-        "\t\t<cim:ExcIEEEAC6A.te>" + te + "</cim:ExcIEEEAC6A.te>\n" +
-        "\t\t<cim:ExcIEEEAC6A.th>" + th + "</cim:ExcIEEEAC6A.th>\n" +
-        "\t\t<cim:ExcIEEEAC6A.tj>" + tj + "</cim:ExcIEEEAC6A.tj>\n" +
-        "\t\t<cim:ExcIEEEAC6A.tk>" + tk + "</cim:ExcIEEEAC6A.tk>\n" +
-        "\t\t<cim:ExcIEEEAC6A.vamax>" + vamax + "</cim:ExcIEEEAC6A.vamax>\n" +
-        "\t\t<cim:ExcIEEEAC6A.vamin>" + vamin + "</cim:ExcIEEEAC6A.vamin>\n" +
-        "\t\t<cim:ExcIEEEAC6A.ve1>" + ve1 + "</cim:ExcIEEEAC6A.ve1>\n" +
-        "\t\t<cim:ExcIEEEAC6A.ve2>" + ve2 + "</cim:ExcIEEEAC6A.ve2>\n" +
-        "\t\t<cim:ExcIEEEAC6A.vfelim>" + vfelim + "</cim:ExcIEEEAC6A.vfelim>\n" +
-        "\t\t<cim:ExcIEEEAC6A.vhmax>" + vhmax + "</cim:ExcIEEEAC6A.vhmax>\n" +
-        "\t\t<cim:ExcIEEEAC6A.vrmax>" + vrmax + "</cim:ExcIEEEAC6A.vrmax>\n" +
-        "\t\t<cim:ExcIEEEAC6A.vrmin>" + vrmin + "</cim:ExcIEEEAC6A.vrmin>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcIEEEAC6A.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcIEEEAC6A.fields (position), value)
+        emitelem (0, ka)
+        emitelem (1, kc)
+        emitelem (2, kd)
+        emitelem (3, ke)
+        emitelem (4, kh)
+        emitelem (5, seve1)
+        emitelem (6, seve2)
+        emitelem (7, ta)
+        emitelem (8, tb)
+        emitelem (9, tc)
+        emitelem (10, te)
+        emitelem (11, th)
+        emitelem (12, tj)
+        emitelem (13, tk)
+        emitelem (14, vamax)
+        emitelem (15, vamin)
+        emitelem (16, ve1)
+        emitelem (17, ve2)
+        emitelem (18, vfelim)
+        emitelem (19, vhmax)
+        emitelem (20, vrmax)
+        emitelem (21, vrmin)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ExcIEEEAC6A rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcIEEEAC6A>"
+        "\t<cim:ExcIEEEAC6A rdf:ID=\"%s\">\n%s\t</cim:ExcIEEEAC6A>".format (id, export_fields)
     }
 }
 
@@ -4732,57 +5710,89 @@ object ExcIEEEAC6A
 extends
     Parseable[ExcIEEEAC6A]
 {
-    val ka = parse_element (element ("""ExcIEEEAC6A.ka"""))
-    val kc = parse_element (element ("""ExcIEEEAC6A.kc"""))
-    val kd = parse_element (element ("""ExcIEEEAC6A.kd"""))
-    val ke = parse_element (element ("""ExcIEEEAC6A.ke"""))
-    val kh = parse_element (element ("""ExcIEEEAC6A.kh"""))
-    val seve1 = parse_element (element ("""ExcIEEEAC6A.seve1"""))
-    val seve2 = parse_element (element ("""ExcIEEEAC6A.seve2"""))
-    val ta = parse_element (element ("""ExcIEEEAC6A.ta"""))
-    val tb = parse_element (element ("""ExcIEEEAC6A.tb"""))
-    val tc = parse_element (element ("""ExcIEEEAC6A.tc"""))
-    val te = parse_element (element ("""ExcIEEEAC6A.te"""))
-    val th = parse_element (element ("""ExcIEEEAC6A.th"""))
-    val tj = parse_element (element ("""ExcIEEEAC6A.tj"""))
-    val tk = parse_element (element ("""ExcIEEEAC6A.tk"""))
-    val vamax = parse_element (element ("""ExcIEEEAC6A.vamax"""))
-    val vamin = parse_element (element ("""ExcIEEEAC6A.vamin"""))
-    val ve1 = parse_element (element ("""ExcIEEEAC6A.ve1"""))
-    val ve2 = parse_element (element ("""ExcIEEEAC6A.ve2"""))
-    val vfelim = parse_element (element ("""ExcIEEEAC6A.vfelim"""))
-    val vhmax = parse_element (element ("""ExcIEEEAC6A.vhmax"""))
-    val vrmax = parse_element (element ("""ExcIEEEAC6A.vrmax"""))
-    val vrmin = parse_element (element ("""ExcIEEEAC6A.vrmin"""))
+    val fields: Array[String] = Array[String] (
+        "ka",
+        "kc",
+        "kd",
+        "ke",
+        "kh",
+        "seve1",
+        "seve2",
+        "ta",
+        "tb",
+        "tc",
+        "te",
+        "th",
+        "tj",
+        "tk",
+        "vamax",
+        "vamin",
+        "ve1",
+        "ve2",
+        "vfelim",
+        "vhmax",
+        "vrmax",
+        "vrmin"
+    )
+    val ka: Fielder = parse_element (element (cls, fields(0)))
+    val kc: Fielder = parse_element (element (cls, fields(1)))
+    val kd: Fielder = parse_element (element (cls, fields(2)))
+    val ke: Fielder = parse_element (element (cls, fields(3)))
+    val kh: Fielder = parse_element (element (cls, fields(4)))
+    val seve1: Fielder = parse_element (element (cls, fields(5)))
+    val seve2: Fielder = parse_element (element (cls, fields(6)))
+    val ta: Fielder = parse_element (element (cls, fields(7)))
+    val tb: Fielder = parse_element (element (cls, fields(8)))
+    val tc: Fielder = parse_element (element (cls, fields(9)))
+    val te: Fielder = parse_element (element (cls, fields(10)))
+    val th: Fielder = parse_element (element (cls, fields(11)))
+    val tj: Fielder = parse_element (element (cls, fields(12)))
+    val tk: Fielder = parse_element (element (cls, fields(13)))
+    val vamax: Fielder = parse_element (element (cls, fields(14)))
+    val vamin: Fielder = parse_element (element (cls, fields(15)))
+    val ve1: Fielder = parse_element (element (cls, fields(16)))
+    val ve2: Fielder = parse_element (element (cls, fields(17)))
+    val vfelim: Fielder = parse_element (element (cls, fields(18)))
+    val vhmax: Fielder = parse_element (element (cls, fields(19)))
+    val vrmax: Fielder = parse_element (element (cls, fields(20)))
+    val vrmin: Fielder = parse_element (element (cls, fields(21)))
+
     def parse (context: Context): ExcIEEEAC6A =
     {
-        ExcIEEEAC6A(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ExcIEEEAC6A (
             ExcitationSystemDynamics.parse (context),
-            toDouble (ka (context), context),
-            toDouble (kc (context), context),
-            toDouble (kd (context), context),
-            toDouble (ke (context), context),
-            toDouble (kh (context), context),
-            toDouble (seve1 (context), context),
-            toDouble (seve2 (context), context),
-            toDouble (ta (context), context),
-            toDouble (tb (context), context),
-            toDouble (tc (context), context),
-            toDouble (te (context), context),
-            toDouble (th (context), context),
-            toDouble (tj (context), context),
-            toDouble (tk (context), context),
-            toDouble (vamax (context), context),
-            toDouble (vamin (context), context),
-            toDouble (ve1 (context), context),
-            toDouble (ve2 (context), context),
-            toDouble (vfelim (context), context),
-            toDouble (vhmax (context), context),
-            toDouble (vrmax (context), context),
-            toDouble (vrmin (context), context)
+            toDouble (mask (ka (), 0)),
+            toDouble (mask (kc (), 1)),
+            toDouble (mask (kd (), 2)),
+            toDouble (mask (ke (), 3)),
+            toDouble (mask (kh (), 4)),
+            toDouble (mask (seve1 (), 5)),
+            toDouble (mask (seve2 (), 6)),
+            toDouble (mask (ta (), 7)),
+            toDouble (mask (tb (), 8)),
+            toDouble (mask (tc (), 9)),
+            toDouble (mask (te (), 10)),
+            toDouble (mask (th (), 11)),
+            toDouble (mask (tj (), 12)),
+            toDouble (mask (tk (), 13)),
+            toDouble (mask (vamax (), 14)),
+            toDouble (mask (vamin (), 15)),
+            toDouble (mask (ve1 (), 16)),
+            toDouble (mask (ve2 (), 17)),
+            toDouble (mask (vfelim (), 18)),
+            toDouble (mask (vhmax (), 19)),
+            toDouble (mask (vrmax (), 20)),
+            toDouble (mask (vrmin (), 21))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -4885,6 +5895,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -4904,39 +5920,41 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ExcIEEEAC7B.kc>" + kc + "</cim:ExcIEEEAC7B.kc>\n" +
-        "\t\t<cim:ExcIEEEAC7B.kd>" + kd + "</cim:ExcIEEEAC7B.kd>\n" +
-        "\t\t<cim:ExcIEEEAC7B.kdr>" + kdr + "</cim:ExcIEEEAC7B.kdr>\n" +
-        "\t\t<cim:ExcIEEEAC7B.ke>" + ke + "</cim:ExcIEEEAC7B.ke>\n" +
-        "\t\t<cim:ExcIEEEAC7B.kf1>" + kf1 + "</cim:ExcIEEEAC7B.kf1>\n" +
-        "\t\t<cim:ExcIEEEAC7B.kf2>" + kf2 + "</cim:ExcIEEEAC7B.kf2>\n" +
-        "\t\t<cim:ExcIEEEAC7B.kf3>" + kf3 + "</cim:ExcIEEEAC7B.kf3>\n" +
-        "\t\t<cim:ExcIEEEAC7B.kia>" + kia + "</cim:ExcIEEEAC7B.kia>\n" +
-        "\t\t<cim:ExcIEEEAC7B.kir>" + kir + "</cim:ExcIEEEAC7B.kir>\n" +
-        "\t\t<cim:ExcIEEEAC7B.kl>" + kl + "</cim:ExcIEEEAC7B.kl>\n" +
-        "\t\t<cim:ExcIEEEAC7B.kp>" + kp + "</cim:ExcIEEEAC7B.kp>\n" +
-        "\t\t<cim:ExcIEEEAC7B.kpa>" + kpa + "</cim:ExcIEEEAC7B.kpa>\n" +
-        "\t\t<cim:ExcIEEEAC7B.kpr>" + kpr + "</cim:ExcIEEEAC7B.kpr>\n" +
-        "\t\t<cim:ExcIEEEAC7B.seve1>" + seve1 + "</cim:ExcIEEEAC7B.seve1>\n" +
-        "\t\t<cim:ExcIEEEAC7B.seve2>" + seve2 + "</cim:ExcIEEEAC7B.seve2>\n" +
-        "\t\t<cim:ExcIEEEAC7B.tdr>" + tdr + "</cim:ExcIEEEAC7B.tdr>\n" +
-        "\t\t<cim:ExcIEEEAC7B.te>" + te + "</cim:ExcIEEEAC7B.te>\n" +
-        "\t\t<cim:ExcIEEEAC7B.tf>" + tf + "</cim:ExcIEEEAC7B.tf>\n" +
-        "\t\t<cim:ExcIEEEAC7B.vamax>" + vamax + "</cim:ExcIEEEAC7B.vamax>\n" +
-        "\t\t<cim:ExcIEEEAC7B.vamin>" + vamin + "</cim:ExcIEEEAC7B.vamin>\n" +
-        "\t\t<cim:ExcIEEEAC7B.ve1>" + ve1 + "</cim:ExcIEEEAC7B.ve1>\n" +
-        "\t\t<cim:ExcIEEEAC7B.ve2>" + ve2 + "</cim:ExcIEEEAC7B.ve2>\n" +
-        "\t\t<cim:ExcIEEEAC7B.vemin>" + vemin + "</cim:ExcIEEEAC7B.vemin>\n" +
-        "\t\t<cim:ExcIEEEAC7B.vfemax>" + vfemax + "</cim:ExcIEEEAC7B.vfemax>\n" +
-        "\t\t<cim:ExcIEEEAC7B.vrmax>" + vrmax + "</cim:ExcIEEEAC7B.vrmax>\n" +
-        "\t\t<cim:ExcIEEEAC7B.vrmin>" + vrmin + "</cim:ExcIEEEAC7B.vrmin>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcIEEEAC7B.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcIEEEAC7B.fields (position), value)
+        emitelem (0, kc)
+        emitelem (1, kd)
+        emitelem (2, kdr)
+        emitelem (3, ke)
+        emitelem (4, kf1)
+        emitelem (5, kf2)
+        emitelem (6, kf3)
+        emitelem (7, kia)
+        emitelem (8, kir)
+        emitelem (9, kl)
+        emitelem (10, kp)
+        emitelem (11, kpa)
+        emitelem (12, kpr)
+        emitelem (13, seve1)
+        emitelem (14, seve2)
+        emitelem (15, tdr)
+        emitelem (16, te)
+        emitelem (17, tf)
+        emitelem (18, vamax)
+        emitelem (19, vamin)
+        emitelem (20, ve1)
+        emitelem (21, ve2)
+        emitelem (22, vemin)
+        emitelem (23, vfemax)
+        emitelem (24, vrmax)
+        emitelem (25, vrmin)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ExcIEEEAC7B rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcIEEEAC7B>"
+        "\t<cim:ExcIEEEAC7B rdf:ID=\"%s\">\n%s\t</cim:ExcIEEEAC7B>".format (id, export_fields)
     }
 }
 
@@ -4944,65 +5962,101 @@ object ExcIEEEAC7B
 extends
     Parseable[ExcIEEEAC7B]
 {
-    val kc = parse_element (element ("""ExcIEEEAC7B.kc"""))
-    val kd = parse_element (element ("""ExcIEEEAC7B.kd"""))
-    val kdr = parse_element (element ("""ExcIEEEAC7B.kdr"""))
-    val ke = parse_element (element ("""ExcIEEEAC7B.ke"""))
-    val kf1 = parse_element (element ("""ExcIEEEAC7B.kf1"""))
-    val kf2 = parse_element (element ("""ExcIEEEAC7B.kf2"""))
-    val kf3 = parse_element (element ("""ExcIEEEAC7B.kf3"""))
-    val kia = parse_element (element ("""ExcIEEEAC7B.kia"""))
-    val kir = parse_element (element ("""ExcIEEEAC7B.kir"""))
-    val kl = parse_element (element ("""ExcIEEEAC7B.kl"""))
-    val kp = parse_element (element ("""ExcIEEEAC7B.kp"""))
-    val kpa = parse_element (element ("""ExcIEEEAC7B.kpa"""))
-    val kpr = parse_element (element ("""ExcIEEEAC7B.kpr"""))
-    val seve1 = parse_element (element ("""ExcIEEEAC7B.seve1"""))
-    val seve2 = parse_element (element ("""ExcIEEEAC7B.seve2"""))
-    val tdr = parse_element (element ("""ExcIEEEAC7B.tdr"""))
-    val te = parse_element (element ("""ExcIEEEAC7B.te"""))
-    val tf = parse_element (element ("""ExcIEEEAC7B.tf"""))
-    val vamax = parse_element (element ("""ExcIEEEAC7B.vamax"""))
-    val vamin = parse_element (element ("""ExcIEEEAC7B.vamin"""))
-    val ve1 = parse_element (element ("""ExcIEEEAC7B.ve1"""))
-    val ve2 = parse_element (element ("""ExcIEEEAC7B.ve2"""))
-    val vemin = parse_element (element ("""ExcIEEEAC7B.vemin"""))
-    val vfemax = parse_element (element ("""ExcIEEEAC7B.vfemax"""))
-    val vrmax = parse_element (element ("""ExcIEEEAC7B.vrmax"""))
-    val vrmin = parse_element (element ("""ExcIEEEAC7B.vrmin"""))
+    val fields: Array[String] = Array[String] (
+        "kc",
+        "kd",
+        "kdr",
+        "ke",
+        "kf1",
+        "kf2",
+        "kf3",
+        "kia",
+        "kir",
+        "kl",
+        "kp",
+        "kpa",
+        "kpr",
+        "seve1",
+        "seve2",
+        "tdr",
+        "te",
+        "tf",
+        "vamax",
+        "vamin",
+        "ve1",
+        "ve2",
+        "vemin",
+        "vfemax",
+        "vrmax",
+        "vrmin"
+    )
+    val kc: Fielder = parse_element (element (cls, fields(0)))
+    val kd: Fielder = parse_element (element (cls, fields(1)))
+    val kdr: Fielder = parse_element (element (cls, fields(2)))
+    val ke: Fielder = parse_element (element (cls, fields(3)))
+    val kf1: Fielder = parse_element (element (cls, fields(4)))
+    val kf2: Fielder = parse_element (element (cls, fields(5)))
+    val kf3: Fielder = parse_element (element (cls, fields(6)))
+    val kia: Fielder = parse_element (element (cls, fields(7)))
+    val kir: Fielder = parse_element (element (cls, fields(8)))
+    val kl: Fielder = parse_element (element (cls, fields(9)))
+    val kp: Fielder = parse_element (element (cls, fields(10)))
+    val kpa: Fielder = parse_element (element (cls, fields(11)))
+    val kpr: Fielder = parse_element (element (cls, fields(12)))
+    val seve1: Fielder = parse_element (element (cls, fields(13)))
+    val seve2: Fielder = parse_element (element (cls, fields(14)))
+    val tdr: Fielder = parse_element (element (cls, fields(15)))
+    val te: Fielder = parse_element (element (cls, fields(16)))
+    val tf: Fielder = parse_element (element (cls, fields(17)))
+    val vamax: Fielder = parse_element (element (cls, fields(18)))
+    val vamin: Fielder = parse_element (element (cls, fields(19)))
+    val ve1: Fielder = parse_element (element (cls, fields(20)))
+    val ve2: Fielder = parse_element (element (cls, fields(21)))
+    val vemin: Fielder = parse_element (element (cls, fields(22)))
+    val vfemax: Fielder = parse_element (element (cls, fields(23)))
+    val vrmax: Fielder = parse_element (element (cls, fields(24)))
+    val vrmin: Fielder = parse_element (element (cls, fields(25)))
+
     def parse (context: Context): ExcIEEEAC7B =
     {
-        ExcIEEEAC7B(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ExcIEEEAC7B (
             ExcitationSystemDynamics.parse (context),
-            toDouble (kc (context), context),
-            toDouble (kd (context), context),
-            toDouble (kdr (context), context),
-            toDouble (ke (context), context),
-            toDouble (kf1 (context), context),
-            toDouble (kf2 (context), context),
-            toDouble (kf3 (context), context),
-            toDouble (kia (context), context),
-            toDouble (kir (context), context),
-            toDouble (kl (context), context),
-            toDouble (kp (context), context),
-            toDouble (kpa (context), context),
-            toDouble (kpr (context), context),
-            toDouble (seve1 (context), context),
-            toDouble (seve2 (context), context),
-            toDouble (tdr (context), context),
-            toDouble (te (context), context),
-            toDouble (tf (context), context),
-            toDouble (vamax (context), context),
-            toDouble (vamin (context), context),
-            toDouble (ve1 (context), context),
-            toDouble (ve2 (context), context),
-            toDouble (vemin (context), context),
-            toDouble (vfemax (context), context),
-            toDouble (vrmax (context), context),
-            toDouble (vrmin (context), context)
+            toDouble (mask (kc (), 0)),
+            toDouble (mask (kd (), 1)),
+            toDouble (mask (kdr (), 2)),
+            toDouble (mask (ke (), 3)),
+            toDouble (mask (kf1 (), 4)),
+            toDouble (mask (kf2 (), 5)),
+            toDouble (mask (kf3 (), 6)),
+            toDouble (mask (kia (), 7)),
+            toDouble (mask (kir (), 8)),
+            toDouble (mask (kl (), 9)),
+            toDouble (mask (kp (), 10)),
+            toDouble (mask (kpa (), 11)),
+            toDouble (mask (kpr (), 12)),
+            toDouble (mask (seve1 (), 13)),
+            toDouble (mask (seve2 (), 14)),
+            toDouble (mask (tdr (), 15)),
+            toDouble (mask (te (), 16)),
+            toDouble (mask (tf (), 17)),
+            toDouble (mask (vamax (), 18)),
+            toDouble (mask (vamin (), 19)),
+            toDouble (mask (ve1 (), 20)),
+            toDouble (mask (ve2 (), 21)),
+            toDouble (mask (vemin (), 22)),
+            toDouble (mask (vfemax (), 23)),
+            toDouble (mask (vrmax (), 24)),
+            toDouble (mask (vrmin (), 25))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -5081,6 +6135,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -5100,31 +6160,33 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ExcIEEEAC8B.ka>" + ka + "</cim:ExcIEEEAC8B.ka>\n" +
-        "\t\t<cim:ExcIEEEAC8B.kc>" + kc + "</cim:ExcIEEEAC8B.kc>\n" +
-        "\t\t<cim:ExcIEEEAC8B.kd>" + kd + "</cim:ExcIEEEAC8B.kd>\n" +
-        "\t\t<cim:ExcIEEEAC8B.kdr>" + kdr + "</cim:ExcIEEEAC8B.kdr>\n" +
-        "\t\t<cim:ExcIEEEAC8B.ke>" + ke + "</cim:ExcIEEEAC8B.ke>\n" +
-        "\t\t<cim:ExcIEEEAC8B.kir>" + kir + "</cim:ExcIEEEAC8B.kir>\n" +
-        "\t\t<cim:ExcIEEEAC8B.kpr>" + kpr + "</cim:ExcIEEEAC8B.kpr>\n" +
-        "\t\t<cim:ExcIEEEAC8B.seve1>" + seve1 + "</cim:ExcIEEEAC8B.seve1>\n" +
-        "\t\t<cim:ExcIEEEAC8B.seve2>" + seve2 + "</cim:ExcIEEEAC8B.seve2>\n" +
-        "\t\t<cim:ExcIEEEAC8B.ta>" + ta + "</cim:ExcIEEEAC8B.ta>\n" +
-        "\t\t<cim:ExcIEEEAC8B.tdr>" + tdr + "</cim:ExcIEEEAC8B.tdr>\n" +
-        "\t\t<cim:ExcIEEEAC8B.te>" + te + "</cim:ExcIEEEAC8B.te>\n" +
-        "\t\t<cim:ExcIEEEAC8B.ve1>" + ve1 + "</cim:ExcIEEEAC8B.ve1>\n" +
-        "\t\t<cim:ExcIEEEAC8B.ve2>" + ve2 + "</cim:ExcIEEEAC8B.ve2>\n" +
-        "\t\t<cim:ExcIEEEAC8B.vemin>" + vemin + "</cim:ExcIEEEAC8B.vemin>\n" +
-        "\t\t<cim:ExcIEEEAC8B.vfemax>" + vfemax + "</cim:ExcIEEEAC8B.vfemax>\n" +
-        "\t\t<cim:ExcIEEEAC8B.vrmax>" + vrmax + "</cim:ExcIEEEAC8B.vrmax>\n" +
-        "\t\t<cim:ExcIEEEAC8B.vrmin>" + vrmin + "</cim:ExcIEEEAC8B.vrmin>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcIEEEAC8B.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcIEEEAC8B.fields (position), value)
+        emitelem (0, ka)
+        emitelem (1, kc)
+        emitelem (2, kd)
+        emitelem (3, kdr)
+        emitelem (4, ke)
+        emitelem (5, kir)
+        emitelem (6, kpr)
+        emitelem (7, seve1)
+        emitelem (8, seve2)
+        emitelem (9, ta)
+        emitelem (10, tdr)
+        emitelem (11, te)
+        emitelem (12, ve1)
+        emitelem (13, ve2)
+        emitelem (14, vemin)
+        emitelem (15, vfemax)
+        emitelem (16, vrmax)
+        emitelem (17, vrmin)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ExcIEEEAC8B rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcIEEEAC8B>"
+        "\t<cim:ExcIEEEAC8B rdf:ID=\"%s\">\n%s\t</cim:ExcIEEEAC8B>".format (id, export_fields)
     }
 }
 
@@ -5132,49 +6194,77 @@ object ExcIEEEAC8B
 extends
     Parseable[ExcIEEEAC8B]
 {
-    val ka = parse_element (element ("""ExcIEEEAC8B.ka"""))
-    val kc = parse_element (element ("""ExcIEEEAC8B.kc"""))
-    val kd = parse_element (element ("""ExcIEEEAC8B.kd"""))
-    val kdr = parse_element (element ("""ExcIEEEAC8B.kdr"""))
-    val ke = parse_element (element ("""ExcIEEEAC8B.ke"""))
-    val kir = parse_element (element ("""ExcIEEEAC8B.kir"""))
-    val kpr = parse_element (element ("""ExcIEEEAC8B.kpr"""))
-    val seve1 = parse_element (element ("""ExcIEEEAC8B.seve1"""))
-    val seve2 = parse_element (element ("""ExcIEEEAC8B.seve2"""))
-    val ta = parse_element (element ("""ExcIEEEAC8B.ta"""))
-    val tdr = parse_element (element ("""ExcIEEEAC8B.tdr"""))
-    val te = parse_element (element ("""ExcIEEEAC8B.te"""))
-    val ve1 = parse_element (element ("""ExcIEEEAC8B.ve1"""))
-    val ve2 = parse_element (element ("""ExcIEEEAC8B.ve2"""))
-    val vemin = parse_element (element ("""ExcIEEEAC8B.vemin"""))
-    val vfemax = parse_element (element ("""ExcIEEEAC8B.vfemax"""))
-    val vrmax = parse_element (element ("""ExcIEEEAC8B.vrmax"""))
-    val vrmin = parse_element (element ("""ExcIEEEAC8B.vrmin"""))
+    val fields: Array[String] = Array[String] (
+        "ka",
+        "kc",
+        "kd",
+        "kdr",
+        "ke",
+        "kir",
+        "kpr",
+        "seve1",
+        "seve2",
+        "ta",
+        "tdr",
+        "te",
+        "ve1",
+        "ve2",
+        "vemin",
+        "vfemax",
+        "vrmax",
+        "vrmin"
+    )
+    val ka: Fielder = parse_element (element (cls, fields(0)))
+    val kc: Fielder = parse_element (element (cls, fields(1)))
+    val kd: Fielder = parse_element (element (cls, fields(2)))
+    val kdr: Fielder = parse_element (element (cls, fields(3)))
+    val ke: Fielder = parse_element (element (cls, fields(4)))
+    val kir: Fielder = parse_element (element (cls, fields(5)))
+    val kpr: Fielder = parse_element (element (cls, fields(6)))
+    val seve1: Fielder = parse_element (element (cls, fields(7)))
+    val seve2: Fielder = parse_element (element (cls, fields(8)))
+    val ta: Fielder = parse_element (element (cls, fields(9)))
+    val tdr: Fielder = parse_element (element (cls, fields(10)))
+    val te: Fielder = parse_element (element (cls, fields(11)))
+    val ve1: Fielder = parse_element (element (cls, fields(12)))
+    val ve2: Fielder = parse_element (element (cls, fields(13)))
+    val vemin: Fielder = parse_element (element (cls, fields(14)))
+    val vfemax: Fielder = parse_element (element (cls, fields(15)))
+    val vrmax: Fielder = parse_element (element (cls, fields(16)))
+    val vrmin: Fielder = parse_element (element (cls, fields(17)))
+
     def parse (context: Context): ExcIEEEAC8B =
     {
-        ExcIEEEAC8B(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ExcIEEEAC8B (
             ExcitationSystemDynamics.parse (context),
-            toDouble (ka (context), context),
-            toDouble (kc (context), context),
-            toDouble (kd (context), context),
-            toDouble (kdr (context), context),
-            toDouble (ke (context), context),
-            toDouble (kir (context), context),
-            toDouble (kpr (context), context),
-            toDouble (seve1 (context), context),
-            toDouble (seve2 (context), context),
-            toDouble (ta (context), context),
-            toDouble (tdr (context), context),
-            toDouble (te (context), context),
-            toDouble (ve1 (context), context),
-            toDouble (ve2 (context), context),
-            toDouble (vemin (context), context),
-            toDouble (vfemax (context), context),
-            toDouble (vrmax (context), context),
-            toDouble (vrmin (context), context)
+            toDouble (mask (ka (), 0)),
+            toDouble (mask (kc (), 1)),
+            toDouble (mask (kd (), 2)),
+            toDouble (mask (kdr (), 3)),
+            toDouble (mask (ke (), 4)),
+            toDouble (mask (kir (), 5)),
+            toDouble (mask (kpr (), 6)),
+            toDouble (mask (seve1 (), 7)),
+            toDouble (mask (seve2 (), 8)),
+            toDouble (mask (ta (), 9)),
+            toDouble (mask (tdr (), 10)),
+            toDouble (mask (te (), 11)),
+            toDouble (mask (ve1 (), 12)),
+            toDouble (mask (ve2 (), 13)),
+            toDouble (mask (vemin (), 14)),
+            toDouble (mask (vfemax (), 15)),
+            toDouble (mask (vrmax (), 16)),
+            toDouble (mask (vrmin (), 17))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -5249,6 +6339,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -5268,29 +6364,31 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ExcIEEEDC1A.efd1>" + efd1 + "</cim:ExcIEEEDC1A.efd1>\n" +
-        "\t\t<cim:ExcIEEEDC1A.efd2>" + efd2 + "</cim:ExcIEEEDC1A.efd2>\n" +
-        "\t\t<cim:ExcIEEEDC1A.exclim>" + exclim + "</cim:ExcIEEEDC1A.exclim>\n" +
-        "\t\t<cim:ExcIEEEDC1A.ka>" + ka + "</cim:ExcIEEEDC1A.ka>\n" +
-        "\t\t<cim:ExcIEEEDC1A.ke>" + ke + "</cim:ExcIEEEDC1A.ke>\n" +
-        "\t\t<cim:ExcIEEEDC1A.kf>" + kf + "</cim:ExcIEEEDC1A.kf>\n" +
-        "\t\t<cim:ExcIEEEDC1A.seefd1>" + seefd1 + "</cim:ExcIEEEDC1A.seefd1>\n" +
-        "\t\t<cim:ExcIEEEDC1A.seefd2>" + seefd2 + "</cim:ExcIEEEDC1A.seefd2>\n" +
-        "\t\t<cim:ExcIEEEDC1A.ta>" + ta + "</cim:ExcIEEEDC1A.ta>\n" +
-        "\t\t<cim:ExcIEEEDC1A.tb>" + tb + "</cim:ExcIEEEDC1A.tb>\n" +
-        "\t\t<cim:ExcIEEEDC1A.tc>" + tc + "</cim:ExcIEEEDC1A.tc>\n" +
-        "\t\t<cim:ExcIEEEDC1A.te>" + te + "</cim:ExcIEEEDC1A.te>\n" +
-        "\t\t<cim:ExcIEEEDC1A.tf>" + tf + "</cim:ExcIEEEDC1A.tf>\n" +
-        "\t\t<cim:ExcIEEEDC1A.uelin>" + uelin + "</cim:ExcIEEEDC1A.uelin>\n" +
-        "\t\t<cim:ExcIEEEDC1A.vrmax>" + vrmax + "</cim:ExcIEEEDC1A.vrmax>\n" +
-        "\t\t<cim:ExcIEEEDC1A.vrmin>" + vrmin + "</cim:ExcIEEEDC1A.vrmin>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcIEEEDC1A.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcIEEEDC1A.fields (position), value)
+        emitelem (0, efd1)
+        emitelem (1, efd2)
+        emitelem (2, exclim)
+        emitelem (3, ka)
+        emitelem (4, ke)
+        emitelem (5, kf)
+        emitelem (6, seefd1)
+        emitelem (7, seefd2)
+        emitelem (8, ta)
+        emitelem (9, tb)
+        emitelem (10, tc)
+        emitelem (11, te)
+        emitelem (12, tf)
+        emitelem (13, uelin)
+        emitelem (14, vrmax)
+        emitelem (15, vrmin)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ExcIEEEDC1A rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcIEEEDC1A>"
+        "\t<cim:ExcIEEEDC1A rdf:ID=\"%s\">\n%s\t</cim:ExcIEEEDC1A>".format (id, export_fields)
     }
 }
 
@@ -5298,45 +6396,71 @@ object ExcIEEEDC1A
 extends
     Parseable[ExcIEEEDC1A]
 {
-    val efd1 = parse_element (element ("""ExcIEEEDC1A.efd1"""))
-    val efd2 = parse_element (element ("""ExcIEEEDC1A.efd2"""))
-    val exclim = parse_element (element ("""ExcIEEEDC1A.exclim"""))
-    val ka = parse_element (element ("""ExcIEEEDC1A.ka"""))
-    val ke = parse_element (element ("""ExcIEEEDC1A.ke"""))
-    val kf = parse_element (element ("""ExcIEEEDC1A.kf"""))
-    val seefd1 = parse_element (element ("""ExcIEEEDC1A.seefd1"""))
-    val seefd2 = parse_element (element ("""ExcIEEEDC1A.seefd2"""))
-    val ta = parse_element (element ("""ExcIEEEDC1A.ta"""))
-    val tb = parse_element (element ("""ExcIEEEDC1A.tb"""))
-    val tc = parse_element (element ("""ExcIEEEDC1A.tc"""))
-    val te = parse_element (element ("""ExcIEEEDC1A.te"""))
-    val tf = parse_element (element ("""ExcIEEEDC1A.tf"""))
-    val uelin = parse_element (element ("""ExcIEEEDC1A.uelin"""))
-    val vrmax = parse_element (element ("""ExcIEEEDC1A.vrmax"""))
-    val vrmin = parse_element (element ("""ExcIEEEDC1A.vrmin"""))
+    val fields: Array[String] = Array[String] (
+        "efd1",
+        "efd2",
+        "exclim",
+        "ka",
+        "ke",
+        "kf",
+        "seefd1",
+        "seefd2",
+        "ta",
+        "tb",
+        "tc",
+        "te",
+        "tf",
+        "uelin",
+        "vrmax",
+        "vrmin"
+    )
+    val efd1: Fielder = parse_element (element (cls, fields(0)))
+    val efd2: Fielder = parse_element (element (cls, fields(1)))
+    val exclim: Fielder = parse_element (element (cls, fields(2)))
+    val ka: Fielder = parse_element (element (cls, fields(3)))
+    val ke: Fielder = parse_element (element (cls, fields(4)))
+    val kf: Fielder = parse_element (element (cls, fields(5)))
+    val seefd1: Fielder = parse_element (element (cls, fields(6)))
+    val seefd2: Fielder = parse_element (element (cls, fields(7)))
+    val ta: Fielder = parse_element (element (cls, fields(8)))
+    val tb: Fielder = parse_element (element (cls, fields(9)))
+    val tc: Fielder = parse_element (element (cls, fields(10)))
+    val te: Fielder = parse_element (element (cls, fields(11)))
+    val tf: Fielder = parse_element (element (cls, fields(12)))
+    val uelin: Fielder = parse_element (element (cls, fields(13)))
+    val vrmax: Fielder = parse_element (element (cls, fields(14)))
+    val vrmin: Fielder = parse_element (element (cls, fields(15)))
+
     def parse (context: Context): ExcIEEEDC1A =
     {
-        ExcIEEEDC1A(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ExcIEEEDC1A (
             ExcitationSystemDynamics.parse (context),
-            toDouble (efd1 (context), context),
-            toDouble (efd2 (context), context),
-            toBoolean (exclim (context), context),
-            toDouble (ka (context), context),
-            toDouble (ke (context), context),
-            toDouble (kf (context), context),
-            toDouble (seefd1 (context), context),
-            toDouble (seefd2 (context), context),
-            toDouble (ta (context), context),
-            toDouble (tb (context), context),
-            toDouble (tc (context), context),
-            toDouble (te (context), context),
-            toDouble (tf (context), context),
-            toBoolean (uelin (context), context),
-            toDouble (vrmax (context), context),
-            toDouble (vrmin (context), context)
+            toDouble (mask (efd1 (), 0)),
+            toDouble (mask (efd2 (), 1)),
+            toBoolean (mask (exclim (), 2)),
+            toDouble (mask (ka (), 3)),
+            toDouble (mask (ke (), 4)),
+            toDouble (mask (kf (), 5)),
+            toDouble (mask (seefd1 (), 6)),
+            toDouble (mask (seefd2 (), 7)),
+            toDouble (mask (ta (), 8)),
+            toDouble (mask (tb (), 9)),
+            toDouble (mask (tc (), 10)),
+            toDouble (mask (te (), 11)),
+            toDouble (mask (tf (), 12)),
+            toBoolean (mask (uelin (), 13)),
+            toDouble (mask (vrmax (), 14)),
+            toDouble (mask (vrmin (), 15))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -5411,6 +6535,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -5430,29 +6560,31 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ExcIEEEDC2A.efd1>" + efd1 + "</cim:ExcIEEEDC2A.efd1>\n" +
-        "\t\t<cim:ExcIEEEDC2A.efd2>" + efd2 + "</cim:ExcIEEEDC2A.efd2>\n" +
-        "\t\t<cim:ExcIEEEDC2A.exclim>" + exclim + "</cim:ExcIEEEDC2A.exclim>\n" +
-        "\t\t<cim:ExcIEEEDC2A.ka>" + ka + "</cim:ExcIEEEDC2A.ka>\n" +
-        "\t\t<cim:ExcIEEEDC2A.ke>" + ke + "</cim:ExcIEEEDC2A.ke>\n" +
-        "\t\t<cim:ExcIEEEDC2A.kf>" + kf + "</cim:ExcIEEEDC2A.kf>\n" +
-        "\t\t<cim:ExcIEEEDC2A.seefd1>" + seefd1 + "</cim:ExcIEEEDC2A.seefd1>\n" +
-        "\t\t<cim:ExcIEEEDC2A.seefd2>" + seefd2 + "</cim:ExcIEEEDC2A.seefd2>\n" +
-        "\t\t<cim:ExcIEEEDC2A.ta>" + ta + "</cim:ExcIEEEDC2A.ta>\n" +
-        "\t\t<cim:ExcIEEEDC2A.tb>" + tb + "</cim:ExcIEEEDC2A.tb>\n" +
-        "\t\t<cim:ExcIEEEDC2A.tc>" + tc + "</cim:ExcIEEEDC2A.tc>\n" +
-        "\t\t<cim:ExcIEEEDC2A.te>" + te + "</cim:ExcIEEEDC2A.te>\n" +
-        "\t\t<cim:ExcIEEEDC2A.tf>" + tf + "</cim:ExcIEEEDC2A.tf>\n" +
-        "\t\t<cim:ExcIEEEDC2A.uelin>" + uelin + "</cim:ExcIEEEDC2A.uelin>\n" +
-        "\t\t<cim:ExcIEEEDC2A.vrmax>" + vrmax + "</cim:ExcIEEEDC2A.vrmax>\n" +
-        "\t\t<cim:ExcIEEEDC2A.vrmin>" + vrmin + "</cim:ExcIEEEDC2A.vrmin>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcIEEEDC2A.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcIEEEDC2A.fields (position), value)
+        emitelem (0, efd1)
+        emitelem (1, efd2)
+        emitelem (2, exclim)
+        emitelem (3, ka)
+        emitelem (4, ke)
+        emitelem (5, kf)
+        emitelem (6, seefd1)
+        emitelem (7, seefd2)
+        emitelem (8, ta)
+        emitelem (9, tb)
+        emitelem (10, tc)
+        emitelem (11, te)
+        emitelem (12, tf)
+        emitelem (13, uelin)
+        emitelem (14, vrmax)
+        emitelem (15, vrmin)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ExcIEEEDC2A rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcIEEEDC2A>"
+        "\t<cim:ExcIEEEDC2A rdf:ID=\"%s\">\n%s\t</cim:ExcIEEEDC2A>".format (id, export_fields)
     }
 }
 
@@ -5460,45 +6592,71 @@ object ExcIEEEDC2A
 extends
     Parseable[ExcIEEEDC2A]
 {
-    val efd1 = parse_element (element ("""ExcIEEEDC2A.efd1"""))
-    val efd2 = parse_element (element ("""ExcIEEEDC2A.efd2"""))
-    val exclim = parse_element (element ("""ExcIEEEDC2A.exclim"""))
-    val ka = parse_element (element ("""ExcIEEEDC2A.ka"""))
-    val ke = parse_element (element ("""ExcIEEEDC2A.ke"""))
-    val kf = parse_element (element ("""ExcIEEEDC2A.kf"""))
-    val seefd1 = parse_element (element ("""ExcIEEEDC2A.seefd1"""))
-    val seefd2 = parse_element (element ("""ExcIEEEDC2A.seefd2"""))
-    val ta = parse_element (element ("""ExcIEEEDC2A.ta"""))
-    val tb = parse_element (element ("""ExcIEEEDC2A.tb"""))
-    val tc = parse_element (element ("""ExcIEEEDC2A.tc"""))
-    val te = parse_element (element ("""ExcIEEEDC2A.te"""))
-    val tf = parse_element (element ("""ExcIEEEDC2A.tf"""))
-    val uelin = parse_element (element ("""ExcIEEEDC2A.uelin"""))
-    val vrmax = parse_element (element ("""ExcIEEEDC2A.vrmax"""))
-    val vrmin = parse_element (element ("""ExcIEEEDC2A.vrmin"""))
+    val fields: Array[String] = Array[String] (
+        "efd1",
+        "efd2",
+        "exclim",
+        "ka",
+        "ke",
+        "kf",
+        "seefd1",
+        "seefd2",
+        "ta",
+        "tb",
+        "tc",
+        "te",
+        "tf",
+        "uelin",
+        "vrmax",
+        "vrmin"
+    )
+    val efd1: Fielder = parse_element (element (cls, fields(0)))
+    val efd2: Fielder = parse_element (element (cls, fields(1)))
+    val exclim: Fielder = parse_element (element (cls, fields(2)))
+    val ka: Fielder = parse_element (element (cls, fields(3)))
+    val ke: Fielder = parse_element (element (cls, fields(4)))
+    val kf: Fielder = parse_element (element (cls, fields(5)))
+    val seefd1: Fielder = parse_element (element (cls, fields(6)))
+    val seefd2: Fielder = parse_element (element (cls, fields(7)))
+    val ta: Fielder = parse_element (element (cls, fields(8)))
+    val tb: Fielder = parse_element (element (cls, fields(9)))
+    val tc: Fielder = parse_element (element (cls, fields(10)))
+    val te: Fielder = parse_element (element (cls, fields(11)))
+    val tf: Fielder = parse_element (element (cls, fields(12)))
+    val uelin: Fielder = parse_element (element (cls, fields(13)))
+    val vrmax: Fielder = parse_element (element (cls, fields(14)))
+    val vrmin: Fielder = parse_element (element (cls, fields(15)))
+
     def parse (context: Context): ExcIEEEDC2A =
     {
-        ExcIEEEDC2A(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ExcIEEEDC2A (
             ExcitationSystemDynamics.parse (context),
-            toDouble (efd1 (context), context),
-            toDouble (efd2 (context), context),
-            toDouble (exclim (context), context),
-            toDouble (ka (context), context),
-            toDouble (ke (context), context),
-            toDouble (kf (context), context),
-            toDouble (seefd1 (context), context),
-            toDouble (seefd2 (context), context),
-            toDouble (ta (context), context),
-            toDouble (tb (context), context),
-            toDouble (tc (context), context),
-            toDouble (te (context), context),
-            toDouble (tf (context), context),
-            toBoolean (uelin (context), context),
-            toDouble (vrmax (context), context),
-            toDouble (vrmin (context), context)
+            toDouble (mask (efd1 (), 0)),
+            toDouble (mask (efd2 (), 1)),
+            toDouble (mask (exclim (), 2)),
+            toDouble (mask (ka (), 3)),
+            toDouble (mask (ke (), 4)),
+            toDouble (mask (kf (), 5)),
+            toDouble (mask (seefd1 (), 6)),
+            toDouble (mask (seefd2 (), 7)),
+            toDouble (mask (ta (), 8)),
+            toDouble (mask (tb (), 9)),
+            toDouble (mask (tc (), 10)),
+            toDouble (mask (te (), 11)),
+            toDouble (mask (tf (), 12)),
+            toBoolean (mask (uelin (), 13)),
+            toDouble (mask (vrmax (), 14)),
+            toDouble (mask (vrmin (), 15))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -5556,6 +6714,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -5575,24 +6739,26 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ExcIEEEDC3A.efd1>" + efd1 + "</cim:ExcIEEEDC3A.efd1>\n" +
-        "\t\t<cim:ExcIEEEDC3A.efd2>" + efd2 + "</cim:ExcIEEEDC3A.efd2>\n" +
-        "\t\t<cim:ExcIEEEDC3A.exclim>" + exclim + "</cim:ExcIEEEDC3A.exclim>\n" +
-        "\t\t<cim:ExcIEEEDC3A.ke>" + ke + "</cim:ExcIEEEDC3A.ke>\n" +
-        "\t\t<cim:ExcIEEEDC3A.kv>" + kv + "</cim:ExcIEEEDC3A.kv>\n" +
-        "\t\t<cim:ExcIEEEDC3A.seefd1>" + seefd1 + "</cim:ExcIEEEDC3A.seefd1>\n" +
-        "\t\t<cim:ExcIEEEDC3A.seefd2>" + seefd2 + "</cim:ExcIEEEDC3A.seefd2>\n" +
-        "\t\t<cim:ExcIEEEDC3A.te>" + te + "</cim:ExcIEEEDC3A.te>\n" +
-        "\t\t<cim:ExcIEEEDC3A.trh>" + trh + "</cim:ExcIEEEDC3A.trh>\n" +
-        "\t\t<cim:ExcIEEEDC3A.vrmax>" + vrmax + "</cim:ExcIEEEDC3A.vrmax>\n" +
-        "\t\t<cim:ExcIEEEDC3A.vrmin>" + vrmin + "</cim:ExcIEEEDC3A.vrmin>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcIEEEDC3A.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcIEEEDC3A.fields (position), value)
+        emitelem (0, efd1)
+        emitelem (1, efd2)
+        emitelem (2, exclim)
+        emitelem (3, ke)
+        emitelem (4, kv)
+        emitelem (5, seefd1)
+        emitelem (6, seefd2)
+        emitelem (7, te)
+        emitelem (8, trh)
+        emitelem (9, vrmax)
+        emitelem (10, vrmin)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ExcIEEEDC3A rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcIEEEDC3A>"
+        "\t<cim:ExcIEEEDC3A rdf:ID=\"%s\">\n%s\t</cim:ExcIEEEDC3A>".format (id, export_fields)
     }
 }
 
@@ -5600,35 +6766,56 @@ object ExcIEEEDC3A
 extends
     Parseable[ExcIEEEDC3A]
 {
-    val efd1 = parse_element (element ("""ExcIEEEDC3A.efd1"""))
-    val efd2 = parse_element (element ("""ExcIEEEDC3A.efd2"""))
-    val exclim = parse_element (element ("""ExcIEEEDC3A.exclim"""))
-    val ke = parse_element (element ("""ExcIEEEDC3A.ke"""))
-    val kv = parse_element (element ("""ExcIEEEDC3A.kv"""))
-    val seefd1 = parse_element (element ("""ExcIEEEDC3A.seefd1"""))
-    val seefd2 = parse_element (element ("""ExcIEEEDC3A.seefd2"""))
-    val te = parse_element (element ("""ExcIEEEDC3A.te"""))
-    val trh = parse_element (element ("""ExcIEEEDC3A.trh"""))
-    val vrmax = parse_element (element ("""ExcIEEEDC3A.vrmax"""))
-    val vrmin = parse_element (element ("""ExcIEEEDC3A.vrmin"""))
+    val fields: Array[String] = Array[String] (
+        "efd1",
+        "efd2",
+        "exclim",
+        "ke",
+        "kv",
+        "seefd1",
+        "seefd2",
+        "te",
+        "trh",
+        "vrmax",
+        "vrmin"
+    )
+    val efd1: Fielder = parse_element (element (cls, fields(0)))
+    val efd2: Fielder = parse_element (element (cls, fields(1)))
+    val exclim: Fielder = parse_element (element (cls, fields(2)))
+    val ke: Fielder = parse_element (element (cls, fields(3)))
+    val kv: Fielder = parse_element (element (cls, fields(4)))
+    val seefd1: Fielder = parse_element (element (cls, fields(5)))
+    val seefd2: Fielder = parse_element (element (cls, fields(6)))
+    val te: Fielder = parse_element (element (cls, fields(7)))
+    val trh: Fielder = parse_element (element (cls, fields(8)))
+    val vrmax: Fielder = parse_element (element (cls, fields(9)))
+    val vrmin: Fielder = parse_element (element (cls, fields(10)))
+
     def parse (context: Context): ExcIEEEDC3A =
     {
-        ExcIEEEDC3A(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ExcIEEEDC3A (
             ExcitationSystemDynamics.parse (context),
-            toDouble (efd1 (context), context),
-            toDouble (efd2 (context), context),
-            toBoolean (exclim (context), context),
-            toDouble (ke (context), context),
-            toDouble (kv (context), context),
-            toDouble (seefd1 (context), context),
-            toDouble (seefd2 (context), context),
-            toDouble (te (context), context),
-            toDouble (trh (context), context),
-            toDouble (vrmax (context), context),
-            toDouble (vrmin (context), context)
+            toDouble (mask (efd1 (), 0)),
+            toDouble (mask (efd2 (), 1)),
+            toBoolean (mask (exclim (), 2)),
+            toDouble (mask (ke (), 3)),
+            toDouble (mask (kv (), 4)),
+            toDouble (mask (seefd1 (), 5)),
+            toDouble (mask (seefd2 (), 6)),
+            toDouble (mask (te (), 7)),
+            toDouble (mask (trh (), 8)),
+            toDouble (mask (vrmax (), 9)),
+            toDouble (mask (vrmin (), 10))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -5714,6 +6901,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -5733,32 +6926,34 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ExcIEEEDC4B.efd1>" + efd1 + "</cim:ExcIEEEDC4B.efd1>\n" +
-        "\t\t<cim:ExcIEEEDC4B.efd2>" + efd2 + "</cim:ExcIEEEDC4B.efd2>\n" +
-        "\t\t<cim:ExcIEEEDC4B.ka>" + ka + "</cim:ExcIEEEDC4B.ka>\n" +
-        "\t\t<cim:ExcIEEEDC4B.kd>" + kd + "</cim:ExcIEEEDC4B.kd>\n" +
-        "\t\t<cim:ExcIEEEDC4B.ke>" + ke + "</cim:ExcIEEEDC4B.ke>\n" +
-        "\t\t<cim:ExcIEEEDC4B.kf>" + kf + "</cim:ExcIEEEDC4B.kf>\n" +
-        "\t\t<cim:ExcIEEEDC4B.ki>" + ki + "</cim:ExcIEEEDC4B.ki>\n" +
-        "\t\t<cim:ExcIEEEDC4B.kp>" + kp + "</cim:ExcIEEEDC4B.kp>\n" +
-        "\t\t<cim:ExcIEEEDC4B.oelin>" + oelin + "</cim:ExcIEEEDC4B.oelin>\n" +
-        "\t\t<cim:ExcIEEEDC4B.seefd1>" + seefd1 + "</cim:ExcIEEEDC4B.seefd1>\n" +
-        "\t\t<cim:ExcIEEEDC4B.seefd2>" + seefd2 + "</cim:ExcIEEEDC4B.seefd2>\n" +
-        "\t\t<cim:ExcIEEEDC4B.ta>" + ta + "</cim:ExcIEEEDC4B.ta>\n" +
-        "\t\t<cim:ExcIEEEDC4B.td>" + td + "</cim:ExcIEEEDC4B.td>\n" +
-        "\t\t<cim:ExcIEEEDC4B.te>" + te + "</cim:ExcIEEEDC4B.te>\n" +
-        "\t\t<cim:ExcIEEEDC4B.tf>" + tf + "</cim:ExcIEEEDC4B.tf>\n" +
-        "\t\t<cim:ExcIEEEDC4B.uelin>" + uelin + "</cim:ExcIEEEDC4B.uelin>\n" +
-        "\t\t<cim:ExcIEEEDC4B.vemin>" + vemin + "</cim:ExcIEEEDC4B.vemin>\n" +
-        "\t\t<cim:ExcIEEEDC4B.vrmax>" + vrmax + "</cim:ExcIEEEDC4B.vrmax>\n" +
-        "\t\t<cim:ExcIEEEDC4B.vrmin>" + vrmin + "</cim:ExcIEEEDC4B.vrmin>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcIEEEDC4B.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcIEEEDC4B.fields (position), value)
+        emitelem (0, efd1)
+        emitelem (1, efd2)
+        emitelem (2, ka)
+        emitelem (3, kd)
+        emitelem (4, ke)
+        emitelem (5, kf)
+        emitelem (6, ki)
+        emitelem (7, kp)
+        emitelem (8, oelin)
+        emitelem (9, seefd1)
+        emitelem (10, seefd2)
+        emitelem (11, ta)
+        emitelem (12, td)
+        emitelem (13, te)
+        emitelem (14, tf)
+        emitelem (15, uelin)
+        emitelem (16, vemin)
+        emitelem (17, vrmax)
+        emitelem (18, vrmin)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ExcIEEEDC4B rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcIEEEDC4B>"
+        "\t<cim:ExcIEEEDC4B rdf:ID=\"%s\">\n%s\t</cim:ExcIEEEDC4B>".format (id, export_fields)
     }
 }
 
@@ -5766,51 +6961,80 @@ object ExcIEEEDC4B
 extends
     Parseable[ExcIEEEDC4B]
 {
-    val efd1 = parse_element (element ("""ExcIEEEDC4B.efd1"""))
-    val efd2 = parse_element (element ("""ExcIEEEDC4B.efd2"""))
-    val ka = parse_element (element ("""ExcIEEEDC4B.ka"""))
-    val kd = parse_element (element ("""ExcIEEEDC4B.kd"""))
-    val ke = parse_element (element ("""ExcIEEEDC4B.ke"""))
-    val kf = parse_element (element ("""ExcIEEEDC4B.kf"""))
-    val ki = parse_element (element ("""ExcIEEEDC4B.ki"""))
-    val kp = parse_element (element ("""ExcIEEEDC4B.kp"""))
-    val oelin = parse_element (element ("""ExcIEEEDC4B.oelin"""))
-    val seefd1 = parse_element (element ("""ExcIEEEDC4B.seefd1"""))
-    val seefd2 = parse_element (element ("""ExcIEEEDC4B.seefd2"""))
-    val ta = parse_element (element ("""ExcIEEEDC4B.ta"""))
-    val td = parse_element (element ("""ExcIEEEDC4B.td"""))
-    val te = parse_element (element ("""ExcIEEEDC4B.te"""))
-    val tf = parse_element (element ("""ExcIEEEDC4B.tf"""))
-    val uelin = parse_element (element ("""ExcIEEEDC4B.uelin"""))
-    val vemin = parse_element (element ("""ExcIEEEDC4B.vemin"""))
-    val vrmax = parse_element (element ("""ExcIEEEDC4B.vrmax"""))
-    val vrmin = parse_element (element ("""ExcIEEEDC4B.vrmin"""))
+    val fields: Array[String] = Array[String] (
+        "efd1",
+        "efd2",
+        "ka",
+        "kd",
+        "ke",
+        "kf",
+        "ki",
+        "kp",
+        "oelin",
+        "seefd1",
+        "seefd2",
+        "ta",
+        "td",
+        "te",
+        "tf",
+        "uelin",
+        "vemin",
+        "vrmax",
+        "vrmin"
+    )
+    val efd1: Fielder = parse_element (element (cls, fields(0)))
+    val efd2: Fielder = parse_element (element (cls, fields(1)))
+    val ka: Fielder = parse_element (element (cls, fields(2)))
+    val kd: Fielder = parse_element (element (cls, fields(3)))
+    val ke: Fielder = parse_element (element (cls, fields(4)))
+    val kf: Fielder = parse_element (element (cls, fields(5)))
+    val ki: Fielder = parse_element (element (cls, fields(6)))
+    val kp: Fielder = parse_element (element (cls, fields(7)))
+    val oelin: Fielder = parse_element (element (cls, fields(8)))
+    val seefd1: Fielder = parse_element (element (cls, fields(9)))
+    val seefd2: Fielder = parse_element (element (cls, fields(10)))
+    val ta: Fielder = parse_element (element (cls, fields(11)))
+    val td: Fielder = parse_element (element (cls, fields(12)))
+    val te: Fielder = parse_element (element (cls, fields(13)))
+    val tf: Fielder = parse_element (element (cls, fields(14)))
+    val uelin: Fielder = parse_element (element (cls, fields(15)))
+    val vemin: Fielder = parse_element (element (cls, fields(16)))
+    val vrmax: Fielder = parse_element (element (cls, fields(17)))
+    val vrmin: Fielder = parse_element (element (cls, fields(18)))
+
     def parse (context: Context): ExcIEEEDC4B =
     {
-        ExcIEEEDC4B(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ExcIEEEDC4B (
             ExcitationSystemDynamics.parse (context),
-            toDouble (efd1 (context), context),
-            toDouble (efd2 (context), context),
-            toDouble (ka (context), context),
-            toDouble (kd (context), context),
-            toDouble (ke (context), context),
-            toDouble (kf (context), context),
-            toDouble (ki (context), context),
-            toDouble (kp (context), context),
-            toBoolean (oelin (context), context),
-            toDouble (seefd1 (context), context),
-            toDouble (seefd2 (context), context),
-            toDouble (ta (context), context),
-            toDouble (td (context), context),
-            toDouble (te (context), context),
-            toDouble (tf (context), context),
-            toBoolean (uelin (context), context),
-            toDouble (vemin (context), context),
-            toDouble (vrmax (context), context),
-            toDouble (vrmin (context), context)
+            toDouble (mask (efd1 (), 0)),
+            toDouble (mask (efd2 (), 1)),
+            toDouble (mask (ka (), 2)),
+            toDouble (mask (kd (), 3)),
+            toDouble (mask (ke (), 4)),
+            toDouble (mask (kf (), 5)),
+            toDouble (mask (ki (), 6)),
+            toDouble (mask (kp (), 7)),
+            toBoolean (mask (oelin (), 8)),
+            toDouble (mask (seefd1 (), 9)),
+            toDouble (mask (seefd2 (), 10)),
+            toDouble (mask (ta (), 11)),
+            toDouble (mask (td (), 12)),
+            toDouble (mask (te (), 13)),
+            toDouble (mask (tf (), 14)),
+            toBoolean (mask (uelin (), 15)),
+            toDouble (mask (vemin (), 16)),
+            toDouble (mask (vrmax (), 17)),
+            toDouble (mask (vrmin (), 18))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -5894,6 +7118,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -5913,32 +7143,35 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ExcIEEEST1A.ilr>" + ilr + "</cim:ExcIEEEST1A.ilr>\n" +
-        "\t\t<cim:ExcIEEEST1A.ka>" + ka + "</cim:ExcIEEEST1A.ka>\n" +
-        "\t\t<cim:ExcIEEEST1A.kc>" + kc + "</cim:ExcIEEEST1A.kc>\n" +
-        "\t\t<cim:ExcIEEEST1A.kf>" + kf + "</cim:ExcIEEEST1A.kf>\n" +
-        "\t\t<cim:ExcIEEEST1A.klr>" + klr + "</cim:ExcIEEEST1A.klr>\n" +
-        "\t\t<cim:ExcIEEEST1A.pssin>" + pssin + "</cim:ExcIEEEST1A.pssin>\n" +
-        "\t\t<cim:ExcIEEEST1A.ta>" + ta + "</cim:ExcIEEEST1A.ta>\n" +
-        "\t\t<cim:ExcIEEEST1A.tb>" + tb + "</cim:ExcIEEEST1A.tb>\n" +
-        "\t\t<cim:ExcIEEEST1A.tb1>" + tb1 + "</cim:ExcIEEEST1A.tb1>\n" +
-        "\t\t<cim:ExcIEEEST1A.tc>" + tc + "</cim:ExcIEEEST1A.tc>\n" +
-        "\t\t<cim:ExcIEEEST1A.tc1>" + tc1 + "</cim:ExcIEEEST1A.tc1>\n" +
-        "\t\t<cim:ExcIEEEST1A.tf>" + tf + "</cim:ExcIEEEST1A.tf>\n" +
-        (if (null != uelin) "\t\t<cim:ExcIEEEST1A.uelin rdf:resource=\"#" + uelin + "\"/>\n" else "") +
-        "\t\t<cim:ExcIEEEST1A.vamax>" + vamax + "</cim:ExcIEEEST1A.vamax>\n" +
-        "\t\t<cim:ExcIEEEST1A.vamin>" + vamin + "</cim:ExcIEEEST1A.vamin>\n" +
-        "\t\t<cim:ExcIEEEST1A.vimax>" + vimax + "</cim:ExcIEEEST1A.vimax>\n" +
-        "\t\t<cim:ExcIEEEST1A.vimin>" + vimin + "</cim:ExcIEEEST1A.vimin>\n" +
-        "\t\t<cim:ExcIEEEST1A.vrmax>" + vrmax + "</cim:ExcIEEEST1A.vrmax>\n" +
-        "\t\t<cim:ExcIEEEST1A.vrmin>" + vrmin + "</cim:ExcIEEEST1A.vrmin>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcIEEEST1A.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcIEEEST1A.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ExcIEEEST1A.fields (position), value)
+        emitelem (0, ilr)
+        emitelem (1, ka)
+        emitelem (2, kc)
+        emitelem (3, kf)
+        emitelem (4, klr)
+        emitelem (5, pssin)
+        emitelem (6, ta)
+        emitelem (7, tb)
+        emitelem (8, tb1)
+        emitelem (9, tc)
+        emitelem (10, tc1)
+        emitelem (11, tf)
+        emitattr (12, uelin)
+        emitelem (13, vamax)
+        emitelem (14, vamin)
+        emitelem (15, vimax)
+        emitelem (16, vimin)
+        emitelem (17, vrmax)
+        emitelem (18, vrmin)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ExcIEEEST1A rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcIEEEST1A>"
+        "\t<cim:ExcIEEEST1A rdf:ID=\"%s\">\n%s\t</cim:ExcIEEEST1A>".format (id, export_fields)
     }
 }
 
@@ -5946,51 +7179,80 @@ object ExcIEEEST1A
 extends
     Parseable[ExcIEEEST1A]
 {
-    val ilr = parse_element (element ("""ExcIEEEST1A.ilr"""))
-    val ka = parse_element (element ("""ExcIEEEST1A.ka"""))
-    val kc = parse_element (element ("""ExcIEEEST1A.kc"""))
-    val kf = parse_element (element ("""ExcIEEEST1A.kf"""))
-    val klr = parse_element (element ("""ExcIEEEST1A.klr"""))
-    val pssin = parse_element (element ("""ExcIEEEST1A.pssin"""))
-    val ta = parse_element (element ("""ExcIEEEST1A.ta"""))
-    val tb = parse_element (element ("""ExcIEEEST1A.tb"""))
-    val tb1 = parse_element (element ("""ExcIEEEST1A.tb1"""))
-    val tc = parse_element (element ("""ExcIEEEST1A.tc"""))
-    val tc1 = parse_element (element ("""ExcIEEEST1A.tc1"""))
-    val tf = parse_element (element ("""ExcIEEEST1A.tf"""))
-    val uelin = parse_attribute (attribute ("""ExcIEEEST1A.uelin"""))
-    val vamax = parse_element (element ("""ExcIEEEST1A.vamax"""))
-    val vamin = parse_element (element ("""ExcIEEEST1A.vamin"""))
-    val vimax = parse_element (element ("""ExcIEEEST1A.vimax"""))
-    val vimin = parse_element (element ("""ExcIEEEST1A.vimin"""))
-    val vrmax = parse_element (element ("""ExcIEEEST1A.vrmax"""))
-    val vrmin = parse_element (element ("""ExcIEEEST1A.vrmin"""))
+    val fields: Array[String] = Array[String] (
+        "ilr",
+        "ka",
+        "kc",
+        "kf",
+        "klr",
+        "pssin",
+        "ta",
+        "tb",
+        "tb1",
+        "tc",
+        "tc1",
+        "tf",
+        "uelin",
+        "vamax",
+        "vamin",
+        "vimax",
+        "vimin",
+        "vrmax",
+        "vrmin"
+    )
+    val ilr: Fielder = parse_element (element (cls, fields(0)))
+    val ka: Fielder = parse_element (element (cls, fields(1)))
+    val kc: Fielder = parse_element (element (cls, fields(2)))
+    val kf: Fielder = parse_element (element (cls, fields(3)))
+    val klr: Fielder = parse_element (element (cls, fields(4)))
+    val pssin: Fielder = parse_element (element (cls, fields(5)))
+    val ta: Fielder = parse_element (element (cls, fields(6)))
+    val tb: Fielder = parse_element (element (cls, fields(7)))
+    val tb1: Fielder = parse_element (element (cls, fields(8)))
+    val tc: Fielder = parse_element (element (cls, fields(9)))
+    val tc1: Fielder = parse_element (element (cls, fields(10)))
+    val tf: Fielder = parse_element (element (cls, fields(11)))
+    val uelin: Fielder = parse_attribute (attribute (cls, fields(12)))
+    val vamax: Fielder = parse_element (element (cls, fields(13)))
+    val vamin: Fielder = parse_element (element (cls, fields(14)))
+    val vimax: Fielder = parse_element (element (cls, fields(15)))
+    val vimin: Fielder = parse_element (element (cls, fields(16)))
+    val vrmax: Fielder = parse_element (element (cls, fields(17)))
+    val vrmin: Fielder = parse_element (element (cls, fields(18)))
+
     def parse (context: Context): ExcIEEEST1A =
     {
-        ExcIEEEST1A(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ExcIEEEST1A (
             ExcitationSystemDynamics.parse (context),
-            toDouble (ilr (context), context),
-            toDouble (ka (context), context),
-            toDouble (kc (context), context),
-            toDouble (kf (context), context),
-            toDouble (klr (context), context),
-            toBoolean (pssin (context), context),
-            toDouble (ta (context), context),
-            toDouble (tb (context), context),
-            toDouble (tb1 (context), context),
-            toDouble (tc (context), context),
-            toDouble (tc1 (context), context),
-            toDouble (tf (context), context),
-            uelin (context),
-            toDouble (vamax (context), context),
-            toDouble (vamin (context), context),
-            toDouble (vimax (context), context),
-            toDouble (vimin (context), context),
-            toDouble (vrmax (context), context),
-            toDouble (vrmin (context), context)
+            toDouble (mask (ilr (), 0)),
+            toDouble (mask (ka (), 1)),
+            toDouble (mask (kc (), 2)),
+            toDouble (mask (kf (), 3)),
+            toDouble (mask (klr (), 4)),
+            toBoolean (mask (pssin (), 5)),
+            toDouble (mask (ta (), 6)),
+            toDouble (mask (tb (), 7)),
+            toDouble (mask (tb1 (), 8)),
+            toDouble (mask (tc (), 9)),
+            toDouble (mask (tc1 (), 10)),
+            toDouble (mask (tf (), 11)),
+            mask (uelin (), 12),
+            toDouble (mask (vamax (), 13)),
+            toDouble (mask (vamin (), 14)),
+            toDouble (mask (vimax (), 15)),
+            toDouble (mask (vimin (), 16)),
+            toDouble (mask (vrmax (), 17)),
+            toDouble (mask (vrmin (), 18))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -6056,6 +7318,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -6075,26 +7343,28 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ExcIEEEST2A.efdmax>" + efdmax + "</cim:ExcIEEEST2A.efdmax>\n" +
-        "\t\t<cim:ExcIEEEST2A.ka>" + ka + "</cim:ExcIEEEST2A.ka>\n" +
-        "\t\t<cim:ExcIEEEST2A.kc>" + kc + "</cim:ExcIEEEST2A.kc>\n" +
-        "\t\t<cim:ExcIEEEST2A.ke>" + ke + "</cim:ExcIEEEST2A.ke>\n" +
-        "\t\t<cim:ExcIEEEST2A.kf>" + kf + "</cim:ExcIEEEST2A.kf>\n" +
-        "\t\t<cim:ExcIEEEST2A.ki>" + ki + "</cim:ExcIEEEST2A.ki>\n" +
-        "\t\t<cim:ExcIEEEST2A.kp>" + kp + "</cim:ExcIEEEST2A.kp>\n" +
-        "\t\t<cim:ExcIEEEST2A.ta>" + ta + "</cim:ExcIEEEST2A.ta>\n" +
-        "\t\t<cim:ExcIEEEST2A.te>" + te + "</cim:ExcIEEEST2A.te>\n" +
-        "\t\t<cim:ExcIEEEST2A.tf>" + tf + "</cim:ExcIEEEST2A.tf>\n" +
-        "\t\t<cim:ExcIEEEST2A.uelin>" + uelin + "</cim:ExcIEEEST2A.uelin>\n" +
-        "\t\t<cim:ExcIEEEST2A.vrmax>" + vrmax + "</cim:ExcIEEEST2A.vrmax>\n" +
-        "\t\t<cim:ExcIEEEST2A.vrmin>" + vrmin + "</cim:ExcIEEEST2A.vrmin>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcIEEEST2A.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcIEEEST2A.fields (position), value)
+        emitelem (0, efdmax)
+        emitelem (1, ka)
+        emitelem (2, kc)
+        emitelem (3, ke)
+        emitelem (4, kf)
+        emitelem (5, ki)
+        emitelem (6, kp)
+        emitelem (7, ta)
+        emitelem (8, te)
+        emitelem (9, tf)
+        emitelem (10, uelin)
+        emitelem (11, vrmax)
+        emitelem (12, vrmin)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ExcIEEEST2A rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcIEEEST2A>"
+        "\t<cim:ExcIEEEST2A rdf:ID=\"%s\">\n%s\t</cim:ExcIEEEST2A>".format (id, export_fields)
     }
 }
 
@@ -6102,39 +7372,62 @@ object ExcIEEEST2A
 extends
     Parseable[ExcIEEEST2A]
 {
-    val efdmax = parse_element (element ("""ExcIEEEST2A.efdmax"""))
-    val ka = parse_element (element ("""ExcIEEEST2A.ka"""))
-    val kc = parse_element (element ("""ExcIEEEST2A.kc"""))
-    val ke = parse_element (element ("""ExcIEEEST2A.ke"""))
-    val kf = parse_element (element ("""ExcIEEEST2A.kf"""))
-    val ki = parse_element (element ("""ExcIEEEST2A.ki"""))
-    val kp = parse_element (element ("""ExcIEEEST2A.kp"""))
-    val ta = parse_element (element ("""ExcIEEEST2A.ta"""))
-    val te = parse_element (element ("""ExcIEEEST2A.te"""))
-    val tf = parse_element (element ("""ExcIEEEST2A.tf"""))
-    val uelin = parse_element (element ("""ExcIEEEST2A.uelin"""))
-    val vrmax = parse_element (element ("""ExcIEEEST2A.vrmax"""))
-    val vrmin = parse_element (element ("""ExcIEEEST2A.vrmin"""))
+    val fields: Array[String] = Array[String] (
+        "efdmax",
+        "ka",
+        "kc",
+        "ke",
+        "kf",
+        "ki",
+        "kp",
+        "ta",
+        "te",
+        "tf",
+        "uelin",
+        "vrmax",
+        "vrmin"
+    )
+    val efdmax: Fielder = parse_element (element (cls, fields(0)))
+    val ka: Fielder = parse_element (element (cls, fields(1)))
+    val kc: Fielder = parse_element (element (cls, fields(2)))
+    val ke: Fielder = parse_element (element (cls, fields(3)))
+    val kf: Fielder = parse_element (element (cls, fields(4)))
+    val ki: Fielder = parse_element (element (cls, fields(5)))
+    val kp: Fielder = parse_element (element (cls, fields(6)))
+    val ta: Fielder = parse_element (element (cls, fields(7)))
+    val te: Fielder = parse_element (element (cls, fields(8)))
+    val tf: Fielder = parse_element (element (cls, fields(9)))
+    val uelin: Fielder = parse_element (element (cls, fields(10)))
+    val vrmax: Fielder = parse_element (element (cls, fields(11)))
+    val vrmin: Fielder = parse_element (element (cls, fields(12)))
+
     def parse (context: Context): ExcIEEEST2A =
     {
-        ExcIEEEST2A(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ExcIEEEST2A (
             ExcitationSystemDynamics.parse (context),
-            toDouble (efdmax (context), context),
-            toDouble (ka (context), context),
-            toDouble (kc (context), context),
-            toDouble (ke (context), context),
-            toDouble (kf (context), context),
-            toDouble (ki (context), context),
-            toDouble (kp (context), context),
-            toDouble (ta (context), context),
-            toDouble (te (context), context),
-            toDouble (tf (context), context),
-            toBoolean (uelin (context), context),
-            toDouble (vrmax (context), context),
-            toDouble (vrmin (context), context)
+            toDouble (mask (efdmax (), 0)),
+            toDouble (mask (ka (), 1)),
+            toDouble (mask (kc (), 2)),
+            toDouble (mask (ke (), 3)),
+            toDouble (mask (kf (), 4)),
+            toDouble (mask (ki (), 5)),
+            toDouble (mask (kp (), 6)),
+            toDouble (mask (ta (), 7)),
+            toDouble (mask (te (), 8)),
+            toDouble (mask (tf (), 9)),
+            toBoolean (mask (uelin (), 10)),
+            toDouble (mask (vrmax (), 11)),
+            toDouble (mask (vrmin (), 12))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -6219,6 +7512,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -6238,33 +7537,35 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ExcIEEEST3A.ka>" + ka + "</cim:ExcIEEEST3A.ka>\n" +
-        "\t\t<cim:ExcIEEEST3A.kc>" + kc + "</cim:ExcIEEEST3A.kc>\n" +
-        "\t\t<cim:ExcIEEEST3A.kg>" + kg + "</cim:ExcIEEEST3A.kg>\n" +
-        "\t\t<cim:ExcIEEEST3A.ki>" + ki + "</cim:ExcIEEEST3A.ki>\n" +
-        "\t\t<cim:ExcIEEEST3A.km>" + km + "</cim:ExcIEEEST3A.km>\n" +
-        "\t\t<cim:ExcIEEEST3A.kp>" + kp + "</cim:ExcIEEEST3A.kp>\n" +
-        "\t\t<cim:ExcIEEEST3A.ta>" + ta + "</cim:ExcIEEEST3A.ta>\n" +
-        "\t\t<cim:ExcIEEEST3A.tb>" + tb + "</cim:ExcIEEEST3A.tb>\n" +
-        "\t\t<cim:ExcIEEEST3A.tc>" + tc + "</cim:ExcIEEEST3A.tc>\n" +
-        "\t\t<cim:ExcIEEEST3A.thetap>" + thetap + "</cim:ExcIEEEST3A.thetap>\n" +
-        "\t\t<cim:ExcIEEEST3A.tm>" + tm + "</cim:ExcIEEEST3A.tm>\n" +
-        "\t\t<cim:ExcIEEEST3A.vbmax>" + vbmax + "</cim:ExcIEEEST3A.vbmax>\n" +
-        "\t\t<cim:ExcIEEEST3A.vgmax>" + vgmax + "</cim:ExcIEEEST3A.vgmax>\n" +
-        "\t\t<cim:ExcIEEEST3A.vimax>" + vimax + "</cim:ExcIEEEST3A.vimax>\n" +
-        "\t\t<cim:ExcIEEEST3A.vimin>" + vimin + "</cim:ExcIEEEST3A.vimin>\n" +
-        "\t\t<cim:ExcIEEEST3A.vmmax>" + vmmax + "</cim:ExcIEEEST3A.vmmax>\n" +
-        "\t\t<cim:ExcIEEEST3A.vmmin>" + vmmin + "</cim:ExcIEEEST3A.vmmin>\n" +
-        "\t\t<cim:ExcIEEEST3A.vrmax>" + vrmax + "</cim:ExcIEEEST3A.vrmax>\n" +
-        "\t\t<cim:ExcIEEEST3A.vrmin>" + vrmin + "</cim:ExcIEEEST3A.vrmin>\n" +
-        "\t\t<cim:ExcIEEEST3A.xl>" + xl + "</cim:ExcIEEEST3A.xl>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcIEEEST3A.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcIEEEST3A.fields (position), value)
+        emitelem (0, ka)
+        emitelem (1, kc)
+        emitelem (2, kg)
+        emitelem (3, ki)
+        emitelem (4, km)
+        emitelem (5, kp)
+        emitelem (6, ta)
+        emitelem (7, tb)
+        emitelem (8, tc)
+        emitelem (9, thetap)
+        emitelem (10, tm)
+        emitelem (11, vbmax)
+        emitelem (12, vgmax)
+        emitelem (13, vimax)
+        emitelem (14, vimin)
+        emitelem (15, vmmax)
+        emitelem (16, vmmin)
+        emitelem (17, vrmax)
+        emitelem (18, vrmin)
+        emitelem (19, xl)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ExcIEEEST3A rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcIEEEST3A>"
+        "\t<cim:ExcIEEEST3A rdf:ID=\"%s\">\n%s\t</cim:ExcIEEEST3A>".format (id, export_fields)
     }
 }
 
@@ -6272,53 +7573,83 @@ object ExcIEEEST3A
 extends
     Parseable[ExcIEEEST3A]
 {
-    val ka = parse_element (element ("""ExcIEEEST3A.ka"""))
-    val kc = parse_element (element ("""ExcIEEEST3A.kc"""))
-    val kg = parse_element (element ("""ExcIEEEST3A.kg"""))
-    val ki = parse_element (element ("""ExcIEEEST3A.ki"""))
-    val km = parse_element (element ("""ExcIEEEST3A.km"""))
-    val kp = parse_element (element ("""ExcIEEEST3A.kp"""))
-    val ta = parse_element (element ("""ExcIEEEST3A.ta"""))
-    val tb = parse_element (element ("""ExcIEEEST3A.tb"""))
-    val tc = parse_element (element ("""ExcIEEEST3A.tc"""))
-    val thetap = parse_element (element ("""ExcIEEEST3A.thetap"""))
-    val tm = parse_element (element ("""ExcIEEEST3A.tm"""))
-    val vbmax = parse_element (element ("""ExcIEEEST3A.vbmax"""))
-    val vgmax = parse_element (element ("""ExcIEEEST3A.vgmax"""))
-    val vimax = parse_element (element ("""ExcIEEEST3A.vimax"""))
-    val vimin = parse_element (element ("""ExcIEEEST3A.vimin"""))
-    val vmmax = parse_element (element ("""ExcIEEEST3A.vmmax"""))
-    val vmmin = parse_element (element ("""ExcIEEEST3A.vmmin"""))
-    val vrmax = parse_element (element ("""ExcIEEEST3A.vrmax"""))
-    val vrmin = parse_element (element ("""ExcIEEEST3A.vrmin"""))
-    val xl = parse_element (element ("""ExcIEEEST3A.xl"""))
+    val fields: Array[String] = Array[String] (
+        "ka",
+        "kc",
+        "kg",
+        "ki",
+        "km",
+        "kp",
+        "ta",
+        "tb",
+        "tc",
+        "thetap",
+        "tm",
+        "vbmax",
+        "vgmax",
+        "vimax",
+        "vimin",
+        "vmmax",
+        "vmmin",
+        "vrmax",
+        "vrmin",
+        "xl"
+    )
+    val ka: Fielder = parse_element (element (cls, fields(0)))
+    val kc: Fielder = parse_element (element (cls, fields(1)))
+    val kg: Fielder = parse_element (element (cls, fields(2)))
+    val ki: Fielder = parse_element (element (cls, fields(3)))
+    val km: Fielder = parse_element (element (cls, fields(4)))
+    val kp: Fielder = parse_element (element (cls, fields(5)))
+    val ta: Fielder = parse_element (element (cls, fields(6)))
+    val tb: Fielder = parse_element (element (cls, fields(7)))
+    val tc: Fielder = parse_element (element (cls, fields(8)))
+    val thetap: Fielder = parse_element (element (cls, fields(9)))
+    val tm: Fielder = parse_element (element (cls, fields(10)))
+    val vbmax: Fielder = parse_element (element (cls, fields(11)))
+    val vgmax: Fielder = parse_element (element (cls, fields(12)))
+    val vimax: Fielder = parse_element (element (cls, fields(13)))
+    val vimin: Fielder = parse_element (element (cls, fields(14)))
+    val vmmax: Fielder = parse_element (element (cls, fields(15)))
+    val vmmin: Fielder = parse_element (element (cls, fields(16)))
+    val vrmax: Fielder = parse_element (element (cls, fields(17)))
+    val vrmin: Fielder = parse_element (element (cls, fields(18)))
+    val xl: Fielder = parse_element (element (cls, fields(19)))
+
     def parse (context: Context): ExcIEEEST3A =
     {
-        ExcIEEEST3A(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ExcIEEEST3A (
             ExcitationSystemDynamics.parse (context),
-            toDouble (ka (context), context),
-            toDouble (kc (context), context),
-            toDouble (kg (context), context),
-            toDouble (ki (context), context),
-            toDouble (km (context), context),
-            toDouble (kp (context), context),
-            toDouble (ta (context), context),
-            toDouble (tb (context), context),
-            toDouble (tc (context), context),
-            toDouble (thetap (context), context),
-            toDouble (tm (context), context),
-            toDouble (vbmax (context), context),
-            toDouble (vgmax (context), context),
-            toDouble (vimax (context), context),
-            toDouble (vimin (context), context),
-            toDouble (vmmax (context), context),
-            toDouble (vmmin (context), context),
-            toDouble (vrmax (context), context),
-            toDouble (vrmin (context), context),
-            toDouble (xl (context), context)
+            toDouble (mask (ka (), 0)),
+            toDouble (mask (kc (), 1)),
+            toDouble (mask (kg (), 2)),
+            toDouble (mask (ki (), 3)),
+            toDouble (mask (km (), 4)),
+            toDouble (mask (kp (), 5)),
+            toDouble (mask (ta (), 6)),
+            toDouble (mask (tb (), 7)),
+            toDouble (mask (tc (), 8)),
+            toDouble (mask (thetap (), 9)),
+            toDouble (mask (tm (), 10)),
+            toDouble (mask (vbmax (), 11)),
+            toDouble (mask (vgmax (), 12)),
+            toDouble (mask (vimax (), 13)),
+            toDouble (mask (vimin (), 14)),
+            toDouble (mask (vmmax (), 15)),
+            toDouble (mask (vmmin (), 16)),
+            toDouble (mask (vrmax (), 17)),
+            toDouble (mask (vrmin (), 18)),
+            toDouble (mask (xl (), 19))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -6391,6 +7722,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -6410,29 +7747,31 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ExcIEEEST4B.kc>" + kc + "</cim:ExcIEEEST4B.kc>\n" +
-        "\t\t<cim:ExcIEEEST4B.kg>" + kg + "</cim:ExcIEEEST4B.kg>\n" +
-        "\t\t<cim:ExcIEEEST4B.ki>" + ki + "</cim:ExcIEEEST4B.ki>\n" +
-        "\t\t<cim:ExcIEEEST4B.kim>" + kim + "</cim:ExcIEEEST4B.kim>\n" +
-        "\t\t<cim:ExcIEEEST4B.kir>" + kir + "</cim:ExcIEEEST4B.kir>\n" +
-        "\t\t<cim:ExcIEEEST4B.kp>" + kp + "</cim:ExcIEEEST4B.kp>\n" +
-        "\t\t<cim:ExcIEEEST4B.kpm>" + kpm + "</cim:ExcIEEEST4B.kpm>\n" +
-        "\t\t<cim:ExcIEEEST4B.kpr>" + kpr + "</cim:ExcIEEEST4B.kpr>\n" +
-        "\t\t<cim:ExcIEEEST4B.ta>" + ta + "</cim:ExcIEEEST4B.ta>\n" +
-        "\t\t<cim:ExcIEEEST4B.thetap>" + thetap + "</cim:ExcIEEEST4B.thetap>\n" +
-        "\t\t<cim:ExcIEEEST4B.vbmax>" + vbmax + "</cim:ExcIEEEST4B.vbmax>\n" +
-        "\t\t<cim:ExcIEEEST4B.vmmax>" + vmmax + "</cim:ExcIEEEST4B.vmmax>\n" +
-        "\t\t<cim:ExcIEEEST4B.vmmin>" + vmmin + "</cim:ExcIEEEST4B.vmmin>\n" +
-        "\t\t<cim:ExcIEEEST4B.vrmax>" + vrmax + "</cim:ExcIEEEST4B.vrmax>\n" +
-        "\t\t<cim:ExcIEEEST4B.vrmin>" + vrmin + "</cim:ExcIEEEST4B.vrmin>\n" +
-        "\t\t<cim:ExcIEEEST4B.xl>" + xl + "</cim:ExcIEEEST4B.xl>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcIEEEST4B.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcIEEEST4B.fields (position), value)
+        emitelem (0, kc)
+        emitelem (1, kg)
+        emitelem (2, ki)
+        emitelem (3, kim)
+        emitelem (4, kir)
+        emitelem (5, kp)
+        emitelem (6, kpm)
+        emitelem (7, kpr)
+        emitelem (8, ta)
+        emitelem (9, thetap)
+        emitelem (10, vbmax)
+        emitelem (11, vmmax)
+        emitelem (12, vmmin)
+        emitelem (13, vrmax)
+        emitelem (14, vrmin)
+        emitelem (15, xl)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ExcIEEEST4B rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcIEEEST4B>"
+        "\t<cim:ExcIEEEST4B rdf:ID=\"%s\">\n%s\t</cim:ExcIEEEST4B>".format (id, export_fields)
     }
 }
 
@@ -6440,45 +7779,71 @@ object ExcIEEEST4B
 extends
     Parseable[ExcIEEEST4B]
 {
-    val kc = parse_element (element ("""ExcIEEEST4B.kc"""))
-    val kg = parse_element (element ("""ExcIEEEST4B.kg"""))
-    val ki = parse_element (element ("""ExcIEEEST4B.ki"""))
-    val kim = parse_element (element ("""ExcIEEEST4B.kim"""))
-    val kir = parse_element (element ("""ExcIEEEST4B.kir"""))
-    val kp = parse_element (element ("""ExcIEEEST4B.kp"""))
-    val kpm = parse_element (element ("""ExcIEEEST4B.kpm"""))
-    val kpr = parse_element (element ("""ExcIEEEST4B.kpr"""))
-    val ta = parse_element (element ("""ExcIEEEST4B.ta"""))
-    val thetap = parse_element (element ("""ExcIEEEST4B.thetap"""))
-    val vbmax = parse_element (element ("""ExcIEEEST4B.vbmax"""))
-    val vmmax = parse_element (element ("""ExcIEEEST4B.vmmax"""))
-    val vmmin = parse_element (element ("""ExcIEEEST4B.vmmin"""))
-    val vrmax = parse_element (element ("""ExcIEEEST4B.vrmax"""))
-    val vrmin = parse_element (element ("""ExcIEEEST4B.vrmin"""))
-    val xl = parse_element (element ("""ExcIEEEST4B.xl"""))
+    val fields: Array[String] = Array[String] (
+        "kc",
+        "kg",
+        "ki",
+        "kim",
+        "kir",
+        "kp",
+        "kpm",
+        "kpr",
+        "ta",
+        "thetap",
+        "vbmax",
+        "vmmax",
+        "vmmin",
+        "vrmax",
+        "vrmin",
+        "xl"
+    )
+    val kc: Fielder = parse_element (element (cls, fields(0)))
+    val kg: Fielder = parse_element (element (cls, fields(1)))
+    val ki: Fielder = parse_element (element (cls, fields(2)))
+    val kim: Fielder = parse_element (element (cls, fields(3)))
+    val kir: Fielder = parse_element (element (cls, fields(4)))
+    val kp: Fielder = parse_element (element (cls, fields(5)))
+    val kpm: Fielder = parse_element (element (cls, fields(6)))
+    val kpr: Fielder = parse_element (element (cls, fields(7)))
+    val ta: Fielder = parse_element (element (cls, fields(8)))
+    val thetap: Fielder = parse_element (element (cls, fields(9)))
+    val vbmax: Fielder = parse_element (element (cls, fields(10)))
+    val vmmax: Fielder = parse_element (element (cls, fields(11)))
+    val vmmin: Fielder = parse_element (element (cls, fields(12)))
+    val vrmax: Fielder = parse_element (element (cls, fields(13)))
+    val vrmin: Fielder = parse_element (element (cls, fields(14)))
+    val xl: Fielder = parse_element (element (cls, fields(15)))
+
     def parse (context: Context): ExcIEEEST4B =
     {
-        ExcIEEEST4B(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ExcIEEEST4B (
             ExcitationSystemDynamics.parse (context),
-            toDouble (kc (context), context),
-            toDouble (kg (context), context),
-            toDouble (ki (context), context),
-            toDouble (kim (context), context),
-            toDouble (kir (context), context),
-            toDouble (kp (context), context),
-            toDouble (kpm (context), context),
-            toDouble (kpr (context), context),
-            toDouble (ta (context), context),
-            toDouble (thetap (context), context),
-            toDouble (vbmax (context), context),
-            toDouble (vmmax (context), context),
-            toDouble (vmmin (context), context),
-            toDouble (vrmax (context), context),
-            toDouble (vrmin (context), context),
-            toDouble (xl (context), context)
+            toDouble (mask (kc (), 0)),
+            toDouble (mask (kg (), 1)),
+            toDouble (mask (ki (), 2)),
+            toDouble (mask (kim (), 3)),
+            toDouble (mask (kir (), 4)),
+            toDouble (mask (kp (), 5)),
+            toDouble (mask (kpm (), 6)),
+            toDouble (mask (kpr (), 7)),
+            toDouble (mask (ta (), 8)),
+            toDouble (mask (thetap (), 9)),
+            toDouble (mask (vbmax (), 10)),
+            toDouble (mask (vmmax (), 11)),
+            toDouble (mask (vmmin (), 12)),
+            toDouble (mask (vrmax (), 13)),
+            toDouble (mask (vrmin (), 14)),
+            toDouble (mask (xl (), 15))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -6554,6 +7919,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -6573,30 +7944,32 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ExcIEEEST5B.kc>" + kc + "</cim:ExcIEEEST5B.kc>\n" +
-        "\t\t<cim:ExcIEEEST5B.kr>" + kr + "</cim:ExcIEEEST5B.kr>\n" +
-        "\t\t<cim:ExcIEEEST5B.t1>" + t1 + "</cim:ExcIEEEST5B.t1>\n" +
-        "\t\t<cim:ExcIEEEST5B.tb1>" + tb1 + "</cim:ExcIEEEST5B.tb1>\n" +
-        "\t\t<cim:ExcIEEEST5B.tb2>" + tb2 + "</cim:ExcIEEEST5B.tb2>\n" +
-        "\t\t<cim:ExcIEEEST5B.tc1>" + tc1 + "</cim:ExcIEEEST5B.tc1>\n" +
-        "\t\t<cim:ExcIEEEST5B.tc2>" + tc2 + "</cim:ExcIEEEST5B.tc2>\n" +
-        "\t\t<cim:ExcIEEEST5B.tob1>" + tob1 + "</cim:ExcIEEEST5B.tob1>\n" +
-        "\t\t<cim:ExcIEEEST5B.tob2>" + tob2 + "</cim:ExcIEEEST5B.tob2>\n" +
-        "\t\t<cim:ExcIEEEST5B.toc1>" + toc1 + "</cim:ExcIEEEST5B.toc1>\n" +
-        "\t\t<cim:ExcIEEEST5B.toc2>" + toc2 + "</cim:ExcIEEEST5B.toc2>\n" +
-        "\t\t<cim:ExcIEEEST5B.tub1>" + tub1 + "</cim:ExcIEEEST5B.tub1>\n" +
-        "\t\t<cim:ExcIEEEST5B.tub2>" + tub2 + "</cim:ExcIEEEST5B.tub2>\n" +
-        "\t\t<cim:ExcIEEEST5B.tuc1>" + tuc1 + "</cim:ExcIEEEST5B.tuc1>\n" +
-        "\t\t<cim:ExcIEEEST5B.tuc2>" + tuc2 + "</cim:ExcIEEEST5B.tuc2>\n" +
-        "\t\t<cim:ExcIEEEST5B.vrmax>" + vrmax + "</cim:ExcIEEEST5B.vrmax>\n" +
-        "\t\t<cim:ExcIEEEST5B.vrmin>" + vrmin + "</cim:ExcIEEEST5B.vrmin>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcIEEEST5B.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcIEEEST5B.fields (position), value)
+        emitelem (0, kc)
+        emitelem (1, kr)
+        emitelem (2, t1)
+        emitelem (3, tb1)
+        emitelem (4, tb2)
+        emitelem (5, tc1)
+        emitelem (6, tc2)
+        emitelem (7, tob1)
+        emitelem (8, tob2)
+        emitelem (9, toc1)
+        emitelem (10, toc2)
+        emitelem (11, tub1)
+        emitelem (12, tub2)
+        emitelem (13, tuc1)
+        emitelem (14, tuc2)
+        emitelem (15, vrmax)
+        emitelem (16, vrmin)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ExcIEEEST5B rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcIEEEST5B>"
+        "\t<cim:ExcIEEEST5B rdf:ID=\"%s\">\n%s\t</cim:ExcIEEEST5B>".format (id, export_fields)
     }
 }
 
@@ -6604,47 +7977,74 @@ object ExcIEEEST5B
 extends
     Parseable[ExcIEEEST5B]
 {
-    val kc = parse_element (element ("""ExcIEEEST5B.kc"""))
-    val kr = parse_element (element ("""ExcIEEEST5B.kr"""))
-    val t1 = parse_element (element ("""ExcIEEEST5B.t1"""))
-    val tb1 = parse_element (element ("""ExcIEEEST5B.tb1"""))
-    val tb2 = parse_element (element ("""ExcIEEEST5B.tb2"""))
-    val tc1 = parse_element (element ("""ExcIEEEST5B.tc1"""))
-    val tc2 = parse_element (element ("""ExcIEEEST5B.tc2"""))
-    val tob1 = parse_element (element ("""ExcIEEEST5B.tob1"""))
-    val tob2 = parse_element (element ("""ExcIEEEST5B.tob2"""))
-    val toc1 = parse_element (element ("""ExcIEEEST5B.toc1"""))
-    val toc2 = parse_element (element ("""ExcIEEEST5B.toc2"""))
-    val tub1 = parse_element (element ("""ExcIEEEST5B.tub1"""))
-    val tub2 = parse_element (element ("""ExcIEEEST5B.tub2"""))
-    val tuc1 = parse_element (element ("""ExcIEEEST5B.tuc1"""))
-    val tuc2 = parse_element (element ("""ExcIEEEST5B.tuc2"""))
-    val vrmax = parse_element (element ("""ExcIEEEST5B.vrmax"""))
-    val vrmin = parse_element (element ("""ExcIEEEST5B.vrmin"""))
+    val fields: Array[String] = Array[String] (
+        "kc",
+        "kr",
+        "t1",
+        "tb1",
+        "tb2",
+        "tc1",
+        "tc2",
+        "tob1",
+        "tob2",
+        "toc1",
+        "toc2",
+        "tub1",
+        "tub2",
+        "tuc1",
+        "tuc2",
+        "vrmax",
+        "vrmin"
+    )
+    val kc: Fielder = parse_element (element (cls, fields(0)))
+    val kr: Fielder = parse_element (element (cls, fields(1)))
+    val t1: Fielder = parse_element (element (cls, fields(2)))
+    val tb1: Fielder = parse_element (element (cls, fields(3)))
+    val tb2: Fielder = parse_element (element (cls, fields(4)))
+    val tc1: Fielder = parse_element (element (cls, fields(5)))
+    val tc2: Fielder = parse_element (element (cls, fields(6)))
+    val tob1: Fielder = parse_element (element (cls, fields(7)))
+    val tob2: Fielder = parse_element (element (cls, fields(8)))
+    val toc1: Fielder = parse_element (element (cls, fields(9)))
+    val toc2: Fielder = parse_element (element (cls, fields(10)))
+    val tub1: Fielder = parse_element (element (cls, fields(11)))
+    val tub2: Fielder = parse_element (element (cls, fields(12)))
+    val tuc1: Fielder = parse_element (element (cls, fields(13)))
+    val tuc2: Fielder = parse_element (element (cls, fields(14)))
+    val vrmax: Fielder = parse_element (element (cls, fields(15)))
+    val vrmin: Fielder = parse_element (element (cls, fields(16)))
+
     def parse (context: Context): ExcIEEEST5B =
     {
-        ExcIEEEST5B(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ExcIEEEST5B (
             ExcitationSystemDynamics.parse (context),
-            toDouble (kc (context), context),
-            toDouble (kr (context), context),
-            toDouble (t1 (context), context),
-            toDouble (tb1 (context), context),
-            toDouble (tb2 (context), context),
-            toDouble (tc1 (context), context),
-            toDouble (tc2 (context), context),
-            toDouble (tob1 (context), context),
-            toDouble (tob2 (context), context),
-            toDouble (toc1 (context), context),
-            toDouble (toc2 (context), context),
-            toDouble (tub1 (context), context),
-            toDouble (tub2 (context), context),
-            toDouble (tuc1 (context), context),
-            toDouble (tuc2 (context), context),
-            toDouble (vrmax (context), context),
-            toDouble (vrmin (context), context)
+            toDouble (mask (kc (), 0)),
+            toDouble (mask (kr (), 1)),
+            toDouble (mask (t1 (), 2)),
+            toDouble (mask (tb1 (), 3)),
+            toDouble (mask (tb2 (), 4)),
+            toDouble (mask (tc1 (), 5)),
+            toDouble (mask (tc2 (), 6)),
+            toDouble (mask (tob1 (), 7)),
+            toDouble (mask (tob2 (), 8)),
+            toDouble (mask (toc1 (), 9)),
+            toDouble (mask (toc2 (), 10)),
+            toDouble (mask (tub1 (), 11)),
+            toDouble (mask (tub2 (), 12)),
+            toDouble (mask (tuc1 (), 13)),
+            toDouble (mask (tuc2 (), 14)),
+            toDouble (mask (vrmax (), 15)),
+            toDouble (mask (vrmin (), 16))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -6711,6 +8111,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -6730,27 +8136,30 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ExcIEEEST6B.ilr>" + ilr + "</cim:ExcIEEEST6B.ilr>\n" +
-        "\t\t<cim:ExcIEEEST6B.kci>" + kci + "</cim:ExcIEEEST6B.kci>\n" +
-        "\t\t<cim:ExcIEEEST6B.kff>" + kff + "</cim:ExcIEEEST6B.kff>\n" +
-        "\t\t<cim:ExcIEEEST6B.kg>" + kg + "</cim:ExcIEEEST6B.kg>\n" +
-        "\t\t<cim:ExcIEEEST6B.kia>" + kia + "</cim:ExcIEEEST6B.kia>\n" +
-        "\t\t<cim:ExcIEEEST6B.klr>" + klr + "</cim:ExcIEEEST6B.klr>\n" +
-        "\t\t<cim:ExcIEEEST6B.km>" + km + "</cim:ExcIEEEST6B.km>\n" +
-        "\t\t<cim:ExcIEEEST6B.kpa>" + kpa + "</cim:ExcIEEEST6B.kpa>\n" +
-        (if (null != oelin) "\t\t<cim:ExcIEEEST6B.oelin rdf:resource=\"#" + oelin + "\"/>\n" else "") +
-        "\t\t<cim:ExcIEEEST6B.tg>" + tg + "</cim:ExcIEEEST6B.tg>\n" +
-        "\t\t<cim:ExcIEEEST6B.vamax>" + vamax + "</cim:ExcIEEEST6B.vamax>\n" +
-        "\t\t<cim:ExcIEEEST6B.vamin>" + vamin + "</cim:ExcIEEEST6B.vamin>\n" +
-        "\t\t<cim:ExcIEEEST6B.vrmax>" + vrmax + "</cim:ExcIEEEST6B.vrmax>\n" +
-        "\t\t<cim:ExcIEEEST6B.vrmin>" + vrmin + "</cim:ExcIEEEST6B.vrmin>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcIEEEST6B.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcIEEEST6B.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ExcIEEEST6B.fields (position), value)
+        emitelem (0, ilr)
+        emitelem (1, kci)
+        emitelem (2, kff)
+        emitelem (3, kg)
+        emitelem (4, kia)
+        emitelem (5, klr)
+        emitelem (6, km)
+        emitelem (7, kpa)
+        emitattr (8, oelin)
+        emitelem (9, tg)
+        emitelem (10, vamax)
+        emitelem (11, vamin)
+        emitelem (12, vrmax)
+        emitelem (13, vrmin)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ExcIEEEST6B rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcIEEEST6B>"
+        "\t<cim:ExcIEEEST6B rdf:ID=\"%s\">\n%s\t</cim:ExcIEEEST6B>".format (id, export_fields)
     }
 }
 
@@ -6758,41 +8167,65 @@ object ExcIEEEST6B
 extends
     Parseable[ExcIEEEST6B]
 {
-    val ilr = parse_element (element ("""ExcIEEEST6B.ilr"""))
-    val kci = parse_element (element ("""ExcIEEEST6B.kci"""))
-    val kff = parse_element (element ("""ExcIEEEST6B.kff"""))
-    val kg = parse_element (element ("""ExcIEEEST6B.kg"""))
-    val kia = parse_element (element ("""ExcIEEEST6B.kia"""))
-    val klr = parse_element (element ("""ExcIEEEST6B.klr"""))
-    val km = parse_element (element ("""ExcIEEEST6B.km"""))
-    val kpa = parse_element (element ("""ExcIEEEST6B.kpa"""))
-    val oelin = parse_attribute (attribute ("""ExcIEEEST6B.oelin"""))
-    val tg = parse_element (element ("""ExcIEEEST6B.tg"""))
-    val vamax = parse_element (element ("""ExcIEEEST6B.vamax"""))
-    val vamin = parse_element (element ("""ExcIEEEST6B.vamin"""))
-    val vrmax = parse_element (element ("""ExcIEEEST6B.vrmax"""))
-    val vrmin = parse_element (element ("""ExcIEEEST6B.vrmin"""))
+    val fields: Array[String] = Array[String] (
+        "ilr",
+        "kci",
+        "kff",
+        "kg",
+        "kia",
+        "klr",
+        "km",
+        "kpa",
+        "oelin",
+        "tg",
+        "vamax",
+        "vamin",
+        "vrmax",
+        "vrmin"
+    )
+    val ilr: Fielder = parse_element (element (cls, fields(0)))
+    val kci: Fielder = parse_element (element (cls, fields(1)))
+    val kff: Fielder = parse_element (element (cls, fields(2)))
+    val kg: Fielder = parse_element (element (cls, fields(3)))
+    val kia: Fielder = parse_element (element (cls, fields(4)))
+    val klr: Fielder = parse_element (element (cls, fields(5)))
+    val km: Fielder = parse_element (element (cls, fields(6)))
+    val kpa: Fielder = parse_element (element (cls, fields(7)))
+    val oelin: Fielder = parse_attribute (attribute (cls, fields(8)))
+    val tg: Fielder = parse_element (element (cls, fields(9)))
+    val vamax: Fielder = parse_element (element (cls, fields(10)))
+    val vamin: Fielder = parse_element (element (cls, fields(11)))
+    val vrmax: Fielder = parse_element (element (cls, fields(12)))
+    val vrmin: Fielder = parse_element (element (cls, fields(13)))
+
     def parse (context: Context): ExcIEEEST6B =
     {
-        ExcIEEEST6B(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ExcIEEEST6B (
             ExcitationSystemDynamics.parse (context),
-            toDouble (ilr (context), context),
-            toDouble (kci (context), context),
-            toDouble (kff (context), context),
-            toDouble (kg (context), context),
-            toDouble (kia (context), context),
-            toDouble (klr (context), context),
-            toDouble (km (context), context),
-            toDouble (kpa (context), context),
-            oelin (context),
-            toDouble (tg (context), context),
-            toDouble (vamax (context), context),
-            toDouble (vamin (context), context),
-            toDouble (vrmax (context), context),
-            toDouble (vrmin (context), context)
+            toDouble (mask (ilr (), 0)),
+            toDouble (mask (kci (), 1)),
+            toDouble (mask (kff (), 2)),
+            toDouble (mask (kg (), 3)),
+            toDouble (mask (kia (), 4)),
+            toDouble (mask (klr (), 5)),
+            toDouble (mask (km (), 6)),
+            toDouble (mask (kpa (), 7)),
+            mask (oelin (), 8),
+            toDouble (mask (tg (), 9)),
+            toDouble (mask (vamax (), 10)),
+            toDouble (mask (vamin (), 11)),
+            toDouble (mask (vrmax (), 12)),
+            toDouble (mask (vrmin (), 13))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -6862,6 +8295,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -6881,28 +8320,31 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ExcIEEEST7B.kh>" + kh + "</cim:ExcIEEEST7B.kh>\n" +
-        "\t\t<cim:ExcIEEEST7B.kia>" + kia + "</cim:ExcIEEEST7B.kia>\n" +
-        "\t\t<cim:ExcIEEEST7B.kl>" + kl + "</cim:ExcIEEEST7B.kl>\n" +
-        "\t\t<cim:ExcIEEEST7B.kpa>" + kpa + "</cim:ExcIEEEST7B.kpa>\n" +
-        (if (null != oelin) "\t\t<cim:ExcIEEEST7B.oelin rdf:resource=\"#" + oelin + "\"/>\n" else "") +
-        "\t\t<cim:ExcIEEEST7B.tb>" + tb + "</cim:ExcIEEEST7B.tb>\n" +
-        "\t\t<cim:ExcIEEEST7B.tc>" + tc + "</cim:ExcIEEEST7B.tc>\n" +
-        "\t\t<cim:ExcIEEEST7B.tf>" + tf + "</cim:ExcIEEEST7B.tf>\n" +
-        "\t\t<cim:ExcIEEEST7B.tg>" + tg + "</cim:ExcIEEEST7B.tg>\n" +
-        "\t\t<cim:ExcIEEEST7B.tia>" + tia + "</cim:ExcIEEEST7B.tia>\n" +
-        (if (null != uelin) "\t\t<cim:ExcIEEEST7B.uelin rdf:resource=\"#" + uelin + "\"/>\n" else "") +
-        "\t\t<cim:ExcIEEEST7B.vmax>" + vmax + "</cim:ExcIEEEST7B.vmax>\n" +
-        "\t\t<cim:ExcIEEEST7B.vmin>" + vmin + "</cim:ExcIEEEST7B.vmin>\n" +
-        "\t\t<cim:ExcIEEEST7B.vrmax>" + vrmax + "</cim:ExcIEEEST7B.vrmax>\n" +
-        "\t\t<cim:ExcIEEEST7B.vrmin>" + vrmin + "</cim:ExcIEEEST7B.vrmin>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcIEEEST7B.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcIEEEST7B.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ExcIEEEST7B.fields (position), value)
+        emitelem (0, kh)
+        emitelem (1, kia)
+        emitelem (2, kl)
+        emitelem (3, kpa)
+        emitattr (4, oelin)
+        emitelem (5, tb)
+        emitelem (6, tc)
+        emitelem (7, tf)
+        emitelem (8, tg)
+        emitelem (9, tia)
+        emitattr (10, uelin)
+        emitelem (11, vmax)
+        emitelem (12, vmin)
+        emitelem (13, vrmax)
+        emitelem (14, vrmin)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ExcIEEEST7B rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcIEEEST7B>"
+        "\t<cim:ExcIEEEST7B rdf:ID=\"%s\">\n%s\t</cim:ExcIEEEST7B>".format (id, export_fields)
     }
 }
 
@@ -6910,43 +8352,68 @@ object ExcIEEEST7B
 extends
     Parseable[ExcIEEEST7B]
 {
-    val kh = parse_element (element ("""ExcIEEEST7B.kh"""))
-    val kia = parse_element (element ("""ExcIEEEST7B.kia"""))
-    val kl = parse_element (element ("""ExcIEEEST7B.kl"""))
-    val kpa = parse_element (element ("""ExcIEEEST7B.kpa"""))
-    val oelin = parse_attribute (attribute ("""ExcIEEEST7B.oelin"""))
-    val tb = parse_element (element ("""ExcIEEEST7B.tb"""))
-    val tc = parse_element (element ("""ExcIEEEST7B.tc"""))
-    val tf = parse_element (element ("""ExcIEEEST7B.tf"""))
-    val tg = parse_element (element ("""ExcIEEEST7B.tg"""))
-    val tia = parse_element (element ("""ExcIEEEST7B.tia"""))
-    val uelin = parse_attribute (attribute ("""ExcIEEEST7B.uelin"""))
-    val vmax = parse_element (element ("""ExcIEEEST7B.vmax"""))
-    val vmin = parse_element (element ("""ExcIEEEST7B.vmin"""))
-    val vrmax = parse_element (element ("""ExcIEEEST7B.vrmax"""))
-    val vrmin = parse_element (element ("""ExcIEEEST7B.vrmin"""))
+    val fields: Array[String] = Array[String] (
+        "kh",
+        "kia",
+        "kl",
+        "kpa",
+        "oelin",
+        "tb",
+        "tc",
+        "tf",
+        "tg",
+        "tia",
+        "uelin",
+        "vmax",
+        "vmin",
+        "vrmax",
+        "vrmin"
+    )
+    val kh: Fielder = parse_element (element (cls, fields(0)))
+    val kia: Fielder = parse_element (element (cls, fields(1)))
+    val kl: Fielder = parse_element (element (cls, fields(2)))
+    val kpa: Fielder = parse_element (element (cls, fields(3)))
+    val oelin: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val tb: Fielder = parse_element (element (cls, fields(5)))
+    val tc: Fielder = parse_element (element (cls, fields(6)))
+    val tf: Fielder = parse_element (element (cls, fields(7)))
+    val tg: Fielder = parse_element (element (cls, fields(8)))
+    val tia: Fielder = parse_element (element (cls, fields(9)))
+    val uelin: Fielder = parse_attribute (attribute (cls, fields(10)))
+    val vmax: Fielder = parse_element (element (cls, fields(11)))
+    val vmin: Fielder = parse_element (element (cls, fields(12)))
+    val vrmax: Fielder = parse_element (element (cls, fields(13)))
+    val vrmin: Fielder = parse_element (element (cls, fields(14)))
+
     def parse (context: Context): ExcIEEEST7B =
     {
-        ExcIEEEST7B(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ExcIEEEST7B (
             ExcitationSystemDynamics.parse (context),
-            toDouble (kh (context), context),
-            toDouble (kia (context), context),
-            toDouble (kl (context), context),
-            toDouble (kpa (context), context),
-            oelin (context),
-            toDouble (tb (context), context),
-            toDouble (tc (context), context),
-            toDouble (tf (context), context),
-            toDouble (tg (context), context),
-            toDouble (tia (context), context),
-            uelin (context),
-            toDouble (vmax (context), context),
-            toDouble (vmin (context), context),
-            toDouble (vrmax (context), context),
-            toDouble (vrmin (context), context)
+            toDouble (mask (kh (), 0)),
+            toDouble (mask (kia (), 1)),
+            toDouble (mask (kl (), 2)),
+            toDouble (mask (kpa (), 3)),
+            mask (oelin (), 4),
+            toDouble (mask (tb (), 5)),
+            toDouble (mask (tc (), 6)),
+            toDouble (mask (tf (), 7)),
+            toDouble (mask (tg (), 8)),
+            toDouble (mask (tia (), 9)),
+            mask (uelin (), 10),
+            toDouble (mask (vmax (), 11)),
+            toDouble (mask (vmin (), 12)),
+            toDouble (mask (vrmax (), 13)),
+            toDouble (mask (vrmin (), 14))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -7007,6 +8474,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -7026,32 +8499,34 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ExcOEX3T.e1>" + e1 + "</cim:ExcOEX3T.e1>\n" +
-        "\t\t<cim:ExcOEX3T.e2>" + e2 + "</cim:ExcOEX3T.e2>\n" +
-        "\t\t<cim:ExcOEX3T.ka>" + ka + "</cim:ExcOEX3T.ka>\n" +
-        "\t\t<cim:ExcOEX3T.kc>" + kc + "</cim:ExcOEX3T.kc>\n" +
-        "\t\t<cim:ExcOEX3T.kd>" + kd + "</cim:ExcOEX3T.kd>\n" +
-        "\t\t<cim:ExcOEX3T.ke>" + ke + "</cim:ExcOEX3T.ke>\n" +
-        "\t\t<cim:ExcOEX3T.kf>" + kf + "</cim:ExcOEX3T.kf>\n" +
-        "\t\t<cim:ExcOEX3T.see1>" + see1 + "</cim:ExcOEX3T.see1>\n" +
-        "\t\t<cim:ExcOEX3T.see2>" + see2 + "</cim:ExcOEX3T.see2>\n" +
-        "\t\t<cim:ExcOEX3T.t1>" + t1 + "</cim:ExcOEX3T.t1>\n" +
-        "\t\t<cim:ExcOEX3T.t2>" + t2 + "</cim:ExcOEX3T.t2>\n" +
-        "\t\t<cim:ExcOEX3T.t3>" + t3 + "</cim:ExcOEX3T.t3>\n" +
-        "\t\t<cim:ExcOEX3T.t4>" + t4 + "</cim:ExcOEX3T.t4>\n" +
-        "\t\t<cim:ExcOEX3T.t5>" + t5 + "</cim:ExcOEX3T.t5>\n" +
-        "\t\t<cim:ExcOEX3T.t6>" + t6 + "</cim:ExcOEX3T.t6>\n" +
-        "\t\t<cim:ExcOEX3T.te>" + te + "</cim:ExcOEX3T.te>\n" +
-        "\t\t<cim:ExcOEX3T.tf>" + tf + "</cim:ExcOEX3T.tf>\n" +
-        "\t\t<cim:ExcOEX3T.vrmax>" + vrmax + "</cim:ExcOEX3T.vrmax>\n" +
-        "\t\t<cim:ExcOEX3T.vrmin>" + vrmin + "</cim:ExcOEX3T.vrmin>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcOEX3T.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcOEX3T.fields (position), value)
+        emitelem (0, e1)
+        emitelem (1, e2)
+        emitelem (2, ka)
+        emitelem (3, kc)
+        emitelem (4, kd)
+        emitelem (5, ke)
+        emitelem (6, kf)
+        emitelem (7, see1)
+        emitelem (8, see2)
+        emitelem (9, t1)
+        emitelem (10, t2)
+        emitelem (11, t3)
+        emitelem (12, t4)
+        emitelem (13, t5)
+        emitelem (14, t6)
+        emitelem (15, te)
+        emitelem (16, tf)
+        emitelem (17, vrmax)
+        emitelem (18, vrmin)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ExcOEX3T rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcOEX3T>"
+        "\t<cim:ExcOEX3T rdf:ID=\"%s\">\n%s\t</cim:ExcOEX3T>".format (id, export_fields)
     }
 }
 
@@ -7059,51 +8534,80 @@ object ExcOEX3T
 extends
     Parseable[ExcOEX3T]
 {
-    val e1 = parse_element (element ("""ExcOEX3T.e1"""))
-    val e2 = parse_element (element ("""ExcOEX3T.e2"""))
-    val ka = parse_element (element ("""ExcOEX3T.ka"""))
-    val kc = parse_element (element ("""ExcOEX3T.kc"""))
-    val kd = parse_element (element ("""ExcOEX3T.kd"""))
-    val ke = parse_element (element ("""ExcOEX3T.ke"""))
-    val kf = parse_element (element ("""ExcOEX3T.kf"""))
-    val see1 = parse_element (element ("""ExcOEX3T.see1"""))
-    val see2 = parse_element (element ("""ExcOEX3T.see2"""))
-    val t1 = parse_element (element ("""ExcOEX3T.t1"""))
-    val t2 = parse_element (element ("""ExcOEX3T.t2"""))
-    val t3 = parse_element (element ("""ExcOEX3T.t3"""))
-    val t4 = parse_element (element ("""ExcOEX3T.t4"""))
-    val t5 = parse_element (element ("""ExcOEX3T.t5"""))
-    val t6 = parse_element (element ("""ExcOEX3T.t6"""))
-    val te = parse_element (element ("""ExcOEX3T.te"""))
-    val tf = parse_element (element ("""ExcOEX3T.tf"""))
-    val vrmax = parse_element (element ("""ExcOEX3T.vrmax"""))
-    val vrmin = parse_element (element ("""ExcOEX3T.vrmin"""))
+    val fields: Array[String] = Array[String] (
+        "e1",
+        "e2",
+        "ka",
+        "kc",
+        "kd",
+        "ke",
+        "kf",
+        "see1",
+        "see2",
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "te",
+        "tf",
+        "vrmax",
+        "vrmin"
+    )
+    val e1: Fielder = parse_element (element (cls, fields(0)))
+    val e2: Fielder = parse_element (element (cls, fields(1)))
+    val ka: Fielder = parse_element (element (cls, fields(2)))
+    val kc: Fielder = parse_element (element (cls, fields(3)))
+    val kd: Fielder = parse_element (element (cls, fields(4)))
+    val ke: Fielder = parse_element (element (cls, fields(5)))
+    val kf: Fielder = parse_element (element (cls, fields(6)))
+    val see1: Fielder = parse_element (element (cls, fields(7)))
+    val see2: Fielder = parse_element (element (cls, fields(8)))
+    val t1: Fielder = parse_element (element (cls, fields(9)))
+    val t2: Fielder = parse_element (element (cls, fields(10)))
+    val t3: Fielder = parse_element (element (cls, fields(11)))
+    val t4: Fielder = parse_element (element (cls, fields(12)))
+    val t5: Fielder = parse_element (element (cls, fields(13)))
+    val t6: Fielder = parse_element (element (cls, fields(14)))
+    val te: Fielder = parse_element (element (cls, fields(15)))
+    val tf: Fielder = parse_element (element (cls, fields(16)))
+    val vrmax: Fielder = parse_element (element (cls, fields(17)))
+    val vrmin: Fielder = parse_element (element (cls, fields(18)))
+
     def parse (context: Context): ExcOEX3T =
     {
-        ExcOEX3T(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ExcOEX3T (
             ExcitationSystemDynamics.parse (context),
-            toDouble (e1 (context), context),
-            toDouble (e2 (context), context),
-            toDouble (ka (context), context),
-            toDouble (kc (context), context),
-            toDouble (kd (context), context),
-            toDouble (ke (context), context),
-            toDouble (kf (context), context),
-            toDouble (see1 (context), context),
-            toDouble (see2 (context), context),
-            toDouble (t1 (context), context),
-            toDouble (t2 (context), context),
-            toDouble (t3 (context), context),
-            toDouble (t4 (context), context),
-            toDouble (t5 (context), context),
-            toDouble (t6 (context), context),
-            toDouble (te (context), context),
-            toDouble (tf (context), context),
-            toDouble (vrmax (context), context),
-            toDouble (vrmin (context), context)
+            toDouble (mask (e1 (), 0)),
+            toDouble (mask (e2 (), 1)),
+            toDouble (mask (ka (), 2)),
+            toDouble (mask (kc (), 3)),
+            toDouble (mask (kd (), 4)),
+            toDouble (mask (ke (), 5)),
+            toDouble (mask (kf (), 6)),
+            toDouble (mask (see1 (), 7)),
+            toDouble (mask (see2 (), 8)),
+            toDouble (mask (t1 (), 9)),
+            toDouble (mask (t2 (), 10)),
+            toDouble (mask (t3 (), 11)),
+            toDouble (mask (t4 (), 12)),
+            toDouble (mask (t5 (), 13)),
+            toDouble (mask (t6 (), 14)),
+            toDouble (mask (te (), 15)),
+            toDouble (mask (tf (), 16)),
+            toDouble (mask (vrmax (), 17)),
+            toDouble (mask (vrmin (), 18))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -7197,6 +8701,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -7216,36 +8726,38 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ExcPIC.e1>" + e1 + "</cim:ExcPIC.e1>\n" +
-        "\t\t<cim:ExcPIC.e2>" + e2 + "</cim:ExcPIC.e2>\n" +
-        "\t\t<cim:ExcPIC.efdmax>" + efdmax + "</cim:ExcPIC.efdmax>\n" +
-        "\t\t<cim:ExcPIC.efdmin>" + efdmin + "</cim:ExcPIC.efdmin>\n" +
-        "\t\t<cim:ExcPIC.ka>" + ka + "</cim:ExcPIC.ka>\n" +
-        "\t\t<cim:ExcPIC.kc>" + kc + "</cim:ExcPIC.kc>\n" +
-        "\t\t<cim:ExcPIC.ke>" + ke + "</cim:ExcPIC.ke>\n" +
-        "\t\t<cim:ExcPIC.kf>" + kf + "</cim:ExcPIC.kf>\n" +
-        "\t\t<cim:ExcPIC.ki>" + ki + "</cim:ExcPIC.ki>\n" +
-        "\t\t<cim:ExcPIC.kp>" + kp + "</cim:ExcPIC.kp>\n" +
-        "\t\t<cim:ExcPIC.se1>" + se1 + "</cim:ExcPIC.se1>\n" +
-        "\t\t<cim:ExcPIC.se2>" + se2 + "</cim:ExcPIC.se2>\n" +
-        "\t\t<cim:ExcPIC.ta1>" + ta1 + "</cim:ExcPIC.ta1>\n" +
-        "\t\t<cim:ExcPIC.ta2>" + ta2 + "</cim:ExcPIC.ta2>\n" +
-        "\t\t<cim:ExcPIC.ta3>" + ta3 + "</cim:ExcPIC.ta3>\n" +
-        "\t\t<cim:ExcPIC.ta4>" + ta4 + "</cim:ExcPIC.ta4>\n" +
-        "\t\t<cim:ExcPIC.te>" + te + "</cim:ExcPIC.te>\n" +
-        "\t\t<cim:ExcPIC.tf1>" + tf1 + "</cim:ExcPIC.tf1>\n" +
-        "\t\t<cim:ExcPIC.tf2>" + tf2 + "</cim:ExcPIC.tf2>\n" +
-        "\t\t<cim:ExcPIC.vr1>" + vr1 + "</cim:ExcPIC.vr1>\n" +
-        "\t\t<cim:ExcPIC.vr2>" + vr2 + "</cim:ExcPIC.vr2>\n" +
-        "\t\t<cim:ExcPIC.vrmax>" + vrmax + "</cim:ExcPIC.vrmax>\n" +
-        "\t\t<cim:ExcPIC.vrmin>" + vrmin + "</cim:ExcPIC.vrmin>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcPIC.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcPIC.fields (position), value)
+        emitelem (0, e1)
+        emitelem (1, e2)
+        emitelem (2, efdmax)
+        emitelem (3, efdmin)
+        emitelem (4, ka)
+        emitelem (5, kc)
+        emitelem (6, ke)
+        emitelem (7, kf)
+        emitelem (8, ki)
+        emitelem (9, kp)
+        emitelem (10, se1)
+        emitelem (11, se2)
+        emitelem (12, ta1)
+        emitelem (13, ta2)
+        emitelem (14, ta3)
+        emitelem (15, ta4)
+        emitelem (16, te)
+        emitelem (17, tf1)
+        emitelem (18, tf2)
+        emitelem (19, vr1)
+        emitelem (20, vr2)
+        emitelem (21, vrmax)
+        emitelem (22, vrmin)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ExcPIC rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcPIC>"
+        "\t<cim:ExcPIC rdf:ID=\"%s\">\n%s\t</cim:ExcPIC>".format (id, export_fields)
     }
 }
 
@@ -7253,59 +8765,92 @@ object ExcPIC
 extends
     Parseable[ExcPIC]
 {
-    val e1 = parse_element (element ("""ExcPIC.e1"""))
-    val e2 = parse_element (element ("""ExcPIC.e2"""))
-    val efdmax = parse_element (element ("""ExcPIC.efdmax"""))
-    val efdmin = parse_element (element ("""ExcPIC.efdmin"""))
-    val ka = parse_element (element ("""ExcPIC.ka"""))
-    val kc = parse_element (element ("""ExcPIC.kc"""))
-    val ke = parse_element (element ("""ExcPIC.ke"""))
-    val kf = parse_element (element ("""ExcPIC.kf"""))
-    val ki = parse_element (element ("""ExcPIC.ki"""))
-    val kp = parse_element (element ("""ExcPIC.kp"""))
-    val se1 = parse_element (element ("""ExcPIC.se1"""))
-    val se2 = parse_element (element ("""ExcPIC.se2"""))
-    val ta1 = parse_element (element ("""ExcPIC.ta1"""))
-    val ta2 = parse_element (element ("""ExcPIC.ta2"""))
-    val ta3 = parse_element (element ("""ExcPIC.ta3"""))
-    val ta4 = parse_element (element ("""ExcPIC.ta4"""))
-    val te = parse_element (element ("""ExcPIC.te"""))
-    val tf1 = parse_element (element ("""ExcPIC.tf1"""))
-    val tf2 = parse_element (element ("""ExcPIC.tf2"""))
-    val vr1 = parse_element (element ("""ExcPIC.vr1"""))
-    val vr2 = parse_element (element ("""ExcPIC.vr2"""))
-    val vrmax = parse_element (element ("""ExcPIC.vrmax"""))
-    val vrmin = parse_element (element ("""ExcPIC.vrmin"""))
+    val fields: Array[String] = Array[String] (
+        "e1",
+        "e2",
+        "efdmax",
+        "efdmin",
+        "ka",
+        "kc",
+        "ke",
+        "kf",
+        "ki",
+        "kp",
+        "se1",
+        "se2",
+        "ta1",
+        "ta2",
+        "ta3",
+        "ta4",
+        "te",
+        "tf1",
+        "tf2",
+        "vr1",
+        "vr2",
+        "vrmax",
+        "vrmin"
+    )
+    val e1: Fielder = parse_element (element (cls, fields(0)))
+    val e2: Fielder = parse_element (element (cls, fields(1)))
+    val efdmax: Fielder = parse_element (element (cls, fields(2)))
+    val efdmin: Fielder = parse_element (element (cls, fields(3)))
+    val ka: Fielder = parse_element (element (cls, fields(4)))
+    val kc: Fielder = parse_element (element (cls, fields(5)))
+    val ke: Fielder = parse_element (element (cls, fields(6)))
+    val kf: Fielder = parse_element (element (cls, fields(7)))
+    val ki: Fielder = parse_element (element (cls, fields(8)))
+    val kp: Fielder = parse_element (element (cls, fields(9)))
+    val se1: Fielder = parse_element (element (cls, fields(10)))
+    val se2: Fielder = parse_element (element (cls, fields(11)))
+    val ta1: Fielder = parse_element (element (cls, fields(12)))
+    val ta2: Fielder = parse_element (element (cls, fields(13)))
+    val ta3: Fielder = parse_element (element (cls, fields(14)))
+    val ta4: Fielder = parse_element (element (cls, fields(15)))
+    val te: Fielder = parse_element (element (cls, fields(16)))
+    val tf1: Fielder = parse_element (element (cls, fields(17)))
+    val tf2: Fielder = parse_element (element (cls, fields(18)))
+    val vr1: Fielder = parse_element (element (cls, fields(19)))
+    val vr2: Fielder = parse_element (element (cls, fields(20)))
+    val vrmax: Fielder = parse_element (element (cls, fields(21)))
+    val vrmin: Fielder = parse_element (element (cls, fields(22)))
+
     def parse (context: Context): ExcPIC =
     {
-        ExcPIC(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ExcPIC (
             ExcitationSystemDynamics.parse (context),
-            toDouble (e1 (context), context),
-            toDouble (e2 (context), context),
-            toDouble (efdmax (context), context),
-            toDouble (efdmin (context), context),
-            toDouble (ka (context), context),
-            toDouble (kc (context), context),
-            toDouble (ke (context), context),
-            toDouble (kf (context), context),
-            toDouble (ki (context), context),
-            toDouble (kp (context), context),
-            toDouble (se1 (context), context),
-            toDouble (se2 (context), context),
-            toDouble (ta1 (context), context),
-            toDouble (ta2 (context), context),
-            toDouble (ta3 (context), context),
-            toDouble (ta4 (context), context),
-            toDouble (te (context), context),
-            toDouble (tf1 (context), context),
-            toDouble (tf2 (context), context),
-            toDouble (vr1 (context), context),
-            toDouble (vr2 (context), context),
-            toDouble (vrmax (context), context),
-            toDouble (vrmin (context), context)
+            toDouble (mask (e1 (), 0)),
+            toDouble (mask (e2 (), 1)),
+            toDouble (mask (efdmax (), 2)),
+            toDouble (mask (efdmin (), 3)),
+            toDouble (mask (ka (), 4)),
+            toDouble (mask (kc (), 5)),
+            toDouble (mask (ke (), 6)),
+            toDouble (mask (kf (), 7)),
+            toDouble (mask (ki (), 8)),
+            toDouble (mask (kp (), 9)),
+            toDouble (mask (se1 (), 10)),
+            toDouble (mask (se2 (), 11)),
+            toDouble (mask (ta1 (), 12)),
+            toDouble (mask (ta2 (), 13)),
+            toDouble (mask (ta3 (), 14)),
+            toDouble (mask (ta4 (), 15)),
+            toDouble (mask (te (), 16)),
+            toDouble (mask (tf1 (), 17)),
+            toDouble (mask (tf2 (), 18)),
+            toDouble (mask (vr1 (), 19)),
+            toDouble (mask (vr2 (), 20)),
+            toDouble (mask (vrmax (), 21)),
+            toDouble (mask (vrmin (), 22))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -7438,6 +8983,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Long = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -7457,49 +9008,52 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ExcREXS.e1>" + e1 + "</cim:ExcREXS.e1>\n" +
-        "\t\t<cim:ExcREXS.e2>" + e2 + "</cim:ExcREXS.e2>\n" +
-        (if (null != fbf) "\t\t<cim:ExcREXS.fbf rdf:resource=\"#" + fbf + "\"/>\n" else "") +
-        "\t\t<cim:ExcREXS.flimf>" + flimf + "</cim:ExcREXS.flimf>\n" +
-        "\t\t<cim:ExcREXS.kc>" + kc + "</cim:ExcREXS.kc>\n" +
-        "\t\t<cim:ExcREXS.kd>" + kd + "</cim:ExcREXS.kd>\n" +
-        "\t\t<cim:ExcREXS.ke>" + ke + "</cim:ExcREXS.ke>\n" +
-        "\t\t<cim:ExcREXS.kefd>" + kefd + "</cim:ExcREXS.kefd>\n" +
-        "\t\t<cim:ExcREXS.kf>" + kf + "</cim:ExcREXS.kf>\n" +
-        "\t\t<cim:ExcREXS.kh>" + kh + "</cim:ExcREXS.kh>\n" +
-        "\t\t<cim:ExcREXS.kii>" + kii + "</cim:ExcREXS.kii>\n" +
-        "\t\t<cim:ExcREXS.kip>" + kip + "</cim:ExcREXS.kip>\n" +
-        "\t\t<cim:ExcREXS.ks>" + ks + "</cim:ExcREXS.ks>\n" +
-        "\t\t<cim:ExcREXS.kvi>" + kvi + "</cim:ExcREXS.kvi>\n" +
-        "\t\t<cim:ExcREXS.kvp>" + kvp + "</cim:ExcREXS.kvp>\n" +
-        "\t\t<cim:ExcREXS.kvphz>" + kvphz + "</cim:ExcREXS.kvphz>\n" +
-        "\t\t<cim:ExcREXS.nvphz>" + nvphz + "</cim:ExcREXS.nvphz>\n" +
-        "\t\t<cim:ExcREXS.se1>" + se1 + "</cim:ExcREXS.se1>\n" +
-        "\t\t<cim:ExcREXS.se2>" + se2 + "</cim:ExcREXS.se2>\n" +
-        "\t\t<cim:ExcREXS.ta>" + ta + "</cim:ExcREXS.ta>\n" +
-        "\t\t<cim:ExcREXS.tb1>" + tb1 + "</cim:ExcREXS.tb1>\n" +
-        "\t\t<cim:ExcREXS.tb2>" + tb2 + "</cim:ExcREXS.tb2>\n" +
-        "\t\t<cim:ExcREXS.tc1>" + tc1 + "</cim:ExcREXS.tc1>\n" +
-        "\t\t<cim:ExcREXS.tc2>" + tc2 + "</cim:ExcREXS.tc2>\n" +
-        "\t\t<cim:ExcREXS.te>" + te + "</cim:ExcREXS.te>\n" +
-        "\t\t<cim:ExcREXS.tf>" + tf + "</cim:ExcREXS.tf>\n" +
-        "\t\t<cim:ExcREXS.tf1>" + tf1 + "</cim:ExcREXS.tf1>\n" +
-        "\t\t<cim:ExcREXS.tf2>" + tf2 + "</cim:ExcREXS.tf2>\n" +
-        "\t\t<cim:ExcREXS.tp>" + tp + "</cim:ExcREXS.tp>\n" +
-        "\t\t<cim:ExcREXS.vcmax>" + vcmax + "</cim:ExcREXS.vcmax>\n" +
-        "\t\t<cim:ExcREXS.vfmax>" + vfmax + "</cim:ExcREXS.vfmax>\n" +
-        "\t\t<cim:ExcREXS.vfmin>" + vfmin + "</cim:ExcREXS.vfmin>\n" +
-        "\t\t<cim:ExcREXS.vimax>" + vimax + "</cim:ExcREXS.vimax>\n" +
-        "\t\t<cim:ExcREXS.vrmax>" + vrmax + "</cim:ExcREXS.vrmax>\n" +
-        "\t\t<cim:ExcREXS.vrmin>" + vrmin + "</cim:ExcREXS.vrmin>\n" +
-        "\t\t<cim:ExcREXS.xc>" + xc + "</cim:ExcREXS.xc>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcREXS.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcREXS.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ExcREXS.fields (position), value)
+        emitelem (0, e1)
+        emitelem (1, e2)
+        emitattr (2, fbf)
+        emitelem (3, flimf)
+        emitelem (4, kc)
+        emitelem (5, kd)
+        emitelem (6, ke)
+        emitelem (7, kefd)
+        emitelem (8, kf)
+        emitelem (9, kh)
+        emitelem (10, kii)
+        emitelem (11, kip)
+        emitelem (12, ks)
+        emitelem (13, kvi)
+        emitelem (14, kvp)
+        emitelem (15, kvphz)
+        emitelem (16, nvphz)
+        emitelem (17, se1)
+        emitelem (18, se2)
+        emitelem (19, ta)
+        emitelem (20, tb1)
+        emitelem (21, tb2)
+        emitelem (22, tc1)
+        emitelem (23, tc2)
+        emitelem (24, te)
+        emitelem (25, tf)
+        emitelem (26, tf1)
+        emitelem (27, tf2)
+        emitelem (28, tp)
+        emitelem (29, vcmax)
+        emitelem (30, vfmax)
+        emitelem (31, vfmin)
+        emitelem (32, vimax)
+        emitelem (33, vrmax)
+        emitelem (34, vrmin)
+        emitelem (35, xc)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ExcREXS rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcREXS>"
+        "\t<cim:ExcREXS rdf:ID=\"%s\">\n%s\t</cim:ExcREXS>".format (id, export_fields)
     }
 }
 
@@ -7507,85 +9061,131 @@ object ExcREXS
 extends
     Parseable[ExcREXS]
 {
-    val e1 = parse_element (element ("""ExcREXS.e1"""))
-    val e2 = parse_element (element ("""ExcREXS.e2"""))
-    val fbf = parse_attribute (attribute ("""ExcREXS.fbf"""))
-    val flimf = parse_element (element ("""ExcREXS.flimf"""))
-    val kc = parse_element (element ("""ExcREXS.kc"""))
-    val kd = parse_element (element ("""ExcREXS.kd"""))
-    val ke = parse_element (element ("""ExcREXS.ke"""))
-    val kefd = parse_element (element ("""ExcREXS.kefd"""))
-    val kf = parse_element (element ("""ExcREXS.kf"""))
-    val kh = parse_element (element ("""ExcREXS.kh"""))
-    val kii = parse_element (element ("""ExcREXS.kii"""))
-    val kip = parse_element (element ("""ExcREXS.kip"""))
-    val ks = parse_element (element ("""ExcREXS.ks"""))
-    val kvi = parse_element (element ("""ExcREXS.kvi"""))
-    val kvp = parse_element (element ("""ExcREXS.kvp"""))
-    val kvphz = parse_element (element ("""ExcREXS.kvphz"""))
-    val nvphz = parse_element (element ("""ExcREXS.nvphz"""))
-    val se1 = parse_element (element ("""ExcREXS.se1"""))
-    val se2 = parse_element (element ("""ExcREXS.se2"""))
-    val ta = parse_element (element ("""ExcREXS.ta"""))
-    val tb1 = parse_element (element ("""ExcREXS.tb1"""))
-    val tb2 = parse_element (element ("""ExcREXS.tb2"""))
-    val tc1 = parse_element (element ("""ExcREXS.tc1"""))
-    val tc2 = parse_element (element ("""ExcREXS.tc2"""))
-    val te = parse_element (element ("""ExcREXS.te"""))
-    val tf = parse_element (element ("""ExcREXS.tf"""))
-    val tf1 = parse_element (element ("""ExcREXS.tf1"""))
-    val tf2 = parse_element (element ("""ExcREXS.tf2"""))
-    val tp = parse_element (element ("""ExcREXS.tp"""))
-    val vcmax = parse_element (element ("""ExcREXS.vcmax"""))
-    val vfmax = parse_element (element ("""ExcREXS.vfmax"""))
-    val vfmin = parse_element (element ("""ExcREXS.vfmin"""))
-    val vimax = parse_element (element ("""ExcREXS.vimax"""))
-    val vrmax = parse_element (element ("""ExcREXS.vrmax"""))
-    val vrmin = parse_element (element ("""ExcREXS.vrmin"""))
-    val xc = parse_element (element ("""ExcREXS.xc"""))
+    val fields: Array[String] = Array[String] (
+        "e1",
+        "e2",
+        "fbf",
+        "flimf",
+        "kc",
+        "kd",
+        "ke",
+        "kefd",
+        "kf",
+        "kh",
+        "kii",
+        "kip",
+        "ks",
+        "kvi",
+        "kvp",
+        "kvphz",
+        "nvphz",
+        "se1",
+        "se2",
+        "ta",
+        "tb1",
+        "tb2",
+        "tc1",
+        "tc2",
+        "te",
+        "tf",
+        "tf1",
+        "tf2",
+        "tp",
+        "vcmax",
+        "vfmax",
+        "vfmin",
+        "vimax",
+        "vrmax",
+        "vrmin",
+        "xc"
+    )
+    val e1: Fielder = parse_element (element (cls, fields(0)))
+    val e2: Fielder = parse_element (element (cls, fields(1)))
+    val fbf: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val flimf: Fielder = parse_element (element (cls, fields(3)))
+    val kc: Fielder = parse_element (element (cls, fields(4)))
+    val kd: Fielder = parse_element (element (cls, fields(5)))
+    val ke: Fielder = parse_element (element (cls, fields(6)))
+    val kefd: Fielder = parse_element (element (cls, fields(7)))
+    val kf: Fielder = parse_element (element (cls, fields(8)))
+    val kh: Fielder = parse_element (element (cls, fields(9)))
+    val kii: Fielder = parse_element (element (cls, fields(10)))
+    val kip: Fielder = parse_element (element (cls, fields(11)))
+    val ks: Fielder = parse_element (element (cls, fields(12)))
+    val kvi: Fielder = parse_element (element (cls, fields(13)))
+    val kvp: Fielder = parse_element (element (cls, fields(14)))
+    val kvphz: Fielder = parse_element (element (cls, fields(15)))
+    val nvphz: Fielder = parse_element (element (cls, fields(16)))
+    val se1: Fielder = parse_element (element (cls, fields(17)))
+    val se2: Fielder = parse_element (element (cls, fields(18)))
+    val ta: Fielder = parse_element (element (cls, fields(19)))
+    val tb1: Fielder = parse_element (element (cls, fields(20)))
+    val tb2: Fielder = parse_element (element (cls, fields(21)))
+    val tc1: Fielder = parse_element (element (cls, fields(22)))
+    val tc2: Fielder = parse_element (element (cls, fields(23)))
+    val te: Fielder = parse_element (element (cls, fields(24)))
+    val tf: Fielder = parse_element (element (cls, fields(25)))
+    val tf1: Fielder = parse_element (element (cls, fields(26)))
+    val tf2: Fielder = parse_element (element (cls, fields(27)))
+    val tp: Fielder = parse_element (element (cls, fields(28)))
+    val vcmax: Fielder = parse_element (element (cls, fields(29)))
+    val vfmax: Fielder = parse_element (element (cls, fields(30)))
+    val vfmin: Fielder = parse_element (element (cls, fields(31)))
+    val vimax: Fielder = parse_element (element (cls, fields(32)))
+    val vrmax: Fielder = parse_element (element (cls, fields(33)))
+    val vrmin: Fielder = parse_element (element (cls, fields(34)))
+    val xc: Fielder = parse_element (element (cls, fields(35)))
+
     def parse (context: Context): ExcREXS =
     {
-        ExcREXS(
+        implicit val ctx: Context = context
+        var fields: Long = 0L
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1L << position; field._1 }
+        val ret = ExcREXS (
             ExcitationSystemDynamics.parse (context),
-            toDouble (e1 (context), context),
-            toDouble (e2 (context), context),
-            fbf (context),
-            toDouble (flimf (context), context),
-            toDouble (kc (context), context),
-            toDouble (kd (context), context),
-            toDouble (ke (context), context),
-            toDouble (kefd (context), context),
-            toDouble (kf (context), context),
-            toDouble (kh (context), context),
-            toDouble (kii (context), context),
-            toDouble (kip (context), context),
-            toDouble (ks (context), context),
-            toDouble (kvi (context), context),
-            toDouble (kvp (context), context),
-            toDouble (kvphz (context), context),
-            toDouble (nvphz (context), context),
-            toDouble (se1 (context), context),
-            toDouble (se2 (context), context),
-            toDouble (ta (context), context),
-            toDouble (tb1 (context), context),
-            toDouble (tb2 (context), context),
-            toDouble (tc1 (context), context),
-            toDouble (tc2 (context), context),
-            toDouble (te (context), context),
-            toDouble (tf (context), context),
-            toDouble (tf1 (context), context),
-            toDouble (tf2 (context), context),
-            toDouble (tp (context), context),
-            toDouble (vcmax (context), context),
-            toDouble (vfmax (context), context),
-            toDouble (vfmin (context), context),
-            toDouble (vimax (context), context),
-            toDouble (vrmax (context), context),
-            toDouble (vrmin (context), context),
-            toDouble (xc (context), context)
+            toDouble (mask (e1 (), 0)),
+            toDouble (mask (e2 (), 1)),
+            mask (fbf (), 2),
+            toDouble (mask (flimf (), 3)),
+            toDouble (mask (kc (), 4)),
+            toDouble (mask (kd (), 5)),
+            toDouble (mask (ke (), 6)),
+            toDouble (mask (kefd (), 7)),
+            toDouble (mask (kf (), 8)),
+            toDouble (mask (kh (), 9)),
+            toDouble (mask (kii (), 10)),
+            toDouble (mask (kip (), 11)),
+            toDouble (mask (ks (), 12)),
+            toDouble (mask (kvi (), 13)),
+            toDouble (mask (kvp (), 14)),
+            toDouble (mask (kvphz (), 15)),
+            toDouble (mask (nvphz (), 16)),
+            toDouble (mask (se1 (), 17)),
+            toDouble (mask (se2 (), 18)),
+            toDouble (mask (ta (), 19)),
+            toDouble (mask (tb1 (), 20)),
+            toDouble (mask (tb2 (), 21)),
+            toDouble (mask (tc1 (), 22)),
+            toDouble (mask (tc2 (), 23)),
+            toDouble (mask (te (), 24)),
+            toDouble (mask (tf (), 25)),
+            toDouble (mask (tf1 (), 26)),
+            toDouble (mask (tf2 (), 27)),
+            toDouble (mask (tp (), 28)),
+            toDouble (mask (vcmax (), 29)),
+            toDouble (mask (vfmax (), 30)),
+            toDouble (mask (vfmin (), 31)),
+            toDouble (mask (vimax (), 32)),
+            toDouble (mask (vrmax (), 33)),
+            toDouble (mask (vrmin (), 34)),
+            toDouble (mask (xc (), 35))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -7633,6 +9233,12 @@ extends
      */
     def this () = { this (null, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -7652,21 +9258,23 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ExcSCRX.cswitch>" + cswitch + "</cim:ExcSCRX.cswitch>\n" +
-        "\t\t<cim:ExcSCRX.emax>" + emax + "</cim:ExcSCRX.emax>\n" +
-        "\t\t<cim:ExcSCRX.emin>" + emin + "</cim:ExcSCRX.emin>\n" +
-        "\t\t<cim:ExcSCRX.k>" + k + "</cim:ExcSCRX.k>\n" +
-        "\t\t<cim:ExcSCRX.rcrfd>" + rcrfd + "</cim:ExcSCRX.rcrfd>\n" +
-        "\t\t<cim:ExcSCRX.tatb>" + tatb + "</cim:ExcSCRX.tatb>\n" +
-        "\t\t<cim:ExcSCRX.tb>" + tb + "</cim:ExcSCRX.tb>\n" +
-        "\t\t<cim:ExcSCRX.te>" + te + "</cim:ExcSCRX.te>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcSCRX.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcSCRX.fields (position), value)
+        emitelem (0, cswitch)
+        emitelem (1, emax)
+        emitelem (2, emin)
+        emitelem (3, k)
+        emitelem (4, rcrfd)
+        emitelem (5, tatb)
+        emitelem (6, tb)
+        emitelem (7, te)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ExcSCRX rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcSCRX>"
+        "\t<cim:ExcSCRX rdf:ID=\"%s\">\n%s\t</cim:ExcSCRX>".format (id, export_fields)
     }
 }
 
@@ -7674,29 +9282,47 @@ object ExcSCRX
 extends
     Parseable[ExcSCRX]
 {
-    val cswitch = parse_element (element ("""ExcSCRX.cswitch"""))
-    val emax = parse_element (element ("""ExcSCRX.emax"""))
-    val emin = parse_element (element ("""ExcSCRX.emin"""))
-    val k = parse_element (element ("""ExcSCRX.k"""))
-    val rcrfd = parse_element (element ("""ExcSCRX.rcrfd"""))
-    val tatb = parse_element (element ("""ExcSCRX.tatb"""))
-    val tb = parse_element (element ("""ExcSCRX.tb"""))
-    val te = parse_element (element ("""ExcSCRX.te"""))
+    val fields: Array[String] = Array[String] (
+        "cswitch",
+        "emax",
+        "emin",
+        "k",
+        "rcrfd",
+        "tatb",
+        "tb",
+        "te"
+    )
+    val cswitch: Fielder = parse_element (element (cls, fields(0)))
+    val emax: Fielder = parse_element (element (cls, fields(1)))
+    val emin: Fielder = parse_element (element (cls, fields(2)))
+    val k: Fielder = parse_element (element (cls, fields(3)))
+    val rcrfd: Fielder = parse_element (element (cls, fields(4)))
+    val tatb: Fielder = parse_element (element (cls, fields(5)))
+    val tb: Fielder = parse_element (element (cls, fields(6)))
+    val te: Fielder = parse_element (element (cls, fields(7)))
+
     def parse (context: Context): ExcSCRX =
     {
-        ExcSCRX(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ExcSCRX (
             ExcitationSystemDynamics.parse (context),
-            toBoolean (cswitch (context), context),
-            toDouble (emax (context), context),
-            toDouble (emin (context), context),
-            toDouble (k (context), context),
-            toDouble (rcrfd (context), context),
-            toDouble (tatb (context), context),
-            toDouble (tb (context), context),
-            toDouble (te (context), context)
+            toBoolean (mask (cswitch (), 0)),
+            toDouble (mask (emax (), 1)),
+            toDouble (mask (emin (), 2)),
+            toDouble (mask (k (), 3)),
+            toDouble (mask (rcrfd (), 4)),
+            toDouble (mask (tatb (), 5)),
+            toDouble (mask (tb (), 6)),
+            toDouble (mask (te (), 7))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -7749,6 +9375,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -7768,23 +9400,25 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ExcSEXS.efdmax>" + efdmax + "</cim:ExcSEXS.efdmax>\n" +
-        "\t\t<cim:ExcSEXS.efdmin>" + efdmin + "</cim:ExcSEXS.efdmin>\n" +
-        "\t\t<cim:ExcSEXS.emax>" + emax + "</cim:ExcSEXS.emax>\n" +
-        "\t\t<cim:ExcSEXS.emin>" + emin + "</cim:ExcSEXS.emin>\n" +
-        "\t\t<cim:ExcSEXS.k>" + k + "</cim:ExcSEXS.k>\n" +
-        "\t\t<cim:ExcSEXS.kc>" + kc + "</cim:ExcSEXS.kc>\n" +
-        "\t\t<cim:ExcSEXS.tatb>" + tatb + "</cim:ExcSEXS.tatb>\n" +
-        "\t\t<cim:ExcSEXS.tb>" + tb + "</cim:ExcSEXS.tb>\n" +
-        "\t\t<cim:ExcSEXS.tc>" + tc + "</cim:ExcSEXS.tc>\n" +
-        "\t\t<cim:ExcSEXS.te>" + te + "</cim:ExcSEXS.te>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcSEXS.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcSEXS.fields (position), value)
+        emitelem (0, efdmax)
+        emitelem (1, efdmin)
+        emitelem (2, emax)
+        emitelem (3, emin)
+        emitelem (4, k)
+        emitelem (5, kc)
+        emitelem (6, tatb)
+        emitelem (7, tb)
+        emitelem (8, tc)
+        emitelem (9, te)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ExcSEXS rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcSEXS>"
+        "\t<cim:ExcSEXS rdf:ID=\"%s\">\n%s\t</cim:ExcSEXS>".format (id, export_fields)
     }
 }
 
@@ -7792,33 +9426,53 @@ object ExcSEXS
 extends
     Parseable[ExcSEXS]
 {
-    val efdmax = parse_element (element ("""ExcSEXS.efdmax"""))
-    val efdmin = parse_element (element ("""ExcSEXS.efdmin"""))
-    val emax = parse_element (element ("""ExcSEXS.emax"""))
-    val emin = parse_element (element ("""ExcSEXS.emin"""))
-    val k = parse_element (element ("""ExcSEXS.k"""))
-    val kc = parse_element (element ("""ExcSEXS.kc"""))
-    val tatb = parse_element (element ("""ExcSEXS.tatb"""))
-    val tb = parse_element (element ("""ExcSEXS.tb"""))
-    val tc = parse_element (element ("""ExcSEXS.tc"""))
-    val te = parse_element (element ("""ExcSEXS.te"""))
+    val fields: Array[String] = Array[String] (
+        "efdmax",
+        "efdmin",
+        "emax",
+        "emin",
+        "k",
+        "kc",
+        "tatb",
+        "tb",
+        "tc",
+        "te"
+    )
+    val efdmax: Fielder = parse_element (element (cls, fields(0)))
+    val efdmin: Fielder = parse_element (element (cls, fields(1)))
+    val emax: Fielder = parse_element (element (cls, fields(2)))
+    val emin: Fielder = parse_element (element (cls, fields(3)))
+    val k: Fielder = parse_element (element (cls, fields(4)))
+    val kc: Fielder = parse_element (element (cls, fields(5)))
+    val tatb: Fielder = parse_element (element (cls, fields(6)))
+    val tb: Fielder = parse_element (element (cls, fields(7)))
+    val tc: Fielder = parse_element (element (cls, fields(8)))
+    val te: Fielder = parse_element (element (cls, fields(9)))
+
     def parse (context: Context): ExcSEXS =
     {
-        ExcSEXS(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ExcSEXS (
             ExcitationSystemDynamics.parse (context),
-            toDouble (efdmax (context), context),
-            toDouble (efdmin (context), context),
-            toDouble (emax (context), context),
-            toDouble (emin (context), context),
-            toDouble (k (context), context),
-            toDouble (kc (context), context),
-            toDouble (tatb (context), context),
-            toDouble (tb (context), context),
-            toDouble (tc (context), context),
-            toDouble (te (context), context)
+            toDouble (mask (efdmax (), 0)),
+            toDouble (mask (efdmin (), 1)),
+            toDouble (mask (emax (), 2)),
+            toDouble (mask (emin (), 3)),
+            toDouble (mask (k (), 4)),
+            toDouble (mask (kc (), 5)),
+            toDouble (mask (tatb (), 6)),
+            toDouble (mask (tb (), 7)),
+            toDouble (mask (tc (), 8)),
+            toDouble (mask (te (), 9))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -7939,6 +9593,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -7958,45 +9618,47 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ExcSK.efdmax>" + efdmax + "</cim:ExcSK.efdmax>\n" +
-        "\t\t<cim:ExcSK.efdmin>" + efdmin + "</cim:ExcSK.efdmin>\n" +
-        "\t\t<cim:ExcSK.emax>" + emax + "</cim:ExcSK.emax>\n" +
-        "\t\t<cim:ExcSK.emin>" + emin + "</cim:ExcSK.emin>\n" +
-        "\t\t<cim:ExcSK.k>" + k + "</cim:ExcSK.k>\n" +
-        "\t\t<cim:ExcSK.k1>" + k1 + "</cim:ExcSK.k1>\n" +
-        "\t\t<cim:ExcSK.k2>" + k2 + "</cim:ExcSK.k2>\n" +
-        "\t\t<cim:ExcSK.kc>" + kc + "</cim:ExcSK.kc>\n" +
-        "\t\t<cim:ExcSK.kce>" + kce + "</cim:ExcSK.kce>\n" +
-        "\t\t<cim:ExcSK.kd>" + kd + "</cim:ExcSK.kd>\n" +
-        "\t\t<cim:ExcSK.kgob>" + kgob + "</cim:ExcSK.kgob>\n" +
-        "\t\t<cim:ExcSK.kp>" + kp + "</cim:ExcSK.kp>\n" +
-        "\t\t<cim:ExcSK.kqi>" + kqi + "</cim:ExcSK.kqi>\n" +
-        "\t\t<cim:ExcSK.kqob>" + kqob + "</cim:ExcSK.kqob>\n" +
-        "\t\t<cim:ExcSK.kqp>" + kqp + "</cim:ExcSK.kqp>\n" +
-        "\t\t<cim:ExcSK.nq>" + nq + "</cim:ExcSK.nq>\n" +
-        "\t\t<cim:ExcSK.qconoff>" + qconoff + "</cim:ExcSK.qconoff>\n" +
-        "\t\t<cim:ExcSK.qz>" + qz + "</cim:ExcSK.qz>\n" +
-        "\t\t<cim:ExcSK.remote>" + remote + "</cim:ExcSK.remote>\n" +
-        "\t\t<cim:ExcSK.sbase>" + sbase + "</cim:ExcSK.sbase>\n" +
-        "\t\t<cim:ExcSK.tc>" + tc + "</cim:ExcSK.tc>\n" +
-        "\t\t<cim:ExcSK.te>" + te + "</cim:ExcSK.te>\n" +
-        "\t\t<cim:ExcSK.ti>" + ti + "</cim:ExcSK.ti>\n" +
-        "\t\t<cim:ExcSK.tp>" + tp + "</cim:ExcSK.tp>\n" +
-        "\t\t<cim:ExcSK.tr>" + tr + "</cim:ExcSK.tr>\n" +
-        "\t\t<cim:ExcSK.uimax>" + uimax + "</cim:ExcSK.uimax>\n" +
-        "\t\t<cim:ExcSK.uimin>" + uimin + "</cim:ExcSK.uimin>\n" +
-        "\t\t<cim:ExcSK.urmax>" + urmax + "</cim:ExcSK.urmax>\n" +
-        "\t\t<cim:ExcSK.urmin>" + urmin + "</cim:ExcSK.urmin>\n" +
-        "\t\t<cim:ExcSK.vtmax>" + vtmax + "</cim:ExcSK.vtmax>\n" +
-        "\t\t<cim:ExcSK.vtmin>" + vtmin + "</cim:ExcSK.vtmin>\n" +
-        "\t\t<cim:ExcSK.yp>" + yp + "</cim:ExcSK.yp>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcSK.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcSK.fields (position), value)
+        emitelem (0, efdmax)
+        emitelem (1, efdmin)
+        emitelem (2, emax)
+        emitelem (3, emin)
+        emitelem (4, k)
+        emitelem (5, k1)
+        emitelem (6, k2)
+        emitelem (7, kc)
+        emitelem (8, kce)
+        emitelem (9, kd)
+        emitelem (10, kgob)
+        emitelem (11, kp)
+        emitelem (12, kqi)
+        emitelem (13, kqob)
+        emitelem (14, kqp)
+        emitelem (15, nq)
+        emitelem (16, qconoff)
+        emitelem (17, qz)
+        emitelem (18, remote)
+        emitelem (19, sbase)
+        emitelem (20, tc)
+        emitelem (21, te)
+        emitelem (22, ti)
+        emitelem (23, tp)
+        emitelem (24, tr)
+        emitelem (25, uimax)
+        emitelem (26, uimin)
+        emitelem (27, urmax)
+        emitelem (28, urmin)
+        emitelem (29, vtmax)
+        emitelem (30, vtmin)
+        emitelem (31, yp)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ExcSK rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcSK>"
+        "\t<cim:ExcSK rdf:ID=\"%s\">\n%s\t</cim:ExcSK>".format (id, export_fields)
     }
 }
 
@@ -8004,77 +9666,119 @@ object ExcSK
 extends
     Parseable[ExcSK]
 {
-    val efdmax = parse_element (element ("""ExcSK.efdmax"""))
-    val efdmin = parse_element (element ("""ExcSK.efdmin"""))
-    val emax = parse_element (element ("""ExcSK.emax"""))
-    val emin = parse_element (element ("""ExcSK.emin"""))
-    val k = parse_element (element ("""ExcSK.k"""))
-    val k1 = parse_element (element ("""ExcSK.k1"""))
-    val k2 = parse_element (element ("""ExcSK.k2"""))
-    val kc = parse_element (element ("""ExcSK.kc"""))
-    val kce = parse_element (element ("""ExcSK.kce"""))
-    val kd = parse_element (element ("""ExcSK.kd"""))
-    val kgob = parse_element (element ("""ExcSK.kgob"""))
-    val kp = parse_element (element ("""ExcSK.kp"""))
-    val kqi = parse_element (element ("""ExcSK.kqi"""))
-    val kqob = parse_element (element ("""ExcSK.kqob"""))
-    val kqp = parse_element (element ("""ExcSK.kqp"""))
-    val nq = parse_element (element ("""ExcSK.nq"""))
-    val qconoff = parse_element (element ("""ExcSK.qconoff"""))
-    val qz = parse_element (element ("""ExcSK.qz"""))
-    val remote = parse_element (element ("""ExcSK.remote"""))
-    val sbase = parse_element (element ("""ExcSK.sbase"""))
-    val tc = parse_element (element ("""ExcSK.tc"""))
-    val te = parse_element (element ("""ExcSK.te"""))
-    val ti = parse_element (element ("""ExcSK.ti"""))
-    val tp = parse_element (element ("""ExcSK.tp"""))
-    val tr = parse_element (element ("""ExcSK.tr"""))
-    val uimax = parse_element (element ("""ExcSK.uimax"""))
-    val uimin = parse_element (element ("""ExcSK.uimin"""))
-    val urmax = parse_element (element ("""ExcSK.urmax"""))
-    val urmin = parse_element (element ("""ExcSK.urmin"""))
-    val vtmax = parse_element (element ("""ExcSK.vtmax"""))
-    val vtmin = parse_element (element ("""ExcSK.vtmin"""))
-    val yp = parse_element (element ("""ExcSK.yp"""))
+    val fields: Array[String] = Array[String] (
+        "efdmax",
+        "efdmin",
+        "emax",
+        "emin",
+        "k",
+        "k1",
+        "k2",
+        "kc",
+        "kce",
+        "kd",
+        "kgob",
+        "kp",
+        "kqi",
+        "kqob",
+        "kqp",
+        "nq",
+        "qconoff",
+        "qz",
+        "remote",
+        "sbase",
+        "tc",
+        "te",
+        "ti",
+        "tp",
+        "tr",
+        "uimax",
+        "uimin",
+        "urmax",
+        "urmin",
+        "vtmax",
+        "vtmin",
+        "yp"
+    )
+    val efdmax: Fielder = parse_element (element (cls, fields(0)))
+    val efdmin: Fielder = parse_element (element (cls, fields(1)))
+    val emax: Fielder = parse_element (element (cls, fields(2)))
+    val emin: Fielder = parse_element (element (cls, fields(3)))
+    val k: Fielder = parse_element (element (cls, fields(4)))
+    val k1: Fielder = parse_element (element (cls, fields(5)))
+    val k2: Fielder = parse_element (element (cls, fields(6)))
+    val kc: Fielder = parse_element (element (cls, fields(7)))
+    val kce: Fielder = parse_element (element (cls, fields(8)))
+    val kd: Fielder = parse_element (element (cls, fields(9)))
+    val kgob: Fielder = parse_element (element (cls, fields(10)))
+    val kp: Fielder = parse_element (element (cls, fields(11)))
+    val kqi: Fielder = parse_element (element (cls, fields(12)))
+    val kqob: Fielder = parse_element (element (cls, fields(13)))
+    val kqp: Fielder = parse_element (element (cls, fields(14)))
+    val nq: Fielder = parse_element (element (cls, fields(15)))
+    val qconoff: Fielder = parse_element (element (cls, fields(16)))
+    val qz: Fielder = parse_element (element (cls, fields(17)))
+    val remote: Fielder = parse_element (element (cls, fields(18)))
+    val sbase: Fielder = parse_element (element (cls, fields(19)))
+    val tc: Fielder = parse_element (element (cls, fields(20)))
+    val te: Fielder = parse_element (element (cls, fields(21)))
+    val ti: Fielder = parse_element (element (cls, fields(22)))
+    val tp: Fielder = parse_element (element (cls, fields(23)))
+    val tr: Fielder = parse_element (element (cls, fields(24)))
+    val uimax: Fielder = parse_element (element (cls, fields(25)))
+    val uimin: Fielder = parse_element (element (cls, fields(26)))
+    val urmax: Fielder = parse_element (element (cls, fields(27)))
+    val urmin: Fielder = parse_element (element (cls, fields(28)))
+    val vtmax: Fielder = parse_element (element (cls, fields(29)))
+    val vtmin: Fielder = parse_element (element (cls, fields(30)))
+    val yp: Fielder = parse_element (element (cls, fields(31)))
+
     def parse (context: Context): ExcSK =
     {
-        ExcSK(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ExcSK (
             ExcitationSystemDynamics.parse (context),
-            toDouble (efdmax (context), context),
-            toDouble (efdmin (context), context),
-            toDouble (emax (context), context),
-            toDouble (emin (context), context),
-            toDouble (k (context), context),
-            toDouble (k1 (context), context),
-            toDouble (k2 (context), context),
-            toDouble (kc (context), context),
-            toDouble (kce (context), context),
-            toDouble (kd (context), context),
-            toDouble (kgob (context), context),
-            toDouble (kp (context), context),
-            toDouble (kqi (context), context),
-            toDouble (kqob (context), context),
-            toDouble (kqp (context), context),
-            toDouble (nq (context), context),
-            toBoolean (qconoff (context), context),
-            toDouble (qz (context), context),
-            toBoolean (remote (context), context),
-            toDouble (sbase (context), context),
-            toDouble (tc (context), context),
-            toDouble (te (context), context),
-            toDouble (ti (context), context),
-            toDouble (tp (context), context),
-            toDouble (tr (context), context),
-            toDouble (uimax (context), context),
-            toDouble (uimin (context), context),
-            toDouble (urmax (context), context),
-            toDouble (urmin (context), context),
-            toDouble (vtmax (context), context),
-            toDouble (vtmin (context), context),
-            toDouble (yp (context), context)
+            toDouble (mask (efdmax (), 0)),
+            toDouble (mask (efdmin (), 1)),
+            toDouble (mask (emax (), 2)),
+            toDouble (mask (emin (), 3)),
+            toDouble (mask (k (), 4)),
+            toDouble (mask (k1 (), 5)),
+            toDouble (mask (k2 (), 6)),
+            toDouble (mask (kc (), 7)),
+            toDouble (mask (kce (), 8)),
+            toDouble (mask (kd (), 9)),
+            toDouble (mask (kgob (), 10)),
+            toDouble (mask (kp (), 11)),
+            toDouble (mask (kqi (), 12)),
+            toDouble (mask (kqob (), 13)),
+            toDouble (mask (kqp (), 14)),
+            toDouble (mask (nq (), 15)),
+            toBoolean (mask (qconoff (), 16)),
+            toDouble (mask (qz (), 17)),
+            toBoolean (mask (remote (), 18)),
+            toDouble (mask (sbase (), 19)),
+            toDouble (mask (tc (), 20)),
+            toDouble (mask (te (), 21)),
+            toDouble (mask (ti (), 22)),
+            toDouble (mask (tp (), 23)),
+            toDouble (mask (tr (), 24)),
+            toDouble (mask (uimax (), 25)),
+            toDouble (mask (uimin (), 26)),
+            toDouble (mask (urmax (), 27)),
+            toDouble (mask (urmin (), 28)),
+            toDouble (mask (vtmax (), 29)),
+            toDouble (mask (vtmin (), 30)),
+            toDouble (mask (yp (), 31))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -8151,6 +9855,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -8170,31 +9880,33 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ExcST1A.ilr>" + ilr + "</cim:ExcST1A.ilr>\n" +
-        "\t\t<cim:ExcST1A.ka>" + ka + "</cim:ExcST1A.ka>\n" +
-        "\t\t<cim:ExcST1A.kc>" + kc + "</cim:ExcST1A.kc>\n" +
-        "\t\t<cim:ExcST1A.kf>" + kf + "</cim:ExcST1A.kf>\n" +
-        "\t\t<cim:ExcST1A.klr>" + klr + "</cim:ExcST1A.klr>\n" +
-        "\t\t<cim:ExcST1A.ta>" + ta + "</cim:ExcST1A.ta>\n" +
-        "\t\t<cim:ExcST1A.tb>" + tb + "</cim:ExcST1A.tb>\n" +
-        "\t\t<cim:ExcST1A.tb1>" + tb1 + "</cim:ExcST1A.tb1>\n" +
-        "\t\t<cim:ExcST1A.tc>" + tc + "</cim:ExcST1A.tc>\n" +
-        "\t\t<cim:ExcST1A.tc1>" + tc1 + "</cim:ExcST1A.tc1>\n" +
-        "\t\t<cim:ExcST1A.tf>" + tf + "</cim:ExcST1A.tf>\n" +
-        "\t\t<cim:ExcST1A.vamax>" + vamax + "</cim:ExcST1A.vamax>\n" +
-        "\t\t<cim:ExcST1A.vamin>" + vamin + "</cim:ExcST1A.vamin>\n" +
-        "\t\t<cim:ExcST1A.vimax>" + vimax + "</cim:ExcST1A.vimax>\n" +
-        "\t\t<cim:ExcST1A.vimin>" + vimin + "</cim:ExcST1A.vimin>\n" +
-        "\t\t<cim:ExcST1A.vrmax>" + vrmax + "</cim:ExcST1A.vrmax>\n" +
-        "\t\t<cim:ExcST1A.vrmin>" + vrmin + "</cim:ExcST1A.vrmin>\n" +
-        "\t\t<cim:ExcST1A.xe>" + xe + "</cim:ExcST1A.xe>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcST1A.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcST1A.fields (position), value)
+        emitelem (0, ilr)
+        emitelem (1, ka)
+        emitelem (2, kc)
+        emitelem (3, kf)
+        emitelem (4, klr)
+        emitelem (5, ta)
+        emitelem (6, tb)
+        emitelem (7, tb1)
+        emitelem (8, tc)
+        emitelem (9, tc1)
+        emitelem (10, tf)
+        emitelem (11, vamax)
+        emitelem (12, vamin)
+        emitelem (13, vimax)
+        emitelem (14, vimin)
+        emitelem (15, vrmax)
+        emitelem (16, vrmin)
+        emitelem (17, xe)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ExcST1A rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcST1A>"
+        "\t<cim:ExcST1A rdf:ID=\"%s\">\n%s\t</cim:ExcST1A>".format (id, export_fields)
     }
 }
 
@@ -8202,49 +9914,77 @@ object ExcST1A
 extends
     Parseable[ExcST1A]
 {
-    val ilr = parse_element (element ("""ExcST1A.ilr"""))
-    val ka = parse_element (element ("""ExcST1A.ka"""))
-    val kc = parse_element (element ("""ExcST1A.kc"""))
-    val kf = parse_element (element ("""ExcST1A.kf"""))
-    val klr = parse_element (element ("""ExcST1A.klr"""))
-    val ta = parse_element (element ("""ExcST1A.ta"""))
-    val tb = parse_element (element ("""ExcST1A.tb"""))
-    val tb1 = parse_element (element ("""ExcST1A.tb1"""))
-    val tc = parse_element (element ("""ExcST1A.tc"""))
-    val tc1 = parse_element (element ("""ExcST1A.tc1"""))
-    val tf = parse_element (element ("""ExcST1A.tf"""))
-    val vamax = parse_element (element ("""ExcST1A.vamax"""))
-    val vamin = parse_element (element ("""ExcST1A.vamin"""))
-    val vimax = parse_element (element ("""ExcST1A.vimax"""))
-    val vimin = parse_element (element ("""ExcST1A.vimin"""))
-    val vrmax = parse_element (element ("""ExcST1A.vrmax"""))
-    val vrmin = parse_element (element ("""ExcST1A.vrmin"""))
-    val xe = parse_element (element ("""ExcST1A.xe"""))
+    val fields: Array[String] = Array[String] (
+        "ilr",
+        "ka",
+        "kc",
+        "kf",
+        "klr",
+        "ta",
+        "tb",
+        "tb1",
+        "tc",
+        "tc1",
+        "tf",
+        "vamax",
+        "vamin",
+        "vimax",
+        "vimin",
+        "vrmax",
+        "vrmin",
+        "xe"
+    )
+    val ilr: Fielder = parse_element (element (cls, fields(0)))
+    val ka: Fielder = parse_element (element (cls, fields(1)))
+    val kc: Fielder = parse_element (element (cls, fields(2)))
+    val kf: Fielder = parse_element (element (cls, fields(3)))
+    val klr: Fielder = parse_element (element (cls, fields(4)))
+    val ta: Fielder = parse_element (element (cls, fields(5)))
+    val tb: Fielder = parse_element (element (cls, fields(6)))
+    val tb1: Fielder = parse_element (element (cls, fields(7)))
+    val tc: Fielder = parse_element (element (cls, fields(8)))
+    val tc1: Fielder = parse_element (element (cls, fields(9)))
+    val tf: Fielder = parse_element (element (cls, fields(10)))
+    val vamax: Fielder = parse_element (element (cls, fields(11)))
+    val vamin: Fielder = parse_element (element (cls, fields(12)))
+    val vimax: Fielder = parse_element (element (cls, fields(13)))
+    val vimin: Fielder = parse_element (element (cls, fields(14)))
+    val vrmax: Fielder = parse_element (element (cls, fields(15)))
+    val vrmin: Fielder = parse_element (element (cls, fields(16)))
+    val xe: Fielder = parse_element (element (cls, fields(17)))
+
     def parse (context: Context): ExcST1A =
     {
-        ExcST1A(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ExcST1A (
             ExcitationSystemDynamics.parse (context),
-            toDouble (ilr (context), context),
-            toDouble (ka (context), context),
-            toDouble (kc (context), context),
-            toDouble (kf (context), context),
-            toDouble (klr (context), context),
-            toDouble (ta (context), context),
-            toDouble (tb (context), context),
-            toDouble (tb1 (context), context),
-            toDouble (tc (context), context),
-            toDouble (tc1 (context), context),
-            toDouble (tf (context), context),
-            toDouble (vamax (context), context),
-            toDouble (vamin (context), context),
-            toDouble (vimax (context), context),
-            toDouble (vimin (context), context),
-            toDouble (vrmax (context), context),
-            toDouble (vrmin (context), context),
-            toDouble (xe (context), context)
+            toDouble (mask (ilr (), 0)),
+            toDouble (mask (ka (), 1)),
+            toDouble (mask (kc (), 2)),
+            toDouble (mask (kf (), 3)),
+            toDouble (mask (klr (), 4)),
+            toDouble (mask (ta (), 5)),
+            toDouble (mask (tb (), 6)),
+            toDouble (mask (tb1 (), 7)),
+            toDouble (mask (tc (), 8)),
+            toDouble (mask (tc1 (), 9)),
+            toDouble (mask (tf (), 10)),
+            toDouble (mask (vamax (), 11)),
+            toDouble (mask (vamin (), 12)),
+            toDouble (mask (vimax (), 13)),
+            toDouble (mask (vimin (), 14)),
+            toDouble (mask (vrmax (), 15)),
+            toDouble (mask (vrmin (), 16)),
+            toDouble (mask (xe (), 17))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -8314,6 +10054,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -8333,28 +10079,30 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ExcST2A.efdmax>" + efdmax + "</cim:ExcST2A.efdmax>\n" +
-        "\t\t<cim:ExcST2A.ka>" + ka + "</cim:ExcST2A.ka>\n" +
-        "\t\t<cim:ExcST2A.kc>" + kc + "</cim:ExcST2A.kc>\n" +
-        "\t\t<cim:ExcST2A.ke>" + ke + "</cim:ExcST2A.ke>\n" +
-        "\t\t<cim:ExcST2A.kf>" + kf + "</cim:ExcST2A.kf>\n" +
-        "\t\t<cim:ExcST2A.ki>" + ki + "</cim:ExcST2A.ki>\n" +
-        "\t\t<cim:ExcST2A.kp>" + kp + "</cim:ExcST2A.kp>\n" +
-        "\t\t<cim:ExcST2A.ta>" + ta + "</cim:ExcST2A.ta>\n" +
-        "\t\t<cim:ExcST2A.tb>" + tb + "</cim:ExcST2A.tb>\n" +
-        "\t\t<cim:ExcST2A.tc>" + tc + "</cim:ExcST2A.tc>\n" +
-        "\t\t<cim:ExcST2A.te>" + te + "</cim:ExcST2A.te>\n" +
-        "\t\t<cim:ExcST2A.tf>" + tf + "</cim:ExcST2A.tf>\n" +
-        "\t\t<cim:ExcST2A.uelin>" + uelin + "</cim:ExcST2A.uelin>\n" +
-        "\t\t<cim:ExcST2A.vrmax>" + vrmax + "</cim:ExcST2A.vrmax>\n" +
-        "\t\t<cim:ExcST2A.vrmin>" + vrmin + "</cim:ExcST2A.vrmin>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcST2A.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcST2A.fields (position), value)
+        emitelem (0, efdmax)
+        emitelem (1, ka)
+        emitelem (2, kc)
+        emitelem (3, ke)
+        emitelem (4, kf)
+        emitelem (5, ki)
+        emitelem (6, kp)
+        emitelem (7, ta)
+        emitelem (8, tb)
+        emitelem (9, tc)
+        emitelem (10, te)
+        emitelem (11, tf)
+        emitelem (12, uelin)
+        emitelem (13, vrmax)
+        emitelem (14, vrmin)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ExcST2A rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcST2A>"
+        "\t<cim:ExcST2A rdf:ID=\"%s\">\n%s\t</cim:ExcST2A>".format (id, export_fields)
     }
 }
 
@@ -8362,43 +10110,68 @@ object ExcST2A
 extends
     Parseable[ExcST2A]
 {
-    val efdmax = parse_element (element ("""ExcST2A.efdmax"""))
-    val ka = parse_element (element ("""ExcST2A.ka"""))
-    val kc = parse_element (element ("""ExcST2A.kc"""))
-    val ke = parse_element (element ("""ExcST2A.ke"""))
-    val kf = parse_element (element ("""ExcST2A.kf"""))
-    val ki = parse_element (element ("""ExcST2A.ki"""))
-    val kp = parse_element (element ("""ExcST2A.kp"""))
-    val ta = parse_element (element ("""ExcST2A.ta"""))
-    val tb = parse_element (element ("""ExcST2A.tb"""))
-    val tc = parse_element (element ("""ExcST2A.tc"""))
-    val te = parse_element (element ("""ExcST2A.te"""))
-    val tf = parse_element (element ("""ExcST2A.tf"""))
-    val uelin = parse_element (element ("""ExcST2A.uelin"""))
-    val vrmax = parse_element (element ("""ExcST2A.vrmax"""))
-    val vrmin = parse_element (element ("""ExcST2A.vrmin"""))
+    val fields: Array[String] = Array[String] (
+        "efdmax",
+        "ka",
+        "kc",
+        "ke",
+        "kf",
+        "ki",
+        "kp",
+        "ta",
+        "tb",
+        "tc",
+        "te",
+        "tf",
+        "uelin",
+        "vrmax",
+        "vrmin"
+    )
+    val efdmax: Fielder = parse_element (element (cls, fields(0)))
+    val ka: Fielder = parse_element (element (cls, fields(1)))
+    val kc: Fielder = parse_element (element (cls, fields(2)))
+    val ke: Fielder = parse_element (element (cls, fields(3)))
+    val kf: Fielder = parse_element (element (cls, fields(4)))
+    val ki: Fielder = parse_element (element (cls, fields(5)))
+    val kp: Fielder = parse_element (element (cls, fields(6)))
+    val ta: Fielder = parse_element (element (cls, fields(7)))
+    val tb: Fielder = parse_element (element (cls, fields(8)))
+    val tc: Fielder = parse_element (element (cls, fields(9)))
+    val te: Fielder = parse_element (element (cls, fields(10)))
+    val tf: Fielder = parse_element (element (cls, fields(11)))
+    val uelin: Fielder = parse_element (element (cls, fields(12)))
+    val vrmax: Fielder = parse_element (element (cls, fields(13)))
+    val vrmin: Fielder = parse_element (element (cls, fields(14)))
+
     def parse (context: Context): ExcST2A =
     {
-        ExcST2A(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ExcST2A (
             ExcitationSystemDynamics.parse (context),
-            toDouble (efdmax (context), context),
-            toDouble (ka (context), context),
-            toDouble (kc (context), context),
-            toDouble (ke (context), context),
-            toDouble (kf (context), context),
-            toDouble (ki (context), context),
-            toDouble (kp (context), context),
-            toDouble (ta (context), context),
-            toDouble (tb (context), context),
-            toDouble (tc (context), context),
-            toDouble (te (context), context),
-            toDouble (tf (context), context),
-            toBoolean (uelin (context), context),
-            toDouble (vrmax (context), context),
-            toDouble (vrmin (context), context)
+            toDouble (mask (efdmax (), 0)),
+            toDouble (mask (ka (), 1)),
+            toDouble (mask (kc (), 2)),
+            toDouble (mask (ke (), 3)),
+            toDouble (mask (kf (), 4)),
+            toDouble (mask (ki (), 5)),
+            toDouble (mask (kp (), 6)),
+            toDouble (mask (ta (), 7)),
+            toDouble (mask (tb (), 8)),
+            toDouble (mask (tc (), 9)),
+            toDouble (mask (te (), 10)),
+            toDouble (mask (tf (), 11)),
+            toBoolean (mask (uelin (), 12)),
+            toDouble (mask (vrmax (), 13)),
+            toDouble (mask (vrmin (), 14))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -8481,6 +10254,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -8500,33 +10279,35 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ExcST3A.efdmax>" + efdmax + "</cim:ExcST3A.efdmax>\n" +
-        "\t\t<cim:ExcST3A.kc>" + kc + "</cim:ExcST3A.kc>\n" +
-        "\t\t<cim:ExcST3A.kg>" + kg + "</cim:ExcST3A.kg>\n" +
-        "\t\t<cim:ExcST3A.ki>" + ki + "</cim:ExcST3A.ki>\n" +
-        "\t\t<cim:ExcST3A.kj>" + kj + "</cim:ExcST3A.kj>\n" +
-        "\t\t<cim:ExcST3A.km>" + km + "</cim:ExcST3A.km>\n" +
-        "\t\t<cim:ExcST3A.kp>" + kp + "</cim:ExcST3A.kp>\n" +
-        "\t\t<cim:ExcST3A.ks>" + ks + "</cim:ExcST3A.ks>\n" +
-        "\t\t<cim:ExcST3A.ks1>" + ks1 + "</cim:ExcST3A.ks1>\n" +
-        "\t\t<cim:ExcST3A.tb>" + tb + "</cim:ExcST3A.tb>\n" +
-        "\t\t<cim:ExcST3A.tc>" + tc + "</cim:ExcST3A.tc>\n" +
-        "\t\t<cim:ExcST3A.thetap>" + thetap + "</cim:ExcST3A.thetap>\n" +
-        "\t\t<cim:ExcST3A.tm>" + tm + "</cim:ExcST3A.tm>\n" +
-        "\t\t<cim:ExcST3A.vbmax>" + vbmax + "</cim:ExcST3A.vbmax>\n" +
-        "\t\t<cim:ExcST3A.vgmax>" + vgmax + "</cim:ExcST3A.vgmax>\n" +
-        "\t\t<cim:ExcST3A.vimax>" + vimax + "</cim:ExcST3A.vimax>\n" +
-        "\t\t<cim:ExcST3A.vimin>" + vimin + "</cim:ExcST3A.vimin>\n" +
-        "\t\t<cim:ExcST3A.vrmax>" + vrmax + "</cim:ExcST3A.vrmax>\n" +
-        "\t\t<cim:ExcST3A.vrmin>" + vrmin + "</cim:ExcST3A.vrmin>\n" +
-        "\t\t<cim:ExcST3A.xl>" + xl + "</cim:ExcST3A.xl>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcST3A.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcST3A.fields (position), value)
+        emitelem (0, efdmax)
+        emitelem (1, kc)
+        emitelem (2, kg)
+        emitelem (3, ki)
+        emitelem (4, kj)
+        emitelem (5, km)
+        emitelem (6, kp)
+        emitelem (7, ks)
+        emitelem (8, ks1)
+        emitelem (9, tb)
+        emitelem (10, tc)
+        emitelem (11, thetap)
+        emitelem (12, tm)
+        emitelem (13, vbmax)
+        emitelem (14, vgmax)
+        emitelem (15, vimax)
+        emitelem (16, vimin)
+        emitelem (17, vrmax)
+        emitelem (18, vrmin)
+        emitelem (19, xl)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ExcST3A rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcST3A>"
+        "\t<cim:ExcST3A rdf:ID=\"%s\">\n%s\t</cim:ExcST3A>".format (id, export_fields)
     }
 }
 
@@ -8534,53 +10315,83 @@ object ExcST3A
 extends
     Parseable[ExcST3A]
 {
-    val efdmax = parse_element (element ("""ExcST3A.efdmax"""))
-    val kc = parse_element (element ("""ExcST3A.kc"""))
-    val kg = parse_element (element ("""ExcST3A.kg"""))
-    val ki = parse_element (element ("""ExcST3A.ki"""))
-    val kj = parse_element (element ("""ExcST3A.kj"""))
-    val km = parse_element (element ("""ExcST3A.km"""))
-    val kp = parse_element (element ("""ExcST3A.kp"""))
-    val ks = parse_element (element ("""ExcST3A.ks"""))
-    val ks1 = parse_element (element ("""ExcST3A.ks1"""))
-    val tb = parse_element (element ("""ExcST3A.tb"""))
-    val tc = parse_element (element ("""ExcST3A.tc"""))
-    val thetap = parse_element (element ("""ExcST3A.thetap"""))
-    val tm = parse_element (element ("""ExcST3A.tm"""))
-    val vbmax = parse_element (element ("""ExcST3A.vbmax"""))
-    val vgmax = parse_element (element ("""ExcST3A.vgmax"""))
-    val vimax = parse_element (element ("""ExcST3A.vimax"""))
-    val vimin = parse_element (element ("""ExcST3A.vimin"""))
-    val vrmax = parse_element (element ("""ExcST3A.vrmax"""))
-    val vrmin = parse_element (element ("""ExcST3A.vrmin"""))
-    val xl = parse_element (element ("""ExcST3A.xl"""))
+    val fields: Array[String] = Array[String] (
+        "efdmax",
+        "kc",
+        "kg",
+        "ki",
+        "kj",
+        "km",
+        "kp",
+        "ks",
+        "ks1",
+        "tb",
+        "tc",
+        "thetap",
+        "tm",
+        "vbmax",
+        "vgmax",
+        "vimax",
+        "vimin",
+        "vrmax",
+        "vrmin",
+        "xl"
+    )
+    val efdmax: Fielder = parse_element (element (cls, fields(0)))
+    val kc: Fielder = parse_element (element (cls, fields(1)))
+    val kg: Fielder = parse_element (element (cls, fields(2)))
+    val ki: Fielder = parse_element (element (cls, fields(3)))
+    val kj: Fielder = parse_element (element (cls, fields(4)))
+    val km: Fielder = parse_element (element (cls, fields(5)))
+    val kp: Fielder = parse_element (element (cls, fields(6)))
+    val ks: Fielder = parse_element (element (cls, fields(7)))
+    val ks1: Fielder = parse_element (element (cls, fields(8)))
+    val tb: Fielder = parse_element (element (cls, fields(9)))
+    val tc: Fielder = parse_element (element (cls, fields(10)))
+    val thetap: Fielder = parse_element (element (cls, fields(11)))
+    val tm: Fielder = parse_element (element (cls, fields(12)))
+    val vbmax: Fielder = parse_element (element (cls, fields(13)))
+    val vgmax: Fielder = parse_element (element (cls, fields(14)))
+    val vimax: Fielder = parse_element (element (cls, fields(15)))
+    val vimin: Fielder = parse_element (element (cls, fields(16)))
+    val vrmax: Fielder = parse_element (element (cls, fields(17)))
+    val vrmin: Fielder = parse_element (element (cls, fields(18)))
+    val xl: Fielder = parse_element (element (cls, fields(19)))
+
     def parse (context: Context): ExcST3A =
     {
-        ExcST3A(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ExcST3A (
             ExcitationSystemDynamics.parse (context),
-            toDouble (efdmax (context), context),
-            toDouble (kc (context), context),
-            toDouble (kg (context), context),
-            toDouble (ki (context), context),
-            toDouble (kj (context), context),
-            toDouble (km (context), context),
-            toDouble (kp (context), context),
-            toDouble (ks (context), context),
-            toDouble (ks1 (context), context),
-            toDouble (tb (context), context),
-            toDouble (tc (context), context),
-            toDouble (thetap (context), context),
-            toDouble (tm (context), context),
-            toDouble (vbmax (context), context),
-            toDouble (vgmax (context), context),
-            toDouble (vimax (context), context),
-            toDouble (vimin (context), context),
-            toDouble (vrmax (context), context),
-            toDouble (vrmin (context), context),
-            toDouble (xl (context), context)
+            toDouble (mask (efdmax (), 0)),
+            toDouble (mask (kc (), 1)),
+            toDouble (mask (kg (), 2)),
+            toDouble (mask (ki (), 3)),
+            toDouble (mask (kj (), 4)),
+            toDouble (mask (km (), 5)),
+            toDouble (mask (kp (), 6)),
+            toDouble (mask (ks (), 7)),
+            toDouble (mask (ks1 (), 8)),
+            toDouble (mask (tb (), 9)),
+            toDouble (mask (tc (), 10)),
+            toDouble (mask (thetap (), 11)),
+            toDouble (mask (tm (), 12)),
+            toDouble (mask (vbmax (), 13)),
+            toDouble (mask (vgmax (), 14)),
+            toDouble (mask (vimax (), 15)),
+            toDouble (mask (vimin (), 16)),
+            toDouble (mask (vrmax (), 17)),
+            toDouble (mask (vrmin (), 18)),
+            toDouble (mask (xl (), 19))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -8664,6 +10475,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -8683,32 +10500,34 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ExcST4B.kc>" + kc + "</cim:ExcST4B.kc>\n" +
-        "\t\t<cim:ExcST4B.kg>" + kg + "</cim:ExcST4B.kg>\n" +
-        "\t\t<cim:ExcST4B.ki>" + ki + "</cim:ExcST4B.ki>\n" +
-        "\t\t<cim:ExcST4B.kim>" + kim + "</cim:ExcST4B.kim>\n" +
-        "\t\t<cim:ExcST4B.kir>" + kir + "</cim:ExcST4B.kir>\n" +
-        "\t\t<cim:ExcST4B.kp>" + kp + "</cim:ExcST4B.kp>\n" +
-        "\t\t<cim:ExcST4B.kpm>" + kpm + "</cim:ExcST4B.kpm>\n" +
-        "\t\t<cim:ExcST4B.kpr>" + kpr + "</cim:ExcST4B.kpr>\n" +
-        "\t\t<cim:ExcST4B.lvgate>" + lvgate + "</cim:ExcST4B.lvgate>\n" +
-        "\t\t<cim:ExcST4B.ta>" + ta + "</cim:ExcST4B.ta>\n" +
-        "\t\t<cim:ExcST4B.thetap>" + thetap + "</cim:ExcST4B.thetap>\n" +
-        "\t\t<cim:ExcST4B.uel>" + uel + "</cim:ExcST4B.uel>\n" +
-        "\t\t<cim:ExcST4B.vbmax>" + vbmax + "</cim:ExcST4B.vbmax>\n" +
-        "\t\t<cim:ExcST4B.vgmax>" + vgmax + "</cim:ExcST4B.vgmax>\n" +
-        "\t\t<cim:ExcST4B.vmmax>" + vmmax + "</cim:ExcST4B.vmmax>\n" +
-        "\t\t<cim:ExcST4B.vmmin>" + vmmin + "</cim:ExcST4B.vmmin>\n" +
-        "\t\t<cim:ExcST4B.vrmax>" + vrmax + "</cim:ExcST4B.vrmax>\n" +
-        "\t\t<cim:ExcST4B.vrmin>" + vrmin + "</cim:ExcST4B.vrmin>\n" +
-        "\t\t<cim:ExcST4B.xl>" + xl + "</cim:ExcST4B.xl>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcST4B.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcST4B.fields (position), value)
+        emitelem (0, kc)
+        emitelem (1, kg)
+        emitelem (2, ki)
+        emitelem (3, kim)
+        emitelem (4, kir)
+        emitelem (5, kp)
+        emitelem (6, kpm)
+        emitelem (7, kpr)
+        emitelem (8, lvgate)
+        emitelem (9, ta)
+        emitelem (10, thetap)
+        emitelem (11, uel)
+        emitelem (12, vbmax)
+        emitelem (13, vgmax)
+        emitelem (14, vmmax)
+        emitelem (15, vmmin)
+        emitelem (16, vrmax)
+        emitelem (17, vrmin)
+        emitelem (18, xl)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ExcST4B rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcST4B>"
+        "\t<cim:ExcST4B rdf:ID=\"%s\">\n%s\t</cim:ExcST4B>".format (id, export_fields)
     }
 }
 
@@ -8716,51 +10535,80 @@ object ExcST4B
 extends
     Parseable[ExcST4B]
 {
-    val kc = parse_element (element ("""ExcST4B.kc"""))
-    val kg = parse_element (element ("""ExcST4B.kg"""))
-    val ki = parse_element (element ("""ExcST4B.ki"""))
-    val kim = parse_element (element ("""ExcST4B.kim"""))
-    val kir = parse_element (element ("""ExcST4B.kir"""))
-    val kp = parse_element (element ("""ExcST4B.kp"""))
-    val kpm = parse_element (element ("""ExcST4B.kpm"""))
-    val kpr = parse_element (element ("""ExcST4B.kpr"""))
-    val lvgate = parse_element (element ("""ExcST4B.lvgate"""))
-    val ta = parse_element (element ("""ExcST4B.ta"""))
-    val thetap = parse_element (element ("""ExcST4B.thetap"""))
-    val uel = parse_element (element ("""ExcST4B.uel"""))
-    val vbmax = parse_element (element ("""ExcST4B.vbmax"""))
-    val vgmax = parse_element (element ("""ExcST4B.vgmax"""))
-    val vmmax = parse_element (element ("""ExcST4B.vmmax"""))
-    val vmmin = parse_element (element ("""ExcST4B.vmmin"""))
-    val vrmax = parse_element (element ("""ExcST4B.vrmax"""))
-    val vrmin = parse_element (element ("""ExcST4B.vrmin"""))
-    val xl = parse_element (element ("""ExcST4B.xl"""))
+    val fields: Array[String] = Array[String] (
+        "kc",
+        "kg",
+        "ki",
+        "kim",
+        "kir",
+        "kp",
+        "kpm",
+        "kpr",
+        "lvgate",
+        "ta",
+        "thetap",
+        "uel",
+        "vbmax",
+        "vgmax",
+        "vmmax",
+        "vmmin",
+        "vrmax",
+        "vrmin",
+        "xl"
+    )
+    val kc: Fielder = parse_element (element (cls, fields(0)))
+    val kg: Fielder = parse_element (element (cls, fields(1)))
+    val ki: Fielder = parse_element (element (cls, fields(2)))
+    val kim: Fielder = parse_element (element (cls, fields(3)))
+    val kir: Fielder = parse_element (element (cls, fields(4)))
+    val kp: Fielder = parse_element (element (cls, fields(5)))
+    val kpm: Fielder = parse_element (element (cls, fields(6)))
+    val kpr: Fielder = parse_element (element (cls, fields(7)))
+    val lvgate: Fielder = parse_element (element (cls, fields(8)))
+    val ta: Fielder = parse_element (element (cls, fields(9)))
+    val thetap: Fielder = parse_element (element (cls, fields(10)))
+    val uel: Fielder = parse_element (element (cls, fields(11)))
+    val vbmax: Fielder = parse_element (element (cls, fields(12)))
+    val vgmax: Fielder = parse_element (element (cls, fields(13)))
+    val vmmax: Fielder = parse_element (element (cls, fields(14)))
+    val vmmin: Fielder = parse_element (element (cls, fields(15)))
+    val vrmax: Fielder = parse_element (element (cls, fields(16)))
+    val vrmin: Fielder = parse_element (element (cls, fields(17)))
+    val xl: Fielder = parse_element (element (cls, fields(18)))
+
     def parse (context: Context): ExcST4B =
     {
-        ExcST4B(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ExcST4B (
             ExcitationSystemDynamics.parse (context),
-            toDouble (kc (context), context),
-            toDouble (kg (context), context),
-            toDouble (ki (context), context),
-            toDouble (kim (context), context),
-            toDouble (kir (context), context),
-            toDouble (kp (context), context),
-            toDouble (kpm (context), context),
-            toDouble (kpr (context), context),
-            toBoolean (lvgate (context), context),
-            toDouble (ta (context), context),
-            toDouble (thetap (context), context),
-            toBoolean (uel (context), context),
-            toDouble (vbmax (context), context),
-            toDouble (vgmax (context), context),
-            toDouble (vmmax (context), context),
-            toDouble (vmmin (context), context),
-            toDouble (vrmax (context), context),
-            toDouble (vrmin (context), context),
-            toDouble (xl (context), context)
+            toDouble (mask (kc (), 0)),
+            toDouble (mask (kg (), 1)),
+            toDouble (mask (ki (), 2)),
+            toDouble (mask (kim (), 3)),
+            toDouble (mask (kir (), 4)),
+            toDouble (mask (kp (), 5)),
+            toDouble (mask (kpm (), 6)),
+            toDouble (mask (kpr (), 7)),
+            toBoolean (mask (lvgate (), 8)),
+            toDouble (mask (ta (), 9)),
+            toDouble (mask (thetap (), 10)),
+            toBoolean (mask (uel (), 11)),
+            toDouble (mask (vbmax (), 12)),
+            toDouble (mask (vgmax (), 13)),
+            toDouble (mask (vmmax (), 14)),
+            toDouble (mask (vmmin (), 15)),
+            toDouble (mask (vrmax (), 16)),
+            toDouble (mask (vrmin (), 17)),
+            toDouble (mask (xl (), 18))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -8858,6 +10706,12 @@ extends
      */
     def this () = { this (null, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, false, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -8877,36 +10731,39 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ExcST6B.ilr>" + ilr + "</cim:ExcST6B.ilr>\n" +
-        "\t\t<cim:ExcST6B.k1>" + k1 + "</cim:ExcST6B.k1>\n" +
-        "\t\t<cim:ExcST6B.kcl>" + kcl + "</cim:ExcST6B.kcl>\n" +
-        "\t\t<cim:ExcST6B.kff>" + kff + "</cim:ExcST6B.kff>\n" +
-        "\t\t<cim:ExcST6B.kg>" + kg + "</cim:ExcST6B.kg>\n" +
-        "\t\t<cim:ExcST6B.kia>" + kia + "</cim:ExcST6B.kia>\n" +
-        "\t\t<cim:ExcST6B.klr>" + klr + "</cim:ExcST6B.klr>\n" +
-        "\t\t<cim:ExcST6B.km>" + km + "</cim:ExcST6B.km>\n" +
-        "\t\t<cim:ExcST6B.kpa>" + kpa + "</cim:ExcST6B.kpa>\n" +
-        "\t\t<cim:ExcST6B.kvd>" + kvd + "</cim:ExcST6B.kvd>\n" +
-        (if (null != oelin) "\t\t<cim:ExcST6B.oelin rdf:resource=\"#" + oelin + "\"/>\n" else "") +
-        "\t\t<cim:ExcST6B.tg>" + tg + "</cim:ExcST6B.tg>\n" +
-        "\t\t<cim:ExcST6B.ts>" + ts + "</cim:ExcST6B.ts>\n" +
-        "\t\t<cim:ExcST6B.tvd>" + tvd + "</cim:ExcST6B.tvd>\n" +
-        "\t\t<cim:ExcST6B.vamax>" + vamax + "</cim:ExcST6B.vamax>\n" +
-        "\t\t<cim:ExcST6B.vamin>" + vamin + "</cim:ExcST6B.vamin>\n" +
-        "\t\t<cim:ExcST6B.vilim>" + vilim + "</cim:ExcST6B.vilim>\n" +
-        "\t\t<cim:ExcST6B.vimax>" + vimax + "</cim:ExcST6B.vimax>\n" +
-        "\t\t<cim:ExcST6B.vimin>" + vimin + "</cim:ExcST6B.vimin>\n" +
-        "\t\t<cim:ExcST6B.vmult>" + vmult + "</cim:ExcST6B.vmult>\n" +
-        "\t\t<cim:ExcST6B.vrmax>" + vrmax + "</cim:ExcST6B.vrmax>\n" +
-        "\t\t<cim:ExcST6B.vrmin>" + vrmin + "</cim:ExcST6B.vrmin>\n" +
-        "\t\t<cim:ExcST6B.xc>" + xc + "</cim:ExcST6B.xc>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcST6B.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcST6B.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ExcST6B.fields (position), value)
+        emitelem (0, ilr)
+        emitelem (1, k1)
+        emitelem (2, kcl)
+        emitelem (3, kff)
+        emitelem (4, kg)
+        emitelem (5, kia)
+        emitelem (6, klr)
+        emitelem (7, km)
+        emitelem (8, kpa)
+        emitelem (9, kvd)
+        emitattr (10, oelin)
+        emitelem (11, tg)
+        emitelem (12, ts)
+        emitelem (13, tvd)
+        emitelem (14, vamax)
+        emitelem (15, vamin)
+        emitelem (16, vilim)
+        emitelem (17, vimax)
+        emitelem (18, vimin)
+        emitelem (19, vmult)
+        emitelem (20, vrmax)
+        emitelem (21, vrmin)
+        emitelem (22, xc)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ExcST6B rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcST6B>"
+        "\t<cim:ExcST6B rdf:ID=\"%s\">\n%s\t</cim:ExcST6B>".format (id, export_fields)
     }
 }
 
@@ -8914,59 +10771,92 @@ object ExcST6B
 extends
     Parseable[ExcST6B]
 {
-    val ilr = parse_element (element ("""ExcST6B.ilr"""))
-    val k1 = parse_element (element ("""ExcST6B.k1"""))
-    val kcl = parse_element (element ("""ExcST6B.kcl"""))
-    val kff = parse_element (element ("""ExcST6B.kff"""))
-    val kg = parse_element (element ("""ExcST6B.kg"""))
-    val kia = parse_element (element ("""ExcST6B.kia"""))
-    val klr = parse_element (element ("""ExcST6B.klr"""))
-    val km = parse_element (element ("""ExcST6B.km"""))
-    val kpa = parse_element (element ("""ExcST6B.kpa"""))
-    val kvd = parse_element (element ("""ExcST6B.kvd"""))
-    val oelin = parse_attribute (attribute ("""ExcST6B.oelin"""))
-    val tg = parse_element (element ("""ExcST6B.tg"""))
-    val ts = parse_element (element ("""ExcST6B.ts"""))
-    val tvd = parse_element (element ("""ExcST6B.tvd"""))
-    val vamax = parse_element (element ("""ExcST6B.vamax"""))
-    val vamin = parse_element (element ("""ExcST6B.vamin"""))
-    val vilim = parse_element (element ("""ExcST6B.vilim"""))
-    val vimax = parse_element (element ("""ExcST6B.vimax"""))
-    val vimin = parse_element (element ("""ExcST6B.vimin"""))
-    val vmult = parse_element (element ("""ExcST6B.vmult"""))
-    val vrmax = parse_element (element ("""ExcST6B.vrmax"""))
-    val vrmin = parse_element (element ("""ExcST6B.vrmin"""))
-    val xc = parse_element (element ("""ExcST6B.xc"""))
+    val fields: Array[String] = Array[String] (
+        "ilr",
+        "k1",
+        "kcl",
+        "kff",
+        "kg",
+        "kia",
+        "klr",
+        "km",
+        "kpa",
+        "kvd",
+        "oelin",
+        "tg",
+        "ts",
+        "tvd",
+        "vamax",
+        "vamin",
+        "vilim",
+        "vimax",
+        "vimin",
+        "vmult",
+        "vrmax",
+        "vrmin",
+        "xc"
+    )
+    val ilr: Fielder = parse_element (element (cls, fields(0)))
+    val k1: Fielder = parse_element (element (cls, fields(1)))
+    val kcl: Fielder = parse_element (element (cls, fields(2)))
+    val kff: Fielder = parse_element (element (cls, fields(3)))
+    val kg: Fielder = parse_element (element (cls, fields(4)))
+    val kia: Fielder = parse_element (element (cls, fields(5)))
+    val klr: Fielder = parse_element (element (cls, fields(6)))
+    val km: Fielder = parse_element (element (cls, fields(7)))
+    val kpa: Fielder = parse_element (element (cls, fields(8)))
+    val kvd: Fielder = parse_element (element (cls, fields(9)))
+    val oelin: Fielder = parse_attribute (attribute (cls, fields(10)))
+    val tg: Fielder = parse_element (element (cls, fields(11)))
+    val ts: Fielder = parse_element (element (cls, fields(12)))
+    val tvd: Fielder = parse_element (element (cls, fields(13)))
+    val vamax: Fielder = parse_element (element (cls, fields(14)))
+    val vamin: Fielder = parse_element (element (cls, fields(15)))
+    val vilim: Fielder = parse_element (element (cls, fields(16)))
+    val vimax: Fielder = parse_element (element (cls, fields(17)))
+    val vimin: Fielder = parse_element (element (cls, fields(18)))
+    val vmult: Fielder = parse_element (element (cls, fields(19)))
+    val vrmax: Fielder = parse_element (element (cls, fields(20)))
+    val vrmin: Fielder = parse_element (element (cls, fields(21)))
+    val xc: Fielder = parse_element (element (cls, fields(22)))
+
     def parse (context: Context): ExcST6B =
     {
-        ExcST6B(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ExcST6B (
             ExcitationSystemDynamics.parse (context),
-            toDouble (ilr (context), context),
-            toBoolean (k1 (context), context),
-            toDouble (kcl (context), context),
-            toDouble (kff (context), context),
-            toDouble (kg (context), context),
-            toDouble (kia (context), context),
-            toDouble (klr (context), context),
-            toDouble (km (context), context),
-            toDouble (kpa (context), context),
-            toDouble (kvd (context), context),
-            oelin (context),
-            toDouble (tg (context), context),
-            toDouble (ts (context), context),
-            toDouble (tvd (context), context),
-            toDouble (vamax (context), context),
-            toDouble (vamin (context), context),
-            toBoolean (vilim (context), context),
-            toDouble (vimax (context), context),
-            toDouble (vimin (context), context),
-            toBoolean (vmult (context), context),
-            toDouble (vrmax (context), context),
-            toDouble (vrmin (context), context),
-            toDouble (xc (context), context)
+            toDouble (mask (ilr (), 0)),
+            toBoolean (mask (k1 (), 1)),
+            toDouble (mask (kcl (), 2)),
+            toDouble (mask (kff (), 3)),
+            toDouble (mask (kg (), 4)),
+            toDouble (mask (kia (), 5)),
+            toDouble (mask (klr (), 6)),
+            toDouble (mask (km (), 7)),
+            toDouble (mask (kpa (), 8)),
+            toDouble (mask (kvd (), 9)),
+            mask (oelin (), 10),
+            toDouble (mask (tg (), 11)),
+            toDouble (mask (ts (), 12)),
+            toDouble (mask (tvd (), 13)),
+            toDouble (mask (vamax (), 14)),
+            toDouble (mask (vamin (), 15)),
+            toBoolean (mask (vilim (), 16)),
+            toDouble (mask (vimax (), 17)),
+            toDouble (mask (vimin (), 18)),
+            toBoolean (mask (vmult (), 19)),
+            toDouble (mask (vrmax (), 20)),
+            toDouble (mask (vrmin (), 21)),
+            toDouble (mask (xc (), 22))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -9037,6 +10927,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -9056,29 +10952,32 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ExcST7B.kh>" + kh + "</cim:ExcST7B.kh>\n" +
-        "\t\t<cim:ExcST7B.kia>" + kia + "</cim:ExcST7B.kia>\n" +
-        "\t\t<cim:ExcST7B.kl>" + kl + "</cim:ExcST7B.kl>\n" +
-        "\t\t<cim:ExcST7B.kpa>" + kpa + "</cim:ExcST7B.kpa>\n" +
-        (if (null != oelin) "\t\t<cim:ExcST7B.oelin rdf:resource=\"#" + oelin + "\"/>\n" else "") +
-        "\t\t<cim:ExcST7B.tb>" + tb + "</cim:ExcST7B.tb>\n" +
-        "\t\t<cim:ExcST7B.tc>" + tc + "</cim:ExcST7B.tc>\n" +
-        "\t\t<cim:ExcST7B.tf>" + tf + "</cim:ExcST7B.tf>\n" +
-        "\t\t<cim:ExcST7B.tg>" + tg + "</cim:ExcST7B.tg>\n" +
-        "\t\t<cim:ExcST7B.tia>" + tia + "</cim:ExcST7B.tia>\n" +
-        "\t\t<cim:ExcST7B.ts>" + ts + "</cim:ExcST7B.ts>\n" +
-        (if (null != uelin) "\t\t<cim:ExcST7B.uelin rdf:resource=\"#" + uelin + "\"/>\n" else "") +
-        "\t\t<cim:ExcST7B.vmax>" + vmax + "</cim:ExcST7B.vmax>\n" +
-        "\t\t<cim:ExcST7B.vmin>" + vmin + "</cim:ExcST7B.vmin>\n" +
-        "\t\t<cim:ExcST7B.vrmax>" + vrmax + "</cim:ExcST7B.vrmax>\n" +
-        "\t\t<cim:ExcST7B.vrmin>" + vrmin + "</cim:ExcST7B.vrmin>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcST7B.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcST7B.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ExcST7B.fields (position), value)
+        emitelem (0, kh)
+        emitelem (1, kia)
+        emitelem (2, kl)
+        emitelem (3, kpa)
+        emitattr (4, oelin)
+        emitelem (5, tb)
+        emitelem (6, tc)
+        emitelem (7, tf)
+        emitelem (8, tg)
+        emitelem (9, tia)
+        emitelem (10, ts)
+        emitattr (11, uelin)
+        emitelem (12, vmax)
+        emitelem (13, vmin)
+        emitelem (14, vrmax)
+        emitelem (15, vrmin)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ExcST7B rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcST7B>"
+        "\t<cim:ExcST7B rdf:ID=\"%s\">\n%s\t</cim:ExcST7B>".format (id, export_fields)
     }
 }
 
@@ -9086,45 +10985,71 @@ object ExcST7B
 extends
     Parseable[ExcST7B]
 {
-    val kh = parse_element (element ("""ExcST7B.kh"""))
-    val kia = parse_element (element ("""ExcST7B.kia"""))
-    val kl = parse_element (element ("""ExcST7B.kl"""))
-    val kpa = parse_element (element ("""ExcST7B.kpa"""))
-    val oelin = parse_attribute (attribute ("""ExcST7B.oelin"""))
-    val tb = parse_element (element ("""ExcST7B.tb"""))
-    val tc = parse_element (element ("""ExcST7B.tc"""))
-    val tf = parse_element (element ("""ExcST7B.tf"""))
-    val tg = parse_element (element ("""ExcST7B.tg"""))
-    val tia = parse_element (element ("""ExcST7B.tia"""))
-    val ts = parse_element (element ("""ExcST7B.ts"""))
-    val uelin = parse_attribute (attribute ("""ExcST7B.uelin"""))
-    val vmax = parse_element (element ("""ExcST7B.vmax"""))
-    val vmin = parse_element (element ("""ExcST7B.vmin"""))
-    val vrmax = parse_element (element ("""ExcST7B.vrmax"""))
-    val vrmin = parse_element (element ("""ExcST7B.vrmin"""))
+    val fields: Array[String] = Array[String] (
+        "kh",
+        "kia",
+        "kl",
+        "kpa",
+        "oelin",
+        "tb",
+        "tc",
+        "tf",
+        "tg",
+        "tia",
+        "ts",
+        "uelin",
+        "vmax",
+        "vmin",
+        "vrmax",
+        "vrmin"
+    )
+    val kh: Fielder = parse_element (element (cls, fields(0)))
+    val kia: Fielder = parse_element (element (cls, fields(1)))
+    val kl: Fielder = parse_element (element (cls, fields(2)))
+    val kpa: Fielder = parse_element (element (cls, fields(3)))
+    val oelin: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val tb: Fielder = parse_element (element (cls, fields(5)))
+    val tc: Fielder = parse_element (element (cls, fields(6)))
+    val tf: Fielder = parse_element (element (cls, fields(7)))
+    val tg: Fielder = parse_element (element (cls, fields(8)))
+    val tia: Fielder = parse_element (element (cls, fields(9)))
+    val ts: Fielder = parse_element (element (cls, fields(10)))
+    val uelin: Fielder = parse_attribute (attribute (cls, fields(11)))
+    val vmax: Fielder = parse_element (element (cls, fields(12)))
+    val vmin: Fielder = parse_element (element (cls, fields(13)))
+    val vrmax: Fielder = parse_element (element (cls, fields(14)))
+    val vrmin: Fielder = parse_element (element (cls, fields(15)))
+
     def parse (context: Context): ExcST7B =
     {
-        ExcST7B(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ExcST7B (
             ExcitationSystemDynamics.parse (context),
-            toDouble (kh (context), context),
-            toDouble (kia (context), context),
-            toDouble (kl (context), context),
-            toDouble (kpa (context), context),
-            oelin (context),
-            toDouble (tb (context), context),
-            toDouble (tc (context), context),
-            toDouble (tf (context), context),
-            toDouble (tg (context), context),
-            toDouble (tia (context), context),
-            toDouble (ts (context), context),
-            uelin (context),
-            toDouble (vmax (context), context),
-            toDouble (vmin (context), context),
-            toDouble (vrmax (context), context),
-            toDouble (vrmin (context), context)
+            toDouble (mask (kh (), 0)),
+            toDouble (mask (kia (), 1)),
+            toDouble (mask (kl (), 2)),
+            toDouble (mask (kpa (), 3)),
+            mask (oelin (), 4),
+            toDouble (mask (tb (), 5)),
+            toDouble (mask (tc (), 6)),
+            toDouble (mask (tf (), 7)),
+            toDouble (mask (tg (), 8)),
+            toDouble (mask (tia (), 9)),
+            toDouble (mask (ts (), 10)),
+            mask (uelin (), 11),
+            toDouble (mask (vmax (), 12)),
+            toDouble (mask (vmin (), 13)),
+            toDouble (mask (vrmax (), 14)),
+            toDouble (mask (vrmin (), 15))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -9163,6 +11088,12 @@ extends
      */
     def this () = { this (null, null, null, null, null, null, null, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -9182,21 +11113,23 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != DiscontinuousExcitationControlDynamics) "\t\t<cim:ExcitationSystemDynamics.DiscontinuousExcitationControlDynamics rdf:resource=\"#" + DiscontinuousExcitationControlDynamics + "\"/>\n" else "") +
-        (if (null != OverexcitationLimiterDynamics) "\t\t<cim:ExcitationSystemDynamics.OverexcitationLimiterDynamics rdf:resource=\"#" + OverexcitationLimiterDynamics + "\"/>\n" else "") +
-        (if (null != PFVArControllerType1Dynamics) "\t\t<cim:ExcitationSystemDynamics.PFVArControllerType1Dynamics rdf:resource=\"#" + PFVArControllerType1Dynamics + "\"/>\n" else "") +
-        (if (null != PFVArControllerType2Dynamics) "\t\t<cim:ExcitationSystemDynamics.PFVArControllerType2Dynamics rdf:resource=\"#" + PFVArControllerType2Dynamics + "\"/>\n" else "") +
-        (if (null != PowerSystemStabilizerDynamics) "\t\t<cim:ExcitationSystemDynamics.PowerSystemStabilizerDynamics rdf:resource=\"#" + PowerSystemStabilizerDynamics + "\"/>\n" else "") +
-        (if (null != SynchronousMachineDynamics) "\t\t<cim:ExcitationSystemDynamics.SynchronousMachineDynamics rdf:resource=\"#" + SynchronousMachineDynamics + "\"/>\n" else "") +
-        (if (null != UnderexcitationLimiterDynamics) "\t\t<cim:ExcitationSystemDynamics.UnderexcitationLimiterDynamics rdf:resource=\"#" + UnderexcitationLimiterDynamics + "\"/>\n" else "") +
-        (if (null != VoltageCompensatorDynamics) "\t\t<cim:ExcitationSystemDynamics.VoltageCompensatorDynamics rdf:resource=\"#" + VoltageCompensatorDynamics + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcitationSystemDynamics.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ExcitationSystemDynamics.fields (position), value)
+        emitattr (0, DiscontinuousExcitationControlDynamics)
+        emitattr (1, OverexcitationLimiterDynamics)
+        emitattr (2, PFVArControllerType1Dynamics)
+        emitattr (3, PFVArControllerType2Dynamics)
+        emitattr (4, PowerSystemStabilizerDynamics)
+        emitattr (5, SynchronousMachineDynamics)
+        emitattr (6, UnderexcitationLimiterDynamics)
+        emitattr (7, VoltageCompensatorDynamics)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ExcitationSystemDynamics rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcitationSystemDynamics>"
+        "\t<cim:ExcitationSystemDynamics rdf:ID=\"%s\">\n%s\t</cim:ExcitationSystemDynamics>".format (id, export_fields)
     }
 }
 
@@ -9204,27 +11137,43 @@ object ExcitationSystemDynamics
 extends
     Parseable[ExcitationSystemDynamics]
 {
-    val DiscontinuousExcitationControlDynamics = parse_attribute (attribute ("""ExcitationSystemDynamics.DiscontinuousExcitationControlDynamics"""))
-    val OverexcitationLimiterDynamics = parse_attribute (attribute ("""ExcitationSystemDynamics.OverexcitationLimiterDynamics"""))
-    val PFVArControllerType1Dynamics = parse_attribute (attribute ("""ExcitationSystemDynamics.PFVArControllerType1Dynamics"""))
-    val PFVArControllerType2Dynamics = parse_attribute (attribute ("""ExcitationSystemDynamics.PFVArControllerType2Dynamics"""))
-    val PowerSystemStabilizerDynamics = parse_attribute (attribute ("""ExcitationSystemDynamics.PowerSystemStabilizerDynamics"""))
-    val SynchronousMachineDynamics = parse_attribute (attribute ("""ExcitationSystemDynamics.SynchronousMachineDynamics"""))
-    val UnderexcitationLimiterDynamics = parse_attribute (attribute ("""ExcitationSystemDynamics.UnderexcitationLimiterDynamics"""))
-    val VoltageCompensatorDynamics = parse_attribute (attribute ("""ExcitationSystemDynamics.VoltageCompensatorDynamics"""))
+    val fields: Array[String] = Array[String] (
+        "DiscontinuousExcitationControlDynamics",
+        "OverexcitationLimiterDynamics",
+        "PFVArControllerType1Dynamics",
+        "PFVArControllerType2Dynamics",
+        "PowerSystemStabilizerDynamics",
+        "SynchronousMachineDynamics",
+        "UnderexcitationLimiterDynamics",
+        "VoltageCompensatorDynamics"
+    )
+    val DiscontinuousExcitationControlDynamics: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val OverexcitationLimiterDynamics: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val PFVArControllerType1Dynamics: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val PFVArControllerType2Dynamics: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val PowerSystemStabilizerDynamics: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val SynchronousMachineDynamics: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val UnderexcitationLimiterDynamics: Fielder = parse_attribute (attribute (cls, fields(6)))
+    val VoltageCompensatorDynamics: Fielder = parse_attribute (attribute (cls, fields(7)))
+
     def parse (context: Context): ExcitationSystemDynamics =
     {
-        ExcitationSystemDynamics(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ExcitationSystemDynamics (
             DynamicsFunctionBlock.parse (context),
-            DiscontinuousExcitationControlDynamics (context),
-            OverexcitationLimiterDynamics (context),
-            PFVArControllerType1Dynamics (context),
-            PFVArControllerType2Dynamics (context),
-            PowerSystemStabilizerDynamics (context),
-            SynchronousMachineDynamics (context),
-            UnderexcitationLimiterDynamics (context),
-            VoltageCompensatorDynamics (context)
+            mask (DiscontinuousExcitationControlDynamics (), 0),
+            mask (OverexcitationLimiterDynamics (), 1),
+            mask (PFVArControllerType1Dynamics (), 2),
+            mask (PFVArControllerType2Dynamics (), 3),
+            mask (PowerSystemStabilizerDynamics (), 4),
+            mask (SynchronousMachineDynamics (), 5),
+            mask (UnderexcitationLimiterDynamics (), 6),
+            mask (VoltageCompensatorDynamics (), 7)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("DiscontinuousExcitationControlDynamics", "DiscontinuousExcitationControlDynamics", false),
@@ -9234,7 +11183,8 @@ extends
         Relationship ("PowerSystemStabilizerDynamics", "PowerSystemStabilizerDynamics", false),
         Relationship ("SynchronousMachineDynamics", "SynchronousMachineDynamics", false),
         Relationship ("UnderexcitationLimiterDynamics", "UnderexcitationLimiterDynamics", false),
-        Relationship ("VoltageCompensatorDynamics", "VoltageCompensatorDynamics", false))
+        Relationship ("VoltageCompensatorDynamics", "VoltageCompensatorDynamics", false)
+    )
 }
 
 private[ninecode] object _ExcitationSystemDynamics

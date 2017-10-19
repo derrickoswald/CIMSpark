@@ -60,6 +60,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -79,29 +85,31 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:GeneratorTypeAsset.maxP>" + maxP + "</cim:GeneratorTypeAsset.maxP>\n" +
-        "\t\t<cim:GeneratorTypeAsset.maxQ>" + maxQ + "</cim:GeneratorTypeAsset.maxQ>\n" +
-        "\t\t<cim:GeneratorTypeAsset.minP>" + minP + "</cim:GeneratorTypeAsset.minP>\n" +
-        "\t\t<cim:GeneratorTypeAsset.minQ>" + minQ + "</cim:GeneratorTypeAsset.minQ>\n" +
-        "\t\t<cim:GeneratorTypeAsset.rDirectSubtrans>" + rDirectSubtrans + "</cim:GeneratorTypeAsset.rDirectSubtrans>\n" +
-        "\t\t<cim:GeneratorTypeAsset.rDirectSync>" + rDirectSync + "</cim:GeneratorTypeAsset.rDirectSync>\n" +
-        "\t\t<cim:GeneratorTypeAsset.rDirectTrans>" + rDirectTrans + "</cim:GeneratorTypeAsset.rDirectTrans>\n" +
-        "\t\t<cim:GeneratorTypeAsset.rQuadSubtrans>" + rQuadSubtrans + "</cim:GeneratorTypeAsset.rQuadSubtrans>\n" +
-        "\t\t<cim:GeneratorTypeAsset.rQuadSync>" + rQuadSync + "</cim:GeneratorTypeAsset.rQuadSync>\n" +
-        "\t\t<cim:GeneratorTypeAsset.rQuadTrans>" + rQuadTrans + "</cim:GeneratorTypeAsset.rQuadTrans>\n" +
-        "\t\t<cim:GeneratorTypeAsset.xDirectSubtrans>" + xDirectSubtrans + "</cim:GeneratorTypeAsset.xDirectSubtrans>\n" +
-        "\t\t<cim:GeneratorTypeAsset.xDirectSync>" + xDirectSync + "</cim:GeneratorTypeAsset.xDirectSync>\n" +
-        "\t\t<cim:GeneratorTypeAsset.xDirectTrans>" + xDirectTrans + "</cim:GeneratorTypeAsset.xDirectTrans>\n" +
-        "\t\t<cim:GeneratorTypeAsset.xQuadSubtrans>" + xQuadSubtrans + "</cim:GeneratorTypeAsset.xQuadSubtrans>\n" +
-        "\t\t<cim:GeneratorTypeAsset.xQuadSync>" + xQuadSync + "</cim:GeneratorTypeAsset.xQuadSync>\n" +
-        "\t\t<cim:GeneratorTypeAsset.xQuadTrans>" + xQuadTrans + "</cim:GeneratorTypeAsset.xQuadTrans>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = GeneratorTypeAsset.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GeneratorTypeAsset.fields (position), value)
+        emitelem (0, maxP)
+        emitelem (1, maxQ)
+        emitelem (2, minP)
+        emitelem (3, minQ)
+        emitelem (4, rDirectSubtrans)
+        emitelem (5, rDirectSync)
+        emitelem (6, rDirectTrans)
+        emitelem (7, rQuadSubtrans)
+        emitelem (8, rQuadSync)
+        emitelem (9, rQuadTrans)
+        emitelem (10, xDirectSubtrans)
+        emitelem (11, xDirectSync)
+        emitelem (12, xDirectTrans)
+        emitelem (13, xQuadSubtrans)
+        emitelem (14, xQuadSync)
+        emitelem (15, xQuadTrans)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:GeneratorTypeAsset rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:GeneratorTypeAsset>"
+        "\t<cim:GeneratorTypeAsset rdf:ID=\"%s\">\n%s\t</cim:GeneratorTypeAsset>".format (id, export_fields)
     }
 }
 
@@ -109,45 +117,71 @@ object GeneratorTypeAsset
 extends
     Parseable[GeneratorTypeAsset]
 {
-    val maxP = parse_element (element ("""GeneratorTypeAsset.maxP"""))
-    val maxQ = parse_element (element ("""GeneratorTypeAsset.maxQ"""))
-    val minP = parse_element (element ("""GeneratorTypeAsset.minP"""))
-    val minQ = parse_element (element ("""GeneratorTypeAsset.minQ"""))
-    val rDirectSubtrans = parse_element (element ("""GeneratorTypeAsset.rDirectSubtrans"""))
-    val rDirectSync = parse_element (element ("""GeneratorTypeAsset.rDirectSync"""))
-    val rDirectTrans = parse_element (element ("""GeneratorTypeAsset.rDirectTrans"""))
-    val rQuadSubtrans = parse_element (element ("""GeneratorTypeAsset.rQuadSubtrans"""))
-    val rQuadSync = parse_element (element ("""GeneratorTypeAsset.rQuadSync"""))
-    val rQuadTrans = parse_element (element ("""GeneratorTypeAsset.rQuadTrans"""))
-    val xDirectSubtrans = parse_element (element ("""GeneratorTypeAsset.xDirectSubtrans"""))
-    val xDirectSync = parse_element (element ("""GeneratorTypeAsset.xDirectSync"""))
-    val xDirectTrans = parse_element (element ("""GeneratorTypeAsset.xDirectTrans"""))
-    val xQuadSubtrans = parse_element (element ("""GeneratorTypeAsset.xQuadSubtrans"""))
-    val xQuadSync = parse_element (element ("""GeneratorTypeAsset.xQuadSync"""))
-    val xQuadTrans = parse_element (element ("""GeneratorTypeAsset.xQuadTrans"""))
+    val fields: Array[String] = Array[String] (
+        "maxP",
+        "maxQ",
+        "minP",
+        "minQ",
+        "rDirectSubtrans",
+        "rDirectSync",
+        "rDirectTrans",
+        "rQuadSubtrans",
+        "rQuadSync",
+        "rQuadTrans",
+        "xDirectSubtrans",
+        "xDirectSync",
+        "xDirectTrans",
+        "xQuadSubtrans",
+        "xQuadSync",
+        "xQuadTrans"
+    )
+    val maxP: Fielder = parse_element (element (cls, fields(0)))
+    val maxQ: Fielder = parse_element (element (cls, fields(1)))
+    val minP: Fielder = parse_element (element (cls, fields(2)))
+    val minQ: Fielder = parse_element (element (cls, fields(3)))
+    val rDirectSubtrans: Fielder = parse_element (element (cls, fields(4)))
+    val rDirectSync: Fielder = parse_element (element (cls, fields(5)))
+    val rDirectTrans: Fielder = parse_element (element (cls, fields(6)))
+    val rQuadSubtrans: Fielder = parse_element (element (cls, fields(7)))
+    val rQuadSync: Fielder = parse_element (element (cls, fields(8)))
+    val rQuadTrans: Fielder = parse_element (element (cls, fields(9)))
+    val xDirectSubtrans: Fielder = parse_element (element (cls, fields(10)))
+    val xDirectSync: Fielder = parse_element (element (cls, fields(11)))
+    val xDirectTrans: Fielder = parse_element (element (cls, fields(12)))
+    val xQuadSubtrans: Fielder = parse_element (element (cls, fields(13)))
+    val xQuadSync: Fielder = parse_element (element (cls, fields(14)))
+    val xQuadTrans: Fielder = parse_element (element (cls, fields(15)))
+
     def parse (context: Context): GeneratorTypeAsset =
     {
-        GeneratorTypeAsset(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = GeneratorTypeAsset (
             GenericAssetModelOrMaterial.parse (context),
-            toDouble (maxP (context), context),
-            toDouble (maxQ (context), context),
-            toDouble (minP (context), context),
-            toDouble (minQ (context), context),
-            toDouble (rDirectSubtrans (context), context),
-            toDouble (rDirectSync (context), context),
-            toDouble (rDirectTrans (context), context),
-            toDouble (rQuadSubtrans (context), context),
-            toDouble (rQuadSync (context), context),
-            toDouble (rQuadTrans (context), context),
-            toDouble (xDirectSubtrans (context), context),
-            toDouble (xDirectSync (context), context),
-            toDouble (xDirectTrans (context), context),
-            toDouble (xQuadSubtrans (context), context),
-            toDouble (xQuadSync (context), context),
-            toDouble (xQuadTrans (context), context)
+            toDouble (mask (maxP (), 0)),
+            toDouble (mask (maxQ (), 1)),
+            toDouble (mask (minP (), 2)),
+            toDouble (mask (minQ (), 3)),
+            toDouble (mask (rDirectSubtrans (), 4)),
+            toDouble (mask (rDirectSync (), 5)),
+            toDouble (mask (rDirectTrans (), 6)),
+            toDouble (mask (rQuadSubtrans (), 7)),
+            toDouble (mask (rQuadSync (), 8)),
+            toDouble (mask (rQuadTrans (), 9)),
+            toDouble (mask (xDirectSubtrans (), 10)),
+            toDouble (mask (xDirectSync (), 11)),
+            toDouble (mask (xDirectTrans (), 12)),
+            toDouble (mask (xQuadSubtrans (), 13)),
+            toDouble (mask (xQuadSync (), 14)),
+            toDouble (mask (xQuadTrans (), 15))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -173,6 +207,12 @@ extends
      */
     def this () = { this (null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -192,14 +232,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != status) "\t\t<cim:TypeAssetCatalogue.status rdf:resource=\"#" + status + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = TypeAssetCatalogue.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TypeAssetCatalogue.fields (position), value)
+        emitattr (0, status)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:TypeAssetCatalogue rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:TypeAssetCatalogue>"
+        "\t<cim:TypeAssetCatalogue rdf:ID=\"%s\">\n%s\t</cim:TypeAssetCatalogue>".format (id, export_fields)
     }
 }
 
@@ -207,15 +249,26 @@ object TypeAssetCatalogue
 extends
     Parseable[TypeAssetCatalogue]
 {
-    val status = parse_attribute (attribute ("""TypeAssetCatalogue.status"""))
+    val fields: Array[String] = Array[String] (
+        "status"
+    )
+    val status: Fielder = parse_attribute (attribute (cls, fields(0)))
+
     def parse (context: Context): TypeAssetCatalogue =
     {
-        TypeAssetCatalogue(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = TypeAssetCatalogue (
             IdentifiedObject.parse (context),
-            status (context)
+            mask (status (), 0)
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 private[ninecode] object _InfTypeAsset

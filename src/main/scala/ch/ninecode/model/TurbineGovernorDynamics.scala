@@ -138,6 +138,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Long = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -157,48 +163,51 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:GovCT1.aset>" + aset + "</cim:GovCT1.aset>\n" +
-        "\t\t<cim:GovCT1.db>" + db + "</cim:GovCT1.db>\n" +
-        "\t\t<cim:GovCT1.dm>" + dm + "</cim:GovCT1.dm>\n" +
-        "\t\t<cim:GovCT1.ka>" + ka + "</cim:GovCT1.ka>\n" +
-        "\t\t<cim:GovCT1.kdgov>" + kdgov + "</cim:GovCT1.kdgov>\n" +
-        "\t\t<cim:GovCT1.kigov>" + kigov + "</cim:GovCT1.kigov>\n" +
-        "\t\t<cim:GovCT1.kiload>" + kiload + "</cim:GovCT1.kiload>\n" +
-        "\t\t<cim:GovCT1.kimw>" + kimw + "</cim:GovCT1.kimw>\n" +
-        "\t\t<cim:GovCT1.kpgov>" + kpgov + "</cim:GovCT1.kpgov>\n" +
-        "\t\t<cim:GovCT1.kpload>" + kpload + "</cim:GovCT1.kpload>\n" +
-        "\t\t<cim:GovCT1.kturb>" + kturb + "</cim:GovCT1.kturb>\n" +
-        "\t\t<cim:GovCT1.ldref>" + ldref + "</cim:GovCT1.ldref>\n" +
-        "\t\t<cim:GovCT1.maxerr>" + maxerr + "</cim:GovCT1.maxerr>\n" +
-        "\t\t<cim:GovCT1.minerr>" + minerr + "</cim:GovCT1.minerr>\n" +
-        "\t\t<cim:GovCT1.mwbase>" + mwbase + "</cim:GovCT1.mwbase>\n" +
-        "\t\t<cim:GovCT1.r>" + r + "</cim:GovCT1.r>\n" +
-        "\t\t<cim:GovCT1.rclose>" + rclose + "</cim:GovCT1.rclose>\n" +
-        "\t\t<cim:GovCT1.rdown>" + rdown + "</cim:GovCT1.rdown>\n" +
-        "\t\t<cim:GovCT1.ropen>" + ropen + "</cim:GovCT1.ropen>\n" +
-        (if (null != rselect) "\t\t<cim:GovCT1.rselect rdf:resource=\"#" + rselect + "\"/>\n" else "") +
-        "\t\t<cim:GovCT1.rup>" + rup + "</cim:GovCT1.rup>\n" +
-        "\t\t<cim:GovCT1.ta>" + ta + "</cim:GovCT1.ta>\n" +
-        "\t\t<cim:GovCT1.tact>" + tact + "</cim:GovCT1.tact>\n" +
-        "\t\t<cim:GovCT1.tb>" + tb + "</cim:GovCT1.tb>\n" +
-        "\t\t<cim:GovCT1.tc>" + tc + "</cim:GovCT1.tc>\n" +
-        "\t\t<cim:GovCT1.tdgov>" + tdgov + "</cim:GovCT1.tdgov>\n" +
-        "\t\t<cim:GovCT1.teng>" + teng + "</cim:GovCT1.teng>\n" +
-        "\t\t<cim:GovCT1.tfload>" + tfload + "</cim:GovCT1.tfload>\n" +
-        "\t\t<cim:GovCT1.tpelec>" + tpelec + "</cim:GovCT1.tpelec>\n" +
-        "\t\t<cim:GovCT1.tsa>" + tsa + "</cim:GovCT1.tsa>\n" +
-        "\t\t<cim:GovCT1.tsb>" + tsb + "</cim:GovCT1.tsb>\n" +
-        "\t\t<cim:GovCT1.vmax>" + vmax + "</cim:GovCT1.vmax>\n" +
-        "\t\t<cim:GovCT1.vmin>" + vmin + "</cim:GovCT1.vmin>\n" +
-        "\t\t<cim:GovCT1.wfnl>" + wfnl + "</cim:GovCT1.wfnl>\n" +
-        "\t\t<cim:GovCT1.wfspd>" + wfspd + "</cim:GovCT1.wfspd>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = GovCT1.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovCT1.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (GovCT1.fields (position), value)
+        emitelem (0, aset)
+        emitelem (1, db)
+        emitelem (2, dm)
+        emitelem (3, ka)
+        emitelem (4, kdgov)
+        emitelem (5, kigov)
+        emitelem (6, kiload)
+        emitelem (7, kimw)
+        emitelem (8, kpgov)
+        emitelem (9, kpload)
+        emitelem (10, kturb)
+        emitelem (11, ldref)
+        emitelem (12, maxerr)
+        emitelem (13, minerr)
+        emitelem (14, mwbase)
+        emitelem (15, r)
+        emitelem (16, rclose)
+        emitelem (17, rdown)
+        emitelem (18, ropen)
+        emitattr (19, rselect)
+        emitelem (20, rup)
+        emitelem (21, ta)
+        emitelem (22, tact)
+        emitelem (23, tb)
+        emitelem (24, tc)
+        emitelem (25, tdgov)
+        emitelem (26, teng)
+        emitelem (27, tfload)
+        emitelem (28, tpelec)
+        emitelem (29, tsa)
+        emitelem (30, tsb)
+        emitelem (31, vmax)
+        emitelem (32, vmin)
+        emitelem (33, wfnl)
+        emitelem (34, wfspd)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:GovCT1 rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:GovCT1>"
+        "\t<cim:GovCT1 rdf:ID=\"%s\">\n%s\t</cim:GovCT1>".format (id, export_fields)
     }
 }
 
@@ -206,83 +215,128 @@ object GovCT1
 extends
     Parseable[GovCT1]
 {
-    val aset = parse_element (element ("""GovCT1.aset"""))
-    val db = parse_element (element ("""GovCT1.db"""))
-    val dm = parse_element (element ("""GovCT1.dm"""))
-    val ka = parse_element (element ("""GovCT1.ka"""))
-    val kdgov = parse_element (element ("""GovCT1.kdgov"""))
-    val kigov = parse_element (element ("""GovCT1.kigov"""))
-    val kiload = parse_element (element ("""GovCT1.kiload"""))
-    val kimw = parse_element (element ("""GovCT1.kimw"""))
-    val kpgov = parse_element (element ("""GovCT1.kpgov"""))
-    val kpload = parse_element (element ("""GovCT1.kpload"""))
-    val kturb = parse_element (element ("""GovCT1.kturb"""))
-    val ldref = parse_element (element ("""GovCT1.ldref"""))
-    val maxerr = parse_element (element ("""GovCT1.maxerr"""))
-    val minerr = parse_element (element ("""GovCT1.minerr"""))
-    val mwbase = parse_element (element ("""GovCT1.mwbase"""))
-    val r = parse_element (element ("""GovCT1.r"""))
-    val rclose = parse_element (element ("""GovCT1.rclose"""))
-    val rdown = parse_element (element ("""GovCT1.rdown"""))
-    val ropen = parse_element (element ("""GovCT1.ropen"""))
-    val rselect = parse_attribute (attribute ("""GovCT1.rselect"""))
-    val rup = parse_element (element ("""GovCT1.rup"""))
-    val ta = parse_element (element ("""GovCT1.ta"""))
-    val tact = parse_element (element ("""GovCT1.tact"""))
-    val tb = parse_element (element ("""GovCT1.tb"""))
-    val tc = parse_element (element ("""GovCT1.tc"""))
-    val tdgov = parse_element (element ("""GovCT1.tdgov"""))
-    val teng = parse_element (element ("""GovCT1.teng"""))
-    val tfload = parse_element (element ("""GovCT1.tfload"""))
-    val tpelec = parse_element (element ("""GovCT1.tpelec"""))
-    val tsa = parse_element (element ("""GovCT1.tsa"""))
-    val tsb = parse_element (element ("""GovCT1.tsb"""))
-    val vmax = parse_element (element ("""GovCT1.vmax"""))
-    val vmin = parse_element (element ("""GovCT1.vmin"""))
-    val wfnl = parse_element (element ("""GovCT1.wfnl"""))
-    val wfspd = parse_element (element ("""GovCT1.wfspd"""))
+    val fields: Array[String] = Array[String] (
+        "aset",
+        "db",
+        "dm",
+        "ka",
+        "kdgov",
+        "kigov",
+        "kiload",
+        "kimw",
+        "kpgov",
+        "kpload",
+        "kturb",
+        "ldref",
+        "maxerr",
+        "minerr",
+        "mwbase",
+        "r",
+        "rclose",
+        "rdown",
+        "ropen",
+        "rselect",
+        "rup",
+        "ta",
+        "tact",
+        "tb",
+        "tc",
+        "tdgov",
+        "teng",
+        "tfload",
+        "tpelec",
+        "tsa",
+        "tsb",
+        "vmax",
+        "vmin",
+        "wfnl",
+        "wfspd"
+    )
+    val aset: Fielder = parse_element (element (cls, fields(0)))
+    val db: Fielder = parse_element (element (cls, fields(1)))
+    val dm: Fielder = parse_element (element (cls, fields(2)))
+    val ka: Fielder = parse_element (element (cls, fields(3)))
+    val kdgov: Fielder = parse_element (element (cls, fields(4)))
+    val kigov: Fielder = parse_element (element (cls, fields(5)))
+    val kiload: Fielder = parse_element (element (cls, fields(6)))
+    val kimw: Fielder = parse_element (element (cls, fields(7)))
+    val kpgov: Fielder = parse_element (element (cls, fields(8)))
+    val kpload: Fielder = parse_element (element (cls, fields(9)))
+    val kturb: Fielder = parse_element (element (cls, fields(10)))
+    val ldref: Fielder = parse_element (element (cls, fields(11)))
+    val maxerr: Fielder = parse_element (element (cls, fields(12)))
+    val minerr: Fielder = parse_element (element (cls, fields(13)))
+    val mwbase: Fielder = parse_element (element (cls, fields(14)))
+    val r: Fielder = parse_element (element (cls, fields(15)))
+    val rclose: Fielder = parse_element (element (cls, fields(16)))
+    val rdown: Fielder = parse_element (element (cls, fields(17)))
+    val ropen: Fielder = parse_element (element (cls, fields(18)))
+    val rselect: Fielder = parse_attribute (attribute (cls, fields(19)))
+    val rup: Fielder = parse_element (element (cls, fields(20)))
+    val ta: Fielder = parse_element (element (cls, fields(21)))
+    val tact: Fielder = parse_element (element (cls, fields(22)))
+    val tb: Fielder = parse_element (element (cls, fields(23)))
+    val tc: Fielder = parse_element (element (cls, fields(24)))
+    val tdgov: Fielder = parse_element (element (cls, fields(25)))
+    val teng: Fielder = parse_element (element (cls, fields(26)))
+    val tfload: Fielder = parse_element (element (cls, fields(27)))
+    val tpelec: Fielder = parse_element (element (cls, fields(28)))
+    val tsa: Fielder = parse_element (element (cls, fields(29)))
+    val tsb: Fielder = parse_element (element (cls, fields(30)))
+    val vmax: Fielder = parse_element (element (cls, fields(31)))
+    val vmin: Fielder = parse_element (element (cls, fields(32)))
+    val wfnl: Fielder = parse_element (element (cls, fields(33)))
+    val wfspd: Fielder = parse_element (element (cls, fields(34)))
+
     def parse (context: Context): GovCT1 =
     {
-        GovCT1(
+        implicit val ctx: Context = context
+        var fields: Long = 0L
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1L << position; field._1 }
+        val ret = GovCT1 (
             TurbineGovernorDynamics.parse (context),
-            toDouble (aset (context), context),
-            toDouble (db (context), context),
-            toDouble (dm (context), context),
-            toDouble (ka (context), context),
-            toDouble (kdgov (context), context),
-            toDouble (kigov (context), context),
-            toDouble (kiload (context), context),
-            toDouble (kimw (context), context),
-            toDouble (kpgov (context), context),
-            toDouble (kpload (context), context),
-            toDouble (kturb (context), context),
-            toDouble (ldref (context), context),
-            toDouble (maxerr (context), context),
-            toDouble (minerr (context), context),
-            toDouble (mwbase (context), context),
-            toDouble (r (context), context),
-            toDouble (rclose (context), context),
-            toDouble (rdown (context), context),
-            toDouble (ropen (context), context),
-            rselect (context),
-            toDouble (rup (context), context),
-            toDouble (ta (context), context),
-            toDouble (tact (context), context),
-            toDouble (tb (context), context),
-            toDouble (tc (context), context),
-            toDouble (tdgov (context), context),
-            toDouble (teng (context), context),
-            toDouble (tfload (context), context),
-            toDouble (tpelec (context), context),
-            toDouble (tsa (context), context),
-            toDouble (tsb (context), context),
-            toDouble (vmax (context), context),
-            toDouble (vmin (context), context),
-            toDouble (wfnl (context), context),
-            toBoolean (wfspd (context), context)
+            toDouble (mask (aset (), 0)),
+            toDouble (mask (db (), 1)),
+            toDouble (mask (dm (), 2)),
+            toDouble (mask (ka (), 3)),
+            toDouble (mask (kdgov (), 4)),
+            toDouble (mask (kigov (), 5)),
+            toDouble (mask (kiload (), 6)),
+            toDouble (mask (kimw (), 7)),
+            toDouble (mask (kpgov (), 8)),
+            toDouble (mask (kpload (), 9)),
+            toDouble (mask (kturb (), 10)),
+            toDouble (mask (ldref (), 11)),
+            toDouble (mask (maxerr (), 12)),
+            toDouble (mask (minerr (), 13)),
+            toDouble (mask (mwbase (), 14)),
+            toDouble (mask (r (), 15)),
+            toDouble (mask (rclose (), 16)),
+            toDouble (mask (rdown (), 17)),
+            toDouble (mask (ropen (), 18)),
+            mask (rselect (), 19),
+            toDouble (mask (rup (), 20)),
+            toDouble (mask (ta (), 21)),
+            toDouble (mask (tact (), 22)),
+            toDouble (mask (tb (), 23)),
+            toDouble (mask (tc (), 24)),
+            toDouble (mask (tdgov (), 25)),
+            toDouble (mask (teng (), 26)),
+            toDouble (mask (tfload (), 27)),
+            toDouble (mask (tpelec (), 28)),
+            toDouble (mask (tsa (), 29)),
+            toDouble (mask (tsb (), 30)),
+            toDouble (mask (vmax (), 31)),
+            toDouble (mask (vmin (), 32)),
+            toDouble (mask (wfnl (), 33)),
+            toBoolean (mask (wfspd (), 34))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -479,6 +533,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Long = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -498,69 +558,72 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:GovCT2.aset>" + aset + "</cim:GovCT2.aset>\n" +
-        "\t\t<cim:GovCT2.db>" + db + "</cim:GovCT2.db>\n" +
-        "\t\t<cim:GovCT2.dm>" + dm + "</cim:GovCT2.dm>\n" +
-        "\t\t<cim:GovCT2.flim1>" + flim1 + "</cim:GovCT2.flim1>\n" +
-        "\t\t<cim:GovCT2.flim10>" + flim10 + "</cim:GovCT2.flim10>\n" +
-        "\t\t<cim:GovCT2.flim2>" + flim2 + "</cim:GovCT2.flim2>\n" +
-        "\t\t<cim:GovCT2.flim3>" + flim3 + "</cim:GovCT2.flim3>\n" +
-        "\t\t<cim:GovCT2.flim4>" + flim4 + "</cim:GovCT2.flim4>\n" +
-        "\t\t<cim:GovCT2.flim5>" + flim5 + "</cim:GovCT2.flim5>\n" +
-        "\t\t<cim:GovCT2.flim6>" + flim6 + "</cim:GovCT2.flim6>\n" +
-        "\t\t<cim:GovCT2.flim7>" + flim7 + "</cim:GovCT2.flim7>\n" +
-        "\t\t<cim:GovCT2.flim8>" + flim8 + "</cim:GovCT2.flim8>\n" +
-        "\t\t<cim:GovCT2.flim9>" + flim9 + "</cim:GovCT2.flim9>\n" +
-        "\t\t<cim:GovCT2.ka>" + ka + "</cim:GovCT2.ka>\n" +
-        "\t\t<cim:GovCT2.kdgov>" + kdgov + "</cim:GovCT2.kdgov>\n" +
-        "\t\t<cim:GovCT2.kigov>" + kigov + "</cim:GovCT2.kigov>\n" +
-        "\t\t<cim:GovCT2.kiload>" + kiload + "</cim:GovCT2.kiload>\n" +
-        "\t\t<cim:GovCT2.kimw>" + kimw + "</cim:GovCT2.kimw>\n" +
-        "\t\t<cim:GovCT2.kpgov>" + kpgov + "</cim:GovCT2.kpgov>\n" +
-        "\t\t<cim:GovCT2.kpload>" + kpload + "</cim:GovCT2.kpload>\n" +
-        "\t\t<cim:GovCT2.kturb>" + kturb + "</cim:GovCT2.kturb>\n" +
-        "\t\t<cim:GovCT2.ldref>" + ldref + "</cim:GovCT2.ldref>\n" +
-        "\t\t<cim:GovCT2.maxerr>" + maxerr + "</cim:GovCT2.maxerr>\n" +
-        "\t\t<cim:GovCT2.minerr>" + minerr + "</cim:GovCT2.minerr>\n" +
-        "\t\t<cim:GovCT2.mwbase>" + mwbase + "</cim:GovCT2.mwbase>\n" +
-        "\t\t<cim:GovCT2.plim1>" + plim1 + "</cim:GovCT2.plim1>\n" +
-        "\t\t<cim:GovCT2.plim10>" + plim10 + "</cim:GovCT2.plim10>\n" +
-        "\t\t<cim:GovCT2.plim2>" + plim2 + "</cim:GovCT2.plim2>\n" +
-        "\t\t<cim:GovCT2.plim3>" + plim3 + "</cim:GovCT2.plim3>\n" +
-        "\t\t<cim:GovCT2.plim4>" + plim4 + "</cim:GovCT2.plim4>\n" +
-        "\t\t<cim:GovCT2.plim5>" + plim5 + "</cim:GovCT2.plim5>\n" +
-        "\t\t<cim:GovCT2.plim6>" + plim6 + "</cim:GovCT2.plim6>\n" +
-        "\t\t<cim:GovCT2.plim7>" + plim7 + "</cim:GovCT2.plim7>\n" +
-        "\t\t<cim:GovCT2.plim8>" + plim8 + "</cim:GovCT2.plim8>\n" +
-        "\t\t<cim:GovCT2.plim9>" + plim9 + "</cim:GovCT2.plim9>\n" +
-        "\t\t<cim:GovCT2.prate>" + prate + "</cim:GovCT2.prate>\n" +
-        "\t\t<cim:GovCT2.r>" + r + "</cim:GovCT2.r>\n" +
-        "\t\t<cim:GovCT2.rclose>" + rclose + "</cim:GovCT2.rclose>\n" +
-        "\t\t<cim:GovCT2.rdown>" + rdown + "</cim:GovCT2.rdown>\n" +
-        "\t\t<cim:GovCT2.ropen>" + ropen + "</cim:GovCT2.ropen>\n" +
-        (if (null != rselect) "\t\t<cim:GovCT2.rselect rdf:resource=\"#" + rselect + "\"/>\n" else "") +
-        "\t\t<cim:GovCT2.rup>" + rup + "</cim:GovCT2.rup>\n" +
-        "\t\t<cim:GovCT2.ta>" + ta + "</cim:GovCT2.ta>\n" +
-        "\t\t<cim:GovCT2.tact>" + tact + "</cim:GovCT2.tact>\n" +
-        "\t\t<cim:GovCT2.tb>" + tb + "</cim:GovCT2.tb>\n" +
-        "\t\t<cim:GovCT2.tc>" + tc + "</cim:GovCT2.tc>\n" +
-        "\t\t<cim:GovCT2.tdgov>" + tdgov + "</cim:GovCT2.tdgov>\n" +
-        "\t\t<cim:GovCT2.teng>" + teng + "</cim:GovCT2.teng>\n" +
-        "\t\t<cim:GovCT2.tfload>" + tfload + "</cim:GovCT2.tfload>\n" +
-        "\t\t<cim:GovCT2.tpelec>" + tpelec + "</cim:GovCT2.tpelec>\n" +
-        "\t\t<cim:GovCT2.tsa>" + tsa + "</cim:GovCT2.tsa>\n" +
-        "\t\t<cim:GovCT2.tsb>" + tsb + "</cim:GovCT2.tsb>\n" +
-        "\t\t<cim:GovCT2.vmax>" + vmax + "</cim:GovCT2.vmax>\n" +
-        "\t\t<cim:GovCT2.vmin>" + vmin + "</cim:GovCT2.vmin>\n" +
-        "\t\t<cim:GovCT2.wfnl>" + wfnl + "</cim:GovCT2.wfnl>\n" +
-        "\t\t<cim:GovCT2.wfspd>" + wfspd + "</cim:GovCT2.wfspd>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = GovCT2.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovCT2.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (GovCT2.fields (position), value)
+        emitelem (0, aset)
+        emitelem (1, db)
+        emitelem (2, dm)
+        emitelem (3, flim1)
+        emitelem (4, flim10)
+        emitelem (5, flim2)
+        emitelem (6, flim3)
+        emitelem (7, flim4)
+        emitelem (8, flim5)
+        emitelem (9, flim6)
+        emitelem (10, flim7)
+        emitelem (11, flim8)
+        emitelem (12, flim9)
+        emitelem (13, ka)
+        emitelem (14, kdgov)
+        emitelem (15, kigov)
+        emitelem (16, kiload)
+        emitelem (17, kimw)
+        emitelem (18, kpgov)
+        emitelem (19, kpload)
+        emitelem (20, kturb)
+        emitelem (21, ldref)
+        emitelem (22, maxerr)
+        emitelem (23, minerr)
+        emitelem (24, mwbase)
+        emitelem (25, plim1)
+        emitelem (26, plim10)
+        emitelem (27, plim2)
+        emitelem (28, plim3)
+        emitelem (29, plim4)
+        emitelem (30, plim5)
+        emitelem (31, plim6)
+        emitelem (32, plim7)
+        emitelem (33, plim8)
+        emitelem (34, plim9)
+        emitelem (35, prate)
+        emitelem (36, r)
+        emitelem (37, rclose)
+        emitelem (38, rdown)
+        emitelem (39, ropen)
+        emitattr (40, rselect)
+        emitelem (41, rup)
+        emitelem (42, ta)
+        emitelem (43, tact)
+        emitelem (44, tb)
+        emitelem (45, tc)
+        emitelem (46, tdgov)
+        emitelem (47, teng)
+        emitelem (48, tfload)
+        emitelem (49, tpelec)
+        emitelem (50, tsa)
+        emitelem (51, tsb)
+        emitelem (52, vmax)
+        emitelem (53, vmin)
+        emitelem (54, wfnl)
+        emitelem (55, wfspd)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:GovCT2 rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:GovCT2>"
+        "\t<cim:GovCT2 rdf:ID=\"%s\">\n%s\t</cim:GovCT2>".format (id, export_fields)
     }
 }
 
@@ -568,125 +631,191 @@ object GovCT2
 extends
     Parseable[GovCT2]
 {
-    val aset = parse_element (element ("""GovCT2.aset"""))
-    val db = parse_element (element ("""GovCT2.db"""))
-    val dm = parse_element (element ("""GovCT2.dm"""))
-    val flim1 = parse_element (element ("""GovCT2.flim1"""))
-    val flim10 = parse_element (element ("""GovCT2.flim10"""))
-    val flim2 = parse_element (element ("""GovCT2.flim2"""))
-    val flim3 = parse_element (element ("""GovCT2.flim3"""))
-    val flim4 = parse_element (element ("""GovCT2.flim4"""))
-    val flim5 = parse_element (element ("""GovCT2.flim5"""))
-    val flim6 = parse_element (element ("""GovCT2.flim6"""))
-    val flim7 = parse_element (element ("""GovCT2.flim7"""))
-    val flim8 = parse_element (element ("""GovCT2.flim8"""))
-    val flim9 = parse_element (element ("""GovCT2.flim9"""))
-    val ka = parse_element (element ("""GovCT2.ka"""))
-    val kdgov = parse_element (element ("""GovCT2.kdgov"""))
-    val kigov = parse_element (element ("""GovCT2.kigov"""))
-    val kiload = parse_element (element ("""GovCT2.kiload"""))
-    val kimw = parse_element (element ("""GovCT2.kimw"""))
-    val kpgov = parse_element (element ("""GovCT2.kpgov"""))
-    val kpload = parse_element (element ("""GovCT2.kpload"""))
-    val kturb = parse_element (element ("""GovCT2.kturb"""))
-    val ldref = parse_element (element ("""GovCT2.ldref"""))
-    val maxerr = parse_element (element ("""GovCT2.maxerr"""))
-    val minerr = parse_element (element ("""GovCT2.minerr"""))
-    val mwbase = parse_element (element ("""GovCT2.mwbase"""))
-    val plim1 = parse_element (element ("""GovCT2.plim1"""))
-    val plim10 = parse_element (element ("""GovCT2.plim10"""))
-    val plim2 = parse_element (element ("""GovCT2.plim2"""))
-    val plim3 = parse_element (element ("""GovCT2.plim3"""))
-    val plim4 = parse_element (element ("""GovCT2.plim4"""))
-    val plim5 = parse_element (element ("""GovCT2.plim5"""))
-    val plim6 = parse_element (element ("""GovCT2.plim6"""))
-    val plim7 = parse_element (element ("""GovCT2.plim7"""))
-    val plim8 = parse_element (element ("""GovCT2.plim8"""))
-    val plim9 = parse_element (element ("""GovCT2.plim9"""))
-    val prate = parse_element (element ("""GovCT2.prate"""))
-    val r = parse_element (element ("""GovCT2.r"""))
-    val rclose = parse_element (element ("""GovCT2.rclose"""))
-    val rdown = parse_element (element ("""GovCT2.rdown"""))
-    val ropen = parse_element (element ("""GovCT2.ropen"""))
-    val rselect = parse_attribute (attribute ("""GovCT2.rselect"""))
-    val rup = parse_element (element ("""GovCT2.rup"""))
-    val ta = parse_element (element ("""GovCT2.ta"""))
-    val tact = parse_element (element ("""GovCT2.tact"""))
-    val tb = parse_element (element ("""GovCT2.tb"""))
-    val tc = parse_element (element ("""GovCT2.tc"""))
-    val tdgov = parse_element (element ("""GovCT2.tdgov"""))
-    val teng = parse_element (element ("""GovCT2.teng"""))
-    val tfload = parse_element (element ("""GovCT2.tfload"""))
-    val tpelec = parse_element (element ("""GovCT2.tpelec"""))
-    val tsa = parse_element (element ("""GovCT2.tsa"""))
-    val tsb = parse_element (element ("""GovCT2.tsb"""))
-    val vmax = parse_element (element ("""GovCT2.vmax"""))
-    val vmin = parse_element (element ("""GovCT2.vmin"""))
-    val wfnl = parse_element (element ("""GovCT2.wfnl"""))
-    val wfspd = parse_element (element ("""GovCT2.wfspd"""))
+    val fields: Array[String] = Array[String] (
+        "aset",
+        "db",
+        "dm",
+        "flim1",
+        "flim10",
+        "flim2",
+        "flim3",
+        "flim4",
+        "flim5",
+        "flim6",
+        "flim7",
+        "flim8",
+        "flim9",
+        "ka",
+        "kdgov",
+        "kigov",
+        "kiload",
+        "kimw",
+        "kpgov",
+        "kpload",
+        "kturb",
+        "ldref",
+        "maxerr",
+        "minerr",
+        "mwbase",
+        "plim1",
+        "plim10",
+        "plim2",
+        "plim3",
+        "plim4",
+        "plim5",
+        "plim6",
+        "plim7",
+        "plim8",
+        "plim9",
+        "prate",
+        "r",
+        "rclose",
+        "rdown",
+        "ropen",
+        "rselect",
+        "rup",
+        "ta",
+        "tact",
+        "tb",
+        "tc",
+        "tdgov",
+        "teng",
+        "tfload",
+        "tpelec",
+        "tsa",
+        "tsb",
+        "vmax",
+        "vmin",
+        "wfnl",
+        "wfspd"
+    )
+    val aset: Fielder = parse_element (element (cls, fields(0)))
+    val db: Fielder = parse_element (element (cls, fields(1)))
+    val dm: Fielder = parse_element (element (cls, fields(2)))
+    val flim1: Fielder = parse_element (element (cls, fields(3)))
+    val flim10: Fielder = parse_element (element (cls, fields(4)))
+    val flim2: Fielder = parse_element (element (cls, fields(5)))
+    val flim3: Fielder = parse_element (element (cls, fields(6)))
+    val flim4: Fielder = parse_element (element (cls, fields(7)))
+    val flim5: Fielder = parse_element (element (cls, fields(8)))
+    val flim6: Fielder = parse_element (element (cls, fields(9)))
+    val flim7: Fielder = parse_element (element (cls, fields(10)))
+    val flim8: Fielder = parse_element (element (cls, fields(11)))
+    val flim9: Fielder = parse_element (element (cls, fields(12)))
+    val ka: Fielder = parse_element (element (cls, fields(13)))
+    val kdgov: Fielder = parse_element (element (cls, fields(14)))
+    val kigov: Fielder = parse_element (element (cls, fields(15)))
+    val kiload: Fielder = parse_element (element (cls, fields(16)))
+    val kimw: Fielder = parse_element (element (cls, fields(17)))
+    val kpgov: Fielder = parse_element (element (cls, fields(18)))
+    val kpload: Fielder = parse_element (element (cls, fields(19)))
+    val kturb: Fielder = parse_element (element (cls, fields(20)))
+    val ldref: Fielder = parse_element (element (cls, fields(21)))
+    val maxerr: Fielder = parse_element (element (cls, fields(22)))
+    val minerr: Fielder = parse_element (element (cls, fields(23)))
+    val mwbase: Fielder = parse_element (element (cls, fields(24)))
+    val plim1: Fielder = parse_element (element (cls, fields(25)))
+    val plim10: Fielder = parse_element (element (cls, fields(26)))
+    val plim2: Fielder = parse_element (element (cls, fields(27)))
+    val plim3: Fielder = parse_element (element (cls, fields(28)))
+    val plim4: Fielder = parse_element (element (cls, fields(29)))
+    val plim5: Fielder = parse_element (element (cls, fields(30)))
+    val plim6: Fielder = parse_element (element (cls, fields(31)))
+    val plim7: Fielder = parse_element (element (cls, fields(32)))
+    val plim8: Fielder = parse_element (element (cls, fields(33)))
+    val plim9: Fielder = parse_element (element (cls, fields(34)))
+    val prate: Fielder = parse_element (element (cls, fields(35)))
+    val r: Fielder = parse_element (element (cls, fields(36)))
+    val rclose: Fielder = parse_element (element (cls, fields(37)))
+    val rdown: Fielder = parse_element (element (cls, fields(38)))
+    val ropen: Fielder = parse_element (element (cls, fields(39)))
+    val rselect: Fielder = parse_attribute (attribute (cls, fields(40)))
+    val rup: Fielder = parse_element (element (cls, fields(41)))
+    val ta: Fielder = parse_element (element (cls, fields(42)))
+    val tact: Fielder = parse_element (element (cls, fields(43)))
+    val tb: Fielder = parse_element (element (cls, fields(44)))
+    val tc: Fielder = parse_element (element (cls, fields(45)))
+    val tdgov: Fielder = parse_element (element (cls, fields(46)))
+    val teng: Fielder = parse_element (element (cls, fields(47)))
+    val tfload: Fielder = parse_element (element (cls, fields(48)))
+    val tpelec: Fielder = parse_element (element (cls, fields(49)))
+    val tsa: Fielder = parse_element (element (cls, fields(50)))
+    val tsb: Fielder = parse_element (element (cls, fields(51)))
+    val vmax: Fielder = parse_element (element (cls, fields(52)))
+    val vmin: Fielder = parse_element (element (cls, fields(53)))
+    val wfnl: Fielder = parse_element (element (cls, fields(54)))
+    val wfspd: Fielder = parse_element (element (cls, fields(55)))
+
     def parse (context: Context): GovCT2 =
     {
-        GovCT2(
+        implicit val ctx: Context = context
+        var fields: Long = 0L
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1L << position; field._1 }
+        val ret = GovCT2 (
             TurbineGovernorDynamics.parse (context),
-            toDouble (aset (context), context),
-            toDouble (db (context), context),
-            toDouble (dm (context), context),
-            toDouble (flim1 (context), context),
-            toDouble (flim10 (context), context),
-            toDouble (flim2 (context), context),
-            toDouble (flim3 (context), context),
-            toDouble (flim4 (context), context),
-            toDouble (flim5 (context), context),
-            toDouble (flim6 (context), context),
-            toDouble (flim7 (context), context),
-            toDouble (flim8 (context), context),
-            toDouble (flim9 (context), context),
-            toDouble (ka (context), context),
-            toDouble (kdgov (context), context),
-            toDouble (kigov (context), context),
-            toDouble (kiload (context), context),
-            toDouble (kimw (context), context),
-            toDouble (kpgov (context), context),
-            toDouble (kpload (context), context),
-            toDouble (kturb (context), context),
-            toDouble (ldref (context), context),
-            toDouble (maxerr (context), context),
-            toDouble (minerr (context), context),
-            toDouble (mwbase (context), context),
-            toDouble (plim1 (context), context),
-            toDouble (plim10 (context), context),
-            toDouble (plim2 (context), context),
-            toDouble (plim3 (context), context),
-            toDouble (plim4 (context), context),
-            toDouble (plim5 (context), context),
-            toDouble (plim6 (context), context),
-            toDouble (plim7 (context), context),
-            toDouble (plim8 (context), context),
-            toDouble (plim9 (context), context),
-            toDouble (prate (context), context),
-            toDouble (r (context), context),
-            toDouble (rclose (context), context),
-            toDouble (rdown (context), context),
-            toDouble (ropen (context), context),
-            rselect (context),
-            toDouble (rup (context), context),
-            toDouble (ta (context), context),
-            toDouble (tact (context), context),
-            toDouble (tb (context), context),
-            toDouble (tc (context), context),
-            toDouble (tdgov (context), context),
-            toDouble (teng (context), context),
-            toDouble (tfload (context), context),
-            toDouble (tpelec (context), context),
-            toDouble (tsa (context), context),
-            toDouble (tsb (context), context),
-            toDouble (vmax (context), context),
-            toDouble (vmin (context), context),
-            toDouble (wfnl (context), context),
-            toBoolean (wfspd (context), context)
+            toDouble (mask (aset (), 0)),
+            toDouble (mask (db (), 1)),
+            toDouble (mask (dm (), 2)),
+            toDouble (mask (flim1 (), 3)),
+            toDouble (mask (flim10 (), 4)),
+            toDouble (mask (flim2 (), 5)),
+            toDouble (mask (flim3 (), 6)),
+            toDouble (mask (flim4 (), 7)),
+            toDouble (mask (flim5 (), 8)),
+            toDouble (mask (flim6 (), 9)),
+            toDouble (mask (flim7 (), 10)),
+            toDouble (mask (flim8 (), 11)),
+            toDouble (mask (flim9 (), 12)),
+            toDouble (mask (ka (), 13)),
+            toDouble (mask (kdgov (), 14)),
+            toDouble (mask (kigov (), 15)),
+            toDouble (mask (kiload (), 16)),
+            toDouble (mask (kimw (), 17)),
+            toDouble (mask (kpgov (), 18)),
+            toDouble (mask (kpload (), 19)),
+            toDouble (mask (kturb (), 20)),
+            toDouble (mask (ldref (), 21)),
+            toDouble (mask (maxerr (), 22)),
+            toDouble (mask (minerr (), 23)),
+            toDouble (mask (mwbase (), 24)),
+            toDouble (mask (plim1 (), 25)),
+            toDouble (mask (plim10 (), 26)),
+            toDouble (mask (plim2 (), 27)),
+            toDouble (mask (plim3 (), 28)),
+            toDouble (mask (plim4 (), 29)),
+            toDouble (mask (plim5 (), 30)),
+            toDouble (mask (plim6 (), 31)),
+            toDouble (mask (plim7 (), 32)),
+            toDouble (mask (plim8 (), 33)),
+            toDouble (mask (plim9 (), 34)),
+            toDouble (mask (prate (), 35)),
+            toDouble (mask (r (), 36)),
+            toDouble (mask (rclose (), 37)),
+            toDouble (mask (rdown (), 38)),
+            toDouble (mask (ropen (), 39)),
+            mask (rselect (), 40),
+            toDouble (mask (rup (), 41)),
+            toDouble (mask (ta (), 42)),
+            toDouble (mask (tact (), 43)),
+            toDouble (mask (tb (), 44)),
+            toDouble (mask (tc (), 45)),
+            toDouble (mask (tdgov (), 46)),
+            toDouble (mask (teng (), 47)),
+            toDouble (mask (tfload (), 48)),
+            toDouble (mask (tpelec (), 49)),
+            toDouble (mask (tsa (), 50)),
+            toDouble (mask (tsb (), 51)),
+            toDouble (mask (vmax (), 52)),
+            toDouble (mask (vmin (), 53)),
+            toDouble (mask (wfnl (), 54)),
+            toBoolean (mask (wfspd (), 55))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -740,6 +869,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -759,23 +894,25 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:GovGAST.at>" + at + "</cim:GovGAST.at>\n" +
-        "\t\t<cim:GovGAST.dturb>" + dturb + "</cim:GovGAST.dturb>\n" +
-        "\t\t<cim:GovGAST.kt>" + kt + "</cim:GovGAST.kt>\n" +
-        "\t\t<cim:GovGAST.mwbase>" + mwbase + "</cim:GovGAST.mwbase>\n" +
-        "\t\t<cim:GovGAST.r>" + r + "</cim:GovGAST.r>\n" +
-        "\t\t<cim:GovGAST.t1>" + t1 + "</cim:GovGAST.t1>\n" +
-        "\t\t<cim:GovGAST.t2>" + t2 + "</cim:GovGAST.t2>\n" +
-        "\t\t<cim:GovGAST.t3>" + t3 + "</cim:GovGAST.t3>\n" +
-        "\t\t<cim:GovGAST.vmax>" + vmax + "</cim:GovGAST.vmax>\n" +
-        "\t\t<cim:GovGAST.vmin>" + vmin + "</cim:GovGAST.vmin>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = GovGAST.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovGAST.fields (position), value)
+        emitelem (0, at)
+        emitelem (1, dturb)
+        emitelem (2, kt)
+        emitelem (3, mwbase)
+        emitelem (4, r)
+        emitelem (5, t1)
+        emitelem (6, t2)
+        emitelem (7, t3)
+        emitelem (8, vmax)
+        emitelem (9, vmin)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:GovGAST rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:GovGAST>"
+        "\t<cim:GovGAST rdf:ID=\"%s\">\n%s\t</cim:GovGAST>".format (id, export_fields)
     }
 }
 
@@ -783,33 +920,53 @@ object GovGAST
 extends
     Parseable[GovGAST]
 {
-    val at = parse_element (element ("""GovGAST.at"""))
-    val dturb = parse_element (element ("""GovGAST.dturb"""))
-    val kt = parse_element (element ("""GovGAST.kt"""))
-    val mwbase = parse_element (element ("""GovGAST.mwbase"""))
-    val r = parse_element (element ("""GovGAST.r"""))
-    val t1 = parse_element (element ("""GovGAST.t1"""))
-    val t2 = parse_element (element ("""GovGAST.t2"""))
-    val t3 = parse_element (element ("""GovGAST.t3"""))
-    val vmax = parse_element (element ("""GovGAST.vmax"""))
-    val vmin = parse_element (element ("""GovGAST.vmin"""))
+    val fields: Array[String] = Array[String] (
+        "at",
+        "dturb",
+        "kt",
+        "mwbase",
+        "r",
+        "t1",
+        "t2",
+        "t3",
+        "vmax",
+        "vmin"
+    )
+    val at: Fielder = parse_element (element (cls, fields(0)))
+    val dturb: Fielder = parse_element (element (cls, fields(1)))
+    val kt: Fielder = parse_element (element (cls, fields(2)))
+    val mwbase: Fielder = parse_element (element (cls, fields(3)))
+    val r: Fielder = parse_element (element (cls, fields(4)))
+    val t1: Fielder = parse_element (element (cls, fields(5)))
+    val t2: Fielder = parse_element (element (cls, fields(6)))
+    val t3: Fielder = parse_element (element (cls, fields(7)))
+    val vmax: Fielder = parse_element (element (cls, fields(8)))
+    val vmin: Fielder = parse_element (element (cls, fields(9)))
+
     def parse (context: Context): GovGAST =
     {
-        GovGAST(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = GovGAST (
             TurbineGovernorDynamics.parse (context),
-            toDouble (at (context), context),
-            toDouble (dturb (context), context),
-            toDouble (kt (context), context),
-            toDouble (mwbase (context), context),
-            toDouble (r (context), context),
-            toDouble (t1 (context), context),
-            toDouble (t2 (context), context),
-            toDouble (t3 (context), context),
-            toDouble (vmax (context), context),
-            toDouble (vmin (context), context)
+            toDouble (mask (at (), 0)),
+            toDouble (mask (dturb (), 1)),
+            toDouble (mask (kt (), 2)),
+            toDouble (mask (mwbase (), 3)),
+            toDouble (mask (r (), 4)),
+            toDouble (mask (t1 (), 5)),
+            toDouble (mask (t2 (), 6)),
+            toDouble (mask (t3 (), 7)),
+            toDouble (mask (vmax (), 8)),
+            toDouble (mask (vmin (), 9))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -936,6 +1093,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Long = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -955,47 +1118,49 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:GovGAST1.a>" + a + "</cim:GovGAST1.a>\n" +
-        "\t\t<cim:GovGAST1.b>" + b + "</cim:GovGAST1.b>\n" +
-        "\t\t<cim:GovGAST1.db1>" + db1 + "</cim:GovGAST1.db1>\n" +
-        "\t\t<cim:GovGAST1.db2>" + db2 + "</cim:GovGAST1.db2>\n" +
-        "\t\t<cim:GovGAST1.eps>" + eps + "</cim:GovGAST1.eps>\n" +
-        "\t\t<cim:GovGAST1.fidle>" + fidle + "</cim:GovGAST1.fidle>\n" +
-        "\t\t<cim:GovGAST1.gv1>" + gv1 + "</cim:GovGAST1.gv1>\n" +
-        "\t\t<cim:GovGAST1.gv2>" + gv2 + "</cim:GovGAST1.gv2>\n" +
-        "\t\t<cim:GovGAST1.gv3>" + gv3 + "</cim:GovGAST1.gv3>\n" +
-        "\t\t<cim:GovGAST1.gv4>" + gv4 + "</cim:GovGAST1.gv4>\n" +
-        "\t\t<cim:GovGAST1.gv5>" + gv5 + "</cim:GovGAST1.gv5>\n" +
-        "\t\t<cim:GovGAST1.gv6>" + gv6 + "</cim:GovGAST1.gv6>\n" +
-        "\t\t<cim:GovGAST1.ka>" + ka + "</cim:GovGAST1.ka>\n" +
-        "\t\t<cim:GovGAST1.kt>" + kt + "</cim:GovGAST1.kt>\n" +
-        "\t\t<cim:GovGAST1.lmax>" + lmax + "</cim:GovGAST1.lmax>\n" +
-        "\t\t<cim:GovGAST1.loadinc>" + loadinc + "</cim:GovGAST1.loadinc>\n" +
-        "\t\t<cim:GovGAST1.ltrate>" + ltrate + "</cim:GovGAST1.ltrate>\n" +
-        "\t\t<cim:GovGAST1.mwbase>" + mwbase + "</cim:GovGAST1.mwbase>\n" +
-        "\t\t<cim:GovGAST1.pgv1>" + pgv1 + "</cim:GovGAST1.pgv1>\n" +
-        "\t\t<cim:GovGAST1.pgv2>" + pgv2 + "</cim:GovGAST1.pgv2>\n" +
-        "\t\t<cim:GovGAST1.pgv3>" + pgv3 + "</cim:GovGAST1.pgv3>\n" +
-        "\t\t<cim:GovGAST1.pgv4>" + pgv4 + "</cim:GovGAST1.pgv4>\n" +
-        "\t\t<cim:GovGAST1.pgv5>" + pgv5 + "</cim:GovGAST1.pgv5>\n" +
-        "\t\t<cim:GovGAST1.pgv6>" + pgv6 + "</cim:GovGAST1.pgv6>\n" +
-        "\t\t<cim:GovGAST1.r>" + r + "</cim:GovGAST1.r>\n" +
-        "\t\t<cim:GovGAST1.rmax>" + rmax + "</cim:GovGAST1.rmax>\n" +
-        "\t\t<cim:GovGAST1.t1>" + t1 + "</cim:GovGAST1.t1>\n" +
-        "\t\t<cim:GovGAST1.t2>" + t2 + "</cim:GovGAST1.t2>\n" +
-        "\t\t<cim:GovGAST1.t3>" + t3 + "</cim:GovGAST1.t3>\n" +
-        "\t\t<cim:GovGAST1.t4>" + t4 + "</cim:GovGAST1.t4>\n" +
-        "\t\t<cim:GovGAST1.t5>" + t5 + "</cim:GovGAST1.t5>\n" +
-        "\t\t<cim:GovGAST1.tltr>" + tltr + "</cim:GovGAST1.tltr>\n" +
-        "\t\t<cim:GovGAST1.vmax>" + vmax + "</cim:GovGAST1.vmax>\n" +
-        "\t\t<cim:GovGAST1.vmin>" + vmin + "</cim:GovGAST1.vmin>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = GovGAST1.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovGAST1.fields (position), value)
+        emitelem (0, a)
+        emitelem (1, b)
+        emitelem (2, db1)
+        emitelem (3, db2)
+        emitelem (4, eps)
+        emitelem (5, fidle)
+        emitelem (6, gv1)
+        emitelem (7, gv2)
+        emitelem (8, gv3)
+        emitelem (9, gv4)
+        emitelem (10, gv5)
+        emitelem (11, gv6)
+        emitelem (12, ka)
+        emitelem (13, kt)
+        emitelem (14, lmax)
+        emitelem (15, loadinc)
+        emitelem (16, ltrate)
+        emitelem (17, mwbase)
+        emitelem (18, pgv1)
+        emitelem (19, pgv2)
+        emitelem (20, pgv3)
+        emitelem (21, pgv4)
+        emitelem (22, pgv5)
+        emitelem (23, pgv6)
+        emitelem (24, r)
+        emitelem (25, rmax)
+        emitelem (26, t1)
+        emitelem (27, t2)
+        emitelem (28, t3)
+        emitelem (29, t4)
+        emitelem (30, t5)
+        emitelem (31, tltr)
+        emitelem (32, vmax)
+        emitelem (33, vmin)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:GovGAST1 rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:GovGAST1>"
+        "\t<cim:GovGAST1 rdf:ID=\"%s\">\n%s\t</cim:GovGAST1>".format (id, export_fields)
     }
 }
 
@@ -1003,81 +1168,125 @@ object GovGAST1
 extends
     Parseable[GovGAST1]
 {
-    val a = parse_element (element ("""GovGAST1.a"""))
-    val b = parse_element (element ("""GovGAST1.b"""))
-    val db1 = parse_element (element ("""GovGAST1.db1"""))
-    val db2 = parse_element (element ("""GovGAST1.db2"""))
-    val eps = parse_element (element ("""GovGAST1.eps"""))
-    val fidle = parse_element (element ("""GovGAST1.fidle"""))
-    val gv1 = parse_element (element ("""GovGAST1.gv1"""))
-    val gv2 = parse_element (element ("""GovGAST1.gv2"""))
-    val gv3 = parse_element (element ("""GovGAST1.gv3"""))
-    val gv4 = parse_element (element ("""GovGAST1.gv4"""))
-    val gv5 = parse_element (element ("""GovGAST1.gv5"""))
-    val gv6 = parse_element (element ("""GovGAST1.gv6"""))
-    val ka = parse_element (element ("""GovGAST1.ka"""))
-    val kt = parse_element (element ("""GovGAST1.kt"""))
-    val lmax = parse_element (element ("""GovGAST1.lmax"""))
-    val loadinc = parse_element (element ("""GovGAST1.loadinc"""))
-    val ltrate = parse_element (element ("""GovGAST1.ltrate"""))
-    val mwbase = parse_element (element ("""GovGAST1.mwbase"""))
-    val pgv1 = parse_element (element ("""GovGAST1.pgv1"""))
-    val pgv2 = parse_element (element ("""GovGAST1.pgv2"""))
-    val pgv3 = parse_element (element ("""GovGAST1.pgv3"""))
-    val pgv4 = parse_element (element ("""GovGAST1.pgv4"""))
-    val pgv5 = parse_element (element ("""GovGAST1.pgv5"""))
-    val pgv6 = parse_element (element ("""GovGAST1.pgv6"""))
-    val r = parse_element (element ("""GovGAST1.r"""))
-    val rmax = parse_element (element ("""GovGAST1.rmax"""))
-    val t1 = parse_element (element ("""GovGAST1.t1"""))
-    val t2 = parse_element (element ("""GovGAST1.t2"""))
-    val t3 = parse_element (element ("""GovGAST1.t3"""))
-    val t4 = parse_element (element ("""GovGAST1.t4"""))
-    val t5 = parse_element (element ("""GovGAST1.t5"""))
-    val tltr = parse_element (element ("""GovGAST1.tltr"""))
-    val vmax = parse_element (element ("""GovGAST1.vmax"""))
-    val vmin = parse_element (element ("""GovGAST1.vmin"""))
+    val fields: Array[String] = Array[String] (
+        "a",
+        "b",
+        "db1",
+        "db2",
+        "eps",
+        "fidle",
+        "gv1",
+        "gv2",
+        "gv3",
+        "gv4",
+        "gv5",
+        "gv6",
+        "ka",
+        "kt",
+        "lmax",
+        "loadinc",
+        "ltrate",
+        "mwbase",
+        "pgv1",
+        "pgv2",
+        "pgv3",
+        "pgv4",
+        "pgv5",
+        "pgv6",
+        "r",
+        "rmax",
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "tltr",
+        "vmax",
+        "vmin"
+    )
+    val a: Fielder = parse_element (element (cls, fields(0)))
+    val b: Fielder = parse_element (element (cls, fields(1)))
+    val db1: Fielder = parse_element (element (cls, fields(2)))
+    val db2: Fielder = parse_element (element (cls, fields(3)))
+    val eps: Fielder = parse_element (element (cls, fields(4)))
+    val fidle: Fielder = parse_element (element (cls, fields(5)))
+    val gv1: Fielder = parse_element (element (cls, fields(6)))
+    val gv2: Fielder = parse_element (element (cls, fields(7)))
+    val gv3: Fielder = parse_element (element (cls, fields(8)))
+    val gv4: Fielder = parse_element (element (cls, fields(9)))
+    val gv5: Fielder = parse_element (element (cls, fields(10)))
+    val gv6: Fielder = parse_element (element (cls, fields(11)))
+    val ka: Fielder = parse_element (element (cls, fields(12)))
+    val kt: Fielder = parse_element (element (cls, fields(13)))
+    val lmax: Fielder = parse_element (element (cls, fields(14)))
+    val loadinc: Fielder = parse_element (element (cls, fields(15)))
+    val ltrate: Fielder = parse_element (element (cls, fields(16)))
+    val mwbase: Fielder = parse_element (element (cls, fields(17)))
+    val pgv1: Fielder = parse_element (element (cls, fields(18)))
+    val pgv2: Fielder = parse_element (element (cls, fields(19)))
+    val pgv3: Fielder = parse_element (element (cls, fields(20)))
+    val pgv4: Fielder = parse_element (element (cls, fields(21)))
+    val pgv5: Fielder = parse_element (element (cls, fields(22)))
+    val pgv6: Fielder = parse_element (element (cls, fields(23)))
+    val r: Fielder = parse_element (element (cls, fields(24)))
+    val rmax: Fielder = parse_element (element (cls, fields(25)))
+    val t1: Fielder = parse_element (element (cls, fields(26)))
+    val t2: Fielder = parse_element (element (cls, fields(27)))
+    val t3: Fielder = parse_element (element (cls, fields(28)))
+    val t4: Fielder = parse_element (element (cls, fields(29)))
+    val t5: Fielder = parse_element (element (cls, fields(30)))
+    val tltr: Fielder = parse_element (element (cls, fields(31)))
+    val vmax: Fielder = parse_element (element (cls, fields(32)))
+    val vmin: Fielder = parse_element (element (cls, fields(33)))
+
     def parse (context: Context): GovGAST1 =
     {
-        GovGAST1(
+        implicit val ctx: Context = context
+        var fields: Long = 0L
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1L << position; field._1 }
+        val ret = GovGAST1 (
             TurbineGovernorDynamics.parse (context),
-            toDouble (a (context), context),
-            toDouble (b (context), context),
-            toDouble (db1 (context), context),
-            toDouble (db2 (context), context),
-            toDouble (eps (context), context),
-            toDouble (fidle (context), context),
-            toDouble (gv1 (context), context),
-            toDouble (gv2 (context), context),
-            toDouble (gv3 (context), context),
-            toDouble (gv4 (context), context),
-            toDouble (gv5 (context), context),
-            toDouble (gv6 (context), context),
-            toDouble (ka (context), context),
-            toDouble (kt (context), context),
-            toDouble (lmax (context), context),
-            toDouble (loadinc (context), context),
-            toDouble (ltrate (context), context),
-            toDouble (mwbase (context), context),
-            toDouble (pgv1 (context), context),
-            toDouble (pgv2 (context), context),
-            toDouble (pgv3 (context), context),
-            toDouble (pgv4 (context), context),
-            toDouble (pgv5 (context), context),
-            toDouble (pgv6 (context), context),
-            toDouble (r (context), context),
-            toDouble (rmax (context), context),
-            toDouble (t1 (context), context),
-            toDouble (t2 (context), context),
-            toDouble (t3 (context), context),
-            toDouble (t4 (context), context),
-            toDouble (t5 (context), context),
-            toDouble (tltr (context), context),
-            toDouble (vmax (context), context),
-            toDouble (vmin (context), context)
+            toDouble (mask (a (), 0)),
+            toDouble (mask (b (), 1)),
+            toDouble (mask (db1 (), 2)),
+            toDouble (mask (db2 (), 3)),
+            toDouble (mask (eps (), 4)),
+            toDouble (mask (fidle (), 5)),
+            toDouble (mask (gv1 (), 6)),
+            toDouble (mask (gv2 (), 7)),
+            toDouble (mask (gv3 (), 8)),
+            toDouble (mask (gv4 (), 9)),
+            toDouble (mask (gv5 (), 10)),
+            toDouble (mask (gv6 (), 11)),
+            toDouble (mask (ka (), 12)),
+            toDouble (mask (kt (), 13)),
+            toDouble (mask (lmax (), 14)),
+            toDouble (mask (loadinc (), 15)),
+            toDouble (mask (ltrate (), 16)),
+            toDouble (mask (mwbase (), 17)),
+            toDouble (mask (pgv1 (), 18)),
+            toDouble (mask (pgv2 (), 19)),
+            toDouble (mask (pgv3 (), 20)),
+            toDouble (mask (pgv4 (), 21)),
+            toDouble (mask (pgv5 (), 22)),
+            toDouble (mask (pgv6 (), 23)),
+            toDouble (mask (r (), 24)),
+            toDouble (mask (rmax (), 25)),
+            toDouble (mask (t1 (), 26)),
+            toDouble (mask (t2 (), 27)),
+            toDouble (mask (t3 (), 28)),
+            toDouble (mask (t4 (), 29)),
+            toDouble (mask (t5 (), 30)),
+            toDouble (mask (tltr (), 31)),
+            toDouble (mask (vmax (), 32)),
+            toDouble (mask (vmin (), 33))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -1175,6 +1384,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -1194,45 +1409,47 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:GovGAST2.a>" + a + "</cim:GovGAST2.a>\n" +
-        "\t\t<cim:GovGAST2.af1>" + af1 + "</cim:GovGAST2.af1>\n" +
-        "\t\t<cim:GovGAST2.af2>" + af2 + "</cim:GovGAST2.af2>\n" +
-        "\t\t<cim:GovGAST2.b>" + b + "</cim:GovGAST2.b>\n" +
-        "\t\t<cim:GovGAST2.bf1>" + bf1 + "</cim:GovGAST2.bf1>\n" +
-        "\t\t<cim:GovGAST2.bf2>" + bf2 + "</cim:GovGAST2.bf2>\n" +
-        "\t\t<cim:GovGAST2.c>" + c + "</cim:GovGAST2.c>\n" +
-        "\t\t<cim:GovGAST2.cf2>" + cf2 + "</cim:GovGAST2.cf2>\n" +
-        "\t\t<cim:GovGAST2.ecr>" + ecr + "</cim:GovGAST2.ecr>\n" +
-        "\t\t<cim:GovGAST2.etd>" + etd + "</cim:GovGAST2.etd>\n" +
-        "\t\t<cim:GovGAST2.k3>" + k3 + "</cim:GovGAST2.k3>\n" +
-        "\t\t<cim:GovGAST2.k4>" + k4 + "</cim:GovGAST2.k4>\n" +
-        "\t\t<cim:GovGAST2.k5>" + k5 + "</cim:GovGAST2.k5>\n" +
-        "\t\t<cim:GovGAST2.k6>" + k6 + "</cim:GovGAST2.k6>\n" +
-        "\t\t<cim:GovGAST2.kf>" + kf + "</cim:GovGAST2.kf>\n" +
-        "\t\t<cim:GovGAST2.mwbase>" + mwbase + "</cim:GovGAST2.mwbase>\n" +
-        "\t\t<cim:GovGAST2.t>" + t + "</cim:GovGAST2.t>\n" +
-        "\t\t<cim:GovGAST2.t3>" + t3 + "</cim:GovGAST2.t3>\n" +
-        "\t\t<cim:GovGAST2.t4>" + t4 + "</cim:GovGAST2.t4>\n" +
-        "\t\t<cim:GovGAST2.t5>" + t5 + "</cim:GovGAST2.t5>\n" +
-        "\t\t<cim:GovGAST2.tc>" + tc + "</cim:GovGAST2.tc>\n" +
-        "\t\t<cim:GovGAST2.tcd>" + tcd + "</cim:GovGAST2.tcd>\n" +
-        "\t\t<cim:GovGAST2.tf>" + tf + "</cim:GovGAST2.tf>\n" +
-        "\t\t<cim:GovGAST2.tmax>" + tmax + "</cim:GovGAST2.tmax>\n" +
-        "\t\t<cim:GovGAST2.tmin>" + tmin + "</cim:GovGAST2.tmin>\n" +
-        "\t\t<cim:GovGAST2.tr>" + tr + "</cim:GovGAST2.tr>\n" +
-        "\t\t<cim:GovGAST2.trate>" + trate + "</cim:GovGAST2.trate>\n" +
-        "\t\t<cim:GovGAST2.tt>" + tt + "</cim:GovGAST2.tt>\n" +
-        "\t\t<cim:GovGAST2.w>" + w + "</cim:GovGAST2.w>\n" +
-        "\t\t<cim:GovGAST2.x>" + x + "</cim:GovGAST2.x>\n" +
-        "\t\t<cim:GovGAST2.y>" + y + "</cim:GovGAST2.y>\n" +
-        "\t\t<cim:GovGAST2.z>" + z + "</cim:GovGAST2.z>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = GovGAST2.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovGAST2.fields (position), value)
+        emitelem (0, a)
+        emitelem (1, af1)
+        emitelem (2, af2)
+        emitelem (3, b)
+        emitelem (4, bf1)
+        emitelem (5, bf2)
+        emitelem (6, c)
+        emitelem (7, cf2)
+        emitelem (8, ecr)
+        emitelem (9, etd)
+        emitelem (10, k3)
+        emitelem (11, k4)
+        emitelem (12, k5)
+        emitelem (13, k6)
+        emitelem (14, kf)
+        emitelem (15, mwbase)
+        emitelem (16, t)
+        emitelem (17, t3)
+        emitelem (18, t4)
+        emitelem (19, t5)
+        emitelem (20, tc)
+        emitelem (21, tcd)
+        emitelem (22, tf)
+        emitelem (23, tmax)
+        emitelem (24, tmin)
+        emitelem (25, tr)
+        emitelem (26, trate)
+        emitelem (27, tt)
+        emitelem (28, w)
+        emitelem (29, x)
+        emitelem (30, y)
+        emitelem (31, z)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:GovGAST2 rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:GovGAST2>"
+        "\t<cim:GovGAST2 rdf:ID=\"%s\">\n%s\t</cim:GovGAST2>".format (id, export_fields)
     }
 }
 
@@ -1240,77 +1457,119 @@ object GovGAST2
 extends
     Parseable[GovGAST2]
 {
-    val a = parse_element (element ("""GovGAST2.a"""))
-    val af1 = parse_element (element ("""GovGAST2.af1"""))
-    val af2 = parse_element (element ("""GovGAST2.af2"""))
-    val b = parse_element (element ("""GovGAST2.b"""))
-    val bf1 = parse_element (element ("""GovGAST2.bf1"""))
-    val bf2 = parse_element (element ("""GovGAST2.bf2"""))
-    val c = parse_element (element ("""GovGAST2.c"""))
-    val cf2 = parse_element (element ("""GovGAST2.cf2"""))
-    val ecr = parse_element (element ("""GovGAST2.ecr"""))
-    val etd = parse_element (element ("""GovGAST2.etd"""))
-    val k3 = parse_element (element ("""GovGAST2.k3"""))
-    val k4 = parse_element (element ("""GovGAST2.k4"""))
-    val k5 = parse_element (element ("""GovGAST2.k5"""))
-    val k6 = parse_element (element ("""GovGAST2.k6"""))
-    val kf = parse_element (element ("""GovGAST2.kf"""))
-    val mwbase = parse_element (element ("""GovGAST2.mwbase"""))
-    val t = parse_element (element ("""GovGAST2.t"""))
-    val t3 = parse_element (element ("""GovGAST2.t3"""))
-    val t4 = parse_element (element ("""GovGAST2.t4"""))
-    val t5 = parse_element (element ("""GovGAST2.t5"""))
-    val tc = parse_element (element ("""GovGAST2.tc"""))
-    val tcd = parse_element (element ("""GovGAST2.tcd"""))
-    val tf = parse_element (element ("""GovGAST2.tf"""))
-    val tmax = parse_element (element ("""GovGAST2.tmax"""))
-    val tmin = parse_element (element ("""GovGAST2.tmin"""))
-    val tr = parse_element (element ("""GovGAST2.tr"""))
-    val trate = parse_element (element ("""GovGAST2.trate"""))
-    val tt = parse_element (element ("""GovGAST2.tt"""))
-    val w = parse_element (element ("""GovGAST2.w"""))
-    val x = parse_element (element ("""GovGAST2.x"""))
-    val y = parse_element (element ("""GovGAST2.y"""))
-    val z = parse_element (element ("""GovGAST2.z"""))
+    val fields: Array[String] = Array[String] (
+        "a",
+        "af1",
+        "af2",
+        "b",
+        "bf1",
+        "bf2",
+        "c",
+        "cf2",
+        "ecr",
+        "etd",
+        "k3",
+        "k4",
+        "k5",
+        "k6",
+        "kf",
+        "mwbase",
+        "t",
+        "t3",
+        "t4",
+        "t5",
+        "tc",
+        "tcd",
+        "tf",
+        "tmax",
+        "tmin",
+        "tr",
+        "trate",
+        "tt",
+        "w",
+        "x",
+        "y",
+        "z"
+    )
+    val a: Fielder = parse_element (element (cls, fields(0)))
+    val af1: Fielder = parse_element (element (cls, fields(1)))
+    val af2: Fielder = parse_element (element (cls, fields(2)))
+    val b: Fielder = parse_element (element (cls, fields(3)))
+    val bf1: Fielder = parse_element (element (cls, fields(4)))
+    val bf2: Fielder = parse_element (element (cls, fields(5)))
+    val c: Fielder = parse_element (element (cls, fields(6)))
+    val cf2: Fielder = parse_element (element (cls, fields(7)))
+    val ecr: Fielder = parse_element (element (cls, fields(8)))
+    val etd: Fielder = parse_element (element (cls, fields(9)))
+    val k3: Fielder = parse_element (element (cls, fields(10)))
+    val k4: Fielder = parse_element (element (cls, fields(11)))
+    val k5: Fielder = parse_element (element (cls, fields(12)))
+    val k6: Fielder = parse_element (element (cls, fields(13)))
+    val kf: Fielder = parse_element (element (cls, fields(14)))
+    val mwbase: Fielder = parse_element (element (cls, fields(15)))
+    val t: Fielder = parse_element (element (cls, fields(16)))
+    val t3: Fielder = parse_element (element (cls, fields(17)))
+    val t4: Fielder = parse_element (element (cls, fields(18)))
+    val t5: Fielder = parse_element (element (cls, fields(19)))
+    val tc: Fielder = parse_element (element (cls, fields(20)))
+    val tcd: Fielder = parse_element (element (cls, fields(21)))
+    val tf: Fielder = parse_element (element (cls, fields(22)))
+    val tmax: Fielder = parse_element (element (cls, fields(23)))
+    val tmin: Fielder = parse_element (element (cls, fields(24)))
+    val tr: Fielder = parse_element (element (cls, fields(25)))
+    val trate: Fielder = parse_element (element (cls, fields(26)))
+    val tt: Fielder = parse_element (element (cls, fields(27)))
+    val w: Fielder = parse_element (element (cls, fields(28)))
+    val x: Fielder = parse_element (element (cls, fields(29)))
+    val y: Fielder = parse_element (element (cls, fields(30)))
+    val z: Fielder = parse_element (element (cls, fields(31)))
+
     def parse (context: Context): GovGAST2 =
     {
-        GovGAST2(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = GovGAST2 (
             TurbineGovernorDynamics.parse (context),
-            toDouble (a (context), context),
-            toDouble (af1 (context), context),
-            toDouble (af2 (context), context),
-            toDouble (b (context), context),
-            toDouble (bf1 (context), context),
-            toDouble (bf2 (context), context),
-            toDouble (c (context), context),
-            toDouble (cf2 (context), context),
-            toDouble (ecr (context), context),
-            toDouble (etd (context), context),
-            toDouble (k3 (context), context),
-            toDouble (k4 (context), context),
-            toDouble (k5 (context), context),
-            toDouble (k6 (context), context),
-            toDouble (kf (context), context),
-            toDouble (mwbase (context), context),
-            toDouble (t (context), context),
-            toDouble (t3 (context), context),
-            toDouble (t4 (context), context),
-            toDouble (t5 (context), context),
-            toDouble (tc (context), context),
-            toDouble (tcd (context), context),
-            toDouble (tf (context), context),
-            toDouble (tmax (context), context),
-            toDouble (tmin (context), context),
-            toDouble (tr (context), context),
-            toDouble (trate (context), context),
-            toDouble (tt (context), context),
-            toDouble (w (context), context),
-            toDouble (x (context), context),
-            toDouble (y (context), context),
-            toBoolean (z (context), context)
+            toDouble (mask (a (), 0)),
+            toDouble (mask (af1 (), 1)),
+            toDouble (mask (af2 (), 2)),
+            toDouble (mask (b (), 3)),
+            toDouble (mask (bf1 (), 4)),
+            toDouble (mask (bf2 (), 5)),
+            toDouble (mask (c (), 6)),
+            toDouble (mask (cf2 (), 7)),
+            toDouble (mask (ecr (), 8)),
+            toDouble (mask (etd (), 9)),
+            toDouble (mask (k3 (), 10)),
+            toDouble (mask (k4 (), 11)),
+            toDouble (mask (k5 (), 12)),
+            toDouble (mask (k6 (), 13)),
+            toDouble (mask (kf (), 14)),
+            toDouble (mask (mwbase (), 15)),
+            toDouble (mask (t (), 16)),
+            toDouble (mask (t3 (), 17)),
+            toDouble (mask (t4 (), 18)),
+            toDouble (mask (t5 (), 19)),
+            toDouble (mask (tc (), 20)),
+            toDouble (mask (tcd (), 21)),
+            toDouble (mask (tf (), 22)),
+            toDouble (mask (tmax (), 23)),
+            toDouble (mask (tmin (), 24)),
+            toDouble (mask (tr (), 25)),
+            toDouble (mask (trate (), 26)),
+            toDouble (mask (tt (), 27)),
+            toDouble (mask (w (), 28)),
+            toDouble (mask (x (), 29)),
+            toDouble (mask (y (), 30)),
+            toBoolean (mask (z (), 31))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -1398,6 +1657,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -1417,34 +1682,36 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:GovGAST3.bca>" + bca + "</cim:GovGAST3.bca>\n" +
-        "\t\t<cim:GovGAST3.bp>" + bp + "</cim:GovGAST3.bp>\n" +
-        "\t\t<cim:GovGAST3.dtc>" + dtc + "</cim:GovGAST3.dtc>\n" +
-        "\t\t<cim:GovGAST3.ka>" + ka + "</cim:GovGAST3.ka>\n" +
-        "\t\t<cim:GovGAST3.kac>" + kac + "</cim:GovGAST3.kac>\n" +
-        "\t\t<cim:GovGAST3.kca>" + kca + "</cim:GovGAST3.kca>\n" +
-        "\t\t<cim:GovGAST3.ksi>" + ksi + "</cim:GovGAST3.ksi>\n" +
-        "\t\t<cim:GovGAST3.ky>" + ky + "</cim:GovGAST3.ky>\n" +
-        "\t\t<cim:GovGAST3.mnef>" + mnef + "</cim:GovGAST3.mnef>\n" +
-        "\t\t<cim:GovGAST3.mxef>" + mxef + "</cim:GovGAST3.mxef>\n" +
-        "\t\t<cim:GovGAST3.rcmn>" + rcmn + "</cim:GovGAST3.rcmn>\n" +
-        "\t\t<cim:GovGAST3.rcmx>" + rcmx + "</cim:GovGAST3.rcmx>\n" +
-        "\t\t<cim:GovGAST3.tac>" + tac + "</cim:GovGAST3.tac>\n" +
-        "\t\t<cim:GovGAST3.tc>" + tc + "</cim:GovGAST3.tc>\n" +
-        "\t\t<cim:GovGAST3.td>" + td + "</cim:GovGAST3.td>\n" +
-        "\t\t<cim:GovGAST3.tfen>" + tfen + "</cim:GovGAST3.tfen>\n" +
-        "\t\t<cim:GovGAST3.tg>" + tg + "</cim:GovGAST3.tg>\n" +
-        "\t\t<cim:GovGAST3.tsi>" + tsi + "</cim:GovGAST3.tsi>\n" +
-        "\t\t<cim:GovGAST3.tt>" + tt + "</cim:GovGAST3.tt>\n" +
-        "\t\t<cim:GovGAST3.ttc>" + ttc + "</cim:GovGAST3.ttc>\n" +
-        "\t\t<cim:GovGAST3.ty>" + ty + "</cim:GovGAST3.ty>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = GovGAST3.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovGAST3.fields (position), value)
+        emitelem (0, bca)
+        emitelem (1, bp)
+        emitelem (2, dtc)
+        emitelem (3, ka)
+        emitelem (4, kac)
+        emitelem (5, kca)
+        emitelem (6, ksi)
+        emitelem (7, ky)
+        emitelem (8, mnef)
+        emitelem (9, mxef)
+        emitelem (10, rcmn)
+        emitelem (11, rcmx)
+        emitelem (12, tac)
+        emitelem (13, tc)
+        emitelem (14, td)
+        emitelem (15, tfen)
+        emitelem (16, tg)
+        emitelem (17, tsi)
+        emitelem (18, tt)
+        emitelem (19, ttc)
+        emitelem (20, ty)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:GovGAST3 rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:GovGAST3>"
+        "\t<cim:GovGAST3 rdf:ID=\"%s\">\n%s\t</cim:GovGAST3>".format (id, export_fields)
     }
 }
 
@@ -1452,55 +1719,86 @@ object GovGAST3
 extends
     Parseable[GovGAST3]
 {
-    val bca = parse_element (element ("""GovGAST3.bca"""))
-    val bp = parse_element (element ("""GovGAST3.bp"""))
-    val dtc = parse_element (element ("""GovGAST3.dtc"""))
-    val ka = parse_element (element ("""GovGAST3.ka"""))
-    val kac = parse_element (element ("""GovGAST3.kac"""))
-    val kca = parse_element (element ("""GovGAST3.kca"""))
-    val ksi = parse_element (element ("""GovGAST3.ksi"""))
-    val ky = parse_element (element ("""GovGAST3.ky"""))
-    val mnef = parse_element (element ("""GovGAST3.mnef"""))
-    val mxef = parse_element (element ("""GovGAST3.mxef"""))
-    val rcmn = parse_element (element ("""GovGAST3.rcmn"""))
-    val rcmx = parse_element (element ("""GovGAST3.rcmx"""))
-    val tac = parse_element (element ("""GovGAST3.tac"""))
-    val tc = parse_element (element ("""GovGAST3.tc"""))
-    val td = parse_element (element ("""GovGAST3.td"""))
-    val tfen = parse_element (element ("""GovGAST3.tfen"""))
-    val tg = parse_element (element ("""GovGAST3.tg"""))
-    val tsi = parse_element (element ("""GovGAST3.tsi"""))
-    val tt = parse_element (element ("""GovGAST3.tt"""))
-    val ttc = parse_element (element ("""GovGAST3.ttc"""))
-    val ty = parse_element (element ("""GovGAST3.ty"""))
+    val fields: Array[String] = Array[String] (
+        "bca",
+        "bp",
+        "dtc",
+        "ka",
+        "kac",
+        "kca",
+        "ksi",
+        "ky",
+        "mnef",
+        "mxef",
+        "rcmn",
+        "rcmx",
+        "tac",
+        "tc",
+        "td",
+        "tfen",
+        "tg",
+        "tsi",
+        "tt",
+        "ttc",
+        "ty"
+    )
+    val bca: Fielder = parse_element (element (cls, fields(0)))
+    val bp: Fielder = parse_element (element (cls, fields(1)))
+    val dtc: Fielder = parse_element (element (cls, fields(2)))
+    val ka: Fielder = parse_element (element (cls, fields(3)))
+    val kac: Fielder = parse_element (element (cls, fields(4)))
+    val kca: Fielder = parse_element (element (cls, fields(5)))
+    val ksi: Fielder = parse_element (element (cls, fields(6)))
+    val ky: Fielder = parse_element (element (cls, fields(7)))
+    val mnef: Fielder = parse_element (element (cls, fields(8)))
+    val mxef: Fielder = parse_element (element (cls, fields(9)))
+    val rcmn: Fielder = parse_element (element (cls, fields(10)))
+    val rcmx: Fielder = parse_element (element (cls, fields(11)))
+    val tac: Fielder = parse_element (element (cls, fields(12)))
+    val tc: Fielder = parse_element (element (cls, fields(13)))
+    val td: Fielder = parse_element (element (cls, fields(14)))
+    val tfen: Fielder = parse_element (element (cls, fields(15)))
+    val tg: Fielder = parse_element (element (cls, fields(16)))
+    val tsi: Fielder = parse_element (element (cls, fields(17)))
+    val tt: Fielder = parse_element (element (cls, fields(18)))
+    val ttc: Fielder = parse_element (element (cls, fields(19)))
+    val ty: Fielder = parse_element (element (cls, fields(20)))
+
     def parse (context: Context): GovGAST3 =
     {
-        GovGAST3(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = GovGAST3 (
             TurbineGovernorDynamics.parse (context),
-            toDouble (bca (context), context),
-            toDouble (bp (context), context),
-            toDouble (dtc (context), context),
-            toDouble (ka (context), context),
-            toDouble (kac (context), context),
-            toDouble (kca (context), context),
-            toDouble (ksi (context), context),
-            toDouble (ky (context), context),
-            toDouble (mnef (context), context),
-            toDouble (mxef (context), context),
-            toDouble (rcmn (context), context),
-            toDouble (rcmx (context), context),
-            toDouble (tac (context), context),
-            toDouble (tc (context), context),
-            toDouble (td (context), context),
-            toDouble (tfen (context), context),
-            toDouble (tg (context), context),
-            toDouble (tsi (context), context),
-            toDouble (tt (context), context),
-            toDouble (ttc (context), context),
-            toDouble (ty (context), context)
+            toDouble (mask (bca (), 0)),
+            toDouble (mask (bp (), 1)),
+            toDouble (mask (dtc (), 2)),
+            toDouble (mask (ka (), 3)),
+            toDouble (mask (kac (), 4)),
+            toDouble (mask (kca (), 5)),
+            toDouble (mask (ksi (), 6)),
+            toDouble (mask (ky (), 7)),
+            toDouble (mask (mnef (), 8)),
+            toDouble (mask (mxef (), 9)),
+            toDouble (mask (rcmn (), 10)),
+            toDouble (mask (rcmx (), 11)),
+            toDouble (mask (tac (), 12)),
+            toDouble (mask (tc (), 13)),
+            toDouble (mask (td (), 14)),
+            toDouble (mask (tfen (), 15)),
+            toDouble (mask (tg (), 16)),
+            toDouble (mask (tsi (), 17)),
+            toDouble (mask (tt (), 18)),
+            toDouble (mask (ttc (), 19)),
+            toDouble (mask (ty (), 20))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -1558,6 +1856,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -1577,24 +1881,26 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:GovGAST4.bp>" + bp + "</cim:GovGAST4.bp>\n" +
-        "\t\t<cim:GovGAST4.ktm>" + ktm + "</cim:GovGAST4.ktm>\n" +
-        "\t\t<cim:GovGAST4.mnef>" + mnef + "</cim:GovGAST4.mnef>\n" +
-        "\t\t<cim:GovGAST4.mxef>" + mxef + "</cim:GovGAST4.mxef>\n" +
-        "\t\t<cim:GovGAST4.rymn>" + rymn + "</cim:GovGAST4.rymn>\n" +
-        "\t\t<cim:GovGAST4.rymx>" + rymx + "</cim:GovGAST4.rymx>\n" +
-        "\t\t<cim:GovGAST4.ta>" + ta + "</cim:GovGAST4.ta>\n" +
-        "\t\t<cim:GovGAST4.tc>" + tc + "</cim:GovGAST4.tc>\n" +
-        "\t\t<cim:GovGAST4.tcm>" + tcm + "</cim:GovGAST4.tcm>\n" +
-        "\t\t<cim:GovGAST4.tm>" + tm + "</cim:GovGAST4.tm>\n" +
-        "\t\t<cim:GovGAST4.tv>" + tv + "</cim:GovGAST4.tv>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = GovGAST4.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovGAST4.fields (position), value)
+        emitelem (0, bp)
+        emitelem (1, ktm)
+        emitelem (2, mnef)
+        emitelem (3, mxef)
+        emitelem (4, rymn)
+        emitelem (5, rymx)
+        emitelem (6, ta)
+        emitelem (7, tc)
+        emitelem (8, tcm)
+        emitelem (9, tm)
+        emitelem (10, tv)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:GovGAST4 rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:GovGAST4>"
+        "\t<cim:GovGAST4 rdf:ID=\"%s\">\n%s\t</cim:GovGAST4>".format (id, export_fields)
     }
 }
 
@@ -1602,35 +1908,56 @@ object GovGAST4
 extends
     Parseable[GovGAST4]
 {
-    val bp = parse_element (element ("""GovGAST4.bp"""))
-    val ktm = parse_element (element ("""GovGAST4.ktm"""))
-    val mnef = parse_element (element ("""GovGAST4.mnef"""))
-    val mxef = parse_element (element ("""GovGAST4.mxef"""))
-    val rymn = parse_element (element ("""GovGAST4.rymn"""))
-    val rymx = parse_element (element ("""GovGAST4.rymx"""))
-    val ta = parse_element (element ("""GovGAST4.ta"""))
-    val tc = parse_element (element ("""GovGAST4.tc"""))
-    val tcm = parse_element (element ("""GovGAST4.tcm"""))
-    val tm = parse_element (element ("""GovGAST4.tm"""))
-    val tv = parse_element (element ("""GovGAST4.tv"""))
+    val fields: Array[String] = Array[String] (
+        "bp",
+        "ktm",
+        "mnef",
+        "mxef",
+        "rymn",
+        "rymx",
+        "ta",
+        "tc",
+        "tcm",
+        "tm",
+        "tv"
+    )
+    val bp: Fielder = parse_element (element (cls, fields(0)))
+    val ktm: Fielder = parse_element (element (cls, fields(1)))
+    val mnef: Fielder = parse_element (element (cls, fields(2)))
+    val mxef: Fielder = parse_element (element (cls, fields(3)))
+    val rymn: Fielder = parse_element (element (cls, fields(4)))
+    val rymx: Fielder = parse_element (element (cls, fields(5)))
+    val ta: Fielder = parse_element (element (cls, fields(6)))
+    val tc: Fielder = parse_element (element (cls, fields(7)))
+    val tcm: Fielder = parse_element (element (cls, fields(8)))
+    val tm: Fielder = parse_element (element (cls, fields(9)))
+    val tv: Fielder = parse_element (element (cls, fields(10)))
+
     def parse (context: Context): GovGAST4 =
     {
-        GovGAST4(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = GovGAST4 (
             TurbineGovernorDynamics.parse (context),
-            toDouble (bp (context), context),
-            toDouble (ktm (context), context),
-            toDouble (mnef (context), context),
-            toDouble (mxef (context), context),
-            toDouble (rymn (context), context),
-            toDouble (rymx (context), context),
-            toDouble (ta (context), context),
-            toDouble (tc (context), context),
-            toDouble (tcm (context), context),
-            toDouble (tm (context), context),
-            toDouble (tv (context), context)
+            toDouble (mask (bp (), 0)),
+            toDouble (mask (ktm (), 1)),
+            toDouble (mask (mnef (), 2)),
+            toDouble (mask (mxef (), 3)),
+            toDouble (mask (rymn (), 4)),
+            toDouble (mask (rymx (), 5)),
+            toDouble (mask (ta (), 6)),
+            toDouble (mask (tc (), 7)),
+            toDouble (mask (tcm (), 8)),
+            toDouble (mask (tm (), 9)),
+            toDouble (mask (tv (), 10))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -1725,6 +2052,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Long = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -1744,46 +2077,48 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:GovGASTWD.a>" + a + "</cim:GovGASTWD.a>\n" +
-        "\t\t<cim:GovGASTWD.af1>" + af1 + "</cim:GovGASTWD.af1>\n" +
-        "\t\t<cim:GovGASTWD.af2>" + af2 + "</cim:GovGASTWD.af2>\n" +
-        "\t\t<cim:GovGASTWD.b>" + b + "</cim:GovGASTWD.b>\n" +
-        "\t\t<cim:GovGASTWD.bf1>" + bf1 + "</cim:GovGASTWD.bf1>\n" +
-        "\t\t<cim:GovGASTWD.bf2>" + bf2 + "</cim:GovGASTWD.bf2>\n" +
-        "\t\t<cim:GovGASTWD.c>" + c + "</cim:GovGASTWD.c>\n" +
-        "\t\t<cim:GovGASTWD.cf2>" + cf2 + "</cim:GovGASTWD.cf2>\n" +
-        "\t\t<cim:GovGASTWD.ecr>" + ecr + "</cim:GovGASTWD.ecr>\n" +
-        "\t\t<cim:GovGASTWD.etd>" + etd + "</cim:GovGASTWD.etd>\n" +
-        "\t\t<cim:GovGASTWD.k3>" + k3 + "</cim:GovGASTWD.k3>\n" +
-        "\t\t<cim:GovGASTWD.k4>" + k4 + "</cim:GovGASTWD.k4>\n" +
-        "\t\t<cim:GovGASTWD.k5>" + k5 + "</cim:GovGASTWD.k5>\n" +
-        "\t\t<cim:GovGASTWD.k6>" + k6 + "</cim:GovGASTWD.k6>\n" +
-        "\t\t<cim:GovGASTWD.kd>" + kd + "</cim:GovGASTWD.kd>\n" +
-        "\t\t<cim:GovGASTWD.kdroop>" + kdroop + "</cim:GovGASTWD.kdroop>\n" +
-        "\t\t<cim:GovGASTWD.kf>" + kf + "</cim:GovGASTWD.kf>\n" +
-        "\t\t<cim:GovGASTWD.ki>" + ki + "</cim:GovGASTWD.ki>\n" +
-        "\t\t<cim:GovGASTWD.kp>" + kp + "</cim:GovGASTWD.kp>\n" +
-        "\t\t<cim:GovGASTWD.mwbase>" + mwbase + "</cim:GovGASTWD.mwbase>\n" +
-        "\t\t<cim:GovGASTWD.t>" + t + "</cim:GovGASTWD.t>\n" +
-        "\t\t<cim:GovGASTWD.t3>" + t3 + "</cim:GovGASTWD.t3>\n" +
-        "\t\t<cim:GovGASTWD.t4>" + t4 + "</cim:GovGASTWD.t4>\n" +
-        "\t\t<cim:GovGASTWD.t5>" + t5 + "</cim:GovGASTWD.t5>\n" +
-        "\t\t<cim:GovGASTWD.tc>" + tc + "</cim:GovGASTWD.tc>\n" +
-        "\t\t<cim:GovGASTWD.tcd>" + tcd + "</cim:GovGASTWD.tcd>\n" +
-        "\t\t<cim:GovGASTWD.td>" + td + "</cim:GovGASTWD.td>\n" +
-        "\t\t<cim:GovGASTWD.tf>" + tf + "</cim:GovGASTWD.tf>\n" +
-        "\t\t<cim:GovGASTWD.tmax>" + tmax + "</cim:GovGASTWD.tmax>\n" +
-        "\t\t<cim:GovGASTWD.tmin>" + tmin + "</cim:GovGASTWD.tmin>\n" +
-        "\t\t<cim:GovGASTWD.tr>" + tr + "</cim:GovGASTWD.tr>\n" +
-        "\t\t<cim:GovGASTWD.trate>" + trate + "</cim:GovGASTWD.trate>\n" +
-        "\t\t<cim:GovGASTWD.tt>" + tt + "</cim:GovGASTWD.tt>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = GovGASTWD.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovGASTWD.fields (position), value)
+        emitelem (0, a)
+        emitelem (1, af1)
+        emitelem (2, af2)
+        emitelem (3, b)
+        emitelem (4, bf1)
+        emitelem (5, bf2)
+        emitelem (6, c)
+        emitelem (7, cf2)
+        emitelem (8, ecr)
+        emitelem (9, etd)
+        emitelem (10, k3)
+        emitelem (11, k4)
+        emitelem (12, k5)
+        emitelem (13, k6)
+        emitelem (14, kd)
+        emitelem (15, kdroop)
+        emitelem (16, kf)
+        emitelem (17, ki)
+        emitelem (18, kp)
+        emitelem (19, mwbase)
+        emitelem (20, t)
+        emitelem (21, t3)
+        emitelem (22, t4)
+        emitelem (23, t5)
+        emitelem (24, tc)
+        emitelem (25, tcd)
+        emitelem (26, td)
+        emitelem (27, tf)
+        emitelem (28, tmax)
+        emitelem (29, tmin)
+        emitelem (30, tr)
+        emitelem (31, trate)
+        emitelem (32, tt)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:GovGASTWD rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:GovGASTWD>"
+        "\t<cim:GovGASTWD rdf:ID=\"%s\">\n%s\t</cim:GovGASTWD>".format (id, export_fields)
     }
 }
 
@@ -1791,79 +2126,122 @@ object GovGASTWD
 extends
     Parseable[GovGASTWD]
 {
-    val a = parse_element (element ("""GovGASTWD.a"""))
-    val af1 = parse_element (element ("""GovGASTWD.af1"""))
-    val af2 = parse_element (element ("""GovGASTWD.af2"""))
-    val b = parse_element (element ("""GovGASTWD.b"""))
-    val bf1 = parse_element (element ("""GovGASTWD.bf1"""))
-    val bf2 = parse_element (element ("""GovGASTWD.bf2"""))
-    val c = parse_element (element ("""GovGASTWD.c"""))
-    val cf2 = parse_element (element ("""GovGASTWD.cf2"""))
-    val ecr = parse_element (element ("""GovGASTWD.ecr"""))
-    val etd = parse_element (element ("""GovGASTWD.etd"""))
-    val k3 = parse_element (element ("""GovGASTWD.k3"""))
-    val k4 = parse_element (element ("""GovGASTWD.k4"""))
-    val k5 = parse_element (element ("""GovGASTWD.k5"""))
-    val k6 = parse_element (element ("""GovGASTWD.k6"""))
-    val kd = parse_element (element ("""GovGASTWD.kd"""))
-    val kdroop = parse_element (element ("""GovGASTWD.kdroop"""))
-    val kf = parse_element (element ("""GovGASTWD.kf"""))
-    val ki = parse_element (element ("""GovGASTWD.ki"""))
-    val kp = parse_element (element ("""GovGASTWD.kp"""))
-    val mwbase = parse_element (element ("""GovGASTWD.mwbase"""))
-    val t = parse_element (element ("""GovGASTWD.t"""))
-    val t3 = parse_element (element ("""GovGASTWD.t3"""))
-    val t4 = parse_element (element ("""GovGASTWD.t4"""))
-    val t5 = parse_element (element ("""GovGASTWD.t5"""))
-    val tc = parse_element (element ("""GovGASTWD.tc"""))
-    val tcd = parse_element (element ("""GovGASTWD.tcd"""))
-    val td = parse_element (element ("""GovGASTWD.td"""))
-    val tf = parse_element (element ("""GovGASTWD.tf"""))
-    val tmax = parse_element (element ("""GovGASTWD.tmax"""))
-    val tmin = parse_element (element ("""GovGASTWD.tmin"""))
-    val tr = parse_element (element ("""GovGASTWD.tr"""))
-    val trate = parse_element (element ("""GovGASTWD.trate"""))
-    val tt = parse_element (element ("""GovGASTWD.tt"""))
+    val fields: Array[String] = Array[String] (
+        "a",
+        "af1",
+        "af2",
+        "b",
+        "bf1",
+        "bf2",
+        "c",
+        "cf2",
+        "ecr",
+        "etd",
+        "k3",
+        "k4",
+        "k5",
+        "k6",
+        "kd",
+        "kdroop",
+        "kf",
+        "ki",
+        "kp",
+        "mwbase",
+        "t",
+        "t3",
+        "t4",
+        "t5",
+        "tc",
+        "tcd",
+        "td",
+        "tf",
+        "tmax",
+        "tmin",
+        "tr",
+        "trate",
+        "tt"
+    )
+    val a: Fielder = parse_element (element (cls, fields(0)))
+    val af1: Fielder = parse_element (element (cls, fields(1)))
+    val af2: Fielder = parse_element (element (cls, fields(2)))
+    val b: Fielder = parse_element (element (cls, fields(3)))
+    val bf1: Fielder = parse_element (element (cls, fields(4)))
+    val bf2: Fielder = parse_element (element (cls, fields(5)))
+    val c: Fielder = parse_element (element (cls, fields(6)))
+    val cf2: Fielder = parse_element (element (cls, fields(7)))
+    val ecr: Fielder = parse_element (element (cls, fields(8)))
+    val etd: Fielder = parse_element (element (cls, fields(9)))
+    val k3: Fielder = parse_element (element (cls, fields(10)))
+    val k4: Fielder = parse_element (element (cls, fields(11)))
+    val k5: Fielder = parse_element (element (cls, fields(12)))
+    val k6: Fielder = parse_element (element (cls, fields(13)))
+    val kd: Fielder = parse_element (element (cls, fields(14)))
+    val kdroop: Fielder = parse_element (element (cls, fields(15)))
+    val kf: Fielder = parse_element (element (cls, fields(16)))
+    val ki: Fielder = parse_element (element (cls, fields(17)))
+    val kp: Fielder = parse_element (element (cls, fields(18)))
+    val mwbase: Fielder = parse_element (element (cls, fields(19)))
+    val t: Fielder = parse_element (element (cls, fields(20)))
+    val t3: Fielder = parse_element (element (cls, fields(21)))
+    val t4: Fielder = parse_element (element (cls, fields(22)))
+    val t5: Fielder = parse_element (element (cls, fields(23)))
+    val tc: Fielder = parse_element (element (cls, fields(24)))
+    val tcd: Fielder = parse_element (element (cls, fields(25)))
+    val td: Fielder = parse_element (element (cls, fields(26)))
+    val tf: Fielder = parse_element (element (cls, fields(27)))
+    val tmax: Fielder = parse_element (element (cls, fields(28)))
+    val tmin: Fielder = parse_element (element (cls, fields(29)))
+    val tr: Fielder = parse_element (element (cls, fields(30)))
+    val trate: Fielder = parse_element (element (cls, fields(31)))
+    val tt: Fielder = parse_element (element (cls, fields(32)))
+
     def parse (context: Context): GovGASTWD =
     {
-        GovGASTWD(
+        implicit val ctx: Context = context
+        var fields: Long = 0L
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1L << position; field._1 }
+        val ret = GovGASTWD (
             TurbineGovernorDynamics.parse (context),
-            toDouble (a (context), context),
-            toDouble (af1 (context), context),
-            toDouble (af2 (context), context),
-            toDouble (b (context), context),
-            toDouble (bf1 (context), context),
-            toDouble (bf2 (context), context),
-            toDouble (c (context), context),
-            toDouble (cf2 (context), context),
-            toDouble (ecr (context), context),
-            toDouble (etd (context), context),
-            toDouble (k3 (context), context),
-            toDouble (k4 (context), context),
-            toDouble (k5 (context), context),
-            toDouble (k6 (context), context),
-            toDouble (kd (context), context),
-            toDouble (kdroop (context), context),
-            toDouble (kf (context), context),
-            toDouble (ki (context), context),
-            toDouble (kp (context), context),
-            toDouble (mwbase (context), context),
-            toDouble (t (context), context),
-            toDouble (t3 (context), context),
-            toDouble (t4 (context), context),
-            toDouble (t5 (context), context),
-            toDouble (tc (context), context),
-            toDouble (tcd (context), context),
-            toDouble (td (context), context),
-            toDouble (tf (context), context),
-            toDouble (tmax (context), context),
-            toDouble (tmin (context), context),
-            toDouble (tr (context), context),
-            toDouble (trate (context), context),
-            toDouble (tt (context), context)
+            toDouble (mask (a (), 0)),
+            toDouble (mask (af1 (), 1)),
+            toDouble (mask (af2 (), 2)),
+            toDouble (mask (b (), 3)),
+            toDouble (mask (bf1 (), 4)),
+            toDouble (mask (bf2 (), 5)),
+            toDouble (mask (c (), 6)),
+            toDouble (mask (cf2 (), 7)),
+            toDouble (mask (ecr (), 8)),
+            toDouble (mask (etd (), 9)),
+            toDouble (mask (k3 (), 10)),
+            toDouble (mask (k4 (), 11)),
+            toDouble (mask (k5 (), 12)),
+            toDouble (mask (k6 (), 13)),
+            toDouble (mask (kd (), 14)),
+            toDouble (mask (kdroop (), 15)),
+            toDouble (mask (kf (), 16)),
+            toDouble (mask (ki (), 17)),
+            toDouble (mask (kp (), 18)),
+            toDouble (mask (mwbase (), 19)),
+            toDouble (mask (t (), 20)),
+            toDouble (mask (t3 (), 21)),
+            toDouble (mask (t4 (), 22)),
+            toDouble (mask (t5 (), 23)),
+            toDouble (mask (tc (), 24)),
+            toDouble (mask (tcd (), 25)),
+            toDouble (mask (td (), 26)),
+            toDouble (mask (tf (), 27)),
+            toDouble (mask (tmax (), 28)),
+            toDouble (mask (tmin (), 29)),
+            toDouble (mask (tr (), 30)),
+            toDouble (mask (trate (), 31)),
+            toDouble (mask (tt (), 32))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -1930,6 +2308,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -1949,27 +2333,29 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:GovHydro1.at>" + at + "</cim:GovHydro1.at>\n" +
-        "\t\t<cim:GovHydro1.dturb>" + dturb + "</cim:GovHydro1.dturb>\n" +
-        "\t\t<cim:GovHydro1.gmax>" + gmax + "</cim:GovHydro1.gmax>\n" +
-        "\t\t<cim:GovHydro1.gmin>" + gmin + "</cim:GovHydro1.gmin>\n" +
-        "\t\t<cim:GovHydro1.hdam>" + hdam + "</cim:GovHydro1.hdam>\n" +
-        "\t\t<cim:GovHydro1.mwbase>" + mwbase + "</cim:GovHydro1.mwbase>\n" +
-        "\t\t<cim:GovHydro1.qnl>" + qnl + "</cim:GovHydro1.qnl>\n" +
-        "\t\t<cim:GovHydro1.rperm>" + rperm + "</cim:GovHydro1.rperm>\n" +
-        "\t\t<cim:GovHydro1.rtemp>" + rtemp + "</cim:GovHydro1.rtemp>\n" +
-        "\t\t<cim:GovHydro1.tf>" + tf + "</cim:GovHydro1.tf>\n" +
-        "\t\t<cim:GovHydro1.tg>" + tg + "</cim:GovHydro1.tg>\n" +
-        "\t\t<cim:GovHydro1.tr>" + tr + "</cim:GovHydro1.tr>\n" +
-        "\t\t<cim:GovHydro1.tw>" + tw + "</cim:GovHydro1.tw>\n" +
-        "\t\t<cim:GovHydro1.velm>" + velm + "</cim:GovHydro1.velm>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = GovHydro1.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovHydro1.fields (position), value)
+        emitelem (0, at)
+        emitelem (1, dturb)
+        emitelem (2, gmax)
+        emitelem (3, gmin)
+        emitelem (4, hdam)
+        emitelem (5, mwbase)
+        emitelem (6, qnl)
+        emitelem (7, rperm)
+        emitelem (8, rtemp)
+        emitelem (9, tf)
+        emitelem (10, tg)
+        emitelem (11, tr)
+        emitelem (12, tw)
+        emitelem (13, velm)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:GovHydro1 rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:GovHydro1>"
+        "\t<cim:GovHydro1 rdf:ID=\"%s\">\n%s\t</cim:GovHydro1>".format (id, export_fields)
     }
 }
 
@@ -1977,41 +2363,65 @@ object GovHydro1
 extends
     Parseable[GovHydro1]
 {
-    val at = parse_element (element ("""GovHydro1.at"""))
-    val dturb = parse_element (element ("""GovHydro1.dturb"""))
-    val gmax = parse_element (element ("""GovHydro1.gmax"""))
-    val gmin = parse_element (element ("""GovHydro1.gmin"""))
-    val hdam = parse_element (element ("""GovHydro1.hdam"""))
-    val mwbase = parse_element (element ("""GovHydro1.mwbase"""))
-    val qnl = parse_element (element ("""GovHydro1.qnl"""))
-    val rperm = parse_element (element ("""GovHydro1.rperm"""))
-    val rtemp = parse_element (element ("""GovHydro1.rtemp"""))
-    val tf = parse_element (element ("""GovHydro1.tf"""))
-    val tg = parse_element (element ("""GovHydro1.tg"""))
-    val tr = parse_element (element ("""GovHydro1.tr"""))
-    val tw = parse_element (element ("""GovHydro1.tw"""))
-    val velm = parse_element (element ("""GovHydro1.velm"""))
+    val fields: Array[String] = Array[String] (
+        "at",
+        "dturb",
+        "gmax",
+        "gmin",
+        "hdam",
+        "mwbase",
+        "qnl",
+        "rperm",
+        "rtemp",
+        "tf",
+        "tg",
+        "tr",
+        "tw",
+        "velm"
+    )
+    val at: Fielder = parse_element (element (cls, fields(0)))
+    val dturb: Fielder = parse_element (element (cls, fields(1)))
+    val gmax: Fielder = parse_element (element (cls, fields(2)))
+    val gmin: Fielder = parse_element (element (cls, fields(3)))
+    val hdam: Fielder = parse_element (element (cls, fields(4)))
+    val mwbase: Fielder = parse_element (element (cls, fields(5)))
+    val qnl: Fielder = parse_element (element (cls, fields(6)))
+    val rperm: Fielder = parse_element (element (cls, fields(7)))
+    val rtemp: Fielder = parse_element (element (cls, fields(8)))
+    val tf: Fielder = parse_element (element (cls, fields(9)))
+    val tg: Fielder = parse_element (element (cls, fields(10)))
+    val tr: Fielder = parse_element (element (cls, fields(11)))
+    val tw: Fielder = parse_element (element (cls, fields(12)))
+    val velm: Fielder = parse_element (element (cls, fields(13)))
+
     def parse (context: Context): GovHydro1 =
     {
-        GovHydro1(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = GovHydro1 (
             TurbineGovernorDynamics.parse (context),
-            toDouble (at (context), context),
-            toDouble (dturb (context), context),
-            toDouble (gmax (context), context),
-            toDouble (gmin (context), context),
-            toDouble (hdam (context), context),
-            toDouble (mwbase (context), context),
-            toDouble (qnl (context), context),
-            toDouble (rperm (context), context),
-            toDouble (rtemp (context), context),
-            toDouble (tf (context), context),
-            toDouble (tg (context), context),
-            toDouble (tr (context), context),
-            toDouble (tw (context), context),
-            toDouble (velm (context), context)
+            toDouble (mask (at (), 0)),
+            toDouble (mask (dturb (), 1)),
+            toDouble (mask (gmax (), 2)),
+            toDouble (mask (gmin (), 3)),
+            toDouble (mask (hdam (), 4)),
+            toDouble (mask (mwbase (), 5)),
+            toDouble (mask (qnl (), 6)),
+            toDouble (mask (rperm (), 7)),
+            toDouble (mask (rtemp (), 8)),
+            toDouble (mask (tf (), 9)),
+            toDouble (mask (tg (), 10)),
+            toDouble (mask (tr (), 11)),
+            toDouble (mask (tw (), 12)),
+            toDouble (mask (velm (), 13))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -2123,6 +2533,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -2142,42 +2558,44 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:GovHydro2.aturb>" + aturb + "</cim:GovHydro2.aturb>\n" +
-        "\t\t<cim:GovHydro2.bturb>" + bturb + "</cim:GovHydro2.bturb>\n" +
-        "\t\t<cim:GovHydro2.db1>" + db1 + "</cim:GovHydro2.db1>\n" +
-        "\t\t<cim:GovHydro2.db2>" + db2 + "</cim:GovHydro2.db2>\n" +
-        "\t\t<cim:GovHydro2.eps>" + eps + "</cim:GovHydro2.eps>\n" +
-        "\t\t<cim:GovHydro2.gv1>" + gv1 + "</cim:GovHydro2.gv1>\n" +
-        "\t\t<cim:GovHydro2.gv2>" + gv2 + "</cim:GovHydro2.gv2>\n" +
-        "\t\t<cim:GovHydro2.gv3>" + gv3 + "</cim:GovHydro2.gv3>\n" +
-        "\t\t<cim:GovHydro2.gv4>" + gv4 + "</cim:GovHydro2.gv4>\n" +
-        "\t\t<cim:GovHydro2.gv5>" + gv5 + "</cim:GovHydro2.gv5>\n" +
-        "\t\t<cim:GovHydro2.gv6>" + gv6 + "</cim:GovHydro2.gv6>\n" +
-        "\t\t<cim:GovHydro2.kturb>" + kturb + "</cim:GovHydro2.kturb>\n" +
-        "\t\t<cim:GovHydro2.mwbase>" + mwbase + "</cim:GovHydro2.mwbase>\n" +
-        "\t\t<cim:GovHydro2.pgv1>" + pgv1 + "</cim:GovHydro2.pgv1>\n" +
-        "\t\t<cim:GovHydro2.pgv2>" + pgv2 + "</cim:GovHydro2.pgv2>\n" +
-        "\t\t<cim:GovHydro2.pgv3>" + pgv3 + "</cim:GovHydro2.pgv3>\n" +
-        "\t\t<cim:GovHydro2.pgv4>" + pgv4 + "</cim:GovHydro2.pgv4>\n" +
-        "\t\t<cim:GovHydro2.pgv5>" + pgv5 + "</cim:GovHydro2.pgv5>\n" +
-        "\t\t<cim:GovHydro2.pgv6>" + pgv6 + "</cim:GovHydro2.pgv6>\n" +
-        "\t\t<cim:GovHydro2.pmax>" + pmax + "</cim:GovHydro2.pmax>\n" +
-        "\t\t<cim:GovHydro2.pmin>" + pmin + "</cim:GovHydro2.pmin>\n" +
-        "\t\t<cim:GovHydro2.rperm>" + rperm + "</cim:GovHydro2.rperm>\n" +
-        "\t\t<cim:GovHydro2.rtemp>" + rtemp + "</cim:GovHydro2.rtemp>\n" +
-        "\t\t<cim:GovHydro2.tg>" + tg + "</cim:GovHydro2.tg>\n" +
-        "\t\t<cim:GovHydro2.tp>" + tp + "</cim:GovHydro2.tp>\n" +
-        "\t\t<cim:GovHydro2.tr>" + tr + "</cim:GovHydro2.tr>\n" +
-        "\t\t<cim:GovHydro2.tw>" + tw + "</cim:GovHydro2.tw>\n" +
-        "\t\t<cim:GovHydro2.uc>" + uc + "</cim:GovHydro2.uc>\n" +
-        "\t\t<cim:GovHydro2.uo>" + uo + "</cim:GovHydro2.uo>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = GovHydro2.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovHydro2.fields (position), value)
+        emitelem (0, aturb)
+        emitelem (1, bturb)
+        emitelem (2, db1)
+        emitelem (3, db2)
+        emitelem (4, eps)
+        emitelem (5, gv1)
+        emitelem (6, gv2)
+        emitelem (7, gv3)
+        emitelem (8, gv4)
+        emitelem (9, gv5)
+        emitelem (10, gv6)
+        emitelem (11, kturb)
+        emitelem (12, mwbase)
+        emitelem (13, pgv1)
+        emitelem (14, pgv2)
+        emitelem (15, pgv3)
+        emitelem (16, pgv4)
+        emitelem (17, pgv5)
+        emitelem (18, pgv6)
+        emitelem (19, pmax)
+        emitelem (20, pmin)
+        emitelem (21, rperm)
+        emitelem (22, rtemp)
+        emitelem (23, tg)
+        emitelem (24, tp)
+        emitelem (25, tr)
+        emitelem (26, tw)
+        emitelem (27, uc)
+        emitelem (28, uo)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:GovHydro2 rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:GovHydro2>"
+        "\t<cim:GovHydro2 rdf:ID=\"%s\">\n%s\t</cim:GovHydro2>".format (id, export_fields)
     }
 }
 
@@ -2185,71 +2603,110 @@ object GovHydro2
 extends
     Parseable[GovHydro2]
 {
-    val aturb = parse_element (element ("""GovHydro2.aturb"""))
-    val bturb = parse_element (element ("""GovHydro2.bturb"""))
-    val db1 = parse_element (element ("""GovHydro2.db1"""))
-    val db2 = parse_element (element ("""GovHydro2.db2"""))
-    val eps = parse_element (element ("""GovHydro2.eps"""))
-    val gv1 = parse_element (element ("""GovHydro2.gv1"""))
-    val gv2 = parse_element (element ("""GovHydro2.gv2"""))
-    val gv3 = parse_element (element ("""GovHydro2.gv3"""))
-    val gv4 = parse_element (element ("""GovHydro2.gv4"""))
-    val gv5 = parse_element (element ("""GovHydro2.gv5"""))
-    val gv6 = parse_element (element ("""GovHydro2.gv6"""))
-    val kturb = parse_element (element ("""GovHydro2.kturb"""))
-    val mwbase = parse_element (element ("""GovHydro2.mwbase"""))
-    val pgv1 = parse_element (element ("""GovHydro2.pgv1"""))
-    val pgv2 = parse_element (element ("""GovHydro2.pgv2"""))
-    val pgv3 = parse_element (element ("""GovHydro2.pgv3"""))
-    val pgv4 = parse_element (element ("""GovHydro2.pgv4"""))
-    val pgv5 = parse_element (element ("""GovHydro2.pgv5"""))
-    val pgv6 = parse_element (element ("""GovHydro2.pgv6"""))
-    val pmax = parse_element (element ("""GovHydro2.pmax"""))
-    val pmin = parse_element (element ("""GovHydro2.pmin"""))
-    val rperm = parse_element (element ("""GovHydro2.rperm"""))
-    val rtemp = parse_element (element ("""GovHydro2.rtemp"""))
-    val tg = parse_element (element ("""GovHydro2.tg"""))
-    val tp = parse_element (element ("""GovHydro2.tp"""))
-    val tr = parse_element (element ("""GovHydro2.tr"""))
-    val tw = parse_element (element ("""GovHydro2.tw"""))
-    val uc = parse_element (element ("""GovHydro2.uc"""))
-    val uo = parse_element (element ("""GovHydro2.uo"""))
+    val fields: Array[String] = Array[String] (
+        "aturb",
+        "bturb",
+        "db1",
+        "db2",
+        "eps",
+        "gv1",
+        "gv2",
+        "gv3",
+        "gv4",
+        "gv5",
+        "gv6",
+        "kturb",
+        "mwbase",
+        "pgv1",
+        "pgv2",
+        "pgv3",
+        "pgv4",
+        "pgv5",
+        "pgv6",
+        "pmax",
+        "pmin",
+        "rperm",
+        "rtemp",
+        "tg",
+        "tp",
+        "tr",
+        "tw",
+        "uc",
+        "uo"
+    )
+    val aturb: Fielder = parse_element (element (cls, fields(0)))
+    val bturb: Fielder = parse_element (element (cls, fields(1)))
+    val db1: Fielder = parse_element (element (cls, fields(2)))
+    val db2: Fielder = parse_element (element (cls, fields(3)))
+    val eps: Fielder = parse_element (element (cls, fields(4)))
+    val gv1: Fielder = parse_element (element (cls, fields(5)))
+    val gv2: Fielder = parse_element (element (cls, fields(6)))
+    val gv3: Fielder = parse_element (element (cls, fields(7)))
+    val gv4: Fielder = parse_element (element (cls, fields(8)))
+    val gv5: Fielder = parse_element (element (cls, fields(9)))
+    val gv6: Fielder = parse_element (element (cls, fields(10)))
+    val kturb: Fielder = parse_element (element (cls, fields(11)))
+    val mwbase: Fielder = parse_element (element (cls, fields(12)))
+    val pgv1: Fielder = parse_element (element (cls, fields(13)))
+    val pgv2: Fielder = parse_element (element (cls, fields(14)))
+    val pgv3: Fielder = parse_element (element (cls, fields(15)))
+    val pgv4: Fielder = parse_element (element (cls, fields(16)))
+    val pgv5: Fielder = parse_element (element (cls, fields(17)))
+    val pgv6: Fielder = parse_element (element (cls, fields(18)))
+    val pmax: Fielder = parse_element (element (cls, fields(19)))
+    val pmin: Fielder = parse_element (element (cls, fields(20)))
+    val rperm: Fielder = parse_element (element (cls, fields(21)))
+    val rtemp: Fielder = parse_element (element (cls, fields(22)))
+    val tg: Fielder = parse_element (element (cls, fields(23)))
+    val tp: Fielder = parse_element (element (cls, fields(24)))
+    val tr: Fielder = parse_element (element (cls, fields(25)))
+    val tw: Fielder = parse_element (element (cls, fields(26)))
+    val uc: Fielder = parse_element (element (cls, fields(27)))
+    val uo: Fielder = parse_element (element (cls, fields(28)))
+
     def parse (context: Context): GovHydro2 =
     {
-        GovHydro2(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = GovHydro2 (
             TurbineGovernorDynamics.parse (context),
-            toDouble (aturb (context), context),
-            toDouble (bturb (context), context),
-            toDouble (db1 (context), context),
-            toDouble (db2 (context), context),
-            toDouble (eps (context), context),
-            toDouble (gv1 (context), context),
-            toDouble (gv2 (context), context),
-            toDouble (gv3 (context), context),
-            toDouble (gv4 (context), context),
-            toDouble (gv5 (context), context),
-            toDouble (gv6 (context), context),
-            toDouble (kturb (context), context),
-            toDouble (mwbase (context), context),
-            toDouble (pgv1 (context), context),
-            toDouble (pgv2 (context), context),
-            toDouble (pgv3 (context), context),
-            toDouble (pgv4 (context), context),
-            toDouble (pgv5 (context), context),
-            toDouble (pgv6 (context), context),
-            toDouble (pmax (context), context),
-            toDouble (pmin (context), context),
-            toDouble (rperm (context), context),
-            toDouble (rtemp (context), context),
-            toDouble (tg (context), context),
-            toDouble (tp (context), context),
-            toDouble (tr (context), context),
-            toDouble (tw (context), context),
-            toDouble (uc (context), context),
-            toDouble (uo (context), context)
+            toDouble (mask (aturb (), 0)),
+            toDouble (mask (bturb (), 1)),
+            toDouble (mask (db1 (), 2)),
+            toDouble (mask (db2 (), 3)),
+            toDouble (mask (eps (), 4)),
+            toDouble (mask (gv1 (), 5)),
+            toDouble (mask (gv2 (), 6)),
+            toDouble (mask (gv3 (), 7)),
+            toDouble (mask (gv4 (), 8)),
+            toDouble (mask (gv5 (), 9)),
+            toDouble (mask (gv6 (), 10)),
+            toDouble (mask (kturb (), 11)),
+            toDouble (mask (mwbase (), 12)),
+            toDouble (mask (pgv1 (), 13)),
+            toDouble (mask (pgv2 (), 14)),
+            toDouble (mask (pgv3 (), 15)),
+            toDouble (mask (pgv4 (), 16)),
+            toDouble (mask (pgv5 (), 17)),
+            toDouble (mask (pgv6 (), 18)),
+            toDouble (mask (pmax (), 19)),
+            toDouble (mask (pmin (), 20)),
+            toDouble (mask (rperm (), 21)),
+            toDouble (mask (rtemp (), 22)),
+            toDouble (mask (tg (), 23)),
+            toDouble (mask (tp (), 24)),
+            toDouble (mask (tr (), 25)),
+            toDouble (mask (tw (), 26)),
+            toDouble (mask (uc (), 27)),
+            toDouble (mask (uo (), 28))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -2386,6 +2843,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Long = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -2405,49 +2868,51 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:GovHydro3.at>" + at + "</cim:GovHydro3.at>\n" +
-        "\t\t<cim:GovHydro3.db1>" + db1 + "</cim:GovHydro3.db1>\n" +
-        "\t\t<cim:GovHydro3.db2>" + db2 + "</cim:GovHydro3.db2>\n" +
-        "\t\t<cim:GovHydro3.dturb>" + dturb + "</cim:GovHydro3.dturb>\n" +
-        "\t\t<cim:GovHydro3.eps>" + eps + "</cim:GovHydro3.eps>\n" +
-        "\t\t<cim:GovHydro3.governorControl>" + governorControl + "</cim:GovHydro3.governorControl>\n" +
-        "\t\t<cim:GovHydro3.gv1>" + gv1 + "</cim:GovHydro3.gv1>\n" +
-        "\t\t<cim:GovHydro3.gv2>" + gv2 + "</cim:GovHydro3.gv2>\n" +
-        "\t\t<cim:GovHydro3.gv3>" + gv3 + "</cim:GovHydro3.gv3>\n" +
-        "\t\t<cim:GovHydro3.gv4>" + gv4 + "</cim:GovHydro3.gv4>\n" +
-        "\t\t<cim:GovHydro3.gv5>" + gv5 + "</cim:GovHydro3.gv5>\n" +
-        "\t\t<cim:GovHydro3.gv6>" + gv6 + "</cim:GovHydro3.gv6>\n" +
-        "\t\t<cim:GovHydro3.h0>" + h0 + "</cim:GovHydro3.h0>\n" +
-        "\t\t<cim:GovHydro3.k1>" + k1 + "</cim:GovHydro3.k1>\n" +
-        "\t\t<cim:GovHydro3.k2>" + k2 + "</cim:GovHydro3.k2>\n" +
-        "\t\t<cim:GovHydro3.kg>" + kg + "</cim:GovHydro3.kg>\n" +
-        "\t\t<cim:GovHydro3.ki>" + ki + "</cim:GovHydro3.ki>\n" +
-        "\t\t<cim:GovHydro3.mwbase>" + mwbase + "</cim:GovHydro3.mwbase>\n" +
-        "\t\t<cim:GovHydro3.pgv1>" + pgv1 + "</cim:GovHydro3.pgv1>\n" +
-        "\t\t<cim:GovHydro3.pgv2>" + pgv2 + "</cim:GovHydro3.pgv2>\n" +
-        "\t\t<cim:GovHydro3.pgv3>" + pgv3 + "</cim:GovHydro3.pgv3>\n" +
-        "\t\t<cim:GovHydro3.pgv4>" + pgv4 + "</cim:GovHydro3.pgv4>\n" +
-        "\t\t<cim:GovHydro3.pgv5>" + pgv5 + "</cim:GovHydro3.pgv5>\n" +
-        "\t\t<cim:GovHydro3.pgv6>" + pgv6 + "</cim:GovHydro3.pgv6>\n" +
-        "\t\t<cim:GovHydro3.pmax>" + pmax + "</cim:GovHydro3.pmax>\n" +
-        "\t\t<cim:GovHydro3.pmin>" + pmin + "</cim:GovHydro3.pmin>\n" +
-        "\t\t<cim:GovHydro3.qnl>" + qnl + "</cim:GovHydro3.qnl>\n" +
-        "\t\t<cim:GovHydro3.relec>" + relec + "</cim:GovHydro3.relec>\n" +
-        "\t\t<cim:GovHydro3.rgate>" + rgate + "</cim:GovHydro3.rgate>\n" +
-        "\t\t<cim:GovHydro3.td>" + td + "</cim:GovHydro3.td>\n" +
-        "\t\t<cim:GovHydro3.tf>" + tf + "</cim:GovHydro3.tf>\n" +
-        "\t\t<cim:GovHydro3.tp>" + tp + "</cim:GovHydro3.tp>\n" +
-        "\t\t<cim:GovHydro3.tt>" + tt + "</cim:GovHydro3.tt>\n" +
-        "\t\t<cim:GovHydro3.tw>" + tw + "</cim:GovHydro3.tw>\n" +
-        "\t\t<cim:GovHydro3.velcl>" + velcl + "</cim:GovHydro3.velcl>\n" +
-        "\t\t<cim:GovHydro3.velop>" + velop + "</cim:GovHydro3.velop>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = GovHydro3.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovHydro3.fields (position), value)
+        emitelem (0, at)
+        emitelem (1, db1)
+        emitelem (2, db2)
+        emitelem (3, dturb)
+        emitelem (4, eps)
+        emitelem (5, governorControl)
+        emitelem (6, gv1)
+        emitelem (7, gv2)
+        emitelem (8, gv3)
+        emitelem (9, gv4)
+        emitelem (10, gv5)
+        emitelem (11, gv6)
+        emitelem (12, h0)
+        emitelem (13, k1)
+        emitelem (14, k2)
+        emitelem (15, kg)
+        emitelem (16, ki)
+        emitelem (17, mwbase)
+        emitelem (18, pgv1)
+        emitelem (19, pgv2)
+        emitelem (20, pgv3)
+        emitelem (21, pgv4)
+        emitelem (22, pgv5)
+        emitelem (23, pgv6)
+        emitelem (24, pmax)
+        emitelem (25, pmin)
+        emitelem (26, qnl)
+        emitelem (27, relec)
+        emitelem (28, rgate)
+        emitelem (29, td)
+        emitelem (30, tf)
+        emitelem (31, tp)
+        emitelem (32, tt)
+        emitelem (33, tw)
+        emitelem (34, velcl)
+        emitelem (35, velop)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:GovHydro3 rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:GovHydro3>"
+        "\t<cim:GovHydro3 rdf:ID=\"%s\">\n%s\t</cim:GovHydro3>".format (id, export_fields)
     }
 }
 
@@ -2455,85 +2920,131 @@ object GovHydro3
 extends
     Parseable[GovHydro3]
 {
-    val at = parse_element (element ("""GovHydro3.at"""))
-    val db1 = parse_element (element ("""GovHydro3.db1"""))
-    val db2 = parse_element (element ("""GovHydro3.db2"""))
-    val dturb = parse_element (element ("""GovHydro3.dturb"""))
-    val eps = parse_element (element ("""GovHydro3.eps"""))
-    val governorControl = parse_element (element ("""GovHydro3.governorControl"""))
-    val gv1 = parse_element (element ("""GovHydro3.gv1"""))
-    val gv2 = parse_element (element ("""GovHydro3.gv2"""))
-    val gv3 = parse_element (element ("""GovHydro3.gv3"""))
-    val gv4 = parse_element (element ("""GovHydro3.gv4"""))
-    val gv5 = parse_element (element ("""GovHydro3.gv5"""))
-    val gv6 = parse_element (element ("""GovHydro3.gv6"""))
-    val h0 = parse_element (element ("""GovHydro3.h0"""))
-    val k1 = parse_element (element ("""GovHydro3.k1"""))
-    val k2 = parse_element (element ("""GovHydro3.k2"""))
-    val kg = parse_element (element ("""GovHydro3.kg"""))
-    val ki = parse_element (element ("""GovHydro3.ki"""))
-    val mwbase = parse_element (element ("""GovHydro3.mwbase"""))
-    val pgv1 = parse_element (element ("""GovHydro3.pgv1"""))
-    val pgv2 = parse_element (element ("""GovHydro3.pgv2"""))
-    val pgv3 = parse_element (element ("""GovHydro3.pgv3"""))
-    val pgv4 = parse_element (element ("""GovHydro3.pgv4"""))
-    val pgv5 = parse_element (element ("""GovHydro3.pgv5"""))
-    val pgv6 = parse_element (element ("""GovHydro3.pgv6"""))
-    val pmax = parse_element (element ("""GovHydro3.pmax"""))
-    val pmin = parse_element (element ("""GovHydro3.pmin"""))
-    val qnl = parse_element (element ("""GovHydro3.qnl"""))
-    val relec = parse_element (element ("""GovHydro3.relec"""))
-    val rgate = parse_element (element ("""GovHydro3.rgate"""))
-    val td = parse_element (element ("""GovHydro3.td"""))
-    val tf = parse_element (element ("""GovHydro3.tf"""))
-    val tp = parse_element (element ("""GovHydro3.tp"""))
-    val tt = parse_element (element ("""GovHydro3.tt"""))
-    val tw = parse_element (element ("""GovHydro3.tw"""))
-    val velcl = parse_element (element ("""GovHydro3.velcl"""))
-    val velop = parse_element (element ("""GovHydro3.velop"""))
+    val fields: Array[String] = Array[String] (
+        "at",
+        "db1",
+        "db2",
+        "dturb",
+        "eps",
+        "governorControl",
+        "gv1",
+        "gv2",
+        "gv3",
+        "gv4",
+        "gv5",
+        "gv6",
+        "h0",
+        "k1",
+        "k2",
+        "kg",
+        "ki",
+        "mwbase",
+        "pgv1",
+        "pgv2",
+        "pgv3",
+        "pgv4",
+        "pgv5",
+        "pgv6",
+        "pmax",
+        "pmin",
+        "qnl",
+        "relec",
+        "rgate",
+        "td",
+        "tf",
+        "tp",
+        "tt",
+        "tw",
+        "velcl",
+        "velop"
+    )
+    val at: Fielder = parse_element (element (cls, fields(0)))
+    val db1: Fielder = parse_element (element (cls, fields(1)))
+    val db2: Fielder = parse_element (element (cls, fields(2)))
+    val dturb: Fielder = parse_element (element (cls, fields(3)))
+    val eps: Fielder = parse_element (element (cls, fields(4)))
+    val governorControl: Fielder = parse_element (element (cls, fields(5)))
+    val gv1: Fielder = parse_element (element (cls, fields(6)))
+    val gv2: Fielder = parse_element (element (cls, fields(7)))
+    val gv3: Fielder = parse_element (element (cls, fields(8)))
+    val gv4: Fielder = parse_element (element (cls, fields(9)))
+    val gv5: Fielder = parse_element (element (cls, fields(10)))
+    val gv6: Fielder = parse_element (element (cls, fields(11)))
+    val h0: Fielder = parse_element (element (cls, fields(12)))
+    val k1: Fielder = parse_element (element (cls, fields(13)))
+    val k2: Fielder = parse_element (element (cls, fields(14)))
+    val kg: Fielder = parse_element (element (cls, fields(15)))
+    val ki: Fielder = parse_element (element (cls, fields(16)))
+    val mwbase: Fielder = parse_element (element (cls, fields(17)))
+    val pgv1: Fielder = parse_element (element (cls, fields(18)))
+    val pgv2: Fielder = parse_element (element (cls, fields(19)))
+    val pgv3: Fielder = parse_element (element (cls, fields(20)))
+    val pgv4: Fielder = parse_element (element (cls, fields(21)))
+    val pgv5: Fielder = parse_element (element (cls, fields(22)))
+    val pgv6: Fielder = parse_element (element (cls, fields(23)))
+    val pmax: Fielder = parse_element (element (cls, fields(24)))
+    val pmin: Fielder = parse_element (element (cls, fields(25)))
+    val qnl: Fielder = parse_element (element (cls, fields(26)))
+    val relec: Fielder = parse_element (element (cls, fields(27)))
+    val rgate: Fielder = parse_element (element (cls, fields(28)))
+    val td: Fielder = parse_element (element (cls, fields(29)))
+    val tf: Fielder = parse_element (element (cls, fields(30)))
+    val tp: Fielder = parse_element (element (cls, fields(31)))
+    val tt: Fielder = parse_element (element (cls, fields(32)))
+    val tw: Fielder = parse_element (element (cls, fields(33)))
+    val velcl: Fielder = parse_element (element (cls, fields(34)))
+    val velop: Fielder = parse_element (element (cls, fields(35)))
+
     def parse (context: Context): GovHydro3 =
     {
-        GovHydro3(
+        implicit val ctx: Context = context
+        var fields: Long = 0L
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1L << position; field._1 }
+        val ret = GovHydro3 (
             TurbineGovernorDynamics.parse (context),
-            toDouble (at (context), context),
-            toDouble (db1 (context), context),
-            toDouble (db2 (context), context),
-            toDouble (dturb (context), context),
-            toDouble (eps (context), context),
-            toBoolean (governorControl (context), context),
-            toDouble (gv1 (context), context),
-            toDouble (gv2 (context), context),
-            toDouble (gv3 (context), context),
-            toDouble (gv4 (context), context),
-            toDouble (gv5 (context), context),
-            toDouble (gv6 (context), context),
-            toDouble (h0 (context), context),
-            toDouble (k1 (context), context),
-            toDouble (k2 (context), context),
-            toDouble (kg (context), context),
-            toDouble (ki (context), context),
-            toDouble (mwbase (context), context),
-            toDouble (pgv1 (context), context),
-            toDouble (pgv2 (context), context),
-            toDouble (pgv3 (context), context),
-            toDouble (pgv4 (context), context),
-            toDouble (pgv5 (context), context),
-            toDouble (pgv6 (context), context),
-            toDouble (pmax (context), context),
-            toDouble (pmin (context), context),
-            toDouble (qnl (context), context),
-            toDouble (relec (context), context),
-            toDouble (rgate (context), context),
-            toDouble (td (context), context),
-            toDouble (tf (context), context),
-            toDouble (tp (context), context),
-            toDouble (tt (context), context),
-            toDouble (tw (context), context),
-            toDouble (velcl (context), context),
-            toDouble (velop (context), context)
+            toDouble (mask (at (), 0)),
+            toDouble (mask (db1 (), 1)),
+            toDouble (mask (db2 (), 2)),
+            toDouble (mask (dturb (), 3)),
+            toDouble (mask (eps (), 4)),
+            toBoolean (mask (governorControl (), 5)),
+            toDouble (mask (gv1 (), 6)),
+            toDouble (mask (gv2 (), 7)),
+            toDouble (mask (gv3 (), 8)),
+            toDouble (mask (gv4 (), 9)),
+            toDouble (mask (gv5 (), 10)),
+            toDouble (mask (gv6 (), 11)),
+            toDouble (mask (h0 (), 12)),
+            toDouble (mask (k1 (), 13)),
+            toDouble (mask (k2 (), 14)),
+            toDouble (mask (kg (), 15)),
+            toDouble (mask (ki (), 16)),
+            toDouble (mask (mwbase (), 17)),
+            toDouble (mask (pgv1 (), 18)),
+            toDouble (mask (pgv2 (), 19)),
+            toDouble (mask (pgv3 (), 20)),
+            toDouble (mask (pgv4 (), 21)),
+            toDouble (mask (pgv5 (), 22)),
+            toDouble (mask (pgv6 (), 23)),
+            toDouble (mask (pmax (), 24)),
+            toDouble (mask (pmin (), 25)),
+            toDouble (mask (qnl (), 26)),
+            toDouble (mask (relec (), 27)),
+            toDouble (mask (rgate (), 28)),
+            toDouble (mask (td (), 29)),
+            toDouble (mask (tf (), 30)),
+            toDouble (mask (tp (), 31)),
+            toDouble (mask (tt (), 32)),
+            toDouble (mask (tw (), 33)),
+            toDouble (mask (velcl (), 34)),
+            toDouble (mask (velop (), 35))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -2674,6 +3185,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Long = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -2693,51 +3210,53 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:GovHydro4.at>" + at + "</cim:GovHydro4.at>\n" +
-        "\t\t<cim:GovHydro4.bgv0>" + bgv0 + "</cim:GovHydro4.bgv0>\n" +
-        "\t\t<cim:GovHydro4.bgv1>" + bgv1 + "</cim:GovHydro4.bgv1>\n" +
-        "\t\t<cim:GovHydro4.bgv2>" + bgv2 + "</cim:GovHydro4.bgv2>\n" +
-        "\t\t<cim:GovHydro4.bgv3>" + bgv3 + "</cim:GovHydro4.bgv3>\n" +
-        "\t\t<cim:GovHydro4.bgv4>" + bgv4 + "</cim:GovHydro4.bgv4>\n" +
-        "\t\t<cim:GovHydro4.bgv5>" + bgv5 + "</cim:GovHydro4.bgv5>\n" +
-        "\t\t<cim:GovHydro4.bmax>" + bmax + "</cim:GovHydro4.bmax>\n" +
-        "\t\t<cim:GovHydro4.db1>" + db1 + "</cim:GovHydro4.db1>\n" +
-        "\t\t<cim:GovHydro4.db2>" + db2 + "</cim:GovHydro4.db2>\n" +
-        "\t\t<cim:GovHydro4.dturb>" + dturb + "</cim:GovHydro4.dturb>\n" +
-        "\t\t<cim:GovHydro4.eps>" + eps + "</cim:GovHydro4.eps>\n" +
-        "\t\t<cim:GovHydro4.gmax>" + gmax + "</cim:GovHydro4.gmax>\n" +
-        "\t\t<cim:GovHydro4.gmin>" + gmin + "</cim:GovHydro4.gmin>\n" +
-        "\t\t<cim:GovHydro4.gv0>" + gv0 + "</cim:GovHydro4.gv0>\n" +
-        "\t\t<cim:GovHydro4.gv1>" + gv1 + "</cim:GovHydro4.gv1>\n" +
-        "\t\t<cim:GovHydro4.gv2>" + gv2 + "</cim:GovHydro4.gv2>\n" +
-        "\t\t<cim:GovHydro4.gv3>" + gv3 + "</cim:GovHydro4.gv3>\n" +
-        "\t\t<cim:GovHydro4.gv4>" + gv4 + "</cim:GovHydro4.gv4>\n" +
-        "\t\t<cim:GovHydro4.gv5>" + gv5 + "</cim:GovHydro4.gv5>\n" +
-        "\t\t<cim:GovHydro4.hdam>" + hdam + "</cim:GovHydro4.hdam>\n" +
-        "\t\t<cim:GovHydro4.mwbase>" + mwbase + "</cim:GovHydro4.mwbase>\n" +
-        "\t\t<cim:GovHydro4.pgv0>" + pgv0 + "</cim:GovHydro4.pgv0>\n" +
-        "\t\t<cim:GovHydro4.pgv1>" + pgv1 + "</cim:GovHydro4.pgv1>\n" +
-        "\t\t<cim:GovHydro4.pgv2>" + pgv2 + "</cim:GovHydro4.pgv2>\n" +
-        "\t\t<cim:GovHydro4.pgv3>" + pgv3 + "</cim:GovHydro4.pgv3>\n" +
-        "\t\t<cim:GovHydro4.pgv4>" + pgv4 + "</cim:GovHydro4.pgv4>\n" +
-        "\t\t<cim:GovHydro4.pgv5>" + pgv5 + "</cim:GovHydro4.pgv5>\n" +
-        "\t\t<cim:GovHydro4.qn1>" + qn1 + "</cim:GovHydro4.qn1>\n" +
-        "\t\t<cim:GovHydro4.rperm>" + rperm + "</cim:GovHydro4.rperm>\n" +
-        "\t\t<cim:GovHydro4.rtemp>" + rtemp + "</cim:GovHydro4.rtemp>\n" +
-        "\t\t<cim:GovHydro4.tblade>" + tblade + "</cim:GovHydro4.tblade>\n" +
-        "\t\t<cim:GovHydro4.tg>" + tg + "</cim:GovHydro4.tg>\n" +
-        "\t\t<cim:GovHydro4.tp>" + tp + "</cim:GovHydro4.tp>\n" +
-        "\t\t<cim:GovHydro4.tr>" + tr + "</cim:GovHydro4.tr>\n" +
-        "\t\t<cim:GovHydro4.tw>" + tw + "</cim:GovHydro4.tw>\n" +
-        "\t\t<cim:GovHydro4.uc>" + uc + "</cim:GovHydro4.uc>\n" +
-        "\t\t<cim:GovHydro4.uo>" + uo + "</cim:GovHydro4.uo>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = GovHydro4.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovHydro4.fields (position), value)
+        emitelem (0, at)
+        emitelem (1, bgv0)
+        emitelem (2, bgv1)
+        emitelem (3, bgv2)
+        emitelem (4, bgv3)
+        emitelem (5, bgv4)
+        emitelem (6, bgv5)
+        emitelem (7, bmax)
+        emitelem (8, db1)
+        emitelem (9, db2)
+        emitelem (10, dturb)
+        emitelem (11, eps)
+        emitelem (12, gmax)
+        emitelem (13, gmin)
+        emitelem (14, gv0)
+        emitelem (15, gv1)
+        emitelem (16, gv2)
+        emitelem (17, gv3)
+        emitelem (18, gv4)
+        emitelem (19, gv5)
+        emitelem (20, hdam)
+        emitelem (21, mwbase)
+        emitelem (22, pgv0)
+        emitelem (23, pgv1)
+        emitelem (24, pgv2)
+        emitelem (25, pgv3)
+        emitelem (26, pgv4)
+        emitelem (27, pgv5)
+        emitelem (28, qn1)
+        emitelem (29, rperm)
+        emitelem (30, rtemp)
+        emitelem (31, tblade)
+        emitelem (32, tg)
+        emitelem (33, tp)
+        emitelem (34, tr)
+        emitelem (35, tw)
+        emitelem (36, uc)
+        emitelem (37, uo)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:GovHydro4 rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:GovHydro4>"
+        "\t<cim:GovHydro4 rdf:ID=\"%s\">\n%s\t</cim:GovHydro4>".format (id, export_fields)
     }
 }
 
@@ -2745,89 +3264,137 @@ object GovHydro4
 extends
     Parseable[GovHydro4]
 {
-    val at = parse_element (element ("""GovHydro4.at"""))
-    val bgv0 = parse_element (element ("""GovHydro4.bgv0"""))
-    val bgv1 = parse_element (element ("""GovHydro4.bgv1"""))
-    val bgv2 = parse_element (element ("""GovHydro4.bgv2"""))
-    val bgv3 = parse_element (element ("""GovHydro4.bgv3"""))
-    val bgv4 = parse_element (element ("""GovHydro4.bgv4"""))
-    val bgv5 = parse_element (element ("""GovHydro4.bgv5"""))
-    val bmax = parse_element (element ("""GovHydro4.bmax"""))
-    val db1 = parse_element (element ("""GovHydro4.db1"""))
-    val db2 = parse_element (element ("""GovHydro4.db2"""))
-    val dturb = parse_element (element ("""GovHydro4.dturb"""))
-    val eps = parse_element (element ("""GovHydro4.eps"""))
-    val gmax = parse_element (element ("""GovHydro4.gmax"""))
-    val gmin = parse_element (element ("""GovHydro4.gmin"""))
-    val gv0 = parse_element (element ("""GovHydro4.gv0"""))
-    val gv1 = parse_element (element ("""GovHydro4.gv1"""))
-    val gv2 = parse_element (element ("""GovHydro4.gv2"""))
-    val gv3 = parse_element (element ("""GovHydro4.gv3"""))
-    val gv4 = parse_element (element ("""GovHydro4.gv4"""))
-    val gv5 = parse_element (element ("""GovHydro4.gv5"""))
-    val hdam = parse_element (element ("""GovHydro4.hdam"""))
-    val mwbase = parse_element (element ("""GovHydro4.mwbase"""))
-    val pgv0 = parse_element (element ("""GovHydro4.pgv0"""))
-    val pgv1 = parse_element (element ("""GovHydro4.pgv1"""))
-    val pgv2 = parse_element (element ("""GovHydro4.pgv2"""))
-    val pgv3 = parse_element (element ("""GovHydro4.pgv3"""))
-    val pgv4 = parse_element (element ("""GovHydro4.pgv4"""))
-    val pgv5 = parse_element (element ("""GovHydro4.pgv5"""))
-    val qn1 = parse_element (element ("""GovHydro4.qn1"""))
-    val rperm = parse_element (element ("""GovHydro4.rperm"""))
-    val rtemp = parse_element (element ("""GovHydro4.rtemp"""))
-    val tblade = parse_element (element ("""GovHydro4.tblade"""))
-    val tg = parse_element (element ("""GovHydro4.tg"""))
-    val tp = parse_element (element ("""GovHydro4.tp"""))
-    val tr = parse_element (element ("""GovHydro4.tr"""))
-    val tw = parse_element (element ("""GovHydro4.tw"""))
-    val uc = parse_element (element ("""GovHydro4.uc"""))
-    val uo = parse_element (element ("""GovHydro4.uo"""))
+    val fields: Array[String] = Array[String] (
+        "at",
+        "bgv0",
+        "bgv1",
+        "bgv2",
+        "bgv3",
+        "bgv4",
+        "bgv5",
+        "bmax",
+        "db1",
+        "db2",
+        "dturb",
+        "eps",
+        "gmax",
+        "gmin",
+        "gv0",
+        "gv1",
+        "gv2",
+        "gv3",
+        "gv4",
+        "gv5",
+        "hdam",
+        "mwbase",
+        "pgv0",
+        "pgv1",
+        "pgv2",
+        "pgv3",
+        "pgv4",
+        "pgv5",
+        "qn1",
+        "rperm",
+        "rtemp",
+        "tblade",
+        "tg",
+        "tp",
+        "tr",
+        "tw",
+        "uc",
+        "uo"
+    )
+    val at: Fielder = parse_element (element (cls, fields(0)))
+    val bgv0: Fielder = parse_element (element (cls, fields(1)))
+    val bgv1: Fielder = parse_element (element (cls, fields(2)))
+    val bgv2: Fielder = parse_element (element (cls, fields(3)))
+    val bgv3: Fielder = parse_element (element (cls, fields(4)))
+    val bgv4: Fielder = parse_element (element (cls, fields(5)))
+    val bgv5: Fielder = parse_element (element (cls, fields(6)))
+    val bmax: Fielder = parse_element (element (cls, fields(7)))
+    val db1: Fielder = parse_element (element (cls, fields(8)))
+    val db2: Fielder = parse_element (element (cls, fields(9)))
+    val dturb: Fielder = parse_element (element (cls, fields(10)))
+    val eps: Fielder = parse_element (element (cls, fields(11)))
+    val gmax: Fielder = parse_element (element (cls, fields(12)))
+    val gmin: Fielder = parse_element (element (cls, fields(13)))
+    val gv0: Fielder = parse_element (element (cls, fields(14)))
+    val gv1: Fielder = parse_element (element (cls, fields(15)))
+    val gv2: Fielder = parse_element (element (cls, fields(16)))
+    val gv3: Fielder = parse_element (element (cls, fields(17)))
+    val gv4: Fielder = parse_element (element (cls, fields(18)))
+    val gv5: Fielder = parse_element (element (cls, fields(19)))
+    val hdam: Fielder = parse_element (element (cls, fields(20)))
+    val mwbase: Fielder = parse_element (element (cls, fields(21)))
+    val pgv0: Fielder = parse_element (element (cls, fields(22)))
+    val pgv1: Fielder = parse_element (element (cls, fields(23)))
+    val pgv2: Fielder = parse_element (element (cls, fields(24)))
+    val pgv3: Fielder = parse_element (element (cls, fields(25)))
+    val pgv4: Fielder = parse_element (element (cls, fields(26)))
+    val pgv5: Fielder = parse_element (element (cls, fields(27)))
+    val qn1: Fielder = parse_element (element (cls, fields(28)))
+    val rperm: Fielder = parse_element (element (cls, fields(29)))
+    val rtemp: Fielder = parse_element (element (cls, fields(30)))
+    val tblade: Fielder = parse_element (element (cls, fields(31)))
+    val tg: Fielder = parse_element (element (cls, fields(32)))
+    val tp: Fielder = parse_element (element (cls, fields(33)))
+    val tr: Fielder = parse_element (element (cls, fields(34)))
+    val tw: Fielder = parse_element (element (cls, fields(35)))
+    val uc: Fielder = parse_element (element (cls, fields(36)))
+    val uo: Fielder = parse_element (element (cls, fields(37)))
+
     def parse (context: Context): GovHydro4 =
     {
-        GovHydro4(
+        implicit val ctx: Context = context
+        var fields: Long = 0L
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1L << position; field._1 }
+        val ret = GovHydro4 (
             TurbineGovernorDynamics.parse (context),
-            toDouble (at (context), context),
-            toDouble (bgv0 (context), context),
-            toDouble (bgv1 (context), context),
-            toDouble (bgv2 (context), context),
-            toDouble (bgv3 (context), context),
-            toDouble (bgv4 (context), context),
-            toDouble (bgv5 (context), context),
-            toDouble (bmax (context), context),
-            toDouble (db1 (context), context),
-            toDouble (db2 (context), context),
-            toDouble (dturb (context), context),
-            toDouble (eps (context), context),
-            toDouble (gmax (context), context),
-            toDouble (gmin (context), context),
-            toDouble (gv0 (context), context),
-            toDouble (gv1 (context), context),
-            toDouble (gv2 (context), context),
-            toDouble (gv3 (context), context),
-            toDouble (gv4 (context), context),
-            toDouble (gv5 (context), context),
-            toDouble (hdam (context), context),
-            toDouble (mwbase (context), context),
-            toDouble (pgv0 (context), context),
-            toDouble (pgv1 (context), context),
-            toDouble (pgv2 (context), context),
-            toDouble (pgv3 (context), context),
-            toDouble (pgv4 (context), context),
-            toDouble (pgv5 (context), context),
-            toDouble (qn1 (context), context),
-            toDouble (rperm (context), context),
-            toDouble (rtemp (context), context),
-            toDouble (tblade (context), context),
-            toDouble (tg (context), context),
-            toDouble (tp (context), context),
-            toDouble (tr (context), context),
-            toDouble (tw (context), context),
-            toDouble (uc (context), context),
-            toDouble (uo (context), context)
+            toDouble (mask (at (), 0)),
+            toDouble (mask (bgv0 (), 1)),
+            toDouble (mask (bgv1 (), 2)),
+            toDouble (mask (bgv2 (), 3)),
+            toDouble (mask (bgv3 (), 4)),
+            toDouble (mask (bgv4 (), 5)),
+            toDouble (mask (bgv5 (), 6)),
+            toDouble (mask (bmax (), 7)),
+            toDouble (mask (db1 (), 8)),
+            toDouble (mask (db2 (), 9)),
+            toDouble (mask (dturb (), 10)),
+            toDouble (mask (eps (), 11)),
+            toDouble (mask (gmax (), 12)),
+            toDouble (mask (gmin (), 13)),
+            toDouble (mask (gv0 (), 14)),
+            toDouble (mask (gv1 (), 15)),
+            toDouble (mask (gv2 (), 16)),
+            toDouble (mask (gv3 (), 17)),
+            toDouble (mask (gv4 (), 18)),
+            toDouble (mask (gv5 (), 19)),
+            toDouble (mask (hdam (), 20)),
+            toDouble (mask (mwbase (), 21)),
+            toDouble (mask (pgv0 (), 22)),
+            toDouble (mask (pgv1 (), 23)),
+            toDouble (mask (pgv2 (), 24)),
+            toDouble (mask (pgv3 (), 25)),
+            toDouble (mask (pgv4 (), 26)),
+            toDouble (mask (pgv5 (), 27)),
+            toDouble (mask (qn1 (), 28)),
+            toDouble (mask (rperm (), 29)),
+            toDouble (mask (rtemp (), 30)),
+            toDouble (mask (tblade (), 31)),
+            toDouble (mask (tg (), 32)),
+            toDouble (mask (tp (), 33)),
+            toDouble (mask (tr (), 34)),
+            toDouble (mask (tw (), 35)),
+            toDouble (mask (uc (), 36)),
+            toDouble (mask (uo (), 37))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -2959,6 +3526,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Long = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -2978,48 +3551,50 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:GovHydroDD.aturb>" + aturb + "</cim:GovHydroDD.aturb>\n" +
-        "\t\t<cim:GovHydroDD.bturb>" + bturb + "</cim:GovHydroDD.bturb>\n" +
-        "\t\t<cim:GovHydroDD.db1>" + db1 + "</cim:GovHydroDD.db1>\n" +
-        "\t\t<cim:GovHydroDD.db2>" + db2 + "</cim:GovHydroDD.db2>\n" +
-        "\t\t<cim:GovHydroDD.eps>" + eps + "</cim:GovHydroDD.eps>\n" +
-        "\t\t<cim:GovHydroDD.gmax>" + gmax + "</cim:GovHydroDD.gmax>\n" +
-        "\t\t<cim:GovHydroDD.gmin>" + gmin + "</cim:GovHydroDD.gmin>\n" +
-        "\t\t<cim:GovHydroDD.gv1>" + gv1 + "</cim:GovHydroDD.gv1>\n" +
-        "\t\t<cim:GovHydroDD.gv2>" + gv2 + "</cim:GovHydroDD.gv2>\n" +
-        "\t\t<cim:GovHydroDD.gv3>" + gv3 + "</cim:GovHydroDD.gv3>\n" +
-        "\t\t<cim:GovHydroDD.gv4>" + gv4 + "</cim:GovHydroDD.gv4>\n" +
-        "\t\t<cim:GovHydroDD.gv5>" + gv5 + "</cim:GovHydroDD.gv5>\n" +
-        "\t\t<cim:GovHydroDD.gv6>" + gv6 + "</cim:GovHydroDD.gv6>\n" +
-        "\t\t<cim:GovHydroDD.inputSignal>" + inputSignal + "</cim:GovHydroDD.inputSignal>\n" +
-        "\t\t<cim:GovHydroDD.k1>" + k1 + "</cim:GovHydroDD.k1>\n" +
-        "\t\t<cim:GovHydroDD.k2>" + k2 + "</cim:GovHydroDD.k2>\n" +
-        "\t\t<cim:GovHydroDD.kg>" + kg + "</cim:GovHydroDD.kg>\n" +
-        "\t\t<cim:GovHydroDD.ki>" + ki + "</cim:GovHydroDD.ki>\n" +
-        "\t\t<cim:GovHydroDD.mwbase>" + mwbase + "</cim:GovHydroDD.mwbase>\n" +
-        "\t\t<cim:GovHydroDD.pgv1>" + pgv1 + "</cim:GovHydroDD.pgv1>\n" +
-        "\t\t<cim:GovHydroDD.pgv2>" + pgv2 + "</cim:GovHydroDD.pgv2>\n" +
-        "\t\t<cim:GovHydroDD.pgv3>" + pgv3 + "</cim:GovHydroDD.pgv3>\n" +
-        "\t\t<cim:GovHydroDD.pgv4>" + pgv4 + "</cim:GovHydroDD.pgv4>\n" +
-        "\t\t<cim:GovHydroDD.pgv5>" + pgv5 + "</cim:GovHydroDD.pgv5>\n" +
-        "\t\t<cim:GovHydroDD.pgv6>" + pgv6 + "</cim:GovHydroDD.pgv6>\n" +
-        "\t\t<cim:GovHydroDD.pmax>" + pmax + "</cim:GovHydroDD.pmax>\n" +
-        "\t\t<cim:GovHydroDD.pmin>" + pmin + "</cim:GovHydroDD.pmin>\n" +
-        "\t\t<cim:GovHydroDD.r>" + r + "</cim:GovHydroDD.r>\n" +
-        "\t\t<cim:GovHydroDD.td>" + td + "</cim:GovHydroDD.td>\n" +
-        "\t\t<cim:GovHydroDD.tf>" + tf + "</cim:GovHydroDD.tf>\n" +
-        "\t\t<cim:GovHydroDD.tp>" + tp + "</cim:GovHydroDD.tp>\n" +
-        "\t\t<cim:GovHydroDD.tt>" + tt + "</cim:GovHydroDD.tt>\n" +
-        "\t\t<cim:GovHydroDD.tturb>" + tturb + "</cim:GovHydroDD.tturb>\n" +
-        "\t\t<cim:GovHydroDD.velcl>" + velcl + "</cim:GovHydroDD.velcl>\n" +
-        "\t\t<cim:GovHydroDD.velop>" + velop + "</cim:GovHydroDD.velop>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = GovHydroDD.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovHydroDD.fields (position), value)
+        emitelem (0, aturb)
+        emitelem (1, bturb)
+        emitelem (2, db1)
+        emitelem (3, db2)
+        emitelem (4, eps)
+        emitelem (5, gmax)
+        emitelem (6, gmin)
+        emitelem (7, gv1)
+        emitelem (8, gv2)
+        emitelem (9, gv3)
+        emitelem (10, gv4)
+        emitelem (11, gv5)
+        emitelem (12, gv6)
+        emitelem (13, inputSignal)
+        emitelem (14, k1)
+        emitelem (15, k2)
+        emitelem (16, kg)
+        emitelem (17, ki)
+        emitelem (18, mwbase)
+        emitelem (19, pgv1)
+        emitelem (20, pgv2)
+        emitelem (21, pgv3)
+        emitelem (22, pgv4)
+        emitelem (23, pgv5)
+        emitelem (24, pgv6)
+        emitelem (25, pmax)
+        emitelem (26, pmin)
+        emitelem (27, r)
+        emitelem (28, td)
+        emitelem (29, tf)
+        emitelem (30, tp)
+        emitelem (31, tt)
+        emitelem (32, tturb)
+        emitelem (33, velcl)
+        emitelem (34, velop)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:GovHydroDD rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:GovHydroDD>"
+        "\t<cim:GovHydroDD rdf:ID=\"%s\">\n%s\t</cim:GovHydroDD>".format (id, export_fields)
     }
 }
 
@@ -3027,83 +3602,128 @@ object GovHydroDD
 extends
     Parseable[GovHydroDD]
 {
-    val aturb = parse_element (element ("""GovHydroDD.aturb"""))
-    val bturb = parse_element (element ("""GovHydroDD.bturb"""))
-    val db1 = parse_element (element ("""GovHydroDD.db1"""))
-    val db2 = parse_element (element ("""GovHydroDD.db2"""))
-    val eps = parse_element (element ("""GovHydroDD.eps"""))
-    val gmax = parse_element (element ("""GovHydroDD.gmax"""))
-    val gmin = parse_element (element ("""GovHydroDD.gmin"""))
-    val gv1 = parse_element (element ("""GovHydroDD.gv1"""))
-    val gv2 = parse_element (element ("""GovHydroDD.gv2"""))
-    val gv3 = parse_element (element ("""GovHydroDD.gv3"""))
-    val gv4 = parse_element (element ("""GovHydroDD.gv4"""))
-    val gv5 = parse_element (element ("""GovHydroDD.gv5"""))
-    val gv6 = parse_element (element ("""GovHydroDD.gv6"""))
-    val inputSignal = parse_element (element ("""GovHydroDD.inputSignal"""))
-    val k1 = parse_element (element ("""GovHydroDD.k1"""))
-    val k2 = parse_element (element ("""GovHydroDD.k2"""))
-    val kg = parse_element (element ("""GovHydroDD.kg"""))
-    val ki = parse_element (element ("""GovHydroDD.ki"""))
-    val mwbase = parse_element (element ("""GovHydroDD.mwbase"""))
-    val pgv1 = parse_element (element ("""GovHydroDD.pgv1"""))
-    val pgv2 = parse_element (element ("""GovHydroDD.pgv2"""))
-    val pgv3 = parse_element (element ("""GovHydroDD.pgv3"""))
-    val pgv4 = parse_element (element ("""GovHydroDD.pgv4"""))
-    val pgv5 = parse_element (element ("""GovHydroDD.pgv5"""))
-    val pgv6 = parse_element (element ("""GovHydroDD.pgv6"""))
-    val pmax = parse_element (element ("""GovHydroDD.pmax"""))
-    val pmin = parse_element (element ("""GovHydroDD.pmin"""))
-    val r = parse_element (element ("""GovHydroDD.r"""))
-    val td = parse_element (element ("""GovHydroDD.td"""))
-    val tf = parse_element (element ("""GovHydroDD.tf"""))
-    val tp = parse_element (element ("""GovHydroDD.tp"""))
-    val tt = parse_element (element ("""GovHydroDD.tt"""))
-    val tturb = parse_element (element ("""GovHydroDD.tturb"""))
-    val velcl = parse_element (element ("""GovHydroDD.velcl"""))
-    val velop = parse_element (element ("""GovHydroDD.velop"""))
+    val fields: Array[String] = Array[String] (
+        "aturb",
+        "bturb",
+        "db1",
+        "db2",
+        "eps",
+        "gmax",
+        "gmin",
+        "gv1",
+        "gv2",
+        "gv3",
+        "gv4",
+        "gv5",
+        "gv6",
+        "inputSignal",
+        "k1",
+        "k2",
+        "kg",
+        "ki",
+        "mwbase",
+        "pgv1",
+        "pgv2",
+        "pgv3",
+        "pgv4",
+        "pgv5",
+        "pgv6",
+        "pmax",
+        "pmin",
+        "r",
+        "td",
+        "tf",
+        "tp",
+        "tt",
+        "tturb",
+        "velcl",
+        "velop"
+    )
+    val aturb: Fielder = parse_element (element (cls, fields(0)))
+    val bturb: Fielder = parse_element (element (cls, fields(1)))
+    val db1: Fielder = parse_element (element (cls, fields(2)))
+    val db2: Fielder = parse_element (element (cls, fields(3)))
+    val eps: Fielder = parse_element (element (cls, fields(4)))
+    val gmax: Fielder = parse_element (element (cls, fields(5)))
+    val gmin: Fielder = parse_element (element (cls, fields(6)))
+    val gv1: Fielder = parse_element (element (cls, fields(7)))
+    val gv2: Fielder = parse_element (element (cls, fields(8)))
+    val gv3: Fielder = parse_element (element (cls, fields(9)))
+    val gv4: Fielder = parse_element (element (cls, fields(10)))
+    val gv5: Fielder = parse_element (element (cls, fields(11)))
+    val gv6: Fielder = parse_element (element (cls, fields(12)))
+    val inputSignal: Fielder = parse_element (element (cls, fields(13)))
+    val k1: Fielder = parse_element (element (cls, fields(14)))
+    val k2: Fielder = parse_element (element (cls, fields(15)))
+    val kg: Fielder = parse_element (element (cls, fields(16)))
+    val ki: Fielder = parse_element (element (cls, fields(17)))
+    val mwbase: Fielder = parse_element (element (cls, fields(18)))
+    val pgv1: Fielder = parse_element (element (cls, fields(19)))
+    val pgv2: Fielder = parse_element (element (cls, fields(20)))
+    val pgv3: Fielder = parse_element (element (cls, fields(21)))
+    val pgv4: Fielder = parse_element (element (cls, fields(22)))
+    val pgv5: Fielder = parse_element (element (cls, fields(23)))
+    val pgv6: Fielder = parse_element (element (cls, fields(24)))
+    val pmax: Fielder = parse_element (element (cls, fields(25)))
+    val pmin: Fielder = parse_element (element (cls, fields(26)))
+    val r: Fielder = parse_element (element (cls, fields(27)))
+    val td: Fielder = parse_element (element (cls, fields(28)))
+    val tf: Fielder = parse_element (element (cls, fields(29)))
+    val tp: Fielder = parse_element (element (cls, fields(30)))
+    val tt: Fielder = parse_element (element (cls, fields(31)))
+    val tturb: Fielder = parse_element (element (cls, fields(32)))
+    val velcl: Fielder = parse_element (element (cls, fields(33)))
+    val velop: Fielder = parse_element (element (cls, fields(34)))
+
     def parse (context: Context): GovHydroDD =
     {
-        GovHydroDD(
+        implicit val ctx: Context = context
+        var fields: Long = 0L
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1L << position; field._1 }
+        val ret = GovHydroDD (
             TurbineGovernorDynamics.parse (context),
-            toDouble (aturb (context), context),
-            toDouble (bturb (context), context),
-            toDouble (db1 (context), context),
-            toDouble (db2 (context), context),
-            toDouble (eps (context), context),
-            toDouble (gmax (context), context),
-            toDouble (gmin (context), context),
-            toDouble (gv1 (context), context),
-            toDouble (gv2 (context), context),
-            toDouble (gv3 (context), context),
-            toDouble (gv4 (context), context),
-            toDouble (gv5 (context), context),
-            toDouble (gv6 (context), context),
-            toBoolean (inputSignal (context), context),
-            toDouble (k1 (context), context),
-            toDouble (k2 (context), context),
-            toDouble (kg (context), context),
-            toDouble (ki (context), context),
-            toDouble (mwbase (context), context),
-            toDouble (pgv1 (context), context),
-            toDouble (pgv2 (context), context),
-            toDouble (pgv3 (context), context),
-            toDouble (pgv4 (context), context),
-            toDouble (pgv5 (context), context),
-            toDouble (pgv6 (context), context),
-            toDouble (pmax (context), context),
-            toDouble (pmin (context), context),
-            toDouble (r (context), context),
-            toDouble (td (context), context),
-            toDouble (tf (context), context),
-            toDouble (tp (context), context),
-            toDouble (tt (context), context),
-            toDouble (tturb (context), context),
-            toDouble (velcl (context), context),
-            toDouble (velop (context), context)
+            toDouble (mask (aturb (), 0)),
+            toDouble (mask (bturb (), 1)),
+            toDouble (mask (db1 (), 2)),
+            toDouble (mask (db2 (), 3)),
+            toDouble (mask (eps (), 4)),
+            toDouble (mask (gmax (), 5)),
+            toDouble (mask (gmin (), 6)),
+            toDouble (mask (gv1 (), 7)),
+            toDouble (mask (gv2 (), 8)),
+            toDouble (mask (gv3 (), 9)),
+            toDouble (mask (gv4 (), 10)),
+            toDouble (mask (gv5 (), 11)),
+            toDouble (mask (gv6 (), 12)),
+            toBoolean (mask (inputSignal (), 13)),
+            toDouble (mask (k1 (), 14)),
+            toDouble (mask (k2 (), 15)),
+            toDouble (mask (kg (), 16)),
+            toDouble (mask (ki (), 17)),
+            toDouble (mask (mwbase (), 18)),
+            toDouble (mask (pgv1 (), 19)),
+            toDouble (mask (pgv2 (), 20)),
+            toDouble (mask (pgv3 (), 21)),
+            toDouble (mask (pgv4 (), 22)),
+            toDouble (mask (pgv5 (), 23)),
+            toDouble (mask (pgv6 (), 24)),
+            toDouble (mask (pmax (), 25)),
+            toDouble (mask (pmin (), 26)),
+            toDouble (mask (r (), 27)),
+            toDouble (mask (td (), 28)),
+            toDouble (mask (tf (), 29)),
+            toDouble (mask (tp (), 30)),
+            toDouble (mask (tt (), 31)),
+            toDouble (mask (tturb (), 32)),
+            toDouble (mask (velcl (), 33)),
+            toDouble (mask (velop (), 34))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -3213,6 +3833,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -3232,40 +3858,43 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:GovHydroFrancis.am>" + am + "</cim:GovHydroFrancis.am>\n" +
-        "\t\t<cim:GovHydroFrancis.av0>" + av0 + "</cim:GovHydroFrancis.av0>\n" +
-        "\t\t<cim:GovHydroFrancis.av1>" + av1 + "</cim:GovHydroFrancis.av1>\n" +
-        "\t\t<cim:GovHydroFrancis.bp>" + bp + "</cim:GovHydroFrancis.bp>\n" +
-        "\t\t<cim:GovHydroFrancis.db1>" + db1 + "</cim:GovHydroFrancis.db1>\n" +
-        "\t\t<cim:GovHydroFrancis.etamax>" + etamax + "</cim:GovHydroFrancis.etamax>\n" +
-        (if (null != governorControl) "\t\t<cim:GovHydroFrancis.governorControl rdf:resource=\"#" + governorControl + "\"/>\n" else "") +
-        "\t\t<cim:GovHydroFrancis.h1>" + h1 + "</cim:GovHydroFrancis.h1>\n" +
-        "\t\t<cim:GovHydroFrancis.h2>" + h2 + "</cim:GovHydroFrancis.h2>\n" +
-        "\t\t<cim:GovHydroFrancis.hn>" + hn + "</cim:GovHydroFrancis.hn>\n" +
-        "\t\t<cim:GovHydroFrancis.kc>" + kc + "</cim:GovHydroFrancis.kc>\n" +
-        "\t\t<cim:GovHydroFrancis.kg>" + kg + "</cim:GovHydroFrancis.kg>\n" +
-        "\t\t<cim:GovHydroFrancis.kt>" + kt + "</cim:GovHydroFrancis.kt>\n" +
-        "\t\t<cim:GovHydroFrancis.qc0>" + qc0 + "</cim:GovHydroFrancis.qc0>\n" +
-        "\t\t<cim:GovHydroFrancis.qn>" + qn + "</cim:GovHydroFrancis.qn>\n" +
-        "\t\t<cim:GovHydroFrancis.ta>" + ta + "</cim:GovHydroFrancis.ta>\n" +
-        "\t\t<cim:GovHydroFrancis.td>" + td + "</cim:GovHydroFrancis.td>\n" +
-        "\t\t<cim:GovHydroFrancis.ts>" + ts + "</cim:GovHydroFrancis.ts>\n" +
-        "\t\t<cim:GovHydroFrancis.twnc>" + twnc + "</cim:GovHydroFrancis.twnc>\n" +
-        "\t\t<cim:GovHydroFrancis.twng>" + twng + "</cim:GovHydroFrancis.twng>\n" +
-        "\t\t<cim:GovHydroFrancis.tx>" + tx + "</cim:GovHydroFrancis.tx>\n" +
-        "\t\t<cim:GovHydroFrancis.va>" + va + "</cim:GovHydroFrancis.va>\n" +
-        "\t\t<cim:GovHydroFrancis.valvmax>" + valvmax + "</cim:GovHydroFrancis.valvmax>\n" +
-        "\t\t<cim:GovHydroFrancis.valvmin>" + valvmin + "</cim:GovHydroFrancis.valvmin>\n" +
-        "\t\t<cim:GovHydroFrancis.vc>" + vc + "</cim:GovHydroFrancis.vc>\n" +
-        "\t\t<cim:GovHydroFrancis.waterTunnelSurgeChamberSimulation>" + waterTunnelSurgeChamberSimulation + "</cim:GovHydroFrancis.waterTunnelSurgeChamberSimulation>\n" +
-        "\t\t<cim:GovHydroFrancis.zsfc>" + zsfc + "</cim:GovHydroFrancis.zsfc>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = GovHydroFrancis.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovHydroFrancis.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (GovHydroFrancis.fields (position), value)
+        emitelem (0, am)
+        emitelem (1, av0)
+        emitelem (2, av1)
+        emitelem (3, bp)
+        emitelem (4, db1)
+        emitelem (5, etamax)
+        emitattr (6, governorControl)
+        emitelem (7, h1)
+        emitelem (8, h2)
+        emitelem (9, hn)
+        emitelem (10, kc)
+        emitelem (11, kg)
+        emitelem (12, kt)
+        emitelem (13, qc0)
+        emitelem (14, qn)
+        emitelem (15, ta)
+        emitelem (16, td)
+        emitelem (17, ts)
+        emitelem (18, twnc)
+        emitelem (19, twng)
+        emitelem (20, tx)
+        emitelem (21, va)
+        emitelem (22, valvmax)
+        emitelem (23, valvmin)
+        emitelem (24, vc)
+        emitelem (25, waterTunnelSurgeChamberSimulation)
+        emitelem (26, zsfc)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:GovHydroFrancis rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:GovHydroFrancis>"
+        "\t<cim:GovHydroFrancis rdf:ID=\"%s\">\n%s\t</cim:GovHydroFrancis>".format (id, export_fields)
     }
 }
 
@@ -3273,67 +3902,104 @@ object GovHydroFrancis
 extends
     Parseable[GovHydroFrancis]
 {
-    val am = parse_element (element ("""GovHydroFrancis.am"""))
-    val av0 = parse_element (element ("""GovHydroFrancis.av0"""))
-    val av1 = parse_element (element ("""GovHydroFrancis.av1"""))
-    val bp = parse_element (element ("""GovHydroFrancis.bp"""))
-    val db1 = parse_element (element ("""GovHydroFrancis.db1"""))
-    val etamax = parse_element (element ("""GovHydroFrancis.etamax"""))
-    val governorControl = parse_attribute (attribute ("""GovHydroFrancis.governorControl"""))
-    val h1 = parse_element (element ("""GovHydroFrancis.h1"""))
-    val h2 = parse_element (element ("""GovHydroFrancis.h2"""))
-    val hn = parse_element (element ("""GovHydroFrancis.hn"""))
-    val kc = parse_element (element ("""GovHydroFrancis.kc"""))
-    val kg = parse_element (element ("""GovHydroFrancis.kg"""))
-    val kt = parse_element (element ("""GovHydroFrancis.kt"""))
-    val qc0 = parse_element (element ("""GovHydroFrancis.qc0"""))
-    val qn = parse_element (element ("""GovHydroFrancis.qn"""))
-    val ta = parse_element (element ("""GovHydroFrancis.ta"""))
-    val td = parse_element (element ("""GovHydroFrancis.td"""))
-    val ts = parse_element (element ("""GovHydroFrancis.ts"""))
-    val twnc = parse_element (element ("""GovHydroFrancis.twnc"""))
-    val twng = parse_element (element ("""GovHydroFrancis.twng"""))
-    val tx = parse_element (element ("""GovHydroFrancis.tx"""))
-    val va = parse_element (element ("""GovHydroFrancis.va"""))
-    val valvmax = parse_element (element ("""GovHydroFrancis.valvmax"""))
-    val valvmin = parse_element (element ("""GovHydroFrancis.valvmin"""))
-    val vc = parse_element (element ("""GovHydroFrancis.vc"""))
-    val waterTunnelSurgeChamberSimulation = parse_element (element ("""GovHydroFrancis.waterTunnelSurgeChamberSimulation"""))
-    val zsfc = parse_element (element ("""GovHydroFrancis.zsfc"""))
+    val fields: Array[String] = Array[String] (
+        "am",
+        "av0",
+        "av1",
+        "bp",
+        "db1",
+        "etamax",
+        "governorControl",
+        "h1",
+        "h2",
+        "hn",
+        "kc",
+        "kg",
+        "kt",
+        "qc0",
+        "qn",
+        "ta",
+        "td",
+        "ts",
+        "twnc",
+        "twng",
+        "tx",
+        "va",
+        "valvmax",
+        "valvmin",
+        "vc",
+        "waterTunnelSurgeChamberSimulation",
+        "zsfc"
+    )
+    val am: Fielder = parse_element (element (cls, fields(0)))
+    val av0: Fielder = parse_element (element (cls, fields(1)))
+    val av1: Fielder = parse_element (element (cls, fields(2)))
+    val bp: Fielder = parse_element (element (cls, fields(3)))
+    val db1: Fielder = parse_element (element (cls, fields(4)))
+    val etamax: Fielder = parse_element (element (cls, fields(5)))
+    val governorControl: Fielder = parse_attribute (attribute (cls, fields(6)))
+    val h1: Fielder = parse_element (element (cls, fields(7)))
+    val h2: Fielder = parse_element (element (cls, fields(8)))
+    val hn: Fielder = parse_element (element (cls, fields(9)))
+    val kc: Fielder = parse_element (element (cls, fields(10)))
+    val kg: Fielder = parse_element (element (cls, fields(11)))
+    val kt: Fielder = parse_element (element (cls, fields(12)))
+    val qc0: Fielder = parse_element (element (cls, fields(13)))
+    val qn: Fielder = parse_element (element (cls, fields(14)))
+    val ta: Fielder = parse_element (element (cls, fields(15)))
+    val td: Fielder = parse_element (element (cls, fields(16)))
+    val ts: Fielder = parse_element (element (cls, fields(17)))
+    val twnc: Fielder = parse_element (element (cls, fields(18)))
+    val twng: Fielder = parse_element (element (cls, fields(19)))
+    val tx: Fielder = parse_element (element (cls, fields(20)))
+    val va: Fielder = parse_element (element (cls, fields(21)))
+    val valvmax: Fielder = parse_element (element (cls, fields(22)))
+    val valvmin: Fielder = parse_element (element (cls, fields(23)))
+    val vc: Fielder = parse_element (element (cls, fields(24)))
+    val waterTunnelSurgeChamberSimulation: Fielder = parse_element (element (cls, fields(25)))
+    val zsfc: Fielder = parse_element (element (cls, fields(26)))
+
     def parse (context: Context): GovHydroFrancis =
     {
-        GovHydroFrancis(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = GovHydroFrancis (
             TurbineGovernorDynamics.parse (context),
-            toDouble (am (context), context),
-            toDouble (av0 (context), context),
-            toDouble (av1 (context), context),
-            toDouble (bp (context), context),
-            toDouble (db1 (context), context),
-            toDouble (etamax (context), context),
-            governorControl (context),
-            toDouble (h1 (context), context),
-            toDouble (h2 (context), context),
-            toDouble (hn (context), context),
-            toDouble (kc (context), context),
-            toDouble (kg (context), context),
-            toDouble (kt (context), context),
-            toDouble (qc0 (context), context),
-            toDouble (qn (context), context),
-            toDouble (ta (context), context),
-            toDouble (td (context), context),
-            toDouble (ts (context), context),
-            toDouble (twnc (context), context),
-            toDouble (twng (context), context),
-            toDouble (tx (context), context),
-            toDouble (va (context), context),
-            toDouble (valvmax (context), context),
-            toDouble (valvmin (context), context),
-            toDouble (vc (context), context),
-            toBoolean (waterTunnelSurgeChamberSimulation (context), context),
-            toDouble (zsfc (context), context)
+            toDouble (mask (am (), 0)),
+            toDouble (mask (av0 (), 1)),
+            toDouble (mask (av1 (), 2)),
+            toDouble (mask (bp (), 3)),
+            toDouble (mask (db1 (), 4)),
+            toDouble (mask (etamax (), 5)),
+            mask (governorControl (), 6),
+            toDouble (mask (h1 (), 7)),
+            toDouble (mask (h2 (), 8)),
+            toDouble (mask (hn (), 9)),
+            toDouble (mask (kc (), 10)),
+            toDouble (mask (kg (), 11)),
+            toDouble (mask (kt (), 12)),
+            toDouble (mask (qc0 (), 13)),
+            toDouble (mask (qn (), 14)),
+            toDouble (mask (ta (), 15)),
+            toDouble (mask (td (), 16)),
+            toDouble (mask (ts (), 17)),
+            toDouble (mask (twnc (), 18)),
+            toDouble (mask (twng (), 19)),
+            toDouble (mask (tx (), 20)),
+            toDouble (mask (va (), 21)),
+            toDouble (mask (valvmax (), 22)),
+            toDouble (mask (valvmin (), 23)),
+            toDouble (mask (vc (), 24)),
+            toBoolean (mask (waterTunnelSurgeChamberSimulation (), 25)),
+            toDouble (mask (zsfc (), 26))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -3380,6 +4046,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -3399,21 +4071,23 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:GovHydroIEEE0.k>" + k + "</cim:GovHydroIEEE0.k>\n" +
-        "\t\t<cim:GovHydroIEEE0.mwbase>" + mwbase + "</cim:GovHydroIEEE0.mwbase>\n" +
-        "\t\t<cim:GovHydroIEEE0.pmax>" + pmax + "</cim:GovHydroIEEE0.pmax>\n" +
-        "\t\t<cim:GovHydroIEEE0.pmin>" + pmin + "</cim:GovHydroIEEE0.pmin>\n" +
-        "\t\t<cim:GovHydroIEEE0.t1>" + t1 + "</cim:GovHydroIEEE0.t1>\n" +
-        "\t\t<cim:GovHydroIEEE0.t2>" + t2 + "</cim:GovHydroIEEE0.t2>\n" +
-        "\t\t<cim:GovHydroIEEE0.t3>" + t3 + "</cim:GovHydroIEEE0.t3>\n" +
-        "\t\t<cim:GovHydroIEEE0.t4>" + t4 + "</cim:GovHydroIEEE0.t4>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = GovHydroIEEE0.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovHydroIEEE0.fields (position), value)
+        emitelem (0, k)
+        emitelem (1, mwbase)
+        emitelem (2, pmax)
+        emitelem (3, pmin)
+        emitelem (4, t1)
+        emitelem (5, t2)
+        emitelem (6, t3)
+        emitelem (7, t4)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:GovHydroIEEE0 rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:GovHydroIEEE0>"
+        "\t<cim:GovHydroIEEE0 rdf:ID=\"%s\">\n%s\t</cim:GovHydroIEEE0>".format (id, export_fields)
     }
 }
 
@@ -3421,29 +4095,47 @@ object GovHydroIEEE0
 extends
     Parseable[GovHydroIEEE0]
 {
-    val k = parse_element (element ("""GovHydroIEEE0.k"""))
-    val mwbase = parse_element (element ("""GovHydroIEEE0.mwbase"""))
-    val pmax = parse_element (element ("""GovHydroIEEE0.pmax"""))
-    val pmin = parse_element (element ("""GovHydroIEEE0.pmin"""))
-    val t1 = parse_element (element ("""GovHydroIEEE0.t1"""))
-    val t2 = parse_element (element ("""GovHydroIEEE0.t2"""))
-    val t3 = parse_element (element ("""GovHydroIEEE0.t3"""))
-    val t4 = parse_element (element ("""GovHydroIEEE0.t4"""))
+    val fields: Array[String] = Array[String] (
+        "k",
+        "mwbase",
+        "pmax",
+        "pmin",
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+    )
+    val k: Fielder = parse_element (element (cls, fields(0)))
+    val mwbase: Fielder = parse_element (element (cls, fields(1)))
+    val pmax: Fielder = parse_element (element (cls, fields(2)))
+    val pmin: Fielder = parse_element (element (cls, fields(3)))
+    val t1: Fielder = parse_element (element (cls, fields(4)))
+    val t2: Fielder = parse_element (element (cls, fields(5)))
+    val t3: Fielder = parse_element (element (cls, fields(6)))
+    val t4: Fielder = parse_element (element (cls, fields(7)))
+
     def parse (context: Context): GovHydroIEEE0 =
     {
-        GovHydroIEEE0(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = GovHydroIEEE0 (
             TurbineGovernorDynamics.parse (context),
-            toDouble (k (context), context),
-            toDouble (mwbase (context), context),
-            toDouble (pmax (context), context),
-            toDouble (pmin (context), context),
-            toDouble (t1 (context), context),
-            toDouble (t2 (context), context),
-            toDouble (t3 (context), context),
-            toDouble (t4 (context), context)
+            toDouble (mask (k (), 0)),
+            toDouble (mask (mwbase (), 1)),
+            toDouble (mask (pmax (), 2)),
+            toDouble (mask (pmin (), 3)),
+            toDouble (mask (t1 (), 4)),
+            toDouble (mask (t2 (), 5)),
+            toDouble (mask (t3 (), 6)),
+            toDouble (mask (t4 (), 7))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -3548,6 +4240,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -3567,39 +4265,41 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:GovHydroIEEE2.aturb>" + aturb + "</cim:GovHydroIEEE2.aturb>\n" +
-        "\t\t<cim:GovHydroIEEE2.bturb>" + bturb + "</cim:GovHydroIEEE2.bturb>\n" +
-        "\t\t<cim:GovHydroIEEE2.gv1>" + gv1 + "</cim:GovHydroIEEE2.gv1>\n" +
-        "\t\t<cim:GovHydroIEEE2.gv2>" + gv2 + "</cim:GovHydroIEEE2.gv2>\n" +
-        "\t\t<cim:GovHydroIEEE2.gv3>" + gv3 + "</cim:GovHydroIEEE2.gv3>\n" +
-        "\t\t<cim:GovHydroIEEE2.gv4>" + gv4 + "</cim:GovHydroIEEE2.gv4>\n" +
-        "\t\t<cim:GovHydroIEEE2.gv5>" + gv5 + "</cim:GovHydroIEEE2.gv5>\n" +
-        "\t\t<cim:GovHydroIEEE2.gv6>" + gv6 + "</cim:GovHydroIEEE2.gv6>\n" +
-        "\t\t<cim:GovHydroIEEE2.kturb>" + kturb + "</cim:GovHydroIEEE2.kturb>\n" +
-        "\t\t<cim:GovHydroIEEE2.mwbase>" + mwbase + "</cim:GovHydroIEEE2.mwbase>\n" +
-        "\t\t<cim:GovHydroIEEE2.pgv1>" + pgv1 + "</cim:GovHydroIEEE2.pgv1>\n" +
-        "\t\t<cim:GovHydroIEEE2.pgv2>" + pgv2 + "</cim:GovHydroIEEE2.pgv2>\n" +
-        "\t\t<cim:GovHydroIEEE2.pgv3>" + pgv3 + "</cim:GovHydroIEEE2.pgv3>\n" +
-        "\t\t<cim:GovHydroIEEE2.pgv4>" + pgv4 + "</cim:GovHydroIEEE2.pgv4>\n" +
-        "\t\t<cim:GovHydroIEEE2.pgv5>" + pgv5 + "</cim:GovHydroIEEE2.pgv5>\n" +
-        "\t\t<cim:GovHydroIEEE2.pgv6>" + pgv6 + "</cim:GovHydroIEEE2.pgv6>\n" +
-        "\t\t<cim:GovHydroIEEE2.pmax>" + pmax + "</cim:GovHydroIEEE2.pmax>\n" +
-        "\t\t<cim:GovHydroIEEE2.pmin>" + pmin + "</cim:GovHydroIEEE2.pmin>\n" +
-        "\t\t<cim:GovHydroIEEE2.rperm>" + rperm + "</cim:GovHydroIEEE2.rperm>\n" +
-        "\t\t<cim:GovHydroIEEE2.rtemp>" + rtemp + "</cim:GovHydroIEEE2.rtemp>\n" +
-        "\t\t<cim:GovHydroIEEE2.tg>" + tg + "</cim:GovHydroIEEE2.tg>\n" +
-        "\t\t<cim:GovHydroIEEE2.tp>" + tp + "</cim:GovHydroIEEE2.tp>\n" +
-        "\t\t<cim:GovHydroIEEE2.tr>" + tr + "</cim:GovHydroIEEE2.tr>\n" +
-        "\t\t<cim:GovHydroIEEE2.tw>" + tw + "</cim:GovHydroIEEE2.tw>\n" +
-        "\t\t<cim:GovHydroIEEE2.uc>" + uc + "</cim:GovHydroIEEE2.uc>\n" +
-        "\t\t<cim:GovHydroIEEE2.uo>" + uo + "</cim:GovHydroIEEE2.uo>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = GovHydroIEEE2.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovHydroIEEE2.fields (position), value)
+        emitelem (0, aturb)
+        emitelem (1, bturb)
+        emitelem (2, gv1)
+        emitelem (3, gv2)
+        emitelem (4, gv3)
+        emitelem (5, gv4)
+        emitelem (6, gv5)
+        emitelem (7, gv6)
+        emitelem (8, kturb)
+        emitelem (9, mwbase)
+        emitelem (10, pgv1)
+        emitelem (11, pgv2)
+        emitelem (12, pgv3)
+        emitelem (13, pgv4)
+        emitelem (14, pgv5)
+        emitelem (15, pgv6)
+        emitelem (16, pmax)
+        emitelem (17, pmin)
+        emitelem (18, rperm)
+        emitelem (19, rtemp)
+        emitelem (20, tg)
+        emitelem (21, tp)
+        emitelem (22, tr)
+        emitelem (23, tw)
+        emitelem (24, uc)
+        emitelem (25, uo)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:GovHydroIEEE2 rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:GovHydroIEEE2>"
+        "\t<cim:GovHydroIEEE2 rdf:ID=\"%s\">\n%s\t</cim:GovHydroIEEE2>".format (id, export_fields)
     }
 }
 
@@ -3607,65 +4307,101 @@ object GovHydroIEEE2
 extends
     Parseable[GovHydroIEEE2]
 {
-    val aturb = parse_element (element ("""GovHydroIEEE2.aturb"""))
-    val bturb = parse_element (element ("""GovHydroIEEE2.bturb"""))
-    val gv1 = parse_element (element ("""GovHydroIEEE2.gv1"""))
-    val gv2 = parse_element (element ("""GovHydroIEEE2.gv2"""))
-    val gv3 = parse_element (element ("""GovHydroIEEE2.gv3"""))
-    val gv4 = parse_element (element ("""GovHydroIEEE2.gv4"""))
-    val gv5 = parse_element (element ("""GovHydroIEEE2.gv5"""))
-    val gv6 = parse_element (element ("""GovHydroIEEE2.gv6"""))
-    val kturb = parse_element (element ("""GovHydroIEEE2.kturb"""))
-    val mwbase = parse_element (element ("""GovHydroIEEE2.mwbase"""))
-    val pgv1 = parse_element (element ("""GovHydroIEEE2.pgv1"""))
-    val pgv2 = parse_element (element ("""GovHydroIEEE2.pgv2"""))
-    val pgv3 = parse_element (element ("""GovHydroIEEE2.pgv3"""))
-    val pgv4 = parse_element (element ("""GovHydroIEEE2.pgv4"""))
-    val pgv5 = parse_element (element ("""GovHydroIEEE2.pgv5"""))
-    val pgv6 = parse_element (element ("""GovHydroIEEE2.pgv6"""))
-    val pmax = parse_element (element ("""GovHydroIEEE2.pmax"""))
-    val pmin = parse_element (element ("""GovHydroIEEE2.pmin"""))
-    val rperm = parse_element (element ("""GovHydroIEEE2.rperm"""))
-    val rtemp = parse_element (element ("""GovHydroIEEE2.rtemp"""))
-    val tg = parse_element (element ("""GovHydroIEEE2.tg"""))
-    val tp = parse_element (element ("""GovHydroIEEE2.tp"""))
-    val tr = parse_element (element ("""GovHydroIEEE2.tr"""))
-    val tw = parse_element (element ("""GovHydroIEEE2.tw"""))
-    val uc = parse_element (element ("""GovHydroIEEE2.uc"""))
-    val uo = parse_element (element ("""GovHydroIEEE2.uo"""))
+    val fields: Array[String] = Array[String] (
+        "aturb",
+        "bturb",
+        "gv1",
+        "gv2",
+        "gv3",
+        "gv4",
+        "gv5",
+        "gv6",
+        "kturb",
+        "mwbase",
+        "pgv1",
+        "pgv2",
+        "pgv3",
+        "pgv4",
+        "pgv5",
+        "pgv6",
+        "pmax",
+        "pmin",
+        "rperm",
+        "rtemp",
+        "tg",
+        "tp",
+        "tr",
+        "tw",
+        "uc",
+        "uo"
+    )
+    val aturb: Fielder = parse_element (element (cls, fields(0)))
+    val bturb: Fielder = parse_element (element (cls, fields(1)))
+    val gv1: Fielder = parse_element (element (cls, fields(2)))
+    val gv2: Fielder = parse_element (element (cls, fields(3)))
+    val gv3: Fielder = parse_element (element (cls, fields(4)))
+    val gv4: Fielder = parse_element (element (cls, fields(5)))
+    val gv5: Fielder = parse_element (element (cls, fields(6)))
+    val gv6: Fielder = parse_element (element (cls, fields(7)))
+    val kturb: Fielder = parse_element (element (cls, fields(8)))
+    val mwbase: Fielder = parse_element (element (cls, fields(9)))
+    val pgv1: Fielder = parse_element (element (cls, fields(10)))
+    val pgv2: Fielder = parse_element (element (cls, fields(11)))
+    val pgv3: Fielder = parse_element (element (cls, fields(12)))
+    val pgv4: Fielder = parse_element (element (cls, fields(13)))
+    val pgv5: Fielder = parse_element (element (cls, fields(14)))
+    val pgv6: Fielder = parse_element (element (cls, fields(15)))
+    val pmax: Fielder = parse_element (element (cls, fields(16)))
+    val pmin: Fielder = parse_element (element (cls, fields(17)))
+    val rperm: Fielder = parse_element (element (cls, fields(18)))
+    val rtemp: Fielder = parse_element (element (cls, fields(19)))
+    val tg: Fielder = parse_element (element (cls, fields(20)))
+    val tp: Fielder = parse_element (element (cls, fields(21)))
+    val tr: Fielder = parse_element (element (cls, fields(22)))
+    val tw: Fielder = parse_element (element (cls, fields(23)))
+    val uc: Fielder = parse_element (element (cls, fields(24)))
+    val uo: Fielder = parse_element (element (cls, fields(25)))
+
     def parse (context: Context): GovHydroIEEE2 =
     {
-        GovHydroIEEE2(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = GovHydroIEEE2 (
             TurbineGovernorDynamics.parse (context),
-            toDouble (aturb (context), context),
-            toDouble (bturb (context), context),
-            toDouble (gv1 (context), context),
-            toDouble (gv2 (context), context),
-            toDouble (gv3 (context), context),
-            toDouble (gv4 (context), context),
-            toDouble (gv5 (context), context),
-            toDouble (gv6 (context), context),
-            toDouble (kturb (context), context),
-            toDouble (mwbase (context), context),
-            toDouble (pgv1 (context), context),
-            toDouble (pgv2 (context), context),
-            toDouble (pgv3 (context), context),
-            toDouble (pgv4 (context), context),
-            toDouble (pgv5 (context), context),
-            toDouble (pgv6 (context), context),
-            toDouble (pmax (context), context),
-            toDouble (pmin (context), context),
-            toDouble (rperm (context), context),
-            toDouble (rtemp (context), context),
-            toDouble (tg (context), context),
-            toDouble (tp (context), context),
-            toDouble (tr (context), context),
-            toDouble (tw (context), context),
-            toDouble (uc (context), context),
-            toDouble (uo (context), context)
+            toDouble (mask (aturb (), 0)),
+            toDouble (mask (bturb (), 1)),
+            toDouble (mask (gv1 (), 2)),
+            toDouble (mask (gv2 (), 3)),
+            toDouble (mask (gv3 (), 4)),
+            toDouble (mask (gv4 (), 5)),
+            toDouble (mask (gv5 (), 6)),
+            toDouble (mask (gv6 (), 7)),
+            toDouble (mask (kturb (), 8)),
+            toDouble (mask (mwbase (), 9)),
+            toDouble (mask (pgv1 (), 10)),
+            toDouble (mask (pgv2 (), 11)),
+            toDouble (mask (pgv3 (), 12)),
+            toDouble (mask (pgv4 (), 13)),
+            toDouble (mask (pgv5 (), 14)),
+            toDouble (mask (pgv6 (), 15)),
+            toDouble (mask (pmax (), 16)),
+            toDouble (mask (pmin (), 17)),
+            toDouble (mask (rperm (), 18)),
+            toDouble (mask (rtemp (), 19)),
+            toDouble (mask (tg (), 20)),
+            toDouble (mask (tp (), 21)),
+            toDouble (mask (tr (), 22)),
+            toDouble (mask (tw (), 23)),
+            toDouble (mask (uc (), 24)),
+            toDouble (mask (uo (), 25))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -3791,6 +4527,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Long = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -3810,46 +4552,48 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:GovHydroPID.aturb>" + aturb + "</cim:GovHydroPID.aturb>\n" +
-        "\t\t<cim:GovHydroPID.bturb>" + bturb + "</cim:GovHydroPID.bturb>\n" +
-        "\t\t<cim:GovHydroPID.db1>" + db1 + "</cim:GovHydroPID.db1>\n" +
-        "\t\t<cim:GovHydroPID.db2>" + db2 + "</cim:GovHydroPID.db2>\n" +
-        "\t\t<cim:GovHydroPID.eps>" + eps + "</cim:GovHydroPID.eps>\n" +
-        "\t\t<cim:GovHydroPID.gv1>" + gv1 + "</cim:GovHydroPID.gv1>\n" +
-        "\t\t<cim:GovHydroPID.gv2>" + gv2 + "</cim:GovHydroPID.gv2>\n" +
-        "\t\t<cim:GovHydroPID.gv3>" + gv3 + "</cim:GovHydroPID.gv3>\n" +
-        "\t\t<cim:GovHydroPID.gv4>" + gv4 + "</cim:GovHydroPID.gv4>\n" +
-        "\t\t<cim:GovHydroPID.gv5>" + gv5 + "</cim:GovHydroPID.gv5>\n" +
-        "\t\t<cim:GovHydroPID.gv6>" + gv6 + "</cim:GovHydroPID.gv6>\n" +
-        "\t\t<cim:GovHydroPID.inputSignal>" + inputSignal + "</cim:GovHydroPID.inputSignal>\n" +
-        "\t\t<cim:GovHydroPID.kd>" + kd + "</cim:GovHydroPID.kd>\n" +
-        "\t\t<cim:GovHydroPID.kg>" + kg + "</cim:GovHydroPID.kg>\n" +
-        "\t\t<cim:GovHydroPID.ki>" + ki + "</cim:GovHydroPID.ki>\n" +
-        "\t\t<cim:GovHydroPID.kp>" + kp + "</cim:GovHydroPID.kp>\n" +
-        "\t\t<cim:GovHydroPID.mwbase>" + mwbase + "</cim:GovHydroPID.mwbase>\n" +
-        "\t\t<cim:GovHydroPID.pgv1>" + pgv1 + "</cim:GovHydroPID.pgv1>\n" +
-        "\t\t<cim:GovHydroPID.pgv2>" + pgv2 + "</cim:GovHydroPID.pgv2>\n" +
-        "\t\t<cim:GovHydroPID.pgv3>" + pgv3 + "</cim:GovHydroPID.pgv3>\n" +
-        "\t\t<cim:GovHydroPID.pgv4>" + pgv4 + "</cim:GovHydroPID.pgv4>\n" +
-        "\t\t<cim:GovHydroPID.pgv5>" + pgv5 + "</cim:GovHydroPID.pgv5>\n" +
-        "\t\t<cim:GovHydroPID.pgv6>" + pgv6 + "</cim:GovHydroPID.pgv6>\n" +
-        "\t\t<cim:GovHydroPID.pmax>" + pmax + "</cim:GovHydroPID.pmax>\n" +
-        "\t\t<cim:GovHydroPID.pmin>" + pmin + "</cim:GovHydroPID.pmin>\n" +
-        "\t\t<cim:GovHydroPID.r>" + r + "</cim:GovHydroPID.r>\n" +
-        "\t\t<cim:GovHydroPID.td>" + td + "</cim:GovHydroPID.td>\n" +
-        "\t\t<cim:GovHydroPID.tf>" + tf + "</cim:GovHydroPID.tf>\n" +
-        "\t\t<cim:GovHydroPID.tp>" + tp + "</cim:GovHydroPID.tp>\n" +
-        "\t\t<cim:GovHydroPID.tt>" + tt + "</cim:GovHydroPID.tt>\n" +
-        "\t\t<cim:GovHydroPID.tturb>" + tturb + "</cim:GovHydroPID.tturb>\n" +
-        "\t\t<cim:GovHydroPID.velcl>" + velcl + "</cim:GovHydroPID.velcl>\n" +
-        "\t\t<cim:GovHydroPID.velop>" + velop + "</cim:GovHydroPID.velop>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = GovHydroPID.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovHydroPID.fields (position), value)
+        emitelem (0, aturb)
+        emitelem (1, bturb)
+        emitelem (2, db1)
+        emitelem (3, db2)
+        emitelem (4, eps)
+        emitelem (5, gv1)
+        emitelem (6, gv2)
+        emitelem (7, gv3)
+        emitelem (8, gv4)
+        emitelem (9, gv5)
+        emitelem (10, gv6)
+        emitelem (11, inputSignal)
+        emitelem (12, kd)
+        emitelem (13, kg)
+        emitelem (14, ki)
+        emitelem (15, kp)
+        emitelem (16, mwbase)
+        emitelem (17, pgv1)
+        emitelem (18, pgv2)
+        emitelem (19, pgv3)
+        emitelem (20, pgv4)
+        emitelem (21, pgv5)
+        emitelem (22, pgv6)
+        emitelem (23, pmax)
+        emitelem (24, pmin)
+        emitelem (25, r)
+        emitelem (26, td)
+        emitelem (27, tf)
+        emitelem (28, tp)
+        emitelem (29, tt)
+        emitelem (30, tturb)
+        emitelem (31, velcl)
+        emitelem (32, velop)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:GovHydroPID rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:GovHydroPID>"
+        "\t<cim:GovHydroPID rdf:ID=\"%s\">\n%s\t</cim:GovHydroPID>".format (id, export_fields)
     }
 }
 
@@ -3857,79 +4601,122 @@ object GovHydroPID
 extends
     Parseable[GovHydroPID]
 {
-    val aturb = parse_element (element ("""GovHydroPID.aturb"""))
-    val bturb = parse_element (element ("""GovHydroPID.bturb"""))
-    val db1 = parse_element (element ("""GovHydroPID.db1"""))
-    val db2 = parse_element (element ("""GovHydroPID.db2"""))
-    val eps = parse_element (element ("""GovHydroPID.eps"""))
-    val gv1 = parse_element (element ("""GovHydroPID.gv1"""))
-    val gv2 = parse_element (element ("""GovHydroPID.gv2"""))
-    val gv3 = parse_element (element ("""GovHydroPID.gv3"""))
-    val gv4 = parse_element (element ("""GovHydroPID.gv4"""))
-    val gv5 = parse_element (element ("""GovHydroPID.gv5"""))
-    val gv6 = parse_element (element ("""GovHydroPID.gv6"""))
-    val inputSignal = parse_element (element ("""GovHydroPID.inputSignal"""))
-    val kd = parse_element (element ("""GovHydroPID.kd"""))
-    val kg = parse_element (element ("""GovHydroPID.kg"""))
-    val ki = parse_element (element ("""GovHydroPID.ki"""))
-    val kp = parse_element (element ("""GovHydroPID.kp"""))
-    val mwbase = parse_element (element ("""GovHydroPID.mwbase"""))
-    val pgv1 = parse_element (element ("""GovHydroPID.pgv1"""))
-    val pgv2 = parse_element (element ("""GovHydroPID.pgv2"""))
-    val pgv3 = parse_element (element ("""GovHydroPID.pgv3"""))
-    val pgv4 = parse_element (element ("""GovHydroPID.pgv4"""))
-    val pgv5 = parse_element (element ("""GovHydroPID.pgv5"""))
-    val pgv6 = parse_element (element ("""GovHydroPID.pgv6"""))
-    val pmax = parse_element (element ("""GovHydroPID.pmax"""))
-    val pmin = parse_element (element ("""GovHydroPID.pmin"""))
-    val r = parse_element (element ("""GovHydroPID.r"""))
-    val td = parse_element (element ("""GovHydroPID.td"""))
-    val tf = parse_element (element ("""GovHydroPID.tf"""))
-    val tp = parse_element (element ("""GovHydroPID.tp"""))
-    val tt = parse_element (element ("""GovHydroPID.tt"""))
-    val tturb = parse_element (element ("""GovHydroPID.tturb"""))
-    val velcl = parse_element (element ("""GovHydroPID.velcl"""))
-    val velop = parse_element (element ("""GovHydroPID.velop"""))
+    val fields: Array[String] = Array[String] (
+        "aturb",
+        "bturb",
+        "db1",
+        "db2",
+        "eps",
+        "gv1",
+        "gv2",
+        "gv3",
+        "gv4",
+        "gv5",
+        "gv6",
+        "inputSignal",
+        "kd",
+        "kg",
+        "ki",
+        "kp",
+        "mwbase",
+        "pgv1",
+        "pgv2",
+        "pgv3",
+        "pgv4",
+        "pgv5",
+        "pgv6",
+        "pmax",
+        "pmin",
+        "r",
+        "td",
+        "tf",
+        "tp",
+        "tt",
+        "tturb",
+        "velcl",
+        "velop"
+    )
+    val aturb: Fielder = parse_element (element (cls, fields(0)))
+    val bturb: Fielder = parse_element (element (cls, fields(1)))
+    val db1: Fielder = parse_element (element (cls, fields(2)))
+    val db2: Fielder = parse_element (element (cls, fields(3)))
+    val eps: Fielder = parse_element (element (cls, fields(4)))
+    val gv1: Fielder = parse_element (element (cls, fields(5)))
+    val gv2: Fielder = parse_element (element (cls, fields(6)))
+    val gv3: Fielder = parse_element (element (cls, fields(7)))
+    val gv4: Fielder = parse_element (element (cls, fields(8)))
+    val gv5: Fielder = parse_element (element (cls, fields(9)))
+    val gv6: Fielder = parse_element (element (cls, fields(10)))
+    val inputSignal: Fielder = parse_element (element (cls, fields(11)))
+    val kd: Fielder = parse_element (element (cls, fields(12)))
+    val kg: Fielder = parse_element (element (cls, fields(13)))
+    val ki: Fielder = parse_element (element (cls, fields(14)))
+    val kp: Fielder = parse_element (element (cls, fields(15)))
+    val mwbase: Fielder = parse_element (element (cls, fields(16)))
+    val pgv1: Fielder = parse_element (element (cls, fields(17)))
+    val pgv2: Fielder = parse_element (element (cls, fields(18)))
+    val pgv3: Fielder = parse_element (element (cls, fields(19)))
+    val pgv4: Fielder = parse_element (element (cls, fields(20)))
+    val pgv5: Fielder = parse_element (element (cls, fields(21)))
+    val pgv6: Fielder = parse_element (element (cls, fields(22)))
+    val pmax: Fielder = parse_element (element (cls, fields(23)))
+    val pmin: Fielder = parse_element (element (cls, fields(24)))
+    val r: Fielder = parse_element (element (cls, fields(25)))
+    val td: Fielder = parse_element (element (cls, fields(26)))
+    val tf: Fielder = parse_element (element (cls, fields(27)))
+    val tp: Fielder = parse_element (element (cls, fields(28)))
+    val tt: Fielder = parse_element (element (cls, fields(29)))
+    val tturb: Fielder = parse_element (element (cls, fields(30)))
+    val velcl: Fielder = parse_element (element (cls, fields(31)))
+    val velop: Fielder = parse_element (element (cls, fields(32)))
+
     def parse (context: Context): GovHydroPID =
     {
-        GovHydroPID(
+        implicit val ctx: Context = context
+        var fields: Long = 0L
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1L << position; field._1 }
+        val ret = GovHydroPID (
             TurbineGovernorDynamics.parse (context),
-            toDouble (aturb (context), context),
-            toDouble (bturb (context), context),
-            toDouble (db1 (context), context),
-            toDouble (db2 (context), context),
-            toDouble (eps (context), context),
-            toDouble (gv1 (context), context),
-            toDouble (gv2 (context), context),
-            toDouble (gv3 (context), context),
-            toDouble (gv4 (context), context),
-            toDouble (gv5 (context), context),
-            toDouble (gv6 (context), context),
-            toBoolean (inputSignal (context), context),
-            toDouble (kd (context), context),
-            toDouble (kg (context), context),
-            toDouble (ki (context), context),
-            toDouble (kp (context), context),
-            toDouble (mwbase (context), context),
-            toDouble (pgv1 (context), context),
-            toDouble (pgv2 (context), context),
-            toDouble (pgv3 (context), context),
-            toDouble (pgv4 (context), context),
-            toDouble (pgv5 (context), context),
-            toDouble (pgv6 (context), context),
-            toDouble (pmax (context), context),
-            toDouble (pmin (context), context),
-            toDouble (r (context), context),
-            toDouble (td (context), context),
-            toDouble (tf (context), context),
-            toDouble (tp (context), context),
-            toDouble (tt (context), context),
-            toDouble (tturb (context), context),
-            toDouble (velcl (context), context),
-            toDouble (velop (context), context)
+            toDouble (mask (aturb (), 0)),
+            toDouble (mask (bturb (), 1)),
+            toDouble (mask (db1 (), 2)),
+            toDouble (mask (db2 (), 3)),
+            toDouble (mask (eps (), 4)),
+            toDouble (mask (gv1 (), 5)),
+            toDouble (mask (gv2 (), 6)),
+            toDouble (mask (gv3 (), 7)),
+            toDouble (mask (gv4 (), 8)),
+            toDouble (mask (gv5 (), 9)),
+            toDouble (mask (gv6 (), 10)),
+            toBoolean (mask (inputSignal (), 11)),
+            toDouble (mask (kd (), 12)),
+            toDouble (mask (kg (), 13)),
+            toDouble (mask (ki (), 14)),
+            toDouble (mask (kp (), 15)),
+            toDouble (mask (mwbase (), 16)),
+            toDouble (mask (pgv1 (), 17)),
+            toDouble (mask (pgv2 (), 18)),
+            toDouble (mask (pgv3 (), 19)),
+            toDouble (mask (pgv4 (), 20)),
+            toDouble (mask (pgv5 (), 21)),
+            toDouble (mask (pgv6 (), 22)),
+            toDouble (mask (pmax (), 23)),
+            toDouble (mask (pmin (), 24)),
+            toDouble (mask (r (), 25)),
+            toDouble (mask (td (), 26)),
+            toDouble (mask (tf (), 27)),
+            toDouble (mask (tp (), 28)),
+            toDouble (mask (tt (), 29)),
+            toDouble (mask (tturb (), 30)),
+            toDouble (mask (velcl (), 31)),
+            toDouble (mask (velop (), 32))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -4023,6 +4810,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -4042,35 +4835,37 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:GovHydroPID2.atw>" + atw + "</cim:GovHydroPID2.atw>\n" +
-        "\t\t<cim:GovHydroPID2.d>" + d + "</cim:GovHydroPID2.d>\n" +
-        "\t\t<cim:GovHydroPID2.feedbackSignal>" + feedbackSignal + "</cim:GovHydroPID2.feedbackSignal>\n" +
-        "\t\t<cim:GovHydroPID2.g0>" + g0 + "</cim:GovHydroPID2.g0>\n" +
-        "\t\t<cim:GovHydroPID2.g1>" + g1 + "</cim:GovHydroPID2.g1>\n" +
-        "\t\t<cim:GovHydroPID2.g2>" + g2 + "</cim:GovHydroPID2.g2>\n" +
-        "\t\t<cim:GovHydroPID2.gmax>" + gmax + "</cim:GovHydroPID2.gmax>\n" +
-        "\t\t<cim:GovHydroPID2.gmin>" + gmin + "</cim:GovHydroPID2.gmin>\n" +
-        "\t\t<cim:GovHydroPID2.kd>" + kd + "</cim:GovHydroPID2.kd>\n" +
-        "\t\t<cim:GovHydroPID2.ki>" + ki + "</cim:GovHydroPID2.ki>\n" +
-        "\t\t<cim:GovHydroPID2.kp>" + kp + "</cim:GovHydroPID2.kp>\n" +
-        "\t\t<cim:GovHydroPID2.mwbase>" + mwbase + "</cim:GovHydroPID2.mwbase>\n" +
-        "\t\t<cim:GovHydroPID2.p1>" + p1 + "</cim:GovHydroPID2.p1>\n" +
-        "\t\t<cim:GovHydroPID2.p2>" + p2 + "</cim:GovHydroPID2.p2>\n" +
-        "\t\t<cim:GovHydroPID2.p3>" + p3 + "</cim:GovHydroPID2.p3>\n" +
-        "\t\t<cim:GovHydroPID2.rperm>" + rperm + "</cim:GovHydroPID2.rperm>\n" +
-        "\t\t<cim:GovHydroPID2.ta>" + ta + "</cim:GovHydroPID2.ta>\n" +
-        "\t\t<cim:GovHydroPID2.tb>" + tb + "</cim:GovHydroPID2.tb>\n" +
-        "\t\t<cim:GovHydroPID2.treg>" + treg + "</cim:GovHydroPID2.treg>\n" +
-        "\t\t<cim:GovHydroPID2.tw>" + tw + "</cim:GovHydroPID2.tw>\n" +
-        "\t\t<cim:GovHydroPID2.velmax>" + velmax + "</cim:GovHydroPID2.velmax>\n" +
-        "\t\t<cim:GovHydroPID2.velmin>" + velmin + "</cim:GovHydroPID2.velmin>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = GovHydroPID2.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovHydroPID2.fields (position), value)
+        emitelem (0, atw)
+        emitelem (1, d)
+        emitelem (2, feedbackSignal)
+        emitelem (3, g0)
+        emitelem (4, g1)
+        emitelem (5, g2)
+        emitelem (6, gmax)
+        emitelem (7, gmin)
+        emitelem (8, kd)
+        emitelem (9, ki)
+        emitelem (10, kp)
+        emitelem (11, mwbase)
+        emitelem (12, p1)
+        emitelem (13, p2)
+        emitelem (14, p3)
+        emitelem (15, rperm)
+        emitelem (16, ta)
+        emitelem (17, tb)
+        emitelem (18, treg)
+        emitelem (19, tw)
+        emitelem (20, velmax)
+        emitelem (21, velmin)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:GovHydroPID2 rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:GovHydroPID2>"
+        "\t<cim:GovHydroPID2 rdf:ID=\"%s\">\n%s\t</cim:GovHydroPID2>".format (id, export_fields)
     }
 }
 
@@ -4078,57 +4873,89 @@ object GovHydroPID2
 extends
     Parseable[GovHydroPID2]
 {
-    val atw = parse_element (element ("""GovHydroPID2.atw"""))
-    val d = parse_element (element ("""GovHydroPID2.d"""))
-    val feedbackSignal = parse_element (element ("""GovHydroPID2.feedbackSignal"""))
-    val g0 = parse_element (element ("""GovHydroPID2.g0"""))
-    val g1 = parse_element (element ("""GovHydroPID2.g1"""))
-    val g2 = parse_element (element ("""GovHydroPID2.g2"""))
-    val gmax = parse_element (element ("""GovHydroPID2.gmax"""))
-    val gmin = parse_element (element ("""GovHydroPID2.gmin"""))
-    val kd = parse_element (element ("""GovHydroPID2.kd"""))
-    val ki = parse_element (element ("""GovHydroPID2.ki"""))
-    val kp = parse_element (element ("""GovHydroPID2.kp"""))
-    val mwbase = parse_element (element ("""GovHydroPID2.mwbase"""))
-    val p1 = parse_element (element ("""GovHydroPID2.p1"""))
-    val p2 = parse_element (element ("""GovHydroPID2.p2"""))
-    val p3 = parse_element (element ("""GovHydroPID2.p3"""))
-    val rperm = parse_element (element ("""GovHydroPID2.rperm"""))
-    val ta = parse_element (element ("""GovHydroPID2.ta"""))
-    val tb = parse_element (element ("""GovHydroPID2.tb"""))
-    val treg = parse_element (element ("""GovHydroPID2.treg"""))
-    val tw = parse_element (element ("""GovHydroPID2.tw"""))
-    val velmax = parse_element (element ("""GovHydroPID2.velmax"""))
-    val velmin = parse_element (element ("""GovHydroPID2.velmin"""))
+    val fields: Array[String] = Array[String] (
+        "atw",
+        "d",
+        "feedbackSignal",
+        "g0",
+        "g1",
+        "g2",
+        "gmax",
+        "gmin",
+        "kd",
+        "ki",
+        "kp",
+        "mwbase",
+        "p1",
+        "p2",
+        "p3",
+        "rperm",
+        "ta",
+        "tb",
+        "treg",
+        "tw",
+        "velmax",
+        "velmin"
+    )
+    val atw: Fielder = parse_element (element (cls, fields(0)))
+    val d: Fielder = parse_element (element (cls, fields(1)))
+    val feedbackSignal: Fielder = parse_element (element (cls, fields(2)))
+    val g0: Fielder = parse_element (element (cls, fields(3)))
+    val g1: Fielder = parse_element (element (cls, fields(4)))
+    val g2: Fielder = parse_element (element (cls, fields(5)))
+    val gmax: Fielder = parse_element (element (cls, fields(6)))
+    val gmin: Fielder = parse_element (element (cls, fields(7)))
+    val kd: Fielder = parse_element (element (cls, fields(8)))
+    val ki: Fielder = parse_element (element (cls, fields(9)))
+    val kp: Fielder = parse_element (element (cls, fields(10)))
+    val mwbase: Fielder = parse_element (element (cls, fields(11)))
+    val p1: Fielder = parse_element (element (cls, fields(12)))
+    val p2: Fielder = parse_element (element (cls, fields(13)))
+    val p3: Fielder = parse_element (element (cls, fields(14)))
+    val rperm: Fielder = parse_element (element (cls, fields(15)))
+    val ta: Fielder = parse_element (element (cls, fields(16)))
+    val tb: Fielder = parse_element (element (cls, fields(17)))
+    val treg: Fielder = parse_element (element (cls, fields(18)))
+    val tw: Fielder = parse_element (element (cls, fields(19)))
+    val velmax: Fielder = parse_element (element (cls, fields(20)))
+    val velmin: Fielder = parse_element (element (cls, fields(21)))
+
     def parse (context: Context): GovHydroPID2 =
     {
-        GovHydroPID2(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = GovHydroPID2 (
             TurbineGovernorDynamics.parse (context),
-            toDouble (atw (context), context),
-            toDouble (d (context), context),
-            toBoolean (feedbackSignal (context), context),
-            toDouble (g0 (context), context),
-            toDouble (g1 (context), context),
-            toDouble (g2 (context), context),
-            toDouble (gmax (context), context),
-            toDouble (gmin (context), context),
-            toDouble (kd (context), context),
-            toDouble (ki (context), context),
-            toDouble (kp (context), context),
-            toDouble (mwbase (context), context),
-            toDouble (p1 (context), context),
-            toDouble (p2 (context), context),
-            toDouble (p3 (context), context),
-            toDouble (rperm (context), context),
-            toDouble (ta (context), context),
-            toDouble (tb (context), context),
-            toDouble (treg (context), context),
-            toDouble (tw (context), context),
-            toDouble (velmax (context), context),
-            toDouble (velmin (context), context)
+            toDouble (mask (atw (), 0)),
+            toDouble (mask (d (), 1)),
+            toBoolean (mask (feedbackSignal (), 2)),
+            toDouble (mask (g0 (), 3)),
+            toDouble (mask (g1 (), 4)),
+            toDouble (mask (g2 (), 5)),
+            toDouble (mask (gmax (), 6)),
+            toDouble (mask (gmin (), 7)),
+            toDouble (mask (kd (), 8)),
+            toDouble (mask (ki (), 9)),
+            toDouble (mask (kp (), 10)),
+            toDouble (mask (mwbase (), 11)),
+            toDouble (mask (p1 (), 12)),
+            toDouble (mask (p2 (), 13)),
+            toDouble (mask (p3 (), 14)),
+            toDouble (mask (rperm (), 15)),
+            toDouble (mask (ta (), 16)),
+            toDouble (mask (tb (), 17)),
+            toDouble (mask (treg (), 18)),
+            toDouble (mask (tw (), 19)),
+            toDouble (mask (velmax (), 20)),
+            toDouble (mask (velmin (), 21))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -4245,6 +5072,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -4264,41 +5097,43 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:GovHydroPelton.av0>" + av0 + "</cim:GovHydroPelton.av0>\n" +
-        "\t\t<cim:GovHydroPelton.av1>" + av1 + "</cim:GovHydroPelton.av1>\n" +
-        "\t\t<cim:GovHydroPelton.bp>" + bp + "</cim:GovHydroPelton.bp>\n" +
-        "\t\t<cim:GovHydroPelton.db1>" + db1 + "</cim:GovHydroPelton.db1>\n" +
-        "\t\t<cim:GovHydroPelton.db2>" + db2 + "</cim:GovHydroPelton.db2>\n" +
-        "\t\t<cim:GovHydroPelton.h1>" + h1 + "</cim:GovHydroPelton.h1>\n" +
-        "\t\t<cim:GovHydroPelton.h2>" + h2 + "</cim:GovHydroPelton.h2>\n" +
-        "\t\t<cim:GovHydroPelton.hn>" + hn + "</cim:GovHydroPelton.hn>\n" +
-        "\t\t<cim:GovHydroPelton.kc>" + kc + "</cim:GovHydroPelton.kc>\n" +
-        "\t\t<cim:GovHydroPelton.kg>" + kg + "</cim:GovHydroPelton.kg>\n" +
-        "\t\t<cim:GovHydroPelton.qc0>" + qc0 + "</cim:GovHydroPelton.qc0>\n" +
-        "\t\t<cim:GovHydroPelton.qn>" + qn + "</cim:GovHydroPelton.qn>\n" +
-        "\t\t<cim:GovHydroPelton.simplifiedPelton>" + simplifiedPelton + "</cim:GovHydroPelton.simplifiedPelton>\n" +
-        "\t\t<cim:GovHydroPelton.staticCompensating>" + staticCompensating + "</cim:GovHydroPelton.staticCompensating>\n" +
-        "\t\t<cim:GovHydroPelton.ta>" + ta + "</cim:GovHydroPelton.ta>\n" +
-        "\t\t<cim:GovHydroPelton.ts>" + ts + "</cim:GovHydroPelton.ts>\n" +
-        "\t\t<cim:GovHydroPelton.tv>" + tv + "</cim:GovHydroPelton.tv>\n" +
-        "\t\t<cim:GovHydroPelton.twnc>" + twnc + "</cim:GovHydroPelton.twnc>\n" +
-        "\t\t<cim:GovHydroPelton.twng>" + twng + "</cim:GovHydroPelton.twng>\n" +
-        "\t\t<cim:GovHydroPelton.tx>" + tx + "</cim:GovHydroPelton.tx>\n" +
-        "\t\t<cim:GovHydroPelton.va>" + va + "</cim:GovHydroPelton.va>\n" +
-        "\t\t<cim:GovHydroPelton.valvmax>" + valvmax + "</cim:GovHydroPelton.valvmax>\n" +
-        "\t\t<cim:GovHydroPelton.valvmin>" + valvmin + "</cim:GovHydroPelton.valvmin>\n" +
-        "\t\t<cim:GovHydroPelton.vav>" + vav + "</cim:GovHydroPelton.vav>\n" +
-        "\t\t<cim:GovHydroPelton.vc>" + vc + "</cim:GovHydroPelton.vc>\n" +
-        "\t\t<cim:GovHydroPelton.vcv>" + vcv + "</cim:GovHydroPelton.vcv>\n" +
-        "\t\t<cim:GovHydroPelton.waterTunnelSurgeChamberSimulation>" + waterTunnelSurgeChamberSimulation + "</cim:GovHydroPelton.waterTunnelSurgeChamberSimulation>\n" +
-        "\t\t<cim:GovHydroPelton.zsfc>" + zsfc + "</cim:GovHydroPelton.zsfc>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = GovHydroPelton.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovHydroPelton.fields (position), value)
+        emitelem (0, av0)
+        emitelem (1, av1)
+        emitelem (2, bp)
+        emitelem (3, db1)
+        emitelem (4, db2)
+        emitelem (5, h1)
+        emitelem (6, h2)
+        emitelem (7, hn)
+        emitelem (8, kc)
+        emitelem (9, kg)
+        emitelem (10, qc0)
+        emitelem (11, qn)
+        emitelem (12, simplifiedPelton)
+        emitelem (13, staticCompensating)
+        emitelem (14, ta)
+        emitelem (15, ts)
+        emitelem (16, tv)
+        emitelem (17, twnc)
+        emitelem (18, twng)
+        emitelem (19, tx)
+        emitelem (20, va)
+        emitelem (21, valvmax)
+        emitelem (22, valvmin)
+        emitelem (23, vav)
+        emitelem (24, vc)
+        emitelem (25, vcv)
+        emitelem (26, waterTunnelSurgeChamberSimulation)
+        emitelem (27, zsfc)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:GovHydroPelton rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:GovHydroPelton>"
+        "\t<cim:GovHydroPelton rdf:ID=\"%s\">\n%s\t</cim:GovHydroPelton>".format (id, export_fields)
     }
 }
 
@@ -4306,69 +5141,107 @@ object GovHydroPelton
 extends
     Parseable[GovHydroPelton]
 {
-    val av0 = parse_element (element ("""GovHydroPelton.av0"""))
-    val av1 = parse_element (element ("""GovHydroPelton.av1"""))
-    val bp = parse_element (element ("""GovHydroPelton.bp"""))
-    val db1 = parse_element (element ("""GovHydroPelton.db1"""))
-    val db2 = parse_element (element ("""GovHydroPelton.db2"""))
-    val h1 = parse_element (element ("""GovHydroPelton.h1"""))
-    val h2 = parse_element (element ("""GovHydroPelton.h2"""))
-    val hn = parse_element (element ("""GovHydroPelton.hn"""))
-    val kc = parse_element (element ("""GovHydroPelton.kc"""))
-    val kg = parse_element (element ("""GovHydroPelton.kg"""))
-    val qc0 = parse_element (element ("""GovHydroPelton.qc0"""))
-    val qn = parse_element (element ("""GovHydroPelton.qn"""))
-    val simplifiedPelton = parse_element (element ("""GovHydroPelton.simplifiedPelton"""))
-    val staticCompensating = parse_element (element ("""GovHydroPelton.staticCompensating"""))
-    val ta = parse_element (element ("""GovHydroPelton.ta"""))
-    val ts = parse_element (element ("""GovHydroPelton.ts"""))
-    val tv = parse_element (element ("""GovHydroPelton.tv"""))
-    val twnc = parse_element (element ("""GovHydroPelton.twnc"""))
-    val twng = parse_element (element ("""GovHydroPelton.twng"""))
-    val tx = parse_element (element ("""GovHydroPelton.tx"""))
-    val va = parse_element (element ("""GovHydroPelton.va"""))
-    val valvmax = parse_element (element ("""GovHydroPelton.valvmax"""))
-    val valvmin = parse_element (element ("""GovHydroPelton.valvmin"""))
-    val vav = parse_element (element ("""GovHydroPelton.vav"""))
-    val vc = parse_element (element ("""GovHydroPelton.vc"""))
-    val vcv = parse_element (element ("""GovHydroPelton.vcv"""))
-    val waterTunnelSurgeChamberSimulation = parse_element (element ("""GovHydroPelton.waterTunnelSurgeChamberSimulation"""))
-    val zsfc = parse_element (element ("""GovHydroPelton.zsfc"""))
+    val fields: Array[String] = Array[String] (
+        "av0",
+        "av1",
+        "bp",
+        "db1",
+        "db2",
+        "h1",
+        "h2",
+        "hn",
+        "kc",
+        "kg",
+        "qc0",
+        "qn",
+        "simplifiedPelton",
+        "staticCompensating",
+        "ta",
+        "ts",
+        "tv",
+        "twnc",
+        "twng",
+        "tx",
+        "va",
+        "valvmax",
+        "valvmin",
+        "vav",
+        "vc",
+        "vcv",
+        "waterTunnelSurgeChamberSimulation",
+        "zsfc"
+    )
+    val av0: Fielder = parse_element (element (cls, fields(0)))
+    val av1: Fielder = parse_element (element (cls, fields(1)))
+    val bp: Fielder = parse_element (element (cls, fields(2)))
+    val db1: Fielder = parse_element (element (cls, fields(3)))
+    val db2: Fielder = parse_element (element (cls, fields(4)))
+    val h1: Fielder = parse_element (element (cls, fields(5)))
+    val h2: Fielder = parse_element (element (cls, fields(6)))
+    val hn: Fielder = parse_element (element (cls, fields(7)))
+    val kc: Fielder = parse_element (element (cls, fields(8)))
+    val kg: Fielder = parse_element (element (cls, fields(9)))
+    val qc0: Fielder = parse_element (element (cls, fields(10)))
+    val qn: Fielder = parse_element (element (cls, fields(11)))
+    val simplifiedPelton: Fielder = parse_element (element (cls, fields(12)))
+    val staticCompensating: Fielder = parse_element (element (cls, fields(13)))
+    val ta: Fielder = parse_element (element (cls, fields(14)))
+    val ts: Fielder = parse_element (element (cls, fields(15)))
+    val tv: Fielder = parse_element (element (cls, fields(16)))
+    val twnc: Fielder = parse_element (element (cls, fields(17)))
+    val twng: Fielder = parse_element (element (cls, fields(18)))
+    val tx: Fielder = parse_element (element (cls, fields(19)))
+    val va: Fielder = parse_element (element (cls, fields(20)))
+    val valvmax: Fielder = parse_element (element (cls, fields(21)))
+    val valvmin: Fielder = parse_element (element (cls, fields(22)))
+    val vav: Fielder = parse_element (element (cls, fields(23)))
+    val vc: Fielder = parse_element (element (cls, fields(24)))
+    val vcv: Fielder = parse_element (element (cls, fields(25)))
+    val waterTunnelSurgeChamberSimulation: Fielder = parse_element (element (cls, fields(26)))
+    val zsfc: Fielder = parse_element (element (cls, fields(27)))
+
     def parse (context: Context): GovHydroPelton =
     {
-        GovHydroPelton(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = GovHydroPelton (
             TurbineGovernorDynamics.parse (context),
-            toDouble (av0 (context), context),
-            toDouble (av1 (context), context),
-            toDouble (bp (context), context),
-            toDouble (db1 (context), context),
-            toDouble (db2 (context), context),
-            toDouble (h1 (context), context),
-            toDouble (h2 (context), context),
-            toDouble (hn (context), context),
-            toDouble (kc (context), context),
-            toDouble (kg (context), context),
-            toDouble (qc0 (context), context),
-            toDouble (qn (context), context),
-            toBoolean (simplifiedPelton (context), context),
-            toBoolean (staticCompensating (context), context),
-            toDouble (ta (context), context),
-            toDouble (ts (context), context),
-            toDouble (tv (context), context),
-            toDouble (twnc (context), context),
-            toDouble (twng (context), context),
-            toDouble (tx (context), context),
-            toDouble (va (context), context),
-            toDouble (valvmax (context), context),
-            toDouble (valvmin (context), context),
-            toDouble (vav (context), context),
-            toDouble (vc (context), context),
-            toDouble (vcv (context), context),
-            toBoolean (waterTunnelSurgeChamberSimulation (context), context),
-            toDouble (zsfc (context), context)
+            toDouble (mask (av0 (), 0)),
+            toDouble (mask (av1 (), 1)),
+            toDouble (mask (bp (), 2)),
+            toDouble (mask (db1 (), 3)),
+            toDouble (mask (db2 (), 4)),
+            toDouble (mask (h1 (), 5)),
+            toDouble (mask (h2 (), 6)),
+            toDouble (mask (hn (), 7)),
+            toDouble (mask (kc (), 8)),
+            toDouble (mask (kg (), 9)),
+            toDouble (mask (qc0 (), 10)),
+            toDouble (mask (qn (), 11)),
+            toBoolean (mask (simplifiedPelton (), 12)),
+            toBoolean (mask (staticCompensating (), 13)),
+            toDouble (mask (ta (), 14)),
+            toDouble (mask (ts (), 15)),
+            toDouble (mask (tv (), 16)),
+            toDouble (mask (twnc (), 17)),
+            toDouble (mask (twng (), 18)),
+            toDouble (mask (tx (), 19)),
+            toDouble (mask (va (), 20)),
+            toDouble (mask (valvmax (), 21)),
+            toDouble (mask (valvmin (), 22)),
+            toDouble (mask (vav (), 23)),
+            toDouble (mask (vc (), 24)),
+            toDouble (mask (vcv (), 25)),
+            toBoolean (mask (waterTunnelSurgeChamberSimulation (), 26)),
+            toDouble (mask (zsfc (), 27))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -4521,6 +5394,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Long = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -4540,55 +5419,57 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:GovHydroR.at>" + at + "</cim:GovHydroR.at>\n" +
-        "\t\t<cim:GovHydroR.db1>" + db1 + "</cim:GovHydroR.db1>\n" +
-        "\t\t<cim:GovHydroR.db2>" + db2 + "</cim:GovHydroR.db2>\n" +
-        "\t\t<cim:GovHydroR.dturb>" + dturb + "</cim:GovHydroR.dturb>\n" +
-        "\t\t<cim:GovHydroR.eps>" + eps + "</cim:GovHydroR.eps>\n" +
-        "\t\t<cim:GovHydroR.gmax>" + gmax + "</cim:GovHydroR.gmax>\n" +
-        "\t\t<cim:GovHydroR.gmin>" + gmin + "</cim:GovHydroR.gmin>\n" +
-        "\t\t<cim:GovHydroR.gv1>" + gv1 + "</cim:GovHydroR.gv1>\n" +
-        "\t\t<cim:GovHydroR.gv2>" + gv2 + "</cim:GovHydroR.gv2>\n" +
-        "\t\t<cim:GovHydroR.gv3>" + gv3 + "</cim:GovHydroR.gv3>\n" +
-        "\t\t<cim:GovHydroR.gv4>" + gv4 + "</cim:GovHydroR.gv4>\n" +
-        "\t\t<cim:GovHydroR.gv5>" + gv5 + "</cim:GovHydroR.gv5>\n" +
-        "\t\t<cim:GovHydroR.gv6>" + gv6 + "</cim:GovHydroR.gv6>\n" +
-        "\t\t<cim:GovHydroR.h0>" + h0 + "</cim:GovHydroR.h0>\n" +
-        "\t\t<cim:GovHydroR.inputSignal>" + inputSignal + "</cim:GovHydroR.inputSignal>\n" +
-        "\t\t<cim:GovHydroR.kg>" + kg + "</cim:GovHydroR.kg>\n" +
-        "\t\t<cim:GovHydroR.ki>" + ki + "</cim:GovHydroR.ki>\n" +
-        "\t\t<cim:GovHydroR.mwbase>" + mwbase + "</cim:GovHydroR.mwbase>\n" +
-        "\t\t<cim:GovHydroR.pgv1>" + pgv1 + "</cim:GovHydroR.pgv1>\n" +
-        "\t\t<cim:GovHydroR.pgv2>" + pgv2 + "</cim:GovHydroR.pgv2>\n" +
-        "\t\t<cim:GovHydroR.pgv3>" + pgv3 + "</cim:GovHydroR.pgv3>\n" +
-        "\t\t<cim:GovHydroR.pgv4>" + pgv4 + "</cim:GovHydroR.pgv4>\n" +
-        "\t\t<cim:GovHydroR.pgv5>" + pgv5 + "</cim:GovHydroR.pgv5>\n" +
-        "\t\t<cim:GovHydroR.pgv6>" + pgv6 + "</cim:GovHydroR.pgv6>\n" +
-        "\t\t<cim:GovHydroR.pmax>" + pmax + "</cim:GovHydroR.pmax>\n" +
-        "\t\t<cim:GovHydroR.pmin>" + pmin + "</cim:GovHydroR.pmin>\n" +
-        "\t\t<cim:GovHydroR.qnl>" + qnl + "</cim:GovHydroR.qnl>\n" +
-        "\t\t<cim:GovHydroR.r>" + r + "</cim:GovHydroR.r>\n" +
-        "\t\t<cim:GovHydroR.t1>" + t1 + "</cim:GovHydroR.t1>\n" +
-        "\t\t<cim:GovHydroR.t2>" + t2 + "</cim:GovHydroR.t2>\n" +
-        "\t\t<cim:GovHydroR.t3>" + t3 + "</cim:GovHydroR.t3>\n" +
-        "\t\t<cim:GovHydroR.t4>" + t4 + "</cim:GovHydroR.t4>\n" +
-        "\t\t<cim:GovHydroR.t5>" + t5 + "</cim:GovHydroR.t5>\n" +
-        "\t\t<cim:GovHydroR.t6>" + t6 + "</cim:GovHydroR.t6>\n" +
-        "\t\t<cim:GovHydroR.t7>" + t7 + "</cim:GovHydroR.t7>\n" +
-        "\t\t<cim:GovHydroR.t8>" + t8 + "</cim:GovHydroR.t8>\n" +
-        "\t\t<cim:GovHydroR.td>" + td + "</cim:GovHydroR.td>\n" +
-        "\t\t<cim:GovHydroR.tp>" + tp + "</cim:GovHydroR.tp>\n" +
-        "\t\t<cim:GovHydroR.tt>" + tt + "</cim:GovHydroR.tt>\n" +
-        "\t\t<cim:GovHydroR.tw>" + tw + "</cim:GovHydroR.tw>\n" +
-        "\t\t<cim:GovHydroR.velcl>" + velcl + "</cim:GovHydroR.velcl>\n" +
-        "\t\t<cim:GovHydroR.velop>" + velop + "</cim:GovHydroR.velop>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = GovHydroR.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovHydroR.fields (position), value)
+        emitelem (0, at)
+        emitelem (1, db1)
+        emitelem (2, db2)
+        emitelem (3, dturb)
+        emitelem (4, eps)
+        emitelem (5, gmax)
+        emitelem (6, gmin)
+        emitelem (7, gv1)
+        emitelem (8, gv2)
+        emitelem (9, gv3)
+        emitelem (10, gv4)
+        emitelem (11, gv5)
+        emitelem (12, gv6)
+        emitelem (13, h0)
+        emitelem (14, inputSignal)
+        emitelem (15, kg)
+        emitelem (16, ki)
+        emitelem (17, mwbase)
+        emitelem (18, pgv1)
+        emitelem (19, pgv2)
+        emitelem (20, pgv3)
+        emitelem (21, pgv4)
+        emitelem (22, pgv5)
+        emitelem (23, pgv6)
+        emitelem (24, pmax)
+        emitelem (25, pmin)
+        emitelem (26, qnl)
+        emitelem (27, r)
+        emitelem (28, t1)
+        emitelem (29, t2)
+        emitelem (30, t3)
+        emitelem (31, t4)
+        emitelem (32, t5)
+        emitelem (33, t6)
+        emitelem (34, t7)
+        emitelem (35, t8)
+        emitelem (36, td)
+        emitelem (37, tp)
+        emitelem (38, tt)
+        emitelem (39, tw)
+        emitelem (40, velcl)
+        emitelem (41, velop)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:GovHydroR rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:GovHydroR>"
+        "\t<cim:GovHydroR rdf:ID=\"%s\">\n%s\t</cim:GovHydroR>".format (id, export_fields)
     }
 }
 
@@ -4596,97 +5477,149 @@ object GovHydroR
 extends
     Parseable[GovHydroR]
 {
-    val at = parse_element (element ("""GovHydroR.at"""))
-    val db1 = parse_element (element ("""GovHydroR.db1"""))
-    val db2 = parse_element (element ("""GovHydroR.db2"""))
-    val dturb = parse_element (element ("""GovHydroR.dturb"""))
-    val eps = parse_element (element ("""GovHydroR.eps"""))
-    val gmax = parse_element (element ("""GovHydroR.gmax"""))
-    val gmin = parse_element (element ("""GovHydroR.gmin"""))
-    val gv1 = parse_element (element ("""GovHydroR.gv1"""))
-    val gv2 = parse_element (element ("""GovHydroR.gv2"""))
-    val gv3 = parse_element (element ("""GovHydroR.gv3"""))
-    val gv4 = parse_element (element ("""GovHydroR.gv4"""))
-    val gv5 = parse_element (element ("""GovHydroR.gv5"""))
-    val gv6 = parse_element (element ("""GovHydroR.gv6"""))
-    val h0 = parse_element (element ("""GovHydroR.h0"""))
-    val inputSignal = parse_element (element ("""GovHydroR.inputSignal"""))
-    val kg = parse_element (element ("""GovHydroR.kg"""))
-    val ki = parse_element (element ("""GovHydroR.ki"""))
-    val mwbase = parse_element (element ("""GovHydroR.mwbase"""))
-    val pgv1 = parse_element (element ("""GovHydroR.pgv1"""))
-    val pgv2 = parse_element (element ("""GovHydroR.pgv2"""))
-    val pgv3 = parse_element (element ("""GovHydroR.pgv3"""))
-    val pgv4 = parse_element (element ("""GovHydroR.pgv4"""))
-    val pgv5 = parse_element (element ("""GovHydroR.pgv5"""))
-    val pgv6 = parse_element (element ("""GovHydroR.pgv6"""))
-    val pmax = parse_element (element ("""GovHydroR.pmax"""))
-    val pmin = parse_element (element ("""GovHydroR.pmin"""))
-    val qnl = parse_element (element ("""GovHydroR.qnl"""))
-    val r = parse_element (element ("""GovHydroR.r"""))
-    val t1 = parse_element (element ("""GovHydroR.t1"""))
-    val t2 = parse_element (element ("""GovHydroR.t2"""))
-    val t3 = parse_element (element ("""GovHydroR.t3"""))
-    val t4 = parse_element (element ("""GovHydroR.t4"""))
-    val t5 = parse_element (element ("""GovHydroR.t5"""))
-    val t6 = parse_element (element ("""GovHydroR.t6"""))
-    val t7 = parse_element (element ("""GovHydroR.t7"""))
-    val t8 = parse_element (element ("""GovHydroR.t8"""))
-    val td = parse_element (element ("""GovHydroR.td"""))
-    val tp = parse_element (element ("""GovHydroR.tp"""))
-    val tt = parse_element (element ("""GovHydroR.tt"""))
-    val tw = parse_element (element ("""GovHydroR.tw"""))
-    val velcl = parse_element (element ("""GovHydroR.velcl"""))
-    val velop = parse_element (element ("""GovHydroR.velop"""))
+    val fields: Array[String] = Array[String] (
+        "at",
+        "db1",
+        "db2",
+        "dturb",
+        "eps",
+        "gmax",
+        "gmin",
+        "gv1",
+        "gv2",
+        "gv3",
+        "gv4",
+        "gv5",
+        "gv6",
+        "h0",
+        "inputSignal",
+        "kg",
+        "ki",
+        "mwbase",
+        "pgv1",
+        "pgv2",
+        "pgv3",
+        "pgv4",
+        "pgv5",
+        "pgv6",
+        "pmax",
+        "pmin",
+        "qnl",
+        "r",
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "t7",
+        "t8",
+        "td",
+        "tp",
+        "tt",
+        "tw",
+        "velcl",
+        "velop"
+    )
+    val at: Fielder = parse_element (element (cls, fields(0)))
+    val db1: Fielder = parse_element (element (cls, fields(1)))
+    val db2: Fielder = parse_element (element (cls, fields(2)))
+    val dturb: Fielder = parse_element (element (cls, fields(3)))
+    val eps: Fielder = parse_element (element (cls, fields(4)))
+    val gmax: Fielder = parse_element (element (cls, fields(5)))
+    val gmin: Fielder = parse_element (element (cls, fields(6)))
+    val gv1: Fielder = parse_element (element (cls, fields(7)))
+    val gv2: Fielder = parse_element (element (cls, fields(8)))
+    val gv3: Fielder = parse_element (element (cls, fields(9)))
+    val gv4: Fielder = parse_element (element (cls, fields(10)))
+    val gv5: Fielder = parse_element (element (cls, fields(11)))
+    val gv6: Fielder = parse_element (element (cls, fields(12)))
+    val h0: Fielder = parse_element (element (cls, fields(13)))
+    val inputSignal: Fielder = parse_element (element (cls, fields(14)))
+    val kg: Fielder = parse_element (element (cls, fields(15)))
+    val ki: Fielder = parse_element (element (cls, fields(16)))
+    val mwbase: Fielder = parse_element (element (cls, fields(17)))
+    val pgv1: Fielder = parse_element (element (cls, fields(18)))
+    val pgv2: Fielder = parse_element (element (cls, fields(19)))
+    val pgv3: Fielder = parse_element (element (cls, fields(20)))
+    val pgv4: Fielder = parse_element (element (cls, fields(21)))
+    val pgv5: Fielder = parse_element (element (cls, fields(22)))
+    val pgv6: Fielder = parse_element (element (cls, fields(23)))
+    val pmax: Fielder = parse_element (element (cls, fields(24)))
+    val pmin: Fielder = parse_element (element (cls, fields(25)))
+    val qnl: Fielder = parse_element (element (cls, fields(26)))
+    val r: Fielder = parse_element (element (cls, fields(27)))
+    val t1: Fielder = parse_element (element (cls, fields(28)))
+    val t2: Fielder = parse_element (element (cls, fields(29)))
+    val t3: Fielder = parse_element (element (cls, fields(30)))
+    val t4: Fielder = parse_element (element (cls, fields(31)))
+    val t5: Fielder = parse_element (element (cls, fields(32)))
+    val t6: Fielder = parse_element (element (cls, fields(33)))
+    val t7: Fielder = parse_element (element (cls, fields(34)))
+    val t8: Fielder = parse_element (element (cls, fields(35)))
+    val td: Fielder = parse_element (element (cls, fields(36)))
+    val tp: Fielder = parse_element (element (cls, fields(37)))
+    val tt: Fielder = parse_element (element (cls, fields(38)))
+    val tw: Fielder = parse_element (element (cls, fields(39)))
+    val velcl: Fielder = parse_element (element (cls, fields(40)))
+    val velop: Fielder = parse_element (element (cls, fields(41)))
+
     def parse (context: Context): GovHydroR =
     {
-        GovHydroR(
+        implicit val ctx: Context = context
+        var fields: Long = 0L
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1L << position; field._1 }
+        val ret = GovHydroR (
             TurbineGovernorDynamics.parse (context),
-            toDouble (at (context), context),
-            toDouble (db1 (context), context),
-            toDouble (db2 (context), context),
-            toDouble (dturb (context), context),
-            toDouble (eps (context), context),
-            toDouble (gmax (context), context),
-            toDouble (gmin (context), context),
-            toDouble (gv1 (context), context),
-            toDouble (gv2 (context), context),
-            toDouble (gv3 (context), context),
-            toDouble (gv4 (context), context),
-            toDouble (gv5 (context), context),
-            toDouble (gv6 (context), context),
-            toDouble (h0 (context), context),
-            toBoolean (inputSignal (context), context),
-            toDouble (kg (context), context),
-            toDouble (ki (context), context),
-            toDouble (mwbase (context), context),
-            toDouble (pgv1 (context), context),
-            toDouble (pgv2 (context), context),
-            toDouble (pgv3 (context), context),
-            toDouble (pgv4 (context), context),
-            toDouble (pgv5 (context), context),
-            toDouble (pgv6 (context), context),
-            toDouble (pmax (context), context),
-            toDouble (pmin (context), context),
-            toDouble (qnl (context), context),
-            toDouble (r (context), context),
-            toDouble (t1 (context), context),
-            toDouble (t2 (context), context),
-            toDouble (t3 (context), context),
-            toDouble (t4 (context), context),
-            toDouble (t5 (context), context),
-            toDouble (t6 (context), context),
-            toDouble (t7 (context), context),
-            toDouble (t8 (context), context),
-            toDouble (td (context), context),
-            toDouble (tp (context), context),
-            toDouble (tt (context), context),
-            toDouble (tw (context), context),
-            toDouble (velcl (context), context),
-            toDouble (velop (context), context)
+            toDouble (mask (at (), 0)),
+            toDouble (mask (db1 (), 1)),
+            toDouble (mask (db2 (), 2)),
+            toDouble (mask (dturb (), 3)),
+            toDouble (mask (eps (), 4)),
+            toDouble (mask (gmax (), 5)),
+            toDouble (mask (gmin (), 6)),
+            toDouble (mask (gv1 (), 7)),
+            toDouble (mask (gv2 (), 8)),
+            toDouble (mask (gv3 (), 9)),
+            toDouble (mask (gv4 (), 10)),
+            toDouble (mask (gv5 (), 11)),
+            toDouble (mask (gv6 (), 12)),
+            toDouble (mask (h0 (), 13)),
+            toBoolean (mask (inputSignal (), 14)),
+            toDouble (mask (kg (), 15)),
+            toDouble (mask (ki (), 16)),
+            toDouble (mask (mwbase (), 17)),
+            toDouble (mask (pgv1 (), 18)),
+            toDouble (mask (pgv2 (), 19)),
+            toDouble (mask (pgv3 (), 20)),
+            toDouble (mask (pgv4 (), 21)),
+            toDouble (mask (pgv5 (), 22)),
+            toDouble (mask (pgv6 (), 23)),
+            toDouble (mask (pmax (), 24)),
+            toDouble (mask (pmin (), 25)),
+            toDouble (mask (qnl (), 26)),
+            toDouble (mask (r (), 27)),
+            toDouble (mask (t1 (), 28)),
+            toDouble (mask (t2 (), 29)),
+            toDouble (mask (t3 (), 30)),
+            toDouble (mask (t4 (), 31)),
+            toDouble (mask (t5 (), 32)),
+            toDouble (mask (t6 (), 33)),
+            toDouble (mask (t7 (), 34)),
+            toDouble (mask (t8 (), 35)),
+            toDouble (mask (td (), 36)),
+            toDouble (mask (tp (), 37)),
+            toDouble (mask (tt (), 38)),
+            toDouble (mask (tw (), 39)),
+            toDouble (mask (velcl (), 40)),
+            toDouble (mask (velop (), 41))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -4848,6 +5781,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Long = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -4867,64 +5806,66 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:GovHydroWEH.db>" + db + "</cim:GovHydroWEH.db>\n" +
-        "\t\t<cim:GovHydroWEH.dicn>" + dicn + "</cim:GovHydroWEH.dicn>\n" +
-        "\t\t<cim:GovHydroWEH.dpv>" + dpv + "</cim:GovHydroWEH.dpv>\n" +
-        "\t\t<cim:GovHydroWEH.dturb>" + dturb + "</cim:GovHydroWEH.dturb>\n" +
-        "\t\t<cim:GovHydroWEH.feedbackSignal>" + feedbackSignal + "</cim:GovHydroWEH.feedbackSignal>\n" +
-        "\t\t<cim:GovHydroWEH.fl1>" + fl1 + "</cim:GovHydroWEH.fl1>\n" +
-        "\t\t<cim:GovHydroWEH.fl2>" + fl2 + "</cim:GovHydroWEH.fl2>\n" +
-        "\t\t<cim:GovHydroWEH.fl3>" + fl3 + "</cim:GovHydroWEH.fl3>\n" +
-        "\t\t<cim:GovHydroWEH.fl4>" + fl4 + "</cim:GovHydroWEH.fl4>\n" +
-        "\t\t<cim:GovHydroWEH.fl5>" + fl5 + "</cim:GovHydroWEH.fl5>\n" +
-        "\t\t<cim:GovHydroWEH.fp1>" + fp1 + "</cim:GovHydroWEH.fp1>\n" +
-        "\t\t<cim:GovHydroWEH.fp10>" + fp10 + "</cim:GovHydroWEH.fp10>\n" +
-        "\t\t<cim:GovHydroWEH.fp2>" + fp2 + "</cim:GovHydroWEH.fp2>\n" +
-        "\t\t<cim:GovHydroWEH.fp3>" + fp3 + "</cim:GovHydroWEH.fp3>\n" +
-        "\t\t<cim:GovHydroWEH.fp4>" + fp4 + "</cim:GovHydroWEH.fp4>\n" +
-        "\t\t<cim:GovHydroWEH.fp5>" + fp5 + "</cim:GovHydroWEH.fp5>\n" +
-        "\t\t<cim:GovHydroWEH.fp6>" + fp6 + "</cim:GovHydroWEH.fp6>\n" +
-        "\t\t<cim:GovHydroWEH.fp7>" + fp7 + "</cim:GovHydroWEH.fp7>\n" +
-        "\t\t<cim:GovHydroWEH.fp8>" + fp8 + "</cim:GovHydroWEH.fp8>\n" +
-        "\t\t<cim:GovHydroWEH.fp9>" + fp9 + "</cim:GovHydroWEH.fp9>\n" +
-        "\t\t<cim:GovHydroWEH.gmax>" + gmax + "</cim:GovHydroWEH.gmax>\n" +
-        "\t\t<cim:GovHydroWEH.gmin>" + gmin + "</cim:GovHydroWEH.gmin>\n" +
-        "\t\t<cim:GovHydroWEH.gtmxcl>" + gtmxcl + "</cim:GovHydroWEH.gtmxcl>\n" +
-        "\t\t<cim:GovHydroWEH.gtmxop>" + gtmxop + "</cim:GovHydroWEH.gtmxop>\n" +
-        "\t\t<cim:GovHydroWEH.gv1>" + gv1 + "</cim:GovHydroWEH.gv1>\n" +
-        "\t\t<cim:GovHydroWEH.gv2>" + gv2 + "</cim:GovHydroWEH.gv2>\n" +
-        "\t\t<cim:GovHydroWEH.gv3>" + gv3 + "</cim:GovHydroWEH.gv3>\n" +
-        "\t\t<cim:GovHydroWEH.gv4>" + gv4 + "</cim:GovHydroWEH.gv4>\n" +
-        "\t\t<cim:GovHydroWEH.gv5>" + gv5 + "</cim:GovHydroWEH.gv5>\n" +
-        "\t\t<cim:GovHydroWEH.kd>" + kd + "</cim:GovHydroWEH.kd>\n" +
-        "\t\t<cim:GovHydroWEH.ki>" + ki + "</cim:GovHydroWEH.ki>\n" +
-        "\t\t<cim:GovHydroWEH.kp>" + kp + "</cim:GovHydroWEH.kp>\n" +
-        "\t\t<cim:GovHydroWEH.mwbase>" + mwbase + "</cim:GovHydroWEH.mwbase>\n" +
-        "\t\t<cim:GovHydroWEH.pmss1>" + pmss1 + "</cim:GovHydroWEH.pmss1>\n" +
-        "\t\t<cim:GovHydroWEH.pmss10>" + pmss10 + "</cim:GovHydroWEH.pmss10>\n" +
-        "\t\t<cim:GovHydroWEH.pmss2>" + pmss2 + "</cim:GovHydroWEH.pmss2>\n" +
-        "\t\t<cim:GovHydroWEH.pmss3>" + pmss3 + "</cim:GovHydroWEH.pmss3>\n" +
-        "\t\t<cim:GovHydroWEH.pmss4>" + pmss4 + "</cim:GovHydroWEH.pmss4>\n" +
-        "\t\t<cim:GovHydroWEH.pmss5>" + pmss5 + "</cim:GovHydroWEH.pmss5>\n" +
-        "\t\t<cim:GovHydroWEH.pmss6>" + pmss6 + "</cim:GovHydroWEH.pmss6>\n" +
-        "\t\t<cim:GovHydroWEH.pmss7>" + pmss7 + "</cim:GovHydroWEH.pmss7>\n" +
-        "\t\t<cim:GovHydroWEH.pmss8>" + pmss8 + "</cim:GovHydroWEH.pmss8>\n" +
-        "\t\t<cim:GovHydroWEH.pmss9>" + pmss9 + "</cim:GovHydroWEH.pmss9>\n" +
-        "\t\t<cim:GovHydroWEH.rpg>" + rpg + "</cim:GovHydroWEH.rpg>\n" +
-        "\t\t<cim:GovHydroWEH.rpp>" + rpp + "</cim:GovHydroWEH.rpp>\n" +
-        "\t\t<cim:GovHydroWEH.td>" + td + "</cim:GovHydroWEH.td>\n" +
-        "\t\t<cim:GovHydroWEH.tdv>" + tdv + "</cim:GovHydroWEH.tdv>\n" +
-        "\t\t<cim:GovHydroWEH.tg>" + tg + "</cim:GovHydroWEH.tg>\n" +
-        "\t\t<cim:GovHydroWEH.tp>" + tp + "</cim:GovHydroWEH.tp>\n" +
-        "\t\t<cim:GovHydroWEH.tpe>" + tpe + "</cim:GovHydroWEH.tpe>\n" +
-        "\t\t<cim:GovHydroWEH.tw>" + tw + "</cim:GovHydroWEH.tw>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = GovHydroWEH.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovHydroWEH.fields (position), value)
+        emitelem (0, db)
+        emitelem (1, dicn)
+        emitelem (2, dpv)
+        emitelem (3, dturb)
+        emitelem (4, feedbackSignal)
+        emitelem (5, fl1)
+        emitelem (6, fl2)
+        emitelem (7, fl3)
+        emitelem (8, fl4)
+        emitelem (9, fl5)
+        emitelem (10, fp1)
+        emitelem (11, fp10)
+        emitelem (12, fp2)
+        emitelem (13, fp3)
+        emitelem (14, fp4)
+        emitelem (15, fp5)
+        emitelem (16, fp6)
+        emitelem (17, fp7)
+        emitelem (18, fp8)
+        emitelem (19, fp9)
+        emitelem (20, gmax)
+        emitelem (21, gmin)
+        emitelem (22, gtmxcl)
+        emitelem (23, gtmxop)
+        emitelem (24, gv1)
+        emitelem (25, gv2)
+        emitelem (26, gv3)
+        emitelem (27, gv4)
+        emitelem (28, gv5)
+        emitelem (29, kd)
+        emitelem (30, ki)
+        emitelem (31, kp)
+        emitelem (32, mwbase)
+        emitelem (33, pmss1)
+        emitelem (34, pmss10)
+        emitelem (35, pmss2)
+        emitelem (36, pmss3)
+        emitelem (37, pmss4)
+        emitelem (38, pmss5)
+        emitelem (39, pmss6)
+        emitelem (40, pmss7)
+        emitelem (41, pmss8)
+        emitelem (42, pmss9)
+        emitelem (43, rpg)
+        emitelem (44, rpp)
+        emitelem (45, td)
+        emitelem (46, tdv)
+        emitelem (47, tg)
+        emitelem (48, tp)
+        emitelem (49, tpe)
+        emitelem (50, tw)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:GovHydroWEH rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:GovHydroWEH>"
+        "\t<cim:GovHydroWEH rdf:ID=\"%s\">\n%s\t</cim:GovHydroWEH>".format (id, export_fields)
     }
 }
 
@@ -4932,115 +5873,176 @@ object GovHydroWEH
 extends
     Parseable[GovHydroWEH]
 {
-    val db = parse_element (element ("""GovHydroWEH.db"""))
-    val dicn = parse_element (element ("""GovHydroWEH.dicn"""))
-    val dpv = parse_element (element ("""GovHydroWEH.dpv"""))
-    val dturb = parse_element (element ("""GovHydroWEH.dturb"""))
-    val feedbackSignal = parse_element (element ("""GovHydroWEH.feedbackSignal"""))
-    val fl1 = parse_element (element ("""GovHydroWEH.fl1"""))
-    val fl2 = parse_element (element ("""GovHydroWEH.fl2"""))
-    val fl3 = parse_element (element ("""GovHydroWEH.fl3"""))
-    val fl4 = parse_element (element ("""GovHydroWEH.fl4"""))
-    val fl5 = parse_element (element ("""GovHydroWEH.fl5"""))
-    val fp1 = parse_element (element ("""GovHydroWEH.fp1"""))
-    val fp10 = parse_element (element ("""GovHydroWEH.fp10"""))
-    val fp2 = parse_element (element ("""GovHydroWEH.fp2"""))
-    val fp3 = parse_element (element ("""GovHydroWEH.fp3"""))
-    val fp4 = parse_element (element ("""GovHydroWEH.fp4"""))
-    val fp5 = parse_element (element ("""GovHydroWEH.fp5"""))
-    val fp6 = parse_element (element ("""GovHydroWEH.fp6"""))
-    val fp7 = parse_element (element ("""GovHydroWEH.fp7"""))
-    val fp8 = parse_element (element ("""GovHydroWEH.fp8"""))
-    val fp9 = parse_element (element ("""GovHydroWEH.fp9"""))
-    val gmax = parse_element (element ("""GovHydroWEH.gmax"""))
-    val gmin = parse_element (element ("""GovHydroWEH.gmin"""))
-    val gtmxcl = parse_element (element ("""GovHydroWEH.gtmxcl"""))
-    val gtmxop = parse_element (element ("""GovHydroWEH.gtmxop"""))
-    val gv1 = parse_element (element ("""GovHydroWEH.gv1"""))
-    val gv2 = parse_element (element ("""GovHydroWEH.gv2"""))
-    val gv3 = parse_element (element ("""GovHydroWEH.gv3"""))
-    val gv4 = parse_element (element ("""GovHydroWEH.gv4"""))
-    val gv5 = parse_element (element ("""GovHydroWEH.gv5"""))
-    val kd = parse_element (element ("""GovHydroWEH.kd"""))
-    val ki = parse_element (element ("""GovHydroWEH.ki"""))
-    val kp = parse_element (element ("""GovHydroWEH.kp"""))
-    val mwbase = parse_element (element ("""GovHydroWEH.mwbase"""))
-    val pmss1 = parse_element (element ("""GovHydroWEH.pmss1"""))
-    val pmss10 = parse_element (element ("""GovHydroWEH.pmss10"""))
-    val pmss2 = parse_element (element ("""GovHydroWEH.pmss2"""))
-    val pmss3 = parse_element (element ("""GovHydroWEH.pmss3"""))
-    val pmss4 = parse_element (element ("""GovHydroWEH.pmss4"""))
-    val pmss5 = parse_element (element ("""GovHydroWEH.pmss5"""))
-    val pmss6 = parse_element (element ("""GovHydroWEH.pmss6"""))
-    val pmss7 = parse_element (element ("""GovHydroWEH.pmss7"""))
-    val pmss8 = parse_element (element ("""GovHydroWEH.pmss8"""))
-    val pmss9 = parse_element (element ("""GovHydroWEH.pmss9"""))
-    val rpg = parse_element (element ("""GovHydroWEH.rpg"""))
-    val rpp = parse_element (element ("""GovHydroWEH.rpp"""))
-    val td = parse_element (element ("""GovHydroWEH.td"""))
-    val tdv = parse_element (element ("""GovHydroWEH.tdv"""))
-    val tg = parse_element (element ("""GovHydroWEH.tg"""))
-    val tp = parse_element (element ("""GovHydroWEH.tp"""))
-    val tpe = parse_element (element ("""GovHydroWEH.tpe"""))
-    val tw = parse_element (element ("""GovHydroWEH.tw"""))
+    val fields: Array[String] = Array[String] (
+        "db",
+        "dicn",
+        "dpv",
+        "dturb",
+        "feedbackSignal",
+        "fl1",
+        "fl2",
+        "fl3",
+        "fl4",
+        "fl5",
+        "fp1",
+        "fp10",
+        "fp2",
+        "fp3",
+        "fp4",
+        "fp5",
+        "fp6",
+        "fp7",
+        "fp8",
+        "fp9",
+        "gmax",
+        "gmin",
+        "gtmxcl",
+        "gtmxop",
+        "gv1",
+        "gv2",
+        "gv3",
+        "gv4",
+        "gv5",
+        "kd",
+        "ki",
+        "kp",
+        "mwbase",
+        "pmss1",
+        "pmss10",
+        "pmss2",
+        "pmss3",
+        "pmss4",
+        "pmss5",
+        "pmss6",
+        "pmss7",
+        "pmss8",
+        "pmss9",
+        "rpg",
+        "rpp",
+        "td",
+        "tdv",
+        "tg",
+        "tp",
+        "tpe",
+        "tw"
+    )
+    val db: Fielder = parse_element (element (cls, fields(0)))
+    val dicn: Fielder = parse_element (element (cls, fields(1)))
+    val dpv: Fielder = parse_element (element (cls, fields(2)))
+    val dturb: Fielder = parse_element (element (cls, fields(3)))
+    val feedbackSignal: Fielder = parse_element (element (cls, fields(4)))
+    val fl1: Fielder = parse_element (element (cls, fields(5)))
+    val fl2: Fielder = parse_element (element (cls, fields(6)))
+    val fl3: Fielder = parse_element (element (cls, fields(7)))
+    val fl4: Fielder = parse_element (element (cls, fields(8)))
+    val fl5: Fielder = parse_element (element (cls, fields(9)))
+    val fp1: Fielder = parse_element (element (cls, fields(10)))
+    val fp10: Fielder = parse_element (element (cls, fields(11)))
+    val fp2: Fielder = parse_element (element (cls, fields(12)))
+    val fp3: Fielder = parse_element (element (cls, fields(13)))
+    val fp4: Fielder = parse_element (element (cls, fields(14)))
+    val fp5: Fielder = parse_element (element (cls, fields(15)))
+    val fp6: Fielder = parse_element (element (cls, fields(16)))
+    val fp7: Fielder = parse_element (element (cls, fields(17)))
+    val fp8: Fielder = parse_element (element (cls, fields(18)))
+    val fp9: Fielder = parse_element (element (cls, fields(19)))
+    val gmax: Fielder = parse_element (element (cls, fields(20)))
+    val gmin: Fielder = parse_element (element (cls, fields(21)))
+    val gtmxcl: Fielder = parse_element (element (cls, fields(22)))
+    val gtmxop: Fielder = parse_element (element (cls, fields(23)))
+    val gv1: Fielder = parse_element (element (cls, fields(24)))
+    val gv2: Fielder = parse_element (element (cls, fields(25)))
+    val gv3: Fielder = parse_element (element (cls, fields(26)))
+    val gv4: Fielder = parse_element (element (cls, fields(27)))
+    val gv5: Fielder = parse_element (element (cls, fields(28)))
+    val kd: Fielder = parse_element (element (cls, fields(29)))
+    val ki: Fielder = parse_element (element (cls, fields(30)))
+    val kp: Fielder = parse_element (element (cls, fields(31)))
+    val mwbase: Fielder = parse_element (element (cls, fields(32)))
+    val pmss1: Fielder = parse_element (element (cls, fields(33)))
+    val pmss10: Fielder = parse_element (element (cls, fields(34)))
+    val pmss2: Fielder = parse_element (element (cls, fields(35)))
+    val pmss3: Fielder = parse_element (element (cls, fields(36)))
+    val pmss4: Fielder = parse_element (element (cls, fields(37)))
+    val pmss5: Fielder = parse_element (element (cls, fields(38)))
+    val pmss6: Fielder = parse_element (element (cls, fields(39)))
+    val pmss7: Fielder = parse_element (element (cls, fields(40)))
+    val pmss8: Fielder = parse_element (element (cls, fields(41)))
+    val pmss9: Fielder = parse_element (element (cls, fields(42)))
+    val rpg: Fielder = parse_element (element (cls, fields(43)))
+    val rpp: Fielder = parse_element (element (cls, fields(44)))
+    val td: Fielder = parse_element (element (cls, fields(45)))
+    val tdv: Fielder = parse_element (element (cls, fields(46)))
+    val tg: Fielder = parse_element (element (cls, fields(47)))
+    val tp: Fielder = parse_element (element (cls, fields(48)))
+    val tpe: Fielder = parse_element (element (cls, fields(49)))
+    val tw: Fielder = parse_element (element (cls, fields(50)))
+
     def parse (context: Context): GovHydroWEH =
     {
-        GovHydroWEH(
+        implicit val ctx: Context = context
+        var fields: Long = 0L
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1L << position; field._1 }
+        val ret = GovHydroWEH (
             TurbineGovernorDynamics.parse (context),
-            toDouble (db (context), context),
-            toDouble (dicn (context), context),
-            toDouble (dpv (context), context),
-            toDouble (dturb (context), context),
-            toBoolean (feedbackSignal (context), context),
-            toDouble (fl1 (context), context),
-            toDouble (fl2 (context), context),
-            toDouble (fl3 (context), context),
-            toDouble (fl4 (context), context),
-            toDouble (fl5 (context), context),
-            toDouble (fp1 (context), context),
-            toDouble (fp10 (context), context),
-            toDouble (fp2 (context), context),
-            toDouble (fp3 (context), context),
-            toDouble (fp4 (context), context),
-            toDouble (fp5 (context), context),
-            toDouble (fp6 (context), context),
-            toDouble (fp7 (context), context),
-            toDouble (fp8 (context), context),
-            toDouble (fp9 (context), context),
-            toDouble (gmax (context), context),
-            toDouble (gmin (context), context),
-            toDouble (gtmxcl (context), context),
-            toDouble (gtmxop (context), context),
-            toDouble (gv1 (context), context),
-            toDouble (gv2 (context), context),
-            toDouble (gv3 (context), context),
-            toDouble (gv4 (context), context),
-            toDouble (gv5 (context), context),
-            toDouble (kd (context), context),
-            toDouble (ki (context), context),
-            toDouble (kp (context), context),
-            toDouble (mwbase (context), context),
-            toDouble (pmss1 (context), context),
-            toDouble (pmss10 (context), context),
-            toDouble (pmss2 (context), context),
-            toDouble (pmss3 (context), context),
-            toDouble (pmss4 (context), context),
-            toDouble (pmss5 (context), context),
-            toDouble (pmss6 (context), context),
-            toDouble (pmss7 (context), context),
-            toDouble (pmss8 (context), context),
-            toDouble (pmss9 (context), context),
-            toDouble (rpg (context), context),
-            toDouble (rpp (context), context),
-            toDouble (td (context), context),
-            toDouble (tdv (context), context),
-            toDouble (tg (context), context),
-            toDouble (tp (context), context),
-            toDouble (tpe (context), context),
-            toDouble (tw (context), context)
+            toDouble (mask (db (), 0)),
+            toDouble (mask (dicn (), 1)),
+            toDouble (mask (dpv (), 2)),
+            toDouble (mask (dturb (), 3)),
+            toBoolean (mask (feedbackSignal (), 4)),
+            toDouble (mask (fl1 (), 5)),
+            toDouble (mask (fl2 (), 6)),
+            toDouble (mask (fl3 (), 7)),
+            toDouble (mask (fl4 (), 8)),
+            toDouble (mask (fl5 (), 9)),
+            toDouble (mask (fp1 (), 10)),
+            toDouble (mask (fp10 (), 11)),
+            toDouble (mask (fp2 (), 12)),
+            toDouble (mask (fp3 (), 13)),
+            toDouble (mask (fp4 (), 14)),
+            toDouble (mask (fp5 (), 15)),
+            toDouble (mask (fp6 (), 16)),
+            toDouble (mask (fp7 (), 17)),
+            toDouble (mask (fp8 (), 18)),
+            toDouble (mask (fp9 (), 19)),
+            toDouble (mask (gmax (), 20)),
+            toDouble (mask (gmin (), 21)),
+            toDouble (mask (gtmxcl (), 22)),
+            toDouble (mask (gtmxop (), 23)),
+            toDouble (mask (gv1 (), 24)),
+            toDouble (mask (gv2 (), 25)),
+            toDouble (mask (gv3 (), 26)),
+            toDouble (mask (gv4 (), 27)),
+            toDouble (mask (gv5 (), 28)),
+            toDouble (mask (kd (), 29)),
+            toDouble (mask (ki (), 30)),
+            toDouble (mask (kp (), 31)),
+            toDouble (mask (mwbase (), 32)),
+            toDouble (mask (pmss1 (), 33)),
+            toDouble (mask (pmss10 (), 34)),
+            toDouble (mask (pmss2 (), 35)),
+            toDouble (mask (pmss3 (), 36)),
+            toDouble (mask (pmss4 (), 37)),
+            toDouble (mask (pmss5 (), 38)),
+            toDouble (mask (pmss6 (), 39)),
+            toDouble (mask (pmss7 (), 40)),
+            toDouble (mask (pmss8 (), 41)),
+            toDouble (mask (pmss9 (), 42)),
+            toDouble (mask (rpg (), 43)),
+            toDouble (mask (rpp (), 44)),
+            toDouble (mask (td (), 45)),
+            toDouble (mask (tdv (), 46)),
+            toDouble (mask (tg (), 47)),
+            toDouble (mask (tp (), 48)),
+            toDouble (mask (tpe (), 49)),
+            toDouble (mask (tw (), 50))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -5119,6 +6121,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -5138,35 +6146,37 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:GovHydroWPID.d>" + d + "</cim:GovHydroWPID.d>\n" +
-        "\t\t<cim:GovHydroWPID.gatmax>" + gatmax + "</cim:GovHydroWPID.gatmax>\n" +
-        "\t\t<cim:GovHydroWPID.gatmin>" + gatmin + "</cim:GovHydroWPID.gatmin>\n" +
-        "\t\t<cim:GovHydroWPID.gv1>" + gv1 + "</cim:GovHydroWPID.gv1>\n" +
-        "\t\t<cim:GovHydroWPID.gv2>" + gv2 + "</cim:GovHydroWPID.gv2>\n" +
-        "\t\t<cim:GovHydroWPID.gv3>" + gv3 + "</cim:GovHydroWPID.gv3>\n" +
-        "\t\t<cim:GovHydroWPID.kd>" + kd + "</cim:GovHydroWPID.kd>\n" +
-        "\t\t<cim:GovHydroWPID.ki>" + ki + "</cim:GovHydroWPID.ki>\n" +
-        "\t\t<cim:GovHydroWPID.kp>" + kp + "</cim:GovHydroWPID.kp>\n" +
-        "\t\t<cim:GovHydroWPID.mwbase>" + mwbase + "</cim:GovHydroWPID.mwbase>\n" +
-        "\t\t<cim:GovHydroWPID.pgv1>" + pgv1 + "</cim:GovHydroWPID.pgv1>\n" +
-        "\t\t<cim:GovHydroWPID.pgv2>" + pgv2 + "</cim:GovHydroWPID.pgv2>\n" +
-        "\t\t<cim:GovHydroWPID.pgv3>" + pgv3 + "</cim:GovHydroWPID.pgv3>\n" +
-        "\t\t<cim:GovHydroWPID.pmax>" + pmax + "</cim:GovHydroWPID.pmax>\n" +
-        "\t\t<cim:GovHydroWPID.pmin>" + pmin + "</cim:GovHydroWPID.pmin>\n" +
-        "\t\t<cim:GovHydroWPID.reg>" + reg + "</cim:GovHydroWPID.reg>\n" +
-        "\t\t<cim:GovHydroWPID.ta>" + ta + "</cim:GovHydroWPID.ta>\n" +
-        "\t\t<cim:GovHydroWPID.tb>" + tb + "</cim:GovHydroWPID.tb>\n" +
-        "\t\t<cim:GovHydroWPID.treg>" + treg + "</cim:GovHydroWPID.treg>\n" +
-        "\t\t<cim:GovHydroWPID.tw>" + tw + "</cim:GovHydroWPID.tw>\n" +
-        "\t\t<cim:GovHydroWPID.velmax>" + velmax + "</cim:GovHydroWPID.velmax>\n" +
-        "\t\t<cim:GovHydroWPID.velmin>" + velmin + "</cim:GovHydroWPID.velmin>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = GovHydroWPID.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovHydroWPID.fields (position), value)
+        emitelem (0, d)
+        emitelem (1, gatmax)
+        emitelem (2, gatmin)
+        emitelem (3, gv1)
+        emitelem (4, gv2)
+        emitelem (5, gv3)
+        emitelem (6, kd)
+        emitelem (7, ki)
+        emitelem (8, kp)
+        emitelem (9, mwbase)
+        emitelem (10, pgv1)
+        emitelem (11, pgv2)
+        emitelem (12, pgv3)
+        emitelem (13, pmax)
+        emitelem (14, pmin)
+        emitelem (15, reg)
+        emitelem (16, ta)
+        emitelem (17, tb)
+        emitelem (18, treg)
+        emitelem (19, tw)
+        emitelem (20, velmax)
+        emitelem (21, velmin)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:GovHydroWPID rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:GovHydroWPID>"
+        "\t<cim:GovHydroWPID rdf:ID=\"%s\">\n%s\t</cim:GovHydroWPID>".format (id, export_fields)
     }
 }
 
@@ -5174,57 +6184,89 @@ object GovHydroWPID
 extends
     Parseable[GovHydroWPID]
 {
-    val d = parse_element (element ("""GovHydroWPID.d"""))
-    val gatmax = parse_element (element ("""GovHydroWPID.gatmax"""))
-    val gatmin = parse_element (element ("""GovHydroWPID.gatmin"""))
-    val gv1 = parse_element (element ("""GovHydroWPID.gv1"""))
-    val gv2 = parse_element (element ("""GovHydroWPID.gv2"""))
-    val gv3 = parse_element (element ("""GovHydroWPID.gv3"""))
-    val kd = parse_element (element ("""GovHydroWPID.kd"""))
-    val ki = parse_element (element ("""GovHydroWPID.ki"""))
-    val kp = parse_element (element ("""GovHydroWPID.kp"""))
-    val mwbase = parse_element (element ("""GovHydroWPID.mwbase"""))
-    val pgv1 = parse_element (element ("""GovHydroWPID.pgv1"""))
-    val pgv2 = parse_element (element ("""GovHydroWPID.pgv2"""))
-    val pgv3 = parse_element (element ("""GovHydroWPID.pgv3"""))
-    val pmax = parse_element (element ("""GovHydroWPID.pmax"""))
-    val pmin = parse_element (element ("""GovHydroWPID.pmin"""))
-    val reg = parse_element (element ("""GovHydroWPID.reg"""))
-    val ta = parse_element (element ("""GovHydroWPID.ta"""))
-    val tb = parse_element (element ("""GovHydroWPID.tb"""))
-    val treg = parse_element (element ("""GovHydroWPID.treg"""))
-    val tw = parse_element (element ("""GovHydroWPID.tw"""))
-    val velmax = parse_element (element ("""GovHydroWPID.velmax"""))
-    val velmin = parse_element (element ("""GovHydroWPID.velmin"""))
+    val fields: Array[String] = Array[String] (
+        "d",
+        "gatmax",
+        "gatmin",
+        "gv1",
+        "gv2",
+        "gv3",
+        "kd",
+        "ki",
+        "kp",
+        "mwbase",
+        "pgv1",
+        "pgv2",
+        "pgv3",
+        "pmax",
+        "pmin",
+        "reg",
+        "ta",
+        "tb",
+        "treg",
+        "tw",
+        "velmax",
+        "velmin"
+    )
+    val d: Fielder = parse_element (element (cls, fields(0)))
+    val gatmax: Fielder = parse_element (element (cls, fields(1)))
+    val gatmin: Fielder = parse_element (element (cls, fields(2)))
+    val gv1: Fielder = parse_element (element (cls, fields(3)))
+    val gv2: Fielder = parse_element (element (cls, fields(4)))
+    val gv3: Fielder = parse_element (element (cls, fields(5)))
+    val kd: Fielder = parse_element (element (cls, fields(6)))
+    val ki: Fielder = parse_element (element (cls, fields(7)))
+    val kp: Fielder = parse_element (element (cls, fields(8)))
+    val mwbase: Fielder = parse_element (element (cls, fields(9)))
+    val pgv1: Fielder = parse_element (element (cls, fields(10)))
+    val pgv2: Fielder = parse_element (element (cls, fields(11)))
+    val pgv3: Fielder = parse_element (element (cls, fields(12)))
+    val pmax: Fielder = parse_element (element (cls, fields(13)))
+    val pmin: Fielder = parse_element (element (cls, fields(14)))
+    val reg: Fielder = parse_element (element (cls, fields(15)))
+    val ta: Fielder = parse_element (element (cls, fields(16)))
+    val tb: Fielder = parse_element (element (cls, fields(17)))
+    val treg: Fielder = parse_element (element (cls, fields(18)))
+    val tw: Fielder = parse_element (element (cls, fields(19)))
+    val velmax: Fielder = parse_element (element (cls, fields(20)))
+    val velmin: Fielder = parse_element (element (cls, fields(21)))
+
     def parse (context: Context): GovHydroWPID =
     {
-        GovHydroWPID(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = GovHydroWPID (
             TurbineGovernorDynamics.parse (context),
-            toDouble (d (context), context),
-            toDouble (gatmax (context), context),
-            toDouble (gatmin (context), context),
-            toDouble (gv1 (context), context),
-            toDouble (gv2 (context), context),
-            toDouble (gv3 (context), context),
-            toDouble (kd (context), context),
-            toDouble (ki (context), context),
-            toDouble (kp (context), context),
-            toDouble (mwbase (context), context),
-            toDouble (pgv1 (context), context),
-            toDouble (pgv2 (context), context),
-            toDouble (pgv3 (context), context),
-            toDouble (pmax (context), context),
-            toDouble (pmin (context), context),
-            toDouble (reg (context), context),
-            toDouble (ta (context), context),
-            toDouble (tb (context), context),
-            toDouble (treg (context), context),
-            toDouble (tw (context), context),
-            toDouble (velmax (context), context),
-            toDouble (velmin (context), context)
+            toDouble (mask (d (), 0)),
+            toDouble (mask (gatmax (), 1)),
+            toDouble (mask (gatmin (), 2)),
+            toDouble (mask (gv1 (), 3)),
+            toDouble (mask (gv2 (), 4)),
+            toDouble (mask (gv3 (), 5)),
+            toDouble (mask (kd (), 6)),
+            toDouble (mask (ki (), 7)),
+            toDouble (mask (kp (), 8)),
+            toDouble (mask (mwbase (), 9)),
+            toDouble (mask (pgv1 (), 10)),
+            toDouble (mask (pgv2 (), 11)),
+            toDouble (mask (pgv3 (), 12)),
+            toDouble (mask (pmax (), 13)),
+            toDouble (mask (pmin (), 14)),
+            toDouble (mask (reg (), 15)),
+            toDouble (mask (ta (), 16)),
+            toDouble (mask (tb (), 17)),
+            toDouble (mask (treg (), 18)),
+            toDouble (mask (tw (), 19)),
+            toDouble (mask (velmax (), 20)),
+            toDouble (mask (velmin (), 21))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -5273,6 +6315,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -5292,21 +6340,23 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:GovSteam0.dt>" + dt + "</cim:GovSteam0.dt>\n" +
-        "\t\t<cim:GovSteam0.mwbase>" + mwbase + "</cim:GovSteam0.mwbase>\n" +
-        "\t\t<cim:GovSteam0.r>" + r + "</cim:GovSteam0.r>\n" +
-        "\t\t<cim:GovSteam0.t1>" + t1 + "</cim:GovSteam0.t1>\n" +
-        "\t\t<cim:GovSteam0.t2>" + t2 + "</cim:GovSteam0.t2>\n" +
-        "\t\t<cim:GovSteam0.t3>" + t3 + "</cim:GovSteam0.t3>\n" +
-        "\t\t<cim:GovSteam0.vmax>" + vmax + "</cim:GovSteam0.vmax>\n" +
-        "\t\t<cim:GovSteam0.vmin>" + vmin + "</cim:GovSteam0.vmin>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = GovSteam0.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovSteam0.fields (position), value)
+        emitelem (0, dt)
+        emitelem (1, mwbase)
+        emitelem (2, r)
+        emitelem (3, t1)
+        emitelem (4, t2)
+        emitelem (5, t3)
+        emitelem (6, vmax)
+        emitelem (7, vmin)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:GovSteam0 rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:GovSteam0>"
+        "\t<cim:GovSteam0 rdf:ID=\"%s\">\n%s\t</cim:GovSteam0>".format (id, export_fields)
     }
 }
 
@@ -5314,29 +6364,47 @@ object GovSteam0
 extends
     Parseable[GovSteam0]
 {
-    val dt = parse_element (element ("""GovSteam0.dt"""))
-    val mwbase = parse_element (element ("""GovSteam0.mwbase"""))
-    val r = parse_element (element ("""GovSteam0.r"""))
-    val t1 = parse_element (element ("""GovSteam0.t1"""))
-    val t2 = parse_element (element ("""GovSteam0.t2"""))
-    val t3 = parse_element (element ("""GovSteam0.t3"""))
-    val vmax = parse_element (element ("""GovSteam0.vmax"""))
-    val vmin = parse_element (element ("""GovSteam0.vmin"""))
+    val fields: Array[String] = Array[String] (
+        "dt",
+        "mwbase",
+        "r",
+        "t1",
+        "t2",
+        "t3",
+        "vmax",
+        "vmin"
+    )
+    val dt: Fielder = parse_element (element (cls, fields(0)))
+    val mwbase: Fielder = parse_element (element (cls, fields(1)))
+    val r: Fielder = parse_element (element (cls, fields(2)))
+    val t1: Fielder = parse_element (element (cls, fields(3)))
+    val t2: Fielder = parse_element (element (cls, fields(4)))
+    val t3: Fielder = parse_element (element (cls, fields(5)))
+    val vmax: Fielder = parse_element (element (cls, fields(6)))
+    val vmin: Fielder = parse_element (element (cls, fields(7)))
+
     def parse (context: Context): GovSteam0 =
     {
-        GovSteam0(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = GovSteam0 (
             TurbineGovernorDynamics.parse (context),
-            toDouble (dt (context), context),
-            toDouble (mwbase (context), context),
-            toDouble (r (context), context),
-            toDouble (t1 (context), context),
-            toDouble (t2 (context), context),
-            toDouble (t3 (context), context),
-            toDouble (vmax (context), context),
-            toDouble (vmin (context), context)
+            toDouble (mask (dt (), 0)),
+            toDouble (mask (mwbase (), 1)),
+            toDouble (mask (r (), 2)),
+            toDouble (mask (t1 (), 3)),
+            toDouble (mask (t2 (), 4)),
+            toDouble (mask (t3 (), 5)),
+            toDouble (mask (vmax (), 6)),
+            toDouble (mask (vmin (), 7))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -5484,6 +6552,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Long = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -5503,52 +6577,54 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:GovSteam1.db1>" + db1 + "</cim:GovSteam1.db1>\n" +
-        "\t\t<cim:GovSteam1.db2>" + db2 + "</cim:GovSteam1.db2>\n" +
-        "\t\t<cim:GovSteam1.eps>" + eps + "</cim:GovSteam1.eps>\n" +
-        "\t\t<cim:GovSteam1.gv1>" + gv1 + "</cim:GovSteam1.gv1>\n" +
-        "\t\t<cim:GovSteam1.gv2>" + gv2 + "</cim:GovSteam1.gv2>\n" +
-        "\t\t<cim:GovSteam1.gv3>" + gv3 + "</cim:GovSteam1.gv3>\n" +
-        "\t\t<cim:GovSteam1.gv4>" + gv4 + "</cim:GovSteam1.gv4>\n" +
-        "\t\t<cim:GovSteam1.gv5>" + gv5 + "</cim:GovSteam1.gv5>\n" +
-        "\t\t<cim:GovSteam1.gv6>" + gv6 + "</cim:GovSteam1.gv6>\n" +
-        "\t\t<cim:GovSteam1.k>" + k + "</cim:GovSteam1.k>\n" +
-        "\t\t<cim:GovSteam1.k1>" + k1 + "</cim:GovSteam1.k1>\n" +
-        "\t\t<cim:GovSteam1.k2>" + k2 + "</cim:GovSteam1.k2>\n" +
-        "\t\t<cim:GovSteam1.k3>" + k3 + "</cim:GovSteam1.k3>\n" +
-        "\t\t<cim:GovSteam1.k4>" + k4 + "</cim:GovSteam1.k4>\n" +
-        "\t\t<cim:GovSteam1.k5>" + k5 + "</cim:GovSteam1.k5>\n" +
-        "\t\t<cim:GovSteam1.k6>" + k6 + "</cim:GovSteam1.k6>\n" +
-        "\t\t<cim:GovSteam1.k7>" + k7 + "</cim:GovSteam1.k7>\n" +
-        "\t\t<cim:GovSteam1.k8>" + k8 + "</cim:GovSteam1.k8>\n" +
-        "\t\t<cim:GovSteam1.mwbase>" + mwbase + "</cim:GovSteam1.mwbase>\n" +
-        "\t\t<cim:GovSteam1.pgv1>" + pgv1 + "</cim:GovSteam1.pgv1>\n" +
-        "\t\t<cim:GovSteam1.pgv2>" + pgv2 + "</cim:GovSteam1.pgv2>\n" +
-        "\t\t<cim:GovSteam1.pgv3>" + pgv3 + "</cim:GovSteam1.pgv3>\n" +
-        "\t\t<cim:GovSteam1.pgv4>" + pgv4 + "</cim:GovSteam1.pgv4>\n" +
-        "\t\t<cim:GovSteam1.pgv5>" + pgv5 + "</cim:GovSteam1.pgv5>\n" +
-        "\t\t<cim:GovSteam1.pgv6>" + pgv6 + "</cim:GovSteam1.pgv6>\n" +
-        "\t\t<cim:GovSteam1.pmax>" + pmax + "</cim:GovSteam1.pmax>\n" +
-        "\t\t<cim:GovSteam1.pmin>" + pmin + "</cim:GovSteam1.pmin>\n" +
-        "\t\t<cim:GovSteam1.sdb1>" + sdb1 + "</cim:GovSteam1.sdb1>\n" +
-        "\t\t<cim:GovSteam1.sdb2>" + sdb2 + "</cim:GovSteam1.sdb2>\n" +
-        "\t\t<cim:GovSteam1.t1>" + t1 + "</cim:GovSteam1.t1>\n" +
-        "\t\t<cim:GovSteam1.t2>" + t2 + "</cim:GovSteam1.t2>\n" +
-        "\t\t<cim:GovSteam1.t3>" + t3 + "</cim:GovSteam1.t3>\n" +
-        "\t\t<cim:GovSteam1.t4>" + t4 + "</cim:GovSteam1.t4>\n" +
-        "\t\t<cim:GovSteam1.t5>" + t5 + "</cim:GovSteam1.t5>\n" +
-        "\t\t<cim:GovSteam1.t6>" + t6 + "</cim:GovSteam1.t6>\n" +
-        "\t\t<cim:GovSteam1.t7>" + t7 + "</cim:GovSteam1.t7>\n" +
-        "\t\t<cim:GovSteam1.uc>" + uc + "</cim:GovSteam1.uc>\n" +
-        "\t\t<cim:GovSteam1.uo>" + uo + "</cim:GovSteam1.uo>\n" +
-        "\t\t<cim:GovSteam1.valve>" + valve + "</cim:GovSteam1.valve>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = GovSteam1.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovSteam1.fields (position), value)
+        emitelem (0, db1)
+        emitelem (1, db2)
+        emitelem (2, eps)
+        emitelem (3, gv1)
+        emitelem (4, gv2)
+        emitelem (5, gv3)
+        emitelem (6, gv4)
+        emitelem (7, gv5)
+        emitelem (8, gv6)
+        emitelem (9, k)
+        emitelem (10, k1)
+        emitelem (11, k2)
+        emitelem (12, k3)
+        emitelem (13, k4)
+        emitelem (14, k5)
+        emitelem (15, k6)
+        emitelem (16, k7)
+        emitelem (17, k8)
+        emitelem (18, mwbase)
+        emitelem (19, pgv1)
+        emitelem (20, pgv2)
+        emitelem (21, pgv3)
+        emitelem (22, pgv4)
+        emitelem (23, pgv5)
+        emitelem (24, pgv6)
+        emitelem (25, pmax)
+        emitelem (26, pmin)
+        emitelem (27, sdb1)
+        emitelem (28, sdb2)
+        emitelem (29, t1)
+        emitelem (30, t2)
+        emitelem (31, t3)
+        emitelem (32, t4)
+        emitelem (33, t5)
+        emitelem (34, t6)
+        emitelem (35, t7)
+        emitelem (36, uc)
+        emitelem (37, uo)
+        emitelem (38, valve)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:GovSteam1 rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:GovSteam1>"
+        "\t<cim:GovSteam1 rdf:ID=\"%s\">\n%s\t</cim:GovSteam1>".format (id, export_fields)
     }
 }
 
@@ -5556,91 +6632,140 @@ object GovSteam1
 extends
     Parseable[GovSteam1]
 {
-    val db1 = parse_element (element ("""GovSteam1.db1"""))
-    val db2 = parse_element (element ("""GovSteam1.db2"""))
-    val eps = parse_element (element ("""GovSteam1.eps"""))
-    val gv1 = parse_element (element ("""GovSteam1.gv1"""))
-    val gv2 = parse_element (element ("""GovSteam1.gv2"""))
-    val gv3 = parse_element (element ("""GovSteam1.gv3"""))
-    val gv4 = parse_element (element ("""GovSteam1.gv4"""))
-    val gv5 = parse_element (element ("""GovSteam1.gv5"""))
-    val gv6 = parse_element (element ("""GovSteam1.gv6"""))
-    val k = parse_element (element ("""GovSteam1.k"""))
-    val k1 = parse_element (element ("""GovSteam1.k1"""))
-    val k2 = parse_element (element ("""GovSteam1.k2"""))
-    val k3 = parse_element (element ("""GovSteam1.k3"""))
-    val k4 = parse_element (element ("""GovSteam1.k4"""))
-    val k5 = parse_element (element ("""GovSteam1.k5"""))
-    val k6 = parse_element (element ("""GovSteam1.k6"""))
-    val k7 = parse_element (element ("""GovSteam1.k7"""))
-    val k8 = parse_element (element ("""GovSteam1.k8"""))
-    val mwbase = parse_element (element ("""GovSteam1.mwbase"""))
-    val pgv1 = parse_element (element ("""GovSteam1.pgv1"""))
-    val pgv2 = parse_element (element ("""GovSteam1.pgv2"""))
-    val pgv3 = parse_element (element ("""GovSteam1.pgv3"""))
-    val pgv4 = parse_element (element ("""GovSteam1.pgv4"""))
-    val pgv5 = parse_element (element ("""GovSteam1.pgv5"""))
-    val pgv6 = parse_element (element ("""GovSteam1.pgv6"""))
-    val pmax = parse_element (element ("""GovSteam1.pmax"""))
-    val pmin = parse_element (element ("""GovSteam1.pmin"""))
-    val sdb1 = parse_element (element ("""GovSteam1.sdb1"""))
-    val sdb2 = parse_element (element ("""GovSteam1.sdb2"""))
-    val t1 = parse_element (element ("""GovSteam1.t1"""))
-    val t2 = parse_element (element ("""GovSteam1.t2"""))
-    val t3 = parse_element (element ("""GovSteam1.t3"""))
-    val t4 = parse_element (element ("""GovSteam1.t4"""))
-    val t5 = parse_element (element ("""GovSteam1.t5"""))
-    val t6 = parse_element (element ("""GovSteam1.t6"""))
-    val t7 = parse_element (element ("""GovSteam1.t7"""))
-    val uc = parse_element (element ("""GovSteam1.uc"""))
-    val uo = parse_element (element ("""GovSteam1.uo"""))
-    val valve = parse_element (element ("""GovSteam1.valve"""))
+    val fields: Array[String] = Array[String] (
+        "db1",
+        "db2",
+        "eps",
+        "gv1",
+        "gv2",
+        "gv3",
+        "gv4",
+        "gv5",
+        "gv6",
+        "k",
+        "k1",
+        "k2",
+        "k3",
+        "k4",
+        "k5",
+        "k6",
+        "k7",
+        "k8",
+        "mwbase",
+        "pgv1",
+        "pgv2",
+        "pgv3",
+        "pgv4",
+        "pgv5",
+        "pgv6",
+        "pmax",
+        "pmin",
+        "sdb1",
+        "sdb2",
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "t7",
+        "uc",
+        "uo",
+        "valve"
+    )
+    val db1: Fielder = parse_element (element (cls, fields(0)))
+    val db2: Fielder = parse_element (element (cls, fields(1)))
+    val eps: Fielder = parse_element (element (cls, fields(2)))
+    val gv1: Fielder = parse_element (element (cls, fields(3)))
+    val gv2: Fielder = parse_element (element (cls, fields(4)))
+    val gv3: Fielder = parse_element (element (cls, fields(5)))
+    val gv4: Fielder = parse_element (element (cls, fields(6)))
+    val gv5: Fielder = parse_element (element (cls, fields(7)))
+    val gv6: Fielder = parse_element (element (cls, fields(8)))
+    val k: Fielder = parse_element (element (cls, fields(9)))
+    val k1: Fielder = parse_element (element (cls, fields(10)))
+    val k2: Fielder = parse_element (element (cls, fields(11)))
+    val k3: Fielder = parse_element (element (cls, fields(12)))
+    val k4: Fielder = parse_element (element (cls, fields(13)))
+    val k5: Fielder = parse_element (element (cls, fields(14)))
+    val k6: Fielder = parse_element (element (cls, fields(15)))
+    val k7: Fielder = parse_element (element (cls, fields(16)))
+    val k8: Fielder = parse_element (element (cls, fields(17)))
+    val mwbase: Fielder = parse_element (element (cls, fields(18)))
+    val pgv1: Fielder = parse_element (element (cls, fields(19)))
+    val pgv2: Fielder = parse_element (element (cls, fields(20)))
+    val pgv3: Fielder = parse_element (element (cls, fields(21)))
+    val pgv4: Fielder = parse_element (element (cls, fields(22)))
+    val pgv5: Fielder = parse_element (element (cls, fields(23)))
+    val pgv6: Fielder = parse_element (element (cls, fields(24)))
+    val pmax: Fielder = parse_element (element (cls, fields(25)))
+    val pmin: Fielder = parse_element (element (cls, fields(26)))
+    val sdb1: Fielder = parse_element (element (cls, fields(27)))
+    val sdb2: Fielder = parse_element (element (cls, fields(28)))
+    val t1: Fielder = parse_element (element (cls, fields(29)))
+    val t2: Fielder = parse_element (element (cls, fields(30)))
+    val t3: Fielder = parse_element (element (cls, fields(31)))
+    val t4: Fielder = parse_element (element (cls, fields(32)))
+    val t5: Fielder = parse_element (element (cls, fields(33)))
+    val t6: Fielder = parse_element (element (cls, fields(34)))
+    val t7: Fielder = parse_element (element (cls, fields(35)))
+    val uc: Fielder = parse_element (element (cls, fields(36)))
+    val uo: Fielder = parse_element (element (cls, fields(37)))
+    val valve: Fielder = parse_element (element (cls, fields(38)))
+
     def parse (context: Context): GovSteam1 =
     {
-        GovSteam1(
+        implicit val ctx: Context = context
+        var fields: Long = 0L
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1L << position; field._1 }
+        val ret = GovSteam1 (
             TurbineGovernorDynamics.parse (context),
-            toDouble (db1 (context), context),
-            toDouble (db2 (context), context),
-            toDouble (eps (context), context),
-            toDouble (gv1 (context), context),
-            toDouble (gv2 (context), context),
-            toDouble (gv3 (context), context),
-            toDouble (gv4 (context), context),
-            toDouble (gv5 (context), context),
-            toDouble (gv6 (context), context),
-            toDouble (k (context), context),
-            toDouble (k1 (context), context),
-            toDouble (k2 (context), context),
-            toDouble (k3 (context), context),
-            toDouble (k4 (context), context),
-            toDouble (k5 (context), context),
-            toDouble (k6 (context), context),
-            toDouble (k7 (context), context),
-            toDouble (k8 (context), context),
-            toDouble (mwbase (context), context),
-            toDouble (pgv1 (context), context),
-            toDouble (pgv2 (context), context),
-            toDouble (pgv3 (context), context),
-            toDouble (pgv4 (context), context),
-            toDouble (pgv5 (context), context),
-            toDouble (pgv6 (context), context),
-            toDouble (pmax (context), context),
-            toDouble (pmin (context), context),
-            toBoolean (sdb1 (context), context),
-            toBoolean (sdb2 (context), context),
-            toDouble (t1 (context), context),
-            toDouble (t2 (context), context),
-            toDouble (t3 (context), context),
-            toDouble (t4 (context), context),
-            toDouble (t5 (context), context),
-            toDouble (t6 (context), context),
-            toDouble (t7 (context), context),
-            toDouble (uc (context), context),
-            toDouble (uo (context), context),
-            toBoolean (valve (context), context)
+            toDouble (mask (db1 (), 0)),
+            toDouble (mask (db2 (), 1)),
+            toDouble (mask (eps (), 2)),
+            toDouble (mask (gv1 (), 3)),
+            toDouble (mask (gv2 (), 4)),
+            toDouble (mask (gv3 (), 5)),
+            toDouble (mask (gv4 (), 6)),
+            toDouble (mask (gv5 (), 7)),
+            toDouble (mask (gv6 (), 8)),
+            toDouble (mask (k (), 9)),
+            toDouble (mask (k1 (), 10)),
+            toDouble (mask (k2 (), 11)),
+            toDouble (mask (k3 (), 12)),
+            toDouble (mask (k4 (), 13)),
+            toDouble (mask (k5 (), 14)),
+            toDouble (mask (k6 (), 15)),
+            toDouble (mask (k7 (), 16)),
+            toDouble (mask (k8 (), 17)),
+            toDouble (mask (mwbase (), 18)),
+            toDouble (mask (pgv1 (), 19)),
+            toDouble (mask (pgv2 (), 20)),
+            toDouble (mask (pgv3 (), 21)),
+            toDouble (mask (pgv4 (), 22)),
+            toDouble (mask (pgv5 (), 23)),
+            toDouble (mask (pgv6 (), 24)),
+            toDouble (mask (pmax (), 25)),
+            toDouble (mask (pmin (), 26)),
+            toBoolean (mask (sdb1 (), 27)),
+            toBoolean (mask (sdb2 (), 28)),
+            toDouble (mask (t1 (), 29)),
+            toDouble (mask (t2 (), 30)),
+            toDouble (mask (t3 (), 31)),
+            toDouble (mask (t4 (), 32)),
+            toDouble (mask (t5 (), 33)),
+            toDouble (mask (t6 (), 34)),
+            toDouble (mask (t7 (), 35)),
+            toDouble (mask (uc (), 36)),
+            toDouble (mask (uo (), 37)),
+            toBoolean (mask (valve (), 38))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -5689,6 +6814,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -5708,21 +6839,23 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:GovSteam2.dbf>" + dbf + "</cim:GovSteam2.dbf>\n" +
-        "\t\t<cim:GovSteam2.k>" + k + "</cim:GovSteam2.k>\n" +
-        "\t\t<cim:GovSteam2.mnef>" + mnef + "</cim:GovSteam2.mnef>\n" +
-        "\t\t<cim:GovSteam2.mxef>" + mxef + "</cim:GovSteam2.mxef>\n" +
-        "\t\t<cim:GovSteam2.pmax>" + pmax + "</cim:GovSteam2.pmax>\n" +
-        "\t\t<cim:GovSteam2.pmin>" + pmin + "</cim:GovSteam2.pmin>\n" +
-        "\t\t<cim:GovSteam2.t1>" + t1 + "</cim:GovSteam2.t1>\n" +
-        "\t\t<cim:GovSteam2.t2>" + t2 + "</cim:GovSteam2.t2>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = GovSteam2.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovSteam2.fields (position), value)
+        emitelem (0, dbf)
+        emitelem (1, k)
+        emitelem (2, mnef)
+        emitelem (3, mxef)
+        emitelem (4, pmax)
+        emitelem (5, pmin)
+        emitelem (6, t1)
+        emitelem (7, t2)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:GovSteam2 rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:GovSteam2>"
+        "\t<cim:GovSteam2 rdf:ID=\"%s\">\n%s\t</cim:GovSteam2>".format (id, export_fields)
     }
 }
 
@@ -5730,29 +6863,47 @@ object GovSteam2
 extends
     Parseable[GovSteam2]
 {
-    val dbf = parse_element (element ("""GovSteam2.dbf"""))
-    val k = parse_element (element ("""GovSteam2.k"""))
-    val mnef = parse_element (element ("""GovSteam2.mnef"""))
-    val mxef = parse_element (element ("""GovSteam2.mxef"""))
-    val pmax = parse_element (element ("""GovSteam2.pmax"""))
-    val pmin = parse_element (element ("""GovSteam2.pmin"""))
-    val t1 = parse_element (element ("""GovSteam2.t1"""))
-    val t2 = parse_element (element ("""GovSteam2.t2"""))
+    val fields: Array[String] = Array[String] (
+        "dbf",
+        "k",
+        "mnef",
+        "mxef",
+        "pmax",
+        "pmin",
+        "t1",
+        "t2"
+    )
+    val dbf: Fielder = parse_element (element (cls, fields(0)))
+    val k: Fielder = parse_element (element (cls, fields(1)))
+    val mnef: Fielder = parse_element (element (cls, fields(2)))
+    val mxef: Fielder = parse_element (element (cls, fields(3)))
+    val pmax: Fielder = parse_element (element (cls, fields(4)))
+    val pmin: Fielder = parse_element (element (cls, fields(5)))
+    val t1: Fielder = parse_element (element (cls, fields(6)))
+    val t2: Fielder = parse_element (element (cls, fields(7)))
+
     def parse (context: Context): GovSteam2 =
     {
-        GovSteam2(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = GovSteam2 (
             TurbineGovernorDynamics.parse (context),
-            toDouble (dbf (context), context),
-            toDouble (k (context), context),
-            toDouble (mnef (context), context),
-            toDouble (mxef (context), context),
-            toDouble (pmax (context), context),
-            toDouble (pmin (context), context),
-            toDouble (t1 (context), context),
-            toDouble (t2 (context), context)
+            toDouble (mask (dbf (), 0)),
+            toDouble (mask (k (), 1)),
+            toDouble (mask (mnef (), 2)),
+            toDouble (mask (mxef (), 3)),
+            toDouble (mask (pmax (), 4)),
+            toDouble (mask (pmin (), 5)),
+            toDouble (mask (t1 (), 6)),
+            toDouble (mask (t2 (), 7))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -5828,6 +6979,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -5847,30 +7004,32 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:GovSteamCC.dhp>" + dhp + "</cim:GovSteamCC.dhp>\n" +
-        "\t\t<cim:GovSteamCC.dlp>" + dlp + "</cim:GovSteamCC.dlp>\n" +
-        "\t\t<cim:GovSteamCC.fhp>" + fhp + "</cim:GovSteamCC.fhp>\n" +
-        "\t\t<cim:GovSteamCC.flp>" + flp + "</cim:GovSteamCC.flp>\n" +
-        "\t\t<cim:GovSteamCC.mwbase>" + mwbase + "</cim:GovSteamCC.mwbase>\n" +
-        "\t\t<cim:GovSteamCC.pmaxhp>" + pmaxhp + "</cim:GovSteamCC.pmaxhp>\n" +
-        "\t\t<cim:GovSteamCC.pmaxlp>" + pmaxlp + "</cim:GovSteamCC.pmaxlp>\n" +
-        "\t\t<cim:GovSteamCC.rhp>" + rhp + "</cim:GovSteamCC.rhp>\n" +
-        "\t\t<cim:GovSteamCC.rlp>" + rlp + "</cim:GovSteamCC.rlp>\n" +
-        "\t\t<cim:GovSteamCC.t1hp>" + t1hp + "</cim:GovSteamCC.t1hp>\n" +
-        "\t\t<cim:GovSteamCC.t1lp>" + t1lp + "</cim:GovSteamCC.t1lp>\n" +
-        "\t\t<cim:GovSteamCC.t3hp>" + t3hp + "</cim:GovSteamCC.t3hp>\n" +
-        "\t\t<cim:GovSteamCC.t3lp>" + t3lp + "</cim:GovSteamCC.t3lp>\n" +
-        "\t\t<cim:GovSteamCC.t4hp>" + t4hp + "</cim:GovSteamCC.t4hp>\n" +
-        "\t\t<cim:GovSteamCC.t4lp>" + t4lp + "</cim:GovSteamCC.t4lp>\n" +
-        "\t\t<cim:GovSteamCC.t5hp>" + t5hp + "</cim:GovSteamCC.t5hp>\n" +
-        "\t\t<cim:GovSteamCC.t5lp>" + t5lp + "</cim:GovSteamCC.t5lp>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = GovSteamCC.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovSteamCC.fields (position), value)
+        emitelem (0, dhp)
+        emitelem (1, dlp)
+        emitelem (2, fhp)
+        emitelem (3, flp)
+        emitelem (4, mwbase)
+        emitelem (5, pmaxhp)
+        emitelem (6, pmaxlp)
+        emitelem (7, rhp)
+        emitelem (8, rlp)
+        emitelem (9, t1hp)
+        emitelem (10, t1lp)
+        emitelem (11, t3hp)
+        emitelem (12, t3lp)
+        emitelem (13, t4hp)
+        emitelem (14, t4lp)
+        emitelem (15, t5hp)
+        emitelem (16, t5lp)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:GovSteamCC rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:GovSteamCC>"
+        "\t<cim:GovSteamCC rdf:ID=\"%s\">\n%s\t</cim:GovSteamCC>".format (id, export_fields)
     }
 }
 
@@ -5878,47 +7037,74 @@ object GovSteamCC
 extends
     Parseable[GovSteamCC]
 {
-    val dhp = parse_element (element ("""GovSteamCC.dhp"""))
-    val dlp = parse_element (element ("""GovSteamCC.dlp"""))
-    val fhp = parse_element (element ("""GovSteamCC.fhp"""))
-    val flp = parse_element (element ("""GovSteamCC.flp"""))
-    val mwbase = parse_element (element ("""GovSteamCC.mwbase"""))
-    val pmaxhp = parse_element (element ("""GovSteamCC.pmaxhp"""))
-    val pmaxlp = parse_element (element ("""GovSteamCC.pmaxlp"""))
-    val rhp = parse_element (element ("""GovSteamCC.rhp"""))
-    val rlp = parse_element (element ("""GovSteamCC.rlp"""))
-    val t1hp = parse_element (element ("""GovSteamCC.t1hp"""))
-    val t1lp = parse_element (element ("""GovSteamCC.t1lp"""))
-    val t3hp = parse_element (element ("""GovSteamCC.t3hp"""))
-    val t3lp = parse_element (element ("""GovSteamCC.t3lp"""))
-    val t4hp = parse_element (element ("""GovSteamCC.t4hp"""))
-    val t4lp = parse_element (element ("""GovSteamCC.t4lp"""))
-    val t5hp = parse_element (element ("""GovSteamCC.t5hp"""))
-    val t5lp = parse_element (element ("""GovSteamCC.t5lp"""))
+    val fields: Array[String] = Array[String] (
+        "dhp",
+        "dlp",
+        "fhp",
+        "flp",
+        "mwbase",
+        "pmaxhp",
+        "pmaxlp",
+        "rhp",
+        "rlp",
+        "t1hp",
+        "t1lp",
+        "t3hp",
+        "t3lp",
+        "t4hp",
+        "t4lp",
+        "t5hp",
+        "t5lp"
+    )
+    val dhp: Fielder = parse_element (element (cls, fields(0)))
+    val dlp: Fielder = parse_element (element (cls, fields(1)))
+    val fhp: Fielder = parse_element (element (cls, fields(2)))
+    val flp: Fielder = parse_element (element (cls, fields(3)))
+    val mwbase: Fielder = parse_element (element (cls, fields(4)))
+    val pmaxhp: Fielder = parse_element (element (cls, fields(5)))
+    val pmaxlp: Fielder = parse_element (element (cls, fields(6)))
+    val rhp: Fielder = parse_element (element (cls, fields(7)))
+    val rlp: Fielder = parse_element (element (cls, fields(8)))
+    val t1hp: Fielder = parse_element (element (cls, fields(9)))
+    val t1lp: Fielder = parse_element (element (cls, fields(10)))
+    val t3hp: Fielder = parse_element (element (cls, fields(11)))
+    val t3lp: Fielder = parse_element (element (cls, fields(12)))
+    val t4hp: Fielder = parse_element (element (cls, fields(13)))
+    val t4lp: Fielder = parse_element (element (cls, fields(14)))
+    val t5hp: Fielder = parse_element (element (cls, fields(15)))
+    val t5lp: Fielder = parse_element (element (cls, fields(16)))
+
     def parse (context: Context): GovSteamCC =
     {
-        GovSteamCC(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = GovSteamCC (
             TurbineGovernorDynamics.parse (context),
-            toDouble (dhp (context), context),
-            toDouble (dlp (context), context),
-            toDouble (fhp (context), context),
-            toDouble (flp (context), context),
-            toDouble (mwbase (context), context),
-            toDouble (pmaxhp (context), context),
-            toDouble (pmaxlp (context), context),
-            toDouble (rhp (context), context),
-            toDouble (rlp (context), context),
-            toDouble (t1hp (context), context),
-            toDouble (t1lp (context), context),
-            toDouble (t3hp (context), context),
-            toDouble (t3lp (context), context),
-            toDouble (t4hp (context), context),
-            toDouble (t4lp (context), context),
-            toDouble (t5hp (context), context),
-            toDouble (t5lp (context), context)
+            toDouble (mask (dhp (), 0)),
+            toDouble (mask (dlp (), 1)),
+            toDouble (mask (fhp (), 2)),
+            toDouble (mask (flp (), 3)),
+            toDouble (mask (mwbase (), 4)),
+            toDouble (mask (pmaxhp (), 5)),
+            toDouble (mask (pmaxlp (), 6)),
+            toDouble (mask (rhp (), 7)),
+            toDouble (mask (rlp (), 8)),
+            toDouble (mask (t1hp (), 9)),
+            toDouble (mask (t1lp (), 10)),
+            toDouble (mask (t3hp (), 11)),
+            toDouble (mask (t3lp (), 12)),
+            toDouble (mask (t4hp (), 13)),
+            toDouble (mask (t4lp (), 14)),
+            toDouble (mask (t5hp (), 15)),
+            toDouble (mask (t5lp (), 16))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -6048,6 +7234,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Long = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -6067,48 +7259,50 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:GovSteamEU.chc>" + chc + "</cim:GovSteamEU.chc>\n" +
-        "\t\t<cim:GovSteamEU.cho>" + cho + "</cim:GovSteamEU.cho>\n" +
-        "\t\t<cim:GovSteamEU.cic>" + cic + "</cim:GovSteamEU.cic>\n" +
-        "\t\t<cim:GovSteamEU.cio>" + cio + "</cim:GovSteamEU.cio>\n" +
-        "\t\t<cim:GovSteamEU.db1>" + db1 + "</cim:GovSteamEU.db1>\n" +
-        "\t\t<cim:GovSteamEU.db2>" + db2 + "</cim:GovSteamEU.db2>\n" +
-        "\t\t<cim:GovSteamEU.hhpmax>" + hhpmax + "</cim:GovSteamEU.hhpmax>\n" +
-        "\t\t<cim:GovSteamEU.ke>" + ke + "</cim:GovSteamEU.ke>\n" +
-        "\t\t<cim:GovSteamEU.kfcor>" + kfcor + "</cim:GovSteamEU.kfcor>\n" +
-        "\t\t<cim:GovSteamEU.khp>" + khp + "</cim:GovSteamEU.khp>\n" +
-        "\t\t<cim:GovSteamEU.klp>" + klp + "</cim:GovSteamEU.klp>\n" +
-        "\t\t<cim:GovSteamEU.kwcor>" + kwcor + "</cim:GovSteamEU.kwcor>\n" +
-        "\t\t<cim:GovSteamEU.mwbase>" + mwbase + "</cim:GovSteamEU.mwbase>\n" +
-        "\t\t<cim:GovSteamEU.pmax>" + pmax + "</cim:GovSteamEU.pmax>\n" +
-        "\t\t<cim:GovSteamEU.prhmax>" + prhmax + "</cim:GovSteamEU.prhmax>\n" +
-        "\t\t<cim:GovSteamEU.simx>" + simx + "</cim:GovSteamEU.simx>\n" +
-        "\t\t<cim:GovSteamEU.tb>" + tb + "</cim:GovSteamEU.tb>\n" +
-        "\t\t<cim:GovSteamEU.tdp>" + tdp + "</cim:GovSteamEU.tdp>\n" +
-        "\t\t<cim:GovSteamEU.ten>" + ten + "</cim:GovSteamEU.ten>\n" +
-        "\t\t<cim:GovSteamEU.tf>" + tf + "</cim:GovSteamEU.tf>\n" +
-        "\t\t<cim:GovSteamEU.tfp>" + tfp + "</cim:GovSteamEU.tfp>\n" +
-        "\t\t<cim:GovSteamEU.thp>" + thp + "</cim:GovSteamEU.thp>\n" +
-        "\t\t<cim:GovSteamEU.tip>" + tip + "</cim:GovSteamEU.tip>\n" +
-        "\t\t<cim:GovSteamEU.tlp>" + tlp + "</cim:GovSteamEU.tlp>\n" +
-        "\t\t<cim:GovSteamEU.tp>" + tp + "</cim:GovSteamEU.tp>\n" +
-        "\t\t<cim:GovSteamEU.trh>" + trh + "</cim:GovSteamEU.trh>\n" +
-        "\t\t<cim:GovSteamEU.tvhp>" + tvhp + "</cim:GovSteamEU.tvhp>\n" +
-        "\t\t<cim:GovSteamEU.tvip>" + tvip + "</cim:GovSteamEU.tvip>\n" +
-        "\t\t<cim:GovSteamEU.tw>" + tw + "</cim:GovSteamEU.tw>\n" +
-        "\t\t<cim:GovSteamEU.wfmax>" + wfmax + "</cim:GovSteamEU.wfmax>\n" +
-        "\t\t<cim:GovSteamEU.wfmin>" + wfmin + "</cim:GovSteamEU.wfmin>\n" +
-        "\t\t<cim:GovSteamEU.wmax1>" + wmax1 + "</cim:GovSteamEU.wmax1>\n" +
-        "\t\t<cim:GovSteamEU.wmax2>" + wmax2 + "</cim:GovSteamEU.wmax2>\n" +
-        "\t\t<cim:GovSteamEU.wwmax>" + wwmax + "</cim:GovSteamEU.wwmax>\n" +
-        "\t\t<cim:GovSteamEU.wwmin>" + wwmin + "</cim:GovSteamEU.wwmin>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = GovSteamEU.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovSteamEU.fields (position), value)
+        emitelem (0, chc)
+        emitelem (1, cho)
+        emitelem (2, cic)
+        emitelem (3, cio)
+        emitelem (4, db1)
+        emitelem (5, db2)
+        emitelem (6, hhpmax)
+        emitelem (7, ke)
+        emitelem (8, kfcor)
+        emitelem (9, khp)
+        emitelem (10, klp)
+        emitelem (11, kwcor)
+        emitelem (12, mwbase)
+        emitelem (13, pmax)
+        emitelem (14, prhmax)
+        emitelem (15, simx)
+        emitelem (16, tb)
+        emitelem (17, tdp)
+        emitelem (18, ten)
+        emitelem (19, tf)
+        emitelem (20, tfp)
+        emitelem (21, thp)
+        emitelem (22, tip)
+        emitelem (23, tlp)
+        emitelem (24, tp)
+        emitelem (25, trh)
+        emitelem (26, tvhp)
+        emitelem (27, tvip)
+        emitelem (28, tw)
+        emitelem (29, wfmax)
+        emitelem (30, wfmin)
+        emitelem (31, wmax1)
+        emitelem (32, wmax2)
+        emitelem (33, wwmax)
+        emitelem (34, wwmin)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:GovSteamEU rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:GovSteamEU>"
+        "\t<cim:GovSteamEU rdf:ID=\"%s\">\n%s\t</cim:GovSteamEU>".format (id, export_fields)
     }
 }
 
@@ -6116,83 +7310,128 @@ object GovSteamEU
 extends
     Parseable[GovSteamEU]
 {
-    val chc = parse_element (element ("""GovSteamEU.chc"""))
-    val cho = parse_element (element ("""GovSteamEU.cho"""))
-    val cic = parse_element (element ("""GovSteamEU.cic"""))
-    val cio = parse_element (element ("""GovSteamEU.cio"""))
-    val db1 = parse_element (element ("""GovSteamEU.db1"""))
-    val db2 = parse_element (element ("""GovSteamEU.db2"""))
-    val hhpmax = parse_element (element ("""GovSteamEU.hhpmax"""))
-    val ke = parse_element (element ("""GovSteamEU.ke"""))
-    val kfcor = parse_element (element ("""GovSteamEU.kfcor"""))
-    val khp = parse_element (element ("""GovSteamEU.khp"""))
-    val klp = parse_element (element ("""GovSteamEU.klp"""))
-    val kwcor = parse_element (element ("""GovSteamEU.kwcor"""))
-    val mwbase = parse_element (element ("""GovSteamEU.mwbase"""))
-    val pmax = parse_element (element ("""GovSteamEU.pmax"""))
-    val prhmax = parse_element (element ("""GovSteamEU.prhmax"""))
-    val simx = parse_element (element ("""GovSteamEU.simx"""))
-    val tb = parse_element (element ("""GovSteamEU.tb"""))
-    val tdp = parse_element (element ("""GovSteamEU.tdp"""))
-    val ten = parse_element (element ("""GovSteamEU.ten"""))
-    val tf = parse_element (element ("""GovSteamEU.tf"""))
-    val tfp = parse_element (element ("""GovSteamEU.tfp"""))
-    val thp = parse_element (element ("""GovSteamEU.thp"""))
-    val tip = parse_element (element ("""GovSteamEU.tip"""))
-    val tlp = parse_element (element ("""GovSteamEU.tlp"""))
-    val tp = parse_element (element ("""GovSteamEU.tp"""))
-    val trh = parse_element (element ("""GovSteamEU.trh"""))
-    val tvhp = parse_element (element ("""GovSteamEU.tvhp"""))
-    val tvip = parse_element (element ("""GovSteamEU.tvip"""))
-    val tw = parse_element (element ("""GovSteamEU.tw"""))
-    val wfmax = parse_element (element ("""GovSteamEU.wfmax"""))
-    val wfmin = parse_element (element ("""GovSteamEU.wfmin"""))
-    val wmax1 = parse_element (element ("""GovSteamEU.wmax1"""))
-    val wmax2 = parse_element (element ("""GovSteamEU.wmax2"""))
-    val wwmax = parse_element (element ("""GovSteamEU.wwmax"""))
-    val wwmin = parse_element (element ("""GovSteamEU.wwmin"""))
+    val fields: Array[String] = Array[String] (
+        "chc",
+        "cho",
+        "cic",
+        "cio",
+        "db1",
+        "db2",
+        "hhpmax",
+        "ke",
+        "kfcor",
+        "khp",
+        "klp",
+        "kwcor",
+        "mwbase",
+        "pmax",
+        "prhmax",
+        "simx",
+        "tb",
+        "tdp",
+        "ten",
+        "tf",
+        "tfp",
+        "thp",
+        "tip",
+        "tlp",
+        "tp",
+        "trh",
+        "tvhp",
+        "tvip",
+        "tw",
+        "wfmax",
+        "wfmin",
+        "wmax1",
+        "wmax2",
+        "wwmax",
+        "wwmin"
+    )
+    val chc: Fielder = parse_element (element (cls, fields(0)))
+    val cho: Fielder = parse_element (element (cls, fields(1)))
+    val cic: Fielder = parse_element (element (cls, fields(2)))
+    val cio: Fielder = parse_element (element (cls, fields(3)))
+    val db1: Fielder = parse_element (element (cls, fields(4)))
+    val db2: Fielder = parse_element (element (cls, fields(5)))
+    val hhpmax: Fielder = parse_element (element (cls, fields(6)))
+    val ke: Fielder = parse_element (element (cls, fields(7)))
+    val kfcor: Fielder = parse_element (element (cls, fields(8)))
+    val khp: Fielder = parse_element (element (cls, fields(9)))
+    val klp: Fielder = parse_element (element (cls, fields(10)))
+    val kwcor: Fielder = parse_element (element (cls, fields(11)))
+    val mwbase: Fielder = parse_element (element (cls, fields(12)))
+    val pmax: Fielder = parse_element (element (cls, fields(13)))
+    val prhmax: Fielder = parse_element (element (cls, fields(14)))
+    val simx: Fielder = parse_element (element (cls, fields(15)))
+    val tb: Fielder = parse_element (element (cls, fields(16)))
+    val tdp: Fielder = parse_element (element (cls, fields(17)))
+    val ten: Fielder = parse_element (element (cls, fields(18)))
+    val tf: Fielder = parse_element (element (cls, fields(19)))
+    val tfp: Fielder = parse_element (element (cls, fields(20)))
+    val thp: Fielder = parse_element (element (cls, fields(21)))
+    val tip: Fielder = parse_element (element (cls, fields(22)))
+    val tlp: Fielder = parse_element (element (cls, fields(23)))
+    val tp: Fielder = parse_element (element (cls, fields(24)))
+    val trh: Fielder = parse_element (element (cls, fields(25)))
+    val tvhp: Fielder = parse_element (element (cls, fields(26)))
+    val tvip: Fielder = parse_element (element (cls, fields(27)))
+    val tw: Fielder = parse_element (element (cls, fields(28)))
+    val wfmax: Fielder = parse_element (element (cls, fields(29)))
+    val wfmin: Fielder = parse_element (element (cls, fields(30)))
+    val wmax1: Fielder = parse_element (element (cls, fields(31)))
+    val wmax2: Fielder = parse_element (element (cls, fields(32)))
+    val wwmax: Fielder = parse_element (element (cls, fields(33)))
+    val wwmin: Fielder = parse_element (element (cls, fields(34)))
+
     def parse (context: Context): GovSteamEU =
     {
-        GovSteamEU(
+        implicit val ctx: Context = context
+        var fields: Long = 0L
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1L << position; field._1 }
+        val ret = GovSteamEU (
             TurbineGovernorDynamics.parse (context),
-            toDouble (chc (context), context),
-            toDouble (cho (context), context),
-            toDouble (cic (context), context),
-            toDouble (cio (context), context),
-            toDouble (db1 (context), context),
-            toDouble (db2 (context), context),
-            toDouble (hhpmax (context), context),
-            toDouble (ke (context), context),
-            toDouble (kfcor (context), context),
-            toDouble (khp (context), context),
-            toDouble (klp (context), context),
-            toDouble (kwcor (context), context),
-            toDouble (mwbase (context), context),
-            toDouble (pmax (context), context),
-            toDouble (prhmax (context), context),
-            toDouble (simx (context), context),
-            toDouble (tb (context), context),
-            toDouble (tdp (context), context),
-            toDouble (ten (context), context),
-            toDouble (tf (context), context),
-            toDouble (tfp (context), context),
-            toDouble (thp (context), context),
-            toDouble (tip (context), context),
-            toDouble (tlp (context), context),
-            toDouble (tp (context), context),
-            toDouble (trh (context), context),
-            toDouble (tvhp (context), context),
-            toDouble (tvip (context), context),
-            toDouble (tw (context), context),
-            toDouble (wfmax (context), context),
-            toDouble (wfmin (context), context),
-            toDouble (wmax1 (context), context),
-            toDouble (wmax2 (context), context),
-            toDouble (wwmax (context), context),
-            toDouble (wwmin (context), context)
+            toDouble (mask (chc (), 0)),
+            toDouble (mask (cho (), 1)),
+            toDouble (mask (cic (), 2)),
+            toDouble (mask (cio (), 3)),
+            toDouble (mask (db1 (), 4)),
+            toDouble (mask (db2 (), 5)),
+            toDouble (mask (hhpmax (), 6)),
+            toDouble (mask (ke (), 7)),
+            toDouble (mask (kfcor (), 8)),
+            toDouble (mask (khp (), 9)),
+            toDouble (mask (klp (), 10)),
+            toDouble (mask (kwcor (), 11)),
+            toDouble (mask (mwbase (), 12)),
+            toDouble (mask (pmax (), 13)),
+            toDouble (mask (prhmax (), 14)),
+            toDouble (mask (simx (), 15)),
+            toDouble (mask (tb (), 16)),
+            toDouble (mask (tdp (), 17)),
+            toDouble (mask (ten (), 18)),
+            toDouble (mask (tf (), 19)),
+            toDouble (mask (tfp (), 20)),
+            toDouble (mask (thp (), 21)),
+            toDouble (mask (tip (), 22)),
+            toDouble (mask (tlp (), 23)),
+            toDouble (mask (tp (), 24)),
+            toDouble (mask (trh (), 25)),
+            toDouble (mask (tvhp (), 26)),
+            toDouble (mask (tvip (), 27)),
+            toDouble (mask (tw (), 28)),
+            toDouble (mask (wfmax (), 29)),
+            toDouble (mask (wfmin (), 30)),
+            toDouble (mask (wmax1 (), 31)),
+            toDouble (mask (wmax2 (), 32)),
+            toDouble (mask (wwmax (), 33)),
+            toDouble (mask (wwmin (), 34))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -6244,6 +7483,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -6263,26 +7508,28 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:GovSteamFV2.dt>" + dt + "</cim:GovSteamFV2.dt>\n" +
-        "\t\t<cim:GovSteamFV2.k>" + k + "</cim:GovSteamFV2.k>\n" +
-        "\t\t<cim:GovSteamFV2.mwbase>" + mwbase + "</cim:GovSteamFV2.mwbase>\n" +
-        "\t\t<cim:GovSteamFV2.r>" + r + "</cim:GovSteamFV2.r>\n" +
-        "\t\t<cim:GovSteamFV2.t1>" + t1 + "</cim:GovSteamFV2.t1>\n" +
-        "\t\t<cim:GovSteamFV2.t3>" + t3 + "</cim:GovSteamFV2.t3>\n" +
-        "\t\t<cim:GovSteamFV2.ta>" + ta + "</cim:GovSteamFV2.ta>\n" +
-        "\t\t<cim:GovSteamFV2.tb>" + tb + "</cim:GovSteamFV2.tb>\n" +
-        "\t\t<cim:GovSteamFV2.tc>" + tc + "</cim:GovSteamFV2.tc>\n" +
-        "\t\t<cim:GovSteamFV2.ti>" + ti + "</cim:GovSteamFV2.ti>\n" +
-        "\t\t<cim:GovSteamFV2.tt>" + tt + "</cim:GovSteamFV2.tt>\n" +
-        "\t\t<cim:GovSteamFV2.vmax>" + vmax + "</cim:GovSteamFV2.vmax>\n" +
-        "\t\t<cim:GovSteamFV2.vmin>" + vmin + "</cim:GovSteamFV2.vmin>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = GovSteamFV2.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovSteamFV2.fields (position), value)
+        emitelem (0, dt)
+        emitelem (1, k)
+        emitelem (2, mwbase)
+        emitelem (3, r)
+        emitelem (4, t1)
+        emitelem (5, t3)
+        emitelem (6, ta)
+        emitelem (7, tb)
+        emitelem (8, tc)
+        emitelem (9, ti)
+        emitelem (10, tt)
+        emitelem (11, vmax)
+        emitelem (12, vmin)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:GovSteamFV2 rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:GovSteamFV2>"
+        "\t<cim:GovSteamFV2 rdf:ID=\"%s\">\n%s\t</cim:GovSteamFV2>".format (id, export_fields)
     }
 }
 
@@ -6290,39 +7537,62 @@ object GovSteamFV2
 extends
     Parseable[GovSteamFV2]
 {
-    val dt = parse_element (element ("""GovSteamFV2.dt"""))
-    val k = parse_element (element ("""GovSteamFV2.k"""))
-    val mwbase = parse_element (element ("""GovSteamFV2.mwbase"""))
-    val r = parse_element (element ("""GovSteamFV2.r"""))
-    val t1 = parse_element (element ("""GovSteamFV2.t1"""))
-    val t3 = parse_element (element ("""GovSteamFV2.t3"""))
-    val ta = parse_element (element ("""GovSteamFV2.ta"""))
-    val tb = parse_element (element ("""GovSteamFV2.tb"""))
-    val tc = parse_element (element ("""GovSteamFV2.tc"""))
-    val ti = parse_element (element ("""GovSteamFV2.ti"""))
-    val tt = parse_element (element ("""GovSteamFV2.tt"""))
-    val vmax = parse_element (element ("""GovSteamFV2.vmax"""))
-    val vmin = parse_element (element ("""GovSteamFV2.vmin"""))
+    val fields: Array[String] = Array[String] (
+        "dt",
+        "k",
+        "mwbase",
+        "r",
+        "t1",
+        "t3",
+        "ta",
+        "tb",
+        "tc",
+        "ti",
+        "tt",
+        "vmax",
+        "vmin"
+    )
+    val dt: Fielder = parse_element (element (cls, fields(0)))
+    val k: Fielder = parse_element (element (cls, fields(1)))
+    val mwbase: Fielder = parse_element (element (cls, fields(2)))
+    val r: Fielder = parse_element (element (cls, fields(3)))
+    val t1: Fielder = parse_element (element (cls, fields(4)))
+    val t3: Fielder = parse_element (element (cls, fields(5)))
+    val ta: Fielder = parse_element (element (cls, fields(6)))
+    val tb: Fielder = parse_element (element (cls, fields(7)))
+    val tc: Fielder = parse_element (element (cls, fields(8)))
+    val ti: Fielder = parse_element (element (cls, fields(9)))
+    val tt: Fielder = parse_element (element (cls, fields(10)))
+    val vmax: Fielder = parse_element (element (cls, fields(11)))
+    val vmin: Fielder = parse_element (element (cls, fields(12)))
+
     def parse (context: Context): GovSteamFV2 =
     {
-        GovSteamFV2(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = GovSteamFV2 (
             TurbineGovernorDynamics.parse (context),
-            toDouble (dt (context), context),
-            toDouble (k (context), context),
-            toDouble (mwbase (context), context),
-            toDouble (r (context), context),
-            toDouble (t1 (context), context),
-            toDouble (t3 (context), context),
-            toDouble (ta (context), context),
-            toDouble (tb (context), context),
-            toDouble (tc (context), context),
-            toDouble (ti (context), context),
-            toDouble (tt (context), context),
-            toDouble (vmax (context), context),
-            toDouble (vmin (context), context)
+            toDouble (mask (dt (), 0)),
+            toDouble (mask (k (), 1)),
+            toDouble (mask (mwbase (), 2)),
+            toDouble (mask (r (), 3)),
+            toDouble (mask (t1 (), 4)),
+            toDouble (mask (t3 (), 5)),
+            toDouble (mask (ta (), 6)),
+            toDouble (mask (tb (), 7)),
+            toDouble (mask (tc (), 8)),
+            toDouble (mask (ti (), 9)),
+            toDouble (mask (tt (), 10)),
+            toDouble (mask (vmax (), 11)),
+            toDouble (mask (vmin (), 12))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -6404,6 +7674,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -6423,32 +7699,34 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:GovSteamFV3.k>" + k + "</cim:GovSteamFV3.k>\n" +
-        "\t\t<cim:GovSteamFV3.k1>" + k1 + "</cim:GovSteamFV3.k1>\n" +
-        "\t\t<cim:GovSteamFV3.k2>" + k2 + "</cim:GovSteamFV3.k2>\n" +
-        "\t\t<cim:GovSteamFV3.k3>" + k3 + "</cim:GovSteamFV3.k3>\n" +
-        "\t\t<cim:GovSteamFV3.mwbase>" + mwbase + "</cim:GovSteamFV3.mwbase>\n" +
-        "\t\t<cim:GovSteamFV3.pmax>" + pmax + "</cim:GovSteamFV3.pmax>\n" +
-        "\t\t<cim:GovSteamFV3.pmin>" + pmin + "</cim:GovSteamFV3.pmin>\n" +
-        "\t\t<cim:GovSteamFV3.prmax>" + prmax + "</cim:GovSteamFV3.prmax>\n" +
-        "\t\t<cim:GovSteamFV3.t1>" + t1 + "</cim:GovSteamFV3.t1>\n" +
-        "\t\t<cim:GovSteamFV3.t2>" + t2 + "</cim:GovSteamFV3.t2>\n" +
-        "\t\t<cim:GovSteamFV3.t3>" + t3 + "</cim:GovSteamFV3.t3>\n" +
-        "\t\t<cim:GovSteamFV3.t4>" + t4 + "</cim:GovSteamFV3.t4>\n" +
-        "\t\t<cim:GovSteamFV3.t5>" + t5 + "</cim:GovSteamFV3.t5>\n" +
-        "\t\t<cim:GovSteamFV3.t6>" + t6 + "</cim:GovSteamFV3.t6>\n" +
-        "\t\t<cim:GovSteamFV3.ta>" + ta + "</cim:GovSteamFV3.ta>\n" +
-        "\t\t<cim:GovSteamFV3.tb>" + tb + "</cim:GovSteamFV3.tb>\n" +
-        "\t\t<cim:GovSteamFV3.tc>" + tc + "</cim:GovSteamFV3.tc>\n" +
-        "\t\t<cim:GovSteamFV3.uc>" + uc + "</cim:GovSteamFV3.uc>\n" +
-        "\t\t<cim:GovSteamFV3.uo>" + uo + "</cim:GovSteamFV3.uo>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = GovSteamFV3.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovSteamFV3.fields (position), value)
+        emitelem (0, k)
+        emitelem (1, k1)
+        emitelem (2, k2)
+        emitelem (3, k3)
+        emitelem (4, mwbase)
+        emitelem (5, pmax)
+        emitelem (6, pmin)
+        emitelem (7, prmax)
+        emitelem (8, t1)
+        emitelem (9, t2)
+        emitelem (10, t3)
+        emitelem (11, t4)
+        emitelem (12, t5)
+        emitelem (13, t6)
+        emitelem (14, ta)
+        emitelem (15, tb)
+        emitelem (16, tc)
+        emitelem (17, uc)
+        emitelem (18, uo)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:GovSteamFV3 rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:GovSteamFV3>"
+        "\t<cim:GovSteamFV3 rdf:ID=\"%s\">\n%s\t</cim:GovSteamFV3>".format (id, export_fields)
     }
 }
 
@@ -6456,51 +7734,80 @@ object GovSteamFV3
 extends
     Parseable[GovSteamFV3]
 {
-    val k = parse_element (element ("""GovSteamFV3.k"""))
-    val k1 = parse_element (element ("""GovSteamFV3.k1"""))
-    val k2 = parse_element (element ("""GovSteamFV3.k2"""))
-    val k3 = parse_element (element ("""GovSteamFV3.k3"""))
-    val mwbase = parse_element (element ("""GovSteamFV3.mwbase"""))
-    val pmax = parse_element (element ("""GovSteamFV3.pmax"""))
-    val pmin = parse_element (element ("""GovSteamFV3.pmin"""))
-    val prmax = parse_element (element ("""GovSteamFV3.prmax"""))
-    val t1 = parse_element (element ("""GovSteamFV3.t1"""))
-    val t2 = parse_element (element ("""GovSteamFV3.t2"""))
-    val t3 = parse_element (element ("""GovSteamFV3.t3"""))
-    val t4 = parse_element (element ("""GovSteamFV3.t4"""))
-    val t5 = parse_element (element ("""GovSteamFV3.t5"""))
-    val t6 = parse_element (element ("""GovSteamFV3.t6"""))
-    val ta = parse_element (element ("""GovSteamFV3.ta"""))
-    val tb = parse_element (element ("""GovSteamFV3.tb"""))
-    val tc = parse_element (element ("""GovSteamFV3.tc"""))
-    val uc = parse_element (element ("""GovSteamFV3.uc"""))
-    val uo = parse_element (element ("""GovSteamFV3.uo"""))
+    val fields: Array[String] = Array[String] (
+        "k",
+        "k1",
+        "k2",
+        "k3",
+        "mwbase",
+        "pmax",
+        "pmin",
+        "prmax",
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "ta",
+        "tb",
+        "tc",
+        "uc",
+        "uo"
+    )
+    val k: Fielder = parse_element (element (cls, fields(0)))
+    val k1: Fielder = parse_element (element (cls, fields(1)))
+    val k2: Fielder = parse_element (element (cls, fields(2)))
+    val k3: Fielder = parse_element (element (cls, fields(3)))
+    val mwbase: Fielder = parse_element (element (cls, fields(4)))
+    val pmax: Fielder = parse_element (element (cls, fields(5)))
+    val pmin: Fielder = parse_element (element (cls, fields(6)))
+    val prmax: Fielder = parse_element (element (cls, fields(7)))
+    val t1: Fielder = parse_element (element (cls, fields(8)))
+    val t2: Fielder = parse_element (element (cls, fields(9)))
+    val t3: Fielder = parse_element (element (cls, fields(10)))
+    val t4: Fielder = parse_element (element (cls, fields(11)))
+    val t5: Fielder = parse_element (element (cls, fields(12)))
+    val t6: Fielder = parse_element (element (cls, fields(13)))
+    val ta: Fielder = parse_element (element (cls, fields(14)))
+    val tb: Fielder = parse_element (element (cls, fields(15)))
+    val tc: Fielder = parse_element (element (cls, fields(16)))
+    val uc: Fielder = parse_element (element (cls, fields(17)))
+    val uo: Fielder = parse_element (element (cls, fields(18)))
+
     def parse (context: Context): GovSteamFV3 =
     {
-        GovSteamFV3(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = GovSteamFV3 (
             TurbineGovernorDynamics.parse (context),
-            toDouble (k (context), context),
-            toDouble (k1 (context), context),
-            toDouble (k2 (context), context),
-            toDouble (k3 (context), context),
-            toDouble (mwbase (context), context),
-            toDouble (pmax (context), context),
-            toDouble (pmin (context), context),
-            toDouble (prmax (context), context),
-            toDouble (t1 (context), context),
-            toDouble (t2 (context), context),
-            toDouble (t3 (context), context),
-            toDouble (t4 (context), context),
-            toDouble (t5 (context), context),
-            toDouble (t6 (context), context),
-            toDouble (ta (context), context),
-            toDouble (tb (context), context),
-            toDouble (tc (context), context),
-            toDouble (uc (context), context),
-            toDouble (uo (context), context)
+            toDouble (mask (k (), 0)),
+            toDouble (mask (k1 (), 1)),
+            toDouble (mask (k2 (), 2)),
+            toDouble (mask (k3 (), 3)),
+            toDouble (mask (mwbase (), 4)),
+            toDouble (mask (pmax (), 5)),
+            toDouble (mask (pmin (), 6)),
+            toDouble (mask (prmax (), 7)),
+            toDouble (mask (t1 (), 8)),
+            toDouble (mask (t2 (), 9)),
+            toDouble (mask (t3 (), 10)),
+            toDouble (mask (t4 (), 11)),
+            toDouble (mask (t5 (), 12)),
+            toDouble (mask (t6 (), 13)),
+            toDouble (mask (ta (), 14)),
+            toDouble (mask (tb (), 15)),
+            toDouble (mask (tc (), 16)),
+            toDouble (mask (uc (), 17)),
+            toDouble (mask (uo (), 18))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -6678,6 +7985,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Long = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -6697,64 +8010,66 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:GovSteamFV4.cpsmn>" + cpsmn + "</cim:GovSteamFV4.cpsmn>\n" +
-        "\t\t<cim:GovSteamFV4.cpsmx>" + cpsmx + "</cim:GovSteamFV4.cpsmx>\n" +
-        "\t\t<cim:GovSteamFV4.crmn>" + crmn + "</cim:GovSteamFV4.crmn>\n" +
-        "\t\t<cim:GovSteamFV4.crmx>" + crmx + "</cim:GovSteamFV4.crmx>\n" +
-        "\t\t<cim:GovSteamFV4.kdc>" + kdc + "</cim:GovSteamFV4.kdc>\n" +
-        "\t\t<cim:GovSteamFV4.kf1>" + kf1 + "</cim:GovSteamFV4.kf1>\n" +
-        "\t\t<cim:GovSteamFV4.kf3>" + kf3 + "</cim:GovSteamFV4.kf3>\n" +
-        "\t\t<cim:GovSteamFV4.khp>" + khp + "</cim:GovSteamFV4.khp>\n" +
-        "\t\t<cim:GovSteamFV4.kic>" + kic + "</cim:GovSteamFV4.kic>\n" +
-        "\t\t<cim:GovSteamFV4.kip>" + kip + "</cim:GovSteamFV4.kip>\n" +
-        "\t\t<cim:GovSteamFV4.kit>" + kit + "</cim:GovSteamFV4.kit>\n" +
-        "\t\t<cim:GovSteamFV4.kmp1>" + kmp1 + "</cim:GovSteamFV4.kmp1>\n" +
-        "\t\t<cim:GovSteamFV4.kmp2>" + kmp2 + "</cim:GovSteamFV4.kmp2>\n" +
-        "\t\t<cim:GovSteamFV4.kpc>" + kpc + "</cim:GovSteamFV4.kpc>\n" +
-        "\t\t<cim:GovSteamFV4.kpp>" + kpp + "</cim:GovSteamFV4.kpp>\n" +
-        "\t\t<cim:GovSteamFV4.kpt>" + kpt + "</cim:GovSteamFV4.kpt>\n" +
-        "\t\t<cim:GovSteamFV4.krc>" + krc + "</cim:GovSteamFV4.krc>\n" +
-        "\t\t<cim:GovSteamFV4.ksh>" + ksh + "</cim:GovSteamFV4.ksh>\n" +
-        "\t\t<cim:GovSteamFV4.lpi>" + lpi + "</cim:GovSteamFV4.lpi>\n" +
-        "\t\t<cim:GovSteamFV4.lps>" + lps + "</cim:GovSteamFV4.lps>\n" +
-        "\t\t<cim:GovSteamFV4.mnef>" + mnef + "</cim:GovSteamFV4.mnef>\n" +
-        "\t\t<cim:GovSteamFV4.mxef>" + mxef + "</cim:GovSteamFV4.mxef>\n" +
-        "\t\t<cim:GovSteamFV4.pr1>" + pr1 + "</cim:GovSteamFV4.pr1>\n" +
-        "\t\t<cim:GovSteamFV4.pr2>" + pr2 + "</cim:GovSteamFV4.pr2>\n" +
-        "\t\t<cim:GovSteamFV4.psmn>" + psmn + "</cim:GovSteamFV4.psmn>\n" +
-        "\t\t<cim:GovSteamFV4.rsmimn>" + rsmimn + "</cim:GovSteamFV4.rsmimn>\n" +
-        "\t\t<cim:GovSteamFV4.rsmimx>" + rsmimx + "</cim:GovSteamFV4.rsmimx>\n" +
-        "\t\t<cim:GovSteamFV4.rvgmn>" + rvgmn + "</cim:GovSteamFV4.rvgmn>\n" +
-        "\t\t<cim:GovSteamFV4.rvgmx>" + rvgmx + "</cim:GovSteamFV4.rvgmx>\n" +
-        "\t\t<cim:GovSteamFV4.srmn>" + srmn + "</cim:GovSteamFV4.srmn>\n" +
-        "\t\t<cim:GovSteamFV4.srmx>" + srmx + "</cim:GovSteamFV4.srmx>\n" +
-        "\t\t<cim:GovSteamFV4.srsmp>" + srsmp + "</cim:GovSteamFV4.srsmp>\n" +
-        "\t\t<cim:GovSteamFV4.svmn>" + svmn + "</cim:GovSteamFV4.svmn>\n" +
-        "\t\t<cim:GovSteamFV4.svmx>" + svmx + "</cim:GovSteamFV4.svmx>\n" +
-        "\t\t<cim:GovSteamFV4.ta>" + ta + "</cim:GovSteamFV4.ta>\n" +
-        "\t\t<cim:GovSteamFV4.tam>" + tam + "</cim:GovSteamFV4.tam>\n" +
-        "\t\t<cim:GovSteamFV4.tc>" + tc + "</cim:GovSteamFV4.tc>\n" +
-        "\t\t<cim:GovSteamFV4.tcm>" + tcm + "</cim:GovSteamFV4.tcm>\n" +
-        "\t\t<cim:GovSteamFV4.tdc>" + tdc + "</cim:GovSteamFV4.tdc>\n" +
-        "\t\t<cim:GovSteamFV4.tf1>" + tf1 + "</cim:GovSteamFV4.tf1>\n" +
-        "\t\t<cim:GovSteamFV4.tf2>" + tf2 + "</cim:GovSteamFV4.tf2>\n" +
-        "\t\t<cim:GovSteamFV4.thp>" + thp + "</cim:GovSteamFV4.thp>\n" +
-        "\t\t<cim:GovSteamFV4.tmp>" + tmp + "</cim:GovSteamFV4.tmp>\n" +
-        "\t\t<cim:GovSteamFV4.trh>" + trh + "</cim:GovSteamFV4.trh>\n" +
-        "\t\t<cim:GovSteamFV4.tv>" + tv + "</cim:GovSteamFV4.tv>\n" +
-        "\t\t<cim:GovSteamFV4.ty>" + ty + "</cim:GovSteamFV4.ty>\n" +
-        "\t\t<cim:GovSteamFV4.y>" + y + "</cim:GovSteamFV4.y>\n" +
-        "\t\t<cim:GovSteamFV4.yhpmn>" + yhpmn + "</cim:GovSteamFV4.yhpmn>\n" +
-        "\t\t<cim:GovSteamFV4.yhpmx>" + yhpmx + "</cim:GovSteamFV4.yhpmx>\n" +
-        "\t\t<cim:GovSteamFV4.ympmn>" + ympmn + "</cim:GovSteamFV4.ympmn>\n" +
-        "\t\t<cim:GovSteamFV4.ympmx>" + ympmx + "</cim:GovSteamFV4.ympmx>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = GovSteamFV4.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovSteamFV4.fields (position), value)
+        emitelem (0, cpsmn)
+        emitelem (1, cpsmx)
+        emitelem (2, crmn)
+        emitelem (3, crmx)
+        emitelem (4, kdc)
+        emitelem (5, kf1)
+        emitelem (6, kf3)
+        emitelem (7, khp)
+        emitelem (8, kic)
+        emitelem (9, kip)
+        emitelem (10, kit)
+        emitelem (11, kmp1)
+        emitelem (12, kmp2)
+        emitelem (13, kpc)
+        emitelem (14, kpp)
+        emitelem (15, kpt)
+        emitelem (16, krc)
+        emitelem (17, ksh)
+        emitelem (18, lpi)
+        emitelem (19, lps)
+        emitelem (20, mnef)
+        emitelem (21, mxef)
+        emitelem (22, pr1)
+        emitelem (23, pr2)
+        emitelem (24, psmn)
+        emitelem (25, rsmimn)
+        emitelem (26, rsmimx)
+        emitelem (27, rvgmn)
+        emitelem (28, rvgmx)
+        emitelem (29, srmn)
+        emitelem (30, srmx)
+        emitelem (31, srsmp)
+        emitelem (32, svmn)
+        emitelem (33, svmx)
+        emitelem (34, ta)
+        emitelem (35, tam)
+        emitelem (36, tc)
+        emitelem (37, tcm)
+        emitelem (38, tdc)
+        emitelem (39, tf1)
+        emitelem (40, tf2)
+        emitelem (41, thp)
+        emitelem (42, tmp)
+        emitelem (43, trh)
+        emitelem (44, tv)
+        emitelem (45, ty)
+        emitelem (46, y)
+        emitelem (47, yhpmn)
+        emitelem (48, yhpmx)
+        emitelem (49, ympmn)
+        emitelem (50, ympmx)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:GovSteamFV4 rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:GovSteamFV4>"
+        "\t<cim:GovSteamFV4 rdf:ID=\"%s\">\n%s\t</cim:GovSteamFV4>".format (id, export_fields)
     }
 }
 
@@ -6762,115 +8077,176 @@ object GovSteamFV4
 extends
     Parseable[GovSteamFV4]
 {
-    val cpsmn = parse_element (element ("""GovSteamFV4.cpsmn"""))
-    val cpsmx = parse_element (element ("""GovSteamFV4.cpsmx"""))
-    val crmn = parse_element (element ("""GovSteamFV4.crmn"""))
-    val crmx = parse_element (element ("""GovSteamFV4.crmx"""))
-    val kdc = parse_element (element ("""GovSteamFV4.kdc"""))
-    val kf1 = parse_element (element ("""GovSteamFV4.kf1"""))
-    val kf3 = parse_element (element ("""GovSteamFV4.kf3"""))
-    val khp = parse_element (element ("""GovSteamFV4.khp"""))
-    val kic = parse_element (element ("""GovSteamFV4.kic"""))
-    val kip = parse_element (element ("""GovSteamFV4.kip"""))
-    val kit = parse_element (element ("""GovSteamFV4.kit"""))
-    val kmp1 = parse_element (element ("""GovSteamFV4.kmp1"""))
-    val kmp2 = parse_element (element ("""GovSteamFV4.kmp2"""))
-    val kpc = parse_element (element ("""GovSteamFV4.kpc"""))
-    val kpp = parse_element (element ("""GovSteamFV4.kpp"""))
-    val kpt = parse_element (element ("""GovSteamFV4.kpt"""))
-    val krc = parse_element (element ("""GovSteamFV4.krc"""))
-    val ksh = parse_element (element ("""GovSteamFV4.ksh"""))
-    val lpi = parse_element (element ("""GovSteamFV4.lpi"""))
-    val lps = parse_element (element ("""GovSteamFV4.lps"""))
-    val mnef = parse_element (element ("""GovSteamFV4.mnef"""))
-    val mxef = parse_element (element ("""GovSteamFV4.mxef"""))
-    val pr1 = parse_element (element ("""GovSteamFV4.pr1"""))
-    val pr2 = parse_element (element ("""GovSteamFV4.pr2"""))
-    val psmn = parse_element (element ("""GovSteamFV4.psmn"""))
-    val rsmimn = parse_element (element ("""GovSteamFV4.rsmimn"""))
-    val rsmimx = parse_element (element ("""GovSteamFV4.rsmimx"""))
-    val rvgmn = parse_element (element ("""GovSteamFV4.rvgmn"""))
-    val rvgmx = parse_element (element ("""GovSteamFV4.rvgmx"""))
-    val srmn = parse_element (element ("""GovSteamFV4.srmn"""))
-    val srmx = parse_element (element ("""GovSteamFV4.srmx"""))
-    val srsmp = parse_element (element ("""GovSteamFV4.srsmp"""))
-    val svmn = parse_element (element ("""GovSteamFV4.svmn"""))
-    val svmx = parse_element (element ("""GovSteamFV4.svmx"""))
-    val ta = parse_element (element ("""GovSteamFV4.ta"""))
-    val tam = parse_element (element ("""GovSteamFV4.tam"""))
-    val tc = parse_element (element ("""GovSteamFV4.tc"""))
-    val tcm = parse_element (element ("""GovSteamFV4.tcm"""))
-    val tdc = parse_element (element ("""GovSteamFV4.tdc"""))
-    val tf1 = parse_element (element ("""GovSteamFV4.tf1"""))
-    val tf2 = parse_element (element ("""GovSteamFV4.tf2"""))
-    val thp = parse_element (element ("""GovSteamFV4.thp"""))
-    val tmp = parse_element (element ("""GovSteamFV4.tmp"""))
-    val trh = parse_element (element ("""GovSteamFV4.trh"""))
-    val tv = parse_element (element ("""GovSteamFV4.tv"""))
-    val ty = parse_element (element ("""GovSteamFV4.ty"""))
-    val y = parse_element (element ("""GovSteamFV4.y"""))
-    val yhpmn = parse_element (element ("""GovSteamFV4.yhpmn"""))
-    val yhpmx = parse_element (element ("""GovSteamFV4.yhpmx"""))
-    val ympmn = parse_element (element ("""GovSteamFV4.ympmn"""))
-    val ympmx = parse_element (element ("""GovSteamFV4.ympmx"""))
+    val fields: Array[String] = Array[String] (
+        "cpsmn",
+        "cpsmx",
+        "crmn",
+        "crmx",
+        "kdc",
+        "kf1",
+        "kf3",
+        "khp",
+        "kic",
+        "kip",
+        "kit",
+        "kmp1",
+        "kmp2",
+        "kpc",
+        "kpp",
+        "kpt",
+        "krc",
+        "ksh",
+        "lpi",
+        "lps",
+        "mnef",
+        "mxef",
+        "pr1",
+        "pr2",
+        "psmn",
+        "rsmimn",
+        "rsmimx",
+        "rvgmn",
+        "rvgmx",
+        "srmn",
+        "srmx",
+        "srsmp",
+        "svmn",
+        "svmx",
+        "ta",
+        "tam",
+        "tc",
+        "tcm",
+        "tdc",
+        "tf1",
+        "tf2",
+        "thp",
+        "tmp",
+        "trh",
+        "tv",
+        "ty",
+        "y",
+        "yhpmn",
+        "yhpmx",
+        "ympmn",
+        "ympmx"
+    )
+    val cpsmn: Fielder = parse_element (element (cls, fields(0)))
+    val cpsmx: Fielder = parse_element (element (cls, fields(1)))
+    val crmn: Fielder = parse_element (element (cls, fields(2)))
+    val crmx: Fielder = parse_element (element (cls, fields(3)))
+    val kdc: Fielder = parse_element (element (cls, fields(4)))
+    val kf1: Fielder = parse_element (element (cls, fields(5)))
+    val kf3: Fielder = parse_element (element (cls, fields(6)))
+    val khp: Fielder = parse_element (element (cls, fields(7)))
+    val kic: Fielder = parse_element (element (cls, fields(8)))
+    val kip: Fielder = parse_element (element (cls, fields(9)))
+    val kit: Fielder = parse_element (element (cls, fields(10)))
+    val kmp1: Fielder = parse_element (element (cls, fields(11)))
+    val kmp2: Fielder = parse_element (element (cls, fields(12)))
+    val kpc: Fielder = parse_element (element (cls, fields(13)))
+    val kpp: Fielder = parse_element (element (cls, fields(14)))
+    val kpt: Fielder = parse_element (element (cls, fields(15)))
+    val krc: Fielder = parse_element (element (cls, fields(16)))
+    val ksh: Fielder = parse_element (element (cls, fields(17)))
+    val lpi: Fielder = parse_element (element (cls, fields(18)))
+    val lps: Fielder = parse_element (element (cls, fields(19)))
+    val mnef: Fielder = parse_element (element (cls, fields(20)))
+    val mxef: Fielder = parse_element (element (cls, fields(21)))
+    val pr1: Fielder = parse_element (element (cls, fields(22)))
+    val pr2: Fielder = parse_element (element (cls, fields(23)))
+    val psmn: Fielder = parse_element (element (cls, fields(24)))
+    val rsmimn: Fielder = parse_element (element (cls, fields(25)))
+    val rsmimx: Fielder = parse_element (element (cls, fields(26)))
+    val rvgmn: Fielder = parse_element (element (cls, fields(27)))
+    val rvgmx: Fielder = parse_element (element (cls, fields(28)))
+    val srmn: Fielder = parse_element (element (cls, fields(29)))
+    val srmx: Fielder = parse_element (element (cls, fields(30)))
+    val srsmp: Fielder = parse_element (element (cls, fields(31)))
+    val svmn: Fielder = parse_element (element (cls, fields(32)))
+    val svmx: Fielder = parse_element (element (cls, fields(33)))
+    val ta: Fielder = parse_element (element (cls, fields(34)))
+    val tam: Fielder = parse_element (element (cls, fields(35)))
+    val tc: Fielder = parse_element (element (cls, fields(36)))
+    val tcm: Fielder = parse_element (element (cls, fields(37)))
+    val tdc: Fielder = parse_element (element (cls, fields(38)))
+    val tf1: Fielder = parse_element (element (cls, fields(39)))
+    val tf2: Fielder = parse_element (element (cls, fields(40)))
+    val thp: Fielder = parse_element (element (cls, fields(41)))
+    val tmp: Fielder = parse_element (element (cls, fields(42)))
+    val trh: Fielder = parse_element (element (cls, fields(43)))
+    val tv: Fielder = parse_element (element (cls, fields(44)))
+    val ty: Fielder = parse_element (element (cls, fields(45)))
+    val y: Fielder = parse_element (element (cls, fields(46)))
+    val yhpmn: Fielder = parse_element (element (cls, fields(47)))
+    val yhpmx: Fielder = parse_element (element (cls, fields(48)))
+    val ympmn: Fielder = parse_element (element (cls, fields(49)))
+    val ympmx: Fielder = parse_element (element (cls, fields(50)))
+
     def parse (context: Context): GovSteamFV4 =
     {
-        GovSteamFV4(
+        implicit val ctx: Context = context
+        var fields: Long = 0L
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1L << position; field._1 }
+        val ret = GovSteamFV4 (
             TurbineGovernorDynamics.parse (context),
-            toDouble (cpsmn (context), context),
-            toDouble (cpsmx (context), context),
-            toDouble (crmn (context), context),
-            toDouble (crmx (context), context),
-            toDouble (kdc (context), context),
-            toDouble (kf1 (context), context),
-            toDouble (kf3 (context), context),
-            toDouble (khp (context), context),
-            toDouble (kic (context), context),
-            toDouble (kip (context), context),
-            toDouble (kit (context), context),
-            toDouble (kmp1 (context), context),
-            toDouble (kmp2 (context), context),
-            toDouble (kpc (context), context),
-            toDouble (kpp (context), context),
-            toDouble (kpt (context), context),
-            toDouble (krc (context), context),
-            toDouble (ksh (context), context),
-            toDouble (lpi (context), context),
-            toDouble (lps (context), context),
-            toDouble (mnef (context), context),
-            toDouble (mxef (context), context),
-            toDouble (pr1 (context), context),
-            toDouble (pr2 (context), context),
-            toDouble (psmn (context), context),
-            toDouble (rsmimn (context), context),
-            toDouble (rsmimx (context), context),
-            toDouble (rvgmn (context), context),
-            toDouble (rvgmx (context), context),
-            toDouble (srmn (context), context),
-            toDouble (srmx (context), context),
-            toDouble (srsmp (context), context),
-            toDouble (svmn (context), context),
-            toDouble (svmx (context), context),
-            toDouble (ta (context), context),
-            toDouble (tam (context), context),
-            toDouble (tc (context), context),
-            toDouble (tcm (context), context),
-            toDouble (tdc (context), context),
-            toDouble (tf1 (context), context),
-            toDouble (tf2 (context), context),
-            toDouble (thp (context), context),
-            toDouble (tmp (context), context),
-            toDouble (trh (context), context),
-            toDouble (tv (context), context),
-            toDouble (ty (context), context),
-            toDouble (y (context), context),
-            toDouble (yhpmn (context), context),
-            toDouble (yhpmx (context), context),
-            toDouble (ympmn (context), context),
-            toDouble (ympmx (context), context)
+            toDouble (mask (cpsmn (), 0)),
+            toDouble (mask (cpsmx (), 1)),
+            toDouble (mask (crmn (), 2)),
+            toDouble (mask (crmx (), 3)),
+            toDouble (mask (kdc (), 4)),
+            toDouble (mask (kf1 (), 5)),
+            toDouble (mask (kf3 (), 6)),
+            toDouble (mask (khp (), 7)),
+            toDouble (mask (kic (), 8)),
+            toDouble (mask (kip (), 9)),
+            toDouble (mask (kit (), 10)),
+            toDouble (mask (kmp1 (), 11)),
+            toDouble (mask (kmp2 (), 12)),
+            toDouble (mask (kpc (), 13)),
+            toDouble (mask (kpp (), 14)),
+            toDouble (mask (kpt (), 15)),
+            toDouble (mask (krc (), 16)),
+            toDouble (mask (ksh (), 17)),
+            toDouble (mask (lpi (), 18)),
+            toDouble (mask (lps (), 19)),
+            toDouble (mask (mnef (), 20)),
+            toDouble (mask (mxef (), 21)),
+            toDouble (mask (pr1 (), 22)),
+            toDouble (mask (pr2 (), 23)),
+            toDouble (mask (psmn (), 24)),
+            toDouble (mask (rsmimn (), 25)),
+            toDouble (mask (rsmimx (), 26)),
+            toDouble (mask (rvgmn (), 27)),
+            toDouble (mask (rvgmx (), 28)),
+            toDouble (mask (srmn (), 29)),
+            toDouble (mask (srmx (), 30)),
+            toDouble (mask (srsmp (), 31)),
+            toDouble (mask (svmn (), 32)),
+            toDouble (mask (svmx (), 33)),
+            toDouble (mask (ta (), 34)),
+            toDouble (mask (tam (), 35)),
+            toDouble (mask (tc (), 36)),
+            toDouble (mask (tcm (), 37)),
+            toDouble (mask (tdc (), 38)),
+            toDouble (mask (tf1 (), 39)),
+            toDouble (mask (tf2 (), 40)),
+            toDouble (mask (thp (), 41)),
+            toDouble (mask (tmp (), 42)),
+            toDouble (mask (trh (), 43)),
+            toDouble (mask (tv (), 44)),
+            toDouble (mask (ty (), 45)),
+            toDouble (mask (y (), 46)),
+            toDouble (mask (yhpmn (), 47)),
+            toDouble (mask (yhpmx (), 48)),
+            toDouble (mask (ympmn (), 49)),
+            toDouble (mask (ympmx (), 50))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -6959,6 +8335,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -6978,34 +8360,36 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:GovSteamIEEE1.k>" + k + "</cim:GovSteamIEEE1.k>\n" +
-        "\t\t<cim:GovSteamIEEE1.k1>" + k1 + "</cim:GovSteamIEEE1.k1>\n" +
-        "\t\t<cim:GovSteamIEEE1.k2>" + k2 + "</cim:GovSteamIEEE1.k2>\n" +
-        "\t\t<cim:GovSteamIEEE1.k3>" + k3 + "</cim:GovSteamIEEE1.k3>\n" +
-        "\t\t<cim:GovSteamIEEE1.k4>" + k4 + "</cim:GovSteamIEEE1.k4>\n" +
-        "\t\t<cim:GovSteamIEEE1.k5>" + k5 + "</cim:GovSteamIEEE1.k5>\n" +
-        "\t\t<cim:GovSteamIEEE1.k6>" + k6 + "</cim:GovSteamIEEE1.k6>\n" +
-        "\t\t<cim:GovSteamIEEE1.k7>" + k7 + "</cim:GovSteamIEEE1.k7>\n" +
-        "\t\t<cim:GovSteamIEEE1.k8>" + k8 + "</cim:GovSteamIEEE1.k8>\n" +
-        "\t\t<cim:GovSteamIEEE1.mwbase>" + mwbase + "</cim:GovSteamIEEE1.mwbase>\n" +
-        "\t\t<cim:GovSteamIEEE1.pmax>" + pmax + "</cim:GovSteamIEEE1.pmax>\n" +
-        "\t\t<cim:GovSteamIEEE1.pmin>" + pmin + "</cim:GovSteamIEEE1.pmin>\n" +
-        "\t\t<cim:GovSteamIEEE1.t1>" + t1 + "</cim:GovSteamIEEE1.t1>\n" +
-        "\t\t<cim:GovSteamIEEE1.t2>" + t2 + "</cim:GovSteamIEEE1.t2>\n" +
-        "\t\t<cim:GovSteamIEEE1.t3>" + t3 + "</cim:GovSteamIEEE1.t3>\n" +
-        "\t\t<cim:GovSteamIEEE1.t4>" + t4 + "</cim:GovSteamIEEE1.t4>\n" +
-        "\t\t<cim:GovSteamIEEE1.t5>" + t5 + "</cim:GovSteamIEEE1.t5>\n" +
-        "\t\t<cim:GovSteamIEEE1.t6>" + t6 + "</cim:GovSteamIEEE1.t6>\n" +
-        "\t\t<cim:GovSteamIEEE1.t7>" + t7 + "</cim:GovSteamIEEE1.t7>\n" +
-        "\t\t<cim:GovSteamIEEE1.uc>" + uc + "</cim:GovSteamIEEE1.uc>\n" +
-        "\t\t<cim:GovSteamIEEE1.uo>" + uo + "</cim:GovSteamIEEE1.uo>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = GovSteamIEEE1.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovSteamIEEE1.fields (position), value)
+        emitelem (0, k)
+        emitelem (1, k1)
+        emitelem (2, k2)
+        emitelem (3, k3)
+        emitelem (4, k4)
+        emitelem (5, k5)
+        emitelem (6, k6)
+        emitelem (7, k7)
+        emitelem (8, k8)
+        emitelem (9, mwbase)
+        emitelem (10, pmax)
+        emitelem (11, pmin)
+        emitelem (12, t1)
+        emitelem (13, t2)
+        emitelem (14, t3)
+        emitelem (15, t4)
+        emitelem (16, t5)
+        emitelem (17, t6)
+        emitelem (18, t7)
+        emitelem (19, uc)
+        emitelem (20, uo)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:GovSteamIEEE1 rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:GovSteamIEEE1>"
+        "\t<cim:GovSteamIEEE1 rdf:ID=\"%s\">\n%s\t</cim:GovSteamIEEE1>".format (id, export_fields)
     }
 }
 
@@ -7013,55 +8397,86 @@ object GovSteamIEEE1
 extends
     Parseable[GovSteamIEEE1]
 {
-    val k = parse_element (element ("""GovSteamIEEE1.k"""))
-    val k1 = parse_element (element ("""GovSteamIEEE1.k1"""))
-    val k2 = parse_element (element ("""GovSteamIEEE1.k2"""))
-    val k3 = parse_element (element ("""GovSteamIEEE1.k3"""))
-    val k4 = parse_element (element ("""GovSteamIEEE1.k4"""))
-    val k5 = parse_element (element ("""GovSteamIEEE1.k5"""))
-    val k6 = parse_element (element ("""GovSteamIEEE1.k6"""))
-    val k7 = parse_element (element ("""GovSteamIEEE1.k7"""))
-    val k8 = parse_element (element ("""GovSteamIEEE1.k8"""))
-    val mwbase = parse_element (element ("""GovSteamIEEE1.mwbase"""))
-    val pmax = parse_element (element ("""GovSteamIEEE1.pmax"""))
-    val pmin = parse_element (element ("""GovSteamIEEE1.pmin"""))
-    val t1 = parse_element (element ("""GovSteamIEEE1.t1"""))
-    val t2 = parse_element (element ("""GovSteamIEEE1.t2"""))
-    val t3 = parse_element (element ("""GovSteamIEEE1.t3"""))
-    val t4 = parse_element (element ("""GovSteamIEEE1.t4"""))
-    val t5 = parse_element (element ("""GovSteamIEEE1.t5"""))
-    val t6 = parse_element (element ("""GovSteamIEEE1.t6"""))
-    val t7 = parse_element (element ("""GovSteamIEEE1.t7"""))
-    val uc = parse_element (element ("""GovSteamIEEE1.uc"""))
-    val uo = parse_element (element ("""GovSteamIEEE1.uo"""))
+    val fields: Array[String] = Array[String] (
+        "k",
+        "k1",
+        "k2",
+        "k3",
+        "k4",
+        "k5",
+        "k6",
+        "k7",
+        "k8",
+        "mwbase",
+        "pmax",
+        "pmin",
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "t7",
+        "uc",
+        "uo"
+    )
+    val k: Fielder = parse_element (element (cls, fields(0)))
+    val k1: Fielder = parse_element (element (cls, fields(1)))
+    val k2: Fielder = parse_element (element (cls, fields(2)))
+    val k3: Fielder = parse_element (element (cls, fields(3)))
+    val k4: Fielder = parse_element (element (cls, fields(4)))
+    val k5: Fielder = parse_element (element (cls, fields(5)))
+    val k6: Fielder = parse_element (element (cls, fields(6)))
+    val k7: Fielder = parse_element (element (cls, fields(7)))
+    val k8: Fielder = parse_element (element (cls, fields(8)))
+    val mwbase: Fielder = parse_element (element (cls, fields(9)))
+    val pmax: Fielder = parse_element (element (cls, fields(10)))
+    val pmin: Fielder = parse_element (element (cls, fields(11)))
+    val t1: Fielder = parse_element (element (cls, fields(12)))
+    val t2: Fielder = parse_element (element (cls, fields(13)))
+    val t3: Fielder = parse_element (element (cls, fields(14)))
+    val t4: Fielder = parse_element (element (cls, fields(15)))
+    val t5: Fielder = parse_element (element (cls, fields(16)))
+    val t6: Fielder = parse_element (element (cls, fields(17)))
+    val t7: Fielder = parse_element (element (cls, fields(18)))
+    val uc: Fielder = parse_element (element (cls, fields(19)))
+    val uo: Fielder = parse_element (element (cls, fields(20)))
+
     def parse (context: Context): GovSteamIEEE1 =
     {
-        GovSteamIEEE1(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = GovSteamIEEE1 (
             TurbineGovernorDynamics.parse (context),
-            toDouble (k (context), context),
-            toDouble (k1 (context), context),
-            toDouble (k2 (context), context),
-            toDouble (k3 (context), context),
-            toDouble (k4 (context), context),
-            toDouble (k5 (context), context),
-            toDouble (k6 (context), context),
-            toDouble (k7 (context), context),
-            toDouble (k8 (context), context),
-            toDouble (mwbase (context), context),
-            toDouble (pmax (context), context),
-            toDouble (pmin (context), context),
-            toDouble (t1 (context), context),
-            toDouble (t2 (context), context),
-            toDouble (t3 (context), context),
-            toDouble (t4 (context), context),
-            toDouble (t5 (context), context),
-            toDouble (t6 (context), context),
-            toDouble (t7 (context), context),
-            toDouble (uc (context), context),
-            toDouble (uo (context), context)
+            toDouble (mask (k (), 0)),
+            toDouble (mask (k1 (), 1)),
+            toDouble (mask (k2 (), 2)),
+            toDouble (mask (k3 (), 3)),
+            toDouble (mask (k4 (), 4)),
+            toDouble (mask (k5 (), 5)),
+            toDouble (mask (k6 (), 6)),
+            toDouble (mask (k7 (), 7)),
+            toDouble (mask (k8 (), 8)),
+            toDouble (mask (mwbase (), 9)),
+            toDouble (mask (pmax (), 10)),
+            toDouble (mask (pmin (), 11)),
+            toDouble (mask (t1 (), 12)),
+            toDouble (mask (t2 (), 13)),
+            toDouble (mask (t3 (), 14)),
+            toDouble (mask (t4 (), 15)),
+            toDouble (mask (t5 (), 16)),
+            toDouble (mask (t6 (), 17)),
+            toDouble (mask (t7 (), 18)),
+            toDouble (mask (uc (), 19)),
+            toDouble (mask (uo (), 20))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -7111,6 +8526,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -7130,25 +8551,27 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:GovSteamSGO.k1>" + k1 + "</cim:GovSteamSGO.k1>\n" +
-        "\t\t<cim:GovSteamSGO.k2>" + k2 + "</cim:GovSteamSGO.k2>\n" +
-        "\t\t<cim:GovSteamSGO.k3>" + k3 + "</cim:GovSteamSGO.k3>\n" +
-        "\t\t<cim:GovSteamSGO.mwbase>" + mwbase + "</cim:GovSteamSGO.mwbase>\n" +
-        "\t\t<cim:GovSteamSGO.pmax>" + pmax + "</cim:GovSteamSGO.pmax>\n" +
-        "\t\t<cim:GovSteamSGO.pmin>" + pmin + "</cim:GovSteamSGO.pmin>\n" +
-        "\t\t<cim:GovSteamSGO.t1>" + t1 + "</cim:GovSteamSGO.t1>\n" +
-        "\t\t<cim:GovSteamSGO.t2>" + t2 + "</cim:GovSteamSGO.t2>\n" +
-        "\t\t<cim:GovSteamSGO.t3>" + t3 + "</cim:GovSteamSGO.t3>\n" +
-        "\t\t<cim:GovSteamSGO.t4>" + t4 + "</cim:GovSteamSGO.t4>\n" +
-        "\t\t<cim:GovSteamSGO.t5>" + t5 + "</cim:GovSteamSGO.t5>\n" +
-        "\t\t<cim:GovSteamSGO.t6>" + t6 + "</cim:GovSteamSGO.t6>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = GovSteamSGO.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovSteamSGO.fields (position), value)
+        emitelem (0, k1)
+        emitelem (1, k2)
+        emitelem (2, k3)
+        emitelem (3, mwbase)
+        emitelem (4, pmax)
+        emitelem (5, pmin)
+        emitelem (6, t1)
+        emitelem (7, t2)
+        emitelem (8, t3)
+        emitelem (9, t4)
+        emitelem (10, t5)
+        emitelem (11, t6)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:GovSteamSGO rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:GovSteamSGO>"
+        "\t<cim:GovSteamSGO rdf:ID=\"%s\">\n%s\t</cim:GovSteamSGO>".format (id, export_fields)
     }
 }
 
@@ -7156,37 +8579,59 @@ object GovSteamSGO
 extends
     Parseable[GovSteamSGO]
 {
-    val k1 = parse_element (element ("""GovSteamSGO.k1"""))
-    val k2 = parse_element (element ("""GovSteamSGO.k2"""))
-    val k3 = parse_element (element ("""GovSteamSGO.k3"""))
-    val mwbase = parse_element (element ("""GovSteamSGO.mwbase"""))
-    val pmax = parse_element (element ("""GovSteamSGO.pmax"""))
-    val pmin = parse_element (element ("""GovSteamSGO.pmin"""))
-    val t1 = parse_element (element ("""GovSteamSGO.t1"""))
-    val t2 = parse_element (element ("""GovSteamSGO.t2"""))
-    val t3 = parse_element (element ("""GovSteamSGO.t3"""))
-    val t4 = parse_element (element ("""GovSteamSGO.t4"""))
-    val t5 = parse_element (element ("""GovSteamSGO.t5"""))
-    val t6 = parse_element (element ("""GovSteamSGO.t6"""))
+    val fields: Array[String] = Array[String] (
+        "k1",
+        "k2",
+        "k3",
+        "mwbase",
+        "pmax",
+        "pmin",
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6"
+    )
+    val k1: Fielder = parse_element (element (cls, fields(0)))
+    val k2: Fielder = parse_element (element (cls, fields(1)))
+    val k3: Fielder = parse_element (element (cls, fields(2)))
+    val mwbase: Fielder = parse_element (element (cls, fields(3)))
+    val pmax: Fielder = parse_element (element (cls, fields(4)))
+    val pmin: Fielder = parse_element (element (cls, fields(5)))
+    val t1: Fielder = parse_element (element (cls, fields(6)))
+    val t2: Fielder = parse_element (element (cls, fields(7)))
+    val t3: Fielder = parse_element (element (cls, fields(8)))
+    val t4: Fielder = parse_element (element (cls, fields(9)))
+    val t5: Fielder = parse_element (element (cls, fields(10)))
+    val t6: Fielder = parse_element (element (cls, fields(11)))
+
     def parse (context: Context): GovSteamSGO =
     {
-        GovSteamSGO(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = GovSteamSGO (
             TurbineGovernorDynamics.parse (context),
-            toDouble (k1 (context), context),
-            toDouble (k2 (context), context),
-            toDouble (k3 (context), context),
-            toDouble (mwbase (context), context),
-            toDouble (pmax (context), context),
-            toDouble (pmin (context), context),
-            toDouble (t1 (context), context),
-            toDouble (t2 (context), context),
-            toDouble (t3 (context), context),
-            toDouble (t4 (context), context),
-            toDouble (t5 (context), context),
-            toDouble (t6 (context), context)
+            toDouble (mask (k1 (), 0)),
+            toDouble (mask (k2 (), 1)),
+            toDouble (mask (k3 (), 2)),
+            toDouble (mask (mwbase (), 3)),
+            toDouble (mask (pmax (), 4)),
+            toDouble (mask (pmin (), 5)),
+            toDouble (mask (t1 (), 6)),
+            toDouble (mask (t2 (), 7)),
+            toDouble (mask (t3 (), 8)),
+            toDouble (mask (t4 (), 9)),
+            toDouble (mask (t5 (), 10)),
+            toDouble (mask (t6 (), 11))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -7215,6 +8660,12 @@ extends
      */
     def this () = { this (null, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -7234,15 +8685,17 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != AsynchronousMachineDynamics) "\t\t<cim:TurbineGovernorDynamics.AsynchronousMachineDynamics rdf:resource=\"#" + AsynchronousMachineDynamics + "\"/>\n" else "") +
-        (if (null != TurbineLoadControllerDynamics) "\t\t<cim:TurbineGovernorDynamics.TurbineLoadControllerDynamics rdf:resource=\"#" + TurbineLoadControllerDynamics + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = TurbineGovernorDynamics.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TurbineGovernorDynamics.fields (position), value)
+        emitattr (0, AsynchronousMachineDynamics)
+        emitattr (1, TurbineLoadControllerDynamics)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:TurbineGovernorDynamics rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:TurbineGovernorDynamics>"
+        "\t<cim:TurbineGovernorDynamics rdf:ID=\"%s\">\n%s\t</cim:TurbineGovernorDynamics>".format (id, export_fields)
     }
 }
 
@@ -7250,19 +8703,30 @@ object TurbineGovernorDynamics
 extends
     Parseable[TurbineGovernorDynamics]
 {
-    val AsynchronousMachineDynamics = parse_attribute (attribute ("""TurbineGovernorDynamics.AsynchronousMachineDynamics"""))
-    val TurbineLoadControllerDynamics = parse_attribute (attribute ("""TurbineGovernorDynamics.TurbineLoadControllerDynamics"""))
+    val fields: Array[String] = Array[String] (
+        "AsynchronousMachineDynamics",
+        "TurbineLoadControllerDynamics"
+    )
+    val AsynchronousMachineDynamics: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val TurbineLoadControllerDynamics: Fielder = parse_attribute (attribute (cls, fields(1)))
+
     def parse (context: Context): TurbineGovernorDynamics =
     {
-        TurbineGovernorDynamics(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = TurbineGovernorDynamics (
             DynamicsFunctionBlock.parse (context),
-            AsynchronousMachineDynamics (context),
-            TurbineLoadControllerDynamics (context)
+            mask (AsynchronousMachineDynamics (), 0),
+            mask (TurbineLoadControllerDynamics (), 1)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("AsynchronousMachineDynamics", "AsynchronousMachineDynamics", false),
-        Relationship ("TurbineLoadControllerDynamics", "TurbineLoadControllerDynamics", false))
+        Relationship ("TurbineLoadControllerDynamics", "TurbineLoadControllerDynamics", false)
+    )
 }
 
 private[ninecode] object _TurbineGovernorDynamics

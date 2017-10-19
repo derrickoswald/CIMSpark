@@ -43,6 +43,12 @@ extends
      */
     def this () = { this (null, false) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -62,14 +68,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:AsynchronousMachineUserDefined.proprietary>" + proprietary + "</cim:AsynchronousMachineUserDefined.proprietary>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = AsynchronousMachineUserDefined.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (AsynchronousMachineUserDefined.fields (position), value)
+        emitelem (0, proprietary)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:AsynchronousMachineUserDefined rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:AsynchronousMachineUserDefined>"
+        "\t<cim:AsynchronousMachineUserDefined rdf:ID=\"%s\">\n%s\t</cim:AsynchronousMachineUserDefined>".format (id, export_fields)
     }
 }
 
@@ -77,15 +85,26 @@ object AsynchronousMachineUserDefined
 extends
     Parseable[AsynchronousMachineUserDefined]
 {
-    val proprietary = parse_element (element ("""AsynchronousMachineUserDefined.proprietary"""))
+    val fields: Array[String] = Array[String] (
+        "proprietary"
+    )
+    val proprietary: Fielder = parse_element (element (cls, fields(0)))
+
     def parse (context: Context): AsynchronousMachineUserDefined =
     {
-        AsynchronousMachineUserDefined(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = AsynchronousMachineUserDefined (
             AsynchronousMachineDynamics.parse (context),
-            toBoolean (proprietary (context), context)
+            toBoolean (mask (proprietary (), 0))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -124,6 +143,12 @@ extends
      */
     def this () = { this (null, false) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -143,14 +168,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:DiscontinuousExcitationControlUserDefined.proprietary>" + proprietary + "</cim:DiscontinuousExcitationControlUserDefined.proprietary>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = DiscontinuousExcitationControlUserDefined.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (DiscontinuousExcitationControlUserDefined.fields (position), value)
+        emitelem (0, proprietary)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:DiscontinuousExcitationControlUserDefined rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:DiscontinuousExcitationControlUserDefined>"
+        "\t<cim:DiscontinuousExcitationControlUserDefined rdf:ID=\"%s\">\n%s\t</cim:DiscontinuousExcitationControlUserDefined>".format (id, export_fields)
     }
 }
 
@@ -158,15 +185,26 @@ object DiscontinuousExcitationControlUserDefined
 extends
     Parseable[DiscontinuousExcitationControlUserDefined]
 {
-    val proprietary = parse_element (element ("""DiscontinuousExcitationControlUserDefined.proprietary"""))
+    val fields: Array[String] = Array[String] (
+        "proprietary"
+    )
+    val proprietary: Fielder = parse_element (element (cls, fields(0)))
+
     def parse (context: Context): DiscontinuousExcitationControlUserDefined =
     {
-        DiscontinuousExcitationControlUserDefined(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = DiscontinuousExcitationControlUserDefined (
             DiscontinuousExcitationControlDynamics.parse (context),
-            toBoolean (proprietary (context), context)
+            toBoolean (mask (proprietary (), 0))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -205,6 +243,12 @@ extends
      */
     def this () = { this (null, false) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -224,14 +268,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ExcitationSystemUserDefined.proprietary>" + proprietary + "</cim:ExcitationSystemUserDefined.proprietary>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcitationSystemUserDefined.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcitationSystemUserDefined.fields (position), value)
+        emitelem (0, proprietary)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ExcitationSystemUserDefined rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ExcitationSystemUserDefined>"
+        "\t<cim:ExcitationSystemUserDefined rdf:ID=\"%s\">\n%s\t</cim:ExcitationSystemUserDefined>".format (id, export_fields)
     }
 }
 
@@ -239,15 +285,26 @@ object ExcitationSystemUserDefined
 extends
     Parseable[ExcitationSystemUserDefined]
 {
-    val proprietary = parse_element (element ("""ExcitationSystemUserDefined.proprietary"""))
+    val fields: Array[String] = Array[String] (
+        "proprietary"
+    )
+    val proprietary: Fielder = parse_element (element (cls, fields(0)))
+
     def parse (context: Context): ExcitationSystemUserDefined =
     {
-        ExcitationSystemUserDefined(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ExcitationSystemUserDefined (
             ExcitationSystemDynamics.parse (context),
-            toBoolean (proprietary (context), context)
+            toBoolean (mask (proprietary (), 0))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -286,6 +343,12 @@ extends
      */
     def this () = { this (null, false) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -305,14 +368,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:LoadUserDefined.proprietary>" + proprietary + "</cim:LoadUserDefined.proprietary>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = LoadUserDefined.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (LoadUserDefined.fields (position), value)
+        emitelem (0, proprietary)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:LoadUserDefined rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:LoadUserDefined>"
+        "\t<cim:LoadUserDefined rdf:ID=\"%s\">\n%s\t</cim:LoadUserDefined>".format (id, export_fields)
     }
 }
 
@@ -320,15 +385,26 @@ object LoadUserDefined
 extends
     Parseable[LoadUserDefined]
 {
-    val proprietary = parse_element (element ("""LoadUserDefined.proprietary"""))
+    val fields: Array[String] = Array[String] (
+        "proprietary"
+    )
+    val proprietary: Fielder = parse_element (element (cls, fields(0)))
+
     def parse (context: Context): LoadUserDefined =
     {
-        LoadUserDefined(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = LoadUserDefined (
             LoadDynamics.parse (context),
-            toBoolean (proprietary (context), context)
+            toBoolean (mask (proprietary (), 0))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -367,6 +443,12 @@ extends
      */
     def this () = { this (null, false) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -386,14 +468,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:MechanicalLoadUserDefined.proprietary>" + proprietary + "</cim:MechanicalLoadUserDefined.proprietary>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = MechanicalLoadUserDefined.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (MechanicalLoadUserDefined.fields (position), value)
+        emitelem (0, proprietary)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:MechanicalLoadUserDefined rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:MechanicalLoadUserDefined>"
+        "\t<cim:MechanicalLoadUserDefined rdf:ID=\"%s\">\n%s\t</cim:MechanicalLoadUserDefined>".format (id, export_fields)
     }
 }
 
@@ -401,15 +485,26 @@ object MechanicalLoadUserDefined
 extends
     Parseable[MechanicalLoadUserDefined]
 {
-    val proprietary = parse_element (element ("""MechanicalLoadUserDefined.proprietary"""))
+    val fields: Array[String] = Array[String] (
+        "proprietary"
+    )
+    val proprietary: Fielder = parse_element (element (cls, fields(0)))
+
     def parse (context: Context): MechanicalLoadUserDefined =
     {
-        MechanicalLoadUserDefined(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = MechanicalLoadUserDefined (
             MechanicalLoadDynamics.parse (context),
-            toBoolean (proprietary (context), context)
+            toBoolean (mask (proprietary (), 0))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -448,6 +543,12 @@ extends
      */
     def this () = { this (null, false) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -467,14 +568,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:OverexcitationLimiterUserDefined.proprietary>" + proprietary + "</cim:OverexcitationLimiterUserDefined.proprietary>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = OverexcitationLimiterUserDefined.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (OverexcitationLimiterUserDefined.fields (position), value)
+        emitelem (0, proprietary)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:OverexcitationLimiterUserDefined rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:OverexcitationLimiterUserDefined>"
+        "\t<cim:OverexcitationLimiterUserDefined rdf:ID=\"%s\">\n%s\t</cim:OverexcitationLimiterUserDefined>".format (id, export_fields)
     }
 }
 
@@ -482,15 +585,26 @@ object OverexcitationLimiterUserDefined
 extends
     Parseable[OverexcitationLimiterUserDefined]
 {
-    val proprietary = parse_element (element ("""OverexcitationLimiterUserDefined.proprietary"""))
+    val fields: Array[String] = Array[String] (
+        "proprietary"
+    )
+    val proprietary: Fielder = parse_element (element (cls, fields(0)))
+
     def parse (context: Context): OverexcitationLimiterUserDefined =
     {
-        OverexcitationLimiterUserDefined(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = OverexcitationLimiterUserDefined (
             OverexcitationLimiterDynamics.parse (context),
-            toBoolean (proprietary (context), context)
+            toBoolean (mask (proprietary (), 0))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -529,6 +643,12 @@ extends
      */
     def this () = { this (null, false) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -548,14 +668,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:PFVArControllerType1UserDefined.proprietary>" + proprietary + "</cim:PFVArControllerType1UserDefined.proprietary>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = PFVArControllerType1UserDefined.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PFVArControllerType1UserDefined.fields (position), value)
+        emitelem (0, proprietary)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:PFVArControllerType1UserDefined rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:PFVArControllerType1UserDefined>"
+        "\t<cim:PFVArControllerType1UserDefined rdf:ID=\"%s\">\n%s\t</cim:PFVArControllerType1UserDefined>".format (id, export_fields)
     }
 }
 
@@ -563,15 +685,26 @@ object PFVArControllerType1UserDefined
 extends
     Parseable[PFVArControllerType1UserDefined]
 {
-    val proprietary = parse_element (element ("""PFVArControllerType1UserDefined.proprietary"""))
+    val fields: Array[String] = Array[String] (
+        "proprietary"
+    )
+    val proprietary: Fielder = parse_element (element (cls, fields(0)))
+
     def parse (context: Context): PFVArControllerType1UserDefined =
     {
-        PFVArControllerType1UserDefined(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = PFVArControllerType1UserDefined (
             PFVArControllerType1Dynamics.parse (context),
-            toBoolean (proprietary (context), context)
+            toBoolean (mask (proprietary (), 0))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -610,6 +743,12 @@ extends
      */
     def this () = { this (null, false) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -629,14 +768,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:PFVArControllerType2UserDefined.proprietary>" + proprietary + "</cim:PFVArControllerType2UserDefined.proprietary>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = PFVArControllerType2UserDefined.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PFVArControllerType2UserDefined.fields (position), value)
+        emitelem (0, proprietary)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:PFVArControllerType2UserDefined rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:PFVArControllerType2UserDefined>"
+        "\t<cim:PFVArControllerType2UserDefined rdf:ID=\"%s\">\n%s\t</cim:PFVArControllerType2UserDefined>".format (id, export_fields)
     }
 }
 
@@ -644,15 +785,26 @@ object PFVArControllerType2UserDefined
 extends
     Parseable[PFVArControllerType2UserDefined]
 {
-    val proprietary = parse_element (element ("""PFVArControllerType2UserDefined.proprietary"""))
+    val fields: Array[String] = Array[String] (
+        "proprietary"
+    )
+    val proprietary: Fielder = parse_element (element (cls, fields(0)))
+
     def parse (context: Context): PFVArControllerType2UserDefined =
     {
-        PFVArControllerType2UserDefined(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = PFVArControllerType2UserDefined (
             PFVArControllerType2Dynamics.parse (context),
-            toBoolean (proprietary (context), context)
+            toBoolean (mask (proprietary (), 0))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -691,6 +843,12 @@ extends
      */
     def this () = { this (null, false) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -710,14 +868,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:PowerSystemStabilizerUserDefined.proprietary>" + proprietary + "</cim:PowerSystemStabilizerUserDefined.proprietary>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = PowerSystemStabilizerUserDefined.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PowerSystemStabilizerUserDefined.fields (position), value)
+        emitelem (0, proprietary)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:PowerSystemStabilizerUserDefined rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:PowerSystemStabilizerUserDefined>"
+        "\t<cim:PowerSystemStabilizerUserDefined rdf:ID=\"%s\">\n%s\t</cim:PowerSystemStabilizerUserDefined>".format (id, export_fields)
     }
 }
 
@@ -725,15 +885,26 @@ object PowerSystemStabilizerUserDefined
 extends
     Parseable[PowerSystemStabilizerUserDefined]
 {
-    val proprietary = parse_element (element ("""PowerSystemStabilizerUserDefined.proprietary"""))
+    val fields: Array[String] = Array[String] (
+        "proprietary"
+    )
+    val proprietary: Fielder = parse_element (element (cls, fields(0)))
+
     def parse (context: Context): PowerSystemStabilizerUserDefined =
     {
-        PowerSystemStabilizerUserDefined(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = PowerSystemStabilizerUserDefined (
             PowerSystemStabilizerDynamics.parse (context),
-            toBoolean (proprietary (context), context)
+            toBoolean (mask (proprietary (), 0))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -817,6 +988,12 @@ extends
      */
     def this () = { this (null, false, 0.0, 0, 0, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -836,35 +1013,38 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ProprietaryParameterDynamics.booleanParameterValue>" + booleanParameterValue + "</cim:ProprietaryParameterDynamics.booleanParameterValue>\n" +
-        "\t\t<cim:ProprietaryParameterDynamics.floatParameterValue>" + floatParameterValue + "</cim:ProprietaryParameterDynamics.floatParameterValue>\n" +
-        "\t\t<cim:ProprietaryParameterDynamics.integerParameterValue>" + integerParameterValue + "</cim:ProprietaryParameterDynamics.integerParameterValue>\n" +
-        "\t\t<cim:ProprietaryParameterDynamics.parameterNumber>" + parameterNumber + "</cim:ProprietaryParameterDynamics.parameterNumber>\n" +
-        (if (null != AsynchronousMachineUserDefined) "\t\t<cim:ProprietaryParameterDynamics.AsynchronousMachineUserDefined rdf:resource=\"#" + AsynchronousMachineUserDefined + "\"/>\n" else "") +
-        (if (null != DiscontinuousExcitationControlUserDefined) "\t\t<cim:ProprietaryParameterDynamics.DiscontinuousExcitationControlUserDefined rdf:resource=\"#" + DiscontinuousExcitationControlUserDefined + "\"/>\n" else "") +
-        (if (null != ExcitationSystemUserDefined) "\t\t<cim:ProprietaryParameterDynamics.ExcitationSystemUserDefined rdf:resource=\"#" + ExcitationSystemUserDefined + "\"/>\n" else "") +
-        (if (null != LoadUserDefined) "\t\t<cim:ProprietaryParameterDynamics.LoadUserDefined rdf:resource=\"#" + LoadUserDefined + "\"/>\n" else "") +
-        (if (null != MechanicalLoadUserDefined) "\t\t<cim:ProprietaryParameterDynamics.MechanicalLoadUserDefined rdf:resource=\"#" + MechanicalLoadUserDefined + "\"/>\n" else "") +
-        (if (null != OverexcitationLimiterUserDefined) "\t\t<cim:ProprietaryParameterDynamics.OverexcitationLimiterUserDefined rdf:resource=\"#" + OverexcitationLimiterUserDefined + "\"/>\n" else "") +
-        (if (null != PFVArControllerType1UserDefined) "\t\t<cim:ProprietaryParameterDynamics.PFVArControllerType1UserDefined rdf:resource=\"#" + PFVArControllerType1UserDefined + "\"/>\n" else "") +
-        (if (null != PFVArControllerType2UserDefined) "\t\t<cim:ProprietaryParameterDynamics.PFVArControllerType2UserDefined rdf:resource=\"#" + PFVArControllerType2UserDefined + "\"/>\n" else "") +
-        (if (null != PowerSystemStabilizerUserDefined) "\t\t<cim:ProprietaryParameterDynamics.PowerSystemStabilizerUserDefined rdf:resource=\"#" + PowerSystemStabilizerUserDefined + "\"/>\n" else "") +
-        (if (null != SynchronousMachineUserDefined) "\t\t<cim:ProprietaryParameterDynamics.SynchronousMachineUserDefined rdf:resource=\"#" + SynchronousMachineUserDefined + "\"/>\n" else "") +
-        (if (null != TurbineGovernorUserDefined) "\t\t<cim:ProprietaryParameterDynamics.TurbineGovernorUserDefined rdf:resource=\"#" + TurbineGovernorUserDefined + "\"/>\n" else "") +
-        (if (null != TurbineLoadControllerUserDefined) "\t\t<cim:ProprietaryParameterDynamics.TurbineLoadControllerUserDefined rdf:resource=\"#" + TurbineLoadControllerUserDefined + "\"/>\n" else "") +
-        (if (null != UnderexcitationLimiterUserDefined) "\t\t<cim:ProprietaryParameterDynamics.UnderexcitationLimiterUserDefined rdf:resource=\"#" + UnderexcitationLimiterUserDefined + "\"/>\n" else "") +
-        (if (null != VoltageAdjusterUserDefined) "\t\t<cim:ProprietaryParameterDynamics.VoltageAdjusterUserDefined rdf:resource=\"#" + VoltageAdjusterUserDefined + "\"/>\n" else "") +
-        (if (null != VoltageCompensatorUserDefined) "\t\t<cim:ProprietaryParameterDynamics.VoltageCompensatorUserDefined rdf:resource=\"#" + VoltageCompensatorUserDefined + "\"/>\n" else "") +
-        (if (null != WindPlantUserDefined) "\t\t<cim:ProprietaryParameterDynamics.WindPlantUserDefined rdf:resource=\"#" + WindPlantUserDefined + "\"/>\n" else "") +
-        (if (null != WindType1or2UserDefined) "\t\t<cim:ProprietaryParameterDynamics.WindType1or2UserDefined rdf:resource=\"#" + WindType1or2UserDefined + "\"/>\n" else "") +
-        (if (null != WindType3or4UserDefined) "\t\t<cim:ProprietaryParameterDynamics.WindType3or4UserDefined rdf:resource=\"#" + WindType3or4UserDefined + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ProprietaryParameterDynamics.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ProprietaryParameterDynamics.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ProprietaryParameterDynamics.fields (position), value)
+        emitelem (0, booleanParameterValue)
+        emitelem (1, floatParameterValue)
+        emitelem (2, integerParameterValue)
+        emitelem (3, parameterNumber)
+        emitattr (4, AsynchronousMachineUserDefined)
+        emitattr (5, DiscontinuousExcitationControlUserDefined)
+        emitattr (6, ExcitationSystemUserDefined)
+        emitattr (7, LoadUserDefined)
+        emitattr (8, MechanicalLoadUserDefined)
+        emitattr (9, OverexcitationLimiterUserDefined)
+        emitattr (10, PFVArControllerType1UserDefined)
+        emitattr (11, PFVArControllerType2UserDefined)
+        emitattr (12, PowerSystemStabilizerUserDefined)
+        emitattr (13, SynchronousMachineUserDefined)
+        emitattr (14, TurbineGovernorUserDefined)
+        emitattr (15, TurbineLoadControllerUserDefined)
+        emitattr (16, UnderexcitationLimiterUserDefined)
+        emitattr (17, VoltageAdjusterUserDefined)
+        emitattr (18, VoltageCompensatorUserDefined)
+        emitattr (19, WindPlantUserDefined)
+        emitattr (20, WindType1or2UserDefined)
+        emitattr (21, WindType3or4UserDefined)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ProprietaryParameterDynamics rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ProprietaryParameterDynamics>"
+        "\t<cim:ProprietaryParameterDynamics rdf:ID=\"%s\">\n%s\t</cim:ProprietaryParameterDynamics>".format (id, export_fields)
     }
 }
 
@@ -872,55 +1052,85 @@ object ProprietaryParameterDynamics
 extends
     Parseable[ProprietaryParameterDynamics]
 {
-    val booleanParameterValue = parse_element (element ("""ProprietaryParameterDynamics.booleanParameterValue"""))
-    val floatParameterValue = parse_element (element ("""ProprietaryParameterDynamics.floatParameterValue"""))
-    val integerParameterValue = parse_element (element ("""ProprietaryParameterDynamics.integerParameterValue"""))
-    val parameterNumber = parse_element (element ("""ProprietaryParameterDynamics.parameterNumber"""))
-    val AsynchronousMachineUserDefined = parse_attribute (attribute ("""ProprietaryParameterDynamics.AsynchronousMachineUserDefined"""))
-    val DiscontinuousExcitationControlUserDefined = parse_attribute (attribute ("""ProprietaryParameterDynamics.DiscontinuousExcitationControlUserDefined"""))
-    val ExcitationSystemUserDefined = parse_attribute (attribute ("""ProprietaryParameterDynamics.ExcitationSystemUserDefined"""))
-    val LoadUserDefined = parse_attribute (attribute ("""ProprietaryParameterDynamics.LoadUserDefined"""))
-    val MechanicalLoadUserDefined = parse_attribute (attribute ("""ProprietaryParameterDynamics.MechanicalLoadUserDefined"""))
-    val OverexcitationLimiterUserDefined = parse_attribute (attribute ("""ProprietaryParameterDynamics.OverexcitationLimiterUserDefined"""))
-    val PFVArControllerType1UserDefined = parse_attribute (attribute ("""ProprietaryParameterDynamics.PFVArControllerType1UserDefined"""))
-    val PFVArControllerType2UserDefined = parse_attribute (attribute ("""ProprietaryParameterDynamics.PFVArControllerType2UserDefined"""))
-    val PowerSystemStabilizerUserDefined = parse_attribute (attribute ("""ProprietaryParameterDynamics.PowerSystemStabilizerUserDefined"""))
-    val SynchronousMachineUserDefined = parse_attribute (attribute ("""ProprietaryParameterDynamics.SynchronousMachineUserDefined"""))
-    val TurbineGovernorUserDefined = parse_attribute (attribute ("""ProprietaryParameterDynamics.TurbineGovernorUserDefined"""))
-    val TurbineLoadControllerUserDefined = parse_attribute (attribute ("""ProprietaryParameterDynamics.TurbineLoadControllerUserDefined"""))
-    val UnderexcitationLimiterUserDefined = parse_attribute (attribute ("""ProprietaryParameterDynamics.UnderexcitationLimiterUserDefined"""))
-    val VoltageAdjusterUserDefined = parse_attribute (attribute ("""ProprietaryParameterDynamics.VoltageAdjusterUserDefined"""))
-    val VoltageCompensatorUserDefined = parse_attribute (attribute ("""ProprietaryParameterDynamics.VoltageCompensatorUserDefined"""))
-    val WindPlantUserDefined = parse_attribute (attribute ("""ProprietaryParameterDynamics.WindPlantUserDefined"""))
-    val WindType1or2UserDefined = parse_attribute (attribute ("""ProprietaryParameterDynamics.WindType1or2UserDefined"""))
-    val WindType3or4UserDefined = parse_attribute (attribute ("""ProprietaryParameterDynamics.WindType3or4UserDefined"""))
+    val fields: Array[String] = Array[String] (
+        "booleanParameterValue",
+        "floatParameterValue",
+        "integerParameterValue",
+        "parameterNumber",
+        "AsynchronousMachineUserDefined",
+        "DiscontinuousExcitationControlUserDefined",
+        "ExcitationSystemUserDefined",
+        "LoadUserDefined",
+        "MechanicalLoadUserDefined",
+        "OverexcitationLimiterUserDefined",
+        "PFVArControllerType1UserDefined",
+        "PFVArControllerType2UserDefined",
+        "PowerSystemStabilizerUserDefined",
+        "SynchronousMachineUserDefined",
+        "TurbineGovernorUserDefined",
+        "TurbineLoadControllerUserDefined",
+        "UnderexcitationLimiterUserDefined",
+        "VoltageAdjusterUserDefined",
+        "VoltageCompensatorUserDefined",
+        "WindPlantUserDefined",
+        "WindType1or2UserDefined",
+        "WindType3or4UserDefined"
+    )
+    val booleanParameterValue: Fielder = parse_element (element (cls, fields(0)))
+    val floatParameterValue: Fielder = parse_element (element (cls, fields(1)))
+    val integerParameterValue: Fielder = parse_element (element (cls, fields(2)))
+    val parameterNumber: Fielder = parse_element (element (cls, fields(3)))
+    val AsynchronousMachineUserDefined: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val DiscontinuousExcitationControlUserDefined: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val ExcitationSystemUserDefined: Fielder = parse_attribute (attribute (cls, fields(6)))
+    val LoadUserDefined: Fielder = parse_attribute (attribute (cls, fields(7)))
+    val MechanicalLoadUserDefined: Fielder = parse_attribute (attribute (cls, fields(8)))
+    val OverexcitationLimiterUserDefined: Fielder = parse_attribute (attribute (cls, fields(9)))
+    val PFVArControllerType1UserDefined: Fielder = parse_attribute (attribute (cls, fields(10)))
+    val PFVArControllerType2UserDefined: Fielder = parse_attribute (attribute (cls, fields(11)))
+    val PowerSystemStabilizerUserDefined: Fielder = parse_attribute (attribute (cls, fields(12)))
+    val SynchronousMachineUserDefined: Fielder = parse_attribute (attribute (cls, fields(13)))
+    val TurbineGovernorUserDefined: Fielder = parse_attribute (attribute (cls, fields(14)))
+    val TurbineLoadControllerUserDefined: Fielder = parse_attribute (attribute (cls, fields(15)))
+    val UnderexcitationLimiterUserDefined: Fielder = parse_attribute (attribute (cls, fields(16)))
+    val VoltageAdjusterUserDefined: Fielder = parse_attribute (attribute (cls, fields(17)))
+    val VoltageCompensatorUserDefined: Fielder = parse_attribute (attribute (cls, fields(18)))
+    val WindPlantUserDefined: Fielder = parse_attribute (attribute (cls, fields(19)))
+    val WindType1or2UserDefined: Fielder = parse_attribute (attribute (cls, fields(20)))
+    val WindType3or4UserDefined: Fielder = parse_attribute (attribute (cls, fields(21)))
+
     def parse (context: Context): ProprietaryParameterDynamics =
     {
-        ProprietaryParameterDynamics(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ProprietaryParameterDynamics (
             BasicElement.parse (context),
-            toBoolean (booleanParameterValue (context), context),
-            toDouble (floatParameterValue (context), context),
-            toInteger (integerParameterValue (context), context),
-            toInteger (parameterNumber (context), context),
-            AsynchronousMachineUserDefined (context),
-            DiscontinuousExcitationControlUserDefined (context),
-            ExcitationSystemUserDefined (context),
-            LoadUserDefined (context),
-            MechanicalLoadUserDefined (context),
-            OverexcitationLimiterUserDefined (context),
-            PFVArControllerType1UserDefined (context),
-            PFVArControllerType2UserDefined (context),
-            PowerSystemStabilizerUserDefined (context),
-            SynchronousMachineUserDefined (context),
-            TurbineGovernorUserDefined (context),
-            TurbineLoadControllerUserDefined (context),
-            UnderexcitationLimiterUserDefined (context),
-            VoltageAdjusterUserDefined (context),
-            VoltageCompensatorUserDefined (context),
-            WindPlantUserDefined (context),
-            WindType1or2UserDefined (context),
-            WindType3or4UserDefined (context)
+            toBoolean (mask (booleanParameterValue (), 0)),
+            toDouble (mask (floatParameterValue (), 1)),
+            toInteger (mask (integerParameterValue (), 2)),
+            toInteger (mask (parameterNumber (), 3)),
+            mask (AsynchronousMachineUserDefined (), 4),
+            mask (DiscontinuousExcitationControlUserDefined (), 5),
+            mask (ExcitationSystemUserDefined (), 6),
+            mask (LoadUserDefined (), 7),
+            mask (MechanicalLoadUserDefined (), 8),
+            mask (OverexcitationLimiterUserDefined (), 9),
+            mask (PFVArControllerType1UserDefined (), 10),
+            mask (PFVArControllerType2UserDefined (), 11),
+            mask (PowerSystemStabilizerUserDefined (), 12),
+            mask (SynchronousMachineUserDefined (), 13),
+            mask (TurbineGovernorUserDefined (), 14),
+            mask (TurbineLoadControllerUserDefined (), 15),
+            mask (UnderexcitationLimiterUserDefined (), 16),
+            mask (VoltageAdjusterUserDefined (), 17),
+            mask (VoltageCompensatorUserDefined (), 18),
+            mask (WindPlantUserDefined (), 19),
+            mask (WindType1or2UserDefined (), 20),
+            mask (WindType3or4UserDefined (), 21)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("AsynchronousMachineUserDefined", "AsynchronousMachineUserDefined", false),
@@ -940,7 +1150,8 @@ extends
         Relationship ("VoltageCompensatorUserDefined", "VoltageCompensatorUserDefined", false),
         Relationship ("WindPlantUserDefined", "WindPlantUserDefined", false),
         Relationship ("WindType1or2UserDefined", "WindType1or2UserDefined", false),
-        Relationship ("WindType3or4UserDefined", "WindType3or4UserDefined", false))
+        Relationship ("WindType3or4UserDefined", "WindType3or4UserDefined", false)
+    )
 }
 
 /**
@@ -979,6 +1190,12 @@ extends
      */
     def this () = { this (null, false) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -998,14 +1215,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:SynchronousMachineUserDefined.proprietary>" + proprietary + "</cim:SynchronousMachineUserDefined.proprietary>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = SynchronousMachineUserDefined.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (SynchronousMachineUserDefined.fields (position), value)
+        emitelem (0, proprietary)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:SynchronousMachineUserDefined rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:SynchronousMachineUserDefined>"
+        "\t<cim:SynchronousMachineUserDefined rdf:ID=\"%s\">\n%s\t</cim:SynchronousMachineUserDefined>".format (id, export_fields)
     }
 }
 
@@ -1013,15 +1232,26 @@ object SynchronousMachineUserDefined
 extends
     Parseable[SynchronousMachineUserDefined]
 {
-    val proprietary = parse_element (element ("""SynchronousMachineUserDefined.proprietary"""))
+    val fields: Array[String] = Array[String] (
+        "proprietary"
+    )
+    val proprietary: Fielder = parse_element (element (cls, fields(0)))
+
     def parse (context: Context): SynchronousMachineUserDefined =
     {
-        SynchronousMachineUserDefined(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = SynchronousMachineUserDefined (
             SynchronousMachineDynamics.parse (context),
-            toBoolean (proprietary (context), context)
+            toBoolean (mask (proprietary (), 0))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -1060,6 +1290,12 @@ extends
      */
     def this () = { this (null, false) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -1079,14 +1315,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:TurbineGovernorUserDefined.proprietary>" + proprietary + "</cim:TurbineGovernorUserDefined.proprietary>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = TurbineGovernorUserDefined.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TurbineGovernorUserDefined.fields (position), value)
+        emitelem (0, proprietary)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:TurbineGovernorUserDefined rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:TurbineGovernorUserDefined>"
+        "\t<cim:TurbineGovernorUserDefined rdf:ID=\"%s\">\n%s\t</cim:TurbineGovernorUserDefined>".format (id, export_fields)
     }
 }
 
@@ -1094,15 +1332,26 @@ object TurbineGovernorUserDefined
 extends
     Parseable[TurbineGovernorUserDefined]
 {
-    val proprietary = parse_element (element ("""TurbineGovernorUserDefined.proprietary"""))
+    val fields: Array[String] = Array[String] (
+        "proprietary"
+    )
+    val proprietary: Fielder = parse_element (element (cls, fields(0)))
+
     def parse (context: Context): TurbineGovernorUserDefined =
     {
-        TurbineGovernorUserDefined(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = TurbineGovernorUserDefined (
             TurbineGovernorDynamics.parse (context),
-            toBoolean (proprietary (context), context)
+            toBoolean (mask (proprietary (), 0))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -1141,6 +1390,12 @@ extends
      */
     def this () = { this (null, false) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -1160,14 +1415,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:TurbineLoadControllerUserDefined.proprietary>" + proprietary + "</cim:TurbineLoadControllerUserDefined.proprietary>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = TurbineLoadControllerUserDefined.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TurbineLoadControllerUserDefined.fields (position), value)
+        emitelem (0, proprietary)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:TurbineLoadControllerUserDefined rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:TurbineLoadControllerUserDefined>"
+        "\t<cim:TurbineLoadControllerUserDefined rdf:ID=\"%s\">\n%s\t</cim:TurbineLoadControllerUserDefined>".format (id, export_fields)
     }
 }
 
@@ -1175,15 +1432,26 @@ object TurbineLoadControllerUserDefined
 extends
     Parseable[TurbineLoadControllerUserDefined]
 {
-    val proprietary = parse_element (element ("""TurbineLoadControllerUserDefined.proprietary"""))
+    val fields: Array[String] = Array[String] (
+        "proprietary"
+    )
+    val proprietary: Fielder = parse_element (element (cls, fields(0)))
+
     def parse (context: Context): TurbineLoadControllerUserDefined =
     {
-        TurbineLoadControllerUserDefined(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = TurbineLoadControllerUserDefined (
             TurbineLoadControllerDynamics.parse (context),
-            toBoolean (proprietary (context), context)
+            toBoolean (mask (proprietary (), 0))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -1222,6 +1490,12 @@ extends
      */
     def this () = { this (null, false) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -1241,14 +1515,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:UnderexcitationLimiterUserDefined.proprietary>" + proprietary + "</cim:UnderexcitationLimiterUserDefined.proprietary>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = UnderexcitationLimiterUserDefined.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (UnderexcitationLimiterUserDefined.fields (position), value)
+        emitelem (0, proprietary)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:UnderexcitationLimiterUserDefined rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:UnderexcitationLimiterUserDefined>"
+        "\t<cim:UnderexcitationLimiterUserDefined rdf:ID=\"%s\">\n%s\t</cim:UnderexcitationLimiterUserDefined>".format (id, export_fields)
     }
 }
 
@@ -1256,15 +1532,26 @@ object UnderexcitationLimiterUserDefined
 extends
     Parseable[UnderexcitationLimiterUserDefined]
 {
-    val proprietary = parse_element (element ("""UnderexcitationLimiterUserDefined.proprietary"""))
+    val fields: Array[String] = Array[String] (
+        "proprietary"
+    )
+    val proprietary: Fielder = parse_element (element (cls, fields(0)))
+
     def parse (context: Context): UnderexcitationLimiterUserDefined =
     {
-        UnderexcitationLimiterUserDefined(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = UnderexcitationLimiterUserDefined (
             UnderexcitationLimiterDynamics.parse (context),
-            toBoolean (proprietary (context), context)
+            toBoolean (mask (proprietary (), 0))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -1303,6 +1590,12 @@ extends
      */
     def this () = { this (null, false) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -1322,14 +1615,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:VoltageAdjusterUserDefined.proprietary>" + proprietary + "</cim:VoltageAdjusterUserDefined.proprietary>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = VoltageAdjusterUserDefined.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (VoltageAdjusterUserDefined.fields (position), value)
+        emitelem (0, proprietary)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:VoltageAdjusterUserDefined rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:VoltageAdjusterUserDefined>"
+        "\t<cim:VoltageAdjusterUserDefined rdf:ID=\"%s\">\n%s\t</cim:VoltageAdjusterUserDefined>".format (id, export_fields)
     }
 }
 
@@ -1337,15 +1632,26 @@ object VoltageAdjusterUserDefined
 extends
     Parseable[VoltageAdjusterUserDefined]
 {
-    val proprietary = parse_element (element ("""VoltageAdjusterUserDefined.proprietary"""))
+    val fields: Array[String] = Array[String] (
+        "proprietary"
+    )
+    val proprietary: Fielder = parse_element (element (cls, fields(0)))
+
     def parse (context: Context): VoltageAdjusterUserDefined =
     {
-        VoltageAdjusterUserDefined(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = VoltageAdjusterUserDefined (
             VoltageAdjusterDynamics.parse (context),
-            toBoolean (proprietary (context), context)
+            toBoolean (mask (proprietary (), 0))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -1384,6 +1690,12 @@ extends
      */
     def this () = { this (null, false) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -1403,14 +1715,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:VoltageCompensatorUserDefined.proprietary>" + proprietary + "</cim:VoltageCompensatorUserDefined.proprietary>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = VoltageCompensatorUserDefined.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (VoltageCompensatorUserDefined.fields (position), value)
+        emitelem (0, proprietary)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:VoltageCompensatorUserDefined rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:VoltageCompensatorUserDefined>"
+        "\t<cim:VoltageCompensatorUserDefined rdf:ID=\"%s\">\n%s\t</cim:VoltageCompensatorUserDefined>".format (id, export_fields)
     }
 }
 
@@ -1418,15 +1732,26 @@ object VoltageCompensatorUserDefined
 extends
     Parseable[VoltageCompensatorUserDefined]
 {
-    val proprietary = parse_element (element ("""VoltageCompensatorUserDefined.proprietary"""))
+    val fields: Array[String] = Array[String] (
+        "proprietary"
+    )
+    val proprietary: Fielder = parse_element (element (cls, fields(0)))
+
     def parse (context: Context): VoltageCompensatorUserDefined =
     {
-        VoltageCompensatorUserDefined(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = VoltageCompensatorUserDefined (
             VoltageCompensatorDynamics.parse (context),
-            toBoolean (proprietary (context), context)
+            toBoolean (mask (proprietary (), 0))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -1465,6 +1790,12 @@ extends
      */
     def this () = { this (null, false) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -1484,14 +1815,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:WindPlantUserDefined.proprietary>" + proprietary + "</cim:WindPlantUserDefined.proprietary>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = WindPlantUserDefined.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindPlantUserDefined.fields (position), value)
+        emitelem (0, proprietary)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:WindPlantUserDefined rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:WindPlantUserDefined>"
+        "\t<cim:WindPlantUserDefined rdf:ID=\"%s\">\n%s\t</cim:WindPlantUserDefined>".format (id, export_fields)
     }
 }
 
@@ -1499,15 +1832,26 @@ object WindPlantUserDefined
 extends
     Parseable[WindPlantUserDefined]
 {
-    val proprietary = parse_element (element ("""WindPlantUserDefined.proprietary"""))
+    val fields: Array[String] = Array[String] (
+        "proprietary"
+    )
+    val proprietary: Fielder = parse_element (element (cls, fields(0)))
+
     def parse (context: Context): WindPlantUserDefined =
     {
-        WindPlantUserDefined(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = WindPlantUserDefined (
             WindPlantDynamics.parse (context),
-            toBoolean (proprietary (context), context)
+            toBoolean (mask (proprietary (), 0))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -1546,6 +1890,12 @@ extends
      */
     def this () = { this (null, false) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -1565,14 +1915,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:WindType1or2UserDefined.proprietary>" + proprietary + "</cim:WindType1or2UserDefined.proprietary>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = WindType1or2UserDefined.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindType1or2UserDefined.fields (position), value)
+        emitelem (0, proprietary)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:WindType1or2UserDefined rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:WindType1or2UserDefined>"
+        "\t<cim:WindType1or2UserDefined rdf:ID=\"%s\">\n%s\t</cim:WindType1or2UserDefined>".format (id, export_fields)
     }
 }
 
@@ -1580,15 +1932,26 @@ object WindType1or2UserDefined
 extends
     Parseable[WindType1or2UserDefined]
 {
-    val proprietary = parse_element (element ("""WindType1or2UserDefined.proprietary"""))
+    val fields: Array[String] = Array[String] (
+        "proprietary"
+    )
+    val proprietary: Fielder = parse_element (element (cls, fields(0)))
+
     def parse (context: Context): WindType1or2UserDefined =
     {
-        WindType1or2UserDefined(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = WindType1or2UserDefined (
             WindTurbineType1or2Dynamics.parse (context),
-            toBoolean (proprietary (context), context)
+            toBoolean (mask (proprietary (), 0))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -1627,6 +1990,12 @@ extends
      */
     def this () = { this (null, false) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -1646,14 +2015,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:WindType3or4UserDefined.proprietary>" + proprietary + "</cim:WindType3or4UserDefined.proprietary>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = WindType3or4UserDefined.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindType3or4UserDefined.fields (position), value)
+        emitelem (0, proprietary)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:WindType3or4UserDefined rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:WindType3or4UserDefined>"
+        "\t<cim:WindType3or4UserDefined rdf:ID=\"%s\">\n%s\t</cim:WindType3or4UserDefined>".format (id, export_fields)
     }
 }
 
@@ -1661,15 +2032,26 @@ object WindType3or4UserDefined
 extends
     Parseable[WindType3or4UserDefined]
 {
-    val proprietary = parse_element (element ("""WindType3or4UserDefined.proprietary"""))
+    val fields: Array[String] = Array[String] (
+        "proprietary"
+    )
+    val proprietary: Fielder = parse_element (element (cls, fields(0)))
+
     def parse (context: Context): WindType3or4UserDefined =
     {
-        WindType3or4UserDefined(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = WindType3or4UserDefined (
             WindTurbineType3or4Dynamics.parse (context),
-            toBoolean (proprietary (context), context)
+            toBoolean (mask (proprietary (), 0))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 private[ninecode] object _UserDefinedModels

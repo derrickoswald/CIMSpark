@@ -42,6 +42,12 @@ extends
      */
     def this () = { this (null, null, 0.0, null, null, null, null, List(), null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -61,21 +67,25 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != action) "\t\t<cim:FTR.action>" + action + "</cim:FTR.action>\n" else "") +
-        "\t\t<cim:FTR.baseEnergy>" + baseEnergy + "</cim:FTR.baseEnergy>\n" +
-        (if (null != ftrType) "\t\t<cim:FTR.ftrType>" + ftrType + "</cim:FTR.ftrType>\n" else "") +
-        (if (null != optimized) "\t\t<cim:FTR.optimized>" + optimized + "</cim:FTR.optimized>\n" else "") +
-        (if (null != EnergyPriceCurve) "\t\t<cim:FTR.EnergyPriceCurve rdf:resource=\"#" + EnergyPriceCurve + "\"/>\n" else "") +
-        (if (null != Flowgate) "\t\t<cim:FTR.Flowgate rdf:resource=\"#" + Flowgate + "\"/>\n" else "") +
-        (if (null != Pnodes) Pnodes.map (x => "\t\t<cim:FTR.Pnodes rdf:resource=\"#" + x + "\"/>\n").mkString else "") +
-        (if (null != _class) "\t\t<cim:FTR.class>" + _class + "</cim:FTR.class>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = FTR.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (FTR.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (FTR.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (FTR.fields (position), x))
+        emitelem (0, action)
+        emitelem (1, baseEnergy)
+        emitelem (2, ftrType)
+        emitelem (3, optimized)
+        emitattr (4, EnergyPriceCurve)
+        emitattr (5, Flowgate)
+        emitattrs (6, Pnodes)
+        emitelem (7, _class)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:FTR rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:FTR>"
+        "\t<cim:FTR rdf:ID=\"%s\">\n%s\t</cim:FTR>".format (id, export_fields)
     }
 }
 
@@ -83,32 +93,50 @@ object FTR
 extends
     Parseable[FTR]
 {
-    val action = parse_element (element ("""FTR.action"""))
-    val baseEnergy = parse_element (element ("""FTR.baseEnergy"""))
-    val ftrType = parse_element (element ("""FTR.ftrType"""))
-    val optimized = parse_element (element ("""FTR.optimized"""))
-    val EnergyPriceCurve = parse_attribute (attribute ("""FTR.EnergyPriceCurve"""))
-    val Flowgate = parse_attribute (attribute ("""FTR.Flowgate"""))
-    val Pnodes = parse_attributes (attribute ("""FTR.Pnodes"""))
-    val _class = parse_element (element ("""FTR.class"""))
+    val fields: Array[String] = Array[String] (
+        "action",
+        "baseEnergy",
+        "ftrType",
+        "optimized",
+        "EnergyPriceCurve",
+        "Flowgate",
+        "Pnodes",
+        "class"
+    )
+    val action: Fielder = parse_element (element (cls, fields(0)))
+    val baseEnergy: Fielder = parse_element (element (cls, fields(1)))
+    val ftrType: Fielder = parse_element (element (cls, fields(2)))
+    val optimized: Fielder = parse_element (element (cls, fields(3)))
+    val EnergyPriceCurve: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val Flowgate: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val Pnodes: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
+    val _class: Fielder = parse_element (element (cls, fields(7)))
+
     def parse (context: Context): FTR =
     {
-        FTR(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        def masks (field: Fields, position: Int): List[String] = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = FTR (
             Agreement.parse (context),
-            action (context),
-            toDouble (baseEnergy (context), context),
-            ftrType (context),
-            optimized (context),
-            EnergyPriceCurve (context),
-            Flowgate (context),
-            Pnodes (context),
-            _class (context)
+            mask (action (), 0),
+            toDouble (mask (baseEnergy (), 1)),
+            mask (ftrType (), 2),
+            mask (optimized (), 3),
+            mask (EnergyPriceCurve (), 4),
+            mask (Flowgate (), 5),
+            masks (Pnodes (), 6),
+            mask (_class (), 7)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("EnergyPriceCurve", "EnergyPriceCurve", false),
         Relationship ("Flowgate", "Flowgate", false),
-        Relationship ("Pnodes", "Pnode", true))
+        Relationship ("Pnodes", "Pnode", true)
+    )
 }
 
 /**
@@ -138,6 +166,12 @@ extends
      */
     def this () = { this (null, false, null, null, List()) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -157,17 +191,21 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ViolationLimit.enforced>" + enforced + "</cim:ViolationLimit.enforced>\n" +
-        (if (null != Flowgate) "\t\t<cim:ViolationLimit.Flowgate rdf:resource=\"#" + Flowgate + "\"/>\n" else "") +
-        (if (null != MktMeasurement) "\t\t<cim:ViolationLimit.MktMeasurement rdf:resource=\"#" + MktMeasurement + "\"/>\n" else "") +
-        (if (null != MktOrganisation) MktOrganisation.map (x => "\t\t<cim:ViolationLimit.MktOrganisation rdf:resource=\"#" + x + "\"/>\n").mkString else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ViolationLimit.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ViolationLimit.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ViolationLimit.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ViolationLimit.fields (position), x))
+        emitelem (0, enforced)
+        emitattr (1, Flowgate)
+        emitattr (2, MktMeasurement)
+        emitattrs (3, MktOrganisation)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ViolationLimit rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ViolationLimit>"
+        "\t<cim:ViolationLimit rdf:ID=\"%s\">\n%s\t</cim:ViolationLimit>".format (id, export_fields)
     }
 }
 
@@ -175,24 +213,38 @@ object ViolationLimit
 extends
     Parseable[ViolationLimit]
 {
-    val enforced = parse_element (element ("""ViolationLimit.enforced"""))
-    val Flowgate = parse_attribute (attribute ("""ViolationLimit.Flowgate"""))
-    val MktMeasurement = parse_attribute (attribute ("""ViolationLimit.MktMeasurement"""))
-    val MktOrganisation = parse_attributes (attribute ("""ViolationLimit.MktOrganisation"""))
+    val fields: Array[String] = Array[String] (
+        "enforced",
+        "Flowgate",
+        "MktMeasurement",
+        "MktOrganisation"
+    )
+    val enforced: Fielder = parse_element (element (cls, fields(0)))
+    val Flowgate: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val MktMeasurement: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val MktOrganisation: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+
     def parse (context: Context): ViolationLimit =
     {
-        ViolationLimit(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        def masks (field: Fields, position: Int): List[String] = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ViolationLimit (
             Limit.parse (context),
-            toBoolean (enforced (context), context),
-            Flowgate (context),
-            MktMeasurement (context),
-            MktOrganisation (context)
+            toBoolean (mask (enforced (), 0)),
+            mask (Flowgate (), 1),
+            mask (MktMeasurement (), 2),
+            masks (MktOrganisation (), 3)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("Flowgate", "Flowgate", false),
         Relationship ("MktMeasurement", "MktMeasurement", false),
-        Relationship ("MktOrganisation", "MktOrganisation", true))
+        Relationship ("MktOrganisation", "MktOrganisation", true)
+    )
 }
 
 private[ninecode] object _InfCongestionRevenueRights

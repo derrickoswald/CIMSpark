@@ -33,6 +33,12 @@ extends
      */
     def this () = { this (null, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -52,15 +58,17 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != date) "\t\t<cim:IEC61968CIMVersion.date>" + date + "</cim:IEC61968CIMVersion.date>\n" else "") +
-        (if (null != version) "\t\t<cim:IEC61968CIMVersion.version>" + version + "</cim:IEC61968CIMVersion.version>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = IEC61968CIMVersion.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (IEC61968CIMVersion.fields (position), value)
+        emitelem (0, date)
+        emitelem (1, version)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:IEC61968CIMVersion rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:IEC61968CIMVersion>"
+        "\t<cim:IEC61968CIMVersion rdf:ID=\"%s\">\n%s\t</cim:IEC61968CIMVersion>".format (id, export_fields)
     }
 }
 
@@ -68,17 +76,29 @@ object IEC61968CIMVersion
 extends
     Parseable[IEC61968CIMVersion]
 {
-    val date = parse_element (element ("""IEC61968CIMVersion.date"""))
-    val version = parse_element (element ("""IEC61968CIMVersion.version"""))
+    val fields: Array[String] = Array[String] (
+        "date",
+        "version"
+    )
+    val date: Fielder = parse_element (element (cls, fields(0)))
+    val version: Fielder = parse_element (element (cls, fields(1)))
+
     def parse (context: Context): IEC61968CIMVersion =
     {
-        IEC61968CIMVersion(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = IEC61968CIMVersion (
             BasicElement.parse (context),
-            date (context),
-            version (context)
+            mask (date (), 0),
+            mask (version (), 1)
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 private[ninecode] object _IEC61968

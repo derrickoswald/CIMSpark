@@ -50,6 +50,12 @@ extends
      */
     def this () = { this (null, 0, 0, null, 0, 0, null, 0.0, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -69,21 +75,23 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:BilateralTransaction.curtailTimeMax>" + curtailTimeMax + "</cim:BilateralTransaction.curtailTimeMax>\n" +
-        "\t\t<cim:BilateralTransaction.curtailTimeMin>" + curtailTimeMin + "</cim:BilateralTransaction.curtailTimeMin>\n" +
-        (if (null != marketType) "\t\t<cim:BilateralTransaction.marketType>" + marketType + "</cim:BilateralTransaction.marketType>\n" else "") +
-        "\t\t<cim:BilateralTransaction.purchaseTimeMax>" + purchaseTimeMax + "</cim:BilateralTransaction.purchaseTimeMax>\n" +
-        "\t\t<cim:BilateralTransaction.purchaseTimeMin>" + purchaseTimeMin + "</cim:BilateralTransaction.purchaseTimeMin>\n" +
-        (if (null != scope) "\t\t<cim:BilateralTransaction.scope>" + scope + "</cim:BilateralTransaction.scope>\n" else "") +
-        "\t\t<cim:BilateralTransaction.totalTranChargeMax>" + totalTranChargeMax + "</cim:BilateralTransaction.totalTranChargeMax>\n" +
-        (if (null != transactionType) "\t\t<cim:BilateralTransaction.transactionType>" + transactionType + "</cim:BilateralTransaction.transactionType>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = BilateralTransaction.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (BilateralTransaction.fields (position), value)
+        emitelem (0, curtailTimeMax)
+        emitelem (1, curtailTimeMin)
+        emitelem (2, marketType)
+        emitelem (3, purchaseTimeMax)
+        emitelem (4, purchaseTimeMin)
+        emitelem (5, scope)
+        emitelem (6, totalTranChargeMax)
+        emitelem (7, transactionType)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:BilateralTransaction rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:BilateralTransaction>"
+        "\t<cim:BilateralTransaction rdf:ID=\"%s\">\n%s\t</cim:BilateralTransaction>".format (id, export_fields)
     }
 }
 
@@ -91,29 +99,47 @@ object BilateralTransaction
 extends
     Parseable[BilateralTransaction]
 {
-    val curtailTimeMax = parse_element (element ("""BilateralTransaction.curtailTimeMax"""))
-    val curtailTimeMin = parse_element (element ("""BilateralTransaction.curtailTimeMin"""))
-    val marketType = parse_element (element ("""BilateralTransaction.marketType"""))
-    val purchaseTimeMax = parse_element (element ("""BilateralTransaction.purchaseTimeMax"""))
-    val purchaseTimeMin = parse_element (element ("""BilateralTransaction.purchaseTimeMin"""))
-    val scope = parse_element (element ("""BilateralTransaction.scope"""))
-    val totalTranChargeMax = parse_element (element ("""BilateralTransaction.totalTranChargeMax"""))
-    val transactionType = parse_element (element ("""BilateralTransaction.transactionType"""))
+    val fields: Array[String] = Array[String] (
+        "curtailTimeMax",
+        "curtailTimeMin",
+        "marketType",
+        "purchaseTimeMax",
+        "purchaseTimeMin",
+        "scope",
+        "totalTranChargeMax",
+        "transactionType"
+    )
+    val curtailTimeMax: Fielder = parse_element (element (cls, fields(0)))
+    val curtailTimeMin: Fielder = parse_element (element (cls, fields(1)))
+    val marketType: Fielder = parse_element (element (cls, fields(2)))
+    val purchaseTimeMax: Fielder = parse_element (element (cls, fields(3)))
+    val purchaseTimeMin: Fielder = parse_element (element (cls, fields(4)))
+    val scope: Fielder = parse_element (element (cls, fields(5)))
+    val totalTranChargeMax: Fielder = parse_element (element (cls, fields(6)))
+    val transactionType: Fielder = parse_element (element (cls, fields(7)))
+
     def parse (context: Context): BilateralTransaction =
     {
-        BilateralTransaction(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = BilateralTransaction (
             BasicElement.parse (context),
-            toInteger (curtailTimeMax (context), context),
-            toInteger (curtailTimeMin (context), context),
-            marketType (context),
-            toInteger (purchaseTimeMax (context), context),
-            toInteger (purchaseTimeMin (context), context),
-            scope (context),
-            toDouble (totalTranChargeMax (context), context),
-            transactionType (context)
+            toInteger (mask (curtailTimeMax (), 0)),
+            toInteger (mask (curtailTimeMin (), 1)),
+            mask (marketType (), 2),
+            toInteger (mask (purchaseTimeMax (), 3)),
+            toInteger (mask (purchaseTimeMin (), 4)),
+            mask (scope (), 5),
+            toDouble (mask (totalTranChargeMax (), 6)),
+            mask (transactionType (), 7)
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -138,6 +164,12 @@ extends
      */
     def this () = { this (null, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -157,14 +189,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:Participation.factor>" + factor + "</cim:Participation.factor>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = Participation.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Participation.fields (position), value)
+        emitelem (0, factor)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:Participation rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:Participation>"
+        "\t<cim:Participation rdf:ID=\"%s\">\n%s\t</cim:Participation>".format (id, export_fields)
     }
 }
 
@@ -172,15 +206,26 @@ object Participation
 extends
     Parseable[Participation]
 {
-    val factor = parse_element (element ("""Participation.factor"""))
+    val fields: Array[String] = Array[String] (
+        "factor"
+    )
+    val factor: Fielder = parse_element (element (cls, fields(0)))
+
     def parse (context: Context): Participation =
     {
-        Participation(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = Participation (
             IdentifiedObject.parse (context),
-            toDouble (factor (context), context)
+            toDouble (mask (factor (), 0))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -230,6 +275,12 @@ extends
      */
     def this () = { this (null, null, null, 0.0, null, 0.0, null, null, null, null, 0.0, null, null, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -249,26 +300,29 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != certifiedDAM) "\t\t<cim:ResourceCertification.certifiedDAM rdf:resource=\"#" + certifiedDAM + "\"/>\n" else "") +
-        (if (null != certifiedNonspinDAM) "\t\t<cim:ResourceCertification.certifiedNonspinDAM rdf:resource=\"#" + certifiedNonspinDAM + "\"/>\n" else "") +
-        "\t\t<cim:ResourceCertification.certifiedNonspinDAMMw>" + certifiedNonspinDAMMw + "</cim:ResourceCertification.certifiedNonspinDAMMw>\n" +
-        (if (null != certifiedNonspinRTM) "\t\t<cim:ResourceCertification.certifiedNonspinRTM rdf:resource=\"#" + certifiedNonspinRTM + "\"/>\n" else "") +
-        "\t\t<cim:ResourceCertification.certifiedNonspinRTMMw>" + certifiedNonspinRTMMw + "</cim:ResourceCertification.certifiedNonspinRTMMw>\n" +
-        (if (null != certifiedPIRP) "\t\t<cim:ResourceCertification.certifiedPIRP rdf:resource=\"#" + certifiedPIRP + "\"/>\n" else "") +
-        (if (null != certifiedRTM) "\t\t<cim:ResourceCertification.certifiedRTM rdf:resource=\"#" + certifiedRTM + "\"/>\n" else "") +
-        (if (null != certifiedRUC) "\t\t<cim:ResourceCertification.certifiedRUC rdf:resource=\"#" + certifiedRUC + "\"/>\n" else "") +
-        (if (null != certifiedRegulation) "\t\t<cim:ResourceCertification.certifiedRegulation rdf:resource=\"#" + certifiedRegulation + "\"/>\n" else "") +
-        "\t\t<cim:ResourceCertification.certifiedRegulationMw>" + certifiedRegulationMw + "</cim:ResourceCertification.certifiedRegulationMw>\n" +
-        (if (null != certifiedReplaceAS) "\t\t<cim:ResourceCertification.certifiedReplaceAS rdf:resource=\"#" + certifiedReplaceAS + "\"/>\n" else "") +
-        (if (null != certifiedSpin) "\t\t<cim:ResourceCertification.certifiedSpin rdf:resource=\"#" + certifiedSpin + "\"/>\n" else "") +
-        "\t\t<cim:ResourceCertification.certifiedSpinMw>" + certifiedSpinMw + "</cim:ResourceCertification.certifiedSpinMw>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ResourceCertification.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ResourceCertification.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ResourceCertification.fields (position), value)
+        emitattr (0, certifiedDAM)
+        emitattr (1, certifiedNonspinDAM)
+        emitelem (2, certifiedNonspinDAMMw)
+        emitattr (3, certifiedNonspinRTM)
+        emitelem (4, certifiedNonspinRTMMw)
+        emitattr (5, certifiedPIRP)
+        emitattr (6, certifiedRTM)
+        emitattr (7, certifiedRUC)
+        emitattr (8, certifiedRegulation)
+        emitelem (9, certifiedRegulationMw)
+        emitattr (10, certifiedReplaceAS)
+        emitattr (11, certifiedSpin)
+        emitelem (12, certifiedSpinMw)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ResourceCertification rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ResourceCertification>"
+        "\t<cim:ResourceCertification rdf:ID=\"%s\">\n%s\t</cim:ResourceCertification>".format (id, export_fields)
     }
 }
 
@@ -276,39 +330,62 @@ object ResourceCertification
 extends
     Parseable[ResourceCertification]
 {
-    val certifiedDAM = parse_attribute (attribute ("""ResourceCertification.certifiedDAM"""))
-    val certifiedNonspinDAM = parse_attribute (attribute ("""ResourceCertification.certifiedNonspinDAM"""))
-    val certifiedNonspinDAMMw = parse_element (element ("""ResourceCertification.certifiedNonspinDAMMw"""))
-    val certifiedNonspinRTM = parse_attribute (attribute ("""ResourceCertification.certifiedNonspinRTM"""))
-    val certifiedNonspinRTMMw = parse_element (element ("""ResourceCertification.certifiedNonspinRTMMw"""))
-    val certifiedPIRP = parse_attribute (attribute ("""ResourceCertification.certifiedPIRP"""))
-    val certifiedRTM = parse_attribute (attribute ("""ResourceCertification.certifiedRTM"""))
-    val certifiedRUC = parse_attribute (attribute ("""ResourceCertification.certifiedRUC"""))
-    val certifiedRegulation = parse_attribute (attribute ("""ResourceCertification.certifiedRegulation"""))
-    val certifiedRegulationMw = parse_element (element ("""ResourceCertification.certifiedRegulationMw"""))
-    val certifiedReplaceAS = parse_attribute (attribute ("""ResourceCertification.certifiedReplaceAS"""))
-    val certifiedSpin = parse_attribute (attribute ("""ResourceCertification.certifiedSpin"""))
-    val certifiedSpinMw = parse_element (element ("""ResourceCertification.certifiedSpinMw"""))
+    val fields: Array[String] = Array[String] (
+        "certifiedDAM",
+        "certifiedNonspinDAM",
+        "certifiedNonspinDAMMw",
+        "certifiedNonspinRTM",
+        "certifiedNonspinRTMMw",
+        "certifiedPIRP",
+        "certifiedRTM",
+        "certifiedRUC",
+        "certifiedRegulation",
+        "certifiedRegulationMw",
+        "certifiedReplaceAS",
+        "certifiedSpin",
+        "certifiedSpinMw"
+    )
+    val certifiedDAM: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val certifiedNonspinDAM: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val certifiedNonspinDAMMw: Fielder = parse_element (element (cls, fields(2)))
+    val certifiedNonspinRTM: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val certifiedNonspinRTMMw: Fielder = parse_element (element (cls, fields(4)))
+    val certifiedPIRP: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val certifiedRTM: Fielder = parse_attribute (attribute (cls, fields(6)))
+    val certifiedRUC: Fielder = parse_attribute (attribute (cls, fields(7)))
+    val certifiedRegulation: Fielder = parse_attribute (attribute (cls, fields(8)))
+    val certifiedRegulationMw: Fielder = parse_element (element (cls, fields(9)))
+    val certifiedReplaceAS: Fielder = parse_attribute (attribute (cls, fields(10)))
+    val certifiedSpin: Fielder = parse_attribute (attribute (cls, fields(11)))
+    val certifiedSpinMw: Fielder = parse_element (element (cls, fields(12)))
+
     def parse (context: Context): ResourceCertification =
     {
-        ResourceCertification(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ResourceCertification (
             BasicElement.parse (context),
-            certifiedDAM (context),
-            certifiedNonspinDAM (context),
-            toDouble (certifiedNonspinDAMMw (context), context),
-            certifiedNonspinRTM (context),
-            toDouble (certifiedNonspinRTMMw (context), context),
-            certifiedPIRP (context),
-            certifiedRTM (context),
-            certifiedRUC (context),
-            certifiedRegulation (context),
-            toDouble (certifiedRegulationMw (context), context),
-            certifiedReplaceAS (context),
-            certifiedSpin (context),
-            toDouble (certifiedSpinMw (context), context)
+            mask (certifiedDAM (), 0),
+            mask (certifiedNonspinDAM (), 1),
+            toDouble (mask (certifiedNonspinDAMMw (), 2)),
+            mask (certifiedNonspinRTM (), 3),
+            toDouble (mask (certifiedNonspinRTMMw (), 4)),
+            mask (certifiedPIRP (), 5),
+            mask (certifiedRTM (), 6),
+            mask (certifiedRUC (), 7),
+            mask (certifiedRegulation (), 8),
+            toDouble (mask (certifiedRegulationMw (), 9)),
+            mask (certifiedReplaceAS (), 10),
+            mask (certifiedSpin (), 11),
+            toDouble (mask (certifiedSpinMw (), 12))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 private[ninecode] object _InfMarketOperations

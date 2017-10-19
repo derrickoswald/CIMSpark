@@ -33,6 +33,12 @@ extends
      */
     def this () = { this (null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -52,14 +58,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != ExcitationSystemDynamics) "\t\t<cim:PFVArControllerType2Dynamics.ExcitationSystemDynamics rdf:resource=\"#" + ExcitationSystemDynamics + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = PFVArControllerType2Dynamics.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PFVArControllerType2Dynamics.fields (position), value)
+        emitattr (0, ExcitationSystemDynamics)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:PFVArControllerType2Dynamics rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:PFVArControllerType2Dynamics>"
+        "\t<cim:PFVArControllerType2Dynamics rdf:ID=\"%s\">\n%s\t</cim:PFVArControllerType2Dynamics>".format (id, export_fields)
     }
 }
 
@@ -67,16 +75,26 @@ object PFVArControllerType2Dynamics
 extends
     Parseable[PFVArControllerType2Dynamics]
 {
-    val ExcitationSystemDynamics = parse_attribute (attribute ("""PFVArControllerType2Dynamics.ExcitationSystemDynamics"""))
+    val fields: Array[String] = Array[String] (
+        "ExcitationSystemDynamics"
+    )
+    val ExcitationSystemDynamics: Fielder = parse_attribute (attribute (cls, fields(0)))
+
     def parse (context: Context): PFVArControllerType2Dynamics =
     {
-        PFVArControllerType2Dynamics(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = PFVArControllerType2Dynamics (
             DynamicsFunctionBlock.parse (context),
-            ExcitationSystemDynamics (context)
+            mask (ExcitationSystemDynamics (), 0)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("ExcitationSystemDynamics", "ExcitationSystemDynamics", false))
+        Relationship ("ExcitationSystemDynamics", "ExcitationSystemDynamics", false)
+    )
 }
 
 /**
@@ -118,6 +136,12 @@ extends
      */
     def this () = { this (null, false, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -137,18 +161,20 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:PFVArType2Common1.j>" + j + "</cim:PFVArType2Common1.j>\n" +
-        "\t\t<cim:PFVArType2Common1.ki>" + ki + "</cim:PFVArType2Common1.ki>\n" +
-        "\t\t<cim:PFVArType2Common1.kp>" + kp + "</cim:PFVArType2Common1.kp>\n" +
-        "\t\t<cim:PFVArType2Common1.max>" + max + "</cim:PFVArType2Common1.max>\n" +
-        "\t\t<cim:PFVArType2Common1.ref>" + ref + "</cim:PFVArType2Common1.ref>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = PFVArType2Common1.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PFVArType2Common1.fields (position), value)
+        emitelem (0, j)
+        emitelem (1, ki)
+        emitelem (2, kp)
+        emitelem (3, max)
+        emitelem (4, ref)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:PFVArType2Common1 rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:PFVArType2Common1>"
+        "\t<cim:PFVArType2Common1 rdf:ID=\"%s\">\n%s\t</cim:PFVArType2Common1>".format (id, export_fields)
     }
 }
 
@@ -156,23 +182,38 @@ object PFVArType2Common1
 extends
     Parseable[PFVArType2Common1]
 {
-    val j = parse_element (element ("""PFVArType2Common1.j"""))
-    val ki = parse_element (element ("""PFVArType2Common1.ki"""))
-    val kp = parse_element (element ("""PFVArType2Common1.kp"""))
-    val max = parse_element (element ("""PFVArType2Common1.max"""))
-    val ref = parse_element (element ("""PFVArType2Common1.ref"""))
+    val fields: Array[String] = Array[String] (
+        "j",
+        "ki",
+        "kp",
+        "max",
+        "ref"
+    )
+    val j: Fielder = parse_element (element (cls, fields(0)))
+    val ki: Fielder = parse_element (element (cls, fields(1)))
+    val kp: Fielder = parse_element (element (cls, fields(2)))
+    val max: Fielder = parse_element (element (cls, fields(3)))
+    val ref: Fielder = parse_element (element (cls, fields(4)))
+
     def parse (context: Context): PFVArType2Common1 =
     {
-        PFVArType2Common1(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = PFVArType2Common1 (
             PFVArControllerType2Dynamics.parse (context),
-            toBoolean (j (context), context),
-            toDouble (ki (context), context),
-            toDouble (kp (context), context),
-            toDouble (max (context), context),
-            toDouble (ref (context), context)
+            toBoolean (mask (j (), 0)),
+            toDouble (mask (ki (), 1)),
+            toDouble (mask (kp (), 2)),
+            toDouble (mask (max (), 3)),
+            toDouble (mask (ref (), 4))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -220,6 +261,12 @@ extends
      */
     def this () = { this (null, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -239,20 +286,22 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:PFVArType2IEEEPFController.exlon>" + exlon + "</cim:PFVArType2IEEEPFController.exlon>\n" +
-        "\t\t<cim:PFVArType2IEEEPFController.ki>" + ki + "</cim:PFVArType2IEEEPFController.ki>\n" +
-        "\t\t<cim:PFVArType2IEEEPFController.kp>" + kp + "</cim:PFVArType2IEEEPFController.kp>\n" +
-        "\t\t<cim:PFVArType2IEEEPFController.pfref>" + pfref + "</cim:PFVArType2IEEEPFController.pfref>\n" +
-        "\t\t<cim:PFVArType2IEEEPFController.vclmt>" + vclmt + "</cim:PFVArType2IEEEPFController.vclmt>\n" +
-        "\t\t<cim:PFVArType2IEEEPFController.vref>" + vref + "</cim:PFVArType2IEEEPFController.vref>\n" +
-        "\t\t<cim:PFVArType2IEEEPFController.vs>" + vs + "</cim:PFVArType2IEEEPFController.vs>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = PFVArType2IEEEPFController.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PFVArType2IEEEPFController.fields (position), value)
+        emitelem (0, exlon)
+        emitelem (1, ki)
+        emitelem (2, kp)
+        emitelem (3, pfref)
+        emitelem (4, vclmt)
+        emitelem (5, vref)
+        emitelem (6, vs)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:PFVArType2IEEEPFController rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:PFVArType2IEEEPFController>"
+        "\t<cim:PFVArType2IEEEPFController rdf:ID=\"%s\">\n%s\t</cim:PFVArType2IEEEPFController>".format (id, export_fields)
     }
 }
 
@@ -260,27 +309,44 @@ object PFVArType2IEEEPFController
 extends
     Parseable[PFVArType2IEEEPFController]
 {
-    val exlon = parse_element (element ("""PFVArType2IEEEPFController.exlon"""))
-    val ki = parse_element (element ("""PFVArType2IEEEPFController.ki"""))
-    val kp = parse_element (element ("""PFVArType2IEEEPFController.kp"""))
-    val pfref = parse_element (element ("""PFVArType2IEEEPFController.pfref"""))
-    val vclmt = parse_element (element ("""PFVArType2IEEEPFController.vclmt"""))
-    val vref = parse_element (element ("""PFVArType2IEEEPFController.vref"""))
-    val vs = parse_element (element ("""PFVArType2IEEEPFController.vs"""))
+    val fields: Array[String] = Array[String] (
+        "exlon",
+        "ki",
+        "kp",
+        "pfref",
+        "vclmt",
+        "vref",
+        "vs"
+    )
+    val exlon: Fielder = parse_element (element (cls, fields(0)))
+    val ki: Fielder = parse_element (element (cls, fields(1)))
+    val kp: Fielder = parse_element (element (cls, fields(2)))
+    val pfref: Fielder = parse_element (element (cls, fields(3)))
+    val vclmt: Fielder = parse_element (element (cls, fields(4)))
+    val vref: Fielder = parse_element (element (cls, fields(5)))
+    val vs: Fielder = parse_element (element (cls, fields(6)))
+
     def parse (context: Context): PFVArType2IEEEPFController =
     {
-        PFVArType2IEEEPFController(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = PFVArType2IEEEPFController (
             PFVArControllerType2Dynamics.parse (context),
-            toBoolean (exlon (context), context),
-            toDouble (ki (context), context),
-            toDouble (kp (context), context),
-            toDouble (pfref (context), context),
-            toDouble (vclmt (context), context),
-            toDouble (vref (context), context),
-            toDouble (vs (context), context)
+            toBoolean (mask (exlon (), 0)),
+            toDouble (mask (ki (), 1)),
+            toDouble (mask (kp (), 2)),
+            toDouble (mask (pfref (), 3)),
+            toDouble (mask (vclmt (), 4)),
+            toDouble (mask (vref (), 5)),
+            toDouble (mask (vs (), 6))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -325,6 +391,12 @@ extends
      */
     def this () = { this (null, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -344,20 +416,22 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:PFVArType2IEEEVArController.exlon>" + exlon + "</cim:PFVArType2IEEEVArController.exlon>\n" +
-        "\t\t<cim:PFVArType2IEEEVArController.ki>" + ki + "</cim:PFVArType2IEEEVArController.ki>\n" +
-        "\t\t<cim:PFVArType2IEEEVArController.kp>" + kp + "</cim:PFVArType2IEEEVArController.kp>\n" +
-        "\t\t<cim:PFVArType2IEEEVArController.qref>" + qref + "</cim:PFVArType2IEEEVArController.qref>\n" +
-        "\t\t<cim:PFVArType2IEEEVArController.vclmt>" + vclmt + "</cim:PFVArType2IEEEVArController.vclmt>\n" +
-        "\t\t<cim:PFVArType2IEEEVArController.vref>" + vref + "</cim:PFVArType2IEEEVArController.vref>\n" +
-        "\t\t<cim:PFVArType2IEEEVArController.vs>" + vs + "</cim:PFVArType2IEEEVArController.vs>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = PFVArType2IEEEVArController.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PFVArType2IEEEVArController.fields (position), value)
+        emitelem (0, exlon)
+        emitelem (1, ki)
+        emitelem (2, kp)
+        emitelem (3, qref)
+        emitelem (4, vclmt)
+        emitelem (5, vref)
+        emitelem (6, vs)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:PFVArType2IEEEVArController rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:PFVArType2IEEEVArController>"
+        "\t<cim:PFVArType2IEEEVArController rdf:ID=\"%s\">\n%s\t</cim:PFVArType2IEEEVArController>".format (id, export_fields)
     }
 }
 
@@ -365,27 +439,44 @@ object PFVArType2IEEEVArController
 extends
     Parseable[PFVArType2IEEEVArController]
 {
-    val exlon = parse_element (element ("""PFVArType2IEEEVArController.exlon"""))
-    val ki = parse_element (element ("""PFVArType2IEEEVArController.ki"""))
-    val kp = parse_element (element ("""PFVArType2IEEEVArController.kp"""))
-    val qref = parse_element (element ("""PFVArType2IEEEVArController.qref"""))
-    val vclmt = parse_element (element ("""PFVArType2IEEEVArController.vclmt"""))
-    val vref = parse_element (element ("""PFVArType2IEEEVArController.vref"""))
-    val vs = parse_element (element ("""PFVArType2IEEEVArController.vs"""))
+    val fields: Array[String] = Array[String] (
+        "exlon",
+        "ki",
+        "kp",
+        "qref",
+        "vclmt",
+        "vref",
+        "vs"
+    )
+    val exlon: Fielder = parse_element (element (cls, fields(0)))
+    val ki: Fielder = parse_element (element (cls, fields(1)))
+    val kp: Fielder = parse_element (element (cls, fields(2)))
+    val qref: Fielder = parse_element (element (cls, fields(3)))
+    val vclmt: Fielder = parse_element (element (cls, fields(4)))
+    val vref: Fielder = parse_element (element (cls, fields(5)))
+    val vs: Fielder = parse_element (element (cls, fields(6)))
+
     def parse (context: Context): PFVArType2IEEEVArController =
     {
-        PFVArType2IEEEVArController(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = PFVArType2IEEEVArController (
             PFVArControllerType2Dynamics.parse (context),
-            toBoolean (exlon (context), context),
-            toDouble (ki (context), context),
-            toDouble (kp (context), context),
-            toDouble (qref (context), context),
-            toDouble (vclmt (context), context),
-            toDouble (vref (context), context),
-            toDouble (vs (context), context)
+            toBoolean (mask (exlon (), 0)),
+            toDouble (mask (ki (), 1)),
+            toDouble (mask (kp (), 2)),
+            toDouble (mask (qref (), 3)),
+            toDouble (mask (vclmt (), 4)),
+            toDouble (mask (vref (), 5)),
+            toDouble (mask (vs (), 6))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 private[ninecode] object _PFVArControllerType2Dynamics

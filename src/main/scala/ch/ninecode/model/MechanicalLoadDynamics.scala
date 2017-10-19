@@ -35,6 +35,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -54,17 +60,19 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:MechLoad1.a>" + a + "</cim:MechLoad1.a>\n" +
-        "\t\t<cim:MechLoad1.b>" + b + "</cim:MechLoad1.b>\n" +
-        "\t\t<cim:MechLoad1.d>" + d + "</cim:MechLoad1.d>\n" +
-        "\t\t<cim:MechLoad1.e>" + e + "</cim:MechLoad1.e>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = MechLoad1.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (MechLoad1.fields (position), value)
+        emitelem (0, a)
+        emitelem (1, b)
+        emitelem (2, d)
+        emitelem (3, e)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:MechLoad1 rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:MechLoad1>"
+        "\t<cim:MechLoad1 rdf:ID=\"%s\">\n%s\t</cim:MechLoad1>".format (id, export_fields)
     }
 }
 
@@ -72,21 +80,35 @@ object MechLoad1
 extends
     Parseable[MechLoad1]
 {
-    val a = parse_element (element ("""MechLoad1.a"""))
-    val b = parse_element (element ("""MechLoad1.b"""))
-    val d = parse_element (element ("""MechLoad1.d"""))
-    val e = parse_element (element ("""MechLoad1.e"""))
+    val fields: Array[String] = Array[String] (
+        "a",
+        "b",
+        "d",
+        "e"
+    )
+    val a: Fielder = parse_element (element (cls, fields(0)))
+    val b: Fielder = parse_element (element (cls, fields(1)))
+    val d: Fielder = parse_element (element (cls, fields(2)))
+    val e: Fielder = parse_element (element (cls, fields(3)))
+
     def parse (context: Context): MechLoad1 =
     {
-        MechLoad1(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = MechLoad1 (
             MechanicalLoadDynamics.parse (context),
-            toDouble (a (context), context),
-            toDouble (b (context), context),
-            toDouble (d (context), context),
-            toDouble (e (context), context)
+            toDouble (mask (a (), 0)),
+            toDouble (mask (b (), 1)),
+            toDouble (mask (d (), 2)),
+            toDouble (mask (e (), 3))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -113,6 +135,12 @@ extends
      */
     def this () = { this (null, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -132,15 +160,17 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != AsynchronousMachineDynamics) "\t\t<cim:MechanicalLoadDynamics.AsynchronousMachineDynamics rdf:resource=\"#" + AsynchronousMachineDynamics + "\"/>\n" else "") +
-        (if (null != SynchronousMachineDynamics) "\t\t<cim:MechanicalLoadDynamics.SynchronousMachineDynamics rdf:resource=\"#" + SynchronousMachineDynamics + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = MechanicalLoadDynamics.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (MechanicalLoadDynamics.fields (position), value)
+        emitattr (0, AsynchronousMachineDynamics)
+        emitattr (1, SynchronousMachineDynamics)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:MechanicalLoadDynamics rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:MechanicalLoadDynamics>"
+        "\t<cim:MechanicalLoadDynamics rdf:ID=\"%s\">\n%s\t</cim:MechanicalLoadDynamics>".format (id, export_fields)
     }
 }
 
@@ -148,19 +178,30 @@ object MechanicalLoadDynamics
 extends
     Parseable[MechanicalLoadDynamics]
 {
-    val AsynchronousMachineDynamics = parse_attribute (attribute ("""MechanicalLoadDynamics.AsynchronousMachineDynamics"""))
-    val SynchronousMachineDynamics = parse_attribute (attribute ("""MechanicalLoadDynamics.SynchronousMachineDynamics"""))
+    val fields: Array[String] = Array[String] (
+        "AsynchronousMachineDynamics",
+        "SynchronousMachineDynamics"
+    )
+    val AsynchronousMachineDynamics: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val SynchronousMachineDynamics: Fielder = parse_attribute (attribute (cls, fields(1)))
+
     def parse (context: Context): MechanicalLoadDynamics =
     {
-        MechanicalLoadDynamics(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = MechanicalLoadDynamics (
             DynamicsFunctionBlock.parse (context),
-            AsynchronousMachineDynamics (context),
-            SynchronousMachineDynamics (context)
+            mask (AsynchronousMachineDynamics (), 0),
+            mask (SynchronousMachineDynamics (), 1)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("AsynchronousMachineDynamics", "AsynchronousMachineDynamics", false),
-        Relationship ("SynchronousMachineDynamics", "SynchronousMachineDynamics", false))
+        Relationship ("SynchronousMachineDynamics", "SynchronousMachineDynamics", false)
+    )
 }
 
 private[ninecode] object _MechanicalLoadDynamics

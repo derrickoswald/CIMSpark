@@ -31,6 +31,12 @@ extends
      */
     def this () = { this (null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -50,14 +56,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != Terminal) "\t\t<cim:EquipmentFault.Terminal rdf:resource=\"#" + Terminal + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = EquipmentFault.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (EquipmentFault.fields (position), value)
+        emitattr (0, Terminal)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:EquipmentFault rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:EquipmentFault>"
+        "\t<cim:EquipmentFault rdf:ID=\"%s\">\n%s\t</cim:EquipmentFault>".format (id, export_fields)
     }
 }
 
@@ -65,16 +73,26 @@ object EquipmentFault
 extends
     Parseable[EquipmentFault]
 {
-    val Terminal = parse_attribute (attribute ("""EquipmentFault.Terminal"""))
+    val fields: Array[String] = Array[String] (
+        "Terminal"
+    )
+    val Terminal: Fielder = parse_attribute (attribute (cls, fields(0)))
+
     def parse (context: Context): EquipmentFault =
     {
-        EquipmentFault(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = EquipmentFault (
             Fault.parse (context),
-            Terminal (context)
+            mask (Terminal (), 0)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("Terminal", "Terminal", false))
+        Relationship ("Terminal", "Terminal", false)
+    )
 }
 
 /**
@@ -111,6 +129,12 @@ extends
      */
     def this () = { this (null, null, null, null, List(), null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -130,19 +154,22 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != impedance) "\t\t<cim:Fault.impedance rdf:resource=\"#" + impedance + "\"/>\n" else "") +
-        (if (null != kind) "\t\t<cim:Fault.kind rdf:resource=\"#" + kind + "\"/>\n" else "") +
-        (if (null != phases) "\t\t<cim:Fault.phases rdf:resource=\"#" + phases + "\"/>\n" else "") +
-        (if (null != FaultCauseTypes) FaultCauseTypes.map (x => "\t\t<cim:Fault.FaultCauseTypes rdf:resource=\"#" + x + "\"/>\n").mkString else "") +
-        (if (null != FaultyEquipment) "\t\t<cim:Fault.FaultyEquipment rdf:resource=\"#" + FaultyEquipment + "\"/>\n" else "") +
-        (if (null != Outage) "\t\t<cim:Fault.Outage rdf:resource=\"#" + Outage + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = Fault.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Fault.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Fault.fields (position), x))
+        emitattr (0, impedance)
+        emitattr (1, kind)
+        emitattr (2, phases)
+        emitattrs (3, FaultCauseTypes)
+        emitattr (4, FaultyEquipment)
+        emitattr (5, Outage)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:Fault rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:Fault>"
+        "\t<cim:Fault rdf:ID=\"%s\">\n%s\t</cim:Fault>".format (id, export_fields)
     }
 }
 
@@ -150,28 +177,44 @@ object Fault
 extends
     Parseable[Fault]
 {
-    val impedance = parse_attribute (attribute ("""Fault.impedance"""))
-    val kind = parse_attribute (attribute ("""Fault.kind"""))
-    val phases = parse_attribute (attribute ("""Fault.phases"""))
-    val FaultCauseTypes = parse_attributes (attribute ("""Fault.FaultCauseTypes"""))
-    val FaultyEquipment = parse_attribute (attribute ("""Fault.FaultyEquipment"""))
-    val Outage = parse_attribute (attribute ("""Fault.Outage"""))
+    val fields: Array[String] = Array[String] (
+        "impedance",
+        "kind",
+        "phases",
+        "FaultCauseTypes",
+        "FaultyEquipment",
+        "Outage"
+    )
+    val impedance: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val kind: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val phases: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val FaultCauseTypes: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val FaultyEquipment: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val Outage: Fielder = parse_attribute (attribute (cls, fields(5)))
+
     def parse (context: Context): Fault =
     {
-        Fault(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        def masks (field: Fields, position: Int): List[String] = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = Fault (
             IdentifiedObject.parse (context),
-            impedance (context),
-            kind (context),
-            phases (context),
-            FaultCauseTypes (context),
-            FaultyEquipment (context),
-            Outage (context)
+            mask (impedance (), 0),
+            mask (kind (), 1),
+            mask (phases (), 2),
+            masks (FaultCauseTypes (), 3),
+            mask (FaultyEquipment (), 4),
+            mask (Outage (), 5)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("FaultCauseTypes", "FaultCauseType", true),
         Relationship ("FaultyEquipment", "Equipment", false),
-        Relationship ("Outage", "Outage", false))
+        Relationship ("Outage", "Outage", false)
+    )
 }
 
 /**
@@ -194,6 +237,12 @@ extends
      */
     def this () = { this (null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -213,14 +262,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        ""
+        sup.export_fields
     }
     override def export: String =
     {
-        "\t<cim:FaultCauseType rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:FaultCauseType>"
+        "\t<cim:FaultCauseType rdf:ID=\"%s\">\n%s\t</cim:FaultCauseType>".format (id, export_fields)
     }
 }
 
@@ -228,13 +274,18 @@ object FaultCauseType
 extends
     Parseable[FaultCauseType]
 {
+
     def parse (context: Context): FaultCauseType =
     {
-        FaultCauseType(
+        implicit val ctx: Context = context
+        val ret = FaultCauseType (
             IdentifiedObject.parse (context)
         )
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -265,6 +316,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -284,17 +341,19 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:FaultImpedance.rGround>" + rGround + "</cim:FaultImpedance.rGround>\n" +
-        "\t\t<cim:FaultImpedance.rLineToLine>" + rLineToLine + "</cim:FaultImpedance.rLineToLine>\n" +
-        "\t\t<cim:FaultImpedance.xGround>" + xGround + "</cim:FaultImpedance.xGround>\n" +
-        "\t\t<cim:FaultImpedance.xLineToLine>" + xLineToLine + "</cim:FaultImpedance.xLineToLine>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = FaultImpedance.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (FaultImpedance.fields (position), value)
+        emitelem (0, rGround)
+        emitelem (1, rLineToLine)
+        emitelem (2, xGround)
+        emitelem (3, xLineToLine)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:FaultImpedance rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:FaultImpedance>"
+        "\t<cim:FaultImpedance rdf:ID=\"%s\">\n%s\t</cim:FaultImpedance>".format (id, export_fields)
     }
 }
 
@@ -302,21 +361,35 @@ object FaultImpedance
 extends
     Parseable[FaultImpedance]
 {
-    val rGround = parse_element (element ("""FaultImpedance.rGround"""))
-    val rLineToLine = parse_element (element ("""FaultImpedance.rLineToLine"""))
-    val xGround = parse_element (element ("""FaultImpedance.xGround"""))
-    val xLineToLine = parse_element (element ("""FaultImpedance.xLineToLine"""))
+    val fields: Array[String] = Array[String] (
+        "rGround",
+        "rLineToLine",
+        "xGround",
+        "xLineToLine"
+    )
+    val rGround: Fielder = parse_element (element (cls, fields(0)))
+    val rLineToLine: Fielder = parse_element (element (cls, fields(1)))
+    val xGround: Fielder = parse_element (element (cls, fields(2)))
+    val xLineToLine: Fielder = parse_element (element (cls, fields(3)))
+
     def parse (context: Context): FaultImpedance =
     {
-        FaultImpedance(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = FaultImpedance (
             BasicElement.parse (context),
-            toDouble (rGround (context), context),
-            toDouble (rLineToLine (context), context),
-            toDouble (xGround (context), context),
-            toDouble (xLineToLine (context), context)
+            toDouble (mask (rGround (), 0)),
+            toDouble (mask (rLineToLine (), 1)),
+            toDouble (mask (xGround (), 2)),
+            toDouble (mask (xLineToLine (), 3))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -343,6 +416,12 @@ extends
      */
     def this () = { this (null, 0.0, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -362,15 +441,18 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:LineFault.lengthFromTerminal1>" + lengthFromTerminal1 + "</cim:LineFault.lengthFromTerminal1>\n" +
-        (if (null != ACLineSegment) "\t\t<cim:LineFault.ACLineSegment rdf:resource=\"#" + ACLineSegment + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = LineFault.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (LineFault.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (LineFault.fields (position), value)
+        emitelem (0, lengthFromTerminal1)
+        emitattr (1, ACLineSegment)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:LineFault rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:LineFault>"
+        "\t<cim:LineFault rdf:ID=\"%s\">\n%s\t</cim:LineFault>".format (id, export_fields)
     }
 }
 
@@ -378,18 +460,29 @@ object LineFault
 extends
     Parseable[LineFault]
 {
-    val lengthFromTerminal1 = parse_element (element ("""LineFault.lengthFromTerminal1"""))
-    val ACLineSegment = parse_attribute (attribute ("""LineFault.ACLineSegment"""))
+    val fields: Array[String] = Array[String] (
+        "lengthFromTerminal1",
+        "ACLineSegment"
+    )
+    val lengthFromTerminal1: Fielder = parse_element (element (cls, fields(0)))
+    val ACLineSegment: Fielder = parse_attribute (attribute (cls, fields(1)))
+
     def parse (context: Context): LineFault =
     {
-        LineFault(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = LineFault (
             Fault.parse (context),
-            toDouble (lengthFromTerminal1 (context), context),
-            ACLineSegment (context)
+            toDouble (mask (lengthFromTerminal1 (), 0)),
+            mask (ACLineSegment (), 1)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("ACLineSegment", "ACLineSegment", false))
+        Relationship ("ACLineSegment", "ACLineSegment", false)
+    )
 }
 
 private[ninecode] object _Faults

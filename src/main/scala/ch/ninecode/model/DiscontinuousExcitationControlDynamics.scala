@@ -84,6 +84,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -103,31 +109,33 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:DiscExcContIEEEDEC1A.esc>" + esc + "</cim:DiscExcContIEEEDEC1A.esc>\n" +
-        "\t\t<cim:DiscExcContIEEEDEC1A.kan>" + kan + "</cim:DiscExcContIEEEDEC1A.kan>\n" +
-        "\t\t<cim:DiscExcContIEEEDEC1A.ketl>" + ketl + "</cim:DiscExcContIEEEDEC1A.ketl>\n" +
-        "\t\t<cim:DiscExcContIEEEDEC1A.tan>" + tan + "</cim:DiscExcContIEEEDEC1A.tan>\n" +
-        "\t\t<cim:DiscExcContIEEEDEC1A.td>" + td + "</cim:DiscExcContIEEEDEC1A.td>\n" +
-        "\t\t<cim:DiscExcContIEEEDEC1A.tl1>" + tl1 + "</cim:DiscExcContIEEEDEC1A.tl1>\n" +
-        "\t\t<cim:DiscExcContIEEEDEC1A.tl2>" + tl2 + "</cim:DiscExcContIEEEDEC1A.tl2>\n" +
-        "\t\t<cim:DiscExcContIEEEDEC1A.tw5>" + tw5 + "</cim:DiscExcContIEEEDEC1A.tw5>\n" +
-        "\t\t<cim:DiscExcContIEEEDEC1A.vanmax>" + vanmax + "</cim:DiscExcContIEEEDEC1A.vanmax>\n" +
-        "\t\t<cim:DiscExcContIEEEDEC1A.vomax>" + vomax + "</cim:DiscExcContIEEEDEC1A.vomax>\n" +
-        "\t\t<cim:DiscExcContIEEEDEC1A.vomin>" + vomin + "</cim:DiscExcContIEEEDEC1A.vomin>\n" +
-        "\t\t<cim:DiscExcContIEEEDEC1A.vsmax>" + vsmax + "</cim:DiscExcContIEEEDEC1A.vsmax>\n" +
-        "\t\t<cim:DiscExcContIEEEDEC1A.vsmin>" + vsmin + "</cim:DiscExcContIEEEDEC1A.vsmin>\n" +
-        "\t\t<cim:DiscExcContIEEEDEC1A.vtc>" + vtc + "</cim:DiscExcContIEEEDEC1A.vtc>\n" +
-        "\t\t<cim:DiscExcContIEEEDEC1A.vtlmt>" + vtlmt + "</cim:DiscExcContIEEEDEC1A.vtlmt>\n" +
-        "\t\t<cim:DiscExcContIEEEDEC1A.vtm>" + vtm + "</cim:DiscExcContIEEEDEC1A.vtm>\n" +
-        "\t\t<cim:DiscExcContIEEEDEC1A.vtn>" + vtn + "</cim:DiscExcContIEEEDEC1A.vtn>\n" +
-        "\t\t<cim:DiscExcContIEEEDEC1A.val>" + _val + "</cim:DiscExcContIEEEDEC1A.val>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = DiscExcContIEEEDEC1A.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (DiscExcContIEEEDEC1A.fields (position), value)
+        emitelem (0, esc)
+        emitelem (1, kan)
+        emitelem (2, ketl)
+        emitelem (3, tan)
+        emitelem (4, td)
+        emitelem (5, tl1)
+        emitelem (6, tl2)
+        emitelem (7, tw5)
+        emitelem (8, vanmax)
+        emitelem (9, vomax)
+        emitelem (10, vomin)
+        emitelem (11, vsmax)
+        emitelem (12, vsmin)
+        emitelem (13, vtc)
+        emitelem (14, vtlmt)
+        emitelem (15, vtm)
+        emitelem (16, vtn)
+        emitelem (17, _val)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:DiscExcContIEEEDEC1A rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:DiscExcContIEEEDEC1A>"
+        "\t<cim:DiscExcContIEEEDEC1A rdf:ID=\"%s\">\n%s\t</cim:DiscExcContIEEEDEC1A>".format (id, export_fields)
     }
 }
 
@@ -135,49 +143,77 @@ object DiscExcContIEEEDEC1A
 extends
     Parseable[DiscExcContIEEEDEC1A]
 {
-    val esc = parse_element (element ("""DiscExcContIEEEDEC1A.esc"""))
-    val kan = parse_element (element ("""DiscExcContIEEEDEC1A.kan"""))
-    val ketl = parse_element (element ("""DiscExcContIEEEDEC1A.ketl"""))
-    val tan = parse_element (element ("""DiscExcContIEEEDEC1A.tan"""))
-    val td = parse_element (element ("""DiscExcContIEEEDEC1A.td"""))
-    val tl1 = parse_element (element ("""DiscExcContIEEEDEC1A.tl1"""))
-    val tl2 = parse_element (element ("""DiscExcContIEEEDEC1A.tl2"""))
-    val tw5 = parse_element (element ("""DiscExcContIEEEDEC1A.tw5"""))
-    val vanmax = parse_element (element ("""DiscExcContIEEEDEC1A.vanmax"""))
-    val vomax = parse_element (element ("""DiscExcContIEEEDEC1A.vomax"""))
-    val vomin = parse_element (element ("""DiscExcContIEEEDEC1A.vomin"""))
-    val vsmax = parse_element (element ("""DiscExcContIEEEDEC1A.vsmax"""))
-    val vsmin = parse_element (element ("""DiscExcContIEEEDEC1A.vsmin"""))
-    val vtc = parse_element (element ("""DiscExcContIEEEDEC1A.vtc"""))
-    val vtlmt = parse_element (element ("""DiscExcContIEEEDEC1A.vtlmt"""))
-    val vtm = parse_element (element ("""DiscExcContIEEEDEC1A.vtm"""))
-    val vtn = parse_element (element ("""DiscExcContIEEEDEC1A.vtn"""))
-    val _val = parse_element (element ("""DiscExcContIEEEDEC1A.val"""))
+    val fields: Array[String] = Array[String] (
+        "esc",
+        "kan",
+        "ketl",
+        "tan",
+        "td",
+        "tl1",
+        "tl2",
+        "tw5",
+        "vanmax",
+        "vomax",
+        "vomin",
+        "vsmax",
+        "vsmin",
+        "vtc",
+        "vtlmt",
+        "vtm",
+        "vtn",
+        "val"
+    )
+    val esc: Fielder = parse_element (element (cls, fields(0)))
+    val kan: Fielder = parse_element (element (cls, fields(1)))
+    val ketl: Fielder = parse_element (element (cls, fields(2)))
+    val tan: Fielder = parse_element (element (cls, fields(3)))
+    val td: Fielder = parse_element (element (cls, fields(4)))
+    val tl1: Fielder = parse_element (element (cls, fields(5)))
+    val tl2: Fielder = parse_element (element (cls, fields(6)))
+    val tw5: Fielder = parse_element (element (cls, fields(7)))
+    val vanmax: Fielder = parse_element (element (cls, fields(8)))
+    val vomax: Fielder = parse_element (element (cls, fields(9)))
+    val vomin: Fielder = parse_element (element (cls, fields(10)))
+    val vsmax: Fielder = parse_element (element (cls, fields(11)))
+    val vsmin: Fielder = parse_element (element (cls, fields(12)))
+    val vtc: Fielder = parse_element (element (cls, fields(13)))
+    val vtlmt: Fielder = parse_element (element (cls, fields(14)))
+    val vtm: Fielder = parse_element (element (cls, fields(15)))
+    val vtn: Fielder = parse_element (element (cls, fields(16)))
+    val _val: Fielder = parse_element (element (cls, fields(17)))
+
     def parse (context: Context): DiscExcContIEEEDEC1A =
     {
-        DiscExcContIEEEDEC1A(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = DiscExcContIEEEDEC1A (
             DiscontinuousExcitationControlDynamics.parse (context),
-            toDouble (esc (context), context),
-            toDouble (kan (context), context),
-            toDouble (ketl (context), context),
-            toDouble (tan (context), context),
-            toDouble (td (context), context),
-            toDouble (tl1 (context), context),
-            toDouble (tl2 (context), context),
-            toDouble (tw5 (context), context),
-            toDouble (vanmax (context), context),
-            toDouble (vomax (context), context),
-            toDouble (vomin (context), context),
-            toDouble (vsmax (context), context),
-            toDouble (vsmin (context), context),
-            toDouble (vtc (context), context),
-            toDouble (vtlmt (context), context),
-            toDouble (vtm (context), context),
-            toDouble (vtn (context), context),
-            toDouble (_val (context), context)
+            toDouble (mask (esc (), 0)),
+            toDouble (mask (kan (), 1)),
+            toDouble (mask (ketl (), 2)),
+            toDouble (mask (tan (), 3)),
+            toDouble (mask (td (), 4)),
+            toDouble (mask (tl1 (), 5)),
+            toDouble (mask (tl2 (), 6)),
+            toDouble (mask (tw5 (), 7)),
+            toDouble (mask (vanmax (), 8)),
+            toDouble (mask (vomax (), 9)),
+            toDouble (mask (vomin (), 10)),
+            toDouble (mask (vsmax (), 11)),
+            toDouble (mask (vsmin (), 12)),
+            toDouble (mask (vtc (), 13)),
+            toDouble (mask (vtlmt (), 14)),
+            toDouble (mask (vtm (), 15)),
+            toDouble (mask (vtn (), 16)),
+            toDouble (mask (_val (), 17))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -214,6 +250,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -233,18 +275,20 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:DiscExcContIEEEDEC2A.td1>" + td1 + "</cim:DiscExcContIEEEDEC2A.td1>\n" +
-        "\t\t<cim:DiscExcContIEEEDEC2A.td2>" + td2 + "</cim:DiscExcContIEEEDEC2A.td2>\n" +
-        "\t\t<cim:DiscExcContIEEEDEC2A.vdmax>" + vdmax + "</cim:DiscExcContIEEEDEC2A.vdmax>\n" +
-        "\t\t<cim:DiscExcContIEEEDEC2A.vdmin>" + vdmin + "</cim:DiscExcContIEEEDEC2A.vdmin>\n" +
-        "\t\t<cim:DiscExcContIEEEDEC2A.vk>" + vk + "</cim:DiscExcContIEEEDEC2A.vk>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = DiscExcContIEEEDEC2A.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (DiscExcContIEEEDEC2A.fields (position), value)
+        emitelem (0, td1)
+        emitelem (1, td2)
+        emitelem (2, vdmax)
+        emitelem (3, vdmin)
+        emitelem (4, vk)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:DiscExcContIEEEDEC2A rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:DiscExcContIEEEDEC2A>"
+        "\t<cim:DiscExcContIEEEDEC2A rdf:ID=\"%s\">\n%s\t</cim:DiscExcContIEEEDEC2A>".format (id, export_fields)
     }
 }
 
@@ -252,23 +296,38 @@ object DiscExcContIEEEDEC2A
 extends
     Parseable[DiscExcContIEEEDEC2A]
 {
-    val td1 = parse_element (element ("""DiscExcContIEEEDEC2A.td1"""))
-    val td2 = parse_element (element ("""DiscExcContIEEEDEC2A.td2"""))
-    val vdmax = parse_element (element ("""DiscExcContIEEEDEC2A.vdmax"""))
-    val vdmin = parse_element (element ("""DiscExcContIEEEDEC2A.vdmin"""))
-    val vk = parse_element (element ("""DiscExcContIEEEDEC2A.vk"""))
+    val fields: Array[String] = Array[String] (
+        "td1",
+        "td2",
+        "vdmax",
+        "vdmin",
+        "vk"
+    )
+    val td1: Fielder = parse_element (element (cls, fields(0)))
+    val td2: Fielder = parse_element (element (cls, fields(1)))
+    val vdmax: Fielder = parse_element (element (cls, fields(2)))
+    val vdmin: Fielder = parse_element (element (cls, fields(3)))
+    val vk: Fielder = parse_element (element (cls, fields(4)))
+
     def parse (context: Context): DiscExcContIEEEDEC2A =
     {
-        DiscExcContIEEEDEC2A(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = DiscExcContIEEEDEC2A (
             DiscontinuousExcitationControlDynamics.parse (context),
-            toDouble (td1 (context), context),
-            toDouble (td2 (context), context),
-            toDouble (vdmax (context), context),
-            toDouble (vdmin (context), context),
-            toDouble (vk (context), context)
+            toDouble (mask (td1 (), 0)),
+            toDouble (mask (td2 (), 1)),
+            toDouble (mask (vdmax (), 2)),
+            toDouble (mask (vdmin (), 3)),
+            toDouble (mask (vk (), 4))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -299,6 +358,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -318,15 +383,17 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:DiscExcContIEEEDEC3A.tdr>" + tdr + "</cim:DiscExcContIEEEDEC3A.tdr>\n" +
-        "\t\t<cim:DiscExcContIEEEDEC3A.vtmin>" + vtmin + "</cim:DiscExcContIEEEDEC3A.vtmin>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = DiscExcContIEEEDEC3A.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (DiscExcContIEEEDEC3A.fields (position), value)
+        emitelem (0, tdr)
+        emitelem (1, vtmin)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:DiscExcContIEEEDEC3A rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:DiscExcContIEEEDEC3A>"
+        "\t<cim:DiscExcContIEEEDEC3A rdf:ID=\"%s\">\n%s\t</cim:DiscExcContIEEEDEC3A>".format (id, export_fields)
     }
 }
 
@@ -334,17 +401,29 @@ object DiscExcContIEEEDEC3A
 extends
     Parseable[DiscExcContIEEEDEC3A]
 {
-    val tdr = parse_element (element ("""DiscExcContIEEEDEC3A.tdr"""))
-    val vtmin = parse_element (element ("""DiscExcContIEEEDEC3A.vtmin"""))
+    val fields: Array[String] = Array[String] (
+        "tdr",
+        "vtmin"
+    )
+    val tdr: Fielder = parse_element (element (cls, fields(0)))
+    val vtmin: Fielder = parse_element (element (cls, fields(1)))
+
     def parse (context: Context): DiscExcContIEEEDEC3A =
     {
-        DiscExcContIEEEDEC3A(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = DiscExcContIEEEDEC3A (
             DiscontinuousExcitationControlDynamics.parse (context),
-            toDouble (tdr (context), context),
-            toDouble (vtmin (context), context)
+            toDouble (mask (tdr (), 0)),
+            toDouble (mask (vtmin (), 1))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -373,6 +452,12 @@ extends
      */
     def this () = { this (null, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -392,15 +477,17 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != ExcitationSystemDynamics) "\t\t<cim:DiscontinuousExcitationControlDynamics.ExcitationSystemDynamics rdf:resource=\"#" + ExcitationSystemDynamics + "\"/>\n" else "") +
-        (if (null != RemoteInputSignal) "\t\t<cim:DiscontinuousExcitationControlDynamics.RemoteInputSignal rdf:resource=\"#" + RemoteInputSignal + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = DiscontinuousExcitationControlDynamics.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (DiscontinuousExcitationControlDynamics.fields (position), value)
+        emitattr (0, ExcitationSystemDynamics)
+        emitattr (1, RemoteInputSignal)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:DiscontinuousExcitationControlDynamics rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:DiscontinuousExcitationControlDynamics>"
+        "\t<cim:DiscontinuousExcitationControlDynamics rdf:ID=\"%s\">\n%s\t</cim:DiscontinuousExcitationControlDynamics>".format (id, export_fields)
     }
 }
 
@@ -408,19 +495,30 @@ object DiscontinuousExcitationControlDynamics
 extends
     Parseable[DiscontinuousExcitationControlDynamics]
 {
-    val ExcitationSystemDynamics = parse_attribute (attribute ("""DiscontinuousExcitationControlDynamics.ExcitationSystemDynamics"""))
-    val RemoteInputSignal = parse_attribute (attribute ("""DiscontinuousExcitationControlDynamics.RemoteInputSignal"""))
+    val fields: Array[String] = Array[String] (
+        "ExcitationSystemDynamics",
+        "RemoteInputSignal"
+    )
+    val ExcitationSystemDynamics: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val RemoteInputSignal: Fielder = parse_attribute (attribute (cls, fields(1)))
+
     def parse (context: Context): DiscontinuousExcitationControlDynamics =
     {
-        DiscontinuousExcitationControlDynamics(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = DiscontinuousExcitationControlDynamics (
             DynamicsFunctionBlock.parse (context),
-            ExcitationSystemDynamics (context),
-            RemoteInputSignal (context)
+            mask (ExcitationSystemDynamics (), 0),
+            mask (RemoteInputSignal (), 1)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("ExcitationSystemDynamics", "ExcitationSystemDynamics", false),
-        Relationship ("RemoteInputSignal", "RemoteInputSignal", false))
+        Relationship ("RemoteInputSignal", "RemoteInputSignal", false)
+    )
 }
 
 private[ninecode] object _DiscontinuousExcitationControlDynamics

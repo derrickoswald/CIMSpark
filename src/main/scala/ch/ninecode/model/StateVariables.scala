@@ -27,6 +27,12 @@ extends
      */
     def this () = { this (null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -46,14 +52,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        ""
+        sup.export_fields
     }
     override def export: String =
     {
-        "\t<cim:StateVariable rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:StateVariable>"
+        "\t<cim:StateVariable rdf:ID=\"%s\">\n%s\t</cim:StateVariable>".format (id, export_fields)
     }
 }
 
@@ -61,13 +64,18 @@ object StateVariable
 extends
     Parseable[StateVariable]
 {
+
     def parse (context: Context): StateVariable =
     {
-        StateVariable(
+        implicit val ctx: Context = context
+        val ret = StateVariable (
             BasicElement.parse (context)
         )
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -100,6 +108,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -119,16 +133,19 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:SvInjection.pInjection>" + pInjection + "</cim:SvInjection.pInjection>\n" +
-        "\t\t<cim:SvInjection.qInjection>" + qInjection + "</cim:SvInjection.qInjection>\n" +
-        (if (null != TopologicalNode) "\t\t<cim:SvInjection.TopologicalNode rdf:resource=\"#" + TopologicalNode + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = SvInjection.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (SvInjection.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (SvInjection.fields (position), value)
+        emitelem (0, pInjection)
+        emitelem (1, qInjection)
+        emitattr (2, TopologicalNode)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:SvInjection rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:SvInjection>"
+        "\t<cim:SvInjection rdf:ID=\"%s\">\n%s\t</cim:SvInjection>".format (id, export_fields)
     }
 }
 
@@ -136,20 +153,32 @@ object SvInjection
 extends
     Parseable[SvInjection]
 {
-    val pInjection = parse_element (element ("""SvInjection.pInjection"""))
-    val qInjection = parse_element (element ("""SvInjection.qInjection"""))
-    val TopologicalNode = parse_attribute (attribute ("""SvInjection.TopologicalNode"""))
+    val fields: Array[String] = Array[String] (
+        "pInjection",
+        "qInjection",
+        "TopologicalNode"
+    )
+    val pInjection: Fielder = parse_element (element (cls, fields(0)))
+    val qInjection: Fielder = parse_element (element (cls, fields(1)))
+    val TopologicalNode: Fielder = parse_attribute (attribute (cls, fields(2)))
+
     def parse (context: Context): SvInjection =
     {
-        SvInjection(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = SvInjection (
             StateVariable.parse (context),
-            toDouble (pInjection (context), context),
-            toDouble (qInjection (context), context),
-            TopologicalNode (context)
+            toDouble (mask (pInjection (), 0)),
+            toDouble (mask (qInjection (), 1)),
+            mask (TopologicalNode (), 2)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("TopologicalNode", "TopologicalNode", false))
+        Relationship ("TopologicalNode", "TopologicalNode", false)
+    )
 }
 
 /**
@@ -182,6 +211,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -201,16 +236,19 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:SvPowerFlow.p>" + p + "</cim:SvPowerFlow.p>\n" +
-        "\t\t<cim:SvPowerFlow.q>" + q + "</cim:SvPowerFlow.q>\n" +
-        (if (null != Terminal) "\t\t<cim:SvPowerFlow.Terminal rdf:resource=\"#" + Terminal + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = SvPowerFlow.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (SvPowerFlow.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (SvPowerFlow.fields (position), value)
+        emitelem (0, p)
+        emitelem (1, q)
+        emitattr (2, Terminal)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:SvPowerFlow rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:SvPowerFlow>"
+        "\t<cim:SvPowerFlow rdf:ID=\"%s\">\n%s\t</cim:SvPowerFlow>".format (id, export_fields)
     }
 }
 
@@ -218,20 +256,32 @@ object SvPowerFlow
 extends
     Parseable[SvPowerFlow]
 {
-    val p = parse_element (element ("""SvPowerFlow.p"""))
-    val q = parse_element (element ("""SvPowerFlow.q"""))
-    val Terminal = parse_attribute (attribute ("""SvPowerFlow.Terminal"""))
+    val fields: Array[String] = Array[String] (
+        "p",
+        "q",
+        "Terminal"
+    )
+    val p: Fielder = parse_element (element (cls, fields(0)))
+    val q: Fielder = parse_element (element (cls, fields(1)))
+    val Terminal: Fielder = parse_attribute (attribute (cls, fields(2)))
+
     def parse (context: Context): SvPowerFlow =
     {
-        SvPowerFlow(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = SvPowerFlow (
             StateVariable.parse (context),
-            toDouble (p (context), context),
-            toDouble (q (context), context),
-            Terminal (context)
+            toDouble (mask (p (), 0)),
+            toDouble (mask (q (), 1)),
+            mask (Terminal (), 2)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("Terminal", "Terminal", false))
+        Relationship ("Terminal", "Terminal", false)
+    )
 }
 
 /**
@@ -259,6 +309,12 @@ extends
      */
     def this () = { this (null, 0.0, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -278,15 +334,18 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:SvShuntCompensatorSections.sections>" + sections + "</cim:SvShuntCompensatorSections.sections>\n" +
-        (if (null != ShuntCompensator) "\t\t<cim:SvShuntCompensatorSections.ShuntCompensator rdf:resource=\"#" + ShuntCompensator + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = SvShuntCompensatorSections.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (SvShuntCompensatorSections.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (SvShuntCompensatorSections.fields (position), value)
+        emitelem (0, sections)
+        emitattr (1, ShuntCompensator)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:SvShuntCompensatorSections rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:SvShuntCompensatorSections>"
+        "\t<cim:SvShuntCompensatorSections rdf:ID=\"%s\">\n%s\t</cim:SvShuntCompensatorSections>".format (id, export_fields)
     }
 }
 
@@ -294,18 +353,29 @@ object SvShuntCompensatorSections
 extends
     Parseable[SvShuntCompensatorSections]
 {
-    val sections = parse_element (element ("""SvShuntCompensatorSections.sections"""))
-    val ShuntCompensator = parse_attribute (attribute ("""SvShuntCompensatorSections.ShuntCompensator"""))
+    val fields: Array[String] = Array[String] (
+        "sections",
+        "ShuntCompensator"
+    )
+    val sections: Fielder = parse_element (element (cls, fields(0)))
+    val ShuntCompensator: Fielder = parse_attribute (attribute (cls, fields(1)))
+
     def parse (context: Context): SvShuntCompensatorSections =
     {
-        SvShuntCompensatorSections(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = SvShuntCompensatorSections (
             StateVariable.parse (context),
-            toDouble (sections (context), context),
-            ShuntCompensator (context)
+            toDouble (mask (sections (), 0)),
+            mask (ShuntCompensator (), 1)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("ShuntCompensator", "ShuntCompensator", false))
+        Relationship ("ShuntCompensator", "ShuntCompensator", false)
+    )
 }
 
 /**
@@ -332,6 +402,12 @@ extends
      */
     def this () = { this (null, false, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -351,15 +427,18 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:SvStatus.inService>" + inService + "</cim:SvStatus.inService>\n" +
-        (if (null != ConductingEquipment) "\t\t<cim:SvStatus.ConductingEquipment rdf:resource=\"#" + ConductingEquipment + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = SvStatus.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (SvStatus.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (SvStatus.fields (position), value)
+        emitelem (0, inService)
+        emitattr (1, ConductingEquipment)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:SvStatus rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:SvStatus>"
+        "\t<cim:SvStatus rdf:ID=\"%s\">\n%s\t</cim:SvStatus>".format (id, export_fields)
     }
 }
 
@@ -367,18 +446,29 @@ object SvStatus
 extends
     Parseable[SvStatus]
 {
-    val inService = parse_element (element ("""SvStatus.inService"""))
-    val ConductingEquipment = parse_attribute (attribute ("""SvStatus.ConductingEquipment"""))
+    val fields: Array[String] = Array[String] (
+        "inService",
+        "ConductingEquipment"
+    )
+    val inService: Fielder = parse_element (element (cls, fields(0)))
+    val ConductingEquipment: Fielder = parse_attribute (attribute (cls, fields(1)))
+
     def parse (context: Context): SvStatus =
     {
-        SvStatus(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = SvStatus (
             StateVariable.parse (context),
-            toBoolean (inService (context), context),
-            ConductingEquipment (context)
+            toBoolean (mask (inService (), 0)),
+            mask (ConductingEquipment (), 1)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("ConductingEquipment", "ConductingEquipment", false))
+        Relationship ("ConductingEquipment", "ConductingEquipment", false)
+    )
 }
 
 /**
@@ -408,6 +498,12 @@ extends
      */
     def this () = { this (null, 0.0, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -427,15 +523,18 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:SvTapStep.position>" + position + "</cim:SvTapStep.position>\n" +
-        (if (null != TapChanger) "\t\t<cim:SvTapStep.TapChanger rdf:resource=\"#" + TapChanger + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = SvTapStep.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (SvTapStep.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (SvTapStep.fields (position), value)
+        emitelem (0, position)
+        emitattr (1, TapChanger)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:SvTapStep rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:SvTapStep>"
+        "\t<cim:SvTapStep rdf:ID=\"%s\">\n%s\t</cim:SvTapStep>".format (id, export_fields)
     }
 }
 
@@ -443,18 +542,29 @@ object SvTapStep
 extends
     Parseable[SvTapStep]
 {
-    val position = parse_element (element ("""SvTapStep.position"""))
-    val TapChanger = parse_attribute (attribute ("""SvTapStep.TapChanger"""))
+    val fields: Array[String] = Array[String] (
+        "position",
+        "TapChanger"
+    )
+    val position: Fielder = parse_element (element (cls, fields(0)))
+    val TapChanger: Fielder = parse_attribute (attribute (cls, fields(1)))
+
     def parse (context: Context): SvTapStep =
     {
-        SvTapStep(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = SvTapStep (
             StateVariable.parse (context),
-            toDouble (position (context), context),
-            TapChanger (context)
+            toDouble (mask (position (), 0)),
+            mask (TapChanger (), 1)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("TapChanger", "TapChanger", false))
+        Relationship ("TapChanger", "TapChanger", false)
+    )
 }
 
 /**
@@ -483,6 +593,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -502,16 +618,19 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:SvVoltage.angle>" + angle + "</cim:SvVoltage.angle>\n" +
-        "\t\t<cim:SvVoltage.v>" + v + "</cim:SvVoltage.v>\n" +
-        (if (null != TopologicalNode) "\t\t<cim:SvVoltage.TopologicalNode rdf:resource=\"#" + TopologicalNode + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = SvVoltage.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (SvVoltage.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (SvVoltage.fields (position), value)
+        emitelem (0, angle)
+        emitelem (1, v)
+        emitattr (2, TopologicalNode)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:SvVoltage rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:SvVoltage>"
+        "\t<cim:SvVoltage rdf:ID=\"%s\">\n%s\t</cim:SvVoltage>".format (id, export_fields)
     }
 }
 
@@ -519,20 +638,32 @@ object SvVoltage
 extends
     Parseable[SvVoltage]
 {
-    val angle = parse_element (element ("""SvVoltage.angle"""))
-    val v = parse_element (element ("""SvVoltage.v"""))
-    val TopologicalNode = parse_attribute (attribute ("""SvVoltage.TopologicalNode"""))
+    val fields: Array[String] = Array[String] (
+        "angle",
+        "v",
+        "TopologicalNode"
+    )
+    val angle: Fielder = parse_element (element (cls, fields(0)))
+    val v: Fielder = parse_element (element (cls, fields(1)))
+    val TopologicalNode: Fielder = parse_attribute (attribute (cls, fields(2)))
+
     def parse (context: Context): SvVoltage =
     {
-        SvVoltage(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = SvVoltage (
             StateVariable.parse (context),
-            toDouble (angle (context), context),
-            toDouble (v (context), context),
-            TopologicalNode (context)
+            toDouble (mask (angle (), 0)),
+            toDouble (mask (v (), 1)),
+            mask (TopologicalNode (), 2)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("TopologicalNode", "TopologicalNode", false))
+        Relationship ("TopologicalNode", "TopologicalNode", false)
+    )
 }
 
 private[ninecode] object _StateVariables

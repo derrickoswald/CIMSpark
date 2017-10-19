@@ -52,6 +52,12 @@ extends
      */
     def this () = { this (null, null, null, null, null, null, null, null, null, null, null, null, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -71,26 +77,29 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != effect) "\t\t<cim:DiagnosisDataSet.effect>" + effect + "</cim:DiagnosisDataSet.effect>\n" else "") +
-        (if (null != failureMode) "\t\t<cim:DiagnosisDataSet.failureMode>" + failureMode + "</cim:DiagnosisDataSet.failureMode>\n" else "") +
-        (if (null != finalCause) "\t\t<cim:DiagnosisDataSet.finalCause>" + finalCause + "</cim:DiagnosisDataSet.finalCause>\n" else "") +
-        (if (null != finalCode) "\t\t<cim:DiagnosisDataSet.finalCode>" + finalCode + "</cim:DiagnosisDataSet.finalCode>\n" else "") +
-        (if (null != finalOrigin) "\t\t<cim:DiagnosisDataSet.finalOrigin>" + finalOrigin + "</cim:DiagnosisDataSet.finalOrigin>\n" else "") +
-        (if (null != finalRemark) "\t\t<cim:DiagnosisDataSet.finalRemark>" + finalRemark + "</cim:DiagnosisDataSet.finalRemark>\n" else "") +
-        (if (null != phaseCode) "\t\t<cim:DiagnosisDataSet.phaseCode rdf:resource=\"#" + phaseCode + "\"/>\n" else "") +
-        (if (null != preliminaryCode) "\t\t<cim:DiagnosisDataSet.preliminaryCode>" + preliminaryCode + "</cim:DiagnosisDataSet.preliminaryCode>\n" else "") +
-        (if (null != preliminaryDateTime) "\t\t<cim:DiagnosisDataSet.preliminaryDateTime>" + preliminaryDateTime + "</cim:DiagnosisDataSet.preliminaryDateTime>\n" else "") +
-        (if (null != preliminaryRemark) "\t\t<cim:DiagnosisDataSet.preliminaryRemark>" + preliminaryRemark + "</cim:DiagnosisDataSet.preliminaryRemark>\n" else "") +
-        (if (null != rootCause) "\t\t<cim:DiagnosisDataSet.rootCause>" + rootCause + "</cim:DiagnosisDataSet.rootCause>\n" else "") +
-        (if (null != rootOrigin) "\t\t<cim:DiagnosisDataSet.rootOrigin>" + rootOrigin + "</cim:DiagnosisDataSet.rootOrigin>\n" else "") +
-        (if (null != rootRemark) "\t\t<cim:DiagnosisDataSet.rootRemark>" + rootRemark + "</cim:DiagnosisDataSet.rootRemark>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = DiagnosisDataSet.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (DiagnosisDataSet.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (DiagnosisDataSet.fields (position), value)
+        emitelem (0, effect)
+        emitelem (1, failureMode)
+        emitelem (2, finalCause)
+        emitelem (3, finalCode)
+        emitelem (4, finalOrigin)
+        emitelem (5, finalRemark)
+        emitattr (6, phaseCode)
+        emitelem (7, preliminaryCode)
+        emitelem (8, preliminaryDateTime)
+        emitelem (9, preliminaryRemark)
+        emitelem (10, rootCause)
+        emitelem (11, rootOrigin)
+        emitelem (12, rootRemark)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:DiagnosisDataSet rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:DiagnosisDataSet>"
+        "\t<cim:DiagnosisDataSet rdf:ID=\"%s\">\n%s\t</cim:DiagnosisDataSet>".format (id, export_fields)
     }
 }
 
@@ -98,39 +107,62 @@ object DiagnosisDataSet
 extends
     Parseable[DiagnosisDataSet]
 {
-    val effect = parse_element (element ("""DiagnosisDataSet.effect"""))
-    val failureMode = parse_element (element ("""DiagnosisDataSet.failureMode"""))
-    val finalCause = parse_element (element ("""DiagnosisDataSet.finalCause"""))
-    val finalCode = parse_element (element ("""DiagnosisDataSet.finalCode"""))
-    val finalOrigin = parse_element (element ("""DiagnosisDataSet.finalOrigin"""))
-    val finalRemark = parse_element (element ("""DiagnosisDataSet.finalRemark"""))
-    val phaseCode = parse_attribute (attribute ("""DiagnosisDataSet.phaseCode"""))
-    val preliminaryCode = parse_element (element ("""DiagnosisDataSet.preliminaryCode"""))
-    val preliminaryDateTime = parse_element (element ("""DiagnosisDataSet.preliminaryDateTime"""))
-    val preliminaryRemark = parse_element (element ("""DiagnosisDataSet.preliminaryRemark"""))
-    val rootCause = parse_element (element ("""DiagnosisDataSet.rootCause"""))
-    val rootOrigin = parse_element (element ("""DiagnosisDataSet.rootOrigin"""))
-    val rootRemark = parse_element (element ("""DiagnosisDataSet.rootRemark"""))
+    val fields: Array[String] = Array[String] (
+        "effect",
+        "failureMode",
+        "finalCause",
+        "finalCode",
+        "finalOrigin",
+        "finalRemark",
+        "phaseCode",
+        "preliminaryCode",
+        "preliminaryDateTime",
+        "preliminaryRemark",
+        "rootCause",
+        "rootOrigin",
+        "rootRemark"
+    )
+    val effect: Fielder = parse_element (element (cls, fields(0)))
+    val failureMode: Fielder = parse_element (element (cls, fields(1)))
+    val finalCause: Fielder = parse_element (element (cls, fields(2)))
+    val finalCode: Fielder = parse_element (element (cls, fields(3)))
+    val finalOrigin: Fielder = parse_element (element (cls, fields(4)))
+    val finalRemark: Fielder = parse_element (element (cls, fields(5)))
+    val phaseCode: Fielder = parse_attribute (attribute (cls, fields(6)))
+    val preliminaryCode: Fielder = parse_element (element (cls, fields(7)))
+    val preliminaryDateTime: Fielder = parse_element (element (cls, fields(8)))
+    val preliminaryRemark: Fielder = parse_element (element (cls, fields(9)))
+    val rootCause: Fielder = parse_element (element (cls, fields(10)))
+    val rootOrigin: Fielder = parse_element (element (cls, fields(11)))
+    val rootRemark: Fielder = parse_element (element (cls, fields(12)))
+
     def parse (context: Context): DiagnosisDataSet =
     {
-        DiagnosisDataSet(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = DiagnosisDataSet (
             ProcedureDataSet.parse (context),
-            effect (context),
-            failureMode (context),
-            finalCause (context),
-            finalCode (context),
-            finalOrigin (context),
-            finalRemark (context),
-            phaseCode (context),
-            preliminaryCode (context),
-            preliminaryDateTime (context),
-            preliminaryRemark (context),
-            rootCause (context),
-            rootOrigin (context),
-            rootRemark (context)
+            mask (effect (), 0),
+            mask (failureMode (), 1),
+            mask (finalCause (), 2),
+            mask (finalCode (), 3),
+            mask (finalOrigin (), 4),
+            mask (finalRemark (), 5),
+            mask (phaseCode (), 6),
+            mask (preliminaryCode (), 7),
+            mask (preliminaryDateTime (), 8),
+            mask (preliminaryRemark (), 9),
+            mask (rootCause (), 10),
+            mask (rootOrigin (), 11),
+            mask (rootRemark (), 12)
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -154,6 +186,12 @@ extends
      */
     def this () = { this (null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -173,14 +211,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != locationCondition) "\t\t<cim:InspectionDataSet.locationCondition>" + locationCondition + "</cim:InspectionDataSet.locationCondition>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = InspectionDataSet.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (InspectionDataSet.fields (position), value)
+        emitelem (0, locationCondition)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:InspectionDataSet rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:InspectionDataSet>"
+        "\t<cim:InspectionDataSet rdf:ID=\"%s\">\n%s\t</cim:InspectionDataSet>".format (id, export_fields)
     }
 }
 
@@ -188,15 +228,26 @@ object InspectionDataSet
 extends
     Parseable[InspectionDataSet]
 {
-    val locationCondition = parse_element (element ("""InspectionDataSet.locationCondition"""))
+    val fields: Array[String] = Array[String] (
+        "locationCondition"
+    )
+    val locationCondition: Fielder = parse_element (element (cls, fields(0)))
+
     def parse (context: Context): InspectionDataSet =
     {
-        InspectionDataSet(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = InspectionDataSet (
             ProcedureDataSet.parse (context),
-            locationCondition (context)
+            mask (locationCondition (), 0)
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -224,6 +275,12 @@ extends
      */
     def this () = { this (null, null, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -243,16 +300,18 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != conditionAfter) "\t\t<cim:MaintenanceDataSet.conditionAfter>" + conditionAfter + "</cim:MaintenanceDataSet.conditionAfter>\n" else "") +
-        (if (null != conditionBefore) "\t\t<cim:MaintenanceDataSet.conditionBefore>" + conditionBefore + "</cim:MaintenanceDataSet.conditionBefore>\n" else "") +
-        (if (null != maintCode) "\t\t<cim:MaintenanceDataSet.maintCode>" + maintCode + "</cim:MaintenanceDataSet.maintCode>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = MaintenanceDataSet.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (MaintenanceDataSet.fields (position), value)
+        emitelem (0, conditionAfter)
+        emitelem (1, conditionBefore)
+        emitelem (2, maintCode)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:MaintenanceDataSet rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:MaintenanceDataSet>"
+        "\t<cim:MaintenanceDataSet rdf:ID=\"%s\">\n%s\t</cim:MaintenanceDataSet>".format (id, export_fields)
     }
 }
 
@@ -260,19 +319,32 @@ object MaintenanceDataSet
 extends
     Parseable[MaintenanceDataSet]
 {
-    val conditionAfter = parse_element (element ("""MaintenanceDataSet.conditionAfter"""))
-    val conditionBefore = parse_element (element ("""MaintenanceDataSet.conditionBefore"""))
-    val maintCode = parse_element (element ("""MaintenanceDataSet.maintCode"""))
+    val fields: Array[String] = Array[String] (
+        "conditionAfter",
+        "conditionBefore",
+        "maintCode"
+    )
+    val conditionAfter: Fielder = parse_element (element (cls, fields(0)))
+    val conditionBefore: Fielder = parse_element (element (cls, fields(1)))
+    val maintCode: Fielder = parse_element (element (cls, fields(2)))
+
     def parse (context: Context): MaintenanceDataSet =
     {
-        MaintenanceDataSet(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = MaintenanceDataSet (
             ProcedureDataSet.parse (context),
-            conditionAfter (context),
-            conditionBefore (context),
-            maintCode (context)
+            mask (conditionAfter (), 0),
+            mask (conditionBefore (), 1),
+            mask (maintCode (), 2)
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -300,6 +372,12 @@ extends
      */
     def this () = { this (null, null, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -319,16 +397,18 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != conclusion) "\t\t<cim:TestDataSet.conclusion>" + conclusion + "</cim:TestDataSet.conclusion>\n" else "") +
-        (if (null != specimenID) "\t\t<cim:TestDataSet.specimenID>" + specimenID + "</cim:TestDataSet.specimenID>\n" else "") +
-        (if (null != specimenToLabDateTime) "\t\t<cim:TestDataSet.specimenToLabDateTime>" + specimenToLabDateTime + "</cim:TestDataSet.specimenToLabDateTime>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = TestDataSet.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TestDataSet.fields (position), value)
+        emitelem (0, conclusion)
+        emitelem (1, specimenID)
+        emitelem (2, specimenToLabDateTime)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:TestDataSet rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:TestDataSet>"
+        "\t<cim:TestDataSet rdf:ID=\"%s\">\n%s\t</cim:TestDataSet>".format (id, export_fields)
     }
 }
 
@@ -336,19 +416,32 @@ object TestDataSet
 extends
     Parseable[TestDataSet]
 {
-    val conclusion = parse_element (element ("""TestDataSet.conclusion"""))
-    val specimenID = parse_element (element ("""TestDataSet.specimenID"""))
-    val specimenToLabDateTime = parse_element (element ("""TestDataSet.specimenToLabDateTime"""))
+    val fields: Array[String] = Array[String] (
+        "conclusion",
+        "specimenID",
+        "specimenToLabDateTime"
+    )
+    val conclusion: Fielder = parse_element (element (cls, fields(0)))
+    val specimenID: Fielder = parse_element (element (cls, fields(1)))
+    val specimenToLabDateTime: Fielder = parse_element (element (cls, fields(2)))
+
     def parse (context: Context): TestDataSet =
     {
-        TestDataSet(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = TestDataSet (
             ProcedureDataSet.parse (context),
-            conclusion (context),
-            specimenID (context),
-            specimenToLabDateTime (context)
+            mask (conclusion (), 0),
+            mask (specimenID (), 1),
+            mask (specimenToLabDateTime (), 2)
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 private[ninecode] object _InfNewAssets

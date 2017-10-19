@@ -29,6 +29,12 @@ extends
      */
     def this () = { this (null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -48,14 +54,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != ExcitationSystemDynamics) "\t\t<cim:PowerSystemStabilizerDynamics.ExcitationSystemDynamics rdf:resource=\"#" + ExcitationSystemDynamics + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = PowerSystemStabilizerDynamics.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PowerSystemStabilizerDynamics.fields (position), value)
+        emitattr (0, ExcitationSystemDynamics)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:PowerSystemStabilizerDynamics rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:PowerSystemStabilizerDynamics>"
+        "\t<cim:PowerSystemStabilizerDynamics rdf:ID=\"%s\">\n%s\t</cim:PowerSystemStabilizerDynamics>".format (id, export_fields)
     }
 }
 
@@ -63,16 +71,26 @@ object PowerSystemStabilizerDynamics
 extends
     Parseable[PowerSystemStabilizerDynamics]
 {
-    val ExcitationSystemDynamics = parse_attribute (attribute ("""PowerSystemStabilizerDynamics.ExcitationSystemDynamics"""))
+    val fields: Array[String] = Array[String] (
+        "ExcitationSystemDynamics"
+    )
+    val ExcitationSystemDynamics: Fielder = parse_attribute (attribute (cls, fields(0)))
+
     def parse (context: Context): PowerSystemStabilizerDynamics =
     {
-        PowerSystemStabilizerDynamics(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = PowerSystemStabilizerDynamics (
             DynamicsFunctionBlock.parse (context),
-            ExcitationSystemDynamics (context)
+            mask (ExcitationSystemDynamics (), 0)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("ExcitationSystemDynamics", "ExcitationSystemDynamics", false))
+        Relationship ("ExcitationSystemDynamics", "ExcitationSystemDynamics", false)
+    )
 }
 
 /**
@@ -142,6 +160,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -161,28 +185,30 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:Pss1.kf>" + kf + "</cim:Pss1.kf>\n" +
-        "\t\t<cim:Pss1.kpe>" + kpe + "</cim:Pss1.kpe>\n" +
-        "\t\t<cim:Pss1.ks>" + ks + "</cim:Pss1.ks>\n" +
-        "\t\t<cim:Pss1.kw>" + kw + "</cim:Pss1.kw>\n" +
-        "\t\t<cim:Pss1.pmin>" + pmin + "</cim:Pss1.pmin>\n" +
-        "\t\t<cim:Pss1.t10>" + t10 + "</cim:Pss1.t10>\n" +
-        "\t\t<cim:Pss1.t5>" + t5 + "</cim:Pss1.t5>\n" +
-        "\t\t<cim:Pss1.t6>" + t6 + "</cim:Pss1.t6>\n" +
-        "\t\t<cim:Pss1.t7>" + t7 + "</cim:Pss1.t7>\n" +
-        "\t\t<cim:Pss1.t8>" + t8 + "</cim:Pss1.t8>\n" +
-        "\t\t<cim:Pss1.t9>" + t9 + "</cim:Pss1.t9>\n" +
-        "\t\t<cim:Pss1.tpe>" + tpe + "</cim:Pss1.tpe>\n" +
-        "\t\t<cim:Pss1.vadat>" + vadat + "</cim:Pss1.vadat>\n" +
-        "\t\t<cim:Pss1.vsmn>" + vsmn + "</cim:Pss1.vsmn>\n" +
-        "\t\t<cim:Pss1.vsmx>" + vsmx + "</cim:Pss1.vsmx>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = Pss1.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Pss1.fields (position), value)
+        emitelem (0, kf)
+        emitelem (1, kpe)
+        emitelem (2, ks)
+        emitelem (3, kw)
+        emitelem (4, pmin)
+        emitelem (5, t10)
+        emitelem (6, t5)
+        emitelem (7, t6)
+        emitelem (8, t7)
+        emitelem (9, t8)
+        emitelem (10, t9)
+        emitelem (11, tpe)
+        emitelem (12, vadat)
+        emitelem (13, vsmn)
+        emitelem (14, vsmx)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:Pss1 rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:Pss1>"
+        "\t<cim:Pss1 rdf:ID=\"%s\">\n%s\t</cim:Pss1>".format (id, export_fields)
     }
 }
 
@@ -190,43 +216,68 @@ object Pss1
 extends
     Parseable[Pss1]
 {
-    val kf = parse_element (element ("""Pss1.kf"""))
-    val kpe = parse_element (element ("""Pss1.kpe"""))
-    val ks = parse_element (element ("""Pss1.ks"""))
-    val kw = parse_element (element ("""Pss1.kw"""))
-    val pmin = parse_element (element ("""Pss1.pmin"""))
-    val t10 = parse_element (element ("""Pss1.t10"""))
-    val t5 = parse_element (element ("""Pss1.t5"""))
-    val t6 = parse_element (element ("""Pss1.t6"""))
-    val t7 = parse_element (element ("""Pss1.t7"""))
-    val t8 = parse_element (element ("""Pss1.t8"""))
-    val t9 = parse_element (element ("""Pss1.t9"""))
-    val tpe = parse_element (element ("""Pss1.tpe"""))
-    val vadat = parse_element (element ("""Pss1.vadat"""))
-    val vsmn = parse_element (element ("""Pss1.vsmn"""))
-    val vsmx = parse_element (element ("""Pss1.vsmx"""))
+    val fields: Array[String] = Array[String] (
+        "kf",
+        "kpe",
+        "ks",
+        "kw",
+        "pmin",
+        "t10",
+        "t5",
+        "t6",
+        "t7",
+        "t8",
+        "t9",
+        "tpe",
+        "vadat",
+        "vsmn",
+        "vsmx"
+    )
+    val kf: Fielder = parse_element (element (cls, fields(0)))
+    val kpe: Fielder = parse_element (element (cls, fields(1)))
+    val ks: Fielder = parse_element (element (cls, fields(2)))
+    val kw: Fielder = parse_element (element (cls, fields(3)))
+    val pmin: Fielder = parse_element (element (cls, fields(4)))
+    val t10: Fielder = parse_element (element (cls, fields(5)))
+    val t5: Fielder = parse_element (element (cls, fields(6)))
+    val t6: Fielder = parse_element (element (cls, fields(7)))
+    val t7: Fielder = parse_element (element (cls, fields(8)))
+    val t8: Fielder = parse_element (element (cls, fields(9)))
+    val t9: Fielder = parse_element (element (cls, fields(10)))
+    val tpe: Fielder = parse_element (element (cls, fields(11)))
+    val vadat: Fielder = parse_element (element (cls, fields(12)))
+    val vsmn: Fielder = parse_element (element (cls, fields(13)))
+    val vsmx: Fielder = parse_element (element (cls, fields(14)))
+
     def parse (context: Context): Pss1 =
     {
-        Pss1(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = Pss1 (
             PowerSystemStabilizerDynamics.parse (context),
-            toDouble (kf (context), context),
-            toDouble (kpe (context), context),
-            toDouble (ks (context), context),
-            toDouble (kw (context), context),
-            toDouble (pmin (context), context),
-            toDouble (t10 (context), context),
-            toDouble (t5 (context), context),
-            toDouble (t6 (context), context),
-            toDouble (t7 (context), context),
-            toDouble (t8 (context), context),
-            toDouble (t9 (context), context),
-            toDouble (tpe (context), context),
-            toBoolean (vadat (context), context),
-            toDouble (vsmn (context), context),
-            toDouble (vsmx (context), context)
+            toDouble (mask (kf (), 0)),
+            toDouble (mask (kpe (), 1)),
+            toDouble (mask (ks (), 2)),
+            toDouble (mask (kw (), 3)),
+            toDouble (mask (pmin (), 4)),
+            toDouble (mask (t10 (), 5)),
+            toDouble (mask (t5 (), 6)),
+            toDouble (mask (t6 (), 7)),
+            toDouble (mask (t7 (), 8)),
+            toDouble (mask (t8 (), 9)),
+            toDouble (mask (t9 (), 10)),
+            toDouble (mask (tpe (), 11)),
+            toBoolean (mask (vadat (), 12)),
+            toDouble (mask (vsmn (), 13)),
+            toDouble (mask (vsmx (), 14))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -297,6 +348,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -316,35 +373,38 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:Pss1A.a1>" + a1 + "</cim:Pss1A.a1>\n" +
-        "\t\t<cim:Pss1A.a2>" + a2 + "</cim:Pss1A.a2>\n" +
-        "\t\t<cim:Pss1A.a3>" + a3 + "</cim:Pss1A.a3>\n" +
-        "\t\t<cim:Pss1A.a4>" + a4 + "</cim:Pss1A.a4>\n" +
-        "\t\t<cim:Pss1A.a5>" + a5 + "</cim:Pss1A.a5>\n" +
-        "\t\t<cim:Pss1A.a6>" + a6 + "</cim:Pss1A.a6>\n" +
-        "\t\t<cim:Pss1A.a7>" + a7 + "</cim:Pss1A.a7>\n" +
-        "\t\t<cim:Pss1A.a8>" + a8 + "</cim:Pss1A.a8>\n" +
-        (if (null != inputSignalType) "\t\t<cim:Pss1A.inputSignalType rdf:resource=\"#" + inputSignalType + "\"/>\n" else "") +
-        "\t\t<cim:Pss1A.kd>" + kd + "</cim:Pss1A.kd>\n" +
-        "\t\t<cim:Pss1A.ks>" + ks + "</cim:Pss1A.ks>\n" +
-        "\t\t<cim:Pss1A.t1>" + t1 + "</cim:Pss1A.t1>\n" +
-        "\t\t<cim:Pss1A.t2>" + t2 + "</cim:Pss1A.t2>\n" +
-        "\t\t<cim:Pss1A.t3>" + t3 + "</cim:Pss1A.t3>\n" +
-        "\t\t<cim:Pss1A.t4>" + t4 + "</cim:Pss1A.t4>\n" +
-        "\t\t<cim:Pss1A.t5>" + t5 + "</cim:Pss1A.t5>\n" +
-        "\t\t<cim:Pss1A.t6>" + t6 + "</cim:Pss1A.t6>\n" +
-        "\t\t<cim:Pss1A.tdelay>" + tdelay + "</cim:Pss1A.tdelay>\n" +
-        "\t\t<cim:Pss1A.vcl>" + vcl + "</cim:Pss1A.vcl>\n" +
-        "\t\t<cim:Pss1A.vcu>" + vcu + "</cim:Pss1A.vcu>\n" +
-        "\t\t<cim:Pss1A.vrmax>" + vrmax + "</cim:Pss1A.vrmax>\n" +
-        "\t\t<cim:Pss1A.vrmin>" + vrmin + "</cim:Pss1A.vrmin>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = Pss1A.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Pss1A.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Pss1A.fields (position), value)
+        emitelem (0, a1)
+        emitelem (1, a2)
+        emitelem (2, a3)
+        emitelem (3, a4)
+        emitelem (4, a5)
+        emitelem (5, a6)
+        emitelem (6, a7)
+        emitelem (7, a8)
+        emitattr (8, inputSignalType)
+        emitelem (9, kd)
+        emitelem (10, ks)
+        emitelem (11, t1)
+        emitelem (12, t2)
+        emitelem (13, t3)
+        emitelem (14, t4)
+        emitelem (15, t5)
+        emitelem (16, t6)
+        emitelem (17, tdelay)
+        emitelem (18, vcl)
+        emitelem (19, vcu)
+        emitelem (20, vrmax)
+        emitelem (21, vrmin)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:Pss1A rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:Pss1A>"
+        "\t<cim:Pss1A rdf:ID=\"%s\">\n%s\t</cim:Pss1A>".format (id, export_fields)
     }
 }
 
@@ -352,57 +412,89 @@ object Pss1A
 extends
     Parseable[Pss1A]
 {
-    val a1 = parse_element (element ("""Pss1A.a1"""))
-    val a2 = parse_element (element ("""Pss1A.a2"""))
-    val a3 = parse_element (element ("""Pss1A.a3"""))
-    val a4 = parse_element (element ("""Pss1A.a4"""))
-    val a5 = parse_element (element ("""Pss1A.a5"""))
-    val a6 = parse_element (element ("""Pss1A.a6"""))
-    val a7 = parse_element (element ("""Pss1A.a7"""))
-    val a8 = parse_element (element ("""Pss1A.a8"""))
-    val inputSignalType = parse_attribute (attribute ("""Pss1A.inputSignalType"""))
-    val kd = parse_element (element ("""Pss1A.kd"""))
-    val ks = parse_element (element ("""Pss1A.ks"""))
-    val t1 = parse_element (element ("""Pss1A.t1"""))
-    val t2 = parse_element (element ("""Pss1A.t2"""))
-    val t3 = parse_element (element ("""Pss1A.t3"""))
-    val t4 = parse_element (element ("""Pss1A.t4"""))
-    val t5 = parse_element (element ("""Pss1A.t5"""))
-    val t6 = parse_element (element ("""Pss1A.t6"""))
-    val tdelay = parse_element (element ("""Pss1A.tdelay"""))
-    val vcl = parse_element (element ("""Pss1A.vcl"""))
-    val vcu = parse_element (element ("""Pss1A.vcu"""))
-    val vrmax = parse_element (element ("""Pss1A.vrmax"""))
-    val vrmin = parse_element (element ("""Pss1A.vrmin"""))
+    val fields: Array[String] = Array[String] (
+        "a1",
+        "a2",
+        "a3",
+        "a4",
+        "a5",
+        "a6",
+        "a7",
+        "a8",
+        "inputSignalType",
+        "kd",
+        "ks",
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "tdelay",
+        "vcl",
+        "vcu",
+        "vrmax",
+        "vrmin"
+    )
+    val a1: Fielder = parse_element (element (cls, fields(0)))
+    val a2: Fielder = parse_element (element (cls, fields(1)))
+    val a3: Fielder = parse_element (element (cls, fields(2)))
+    val a4: Fielder = parse_element (element (cls, fields(3)))
+    val a5: Fielder = parse_element (element (cls, fields(4)))
+    val a6: Fielder = parse_element (element (cls, fields(5)))
+    val a7: Fielder = parse_element (element (cls, fields(6)))
+    val a8: Fielder = parse_element (element (cls, fields(7)))
+    val inputSignalType: Fielder = parse_attribute (attribute (cls, fields(8)))
+    val kd: Fielder = parse_element (element (cls, fields(9)))
+    val ks: Fielder = parse_element (element (cls, fields(10)))
+    val t1: Fielder = parse_element (element (cls, fields(11)))
+    val t2: Fielder = parse_element (element (cls, fields(12)))
+    val t3: Fielder = parse_element (element (cls, fields(13)))
+    val t4: Fielder = parse_element (element (cls, fields(14)))
+    val t5: Fielder = parse_element (element (cls, fields(15)))
+    val t6: Fielder = parse_element (element (cls, fields(16)))
+    val tdelay: Fielder = parse_element (element (cls, fields(17)))
+    val vcl: Fielder = parse_element (element (cls, fields(18)))
+    val vcu: Fielder = parse_element (element (cls, fields(19)))
+    val vrmax: Fielder = parse_element (element (cls, fields(20)))
+    val vrmin: Fielder = parse_element (element (cls, fields(21)))
+
     def parse (context: Context): Pss1A =
     {
-        Pss1A(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = Pss1A (
             PowerSystemStabilizerDynamics.parse (context),
-            toDouble (a1 (context), context),
-            toDouble (a2 (context), context),
-            toDouble (a3 (context), context),
-            toDouble (a4 (context), context),
-            toDouble (a5 (context), context),
-            toDouble (a6 (context), context),
-            toDouble (a7 (context), context),
-            toDouble (a8 (context), context),
-            inputSignalType (context),
-            toBoolean (kd (context), context),
-            toDouble (ks (context), context),
-            toDouble (t1 (context), context),
-            toDouble (t2 (context), context),
-            toDouble (t3 (context), context),
-            toDouble (t4 (context), context),
-            toDouble (t5 (context), context),
-            toDouble (t6 (context), context),
-            toDouble (tdelay (context), context),
-            toDouble (vcl (context), context),
-            toDouble (vcu (context), context),
-            toDouble (vrmax (context), context),
-            toDouble (vrmin (context), context)
+            toDouble (mask (a1 (), 0)),
+            toDouble (mask (a2 (), 1)),
+            toDouble (mask (a3 (), 2)),
+            toDouble (mask (a4 (), 3)),
+            toDouble (mask (a5 (), 4)),
+            toDouble (mask (a6 (), 5)),
+            toDouble (mask (a7 (), 6)),
+            toDouble (mask (a8 (), 7)),
+            mask (inputSignalType (), 8),
+            toBoolean (mask (kd (), 9)),
+            toDouble (mask (ks (), 10)),
+            toDouble (mask (t1 (), 11)),
+            toDouble (mask (t2 (), 12)),
+            toDouble (mask (t3 (), 13)),
+            toDouble (mask (t4 (), 14)),
+            toDouble (mask (t5 (), 15)),
+            toDouble (mask (t6 (), 16)),
+            toDouble (mask (tdelay (), 17)),
+            toDouble (mask (vcl (), 18)),
+            toDouble (mask (vcu (), 19)),
+            toDouble (mask (vrmax (), 20)),
+            toDouble (mask (vrmin (), 21))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -520,6 +612,12 @@ extends
      */
     def this () = { this (null, 0.0, null, null, 0.0, 0.0, 0.0, 0.0, 0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -539,44 +637,47 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:Pss2B.a>" + a + "</cim:Pss2B.a>\n" +
-        (if (null != inputSignal1Type) "\t\t<cim:Pss2B.inputSignal1Type rdf:resource=\"#" + inputSignal1Type + "\"/>\n" else "") +
-        (if (null != inputSignal2Type) "\t\t<cim:Pss2B.inputSignal2Type rdf:resource=\"#" + inputSignal2Type + "\"/>\n" else "") +
-        "\t\t<cim:Pss2B.ks1>" + ks1 + "</cim:Pss2B.ks1>\n" +
-        "\t\t<cim:Pss2B.ks2>" + ks2 + "</cim:Pss2B.ks2>\n" +
-        "\t\t<cim:Pss2B.ks3>" + ks3 + "</cim:Pss2B.ks3>\n" +
-        "\t\t<cim:Pss2B.ks4>" + ks4 + "</cim:Pss2B.ks4>\n" +
-        "\t\t<cim:Pss2B.m>" + m + "</cim:Pss2B.m>\n" +
-        "\t\t<cim:Pss2B.n>" + n + "</cim:Pss2B.n>\n" +
-        "\t\t<cim:Pss2B.t1>" + t1 + "</cim:Pss2B.t1>\n" +
-        "\t\t<cim:Pss2B.t10>" + t10 + "</cim:Pss2B.t10>\n" +
-        "\t\t<cim:Pss2B.t11>" + t11 + "</cim:Pss2B.t11>\n" +
-        "\t\t<cim:Pss2B.t2>" + t2 + "</cim:Pss2B.t2>\n" +
-        "\t\t<cim:Pss2B.t3>" + t3 + "</cim:Pss2B.t3>\n" +
-        "\t\t<cim:Pss2B.t4>" + t4 + "</cim:Pss2B.t4>\n" +
-        "\t\t<cim:Pss2B.t6>" + t6 + "</cim:Pss2B.t6>\n" +
-        "\t\t<cim:Pss2B.t7>" + t7 + "</cim:Pss2B.t7>\n" +
-        "\t\t<cim:Pss2B.t8>" + t8 + "</cim:Pss2B.t8>\n" +
-        "\t\t<cim:Pss2B.t9>" + t9 + "</cim:Pss2B.t9>\n" +
-        "\t\t<cim:Pss2B.ta>" + ta + "</cim:Pss2B.ta>\n" +
-        "\t\t<cim:Pss2B.tb>" + tb + "</cim:Pss2B.tb>\n" +
-        "\t\t<cim:Pss2B.tw1>" + tw1 + "</cim:Pss2B.tw1>\n" +
-        "\t\t<cim:Pss2B.tw2>" + tw2 + "</cim:Pss2B.tw2>\n" +
-        "\t\t<cim:Pss2B.tw3>" + tw3 + "</cim:Pss2B.tw3>\n" +
-        "\t\t<cim:Pss2B.tw4>" + tw4 + "</cim:Pss2B.tw4>\n" +
-        "\t\t<cim:Pss2B.vsi1max>" + vsi1max + "</cim:Pss2B.vsi1max>\n" +
-        "\t\t<cim:Pss2B.vsi1min>" + vsi1min + "</cim:Pss2B.vsi1min>\n" +
-        "\t\t<cim:Pss2B.vsi2max>" + vsi2max + "</cim:Pss2B.vsi2max>\n" +
-        "\t\t<cim:Pss2B.vsi2min>" + vsi2min + "</cim:Pss2B.vsi2min>\n" +
-        "\t\t<cim:Pss2B.vstmax>" + vstmax + "</cim:Pss2B.vstmax>\n" +
-        "\t\t<cim:Pss2B.vstmin>" + vstmin + "</cim:Pss2B.vstmin>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = Pss2B.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Pss2B.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Pss2B.fields (position), value)
+        emitelem (0, a)
+        emitattr (1, inputSignal1Type)
+        emitattr (2, inputSignal2Type)
+        emitelem (3, ks1)
+        emitelem (4, ks2)
+        emitelem (5, ks3)
+        emitelem (6, ks4)
+        emitelem (7, m)
+        emitelem (8, n)
+        emitelem (9, t1)
+        emitelem (10, t10)
+        emitelem (11, t11)
+        emitelem (12, t2)
+        emitelem (13, t3)
+        emitelem (14, t4)
+        emitelem (15, t6)
+        emitelem (16, t7)
+        emitelem (17, t8)
+        emitelem (18, t9)
+        emitelem (19, ta)
+        emitelem (20, tb)
+        emitelem (21, tw1)
+        emitelem (22, tw2)
+        emitelem (23, tw3)
+        emitelem (24, tw4)
+        emitelem (25, vsi1max)
+        emitelem (26, vsi1min)
+        emitelem (27, vsi2max)
+        emitelem (28, vsi2min)
+        emitelem (29, vstmax)
+        emitelem (30, vstmin)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:Pss2B rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:Pss2B>"
+        "\t<cim:Pss2B rdf:ID=\"%s\">\n%s\t</cim:Pss2B>".format (id, export_fields)
     }
 }
 
@@ -584,75 +685,116 @@ object Pss2B
 extends
     Parseable[Pss2B]
 {
-    val a = parse_element (element ("""Pss2B.a"""))
-    val inputSignal1Type = parse_attribute (attribute ("""Pss2B.inputSignal1Type"""))
-    val inputSignal2Type = parse_attribute (attribute ("""Pss2B.inputSignal2Type"""))
-    val ks1 = parse_element (element ("""Pss2B.ks1"""))
-    val ks2 = parse_element (element ("""Pss2B.ks2"""))
-    val ks3 = parse_element (element ("""Pss2B.ks3"""))
-    val ks4 = parse_element (element ("""Pss2B.ks4"""))
-    val m = parse_element (element ("""Pss2B.m"""))
-    val n = parse_element (element ("""Pss2B.n"""))
-    val t1 = parse_element (element ("""Pss2B.t1"""))
-    val t10 = parse_element (element ("""Pss2B.t10"""))
-    val t11 = parse_element (element ("""Pss2B.t11"""))
-    val t2 = parse_element (element ("""Pss2B.t2"""))
-    val t3 = parse_element (element ("""Pss2B.t3"""))
-    val t4 = parse_element (element ("""Pss2B.t4"""))
-    val t6 = parse_element (element ("""Pss2B.t6"""))
-    val t7 = parse_element (element ("""Pss2B.t7"""))
-    val t8 = parse_element (element ("""Pss2B.t8"""))
-    val t9 = parse_element (element ("""Pss2B.t9"""))
-    val ta = parse_element (element ("""Pss2B.ta"""))
-    val tb = parse_element (element ("""Pss2B.tb"""))
-    val tw1 = parse_element (element ("""Pss2B.tw1"""))
-    val tw2 = parse_element (element ("""Pss2B.tw2"""))
-    val tw3 = parse_element (element ("""Pss2B.tw3"""))
-    val tw4 = parse_element (element ("""Pss2B.tw4"""))
-    val vsi1max = parse_element (element ("""Pss2B.vsi1max"""))
-    val vsi1min = parse_element (element ("""Pss2B.vsi1min"""))
-    val vsi2max = parse_element (element ("""Pss2B.vsi2max"""))
-    val vsi2min = parse_element (element ("""Pss2B.vsi2min"""))
-    val vstmax = parse_element (element ("""Pss2B.vstmax"""))
-    val vstmin = parse_element (element ("""Pss2B.vstmin"""))
+    val fields: Array[String] = Array[String] (
+        "a",
+        "inputSignal1Type",
+        "inputSignal2Type",
+        "ks1",
+        "ks2",
+        "ks3",
+        "ks4",
+        "m",
+        "n",
+        "t1",
+        "t10",
+        "t11",
+        "t2",
+        "t3",
+        "t4",
+        "t6",
+        "t7",
+        "t8",
+        "t9",
+        "ta",
+        "tb",
+        "tw1",
+        "tw2",
+        "tw3",
+        "tw4",
+        "vsi1max",
+        "vsi1min",
+        "vsi2max",
+        "vsi2min",
+        "vstmax",
+        "vstmin"
+    )
+    val a: Fielder = parse_element (element (cls, fields(0)))
+    val inputSignal1Type: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val inputSignal2Type: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val ks1: Fielder = parse_element (element (cls, fields(3)))
+    val ks2: Fielder = parse_element (element (cls, fields(4)))
+    val ks3: Fielder = parse_element (element (cls, fields(5)))
+    val ks4: Fielder = parse_element (element (cls, fields(6)))
+    val m: Fielder = parse_element (element (cls, fields(7)))
+    val n: Fielder = parse_element (element (cls, fields(8)))
+    val t1: Fielder = parse_element (element (cls, fields(9)))
+    val t10: Fielder = parse_element (element (cls, fields(10)))
+    val t11: Fielder = parse_element (element (cls, fields(11)))
+    val t2: Fielder = parse_element (element (cls, fields(12)))
+    val t3: Fielder = parse_element (element (cls, fields(13)))
+    val t4: Fielder = parse_element (element (cls, fields(14)))
+    val t6: Fielder = parse_element (element (cls, fields(15)))
+    val t7: Fielder = parse_element (element (cls, fields(16)))
+    val t8: Fielder = parse_element (element (cls, fields(17)))
+    val t9: Fielder = parse_element (element (cls, fields(18)))
+    val ta: Fielder = parse_element (element (cls, fields(19)))
+    val tb: Fielder = parse_element (element (cls, fields(20)))
+    val tw1: Fielder = parse_element (element (cls, fields(21)))
+    val tw2: Fielder = parse_element (element (cls, fields(22)))
+    val tw3: Fielder = parse_element (element (cls, fields(23)))
+    val tw4: Fielder = parse_element (element (cls, fields(24)))
+    val vsi1max: Fielder = parse_element (element (cls, fields(25)))
+    val vsi1min: Fielder = parse_element (element (cls, fields(26)))
+    val vsi2max: Fielder = parse_element (element (cls, fields(27)))
+    val vsi2min: Fielder = parse_element (element (cls, fields(28)))
+    val vstmax: Fielder = parse_element (element (cls, fields(29)))
+    val vstmin: Fielder = parse_element (element (cls, fields(30)))
+
     def parse (context: Context): Pss2B =
     {
-        Pss2B(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = Pss2B (
             PowerSystemStabilizerDynamics.parse (context),
-            toDouble (a (context), context),
-            inputSignal1Type (context),
-            inputSignal2Type (context),
-            toDouble (ks1 (context), context),
-            toDouble (ks2 (context), context),
-            toDouble (ks3 (context), context),
-            toDouble (ks4 (context), context),
-            toInteger (m (context), context),
-            toInteger (n (context), context),
-            toDouble (t1 (context), context),
-            toDouble (t10 (context), context),
-            toDouble (t11 (context), context),
-            toDouble (t2 (context), context),
-            toDouble (t3 (context), context),
-            toDouble (t4 (context), context),
-            toDouble (t6 (context), context),
-            toDouble (t7 (context), context),
-            toDouble (t8 (context), context),
-            toDouble (t9 (context), context),
-            toDouble (ta (context), context),
-            toDouble (tb (context), context),
-            toDouble (tw1 (context), context),
-            toDouble (tw2 (context), context),
-            toDouble (tw3 (context), context),
-            toDouble (tw4 (context), context),
-            toDouble (vsi1max (context), context),
-            toDouble (vsi1min (context), context),
-            toDouble (vsi2max (context), context),
-            toDouble (vsi2min (context), context),
-            toDouble (vstmax (context), context),
-            toDouble (vstmin (context), context)
+            toDouble (mask (a (), 0)),
+            mask (inputSignal1Type (), 1),
+            mask (inputSignal2Type (), 2),
+            toDouble (mask (ks1 (), 3)),
+            toDouble (mask (ks2 (), 4)),
+            toDouble (mask (ks3 (), 5)),
+            toDouble (mask (ks4 (), 6)),
+            toInteger (mask (m (), 7)),
+            toInteger (mask (n (), 8)),
+            toDouble (mask (t1 (), 9)),
+            toDouble (mask (t10 (), 10)),
+            toDouble (mask (t11 (), 11)),
+            toDouble (mask (t2 (), 12)),
+            toDouble (mask (t3 (), 13)),
+            toDouble (mask (t4 (), 14)),
+            toDouble (mask (t6 (), 15)),
+            toDouble (mask (t7 (), 16)),
+            toDouble (mask (t8 (), 17)),
+            toDouble (mask (t9 (), 18)),
+            toDouble (mask (ta (), 19)),
+            toDouble (mask (tb (), 20)),
+            toDouble (mask (tw1 (), 21)),
+            toDouble (mask (tw2 (), 22)),
+            toDouble (mask (tw3 (), 23)),
+            toDouble (mask (tw4 (), 24)),
+            toDouble (mask (vsi1max (), 25)),
+            toDouble (mask (vsi1min (), 26)),
+            toDouble (mask (vsi2max (), 27)),
+            toDouble (mask (vsi2min (), 28)),
+            toDouble (mask (vstmax (), 29)),
+            toDouble (mask (vstmin (), 30))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -713,6 +855,12 @@ extends
      */
     def this () = { this (null, null, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -732,31 +880,34 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != inputSignal1Type) "\t\t<cim:Pss2ST.inputSignal1Type rdf:resource=\"#" + inputSignal1Type + "\"/>\n" else "") +
-        (if (null != inputSignal2Type) "\t\t<cim:Pss2ST.inputSignal2Type rdf:resource=\"#" + inputSignal2Type + "\"/>\n" else "") +
-        "\t\t<cim:Pss2ST.k1>" + k1 + "</cim:Pss2ST.k1>\n" +
-        "\t\t<cim:Pss2ST.k2>" + k2 + "</cim:Pss2ST.k2>\n" +
-        "\t\t<cim:Pss2ST.lsmax>" + lsmax + "</cim:Pss2ST.lsmax>\n" +
-        "\t\t<cim:Pss2ST.lsmin>" + lsmin + "</cim:Pss2ST.lsmin>\n" +
-        "\t\t<cim:Pss2ST.t1>" + t1 + "</cim:Pss2ST.t1>\n" +
-        "\t\t<cim:Pss2ST.t10>" + t10 + "</cim:Pss2ST.t10>\n" +
-        "\t\t<cim:Pss2ST.t2>" + t2 + "</cim:Pss2ST.t2>\n" +
-        "\t\t<cim:Pss2ST.t3>" + t3 + "</cim:Pss2ST.t3>\n" +
-        "\t\t<cim:Pss2ST.t4>" + t4 + "</cim:Pss2ST.t4>\n" +
-        "\t\t<cim:Pss2ST.t5>" + t5 + "</cim:Pss2ST.t5>\n" +
-        "\t\t<cim:Pss2ST.t6>" + t6 + "</cim:Pss2ST.t6>\n" +
-        "\t\t<cim:Pss2ST.t7>" + t7 + "</cim:Pss2ST.t7>\n" +
-        "\t\t<cim:Pss2ST.t8>" + t8 + "</cim:Pss2ST.t8>\n" +
-        "\t\t<cim:Pss2ST.t9>" + t9 + "</cim:Pss2ST.t9>\n" +
-        "\t\t<cim:Pss2ST.vcl>" + vcl + "</cim:Pss2ST.vcl>\n" +
-        "\t\t<cim:Pss2ST.vcu>" + vcu + "</cim:Pss2ST.vcu>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = Pss2ST.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Pss2ST.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Pss2ST.fields (position), value)
+        emitattr (0, inputSignal1Type)
+        emitattr (1, inputSignal2Type)
+        emitelem (2, k1)
+        emitelem (3, k2)
+        emitelem (4, lsmax)
+        emitelem (5, lsmin)
+        emitelem (6, t1)
+        emitelem (7, t10)
+        emitelem (8, t2)
+        emitelem (9, t3)
+        emitelem (10, t4)
+        emitelem (11, t5)
+        emitelem (12, t6)
+        emitelem (13, t7)
+        emitelem (14, t8)
+        emitelem (15, t9)
+        emitelem (16, vcl)
+        emitelem (17, vcu)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:Pss2ST rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:Pss2ST>"
+        "\t<cim:Pss2ST rdf:ID=\"%s\">\n%s\t</cim:Pss2ST>".format (id, export_fields)
     }
 }
 
@@ -764,49 +915,77 @@ object Pss2ST
 extends
     Parseable[Pss2ST]
 {
-    val inputSignal1Type = parse_attribute (attribute ("""Pss2ST.inputSignal1Type"""))
-    val inputSignal2Type = parse_attribute (attribute ("""Pss2ST.inputSignal2Type"""))
-    val k1 = parse_element (element ("""Pss2ST.k1"""))
-    val k2 = parse_element (element ("""Pss2ST.k2"""))
-    val lsmax = parse_element (element ("""Pss2ST.lsmax"""))
-    val lsmin = parse_element (element ("""Pss2ST.lsmin"""))
-    val t1 = parse_element (element ("""Pss2ST.t1"""))
-    val t10 = parse_element (element ("""Pss2ST.t10"""))
-    val t2 = parse_element (element ("""Pss2ST.t2"""))
-    val t3 = parse_element (element ("""Pss2ST.t3"""))
-    val t4 = parse_element (element ("""Pss2ST.t4"""))
-    val t5 = parse_element (element ("""Pss2ST.t5"""))
-    val t6 = parse_element (element ("""Pss2ST.t6"""))
-    val t7 = parse_element (element ("""Pss2ST.t7"""))
-    val t8 = parse_element (element ("""Pss2ST.t8"""))
-    val t9 = parse_element (element ("""Pss2ST.t9"""))
-    val vcl = parse_element (element ("""Pss2ST.vcl"""))
-    val vcu = parse_element (element ("""Pss2ST.vcu"""))
+    val fields: Array[String] = Array[String] (
+        "inputSignal1Type",
+        "inputSignal2Type",
+        "k1",
+        "k2",
+        "lsmax",
+        "lsmin",
+        "t1",
+        "t10",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "t7",
+        "t8",
+        "t9",
+        "vcl",
+        "vcu"
+    )
+    val inputSignal1Type: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val inputSignal2Type: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val k1: Fielder = parse_element (element (cls, fields(2)))
+    val k2: Fielder = parse_element (element (cls, fields(3)))
+    val lsmax: Fielder = parse_element (element (cls, fields(4)))
+    val lsmin: Fielder = parse_element (element (cls, fields(5)))
+    val t1: Fielder = parse_element (element (cls, fields(6)))
+    val t10: Fielder = parse_element (element (cls, fields(7)))
+    val t2: Fielder = parse_element (element (cls, fields(8)))
+    val t3: Fielder = parse_element (element (cls, fields(9)))
+    val t4: Fielder = parse_element (element (cls, fields(10)))
+    val t5: Fielder = parse_element (element (cls, fields(11)))
+    val t6: Fielder = parse_element (element (cls, fields(12)))
+    val t7: Fielder = parse_element (element (cls, fields(13)))
+    val t8: Fielder = parse_element (element (cls, fields(14)))
+    val t9: Fielder = parse_element (element (cls, fields(15)))
+    val vcl: Fielder = parse_element (element (cls, fields(16)))
+    val vcu: Fielder = parse_element (element (cls, fields(17)))
+
     def parse (context: Context): Pss2ST =
     {
-        Pss2ST(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = Pss2ST (
             PowerSystemStabilizerDynamics.parse (context),
-            inputSignal1Type (context),
-            inputSignal2Type (context),
-            toDouble (k1 (context), context),
-            toDouble (k2 (context), context),
-            toDouble (lsmax (context), context),
-            toDouble (lsmin (context), context),
-            toDouble (t1 (context), context),
-            toDouble (t10 (context), context),
-            toDouble (t2 (context), context),
-            toDouble (t3 (context), context),
-            toDouble (t4 (context), context),
-            toDouble (t5 (context), context),
-            toDouble (t6 (context), context),
-            toDouble (t7 (context), context),
-            toDouble (t8 (context), context),
-            toDouble (t9 (context), context),
-            toDouble (vcl (context), context),
-            toDouble (vcu (context), context)
+            mask (inputSignal1Type (), 0),
+            mask (inputSignal2Type (), 1),
+            toDouble (mask (k1 (), 2)),
+            toDouble (mask (k2 (), 3)),
+            toDouble (mask (lsmax (), 4)),
+            toDouble (mask (lsmin (), 5)),
+            toDouble (mask (t1 (), 6)),
+            toDouble (mask (t10 (), 7)),
+            toDouble (mask (t2 (), 8)),
+            toDouble (mask (t3 (), 9)),
+            toDouble (mask (t4 (), 10)),
+            toDouble (mask (t5 (), 11)),
+            toDouble (mask (t6 (), 12)),
+            toDouble (mask (t7 (), 13)),
+            toDouble (mask (t8 (), 14)),
+            toDouble (mask (t9 (), 15)),
+            toDouble (mask (vcl (), 16)),
+            toDouble (mask (vcu (), 17))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -886,6 +1065,12 @@ extends
      */
     def this () = { this (null, false, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -905,30 +1090,32 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:Pss5.ctw2>" + ctw2 + "</cim:Pss5.ctw2>\n" +
-        "\t\t<cim:Pss5.deadband>" + deadband + "</cim:Pss5.deadband>\n" +
-        "\t\t<cim:Pss5.isfreq>" + isfreq + "</cim:Pss5.isfreq>\n" +
-        "\t\t<cim:Pss5.kf>" + kf + "</cim:Pss5.kf>\n" +
-        "\t\t<cim:Pss5.kpe>" + kpe + "</cim:Pss5.kpe>\n" +
-        "\t\t<cim:Pss5.kpss>" + kpss + "</cim:Pss5.kpss>\n" +
-        "\t\t<cim:Pss5.pmm>" + pmm + "</cim:Pss5.pmm>\n" +
-        "\t\t<cim:Pss5.tl1>" + tl1 + "</cim:Pss5.tl1>\n" +
-        "\t\t<cim:Pss5.tl2>" + tl2 + "</cim:Pss5.tl2>\n" +
-        "\t\t<cim:Pss5.tl3>" + tl3 + "</cim:Pss5.tl3>\n" +
-        "\t\t<cim:Pss5.tl4>" + tl4 + "</cim:Pss5.tl4>\n" +
-        "\t\t<cim:Pss5.tpe>" + tpe + "</cim:Pss5.tpe>\n" +
-        "\t\t<cim:Pss5.tw1>" + tw1 + "</cim:Pss5.tw1>\n" +
-        "\t\t<cim:Pss5.tw2>" + tw2 + "</cim:Pss5.tw2>\n" +
-        "\t\t<cim:Pss5.vadat>" + vadat + "</cim:Pss5.vadat>\n" +
-        "\t\t<cim:Pss5.vsmn>" + vsmn + "</cim:Pss5.vsmn>\n" +
-        "\t\t<cim:Pss5.vsmx>" + vsmx + "</cim:Pss5.vsmx>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = Pss5.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Pss5.fields (position), value)
+        emitelem (0, ctw2)
+        emitelem (1, deadband)
+        emitelem (2, isfreq)
+        emitelem (3, kf)
+        emitelem (4, kpe)
+        emitelem (5, kpss)
+        emitelem (6, pmm)
+        emitelem (7, tl1)
+        emitelem (8, tl2)
+        emitelem (9, tl3)
+        emitelem (10, tl4)
+        emitelem (11, tpe)
+        emitelem (12, tw1)
+        emitelem (13, tw2)
+        emitelem (14, vadat)
+        emitelem (15, vsmn)
+        emitelem (16, vsmx)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:Pss5 rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:Pss5>"
+        "\t<cim:Pss5 rdf:ID=\"%s\">\n%s\t</cim:Pss5>".format (id, export_fields)
     }
 }
 
@@ -936,47 +1123,74 @@ object Pss5
 extends
     Parseable[Pss5]
 {
-    val ctw2 = parse_element (element ("""Pss5.ctw2"""))
-    val deadband = parse_element (element ("""Pss5.deadband"""))
-    val isfreq = parse_element (element ("""Pss5.isfreq"""))
-    val kf = parse_element (element ("""Pss5.kf"""))
-    val kpe = parse_element (element ("""Pss5.kpe"""))
-    val kpss = parse_element (element ("""Pss5.kpss"""))
-    val pmm = parse_element (element ("""Pss5.pmm"""))
-    val tl1 = parse_element (element ("""Pss5.tl1"""))
-    val tl2 = parse_element (element ("""Pss5.tl2"""))
-    val tl3 = parse_element (element ("""Pss5.tl3"""))
-    val tl4 = parse_element (element ("""Pss5.tl4"""))
-    val tpe = parse_element (element ("""Pss5.tpe"""))
-    val tw1 = parse_element (element ("""Pss5.tw1"""))
-    val tw2 = parse_element (element ("""Pss5.tw2"""))
-    val vadat = parse_element (element ("""Pss5.vadat"""))
-    val vsmn = parse_element (element ("""Pss5.vsmn"""))
-    val vsmx = parse_element (element ("""Pss5.vsmx"""))
+    val fields: Array[String] = Array[String] (
+        "ctw2",
+        "deadband",
+        "isfreq",
+        "kf",
+        "kpe",
+        "kpss",
+        "pmm",
+        "tl1",
+        "tl2",
+        "tl3",
+        "tl4",
+        "tpe",
+        "tw1",
+        "tw2",
+        "vadat",
+        "vsmn",
+        "vsmx"
+    )
+    val ctw2: Fielder = parse_element (element (cls, fields(0)))
+    val deadband: Fielder = parse_element (element (cls, fields(1)))
+    val isfreq: Fielder = parse_element (element (cls, fields(2)))
+    val kf: Fielder = parse_element (element (cls, fields(3)))
+    val kpe: Fielder = parse_element (element (cls, fields(4)))
+    val kpss: Fielder = parse_element (element (cls, fields(5)))
+    val pmm: Fielder = parse_element (element (cls, fields(6)))
+    val tl1: Fielder = parse_element (element (cls, fields(7)))
+    val tl2: Fielder = parse_element (element (cls, fields(8)))
+    val tl3: Fielder = parse_element (element (cls, fields(9)))
+    val tl4: Fielder = parse_element (element (cls, fields(10)))
+    val tpe: Fielder = parse_element (element (cls, fields(11)))
+    val tw1: Fielder = parse_element (element (cls, fields(12)))
+    val tw2: Fielder = parse_element (element (cls, fields(13)))
+    val vadat: Fielder = parse_element (element (cls, fields(14)))
+    val vsmn: Fielder = parse_element (element (cls, fields(15)))
+    val vsmx: Fielder = parse_element (element (cls, fields(16)))
+
     def parse (context: Context): Pss5 =
     {
-        Pss5(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = Pss5 (
             PowerSystemStabilizerDynamics.parse (context),
-            toBoolean (ctw2 (context), context),
-            toDouble (deadband (context), context),
-            toBoolean (isfreq (context), context),
-            toDouble (kf (context), context),
-            toDouble (kpe (context), context),
-            toDouble (kpss (context), context),
-            toDouble (pmm (context), context),
-            toDouble (tl1 (context), context),
-            toDouble (tl2 (context), context),
-            toDouble (tl3 (context), context),
-            toDouble (tl4 (context), context),
-            toDouble (tpe (context), context),
-            toDouble (tw1 (context), context),
-            toDouble (tw2 (context), context),
-            toBoolean (vadat (context), context),
-            toDouble (vsmn (context), context),
-            toDouble (vsmx (context), context)
+            toBoolean (mask (ctw2 (), 0)),
+            toDouble (mask (deadband (), 1)),
+            toBoolean (mask (isfreq (), 2)),
+            toDouble (mask (kf (), 3)),
+            toDouble (mask (kpe (), 4)),
+            toDouble (mask (kpss (), 5)),
+            toDouble (mask (pmm (), 6)),
+            toDouble (mask (tl1 (), 7)),
+            toDouble (mask (tl2 (), 8)),
+            toDouble (mask (tl3 (), 9)),
+            toDouble (mask (tl4 (), 10)),
+            toDouble (mask (tpe (), 11)),
+            toDouble (mask (tw1 (), 12)),
+            toDouble (mask (tw2 (), 13)),
+            toBoolean (mask (vadat (), 14)),
+            toDouble (mask (vsmn (), 15)),
+            toDouble (mask (vsmx (), 16))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -1032,6 +1246,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -1051,24 +1271,26 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:PssELIN2.apss>" + apss + "</cim:PssELIN2.apss>\n" +
-        "\t\t<cim:PssELIN2.ks1>" + ks1 + "</cim:PssELIN2.ks1>\n" +
-        "\t\t<cim:PssELIN2.ks2>" + ks2 + "</cim:PssELIN2.ks2>\n" +
-        "\t\t<cim:PssELIN2.ppss>" + ppss + "</cim:PssELIN2.ppss>\n" +
-        "\t\t<cim:PssELIN2.psslim>" + psslim + "</cim:PssELIN2.psslim>\n" +
-        "\t\t<cim:PssELIN2.ts1>" + ts1 + "</cim:PssELIN2.ts1>\n" +
-        "\t\t<cim:PssELIN2.ts2>" + ts2 + "</cim:PssELIN2.ts2>\n" +
-        "\t\t<cim:PssELIN2.ts3>" + ts3 + "</cim:PssELIN2.ts3>\n" +
-        "\t\t<cim:PssELIN2.ts4>" + ts4 + "</cim:PssELIN2.ts4>\n" +
-        "\t\t<cim:PssELIN2.ts5>" + ts5 + "</cim:PssELIN2.ts5>\n" +
-        "\t\t<cim:PssELIN2.ts6>" + ts6 + "</cim:PssELIN2.ts6>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = PssELIN2.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PssELIN2.fields (position), value)
+        emitelem (0, apss)
+        emitelem (1, ks1)
+        emitelem (2, ks2)
+        emitelem (3, ppss)
+        emitelem (4, psslim)
+        emitelem (5, ts1)
+        emitelem (6, ts2)
+        emitelem (7, ts3)
+        emitelem (8, ts4)
+        emitelem (9, ts5)
+        emitelem (10, ts6)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:PssELIN2 rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:PssELIN2>"
+        "\t<cim:PssELIN2 rdf:ID=\"%s\">\n%s\t</cim:PssELIN2>".format (id, export_fields)
     }
 }
 
@@ -1076,35 +1298,56 @@ object PssELIN2
 extends
     Parseable[PssELIN2]
 {
-    val apss = parse_element (element ("""PssELIN2.apss"""))
-    val ks1 = parse_element (element ("""PssELIN2.ks1"""))
-    val ks2 = parse_element (element ("""PssELIN2.ks2"""))
-    val ppss = parse_element (element ("""PssELIN2.ppss"""))
-    val psslim = parse_element (element ("""PssELIN2.psslim"""))
-    val ts1 = parse_element (element ("""PssELIN2.ts1"""))
-    val ts2 = parse_element (element ("""PssELIN2.ts2"""))
-    val ts3 = parse_element (element ("""PssELIN2.ts3"""))
-    val ts4 = parse_element (element ("""PssELIN2.ts4"""))
-    val ts5 = parse_element (element ("""PssELIN2.ts5"""))
-    val ts6 = parse_element (element ("""PssELIN2.ts6"""))
+    val fields: Array[String] = Array[String] (
+        "apss",
+        "ks1",
+        "ks2",
+        "ppss",
+        "psslim",
+        "ts1",
+        "ts2",
+        "ts3",
+        "ts4",
+        "ts5",
+        "ts6"
+    )
+    val apss: Fielder = parse_element (element (cls, fields(0)))
+    val ks1: Fielder = parse_element (element (cls, fields(1)))
+    val ks2: Fielder = parse_element (element (cls, fields(2)))
+    val ppss: Fielder = parse_element (element (cls, fields(3)))
+    val psslim: Fielder = parse_element (element (cls, fields(4)))
+    val ts1: Fielder = parse_element (element (cls, fields(5)))
+    val ts2: Fielder = parse_element (element (cls, fields(6)))
+    val ts3: Fielder = parse_element (element (cls, fields(7)))
+    val ts4: Fielder = parse_element (element (cls, fields(8)))
+    val ts5: Fielder = parse_element (element (cls, fields(9)))
+    val ts6: Fielder = parse_element (element (cls, fields(10)))
+
     def parse (context: Context): PssELIN2 =
     {
-        PssELIN2(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = PssELIN2 (
             PowerSystemStabilizerDynamics.parse (context),
-            toDouble (apss (context), context),
-            toDouble (ks1 (context), context),
-            toDouble (ks2 (context), context),
-            toDouble (ppss (context), context),
-            toDouble (psslim (context), context),
-            toDouble (ts1 (context), context),
-            toDouble (ts2 (context), context),
-            toDouble (ts3 (context), context),
-            toDouble (ts4 (context), context),
-            toDouble (ts5 (context), context),
-            toDouble (ts6 (context), context)
+            toDouble (mask (apss (), 0)),
+            toDouble (mask (ks1 (), 1)),
+            toDouble (mask (ks2 (), 2)),
+            toDouble (mask (ppss (), 3)),
+            toDouble (mask (psslim (), 4)),
+            toDouble (mask (ts1 (), 5)),
+            toDouble (mask (ts2 (), 6)),
+            toDouble (mask (ts3 (), 7)),
+            toDouble (mask (ts4 (), 8)),
+            toDouble (mask (ts5 (), 9)),
+            toDouble (mask (ts6 (), 10))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -1165,6 +1408,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -1184,25 +1433,28 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:PssIEEE1A.a1>" + a1 + "</cim:PssIEEE1A.a1>\n" +
-        "\t\t<cim:PssIEEE1A.a2>" + a2 + "</cim:PssIEEE1A.a2>\n" +
-        (if (null != inputSignalType) "\t\t<cim:PssIEEE1A.inputSignalType rdf:resource=\"#" + inputSignalType + "\"/>\n" else "") +
-        "\t\t<cim:PssIEEE1A.ks>" + ks + "</cim:PssIEEE1A.ks>\n" +
-        "\t\t<cim:PssIEEE1A.t1>" + t1 + "</cim:PssIEEE1A.t1>\n" +
-        "\t\t<cim:PssIEEE1A.t2>" + t2 + "</cim:PssIEEE1A.t2>\n" +
-        "\t\t<cim:PssIEEE1A.t3>" + t3 + "</cim:PssIEEE1A.t3>\n" +
-        "\t\t<cim:PssIEEE1A.t4>" + t4 + "</cim:PssIEEE1A.t4>\n" +
-        "\t\t<cim:PssIEEE1A.t5>" + t5 + "</cim:PssIEEE1A.t5>\n" +
-        "\t\t<cim:PssIEEE1A.t6>" + t6 + "</cim:PssIEEE1A.t6>\n" +
-        "\t\t<cim:PssIEEE1A.vrmax>" + vrmax + "</cim:PssIEEE1A.vrmax>\n" +
-        "\t\t<cim:PssIEEE1A.vrmin>" + vrmin + "</cim:PssIEEE1A.vrmin>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = PssIEEE1A.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PssIEEE1A.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PssIEEE1A.fields (position), value)
+        emitelem (0, a1)
+        emitelem (1, a2)
+        emitattr (2, inputSignalType)
+        emitelem (3, ks)
+        emitelem (4, t1)
+        emitelem (5, t2)
+        emitelem (6, t3)
+        emitelem (7, t4)
+        emitelem (8, t5)
+        emitelem (9, t6)
+        emitelem (10, vrmax)
+        emitelem (11, vrmin)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:PssIEEE1A rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:PssIEEE1A>"
+        "\t<cim:PssIEEE1A rdf:ID=\"%s\">\n%s\t</cim:PssIEEE1A>".format (id, export_fields)
     }
 }
 
@@ -1210,37 +1462,59 @@ object PssIEEE1A
 extends
     Parseable[PssIEEE1A]
 {
-    val a1 = parse_element (element ("""PssIEEE1A.a1"""))
-    val a2 = parse_element (element ("""PssIEEE1A.a2"""))
-    val inputSignalType = parse_attribute (attribute ("""PssIEEE1A.inputSignalType"""))
-    val ks = parse_element (element ("""PssIEEE1A.ks"""))
-    val t1 = parse_element (element ("""PssIEEE1A.t1"""))
-    val t2 = parse_element (element ("""PssIEEE1A.t2"""))
-    val t3 = parse_element (element ("""PssIEEE1A.t3"""))
-    val t4 = parse_element (element ("""PssIEEE1A.t4"""))
-    val t5 = parse_element (element ("""PssIEEE1A.t5"""))
-    val t6 = parse_element (element ("""PssIEEE1A.t6"""))
-    val vrmax = parse_element (element ("""PssIEEE1A.vrmax"""))
-    val vrmin = parse_element (element ("""PssIEEE1A.vrmin"""))
+    val fields: Array[String] = Array[String] (
+        "a1",
+        "a2",
+        "inputSignalType",
+        "ks",
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "vrmax",
+        "vrmin"
+    )
+    val a1: Fielder = parse_element (element (cls, fields(0)))
+    val a2: Fielder = parse_element (element (cls, fields(1)))
+    val inputSignalType: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val ks: Fielder = parse_element (element (cls, fields(3)))
+    val t1: Fielder = parse_element (element (cls, fields(4)))
+    val t2: Fielder = parse_element (element (cls, fields(5)))
+    val t3: Fielder = parse_element (element (cls, fields(6)))
+    val t4: Fielder = parse_element (element (cls, fields(7)))
+    val t5: Fielder = parse_element (element (cls, fields(8)))
+    val t6: Fielder = parse_element (element (cls, fields(9)))
+    val vrmax: Fielder = parse_element (element (cls, fields(10)))
+    val vrmin: Fielder = parse_element (element (cls, fields(11)))
+
     def parse (context: Context): PssIEEE1A =
     {
-        PssIEEE1A(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = PssIEEE1A (
             PowerSystemStabilizerDynamics.parse (context),
-            toDouble (a1 (context), context),
-            toDouble (a2 (context), context),
-            inputSignalType (context),
-            toDouble (ks (context), context),
-            toDouble (t1 (context), context),
-            toDouble (t2 (context), context),
-            toDouble (t3 (context), context),
-            toDouble (t4 (context), context),
-            toDouble (t5 (context), context),
-            toDouble (t6 (context), context),
-            toDouble (vrmax (context), context),
-            toDouble (vrmin (context), context)
+            toDouble (mask (a1 (), 0)),
+            toDouble (mask (a2 (), 1)),
+            mask (inputSignalType (), 2),
+            toDouble (mask (ks (), 3)),
+            toDouble (mask (t1 (), 4)),
+            toDouble (mask (t2 (), 5)),
+            toDouble (mask (t3 (), 6)),
+            toDouble (mask (t4 (), 7)),
+            toDouble (mask (t5 (), 8)),
+            toDouble (mask (t6 (), 9)),
+            toDouble (mask (vrmax (), 10)),
+            toDouble (mask (vrmin (), 11))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -1346,6 +1620,12 @@ extends
      */
     def this () = { this (null, null, null, 0.0, 0.0, 0.0, 0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -1365,40 +1645,43 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != inputSignal1Type) "\t\t<cim:PssIEEE2B.inputSignal1Type rdf:resource=\"#" + inputSignal1Type + "\"/>\n" else "") +
-        (if (null != inputSignal2Type) "\t\t<cim:PssIEEE2B.inputSignal2Type rdf:resource=\"#" + inputSignal2Type + "\"/>\n" else "") +
-        "\t\t<cim:PssIEEE2B.ks1>" + ks1 + "</cim:PssIEEE2B.ks1>\n" +
-        "\t\t<cim:PssIEEE2B.ks2>" + ks2 + "</cim:PssIEEE2B.ks2>\n" +
-        "\t\t<cim:PssIEEE2B.ks3>" + ks3 + "</cim:PssIEEE2B.ks3>\n" +
-        "\t\t<cim:PssIEEE2B.m>" + m + "</cim:PssIEEE2B.m>\n" +
-        "\t\t<cim:PssIEEE2B.n>" + n + "</cim:PssIEEE2B.n>\n" +
-        "\t\t<cim:PssIEEE2B.t1>" + t1 + "</cim:PssIEEE2B.t1>\n" +
-        "\t\t<cim:PssIEEE2B.t10>" + t10 + "</cim:PssIEEE2B.t10>\n" +
-        "\t\t<cim:PssIEEE2B.t11>" + t11 + "</cim:PssIEEE2B.t11>\n" +
-        "\t\t<cim:PssIEEE2B.t2>" + t2 + "</cim:PssIEEE2B.t2>\n" +
-        "\t\t<cim:PssIEEE2B.t3>" + t3 + "</cim:PssIEEE2B.t3>\n" +
-        "\t\t<cim:PssIEEE2B.t4>" + t4 + "</cim:PssIEEE2B.t4>\n" +
-        "\t\t<cim:PssIEEE2B.t6>" + t6 + "</cim:PssIEEE2B.t6>\n" +
-        "\t\t<cim:PssIEEE2B.t7>" + t7 + "</cim:PssIEEE2B.t7>\n" +
-        "\t\t<cim:PssIEEE2B.t8>" + t8 + "</cim:PssIEEE2B.t8>\n" +
-        "\t\t<cim:PssIEEE2B.t9>" + t9 + "</cim:PssIEEE2B.t9>\n" +
-        "\t\t<cim:PssIEEE2B.tw1>" + tw1 + "</cim:PssIEEE2B.tw1>\n" +
-        "\t\t<cim:PssIEEE2B.tw2>" + tw2 + "</cim:PssIEEE2B.tw2>\n" +
-        "\t\t<cim:PssIEEE2B.tw3>" + tw3 + "</cim:PssIEEE2B.tw3>\n" +
-        "\t\t<cim:PssIEEE2B.tw4>" + tw4 + "</cim:PssIEEE2B.tw4>\n" +
-        "\t\t<cim:PssIEEE2B.vsi1max>" + vsi1max + "</cim:PssIEEE2B.vsi1max>\n" +
-        "\t\t<cim:PssIEEE2B.vsi1min>" + vsi1min + "</cim:PssIEEE2B.vsi1min>\n" +
-        "\t\t<cim:PssIEEE2B.vsi2max>" + vsi2max + "</cim:PssIEEE2B.vsi2max>\n" +
-        "\t\t<cim:PssIEEE2B.vsi2min>" + vsi2min + "</cim:PssIEEE2B.vsi2min>\n" +
-        "\t\t<cim:PssIEEE2B.vstmax>" + vstmax + "</cim:PssIEEE2B.vstmax>\n" +
-        "\t\t<cim:PssIEEE2B.vstmin>" + vstmin + "</cim:PssIEEE2B.vstmin>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = PssIEEE2B.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PssIEEE2B.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PssIEEE2B.fields (position), value)
+        emitattr (0, inputSignal1Type)
+        emitattr (1, inputSignal2Type)
+        emitelem (2, ks1)
+        emitelem (3, ks2)
+        emitelem (4, ks3)
+        emitelem (5, m)
+        emitelem (6, n)
+        emitelem (7, t1)
+        emitelem (8, t10)
+        emitelem (9, t11)
+        emitelem (10, t2)
+        emitelem (11, t3)
+        emitelem (12, t4)
+        emitelem (13, t6)
+        emitelem (14, t7)
+        emitelem (15, t8)
+        emitelem (16, t9)
+        emitelem (17, tw1)
+        emitelem (18, tw2)
+        emitelem (19, tw3)
+        emitelem (20, tw4)
+        emitelem (21, vsi1max)
+        emitelem (22, vsi1min)
+        emitelem (23, vsi2max)
+        emitelem (24, vsi2min)
+        emitelem (25, vstmax)
+        emitelem (26, vstmin)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:PssIEEE2B rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:PssIEEE2B>"
+        "\t<cim:PssIEEE2B rdf:ID=\"%s\">\n%s\t</cim:PssIEEE2B>".format (id, export_fields)
     }
 }
 
@@ -1406,67 +1689,104 @@ object PssIEEE2B
 extends
     Parseable[PssIEEE2B]
 {
-    val inputSignal1Type = parse_attribute (attribute ("""PssIEEE2B.inputSignal1Type"""))
-    val inputSignal2Type = parse_attribute (attribute ("""PssIEEE2B.inputSignal2Type"""))
-    val ks1 = parse_element (element ("""PssIEEE2B.ks1"""))
-    val ks2 = parse_element (element ("""PssIEEE2B.ks2"""))
-    val ks3 = parse_element (element ("""PssIEEE2B.ks3"""))
-    val m = parse_element (element ("""PssIEEE2B.m"""))
-    val n = parse_element (element ("""PssIEEE2B.n"""))
-    val t1 = parse_element (element ("""PssIEEE2B.t1"""))
-    val t10 = parse_element (element ("""PssIEEE2B.t10"""))
-    val t11 = parse_element (element ("""PssIEEE2B.t11"""))
-    val t2 = parse_element (element ("""PssIEEE2B.t2"""))
-    val t3 = parse_element (element ("""PssIEEE2B.t3"""))
-    val t4 = parse_element (element ("""PssIEEE2B.t4"""))
-    val t6 = parse_element (element ("""PssIEEE2B.t6"""))
-    val t7 = parse_element (element ("""PssIEEE2B.t7"""))
-    val t8 = parse_element (element ("""PssIEEE2B.t8"""))
-    val t9 = parse_element (element ("""PssIEEE2B.t9"""))
-    val tw1 = parse_element (element ("""PssIEEE2B.tw1"""))
-    val tw2 = parse_element (element ("""PssIEEE2B.tw2"""))
-    val tw3 = parse_element (element ("""PssIEEE2B.tw3"""))
-    val tw4 = parse_element (element ("""PssIEEE2B.tw4"""))
-    val vsi1max = parse_element (element ("""PssIEEE2B.vsi1max"""))
-    val vsi1min = parse_element (element ("""PssIEEE2B.vsi1min"""))
-    val vsi2max = parse_element (element ("""PssIEEE2B.vsi2max"""))
-    val vsi2min = parse_element (element ("""PssIEEE2B.vsi2min"""))
-    val vstmax = parse_element (element ("""PssIEEE2B.vstmax"""))
-    val vstmin = parse_element (element ("""PssIEEE2B.vstmin"""))
+    val fields: Array[String] = Array[String] (
+        "inputSignal1Type",
+        "inputSignal2Type",
+        "ks1",
+        "ks2",
+        "ks3",
+        "m",
+        "n",
+        "t1",
+        "t10",
+        "t11",
+        "t2",
+        "t3",
+        "t4",
+        "t6",
+        "t7",
+        "t8",
+        "t9",
+        "tw1",
+        "tw2",
+        "tw3",
+        "tw4",
+        "vsi1max",
+        "vsi1min",
+        "vsi2max",
+        "vsi2min",
+        "vstmax",
+        "vstmin"
+    )
+    val inputSignal1Type: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val inputSignal2Type: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val ks1: Fielder = parse_element (element (cls, fields(2)))
+    val ks2: Fielder = parse_element (element (cls, fields(3)))
+    val ks3: Fielder = parse_element (element (cls, fields(4)))
+    val m: Fielder = parse_element (element (cls, fields(5)))
+    val n: Fielder = parse_element (element (cls, fields(6)))
+    val t1: Fielder = parse_element (element (cls, fields(7)))
+    val t10: Fielder = parse_element (element (cls, fields(8)))
+    val t11: Fielder = parse_element (element (cls, fields(9)))
+    val t2: Fielder = parse_element (element (cls, fields(10)))
+    val t3: Fielder = parse_element (element (cls, fields(11)))
+    val t4: Fielder = parse_element (element (cls, fields(12)))
+    val t6: Fielder = parse_element (element (cls, fields(13)))
+    val t7: Fielder = parse_element (element (cls, fields(14)))
+    val t8: Fielder = parse_element (element (cls, fields(15)))
+    val t9: Fielder = parse_element (element (cls, fields(16)))
+    val tw1: Fielder = parse_element (element (cls, fields(17)))
+    val tw2: Fielder = parse_element (element (cls, fields(18)))
+    val tw3: Fielder = parse_element (element (cls, fields(19)))
+    val tw4: Fielder = parse_element (element (cls, fields(20)))
+    val vsi1max: Fielder = parse_element (element (cls, fields(21)))
+    val vsi1min: Fielder = parse_element (element (cls, fields(22)))
+    val vsi2max: Fielder = parse_element (element (cls, fields(23)))
+    val vsi2min: Fielder = parse_element (element (cls, fields(24)))
+    val vstmax: Fielder = parse_element (element (cls, fields(25)))
+    val vstmin: Fielder = parse_element (element (cls, fields(26)))
+
     def parse (context: Context): PssIEEE2B =
     {
-        PssIEEE2B(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = PssIEEE2B (
             PowerSystemStabilizerDynamics.parse (context),
-            inputSignal1Type (context),
-            inputSignal2Type (context),
-            toDouble (ks1 (context), context),
-            toDouble (ks2 (context), context),
-            toDouble (ks3 (context), context),
-            toInteger (m (context), context),
-            toInteger (n (context), context),
-            toDouble (t1 (context), context),
-            toDouble (t10 (context), context),
-            toDouble (t11 (context), context),
-            toDouble (t2 (context), context),
-            toDouble (t3 (context), context),
-            toDouble (t4 (context), context),
-            toDouble (t6 (context), context),
-            toDouble (t7 (context), context),
-            toDouble (t8 (context), context),
-            toDouble (t9 (context), context),
-            toDouble (tw1 (context), context),
-            toDouble (tw2 (context), context),
-            toDouble (tw3 (context), context),
-            toDouble (tw4 (context), context),
-            toDouble (vsi1max (context), context),
-            toDouble (vsi1min (context), context),
-            toDouble (vsi2max (context), context),
-            toDouble (vsi2min (context), context),
-            toDouble (vstmax (context), context),
-            toDouble (vstmin (context), context)
+            mask (inputSignal1Type (), 0),
+            mask (inputSignal2Type (), 1),
+            toDouble (mask (ks1 (), 2)),
+            toDouble (mask (ks2 (), 3)),
+            toDouble (mask (ks3 (), 4)),
+            toInteger (mask (m (), 5)),
+            toInteger (mask (n (), 6)),
+            toDouble (mask (t1 (), 7)),
+            toDouble (mask (t10 (), 8)),
+            toDouble (mask (t11 (), 9)),
+            toDouble (mask (t2 (), 10)),
+            toDouble (mask (t3 (), 11)),
+            toDouble (mask (t4 (), 12)),
+            toDouble (mask (t6 (), 13)),
+            toDouble (mask (t7 (), 14)),
+            toDouble (mask (t8 (), 15)),
+            toDouble (mask (t9 (), 16)),
+            toDouble (mask (tw1 (), 17)),
+            toDouble (mask (tw2 (), 18)),
+            toDouble (mask (tw3 (), 19)),
+            toDouble (mask (tw4 (), 20)),
+            toDouble (mask (vsi1max (), 21)),
+            toDouble (mask (vsi1min (), 22)),
+            toDouble (mask (vsi2max (), 23)),
+            toDouble (mask (vsi2min (), 24)),
+            toDouble (mask (vstmax (), 25)),
+            toDouble (mask (vstmin (), 26))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -1548,6 +1868,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -1567,32 +1893,35 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:PssIEEE3B.a1>" + a1 + "</cim:PssIEEE3B.a1>\n" +
-        "\t\t<cim:PssIEEE3B.a2>" + a2 + "</cim:PssIEEE3B.a2>\n" +
-        "\t\t<cim:PssIEEE3B.a3>" + a3 + "</cim:PssIEEE3B.a3>\n" +
-        "\t\t<cim:PssIEEE3B.a4>" + a4 + "</cim:PssIEEE3B.a4>\n" +
-        "\t\t<cim:PssIEEE3B.a5>" + a5 + "</cim:PssIEEE3B.a5>\n" +
-        "\t\t<cim:PssIEEE3B.a6>" + a6 + "</cim:PssIEEE3B.a6>\n" +
-        "\t\t<cim:PssIEEE3B.a7>" + a7 + "</cim:PssIEEE3B.a7>\n" +
-        "\t\t<cim:PssIEEE3B.a8>" + a8 + "</cim:PssIEEE3B.a8>\n" +
-        (if (null != inputSignal1Type) "\t\t<cim:PssIEEE3B.inputSignal1Type rdf:resource=\"#" + inputSignal1Type + "\"/>\n" else "") +
-        (if (null != inputSignal2Type) "\t\t<cim:PssIEEE3B.inputSignal2Type rdf:resource=\"#" + inputSignal2Type + "\"/>\n" else "") +
-        "\t\t<cim:PssIEEE3B.ks1>" + ks1 + "</cim:PssIEEE3B.ks1>\n" +
-        "\t\t<cim:PssIEEE3B.ks2>" + ks2 + "</cim:PssIEEE3B.ks2>\n" +
-        "\t\t<cim:PssIEEE3B.t1>" + t1 + "</cim:PssIEEE3B.t1>\n" +
-        "\t\t<cim:PssIEEE3B.t2>" + t2 + "</cim:PssIEEE3B.t2>\n" +
-        "\t\t<cim:PssIEEE3B.tw1>" + tw1 + "</cim:PssIEEE3B.tw1>\n" +
-        "\t\t<cim:PssIEEE3B.tw2>" + tw2 + "</cim:PssIEEE3B.tw2>\n" +
-        "\t\t<cim:PssIEEE3B.tw3>" + tw3 + "</cim:PssIEEE3B.tw3>\n" +
-        "\t\t<cim:PssIEEE3B.vstmax>" + vstmax + "</cim:PssIEEE3B.vstmax>\n" +
-        "\t\t<cim:PssIEEE3B.vstmin>" + vstmin + "</cim:PssIEEE3B.vstmin>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = PssIEEE3B.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PssIEEE3B.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PssIEEE3B.fields (position), value)
+        emitelem (0, a1)
+        emitelem (1, a2)
+        emitelem (2, a3)
+        emitelem (3, a4)
+        emitelem (4, a5)
+        emitelem (5, a6)
+        emitelem (6, a7)
+        emitelem (7, a8)
+        emitattr (8, inputSignal1Type)
+        emitattr (9, inputSignal2Type)
+        emitelem (10, ks1)
+        emitelem (11, ks2)
+        emitelem (12, t1)
+        emitelem (13, t2)
+        emitelem (14, tw1)
+        emitelem (15, tw2)
+        emitelem (16, tw3)
+        emitelem (17, vstmax)
+        emitelem (18, vstmin)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:PssIEEE3B rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:PssIEEE3B>"
+        "\t<cim:PssIEEE3B rdf:ID=\"%s\">\n%s\t</cim:PssIEEE3B>".format (id, export_fields)
     }
 }
 
@@ -1600,51 +1929,80 @@ object PssIEEE3B
 extends
     Parseable[PssIEEE3B]
 {
-    val a1 = parse_element (element ("""PssIEEE3B.a1"""))
-    val a2 = parse_element (element ("""PssIEEE3B.a2"""))
-    val a3 = parse_element (element ("""PssIEEE3B.a3"""))
-    val a4 = parse_element (element ("""PssIEEE3B.a4"""))
-    val a5 = parse_element (element ("""PssIEEE3B.a5"""))
-    val a6 = parse_element (element ("""PssIEEE3B.a6"""))
-    val a7 = parse_element (element ("""PssIEEE3B.a7"""))
-    val a8 = parse_element (element ("""PssIEEE3B.a8"""))
-    val inputSignal1Type = parse_attribute (attribute ("""PssIEEE3B.inputSignal1Type"""))
-    val inputSignal2Type = parse_attribute (attribute ("""PssIEEE3B.inputSignal2Type"""))
-    val ks1 = parse_element (element ("""PssIEEE3B.ks1"""))
-    val ks2 = parse_element (element ("""PssIEEE3B.ks2"""))
-    val t1 = parse_element (element ("""PssIEEE3B.t1"""))
-    val t2 = parse_element (element ("""PssIEEE3B.t2"""))
-    val tw1 = parse_element (element ("""PssIEEE3B.tw1"""))
-    val tw2 = parse_element (element ("""PssIEEE3B.tw2"""))
-    val tw3 = parse_element (element ("""PssIEEE3B.tw3"""))
-    val vstmax = parse_element (element ("""PssIEEE3B.vstmax"""))
-    val vstmin = parse_element (element ("""PssIEEE3B.vstmin"""))
+    val fields: Array[String] = Array[String] (
+        "a1",
+        "a2",
+        "a3",
+        "a4",
+        "a5",
+        "a6",
+        "a7",
+        "a8",
+        "inputSignal1Type",
+        "inputSignal2Type",
+        "ks1",
+        "ks2",
+        "t1",
+        "t2",
+        "tw1",
+        "tw2",
+        "tw3",
+        "vstmax",
+        "vstmin"
+    )
+    val a1: Fielder = parse_element (element (cls, fields(0)))
+    val a2: Fielder = parse_element (element (cls, fields(1)))
+    val a3: Fielder = parse_element (element (cls, fields(2)))
+    val a4: Fielder = parse_element (element (cls, fields(3)))
+    val a5: Fielder = parse_element (element (cls, fields(4)))
+    val a6: Fielder = parse_element (element (cls, fields(5)))
+    val a7: Fielder = parse_element (element (cls, fields(6)))
+    val a8: Fielder = parse_element (element (cls, fields(7)))
+    val inputSignal1Type: Fielder = parse_attribute (attribute (cls, fields(8)))
+    val inputSignal2Type: Fielder = parse_attribute (attribute (cls, fields(9)))
+    val ks1: Fielder = parse_element (element (cls, fields(10)))
+    val ks2: Fielder = parse_element (element (cls, fields(11)))
+    val t1: Fielder = parse_element (element (cls, fields(12)))
+    val t2: Fielder = parse_element (element (cls, fields(13)))
+    val tw1: Fielder = parse_element (element (cls, fields(14)))
+    val tw2: Fielder = parse_element (element (cls, fields(15)))
+    val tw3: Fielder = parse_element (element (cls, fields(16)))
+    val vstmax: Fielder = parse_element (element (cls, fields(17)))
+    val vstmin: Fielder = parse_element (element (cls, fields(18)))
+
     def parse (context: Context): PssIEEE3B =
     {
-        PssIEEE3B(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = PssIEEE3B (
             PowerSystemStabilizerDynamics.parse (context),
-            toDouble (a1 (context), context),
-            toDouble (a2 (context), context),
-            toDouble (a3 (context), context),
-            toDouble (a4 (context), context),
-            toDouble (a5 (context), context),
-            toDouble (a6 (context), context),
-            toDouble (a7 (context), context),
-            toDouble (a8 (context), context),
-            inputSignal1Type (context),
-            inputSignal2Type (context),
-            toDouble (ks1 (context), context),
-            toDouble (ks2 (context), context),
-            toDouble (t1 (context), context),
-            toDouble (t2 (context), context),
-            toDouble (tw1 (context), context),
-            toDouble (tw2 (context), context),
-            toDouble (tw3 (context), context),
-            toDouble (vstmax (context), context),
-            toDouble (vstmin (context), context)
+            toDouble (mask (a1 (), 0)),
+            toDouble (mask (a2 (), 1)),
+            toDouble (mask (a3 (), 2)),
+            toDouble (mask (a4 (), 3)),
+            toDouble (mask (a5 (), 4)),
+            toDouble (mask (a6 (), 5)),
+            toDouble (mask (a7 (), 6)),
+            toDouble (mask (a8 (), 7)),
+            mask (inputSignal1Type (), 8),
+            mask (inputSignal2Type (), 9),
+            toDouble (mask (ks1 (), 10)),
+            toDouble (mask (ks2 (), 11)),
+            toDouble (mask (t1 (), 12)),
+            toDouble (mask (t2 (), 13)),
+            toDouble (mask (tw1 (), 14)),
+            toDouble (mask (tw2 (), 15)),
+            toDouble (mask (tw3 (), 16)),
+            toDouble (mask (vstmax (), 17)),
+            toDouble (mask (vstmin (), 18))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -1862,6 +2220,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Long = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -1881,80 +2245,82 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:PssIEEE4B.bwh1>" + bwh1 + "</cim:PssIEEE4B.bwh1>\n" +
-        "\t\t<cim:PssIEEE4B.bwh2>" + bwh2 + "</cim:PssIEEE4B.bwh2>\n" +
-        "\t\t<cim:PssIEEE4B.bwl1>" + bwl1 + "</cim:PssIEEE4B.bwl1>\n" +
-        "\t\t<cim:PssIEEE4B.bwl2>" + bwl2 + "</cim:PssIEEE4B.bwl2>\n" +
-        "\t\t<cim:PssIEEE4B.kh>" + kh + "</cim:PssIEEE4B.kh>\n" +
-        "\t\t<cim:PssIEEE4B.kh1>" + kh1 + "</cim:PssIEEE4B.kh1>\n" +
-        "\t\t<cim:PssIEEE4B.kh11>" + kh11 + "</cim:PssIEEE4B.kh11>\n" +
-        "\t\t<cim:PssIEEE4B.kh17>" + kh17 + "</cim:PssIEEE4B.kh17>\n" +
-        "\t\t<cim:PssIEEE4B.kh2>" + kh2 + "</cim:PssIEEE4B.kh2>\n" +
-        "\t\t<cim:PssIEEE4B.ki>" + ki + "</cim:PssIEEE4B.ki>\n" +
-        "\t\t<cim:PssIEEE4B.ki1>" + ki1 + "</cim:PssIEEE4B.ki1>\n" +
-        "\t\t<cim:PssIEEE4B.ki11>" + ki11 + "</cim:PssIEEE4B.ki11>\n" +
-        "\t\t<cim:PssIEEE4B.ki17>" + ki17 + "</cim:PssIEEE4B.ki17>\n" +
-        "\t\t<cim:PssIEEE4B.ki2>" + ki2 + "</cim:PssIEEE4B.ki2>\n" +
-        "\t\t<cim:PssIEEE4B.kl>" + kl + "</cim:PssIEEE4B.kl>\n" +
-        "\t\t<cim:PssIEEE4B.kl1>" + kl1 + "</cim:PssIEEE4B.kl1>\n" +
-        "\t\t<cim:PssIEEE4B.kl11>" + kl11 + "</cim:PssIEEE4B.kl11>\n" +
-        "\t\t<cim:PssIEEE4B.kl17>" + kl17 + "</cim:PssIEEE4B.kl17>\n" +
-        "\t\t<cim:PssIEEE4B.kl2>" + kl2 + "</cim:PssIEEE4B.kl2>\n" +
-        "\t\t<cim:PssIEEE4B.omeganh1>" + omeganh1 + "</cim:PssIEEE4B.omeganh1>\n" +
-        "\t\t<cim:PssIEEE4B.omeganh2>" + omeganh2 + "</cim:PssIEEE4B.omeganh2>\n" +
-        "\t\t<cim:PssIEEE4B.omeganl1>" + omeganl1 + "</cim:PssIEEE4B.omeganl1>\n" +
-        "\t\t<cim:PssIEEE4B.omeganl2>" + omeganl2 + "</cim:PssIEEE4B.omeganl2>\n" +
-        "\t\t<cim:PssIEEE4B.th1>" + th1 + "</cim:PssIEEE4B.th1>\n" +
-        "\t\t<cim:PssIEEE4B.th10>" + th10 + "</cim:PssIEEE4B.th10>\n" +
-        "\t\t<cim:PssIEEE4B.th11>" + th11 + "</cim:PssIEEE4B.th11>\n" +
-        "\t\t<cim:PssIEEE4B.th12>" + th12 + "</cim:PssIEEE4B.th12>\n" +
-        "\t\t<cim:PssIEEE4B.th2>" + th2 + "</cim:PssIEEE4B.th2>\n" +
-        "\t\t<cim:PssIEEE4B.th3>" + th3 + "</cim:PssIEEE4B.th3>\n" +
-        "\t\t<cim:PssIEEE4B.th4>" + th4 + "</cim:PssIEEE4B.th4>\n" +
-        "\t\t<cim:PssIEEE4B.th5>" + th5 + "</cim:PssIEEE4B.th5>\n" +
-        "\t\t<cim:PssIEEE4B.th6>" + th6 + "</cim:PssIEEE4B.th6>\n" +
-        "\t\t<cim:PssIEEE4B.th7>" + th7 + "</cim:PssIEEE4B.th7>\n" +
-        "\t\t<cim:PssIEEE4B.th8>" + th8 + "</cim:PssIEEE4B.th8>\n" +
-        "\t\t<cim:PssIEEE4B.th9>" + th9 + "</cim:PssIEEE4B.th9>\n" +
-        "\t\t<cim:PssIEEE4B.ti1>" + ti1 + "</cim:PssIEEE4B.ti1>\n" +
-        "\t\t<cim:PssIEEE4B.ti10>" + ti10 + "</cim:PssIEEE4B.ti10>\n" +
-        "\t\t<cim:PssIEEE4B.ti11>" + ti11 + "</cim:PssIEEE4B.ti11>\n" +
-        "\t\t<cim:PssIEEE4B.ti12>" + ti12 + "</cim:PssIEEE4B.ti12>\n" +
-        "\t\t<cim:PssIEEE4B.ti2>" + ti2 + "</cim:PssIEEE4B.ti2>\n" +
-        "\t\t<cim:PssIEEE4B.ti3>" + ti3 + "</cim:PssIEEE4B.ti3>\n" +
-        "\t\t<cim:PssIEEE4B.ti4>" + ti4 + "</cim:PssIEEE4B.ti4>\n" +
-        "\t\t<cim:PssIEEE4B.ti5>" + ti5 + "</cim:PssIEEE4B.ti5>\n" +
-        "\t\t<cim:PssIEEE4B.ti6>" + ti6 + "</cim:PssIEEE4B.ti6>\n" +
-        "\t\t<cim:PssIEEE4B.ti7>" + ti7 + "</cim:PssIEEE4B.ti7>\n" +
-        "\t\t<cim:PssIEEE4B.ti8>" + ti8 + "</cim:PssIEEE4B.ti8>\n" +
-        "\t\t<cim:PssIEEE4B.ti9>" + ti9 + "</cim:PssIEEE4B.ti9>\n" +
-        "\t\t<cim:PssIEEE4B.tl1>" + tl1 + "</cim:PssIEEE4B.tl1>\n" +
-        "\t\t<cim:PssIEEE4B.tl10>" + tl10 + "</cim:PssIEEE4B.tl10>\n" +
-        "\t\t<cim:PssIEEE4B.tl11>" + tl11 + "</cim:PssIEEE4B.tl11>\n" +
-        "\t\t<cim:PssIEEE4B.tl12>" + tl12 + "</cim:PssIEEE4B.tl12>\n" +
-        "\t\t<cim:PssIEEE4B.tl2>" + tl2 + "</cim:PssIEEE4B.tl2>\n" +
-        "\t\t<cim:PssIEEE4B.tl3>" + tl3 + "</cim:PssIEEE4B.tl3>\n" +
-        "\t\t<cim:PssIEEE4B.tl4>" + tl4 + "</cim:PssIEEE4B.tl4>\n" +
-        "\t\t<cim:PssIEEE4B.tl5>" + tl5 + "</cim:PssIEEE4B.tl5>\n" +
-        "\t\t<cim:PssIEEE4B.tl6>" + tl6 + "</cim:PssIEEE4B.tl6>\n" +
-        "\t\t<cim:PssIEEE4B.tl7>" + tl7 + "</cim:PssIEEE4B.tl7>\n" +
-        "\t\t<cim:PssIEEE4B.tl8>" + tl8 + "</cim:PssIEEE4B.tl8>\n" +
-        "\t\t<cim:PssIEEE4B.tl9>" + tl9 + "</cim:PssIEEE4B.tl9>\n" +
-        "\t\t<cim:PssIEEE4B.vhmax>" + vhmax + "</cim:PssIEEE4B.vhmax>\n" +
-        "\t\t<cim:PssIEEE4B.vhmin>" + vhmin + "</cim:PssIEEE4B.vhmin>\n" +
-        "\t\t<cim:PssIEEE4B.vimax>" + vimax + "</cim:PssIEEE4B.vimax>\n" +
-        "\t\t<cim:PssIEEE4B.vimin>" + vimin + "</cim:PssIEEE4B.vimin>\n" +
-        "\t\t<cim:PssIEEE4B.vlmax>" + vlmax + "</cim:PssIEEE4B.vlmax>\n" +
-        "\t\t<cim:PssIEEE4B.vlmin>" + vlmin + "</cim:PssIEEE4B.vlmin>\n" +
-        "\t\t<cim:PssIEEE4B.vstmax>" + vstmax + "</cim:PssIEEE4B.vstmax>\n" +
-        "\t\t<cim:PssIEEE4B.vstmin>" + vstmin + "</cim:PssIEEE4B.vstmin>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = PssIEEE4B.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PssIEEE4B.fields (position), value)
+        emitelem (0, bwh1)
+        emitelem (1, bwh2)
+        emitelem (2, bwl1)
+        emitelem (3, bwl2)
+        emitelem (4, kh)
+        emitelem (5, kh1)
+        emitelem (6, kh11)
+        emitelem (7, kh17)
+        emitelem (8, kh2)
+        emitelem (9, ki)
+        emitelem (10, ki1)
+        emitelem (11, ki11)
+        emitelem (12, ki17)
+        emitelem (13, ki2)
+        emitelem (14, kl)
+        emitelem (15, kl1)
+        emitelem (16, kl11)
+        emitelem (17, kl17)
+        emitelem (18, kl2)
+        emitelem (19, omeganh1)
+        emitelem (20, omeganh2)
+        emitelem (21, omeganl1)
+        emitelem (22, omeganl2)
+        emitelem (23, th1)
+        emitelem (24, th10)
+        emitelem (25, th11)
+        emitelem (26, th12)
+        emitelem (27, th2)
+        emitelem (28, th3)
+        emitelem (29, th4)
+        emitelem (30, th5)
+        emitelem (31, th6)
+        emitelem (32, th7)
+        emitelem (33, th8)
+        emitelem (34, th9)
+        emitelem (35, ti1)
+        emitelem (36, ti10)
+        emitelem (37, ti11)
+        emitelem (38, ti12)
+        emitelem (39, ti2)
+        emitelem (40, ti3)
+        emitelem (41, ti4)
+        emitelem (42, ti5)
+        emitelem (43, ti6)
+        emitelem (44, ti7)
+        emitelem (45, ti8)
+        emitelem (46, ti9)
+        emitelem (47, tl1)
+        emitelem (48, tl10)
+        emitelem (49, tl11)
+        emitelem (50, tl12)
+        emitelem (51, tl2)
+        emitelem (52, tl3)
+        emitelem (53, tl4)
+        emitelem (54, tl5)
+        emitelem (55, tl6)
+        emitelem (56, tl7)
+        emitelem (57, tl8)
+        emitelem (58, tl9)
+        emitelem (59, vhmax)
+        emitelem (60, vhmin)
+        emitelem (61, vimax)
+        emitelem (62, vimin)
+        emitelem (63, vlmax)
+        emitelem (64, vlmin)
+        emitelem (65, vstmax)
+        emitelem (66, vstmin)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:PssIEEE4B rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:PssIEEE4B>"
+        "\t<cim:PssIEEE4B rdf:ID=\"%s\">\n%s\t</cim:PssIEEE4B>".format (id, export_fields)
     }
 }
 
@@ -1962,147 +2328,224 @@ object PssIEEE4B
 extends
     Parseable[PssIEEE4B]
 {
-    val bwh1 = parse_element (element ("""PssIEEE4B.bwh1"""))
-    val bwh2 = parse_element (element ("""PssIEEE4B.bwh2"""))
-    val bwl1 = parse_element (element ("""PssIEEE4B.bwl1"""))
-    val bwl2 = parse_element (element ("""PssIEEE4B.bwl2"""))
-    val kh = parse_element (element ("""PssIEEE4B.kh"""))
-    val kh1 = parse_element (element ("""PssIEEE4B.kh1"""))
-    val kh11 = parse_element (element ("""PssIEEE4B.kh11"""))
-    val kh17 = parse_element (element ("""PssIEEE4B.kh17"""))
-    val kh2 = parse_element (element ("""PssIEEE4B.kh2"""))
-    val ki = parse_element (element ("""PssIEEE4B.ki"""))
-    val ki1 = parse_element (element ("""PssIEEE4B.ki1"""))
-    val ki11 = parse_element (element ("""PssIEEE4B.ki11"""))
-    val ki17 = parse_element (element ("""PssIEEE4B.ki17"""))
-    val ki2 = parse_element (element ("""PssIEEE4B.ki2"""))
-    val kl = parse_element (element ("""PssIEEE4B.kl"""))
-    val kl1 = parse_element (element ("""PssIEEE4B.kl1"""))
-    val kl11 = parse_element (element ("""PssIEEE4B.kl11"""))
-    val kl17 = parse_element (element ("""PssIEEE4B.kl17"""))
-    val kl2 = parse_element (element ("""PssIEEE4B.kl2"""))
-    val omeganh1 = parse_element (element ("""PssIEEE4B.omeganh1"""))
-    val omeganh2 = parse_element (element ("""PssIEEE4B.omeganh2"""))
-    val omeganl1 = parse_element (element ("""PssIEEE4B.omeganl1"""))
-    val omeganl2 = parse_element (element ("""PssIEEE4B.omeganl2"""))
-    val th1 = parse_element (element ("""PssIEEE4B.th1"""))
-    val th10 = parse_element (element ("""PssIEEE4B.th10"""))
-    val th11 = parse_element (element ("""PssIEEE4B.th11"""))
-    val th12 = parse_element (element ("""PssIEEE4B.th12"""))
-    val th2 = parse_element (element ("""PssIEEE4B.th2"""))
-    val th3 = parse_element (element ("""PssIEEE4B.th3"""))
-    val th4 = parse_element (element ("""PssIEEE4B.th4"""))
-    val th5 = parse_element (element ("""PssIEEE4B.th5"""))
-    val th6 = parse_element (element ("""PssIEEE4B.th6"""))
-    val th7 = parse_element (element ("""PssIEEE4B.th7"""))
-    val th8 = parse_element (element ("""PssIEEE4B.th8"""))
-    val th9 = parse_element (element ("""PssIEEE4B.th9"""))
-    val ti1 = parse_element (element ("""PssIEEE4B.ti1"""))
-    val ti10 = parse_element (element ("""PssIEEE4B.ti10"""))
-    val ti11 = parse_element (element ("""PssIEEE4B.ti11"""))
-    val ti12 = parse_element (element ("""PssIEEE4B.ti12"""))
-    val ti2 = parse_element (element ("""PssIEEE4B.ti2"""))
-    val ti3 = parse_element (element ("""PssIEEE4B.ti3"""))
-    val ti4 = parse_element (element ("""PssIEEE4B.ti4"""))
-    val ti5 = parse_element (element ("""PssIEEE4B.ti5"""))
-    val ti6 = parse_element (element ("""PssIEEE4B.ti6"""))
-    val ti7 = parse_element (element ("""PssIEEE4B.ti7"""))
-    val ti8 = parse_element (element ("""PssIEEE4B.ti8"""))
-    val ti9 = parse_element (element ("""PssIEEE4B.ti9"""))
-    val tl1 = parse_element (element ("""PssIEEE4B.tl1"""))
-    val tl10 = parse_element (element ("""PssIEEE4B.tl10"""))
-    val tl11 = parse_element (element ("""PssIEEE4B.tl11"""))
-    val tl12 = parse_element (element ("""PssIEEE4B.tl12"""))
-    val tl2 = parse_element (element ("""PssIEEE4B.tl2"""))
-    val tl3 = parse_element (element ("""PssIEEE4B.tl3"""))
-    val tl4 = parse_element (element ("""PssIEEE4B.tl4"""))
-    val tl5 = parse_element (element ("""PssIEEE4B.tl5"""))
-    val tl6 = parse_element (element ("""PssIEEE4B.tl6"""))
-    val tl7 = parse_element (element ("""PssIEEE4B.tl7"""))
-    val tl8 = parse_element (element ("""PssIEEE4B.tl8"""))
-    val tl9 = parse_element (element ("""PssIEEE4B.tl9"""))
-    val vhmax = parse_element (element ("""PssIEEE4B.vhmax"""))
-    val vhmin = parse_element (element ("""PssIEEE4B.vhmin"""))
-    val vimax = parse_element (element ("""PssIEEE4B.vimax"""))
-    val vimin = parse_element (element ("""PssIEEE4B.vimin"""))
-    val vlmax = parse_element (element ("""PssIEEE4B.vlmax"""))
-    val vlmin = parse_element (element ("""PssIEEE4B.vlmin"""))
-    val vstmax = parse_element (element ("""PssIEEE4B.vstmax"""))
-    val vstmin = parse_element (element ("""PssIEEE4B.vstmin"""))
+    val fields: Array[String] = Array[String] (
+        "bwh1",
+        "bwh2",
+        "bwl1",
+        "bwl2",
+        "kh",
+        "kh1",
+        "kh11",
+        "kh17",
+        "kh2",
+        "ki",
+        "ki1",
+        "ki11",
+        "ki17",
+        "ki2",
+        "kl",
+        "kl1",
+        "kl11",
+        "kl17",
+        "kl2",
+        "omeganh1",
+        "omeganh2",
+        "omeganl1",
+        "omeganl2",
+        "th1",
+        "th10",
+        "th11",
+        "th12",
+        "th2",
+        "th3",
+        "th4",
+        "th5",
+        "th6",
+        "th7",
+        "th8",
+        "th9",
+        "ti1",
+        "ti10",
+        "ti11",
+        "ti12",
+        "ti2",
+        "ti3",
+        "ti4",
+        "ti5",
+        "ti6",
+        "ti7",
+        "ti8",
+        "ti9",
+        "tl1",
+        "tl10",
+        "tl11",
+        "tl12",
+        "tl2",
+        "tl3",
+        "tl4",
+        "tl5",
+        "tl6",
+        "tl7",
+        "tl8",
+        "tl9",
+        "vhmax",
+        "vhmin",
+        "vimax",
+        "vimin",
+        "vlmax",
+        "vlmin",
+        "vstmax",
+        "vstmin"
+    )
+    val bwh1: Fielder = parse_element (element (cls, fields(0)))
+    val bwh2: Fielder = parse_element (element (cls, fields(1)))
+    val bwl1: Fielder = parse_element (element (cls, fields(2)))
+    val bwl2: Fielder = parse_element (element (cls, fields(3)))
+    val kh: Fielder = parse_element (element (cls, fields(4)))
+    val kh1: Fielder = parse_element (element (cls, fields(5)))
+    val kh11: Fielder = parse_element (element (cls, fields(6)))
+    val kh17: Fielder = parse_element (element (cls, fields(7)))
+    val kh2: Fielder = parse_element (element (cls, fields(8)))
+    val ki: Fielder = parse_element (element (cls, fields(9)))
+    val ki1: Fielder = parse_element (element (cls, fields(10)))
+    val ki11: Fielder = parse_element (element (cls, fields(11)))
+    val ki17: Fielder = parse_element (element (cls, fields(12)))
+    val ki2: Fielder = parse_element (element (cls, fields(13)))
+    val kl: Fielder = parse_element (element (cls, fields(14)))
+    val kl1: Fielder = parse_element (element (cls, fields(15)))
+    val kl11: Fielder = parse_element (element (cls, fields(16)))
+    val kl17: Fielder = parse_element (element (cls, fields(17)))
+    val kl2: Fielder = parse_element (element (cls, fields(18)))
+    val omeganh1: Fielder = parse_element (element (cls, fields(19)))
+    val omeganh2: Fielder = parse_element (element (cls, fields(20)))
+    val omeganl1: Fielder = parse_element (element (cls, fields(21)))
+    val omeganl2: Fielder = parse_element (element (cls, fields(22)))
+    val th1: Fielder = parse_element (element (cls, fields(23)))
+    val th10: Fielder = parse_element (element (cls, fields(24)))
+    val th11: Fielder = parse_element (element (cls, fields(25)))
+    val th12: Fielder = parse_element (element (cls, fields(26)))
+    val th2: Fielder = parse_element (element (cls, fields(27)))
+    val th3: Fielder = parse_element (element (cls, fields(28)))
+    val th4: Fielder = parse_element (element (cls, fields(29)))
+    val th5: Fielder = parse_element (element (cls, fields(30)))
+    val th6: Fielder = parse_element (element (cls, fields(31)))
+    val th7: Fielder = parse_element (element (cls, fields(32)))
+    val th8: Fielder = parse_element (element (cls, fields(33)))
+    val th9: Fielder = parse_element (element (cls, fields(34)))
+    val ti1: Fielder = parse_element (element (cls, fields(35)))
+    val ti10: Fielder = parse_element (element (cls, fields(36)))
+    val ti11: Fielder = parse_element (element (cls, fields(37)))
+    val ti12: Fielder = parse_element (element (cls, fields(38)))
+    val ti2: Fielder = parse_element (element (cls, fields(39)))
+    val ti3: Fielder = parse_element (element (cls, fields(40)))
+    val ti4: Fielder = parse_element (element (cls, fields(41)))
+    val ti5: Fielder = parse_element (element (cls, fields(42)))
+    val ti6: Fielder = parse_element (element (cls, fields(43)))
+    val ti7: Fielder = parse_element (element (cls, fields(44)))
+    val ti8: Fielder = parse_element (element (cls, fields(45)))
+    val ti9: Fielder = parse_element (element (cls, fields(46)))
+    val tl1: Fielder = parse_element (element (cls, fields(47)))
+    val tl10: Fielder = parse_element (element (cls, fields(48)))
+    val tl11: Fielder = parse_element (element (cls, fields(49)))
+    val tl12: Fielder = parse_element (element (cls, fields(50)))
+    val tl2: Fielder = parse_element (element (cls, fields(51)))
+    val tl3: Fielder = parse_element (element (cls, fields(52)))
+    val tl4: Fielder = parse_element (element (cls, fields(53)))
+    val tl5: Fielder = parse_element (element (cls, fields(54)))
+    val tl6: Fielder = parse_element (element (cls, fields(55)))
+    val tl7: Fielder = parse_element (element (cls, fields(56)))
+    val tl8: Fielder = parse_element (element (cls, fields(57)))
+    val tl9: Fielder = parse_element (element (cls, fields(58)))
+    val vhmax: Fielder = parse_element (element (cls, fields(59)))
+    val vhmin: Fielder = parse_element (element (cls, fields(60)))
+    val vimax: Fielder = parse_element (element (cls, fields(61)))
+    val vimin: Fielder = parse_element (element (cls, fields(62)))
+    val vlmax: Fielder = parse_element (element (cls, fields(63)))
+    val vlmin: Fielder = parse_element (element (cls, fields(64)))
+    val vstmax: Fielder = parse_element (element (cls, fields(65)))
+    val vstmin: Fielder = parse_element (element (cls, fields(66)))
+
     def parse (context: Context): PssIEEE4B =
     {
-        PssIEEE4B(
+        implicit val ctx: Context = context
+        var fields: Long = 0L
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1L << position; field._1 }
+        val ret = PssIEEE4B (
             PowerSystemStabilizerDynamics.parse (context),
-            toDouble (bwh1 (context), context),
-            toDouble (bwh2 (context), context),
-            toDouble (bwl1 (context), context),
-            toDouble (bwl2 (context), context),
-            toDouble (kh (context), context),
-            toDouble (kh1 (context), context),
-            toDouble (kh11 (context), context),
-            toDouble (kh17 (context), context),
-            toDouble (kh2 (context), context),
-            toDouble (ki (context), context),
-            toDouble (ki1 (context), context),
-            toDouble (ki11 (context), context),
-            toDouble (ki17 (context), context),
-            toDouble (ki2 (context), context),
-            toDouble (kl (context), context),
-            toDouble (kl1 (context), context),
-            toDouble (kl11 (context), context),
-            toDouble (kl17 (context), context),
-            toDouble (kl2 (context), context),
-            toDouble (omeganh1 (context), context),
-            toDouble (omeganh2 (context), context),
-            toDouble (omeganl1 (context), context),
-            toDouble (omeganl2 (context), context),
-            toDouble (th1 (context), context),
-            toDouble (th10 (context), context),
-            toDouble (th11 (context), context),
-            toDouble (th12 (context), context),
-            toDouble (th2 (context), context),
-            toDouble (th3 (context), context),
-            toDouble (th4 (context), context),
-            toDouble (th5 (context), context),
-            toDouble (th6 (context), context),
-            toDouble (th7 (context), context),
-            toDouble (th8 (context), context),
-            toDouble (th9 (context), context),
-            toDouble (ti1 (context), context),
-            toDouble (ti10 (context), context),
-            toDouble (ti11 (context), context),
-            toDouble (ti12 (context), context),
-            toDouble (ti2 (context), context),
-            toDouble (ti3 (context), context),
-            toDouble (ti4 (context), context),
-            toDouble (ti5 (context), context),
-            toDouble (ti6 (context), context),
-            toDouble (ti7 (context), context),
-            toDouble (ti8 (context), context),
-            toDouble (ti9 (context), context),
-            toDouble (tl1 (context), context),
-            toDouble (tl10 (context), context),
-            toDouble (tl11 (context), context),
-            toDouble (tl12 (context), context),
-            toDouble (tl2 (context), context),
-            toDouble (tl3 (context), context),
-            toDouble (tl4 (context), context),
-            toDouble (tl5 (context), context),
-            toDouble (tl6 (context), context),
-            toDouble (tl7 (context), context),
-            toDouble (tl8 (context), context),
-            toDouble (tl9 (context), context),
-            toDouble (vhmax (context), context),
-            toDouble (vhmin (context), context),
-            toDouble (vimax (context), context),
-            toDouble (vimin (context), context),
-            toDouble (vlmax (context), context),
-            toDouble (vlmin (context), context),
-            toDouble (vstmax (context), context),
-            toDouble (vstmin (context), context)
+            toDouble (mask (bwh1 (), 0)),
+            toDouble (mask (bwh2 (), 1)),
+            toDouble (mask (bwl1 (), 2)),
+            toDouble (mask (bwl2 (), 3)),
+            toDouble (mask (kh (), 4)),
+            toDouble (mask (kh1 (), 5)),
+            toDouble (mask (kh11 (), 6)),
+            toDouble (mask (kh17 (), 7)),
+            toDouble (mask (kh2 (), 8)),
+            toDouble (mask (ki (), 9)),
+            toDouble (mask (ki1 (), 10)),
+            toDouble (mask (ki11 (), 11)),
+            toDouble (mask (ki17 (), 12)),
+            toDouble (mask (ki2 (), 13)),
+            toDouble (mask (kl (), 14)),
+            toDouble (mask (kl1 (), 15)),
+            toDouble (mask (kl11 (), 16)),
+            toDouble (mask (kl17 (), 17)),
+            toDouble (mask (kl2 (), 18)),
+            toDouble (mask (omeganh1 (), 19)),
+            toDouble (mask (omeganh2 (), 20)),
+            toDouble (mask (omeganl1 (), 21)),
+            toDouble (mask (omeganl2 (), 22)),
+            toDouble (mask (th1 (), 23)),
+            toDouble (mask (th10 (), 24)),
+            toDouble (mask (th11 (), 25)),
+            toDouble (mask (th12 (), 26)),
+            toDouble (mask (th2 (), 27)),
+            toDouble (mask (th3 (), 28)),
+            toDouble (mask (th4 (), 29)),
+            toDouble (mask (th5 (), 30)),
+            toDouble (mask (th6 (), 31)),
+            toDouble (mask (th7 (), 32)),
+            toDouble (mask (th8 (), 33)),
+            toDouble (mask (th9 (), 34)),
+            toDouble (mask (ti1 (), 35)),
+            toDouble (mask (ti10 (), 36)),
+            toDouble (mask (ti11 (), 37)),
+            toDouble (mask (ti12 (), 38)),
+            toDouble (mask (ti2 (), 39)),
+            toDouble (mask (ti3 (), 40)),
+            toDouble (mask (ti4 (), 41)),
+            toDouble (mask (ti5 (), 42)),
+            toDouble (mask (ti6 (), 43)),
+            toDouble (mask (ti7 (), 44)),
+            toDouble (mask (ti8 (), 45)),
+            toDouble (mask (ti9 (), 46)),
+            toDouble (mask (tl1 (), 47)),
+            toDouble (mask (tl10 (), 48)),
+            toDouble (mask (tl11 (), 49)),
+            toDouble (mask (tl12 (), 50)),
+            toDouble (mask (tl2 (), 51)),
+            toDouble (mask (tl3 (), 52)),
+            toDouble (mask (tl4 (), 53)),
+            toDouble (mask (tl5 (), 54)),
+            toDouble (mask (tl6 (), 55)),
+            toDouble (mask (tl7 (), 56)),
+            toDouble (mask (tl8 (), 57)),
+            toDouble (mask (tl9 (), 58)),
+            toDouble (mask (vhmax (), 59)),
+            toDouble (mask (vhmin (), 60)),
+            toDouble (mask (vimax (), 61)),
+            toDouble (mask (vimin (), 62)),
+            toDouble (mask (vlmax (), 63)),
+            toDouble (mask (vlmin (), 64)),
+            toDouble (mask (vstmax (), 65)),
+            toDouble (mask (vstmin (), 66))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -2158,6 +2601,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -2177,24 +2626,26 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:PssPTIST1.dtc>" + dtc + "</cim:PssPTIST1.dtc>\n" +
-        "\t\t<cim:PssPTIST1.dtf>" + dtf + "</cim:PssPTIST1.dtf>\n" +
-        "\t\t<cim:PssPTIST1.dtp>" + dtp + "</cim:PssPTIST1.dtp>\n" +
-        "\t\t<cim:PssPTIST1.k>" + k + "</cim:PssPTIST1.k>\n" +
-        "\t\t<cim:PssPTIST1.m>" + m + "</cim:PssPTIST1.m>\n" +
-        "\t\t<cim:PssPTIST1.t1>" + t1 + "</cim:PssPTIST1.t1>\n" +
-        "\t\t<cim:PssPTIST1.t2>" + t2 + "</cim:PssPTIST1.t2>\n" +
-        "\t\t<cim:PssPTIST1.t3>" + t3 + "</cim:PssPTIST1.t3>\n" +
-        "\t\t<cim:PssPTIST1.t4>" + t4 + "</cim:PssPTIST1.t4>\n" +
-        "\t\t<cim:PssPTIST1.tf>" + tf + "</cim:PssPTIST1.tf>\n" +
-        "\t\t<cim:PssPTIST1.tp>" + tp + "</cim:PssPTIST1.tp>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = PssPTIST1.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PssPTIST1.fields (position), value)
+        emitelem (0, dtc)
+        emitelem (1, dtf)
+        emitelem (2, dtp)
+        emitelem (3, k)
+        emitelem (4, m)
+        emitelem (5, t1)
+        emitelem (6, t2)
+        emitelem (7, t3)
+        emitelem (8, t4)
+        emitelem (9, tf)
+        emitelem (10, tp)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:PssPTIST1 rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:PssPTIST1>"
+        "\t<cim:PssPTIST1 rdf:ID=\"%s\">\n%s\t</cim:PssPTIST1>".format (id, export_fields)
     }
 }
 
@@ -2202,35 +2653,56 @@ object PssPTIST1
 extends
     Parseable[PssPTIST1]
 {
-    val dtc = parse_element (element ("""PssPTIST1.dtc"""))
-    val dtf = parse_element (element ("""PssPTIST1.dtf"""))
-    val dtp = parse_element (element ("""PssPTIST1.dtp"""))
-    val k = parse_element (element ("""PssPTIST1.k"""))
-    val m = parse_element (element ("""PssPTIST1.m"""))
-    val t1 = parse_element (element ("""PssPTIST1.t1"""))
-    val t2 = parse_element (element ("""PssPTIST1.t2"""))
-    val t3 = parse_element (element ("""PssPTIST1.t3"""))
-    val t4 = parse_element (element ("""PssPTIST1.t4"""))
-    val tf = parse_element (element ("""PssPTIST1.tf"""))
-    val tp = parse_element (element ("""PssPTIST1.tp"""))
+    val fields: Array[String] = Array[String] (
+        "dtc",
+        "dtf",
+        "dtp",
+        "k",
+        "m",
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "tf",
+        "tp"
+    )
+    val dtc: Fielder = parse_element (element (cls, fields(0)))
+    val dtf: Fielder = parse_element (element (cls, fields(1)))
+    val dtp: Fielder = parse_element (element (cls, fields(2)))
+    val k: Fielder = parse_element (element (cls, fields(3)))
+    val m: Fielder = parse_element (element (cls, fields(4)))
+    val t1: Fielder = parse_element (element (cls, fields(5)))
+    val t2: Fielder = parse_element (element (cls, fields(6)))
+    val t3: Fielder = parse_element (element (cls, fields(7)))
+    val t4: Fielder = parse_element (element (cls, fields(8)))
+    val tf: Fielder = parse_element (element (cls, fields(9)))
+    val tp: Fielder = parse_element (element (cls, fields(10)))
+
     def parse (context: Context): PssPTIST1 =
     {
-        PssPTIST1(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = PssPTIST1 (
             PowerSystemStabilizerDynamics.parse (context),
-            toDouble (dtc (context), context),
-            toDouble (dtf (context), context),
-            toDouble (dtp (context), context),
-            toDouble (k (context), context),
-            toDouble (m (context), context),
-            toDouble (t1 (context), context),
-            toDouble (t2 (context), context),
-            toDouble (t3 (context), context),
-            toDouble (t4 (context), context),
-            toDouble (tf (context), context),
-            toDouble (tp (context), context)
+            toDouble (mask (dtc (), 0)),
+            toDouble (mask (dtf (), 1)),
+            toDouble (mask (dtp (), 2)),
+            toDouble (mask (k (), 3)),
+            toDouble (mask (m (), 4)),
+            toDouble (mask (t1 (), 5)),
+            toDouble (mask (t2 (), 6)),
+            toDouble (mask (t3 (), 7)),
+            toDouble (mask (t4 (), 8)),
+            toDouble (mask (tf (), 9)),
+            toDouble (mask (tp (), 10))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -2336,6 +2808,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Long = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -2355,47 +2833,49 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:PssPTIST3.a0>" + a0 + "</cim:PssPTIST3.a0>\n" +
-        "\t\t<cim:PssPTIST3.a1>" + a1 + "</cim:PssPTIST3.a1>\n" +
-        "\t\t<cim:PssPTIST3.a2>" + a2 + "</cim:PssPTIST3.a2>\n" +
-        "\t\t<cim:PssPTIST3.a3>" + a3 + "</cim:PssPTIST3.a3>\n" +
-        "\t\t<cim:PssPTIST3.a4>" + a4 + "</cim:PssPTIST3.a4>\n" +
-        "\t\t<cim:PssPTIST3.a5>" + a5 + "</cim:PssPTIST3.a5>\n" +
-        "\t\t<cim:PssPTIST3.al>" + al + "</cim:PssPTIST3.al>\n" +
-        "\t\t<cim:PssPTIST3.athres>" + athres + "</cim:PssPTIST3.athres>\n" +
-        "\t\t<cim:PssPTIST3.b0>" + b0 + "</cim:PssPTIST3.b0>\n" +
-        "\t\t<cim:PssPTIST3.b1>" + b1 + "</cim:PssPTIST3.b1>\n" +
-        "\t\t<cim:PssPTIST3.b2>" + b2 + "</cim:PssPTIST3.b2>\n" +
-        "\t\t<cim:PssPTIST3.b3>" + b3 + "</cim:PssPTIST3.b3>\n" +
-        "\t\t<cim:PssPTIST3.b4>" + b4 + "</cim:PssPTIST3.b4>\n" +
-        "\t\t<cim:PssPTIST3.b5>" + b5 + "</cim:PssPTIST3.b5>\n" +
-        "\t\t<cim:PssPTIST3.dl>" + dl + "</cim:PssPTIST3.dl>\n" +
-        "\t\t<cim:PssPTIST3.dtc>" + dtc + "</cim:PssPTIST3.dtc>\n" +
-        "\t\t<cim:PssPTIST3.dtf>" + dtf + "</cim:PssPTIST3.dtf>\n" +
-        "\t\t<cim:PssPTIST3.dtp>" + dtp + "</cim:PssPTIST3.dtp>\n" +
-        "\t\t<cim:PssPTIST3.isw>" + isw + "</cim:PssPTIST3.isw>\n" +
-        "\t\t<cim:PssPTIST3.k>" + k + "</cim:PssPTIST3.k>\n" +
-        "\t\t<cim:PssPTIST3.lthres>" + lthres + "</cim:PssPTIST3.lthres>\n" +
-        "\t\t<cim:PssPTIST3.m>" + m + "</cim:PssPTIST3.m>\n" +
-        "\t\t<cim:PssPTIST3.nav>" + nav + "</cim:PssPTIST3.nav>\n" +
-        "\t\t<cim:PssPTIST3.ncl>" + ncl + "</cim:PssPTIST3.ncl>\n" +
-        "\t\t<cim:PssPTIST3.ncr>" + ncr + "</cim:PssPTIST3.ncr>\n" +
-        "\t\t<cim:PssPTIST3.pmin>" + pmin + "</cim:PssPTIST3.pmin>\n" +
-        "\t\t<cim:PssPTIST3.t1>" + t1 + "</cim:PssPTIST3.t1>\n" +
-        "\t\t<cim:PssPTIST3.t2>" + t2 + "</cim:PssPTIST3.t2>\n" +
-        "\t\t<cim:PssPTIST3.t3>" + t3 + "</cim:PssPTIST3.t3>\n" +
-        "\t\t<cim:PssPTIST3.t4>" + t4 + "</cim:PssPTIST3.t4>\n" +
-        "\t\t<cim:PssPTIST3.t5>" + t5 + "</cim:PssPTIST3.t5>\n" +
-        "\t\t<cim:PssPTIST3.t6>" + t6 + "</cim:PssPTIST3.t6>\n" +
-        "\t\t<cim:PssPTIST3.tf>" + tf + "</cim:PssPTIST3.tf>\n" +
-        "\t\t<cim:PssPTIST3.tp>" + tp + "</cim:PssPTIST3.tp>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = PssPTIST3.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PssPTIST3.fields (position), value)
+        emitelem (0, a0)
+        emitelem (1, a1)
+        emitelem (2, a2)
+        emitelem (3, a3)
+        emitelem (4, a4)
+        emitelem (5, a5)
+        emitelem (6, al)
+        emitelem (7, athres)
+        emitelem (8, b0)
+        emitelem (9, b1)
+        emitelem (10, b2)
+        emitelem (11, b3)
+        emitelem (12, b4)
+        emitelem (13, b5)
+        emitelem (14, dl)
+        emitelem (15, dtc)
+        emitelem (16, dtf)
+        emitelem (17, dtp)
+        emitelem (18, isw)
+        emitelem (19, k)
+        emitelem (20, lthres)
+        emitelem (21, m)
+        emitelem (22, nav)
+        emitelem (23, ncl)
+        emitelem (24, ncr)
+        emitelem (25, pmin)
+        emitelem (26, t1)
+        emitelem (27, t2)
+        emitelem (28, t3)
+        emitelem (29, t4)
+        emitelem (30, t5)
+        emitelem (31, t6)
+        emitelem (32, tf)
+        emitelem (33, tp)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:PssPTIST3 rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:PssPTIST3>"
+        "\t<cim:PssPTIST3 rdf:ID=\"%s\">\n%s\t</cim:PssPTIST3>".format (id, export_fields)
     }
 }
 
@@ -2403,81 +2883,125 @@ object PssPTIST3
 extends
     Parseable[PssPTIST3]
 {
-    val a0 = parse_element (element ("""PssPTIST3.a0"""))
-    val a1 = parse_element (element ("""PssPTIST3.a1"""))
-    val a2 = parse_element (element ("""PssPTIST3.a2"""))
-    val a3 = parse_element (element ("""PssPTIST3.a3"""))
-    val a4 = parse_element (element ("""PssPTIST3.a4"""))
-    val a5 = parse_element (element ("""PssPTIST3.a5"""))
-    val al = parse_element (element ("""PssPTIST3.al"""))
-    val athres = parse_element (element ("""PssPTIST3.athres"""))
-    val b0 = parse_element (element ("""PssPTIST3.b0"""))
-    val b1 = parse_element (element ("""PssPTIST3.b1"""))
-    val b2 = parse_element (element ("""PssPTIST3.b2"""))
-    val b3 = parse_element (element ("""PssPTIST3.b3"""))
-    val b4 = parse_element (element ("""PssPTIST3.b4"""))
-    val b5 = parse_element (element ("""PssPTIST3.b5"""))
-    val dl = parse_element (element ("""PssPTIST3.dl"""))
-    val dtc = parse_element (element ("""PssPTIST3.dtc"""))
-    val dtf = parse_element (element ("""PssPTIST3.dtf"""))
-    val dtp = parse_element (element ("""PssPTIST3.dtp"""))
-    val isw = parse_element (element ("""PssPTIST3.isw"""))
-    val k = parse_element (element ("""PssPTIST3.k"""))
-    val lthres = parse_element (element ("""PssPTIST3.lthres"""))
-    val m = parse_element (element ("""PssPTIST3.m"""))
-    val nav = parse_element (element ("""PssPTIST3.nav"""))
-    val ncl = parse_element (element ("""PssPTIST3.ncl"""))
-    val ncr = parse_element (element ("""PssPTIST3.ncr"""))
-    val pmin = parse_element (element ("""PssPTIST3.pmin"""))
-    val t1 = parse_element (element ("""PssPTIST3.t1"""))
-    val t2 = parse_element (element ("""PssPTIST3.t2"""))
-    val t3 = parse_element (element ("""PssPTIST3.t3"""))
-    val t4 = parse_element (element ("""PssPTIST3.t4"""))
-    val t5 = parse_element (element ("""PssPTIST3.t5"""))
-    val t6 = parse_element (element ("""PssPTIST3.t6"""))
-    val tf = parse_element (element ("""PssPTIST3.tf"""))
-    val tp = parse_element (element ("""PssPTIST3.tp"""))
+    val fields: Array[String] = Array[String] (
+        "a0",
+        "a1",
+        "a2",
+        "a3",
+        "a4",
+        "a5",
+        "al",
+        "athres",
+        "b0",
+        "b1",
+        "b2",
+        "b3",
+        "b4",
+        "b5",
+        "dl",
+        "dtc",
+        "dtf",
+        "dtp",
+        "isw",
+        "k",
+        "lthres",
+        "m",
+        "nav",
+        "ncl",
+        "ncr",
+        "pmin",
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "tf",
+        "tp"
+    )
+    val a0: Fielder = parse_element (element (cls, fields(0)))
+    val a1: Fielder = parse_element (element (cls, fields(1)))
+    val a2: Fielder = parse_element (element (cls, fields(2)))
+    val a3: Fielder = parse_element (element (cls, fields(3)))
+    val a4: Fielder = parse_element (element (cls, fields(4)))
+    val a5: Fielder = parse_element (element (cls, fields(5)))
+    val al: Fielder = parse_element (element (cls, fields(6)))
+    val athres: Fielder = parse_element (element (cls, fields(7)))
+    val b0: Fielder = parse_element (element (cls, fields(8)))
+    val b1: Fielder = parse_element (element (cls, fields(9)))
+    val b2: Fielder = parse_element (element (cls, fields(10)))
+    val b3: Fielder = parse_element (element (cls, fields(11)))
+    val b4: Fielder = parse_element (element (cls, fields(12)))
+    val b5: Fielder = parse_element (element (cls, fields(13)))
+    val dl: Fielder = parse_element (element (cls, fields(14)))
+    val dtc: Fielder = parse_element (element (cls, fields(15)))
+    val dtf: Fielder = parse_element (element (cls, fields(16)))
+    val dtp: Fielder = parse_element (element (cls, fields(17)))
+    val isw: Fielder = parse_element (element (cls, fields(18)))
+    val k: Fielder = parse_element (element (cls, fields(19)))
+    val lthres: Fielder = parse_element (element (cls, fields(20)))
+    val m: Fielder = parse_element (element (cls, fields(21)))
+    val nav: Fielder = parse_element (element (cls, fields(22)))
+    val ncl: Fielder = parse_element (element (cls, fields(23)))
+    val ncr: Fielder = parse_element (element (cls, fields(24)))
+    val pmin: Fielder = parse_element (element (cls, fields(25)))
+    val t1: Fielder = parse_element (element (cls, fields(26)))
+    val t2: Fielder = parse_element (element (cls, fields(27)))
+    val t3: Fielder = parse_element (element (cls, fields(28)))
+    val t4: Fielder = parse_element (element (cls, fields(29)))
+    val t5: Fielder = parse_element (element (cls, fields(30)))
+    val t6: Fielder = parse_element (element (cls, fields(31)))
+    val tf: Fielder = parse_element (element (cls, fields(32)))
+    val tp: Fielder = parse_element (element (cls, fields(33)))
+
     def parse (context: Context): PssPTIST3 =
     {
-        PssPTIST3(
+        implicit val ctx: Context = context
+        var fields: Long = 0L
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1L << position; field._1 }
+        val ret = PssPTIST3 (
             PowerSystemStabilizerDynamics.parse (context),
-            toDouble (a0 (context), context),
-            toDouble (a1 (context), context),
-            toDouble (a2 (context), context),
-            toDouble (a3 (context), context),
-            toDouble (a4 (context), context),
-            toDouble (a5 (context), context),
-            toDouble (al (context), context),
-            toDouble (athres (context), context),
-            toDouble (b0 (context), context),
-            toDouble (b1 (context), context),
-            toDouble (b2 (context), context),
-            toDouble (b3 (context), context),
-            toDouble (b4 (context), context),
-            toDouble (b5 (context), context),
-            toDouble (dl (context), context),
-            toDouble (dtc (context), context),
-            toDouble (dtf (context), context),
-            toDouble (dtp (context), context),
-            toBoolean (isw (context), context),
-            toDouble (k (context), context),
-            toDouble (lthres (context), context),
-            toDouble (m (context), context),
-            toDouble (nav (context), context),
-            toDouble (ncl (context), context),
-            toDouble (ncr (context), context),
-            toDouble (pmin (context), context),
-            toDouble (t1 (context), context),
-            toDouble (t2 (context), context),
-            toDouble (t3 (context), context),
-            toDouble (t4 (context), context),
-            toDouble (t5 (context), context),
-            toDouble (t6 (context), context),
-            toDouble (tf (context), context),
-            toDouble (tp (context), context)
+            toDouble (mask (a0 (), 0)),
+            toDouble (mask (a1 (), 1)),
+            toDouble (mask (a2 (), 2)),
+            toDouble (mask (a3 (), 3)),
+            toDouble (mask (a4 (), 4)),
+            toDouble (mask (a5 (), 5)),
+            toDouble (mask (al (), 6)),
+            toDouble (mask (athres (), 7)),
+            toDouble (mask (b0 (), 8)),
+            toDouble (mask (b1 (), 9)),
+            toDouble (mask (b2 (), 10)),
+            toDouble (mask (b3 (), 11)),
+            toDouble (mask (b4 (), 12)),
+            toDouble (mask (b5 (), 13)),
+            toDouble (mask (dl (), 14)),
+            toDouble (mask (dtc (), 15)),
+            toDouble (mask (dtf (), 16)),
+            toDouble (mask (dtp (), 17)),
+            toBoolean (mask (isw (), 18)),
+            toDouble (mask (k (), 19)),
+            toDouble (mask (lthres (), 20)),
+            toDouble (mask (m (), 21)),
+            toDouble (mask (nav (), 22)),
+            toDouble (mask (ncl (), 23)),
+            toDouble (mask (ncr (), 24)),
+            toDouble (mask (pmin (), 25)),
+            toDouble (mask (t1 (), 26)),
+            toDouble (mask (t2 (), 27)),
+            toDouble (mask (t3 (), 28)),
+            toDouble (mask (t4 (), 29)),
+            toDouble (mask (t5 (), 30)),
+            toDouble (mask (t6 (), 31)),
+            toDouble (mask (tf (), 32)),
+            toDouble (mask (tp (), 33))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -2522,6 +3046,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -2541,24 +3071,26 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:PssSB4.kx>" + kx + "</cim:PssSB4.kx>\n" +
-        "\t\t<cim:PssSB4.ta>" + ta + "</cim:PssSB4.ta>\n" +
-        "\t\t<cim:PssSB4.tb>" + tb + "</cim:PssSB4.tb>\n" +
-        "\t\t<cim:PssSB4.tc>" + tc + "</cim:PssSB4.tc>\n" +
-        "\t\t<cim:PssSB4.td>" + td + "</cim:PssSB4.td>\n" +
-        "\t\t<cim:PssSB4.te>" + te + "</cim:PssSB4.te>\n" +
-        "\t\t<cim:PssSB4.tt>" + tt + "</cim:PssSB4.tt>\n" +
-        "\t\t<cim:PssSB4.tx1>" + tx1 + "</cim:PssSB4.tx1>\n" +
-        "\t\t<cim:PssSB4.tx2>" + tx2 + "</cim:PssSB4.tx2>\n" +
-        "\t\t<cim:PssSB4.vsmax>" + vsmax + "</cim:PssSB4.vsmax>\n" +
-        "\t\t<cim:PssSB4.vsmin>" + vsmin + "</cim:PssSB4.vsmin>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = PssSB4.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PssSB4.fields (position), value)
+        emitelem (0, kx)
+        emitelem (1, ta)
+        emitelem (2, tb)
+        emitelem (3, tc)
+        emitelem (4, td)
+        emitelem (5, te)
+        emitelem (6, tt)
+        emitelem (7, tx1)
+        emitelem (8, tx2)
+        emitelem (9, vsmax)
+        emitelem (10, vsmin)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:PssSB4 rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:PssSB4>"
+        "\t<cim:PssSB4 rdf:ID=\"%s\">\n%s\t</cim:PssSB4>".format (id, export_fields)
     }
 }
 
@@ -2566,35 +3098,56 @@ object PssSB4
 extends
     Parseable[PssSB4]
 {
-    val kx = parse_element (element ("""PssSB4.kx"""))
-    val ta = parse_element (element ("""PssSB4.ta"""))
-    val tb = parse_element (element ("""PssSB4.tb"""))
-    val tc = parse_element (element ("""PssSB4.tc"""))
-    val td = parse_element (element ("""PssSB4.td"""))
-    val te = parse_element (element ("""PssSB4.te"""))
-    val tt = parse_element (element ("""PssSB4.tt"""))
-    val tx1 = parse_element (element ("""PssSB4.tx1"""))
-    val tx2 = parse_element (element ("""PssSB4.tx2"""))
-    val vsmax = parse_element (element ("""PssSB4.vsmax"""))
-    val vsmin = parse_element (element ("""PssSB4.vsmin"""))
+    val fields: Array[String] = Array[String] (
+        "kx",
+        "ta",
+        "tb",
+        "tc",
+        "td",
+        "te",
+        "tt",
+        "tx1",
+        "tx2",
+        "vsmax",
+        "vsmin"
+    )
+    val kx: Fielder = parse_element (element (cls, fields(0)))
+    val ta: Fielder = parse_element (element (cls, fields(1)))
+    val tb: Fielder = parse_element (element (cls, fields(2)))
+    val tc: Fielder = parse_element (element (cls, fields(3)))
+    val td: Fielder = parse_element (element (cls, fields(4)))
+    val te: Fielder = parse_element (element (cls, fields(5)))
+    val tt: Fielder = parse_element (element (cls, fields(6)))
+    val tx1: Fielder = parse_element (element (cls, fields(7)))
+    val tx2: Fielder = parse_element (element (cls, fields(8)))
+    val vsmax: Fielder = parse_element (element (cls, fields(9)))
+    val vsmin: Fielder = parse_element (element (cls, fields(10)))
+
     def parse (context: Context): PssSB4 =
     {
-        PssSB4(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = PssSB4 (
             PowerSystemStabilizerDynamics.parse (context),
-            toDouble (kx (context), context),
-            toDouble (ta (context), context),
-            toDouble (tb (context), context),
-            toDouble (tc (context), context),
-            toDouble (td (context), context),
-            toDouble (te (context), context),
-            toDouble (tt (context), context),
-            toDouble (tx1 (context), context),
-            toDouble (tx2 (context), context),
-            toDouble (vsmax (context), context),
-            toDouble (vsmin (context), context)
+            toDouble (mask (kx (), 0)),
+            toDouble (mask (ta (), 1)),
+            toDouble (mask (tb (), 2)),
+            toDouble (mask (tc (), 3)),
+            toDouble (mask (td (), 4)),
+            toDouble (mask (te (), 5)),
+            toDouble (mask (tt (), 6)),
+            toDouble (mask (tx1 (), 7)),
+            toDouble (mask (tx2 (), 8)),
+            toDouble (mask (vsmax (), 9)),
+            toDouble (mask (vsmin (), 10))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -2656,6 +3209,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -2675,26 +3234,28 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:PssSH.k>" + k + "</cim:PssSH.k>\n" +
-        "\t\t<cim:PssSH.k0>" + k0 + "</cim:PssSH.k0>\n" +
-        "\t\t<cim:PssSH.k1>" + k1 + "</cim:PssSH.k1>\n" +
-        "\t\t<cim:PssSH.k2>" + k2 + "</cim:PssSH.k2>\n" +
-        "\t\t<cim:PssSH.k3>" + k3 + "</cim:PssSH.k3>\n" +
-        "\t\t<cim:PssSH.k4>" + k4 + "</cim:PssSH.k4>\n" +
-        "\t\t<cim:PssSH.t1>" + t1 + "</cim:PssSH.t1>\n" +
-        "\t\t<cim:PssSH.t2>" + t2 + "</cim:PssSH.t2>\n" +
-        "\t\t<cim:PssSH.t3>" + t3 + "</cim:PssSH.t3>\n" +
-        "\t\t<cim:PssSH.t4>" + t4 + "</cim:PssSH.t4>\n" +
-        "\t\t<cim:PssSH.td>" + td + "</cim:PssSH.td>\n" +
-        "\t\t<cim:PssSH.vsmax>" + vsmax + "</cim:PssSH.vsmax>\n" +
-        "\t\t<cim:PssSH.vsmin>" + vsmin + "</cim:PssSH.vsmin>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = PssSH.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PssSH.fields (position), value)
+        emitelem (0, k)
+        emitelem (1, k0)
+        emitelem (2, k1)
+        emitelem (3, k2)
+        emitelem (4, k3)
+        emitelem (5, k4)
+        emitelem (6, t1)
+        emitelem (7, t2)
+        emitelem (8, t3)
+        emitelem (9, t4)
+        emitelem (10, td)
+        emitelem (11, vsmax)
+        emitelem (12, vsmin)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:PssSH rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:PssSH>"
+        "\t<cim:PssSH rdf:ID=\"%s\">\n%s\t</cim:PssSH>".format (id, export_fields)
     }
 }
 
@@ -2702,39 +3263,62 @@ object PssSH
 extends
     Parseable[PssSH]
 {
-    val k = parse_element (element ("""PssSH.k"""))
-    val k0 = parse_element (element ("""PssSH.k0"""))
-    val k1 = parse_element (element ("""PssSH.k1"""))
-    val k2 = parse_element (element ("""PssSH.k2"""))
-    val k3 = parse_element (element ("""PssSH.k3"""))
-    val k4 = parse_element (element ("""PssSH.k4"""))
-    val t1 = parse_element (element ("""PssSH.t1"""))
-    val t2 = parse_element (element ("""PssSH.t2"""))
-    val t3 = parse_element (element ("""PssSH.t3"""))
-    val t4 = parse_element (element ("""PssSH.t4"""))
-    val td = parse_element (element ("""PssSH.td"""))
-    val vsmax = parse_element (element ("""PssSH.vsmax"""))
-    val vsmin = parse_element (element ("""PssSH.vsmin"""))
+    val fields: Array[String] = Array[String] (
+        "k",
+        "k0",
+        "k1",
+        "k2",
+        "k3",
+        "k4",
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "td",
+        "vsmax",
+        "vsmin"
+    )
+    val k: Fielder = parse_element (element (cls, fields(0)))
+    val k0: Fielder = parse_element (element (cls, fields(1)))
+    val k1: Fielder = parse_element (element (cls, fields(2)))
+    val k2: Fielder = parse_element (element (cls, fields(3)))
+    val k3: Fielder = parse_element (element (cls, fields(4)))
+    val k4: Fielder = parse_element (element (cls, fields(5)))
+    val t1: Fielder = parse_element (element (cls, fields(6)))
+    val t2: Fielder = parse_element (element (cls, fields(7)))
+    val t3: Fielder = parse_element (element (cls, fields(8)))
+    val t4: Fielder = parse_element (element (cls, fields(9)))
+    val td: Fielder = parse_element (element (cls, fields(10)))
+    val vsmax: Fielder = parse_element (element (cls, fields(11)))
+    val vsmin: Fielder = parse_element (element (cls, fields(12)))
+
     def parse (context: Context): PssSH =
     {
-        PssSH(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = PssSH (
             PowerSystemStabilizerDynamics.parse (context),
-            toDouble (k (context), context),
-            toDouble (k0 (context), context),
-            toDouble (k1 (context), context),
-            toDouble (k2 (context), context),
-            toDouble (k3 (context), context),
-            toDouble (k4 (context), context),
-            toDouble (t1 (context), context),
-            toDouble (t2 (context), context),
-            toDouble (t3 (context), context),
-            toDouble (t4 (context), context),
-            toDouble (td (context), context),
-            toDouble (vsmax (context), context),
-            toDouble (vsmin (context), context)
+            toDouble (mask (k (), 0)),
+            toDouble (mask (k0 (), 1)),
+            toDouble (mask (k1 (), 2)),
+            toDouble (mask (k2 (), 3)),
+            toDouble (mask (k3 (), 4)),
+            toDouble (mask (k4 (), 5)),
+            toDouble (mask (t1 (), 6)),
+            toDouble (mask (t2 (), 7)),
+            toDouble (mask (t3 (), 8)),
+            toDouble (mask (t4 (), 9)),
+            toDouble (mask (td (), 10)),
+            toDouble (mask (vsmax (), 11)),
+            toDouble (mask (vsmin (), 12))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -2790,6 +3374,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -2809,24 +3399,26 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:PssSK.k1>" + k1 + "</cim:PssSK.k1>\n" +
-        "\t\t<cim:PssSK.k2>" + k2 + "</cim:PssSK.k2>\n" +
-        "\t\t<cim:PssSK.k3>" + k3 + "</cim:PssSK.k3>\n" +
-        "\t\t<cim:PssSK.t1>" + t1 + "</cim:PssSK.t1>\n" +
-        "\t\t<cim:PssSK.t2>" + t2 + "</cim:PssSK.t2>\n" +
-        "\t\t<cim:PssSK.t3>" + t3 + "</cim:PssSK.t3>\n" +
-        "\t\t<cim:PssSK.t4>" + t4 + "</cim:PssSK.t4>\n" +
-        "\t\t<cim:PssSK.t5>" + t5 + "</cim:PssSK.t5>\n" +
-        "\t\t<cim:PssSK.t6>" + t6 + "</cim:PssSK.t6>\n" +
-        "\t\t<cim:PssSK.vsmax>" + vsmax + "</cim:PssSK.vsmax>\n" +
-        "\t\t<cim:PssSK.vsmin>" + vsmin + "</cim:PssSK.vsmin>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = PssSK.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PssSK.fields (position), value)
+        emitelem (0, k1)
+        emitelem (1, k2)
+        emitelem (2, k3)
+        emitelem (3, t1)
+        emitelem (4, t2)
+        emitelem (5, t3)
+        emitelem (6, t4)
+        emitelem (7, t5)
+        emitelem (8, t6)
+        emitelem (9, vsmax)
+        emitelem (10, vsmin)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:PssSK rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:PssSK>"
+        "\t<cim:PssSK rdf:ID=\"%s\">\n%s\t</cim:PssSK>".format (id, export_fields)
     }
 }
 
@@ -2834,35 +3426,56 @@ object PssSK
 extends
     Parseable[PssSK]
 {
-    val k1 = parse_element (element ("""PssSK.k1"""))
-    val k2 = parse_element (element ("""PssSK.k2"""))
-    val k3 = parse_element (element ("""PssSK.k3"""))
-    val t1 = parse_element (element ("""PssSK.t1"""))
-    val t2 = parse_element (element ("""PssSK.t2"""))
-    val t3 = parse_element (element ("""PssSK.t3"""))
-    val t4 = parse_element (element ("""PssSK.t4"""))
-    val t5 = parse_element (element ("""PssSK.t5"""))
-    val t6 = parse_element (element ("""PssSK.t6"""))
-    val vsmax = parse_element (element ("""PssSK.vsmax"""))
-    val vsmin = parse_element (element ("""PssSK.vsmin"""))
+    val fields: Array[String] = Array[String] (
+        "k1",
+        "k2",
+        "k3",
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "vsmax",
+        "vsmin"
+    )
+    val k1: Fielder = parse_element (element (cls, fields(0)))
+    val k2: Fielder = parse_element (element (cls, fields(1)))
+    val k3: Fielder = parse_element (element (cls, fields(2)))
+    val t1: Fielder = parse_element (element (cls, fields(3)))
+    val t2: Fielder = parse_element (element (cls, fields(4)))
+    val t3: Fielder = parse_element (element (cls, fields(5)))
+    val t4: Fielder = parse_element (element (cls, fields(6)))
+    val t5: Fielder = parse_element (element (cls, fields(7)))
+    val t6: Fielder = parse_element (element (cls, fields(8)))
+    val vsmax: Fielder = parse_element (element (cls, fields(9)))
+    val vsmin: Fielder = parse_element (element (cls, fields(10)))
+
     def parse (context: Context): PssSK =
     {
-        PssSK(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = PssSK (
             PowerSystemStabilizerDynamics.parse (context),
-            toDouble (k1 (context), context),
-            toDouble (k2 (context), context),
-            toDouble (k3 (context), context),
-            toDouble (t1 (context), context),
-            toDouble (t2 (context), context),
-            toDouble (t3 (context), context),
-            toDouble (t4 (context), context),
-            toDouble (t5 (context), context),
-            toDouble (t6 (context), context),
-            toDouble (vsmax (context), context),
-            toDouble (vsmin (context), context)
+            toDouble (mask (k1 (), 0)),
+            toDouble (mask (k2 (), 1)),
+            toDouble (mask (k3 (), 2)),
+            toDouble (mask (t1 (), 3)),
+            toDouble (mask (t2 (), 4)),
+            toDouble (mask (t3 (), 5)),
+            toDouble (mask (t4 (), 6)),
+            toDouble (mask (t5 (), 7)),
+            toDouble (mask (t6 (), 8)),
+            toDouble (mask (vsmax (), 9)),
+            toDouble (mask (vsmin (), 10))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -2921,6 +3534,12 @@ extends
      */
     def this () = { this (null, null, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -2940,31 +3559,34 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != inputSignal1Type) "\t\t<cim:PssWECC.inputSignal1Type rdf:resource=\"#" + inputSignal1Type + "\"/>\n" else "") +
-        (if (null != inputSignal2Type) "\t\t<cim:PssWECC.inputSignal2Type rdf:resource=\"#" + inputSignal2Type + "\"/>\n" else "") +
-        "\t\t<cim:PssWECC.k1>" + k1 + "</cim:PssWECC.k1>\n" +
-        "\t\t<cim:PssWECC.k2>" + k2 + "</cim:PssWECC.k2>\n" +
-        "\t\t<cim:PssWECC.t1>" + t1 + "</cim:PssWECC.t1>\n" +
-        "\t\t<cim:PssWECC.t10>" + t10 + "</cim:PssWECC.t10>\n" +
-        "\t\t<cim:PssWECC.t2>" + t2 + "</cim:PssWECC.t2>\n" +
-        "\t\t<cim:PssWECC.t3>" + t3 + "</cim:PssWECC.t3>\n" +
-        "\t\t<cim:PssWECC.t4>" + t4 + "</cim:PssWECC.t4>\n" +
-        "\t\t<cim:PssWECC.t5>" + t5 + "</cim:PssWECC.t5>\n" +
-        "\t\t<cim:PssWECC.t6>" + t6 + "</cim:PssWECC.t6>\n" +
-        "\t\t<cim:PssWECC.t7>" + t7 + "</cim:PssWECC.t7>\n" +
-        "\t\t<cim:PssWECC.t8>" + t8 + "</cim:PssWECC.t8>\n" +
-        "\t\t<cim:PssWECC.t9>" + t9 + "</cim:PssWECC.t9>\n" +
-        "\t\t<cim:PssWECC.vcl>" + vcl + "</cim:PssWECC.vcl>\n" +
-        "\t\t<cim:PssWECC.vcu>" + vcu + "</cim:PssWECC.vcu>\n" +
-        "\t\t<cim:PssWECC.vsmax>" + vsmax + "</cim:PssWECC.vsmax>\n" +
-        "\t\t<cim:PssWECC.vsmin>" + vsmin + "</cim:PssWECC.vsmin>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = PssWECC.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PssWECC.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PssWECC.fields (position), value)
+        emitattr (0, inputSignal1Type)
+        emitattr (1, inputSignal2Type)
+        emitelem (2, k1)
+        emitelem (3, k2)
+        emitelem (4, t1)
+        emitelem (5, t10)
+        emitelem (6, t2)
+        emitelem (7, t3)
+        emitelem (8, t4)
+        emitelem (9, t5)
+        emitelem (10, t6)
+        emitelem (11, t7)
+        emitelem (12, t8)
+        emitelem (13, t9)
+        emitelem (14, vcl)
+        emitelem (15, vcu)
+        emitelem (16, vsmax)
+        emitelem (17, vsmin)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:PssWECC rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:PssWECC>"
+        "\t<cim:PssWECC rdf:ID=\"%s\">\n%s\t</cim:PssWECC>".format (id, export_fields)
     }
 }
 
@@ -2972,49 +3594,77 @@ object PssWECC
 extends
     Parseable[PssWECC]
 {
-    val inputSignal1Type = parse_attribute (attribute ("""PssWECC.inputSignal1Type"""))
-    val inputSignal2Type = parse_attribute (attribute ("""PssWECC.inputSignal2Type"""))
-    val k1 = parse_element (element ("""PssWECC.k1"""))
-    val k2 = parse_element (element ("""PssWECC.k2"""))
-    val t1 = parse_element (element ("""PssWECC.t1"""))
-    val t10 = parse_element (element ("""PssWECC.t10"""))
-    val t2 = parse_element (element ("""PssWECC.t2"""))
-    val t3 = parse_element (element ("""PssWECC.t3"""))
-    val t4 = parse_element (element ("""PssWECC.t4"""))
-    val t5 = parse_element (element ("""PssWECC.t5"""))
-    val t6 = parse_element (element ("""PssWECC.t6"""))
-    val t7 = parse_element (element ("""PssWECC.t7"""))
-    val t8 = parse_element (element ("""PssWECC.t8"""))
-    val t9 = parse_element (element ("""PssWECC.t9"""))
-    val vcl = parse_element (element ("""PssWECC.vcl"""))
-    val vcu = parse_element (element ("""PssWECC.vcu"""))
-    val vsmax = parse_element (element ("""PssWECC.vsmax"""))
-    val vsmin = parse_element (element ("""PssWECC.vsmin"""))
+    val fields: Array[String] = Array[String] (
+        "inputSignal1Type",
+        "inputSignal2Type",
+        "k1",
+        "k2",
+        "t1",
+        "t10",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "t7",
+        "t8",
+        "t9",
+        "vcl",
+        "vcu",
+        "vsmax",
+        "vsmin"
+    )
+    val inputSignal1Type: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val inputSignal2Type: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val k1: Fielder = parse_element (element (cls, fields(2)))
+    val k2: Fielder = parse_element (element (cls, fields(3)))
+    val t1: Fielder = parse_element (element (cls, fields(4)))
+    val t10: Fielder = parse_element (element (cls, fields(5)))
+    val t2: Fielder = parse_element (element (cls, fields(6)))
+    val t3: Fielder = parse_element (element (cls, fields(7)))
+    val t4: Fielder = parse_element (element (cls, fields(8)))
+    val t5: Fielder = parse_element (element (cls, fields(9)))
+    val t6: Fielder = parse_element (element (cls, fields(10)))
+    val t7: Fielder = parse_element (element (cls, fields(11)))
+    val t8: Fielder = parse_element (element (cls, fields(12)))
+    val t9: Fielder = parse_element (element (cls, fields(13)))
+    val vcl: Fielder = parse_element (element (cls, fields(14)))
+    val vcu: Fielder = parse_element (element (cls, fields(15)))
+    val vsmax: Fielder = parse_element (element (cls, fields(16)))
+    val vsmin: Fielder = parse_element (element (cls, fields(17)))
+
     def parse (context: Context): PssWECC =
     {
-        PssWECC(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = PssWECC (
             PowerSystemStabilizerDynamics.parse (context),
-            inputSignal1Type (context),
-            inputSignal2Type (context),
-            toDouble (k1 (context), context),
-            toDouble (k2 (context), context),
-            toDouble (t1 (context), context),
-            toDouble (t10 (context), context),
-            toDouble (t2 (context), context),
-            toDouble (t3 (context), context),
-            toDouble (t4 (context), context),
-            toDouble (t5 (context), context),
-            toDouble (t6 (context), context),
-            toDouble (t7 (context), context),
-            toDouble (t8 (context), context),
-            toDouble (t9 (context), context),
-            toDouble (vcl (context), context),
-            toDouble (vcu (context), context),
-            toDouble (vsmax (context), context),
-            toDouble (vsmin (context), context)
+            mask (inputSignal1Type (), 0),
+            mask (inputSignal2Type (), 1),
+            toDouble (mask (k1 (), 2)),
+            toDouble (mask (k2 (), 3)),
+            toDouble (mask (t1 (), 4)),
+            toDouble (mask (t10 (), 5)),
+            toDouble (mask (t2 (), 6)),
+            toDouble (mask (t3 (), 7)),
+            toDouble (mask (t4 (), 8)),
+            toDouble (mask (t5 (), 9)),
+            toDouble (mask (t6 (), 10)),
+            toDouble (mask (t7 (), 11)),
+            toDouble (mask (t8 (), 12)),
+            toDouble (mask (t9 (), 13)),
+            toDouble (mask (vcl (), 14)),
+            toDouble (mask (vcu (), 15)),
+            toDouble (mask (vsmax (), 16)),
+            toDouble (mask (vsmin (), 17))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 private[ninecode] object _PowerSystemStabilizerDynamics

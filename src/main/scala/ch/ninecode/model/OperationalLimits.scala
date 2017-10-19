@@ -29,6 +29,12 @@ extends
      */
     def this () = { this (null, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -48,14 +54,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ActivePowerLimit.value>" + value + "</cim:ActivePowerLimit.value>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ActivePowerLimit.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ActivePowerLimit.fields (position), value)
+        emitelem (0, value)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ActivePowerLimit rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ActivePowerLimit>"
+        "\t<cim:ActivePowerLimit rdf:ID=\"%s\">\n%s\t</cim:ActivePowerLimit>".format (id, export_fields)
     }
 }
 
@@ -63,15 +71,26 @@ object ActivePowerLimit
 extends
     Parseable[ActivePowerLimit]
 {
-    val value = parse_element (element ("""ActivePowerLimit.value"""))
+    val fields: Array[String] = Array[String] (
+        "value"
+    )
+    val value: Fielder = parse_element (element (cls, fields(0)))
+
     def parse (context: Context): ActivePowerLimit =
     {
-        ActivePowerLimit(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ActivePowerLimit (
             OperationalLimit.parse (context),
-            toDouble (value (context), context)
+            toDouble (mask (value (), 0))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -96,6 +115,12 @@ extends
      */
     def this () = { this (null, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -115,14 +140,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ApparentPowerLimit.value>" + value + "</cim:ApparentPowerLimit.value>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ApparentPowerLimit.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ApparentPowerLimit.fields (position), value)
+        emitelem (0, value)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ApparentPowerLimit rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ApparentPowerLimit>"
+        "\t<cim:ApparentPowerLimit rdf:ID=\"%s\">\n%s\t</cim:ApparentPowerLimit>".format (id, export_fields)
     }
 }
 
@@ -130,15 +157,26 @@ object ApparentPowerLimit
 extends
     Parseable[ApparentPowerLimit]
 {
-    val value = parse_element (element ("""ApparentPowerLimit.value"""))
+    val fields: Array[String] = Array[String] (
+        "value"
+    )
+    val value: Fielder = parse_element (element (cls, fields(0)))
+
     def parse (context: Context): ApparentPowerLimit =
     {
-        ApparentPowerLimit(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ApparentPowerLimit (
             OperationalLimit.parse (context),
-            toDouble (value (context), context)
+            toDouble (mask (value (), 0))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -175,6 +213,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, false, false) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -194,19 +238,21 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:BranchGroup.maximumActivePower>" + maximumActivePower + "</cim:BranchGroup.maximumActivePower>\n" +
-        "\t\t<cim:BranchGroup.maximumReactivePower>" + maximumReactivePower + "</cim:BranchGroup.maximumReactivePower>\n" +
-        "\t\t<cim:BranchGroup.minimumActivePower>" + minimumActivePower + "</cim:BranchGroup.minimumActivePower>\n" +
-        "\t\t<cim:BranchGroup.minimumReactivePower>" + minimumReactivePower + "</cim:BranchGroup.minimumReactivePower>\n" +
-        "\t\t<cim:BranchGroup.monitorActivePower>" + monitorActivePower + "</cim:BranchGroup.monitorActivePower>\n" +
-        "\t\t<cim:BranchGroup.monitorReactivePower>" + monitorReactivePower + "</cim:BranchGroup.monitorReactivePower>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = BranchGroup.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (BranchGroup.fields (position), value)
+        emitelem (0, maximumActivePower)
+        emitelem (1, maximumReactivePower)
+        emitelem (2, minimumActivePower)
+        emitelem (3, minimumReactivePower)
+        emitelem (4, monitorActivePower)
+        emitelem (5, monitorReactivePower)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:BranchGroup rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:BranchGroup>"
+        "\t<cim:BranchGroup rdf:ID=\"%s\">\n%s\t</cim:BranchGroup>".format (id, export_fields)
     }
 }
 
@@ -214,25 +260,41 @@ object BranchGroup
 extends
     Parseable[BranchGroup]
 {
-    val maximumActivePower = parse_element (element ("""BranchGroup.maximumActivePower"""))
-    val maximumReactivePower = parse_element (element ("""BranchGroup.maximumReactivePower"""))
-    val minimumActivePower = parse_element (element ("""BranchGroup.minimumActivePower"""))
-    val minimumReactivePower = parse_element (element ("""BranchGroup.minimumReactivePower"""))
-    val monitorActivePower = parse_element (element ("""BranchGroup.monitorActivePower"""))
-    val monitorReactivePower = parse_element (element ("""BranchGroup.monitorReactivePower"""))
+    val fields: Array[String] = Array[String] (
+        "maximumActivePower",
+        "maximumReactivePower",
+        "minimumActivePower",
+        "minimumReactivePower",
+        "monitorActivePower",
+        "monitorReactivePower"
+    )
+    val maximumActivePower: Fielder = parse_element (element (cls, fields(0)))
+    val maximumReactivePower: Fielder = parse_element (element (cls, fields(1)))
+    val minimumActivePower: Fielder = parse_element (element (cls, fields(2)))
+    val minimumReactivePower: Fielder = parse_element (element (cls, fields(3)))
+    val monitorActivePower: Fielder = parse_element (element (cls, fields(4)))
+    val monitorReactivePower: Fielder = parse_element (element (cls, fields(5)))
+
     def parse (context: Context): BranchGroup =
     {
-        BranchGroup(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = BranchGroup (
             IdentifiedObject.parse (context),
-            toDouble (maximumActivePower (context), context),
-            toDouble (maximumReactivePower (context), context),
-            toDouble (minimumActivePower (context), context),
-            toDouble (minimumReactivePower (context), context),
-            toBoolean (monitorActivePower (context), context),
-            toBoolean (monitorReactivePower (context), context)
+            toDouble (mask (maximumActivePower (), 0)),
+            toDouble (mask (maximumReactivePower (), 1)),
+            toDouble (mask (minimumActivePower (), 2)),
+            toDouble (mask (minimumReactivePower (), 3)),
+            toBoolean (mask (monitorActivePower (), 4)),
+            toBoolean (mask (monitorReactivePower (), 5))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -262,6 +324,12 @@ extends
      */
     def this () = { this (null, false, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -281,16 +349,19 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:BranchGroupTerminal.positiveFlowIn>" + positiveFlowIn + "</cim:BranchGroupTerminal.positiveFlowIn>\n" +
-        (if (null != BranchGroup) "\t\t<cim:BranchGroupTerminal.BranchGroup rdf:resource=\"#" + BranchGroup + "\"/>\n" else "") +
-        (if (null != Terminal) "\t\t<cim:BranchGroupTerminal.Terminal rdf:resource=\"#" + Terminal + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = BranchGroupTerminal.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (BranchGroupTerminal.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (BranchGroupTerminal.fields (position), value)
+        emitelem (0, positiveFlowIn)
+        emitattr (1, BranchGroup)
+        emitattr (2, Terminal)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:BranchGroupTerminal rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:BranchGroupTerminal>"
+        "\t<cim:BranchGroupTerminal rdf:ID=\"%s\">\n%s\t</cim:BranchGroupTerminal>".format (id, export_fields)
     }
 }
 
@@ -298,21 +369,33 @@ object BranchGroupTerminal
 extends
     Parseable[BranchGroupTerminal]
 {
-    val positiveFlowIn = parse_element (element ("""BranchGroupTerminal.positiveFlowIn"""))
-    val BranchGroup = parse_attribute (attribute ("""BranchGroupTerminal.BranchGroup"""))
-    val Terminal = parse_attribute (attribute ("""BranchGroupTerminal.Terminal"""))
+    val fields: Array[String] = Array[String] (
+        "positiveFlowIn",
+        "BranchGroup",
+        "Terminal"
+    )
+    val positiveFlowIn: Fielder = parse_element (element (cls, fields(0)))
+    val BranchGroup: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val Terminal: Fielder = parse_attribute (attribute (cls, fields(2)))
+
     def parse (context: Context): BranchGroupTerminal =
     {
-        BranchGroupTerminal(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = BranchGroupTerminal (
             BasicElement.parse (context),
-            toBoolean (positiveFlowIn (context), context),
-            BranchGroup (context),
-            Terminal (context)
+            toBoolean (mask (positiveFlowIn (), 0)),
+            mask (BranchGroup (), 1),
+            mask (Terminal (), 2)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("BranchGroup", "BranchGroup", false),
-        Relationship ("Terminal", "Terminal", false))
+        Relationship ("Terminal", "Terminal", false)
+    )
 }
 
 /**
@@ -337,6 +420,12 @@ extends
      */
     def this () = { this (null, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -356,14 +445,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:CurrentLimit.value>" + value + "</cim:CurrentLimit.value>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = CurrentLimit.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (CurrentLimit.fields (position), value)
+        emitelem (0, value)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:CurrentLimit rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:CurrentLimit>"
+        "\t<cim:CurrentLimit rdf:ID=\"%s\">\n%s\t</cim:CurrentLimit>".format (id, export_fields)
     }
 }
 
@@ -371,15 +462,26 @@ object CurrentLimit
 extends
     Parseable[CurrentLimit]
 {
-    val value = parse_element (element ("""CurrentLimit.value"""))
+    val fields: Array[String] = Array[String] (
+        "value"
+    )
+    val value: Fielder = parse_element (element (cls, fields(0)))
+
     def parse (context: Context): CurrentLimit =
     {
-        CurrentLimit(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = CurrentLimit (
             OperationalLimit.parse (context),
-            toDouble (value (context), context)
+            toDouble (mask (value (), 0))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -411,6 +513,12 @@ extends
      */
     def this () = { this (null, List(), null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -430,16 +538,19 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != LimitDependencyModel) LimitDependencyModel.map (x => "\t\t<cim:OperationalLimit.LimitDependencyModel rdf:resource=\"#" + x + "\"/>\n").mkString else "") +
-        (if (null != OperationalLimitSet) "\t\t<cim:OperationalLimit.OperationalLimitSet rdf:resource=\"#" + OperationalLimitSet + "\"/>\n" else "") +
-        (if (null != OperationalLimitType) "\t\t<cim:OperationalLimit.OperationalLimitType rdf:resource=\"#" + OperationalLimitType + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = OperationalLimit.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (OperationalLimit.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (OperationalLimit.fields (position), x))
+        emitattrs (0, LimitDependencyModel)
+        emitattr (1, OperationalLimitSet)
+        emitattr (2, OperationalLimitType)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:OperationalLimit rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:OperationalLimit>"
+        "\t<cim:OperationalLimit rdf:ID=\"%s\">\n%s\t</cim:OperationalLimit>".format (id, export_fields)
     }
 }
 
@@ -447,22 +558,35 @@ object OperationalLimit
 extends
     Parseable[OperationalLimit]
 {
-    val LimitDependencyModel = parse_attributes (attribute ("""OperationalLimit.LimitDependencyModel"""))
-    val OperationalLimitSet = parse_attribute (attribute ("""OperationalLimit.OperationalLimitSet"""))
-    val OperationalLimitType = parse_attribute (attribute ("""OperationalLimit.OperationalLimitType"""))
+    val fields: Array[String] = Array[String] (
+        "LimitDependencyModel",
+        "OperationalLimitSet",
+        "OperationalLimitType"
+    )
+    val LimitDependencyModel: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val OperationalLimitSet: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val OperationalLimitType: Fielder = parse_attribute (attribute (cls, fields(2)))
+
     def parse (context: Context): OperationalLimit =
     {
-        OperationalLimit(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        def masks (field: Fields, position: Int): List[String] = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = OperationalLimit (
             IdentifiedObject.parse (context),
-            LimitDependencyModel (context),
-            OperationalLimitSet (context),
-            OperationalLimitType (context)
+            masks (LimitDependencyModel (), 0),
+            mask (OperationalLimitSet (), 1),
+            mask (OperationalLimitType (), 2)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("LimitDependencyModel", "LimitDependency", true),
         Relationship ("OperationalLimitSet", "OperationalLimitSet", false),
-        Relationship ("OperationalLimitType", "OperationalLimitType", false))
+        Relationship ("OperationalLimitType", "OperationalLimitType", false)
+    )
 }
 
 /**
@@ -491,6 +615,12 @@ extends
      */
     def this () = { this (null, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -510,15 +640,17 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != Equipment) "\t\t<cim:OperationalLimitSet.Equipment rdf:resource=\"#" + Equipment + "\"/>\n" else "") +
-        (if (null != Terminal) "\t\t<cim:OperationalLimitSet.Terminal rdf:resource=\"#" + Terminal + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = OperationalLimitSet.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (OperationalLimitSet.fields (position), value)
+        emitattr (0, Equipment)
+        emitattr (1, Terminal)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:OperationalLimitSet rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:OperationalLimitSet>"
+        "\t<cim:OperationalLimitSet rdf:ID=\"%s\">\n%s\t</cim:OperationalLimitSet>".format (id, export_fields)
     }
 }
 
@@ -526,19 +658,30 @@ object OperationalLimitSet
 extends
     Parseable[OperationalLimitSet]
 {
-    val Equipment = parse_attribute (attribute ("""OperationalLimitSet.Equipment"""))
-    val Terminal = parse_attribute (attribute ("""OperationalLimitSet.Terminal"""))
+    val fields: Array[String] = Array[String] (
+        "Equipment",
+        "Terminal"
+    )
+    val Equipment: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val Terminal: Fielder = parse_attribute (attribute (cls, fields(1)))
+
     def parse (context: Context): OperationalLimitSet =
     {
-        OperationalLimitSet(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = OperationalLimitSet (
             IdentifiedObject.parse (context),
-            Equipment (context),
-            Terminal (context)
+            mask (Equipment (), 0),
+            mask (Terminal (), 1)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("Equipment", "Equipment", false),
-        Relationship ("Terminal", "ACDCTerminal", false))
+        Relationship ("Terminal", "ACDCTerminal", false)
+    )
 }
 
 /**
@@ -568,6 +711,12 @@ extends
      */
     def this () = { this (null, 0.0, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -587,16 +736,19 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:OperationalLimitType.acceptableDuration>" + acceptableDuration + "</cim:OperationalLimitType.acceptableDuration>\n" +
-        (if (null != direction) "\t\t<cim:OperationalLimitType.direction rdf:resource=\"#" + direction + "\"/>\n" else "") +
-        (if (null != TargetOperationalLimitmTypeScaling) "\t\t<cim:OperationalLimitType.TargetOperationalLimitmTypeScaling rdf:resource=\"#" + TargetOperationalLimitmTypeScaling + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = OperationalLimitType.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (OperationalLimitType.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (OperationalLimitType.fields (position), value)
+        emitelem (0, acceptableDuration)
+        emitattr (1, direction)
+        emitattr (2, TargetOperationalLimitmTypeScaling)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:OperationalLimitType rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:OperationalLimitType>"
+        "\t<cim:OperationalLimitType rdf:ID=\"%s\">\n%s\t</cim:OperationalLimitType>".format (id, export_fields)
     }
 }
 
@@ -604,20 +756,32 @@ object OperationalLimitType
 extends
     Parseable[OperationalLimitType]
 {
-    val acceptableDuration = parse_element (element ("""OperationalLimitType.acceptableDuration"""))
-    val direction = parse_attribute (attribute ("""OperationalLimitType.direction"""))
-    val TargetOperationalLimitmTypeScaling = parse_attribute (attribute ("""OperationalLimitType.TargetOperationalLimitmTypeScaling"""))
+    val fields: Array[String] = Array[String] (
+        "acceptableDuration",
+        "direction",
+        "TargetOperationalLimitmTypeScaling"
+    )
+    val acceptableDuration: Fielder = parse_element (element (cls, fields(0)))
+    val direction: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val TargetOperationalLimitmTypeScaling: Fielder = parse_attribute (attribute (cls, fields(2)))
+
     def parse (context: Context): OperationalLimitType =
     {
-        OperationalLimitType(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = OperationalLimitType (
             IdentifiedObject.parse (context),
-            toDouble (acceptableDuration (context), context),
-            direction (context),
-            TargetOperationalLimitmTypeScaling (context)
+            toDouble (mask (acceptableDuration (), 0)),
+            mask (direction (), 1),
+            mask (TargetOperationalLimitmTypeScaling (), 2)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("TargetOperationalLimitmTypeScaling", "OperatonalLimitTypeScaling", false))
+        Relationship ("TargetOperationalLimitmTypeScaling", "OperatonalLimitTypeScaling", false)
+    )
 }
 
 /**
@@ -643,6 +807,12 @@ extends
      */
     def this () = { this (null, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -662,14 +832,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:VoltageLimit.value>" + value + "</cim:VoltageLimit.value>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = VoltageLimit.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (VoltageLimit.fields (position), value)
+        emitelem (0, value)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:VoltageLimit rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:VoltageLimit>"
+        "\t<cim:VoltageLimit rdf:ID=\"%s\">\n%s\t</cim:VoltageLimit>".format (id, export_fields)
     }
 }
 
@@ -677,15 +849,26 @@ object VoltageLimit
 extends
     Parseable[VoltageLimit]
 {
-    val value = parse_element (element ("""VoltageLimit.value"""))
+    val fields: Array[String] = Array[String] (
+        "value"
+    )
+    val value: Fielder = parse_element (element (cls, fields(0)))
+
     def parse (context: Context): VoltageLimit =
     {
-        VoltageLimit(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = VoltageLimit (
             OperationalLimit.parse (context),
-            toDouble (value (context), context)
+            toDouble (mask (value (), 0))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 private[ninecode] object _OperationalLimits

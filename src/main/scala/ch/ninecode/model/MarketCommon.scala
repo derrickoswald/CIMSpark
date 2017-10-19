@@ -31,6 +31,12 @@ extends
      */
     def this () = { this (null, List()) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -50,14 +56,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != MarketDocument) MarketDocument.map (x => "\t\t<cim:MarketParticipant.MarketDocument rdf:resource=\"#" + x + "\"/>\n").mkString else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = MarketParticipant.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (MarketParticipant.fields (position), x))
+        emitattrs (0, MarketDocument)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:MarketParticipant rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:MarketParticipant>"
+        "\t<cim:MarketParticipant rdf:ID=\"%s\">\n%s\t</cim:MarketParticipant>".format (id, export_fields)
     }
 }
 
@@ -65,16 +73,26 @@ object MarketParticipant
 extends
     Parseable[MarketParticipant]
 {
-    val MarketDocument = parse_attributes (attribute ("""MarketParticipant.MarketDocument"""))
+    val fields: Array[String] = Array[String] (
+        "MarketDocument"
+    )
+    val MarketDocument: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+
     def parse (context: Context): MarketParticipant =
     {
-        MarketParticipant(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def masks (field: Fields, position: Int): List[String] = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = MarketParticipant (
             Organisation.parse (context),
-            MarketDocument (context)
+            masks (MarketDocument (), 0)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("MarketDocument", "MarketDocument", true))
+        Relationship ("MarketDocument", "MarketDocument", true)
+    )
 }
 
 /**
@@ -106,6 +124,12 @@ extends
      */
     def this () = { this (null, null, null, null, List()) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -125,17 +149,21 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != roleType) "\t\t<cim:MarketRole.roleType rdf:resource=\"#" + roleType + "\"/>\n" else "") +
-        (if (null != status) "\t\t<cim:MarketRole.status rdf:resource=\"#" + status + "\"/>\n" else "") +
-        (if (null != typ) "\t\t<cim:MarketRole.type>" + typ + "</cim:MarketRole.type>\n" else "") +
-        (if (null != MarketParticipant) MarketParticipant.map (x => "\t\t<cim:MarketRole.MarketParticipant rdf:resource=\"#" + x + "\"/>\n").mkString else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = MarketRole.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (MarketRole.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (MarketRole.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (MarketRole.fields (position), x))
+        emitattr (0, roleType)
+        emitattr (1, status)
+        emitelem (2, typ)
+        emitattrs (3, MarketParticipant)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:MarketRole rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:MarketRole>"
+        "\t<cim:MarketRole rdf:ID=\"%s\">\n%s\t</cim:MarketRole>".format (id, export_fields)
     }
 }
 
@@ -143,22 +171,36 @@ object MarketRole
 extends
     Parseable[MarketRole]
 {
-    val roleType = parse_attribute (attribute ("""MarketRole.roleType"""))
-    val status = parse_attribute (attribute ("""MarketRole.status"""))
-    val typ = parse_element (element ("""MarketRole.type"""))
-    val MarketParticipant = parse_attributes (attribute ("""MarketRole.MarketParticipant"""))
+    val fields: Array[String] = Array[String] (
+        "roleType",
+        "status",
+        "type",
+        "MarketParticipant"
+    )
+    val roleType: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val status: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val typ: Fielder = parse_element (element (cls, fields(2)))
+    val MarketParticipant: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+
     def parse (context: Context): MarketRole =
     {
-        MarketRole(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        def masks (field: Fields, position: Int): List[String] = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = MarketRole (
             IdentifiedObject.parse (context),
-            roleType (context),
-            status (context),
-            typ (context),
-            MarketParticipant (context)
+            mask (roleType (), 0),
+            mask (status (), 1),
+            mask (typ (), 2),
+            masks (MarketParticipant (), 3)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("MarketParticipant", "MarketParticipant", true))
+        Relationship ("MarketParticipant", "MarketParticipant", true)
+    )
 }
 
 /**
@@ -276,6 +318,12 @@ extends
      */
     def this () = { this (null, null, null, null, null, null, null, null, null, null, 0.0, 0.0, 0.0, 0.0, 0.0, null, null, null, null, null, null, null, null, null, null, null, List(), null, null, List(), null, List(), null, null, null, null, List(), List(), List(), null, null, List(), List()) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Long = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -295,55 +343,59 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != commercialOpDate) "\t\t<cim:RegisteredResource.commercialOpDate>" + commercialOpDate + "</cim:RegisteredResource.commercialOpDate>\n" else "") +
-        (if (null != contingencyAvailFlag) "\t\t<cim:RegisteredResource.contingencyAvailFlag rdf:resource=\"#" + contingencyAvailFlag + "\"/>\n" else "") +
-        (if (null != dispatchFlag) "\t\t<cim:RegisteredResource.dispatchFlag rdf:resource=\"#" + dispatchFlag + "\"/>\n" else "") +
-        (if (null != endEffectiveDate) "\t\t<cim:RegisteredResource.endEffectiveDate>" + endEffectiveDate + "</cim:RegisteredResource.endEffectiveDate>\n" else "") +
-        (if (null != flexibleOfferFlag) "\t\t<cim:RegisteredResource.flexibleOfferFlag rdf:resource=\"#" + flexibleOfferFlag + "\"/>\n" else "") +
-        (if (null != hourlyPredispatch) "\t\t<cim:RegisteredResource.hourlyPredispatch rdf:resource=\"#" + hourlyPredispatch + "\"/>\n" else "") +
-        (if (null != isAggregatedRes) "\t\t<cim:RegisteredResource.isAggregatedRes rdf:resource=\"#" + isAggregatedRes + "\"/>\n" else "") +
-        (if (null != lastModified) "\t\t<cim:RegisteredResource.lastModified>" + lastModified + "</cim:RegisteredResource.lastModified>\n" else "") +
-        (if (null != marketParticipationFlag) "\t\t<cim:RegisteredResource.marketParticipationFlag rdf:resource=\"#" + marketParticipationFlag + "\"/>\n" else "") +
-        "\t\t<cim:RegisteredResource.maxBaseSelfSchedQty >" + maxBaseSelfSchedQty_1 + "</cim:RegisteredResource.maxBaseSelfSchedQty >\n" +
-        "\t\t<cim:RegisteredResource.maxOnTime>" + maxOnTime + "</cim:RegisteredResource.maxOnTime>\n" +
-        "\t\t<cim:RegisteredResource.minDispatchTime>" + minDispatchTime + "</cim:RegisteredResource.minDispatchTime>\n" +
-        "\t\t<cim:RegisteredResource.minOffTime>" + minOffTime + "</cim:RegisteredResource.minOffTime>\n" +
-        "\t\t<cim:RegisteredResource.minOnTime>" + minOnTime + "</cim:RegisteredResource.minOnTime>\n" +
-        (if (null != mustOfferFlag) "\t\t<cim:RegisteredResource.mustOfferFlag rdf:resource=\"#" + mustOfferFlag + "\"/>\n" else "") +
-        (if (null != nonMarket) "\t\t<cim:RegisteredResource.nonMarket rdf:resource=\"#" + nonMarket + "\"/>\n" else "") +
-        (if (null != pointOfDeliveryFlag) "\t\t<cim:RegisteredResource.pointOfDeliveryFlag rdf:resource=\"#" + pointOfDeliveryFlag + "\"/>\n" else "") +
-        (if (null != priceSetFlagDA) "\t\t<cim:RegisteredResource.priceSetFlagDA rdf:resource=\"#" + priceSetFlagDA + "\"/>\n" else "") +
-        (if (null != priceSetFlagRT) "\t\t<cim:RegisteredResource.priceSetFlagRT rdf:resource=\"#" + priceSetFlagRT + "\"/>\n" else "") +
-        (if (null != registrationStatus) "\t\t<cim:RegisteredResource.registrationStatus rdf:resource=\"#" + registrationStatus + "\"/>\n" else "") +
-        (if (null != resourceAdequacyFlag) "\t\t<cim:RegisteredResource.resourceAdequacyFlag rdf:resource=\"#" + resourceAdequacyFlag + "\"/>\n" else "") +
-        (if (null != startEffectiveDate) "\t\t<cim:RegisteredResource.startEffectiveDate>" + startEffectiveDate + "</cim:RegisteredResource.startEffectiveDate>\n" else "") +
-        (if (null != ACAFlag) "\t\t<cim:RegisteredResource.ACAFlag rdf:resource=\"#" + ACAFlag + "\"/>\n" else "") +
-        (if (null != ASSPOptimizationFlag) "\t\t<cim:RegisteredResource.ASSPOptimizationFlag rdf:resource=\"#" + ASSPOptimizationFlag + "\"/>\n" else "") +
-        (if (null != AdjacentCASet) "\t\t<cim:RegisteredResource.AdjacentCASet rdf:resource=\"#" + AdjacentCASet + "\"/>\n" else "") +
-        (if (null != AggregateNode) AggregateNode.map (x => "\t\t<cim:RegisteredResource.AggregateNode rdf:resource=\"#" + x + "\"/>\n").mkString else "") +
-        (if (null != DefaultBid) "\t\t<cim:RegisteredResource.DefaultBid rdf:resource=\"#" + DefaultBid + "\"/>\n" else "") +
-        (if (null != ECAFlag) "\t\t<cim:RegisteredResource.ECAFlag rdf:resource=\"#" + ECAFlag + "\"/>\n" else "") +
-        (if (null != ForbiddenRegion) ForbiddenRegion.map (x => "\t\t<cim:RegisteredResource.ForbiddenRegion rdf:resource=\"#" + x + "\"/>\n").mkString else "") +
-        (if (null != HostControlArea) "\t\t<cim:RegisteredResource.HostControlArea rdf:resource=\"#" + HostControlArea + "\"/>\n" else "") +
-        (if (null != InterTie) InterTie.map (x => "\t\t<cim:RegisteredResource.InterTie rdf:resource=\"#" + x + "\"/>\n").mkString else "") +
-        (if (null != LMPMFlag) "\t\t<cim:RegisteredResource.LMPMFlag rdf:resource=\"#" + LMPMFlag + "\"/>\n" else "") +
-        (if (null != MktConnectivityNode) "\t\t<cim:RegisteredResource.MktConnectivityNode rdf:resource=\"#" + MktConnectivityNode + "\"/>\n" else "") +
-        (if (null != MktOrganisation) "\t\t<cim:RegisteredResource.MktOrganisation rdf:resource=\"#" + MktOrganisation + "\"/>\n" else "") +
-        (if (null != Pnode) "\t\t<cim:RegisteredResource.Pnode rdf:resource=\"#" + Pnode + "\"/>\n" else "") +
-        (if (null != RampRateCurve) RampRateCurve.map (x => "\t\t<cim:RegisteredResource.RampRateCurve rdf:resource=\"#" + x + "\"/>\n").mkString else "") +
-        (if (null != ResourceCapacity) ResourceCapacity.map (x => "\t\t<cim:RegisteredResource.ResourceCapacity rdf:resource=\"#" + x + "\"/>\n").mkString else "") +
-        (if (null != ResourceCertification) ResourceCertification.map (x => "\t\t<cim:RegisteredResource.ResourceCertification rdf:resource=\"#" + x + "\"/>\n").mkString else "") +
-        (if (null != ResourceVerifiableCosts) "\t\t<cim:RegisteredResource.ResourceVerifiableCosts rdf:resource=\"#" + ResourceVerifiableCosts + "\"/>\n" else "") +
-        (if (null != SMPMFlag) "\t\t<cim:RegisteredResource.SMPMFlag rdf:resource=\"#" + SMPMFlag + "\"/>\n" else "") +
-        (if (null != SubControlArea) SubControlArea.map (x => "\t\t<cim:RegisteredResource.SubControlArea rdf:resource=\"#" + x + "\"/>\n").mkString else "") +
-        (if (null != TimeSeries) TimeSeries.map (x => "\t\t<cim:RegisteredResource.TimeSeries rdf:resource=\"#" + x + "\"/>\n").mkString else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = RegisteredResource.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (RegisteredResource.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (RegisteredResource.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (RegisteredResource.fields (position), x))
+        emitelem (0, commercialOpDate)
+        emitattr (1, contingencyAvailFlag)
+        emitattr (2, dispatchFlag)
+        emitelem (3, endEffectiveDate)
+        emitattr (4, flexibleOfferFlag)
+        emitattr (5, hourlyPredispatch)
+        emitattr (6, isAggregatedRes)
+        emitelem (7, lastModified)
+        emitattr (8, marketParticipationFlag)
+        emitelem (9, maxBaseSelfSchedQty_1)
+        emitelem (10, maxOnTime)
+        emitelem (11, minDispatchTime)
+        emitelem (12, minOffTime)
+        emitelem (13, minOnTime)
+        emitattr (14, mustOfferFlag)
+        emitattr (15, nonMarket)
+        emitattr (16, pointOfDeliveryFlag)
+        emitattr (17, priceSetFlagDA)
+        emitattr (18, priceSetFlagRT)
+        emitattr (19, registrationStatus)
+        emitattr (20, resourceAdequacyFlag)
+        emitelem (21, startEffectiveDate)
+        emitattr (22, ACAFlag)
+        emitattr (23, ASSPOptimizationFlag)
+        emitattr (24, AdjacentCASet)
+        emitattrs (25, AggregateNode)
+        emitattr (26, DefaultBid)
+        emitattr (27, ECAFlag)
+        emitattrs (28, ForbiddenRegion)
+        emitattr (29, HostControlArea)
+        emitattrs (30, InterTie)
+        emitattr (31, LMPMFlag)
+        emitattr (32, MktConnectivityNode)
+        emitattr (33, MktOrganisation)
+        emitattr (34, Pnode)
+        emitattrs (35, RampRateCurve)
+        emitattrs (36, ResourceCapacity)
+        emitattrs (37, ResourceCertification)
+        emitattr (38, ResourceVerifiableCosts)
+        emitattr (39, SMPMFlag)
+        emitattrs (40, SubControlArea)
+        emitattrs (41, TimeSeries)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:RegisteredResource rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:RegisteredResource>"
+        "\t<cim:RegisteredResource rdf:ID=\"%s\">\n%s\t</cim:RegisteredResource>".format (id, export_fields)
     }
 }
 
@@ -351,95 +403,146 @@ object RegisteredResource
 extends
     Parseable[RegisteredResource]
 {
-    val commercialOpDate = parse_element (element ("""RegisteredResource.commercialOpDate"""))
-    val contingencyAvailFlag = parse_attribute (attribute ("""RegisteredResource.contingencyAvailFlag"""))
-    val dispatchFlag = parse_attribute (attribute ("""RegisteredResource.dispatchFlag"""))
-    val endEffectiveDate = parse_element (element ("""RegisteredResource.endEffectiveDate"""))
-    val flexibleOfferFlag = parse_attribute (attribute ("""RegisteredResource.flexibleOfferFlag"""))
-    val hourlyPredispatch = parse_attribute (attribute ("""RegisteredResource.hourlyPredispatch"""))
-    val isAggregatedRes = parse_attribute (attribute ("""RegisteredResource.isAggregatedRes"""))
-    val lastModified = parse_element (element ("""RegisteredResource.lastModified"""))
-    val marketParticipationFlag = parse_attribute (attribute ("""RegisteredResource.marketParticipationFlag"""))
-    val maxBaseSelfSchedQty_1 = parse_element (element ("""RegisteredResource.maxBaseSelfSchedQty """))
-    val maxOnTime = parse_element (element ("""RegisteredResource.maxOnTime"""))
-    val minDispatchTime = parse_element (element ("""RegisteredResource.minDispatchTime"""))
-    val minOffTime = parse_element (element ("""RegisteredResource.minOffTime"""))
-    val minOnTime = parse_element (element ("""RegisteredResource.minOnTime"""))
-    val mustOfferFlag = parse_attribute (attribute ("""RegisteredResource.mustOfferFlag"""))
-    val nonMarket = parse_attribute (attribute ("""RegisteredResource.nonMarket"""))
-    val pointOfDeliveryFlag = parse_attribute (attribute ("""RegisteredResource.pointOfDeliveryFlag"""))
-    val priceSetFlagDA = parse_attribute (attribute ("""RegisteredResource.priceSetFlagDA"""))
-    val priceSetFlagRT = parse_attribute (attribute ("""RegisteredResource.priceSetFlagRT"""))
-    val registrationStatus = parse_attribute (attribute ("""RegisteredResource.registrationStatus"""))
-    val resourceAdequacyFlag = parse_attribute (attribute ("""RegisteredResource.resourceAdequacyFlag"""))
-    val startEffectiveDate = parse_element (element ("""RegisteredResource.startEffectiveDate"""))
-    val ACAFlag = parse_attribute (attribute ("""RegisteredResource.ACAFlag"""))
-    val ASSPOptimizationFlag = parse_attribute (attribute ("""RegisteredResource.ASSPOptimizationFlag"""))
-    val AdjacentCASet = parse_attribute (attribute ("""RegisteredResource.AdjacentCASet"""))
-    val AggregateNode = parse_attributes (attribute ("""RegisteredResource.AggregateNode"""))
-    val DefaultBid = parse_attribute (attribute ("""RegisteredResource.DefaultBid"""))
-    val ECAFlag = parse_attribute (attribute ("""RegisteredResource.ECAFlag"""))
-    val ForbiddenRegion = parse_attributes (attribute ("""RegisteredResource.ForbiddenRegion"""))
-    val HostControlArea = parse_attribute (attribute ("""RegisteredResource.HostControlArea"""))
-    val InterTie = parse_attributes (attribute ("""RegisteredResource.InterTie"""))
-    val LMPMFlag = parse_attribute (attribute ("""RegisteredResource.LMPMFlag"""))
-    val MktConnectivityNode = parse_attribute (attribute ("""RegisteredResource.MktConnectivityNode"""))
-    val MktOrganisation = parse_attribute (attribute ("""RegisteredResource.MktOrganisation"""))
-    val Pnode = parse_attribute (attribute ("""RegisteredResource.Pnode"""))
-    val RampRateCurve = parse_attributes (attribute ("""RegisteredResource.RampRateCurve"""))
-    val ResourceCapacity = parse_attributes (attribute ("""RegisteredResource.ResourceCapacity"""))
-    val ResourceCertification = parse_attributes (attribute ("""RegisteredResource.ResourceCertification"""))
-    val ResourceVerifiableCosts = parse_attribute (attribute ("""RegisteredResource.ResourceVerifiableCosts"""))
-    val SMPMFlag = parse_attribute (attribute ("""RegisteredResource.SMPMFlag"""))
-    val SubControlArea = parse_attributes (attribute ("""RegisteredResource.SubControlArea"""))
-    val TimeSeries = parse_attributes (attribute ("""RegisteredResource.TimeSeries"""))
+    val fields: Array[String] = Array[String] (
+        "commercialOpDate",
+        "contingencyAvailFlag",
+        "dispatchFlag",
+        "endEffectiveDate",
+        "flexibleOfferFlag",
+        "hourlyPredispatch",
+        "isAggregatedRes",
+        "lastModified",
+        "marketParticipationFlag",
+        "maxBaseSelfSchedQty ",
+        "maxOnTime",
+        "minDispatchTime",
+        "minOffTime",
+        "minOnTime",
+        "mustOfferFlag",
+        "nonMarket",
+        "pointOfDeliveryFlag",
+        "priceSetFlagDA",
+        "priceSetFlagRT",
+        "registrationStatus",
+        "resourceAdequacyFlag",
+        "startEffectiveDate",
+        "ACAFlag",
+        "ASSPOptimizationFlag",
+        "AdjacentCASet",
+        "AggregateNode",
+        "DefaultBid",
+        "ECAFlag",
+        "ForbiddenRegion",
+        "HostControlArea",
+        "InterTie",
+        "LMPMFlag",
+        "MktConnectivityNode",
+        "MktOrganisation",
+        "Pnode",
+        "RampRateCurve",
+        "ResourceCapacity",
+        "ResourceCertification",
+        "ResourceVerifiableCosts",
+        "SMPMFlag",
+        "SubControlArea",
+        "TimeSeries"
+    )
+    val commercialOpDate: Fielder = parse_element (element (cls, fields(0)))
+    val contingencyAvailFlag: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val dispatchFlag: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val endEffectiveDate: Fielder = parse_element (element (cls, fields(3)))
+    val flexibleOfferFlag: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val hourlyPredispatch: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val isAggregatedRes: Fielder = parse_attribute (attribute (cls, fields(6)))
+    val lastModified: Fielder = parse_element (element (cls, fields(7)))
+    val marketParticipationFlag: Fielder = parse_attribute (attribute (cls, fields(8)))
+    val maxBaseSelfSchedQty_1: Fielder = parse_element (element (cls, fields(9)))
+    val maxOnTime: Fielder = parse_element (element (cls, fields(10)))
+    val minDispatchTime: Fielder = parse_element (element (cls, fields(11)))
+    val minOffTime: Fielder = parse_element (element (cls, fields(12)))
+    val minOnTime: Fielder = parse_element (element (cls, fields(13)))
+    val mustOfferFlag: Fielder = parse_attribute (attribute (cls, fields(14)))
+    val nonMarket: Fielder = parse_attribute (attribute (cls, fields(15)))
+    val pointOfDeliveryFlag: Fielder = parse_attribute (attribute (cls, fields(16)))
+    val priceSetFlagDA: Fielder = parse_attribute (attribute (cls, fields(17)))
+    val priceSetFlagRT: Fielder = parse_attribute (attribute (cls, fields(18)))
+    val registrationStatus: Fielder = parse_attribute (attribute (cls, fields(19)))
+    val resourceAdequacyFlag: Fielder = parse_attribute (attribute (cls, fields(20)))
+    val startEffectiveDate: Fielder = parse_element (element (cls, fields(21)))
+    val ACAFlag: Fielder = parse_attribute (attribute (cls, fields(22)))
+    val ASSPOptimizationFlag: Fielder = parse_attribute (attribute (cls, fields(23)))
+    val AdjacentCASet: Fielder = parse_attribute (attribute (cls, fields(24)))
+    val AggregateNode: FielderMultiple = parse_attributes (attribute (cls, fields(25)))
+    val DefaultBid: Fielder = parse_attribute (attribute (cls, fields(26)))
+    val ECAFlag: Fielder = parse_attribute (attribute (cls, fields(27)))
+    val ForbiddenRegion: FielderMultiple = parse_attributes (attribute (cls, fields(28)))
+    val HostControlArea: Fielder = parse_attribute (attribute (cls, fields(29)))
+    val InterTie: FielderMultiple = parse_attributes (attribute (cls, fields(30)))
+    val LMPMFlag: Fielder = parse_attribute (attribute (cls, fields(31)))
+    val MktConnectivityNode: Fielder = parse_attribute (attribute (cls, fields(32)))
+    val MktOrganisation: Fielder = parse_attribute (attribute (cls, fields(33)))
+    val Pnode: Fielder = parse_attribute (attribute (cls, fields(34)))
+    val RampRateCurve: FielderMultiple = parse_attributes (attribute (cls, fields(35)))
+    val ResourceCapacity: FielderMultiple = parse_attributes (attribute (cls, fields(36)))
+    val ResourceCertification: FielderMultiple = parse_attributes (attribute (cls, fields(37)))
+    val ResourceVerifiableCosts: Fielder = parse_attribute (attribute (cls, fields(38)))
+    val SMPMFlag: Fielder = parse_attribute (attribute (cls, fields(39)))
+    val SubControlArea: FielderMultiple = parse_attributes (attribute (cls, fields(40)))
+    val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields(41)))
+
     def parse (context: Context): RegisteredResource =
     {
-        RegisteredResource(
+        implicit val ctx: Context = context
+        var fields: Long = 0L
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1L << position; field._1 }
+        def masks (field: Fields, position: Int): List[String] = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = RegisteredResource (
             PowerSystemResource.parse (context),
-            commercialOpDate (context),
-            contingencyAvailFlag (context),
-            dispatchFlag (context),
-            endEffectiveDate (context),
-            flexibleOfferFlag (context),
-            hourlyPredispatch (context),
-            isAggregatedRes (context),
-            lastModified (context),
-            marketParticipationFlag (context),
-            toDouble (maxBaseSelfSchedQty_1 (context), context),
-            toDouble (maxOnTime (context), context),
-            toDouble (minDispatchTime (context), context),
-            toDouble (minOffTime (context), context),
-            toDouble (minOnTime (context), context),
-            mustOfferFlag (context),
-            nonMarket (context),
-            pointOfDeliveryFlag (context),
-            priceSetFlagDA (context),
-            priceSetFlagRT (context),
-            registrationStatus (context),
-            resourceAdequacyFlag (context),
-            startEffectiveDate (context),
-            ACAFlag (context),
-            ASSPOptimizationFlag (context),
-            AdjacentCASet (context),
-            AggregateNode (context),
-            DefaultBid (context),
-            ECAFlag (context),
-            ForbiddenRegion (context),
-            HostControlArea (context),
-            InterTie (context),
-            LMPMFlag (context),
-            MktConnectivityNode (context),
-            MktOrganisation (context),
-            Pnode (context),
-            RampRateCurve (context),
-            ResourceCapacity (context),
-            ResourceCertification (context),
-            ResourceVerifiableCosts (context),
-            SMPMFlag (context),
-            SubControlArea (context),
-            TimeSeries (context)
+            mask (commercialOpDate (), 0),
+            mask (contingencyAvailFlag (), 1),
+            mask (dispatchFlag (), 2),
+            mask (endEffectiveDate (), 3),
+            mask (flexibleOfferFlag (), 4),
+            mask (hourlyPredispatch (), 5),
+            mask (isAggregatedRes (), 6),
+            mask (lastModified (), 7),
+            mask (marketParticipationFlag (), 8),
+            toDouble (mask (maxBaseSelfSchedQty_1 (), 9)),
+            toDouble (mask (maxOnTime (), 10)),
+            toDouble (mask (minDispatchTime (), 11)),
+            toDouble (mask (minOffTime (), 12)),
+            toDouble (mask (minOnTime (), 13)),
+            mask (mustOfferFlag (), 14),
+            mask (nonMarket (), 15),
+            mask (pointOfDeliveryFlag (), 16),
+            mask (priceSetFlagDA (), 17),
+            mask (priceSetFlagRT (), 18),
+            mask (registrationStatus (), 19),
+            mask (resourceAdequacyFlag (), 20),
+            mask (startEffectiveDate (), 21),
+            mask (ACAFlag (), 22),
+            mask (ASSPOptimizationFlag (), 23),
+            mask (AdjacentCASet (), 24),
+            masks (AggregateNode (), 25),
+            mask (DefaultBid (), 26),
+            mask (ECAFlag (), 27),
+            masks (ForbiddenRegion (), 28),
+            mask (HostControlArea (), 29),
+            masks (InterTie (), 30),
+            mask (LMPMFlag (), 31),
+            mask (MktConnectivityNode (), 32),
+            mask (MktOrganisation (), 33),
+            mask (Pnode (), 34),
+            masks (RampRateCurve (), 35),
+            masks (ResourceCapacity (), 36),
+            masks (ResourceCertification (), 37),
+            mask (ResourceVerifiableCosts (), 38),
+            mask (SMPMFlag (), 39),
+            masks (SubControlArea (), 40),
+            masks (TimeSeries (), 41)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("AdjacentCASet", "AdjacentCASet", false),
@@ -456,7 +559,8 @@ extends
         Relationship ("ResourceCertification", "ResourceCertification", true),
         Relationship ("ResourceVerifiableCosts", "ResourceVerifiableCosts", false),
         Relationship ("SubControlArea", "SubControlArea", true),
-        Relationship ("TimeSeries", "TimeSeries", true))
+        Relationship ("TimeSeries", "TimeSeries", true)
+    )
 }
 
 private[ninecode] object _MarketCommon

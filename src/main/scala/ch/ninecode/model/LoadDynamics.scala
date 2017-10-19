@@ -38,6 +38,12 @@ extends
      */
     def this () = { this (null, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -57,15 +63,17 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != LoadMotor) "\t\t<cim:LoadAggregate.LoadMotor rdf:resource=\"#" + LoadMotor + "\"/>\n" else "") +
-        (if (null != LoadStatic) "\t\t<cim:LoadAggregate.LoadStatic rdf:resource=\"#" + LoadStatic + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = LoadAggregate.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (LoadAggregate.fields (position), value)
+        emitattr (0, LoadMotor)
+        emitattr (1, LoadStatic)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:LoadAggregate rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:LoadAggregate>"
+        "\t<cim:LoadAggregate rdf:ID=\"%s\">\n%s\t</cim:LoadAggregate>".format (id, export_fields)
     }
 }
 
@@ -73,19 +81,30 @@ object LoadAggregate
 extends
     Parseable[LoadAggregate]
 {
-    val LoadMotor = parse_attribute (attribute ("""LoadAggregate.LoadMotor"""))
-    val LoadStatic = parse_attribute (attribute ("""LoadAggregate.LoadStatic"""))
+    val fields: Array[String] = Array[String] (
+        "LoadMotor",
+        "LoadStatic"
+    )
+    val LoadMotor: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val LoadStatic: Fielder = parse_attribute (attribute (cls, fields(1)))
+
     def parse (context: Context): LoadAggregate =
     {
-        LoadAggregate(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = LoadAggregate (
             LoadDynamics.parse (context),
-            LoadMotor (context),
-            LoadStatic (context)
+            mask (LoadMotor (), 0),
+            mask (LoadStatic (), 1)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("LoadMotor", "LoadMotor", false),
-        Relationship ("LoadStatic", "LoadStatic", false))
+        Relationship ("LoadStatic", "LoadStatic", false)
+    )
 }
 
 /**
@@ -148,6 +167,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -167,24 +192,26 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:LoadComposite.epfd>" + epfd + "</cim:LoadComposite.epfd>\n" +
-        "\t\t<cim:LoadComposite.epfs>" + epfs + "</cim:LoadComposite.epfs>\n" +
-        "\t\t<cim:LoadComposite.epvd>" + epvd + "</cim:LoadComposite.epvd>\n" +
-        "\t\t<cim:LoadComposite.epvs>" + epvs + "</cim:LoadComposite.epvs>\n" +
-        "\t\t<cim:LoadComposite.eqfd>" + eqfd + "</cim:LoadComposite.eqfd>\n" +
-        "\t\t<cim:LoadComposite.eqfs>" + eqfs + "</cim:LoadComposite.eqfs>\n" +
-        "\t\t<cim:LoadComposite.eqvd>" + eqvd + "</cim:LoadComposite.eqvd>\n" +
-        "\t\t<cim:LoadComposite.eqvs>" + eqvs + "</cim:LoadComposite.eqvs>\n" +
-        "\t\t<cim:LoadComposite.h>" + h + "</cim:LoadComposite.h>\n" +
-        "\t\t<cim:LoadComposite.lfrac>" + lfrac + "</cim:LoadComposite.lfrac>\n" +
-        "\t\t<cim:LoadComposite.pfrac>" + pfrac + "</cim:LoadComposite.pfrac>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = LoadComposite.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (LoadComposite.fields (position), value)
+        emitelem (0, epfd)
+        emitelem (1, epfs)
+        emitelem (2, epvd)
+        emitelem (3, epvs)
+        emitelem (4, eqfd)
+        emitelem (5, eqfs)
+        emitelem (6, eqvd)
+        emitelem (7, eqvs)
+        emitelem (8, h)
+        emitelem (9, lfrac)
+        emitelem (10, pfrac)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:LoadComposite rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:LoadComposite>"
+        "\t<cim:LoadComposite rdf:ID=\"%s\">\n%s\t</cim:LoadComposite>".format (id, export_fields)
     }
 }
 
@@ -192,35 +219,56 @@ object LoadComposite
 extends
     Parseable[LoadComposite]
 {
-    val epfd = parse_element (element ("""LoadComposite.epfd"""))
-    val epfs = parse_element (element ("""LoadComposite.epfs"""))
-    val epvd = parse_element (element ("""LoadComposite.epvd"""))
-    val epvs = parse_element (element ("""LoadComposite.epvs"""))
-    val eqfd = parse_element (element ("""LoadComposite.eqfd"""))
-    val eqfs = parse_element (element ("""LoadComposite.eqfs"""))
-    val eqvd = parse_element (element ("""LoadComposite.eqvd"""))
-    val eqvs = parse_element (element ("""LoadComposite.eqvs"""))
-    val h = parse_element (element ("""LoadComposite.h"""))
-    val lfrac = parse_element (element ("""LoadComposite.lfrac"""))
-    val pfrac = parse_element (element ("""LoadComposite.pfrac"""))
+    val fields: Array[String] = Array[String] (
+        "epfd",
+        "epfs",
+        "epvd",
+        "epvs",
+        "eqfd",
+        "eqfs",
+        "eqvd",
+        "eqvs",
+        "h",
+        "lfrac",
+        "pfrac"
+    )
+    val epfd: Fielder = parse_element (element (cls, fields(0)))
+    val epfs: Fielder = parse_element (element (cls, fields(1)))
+    val epvd: Fielder = parse_element (element (cls, fields(2)))
+    val epvs: Fielder = parse_element (element (cls, fields(3)))
+    val eqfd: Fielder = parse_element (element (cls, fields(4)))
+    val eqfs: Fielder = parse_element (element (cls, fields(5)))
+    val eqvd: Fielder = parse_element (element (cls, fields(6)))
+    val eqvs: Fielder = parse_element (element (cls, fields(7)))
+    val h: Fielder = parse_element (element (cls, fields(8)))
+    val lfrac: Fielder = parse_element (element (cls, fields(9)))
+    val pfrac: Fielder = parse_element (element (cls, fields(10)))
+
     def parse (context: Context): LoadComposite =
     {
-        LoadComposite(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = LoadComposite (
             LoadDynamics.parse (context),
-            toDouble (epfd (context), context),
-            toDouble (epfs (context), context),
-            toDouble (epvd (context), context),
-            toDouble (epvs (context), context),
-            toDouble (eqfd (context), context),
-            toDouble (eqfs (context), context),
-            toDouble (eqvd (context), context),
-            toDouble (eqvs (context), context),
-            toDouble (h (context), context),
-            toDouble (lfrac (context), context),
-            toDouble (pfrac (context), context)
+            toDouble (mask (epfd (), 0)),
+            toDouble (mask (epfs (), 1)),
+            toDouble (mask (epvd (), 2)),
+            toDouble (mask (epvs (), 3)),
+            toDouble (mask (eqfd (), 4)),
+            toDouble (mask (eqfs (), 5)),
+            toDouble (mask (eqvd (), 6)),
+            toDouble (mask (eqvs (), 7)),
+            toDouble (mask (h (), 8)),
+            toDouble (mask (lfrac (), 9)),
+            toDouble (mask (pfrac (), 10))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -252,6 +300,12 @@ extends
      */
     def this () = { this (null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -271,14 +325,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        ""
+        sup.export_fields
     }
     override def export: String =
     {
-        "\t<cim:LoadDynamics rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:LoadDynamics>"
+        "\t<cim:LoadDynamics rdf:ID=\"%s\">\n%s\t</cim:LoadDynamics>".format (id, export_fields)
     }
 }
 
@@ -286,13 +337,18 @@ object LoadDynamics
 extends
     Parseable[LoadDynamics]
 {
+
     def parse (context: Context): LoadDynamics =
     {
-        LoadDynamics(
+        implicit val ctx: Context = context
+        val ret = LoadDynamics (
             IdentifiedObject.parse (context)
         )
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -338,6 +394,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -357,22 +419,25 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:LoadGenericNonLinear.bs>" + bs + "</cim:LoadGenericNonLinear.bs>\n" +
-        "\t\t<cim:LoadGenericNonLinear.bt>" + bt + "</cim:LoadGenericNonLinear.bt>\n" +
-        (if (null != genericNonLinearLoadModelType) "\t\t<cim:LoadGenericNonLinear.genericNonLinearLoadModelType rdf:resource=\"#" + genericNonLinearLoadModelType + "\"/>\n" else "") +
-        "\t\t<cim:LoadGenericNonLinear.ls>" + ls + "</cim:LoadGenericNonLinear.ls>\n" +
-        "\t\t<cim:LoadGenericNonLinear.lt>" + lt + "</cim:LoadGenericNonLinear.lt>\n" +
-        "\t\t<cim:LoadGenericNonLinear.pt>" + pt + "</cim:LoadGenericNonLinear.pt>\n" +
-        "\t\t<cim:LoadGenericNonLinear.qt>" + qt + "</cim:LoadGenericNonLinear.qt>\n" +
-        "\t\t<cim:LoadGenericNonLinear.tp>" + tp + "</cim:LoadGenericNonLinear.tp>\n" +
-        "\t\t<cim:LoadGenericNonLinear.tq>" + tq + "</cim:LoadGenericNonLinear.tq>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = LoadGenericNonLinear.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (LoadGenericNonLinear.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (LoadGenericNonLinear.fields (position), value)
+        emitelem (0, bs)
+        emitelem (1, bt)
+        emitattr (2, genericNonLinearLoadModelType)
+        emitelem (3, ls)
+        emitelem (4, lt)
+        emitelem (5, pt)
+        emitelem (6, qt)
+        emitelem (7, tp)
+        emitelem (8, tq)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:LoadGenericNonLinear rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:LoadGenericNonLinear>"
+        "\t<cim:LoadGenericNonLinear rdf:ID=\"%s\">\n%s\t</cim:LoadGenericNonLinear>".format (id, export_fields)
     }
 }
 
@@ -380,31 +445,50 @@ object LoadGenericNonLinear
 extends
     Parseable[LoadGenericNonLinear]
 {
-    val bs = parse_element (element ("""LoadGenericNonLinear.bs"""))
-    val bt = parse_element (element ("""LoadGenericNonLinear.bt"""))
-    val genericNonLinearLoadModelType = parse_attribute (attribute ("""LoadGenericNonLinear.genericNonLinearLoadModelType"""))
-    val ls = parse_element (element ("""LoadGenericNonLinear.ls"""))
-    val lt = parse_element (element ("""LoadGenericNonLinear.lt"""))
-    val pt = parse_element (element ("""LoadGenericNonLinear.pt"""))
-    val qt = parse_element (element ("""LoadGenericNonLinear.qt"""))
-    val tp = parse_element (element ("""LoadGenericNonLinear.tp"""))
-    val tq = parse_element (element ("""LoadGenericNonLinear.tq"""))
+    val fields: Array[String] = Array[String] (
+        "bs",
+        "bt",
+        "genericNonLinearLoadModelType",
+        "ls",
+        "lt",
+        "pt",
+        "qt",
+        "tp",
+        "tq"
+    )
+    val bs: Fielder = parse_element (element (cls, fields(0)))
+    val bt: Fielder = parse_element (element (cls, fields(1)))
+    val genericNonLinearLoadModelType: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val ls: Fielder = parse_element (element (cls, fields(3)))
+    val lt: Fielder = parse_element (element (cls, fields(4)))
+    val pt: Fielder = parse_element (element (cls, fields(5)))
+    val qt: Fielder = parse_element (element (cls, fields(6)))
+    val tp: Fielder = parse_element (element (cls, fields(7)))
+    val tq: Fielder = parse_element (element (cls, fields(8)))
+
     def parse (context: Context): LoadGenericNonLinear =
     {
-        LoadGenericNonLinear(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = LoadGenericNonLinear (
             LoadDynamics.parse (context),
-            toDouble (bs (context), context),
-            toDouble (bt (context), context),
-            genericNonLinearLoadModelType (context),
-            toDouble (ls (context), context),
-            toDouble (lt (context), context),
-            toDouble (pt (context), context),
-            toDouble (qt (context), context),
-            toDouble (tp (context), context),
-            toDouble (tq (context), context)
+            toDouble (mask (bs (), 0)),
+            toDouble (mask (bt (), 1)),
+            mask (genericNonLinearLoadModelType (), 2),
+            toDouble (mask (ls (), 3)),
+            toDouble (mask (lt (), 4)),
+            toDouble (mask (pt (), 5)),
+            toDouble (mask (qt (), 6)),
+            toDouble (mask (tp (), 7)),
+            toDouble (mask (tq (), 8))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -475,6 +559,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -494,27 +584,30 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:LoadMotor.d>" + d + "</cim:LoadMotor.d>\n" +
-        "\t\t<cim:LoadMotor.h>" + h + "</cim:LoadMotor.h>\n" +
-        "\t\t<cim:LoadMotor.lfac>" + lfac + "</cim:LoadMotor.lfac>\n" +
-        "\t\t<cim:LoadMotor.lp>" + lp + "</cim:LoadMotor.lp>\n" +
-        "\t\t<cim:LoadMotor.lpp>" + lpp + "</cim:LoadMotor.lpp>\n" +
-        "\t\t<cim:LoadMotor.ls>" + ls + "</cim:LoadMotor.ls>\n" +
-        "\t\t<cim:LoadMotor.pfrac>" + pfrac + "</cim:LoadMotor.pfrac>\n" +
-        "\t\t<cim:LoadMotor.ra>" + ra + "</cim:LoadMotor.ra>\n" +
-        "\t\t<cim:LoadMotor.tbkr>" + tbkr + "</cim:LoadMotor.tbkr>\n" +
-        "\t\t<cim:LoadMotor.tpo>" + tpo + "</cim:LoadMotor.tpo>\n" +
-        "\t\t<cim:LoadMotor.tppo>" + tppo + "</cim:LoadMotor.tppo>\n" +
-        "\t\t<cim:LoadMotor.tv>" + tv + "</cim:LoadMotor.tv>\n" +
-        "\t\t<cim:LoadMotor.vt>" + vt + "</cim:LoadMotor.vt>\n" +
-        (if (null != LoadAggregate) "\t\t<cim:LoadMotor.LoadAggregate rdf:resource=\"#" + LoadAggregate + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = LoadMotor.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (LoadMotor.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (LoadMotor.fields (position), value)
+        emitelem (0, d)
+        emitelem (1, h)
+        emitelem (2, lfac)
+        emitelem (3, lp)
+        emitelem (4, lpp)
+        emitelem (5, ls)
+        emitelem (6, pfrac)
+        emitelem (7, ra)
+        emitelem (8, tbkr)
+        emitelem (9, tpo)
+        emitelem (10, tppo)
+        emitelem (11, tv)
+        emitelem (12, vt)
+        emitattr (13, LoadAggregate)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:LoadMotor rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:LoadMotor>"
+        "\t<cim:LoadMotor rdf:ID=\"%s\">\n%s\t</cim:LoadMotor>".format (id, export_fields)
     }
 }
 
@@ -522,42 +615,65 @@ object LoadMotor
 extends
     Parseable[LoadMotor]
 {
-    val d = parse_element (element ("""LoadMotor.d"""))
-    val h = parse_element (element ("""LoadMotor.h"""))
-    val lfac = parse_element (element ("""LoadMotor.lfac"""))
-    val lp = parse_element (element ("""LoadMotor.lp"""))
-    val lpp = parse_element (element ("""LoadMotor.lpp"""))
-    val ls = parse_element (element ("""LoadMotor.ls"""))
-    val pfrac = parse_element (element ("""LoadMotor.pfrac"""))
-    val ra = parse_element (element ("""LoadMotor.ra"""))
-    val tbkr = parse_element (element ("""LoadMotor.tbkr"""))
-    val tpo = parse_element (element ("""LoadMotor.tpo"""))
-    val tppo = parse_element (element ("""LoadMotor.tppo"""))
-    val tv = parse_element (element ("""LoadMotor.tv"""))
-    val vt = parse_element (element ("""LoadMotor.vt"""))
-    val LoadAggregate = parse_attribute (attribute ("""LoadMotor.LoadAggregate"""))
+    val fields: Array[String] = Array[String] (
+        "d",
+        "h",
+        "lfac",
+        "lp",
+        "lpp",
+        "ls",
+        "pfrac",
+        "ra",
+        "tbkr",
+        "tpo",
+        "tppo",
+        "tv",
+        "vt",
+        "LoadAggregate"
+    )
+    val d: Fielder = parse_element (element (cls, fields(0)))
+    val h: Fielder = parse_element (element (cls, fields(1)))
+    val lfac: Fielder = parse_element (element (cls, fields(2)))
+    val lp: Fielder = parse_element (element (cls, fields(3)))
+    val lpp: Fielder = parse_element (element (cls, fields(4)))
+    val ls: Fielder = parse_element (element (cls, fields(5)))
+    val pfrac: Fielder = parse_element (element (cls, fields(6)))
+    val ra: Fielder = parse_element (element (cls, fields(7)))
+    val tbkr: Fielder = parse_element (element (cls, fields(8)))
+    val tpo: Fielder = parse_element (element (cls, fields(9)))
+    val tppo: Fielder = parse_element (element (cls, fields(10)))
+    val tv: Fielder = parse_element (element (cls, fields(11)))
+    val vt: Fielder = parse_element (element (cls, fields(12)))
+    val LoadAggregate: Fielder = parse_attribute (attribute (cls, fields(13)))
+
     def parse (context: Context): LoadMotor =
     {
-        LoadMotor(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = LoadMotor (
             IdentifiedObject.parse (context),
-            toDouble (d (context), context),
-            toDouble (h (context), context),
-            toDouble (lfac (context), context),
-            toDouble (lp (context), context),
-            toDouble (lpp (context), context),
-            toDouble (ls (context), context),
-            toDouble (pfrac (context), context),
-            toDouble (ra (context), context),
-            toDouble (tbkr (context), context),
-            toDouble (tpo (context), context),
-            toDouble (tppo (context), context),
-            toDouble (tv (context), context),
-            toDouble (vt (context), context),
-            LoadAggregate (context)
+            toDouble (mask (d (), 0)),
+            toDouble (mask (h (), 1)),
+            toDouble (mask (lfac (), 2)),
+            toDouble (mask (lp (), 3)),
+            toDouble (mask (lpp (), 4)),
+            toDouble (mask (ls (), 5)),
+            toDouble (mask (pfrac (), 6)),
+            toDouble (mask (ra (), 7)),
+            toDouble (mask (tbkr (), 8)),
+            toDouble (mask (tpo (), 9)),
+            toDouble (mask (tppo (), 10)),
+            toDouble (mask (tv (), 11)),
+            toDouble (mask (vt (), 12)),
+            mask (LoadAggregate (), 13)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("LoadAggregate", "LoadAggregate", false))
+        Relationship ("LoadAggregate", "LoadAggregate", false)
+    )
 }
 
 /**
@@ -638,6 +754,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -657,31 +779,34 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:LoadStatic.ep1>" + ep1 + "</cim:LoadStatic.ep1>\n" +
-        "\t\t<cim:LoadStatic.ep2>" + ep2 + "</cim:LoadStatic.ep2>\n" +
-        "\t\t<cim:LoadStatic.ep3>" + ep3 + "</cim:LoadStatic.ep3>\n" +
-        "\t\t<cim:LoadStatic.eq1>" + eq1 + "</cim:LoadStatic.eq1>\n" +
-        "\t\t<cim:LoadStatic.eq2>" + eq2 + "</cim:LoadStatic.eq2>\n" +
-        "\t\t<cim:LoadStatic.eq3>" + eq3 + "</cim:LoadStatic.eq3>\n" +
-        "\t\t<cim:LoadStatic.kp1>" + kp1 + "</cim:LoadStatic.kp1>\n" +
-        "\t\t<cim:LoadStatic.kp2>" + kp2 + "</cim:LoadStatic.kp2>\n" +
-        "\t\t<cim:LoadStatic.kp3>" + kp3 + "</cim:LoadStatic.kp3>\n" +
-        "\t\t<cim:LoadStatic.kp4>" + kp4 + "</cim:LoadStatic.kp4>\n" +
-        "\t\t<cim:LoadStatic.kpf>" + kpf + "</cim:LoadStatic.kpf>\n" +
-        "\t\t<cim:LoadStatic.kq1>" + kq1 + "</cim:LoadStatic.kq1>\n" +
-        "\t\t<cim:LoadStatic.kq2>" + kq2 + "</cim:LoadStatic.kq2>\n" +
-        "\t\t<cim:LoadStatic.kq3>" + kq3 + "</cim:LoadStatic.kq3>\n" +
-        "\t\t<cim:LoadStatic.kq4>" + kq4 + "</cim:LoadStatic.kq4>\n" +
-        "\t\t<cim:LoadStatic.kqf>" + kqf + "</cim:LoadStatic.kqf>\n" +
-        (if (null != staticLoadModelType) "\t\t<cim:LoadStatic.staticLoadModelType rdf:resource=\"#" + staticLoadModelType + "\"/>\n" else "") +
-        (if (null != LoadAggregate) "\t\t<cim:LoadStatic.LoadAggregate rdf:resource=\"#" + LoadAggregate + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = LoadStatic.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (LoadStatic.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (LoadStatic.fields (position), value)
+        emitelem (0, ep1)
+        emitelem (1, ep2)
+        emitelem (2, ep3)
+        emitelem (3, eq1)
+        emitelem (4, eq2)
+        emitelem (5, eq3)
+        emitelem (6, kp1)
+        emitelem (7, kp2)
+        emitelem (8, kp3)
+        emitelem (9, kp4)
+        emitelem (10, kpf)
+        emitelem (11, kq1)
+        emitelem (12, kq2)
+        emitelem (13, kq3)
+        emitelem (14, kq4)
+        emitelem (15, kqf)
+        emitattr (16, staticLoadModelType)
+        emitattr (17, LoadAggregate)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:LoadStatic rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:LoadStatic>"
+        "\t<cim:LoadStatic rdf:ID=\"%s\">\n%s\t</cim:LoadStatic>".format (id, export_fields)
     }
 }
 
@@ -689,50 +814,77 @@ object LoadStatic
 extends
     Parseable[LoadStatic]
 {
-    val ep1 = parse_element (element ("""LoadStatic.ep1"""))
-    val ep2 = parse_element (element ("""LoadStatic.ep2"""))
-    val ep3 = parse_element (element ("""LoadStatic.ep3"""))
-    val eq1 = parse_element (element ("""LoadStatic.eq1"""))
-    val eq2 = parse_element (element ("""LoadStatic.eq2"""))
-    val eq3 = parse_element (element ("""LoadStatic.eq3"""))
-    val kp1 = parse_element (element ("""LoadStatic.kp1"""))
-    val kp2 = parse_element (element ("""LoadStatic.kp2"""))
-    val kp3 = parse_element (element ("""LoadStatic.kp3"""))
-    val kp4 = parse_element (element ("""LoadStatic.kp4"""))
-    val kpf = parse_element (element ("""LoadStatic.kpf"""))
-    val kq1 = parse_element (element ("""LoadStatic.kq1"""))
-    val kq2 = parse_element (element ("""LoadStatic.kq2"""))
-    val kq3 = parse_element (element ("""LoadStatic.kq3"""))
-    val kq4 = parse_element (element ("""LoadStatic.kq4"""))
-    val kqf = parse_element (element ("""LoadStatic.kqf"""))
-    val staticLoadModelType = parse_attribute (attribute ("""LoadStatic.staticLoadModelType"""))
-    val LoadAggregate = parse_attribute (attribute ("""LoadStatic.LoadAggregate"""))
+    val fields: Array[String] = Array[String] (
+        "ep1",
+        "ep2",
+        "ep3",
+        "eq1",
+        "eq2",
+        "eq3",
+        "kp1",
+        "kp2",
+        "kp3",
+        "kp4",
+        "kpf",
+        "kq1",
+        "kq2",
+        "kq3",
+        "kq4",
+        "kqf",
+        "staticLoadModelType",
+        "LoadAggregate"
+    )
+    val ep1: Fielder = parse_element (element (cls, fields(0)))
+    val ep2: Fielder = parse_element (element (cls, fields(1)))
+    val ep3: Fielder = parse_element (element (cls, fields(2)))
+    val eq1: Fielder = parse_element (element (cls, fields(3)))
+    val eq2: Fielder = parse_element (element (cls, fields(4)))
+    val eq3: Fielder = parse_element (element (cls, fields(5)))
+    val kp1: Fielder = parse_element (element (cls, fields(6)))
+    val kp2: Fielder = parse_element (element (cls, fields(7)))
+    val kp3: Fielder = parse_element (element (cls, fields(8)))
+    val kp4: Fielder = parse_element (element (cls, fields(9)))
+    val kpf: Fielder = parse_element (element (cls, fields(10)))
+    val kq1: Fielder = parse_element (element (cls, fields(11)))
+    val kq2: Fielder = parse_element (element (cls, fields(12)))
+    val kq3: Fielder = parse_element (element (cls, fields(13)))
+    val kq4: Fielder = parse_element (element (cls, fields(14)))
+    val kqf: Fielder = parse_element (element (cls, fields(15)))
+    val staticLoadModelType: Fielder = parse_attribute (attribute (cls, fields(16)))
+    val LoadAggregate: Fielder = parse_attribute (attribute (cls, fields(17)))
+
     def parse (context: Context): LoadStatic =
     {
-        LoadStatic(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = LoadStatic (
             IdentifiedObject.parse (context),
-            toDouble (ep1 (context), context),
-            toDouble (ep2 (context), context),
-            toDouble (ep3 (context), context),
-            toDouble (eq1 (context), context),
-            toDouble (eq2 (context), context),
-            toDouble (eq3 (context), context),
-            toDouble (kp1 (context), context),
-            toDouble (kp2 (context), context),
-            toDouble (kp3 (context), context),
-            toDouble (kp4 (context), context),
-            toDouble (kpf (context), context),
-            toDouble (kq1 (context), context),
-            toDouble (kq2 (context), context),
-            toDouble (kq3 (context), context),
-            toDouble (kq4 (context), context),
-            toDouble (kqf (context), context),
-            staticLoadModelType (context),
-            LoadAggregate (context)
+            toDouble (mask (ep1 (), 0)),
+            toDouble (mask (ep2 (), 1)),
+            toDouble (mask (ep3 (), 2)),
+            toDouble (mask (eq1 (), 3)),
+            toDouble (mask (eq2 (), 4)),
+            toDouble (mask (eq3 (), 5)),
+            toDouble (mask (kp1 (), 6)),
+            toDouble (mask (kp2 (), 7)),
+            toDouble (mask (kp3 (), 8)),
+            toDouble (mask (kp4 (), 9)),
+            toDouble (mask (kpf (), 10)),
+            toDouble (mask (kq1 (), 11)),
+            toDouble (mask (kq2 (), 12)),
+            toDouble (mask (kq3 (), 13)),
+            toDouble (mask (kq4 (), 14)),
+            toDouble (mask (kqf (), 15)),
+            mask (staticLoadModelType (), 16),
+            mask (LoadAggregate (), 17)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("LoadAggregate", "LoadAggregate", false))
+        Relationship ("LoadAggregate", "LoadAggregate", false)
+    )
 }
 
 private[ninecode] object _LoadDynamics

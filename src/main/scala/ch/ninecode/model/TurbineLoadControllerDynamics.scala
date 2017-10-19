@@ -71,6 +71,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, false, 0.0, false, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -90,25 +96,27 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:TurbLCFB1.db>" + db + "</cim:TurbLCFB1.db>\n" +
-        "\t\t<cim:TurbLCFB1.emax>" + emax + "</cim:TurbLCFB1.emax>\n" +
-        "\t\t<cim:TurbLCFB1.fb>" + fb + "</cim:TurbLCFB1.fb>\n" +
-        "\t\t<cim:TurbLCFB1.fbf>" + fbf + "</cim:TurbLCFB1.fbf>\n" +
-        "\t\t<cim:TurbLCFB1.irmax>" + irmax + "</cim:TurbLCFB1.irmax>\n" +
-        "\t\t<cim:TurbLCFB1.ki>" + ki + "</cim:TurbLCFB1.ki>\n" +
-        "\t\t<cim:TurbLCFB1.kp>" + kp + "</cim:TurbLCFB1.kp>\n" +
-        "\t\t<cim:TurbLCFB1.mwbase>" + mwbase + "</cim:TurbLCFB1.mwbase>\n" +
-        "\t\t<cim:TurbLCFB1.pbf>" + pbf + "</cim:TurbLCFB1.pbf>\n" +
-        "\t\t<cim:TurbLCFB1.pmwset>" + pmwset + "</cim:TurbLCFB1.pmwset>\n" +
-        "\t\t<cim:TurbLCFB1.speedReferenceGovernor>" + speedReferenceGovernor + "</cim:TurbLCFB1.speedReferenceGovernor>\n" +
-        "\t\t<cim:TurbLCFB1.tpelec>" + tpelec + "</cim:TurbLCFB1.tpelec>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = TurbLCFB1.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TurbLCFB1.fields (position), value)
+        emitelem (0, db)
+        emitelem (1, emax)
+        emitelem (2, fb)
+        emitelem (3, fbf)
+        emitelem (4, irmax)
+        emitelem (5, ki)
+        emitelem (6, kp)
+        emitelem (7, mwbase)
+        emitelem (8, pbf)
+        emitelem (9, pmwset)
+        emitelem (10, speedReferenceGovernor)
+        emitelem (11, tpelec)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:TurbLCFB1 rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:TurbLCFB1>"
+        "\t<cim:TurbLCFB1 rdf:ID=\"%s\">\n%s\t</cim:TurbLCFB1>".format (id, export_fields)
     }
 }
 
@@ -116,37 +124,59 @@ object TurbLCFB1
 extends
     Parseable[TurbLCFB1]
 {
-    val db = parse_element (element ("""TurbLCFB1.db"""))
-    val emax = parse_element (element ("""TurbLCFB1.emax"""))
-    val fb = parse_element (element ("""TurbLCFB1.fb"""))
-    val fbf = parse_element (element ("""TurbLCFB1.fbf"""))
-    val irmax = parse_element (element ("""TurbLCFB1.irmax"""))
-    val ki = parse_element (element ("""TurbLCFB1.ki"""))
-    val kp = parse_element (element ("""TurbLCFB1.kp"""))
-    val mwbase = parse_element (element ("""TurbLCFB1.mwbase"""))
-    val pbf = parse_element (element ("""TurbLCFB1.pbf"""))
-    val pmwset = parse_element (element ("""TurbLCFB1.pmwset"""))
-    val speedReferenceGovernor = parse_element (element ("""TurbLCFB1.speedReferenceGovernor"""))
-    val tpelec = parse_element (element ("""TurbLCFB1.tpelec"""))
+    val fields: Array[String] = Array[String] (
+        "db",
+        "emax",
+        "fb",
+        "fbf",
+        "irmax",
+        "ki",
+        "kp",
+        "mwbase",
+        "pbf",
+        "pmwset",
+        "speedReferenceGovernor",
+        "tpelec"
+    )
+    val db: Fielder = parse_element (element (cls, fields(0)))
+    val emax: Fielder = parse_element (element (cls, fields(1)))
+    val fb: Fielder = parse_element (element (cls, fields(2)))
+    val fbf: Fielder = parse_element (element (cls, fields(3)))
+    val irmax: Fielder = parse_element (element (cls, fields(4)))
+    val ki: Fielder = parse_element (element (cls, fields(5)))
+    val kp: Fielder = parse_element (element (cls, fields(6)))
+    val mwbase: Fielder = parse_element (element (cls, fields(7)))
+    val pbf: Fielder = parse_element (element (cls, fields(8)))
+    val pmwset: Fielder = parse_element (element (cls, fields(9)))
+    val speedReferenceGovernor: Fielder = parse_element (element (cls, fields(10)))
+    val tpelec: Fielder = parse_element (element (cls, fields(11)))
+
     def parse (context: Context): TurbLCFB1 =
     {
-        TurbLCFB1(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = TurbLCFB1 (
             TurbineLoadControllerDynamics.parse (context),
-            toDouble (db (context), context),
-            toDouble (emax (context), context),
-            toDouble (fb (context), context),
-            toBoolean (fbf (context), context),
-            toDouble (irmax (context), context),
-            toDouble (ki (context), context),
-            toDouble (kp (context), context),
-            toDouble (mwbase (context), context),
-            toBoolean (pbf (context), context),
-            toDouble (pmwset (context), context),
-            toBoolean (speedReferenceGovernor (context), context),
-            toDouble (tpelec (context), context)
+            toDouble (mask (db (), 0)),
+            toDouble (mask (emax (), 1)),
+            toDouble (mask (fb (), 2)),
+            toBoolean (mask (fbf (), 3)),
+            toDouble (mask (irmax (), 4)),
+            toDouble (mask (ki (), 5)),
+            toDouble (mask (kp (), 6)),
+            toDouble (mask (mwbase (), 7)),
+            toBoolean (mask (pbf (), 8)),
+            toDouble (mask (pmwset (), 9)),
+            toBoolean (mask (speedReferenceGovernor (), 10)),
+            toDouble (mask (tpelec (), 11))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -171,6 +201,12 @@ extends
      */
     def this () = { this (null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -190,14 +226,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != TurbineGovernorDynamics) "\t\t<cim:TurbineLoadControllerDynamics.TurbineGovernorDynamics rdf:resource=\"#" + TurbineGovernorDynamics + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = TurbineLoadControllerDynamics.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TurbineLoadControllerDynamics.fields (position), value)
+        emitattr (0, TurbineGovernorDynamics)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:TurbineLoadControllerDynamics rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:TurbineLoadControllerDynamics>"
+        "\t<cim:TurbineLoadControllerDynamics rdf:ID=\"%s\">\n%s\t</cim:TurbineLoadControllerDynamics>".format (id, export_fields)
     }
 }
 
@@ -205,16 +243,26 @@ object TurbineLoadControllerDynamics
 extends
     Parseable[TurbineLoadControllerDynamics]
 {
-    val TurbineGovernorDynamics = parse_attribute (attribute ("""TurbineLoadControllerDynamics.TurbineGovernorDynamics"""))
+    val fields: Array[String] = Array[String] (
+        "TurbineGovernorDynamics"
+    )
+    val TurbineGovernorDynamics: Fielder = parse_attribute (attribute (cls, fields(0)))
+
     def parse (context: Context): TurbineLoadControllerDynamics =
     {
-        TurbineLoadControllerDynamics(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = TurbineLoadControllerDynamics (
             DynamicsFunctionBlock.parse (context),
-            TurbineGovernorDynamics (context)
+            mask (TurbineGovernorDynamics (), 0)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("TurbineGovernorDynamics", "TurbineGovernorDynamics", false))
+        Relationship ("TurbineGovernorDynamics", "TurbineGovernorDynamics", false)
+    )
 }
 
 private[ninecode] object _TurbineLoadControllerDynamics

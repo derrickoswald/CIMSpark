@@ -17,13 +17,6 @@ import org.apache.spark.sql.Row
 import ch.ninecode.model._
 
 /**
- * A bogus class needed for synchronization.
- * @see https://issues.scala-lang.org/browse/SI-6240
- * @see http://docs.scala-lang.org/overviews/reflection/thread-safety.html
- */
-case class SerializableObject (name: String) extends Serializable
-
-/**
  * Provides common infrastructure for parsing CIM elements.
  * Subclasses (actually their companion objects) must implement the <code>parse</code> method.
  * Other methods are helpers for parsing the regular XML structure of CIM rdf files.
@@ -32,21 +25,47 @@ trait Parser
 {
     import Parser._
 
+    type Expression = (Pattern, Int)
+
+    type Field = (String, Boolean)
+    trait FielderFunction
+    {
+        def apply ()(implicit context:Context): Field
+    }
+    type Fielder = FielderFunction
+
+    type Fields = (List[String], Boolean)
+    trait FielderFunctionMultiple
+    {
+        def apply ()(implicit context:Context): Fields
+    }
+    type FielderMultiple = FielderFunctionMultiple
+
     /**
      * Regular expression to parse an element.
      * For example: <cim:ACLineSegment.r>0.224</cim:ACLineSegment.r>
+     * @param cls The class name.
      * @param name The element name (without namespace prefix).
      * @return The compiled regex pattern and the index of the match group.
      */
-    def element (name: String): (Pattern, Int) = (Pattern.compile ("""<""" + namespace + """:""" + name + """>([\s\S]*?)<\/""" + namespace + """:""" + name + """>"""), 1)
+    def element (cls: String, name: String): Expression =
+    {
+        val trigger = namespace + """:""" + cls + """.""" + name
+        (Pattern.compile ("""<""" + trigger + """>([\s\S]*?)<\/""" + trigger + """>"""), 1)
+    }
 
     /**
      * Regular expression to parse an attribute.
      * For example: <cim:ACLineSegmentPhase.phase rdf:resource="http://iec.ch/TC57/2013/CIM-schema-cim16#SinglePhaseKind.A"/>
+     * @param cls The class name.
      * @param name The attribute name (without namespace prefix).
      * @return The compiled regex pattern and the index of the match group.
      */
-    def attribute (name: String): (Pattern, Int) = (Pattern.compile ("""<""" + namespace + """:""" + name + """\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>"""), 2)
+    def attribute (cls: String, name: String): Expression =
+    {
+        val trigger = namespace + """:""" + cls + """.""" + name
+        (Pattern.compile ("""<""" + trigger + """\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>"""), 2)
+    }
 
     /**
      * Abstract parse function.
@@ -75,91 +94,64 @@ trait Parser
     def parse (context: Context): Element
 
     /**
-     * Parse one or more XML elements from a string.
-     * @param pattern A Tuple2 of the regular expression pattern to look for and
-     * the index of the capture group to extract from within the pattern.
-     * @return A function for parsing the elements.
-     */
-    def parse_elements (pattern: (Pattern, Int)): (Context) => List[String] =
-    {
-//     * @param context The context for the substring in the XML and
-//     * line number and position context for reporting in case of an error.
-//     * @return The matched group(s) from the regular expression or null if none were found.
-        (context: Context) =>
-        {
-            var ret: List[String] = null
-
-            val matcher = pattern._1.matcher (context.subxml)
-            while (matcher.find ())
-            {
-                val string = matcher.group (pattern._2)
-                if (Context.DEBUG)
-                    context.coverage += Tuple2 (matcher.start, matcher.end)
-                if (null != string)
-                    ret = if (null == ret) List (string) else ret :+ string
-            }
-
-            ret
-        }
-    }
-
-    /**
      * Create a function to parse one XML element from a string.
      * @param pattern A Tuple2 of the regular expression pattern to look for and
      * the index of the capture group to extract from within the pattern.
      * @return A function for parsing the element.
      */
-    def parse_element (pattern: (Pattern, Int)): Context => String =
+    def parse_element (pattern: Expression): FielderFunction =
     {
-//     * @param context The context for the substring in the XML and
-//     * line number and position context for reporting in case of an error.
-//     * @return The matched group from the regular expression, or null if the pattern wasn't found.
-        (context: Context) =>
+        // Anonymous function to parse an element field
+        //     * @param context The context for the substring in the XML and
+        //     * line number and position context for reporting in case of an error.
+        //     * @return The matched group from the regular expression, or null if the pattern wasn't found.
+        new FielderFunction
         {
-            val matcher = pattern._1.matcher (context.subxml)
-            if (matcher.find ())
+            def apply () (implicit context: Context): Field =
             {
-                val string = matcher.group (pattern._2)
-                if (Context.DEBUG)
-                    context.coverage += Tuple2 (matcher.start, matcher.end)
-                string
+                val matcher = pattern._1.matcher (context.subxml)
+                if (matcher.find ())
+                {
+                    val string = matcher.group (pattern._2)
+                    if (Context.DEBUG)
+                        context.coverage += Tuple2 (matcher.start, matcher.end)
+                    (string, true)
+                }
+                else
+                    (null, false)
             }
-            else
-                null
         }
     }
 
     /**
-     * Create a function to parse one or more attributes from an XML string.
+     * Parse one or more XML elements from a string.
      * @param pattern A Tuple2 of the regular expression pattern to look for and
      * the index of the capture group to extract from within the pattern.
-     * @return A function for parsing the attributes.
+     * @return A function for parsing the elements.
      */
-    def parse_attributes (pattern: (Pattern, Int)): Context => List[String] =
+    def parse_elements (pattern: Expression): FielderFunctionMultiple =
     {
-//     * @param context The context for the substring in the XML and
-//     * line number and position context for reporting in case of an error.
-//     * @return The attribute value(s) (with leading # stripped off).
-        (context: Context) =>
+        //     * @param context The context for the substring in the XML and
+        //     * line number and position context for reporting in case of an error.
+        //     * @return The matched group(s) from the regular expression or null if none were found.
+        new FielderFunctionMultiple
         {
-            var ret: List[String] = null
-
-            val matcher = pattern._1.matcher (context.subxml)
-            while (matcher.find ())
+            def apply () (implicit context: Context): Fields =
             {
-                val start = matcher.start (pattern._2)
-                val end = matcher.end (pattern._2)
-                if ((-1 != start) && (-1 != end))
+                var ret: List[String] = null
+
+                val matcher = pattern._1.matcher (context.subxml)
+                while (matcher.find ())
                 {
-                    val begin = if ('#' == context.subxml.charAt (start)) start + 1 else start // remove '#'
-                    val string = context.subxml.subSequence (begin, end).toString
+                    val string = matcher.group (pattern._2)
                     if (Context.DEBUG)
                         context.coverage += Tuple2 (matcher.start, matcher.end)
-                    ret = if (null == ret) List (string) else ret :+ string
+                    if (null != string)
+                        ret = if (null == ret) List (string) else ret :+ string
                 }
-            }
 
-            ret
+                (ret, null != ret)
+            }
         }
     }
 
@@ -169,31 +161,71 @@ trait Parser
      * the index of the capture group to extract from within the pattern.
      * @return A function for parsing the attribute.
      */
-    def parse_attribute (pattern: (Pattern, Int)): Context => String =
+    def parse_attribute (pattern: (Pattern, Int)): FielderFunction =
     {
-//     * @param context The context for the substring in the XML and
-//     * line number and position context for reporting in case of an error.
-//     * @return The attribute value (with leading # stripped off), or null if the pattern wasn't found.
-        (context: Context) =>
+        //     * @param context The context for the substring in the XML and
+        //     * line number and position context for reporting in case of an error.
+        //     * @return The attribute value (with leading # stripped off), or null if the pattern wasn't found.
+        new FielderFunction
         {
-            val matcher = pattern._1.matcher (context.subxml)
-            if (matcher.find ())
+            def apply () (implicit context: Context): Field =
             {
-                val start = matcher.start (pattern._2)
-                val end = matcher.end (pattern._2)
-                if ((-1 != start) && (-1 != end))
+                val matcher = pattern._1.matcher (context.subxml)
+                if (matcher.find ())
                 {
-                    val begin = if ('#' == context.subxml.charAt (start)) start + 1 else start // remove '#'
-                    val string = context.subxml.subSequence (begin, end).toString
-                    if (Context.DEBUG)
-                        context.coverage += Tuple2 (matcher.start, matcher.end)
-                    string
+                    val start = matcher.start (pattern._2)
+                    val end = matcher.end (pattern._2)
+                    if ((-1 != start) && (-1 != end))
+                    {
+                        val begin = if ('#' == context.subxml.charAt (start)) start + 1 else start // remove '#'
+                        val string = context.subxml.subSequence (begin, end).toString
+                        if (Context.DEBUG)
+                            context.coverage += Tuple2 (matcher.start, matcher.end)
+                        (string, true)
+                    }
+                    else
+                        (null, false)
                 }
                 else
-                    null
+                    (null, false)
             }
-            else
-                null
+        }
+    }
+
+    /**
+     * Create a function to parse one or more attributes from an XML string.
+     * @param pattern A Tuple2 of the regular expression pattern to look for and
+     * the index of the capture group to extract from within the pattern.
+     * @return A function for parsing the attributes.
+     */
+    def parse_attributes (pattern: (Pattern, Int)): FielderMultiple =
+    {
+        //     * @param context The context for the substring in the XML and
+        //     * line number and position context for reporting in case of an error.
+        //     * @return The attribute value(s) (with leading # stripped off).
+        new FielderFunctionMultiple
+        {
+            def apply () (implicit context: Context): Fields =
+            {
+                var ret: List[String] = null
+
+                val matcher = pattern._1.matcher (context.subxml)
+                while (matcher.find ())
+                {
+                    val start = matcher.start (pattern._2)
+                    val end = matcher.end (pattern._2)
+                    if ((-1 != start) && (-1 != end))
+                    {
+                        val begin = if ('#' == context.subxml.charAt (start)) start + 1 else start // remove '#'
+                        val string = context.subxml.subSequence (begin, end).toString
+                        if (Context.DEBUG)
+                            context.coverage += Tuple2 (matcher.start, matcher.end)
+                        ret = if (null == ret) List (string) else ret :+ string
+                    }
+                }
+
+                (ret, null != ret)
+            }
         }
     }
 
@@ -203,7 +235,7 @@ trait Parser
      * @param context The context for reporting in case of an unparseable boolean.
      * @return The boolean value.
      */
-    def toBoolean (string: String, context: Context): Boolean =
+    def toBoolean (string: String) (implicit context: Context): Boolean =
     {
         var ret = false
 
@@ -224,7 +256,7 @@ trait Parser
      * @param context The context for reporting in case of an unparseable integer.
      * @return The integer value.
      */
-    def toInteger (string: String, context: Context): Int =
+    def toInteger (string: String) (implicit context: Context): Int =
     {
         var ret: Int = 0
 
@@ -245,7 +277,7 @@ trait Parser
      * @param context The context for reporting in case of an unparseable double.
      * @return The double value.
      */
-    def toDouble (string: String, context: Context): Double =
+    def toDouble (string: String) (implicit context: Context): Double =
     {
         var ret = 0.0
 
@@ -257,7 +289,7 @@ trait Parser
                 case _: Throwable ⇒ throw new Exception ("unparsable double (" + string + ") found while parsing at line " + context.line_number ())
             }
 
-      ret
+        ret
     }
 }
 
@@ -295,7 +327,7 @@ case class ClassInfo (
 /**
  * Typed base class for registration and subsetting.
  * Provides facilities to register subclasses with the CHIM parsing framework
- * and forms the subsetting 'typed object' to spcify RDDs of specific CIM classes.
+ * and forms the subsetting 'typed object' to specify RDDs of specific CIM classes.
  * Typical usage:
  * {{{
  * object Terminal extends Parseable[Terminal]

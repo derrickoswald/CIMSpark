@@ -45,6 +45,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -64,17 +70,20 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:GenICompensationForGenJ.rcij>" + rcij + "</cim:GenICompensationForGenJ.rcij>\n" +
-        "\t\t<cim:GenICompensationForGenJ.xcij>" + xcij + "</cim:GenICompensationForGenJ.xcij>\n" +
-        (if (null != SynchronousMachineDynamics) "\t\t<cim:GenICompensationForGenJ.SynchronousMachineDynamics rdf:resource=\"#" + SynchronousMachineDynamics + "\"/>\n" else "") +
-        (if (null != VcompIEEEType2) "\t\t<cim:GenICompensationForGenJ.VcompIEEEType2 rdf:resource=\"#" + VcompIEEEType2 + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = GenICompensationForGenJ.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GenICompensationForGenJ.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (GenICompensationForGenJ.fields (position), value)
+        emitelem (0, rcij)
+        emitelem (1, xcij)
+        emitattr (2, SynchronousMachineDynamics)
+        emitattr (3, VcompIEEEType2)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:GenICompensationForGenJ rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:GenICompensationForGenJ>"
+        "\t<cim:GenICompensationForGenJ rdf:ID=\"%s\">\n%s\t</cim:GenICompensationForGenJ>".format (id, export_fields)
     }
 }
 
@@ -82,23 +91,36 @@ object GenICompensationForGenJ
 extends
     Parseable[GenICompensationForGenJ]
 {
-    val rcij = parse_element (element ("""GenICompensationForGenJ.rcij"""))
-    val xcij = parse_element (element ("""GenICompensationForGenJ.xcij"""))
-    val SynchronousMachineDynamics = parse_attribute (attribute ("""GenICompensationForGenJ.SynchronousMachineDynamics"""))
-    val VcompIEEEType2 = parse_attribute (attribute ("""GenICompensationForGenJ.VcompIEEEType2"""))
+    val fields: Array[String] = Array[String] (
+        "rcij",
+        "xcij",
+        "SynchronousMachineDynamics",
+        "VcompIEEEType2"
+    )
+    val rcij: Fielder = parse_element (element (cls, fields(0)))
+    val xcij: Fielder = parse_element (element (cls, fields(1)))
+    val SynchronousMachineDynamics: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val VcompIEEEType2: Fielder = parse_attribute (attribute (cls, fields(3)))
+
     def parse (context: Context): GenICompensationForGenJ =
     {
-        GenICompensationForGenJ(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = GenICompensationForGenJ (
             IdentifiedObject.parse (context),
-            toDouble (rcij (context), context),
-            toDouble (xcij (context), context),
-            SynchronousMachineDynamics (context),
-            VcompIEEEType2 (context)
+            toDouble (mask (rcij (), 0)),
+            toDouble (mask (xcij (), 1)),
+            mask (SynchronousMachineDynamics (), 2),
+            mask (VcompIEEEType2 (), 3)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("SynchronousMachineDynamics", "SynchronousMachineDynamics", false),
-        Relationship ("VcompIEEEType2", "VCompIEEEType2", false))
+        Relationship ("VcompIEEEType2", "VCompIEEEType2", false)
+    )
 }
 
 /**
@@ -139,6 +161,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -158,16 +186,18 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:VCompIEEEType1.rc>" + rc + "</cim:VCompIEEEType1.rc>\n" +
-        "\t\t<cim:VCompIEEEType1.tr>" + tr + "</cim:VCompIEEEType1.tr>\n" +
-        "\t\t<cim:VCompIEEEType1.xc>" + xc + "</cim:VCompIEEEType1.xc>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = VCompIEEEType1.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (VCompIEEEType1.fields (position), value)
+        emitelem (0, rc)
+        emitelem (1, tr)
+        emitelem (2, xc)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:VCompIEEEType1 rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:VCompIEEEType1>"
+        "\t<cim:VCompIEEEType1 rdf:ID=\"%s\">\n%s\t</cim:VCompIEEEType1>".format (id, export_fields)
     }
 }
 
@@ -175,19 +205,32 @@ object VCompIEEEType1
 extends
     Parseable[VCompIEEEType1]
 {
-    val rc = parse_element (element ("""VCompIEEEType1.rc"""))
-    val tr = parse_element (element ("""VCompIEEEType1.tr"""))
-    val xc = parse_element (element ("""VCompIEEEType1.xc"""))
+    val fields: Array[String] = Array[String] (
+        "rc",
+        "tr",
+        "xc"
+    )
+    val rc: Fielder = parse_element (element (cls, fields(0)))
+    val tr: Fielder = parse_element (element (cls, fields(1)))
+    val xc: Fielder = parse_element (element (cls, fields(2)))
+
     def parse (context: Context): VCompIEEEType1 =
     {
-        VCompIEEEType1(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = VCompIEEEType1 (
             VoltageCompensatorDynamics.parse (context),
-            toDouble (rc (context), context),
-            toDouble (tr (context), context),
-            toDouble (xc (context), context)
+            toDouble (mask (rc (), 0)),
+            toDouble (mask (tr (), 1)),
+            toDouble (mask (xc (), 2))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -224,6 +267,12 @@ extends
      */
     def this () = { this (null, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -243,14 +292,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:VCompIEEEType2.tr>" + tr + "</cim:VCompIEEEType2.tr>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = VCompIEEEType2.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (VCompIEEEType2.fields (position), value)
+        emitelem (0, tr)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:VCompIEEEType2 rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:VCompIEEEType2>"
+        "\t<cim:VCompIEEEType2 rdf:ID=\"%s\">\n%s\t</cim:VCompIEEEType2>".format (id, export_fields)
     }
 }
 
@@ -258,15 +309,26 @@ object VCompIEEEType2
 extends
     Parseable[VCompIEEEType2]
 {
-    val tr = parse_element (element ("""VCompIEEEType2.tr"""))
+    val fields: Array[String] = Array[String] (
+        "tr"
+    )
+    val tr: Fielder = parse_element (element (cls, fields(0)))
+
     def parse (context: Context): VCompIEEEType2 =
     {
-        VCompIEEEType2(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = VCompIEEEType2 (
             VoltageCompensatorDynamics.parse (context),
-            toDouble (tr (context), context)
+            toDouble (mask (tr (), 0))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -303,6 +365,12 @@ extends
      */
     def this () = { this (null, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -322,15 +390,17 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != ExcitationSystemDynamics) "\t\t<cim:VoltageCompensatorDynamics.ExcitationSystemDynamics rdf:resource=\"#" + ExcitationSystemDynamics + "\"/>\n" else "") +
-        (if (null != RemoteInputSignal) "\t\t<cim:VoltageCompensatorDynamics.RemoteInputSignal rdf:resource=\"#" + RemoteInputSignal + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = VoltageCompensatorDynamics.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (VoltageCompensatorDynamics.fields (position), value)
+        emitattr (0, ExcitationSystemDynamics)
+        emitattr (1, RemoteInputSignal)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:VoltageCompensatorDynamics rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:VoltageCompensatorDynamics>"
+        "\t<cim:VoltageCompensatorDynamics rdf:ID=\"%s\">\n%s\t</cim:VoltageCompensatorDynamics>".format (id, export_fields)
     }
 }
 
@@ -338,19 +408,30 @@ object VoltageCompensatorDynamics
 extends
     Parseable[VoltageCompensatorDynamics]
 {
-    val ExcitationSystemDynamics = parse_attribute (attribute ("""VoltageCompensatorDynamics.ExcitationSystemDynamics"""))
-    val RemoteInputSignal = parse_attribute (attribute ("""VoltageCompensatorDynamics.RemoteInputSignal"""))
+    val fields: Array[String] = Array[String] (
+        "ExcitationSystemDynamics",
+        "RemoteInputSignal"
+    )
+    val ExcitationSystemDynamics: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val RemoteInputSignal: Fielder = parse_attribute (attribute (cls, fields(1)))
+
     def parse (context: Context): VoltageCompensatorDynamics =
     {
-        VoltageCompensatorDynamics(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = VoltageCompensatorDynamics (
             DynamicsFunctionBlock.parse (context),
-            ExcitationSystemDynamics (context),
-            RemoteInputSignal (context)
+            mask (ExcitationSystemDynamics (), 0),
+            mask (RemoteInputSignal (), 1)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("ExcitationSystemDynamics", "ExcitationSystemDynamics", false),
-        Relationship ("RemoteInputSignal", "RemoteInputSignal", false))
+        Relationship ("RemoteInputSignal", "RemoteInputSignal", false)
+    )
 }
 
 private[ninecode] object _VoltageCompensatorDynamics

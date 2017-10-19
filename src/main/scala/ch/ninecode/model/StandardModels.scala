@@ -32,6 +32,12 @@ extends
      */
     def this () = { this (null, false) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -51,14 +57,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:DynamicsFunctionBlock.enabled>" + enabled + "</cim:DynamicsFunctionBlock.enabled>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = DynamicsFunctionBlock.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (DynamicsFunctionBlock.fields (position), value)
+        emitelem (0, enabled)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:DynamicsFunctionBlock rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:DynamicsFunctionBlock>"
+        "\t<cim:DynamicsFunctionBlock rdf:ID=\"%s\">\n%s\t</cim:DynamicsFunctionBlock>".format (id, export_fields)
     }
 }
 
@@ -66,15 +74,26 @@ object DynamicsFunctionBlock
 extends
     Parseable[DynamicsFunctionBlock]
 {
-    val enabled = parse_element (element ("""DynamicsFunctionBlock.enabled"""))
+    val fields: Array[String] = Array[String] (
+        "enabled"
+    )
+    val enabled: Fielder = parse_element (element (cls, fields(0)))
+
     def parse (context: Context): DynamicsFunctionBlock =
     {
-        DynamicsFunctionBlock(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = DynamicsFunctionBlock (
             IdentifiedObject.parse (context),
-            toBoolean (enabled (context), context)
+            toBoolean (mask (enabled (), 0))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -116,6 +135,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -135,19 +160,21 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:RotatingMachineDynamics.damping>" + damping + "</cim:RotatingMachineDynamics.damping>\n" +
-        "\t\t<cim:RotatingMachineDynamics.inertia>" + inertia + "</cim:RotatingMachineDynamics.inertia>\n" +
-        "\t\t<cim:RotatingMachineDynamics.saturationFactor>" + saturationFactor + "</cim:RotatingMachineDynamics.saturationFactor>\n" +
-        "\t\t<cim:RotatingMachineDynamics.saturationFactor120>" + saturationFactor120 + "</cim:RotatingMachineDynamics.saturationFactor120>\n" +
-        "\t\t<cim:RotatingMachineDynamics.statorLeakageReactance>" + statorLeakageReactance + "</cim:RotatingMachineDynamics.statorLeakageReactance>\n" +
-        "\t\t<cim:RotatingMachineDynamics.statorResistance>" + statorResistance + "</cim:RotatingMachineDynamics.statorResistance>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = RotatingMachineDynamics.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (RotatingMachineDynamics.fields (position), value)
+        emitelem (0, damping)
+        emitelem (1, inertia)
+        emitelem (2, saturationFactor)
+        emitelem (3, saturationFactor120)
+        emitelem (4, statorLeakageReactance)
+        emitelem (5, statorResistance)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:RotatingMachineDynamics rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:RotatingMachineDynamics>"
+        "\t<cim:RotatingMachineDynamics rdf:ID=\"%s\">\n%s\t</cim:RotatingMachineDynamics>".format (id, export_fields)
     }
 }
 
@@ -155,25 +182,41 @@ object RotatingMachineDynamics
 extends
     Parseable[RotatingMachineDynamics]
 {
-    val damping = parse_element (element ("""RotatingMachineDynamics.damping"""))
-    val inertia = parse_element (element ("""RotatingMachineDynamics.inertia"""))
-    val saturationFactor = parse_element (element ("""RotatingMachineDynamics.saturationFactor"""))
-    val saturationFactor120 = parse_element (element ("""RotatingMachineDynamics.saturationFactor120"""))
-    val statorLeakageReactance = parse_element (element ("""RotatingMachineDynamics.statorLeakageReactance"""))
-    val statorResistance = parse_element (element ("""RotatingMachineDynamics.statorResistance"""))
+    val fields: Array[String] = Array[String] (
+        "damping",
+        "inertia",
+        "saturationFactor",
+        "saturationFactor120",
+        "statorLeakageReactance",
+        "statorResistance"
+    )
+    val damping: Fielder = parse_element (element (cls, fields(0)))
+    val inertia: Fielder = parse_element (element (cls, fields(1)))
+    val saturationFactor: Fielder = parse_element (element (cls, fields(2)))
+    val saturationFactor120: Fielder = parse_element (element (cls, fields(3)))
+    val statorLeakageReactance: Fielder = parse_element (element (cls, fields(4)))
+    val statorResistance: Fielder = parse_element (element (cls, fields(5)))
+
     def parse (context: Context): RotatingMachineDynamics =
     {
-        RotatingMachineDynamics(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = RotatingMachineDynamics (
             DynamicsFunctionBlock.parse (context),
-            toDouble (damping (context), context),
-            toDouble (inertia (context), context),
-            toDouble (saturationFactor (context), context),
-            toDouble (saturationFactor120 (context), context),
-            toDouble (statorLeakageReactance (context), context),
-            toDouble (statorResistance (context), context)
+            toDouble (mask (damping (), 0)),
+            toDouble (mask (inertia (), 1)),
+            toDouble (mask (saturationFactor (), 2)),
+            toDouble (mask (saturationFactor120 (), 3)),
+            toDouble (mask (statorLeakageReactance (), 4)),
+            toDouble (mask (statorResistance (), 5))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 private[ninecode] object _StandardModels

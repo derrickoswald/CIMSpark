@@ -28,6 +28,12 @@ extends
      */
     def this () = { this (null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -47,14 +53,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        ""
+        sup.export_fields
     }
     override def export: String =
     {
-        "\t<cim:EnvironmentalDependentLimit rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:EnvironmentalDependentLimit>"
+        "\t<cim:EnvironmentalDependentLimit rdf:ID=\"%s\">\n%s\t</cim:EnvironmentalDependentLimit>".format (id, export_fields)
     }
 }
 
@@ -62,13 +65,18 @@ object EnvironmentalDependentLimit
 extends
     Parseable[EnvironmentalDependentLimit]
 {
+
     def parse (context: Context): EnvironmentalDependentLimit =
     {
-        EnvironmentalDependentLimit(
+        implicit val ctx: Context = context
+        val ret = EnvironmentalDependentLimit (
             LimitDependency.parse (context)
         )
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -97,6 +105,12 @@ extends
      */
     def this () = { this (null, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -116,15 +130,17 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != Equipment) "\t\t<cim:EquipmentLimitSeriesComponent.Equipment rdf:resource=\"#" + Equipment + "\"/>\n" else "") +
-        (if (null != SeriesEquipmentDependentLimit) "\t\t<cim:EquipmentLimitSeriesComponent.SeriesEquipmentDependentLimit rdf:resource=\"#" + SeriesEquipmentDependentLimit + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = EquipmentLimitSeriesComponent.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (EquipmentLimitSeriesComponent.fields (position), value)
+        emitattr (0, Equipment)
+        emitattr (1, SeriesEquipmentDependentLimit)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:EquipmentLimitSeriesComponent rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:EquipmentLimitSeriesComponent>"
+        "\t<cim:EquipmentLimitSeriesComponent rdf:ID=\"%s\">\n%s\t</cim:EquipmentLimitSeriesComponent>".format (id, export_fields)
     }
 }
 
@@ -132,19 +148,30 @@ object EquipmentLimitSeriesComponent
 extends
     Parseable[EquipmentLimitSeriesComponent]
 {
-    val Equipment = parse_attribute (attribute ("""EquipmentLimitSeriesComponent.Equipment"""))
-    val SeriesEquipmentDependentLimit = parse_attribute (attribute ("""EquipmentLimitSeriesComponent.SeriesEquipmentDependentLimit"""))
+    val fields: Array[String] = Array[String] (
+        "Equipment",
+        "SeriesEquipmentDependentLimit"
+    )
+    val Equipment: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val SeriesEquipmentDependentLimit: Fielder = parse_attribute (attribute (cls, fields(1)))
+
     def parse (context: Context): EquipmentLimitSeriesComponent =
     {
-        EquipmentLimitSeriesComponent(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = EquipmentLimitSeriesComponent (
             IdentifiedObject.parse (context),
-            Equipment (context),
-            SeriesEquipmentDependentLimit (context)
+            mask (Equipment (), 0),
+            mask (SeriesEquipmentDependentLimit (), 1)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("Equipment", "Equipment", false),
-        Relationship ("SeriesEquipmentDependentLimit", "SeriesEquipmentDependentLimit", false))
+        Relationship ("SeriesEquipmentDependentLimit", "SeriesEquipmentDependentLimit", false)
+    )
 }
 
 /**
@@ -172,6 +199,12 @@ extends
      */
     def this () = { this (null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -191,14 +224,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != Equipment) "\t\t<cim:LimitDependency.Equipment rdf:resource=\"#" + Equipment + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = LimitDependency.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (LimitDependency.fields (position), value)
+        emitattr (0, Equipment)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:LimitDependency rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:LimitDependency>"
+        "\t<cim:LimitDependency rdf:ID=\"%s\">\n%s\t</cim:LimitDependency>".format (id, export_fields)
     }
 }
 
@@ -206,16 +241,26 @@ object LimitDependency
 extends
     Parseable[LimitDependency]
 {
-    val Equipment = parse_attribute (attribute ("""LimitDependency.Equipment"""))
+    val fields: Array[String] = Array[String] (
+        "Equipment"
+    )
+    val Equipment: Fielder = parse_attribute (attribute (cls, fields(0)))
+
     def parse (context: Context): LimitDependency =
     {
-        LimitDependency(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = LimitDependency (
             IdentifiedObject.parse (context),
-            Equipment (context)
+            mask (Equipment (), 0)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("Equipment", "Equipment", false))
+        Relationship ("Equipment", "Equipment", false)
+    )
 }
 
 /**
@@ -243,6 +288,12 @@ extends
      */
     def this () = { this (null, 0.0, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -262,15 +313,18 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:LimitScalingLimit.limitScalingPercent>" + limitScalingPercent + "</cim:LimitScalingLimit.limitScalingPercent>\n" +
-        (if (null != SourceOperationalLimit) "\t\t<cim:LimitScalingLimit.SourceOperationalLimit rdf:resource=\"#" + SourceOperationalLimit + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = LimitScalingLimit.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (LimitScalingLimit.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (LimitScalingLimit.fields (position), value)
+        emitelem (0, limitScalingPercent)
+        emitattr (1, SourceOperationalLimit)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:LimitScalingLimit rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:LimitScalingLimit>"
+        "\t<cim:LimitScalingLimit rdf:ID=\"%s\">\n%s\t</cim:LimitScalingLimit>".format (id, export_fields)
     }
 }
 
@@ -278,18 +332,29 @@ object LimitScalingLimit
 extends
     Parseable[LimitScalingLimit]
 {
-    val limitScalingPercent = parse_element (element ("""LimitScalingLimit.limitScalingPercent"""))
-    val SourceOperationalLimit = parse_attribute (attribute ("""LimitScalingLimit.SourceOperationalLimit"""))
+    val fields: Array[String] = Array[String] (
+        "limitScalingPercent",
+        "SourceOperationalLimit"
+    )
+    val limitScalingPercent: Fielder = parse_element (element (cls, fields(0)))
+    val SourceOperationalLimit: Fielder = parse_attribute (attribute (cls, fields(1)))
+
     def parse (context: Context): LimitScalingLimit =
     {
-        LimitScalingLimit(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = LimitScalingLimit (
             LimitDependency.parse (context),
-            toDouble (limitScalingPercent (context), context),
-            SourceOperationalLimit (context)
+            toDouble (mask (limitScalingPercent (), 0)),
+            mask (SourceOperationalLimit (), 1)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("SourceOperationalLimit", "OperationalLimit", false))
+        Relationship ("SourceOperationalLimit", "OperationalLimit", false)
+    )
 }
 
 /**
@@ -322,6 +387,12 @@ extends
      */
     def this () = { this (null, 0.0, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -341,16 +412,19 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:OperatonalLimitTypeScaling.scalingPercent>" + scalingPercent + "</cim:OperatonalLimitTypeScaling.scalingPercent>\n" +
-        (if (null != SourceOperationalLimitType) "\t\t<cim:OperatonalLimitTypeScaling.SourceOperationalLimitType rdf:resource=\"#" + SourceOperationalLimitType + "\"/>\n" else "") +
-        (if (null != TargetOperationalLimit) "\t\t<cim:OperatonalLimitTypeScaling.TargetOperationalLimit rdf:resource=\"#" + TargetOperationalLimit + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = OperatonalLimitTypeScaling.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (OperatonalLimitTypeScaling.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (OperatonalLimitTypeScaling.fields (position), value)
+        emitelem (0, scalingPercent)
+        emitattr (1, SourceOperationalLimitType)
+        emitattr (2, TargetOperationalLimit)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:OperatonalLimitTypeScaling rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:OperatonalLimitTypeScaling>"
+        "\t<cim:OperatonalLimitTypeScaling rdf:ID=\"%s\">\n%s\t</cim:OperatonalLimitTypeScaling>".format (id, export_fields)
     }
 }
 
@@ -358,21 +432,33 @@ object OperatonalLimitTypeScaling
 extends
     Parseable[OperatonalLimitTypeScaling]
 {
-    val scalingPercent = parse_element (element ("""OperatonalLimitTypeScaling.scalingPercent"""))
-    val SourceOperationalLimitType = parse_attribute (attribute ("""OperatonalLimitTypeScaling.SourceOperationalLimitType"""))
-    val TargetOperationalLimit = parse_attribute (attribute ("""OperatonalLimitTypeScaling.TargetOperationalLimit"""))
+    val fields: Array[String] = Array[String] (
+        "scalingPercent",
+        "SourceOperationalLimitType",
+        "TargetOperationalLimit"
+    )
+    val scalingPercent: Fielder = parse_element (element (cls, fields(0)))
+    val SourceOperationalLimitType: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val TargetOperationalLimit: Fielder = parse_attribute (attribute (cls, fields(2)))
+
     def parse (context: Context): OperatonalLimitTypeScaling =
     {
-        OperatonalLimitTypeScaling(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = OperatonalLimitTypeScaling (
             BasicElement.parse (context),
-            toDouble (scalingPercent (context), context),
-            SourceOperationalLimitType (context),
-            TargetOperationalLimit (context)
+            toDouble (mask (scalingPercent (), 0)),
+            mask (SourceOperationalLimitType (), 1),
+            mask (TargetOperationalLimit (), 2)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("SourceOperationalLimitType", "OperationalLimitType", false),
-        Relationship ("TargetOperationalLimit", "OperationalLimitType", false))
+        Relationship ("TargetOperationalLimit", "OperationalLimitType", false)
+    )
 }
 
 /**
@@ -395,6 +481,12 @@ extends
      */
     def this () = { this (null, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -414,14 +506,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ScheduledActivePowerLimitValue.value>" + value + "</cim:ScheduledActivePowerLimitValue.value>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ScheduledActivePowerLimitValue.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ScheduledActivePowerLimitValue.fields (position), value)
+        emitelem (0, value)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ScheduledActivePowerLimitValue rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ScheduledActivePowerLimitValue>"
+        "\t<cim:ScheduledActivePowerLimitValue rdf:ID=\"%s\">\n%s\t</cim:ScheduledActivePowerLimitValue>".format (id, export_fields)
     }
 }
 
@@ -429,15 +523,26 @@ object ScheduledActivePowerLimitValue
 extends
     Parseable[ScheduledActivePowerLimitValue]
 {
-    val value = parse_element (element ("""ScheduledActivePowerLimitValue.value"""))
+    val fields: Array[String] = Array[String] (
+        "value"
+    )
+    val value: Fielder = parse_element (element (cls, fields(0)))
+
     def parse (context: Context): ScheduledActivePowerLimitValue =
     {
-        ScheduledActivePowerLimitValue(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ScheduledActivePowerLimitValue (
             ScheduledLimitValue.parse (context),
-            toDouble (value (context), context)
+            toDouble (mask (value (), 0))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -463,6 +568,12 @@ extends
      */
     def this () = { this (null, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -482,14 +593,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ScheduledApparentPowerLimitValue.value>" + value + "</cim:ScheduledApparentPowerLimitValue.value>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ScheduledApparentPowerLimitValue.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ScheduledApparentPowerLimitValue.fields (position), value)
+        emitelem (0, value)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ScheduledApparentPowerLimitValue rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ScheduledApparentPowerLimitValue>"
+        "\t<cim:ScheduledApparentPowerLimitValue rdf:ID=\"%s\">\n%s\t</cim:ScheduledApparentPowerLimitValue>".format (id, export_fields)
     }
 }
 
@@ -497,15 +610,26 @@ object ScheduledApparentPowerLimitValue
 extends
     Parseable[ScheduledApparentPowerLimitValue]
 {
-    val value = parse_element (element ("""ScheduledApparentPowerLimitValue.value"""))
+    val fields: Array[String] = Array[String] (
+        "value"
+    )
+    val value: Fielder = parse_element (element (cls, fields(0)))
+
     def parse (context: Context): ScheduledApparentPowerLimitValue =
     {
-        ScheduledApparentPowerLimitValue(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ScheduledApparentPowerLimitValue (
             ScheduledLimitValue.parse (context),
-            toDouble (value (context), context)
+            toDouble (mask (value (), 0))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -531,6 +655,12 @@ extends
      */
     def this () = { this (null, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -550,14 +680,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ScheduledCurrentLimitValue.value>" + value + "</cim:ScheduledCurrentLimitValue.value>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ScheduledCurrentLimitValue.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ScheduledCurrentLimitValue.fields (position), value)
+        emitelem (0, value)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ScheduledCurrentLimitValue rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ScheduledCurrentLimitValue>"
+        "\t<cim:ScheduledCurrentLimitValue rdf:ID=\"%s\">\n%s\t</cim:ScheduledCurrentLimitValue>".format (id, export_fields)
     }
 }
 
@@ -565,15 +697,26 @@ object ScheduledCurrentLimitValue
 extends
     Parseable[ScheduledCurrentLimitValue]
 {
-    val value = parse_element (element ("""ScheduledCurrentLimitValue.value"""))
+    val fields: Array[String] = Array[String] (
+        "value"
+    )
+    val value: Fielder = parse_element (element (cls, fields(0)))
+
     def parse (context: Context): ScheduledCurrentLimitValue =
     {
-        ScheduledCurrentLimitValue(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ScheduledCurrentLimitValue (
             ScheduledLimitValue.parse (context),
-            toDouble (value (context), context)
+            toDouble (mask (value (), 0))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -595,6 +738,12 @@ extends
      */
     def this () = { this (null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -614,14 +763,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        ""
+        sup.export_fields
     }
     override def export: String =
     {
-        "\t<cim:ScheduledLimitDependency rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ScheduledLimitDependency>"
+        "\t<cim:ScheduledLimitDependency rdf:ID=\"%s\">\n%s\t</cim:ScheduledLimitDependency>".format (id, export_fields)
     }
 }
 
@@ -629,13 +775,18 @@ object ScheduledLimitDependency
 extends
     Parseable[ScheduledLimitDependency]
 {
+
     def parse (context: Context): ScheduledLimitDependency =
     {
-        ScheduledLimitDependency(
+        implicit val ctx: Context = context
+        val ret = ScheduledLimitDependency (
             LimitDependency.parse (context)
         )
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -664,6 +815,12 @@ extends
      */
     def this () = { this (null, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -683,15 +840,17 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != ScheduledLimitDependency) "\t\t<cim:ScheduledLimitValue.ScheduledLimitDependency rdf:resource=\"#" + ScheduledLimitDependency + "\"/>\n" else "") +
-        (if (null != Season) "\t\t<cim:ScheduledLimitValue.Season rdf:resource=\"#" + Season + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ScheduledLimitValue.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ScheduledLimitValue.fields (position), value)
+        emitattr (0, ScheduledLimitDependency)
+        emitattr (1, Season)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ScheduledLimitValue rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ScheduledLimitValue>"
+        "\t<cim:ScheduledLimitValue rdf:ID=\"%s\">\n%s\t</cim:ScheduledLimitValue>".format (id, export_fields)
     }
 }
 
@@ -699,19 +858,30 @@ object ScheduledLimitValue
 extends
     Parseable[ScheduledLimitValue]
 {
-    val ScheduledLimitDependency = parse_attribute (attribute ("""ScheduledLimitValue.ScheduledLimitDependency"""))
-    val Season = parse_attribute (attribute ("""ScheduledLimitValue.Season"""))
+    val fields: Array[String] = Array[String] (
+        "ScheduledLimitDependency",
+        "Season"
+    )
+    val ScheduledLimitDependency: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val Season: Fielder = parse_attribute (attribute (cls, fields(1)))
+
     def parse (context: Context): ScheduledLimitValue =
     {
-        ScheduledLimitValue(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ScheduledLimitValue (
             IdentifiedObject.parse (context),
-            ScheduledLimitDependency (context),
-            Season (context)
+            mask (ScheduledLimitDependency (), 0),
+            mask (Season (), 1)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("ScheduledLimitDependency", "ScheduledLimitDependency", false),
-        Relationship ("Season", "Season", false))
+        Relationship ("Season", "Season", false)
+    )
 }
 
 /**
@@ -737,6 +907,12 @@ extends
      */
     def this () = { this (null, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -756,14 +932,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:ScheduledVoltageLimitValue.value>" + value + "</cim:ScheduledVoltageLimitValue.value>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ScheduledVoltageLimitValue.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ScheduledVoltageLimitValue.fields (position), value)
+        emitelem (0, value)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:ScheduledVoltageLimitValue rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:ScheduledVoltageLimitValue>"
+        "\t<cim:ScheduledVoltageLimitValue rdf:ID=\"%s\">\n%s\t</cim:ScheduledVoltageLimitValue>".format (id, export_fields)
     }
 }
 
@@ -771,15 +949,26 @@ object ScheduledVoltageLimitValue
 extends
     Parseable[ScheduledVoltageLimitValue]
 {
-    val value = parse_element (element ("""ScheduledVoltageLimitValue.value"""))
+    val fields: Array[String] = Array[String] (
+        "value"
+    )
+    val value: Fielder = parse_element (element (cls, fields(0)))
+
     def parse (context: Context): ScheduledVoltageLimitValue =
     {
-        ScheduledVoltageLimitValue(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = ScheduledVoltageLimitValue (
             ScheduledLimitValue.parse (context),
-            toDouble (value (context), context)
+            toDouble (mask (value (), 0))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -805,6 +994,12 @@ extends
      */
     def this () = { this (null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -824,14 +1019,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        ""
+        sup.export_fields
     }
     override def export: String =
     {
-        "\t<cim:SeriesEquipmentDependentLimit rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:SeriesEquipmentDependentLimit>"
+        "\t<cim:SeriesEquipmentDependentLimit rdf:ID=\"%s\">\n%s\t</cim:SeriesEquipmentDependentLimit>".format (id, export_fields)
     }
 }
 
@@ -839,13 +1031,18 @@ object SeriesEquipmentDependentLimit
 extends
     Parseable[SeriesEquipmentDependentLimit]
 {
+
     def parse (context: Context): SeriesEquipmentDependentLimit =
     {
-        SeriesEquipmentDependentLimit(
+        implicit val ctx: Context = context
+        val ret = SeriesEquipmentDependentLimit (
             LimitDependency.parse (context)
         )
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -875,6 +1072,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -894,16 +1097,19 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:TemperatureDependentLimitPoint.limitPercent>" + limitPercent + "</cim:TemperatureDependentLimitPoint.limitPercent>\n" +
-        "\t\t<cim:TemperatureDependentLimitPoint.temperature>" + temperature + "</cim:TemperatureDependentLimitPoint.temperature>\n" +
-        (if (null != TemperatureDependentLimitTable) "\t\t<cim:TemperatureDependentLimitPoint.TemperatureDependentLimitTable rdf:resource=\"#" + TemperatureDependentLimitTable + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = TemperatureDependentLimitPoint.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TemperatureDependentLimitPoint.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TemperatureDependentLimitPoint.fields (position), value)
+        emitelem (0, limitPercent)
+        emitelem (1, temperature)
+        emitattr (2, TemperatureDependentLimitTable)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:TemperatureDependentLimitPoint rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:TemperatureDependentLimitPoint>"
+        "\t<cim:TemperatureDependentLimitPoint rdf:ID=\"%s\">\n%s\t</cim:TemperatureDependentLimitPoint>".format (id, export_fields)
     }
 }
 
@@ -911,20 +1117,32 @@ object TemperatureDependentLimitPoint
 extends
     Parseable[TemperatureDependentLimitPoint]
 {
-    val limitPercent = parse_element (element ("""TemperatureDependentLimitPoint.limitPercent"""))
-    val temperature = parse_element (element ("""TemperatureDependentLimitPoint.temperature"""))
-    val TemperatureDependentLimitTable = parse_attribute (attribute ("""TemperatureDependentLimitPoint.TemperatureDependentLimitTable"""))
+    val fields: Array[String] = Array[String] (
+        "limitPercent",
+        "temperature",
+        "TemperatureDependentLimitTable"
+    )
+    val limitPercent: Fielder = parse_element (element (cls, fields(0)))
+    val temperature: Fielder = parse_element (element (cls, fields(1)))
+    val TemperatureDependentLimitTable: Fielder = parse_attribute (attribute (cls, fields(2)))
+
     def parse (context: Context): TemperatureDependentLimitPoint =
     {
-        TemperatureDependentLimitPoint(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = TemperatureDependentLimitPoint (
             BasicElement.parse (context),
-            toDouble (limitPercent (context), context),
-            toDouble (temperature (context), context),
-            TemperatureDependentLimitTable (context)
+            toDouble (mask (limitPercent (), 0)),
+            toDouble (mask (temperature (), 1)),
+            mask (TemperatureDependentLimitTable (), 2)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("TemperatureDependentLimitTable", "TemperatureDependentLimitTable", false))
+        Relationship ("TemperatureDependentLimitTable", "TemperatureDependentLimitTable", false)
+    )
 }
 
 /**
@@ -948,6 +1166,12 @@ extends
      */
     def this () = { this (null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -967,14 +1191,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        ""
+        sup.export_fields
     }
     override def export: String =
     {
-        "\t<cim:TemperatureDependentLimitTable rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:TemperatureDependentLimitTable>"
+        "\t<cim:TemperatureDependentLimitTable rdf:ID=\"%s\">\n%s\t</cim:TemperatureDependentLimitTable>".format (id, export_fields)
     }
 }
 
@@ -982,13 +1203,18 @@ object TemperatureDependentLimitTable
 extends
     Parseable[TemperatureDependentLimitTable]
 {
+
     def parse (context: Context): TemperatureDependentLimitTable =
     {
-        TemperatureDependentLimitTable(
+        implicit val ctx: Context = context
+        val ret = TemperatureDependentLimitTable (
             EnvironmentalDependentLimit.parse (context)
         )
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -1022,6 +1248,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -1041,18 +1273,20 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:TemperaturePolynomialLimit.coefficient0>" + coefficient0 + "</cim:TemperaturePolynomialLimit.coefficient0>\n" +
-        "\t\t<cim:TemperaturePolynomialLimit.coefficient1>" + coefficient1 + "</cim:TemperaturePolynomialLimit.coefficient1>\n" +
-        "\t\t<cim:TemperaturePolynomialLimit.coefficient2>" + coefficient2 + "</cim:TemperaturePolynomialLimit.coefficient2>\n" +
-        "\t\t<cim:TemperaturePolynomialLimit.coefficient3>" + coefficient3 + "</cim:TemperaturePolynomialLimit.coefficient3>\n" +
-        "\t\t<cim:TemperaturePolynomialLimit.coefficient4>" + coefficient4 + "</cim:TemperaturePolynomialLimit.coefficient4>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = TemperaturePolynomialLimit.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TemperaturePolynomialLimit.fields (position), value)
+        emitelem (0, coefficient0)
+        emitelem (1, coefficient1)
+        emitelem (2, coefficient2)
+        emitelem (3, coefficient3)
+        emitelem (4, coefficient4)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:TemperaturePolynomialLimit rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:TemperaturePolynomialLimit>"
+        "\t<cim:TemperaturePolynomialLimit rdf:ID=\"%s\">\n%s\t</cim:TemperaturePolynomialLimit>".format (id, export_fields)
     }
 }
 
@@ -1060,23 +1294,38 @@ object TemperaturePolynomialLimit
 extends
     Parseable[TemperaturePolynomialLimit]
 {
-    val coefficient0 = parse_element (element ("""TemperaturePolynomialLimit.coefficient0"""))
-    val coefficient1 = parse_element (element ("""TemperaturePolynomialLimit.coefficient1"""))
-    val coefficient2 = parse_element (element ("""TemperaturePolynomialLimit.coefficient2"""))
-    val coefficient3 = parse_element (element ("""TemperaturePolynomialLimit.coefficient3"""))
-    val coefficient4 = parse_element (element ("""TemperaturePolynomialLimit.coefficient4"""))
+    val fields: Array[String] = Array[String] (
+        "coefficient0",
+        "coefficient1",
+        "coefficient2",
+        "coefficient3",
+        "coefficient4"
+    )
+    val coefficient0: Fielder = parse_element (element (cls, fields(0)))
+    val coefficient1: Fielder = parse_element (element (cls, fields(1)))
+    val coefficient2: Fielder = parse_element (element (cls, fields(2)))
+    val coefficient3: Fielder = parse_element (element (cls, fields(3)))
+    val coefficient4: Fielder = parse_element (element (cls, fields(4)))
+
     def parse (context: Context): TemperaturePolynomialLimit =
     {
-        TemperaturePolynomialLimit(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = TemperaturePolynomialLimit (
             EnvironmentalDependentLimit.parse (context),
-            toDouble (coefficient0 (context), context),
-            toDouble (coefficient1 (context), context),
-            toDouble (coefficient2 (context), context),
-            toDouble (coefficient3 (context), context),
-            toDouble (coefficient4 (context), context)
+            toDouble (mask (coefficient0 (), 0)),
+            toDouble (mask (coefficient1 (), 1)),
+            toDouble (mask (coefficient2 (), 2)),
+            toDouble (mask (coefficient3 (), 3)),
+            toDouble (mask (coefficient4 (), 4))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -1100,6 +1349,12 @@ extends
      */
     def this () = { this (null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -1119,14 +1374,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        ""
+        sup.export_fields
     }
     override def export: String =
     {
-        "\t<cim:WeatherStation rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:WeatherStation>"
+        "\t<cim:WeatherStation rdf:ID=\"%s\">\n%s\t</cim:WeatherStation>".format (id, export_fields)
     }
 }
 
@@ -1134,13 +1386,18 @@ object WeatherStation
 extends
     Parseable[WeatherStation]
 {
+
     def parse (context: Context): WeatherStation =
     {
-        WeatherStation(
+        implicit val ctx: Context = context
+        val ret = WeatherStation (
             PowerSystemResource.parse (context)
         )
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 private[ninecode] object _InfOperationalLimits

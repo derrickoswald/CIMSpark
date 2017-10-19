@@ -41,6 +41,12 @@ extends
      */
     def this () = { this (null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -60,14 +66,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != WindGenTurbineType1aIEC) "\t\t<cim:WindAeroConstIEC.WindGenTurbineType1aIEC rdf:resource=\"#" + WindGenTurbineType1aIEC + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = WindAeroConstIEC.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindAeroConstIEC.fields (position), value)
+        emitattr (0, WindGenTurbineType1aIEC)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:WindAeroConstIEC rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:WindAeroConstIEC>"
+        "\t<cim:WindAeroConstIEC rdf:ID=\"%s\">\n%s\t</cim:WindAeroConstIEC>".format (id, export_fields)
     }
 }
 
@@ -75,16 +83,26 @@ object WindAeroConstIEC
 extends
     Parseable[WindAeroConstIEC]
 {
-    val WindGenTurbineType1aIEC = parse_attribute (attribute ("""WindAeroConstIEC.WindGenTurbineType1aIEC"""))
+    val fields: Array[String] = Array[String] (
+        "WindGenTurbineType1aIEC"
+    )
+    val WindGenTurbineType1aIEC: Fielder = parse_attribute (attribute (cls, fields(0)))
+
     def parse (context: Context): WindAeroConstIEC =
     {
-        WindAeroConstIEC(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = WindAeroConstIEC (
             IdentifiedObject.parse (context),
-            WindGenTurbineType1aIEC (context)
+            mask (WindGenTurbineType1aIEC (), 0)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("WindGenTurbineType1aIEC", "WindGenTurbineType1aIEC", false))
+        Relationship ("WindGenTurbineType1aIEC", "WindGenTurbineType1aIEC", false)
+    )
 }
 
 /**
@@ -127,6 +145,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -146,16 +170,19 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:WindAeroOneDimIEC.ka>" + ka + "</cim:WindAeroOneDimIEC.ka>\n" +
-        "\t\t<cim:WindAeroOneDimIEC.thetaomega>" + thetaomega + "</cim:WindAeroOneDimIEC.thetaomega>\n" +
-        (if (null != WindTurbineType3IEC) "\t\t<cim:WindAeroOneDimIEC.WindTurbineType3IEC rdf:resource=\"#" + WindTurbineType3IEC + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = WindAeroOneDimIEC.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindAeroOneDimIEC.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindAeroOneDimIEC.fields (position), value)
+        emitelem (0, ka)
+        emitelem (1, thetaomega)
+        emitattr (2, WindTurbineType3IEC)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:WindAeroOneDimIEC rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:WindAeroOneDimIEC>"
+        "\t<cim:WindAeroOneDimIEC rdf:ID=\"%s\">\n%s\t</cim:WindAeroOneDimIEC>".format (id, export_fields)
     }
 }
 
@@ -163,20 +190,32 @@ object WindAeroOneDimIEC
 extends
     Parseable[WindAeroOneDimIEC]
 {
-    val ka = parse_element (element ("""WindAeroOneDimIEC.ka"""))
-    val thetaomega = parse_element (element ("""WindAeroOneDimIEC.thetaomega"""))
-    val WindTurbineType3IEC = parse_attribute (attribute ("""WindAeroOneDimIEC.WindTurbineType3IEC"""))
+    val fields: Array[String] = Array[String] (
+        "ka",
+        "thetaomega",
+        "WindTurbineType3IEC"
+    )
+    val ka: Fielder = parse_element (element (cls, fields(0)))
+    val thetaomega: Fielder = parse_element (element (cls, fields(1)))
+    val WindTurbineType3IEC: Fielder = parse_attribute (attribute (cls, fields(2)))
+
     def parse (context: Context): WindAeroOneDimIEC =
     {
-        WindAeroOneDimIEC(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = WindAeroOneDimIEC (
             IdentifiedObject.parse (context),
-            toDouble (ka (context), context),
-            toDouble (thetaomega (context), context),
-            WindTurbineType3IEC (context)
+            toDouble (mask (ka (), 0)),
+            toDouble (mask (thetaomega (), 1)),
+            mask (WindTurbineType3IEC (), 2)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("WindTurbineType3IEC", "WindTurbineType3IEC", false))
+        Relationship ("WindTurbineType3IEC", "WindTurbineType3IEC", false)
+    )
 }
 
 /**
@@ -234,6 +273,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -253,21 +298,24 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:WindAeroTwoDimIEC.dpomega>" + dpomega + "</cim:WindAeroTwoDimIEC.dpomega>\n" +
-        "\t\t<cim:WindAeroTwoDimIEC.dptheta>" + dptheta + "</cim:WindAeroTwoDimIEC.dptheta>\n" +
-        "\t\t<cim:WindAeroTwoDimIEC.dpv1>" + dpv1 + "</cim:WindAeroTwoDimIEC.dpv1>\n" +
-        "\t\t<cim:WindAeroTwoDimIEC.omegazero>" + omegazero + "</cim:WindAeroTwoDimIEC.omegazero>\n" +
-        "\t\t<cim:WindAeroTwoDimIEC.pavail>" + pavail + "</cim:WindAeroTwoDimIEC.pavail>\n" +
-        "\t\t<cim:WindAeroTwoDimIEC.thetav2>" + thetav2 + "</cim:WindAeroTwoDimIEC.thetav2>\n" +
-        "\t\t<cim:WindAeroTwoDimIEC.thetazero>" + thetazero + "</cim:WindAeroTwoDimIEC.thetazero>\n" +
-        (if (null != WindTurbineType3IEC) "\t\t<cim:WindAeroTwoDimIEC.WindTurbineType3IEC rdf:resource=\"#" + WindTurbineType3IEC + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = WindAeroTwoDimIEC.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindAeroTwoDimIEC.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindAeroTwoDimIEC.fields (position), value)
+        emitelem (0, dpomega)
+        emitelem (1, dptheta)
+        emitelem (2, dpv1)
+        emitelem (3, omegazero)
+        emitelem (4, pavail)
+        emitelem (5, thetav2)
+        emitelem (6, thetazero)
+        emitattr (7, WindTurbineType3IEC)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:WindAeroTwoDimIEC rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:WindAeroTwoDimIEC>"
+        "\t<cim:WindAeroTwoDimIEC rdf:ID=\"%s\">\n%s\t</cim:WindAeroTwoDimIEC>".format (id, export_fields)
     }
 }
 
@@ -275,30 +323,47 @@ object WindAeroTwoDimIEC
 extends
     Parseable[WindAeroTwoDimIEC]
 {
-    val dpomega = parse_element (element ("""WindAeroTwoDimIEC.dpomega"""))
-    val dptheta = parse_element (element ("""WindAeroTwoDimIEC.dptheta"""))
-    val dpv1 = parse_element (element ("""WindAeroTwoDimIEC.dpv1"""))
-    val omegazero = parse_element (element ("""WindAeroTwoDimIEC.omegazero"""))
-    val pavail = parse_element (element ("""WindAeroTwoDimIEC.pavail"""))
-    val thetav2 = parse_element (element ("""WindAeroTwoDimIEC.thetav2"""))
-    val thetazero = parse_element (element ("""WindAeroTwoDimIEC.thetazero"""))
-    val WindTurbineType3IEC = parse_attribute (attribute ("""WindAeroTwoDimIEC.WindTurbineType3IEC"""))
+    val fields: Array[String] = Array[String] (
+        "dpomega",
+        "dptheta",
+        "dpv1",
+        "omegazero",
+        "pavail",
+        "thetav2",
+        "thetazero",
+        "WindTurbineType3IEC"
+    )
+    val dpomega: Fielder = parse_element (element (cls, fields(0)))
+    val dptheta: Fielder = parse_element (element (cls, fields(1)))
+    val dpv1: Fielder = parse_element (element (cls, fields(2)))
+    val omegazero: Fielder = parse_element (element (cls, fields(3)))
+    val pavail: Fielder = parse_element (element (cls, fields(4)))
+    val thetav2: Fielder = parse_element (element (cls, fields(5)))
+    val thetazero: Fielder = parse_element (element (cls, fields(6)))
+    val WindTurbineType3IEC: Fielder = parse_attribute (attribute (cls, fields(7)))
+
     def parse (context: Context): WindAeroTwoDimIEC =
     {
-        WindAeroTwoDimIEC(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = WindAeroTwoDimIEC (
             IdentifiedObject.parse (context),
-            toDouble (dpomega (context), context),
-            toDouble (dptheta (context), context),
-            toDouble (dpv1 (context), context),
-            toDouble (omegazero (context), context),
-            toDouble (pavail (context), context),
-            toDouble (thetav2 (context), context),
-            toDouble (thetazero (context), context),
-            WindTurbineType3IEC (context)
+            toDouble (mask (dpomega (), 0)),
+            toDouble (mask (dptheta (), 1)),
+            toDouble (mask (dpv1 (), 2)),
+            toDouble (mask (omegazero (), 3)),
+            toDouble (mask (pavail (), 4)),
+            toDouble (mask (thetav2 (), 5)),
+            toDouble (mask (thetazero (), 6)),
+            mask (WindTurbineType3IEC (), 7)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("WindTurbineType3IEC", "WindTurbineType3IEC", false))
+        Relationship ("WindTurbineType3IEC", "WindTurbineType3IEC", false)
+    )
 }
 
 /**
@@ -360,6 +425,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, false, false, 0.0, 0.0, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -379,21 +450,24 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:WindContCurrLimIEC.imax>" + imax + "</cim:WindContCurrLimIEC.imax>\n" +
-        "\t\t<cim:WindContCurrLimIEC.imaxdip>" + imaxdip + "</cim:WindContCurrLimIEC.imaxdip>\n" +
-        "\t\t<cim:WindContCurrLimIEC.kpqu>" + kpqu + "</cim:WindContCurrLimIEC.kpqu>\n" +
-        "\t\t<cim:WindContCurrLimIEC.mdfslim>" + mdfslim + "</cim:WindContCurrLimIEC.mdfslim>\n" +
-        "\t\t<cim:WindContCurrLimIEC.mqpri>" + mqpri + "</cim:WindContCurrLimIEC.mqpri>\n" +
-        "\t\t<cim:WindContCurrLimIEC.tufiltcl>" + tufiltcl + "</cim:WindContCurrLimIEC.tufiltcl>\n" +
-        "\t\t<cim:WindContCurrLimIEC.upqumax>" + upqumax + "</cim:WindContCurrLimIEC.upqumax>\n" +
-        (if (null != WindTurbineType3or4IEC) "\t\t<cim:WindContCurrLimIEC.WindTurbineType3or4IEC rdf:resource=\"#" + WindTurbineType3or4IEC + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = WindContCurrLimIEC.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindContCurrLimIEC.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindContCurrLimIEC.fields (position), value)
+        emitelem (0, imax)
+        emitelem (1, imaxdip)
+        emitelem (2, kpqu)
+        emitelem (3, mdfslim)
+        emitelem (4, mqpri)
+        emitelem (5, tufiltcl)
+        emitelem (6, upqumax)
+        emitattr (7, WindTurbineType3or4IEC)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:WindContCurrLimIEC rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:WindContCurrLimIEC>"
+        "\t<cim:WindContCurrLimIEC rdf:ID=\"%s\">\n%s\t</cim:WindContCurrLimIEC>".format (id, export_fields)
     }
 }
 
@@ -401,30 +475,47 @@ object WindContCurrLimIEC
 extends
     Parseable[WindContCurrLimIEC]
 {
-    val imax = parse_element (element ("""WindContCurrLimIEC.imax"""))
-    val imaxdip = parse_element (element ("""WindContCurrLimIEC.imaxdip"""))
-    val kpqu = parse_element (element ("""WindContCurrLimIEC.kpqu"""))
-    val mdfslim = parse_element (element ("""WindContCurrLimIEC.mdfslim"""))
-    val mqpri = parse_element (element ("""WindContCurrLimIEC.mqpri"""))
-    val tufiltcl = parse_element (element ("""WindContCurrLimIEC.tufiltcl"""))
-    val upqumax = parse_element (element ("""WindContCurrLimIEC.upqumax"""))
-    val WindTurbineType3or4IEC = parse_attribute (attribute ("""WindContCurrLimIEC.WindTurbineType3or4IEC"""))
+    val fields: Array[String] = Array[String] (
+        "imax",
+        "imaxdip",
+        "kpqu",
+        "mdfslim",
+        "mqpri",
+        "tufiltcl",
+        "upqumax",
+        "WindTurbineType3or4IEC"
+    )
+    val imax: Fielder = parse_element (element (cls, fields(0)))
+    val imaxdip: Fielder = parse_element (element (cls, fields(1)))
+    val kpqu: Fielder = parse_element (element (cls, fields(2)))
+    val mdfslim: Fielder = parse_element (element (cls, fields(3)))
+    val mqpri: Fielder = parse_element (element (cls, fields(4)))
+    val tufiltcl: Fielder = parse_element (element (cls, fields(5)))
+    val upqumax: Fielder = parse_element (element (cls, fields(6)))
+    val WindTurbineType3or4IEC: Fielder = parse_attribute (attribute (cls, fields(7)))
+
     def parse (context: Context): WindContCurrLimIEC =
     {
-        WindContCurrLimIEC(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = WindContCurrLimIEC (
             IdentifiedObject.parse (context),
-            toDouble (imax (context), context),
-            toDouble (imaxdip (context), context),
-            toDouble (kpqu (context), context),
-            toBoolean (mdfslim (context), context),
-            toBoolean (mqpri (context), context),
-            toDouble (tufiltcl (context), context),
-            toDouble (upqumax (context), context),
-            WindTurbineType3or4IEC (context)
+            toDouble (mask (imax (), 0)),
+            toDouble (mask (imaxdip (), 1)),
+            toDouble (mask (kpqu (), 2)),
+            toBoolean (mask (mdfslim (), 3)),
+            toBoolean (mask (mqpri (), 4)),
+            toDouble (mask (tufiltcl (), 5)),
+            toDouble (mask (upqumax (), 6)),
+            mask (WindTurbineType3or4IEC (), 7)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("WindTurbineType3or4IEC", "WindTurbineType3or4IEC", false))
+        Relationship ("WindTurbineType3or4IEC", "WindTurbineType3or4IEC", false)
+    )
 }
 
 /**
@@ -532,6 +623,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -551,37 +648,40 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:WindContPType3IEC.dpmax>" + dpmax + "</cim:WindContPType3IEC.dpmax>\n" +
-        "\t\t<cim:WindContPType3IEC.dprefmax>" + dprefmax + "</cim:WindContPType3IEC.dprefmax>\n" +
-        "\t\t<cim:WindContPType3IEC.dprefmin>" + dprefmin + "</cim:WindContPType3IEC.dprefmin>\n" +
-        "\t\t<cim:WindContPType3IEC.dthetamax>" + dthetamax + "</cim:WindContPType3IEC.dthetamax>\n" +
-        "\t\t<cim:WindContPType3IEC.dthetamaxuvrt>" + dthetamaxuvrt + "</cim:WindContPType3IEC.dthetamaxuvrt>\n" +
-        "\t\t<cim:WindContPType3IEC.kdtd>" + kdtd + "</cim:WindContPType3IEC.kdtd>\n" +
-        "\t\t<cim:WindContPType3IEC.kip>" + kip + "</cim:WindContPType3IEC.kip>\n" +
-        "\t\t<cim:WindContPType3IEC.kpp>" + kpp + "</cim:WindContPType3IEC.kpp>\n" +
-        "\t\t<cim:WindContPType3IEC.mpuvrt>" + mpuvrt + "</cim:WindContPType3IEC.mpuvrt>\n" +
-        "\t\t<cim:WindContPType3IEC.omegaoffset>" + omegaoffset + "</cim:WindContPType3IEC.omegaoffset>\n" +
-        "\t\t<cim:WindContPType3IEC.pdtdmax>" + pdtdmax + "</cim:WindContPType3IEC.pdtdmax>\n" +
-        "\t\t<cim:WindContPType3IEC.tdvs>" + tdvs + "</cim:WindContPType3IEC.tdvs>\n" +
-        "\t\t<cim:WindContPType3IEC.thetaemin>" + thetaemin + "</cim:WindContPType3IEC.thetaemin>\n" +
-        "\t\t<cim:WindContPType3IEC.thetauscale>" + thetauscale + "</cim:WindContPType3IEC.thetauscale>\n" +
-        "\t\t<cim:WindContPType3IEC.tomegafiltp3>" + tomegafiltp3 + "</cim:WindContPType3IEC.tomegafiltp3>\n" +
-        "\t\t<cim:WindContPType3IEC.tpfiltp3>" + tpfiltp3 + "</cim:WindContPType3IEC.tpfiltp3>\n" +
-        "\t\t<cim:WindContPType3IEC.tpord>" + tpord + "</cim:WindContPType3IEC.tpord>\n" +
-        "\t\t<cim:WindContPType3IEC.tufiltp3>" + tufiltp3 + "</cim:WindContPType3IEC.tufiltp3>\n" +
-        "\t\t<cim:WindContPType3IEC.twref>" + twref + "</cim:WindContPType3IEC.twref>\n" +
-        "\t\t<cim:WindContPType3IEC.udvs>" + udvs + "</cim:WindContPType3IEC.udvs>\n" +
-        "\t\t<cim:WindContPType3IEC.updip>" + updip + "</cim:WindContPType3IEC.updip>\n" +
-        "\t\t<cim:WindContPType3IEC.wdtd>" + wdtd + "</cim:WindContPType3IEC.wdtd>\n" +
-        "\t\t<cim:WindContPType3IEC.zeta>" + zeta + "</cim:WindContPType3IEC.zeta>\n" +
-        (if (null != WindTurbineType3IEC) "\t\t<cim:WindContPType3IEC.WindTurbineType3IEC rdf:resource=\"#" + WindTurbineType3IEC + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = WindContPType3IEC.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindContPType3IEC.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindContPType3IEC.fields (position), value)
+        emitelem (0, dpmax)
+        emitelem (1, dprefmax)
+        emitelem (2, dprefmin)
+        emitelem (3, dthetamax)
+        emitelem (4, dthetamaxuvrt)
+        emitelem (5, kdtd)
+        emitelem (6, kip)
+        emitelem (7, kpp)
+        emitelem (8, mpuvrt)
+        emitelem (9, omegaoffset)
+        emitelem (10, pdtdmax)
+        emitelem (11, tdvs)
+        emitelem (12, thetaemin)
+        emitelem (13, thetauscale)
+        emitelem (14, tomegafiltp3)
+        emitelem (15, tpfiltp3)
+        emitelem (16, tpord)
+        emitelem (17, tufiltp3)
+        emitelem (18, twref)
+        emitelem (19, udvs)
+        emitelem (20, updip)
+        emitelem (21, wdtd)
+        emitelem (22, zeta)
+        emitattr (23, WindTurbineType3IEC)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:WindContPType3IEC rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:WindContPType3IEC>"
+        "\t<cim:WindContPType3IEC rdf:ID=\"%s\">\n%s\t</cim:WindContPType3IEC>".format (id, export_fields)
     }
 }
 
@@ -589,62 +689,95 @@ object WindContPType3IEC
 extends
     Parseable[WindContPType3IEC]
 {
-    val dpmax = parse_element (element ("""WindContPType3IEC.dpmax"""))
-    val dprefmax = parse_element (element ("""WindContPType3IEC.dprefmax"""))
-    val dprefmin = parse_element (element ("""WindContPType3IEC.dprefmin"""))
-    val dthetamax = parse_element (element ("""WindContPType3IEC.dthetamax"""))
-    val dthetamaxuvrt = parse_element (element ("""WindContPType3IEC.dthetamaxuvrt"""))
-    val kdtd = parse_element (element ("""WindContPType3IEC.kdtd"""))
-    val kip = parse_element (element ("""WindContPType3IEC.kip"""))
-    val kpp = parse_element (element ("""WindContPType3IEC.kpp"""))
-    val mpuvrt = parse_element (element ("""WindContPType3IEC.mpuvrt"""))
-    val omegaoffset = parse_element (element ("""WindContPType3IEC.omegaoffset"""))
-    val pdtdmax = parse_element (element ("""WindContPType3IEC.pdtdmax"""))
-    val tdvs = parse_element (element ("""WindContPType3IEC.tdvs"""))
-    val thetaemin = parse_element (element ("""WindContPType3IEC.thetaemin"""))
-    val thetauscale = parse_element (element ("""WindContPType3IEC.thetauscale"""))
-    val tomegafiltp3 = parse_element (element ("""WindContPType3IEC.tomegafiltp3"""))
-    val tpfiltp3 = parse_element (element ("""WindContPType3IEC.tpfiltp3"""))
-    val tpord = parse_element (element ("""WindContPType3IEC.tpord"""))
-    val tufiltp3 = parse_element (element ("""WindContPType3IEC.tufiltp3"""))
-    val twref = parse_element (element ("""WindContPType3IEC.twref"""))
-    val udvs = parse_element (element ("""WindContPType3IEC.udvs"""))
-    val updip = parse_element (element ("""WindContPType3IEC.updip"""))
-    val wdtd = parse_element (element ("""WindContPType3IEC.wdtd"""))
-    val zeta = parse_element (element ("""WindContPType3IEC.zeta"""))
-    val WindTurbineType3IEC = parse_attribute (attribute ("""WindContPType3IEC.WindTurbineType3IEC"""))
+    val fields: Array[String] = Array[String] (
+        "dpmax",
+        "dprefmax",
+        "dprefmin",
+        "dthetamax",
+        "dthetamaxuvrt",
+        "kdtd",
+        "kip",
+        "kpp",
+        "mpuvrt",
+        "omegaoffset",
+        "pdtdmax",
+        "tdvs",
+        "thetaemin",
+        "thetauscale",
+        "tomegafiltp3",
+        "tpfiltp3",
+        "tpord",
+        "tufiltp3",
+        "twref",
+        "udvs",
+        "updip",
+        "wdtd",
+        "zeta",
+        "WindTurbineType3IEC"
+    )
+    val dpmax: Fielder = parse_element (element (cls, fields(0)))
+    val dprefmax: Fielder = parse_element (element (cls, fields(1)))
+    val dprefmin: Fielder = parse_element (element (cls, fields(2)))
+    val dthetamax: Fielder = parse_element (element (cls, fields(3)))
+    val dthetamaxuvrt: Fielder = parse_element (element (cls, fields(4)))
+    val kdtd: Fielder = parse_element (element (cls, fields(5)))
+    val kip: Fielder = parse_element (element (cls, fields(6)))
+    val kpp: Fielder = parse_element (element (cls, fields(7)))
+    val mpuvrt: Fielder = parse_element (element (cls, fields(8)))
+    val omegaoffset: Fielder = parse_element (element (cls, fields(9)))
+    val pdtdmax: Fielder = parse_element (element (cls, fields(10)))
+    val tdvs: Fielder = parse_element (element (cls, fields(11)))
+    val thetaemin: Fielder = parse_element (element (cls, fields(12)))
+    val thetauscale: Fielder = parse_element (element (cls, fields(13)))
+    val tomegafiltp3: Fielder = parse_element (element (cls, fields(14)))
+    val tpfiltp3: Fielder = parse_element (element (cls, fields(15)))
+    val tpord: Fielder = parse_element (element (cls, fields(16)))
+    val tufiltp3: Fielder = parse_element (element (cls, fields(17)))
+    val twref: Fielder = parse_element (element (cls, fields(18)))
+    val udvs: Fielder = parse_element (element (cls, fields(19)))
+    val updip: Fielder = parse_element (element (cls, fields(20)))
+    val wdtd: Fielder = parse_element (element (cls, fields(21)))
+    val zeta: Fielder = parse_element (element (cls, fields(22)))
+    val WindTurbineType3IEC: Fielder = parse_attribute (attribute (cls, fields(23)))
+
     def parse (context: Context): WindContPType3IEC =
     {
-        WindContPType3IEC(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = WindContPType3IEC (
             IdentifiedObject.parse (context),
-            toDouble (dpmax (context), context),
-            toDouble (dprefmax (context), context),
-            toDouble (dprefmin (context), context),
-            toDouble (dthetamax (context), context),
-            toDouble (dthetamaxuvrt (context), context),
-            toDouble (kdtd (context), context),
-            toDouble (kip (context), context),
-            toDouble (kpp (context), context),
-            toBoolean (mpuvrt (context), context),
-            toDouble (omegaoffset (context), context),
-            toDouble (pdtdmax (context), context),
-            toDouble (tdvs (context), context),
-            toDouble (thetaemin (context), context),
-            toDouble (thetauscale (context), context),
-            toDouble (tomegafiltp3 (context), context),
-            toDouble (tpfiltp3 (context), context),
-            toDouble (tpord (context), context),
-            toDouble (tufiltp3 (context), context),
-            toDouble (twref (context), context),
-            toDouble (udvs (context), context),
-            toDouble (updip (context), context),
-            toDouble (wdtd (context), context),
-            toDouble (zeta (context), context),
-            WindTurbineType3IEC (context)
+            toDouble (mask (dpmax (), 0)),
+            toDouble (mask (dprefmax (), 1)),
+            toDouble (mask (dprefmin (), 2)),
+            toDouble (mask (dthetamax (), 3)),
+            toDouble (mask (dthetamaxuvrt (), 4)),
+            toDouble (mask (kdtd (), 5)),
+            toDouble (mask (kip (), 6)),
+            toDouble (mask (kpp (), 7)),
+            toBoolean (mask (mpuvrt (), 8)),
+            toDouble (mask (omegaoffset (), 9)),
+            toDouble (mask (pdtdmax (), 10)),
+            toDouble (mask (tdvs (), 11)),
+            toDouble (mask (thetaemin (), 12)),
+            toDouble (mask (thetauscale (), 13)),
+            toDouble (mask (tomegafiltp3 (), 14)),
+            toDouble (mask (tpfiltp3 (), 15)),
+            toDouble (mask (tpord (), 16)),
+            toDouble (mask (tufiltp3 (), 17)),
+            toDouble (mask (twref (), 18)),
+            toDouble (mask (udvs (), 19)),
+            toDouble (mask (updip (), 20)),
+            toDouble (mask (wdtd (), 21)),
+            toDouble (mask (zeta (), 22)),
+            mask (WindTurbineType3IEC (), 23)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("WindTurbineType3IEC", "WindTurbineType3IEC", false))
+        Relationship ("WindTurbineType3IEC", "WindTurbineType3IEC", false)
+    )
 }
 
 /**
@@ -690,6 +823,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -709,17 +848,20 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:WindContPType4aIEC.dpmaxp4a>" + dpmaxp4a + "</cim:WindContPType4aIEC.dpmaxp4a>\n" +
-        "\t\t<cim:WindContPType4aIEC.tpordp4a>" + tpordp4a + "</cim:WindContPType4aIEC.tpordp4a>\n" +
-        "\t\t<cim:WindContPType4aIEC.tufiltp4a>" + tufiltp4a + "</cim:WindContPType4aIEC.tufiltp4a>\n" +
-        (if (null != WindTurbineType4aIEC) "\t\t<cim:WindContPType4aIEC.WindTurbineType4aIEC rdf:resource=\"#" + WindTurbineType4aIEC + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = WindContPType4aIEC.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindContPType4aIEC.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindContPType4aIEC.fields (position), value)
+        emitelem (0, dpmaxp4a)
+        emitelem (1, tpordp4a)
+        emitelem (2, tufiltp4a)
+        emitattr (3, WindTurbineType4aIEC)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:WindContPType4aIEC rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:WindContPType4aIEC>"
+        "\t<cim:WindContPType4aIEC rdf:ID=\"%s\">\n%s\t</cim:WindContPType4aIEC>".format (id, export_fields)
     }
 }
 
@@ -727,22 +869,35 @@ object WindContPType4aIEC
 extends
     Parseable[WindContPType4aIEC]
 {
-    val dpmaxp4a = parse_element (element ("""WindContPType4aIEC.dpmaxp4a"""))
-    val tpordp4a = parse_element (element ("""WindContPType4aIEC.tpordp4a"""))
-    val tufiltp4a = parse_element (element ("""WindContPType4aIEC.tufiltp4a"""))
-    val WindTurbineType4aIEC = parse_attribute (attribute ("""WindContPType4aIEC.WindTurbineType4aIEC"""))
+    val fields: Array[String] = Array[String] (
+        "dpmaxp4a",
+        "tpordp4a",
+        "tufiltp4a",
+        "WindTurbineType4aIEC"
+    )
+    val dpmaxp4a: Fielder = parse_element (element (cls, fields(0)))
+    val tpordp4a: Fielder = parse_element (element (cls, fields(1)))
+    val tufiltp4a: Fielder = parse_element (element (cls, fields(2)))
+    val WindTurbineType4aIEC: Fielder = parse_attribute (attribute (cls, fields(3)))
+
     def parse (context: Context): WindContPType4aIEC =
     {
-        WindContPType4aIEC(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = WindContPType4aIEC (
             IdentifiedObject.parse (context),
-            toDouble (dpmaxp4a (context), context),
-            toDouble (tpordp4a (context), context),
-            toDouble (tufiltp4a (context), context),
-            WindTurbineType4aIEC (context)
+            toDouble (mask (dpmaxp4a (), 0)),
+            toDouble (mask (tpordp4a (), 1)),
+            toDouble (mask (tufiltp4a (), 2)),
+            mask (WindTurbineType4aIEC (), 3)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("WindTurbineType4aIEC", "WindTurbineType4aIEC", false))
+        Relationship ("WindTurbineType4aIEC", "WindTurbineType4aIEC", false)
+    )
 }
 
 /**
@@ -791,6 +946,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -810,18 +971,21 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:WindContPType4bIEC.dpmaxp4b>" + dpmaxp4b + "</cim:WindContPType4bIEC.dpmaxp4b>\n" +
-        "\t\t<cim:WindContPType4bIEC.tpaero>" + tpaero + "</cim:WindContPType4bIEC.tpaero>\n" +
-        "\t\t<cim:WindContPType4bIEC.tpordp4b>" + tpordp4b + "</cim:WindContPType4bIEC.tpordp4b>\n" +
-        "\t\t<cim:WindContPType4bIEC.tufiltp4b>" + tufiltp4b + "</cim:WindContPType4bIEC.tufiltp4b>\n" +
-        (if (null != WindTurbineType4bIEC) "\t\t<cim:WindContPType4bIEC.WindTurbineType4bIEC rdf:resource=\"#" + WindTurbineType4bIEC + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = WindContPType4bIEC.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindContPType4bIEC.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindContPType4bIEC.fields (position), value)
+        emitelem (0, dpmaxp4b)
+        emitelem (1, tpaero)
+        emitelem (2, tpordp4b)
+        emitelem (3, tufiltp4b)
+        emitattr (4, WindTurbineType4bIEC)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:WindContPType4bIEC rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:WindContPType4bIEC>"
+        "\t<cim:WindContPType4bIEC rdf:ID=\"%s\">\n%s\t</cim:WindContPType4bIEC>".format (id, export_fields)
     }
 }
 
@@ -829,24 +993,38 @@ object WindContPType4bIEC
 extends
     Parseable[WindContPType4bIEC]
 {
-    val dpmaxp4b = parse_element (element ("""WindContPType4bIEC.dpmaxp4b"""))
-    val tpaero = parse_element (element ("""WindContPType4bIEC.tpaero"""))
-    val tpordp4b = parse_element (element ("""WindContPType4bIEC.tpordp4b"""))
-    val tufiltp4b = parse_element (element ("""WindContPType4bIEC.tufiltp4b"""))
-    val WindTurbineType4bIEC = parse_attribute (attribute ("""WindContPType4bIEC.WindTurbineType4bIEC"""))
+    val fields: Array[String] = Array[String] (
+        "dpmaxp4b",
+        "tpaero",
+        "tpordp4b",
+        "tufiltp4b",
+        "WindTurbineType4bIEC"
+    )
+    val dpmaxp4b: Fielder = parse_element (element (cls, fields(0)))
+    val tpaero: Fielder = parse_element (element (cls, fields(1)))
+    val tpordp4b: Fielder = parse_element (element (cls, fields(2)))
+    val tufiltp4b: Fielder = parse_element (element (cls, fields(3)))
+    val WindTurbineType4bIEC: Fielder = parse_attribute (attribute (cls, fields(4)))
+
     def parse (context: Context): WindContPType4bIEC =
     {
-        WindContPType4bIEC(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = WindContPType4bIEC (
             IdentifiedObject.parse (context),
-            toDouble (dpmaxp4b (context), context),
-            toDouble (tpaero (context), context),
-            toDouble (tpordp4b (context), context),
-            toDouble (tufiltp4b (context), context),
-            WindTurbineType4bIEC (context)
+            toDouble (mask (dpmaxp4b (), 0)),
+            toDouble (mask (tpaero (), 1)),
+            toDouble (mask (tpordp4b (), 2)),
+            toDouble (mask (tufiltp4b (), 3)),
+            mask (WindTurbineType4bIEC (), 4)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("WindTurbineType4bIEC", "WindTurbineType4bIEC", false))
+        Relationship ("WindTurbineType4bIEC", "WindTurbineType4bIEC", false)
+    )
 }
 
 /**
@@ -913,6 +1091,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -932,24 +1116,27 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:WindContPitchAngleIEC.dthetamax>" + dthetamax + "</cim:WindContPitchAngleIEC.dthetamax>\n" +
-        "\t\t<cim:WindContPitchAngleIEC.dthetamin>" + dthetamin + "</cim:WindContPitchAngleIEC.dthetamin>\n" +
-        "\t\t<cim:WindContPitchAngleIEC.kic>" + kic + "</cim:WindContPitchAngleIEC.kic>\n" +
-        "\t\t<cim:WindContPitchAngleIEC.kiomega>" + kiomega + "</cim:WindContPitchAngleIEC.kiomega>\n" +
-        "\t\t<cim:WindContPitchAngleIEC.kpc>" + kpc + "</cim:WindContPitchAngleIEC.kpc>\n" +
-        "\t\t<cim:WindContPitchAngleIEC.kpomega>" + kpomega + "</cim:WindContPitchAngleIEC.kpomega>\n" +
-        "\t\t<cim:WindContPitchAngleIEC.kpx>" + kpx + "</cim:WindContPitchAngleIEC.kpx>\n" +
-        "\t\t<cim:WindContPitchAngleIEC.thetamax>" + thetamax + "</cim:WindContPitchAngleIEC.thetamax>\n" +
-        "\t\t<cim:WindContPitchAngleIEC.thetamin>" + thetamin + "</cim:WindContPitchAngleIEC.thetamin>\n" +
-        "\t\t<cim:WindContPitchAngleIEC.ttheta>" + ttheta + "</cim:WindContPitchAngleIEC.ttheta>\n" +
-        (if (null != WindTurbineType3IEC) "\t\t<cim:WindContPitchAngleIEC.WindTurbineType3IEC rdf:resource=\"#" + WindTurbineType3IEC + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = WindContPitchAngleIEC.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindContPitchAngleIEC.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindContPitchAngleIEC.fields (position), value)
+        emitelem (0, dthetamax)
+        emitelem (1, dthetamin)
+        emitelem (2, kic)
+        emitelem (3, kiomega)
+        emitelem (4, kpc)
+        emitelem (5, kpomega)
+        emitelem (6, kpx)
+        emitelem (7, thetamax)
+        emitelem (8, thetamin)
+        emitelem (9, ttheta)
+        emitattr (10, WindTurbineType3IEC)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:WindContPitchAngleIEC rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:WindContPitchAngleIEC>"
+        "\t<cim:WindContPitchAngleIEC rdf:ID=\"%s\">\n%s\t</cim:WindContPitchAngleIEC>".format (id, export_fields)
     }
 }
 
@@ -957,36 +1144,56 @@ object WindContPitchAngleIEC
 extends
     Parseable[WindContPitchAngleIEC]
 {
-    val dthetamax = parse_element (element ("""WindContPitchAngleIEC.dthetamax"""))
-    val dthetamin = parse_element (element ("""WindContPitchAngleIEC.dthetamin"""))
-    val kic = parse_element (element ("""WindContPitchAngleIEC.kic"""))
-    val kiomega = parse_element (element ("""WindContPitchAngleIEC.kiomega"""))
-    val kpc = parse_element (element ("""WindContPitchAngleIEC.kpc"""))
-    val kpomega = parse_element (element ("""WindContPitchAngleIEC.kpomega"""))
-    val kpx = parse_element (element ("""WindContPitchAngleIEC.kpx"""))
-    val thetamax = parse_element (element ("""WindContPitchAngleIEC.thetamax"""))
-    val thetamin = parse_element (element ("""WindContPitchAngleIEC.thetamin"""))
-    val ttheta = parse_element (element ("""WindContPitchAngleIEC.ttheta"""))
-    val WindTurbineType3IEC = parse_attribute (attribute ("""WindContPitchAngleIEC.WindTurbineType3IEC"""))
+    val fields: Array[String] = Array[String] (
+        "dthetamax",
+        "dthetamin",
+        "kic",
+        "kiomega",
+        "kpc",
+        "kpomega",
+        "kpx",
+        "thetamax",
+        "thetamin",
+        "ttheta",
+        "WindTurbineType3IEC"
+    )
+    val dthetamax: Fielder = parse_element (element (cls, fields(0)))
+    val dthetamin: Fielder = parse_element (element (cls, fields(1)))
+    val kic: Fielder = parse_element (element (cls, fields(2)))
+    val kiomega: Fielder = parse_element (element (cls, fields(3)))
+    val kpc: Fielder = parse_element (element (cls, fields(4)))
+    val kpomega: Fielder = parse_element (element (cls, fields(5)))
+    val kpx: Fielder = parse_element (element (cls, fields(6)))
+    val thetamax: Fielder = parse_element (element (cls, fields(7)))
+    val thetamin: Fielder = parse_element (element (cls, fields(8)))
+    val ttheta: Fielder = parse_element (element (cls, fields(9)))
+    val WindTurbineType3IEC: Fielder = parse_attribute (attribute (cls, fields(10)))
+
     def parse (context: Context): WindContPitchAngleIEC =
     {
-        WindContPitchAngleIEC(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = WindContPitchAngleIEC (
             IdentifiedObject.parse (context),
-            toDouble (dthetamax (context), context),
-            toDouble (dthetamin (context), context),
-            toDouble (kic (context), context),
-            toDouble (kiomega (context), context),
-            toDouble (kpc (context), context),
-            toDouble (kpomega (context), context),
-            toDouble (kpx (context), context),
-            toDouble (thetamax (context), context),
-            toDouble (thetamin (context), context),
-            toDouble (ttheta (context), context),
-            WindTurbineType3IEC (context)
+            toDouble (mask (dthetamax (), 0)),
+            toDouble (mask (dthetamin (), 1)),
+            toDouble (mask (kic (), 2)),
+            toDouble (mask (kiomega (), 3)),
+            toDouble (mask (kpc (), 4)),
+            toDouble (mask (kpomega (), 5)),
+            toDouble (mask (kpx (), 6)),
+            toDouble (mask (thetamax (), 7)),
+            toDouble (mask (thetamin (), 8)),
+            toDouble (mask (ttheta (), 9)),
+            mask (WindTurbineType3IEC (), 10)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("WindTurbineType3IEC", "WindTurbineType3IEC", false))
+        Relationship ("WindTurbineType3IEC", "WindTurbineType3IEC", false)
+    )
 }
 
 /**
@@ -1092,6 +1299,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, null, 0.0, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -1111,37 +1324,40 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:WindContQIEC.iqh1>" + iqh1 + "</cim:WindContQIEC.iqh1>\n" +
-        "\t\t<cim:WindContQIEC.iqmax>" + iqmax + "</cim:WindContQIEC.iqmax>\n" +
-        "\t\t<cim:WindContQIEC.iqmin>" + iqmin + "</cim:WindContQIEC.iqmin>\n" +
-        "\t\t<cim:WindContQIEC.iqpost>" + iqpost + "</cim:WindContQIEC.iqpost>\n" +
-        "\t\t<cim:WindContQIEC.kiq>" + kiq + "</cim:WindContQIEC.kiq>\n" +
-        "\t\t<cim:WindContQIEC.kiu>" + kiu + "</cim:WindContQIEC.kiu>\n" +
-        "\t\t<cim:WindContQIEC.kpq>" + kpq + "</cim:WindContQIEC.kpq>\n" +
-        "\t\t<cim:WindContQIEC.kpu>" + kpu + "</cim:WindContQIEC.kpu>\n" +
-        "\t\t<cim:WindContQIEC.kqv>" + kqv + "</cim:WindContQIEC.kqv>\n" +
-        "\t\t<cim:WindContQIEC.rdroop>" + rdroop + "</cim:WindContQIEC.rdroop>\n" +
-        "\t\t<cim:WindContQIEC.tpfiltq>" + tpfiltq + "</cim:WindContQIEC.tpfiltq>\n" +
-        "\t\t<cim:WindContQIEC.tpost>" + tpost + "</cim:WindContQIEC.tpost>\n" +
-        "\t\t<cim:WindContQIEC.tqord>" + tqord + "</cim:WindContQIEC.tqord>\n" +
-        "\t\t<cim:WindContQIEC.tufiltq>" + tufiltq + "</cim:WindContQIEC.tufiltq>\n" +
-        "\t\t<cim:WindContQIEC.udb1>" + udb1 + "</cim:WindContQIEC.udb1>\n" +
-        "\t\t<cim:WindContQIEC.udb2>" + udb2 + "</cim:WindContQIEC.udb2>\n" +
-        "\t\t<cim:WindContQIEC.umax>" + umax + "</cim:WindContQIEC.umax>\n" +
-        "\t\t<cim:WindContQIEC.umin>" + umin + "</cim:WindContQIEC.umin>\n" +
-        "\t\t<cim:WindContQIEC.uqdip>" + uqdip + "</cim:WindContQIEC.uqdip>\n" +
-        "\t\t<cim:WindContQIEC.uref0>" + uref0 + "</cim:WindContQIEC.uref0>\n" +
-        (if (null != windQcontrolModesType) "\t\t<cim:WindContQIEC.windQcontrolModesType rdf:resource=\"#" + windQcontrolModesType + "\"/>\n" else "") +
-        (if (null != windUVRTQcontrolModesType) "\t\t<cim:WindContQIEC.windUVRTQcontrolModesType rdf:resource=\"#" + windUVRTQcontrolModesType + "\"/>\n" else "") +
-        "\t\t<cim:WindContQIEC.xdroop>" + xdroop + "</cim:WindContQIEC.xdroop>\n" +
-        (if (null != WindTurbineType3or4IEC) "\t\t<cim:WindContQIEC.WindTurbineType3or4IEC rdf:resource=\"#" + WindTurbineType3or4IEC + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = WindContQIEC.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindContQIEC.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindContQIEC.fields (position), value)
+        emitelem (0, iqh1)
+        emitelem (1, iqmax)
+        emitelem (2, iqmin)
+        emitelem (3, iqpost)
+        emitelem (4, kiq)
+        emitelem (5, kiu)
+        emitelem (6, kpq)
+        emitelem (7, kpu)
+        emitelem (8, kqv)
+        emitelem (9, rdroop)
+        emitelem (10, tpfiltq)
+        emitelem (11, tpost)
+        emitelem (12, tqord)
+        emitelem (13, tufiltq)
+        emitelem (14, udb1)
+        emitelem (15, udb2)
+        emitelem (16, umax)
+        emitelem (17, umin)
+        emitelem (18, uqdip)
+        emitelem (19, uref0)
+        emitattr (20, windQcontrolModesType)
+        emitattr (21, windUVRTQcontrolModesType)
+        emitelem (22, xdroop)
+        emitattr (23, WindTurbineType3or4IEC)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:WindContQIEC rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:WindContQIEC>"
+        "\t<cim:WindContQIEC rdf:ID=\"%s\">\n%s\t</cim:WindContQIEC>".format (id, export_fields)
     }
 }
 
@@ -1149,62 +1365,95 @@ object WindContQIEC
 extends
     Parseable[WindContQIEC]
 {
-    val iqh1 = parse_element (element ("""WindContQIEC.iqh1"""))
-    val iqmax = parse_element (element ("""WindContQIEC.iqmax"""))
-    val iqmin = parse_element (element ("""WindContQIEC.iqmin"""))
-    val iqpost = parse_element (element ("""WindContQIEC.iqpost"""))
-    val kiq = parse_element (element ("""WindContQIEC.kiq"""))
-    val kiu = parse_element (element ("""WindContQIEC.kiu"""))
-    val kpq = parse_element (element ("""WindContQIEC.kpq"""))
-    val kpu = parse_element (element ("""WindContQIEC.kpu"""))
-    val kqv = parse_element (element ("""WindContQIEC.kqv"""))
-    val rdroop = parse_element (element ("""WindContQIEC.rdroop"""))
-    val tpfiltq = parse_element (element ("""WindContQIEC.tpfiltq"""))
-    val tpost = parse_element (element ("""WindContQIEC.tpost"""))
-    val tqord = parse_element (element ("""WindContQIEC.tqord"""))
-    val tufiltq = parse_element (element ("""WindContQIEC.tufiltq"""))
-    val udb1 = parse_element (element ("""WindContQIEC.udb1"""))
-    val udb2 = parse_element (element ("""WindContQIEC.udb2"""))
-    val umax = parse_element (element ("""WindContQIEC.umax"""))
-    val umin = parse_element (element ("""WindContQIEC.umin"""))
-    val uqdip = parse_element (element ("""WindContQIEC.uqdip"""))
-    val uref0 = parse_element (element ("""WindContQIEC.uref0"""))
-    val windQcontrolModesType = parse_attribute (attribute ("""WindContQIEC.windQcontrolModesType"""))
-    val windUVRTQcontrolModesType = parse_attribute (attribute ("""WindContQIEC.windUVRTQcontrolModesType"""))
-    val xdroop = parse_element (element ("""WindContQIEC.xdroop"""))
-    val WindTurbineType3or4IEC = parse_attribute (attribute ("""WindContQIEC.WindTurbineType3or4IEC"""))
+    val fields: Array[String] = Array[String] (
+        "iqh1",
+        "iqmax",
+        "iqmin",
+        "iqpost",
+        "kiq",
+        "kiu",
+        "kpq",
+        "kpu",
+        "kqv",
+        "rdroop",
+        "tpfiltq",
+        "tpost",
+        "tqord",
+        "tufiltq",
+        "udb1",
+        "udb2",
+        "umax",
+        "umin",
+        "uqdip",
+        "uref0",
+        "windQcontrolModesType",
+        "windUVRTQcontrolModesType",
+        "xdroop",
+        "WindTurbineType3or4IEC"
+    )
+    val iqh1: Fielder = parse_element (element (cls, fields(0)))
+    val iqmax: Fielder = parse_element (element (cls, fields(1)))
+    val iqmin: Fielder = parse_element (element (cls, fields(2)))
+    val iqpost: Fielder = parse_element (element (cls, fields(3)))
+    val kiq: Fielder = parse_element (element (cls, fields(4)))
+    val kiu: Fielder = parse_element (element (cls, fields(5)))
+    val kpq: Fielder = parse_element (element (cls, fields(6)))
+    val kpu: Fielder = parse_element (element (cls, fields(7)))
+    val kqv: Fielder = parse_element (element (cls, fields(8)))
+    val rdroop: Fielder = parse_element (element (cls, fields(9)))
+    val tpfiltq: Fielder = parse_element (element (cls, fields(10)))
+    val tpost: Fielder = parse_element (element (cls, fields(11)))
+    val tqord: Fielder = parse_element (element (cls, fields(12)))
+    val tufiltq: Fielder = parse_element (element (cls, fields(13)))
+    val udb1: Fielder = parse_element (element (cls, fields(14)))
+    val udb2: Fielder = parse_element (element (cls, fields(15)))
+    val umax: Fielder = parse_element (element (cls, fields(16)))
+    val umin: Fielder = parse_element (element (cls, fields(17)))
+    val uqdip: Fielder = parse_element (element (cls, fields(18)))
+    val uref0: Fielder = parse_element (element (cls, fields(19)))
+    val windQcontrolModesType: Fielder = parse_attribute (attribute (cls, fields(20)))
+    val windUVRTQcontrolModesType: Fielder = parse_attribute (attribute (cls, fields(21)))
+    val xdroop: Fielder = parse_element (element (cls, fields(22)))
+    val WindTurbineType3or4IEC: Fielder = parse_attribute (attribute (cls, fields(23)))
+
     def parse (context: Context): WindContQIEC =
     {
-        WindContQIEC(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = WindContQIEC (
             IdentifiedObject.parse (context),
-            toDouble (iqh1 (context), context),
-            toDouble (iqmax (context), context),
-            toDouble (iqmin (context), context),
-            toDouble (iqpost (context), context),
-            toDouble (kiq (context), context),
-            toDouble (kiu (context), context),
-            toDouble (kpq (context), context),
-            toDouble (kpu (context), context),
-            toDouble (kqv (context), context),
-            toDouble (rdroop (context), context),
-            toDouble (tpfiltq (context), context),
-            toDouble (tpost (context), context),
-            toDouble (tqord (context), context),
-            toDouble (tufiltq (context), context),
-            toDouble (udb1 (context), context),
-            toDouble (udb2 (context), context),
-            toDouble (umax (context), context),
-            toDouble (umin (context), context),
-            toDouble (uqdip (context), context),
-            toDouble (uref0 (context), context),
-            windQcontrolModesType (context),
-            windUVRTQcontrolModesType (context),
-            toDouble (xdroop (context), context),
-            WindTurbineType3or4IEC (context)
+            toDouble (mask (iqh1 (), 0)),
+            toDouble (mask (iqmax (), 1)),
+            toDouble (mask (iqmin (), 2)),
+            toDouble (mask (iqpost (), 3)),
+            toDouble (mask (kiq (), 4)),
+            toDouble (mask (kiu (), 5)),
+            toDouble (mask (kpq (), 6)),
+            toDouble (mask (kpu (), 7)),
+            toDouble (mask (kqv (), 8)),
+            toDouble (mask (rdroop (), 9)),
+            toDouble (mask (tpfiltq (), 10)),
+            toDouble (mask (tpost (), 11)),
+            toDouble (mask (tqord (), 12)),
+            toDouble (mask (tufiltq (), 13)),
+            toDouble (mask (udb1 (), 14)),
+            toDouble (mask (udb2 (), 15)),
+            toDouble (mask (umax (), 16)),
+            toDouble (mask (umin (), 17)),
+            toDouble (mask (uqdip (), 18)),
+            toDouble (mask (uref0 (), 19)),
+            mask (windQcontrolModesType (), 20),
+            mask (windUVRTQcontrolModesType (), 21),
+            toDouble (mask (xdroop (), 22)),
+            mask (WindTurbineType3or4IEC (), 23)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("WindTurbineType3or4IEC", "WindTurbineType3or4IEC", false))
+        Relationship ("WindTurbineType3or4IEC", "WindTurbineType3or4IEC", false)
+    )
 }
 
 /**
@@ -1247,6 +1496,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -1266,16 +1521,19 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:WindContQLimIEC.qmax>" + qmax + "</cim:WindContQLimIEC.qmax>\n" +
-        "\t\t<cim:WindContQLimIEC.qmin>" + qmin + "</cim:WindContQLimIEC.qmin>\n" +
-        (if (null != WindTurbineType3or4IEC) "\t\t<cim:WindContQLimIEC.WindTurbineType3or4IEC rdf:resource=\"#" + WindTurbineType3or4IEC + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = WindContQLimIEC.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindContQLimIEC.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindContQLimIEC.fields (position), value)
+        emitelem (0, qmax)
+        emitelem (1, qmin)
+        emitattr (2, WindTurbineType3or4IEC)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:WindContQLimIEC rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:WindContQLimIEC>"
+        "\t<cim:WindContQLimIEC rdf:ID=\"%s\">\n%s\t</cim:WindContQLimIEC>".format (id, export_fields)
     }
 }
 
@@ -1283,20 +1541,32 @@ object WindContQLimIEC
 extends
     Parseable[WindContQLimIEC]
 {
-    val qmax = parse_element (element ("""WindContQLimIEC.qmax"""))
-    val qmin = parse_element (element ("""WindContQLimIEC.qmin"""))
-    val WindTurbineType3or4IEC = parse_attribute (attribute ("""WindContQLimIEC.WindTurbineType3or4IEC"""))
+    val fields: Array[String] = Array[String] (
+        "qmax",
+        "qmin",
+        "WindTurbineType3or4IEC"
+    )
+    val qmax: Fielder = parse_element (element (cls, fields(0)))
+    val qmin: Fielder = parse_element (element (cls, fields(1)))
+    val WindTurbineType3or4IEC: Fielder = parse_attribute (attribute (cls, fields(2)))
+
     def parse (context: Context): WindContQLimIEC =
     {
-        WindContQLimIEC(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = WindContQLimIEC (
             IdentifiedObject.parse (context),
-            toDouble (qmax (context), context),
-            toDouble (qmin (context), context),
-            WindTurbineType3or4IEC (context)
+            toDouble (mask (qmax (), 0)),
+            toDouble (mask (qmin (), 1)),
+            mask (WindTurbineType3or4IEC (), 2)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("WindTurbineType3or4IEC", "WindTurbineType3or4IEC", false))
+        Relationship ("WindTurbineType3or4IEC", "WindTurbineType3or4IEC", false)
+    )
 }
 
 /**
@@ -1339,6 +1609,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -1358,16 +1634,19 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:WindContQPQULimIEC.tpfiltql>" + tpfiltql + "</cim:WindContQPQULimIEC.tpfiltql>\n" +
-        "\t\t<cim:WindContQPQULimIEC.tufiltql>" + tufiltql + "</cim:WindContQPQULimIEC.tufiltql>\n" +
-        (if (null != WindTurbineType3or4IEC) "\t\t<cim:WindContQPQULimIEC.WindTurbineType3or4IEC rdf:resource=\"#" + WindTurbineType3or4IEC + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = WindContQPQULimIEC.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindContQPQULimIEC.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindContQPQULimIEC.fields (position), value)
+        emitelem (0, tpfiltql)
+        emitelem (1, tufiltql)
+        emitattr (2, WindTurbineType3or4IEC)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:WindContQPQULimIEC rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:WindContQPQULimIEC>"
+        "\t<cim:WindContQPQULimIEC rdf:ID=\"%s\">\n%s\t</cim:WindContQPQULimIEC>".format (id, export_fields)
     }
 }
 
@@ -1375,20 +1654,32 @@ object WindContQPQULimIEC
 extends
     Parseable[WindContQPQULimIEC]
 {
-    val tpfiltql = parse_element (element ("""WindContQPQULimIEC.tpfiltql"""))
-    val tufiltql = parse_element (element ("""WindContQPQULimIEC.tufiltql"""))
-    val WindTurbineType3or4IEC = parse_attribute (attribute ("""WindContQPQULimIEC.WindTurbineType3or4IEC"""))
+    val fields: Array[String] = Array[String] (
+        "tpfiltql",
+        "tufiltql",
+        "WindTurbineType3or4IEC"
+    )
+    val tpfiltql: Fielder = parse_element (element (cls, fields(0)))
+    val tufiltql: Fielder = parse_element (element (cls, fields(1)))
+    val WindTurbineType3or4IEC: Fielder = parse_attribute (attribute (cls, fields(2)))
+
     def parse (context: Context): WindContQPQULimIEC =
     {
-        WindContQPQULimIEC(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = WindContQPQULimIEC (
             IdentifiedObject.parse (context),
-            toDouble (tpfiltql (context), context),
-            toDouble (tufiltql (context), context),
-            WindTurbineType3or4IEC (context)
+            toDouble (mask (tpfiltql (), 0)),
+            toDouble (mask (tufiltql (), 1)),
+            mask (WindTurbineType3or4IEC (), 2)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("WindTurbineType3or4IEC", "WindTurbineType3or4IEC", false))
+        Relationship ("WindTurbineType3or4IEC", "WindTurbineType3or4IEC", false)
+    )
 }
 
 /**
@@ -1449,6 +1740,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -1468,22 +1765,25 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:WindContRotorRIEC.kirr>" + kirr + "</cim:WindContRotorRIEC.kirr>\n" +
-        "\t\t<cim:WindContRotorRIEC.komegafilt>" + komegafilt + "</cim:WindContRotorRIEC.komegafilt>\n" +
-        "\t\t<cim:WindContRotorRIEC.kpfilt>" + kpfilt + "</cim:WindContRotorRIEC.kpfilt>\n" +
-        "\t\t<cim:WindContRotorRIEC.kprr>" + kprr + "</cim:WindContRotorRIEC.kprr>\n" +
-        "\t\t<cim:WindContRotorRIEC.rmax>" + rmax + "</cim:WindContRotorRIEC.rmax>\n" +
-        "\t\t<cim:WindContRotorRIEC.rmin>" + rmin + "</cim:WindContRotorRIEC.rmin>\n" +
-        "\t\t<cim:WindContRotorRIEC.tomegafiltrr>" + tomegafiltrr + "</cim:WindContRotorRIEC.tomegafiltrr>\n" +
-        "\t\t<cim:WindContRotorRIEC.tpfiltrr>" + tpfiltrr + "</cim:WindContRotorRIEC.tpfiltrr>\n" +
-        (if (null != WindGenTurbineType2IEC) "\t\t<cim:WindContRotorRIEC.WindGenTurbineType2IEC rdf:resource=\"#" + WindGenTurbineType2IEC + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = WindContRotorRIEC.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindContRotorRIEC.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindContRotorRIEC.fields (position), value)
+        emitelem (0, kirr)
+        emitelem (1, komegafilt)
+        emitelem (2, kpfilt)
+        emitelem (3, kprr)
+        emitelem (4, rmax)
+        emitelem (5, rmin)
+        emitelem (6, tomegafiltrr)
+        emitelem (7, tpfiltrr)
+        emitattr (8, WindGenTurbineType2IEC)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:WindContRotorRIEC rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:WindContRotorRIEC>"
+        "\t<cim:WindContRotorRIEC rdf:ID=\"%s\">\n%s\t</cim:WindContRotorRIEC>".format (id, export_fields)
     }
 }
 
@@ -1491,32 +1791,50 @@ object WindContRotorRIEC
 extends
     Parseable[WindContRotorRIEC]
 {
-    val kirr = parse_element (element ("""WindContRotorRIEC.kirr"""))
-    val komegafilt = parse_element (element ("""WindContRotorRIEC.komegafilt"""))
-    val kpfilt = parse_element (element ("""WindContRotorRIEC.kpfilt"""))
-    val kprr = parse_element (element ("""WindContRotorRIEC.kprr"""))
-    val rmax = parse_element (element ("""WindContRotorRIEC.rmax"""))
-    val rmin = parse_element (element ("""WindContRotorRIEC.rmin"""))
-    val tomegafiltrr = parse_element (element ("""WindContRotorRIEC.tomegafiltrr"""))
-    val tpfiltrr = parse_element (element ("""WindContRotorRIEC.tpfiltrr"""))
-    val WindGenTurbineType2IEC = parse_attribute (attribute ("""WindContRotorRIEC.WindGenTurbineType2IEC"""))
+    val fields: Array[String] = Array[String] (
+        "kirr",
+        "komegafilt",
+        "kpfilt",
+        "kprr",
+        "rmax",
+        "rmin",
+        "tomegafiltrr",
+        "tpfiltrr",
+        "WindGenTurbineType2IEC"
+    )
+    val kirr: Fielder = parse_element (element (cls, fields(0)))
+    val komegafilt: Fielder = parse_element (element (cls, fields(1)))
+    val kpfilt: Fielder = parse_element (element (cls, fields(2)))
+    val kprr: Fielder = parse_element (element (cls, fields(3)))
+    val rmax: Fielder = parse_element (element (cls, fields(4)))
+    val rmin: Fielder = parse_element (element (cls, fields(5)))
+    val tomegafiltrr: Fielder = parse_element (element (cls, fields(6)))
+    val tpfiltrr: Fielder = parse_element (element (cls, fields(7)))
+    val WindGenTurbineType2IEC: Fielder = parse_attribute (attribute (cls, fields(8)))
+
     def parse (context: Context): WindContRotorRIEC =
     {
-        WindContRotorRIEC(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = WindContRotorRIEC (
             IdentifiedObject.parse (context),
-            toDouble (kirr (context), context),
-            toDouble (komegafilt (context), context),
-            toDouble (kpfilt (context), context),
-            toDouble (kprr (context), context),
-            toDouble (rmax (context), context),
-            toDouble (rmin (context), context),
-            toDouble (tomegafiltrr (context), context),
-            toDouble (tpfiltrr (context), context),
-            WindGenTurbineType2IEC (context)
+            toDouble (mask (kirr (), 0)),
+            toDouble (mask (komegafilt (), 1)),
+            toDouble (mask (kpfilt (), 2)),
+            toDouble (mask (kprr (), 3)),
+            toDouble (mask (rmax (), 4)),
+            toDouble (mask (rmin (), 5)),
+            toDouble (mask (tomegafiltrr (), 6)),
+            toDouble (mask (tpfiltrr (), 7)),
+            mask (WindGenTurbineType2IEC (), 8)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("WindGenTurbineType2IEC", "WindGenTurbineType2IEC", false))
+        Relationship ("WindGenTurbineType2IEC", "WindGenTurbineType2IEC", false)
+    )
 }
 
 /**
@@ -1575,6 +1893,12 @@ extends
      */
     def this () = { this (null, 0.0, null, 0.0, 0, null, null, null, null, null, null, null, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -1594,26 +1918,29 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:WindDynamicsLookupTable.input>" + input + "</cim:WindDynamicsLookupTable.input>\n" +
-        (if (null != lookupTableFunctionType) "\t\t<cim:WindDynamicsLookupTable.lookupTableFunctionType rdf:resource=\"#" + lookupTableFunctionType + "\"/>\n" else "") +
-        "\t\t<cim:WindDynamicsLookupTable.output>" + output + "</cim:WindDynamicsLookupTable.output>\n" +
-        "\t\t<cim:WindDynamicsLookupTable.sequence>" + sequence + "</cim:WindDynamicsLookupTable.sequence>\n" +
-        (if (null != WindContCurrLimIEC) "\t\t<cim:WindDynamicsLookupTable.WindContCurrLimIEC rdf:resource=\"#" + WindContCurrLimIEC + "\"/>\n" else "") +
-        (if (null != WindContPType3IEC) "\t\t<cim:WindDynamicsLookupTable.WindContPType3IEC rdf:resource=\"#" + WindContPType3IEC + "\"/>\n" else "") +
-        (if (null != WindContQPQULimIEC) "\t\t<cim:WindDynamicsLookupTable.WindContQPQULimIEC rdf:resource=\"#" + WindContQPQULimIEC + "\"/>\n" else "") +
-        (if (null != WindContRotorRIEC) "\t\t<cim:WindDynamicsLookupTable.WindContRotorRIEC rdf:resource=\"#" + WindContRotorRIEC + "\"/>\n" else "") +
-        (if (null != WindGenType3bIEC) "\t\t<cim:WindDynamicsLookupTable.WindGenType3bIEC rdf:resource=\"#" + WindGenType3bIEC + "\"/>\n" else "") +
-        (if (null != WindPitchContPowerIEC) "\t\t<cim:WindDynamicsLookupTable.WindPitchContPowerIEC rdf:resource=\"#" + WindPitchContPowerIEC + "\"/>\n" else "") +
-        (if (null != WindPlantFreqPcontrolIEC) "\t\t<cim:WindDynamicsLookupTable.WindPlantFreqPcontrolIEC rdf:resource=\"#" + WindPlantFreqPcontrolIEC + "\"/>\n" else "") +
-        (if (null != WindPlantReactiveControlIEC) "\t\t<cim:WindDynamicsLookupTable.WindPlantReactiveControlIEC rdf:resource=\"#" + WindPlantReactiveControlIEC + "\"/>\n" else "") +
-        (if (null != WindProtectionIEC) "\t\t<cim:WindDynamicsLookupTable.WindProtectionIEC rdf:resource=\"#" + WindProtectionIEC + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = WindDynamicsLookupTable.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindDynamicsLookupTable.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindDynamicsLookupTable.fields (position), value)
+        emitelem (0, input)
+        emitattr (1, lookupTableFunctionType)
+        emitelem (2, output)
+        emitelem (3, sequence)
+        emitattr (4, WindContCurrLimIEC)
+        emitattr (5, WindContPType3IEC)
+        emitattr (6, WindContQPQULimIEC)
+        emitattr (7, WindContRotorRIEC)
+        emitattr (8, WindGenType3bIEC)
+        emitattr (9, WindPitchContPowerIEC)
+        emitattr (10, WindPlantFreqPcontrolIEC)
+        emitattr (11, WindPlantReactiveControlIEC)
+        emitattr (12, WindProtectionIEC)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:WindDynamicsLookupTable rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:WindDynamicsLookupTable>"
+        "\t<cim:WindDynamicsLookupTable rdf:ID=\"%s\">\n%s\t</cim:WindDynamicsLookupTable>".format (id, export_fields)
     }
 }
 
@@ -1621,37 +1948,58 @@ object WindDynamicsLookupTable
 extends
     Parseable[WindDynamicsLookupTable]
 {
-    val input = parse_element (element ("""WindDynamicsLookupTable.input"""))
-    val lookupTableFunctionType = parse_attribute (attribute ("""WindDynamicsLookupTable.lookupTableFunctionType"""))
-    val output = parse_element (element ("""WindDynamicsLookupTable.output"""))
-    val sequence = parse_element (element ("""WindDynamicsLookupTable.sequence"""))
-    val WindContCurrLimIEC = parse_attribute (attribute ("""WindDynamicsLookupTable.WindContCurrLimIEC"""))
-    val WindContPType3IEC = parse_attribute (attribute ("""WindDynamicsLookupTable.WindContPType3IEC"""))
-    val WindContQPQULimIEC = parse_attribute (attribute ("""WindDynamicsLookupTable.WindContQPQULimIEC"""))
-    val WindContRotorRIEC = parse_attribute (attribute ("""WindDynamicsLookupTable.WindContRotorRIEC"""))
-    val WindGenType3bIEC = parse_attribute (attribute ("""WindDynamicsLookupTable.WindGenType3bIEC"""))
-    val WindPitchContPowerIEC = parse_attribute (attribute ("""WindDynamicsLookupTable.WindPitchContPowerIEC"""))
-    val WindPlantFreqPcontrolIEC = parse_attribute (attribute ("""WindDynamicsLookupTable.WindPlantFreqPcontrolIEC"""))
-    val WindPlantReactiveControlIEC = parse_attribute (attribute ("""WindDynamicsLookupTable.WindPlantReactiveControlIEC"""))
-    val WindProtectionIEC = parse_attribute (attribute ("""WindDynamicsLookupTable.WindProtectionIEC"""))
+    val fields: Array[String] = Array[String] (
+        "input",
+        "lookupTableFunctionType",
+        "output",
+        "sequence",
+        "WindContCurrLimIEC",
+        "WindContPType3IEC",
+        "WindContQPQULimIEC",
+        "WindContRotorRIEC",
+        "WindGenType3bIEC",
+        "WindPitchContPowerIEC",
+        "WindPlantFreqPcontrolIEC",
+        "WindPlantReactiveControlIEC",
+        "WindProtectionIEC"
+    )
+    val input: Fielder = parse_element (element (cls, fields(0)))
+    val lookupTableFunctionType: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val output: Fielder = parse_element (element (cls, fields(2)))
+    val sequence: Fielder = parse_element (element (cls, fields(3)))
+    val WindContCurrLimIEC: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val WindContPType3IEC: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val WindContQPQULimIEC: Fielder = parse_attribute (attribute (cls, fields(6)))
+    val WindContRotorRIEC: Fielder = parse_attribute (attribute (cls, fields(7)))
+    val WindGenType3bIEC: Fielder = parse_attribute (attribute (cls, fields(8)))
+    val WindPitchContPowerIEC: Fielder = parse_attribute (attribute (cls, fields(9)))
+    val WindPlantFreqPcontrolIEC: Fielder = parse_attribute (attribute (cls, fields(10)))
+    val WindPlantReactiveControlIEC: Fielder = parse_attribute (attribute (cls, fields(11)))
+    val WindProtectionIEC: Fielder = parse_attribute (attribute (cls, fields(12)))
+
     def parse (context: Context): WindDynamicsLookupTable =
     {
-        WindDynamicsLookupTable(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = WindDynamicsLookupTable (
             IdentifiedObject.parse (context),
-            toDouble (input (context), context),
-            lookupTableFunctionType (context),
-            toDouble (output (context), context),
-            toInteger (sequence (context), context),
-            WindContCurrLimIEC (context),
-            WindContPType3IEC (context),
-            WindContQPQULimIEC (context),
-            WindContRotorRIEC (context),
-            WindGenType3bIEC (context),
-            WindPitchContPowerIEC (context),
-            WindPlantFreqPcontrolIEC (context),
-            WindPlantReactiveControlIEC (context),
-            WindProtectionIEC (context)
+            toDouble (mask (input (), 0)),
+            mask (lookupTableFunctionType (), 1),
+            toDouble (mask (output (), 2)),
+            toInteger (mask (sequence (), 3)),
+            mask (WindContCurrLimIEC (), 4),
+            mask (WindContPType3IEC (), 5),
+            mask (WindContQPQULimIEC (), 6),
+            mask (WindContRotorRIEC (), 7),
+            mask (WindGenType3bIEC (), 8),
+            mask (WindPitchContPowerIEC (), 9),
+            mask (WindPlantFreqPcontrolIEC (), 10),
+            mask (WindPlantReactiveControlIEC (), 11),
+            mask (WindProtectionIEC (), 12)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("WindContCurrLimIEC", "WindContCurrLimIEC", false),
@@ -1662,7 +2010,8 @@ extends
         Relationship ("WindPitchContPowerIEC", "WindPitchContPowerIEC", false),
         Relationship ("WindPlantFreqPcontrolIEC", "WindPlantFreqPcontrolIEC", false),
         Relationship ("WindPlantReactiveControlIEC", "WindPlantReactiveControlIEC", false),
-        Relationship ("WindProtectionIEC", "WindProtectionIEC", false))
+        Relationship ("WindProtectionIEC", "WindProtectionIEC", false)
+    )
 }
 
 /**
@@ -1699,6 +2048,12 @@ extends
      */
     def this () = { this (null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -1718,14 +2073,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != WindAeroConstIEC) "\t\t<cim:WindGenTurbineType1aIEC.WindAeroConstIEC rdf:resource=\"#" + WindAeroConstIEC + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = WindGenTurbineType1aIEC.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindGenTurbineType1aIEC.fields (position), value)
+        emitattr (0, WindAeroConstIEC)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:WindGenTurbineType1aIEC rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:WindGenTurbineType1aIEC>"
+        "\t<cim:WindGenTurbineType1aIEC rdf:ID=\"%s\">\n%s\t</cim:WindGenTurbineType1aIEC>".format (id, export_fields)
     }
 }
 
@@ -1733,16 +2090,26 @@ object WindGenTurbineType1aIEC
 extends
     Parseable[WindGenTurbineType1aIEC]
 {
-    val WindAeroConstIEC = parse_attribute (attribute ("""WindGenTurbineType1aIEC.WindAeroConstIEC"""))
+    val fields: Array[String] = Array[String] (
+        "WindAeroConstIEC"
+    )
+    val WindAeroConstIEC: Fielder = parse_attribute (attribute (cls, fields(0)))
+
     def parse (context: Context): WindGenTurbineType1aIEC =
     {
-        WindGenTurbineType1aIEC(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = WindGenTurbineType1aIEC (
             WindTurbineType1or2IEC.parse (context),
-            WindAeroConstIEC (context)
+            mask (WindAeroConstIEC (), 0)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("WindAeroConstIEC", "WindAeroConstIEC", false))
+        Relationship ("WindAeroConstIEC", "WindAeroConstIEC", false)
+    )
 }
 
 /**
@@ -1779,6 +2146,12 @@ extends
      */
     def this () = { this (null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -1798,14 +2171,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != WindPitchContPowerIEC) "\t\t<cim:WindGenTurbineType1bIEC.WindPitchContPowerIEC rdf:resource=\"#" + WindPitchContPowerIEC + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = WindGenTurbineType1bIEC.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindGenTurbineType1bIEC.fields (position), value)
+        emitattr (0, WindPitchContPowerIEC)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:WindGenTurbineType1bIEC rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:WindGenTurbineType1bIEC>"
+        "\t<cim:WindGenTurbineType1bIEC rdf:ID=\"%s\">\n%s\t</cim:WindGenTurbineType1bIEC>".format (id, export_fields)
     }
 }
 
@@ -1813,16 +2188,26 @@ object WindGenTurbineType1bIEC
 extends
     Parseable[WindGenTurbineType1bIEC]
 {
-    val WindPitchContPowerIEC = parse_attribute (attribute ("""WindGenTurbineType1bIEC.WindPitchContPowerIEC"""))
+    val fields: Array[String] = Array[String] (
+        "WindPitchContPowerIEC"
+    )
+    val WindPitchContPowerIEC: Fielder = parse_attribute (attribute (cls, fields(0)))
+
     def parse (context: Context): WindGenTurbineType1bIEC =
     {
-        WindGenTurbineType1bIEC(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = WindGenTurbineType1bIEC (
             WindTurbineType1or2IEC.parse (context),
-            WindPitchContPowerIEC (context)
+            mask (WindPitchContPowerIEC (), 0)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("WindPitchContPowerIEC", "WindPitchContPowerIEC", false))
+        Relationship ("WindPitchContPowerIEC", "WindPitchContPowerIEC", false)
+    )
 }
 
 /**
@@ -1861,6 +2246,12 @@ extends
      */
     def this () = { this (null, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -1880,15 +2271,17 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != WindContRotorRIEC) "\t\t<cim:WindGenTurbineType2IEC.WindContRotorRIEC rdf:resource=\"#" + WindContRotorRIEC + "\"/>\n" else "") +
-        (if (null != WindPitchContPowerIEC) "\t\t<cim:WindGenTurbineType2IEC.WindPitchContPowerIEC rdf:resource=\"#" + WindPitchContPowerIEC + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = WindGenTurbineType2IEC.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindGenTurbineType2IEC.fields (position), value)
+        emitattr (0, WindContRotorRIEC)
+        emitattr (1, WindPitchContPowerIEC)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:WindGenTurbineType2IEC rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:WindGenTurbineType2IEC>"
+        "\t<cim:WindGenTurbineType2IEC rdf:ID=\"%s\">\n%s\t</cim:WindGenTurbineType2IEC>".format (id, export_fields)
     }
 }
 
@@ -1896,19 +2289,30 @@ object WindGenTurbineType2IEC
 extends
     Parseable[WindGenTurbineType2IEC]
 {
-    val WindContRotorRIEC = parse_attribute (attribute ("""WindGenTurbineType2IEC.WindContRotorRIEC"""))
-    val WindPitchContPowerIEC = parse_attribute (attribute ("""WindGenTurbineType2IEC.WindPitchContPowerIEC"""))
+    val fields: Array[String] = Array[String] (
+        "WindContRotorRIEC",
+        "WindPitchContPowerIEC"
+    )
+    val WindContRotorRIEC: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val WindPitchContPowerIEC: Fielder = parse_attribute (attribute (cls, fields(1)))
+
     def parse (context: Context): WindGenTurbineType2IEC =
     {
-        WindGenTurbineType2IEC(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = WindGenTurbineType2IEC (
             WindTurbineType1or2IEC.parse (context),
-            WindContRotorRIEC (context),
-            WindPitchContPowerIEC (context)
+            mask (WindContRotorRIEC (), 0),
+            mask (WindPitchContPowerIEC (), 1)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("WindContRotorRIEC", "WindContRotorRIEC", false),
-        Relationship ("WindPitchContPowerIEC", "WindPitchContPowerIEC", false))
+        Relationship ("WindPitchContPowerIEC", "WindPitchContPowerIEC", false)
+    )
 }
 
 /**
@@ -1952,6 +2356,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -1971,17 +2381,20 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:WindGenType3IEC.dipmax>" + dipmax + "</cim:WindGenType3IEC.dipmax>\n" +
-        "\t\t<cim:WindGenType3IEC.diqmax>" + diqmax + "</cim:WindGenType3IEC.diqmax>\n" +
-        "\t\t<cim:WindGenType3IEC.xs>" + xs + "</cim:WindGenType3IEC.xs>\n" +
-        (if (null != WindTurbineType3IEC) "\t\t<cim:WindGenType3IEC.WindTurbineType3IEC rdf:resource=\"#" + WindTurbineType3IEC + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = WindGenType3IEC.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindGenType3IEC.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindGenType3IEC.fields (position), value)
+        emitelem (0, dipmax)
+        emitelem (1, diqmax)
+        emitelem (2, xs)
+        emitattr (3, WindTurbineType3IEC)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:WindGenType3IEC rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:WindGenType3IEC>"
+        "\t<cim:WindGenType3IEC rdf:ID=\"%s\">\n%s\t</cim:WindGenType3IEC>".format (id, export_fields)
     }
 }
 
@@ -1989,22 +2402,35 @@ object WindGenType3IEC
 extends
     Parseable[WindGenType3IEC]
 {
-    val dipmax = parse_element (element ("""WindGenType3IEC.dipmax"""))
-    val diqmax = parse_element (element ("""WindGenType3IEC.diqmax"""))
-    val xs = parse_element (element ("""WindGenType3IEC.xs"""))
-    val WindTurbineType3IEC = parse_attribute (attribute ("""WindGenType3IEC.WindTurbineType3IEC"""))
+    val fields: Array[String] = Array[String] (
+        "dipmax",
+        "diqmax",
+        "xs",
+        "WindTurbineType3IEC"
+    )
+    val dipmax: Fielder = parse_element (element (cls, fields(0)))
+    val diqmax: Fielder = parse_element (element (cls, fields(1)))
+    val xs: Fielder = parse_element (element (cls, fields(2)))
+    val WindTurbineType3IEC: Fielder = parse_attribute (attribute (cls, fields(3)))
+
     def parse (context: Context): WindGenType3IEC =
     {
-        WindGenType3IEC(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = WindGenType3IEC (
             IdentifiedObject.parse (context),
-            toDouble (dipmax (context), context),
-            toDouble (diqmax (context), context),
-            toDouble (xs (context), context),
-            WindTurbineType3IEC (context)
+            toDouble (mask (dipmax (), 0)),
+            toDouble (mask (diqmax (), 1)),
+            toDouble (mask (xs (), 2)),
+            mask (WindTurbineType3IEC (), 3)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("WindTurbineType3IEC", "WindTurbineType3IEC", false))
+        Relationship ("WindTurbineType3IEC", "WindTurbineType3IEC", false)
+    )
 }
 
 /**
@@ -2047,6 +2473,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -2066,16 +2498,19 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:WindGenType3aIEC.kpc>" + kpc + "</cim:WindGenType3aIEC.kpc>\n" +
-        "\t\t<cim:WindGenType3aIEC.tic>" + tic + "</cim:WindGenType3aIEC.tic>\n" +
-        (if (null != WindTurbineType4IEC) "\t\t<cim:WindGenType3aIEC.WindTurbineType4IEC rdf:resource=\"#" + WindTurbineType4IEC + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = WindGenType3aIEC.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindGenType3aIEC.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindGenType3aIEC.fields (position), value)
+        emitelem (0, kpc)
+        emitelem (1, tic)
+        emitattr (2, WindTurbineType4IEC)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:WindGenType3aIEC rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:WindGenType3aIEC>"
+        "\t<cim:WindGenType3aIEC rdf:ID=\"%s\">\n%s\t</cim:WindGenType3aIEC>".format (id, export_fields)
     }
 }
 
@@ -2083,20 +2518,32 @@ object WindGenType3aIEC
 extends
     Parseable[WindGenType3aIEC]
 {
-    val kpc = parse_element (element ("""WindGenType3aIEC.kpc"""))
-    val tic = parse_element (element ("""WindGenType3aIEC.tic"""))
-    val WindTurbineType4IEC = parse_attribute (attribute ("""WindGenType3aIEC.WindTurbineType4IEC"""))
+    val fields: Array[String] = Array[String] (
+        "kpc",
+        "tic",
+        "WindTurbineType4IEC"
+    )
+    val kpc: Fielder = parse_element (element (cls, fields(0)))
+    val tic: Fielder = parse_element (element (cls, fields(1)))
+    val WindTurbineType4IEC: Fielder = parse_attribute (attribute (cls, fields(2)))
+
     def parse (context: Context): WindGenType3aIEC =
     {
-        WindGenType3aIEC(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = WindGenType3aIEC (
             WindGenType3IEC.parse (context),
-            toDouble (kpc (context), context),
-            toDouble (tic (context), context),
-            WindTurbineType4IEC (context)
+            toDouble (mask (kpc (), 0)),
+            toDouble (mask (tic (), 1)),
+            mask (WindTurbineType4IEC (), 2)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("WindTurbineType4IEC", "WindTurbineType4IEC", false))
+        Relationship ("WindTurbineType4IEC", "WindTurbineType4IEC", false)
+    )
 }
 
 /**
@@ -2144,6 +2591,12 @@ extends
      */
     def this () = { this (null, false, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -2163,16 +2616,18 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:WindGenType3bIEC.mwtcwp>" + mwtcwp + "</cim:WindGenType3bIEC.mwtcwp>\n" +
-        "\t\t<cim:WindGenType3bIEC.tg>" + tg + "</cim:WindGenType3bIEC.tg>\n" +
-        "\t\t<cim:WindGenType3bIEC.two>" + two + "</cim:WindGenType3bIEC.two>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = WindGenType3bIEC.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindGenType3bIEC.fields (position), value)
+        emitelem (0, mwtcwp)
+        emitelem (1, tg)
+        emitelem (2, two)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:WindGenType3bIEC rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:WindGenType3bIEC>"
+        "\t<cim:WindGenType3bIEC rdf:ID=\"%s\">\n%s\t</cim:WindGenType3bIEC>".format (id, export_fields)
     }
 }
 
@@ -2180,19 +2635,32 @@ object WindGenType3bIEC
 extends
     Parseable[WindGenType3bIEC]
 {
-    val mwtcwp = parse_element (element ("""WindGenType3bIEC.mwtcwp"""))
-    val tg = parse_element (element ("""WindGenType3bIEC.tg"""))
-    val two = parse_element (element ("""WindGenType3bIEC.two"""))
+    val fields: Array[String] = Array[String] (
+        "mwtcwp",
+        "tg",
+        "two"
+    )
+    val mwtcwp: Fielder = parse_element (element (cls, fields(0)))
+    val tg: Fielder = parse_element (element (cls, fields(1)))
+    val two: Fielder = parse_element (element (cls, fields(2)))
+
     def parse (context: Context): WindGenType3bIEC =
     {
-        WindGenType3bIEC(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = WindGenType3bIEC (
             WindGenType3IEC.parse (context),
-            toBoolean (mwtcwp (context), context),
-            toDouble (tg (context), context),
-            toDouble (two (context), context)
+            toBoolean (mask (mwtcwp (), 0)),
+            toDouble (mask (tg (), 1)),
+            toDouble (mask (two (), 2))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -2243,6 +2711,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -2262,19 +2736,22 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:WindGenType4IEC.dipmax>" + dipmax + "</cim:WindGenType4IEC.dipmax>\n" +
-        "\t\t<cim:WindGenType4IEC.diqmax>" + diqmax + "</cim:WindGenType4IEC.diqmax>\n" +
-        "\t\t<cim:WindGenType4IEC.diqmin>" + diqmin + "</cim:WindGenType4IEC.diqmin>\n" +
-        "\t\t<cim:WindGenType4IEC.tg>" + tg + "</cim:WindGenType4IEC.tg>\n" +
-        (if (null != WindTurbineType4aIEC) "\t\t<cim:WindGenType4IEC.WindTurbineType4aIEC rdf:resource=\"#" + WindTurbineType4aIEC + "\"/>\n" else "") +
-        (if (null != WindTurbineType4bIEC) "\t\t<cim:WindGenType4IEC.WindTurbineType4bIEC rdf:resource=\"#" + WindTurbineType4bIEC + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = WindGenType4IEC.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindGenType4IEC.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindGenType4IEC.fields (position), value)
+        emitelem (0, dipmax)
+        emitelem (1, diqmax)
+        emitelem (2, diqmin)
+        emitelem (3, tg)
+        emitattr (4, WindTurbineType4aIEC)
+        emitattr (5, WindTurbineType4bIEC)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:WindGenType4IEC rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:WindGenType4IEC>"
+        "\t<cim:WindGenType4IEC rdf:ID=\"%s\">\n%s\t</cim:WindGenType4IEC>".format (id, export_fields)
     }
 }
 
@@ -2282,27 +2759,42 @@ object WindGenType4IEC
 extends
     Parseable[WindGenType4IEC]
 {
-    val dipmax = parse_element (element ("""WindGenType4IEC.dipmax"""))
-    val diqmax = parse_element (element ("""WindGenType4IEC.diqmax"""))
-    val diqmin = parse_element (element ("""WindGenType4IEC.diqmin"""))
-    val tg = parse_element (element ("""WindGenType4IEC.tg"""))
-    val WindTurbineType4aIEC = parse_attribute (attribute ("""WindGenType4IEC.WindTurbineType4aIEC"""))
-    val WindTurbineType4bIEC = parse_attribute (attribute ("""WindGenType4IEC.WindTurbineType4bIEC"""))
+    val fields: Array[String] = Array[String] (
+        "dipmax",
+        "diqmax",
+        "diqmin",
+        "tg",
+        "WindTurbineType4aIEC",
+        "WindTurbineType4bIEC"
+    )
+    val dipmax: Fielder = parse_element (element (cls, fields(0)))
+    val diqmax: Fielder = parse_element (element (cls, fields(1)))
+    val diqmin: Fielder = parse_element (element (cls, fields(2)))
+    val tg: Fielder = parse_element (element (cls, fields(3)))
+    val WindTurbineType4aIEC: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val WindTurbineType4bIEC: Fielder = parse_attribute (attribute (cls, fields(5)))
+
     def parse (context: Context): WindGenType4IEC =
     {
-        WindGenType4IEC(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = WindGenType4IEC (
             IdentifiedObject.parse (context),
-            toDouble (dipmax (context), context),
-            toDouble (diqmax (context), context),
-            toDouble (diqmin (context), context),
-            toDouble (tg (context), context),
-            WindTurbineType4aIEC (context),
-            WindTurbineType4bIEC (context)
+            toDouble (mask (dipmax (), 0)),
+            toDouble (mask (diqmax (), 1)),
+            toDouble (mask (diqmin (), 2)),
+            toDouble (mask (tg (), 3)),
+            mask (WindTurbineType4aIEC (), 4),
+            mask (WindTurbineType4bIEC (), 5)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("WindTurbineType4aIEC", "WindTurbineType4aIEC", false),
-        Relationship ("WindTurbineType4bIEC", "WindTurbineType4bIEC", false))
+        Relationship ("WindTurbineType4bIEC", "WindTurbineType4bIEC", false)
+    )
 }
 
 /**
@@ -2355,6 +2847,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, null, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -2374,20 +2872,23 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:WindMechIEC.cdrt>" + cdrt + "</cim:WindMechIEC.cdrt>\n" +
-        "\t\t<cim:WindMechIEC.hgen>" + hgen + "</cim:WindMechIEC.hgen>\n" +
-        "\t\t<cim:WindMechIEC.hwtr>" + hwtr + "</cim:WindMechIEC.hwtr>\n" +
-        "\t\t<cim:WindMechIEC.kdrt>" + kdrt + "</cim:WindMechIEC.kdrt>\n" +
-        (if (null != WindTurbineType1or2IEC) "\t\t<cim:WindMechIEC.WindTurbineType1or2IEC rdf:resource=\"#" + WindTurbineType1or2IEC + "\"/>\n" else "") +
-        (if (null != WindTurbineType3IEC) "\t\t<cim:WindMechIEC.WindTurbineType3IEC rdf:resource=\"#" + WindTurbineType3IEC + "\"/>\n" else "") +
-        (if (null != WindTurbineType4bIEC) "\t\t<cim:WindMechIEC.WindTurbineType4bIEC rdf:resource=\"#" + WindTurbineType4bIEC + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = WindMechIEC.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindMechIEC.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindMechIEC.fields (position), value)
+        emitelem (0, cdrt)
+        emitelem (1, hgen)
+        emitelem (2, hwtr)
+        emitelem (3, kdrt)
+        emitattr (4, WindTurbineType1or2IEC)
+        emitattr (5, WindTurbineType3IEC)
+        emitattr (6, WindTurbineType4bIEC)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:WindMechIEC rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:WindMechIEC>"
+        "\t<cim:WindMechIEC rdf:ID=\"%s\">\n%s\t</cim:WindMechIEC>".format (id, export_fields)
     }
 }
 
@@ -2395,30 +2896,46 @@ object WindMechIEC
 extends
     Parseable[WindMechIEC]
 {
-    val cdrt = parse_element (element ("""WindMechIEC.cdrt"""))
-    val hgen = parse_element (element ("""WindMechIEC.hgen"""))
-    val hwtr = parse_element (element ("""WindMechIEC.hwtr"""))
-    val kdrt = parse_element (element ("""WindMechIEC.kdrt"""))
-    val WindTurbineType1or2IEC = parse_attribute (attribute ("""WindMechIEC.WindTurbineType1or2IEC"""))
-    val WindTurbineType3IEC = parse_attribute (attribute ("""WindMechIEC.WindTurbineType3IEC"""))
-    val WindTurbineType4bIEC = parse_attribute (attribute ("""WindMechIEC.WindTurbineType4bIEC"""))
+    val fields: Array[String] = Array[String] (
+        "cdrt",
+        "hgen",
+        "hwtr",
+        "kdrt",
+        "WindTurbineType1or2IEC",
+        "WindTurbineType3IEC",
+        "WindTurbineType4bIEC"
+    )
+    val cdrt: Fielder = parse_element (element (cls, fields(0)))
+    val hgen: Fielder = parse_element (element (cls, fields(1)))
+    val hwtr: Fielder = parse_element (element (cls, fields(2)))
+    val kdrt: Fielder = parse_element (element (cls, fields(3)))
+    val WindTurbineType1or2IEC: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val WindTurbineType3IEC: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val WindTurbineType4bIEC: Fielder = parse_attribute (attribute (cls, fields(6)))
+
     def parse (context: Context): WindMechIEC =
     {
-        WindMechIEC(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = WindMechIEC (
             IdentifiedObject.parse (context),
-            toDouble (cdrt (context), context),
-            toDouble (hgen (context), context),
-            toDouble (hwtr (context), context),
-            toDouble (kdrt (context), context),
-            WindTurbineType1or2IEC (context),
-            WindTurbineType3IEC (context),
-            WindTurbineType4bIEC (context)
+            toDouble (mask (cdrt (), 0)),
+            toDouble (mask (hgen (), 1)),
+            toDouble (mask (hwtr (), 2)),
+            toDouble (mask (kdrt (), 3)),
+            mask (WindTurbineType1or2IEC (), 4),
+            mask (WindTurbineType3IEC (), 5),
+            mask (WindTurbineType4bIEC (), 6)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("WindTurbineType1or2IEC", "WindTurbineType1or2IEC", false),
         Relationship ("WindTurbineType3IEC", "WindTurbineType3IEC", false),
-        Relationship ("WindTurbineType4bIEC", "WindTurbineType4bIEC", false))
+        Relationship ("WindTurbineType4bIEC", "WindTurbineType4bIEC", false)
+    )
 }
 
 /**
@@ -2478,6 +2995,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -2497,22 +3020,25 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:WindPitchContPowerIEC.dpmax>" + dpmax + "</cim:WindPitchContPowerIEC.dpmax>\n" +
-        "\t\t<cim:WindPitchContPowerIEC.dpmin>" + dpmin + "</cim:WindPitchContPowerIEC.dpmin>\n" +
-        "\t\t<cim:WindPitchContPowerIEC.pmin>" + pmin + "</cim:WindPitchContPowerIEC.pmin>\n" +
-        "\t\t<cim:WindPitchContPowerIEC.pset>" + pset + "</cim:WindPitchContPowerIEC.pset>\n" +
-        "\t\t<cim:WindPitchContPowerIEC.t1>" + t1 + "</cim:WindPitchContPowerIEC.t1>\n" +
-        "\t\t<cim:WindPitchContPowerIEC.tr>" + tr + "</cim:WindPitchContPowerIEC.tr>\n" +
-        "\t\t<cim:WindPitchContPowerIEC.uuvrt>" + uuvrt + "</cim:WindPitchContPowerIEC.uuvrt>\n" +
-        (if (null != WindGenTurbineType1bIEC) "\t\t<cim:WindPitchContPowerIEC.WindGenTurbineType1bIEC rdf:resource=\"#" + WindGenTurbineType1bIEC + "\"/>\n" else "") +
-        (if (null != WindGenTurbineType2IEC) "\t\t<cim:WindPitchContPowerIEC.WindGenTurbineType2IEC rdf:resource=\"#" + WindGenTurbineType2IEC + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = WindPitchContPowerIEC.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindPitchContPowerIEC.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindPitchContPowerIEC.fields (position), value)
+        emitelem (0, dpmax)
+        emitelem (1, dpmin)
+        emitelem (2, pmin)
+        emitelem (3, pset)
+        emitelem (4, t1)
+        emitelem (5, tr)
+        emitelem (6, uuvrt)
+        emitattr (7, WindGenTurbineType1bIEC)
+        emitattr (8, WindGenTurbineType2IEC)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:WindPitchContPowerIEC rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:WindPitchContPowerIEC>"
+        "\t<cim:WindPitchContPowerIEC rdf:ID=\"%s\">\n%s\t</cim:WindPitchContPowerIEC>".format (id, export_fields)
     }
 }
 
@@ -2520,33 +3046,51 @@ object WindPitchContPowerIEC
 extends
     Parseable[WindPitchContPowerIEC]
 {
-    val dpmax = parse_element (element ("""WindPitchContPowerIEC.dpmax"""))
-    val dpmin = parse_element (element ("""WindPitchContPowerIEC.dpmin"""))
-    val pmin = parse_element (element ("""WindPitchContPowerIEC.pmin"""))
-    val pset = parse_element (element ("""WindPitchContPowerIEC.pset"""))
-    val t1 = parse_element (element ("""WindPitchContPowerIEC.t1"""))
-    val tr = parse_element (element ("""WindPitchContPowerIEC.tr"""))
-    val uuvrt = parse_element (element ("""WindPitchContPowerIEC.uuvrt"""))
-    val WindGenTurbineType1bIEC = parse_attribute (attribute ("""WindPitchContPowerIEC.WindGenTurbineType1bIEC"""))
-    val WindGenTurbineType2IEC = parse_attribute (attribute ("""WindPitchContPowerIEC.WindGenTurbineType2IEC"""))
+    val fields: Array[String] = Array[String] (
+        "dpmax",
+        "dpmin",
+        "pmin",
+        "pset",
+        "t1",
+        "tr",
+        "uuvrt",
+        "WindGenTurbineType1bIEC",
+        "WindGenTurbineType2IEC"
+    )
+    val dpmax: Fielder = parse_element (element (cls, fields(0)))
+    val dpmin: Fielder = parse_element (element (cls, fields(1)))
+    val pmin: Fielder = parse_element (element (cls, fields(2)))
+    val pset: Fielder = parse_element (element (cls, fields(3)))
+    val t1: Fielder = parse_element (element (cls, fields(4)))
+    val tr: Fielder = parse_element (element (cls, fields(5)))
+    val uuvrt: Fielder = parse_element (element (cls, fields(6)))
+    val WindGenTurbineType1bIEC: Fielder = parse_attribute (attribute (cls, fields(7)))
+    val WindGenTurbineType2IEC: Fielder = parse_attribute (attribute (cls, fields(8)))
+
     def parse (context: Context): WindPitchContPowerIEC =
     {
-        WindPitchContPowerIEC(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = WindPitchContPowerIEC (
             IdentifiedObject.parse (context),
-            toDouble (dpmax (context), context),
-            toDouble (dpmin (context), context),
-            toDouble (pmin (context), context),
-            toDouble (pset (context), context),
-            toDouble (t1 (context), context),
-            toDouble (tr (context), context),
-            toDouble (uuvrt (context), context),
-            WindGenTurbineType1bIEC (context),
-            WindGenTurbineType2IEC (context)
+            toDouble (mask (dpmax (), 0)),
+            toDouble (mask (dpmin (), 1)),
+            toDouble (mask (pmin (), 2)),
+            toDouble (mask (pset (), 3)),
+            toDouble (mask (t1 (), 4)),
+            toDouble (mask (tr (), 5)),
+            toDouble (mask (uuvrt (), 6)),
+            mask (WindGenTurbineType1bIEC (), 7),
+            mask (WindGenTurbineType2IEC (), 8)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("WindGenTurbineType1bIEC", "WindGenTurbineType1bIEC", false),
-        Relationship ("WindGenTurbineType2IEC", "WindGenTurbineType2IEC", false))
+        Relationship ("WindGenTurbineType2IEC", "WindGenTurbineType2IEC", false)
+    )
 }
 
 /**
@@ -2581,6 +3125,12 @@ extends
      */
     def this () = { this (null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -2600,14 +3150,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != RemoteInputSignal) "\t\t<cim:WindPlantDynamics.RemoteInputSignal rdf:resource=\"#" + RemoteInputSignal + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = WindPlantDynamics.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindPlantDynamics.fields (position), value)
+        emitattr (0, RemoteInputSignal)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:WindPlantDynamics rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:WindPlantDynamics>"
+        "\t<cim:WindPlantDynamics rdf:ID=\"%s\">\n%s\t</cim:WindPlantDynamics>".format (id, export_fields)
     }
 }
 
@@ -2615,16 +3167,26 @@ object WindPlantDynamics
 extends
     Parseable[WindPlantDynamics]
 {
-    val RemoteInputSignal = parse_attribute (attribute ("""WindPlantDynamics.RemoteInputSignal"""))
+    val fields: Array[String] = Array[String] (
+        "RemoteInputSignal"
+    )
+    val RemoteInputSignal: Fielder = parse_attribute (attribute (cls, fields(0)))
+
     def parse (context: Context): WindPlantDynamics =
     {
-        WindPlantDynamics(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = WindPlantDynamics (
             DynamicsFunctionBlock.parse (context),
-            RemoteInputSignal (context)
+            mask (RemoteInputSignal (), 0)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("RemoteInputSignal", "RemoteInputSignal", false))
+        Relationship ("RemoteInputSignal", "RemoteInputSignal", false)
+    )
 }
 
 /**
@@ -2706,6 +3268,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -2725,29 +3293,32 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:WindPlantFreqPcontrolIEC.dprefmax>" + dprefmax + "</cim:WindPlantFreqPcontrolIEC.dprefmax>\n" +
-        "\t\t<cim:WindPlantFreqPcontrolIEC.dprefmin>" + dprefmin + "</cim:WindPlantFreqPcontrolIEC.dprefmin>\n" +
-        "\t\t<cim:WindPlantFreqPcontrolIEC.dpwprefmax>" + dpwprefmax + "</cim:WindPlantFreqPcontrolIEC.dpwprefmax>\n" +
-        "\t\t<cim:WindPlantFreqPcontrolIEC.dpwprefmin>" + dpwprefmin + "</cim:WindPlantFreqPcontrolIEC.dpwprefmin>\n" +
-        "\t\t<cim:WindPlantFreqPcontrolIEC.kiwpp>" + kiwpp + "</cim:WindPlantFreqPcontrolIEC.kiwpp>\n" +
-        "\t\t<cim:WindPlantFreqPcontrolIEC.kiwppmax>" + kiwppmax + "</cim:WindPlantFreqPcontrolIEC.kiwppmax>\n" +
-        "\t\t<cim:WindPlantFreqPcontrolIEC.kiwppmin>" + kiwppmin + "</cim:WindPlantFreqPcontrolIEC.kiwppmin>\n" +
-        "\t\t<cim:WindPlantFreqPcontrolIEC.kpwpp>" + kpwpp + "</cim:WindPlantFreqPcontrolIEC.kpwpp>\n" +
-        "\t\t<cim:WindPlantFreqPcontrolIEC.kwppref>" + kwppref + "</cim:WindPlantFreqPcontrolIEC.kwppref>\n" +
-        "\t\t<cim:WindPlantFreqPcontrolIEC.prefmax>" + prefmax + "</cim:WindPlantFreqPcontrolIEC.prefmax>\n" +
-        "\t\t<cim:WindPlantFreqPcontrolIEC.prefmin>" + prefmin + "</cim:WindPlantFreqPcontrolIEC.prefmin>\n" +
-        "\t\t<cim:WindPlantFreqPcontrolIEC.tpft>" + tpft + "</cim:WindPlantFreqPcontrolIEC.tpft>\n" +
-        "\t\t<cim:WindPlantFreqPcontrolIEC.tpfv>" + tpfv + "</cim:WindPlantFreqPcontrolIEC.tpfv>\n" +
-        "\t\t<cim:WindPlantFreqPcontrolIEC.twpffiltp>" + twpffiltp + "</cim:WindPlantFreqPcontrolIEC.twpffiltp>\n" +
-        "\t\t<cim:WindPlantFreqPcontrolIEC.twppfiltp>" + twppfiltp + "</cim:WindPlantFreqPcontrolIEC.twppfiltp>\n" +
-        (if (null != WindPlantIEC) "\t\t<cim:WindPlantFreqPcontrolIEC.WindPlantIEC rdf:resource=\"#" + WindPlantIEC + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = WindPlantFreqPcontrolIEC.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindPlantFreqPcontrolIEC.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindPlantFreqPcontrolIEC.fields (position), value)
+        emitelem (0, dprefmax)
+        emitelem (1, dprefmin)
+        emitelem (2, dpwprefmax)
+        emitelem (3, dpwprefmin)
+        emitelem (4, kiwpp)
+        emitelem (5, kiwppmax)
+        emitelem (6, kiwppmin)
+        emitelem (7, kpwpp)
+        emitelem (8, kwppref)
+        emitelem (9, prefmax)
+        emitelem (10, prefmin)
+        emitelem (11, tpft)
+        emitelem (12, tpfv)
+        emitelem (13, twpffiltp)
+        emitelem (14, twppfiltp)
+        emitattr (15, WindPlantIEC)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:WindPlantFreqPcontrolIEC rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:WindPlantFreqPcontrolIEC>"
+        "\t<cim:WindPlantFreqPcontrolIEC rdf:ID=\"%s\">\n%s\t</cim:WindPlantFreqPcontrolIEC>".format (id, export_fields)
     }
 }
 
@@ -2755,46 +3326,71 @@ object WindPlantFreqPcontrolIEC
 extends
     Parseable[WindPlantFreqPcontrolIEC]
 {
-    val dprefmax = parse_element (element ("""WindPlantFreqPcontrolIEC.dprefmax"""))
-    val dprefmin = parse_element (element ("""WindPlantFreqPcontrolIEC.dprefmin"""))
-    val dpwprefmax = parse_element (element ("""WindPlantFreqPcontrolIEC.dpwprefmax"""))
-    val dpwprefmin = parse_element (element ("""WindPlantFreqPcontrolIEC.dpwprefmin"""))
-    val kiwpp = parse_element (element ("""WindPlantFreqPcontrolIEC.kiwpp"""))
-    val kiwppmax = parse_element (element ("""WindPlantFreqPcontrolIEC.kiwppmax"""))
-    val kiwppmin = parse_element (element ("""WindPlantFreqPcontrolIEC.kiwppmin"""))
-    val kpwpp = parse_element (element ("""WindPlantFreqPcontrolIEC.kpwpp"""))
-    val kwppref = parse_element (element ("""WindPlantFreqPcontrolIEC.kwppref"""))
-    val prefmax = parse_element (element ("""WindPlantFreqPcontrolIEC.prefmax"""))
-    val prefmin = parse_element (element ("""WindPlantFreqPcontrolIEC.prefmin"""))
-    val tpft = parse_element (element ("""WindPlantFreqPcontrolIEC.tpft"""))
-    val tpfv = parse_element (element ("""WindPlantFreqPcontrolIEC.tpfv"""))
-    val twpffiltp = parse_element (element ("""WindPlantFreqPcontrolIEC.twpffiltp"""))
-    val twppfiltp = parse_element (element ("""WindPlantFreqPcontrolIEC.twppfiltp"""))
-    val WindPlantIEC = parse_attribute (attribute ("""WindPlantFreqPcontrolIEC.WindPlantIEC"""))
+    val fields: Array[String] = Array[String] (
+        "dprefmax",
+        "dprefmin",
+        "dpwprefmax",
+        "dpwprefmin",
+        "kiwpp",
+        "kiwppmax",
+        "kiwppmin",
+        "kpwpp",
+        "kwppref",
+        "prefmax",
+        "prefmin",
+        "tpft",
+        "tpfv",
+        "twpffiltp",
+        "twppfiltp",
+        "WindPlantIEC"
+    )
+    val dprefmax: Fielder = parse_element (element (cls, fields(0)))
+    val dprefmin: Fielder = parse_element (element (cls, fields(1)))
+    val dpwprefmax: Fielder = parse_element (element (cls, fields(2)))
+    val dpwprefmin: Fielder = parse_element (element (cls, fields(3)))
+    val kiwpp: Fielder = parse_element (element (cls, fields(4)))
+    val kiwppmax: Fielder = parse_element (element (cls, fields(5)))
+    val kiwppmin: Fielder = parse_element (element (cls, fields(6)))
+    val kpwpp: Fielder = parse_element (element (cls, fields(7)))
+    val kwppref: Fielder = parse_element (element (cls, fields(8)))
+    val prefmax: Fielder = parse_element (element (cls, fields(9)))
+    val prefmin: Fielder = parse_element (element (cls, fields(10)))
+    val tpft: Fielder = parse_element (element (cls, fields(11)))
+    val tpfv: Fielder = parse_element (element (cls, fields(12)))
+    val twpffiltp: Fielder = parse_element (element (cls, fields(13)))
+    val twppfiltp: Fielder = parse_element (element (cls, fields(14)))
+    val WindPlantIEC: Fielder = parse_attribute (attribute (cls, fields(15)))
+
     def parse (context: Context): WindPlantFreqPcontrolIEC =
     {
-        WindPlantFreqPcontrolIEC(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = WindPlantFreqPcontrolIEC (
             IdentifiedObject.parse (context),
-            toDouble (dprefmax (context), context),
-            toDouble (dprefmin (context), context),
-            toDouble (dpwprefmax (context), context),
-            toDouble (dpwprefmin (context), context),
-            toDouble (kiwpp (context), context),
-            toDouble (kiwppmax (context), context),
-            toDouble (kiwppmin (context), context),
-            toDouble (kpwpp (context), context),
-            toDouble (kwppref (context), context),
-            toDouble (prefmax (context), context),
-            toDouble (prefmin (context), context),
-            toDouble (tpft (context), context),
-            toDouble (tpfv (context), context),
-            toDouble (twpffiltp (context), context),
-            toDouble (twppfiltp (context), context),
-            WindPlantIEC (context)
+            toDouble (mask (dprefmax (), 0)),
+            toDouble (mask (dprefmin (), 1)),
+            toDouble (mask (dpwprefmax (), 2)),
+            toDouble (mask (dpwprefmin (), 3)),
+            toDouble (mask (kiwpp (), 4)),
+            toDouble (mask (kiwppmax (), 5)),
+            toDouble (mask (kiwppmin (), 6)),
+            toDouble (mask (kpwpp (), 7)),
+            toDouble (mask (kwppref (), 8)),
+            toDouble (mask (prefmax (), 9)),
+            toDouble (mask (prefmin (), 10)),
+            toDouble (mask (tpft (), 11)),
+            toDouble (mask (tpfv (), 12)),
+            toDouble (mask (twpffiltp (), 13)),
+            toDouble (mask (twppfiltp (), 14)),
+            mask (WindPlantIEC (), 15)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("WindPlantIEC", "WindPlantIEC", false))
+        Relationship ("WindPlantIEC", "WindPlantIEC", false)
+    )
 }
 
 /**
@@ -2833,6 +3429,12 @@ extends
      */
     def this () = { this (null, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -2852,15 +3454,17 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != WindPlantFreqPcontrolIEC) "\t\t<cim:WindPlantIEC.WindPlantFreqPcontrolIEC rdf:resource=\"#" + WindPlantFreqPcontrolIEC + "\"/>\n" else "") +
-        (if (null != WindPlantReactiveControlIEC) "\t\t<cim:WindPlantIEC.WindPlantReactiveControlIEC rdf:resource=\"#" + WindPlantReactiveControlIEC + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = WindPlantIEC.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindPlantIEC.fields (position), value)
+        emitattr (0, WindPlantFreqPcontrolIEC)
+        emitattr (1, WindPlantReactiveControlIEC)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:WindPlantIEC rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:WindPlantIEC>"
+        "\t<cim:WindPlantIEC rdf:ID=\"%s\">\n%s\t</cim:WindPlantIEC>".format (id, export_fields)
     }
 }
 
@@ -2868,19 +3472,30 @@ object WindPlantIEC
 extends
     Parseable[WindPlantIEC]
 {
-    val WindPlantFreqPcontrolIEC = parse_attribute (attribute ("""WindPlantIEC.WindPlantFreqPcontrolIEC"""))
-    val WindPlantReactiveControlIEC = parse_attribute (attribute ("""WindPlantIEC.WindPlantReactiveControlIEC"""))
+    val fields: Array[String] = Array[String] (
+        "WindPlantFreqPcontrolIEC",
+        "WindPlantReactiveControlIEC"
+    )
+    val WindPlantFreqPcontrolIEC: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val WindPlantReactiveControlIEC: Fielder = parse_attribute (attribute (cls, fields(1)))
+
     def parse (context: Context): WindPlantIEC =
     {
-        WindPlantIEC(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = WindPlantIEC (
             WindPlantDynamics.parse (context),
-            WindPlantFreqPcontrolIEC (context),
-            WindPlantReactiveControlIEC (context)
+            mask (WindPlantFreqPcontrolIEC (), 0),
+            mask (WindPlantReactiveControlIEC (), 1)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("WindPlantFreqPcontrolIEC", "WindPlantFreqPcontrolIEC", false),
-        Relationship ("WindPlantReactiveControlIEC", "WindPlantReactiveControlIEC", false))
+        Relationship ("WindPlantReactiveControlIEC", "WindPlantReactiveControlIEC", false)
+    )
 }
 
 /**
@@ -2971,6 +3586,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, 0.0, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -2990,32 +3611,35 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:WindPlantReactiveControlIEC.dxrefmax>" + dxrefmax + "</cim:WindPlantReactiveControlIEC.dxrefmax>\n" +
-        "\t\t<cim:WindPlantReactiveControlIEC.dxrefmin>" + dxrefmin + "</cim:WindPlantReactiveControlIEC.dxrefmin>\n" +
-        "\t\t<cim:WindPlantReactiveControlIEC.kiwpx>" + kiwpx + "</cim:WindPlantReactiveControlIEC.kiwpx>\n" +
-        "\t\t<cim:WindPlantReactiveControlIEC.kiwpxmax>" + kiwpxmax + "</cim:WindPlantReactiveControlIEC.kiwpxmax>\n" +
-        "\t\t<cim:WindPlantReactiveControlIEC.kiwpxmin>" + kiwpxmin + "</cim:WindPlantReactiveControlIEC.kiwpxmin>\n" +
-        "\t\t<cim:WindPlantReactiveControlIEC.kpwpx>" + kpwpx + "</cim:WindPlantReactiveControlIEC.kpwpx>\n" +
-        "\t\t<cim:WindPlantReactiveControlIEC.kwpqref>" + kwpqref + "</cim:WindPlantReactiveControlIEC.kwpqref>\n" +
-        "\t\t<cim:WindPlantReactiveControlIEC.kwpqu>" + kwpqu + "</cim:WindPlantReactiveControlIEC.kwpqu>\n" +
-        "\t\t<cim:WindPlantReactiveControlIEC.tuqfilt>" + tuqfilt + "</cim:WindPlantReactiveControlIEC.tuqfilt>\n" +
-        "\t\t<cim:WindPlantReactiveControlIEC.twppfiltq>" + twppfiltq + "</cim:WindPlantReactiveControlIEC.twppfiltq>\n" +
-        "\t\t<cim:WindPlantReactiveControlIEC.twpqfiltq>" + twpqfiltq + "</cim:WindPlantReactiveControlIEC.twpqfiltq>\n" +
-        "\t\t<cim:WindPlantReactiveControlIEC.twpufiltq>" + twpufiltq + "</cim:WindPlantReactiveControlIEC.twpufiltq>\n" +
-        "\t\t<cim:WindPlantReactiveControlIEC.txft>" + txft + "</cim:WindPlantReactiveControlIEC.txft>\n" +
-        "\t\t<cim:WindPlantReactiveControlIEC.txfv>" + txfv + "</cim:WindPlantReactiveControlIEC.txfv>\n" +
-        "\t\t<cim:WindPlantReactiveControlIEC.uwpqdip>" + uwpqdip + "</cim:WindPlantReactiveControlIEC.uwpqdip>\n" +
-        (if (null != windPlantQcontrolModesType) "\t\t<cim:WindPlantReactiveControlIEC.windPlantQcontrolModesType rdf:resource=\"#" + windPlantQcontrolModesType + "\"/>\n" else "") +
-        "\t\t<cim:WindPlantReactiveControlIEC.xrefmax>" + xrefmax + "</cim:WindPlantReactiveControlIEC.xrefmax>\n" +
-        "\t\t<cim:WindPlantReactiveControlIEC.xrefmin>" + xrefmin + "</cim:WindPlantReactiveControlIEC.xrefmin>\n" +
-        (if (null != WindPlantIEC) "\t\t<cim:WindPlantReactiveControlIEC.WindPlantIEC rdf:resource=\"#" + WindPlantIEC + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = WindPlantReactiveControlIEC.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindPlantReactiveControlIEC.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindPlantReactiveControlIEC.fields (position), value)
+        emitelem (0, dxrefmax)
+        emitelem (1, dxrefmin)
+        emitelem (2, kiwpx)
+        emitelem (3, kiwpxmax)
+        emitelem (4, kiwpxmin)
+        emitelem (5, kpwpx)
+        emitelem (6, kwpqref)
+        emitelem (7, kwpqu)
+        emitelem (8, tuqfilt)
+        emitelem (9, twppfiltq)
+        emitelem (10, twpqfiltq)
+        emitelem (11, twpufiltq)
+        emitelem (12, txft)
+        emitelem (13, txfv)
+        emitelem (14, uwpqdip)
+        emitattr (15, windPlantQcontrolModesType)
+        emitelem (16, xrefmax)
+        emitelem (17, xrefmin)
+        emitattr (18, WindPlantIEC)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:WindPlantReactiveControlIEC rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:WindPlantReactiveControlIEC>"
+        "\t<cim:WindPlantReactiveControlIEC rdf:ID=\"%s\">\n%s\t</cim:WindPlantReactiveControlIEC>".format (id, export_fields)
     }
 }
 
@@ -3023,52 +3647,80 @@ object WindPlantReactiveControlIEC
 extends
     Parseable[WindPlantReactiveControlIEC]
 {
-    val dxrefmax = parse_element (element ("""WindPlantReactiveControlIEC.dxrefmax"""))
-    val dxrefmin = parse_element (element ("""WindPlantReactiveControlIEC.dxrefmin"""))
-    val kiwpx = parse_element (element ("""WindPlantReactiveControlIEC.kiwpx"""))
-    val kiwpxmax = parse_element (element ("""WindPlantReactiveControlIEC.kiwpxmax"""))
-    val kiwpxmin = parse_element (element ("""WindPlantReactiveControlIEC.kiwpxmin"""))
-    val kpwpx = parse_element (element ("""WindPlantReactiveControlIEC.kpwpx"""))
-    val kwpqref = parse_element (element ("""WindPlantReactiveControlIEC.kwpqref"""))
-    val kwpqu = parse_element (element ("""WindPlantReactiveControlIEC.kwpqu"""))
-    val tuqfilt = parse_element (element ("""WindPlantReactiveControlIEC.tuqfilt"""))
-    val twppfiltq = parse_element (element ("""WindPlantReactiveControlIEC.twppfiltq"""))
-    val twpqfiltq = parse_element (element ("""WindPlantReactiveControlIEC.twpqfiltq"""))
-    val twpufiltq = parse_element (element ("""WindPlantReactiveControlIEC.twpufiltq"""))
-    val txft = parse_element (element ("""WindPlantReactiveControlIEC.txft"""))
-    val txfv = parse_element (element ("""WindPlantReactiveControlIEC.txfv"""))
-    val uwpqdip = parse_element (element ("""WindPlantReactiveControlIEC.uwpqdip"""))
-    val windPlantQcontrolModesType = parse_attribute (attribute ("""WindPlantReactiveControlIEC.windPlantQcontrolModesType"""))
-    val xrefmax = parse_element (element ("""WindPlantReactiveControlIEC.xrefmax"""))
-    val xrefmin = parse_element (element ("""WindPlantReactiveControlIEC.xrefmin"""))
-    val WindPlantIEC = parse_attribute (attribute ("""WindPlantReactiveControlIEC.WindPlantIEC"""))
+    val fields: Array[String] = Array[String] (
+        "dxrefmax",
+        "dxrefmin",
+        "kiwpx",
+        "kiwpxmax",
+        "kiwpxmin",
+        "kpwpx",
+        "kwpqref",
+        "kwpqu",
+        "tuqfilt",
+        "twppfiltq",
+        "twpqfiltq",
+        "twpufiltq",
+        "txft",
+        "txfv",
+        "uwpqdip",
+        "windPlantQcontrolModesType",
+        "xrefmax",
+        "xrefmin",
+        "WindPlantIEC"
+    )
+    val dxrefmax: Fielder = parse_element (element (cls, fields(0)))
+    val dxrefmin: Fielder = parse_element (element (cls, fields(1)))
+    val kiwpx: Fielder = parse_element (element (cls, fields(2)))
+    val kiwpxmax: Fielder = parse_element (element (cls, fields(3)))
+    val kiwpxmin: Fielder = parse_element (element (cls, fields(4)))
+    val kpwpx: Fielder = parse_element (element (cls, fields(5)))
+    val kwpqref: Fielder = parse_element (element (cls, fields(6)))
+    val kwpqu: Fielder = parse_element (element (cls, fields(7)))
+    val tuqfilt: Fielder = parse_element (element (cls, fields(8)))
+    val twppfiltq: Fielder = parse_element (element (cls, fields(9)))
+    val twpqfiltq: Fielder = parse_element (element (cls, fields(10)))
+    val twpufiltq: Fielder = parse_element (element (cls, fields(11)))
+    val txft: Fielder = parse_element (element (cls, fields(12)))
+    val txfv: Fielder = parse_element (element (cls, fields(13)))
+    val uwpqdip: Fielder = parse_element (element (cls, fields(14)))
+    val windPlantQcontrolModesType: Fielder = parse_attribute (attribute (cls, fields(15)))
+    val xrefmax: Fielder = parse_element (element (cls, fields(16)))
+    val xrefmin: Fielder = parse_element (element (cls, fields(17)))
+    val WindPlantIEC: Fielder = parse_attribute (attribute (cls, fields(18)))
+
     def parse (context: Context): WindPlantReactiveControlIEC =
     {
-        WindPlantReactiveControlIEC(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = WindPlantReactiveControlIEC (
             IdentifiedObject.parse (context),
-            toDouble (dxrefmax (context), context),
-            toDouble (dxrefmin (context), context),
-            toDouble (kiwpx (context), context),
-            toDouble (kiwpxmax (context), context),
-            toDouble (kiwpxmin (context), context),
-            toDouble (kpwpx (context), context),
-            toDouble (kwpqref (context), context),
-            toDouble (kwpqu (context), context),
-            toDouble (tuqfilt (context), context),
-            toDouble (twppfiltq (context), context),
-            toDouble (twpqfiltq (context), context),
-            toDouble (twpufiltq (context), context),
-            toDouble (txft (context), context),
-            toDouble (txfv (context), context),
-            toDouble (uwpqdip (context), context),
-            windPlantQcontrolModesType (context),
-            toDouble (xrefmax (context), context),
-            toDouble (xrefmin (context), context),
-            WindPlantIEC (context)
+            toDouble (mask (dxrefmax (), 0)),
+            toDouble (mask (dxrefmin (), 1)),
+            toDouble (mask (kiwpx (), 2)),
+            toDouble (mask (kiwpxmax (), 3)),
+            toDouble (mask (kiwpxmin (), 4)),
+            toDouble (mask (kpwpx (), 5)),
+            toDouble (mask (kwpqref (), 6)),
+            toDouble (mask (kwpqu (), 7)),
+            toDouble (mask (tuqfilt (), 8)),
+            toDouble (mask (twppfiltq (), 9)),
+            toDouble (mask (twpqfiltq (), 10)),
+            toDouble (mask (twpufiltq (), 11)),
+            toDouble (mask (txft (), 12)),
+            toDouble (mask (txfv (), 13)),
+            toDouble (mask (uwpqdip (), 14)),
+            mask (windPlantQcontrolModesType (), 15),
+            toDouble (mask (xrefmax (), 16)),
+            toDouble (mask (xrefmin (), 17)),
+            mask (WindPlantIEC (), 18)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("WindPlantIEC", "WindPlantIEC", false))
+        Relationship ("WindPlantIEC", "WindPlantIEC", false)
+    )
 }
 
 /**
@@ -3128,6 +3780,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -3147,22 +3805,25 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:WindProtectionIEC.dfimax>" + dfimax + "</cim:WindProtectionIEC.dfimax>\n" +
-        "\t\t<cim:WindProtectionIEC.fover>" + fover + "</cim:WindProtectionIEC.fover>\n" +
-        "\t\t<cim:WindProtectionIEC.funder>" + funder + "</cim:WindProtectionIEC.funder>\n" +
-        "\t\t<cim:WindProtectionIEC.mzc>" + mzc + "</cim:WindProtectionIEC.mzc>\n" +
-        "\t\t<cim:WindProtectionIEC.tfma>" + tfma + "</cim:WindProtectionIEC.tfma>\n" +
-        "\t\t<cim:WindProtectionIEC.uover>" + uover + "</cim:WindProtectionIEC.uover>\n" +
-        "\t\t<cim:WindProtectionIEC.uunder>" + uunder + "</cim:WindProtectionIEC.uunder>\n" +
-        (if (null != WindTurbineType1or2IEC) "\t\t<cim:WindProtectionIEC.WindTurbineType1or2IEC rdf:resource=\"#" + WindTurbineType1or2IEC + "\"/>\n" else "") +
-        (if (null != WindTurbineType3or4IEC) "\t\t<cim:WindProtectionIEC.WindTurbineType3or4IEC rdf:resource=\"#" + WindTurbineType3or4IEC + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = WindProtectionIEC.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindProtectionIEC.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindProtectionIEC.fields (position), value)
+        emitelem (0, dfimax)
+        emitelem (1, fover)
+        emitelem (2, funder)
+        emitelem (3, mzc)
+        emitelem (4, tfma)
+        emitelem (5, uover)
+        emitelem (6, uunder)
+        emitattr (7, WindTurbineType1or2IEC)
+        emitattr (8, WindTurbineType3or4IEC)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:WindProtectionIEC rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:WindProtectionIEC>"
+        "\t<cim:WindProtectionIEC rdf:ID=\"%s\">\n%s\t</cim:WindProtectionIEC>".format (id, export_fields)
     }
 }
 
@@ -3170,33 +3831,51 @@ object WindProtectionIEC
 extends
     Parseable[WindProtectionIEC]
 {
-    val dfimax = parse_element (element ("""WindProtectionIEC.dfimax"""))
-    val fover = parse_element (element ("""WindProtectionIEC.fover"""))
-    val funder = parse_element (element ("""WindProtectionIEC.funder"""))
-    val mzc = parse_element (element ("""WindProtectionIEC.mzc"""))
-    val tfma = parse_element (element ("""WindProtectionIEC.tfma"""))
-    val uover = parse_element (element ("""WindProtectionIEC.uover"""))
-    val uunder = parse_element (element ("""WindProtectionIEC.uunder"""))
-    val WindTurbineType1or2IEC = parse_attribute (attribute ("""WindProtectionIEC.WindTurbineType1or2IEC"""))
-    val WindTurbineType3or4IEC = parse_attribute (attribute ("""WindProtectionIEC.WindTurbineType3or4IEC"""))
+    val fields: Array[String] = Array[String] (
+        "dfimax",
+        "fover",
+        "funder",
+        "mzc",
+        "tfma",
+        "uover",
+        "uunder",
+        "WindTurbineType1or2IEC",
+        "WindTurbineType3or4IEC"
+    )
+    val dfimax: Fielder = parse_element (element (cls, fields(0)))
+    val fover: Fielder = parse_element (element (cls, fields(1)))
+    val funder: Fielder = parse_element (element (cls, fields(2)))
+    val mzc: Fielder = parse_element (element (cls, fields(3)))
+    val tfma: Fielder = parse_element (element (cls, fields(4)))
+    val uover: Fielder = parse_element (element (cls, fields(5)))
+    val uunder: Fielder = parse_element (element (cls, fields(6)))
+    val WindTurbineType1or2IEC: Fielder = parse_attribute (attribute (cls, fields(7)))
+    val WindTurbineType3or4IEC: Fielder = parse_attribute (attribute (cls, fields(8)))
+
     def parse (context: Context): WindProtectionIEC =
     {
-        WindProtectionIEC(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = WindProtectionIEC (
             IdentifiedObject.parse (context),
-            toDouble (dfimax (context), context),
-            toDouble (fover (context), context),
-            toDouble (funder (context), context),
-            toBoolean (mzc (context), context),
-            toDouble (tfma (context), context),
-            toDouble (uover (context), context),
-            toDouble (uunder (context), context),
-            WindTurbineType1or2IEC (context),
-            WindTurbineType3or4IEC (context)
+            toDouble (mask (dfimax (), 0)),
+            toDouble (mask (fover (), 1)),
+            toDouble (mask (funder (), 2)),
+            toBoolean (mask (mzc (), 3)),
+            toDouble (mask (tfma (), 4)),
+            toDouble (mask (uover (), 5)),
+            toDouble (mask (uunder (), 6)),
+            mask (WindTurbineType1or2IEC (), 7),
+            mask (WindTurbineType3or4IEC (), 8)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("WindTurbineType1or2IEC", "WindTurbineType1or2IEC", false),
-        Relationship ("WindTurbineType3or4IEC", "WindTurbineType3or4IEC", false))
+        Relationship ("WindTurbineType3or4IEC", "WindTurbineType3or4IEC", false)
+    )
 }
 
 /**
@@ -3242,6 +3921,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -3261,17 +3946,20 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:WindRefFrameRotIEC.tpll>" + tpll + "</cim:WindRefFrameRotIEC.tpll>\n" +
-        "\t\t<cim:WindRefFrameRotIEC.upll1>" + upll1 + "</cim:WindRefFrameRotIEC.upll1>\n" +
-        "\t\t<cim:WindRefFrameRotIEC.upll2>" + upll2 + "</cim:WindRefFrameRotIEC.upll2>\n" +
-        (if (null != WindTurbineType3or4IEC) "\t\t<cim:WindRefFrameRotIEC.WindTurbineType3or4IEC rdf:resource=\"#" + WindTurbineType3or4IEC + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = WindRefFrameRotIEC.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindRefFrameRotIEC.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindRefFrameRotIEC.fields (position), value)
+        emitelem (0, tpll)
+        emitelem (1, upll1)
+        emitelem (2, upll2)
+        emitattr (3, WindTurbineType3or4IEC)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:WindRefFrameRotIEC rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:WindRefFrameRotIEC>"
+        "\t<cim:WindRefFrameRotIEC rdf:ID=\"%s\">\n%s\t</cim:WindRefFrameRotIEC>".format (id, export_fields)
     }
 }
 
@@ -3279,22 +3967,35 @@ object WindRefFrameRotIEC
 extends
     Parseable[WindRefFrameRotIEC]
 {
-    val tpll = parse_element (element ("""WindRefFrameRotIEC.tpll"""))
-    val upll1 = parse_element (element ("""WindRefFrameRotIEC.upll1"""))
-    val upll2 = parse_element (element ("""WindRefFrameRotIEC.upll2"""))
-    val WindTurbineType3or4IEC = parse_attribute (attribute ("""WindRefFrameRotIEC.WindTurbineType3or4IEC"""))
+    val fields: Array[String] = Array[String] (
+        "tpll",
+        "upll1",
+        "upll2",
+        "WindTurbineType3or4IEC"
+    )
+    val tpll: Fielder = parse_element (element (cls, fields(0)))
+    val upll1: Fielder = parse_element (element (cls, fields(1)))
+    val upll2: Fielder = parse_element (element (cls, fields(2)))
+    val WindTurbineType3or4IEC: Fielder = parse_attribute (attribute (cls, fields(3)))
+
     def parse (context: Context): WindRefFrameRotIEC =
     {
-        WindRefFrameRotIEC(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = WindRefFrameRotIEC (
             IdentifiedObject.parse (context),
-            toDouble (tpll (context), context),
-            toDouble (upll1 (context), context),
-            toDouble (upll2 (context), context),
-            WindTurbineType3or4IEC (context)
+            toDouble (mask (tpll (), 0)),
+            toDouble (mask (upll1 (), 1)),
+            toDouble (mask (upll2 (), 2)),
+            mask (WindTurbineType3or4IEC (), 3)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("WindTurbineType3or4IEC", "WindTurbineType3or4IEC", false))
+        Relationship ("WindTurbineType3or4IEC", "WindTurbineType3or4IEC", false)
+    )
 }
 
 /**
@@ -3331,6 +4032,12 @@ extends
      */
     def this () = { this (null, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -3350,15 +4057,17 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != AsynchronousMachineDynamics) "\t\t<cim:WindTurbineType1or2Dynamics.AsynchronousMachineDynamics rdf:resource=\"#" + AsynchronousMachineDynamics + "\"/>\n" else "") +
-        (if (null != RemoteInputSignal) "\t\t<cim:WindTurbineType1or2Dynamics.RemoteInputSignal rdf:resource=\"#" + RemoteInputSignal + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = WindTurbineType1or2Dynamics.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindTurbineType1or2Dynamics.fields (position), value)
+        emitattr (0, AsynchronousMachineDynamics)
+        emitattr (1, RemoteInputSignal)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:WindTurbineType1or2Dynamics rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:WindTurbineType1or2Dynamics>"
+        "\t<cim:WindTurbineType1or2Dynamics rdf:ID=\"%s\">\n%s\t</cim:WindTurbineType1or2Dynamics>".format (id, export_fields)
     }
 }
 
@@ -3366,19 +4075,30 @@ object WindTurbineType1or2Dynamics
 extends
     Parseable[WindTurbineType1or2Dynamics]
 {
-    val AsynchronousMachineDynamics = parse_attribute (attribute ("""WindTurbineType1or2Dynamics.AsynchronousMachineDynamics"""))
-    val RemoteInputSignal = parse_attribute (attribute ("""WindTurbineType1or2Dynamics.RemoteInputSignal"""))
+    val fields: Array[String] = Array[String] (
+        "AsynchronousMachineDynamics",
+        "RemoteInputSignal"
+    )
+    val AsynchronousMachineDynamics: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val RemoteInputSignal: Fielder = parse_attribute (attribute (cls, fields(1)))
+
     def parse (context: Context): WindTurbineType1or2Dynamics =
     {
-        WindTurbineType1or2Dynamics(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = WindTurbineType1or2Dynamics (
             DynamicsFunctionBlock.parse (context),
-            AsynchronousMachineDynamics (context),
-            RemoteInputSignal (context)
+            mask (AsynchronousMachineDynamics (), 0),
+            mask (RemoteInputSignal (), 1)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("AsynchronousMachineDynamics", "AsynchronousMachineDynamics", false),
-        Relationship ("RemoteInputSignal", "RemoteInputSignal", false))
+        Relationship ("RemoteInputSignal", "RemoteInputSignal", false)
+    )
 }
 
 /**
@@ -3417,6 +4137,12 @@ extends
      */
     def this () = { this (null, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -3436,15 +4162,17 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != WindMechIEC) "\t\t<cim:WindTurbineType1or2IEC.WindMechIEC rdf:resource=\"#" + WindMechIEC + "\"/>\n" else "") +
-        (if (null != WindProtectionIEC) "\t\t<cim:WindTurbineType1or2IEC.WindProtectionIEC rdf:resource=\"#" + WindProtectionIEC + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = WindTurbineType1or2IEC.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindTurbineType1or2IEC.fields (position), value)
+        emitattr (0, WindMechIEC)
+        emitattr (1, WindProtectionIEC)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:WindTurbineType1or2IEC rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:WindTurbineType1or2IEC>"
+        "\t<cim:WindTurbineType1or2IEC rdf:ID=\"%s\">\n%s\t</cim:WindTurbineType1or2IEC>".format (id, export_fields)
     }
 }
 
@@ -3452,19 +4180,30 @@ object WindTurbineType1or2IEC
 extends
     Parseable[WindTurbineType1or2IEC]
 {
-    val WindMechIEC = parse_attribute (attribute ("""WindTurbineType1or2IEC.WindMechIEC"""))
-    val WindProtectionIEC = parse_attribute (attribute ("""WindTurbineType1or2IEC.WindProtectionIEC"""))
+    val fields: Array[String] = Array[String] (
+        "WindMechIEC",
+        "WindProtectionIEC"
+    )
+    val WindMechIEC: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val WindProtectionIEC: Fielder = parse_attribute (attribute (cls, fields(1)))
+
     def parse (context: Context): WindTurbineType1or2IEC =
     {
-        WindTurbineType1or2IEC(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = WindTurbineType1or2IEC (
             WindTurbineType1or2Dynamics.parse (context),
-            WindMechIEC (context),
-            WindProtectionIEC (context)
+            mask (WindMechIEC (), 0),
+            mask (WindProtectionIEC (), 1)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("WindMechIEC", "WindMechIEC", false),
-        Relationship ("WindProtectionIEC", "WindProtectionIEC", false))
+        Relationship ("WindProtectionIEC", "WindProtectionIEC", false)
+    )
 }
 
 /**
@@ -3509,6 +4248,12 @@ extends
      */
     def this () = { this (null, null, null, null, null, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -3528,19 +4273,21 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != WindAeroOneDimIEC) "\t\t<cim:WindTurbineType3IEC.WindAeroOneDimIEC rdf:resource=\"#" + WindAeroOneDimIEC + "\"/>\n" else "") +
-        (if (null != WindAeroTwoDimIEC) "\t\t<cim:WindTurbineType3IEC.WindAeroTwoDimIEC rdf:resource=\"#" + WindAeroTwoDimIEC + "\"/>\n" else "") +
-        (if (null != WindContPType3IEC) "\t\t<cim:WindTurbineType3IEC.WindContPType3IEC rdf:resource=\"#" + WindContPType3IEC + "\"/>\n" else "") +
-        (if (null != WindContPitchAngleIEC) "\t\t<cim:WindTurbineType3IEC.WindContPitchAngleIEC rdf:resource=\"#" + WindContPitchAngleIEC + "\"/>\n" else "") +
-        (if (null != WindGenType3IEC) "\t\t<cim:WindTurbineType3IEC.WindGenType3IEC rdf:resource=\"#" + WindGenType3IEC + "\"/>\n" else "") +
-        (if (null != WindMechIEC) "\t\t<cim:WindTurbineType3IEC.WindMechIEC rdf:resource=\"#" + WindMechIEC + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = WindTurbineType3IEC.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindTurbineType3IEC.fields (position), value)
+        emitattr (0, WindAeroOneDimIEC)
+        emitattr (1, WindAeroTwoDimIEC)
+        emitattr (2, WindContPType3IEC)
+        emitattr (3, WindContPitchAngleIEC)
+        emitattr (4, WindGenType3IEC)
+        emitattr (5, WindMechIEC)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:WindTurbineType3IEC rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:WindTurbineType3IEC>"
+        "\t<cim:WindTurbineType3IEC rdf:ID=\"%s\">\n%s\t</cim:WindTurbineType3IEC>".format (id, export_fields)
     }
 }
 
@@ -3548,23 +4295,37 @@ object WindTurbineType3IEC
 extends
     Parseable[WindTurbineType3IEC]
 {
-    val WindAeroOneDimIEC = parse_attribute (attribute ("""WindTurbineType3IEC.WindAeroOneDimIEC"""))
-    val WindAeroTwoDimIEC = parse_attribute (attribute ("""WindTurbineType3IEC.WindAeroTwoDimIEC"""))
-    val WindContPType3IEC = parse_attribute (attribute ("""WindTurbineType3IEC.WindContPType3IEC"""))
-    val WindContPitchAngleIEC = parse_attribute (attribute ("""WindTurbineType3IEC.WindContPitchAngleIEC"""))
-    val WindGenType3IEC = parse_attribute (attribute ("""WindTurbineType3IEC.WindGenType3IEC"""))
-    val WindMechIEC = parse_attribute (attribute ("""WindTurbineType3IEC.WindMechIEC"""))
+    val fields: Array[String] = Array[String] (
+        "WindAeroOneDimIEC",
+        "WindAeroTwoDimIEC",
+        "WindContPType3IEC",
+        "WindContPitchAngleIEC",
+        "WindGenType3IEC",
+        "WindMechIEC"
+    )
+    val WindAeroOneDimIEC: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val WindAeroTwoDimIEC: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val WindContPType3IEC: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val WindContPitchAngleIEC: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val WindGenType3IEC: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val WindMechIEC: Fielder = parse_attribute (attribute (cls, fields(5)))
+
     def parse (context: Context): WindTurbineType3IEC =
     {
-        WindTurbineType3IEC(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = WindTurbineType3IEC (
             WindTurbineType3or4IEC.parse (context),
-            WindAeroOneDimIEC (context),
-            WindAeroTwoDimIEC (context),
-            WindContPType3IEC (context),
-            WindContPitchAngleIEC (context),
-            WindGenType3IEC (context),
-            WindMechIEC (context)
+            mask (WindAeroOneDimIEC (), 0),
+            mask (WindAeroTwoDimIEC (), 1),
+            mask (WindContPType3IEC (), 2),
+            mask (WindContPitchAngleIEC (), 3),
+            mask (WindGenType3IEC (), 4),
+            mask (WindMechIEC (), 5)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("WindAeroOneDimIEC", "WindAeroOneDimIEC", false),
@@ -3572,7 +4333,8 @@ extends
         Relationship ("WindContPType3IEC", "WindContPType3IEC", false),
         Relationship ("WindContPitchAngleIEC", "WindContPitchAngleIEC", false),
         Relationship ("WindGenType3IEC", "WindGenType3IEC", false),
-        Relationship ("WindMechIEC", "WindMechIEC", false))
+        Relationship ("WindMechIEC", "WindMechIEC", false)
+    )
 }
 
 /**
@@ -3611,6 +4373,12 @@ extends
      */
     def this () = { this (null, null, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -3630,16 +4398,18 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != EnergySource) "\t\t<cim:WindTurbineType3or4Dynamics.EnergySource rdf:resource=\"#" + EnergySource + "\"/>\n" else "") +
-        (if (null != RemoteInputSignal) "\t\t<cim:WindTurbineType3or4Dynamics.RemoteInputSignal rdf:resource=\"#" + RemoteInputSignal + "\"/>\n" else "") +
-        (if (null != WindPlantDynamics) "\t\t<cim:WindTurbineType3or4Dynamics.WindPlantDynamics rdf:resource=\"#" + WindPlantDynamics + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = WindTurbineType3or4Dynamics.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindTurbineType3or4Dynamics.fields (position), value)
+        emitattr (0, EnergySource)
+        emitattr (1, RemoteInputSignal)
+        emitattr (2, WindPlantDynamics)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:WindTurbineType3or4Dynamics rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:WindTurbineType3or4Dynamics>"
+        "\t<cim:WindTurbineType3or4Dynamics rdf:ID=\"%s\">\n%s\t</cim:WindTurbineType3or4Dynamics>".format (id, export_fields)
     }
 }
 
@@ -3647,22 +4417,34 @@ object WindTurbineType3or4Dynamics
 extends
     Parseable[WindTurbineType3or4Dynamics]
 {
-    val EnergySource = parse_attribute (attribute ("""WindTurbineType3or4Dynamics.EnergySource"""))
-    val RemoteInputSignal = parse_attribute (attribute ("""WindTurbineType3or4Dynamics.RemoteInputSignal"""))
-    val WindPlantDynamics = parse_attribute (attribute ("""WindTurbineType3or4Dynamics.WindPlantDynamics"""))
+    val fields: Array[String] = Array[String] (
+        "EnergySource",
+        "RemoteInputSignal",
+        "WindPlantDynamics"
+    )
+    val EnergySource: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val RemoteInputSignal: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val WindPlantDynamics: Fielder = parse_attribute (attribute (cls, fields(2)))
+
     def parse (context: Context): WindTurbineType3or4Dynamics =
     {
-        WindTurbineType3or4Dynamics(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = WindTurbineType3or4Dynamics (
             DynamicsFunctionBlock.parse (context),
-            EnergySource (context),
-            RemoteInputSignal (context),
-            WindPlantDynamics (context)
+            mask (EnergySource (), 0),
+            mask (RemoteInputSignal (), 1),
+            mask (WindPlantDynamics (), 2)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("EnergySource", "EnergySource", false),
         Relationship ("RemoteInputSignal", "RemoteInputSignal", false),
-        Relationship ("WindPlantDynamics", "WindPlantDynamics", false))
+        Relationship ("WindPlantDynamics", "WindPlantDynamics", false)
+    )
 }
 
 /**
@@ -3707,6 +4489,12 @@ extends
      */
     def this () = { this (null, null, null, null, null, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -3726,19 +4514,21 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != WIndContQIEC) "\t\t<cim:WindTurbineType3or4IEC.WIndContQIEC rdf:resource=\"#" + WIndContQIEC + "\"/>\n" else "") +
-        (if (null != WindContCurrLimIEC) "\t\t<cim:WindTurbineType3or4IEC.WindContCurrLimIEC rdf:resource=\"#" + WindContCurrLimIEC + "\"/>\n" else "") +
-        (if (null != WindContQLimIEC) "\t\t<cim:WindTurbineType3or4IEC.WindContQLimIEC rdf:resource=\"#" + WindContQLimIEC + "\"/>\n" else "") +
-        (if (null != WindContQPQULimIEC) "\t\t<cim:WindTurbineType3or4IEC.WindContQPQULimIEC rdf:resource=\"#" + WindContQPQULimIEC + "\"/>\n" else "") +
-        (if (null != WindProtectionIEC) "\t\t<cim:WindTurbineType3or4IEC.WindProtectionIEC rdf:resource=\"#" + WindProtectionIEC + "\"/>\n" else "") +
-        (if (null != WindRefFrameRotIEC) "\t\t<cim:WindTurbineType3or4IEC.WindRefFrameRotIEC rdf:resource=\"#" + WindRefFrameRotIEC + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = WindTurbineType3or4IEC.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindTurbineType3or4IEC.fields (position), value)
+        emitattr (0, WIndContQIEC)
+        emitattr (1, WindContCurrLimIEC)
+        emitattr (2, WindContQLimIEC)
+        emitattr (3, WindContQPQULimIEC)
+        emitattr (4, WindProtectionIEC)
+        emitattr (5, WindRefFrameRotIEC)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:WindTurbineType3or4IEC rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:WindTurbineType3or4IEC>"
+        "\t<cim:WindTurbineType3or4IEC rdf:ID=\"%s\">\n%s\t</cim:WindTurbineType3or4IEC>".format (id, export_fields)
     }
 }
 
@@ -3746,23 +4536,37 @@ object WindTurbineType3or4IEC
 extends
     Parseable[WindTurbineType3or4IEC]
 {
-    val WIndContQIEC = parse_attribute (attribute ("""WindTurbineType3or4IEC.WIndContQIEC"""))
-    val WindContCurrLimIEC = parse_attribute (attribute ("""WindTurbineType3or4IEC.WindContCurrLimIEC"""))
-    val WindContQLimIEC = parse_attribute (attribute ("""WindTurbineType3or4IEC.WindContQLimIEC"""))
-    val WindContQPQULimIEC = parse_attribute (attribute ("""WindTurbineType3or4IEC.WindContQPQULimIEC"""))
-    val WindProtectionIEC = parse_attribute (attribute ("""WindTurbineType3or4IEC.WindProtectionIEC"""))
-    val WindRefFrameRotIEC = parse_attribute (attribute ("""WindTurbineType3or4IEC.WindRefFrameRotIEC"""))
+    val fields: Array[String] = Array[String] (
+        "WIndContQIEC",
+        "WindContCurrLimIEC",
+        "WindContQLimIEC",
+        "WindContQPQULimIEC",
+        "WindProtectionIEC",
+        "WindRefFrameRotIEC"
+    )
+    val WIndContQIEC: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val WindContCurrLimIEC: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val WindContQLimIEC: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val WindContQPQULimIEC: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val WindProtectionIEC: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val WindRefFrameRotIEC: Fielder = parse_attribute (attribute (cls, fields(5)))
+
     def parse (context: Context): WindTurbineType3or4IEC =
     {
-        WindTurbineType3or4IEC(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = WindTurbineType3or4IEC (
             WindTurbineType3or4Dynamics.parse (context),
-            WIndContQIEC (context),
-            WindContCurrLimIEC (context),
-            WindContQLimIEC (context),
-            WindContQPQULimIEC (context),
-            WindProtectionIEC (context),
-            WindRefFrameRotIEC (context)
+            mask (WIndContQIEC (), 0),
+            mask (WindContCurrLimIEC (), 1),
+            mask (WindContQLimIEC (), 2),
+            mask (WindContQPQULimIEC (), 3),
+            mask (WindProtectionIEC (), 4),
+            mask (WindRefFrameRotIEC (), 5)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("WIndContQIEC", "WindContQIEC", false),
@@ -3770,7 +4574,8 @@ extends
         Relationship ("WindContQLimIEC", "WindContQLimIEC", false),
         Relationship ("WindContQPQULimIEC", "WindContQPQULimIEC", false),
         Relationship ("WindProtectionIEC", "WindProtectionIEC", false),
-        Relationship ("WindRefFrameRotIEC", "WindRefFrameRotIEC", false))
+        Relationship ("WindRefFrameRotIEC", "WindRefFrameRotIEC", false)
+    )
 }
 
 /**
@@ -3805,6 +4610,12 @@ extends
      */
     def this () = { this (null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -3824,14 +4635,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != WindGenType3aIEC) "\t\t<cim:WindTurbineType4IEC.WindGenType3aIEC rdf:resource=\"#" + WindGenType3aIEC + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = WindTurbineType4IEC.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindTurbineType4IEC.fields (position), value)
+        emitattr (0, WindGenType3aIEC)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:WindTurbineType4IEC rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:WindTurbineType4IEC>"
+        "\t<cim:WindTurbineType4IEC rdf:ID=\"%s\">\n%s\t</cim:WindTurbineType4IEC>".format (id, export_fields)
     }
 }
 
@@ -3839,16 +4652,26 @@ object WindTurbineType4IEC
 extends
     Parseable[WindTurbineType4IEC]
 {
-    val WindGenType3aIEC = parse_attribute (attribute ("""WindTurbineType4IEC.WindGenType3aIEC"""))
+    val fields: Array[String] = Array[String] (
+        "WindGenType3aIEC"
+    )
+    val WindGenType3aIEC: Fielder = parse_attribute (attribute (cls, fields(0)))
+
     def parse (context: Context): WindTurbineType4IEC =
     {
-        WindTurbineType4IEC(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = WindTurbineType4IEC (
             WindTurbineType3or4IEC.parse (context),
-            WindGenType3aIEC (context)
+            mask (WindGenType3aIEC (), 0)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("WindGenType3aIEC", "WindGenType3aIEC", false))
+        Relationship ("WindGenType3aIEC", "WindGenType3aIEC", false)
+    )
 }
 
 /**
@@ -3887,6 +4710,12 @@ extends
      */
     def this () = { this (null, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -3906,15 +4735,17 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != WindContPType4aIEC) "\t\t<cim:WindTurbineType4aIEC.WindContPType4aIEC rdf:resource=\"#" + WindContPType4aIEC + "\"/>\n" else "") +
-        (if (null != WindGenType4IEC) "\t\t<cim:WindTurbineType4aIEC.WindGenType4IEC rdf:resource=\"#" + WindGenType4IEC + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = WindTurbineType4aIEC.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindTurbineType4aIEC.fields (position), value)
+        emitattr (0, WindContPType4aIEC)
+        emitattr (1, WindGenType4IEC)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:WindTurbineType4aIEC rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:WindTurbineType4aIEC>"
+        "\t<cim:WindTurbineType4aIEC rdf:ID=\"%s\">\n%s\t</cim:WindTurbineType4aIEC>".format (id, export_fields)
     }
 }
 
@@ -3922,19 +4753,30 @@ object WindTurbineType4aIEC
 extends
     Parseable[WindTurbineType4aIEC]
 {
-    val WindContPType4aIEC = parse_attribute (attribute ("""WindTurbineType4aIEC.WindContPType4aIEC"""))
-    val WindGenType4IEC = parse_attribute (attribute ("""WindTurbineType4aIEC.WindGenType4IEC"""))
+    val fields: Array[String] = Array[String] (
+        "WindContPType4aIEC",
+        "WindGenType4IEC"
+    )
+    val WindContPType4aIEC: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val WindGenType4IEC: Fielder = parse_attribute (attribute (cls, fields(1)))
+
     def parse (context: Context): WindTurbineType4aIEC =
     {
-        WindTurbineType4aIEC(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = WindTurbineType4aIEC (
             WindTurbineType4IEC.parse (context),
-            WindContPType4aIEC (context),
-            WindGenType4IEC (context)
+            mask (WindContPType4aIEC (), 0),
+            mask (WindGenType4IEC (), 1)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("WindContPType4aIEC", "WindContPType4aIEC", false),
-        Relationship ("WindGenType4IEC", "WindGenType4IEC", false))
+        Relationship ("WindGenType4IEC", "WindGenType4IEC", false)
+    )
 }
 
 /**
@@ -3975,6 +4817,12 @@ extends
      */
     def this () = { this (null, null, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -3994,16 +4842,18 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != WindContPType4bIEC) "\t\t<cim:WindTurbineType4bIEC.WindContPType4bIEC rdf:resource=\"#" + WindContPType4bIEC + "\"/>\n" else "") +
-        (if (null != WindGenType4IEC) "\t\t<cim:WindTurbineType4bIEC.WindGenType4IEC rdf:resource=\"#" + WindGenType4IEC + "\"/>\n" else "") +
-        (if (null != WindMechIEC) "\t\t<cim:WindTurbineType4bIEC.WindMechIEC rdf:resource=\"#" + WindMechIEC + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = WindTurbineType4bIEC.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindTurbineType4bIEC.fields (position), value)
+        emitattr (0, WindContPType4bIEC)
+        emitattr (1, WindGenType4IEC)
+        emitattr (2, WindMechIEC)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:WindTurbineType4bIEC rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:WindTurbineType4bIEC>"
+        "\t<cim:WindTurbineType4bIEC rdf:ID=\"%s\">\n%s\t</cim:WindTurbineType4bIEC>".format (id, export_fields)
     }
 }
 
@@ -4011,22 +4861,34 @@ object WindTurbineType4bIEC
 extends
     Parseable[WindTurbineType4bIEC]
 {
-    val WindContPType4bIEC = parse_attribute (attribute ("""WindTurbineType4bIEC.WindContPType4bIEC"""))
-    val WindGenType4IEC = parse_attribute (attribute ("""WindTurbineType4bIEC.WindGenType4IEC"""))
-    val WindMechIEC = parse_attribute (attribute ("""WindTurbineType4bIEC.WindMechIEC"""))
+    val fields: Array[String] = Array[String] (
+        "WindContPType4bIEC",
+        "WindGenType4IEC",
+        "WindMechIEC"
+    )
+    val WindContPType4bIEC: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val WindGenType4IEC: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val WindMechIEC: Fielder = parse_attribute (attribute (cls, fields(2)))
+
     def parse (context: Context): WindTurbineType4bIEC =
     {
-        WindTurbineType4bIEC(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = WindTurbineType4bIEC (
             WindTurbineType4IEC.parse (context),
-            WindContPType4bIEC (context),
-            WindGenType4IEC (context),
-            WindMechIEC (context)
+            mask (WindContPType4bIEC (), 0),
+            mask (WindGenType4IEC (), 1),
+            mask (WindMechIEC (), 2)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("WindContPType4bIEC", "WindContPType4bIEC", false),
         Relationship ("WindGenType4IEC", "WindGenType4IEC", false),
-        Relationship ("WindMechIEC", "WindMechIEC", false))
+        Relationship ("WindMechIEC", "WindMechIEC", false)
+    )
 }
 
 private[ninecode] object _WindDynamics

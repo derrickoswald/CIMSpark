@@ -2,7 +2,9 @@ package ch.ninecode.model
 
 import java.util.regex.Pattern
 
+import ch.ninecode.cim.Parser.namespace
 import ch.ninecode.cim.Relationship
+import ch.ninecode.model
 import org.apache.spark.sql.Row
 import org.apache.spark.sql.types.SQLUserDefinedType
 
@@ -98,6 +100,64 @@ with
     override def copy (): Row = { throw new Exception ("copy() should be overridden in derived classes") }
 
     /**
+     * Emit one XML element.
+     *
+     * @example &lt;cim:IdentifiedObject.name&gt;WGS 84&lt;/cim:IdentifiedObject.name&gt;
+     *
+     * @param field The name of the field.
+     * @param value The value of the field.
+     * @param clz The class name (e.g. ACLineSegment) of this element
+     * @param s The builder to write into.
+     */
+    def emit_element (field: String, value: Any)(implicit clz: String, s: StringBuilder): Unit =
+    {
+        if (null != value)
+        {
+            s.append ("\t\t<")
+            s.append (namespace)
+            s.append (":")
+            s.append (clz)
+            s.append (".")
+            s.append (field)
+            s.append (">")
+            s.append (value.toString)
+            s.append ("</")
+            s.append (namespace)
+            s.append (":")
+            s.append (clz)
+            s.append (".")
+            s.append (field)
+            s.append (">\n")
+        }
+    }
+
+    /**
+     * Emit one XML attribute.
+     *
+     * @example &lt;cim:Location.CoordinateSystem rdf:resource="#wgs84"/&gt;
+     *
+     * @param field The name of the field.
+     * @param value The value of the field.
+     * @param clz The class name (e.g. ACLineSegment) of this element
+     * @param s The builder to write into.
+     */
+    def emit_attribute (field: String, value: Any)(implicit clz: String, s: StringBuilder): Unit =
+    {
+        if (null != value)
+        {
+            s.append ("\t\t<")
+            s.append (namespace)
+            s.append (":")
+            s.append (clz)
+            s.append (".")
+            s.append (field)
+            s.append (" rdf:resource=\"#")
+            s.append (value.toString)
+            s.append ("\"/>\n")
+        }
+    }
+
+    /**
      * Return a string containing the fields of this object suitable for inclusion in an XML object.
      *
      * @return A string with the fileds coded in XML
@@ -170,10 +230,11 @@ object BasicElement
      * Parse an element.
      * Simply extracts the id.
      */
-    val mRID: (Context) => String = parse_element ((Pattern.compile("""rdf:ID=("|')([\s\S]*?)\1>?"""), 2))
+    val mRID: FielderFunction = parse_element ((Pattern.compile("""rdf:ID=("|')([\s\S]*?)\1>?"""), 2))
     override def parse (context: Context): BasicElement =
     {
-        new BasicElement (null, mRID (context))
+        implicit val ctx: Context = context
+        BasicElement (null, mRID.apply()._1)
     }
     val relations: List[Relationship] = List ()
 }

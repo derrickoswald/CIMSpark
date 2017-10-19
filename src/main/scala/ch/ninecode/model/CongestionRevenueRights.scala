@@ -44,6 +44,12 @@ extends
      */
     def this () = { this (null, null, null, null, null, null, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -63,20 +69,23 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != cRRcategory) "\t\t<cim:CRR.cRRcategory rdf:resource=\"#" + cRRcategory + "\"/>\n" else "") +
-        (if (null != cRRtype) "\t\t<cim:CRR.cRRtype rdf:resource=\"#" + cRRtype + "\"/>\n" else "") +
-        (if (null != hedgeType) "\t\t<cim:CRR.hedgeType rdf:resource=\"#" + hedgeType + "\"/>\n" else "") +
-        (if (null != timeOfUse) "\t\t<cim:CRR.timeOfUse rdf:resource=\"#" + timeOfUse + "\"/>\n" else "") +
-        (if (null != tradeSliceID) "\t\t<cim:CRR.tradeSliceID>" + tradeSliceID + "</cim:CRR.tradeSliceID>\n" else "") +
-        (if (null != CRRMarket) "\t\t<cim:CRR.CRRMarket rdf:resource=\"#" + CRRMarket + "\"/>\n" else "") +
-        (if (null != Flowgate) "\t\t<cim:CRR.Flowgate rdf:resource=\"#" + Flowgate + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = CRR.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (CRR.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (CRR.fields (position), value)
+        emitattr (0, cRRcategory)
+        emitattr (1, cRRtype)
+        emitattr (2, hedgeType)
+        emitattr (3, timeOfUse)
+        emitelem (4, tradeSliceID)
+        emitattr (5, CRRMarket)
+        emitattr (6, Flowgate)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:CRR rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:CRR>"
+        "\t<cim:CRR rdf:ID=\"%s\">\n%s\t</cim:CRR>".format (id, export_fields)
     }
 }
 
@@ -84,29 +93,45 @@ object CRR
 extends
     Parseable[CRR]
 {
-    val cRRcategory = parse_attribute (attribute ("""CRR.cRRcategory"""))
-    val cRRtype = parse_attribute (attribute ("""CRR.cRRtype"""))
-    val hedgeType = parse_attribute (attribute ("""CRR.hedgeType"""))
-    val timeOfUse = parse_attribute (attribute ("""CRR.timeOfUse"""))
-    val tradeSliceID = parse_element (element ("""CRR.tradeSliceID"""))
-    val CRRMarket = parse_attribute (attribute ("""CRR.CRRMarket"""))
-    val Flowgate = parse_attribute (attribute ("""CRR.Flowgate"""))
+    val fields: Array[String] = Array[String] (
+        "cRRcategory",
+        "cRRtype",
+        "hedgeType",
+        "timeOfUse",
+        "tradeSliceID",
+        "CRRMarket",
+        "Flowgate"
+    )
+    val cRRcategory: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val cRRtype: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val hedgeType: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val timeOfUse: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val tradeSliceID: Fielder = parse_element (element (cls, fields(4)))
+    val CRRMarket: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val Flowgate: Fielder = parse_attribute (attribute (cls, fields(6)))
+
     def parse (context: Context): CRR =
     {
-        CRR(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = CRR (
             Document.parse (context),
-            cRRcategory (context),
-            cRRtype (context),
-            hedgeType (context),
-            timeOfUse (context),
-            tradeSliceID (context),
-            CRRMarket (context),
-            Flowgate (context)
+            mask (cRRcategory (), 0),
+            mask (cRRtype (), 1),
+            mask (hedgeType (), 2),
+            mask (timeOfUse (), 3),
+            mask (tradeSliceID (), 4),
+            mask (CRRMarket (), 5),
+            mask (Flowgate (), 6)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("CRRMarket", "CRRMarket", false),
-        Relationship ("Flowgate", "Flowgate", false))
+        Relationship ("Flowgate", "Flowgate", false)
+    )
 }
 
 /**
@@ -137,6 +162,12 @@ extends
      */
     def this () = { this (null, null, null, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -156,17 +187,19 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != kind) "\t\t<cim:CRROrgRole.kind rdf:resource=\"#" + kind + "\"/>\n" else "") +
-        (if (null != status) "\t\t<cim:CRROrgRole.status rdf:resource=\"#" + status + "\"/>\n" else "") +
-        (if (null != CRR) "\t\t<cim:CRROrgRole.CRR rdf:resource=\"#" + CRR + "\"/>\n" else "") +
-        (if (null != MktOrganisation) "\t\t<cim:CRROrgRole.MktOrganisation rdf:resource=\"#" + MktOrganisation + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = CRROrgRole.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (CRROrgRole.fields (position), value)
+        emitattr (0, kind)
+        emitattr (1, status)
+        emitattr (2, CRR)
+        emitattr (3, MktOrganisation)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:CRROrgRole rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:CRROrgRole>"
+        "\t<cim:CRROrgRole rdf:ID=\"%s\">\n%s\t</cim:CRROrgRole>".format (id, export_fields)
     }
 }
 
@@ -174,23 +207,36 @@ object CRROrgRole
 extends
     Parseable[CRROrgRole]
 {
-    val kind = parse_attribute (attribute ("""CRROrgRole.kind"""))
-    val status = parse_attribute (attribute ("""CRROrgRole.status"""))
-    val CRR = parse_attribute (attribute ("""CRROrgRole.CRR"""))
-    val MktOrganisation = parse_attribute (attribute ("""CRROrgRole.MktOrganisation"""))
+    val fields: Array[String] = Array[String] (
+        "kind",
+        "status",
+        "CRR",
+        "MktOrganisation"
+    )
+    val kind: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val status: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val CRR: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val MktOrganisation: Fielder = parse_attribute (attribute (cls, fields(3)))
+
     def parse (context: Context): CRROrgRole =
     {
-        CRROrgRole(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = CRROrgRole (
             OrganisationRole.parse (context),
-            kind (context),
-            status (context),
-            CRR (context),
-            MktOrganisation (context)
+            mask (kind (), 0),
+            mask (status (), 1),
+            mask (CRR (), 2),
+            mask (MktOrganisation (), 3)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("CRR", "CRR", false),
-        Relationship ("MktOrganisation", "MktOrganisation", false))
+        Relationship ("MktOrganisation", "MktOrganisation", false)
+    )
 }
 
 /**
@@ -227,6 +273,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, null, 0.0, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -246,19 +298,22 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:CRRSegment.amount>" + amount + "</cim:CRRSegment.amount>\n" +
-        "\t\t<cim:CRRSegment.clearingPrice>" + clearingPrice + "</cim:CRRSegment.clearingPrice>\n" +
-        (if (null != endDateTime) "\t\t<cim:CRRSegment.endDateTime>" + endDateTime + "</cim:CRRSegment.endDateTime>\n" else "") +
-        "\t\t<cim:CRRSegment.quantity>" + quantity + "</cim:CRRSegment.quantity>\n" +
-        (if (null != startDateTime) "\t\t<cim:CRRSegment.startDateTime>" + startDateTime + "</cim:CRRSegment.startDateTime>\n" else "") +
-        (if (null != CRR) "\t\t<cim:CRRSegment.CRR rdf:resource=\"#" + CRR + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = CRRSegment.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (CRRSegment.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (CRRSegment.fields (position), value)
+        emitelem (0, amount)
+        emitelem (1, clearingPrice)
+        emitelem (2, endDateTime)
+        emitelem (3, quantity)
+        emitelem (4, startDateTime)
+        emitattr (5, CRR)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:CRRSegment rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:CRRSegment>"
+        "\t<cim:CRRSegment rdf:ID=\"%s\">\n%s\t</cim:CRRSegment>".format (id, export_fields)
     }
 }
 
@@ -266,26 +321,41 @@ object CRRSegment
 extends
     Parseable[CRRSegment]
 {
-    val amount = parse_element (element ("""CRRSegment.amount"""))
-    val clearingPrice = parse_element (element ("""CRRSegment.clearingPrice"""))
-    val endDateTime = parse_element (element ("""CRRSegment.endDateTime"""))
-    val quantity = parse_element (element ("""CRRSegment.quantity"""))
-    val startDateTime = parse_element (element ("""CRRSegment.startDateTime"""))
-    val CRR = parse_attribute (attribute ("""CRRSegment.CRR"""))
+    val fields: Array[String] = Array[String] (
+        "amount",
+        "clearingPrice",
+        "endDateTime",
+        "quantity",
+        "startDateTime",
+        "CRR"
+    )
+    val amount: Fielder = parse_element (element (cls, fields(0)))
+    val clearingPrice: Fielder = parse_element (element (cls, fields(1)))
+    val endDateTime: Fielder = parse_element (element (cls, fields(2)))
+    val quantity: Fielder = parse_element (element (cls, fields(3)))
+    val startDateTime: Fielder = parse_element (element (cls, fields(4)))
+    val CRR: Fielder = parse_attribute (attribute (cls, fields(5)))
+
     def parse (context: Context): CRRSegment =
     {
-        CRRSegment(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = CRRSegment (
             IdentifiedObject.parse (context),
-            toDouble (amount (context), context),
-            toDouble (clearingPrice (context), context),
-            endDateTime (context),
-            toDouble (quantity (context), context),
-            startDateTime (context),
-            CRR (context)
+            toDouble (mask (amount (), 0)),
+            toDouble (mask (clearingPrice (), 1)),
+            mask (endDateTime (), 2),
+            toDouble (mask (quantity (), 3)),
+            mask (startDateTime (), 4),
+            mask (CRR (), 5)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("CRR", "CRR", false))
+        Relationship ("CRR", "CRR", false)
+    )
 }
 
 private[ninecode] object _CongestionRevenueRights

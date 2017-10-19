@@ -41,6 +41,12 @@ extends
      */
     def this () = { this (null, null, 0.0, 0.0, 0.0, 0.0, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -60,19 +66,22 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != orientation) "\t\t<cim:Diagram.orientation rdf:resource=\"#" + orientation + "\"/>\n" else "") +
-        "\t\t<cim:Diagram.x1InitialView>" + x1InitialView + "</cim:Diagram.x1InitialView>\n" +
-        "\t\t<cim:Diagram.x2InitialView>" + x2InitialView + "</cim:Diagram.x2InitialView>\n" +
-        "\t\t<cim:Diagram.y1InitialView>" + y1InitialView + "</cim:Diagram.y1InitialView>\n" +
-        "\t\t<cim:Diagram.y2InitialView>" + y2InitialView + "</cim:Diagram.y2InitialView>\n" +
-        (if (null != DiagramStyle) "\t\t<cim:Diagram.DiagramStyle rdf:resource=\"#" + DiagramStyle + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = Diagram.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Diagram.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Diagram.fields (position), value)
+        emitattr (0, orientation)
+        emitelem (1, x1InitialView)
+        emitelem (2, x2InitialView)
+        emitelem (3, y1InitialView)
+        emitelem (4, y2InitialView)
+        emitattr (5, DiagramStyle)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:Diagram rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:Diagram>"
+        "\t<cim:Diagram rdf:ID=\"%s\">\n%s\t</cim:Diagram>".format (id, export_fields)
     }
 }
 
@@ -80,26 +89,41 @@ object Diagram
 extends
     Parseable[Diagram]
 {
-    val orientation = parse_attribute (attribute ("""Diagram.orientation"""))
-    val x1InitialView = parse_element (element ("""Diagram.x1InitialView"""))
-    val x2InitialView = parse_element (element ("""Diagram.x2InitialView"""))
-    val y1InitialView = parse_element (element ("""Diagram.y1InitialView"""))
-    val y2InitialView = parse_element (element ("""Diagram.y2InitialView"""))
-    val DiagramStyle = parse_attribute (attribute ("""Diagram.DiagramStyle"""))
+    val fields: Array[String] = Array[String] (
+        "orientation",
+        "x1InitialView",
+        "x2InitialView",
+        "y1InitialView",
+        "y2InitialView",
+        "DiagramStyle"
+    )
+    val orientation: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val x1InitialView: Fielder = parse_element (element (cls, fields(1)))
+    val x2InitialView: Fielder = parse_element (element (cls, fields(2)))
+    val y1InitialView: Fielder = parse_element (element (cls, fields(3)))
+    val y2InitialView: Fielder = parse_element (element (cls, fields(4)))
+    val DiagramStyle: Fielder = parse_attribute (attribute (cls, fields(5)))
+
     def parse (context: Context): Diagram =
     {
-        Diagram(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = Diagram (
             IdentifiedObject.parse (context),
-            orientation (context),
-            toDouble (x1InitialView (context), context),
-            toDouble (x2InitialView (context), context),
-            toDouble (y1InitialView (context), context),
-            toDouble (y2InitialView (context), context),
-            DiagramStyle (context)
+            mask (orientation (), 0),
+            toDouble (mask (x1InitialView (), 1)),
+            toDouble (mask (x2InitialView (), 2)),
+            toDouble (mask (y1InitialView (), 3)),
+            toDouble (mask (y2InitialView (), 4)),
+            mask (DiagramStyle (), 5)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("DiagramStyle", "DiagramStyle", false))
+        Relationship ("DiagramStyle", "DiagramStyle", false)
+    )
 }
 
 /**
@@ -147,6 +171,12 @@ extends
      */
     def this () = { this (null, 0, false, 0.0, 0.0, 0.0, null, null, null, List()) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -166,22 +196,26 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:DiagramObject.drawingOrder>" + drawingOrder + "</cim:DiagramObject.drawingOrder>\n" +
-        "\t\t<cim:DiagramObject.isPolygon>" + isPolygon + "</cim:DiagramObject.isPolygon>\n" +
-        "\t\t<cim:DiagramObject.offsetX>" + offsetX + "</cim:DiagramObject.offsetX>\n" +
-        "\t\t<cim:DiagramObject.offsetY>" + offsetY + "</cim:DiagramObject.offsetY>\n" +
-        "\t\t<cim:DiagramObject.rotation>" + rotation + "</cim:DiagramObject.rotation>\n" +
-        (if (null != Diagram) "\t\t<cim:DiagramObject.Diagram rdf:resource=\"#" + Diagram + "\"/>\n" else "") +
-        (if (null != DiagramObjectStyle) "\t\t<cim:DiagramObject.DiagramObjectStyle rdf:resource=\"#" + DiagramObjectStyle + "\"/>\n" else "") +
-        (if (null != IdentifiedObject_attr) "\t\t<cim:DiagramObject.IdentifiedObject rdf:resource=\"#" + IdentifiedObject_attr + "\"/>\n" else "") +
-        (if (null != VisibilityLayers) VisibilityLayers.map (x => "\t\t<cim:DiagramObject.VisibilityLayers rdf:resource=\"#" + x + "\"/>\n").mkString else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = DiagramObject.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (DiagramObject.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (DiagramObject.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (DiagramObject.fields (position), x))
+        emitelem (0, drawingOrder)
+        emitelem (1, isPolygon)
+        emitelem (2, offsetX)
+        emitelem (3, offsetY)
+        emitelem (4, rotation)
+        emitattr (5, Diagram)
+        emitattr (6, DiagramObjectStyle)
+        emitattr (7, IdentifiedObject_attr)
+        emitattrs (8, VisibilityLayers)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:DiagramObject rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:DiagramObject>"
+        "\t<cim:DiagramObject rdf:ID=\"%s\">\n%s\t</cim:DiagramObject>".format (id, export_fields)
     }
 }
 
@@ -189,35 +223,54 @@ object DiagramObject
 extends
     Parseable[DiagramObject]
 {
-    val drawingOrder = parse_element (element ("""DiagramObject.drawingOrder"""))
-    val isPolygon = parse_element (element ("""DiagramObject.isPolygon"""))
-    val offsetX = parse_element (element ("""DiagramObject.offsetX"""))
-    val offsetY = parse_element (element ("""DiagramObject.offsetY"""))
-    val rotation = parse_element (element ("""DiagramObject.rotation"""))
-    val Diagram = parse_attribute (attribute ("""DiagramObject.Diagram"""))
-    val DiagramObjectStyle = parse_attribute (attribute ("""DiagramObject.DiagramObjectStyle"""))
-    val IdentifiedObject_attr = parse_attribute (attribute ("""DiagramObject.IdentifiedObject"""))
-    val VisibilityLayers = parse_attributes (attribute ("""DiagramObject.VisibilityLayers"""))
+    val fields: Array[String] = Array[String] (
+        "drawingOrder",
+        "isPolygon",
+        "offsetX",
+        "offsetY",
+        "rotation",
+        "Diagram",
+        "DiagramObjectStyle",
+        "IdentifiedObject",
+        "VisibilityLayers"
+    )
+    val drawingOrder: Fielder = parse_element (element (cls, fields(0)))
+    val isPolygon: Fielder = parse_element (element (cls, fields(1)))
+    val offsetX: Fielder = parse_element (element (cls, fields(2)))
+    val offsetY: Fielder = parse_element (element (cls, fields(3)))
+    val rotation: Fielder = parse_element (element (cls, fields(4)))
+    val Diagram: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val DiagramObjectStyle: Fielder = parse_attribute (attribute (cls, fields(6)))
+    val IdentifiedObject_attr: Fielder = parse_attribute (attribute (cls, fields(7)))
+    val VisibilityLayers: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
+
     def parse (context: Context): DiagramObject =
     {
-        DiagramObject(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        def masks (field: Fields, position: Int): List[String] = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = DiagramObject (
             IdentifiedObject.parse (context),
-            toInteger (drawingOrder (context), context),
-            toBoolean (isPolygon (context), context),
-            toDouble (offsetX (context), context),
-            toDouble (offsetY (context), context),
-            toDouble (rotation (context), context),
-            Diagram (context),
-            DiagramObjectStyle (context),
-            IdentifiedObject_attr (context),
-            VisibilityLayers (context)
+            toInteger (mask (drawingOrder (), 0)),
+            toBoolean (mask (isPolygon (), 1)),
+            toDouble (mask (offsetX (), 2)),
+            toDouble (mask (offsetY (), 3)),
+            toDouble (mask (rotation (), 4)),
+            mask (Diagram (), 5),
+            mask (DiagramObjectStyle (), 6),
+            mask (IdentifiedObject_attr (), 7),
+            masks (VisibilityLayers (), 8)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("Diagram", "Diagram", false),
         Relationship ("DiagramObjectStyle", "DiagramObjectStyle", false),
         Relationship ("IdentifiedObject_attr", "IdentifiedObject", false),
-        Relationship ("VisibilityLayers", "VisibilityLayer", true))
+        Relationship ("VisibilityLayers", "VisibilityLayer", true)
+    )
 }
 
 /**
@@ -240,6 +293,12 @@ extends
      */
     def this () = { this (null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -259,14 +318,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        ""
+        sup.export_fields
     }
     override def export: String =
     {
-        "\t<cim:DiagramObjectGluePoint rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:DiagramObjectGluePoint>"
+        "\t<cim:DiagramObjectGluePoint rdf:ID=\"%s\">\n%s\t</cim:DiagramObjectGluePoint>".format (id, export_fields)
     }
 }
 
@@ -274,13 +330,18 @@ object DiagramObjectGluePoint
 extends
     Parseable[DiagramObjectGluePoint]
 {
+
     def parse (context: Context): DiagramObjectGluePoint =
     {
-        DiagramObjectGluePoint(
+        implicit val ctx: Context = context
+        val ret = DiagramObjectGluePoint (
             BasicElement.parse (context)
         )
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -317,6 +378,12 @@ extends
      */
     def this () = { this (null, 0, 0.0, 0.0, 0.0, null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -336,19 +403,22 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:DiagramObjectPoint.sequenceNumber>" + sequenceNumber + "</cim:DiagramObjectPoint.sequenceNumber>\n" +
-        "\t\t<cim:DiagramObjectPoint.xPosition>" + xPosition + "</cim:DiagramObjectPoint.xPosition>\n" +
-        "\t\t<cim:DiagramObjectPoint.yPosition>" + yPosition + "</cim:DiagramObjectPoint.yPosition>\n" +
-        "\t\t<cim:DiagramObjectPoint.zPosition>" + zPosition + "</cim:DiagramObjectPoint.zPosition>\n" +
-        (if (null != DiagramObject) "\t\t<cim:DiagramObjectPoint.DiagramObject rdf:resource=\"#" + DiagramObject + "\"/>\n" else "") +
-        (if (null != DiagramObjectGluePoint) "\t\t<cim:DiagramObjectPoint.DiagramObjectGluePoint rdf:resource=\"#" + DiagramObjectGluePoint + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = DiagramObjectPoint.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (DiagramObjectPoint.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (DiagramObjectPoint.fields (position), value)
+        emitelem (0, sequenceNumber)
+        emitelem (1, xPosition)
+        emitelem (2, yPosition)
+        emitelem (3, zPosition)
+        emitattr (4, DiagramObject)
+        emitattr (5, DiagramObjectGluePoint)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:DiagramObjectPoint rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:DiagramObjectPoint>"
+        "\t<cim:DiagramObjectPoint rdf:ID=\"%s\">\n%s\t</cim:DiagramObjectPoint>".format (id, export_fields)
     }
 }
 
@@ -356,27 +426,42 @@ object DiagramObjectPoint
 extends
     Parseable[DiagramObjectPoint]
 {
-    val sequenceNumber = parse_element (element ("""DiagramObjectPoint.sequenceNumber"""))
-    val xPosition = parse_element (element ("""DiagramObjectPoint.xPosition"""))
-    val yPosition = parse_element (element ("""DiagramObjectPoint.yPosition"""))
-    val zPosition = parse_element (element ("""DiagramObjectPoint.zPosition"""))
-    val DiagramObject = parse_attribute (attribute ("""DiagramObjectPoint.DiagramObject"""))
-    val DiagramObjectGluePoint = parse_attribute (attribute ("""DiagramObjectPoint.DiagramObjectGluePoint"""))
+    val fields: Array[String] = Array[String] (
+        "sequenceNumber",
+        "xPosition",
+        "yPosition",
+        "zPosition",
+        "DiagramObject",
+        "DiagramObjectGluePoint"
+    )
+    val sequenceNumber: Fielder = parse_element (element (cls, fields(0)))
+    val xPosition: Fielder = parse_element (element (cls, fields(1)))
+    val yPosition: Fielder = parse_element (element (cls, fields(2)))
+    val zPosition: Fielder = parse_element (element (cls, fields(3)))
+    val DiagramObject: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val DiagramObjectGluePoint: Fielder = parse_attribute (attribute (cls, fields(5)))
+
     def parse (context: Context): DiagramObjectPoint =
     {
-        DiagramObjectPoint(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = DiagramObjectPoint (
             BasicElement.parse (context),
-            toInteger (sequenceNumber (context), context),
-            toDouble (xPosition (context), context),
-            toDouble (yPosition (context), context),
-            toDouble (zPosition (context), context),
-            DiagramObject (context),
-            DiagramObjectGluePoint (context)
+            toInteger (mask (sequenceNumber (), 0)),
+            toDouble (mask (xPosition (), 1)),
+            toDouble (mask (yPosition (), 2)),
+            toDouble (mask (zPosition (), 3)),
+            mask (DiagramObject (), 4),
+            mask (DiagramObjectGluePoint (), 5)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
         Relationship ("DiagramObject", "DiagramObject", false),
-        Relationship ("DiagramObjectGluePoint", "DiagramObjectGluePoint", false))
+        Relationship ("DiagramObjectGluePoint", "DiagramObjectGluePoint", false)
+    )
 }
 
 /**
@@ -401,6 +486,12 @@ extends
      */
     def this () = { this (null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -420,14 +511,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        ""
+        sup.export_fields
     }
     override def export: String =
     {
-        "\t<cim:DiagramObjectStyle rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:DiagramObjectStyle>"
+        "\t<cim:DiagramObjectStyle rdf:ID=\"%s\">\n%s\t</cim:DiagramObjectStyle>".format (id, export_fields)
     }
 }
 
@@ -435,13 +523,18 @@ object DiagramObjectStyle
 extends
     Parseable[DiagramObjectStyle]
 {
+
     def parse (context: Context): DiagramObjectStyle =
     {
-        DiagramObjectStyle(
+        implicit val ctx: Context = context
+        val ret = DiagramObjectStyle (
             IdentifiedObject.parse (context)
         )
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -466,6 +559,12 @@ extends
      */
     def this () = { this (null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -485,14 +584,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        ""
+        sup.export_fields
     }
     override def export: String =
     {
-        "\t<cim:DiagramStyle rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:DiagramStyle>"
+        "\t<cim:DiagramStyle rdf:ID=\"%s\">\n%s\t</cim:DiagramStyle>".format (id, export_fields)
     }
 }
 
@@ -500,13 +596,18 @@ object DiagramStyle
 extends
     Parseable[DiagramStyle]
 {
+
     def parse (context: Context): DiagramStyle =
     {
-        DiagramStyle(
+        implicit val ctx: Context = context
+        val ret = DiagramStyle (
             IdentifiedObject.parse (context)
         )
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -531,6 +632,12 @@ extends
      */
     def this () = { this (null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -550,14 +657,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != text) "\t\t<cim:TextDiagramObject.text>" + text + "</cim:TextDiagramObject.text>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = TextDiagramObject.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TextDiagramObject.fields (position), value)
+        emitelem (0, text)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:TextDiagramObject rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:TextDiagramObject>"
+        "\t<cim:TextDiagramObject rdf:ID=\"%s\">\n%s\t</cim:TextDiagramObject>".format (id, export_fields)
     }
 }
 
@@ -565,15 +674,26 @@ object TextDiagramObject
 extends
     Parseable[TextDiagramObject]
 {
-    val text = parse_element (element ("""TextDiagramObject.text"""))
+    val fields: Array[String] = Array[String] (
+        "text"
+    )
+    val text: Fielder = parse_element (element (cls, fields(0)))
+
     def parse (context: Context): TextDiagramObject =
     {
-        TextDiagramObject(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = TextDiagramObject (
             DiagramObject.parse (context),
-            text (context)
+            mask (text (), 0)
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -601,6 +721,12 @@ extends
      */
     def this () = { this (null, 0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -620,14 +746,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:VisibilityLayer.drawingOrder>" + drawingOrder + "</cim:VisibilityLayer.drawingOrder>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = VisibilityLayer.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (VisibilityLayer.fields (position), value)
+        emitelem (0, drawingOrder)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:VisibilityLayer rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:VisibilityLayer>"
+        "\t<cim:VisibilityLayer rdf:ID=\"%s\">\n%s\t</cim:VisibilityLayer>".format (id, export_fields)
     }
 }
 
@@ -635,15 +763,26 @@ object VisibilityLayer
 extends
     Parseable[VisibilityLayer]
 {
-    val drawingOrder = parse_element (element ("""VisibilityLayer.drawingOrder"""))
+    val fields: Array[String] = Array[String] (
+        "drawingOrder"
+    )
+    val drawingOrder: Fielder = parse_element (element (cls, fields(0)))
+
     def parse (context: Context): VisibilityLayer =
     {
-        VisibilityLayer(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = VisibilityLayer (
             IdentifiedObject.parse (context),
-            toInteger (drawingOrder (context), context)
+            toInteger (mask (drawingOrder (), 0))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 private[ninecode] object _DiagramLayout

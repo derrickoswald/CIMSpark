@@ -28,6 +28,25 @@ class CIMExportSuite extends ch.ninecode.SparkSuite
         assert (result._1.getOrElse ("PSRType_Substation", null).export == psr)
     }
 
+    test ("Attribute")
+    {
+        _: SparkSession ⇒
+        val loc =
+"""	<cim:Location rdf:ID="_location_1623670528_427088716_224817700">
+		<cim:Location.type>geographic</cim:Location.type>
+		<cim:Location.CoordinateSystem rdf:resource="#pseudo_wgs84"/>
+	</cim:Location>"""
+        val xml =
+            """yadda yadda""" +
+                loc +
+                """foo bar"""
+        val parser = new CHIM (xml)
+        val result = CHIM.parse (parser)
+        assert (result._1.size === 1)
+        assert (result._2.length === 0)
+        assert (result._1.getOrElse ("_location_1623670528_427088716_224817700", null).export == loc)
+    }
+
     test ("Double")
     {
         _: SparkSession ⇒

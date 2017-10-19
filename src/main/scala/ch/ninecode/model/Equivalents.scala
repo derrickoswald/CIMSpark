@@ -73,6 +73,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -92,29 +98,31 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:EquivalentBranch.negativeR12>" + negativeR12 + "</cim:EquivalentBranch.negativeR12>\n" +
-        "\t\t<cim:EquivalentBranch.negativeR21>" + negativeR21 + "</cim:EquivalentBranch.negativeR21>\n" +
-        "\t\t<cim:EquivalentBranch.negativeX12>" + negativeX12 + "</cim:EquivalentBranch.negativeX12>\n" +
-        "\t\t<cim:EquivalentBranch.negativeX21>" + negativeX21 + "</cim:EquivalentBranch.negativeX21>\n" +
-        "\t\t<cim:EquivalentBranch.positiveR12>" + positiveR12 + "</cim:EquivalentBranch.positiveR12>\n" +
-        "\t\t<cim:EquivalentBranch.positiveR21>" + positiveR21 + "</cim:EquivalentBranch.positiveR21>\n" +
-        "\t\t<cim:EquivalentBranch.positiveX12>" + positiveX12 + "</cim:EquivalentBranch.positiveX12>\n" +
-        "\t\t<cim:EquivalentBranch.positiveX21>" + positiveX21 + "</cim:EquivalentBranch.positiveX21>\n" +
-        "\t\t<cim:EquivalentBranch.r>" + r + "</cim:EquivalentBranch.r>\n" +
-        "\t\t<cim:EquivalentBranch.r21>" + r21 + "</cim:EquivalentBranch.r21>\n" +
-        "\t\t<cim:EquivalentBranch.x>" + x + "</cim:EquivalentBranch.x>\n" +
-        "\t\t<cim:EquivalentBranch.x21>" + x21 + "</cim:EquivalentBranch.x21>\n" +
-        "\t\t<cim:EquivalentBranch.zeroR12>" + zeroR12 + "</cim:EquivalentBranch.zeroR12>\n" +
-        "\t\t<cim:EquivalentBranch.zeroR21>" + zeroR21 + "</cim:EquivalentBranch.zeroR21>\n" +
-        "\t\t<cim:EquivalentBranch.zeroX12>" + zeroX12 + "</cim:EquivalentBranch.zeroX12>\n" +
-        "\t\t<cim:EquivalentBranch.zeroX21>" + zeroX21 + "</cim:EquivalentBranch.zeroX21>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = EquivalentBranch.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (EquivalentBranch.fields (position), value)
+        emitelem (0, negativeR12)
+        emitelem (1, negativeR21)
+        emitelem (2, negativeX12)
+        emitelem (3, negativeX21)
+        emitelem (4, positiveR12)
+        emitelem (5, positiveR21)
+        emitelem (6, positiveX12)
+        emitelem (7, positiveX21)
+        emitelem (8, r)
+        emitelem (9, r21)
+        emitelem (10, x)
+        emitelem (11, x21)
+        emitelem (12, zeroR12)
+        emitelem (13, zeroR21)
+        emitelem (14, zeroX12)
+        emitelem (15, zeroX21)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:EquivalentBranch rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:EquivalentBranch>"
+        "\t<cim:EquivalentBranch rdf:ID=\"%s\">\n%s\t</cim:EquivalentBranch>".format (id, export_fields)
     }
 }
 
@@ -122,45 +130,71 @@ object EquivalentBranch
 extends
     Parseable[EquivalentBranch]
 {
-    val negativeR12 = parse_element (element ("""EquivalentBranch.negativeR12"""))
-    val negativeR21 = parse_element (element ("""EquivalentBranch.negativeR21"""))
-    val negativeX12 = parse_element (element ("""EquivalentBranch.negativeX12"""))
-    val negativeX21 = parse_element (element ("""EquivalentBranch.negativeX21"""))
-    val positiveR12 = parse_element (element ("""EquivalentBranch.positiveR12"""))
-    val positiveR21 = parse_element (element ("""EquivalentBranch.positiveR21"""))
-    val positiveX12 = parse_element (element ("""EquivalentBranch.positiveX12"""))
-    val positiveX21 = parse_element (element ("""EquivalentBranch.positiveX21"""))
-    val r = parse_element (element ("""EquivalentBranch.r"""))
-    val r21 = parse_element (element ("""EquivalentBranch.r21"""))
-    val x = parse_element (element ("""EquivalentBranch.x"""))
-    val x21 = parse_element (element ("""EquivalentBranch.x21"""))
-    val zeroR12 = parse_element (element ("""EquivalentBranch.zeroR12"""))
-    val zeroR21 = parse_element (element ("""EquivalentBranch.zeroR21"""))
-    val zeroX12 = parse_element (element ("""EquivalentBranch.zeroX12"""))
-    val zeroX21 = parse_element (element ("""EquivalentBranch.zeroX21"""))
+    val fields: Array[String] = Array[String] (
+        "negativeR12",
+        "negativeR21",
+        "negativeX12",
+        "negativeX21",
+        "positiveR12",
+        "positiveR21",
+        "positiveX12",
+        "positiveX21",
+        "r",
+        "r21",
+        "x",
+        "x21",
+        "zeroR12",
+        "zeroR21",
+        "zeroX12",
+        "zeroX21"
+    )
+    val negativeR12: Fielder = parse_element (element (cls, fields(0)))
+    val negativeR21: Fielder = parse_element (element (cls, fields(1)))
+    val negativeX12: Fielder = parse_element (element (cls, fields(2)))
+    val negativeX21: Fielder = parse_element (element (cls, fields(3)))
+    val positiveR12: Fielder = parse_element (element (cls, fields(4)))
+    val positiveR21: Fielder = parse_element (element (cls, fields(5)))
+    val positiveX12: Fielder = parse_element (element (cls, fields(6)))
+    val positiveX21: Fielder = parse_element (element (cls, fields(7)))
+    val r: Fielder = parse_element (element (cls, fields(8)))
+    val r21: Fielder = parse_element (element (cls, fields(9)))
+    val x: Fielder = parse_element (element (cls, fields(10)))
+    val x21: Fielder = parse_element (element (cls, fields(11)))
+    val zeroR12: Fielder = parse_element (element (cls, fields(12)))
+    val zeroR21: Fielder = parse_element (element (cls, fields(13)))
+    val zeroX12: Fielder = parse_element (element (cls, fields(14)))
+    val zeroX21: Fielder = parse_element (element (cls, fields(15)))
+
     def parse (context: Context): EquivalentBranch =
     {
-        EquivalentBranch(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = EquivalentBranch (
             EquivalentEquipment.parse (context),
-            toDouble (negativeR12 (context), context),
-            toDouble (negativeR21 (context), context),
-            toDouble (negativeX12 (context), context),
-            toDouble (negativeX21 (context), context),
-            toDouble (positiveR12 (context), context),
-            toDouble (positiveR21 (context), context),
-            toDouble (positiveX12 (context), context),
-            toDouble (positiveX21 (context), context),
-            toDouble (r (context), context),
-            toDouble (r21 (context), context),
-            toDouble (x (context), context),
-            toDouble (x21 (context), context),
-            toDouble (zeroR12 (context), context),
-            toDouble (zeroR21 (context), context),
-            toDouble (zeroX12 (context), context),
-            toDouble (zeroX21 (context), context)
+            toDouble (mask (negativeR12 (), 0)),
+            toDouble (mask (negativeR21 (), 1)),
+            toDouble (mask (negativeX12 (), 2)),
+            toDouble (mask (negativeX21 (), 3)),
+            toDouble (mask (positiveR12 (), 4)),
+            toDouble (mask (positiveR21 (), 5)),
+            toDouble (mask (positiveX12 (), 6)),
+            toDouble (mask (positiveX21 (), 7)),
+            toDouble (mask (r (), 8)),
+            toDouble (mask (r21 (), 9)),
+            toDouble (mask (x (), 10)),
+            toDouble (mask (x21 (), 11)),
+            toDouble (mask (zeroR12 (), 12)),
+            toDouble (mask (zeroR21 (), 13)),
+            toDouble (mask (zeroX12 (), 14)),
+            toDouble (mask (zeroX21 (), 15))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -187,6 +221,12 @@ extends
      */
     def this () = { this (null, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -206,14 +246,16 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        (if (null != EquivalentNetwork) "\t\t<cim:EquivalentEquipment.EquivalentNetwork rdf:resource=\"#" + EquivalentNetwork + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = EquivalentEquipment.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (EquivalentEquipment.fields (position), value)
+        emitattr (0, EquivalentNetwork)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:EquivalentEquipment rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:EquivalentEquipment>"
+        "\t<cim:EquivalentEquipment rdf:ID=\"%s\">\n%s\t</cim:EquivalentEquipment>".format (id, export_fields)
     }
 }
 
@@ -221,16 +263,26 @@ object EquivalentEquipment
 extends
     Parseable[EquivalentEquipment]
 {
-    val EquivalentNetwork = parse_attribute (attribute ("""EquivalentEquipment.EquivalentNetwork"""))
+    val fields: Array[String] = Array[String] (
+        "EquivalentNetwork"
+    )
+    val EquivalentNetwork: Fielder = parse_attribute (attribute (cls, fields(0)))
+
     def parse (context: Context): EquivalentEquipment =
     {
-        EquivalentEquipment(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = EquivalentEquipment (
             ConductingEquipment.parse (context),
-            EquivalentNetwork (context)
+            mask (EquivalentNetwork (), 0)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("EquivalentNetwork", "EquivalentNetwork", false))
+        Relationship ("EquivalentNetwork", "EquivalentNetwork", false)
+    )
 }
 
 /**
@@ -298,6 +350,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, false, 0.0, 0.0, 0.0, 0.0, null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -317,29 +375,32 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:EquivalentInjection.maxP>" + maxP + "</cim:EquivalentInjection.maxP>\n" +
-        "\t\t<cim:EquivalentInjection.maxQ>" + maxQ + "</cim:EquivalentInjection.maxQ>\n" +
-        "\t\t<cim:EquivalentInjection.minP>" + minP + "</cim:EquivalentInjection.minP>\n" +
-        "\t\t<cim:EquivalentInjection.minQ>" + minQ + "</cim:EquivalentInjection.minQ>\n" +
-        "\t\t<cim:EquivalentInjection.p>" + p + "</cim:EquivalentInjection.p>\n" +
-        "\t\t<cim:EquivalentInjection.q>" + q + "</cim:EquivalentInjection.q>\n" +
-        "\t\t<cim:EquivalentInjection.r>" + r + "</cim:EquivalentInjection.r>\n" +
-        "\t\t<cim:EquivalentInjection.r0>" + r0 + "</cim:EquivalentInjection.r0>\n" +
-        "\t\t<cim:EquivalentInjection.r2>" + r2 + "</cim:EquivalentInjection.r2>\n" +
-        "\t\t<cim:EquivalentInjection.regulationCapability>" + regulationCapability + "</cim:EquivalentInjection.regulationCapability>\n" +
-        "\t\t<cim:EquivalentInjection.regulationStatus>" + regulationStatus + "</cim:EquivalentInjection.regulationStatus>\n" +
-        "\t\t<cim:EquivalentInjection.regulationTarget>" + regulationTarget + "</cim:EquivalentInjection.regulationTarget>\n" +
-        "\t\t<cim:EquivalentInjection.x>" + x + "</cim:EquivalentInjection.x>\n" +
-        "\t\t<cim:EquivalentInjection.x0>" + x0 + "</cim:EquivalentInjection.x0>\n" +
-        "\t\t<cim:EquivalentInjection.x2>" + x2 + "</cim:EquivalentInjection.x2>\n" +
-        (if (null != ReactiveCapabilityCurve) "\t\t<cim:EquivalentInjection.ReactiveCapabilityCurve rdf:resource=\"#" + ReactiveCapabilityCurve + "\"/>\n" else "")
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = EquivalentInjection.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (EquivalentInjection.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (EquivalentInjection.fields (position), value)
+        emitelem (0, maxP)
+        emitelem (1, maxQ)
+        emitelem (2, minP)
+        emitelem (3, minQ)
+        emitelem (4, p)
+        emitelem (5, q)
+        emitelem (6, r)
+        emitelem (7, r0)
+        emitelem (8, r2)
+        emitelem (9, regulationCapability)
+        emitelem (10, regulationStatus)
+        emitelem (11, regulationTarget)
+        emitelem (12, x)
+        emitelem (13, x0)
+        emitelem (14, x2)
+        emitattr (15, ReactiveCapabilityCurve)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:EquivalentInjection rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:EquivalentInjection>"
+        "\t<cim:EquivalentInjection rdf:ID=\"%s\">\n%s\t</cim:EquivalentInjection>".format (id, export_fields)
     }
 }
 
@@ -347,46 +408,71 @@ object EquivalentInjection
 extends
     Parseable[EquivalentInjection]
 {
-    val maxP = parse_element (element ("""EquivalentInjection.maxP"""))
-    val maxQ = parse_element (element ("""EquivalentInjection.maxQ"""))
-    val minP = parse_element (element ("""EquivalentInjection.minP"""))
-    val minQ = parse_element (element ("""EquivalentInjection.minQ"""))
-    val p = parse_element (element ("""EquivalentInjection.p"""))
-    val q = parse_element (element ("""EquivalentInjection.q"""))
-    val r = parse_element (element ("""EquivalentInjection.r"""))
-    val r0 = parse_element (element ("""EquivalentInjection.r0"""))
-    val r2 = parse_element (element ("""EquivalentInjection.r2"""))
-    val regulationCapability = parse_element (element ("""EquivalentInjection.regulationCapability"""))
-    val regulationStatus = parse_element (element ("""EquivalentInjection.regulationStatus"""))
-    val regulationTarget = parse_element (element ("""EquivalentInjection.regulationTarget"""))
-    val x = parse_element (element ("""EquivalentInjection.x"""))
-    val x0 = parse_element (element ("""EquivalentInjection.x0"""))
-    val x2 = parse_element (element ("""EquivalentInjection.x2"""))
-    val ReactiveCapabilityCurve = parse_attribute (attribute ("""EquivalentInjection.ReactiveCapabilityCurve"""))
+    val fields: Array[String] = Array[String] (
+        "maxP",
+        "maxQ",
+        "minP",
+        "minQ",
+        "p",
+        "q",
+        "r",
+        "r0",
+        "r2",
+        "regulationCapability",
+        "regulationStatus",
+        "regulationTarget",
+        "x",
+        "x0",
+        "x2",
+        "ReactiveCapabilityCurve"
+    )
+    val maxP: Fielder = parse_element (element (cls, fields(0)))
+    val maxQ: Fielder = parse_element (element (cls, fields(1)))
+    val minP: Fielder = parse_element (element (cls, fields(2)))
+    val minQ: Fielder = parse_element (element (cls, fields(3)))
+    val p: Fielder = parse_element (element (cls, fields(4)))
+    val q: Fielder = parse_element (element (cls, fields(5)))
+    val r: Fielder = parse_element (element (cls, fields(6)))
+    val r0: Fielder = parse_element (element (cls, fields(7)))
+    val r2: Fielder = parse_element (element (cls, fields(8)))
+    val regulationCapability: Fielder = parse_element (element (cls, fields(9)))
+    val regulationStatus: Fielder = parse_element (element (cls, fields(10)))
+    val regulationTarget: Fielder = parse_element (element (cls, fields(11)))
+    val x: Fielder = parse_element (element (cls, fields(12)))
+    val x0: Fielder = parse_element (element (cls, fields(13)))
+    val x2: Fielder = parse_element (element (cls, fields(14)))
+    val ReactiveCapabilityCurve: Fielder = parse_attribute (attribute (cls, fields(15)))
+
     def parse (context: Context): EquivalentInjection =
     {
-        EquivalentInjection(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = EquivalentInjection (
             EquivalentEquipment.parse (context),
-            toDouble (maxP (context), context),
-            toDouble (maxQ (context), context),
-            toDouble (minP (context), context),
-            toDouble (minQ (context), context),
-            toDouble (p (context), context),
-            toDouble (q (context), context),
-            toDouble (r (context), context),
-            toDouble (r0 (context), context),
-            toDouble (r2 (context), context),
-            toBoolean (regulationCapability (context), context),
-            toBoolean (regulationStatus (context), context),
-            toDouble (regulationTarget (context), context),
-            toDouble (x (context), context),
-            toDouble (x0 (context), context),
-            toDouble (x2 (context), context),
-            ReactiveCapabilityCurve (context)
+            toDouble (mask (maxP (), 0)),
+            toDouble (mask (maxQ (), 1)),
+            toDouble (mask (minP (), 2)),
+            toDouble (mask (minQ (), 3)),
+            toDouble (mask (p (), 4)),
+            toDouble (mask (q (), 5)),
+            toDouble (mask (r (), 6)),
+            toDouble (mask (r0 (), 7)),
+            toDouble (mask (r2 (), 8)),
+            toBoolean (mask (regulationCapability (), 9)),
+            toBoolean (mask (regulationStatus (), 10)),
+            toDouble (mask (regulationTarget (), 11)),
+            toDouble (mask (x (), 12)),
+            toDouble (mask (x0 (), 13)),
+            toDouble (mask (x2 (), 14)),
+            mask (ReactiveCapabilityCurve (), 15)
         )
+        ret.bitfields = fields
+        ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("ReactiveCapabilityCurve", "ReactiveCapabilityCurve", false))
+        Relationship ("ReactiveCapabilityCurve", "ReactiveCapabilityCurve", false)
+    )
 }
 
 /**
@@ -411,6 +497,12 @@ extends
      */
     def this () = { this (null) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -430,14 +522,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        ""
+        sup.export_fields
     }
     override def export: String =
     {
-        "\t<cim:EquivalentNetwork rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:EquivalentNetwork>"
+        "\t<cim:EquivalentNetwork rdf:ID=\"%s\">\n%s\t</cim:EquivalentNetwork>".format (id, export_fields)
     }
 }
 
@@ -445,13 +534,18 @@ object EquivalentNetwork
 extends
     Parseable[EquivalentNetwork]
 {
+
     def parse (context: Context): EquivalentNetwork =
     {
-        EquivalentNetwork(
+        implicit val ctx: Context = context
+        val ret = EquivalentNetwork (
             ConnectivityNodeContainer.parse (context)
         )
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 /**
@@ -478,6 +572,12 @@ extends
      */
     def this () = { this (null, 0.0, 0.0) }
     /**
+     * Valid fields bitmap.
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the @see{#fields} array.
+     */
+    var bitfields: Int = -1
+    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -497,15 +597,17 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields +
-        "\t\t<cim:EquivalentShunt.b>" + b + "</cim:EquivalentShunt.b>\n" +
-        "\t\t<cim:EquivalentShunt.g>" + g + "</cim:EquivalentShunt.g>\n"
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = EquivalentShunt.cls
+        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (EquivalentShunt.fields (position), value)
+        emitelem (0, b)
+        emitelem (1, g)
+        s.toString
     }
     override def export: String =
     {
-        "\t<cim:EquivalentShunt rdf:ID=\"" + id + "\">\n" +
-        export_fields +
-        "\t</cim:EquivalentShunt>"
+        "\t<cim:EquivalentShunt rdf:ID=\"%s\">\n%s\t</cim:EquivalentShunt>".format (id, export_fields)
     }
 }
 
@@ -513,17 +615,29 @@ object EquivalentShunt
 extends
     Parseable[EquivalentShunt]
 {
-    val b = parse_element (element ("""EquivalentShunt.b"""))
-    val g = parse_element (element ("""EquivalentShunt.g"""))
+    val fields: Array[String] = Array[String] (
+        "b",
+        "g"
+    )
+    val b: Fielder = parse_element (element (cls, fields(0)))
+    val g: Fielder = parse_element (element (cls, fields(1)))
+
     def parse (context: Context): EquivalentShunt =
     {
-        EquivalentShunt(
+        implicit val ctx: Context = context
+        var fields: Int = 0
+        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        val ret = EquivalentShunt (
             EquivalentEquipment.parse (context),
-            toDouble (b (context), context),
-            toDouble (g (context), context)
+            toDouble (mask (b (), 0)),
+            toDouble (mask (g (), 1))
         )
+        ret.bitfields = fields
+        ret
     }
-    val relations: List[Relationship] = List ()
+    val relations: List[Relationship] = List (
+
+    )
 }
 
 private[ninecode] object _Equivalents
