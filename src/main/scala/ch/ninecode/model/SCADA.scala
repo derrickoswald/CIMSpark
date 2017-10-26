@@ -30,12 +30,6 @@ extends
      */
     def this () = { this (null) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Int = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -110,12 +104,6 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, false, null) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Int = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -137,7 +125,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = RemoteControl.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (RemoteControl.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (RemoteControl.fields (position), value)
         emitelem (0, actuatorMaximum)
@@ -170,8 +157,7 @@ extends
     def parse (context: Context): RemoteControl =
     {
         implicit val ctx: Context = context
-        var fields: Int = 0
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = RemoteControl (
             RemotePoint.parse (context),
             toDouble (mask (actuatorMaximum (), 0)),
@@ -179,7 +165,7 @@ extends
             toBoolean (mask (remoteControlled (), 2)),
             mask (Control (), 3)
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
@@ -212,12 +198,6 @@ extends
      */
     def this () = { this (null, null) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Int = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -239,7 +219,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = RemotePoint.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (RemotePoint.fields (position), value)
         emitattr (0, RemoteUnit)
         s.toString
@@ -262,13 +241,12 @@ extends
     def parse (context: Context): RemotePoint =
     {
         implicit val ctx: Context = context
-        var fields: Int = 0
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = RemotePoint (
             IdentifiedObject.parse (context),
             mask (RemoteUnit (), 0)
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
@@ -307,12 +285,6 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, null) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Int = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -334,7 +306,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = RemoteSource.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (RemoteSource.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (RemoteSource.fields (position), value)
         emitelem (0, deadband)
@@ -370,8 +341,7 @@ extends
     def parse (context: Context): RemoteSource =
     {
         implicit val ctx: Context = context
-        var fields: Int = 0
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = RemoteSource (
             RemotePoint.parse (context),
             toDouble (mask (deadband (), 0)),
@@ -380,7 +350,7 @@ extends
             toDouble (mask (sensorMinimum (), 3)),
             mask (MeasurementValue (), 4)
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
@@ -413,12 +383,6 @@ extends
      */
     def this () = { this (null, null) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Int = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -440,7 +404,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = RemoteUnit.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (RemoteUnit.fields (position), value)
         emitattr (0, remoteUnitType)
         s.toString
@@ -463,13 +426,12 @@ extends
     def parse (context: Context): RemoteUnit =
     {
         implicit val ctx: Context = context
-        var fields: Int = 0
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = RemoteUnit (
             PowerSystemResource.parse (context),
             mask (remoteUnitType (), 0)
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (

@@ -258,12 +258,6 @@ case class Scala (parser: ModelParser, pkg: Package)
             s.append (initializers.toString)
             s.append (""") }
             |    /**
-            |     * Valid fields bitmap.
-            |     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-            |     * Field order is specified by the @see{#fields} array.
-            |     */
-            |    var bitfields: %s = -1
-            |    /**
             |     * Return the superclass object.
             |     *
             |     * @return The typed superclass nested object.
@@ -301,7 +295,6 @@ case class Scala (parser: ModelParser, pkg: Package)
             {
                 s.append ("""        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
                     |        implicit val clz: String = %s.cls
-                    |        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
                     |""".stripMargin.format (name))
                 if (fields.exists (!_.reference))
                     s.append ("        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (%s.fields (position), value)\n".format (name))
@@ -354,11 +347,8 @@ case class Scala (parser: ModelParser, pkg: Package)
             |""".stripMargin.format (name))
             if (any)
             {
-                s.append ("        var fields: %s = 0%s\n".format (if (isLong) "Long" else "Int", if (isLong) "L" else ""))
-                if (members.exists (x ⇒ x.name != "sup" && !x.multiple))
-                    s.append ("        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1%s << position; field._1 }\n".format (if (isLong) "L" else ""))
-                if (members.exists (_.multiple))
-                    s.append ("        def masks (field: Fields, position: Int): List[String] = { if (field._2) fields |= 1 << position; field._1 }\n")
+                val initializer = (for (i ← 0 until 1 + (fields.size / 32)) yield "0").mkString (",")
+                s.append ("        implicit var bitfields: Array[Int] = Array(%s)\n".format (initializer))
             }
             if (identified_object)
                 s.append ("        val base = BasicElement.parse (context)\n")
@@ -374,7 +364,7 @@ case class Scala (parser: ModelParser, pkg: Package)
             )
             s.append ("        )\n")
             if (any)
-                s.append ("        ret.bitfields = fields\n")
+                s.append ("        ret.bitfields = bitfields\n")
             s.append ("        ret\n    }\n")
             // output the relations list
             val relationships = members.filter (member => (member.name != "sup") && (null != member.referenced_class))

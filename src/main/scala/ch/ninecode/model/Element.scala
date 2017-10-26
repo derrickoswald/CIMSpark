@@ -61,6 +61,34 @@ with
     def id: String = if (null == sup) "0" else sup.id
 
     /**
+     * Valid fields bitmap.
+     *
+     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
+     * Field order is specified by the fields array.
+     *
+     * For classes constructed manually, we initially fill this in with the worst case scenario.
+     * ToDo: this won't work for classes with more than 96 fields (so far none).
+     */
+    var bitfields: Array[Int] = Array(-1, -1, -1)
+
+    /**
+     * Is a field present predicate.
+     *
+     * Determines if the field at the given position was encountered while parsing.
+     *
+     * @param position the field position in the fields array
+     * @return <code>true</code> if the field was parsed, <code>false</code> otherwise.
+     */
+    def mask (position: Int): Boolean = 0 != (bitfields(position / 32) & (1 << (position % 32)))
+
+    /**
+     * Flag for rdf:about elements.
+     *
+     * @return <code>true</code> if this is an rdf:about element, <code>false</code> otherwise.
+     */
+    def about: Boolean = if (null == sup) false else sup.about
+
+    /**
      * The number of fields in the object definition.
      *
      * @return The number of defined fields for use in Row manipulations.
@@ -212,6 +240,19 @@ extends
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
     override def id: String = mRID
+
+    /**
+     * Set true for elements with rdf:about instead of rdf:ID.
+     */
+    var _about: Boolean = false
+
+    /**
+     * Flag for rdf:about elements.
+     *
+     * @return <code>true</code> if this is an rdf:about element, <code>false</code> otherwise.
+     */
+    override def about: Boolean = _about
+
     override def copy(): Row = clone ().asInstanceOf[Element]
     override def get (i: Int): Object =
     {
@@ -226,15 +267,31 @@ extends
 object BasicElement
     extends Parser
 {
+    // ToDo: this could probably be handled by an OR case in one regular expression:
+
     /**
      * Parse an element.
-     * Simply extracts the id.
+     * Simply extracts the rdf:ID.
      */
-    val mRID: FielderFunction = parse_element ((Pattern.compile("""rdf:ID=("|')([\s\S]*?)\1>?"""), 2))
+    val ID: FielderFunction = parse_element ((Pattern.compile("""rdf:ID=("|')([\s\S]*?)\1>?"""), 2))
+    /**
+     * Parse an element.
+     * Simply extracts the rdf:about.
+     */
+    val about: FielderFunction = parse_element ((Pattern.compile("""rdf:about=("|')([\s\S]*?)\1>?"""), 2))
+
     override def parse (context: Context): BasicElement =
     {
         implicit val ctx: Context = context
-        BasicElement (null, mRID.apply()._1)
+        val (id, _) = ID.apply ()
+        val (ab, isab) = about.apply ()
+        val mRID = if (isab)
+            if ('#' == ab.charAt (0)) ab.substring (1) else ab // remove '#'
+        else // if (!isid) then id is null anyway
+            id
+        val basic = BasicElement (null, mRID)
+        basic._about = isab
+        basic
     }
     val relations: List[Relationship] = List ()
 }
@@ -259,7 +316,8 @@ case class Unknown(
     line: Int,
     start: Long,
     end: Long)
-      extends Element
+extends
+    Element
 {
     /**
      * Zero arg constructor.

@@ -30,12 +30,6 @@ extends
      */
     def this () = { this (null, null) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Int = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -57,7 +51,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = AssetModelCatalogue.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (AssetModelCatalogue.fields (position), value)
         emitattr (0, status)
         s.toString
@@ -80,13 +73,12 @@ extends
     def parse (context: Context): AssetModelCatalogue =
     {
         implicit val ctx: Context = context
-        var fields: Int = 0
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = AssetModelCatalogue (
             IdentifiedObject.parse (context),
             mask (status (), 0)
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
@@ -122,12 +114,6 @@ extends
      */
     def this () = { this (null, 0.0, null, null) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Int = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -149,7 +135,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = AssetModelCatalogueItem.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (AssetModelCatalogueItem.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (AssetModelCatalogueItem.fields (position), value)
         emitelem (0, unitCost)
@@ -179,15 +164,14 @@ extends
     def parse (context: Context): AssetModelCatalogueItem =
     {
         implicit val ctx: Context = context
-        var fields: Int = 0
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = AssetModelCatalogueItem (
             Document.parse (context),
             toDouble (mask (unitCost (), 0)),
             mask (AssetModel (), 1),
             mask (AssetModelCatalogue (), 2)
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
@@ -217,12 +201,6 @@ extends
      */
     def this () = { this (null, 0.0) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Int = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -244,7 +222,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = BreakerInfo.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (BreakerInfo.fields (position), value)
         emitelem (0, phaseTrip)
         s.toString
@@ -267,13 +244,12 @@ extends
     def parse (context: Context): BreakerInfo =
     {
         implicit val ctx: Context = context
-        var fields: Int = 0
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = BreakerInfo (
             OldSwitchInfo.parse (context),
             toDouble (mask (phaseTrip (), 0))
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
@@ -318,12 +294,6 @@ extends
      */
     def this () = { this (null, false, null, 0.0, null, null, 0, 0.0, false, 0) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Int = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -345,7 +315,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = CompositeSwitchInfo.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (CompositeSwitchInfo.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (CompositeSwitchInfo.fields (position), value)
         emitelem (0, ganged)
@@ -393,8 +362,7 @@ extends
     def parse (context: Context): CompositeSwitchInfo =
     {
         implicit val ctx: Context = context
-        var fields: Int = 0
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = CompositeSwitchInfo (
             AssetInfo.parse (context),
             toBoolean (mask (ganged (), 0)),
@@ -407,7 +375,7 @@ extends
             toBoolean (mask (remote (), 7)),
             toInteger (mask (switchStateCount (), 8))
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
@@ -466,12 +434,6 @@ extends
      */
     def this () = { this (null, null, 0.0, 0, null, 0.0, 0.0, null, null, 0.0, null, 0.0, 0.0, null, 0.0, null, null) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Int = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -493,7 +455,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = CurrentTransformerInfo.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (CurrentTransformerInfo.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (CurrentTransformerInfo.fields (position), value)
         emitelem (0, accuracyClass)
@@ -562,8 +523,7 @@ extends
     def parse (context: Context): CurrentTransformerInfo =
     {
         implicit val ctx: Context = context
-        var fields: Int = 0
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = CurrentTransformerInfo (
             AssetInfo.parse (context),
             mask (accuracyClass (), 0),
@@ -583,7 +543,7 @@ extends
             mask (tertiaryRatio (), 14),
             mask (usage (), 15)
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
@@ -612,12 +572,6 @@ extends
      */
     def this () = { this (null, null) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Int = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -639,7 +593,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = FaultIndicatorInfo.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (FaultIndicatorInfo.fields (position), value)
         emitattr (0, resetKind)
         s.toString
@@ -662,13 +615,12 @@ extends
     def parse (context: Context): FaultIndicatorInfo =
     {
         implicit val ctx: Context = context
-        var fields: Int = 0
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = FaultIndicatorInfo (
             AssetInfo.parse (context),
             mask (resetKind (), 0)
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
@@ -710,12 +662,6 @@ extends
      */
     def this () = { this (null, 0.0, false, 0.0, 0.0, 0, false, 0.0) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Int = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -737,7 +683,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = OldSwitchInfo.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (OldSwitchInfo.fields (position), value)
         emitelem (0, dielectricStrength)
         emitelem (1, loadBreak)
@@ -778,8 +723,7 @@ extends
     def parse (context: Context): OldSwitchInfo =
     {
         implicit val ctx: Context = context
-        var fields: Int = 0
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = OldSwitchInfo (
             SwitchInfo.parse (context),
             toDouble (mask (dielectricStrength (), 0)),
@@ -790,7 +734,7 @@ extends
             toBoolean (mask (remote (), 5)),
             toDouble (mask (withstandCurrent (), 6))
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
@@ -819,12 +763,6 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, null) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Int = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -846,7 +784,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = OldTransformerEndInfo.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (OldTransformerEndInfo.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (OldTransformerEndInfo.fields (position), value)
         emitelem (0, dayOverLoadRating)
@@ -879,8 +816,7 @@ extends
     def parse (context: Context): OldTransformerEndInfo =
     {
         implicit val ctx: Context = context
-        var fields: Int = 0
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = OldTransformerEndInfo (
             TransformerEndInfo.parse (context),
             toDouble (mask (dayOverLoadRating (), 0)),
@@ -888,7 +824,7 @@ extends
             toDouble (mask (solidInsulationWeight (), 2)),
             mask (windingInsulationKind (), 3)
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
@@ -919,12 +855,6 @@ extends
      */
     def this () = { this (null, null, 0.0, null, null, 0.0, null) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Int = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -946,7 +876,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = OldTransformerTankInfo.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (OldTransformerTankInfo.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (OldTransformerTankInfo.fields (position), value)
         emitattr (0, constructionKind)
@@ -985,8 +914,7 @@ extends
     def parse (context: Context): OldTransformerTankInfo =
     {
         implicit val ctx: Context = context
-        var fields: Int = 0
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = OldTransformerTankInfo (
             TransformerTankInfo.parse (context),
             mask (constructionKind (), 0),
@@ -996,7 +924,7 @@ extends
             toDouble (mask (neutralBIL (), 4)),
             mask (oilPreservationKind (), 5)
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
@@ -1037,12 +965,6 @@ extends
      */
     def this () = { this (null, null, null, null, null, 0.0, null, null) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Int = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -1064,7 +986,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PotentialTransformerInfo.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PotentialTransformerInfo.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PotentialTransformerInfo.fields (position), value)
         emitelem (0, accuracyClass)
@@ -1106,8 +1027,7 @@ extends
     def parse (context: Context): PotentialTransformerInfo =
     {
         implicit val ctx: Context = context
-        var fields: Int = 0
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = PotentialTransformerInfo (
             AssetInfo.parse (context),
             mask (accuracyClass (), 0),
@@ -1118,7 +1038,7 @@ extends
             mask (secondaryRatio (), 5),
             mask (tertiaryRatio (), 6)
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
@@ -1149,12 +1069,6 @@ extends
      */
     def this () = { this (null, 0.0, 0.0) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Int = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -1176,7 +1090,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ProtectionEquipmentInfo.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ProtectionEquipmentInfo.fields (position), value)
         emitelem (0, groundTrip)
         emitelem (1, phaseTrip)
@@ -1202,14 +1115,13 @@ extends
     def parse (context: Context): ProtectionEquipmentInfo =
     {
         implicit val ctx: Context = context
-        var fields: Int = 0
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = ProtectionEquipmentInfo (
             AssetInfo.parse (context),
             toDouble (mask (groundTrip (), 0)),
             toDouble (mask (phaseTrip (), 1))
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
@@ -1246,12 +1158,6 @@ extends
      */
     def this () = { this (null, false, false, 0.0, 0.0, 0) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Int = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -1273,7 +1179,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = RecloserInfo.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (RecloserInfo.fields (position), value)
         emitelem (0, groundTripCapable)
         emitelem (1, groundTripNormalEnabled)
@@ -1308,8 +1213,7 @@ extends
     def parse (context: Context): RecloserInfo =
     {
         implicit val ctx: Context = context
-        var fields: Int = 0
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = RecloserInfo (
             OldSwitchInfo.parse (context),
             toBoolean (mask (groundTripCapable (), 0)),
@@ -1318,7 +1222,7 @@ extends
             toDouble (mask (phaseTripRating (), 3)),
             toInteger (mask (recloseLockoutCount (), 4))
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
@@ -1366,12 +1270,6 @@ extends
      */
     def this () = { this (null, 0.0, false, 0.0, 0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Int = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -1393,7 +1291,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = SurgeArresterInfo.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (SurgeArresterInfo.fields (position), value)
         emitelem (0, continuousOperatingVoltage)
         emitelem (1, isPolymer)
@@ -1440,8 +1337,7 @@ extends
     def parse (context: Context): SurgeArresterInfo =
     {
         implicit val ctx: Context = context
-        var fields: Int = 0
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = SurgeArresterInfo (
             AssetInfo.parse (context),
             toDouble (mask (continuousOperatingVoltage (), 0)),
@@ -1454,7 +1350,7 @@ extends
             toDouble (mask (steepFrontDischargeVoltage (), 7)),
             toDouble (mask (switchingImpulseDischargeVoltage (), 8))
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (

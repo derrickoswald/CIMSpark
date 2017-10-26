@@ -138,12 +138,6 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Long = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -165,7 +159,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovCT1.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovCT1.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (GovCT1.fields (position), value)
         emitelem (0, aset)
@@ -291,8 +284,7 @@ extends
     def parse (context: Context): GovCT1 =
     {
         implicit val ctx: Context = context
-        var fields: Long = 0L
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1L << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0,0)
         val ret = GovCT1 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (aset (), 0)),
@@ -331,7 +323,7 @@ extends
             toDouble (mask (wfnl (), 33)),
             toBoolean (mask (wfspd (), 34))
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
@@ -533,12 +525,6 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Long = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -560,7 +546,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovCT2.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovCT2.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (GovCT2.fields (position), value)
         emitelem (0, aset)
@@ -749,8 +734,7 @@ extends
     def parse (context: Context): GovCT2 =
     {
         implicit val ctx: Context = context
-        var fields: Long = 0L
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1L << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0,0)
         val ret = GovCT2 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (aset (), 0)),
@@ -810,7 +794,7 @@ extends
             toDouble (mask (wfnl (), 54)),
             toBoolean (mask (wfspd (), 55))
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
@@ -869,12 +853,6 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Int = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -896,7 +874,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovGAST.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovGAST.fields (position), value)
         emitelem (0, at)
         emitelem (1, dturb)
@@ -946,8 +923,7 @@ extends
     def parse (context: Context): GovGAST =
     {
         implicit val ctx: Context = context
-        var fields: Int = 0
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = GovGAST (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (at (), 0)),
@@ -961,7 +937,7 @@ extends
             toDouble (mask (vmax (), 8)),
             toDouble (mask (vmin (), 9))
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
@@ -1093,12 +1069,6 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Long = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -1120,7 +1090,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovGAST1.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovGAST1.fields (position), value)
         emitelem (0, a)
         emitelem (1, b)
@@ -1242,8 +1211,7 @@ extends
     def parse (context: Context): GovGAST1 =
     {
         implicit val ctx: Context = context
-        var fields: Long = 0L
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1L << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0,0)
         val ret = GovGAST1 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (a (), 0)),
@@ -1281,7 +1249,7 @@ extends
             toDouble (mask (vmax (), 32)),
             toDouble (mask (vmin (), 33))
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
@@ -1384,12 +1352,6 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Int = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -1411,7 +1373,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovGAST2.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovGAST2.fields (position), value)
         emitelem (0, a)
         emitelem (1, af1)
@@ -1527,8 +1488,7 @@ extends
     def parse (context: Context): GovGAST2 =
     {
         implicit val ctx: Context = context
-        var fields: Int = 0
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0,0)
         val ret = GovGAST2 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (a (), 0)),
@@ -1564,7 +1524,7 @@ extends
             toDouble (mask (y (), 30)),
             toBoolean (mask (z (), 31))
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
@@ -1657,12 +1617,6 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Int = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -1684,7 +1638,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovGAST3.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovGAST3.fields (position), value)
         emitelem (0, bca)
         emitelem (1, bp)
@@ -1767,8 +1720,7 @@ extends
     def parse (context: Context): GovGAST3 =
     {
         implicit val ctx: Context = context
-        var fields: Int = 0
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = GovGAST3 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (bca (), 0)),
@@ -1793,7 +1745,7 @@ extends
             toDouble (mask (ttc (), 19)),
             toDouble (mask (ty (), 20))
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
@@ -1856,12 +1808,6 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Int = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -1883,7 +1829,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovGAST4.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovGAST4.fields (position), value)
         emitelem (0, bp)
         emitelem (1, ktm)
@@ -1936,8 +1881,7 @@ extends
     def parse (context: Context): GovGAST4 =
     {
         implicit val ctx: Context = context
-        var fields: Int = 0
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = GovGAST4 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (bp (), 0)),
@@ -1952,7 +1896,7 @@ extends
             toDouble (mask (tm (), 9)),
             toDouble (mask (tv (), 10))
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
@@ -2052,12 +1996,6 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Long = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -2079,7 +2017,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovGASTWD.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovGASTWD.fields (position), value)
         emitelem (0, a)
         emitelem (1, af1)
@@ -2198,8 +2135,7 @@ extends
     def parse (context: Context): GovGASTWD =
     {
         implicit val ctx: Context = context
-        var fields: Long = 0L
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1L << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0,0)
         val ret = GovGASTWD (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (a (), 0)),
@@ -2236,7 +2172,7 @@ extends
             toDouble (mask (trate (), 31)),
             toDouble (mask (tt (), 32))
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
@@ -2308,12 +2244,6 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Int = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -2335,7 +2265,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovHydro1.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovHydro1.fields (position), value)
         emitelem (0, at)
         emitelem (1, dturb)
@@ -2397,8 +2326,7 @@ extends
     def parse (context: Context): GovHydro1 =
     {
         implicit val ctx: Context = context
-        var fields: Int = 0
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = GovHydro1 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (at (), 0)),
@@ -2416,7 +2344,7 @@ extends
             toDouble (mask (tw (), 12)),
             toDouble (mask (velm (), 13))
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
@@ -2533,12 +2461,6 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Int = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -2560,7 +2482,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovHydro2.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovHydro2.fields (position), value)
         emitelem (0, aturb)
         emitelem (1, bturb)
@@ -2667,8 +2588,7 @@ extends
     def parse (context: Context): GovHydro2 =
     {
         implicit val ctx: Context = context
-        var fields: Int = 0
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = GovHydro2 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (aturb (), 0)),
@@ -2701,7 +2621,7 @@ extends
             toDouble (mask (uc (), 27)),
             toDouble (mask (uo (), 28))
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
@@ -2843,12 +2763,6 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Long = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -2870,7 +2784,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovHydro3.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovHydro3.fields (position), value)
         emitelem (0, at)
         emitelem (1, db1)
@@ -2998,8 +2911,7 @@ extends
     def parse (context: Context): GovHydro3 =
     {
         implicit val ctx: Context = context
-        var fields: Long = 0L
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1L << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0,0)
         val ret = GovHydro3 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (at (), 0)),
@@ -3039,7 +2951,7 @@ extends
             toDouble (mask (velcl (), 34)),
             toDouble (mask (velop (), 35))
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
@@ -3185,12 +3097,6 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Long = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -3212,7 +3118,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovHydro4.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovHydro4.fields (position), value)
         emitelem (0, at)
         emitelem (1, bgv0)
@@ -3346,8 +3251,7 @@ extends
     def parse (context: Context): GovHydro4 =
     {
         implicit val ctx: Context = context
-        var fields: Long = 0L
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1L << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0,0)
         val ret = GovHydro4 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (at (), 0)),
@@ -3389,7 +3293,7 @@ extends
             toDouble (mask (uc (), 36)),
             toDouble (mask (uo (), 37))
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
@@ -3526,12 +3430,6 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Long = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -3553,7 +3451,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovHydroDD.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovHydroDD.fields (position), value)
         emitelem (0, aturb)
         emitelem (1, bturb)
@@ -3678,8 +3575,7 @@ extends
     def parse (context: Context): GovHydroDD =
     {
         implicit val ctx: Context = context
-        var fields: Long = 0L
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1L << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0,0)
         val ret = GovHydroDD (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (aturb (), 0)),
@@ -3718,7 +3614,7 @@ extends
             toDouble (mask (velcl (), 33)),
             toDouble (mask (velop (), 34))
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
@@ -3833,12 +3729,6 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Int = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -3860,7 +3750,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovHydroFrancis.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovHydroFrancis.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (GovHydroFrancis.fields (position), value)
         emitelem (0, am)
@@ -3962,8 +3851,7 @@ extends
     def parse (context: Context): GovHydroFrancis =
     {
         implicit val ctx: Context = context
-        var fields: Int = 0
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = GovHydroFrancis (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (am (), 0)),
@@ -3994,7 +3882,7 @@ extends
             toBoolean (mask (waterTunnelSurgeChamberSimulation (), 25)),
             toDouble (mask (zsfc (), 26))
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
@@ -4046,12 +3934,6 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Int = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -4073,7 +3955,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovHydroIEEE0.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovHydroIEEE0.fields (position), value)
         emitelem (0, k)
         emitelem (1, mwbase)
@@ -4117,8 +3998,7 @@ extends
     def parse (context: Context): GovHydroIEEE0 =
     {
         implicit val ctx: Context = context
-        var fields: Int = 0
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = GovHydroIEEE0 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (k (), 0)),
@@ -4130,7 +4010,7 @@ extends
             toDouble (mask (t3 (), 6)),
             toDouble (mask (t4 (), 7))
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
@@ -4240,12 +4120,6 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Int = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -4267,7 +4141,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovHydroIEEE2.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovHydroIEEE2.fields (position), value)
         emitelem (0, aturb)
         emitelem (1, bturb)
@@ -4365,8 +4238,7 @@ extends
     def parse (context: Context): GovHydroIEEE2 =
     {
         implicit val ctx: Context = context
-        var fields: Int = 0
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = GovHydroIEEE2 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (aturb (), 0)),
@@ -4396,7 +4268,7 @@ extends
             toDouble (mask (uc (), 24)),
             toDouble (mask (uo (), 25))
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
@@ -4527,12 +4399,6 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Long = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -4554,7 +4420,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovHydroPID.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovHydroPID.fields (position), value)
         emitelem (0, aturb)
         emitelem (1, bturb)
@@ -4673,8 +4538,7 @@ extends
     def parse (context: Context): GovHydroPID =
     {
         implicit val ctx: Context = context
-        var fields: Long = 0L
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1L << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0,0)
         val ret = GovHydroPID (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (aturb (), 0)),
@@ -4711,7 +4575,7 @@ extends
             toDouble (mask (velcl (), 31)),
             toDouble (mask (velop (), 32))
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
@@ -4810,12 +4674,6 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Int = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -4837,7 +4695,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovHydroPID2.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovHydroPID2.fields (position), value)
         emitelem (0, atw)
         emitelem (1, d)
@@ -4923,8 +4780,7 @@ extends
     def parse (context: Context): GovHydroPID2 =
     {
         implicit val ctx: Context = context
-        var fields: Int = 0
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = GovHydroPID2 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (atw (), 0)),
@@ -4950,7 +4806,7 @@ extends
             toDouble (mask (velmax (), 20)),
             toDouble (mask (velmin (), 21))
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
@@ -5072,12 +4928,6 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Int = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -5099,7 +4949,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovHydroPelton.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovHydroPelton.fields (position), value)
         emitelem (0, av0)
         emitelem (1, av1)
@@ -5203,8 +5052,7 @@ extends
     def parse (context: Context): GovHydroPelton =
     {
         implicit val ctx: Context = context
-        var fields: Int = 0
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = GovHydroPelton (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (av0 (), 0)),
@@ -5236,7 +5084,7 @@ extends
             toBoolean (mask (waterTunnelSurgeChamberSimulation (), 26)),
             toDouble (mask (zsfc (), 27))
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
@@ -5394,12 +5242,6 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Long = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -5421,7 +5263,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovHydroR.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovHydroR.fields (position), value)
         emitelem (0, at)
         emitelem (1, db1)
@@ -5567,8 +5408,7 @@ extends
     def parse (context: Context): GovHydroR =
     {
         implicit val ctx: Context = context
-        var fields: Long = 0L
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1L << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0,0)
         val ret = GovHydroR (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (at (), 0)),
@@ -5614,7 +5454,7 @@ extends
             toDouble (mask (velcl (), 40)),
             toDouble (mask (velop (), 41))
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
@@ -5781,12 +5621,6 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Long = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -5808,7 +5642,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovHydroWEH.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovHydroWEH.fields (position), value)
         emitelem (0, db)
         emitelem (1, dicn)
@@ -5981,8 +5814,7 @@ extends
     def parse (context: Context): GovHydroWEH =
     {
         implicit val ctx: Context = context
-        var fields: Long = 0L
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1L << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0,0)
         val ret = GovHydroWEH (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (db (), 0)),
@@ -6037,7 +5869,7 @@ extends
             toDouble (mask (tpe (), 49)),
             toDouble (mask (tw (), 50))
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
@@ -6121,12 +5953,6 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Int = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -6148,7 +5974,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovHydroWPID.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovHydroWPID.fields (position), value)
         emitelem (0, d)
         emitelem (1, gatmax)
@@ -6234,8 +6059,7 @@ extends
     def parse (context: Context): GovHydroWPID =
     {
         implicit val ctx: Context = context
-        var fields: Int = 0
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = GovHydroWPID (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (d (), 0)),
@@ -6261,7 +6085,7 @@ extends
             toDouble (mask (velmax (), 20)),
             toDouble (mask (velmin (), 21))
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
@@ -6315,12 +6139,6 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Int = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -6342,7 +6160,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovSteam0.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovSteam0.fields (position), value)
         emitelem (0, dt)
         emitelem (1, mwbase)
@@ -6386,8 +6203,7 @@ extends
     def parse (context: Context): GovSteam0 =
     {
         implicit val ctx: Context = context
-        var fields: Int = 0
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = GovSteam0 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (dt (), 0)),
@@ -6399,7 +6215,7 @@ extends
             toDouble (mask (vmax (), 6)),
             toDouble (mask (vmin (), 7))
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
@@ -6552,12 +6368,6 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Long = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -6579,7 +6389,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovSteam1.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovSteam1.fields (position), value)
         emitelem (0, db1)
         emitelem (1, db2)
@@ -6716,8 +6525,7 @@ extends
     def parse (context: Context): GovSteam1 =
     {
         implicit val ctx: Context = context
-        var fields: Long = 0L
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1L << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0,0)
         val ret = GovSteam1 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (db1 (), 0)),
@@ -6760,7 +6568,7 @@ extends
             toDouble (mask (uo (), 37)),
             toBoolean (mask (valve (), 38))
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
@@ -6814,12 +6622,6 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Int = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -6841,7 +6643,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovSteam2.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovSteam2.fields (position), value)
         emitelem (0, dbf)
         emitelem (1, k)
@@ -6885,8 +6686,7 @@ extends
     def parse (context: Context): GovSteam2 =
     {
         implicit val ctx: Context = context
-        var fields: Int = 0
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = GovSteam2 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (dbf (), 0)),
@@ -6898,7 +6698,7 @@ extends
             toDouble (mask (t1 (), 6)),
             toDouble (mask (t2 (), 7))
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
@@ -6979,12 +6779,6 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Int = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -7006,7 +6800,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovSteamCC.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovSteamCC.fields (position), value)
         emitelem (0, dhp)
         emitelem (1, dlp)
@@ -7077,8 +6870,7 @@ extends
     def parse (context: Context): GovSteamCC =
     {
         implicit val ctx: Context = context
-        var fields: Int = 0
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = GovSteamCC (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (dhp (), 0)),
@@ -7099,7 +6891,7 @@ extends
             toDouble (mask (t5hp (), 15)),
             toDouble (mask (t5lp (), 16))
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
@@ -7234,12 +7026,6 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Long = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -7261,7 +7047,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovSteamEU.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovSteamEU.fields (position), value)
         emitelem (0, chc)
         emitelem (1, cho)
@@ -7386,8 +7171,7 @@ extends
     def parse (context: Context): GovSteamEU =
     {
         implicit val ctx: Context = context
-        var fields: Long = 0L
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1L << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0,0)
         val ret = GovSteamEU (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (chc (), 0)),
@@ -7426,7 +7210,7 @@ extends
             toDouble (mask (wwmax (), 33)),
             toDouble (mask (wwmin (), 34))
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
@@ -7483,12 +7267,6 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Int = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -7510,7 +7288,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovSteamFV2.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovSteamFV2.fields (position), value)
         emitelem (0, dt)
         emitelem (1, k)
@@ -7569,8 +7346,7 @@ extends
     def parse (context: Context): GovSteamFV2 =
     {
         implicit val ctx: Context = context
-        var fields: Int = 0
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = GovSteamFV2 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (dt (), 0)),
@@ -7587,7 +7363,7 @@ extends
             toDouble (mask (vmax (), 11)),
             toDouble (mask (vmin (), 12))
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
@@ -7674,12 +7450,6 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Int = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -7701,7 +7471,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovSteamFV3.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovSteamFV3.fields (position), value)
         emitelem (0, k)
         emitelem (1, k1)
@@ -7778,8 +7547,7 @@ extends
     def parse (context: Context): GovSteamFV3 =
     {
         implicit val ctx: Context = context
-        var fields: Int = 0
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = GovSteamFV3 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (k (), 0)),
@@ -7802,7 +7570,7 @@ extends
             toDouble (mask (uc (), 17)),
             toDouble (mask (uo (), 18))
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
@@ -7985,12 +7753,6 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Long = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -8012,7 +7774,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovSteamFV4.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovSteamFV4.fields (position), value)
         emitelem (0, cpsmn)
         emitelem (1, cpsmx)
@@ -8185,8 +7946,7 @@ extends
     def parse (context: Context): GovSteamFV4 =
     {
         implicit val ctx: Context = context
-        var fields: Long = 0L
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1L << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0,0)
         val ret = GovSteamFV4 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (cpsmn (), 0)),
@@ -8241,7 +8001,7 @@ extends
             toDouble (mask (ympmn (), 49)),
             toDouble (mask (ympmx (), 50))
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
@@ -8335,12 +8095,6 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Int = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -8362,7 +8116,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovSteamIEEE1.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovSteamIEEE1.fields (position), value)
         emitelem (0, k)
         emitelem (1, k1)
@@ -8445,8 +8198,7 @@ extends
     def parse (context: Context): GovSteamIEEE1 =
     {
         implicit val ctx: Context = context
-        var fields: Int = 0
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = GovSteamIEEE1 (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (k (), 0)),
@@ -8471,7 +8223,7 @@ extends
             toDouble (mask (uc (), 19)),
             toDouble (mask (uo (), 20))
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
@@ -8526,12 +8278,6 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Int = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -8553,7 +8299,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovSteamSGO.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovSteamSGO.fields (position), value)
         emitelem (0, k1)
         emitelem (1, k2)
@@ -8609,8 +8354,7 @@ extends
     def parse (context: Context): GovSteamSGO =
     {
         implicit val ctx: Context = context
-        var fields: Int = 0
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = GovSteamSGO (
             TurbineGovernorDynamics.parse (context),
             toDouble (mask (k1 (), 0)),
@@ -8626,7 +8370,7 @@ extends
             toDouble (mask (t5 (), 10)),
             toDouble (mask (t6 (), 11))
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
@@ -8660,12 +8404,6 @@ extends
      */
     def this () = { this (null, null, null) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Int = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -8687,7 +8425,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = TurbineGovernorDynamics.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TurbineGovernorDynamics.fields (position), value)
         emitattr (0, AsynchronousMachineDynamics)
         emitattr (1, TurbineLoadControllerDynamics)
@@ -8713,14 +8450,13 @@ extends
     def parse (context: Context): TurbineGovernorDynamics =
     {
         implicit val ctx: Context = context
-        var fields: Int = 0
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = TurbineGovernorDynamics (
             DynamicsFunctionBlock.parse (context),
             mask (AsynchronousMachineDynamics (), 0),
             mask (TurbineLoadControllerDynamics (), 1)
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (

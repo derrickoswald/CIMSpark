@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>cim - CIMReader 2.11-2.2.0-2.3.0 API - ch.ninecode.cim</title>
-          <meta name="description" content="cim - CIMReader 2.11 - 2.2.0 - 2.3.0 API - ch.ninecode.cim" />
-          <meta name="keywords" content="cim CIMReader 2.11 2.2.0 2.3.0 API ch.ninecode.cim" />
+          <title>cim - CIMReader 2.11-2.2.0-2.4.0 API - ch.ninecode.cim</title>
+          <meta name="description" content="cim - CIMReader 2.11 - 2.2.0 - 2.4.0 API - ch.ninecode.cim" />
+          <meta name="keywords" content="cim CIMReader 2.11 2.2.0 2.4.0 API ch.ninecode.cim" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -110,6 +110,25 @@ The reader fits into the overall Spark architecture as shown in the following im
     </span>
       <p class="shortcomment cmt">Common Hierarchical Information Model
 CIM classes for parsing RDF files.</p>
+    </li><li name="ch.ninecode.cim.CIMAbout" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="CIMAboutextendsCIMRDDwithSerializable"></a>
+      <a id="CIMAbout:CIMAbout"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">class</span>
+      </span>
+      <span class="symbol">
+        <a href="CIMAbout.html"><span class="name">CIMAbout</span></a><span class="result"> extends <a href="CIMRDD.html" class="extype" name="ch.ninecode.cim.CIMRDD">CIMRDD</a> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.package@CIMAboutextendsCIMRDDwithSerializable" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Handle &quot;about&quot; processing.</p><div class="fullcomment"><div class="comment cmt"><p>Handle &quot;about&quot; processing.</p><p>For each element with id X, if there are elements with &quot;rdf:about='X'&quot;,
+this class merges the about elements into the &quot;primary&quot; element(s).
+</p></div></div>
     </li><li name="ch.ninecode.cim.CIMDataFrameReader" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="CIMDataFrameReaderextendsAnyRef"></a>
       <a id="CIMDataFrameReader:CIMDataFrameReader"></a>
@@ -148,7 +167,7 @@ the DataFileReader
       <p class="shortcomment cmt">Adds a method, <code>cim</code>, to DataFrameWriter that allows you to write CIM files using
 the DataFileWriter
 </p>
-    </li><li name="ch.ninecode.cim.CIMDeDup" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="ch.ninecode.cim.CIMDeDup" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="CIMDeDupextendsCIMRDDwithSerializable"></a>
       <a id="CIMDeDup:CIMDeDup"></a>
       <h4 class="signature">
@@ -164,7 +183,18 @@ the DataFileWriter
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
+      <p class="shortcomment cmt">Handle duplicate processing.</p><div class="fullcomment"><div class="comment cmt"><p>Handle duplicate processing.</p><p>For each element with id X, if there are other elements with &quot;rdf:ID='X'&quot;,
+this class chooses only one.</p><p>This &quot;duplicates&quot; condition arises, for example, when spatial filters
+are applied to tile large datasets to partition the export task into
+smaller subsets, for reasons such as parallelization, memory
+constraints, etc.</p><p>A linear element crossing a tile boundary can be exported in either tile,
+if it can be determined beforehand which tile. A simpler option is to
+export such objects in all tiles whose spatial extents includes
+some of the element. It is also nice to include
+related elements to make each tile self consistent.</p><p>These tiles must then be recombined into the full dataset,
+which is the task for this component - to delete duplicate elements.</p><p>Warnings are generated if the deleted elements are not identical to
+the elements that are retained.
+</p></div></div>
     </li><li name="ch.ninecode.cim.CIMEdgeData" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="CIMEdgeDataextendsSerializablewithProduct"></a>
       <a id="CIMEdgeData:CIMEdgeData"></a>
@@ -562,7 +592,7 @@ text coverage set (in debug) and error messages raised while parsing.</p></div><
     </span>
       <p class="shortcomment cmt">Typed base class for registration and subsetting.</p><div class="fullcomment"><div class="comment cmt"><p>Typed base class for registration and subsetting.
 Provides facilities to register subclasses with the CHIM parsing framework
-and forms the subsetting 'typed object' to spcify RDDs of specific CIM classes.
+and forms the subsetting 'typed object' to specify RDDs of specific CIM classes.
 Typical usage:</p><pre><span class="kw">object</span> Terminal <span class="kw">extends</span> Parseable[Terminal]
 {
     <span class="cmt">// implement Parser abstract method</span>
@@ -639,23 +669,6 @@ Other methods are helpers for parsing the regular XML structure of CIM rdf files
       </a>
     </span>
       
-    </li><li name="ch.ninecode.cim.SerializableObject" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="SerializableObjectextendsSerializablewithProduct"></a>
-      <a id="SerializableObject:SerializableObject"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">case class</span>
-      </span>
-      <span class="symbol">
-        <a href="SerializableObject.html"><span class="name">SerializableObject</span></a><span class="params">(<span name="name">name: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span> with <span class="extype" name="scala.Product">Product</span></span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.package@SerializableObjectextendsSerializablewithProduct" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <p class="shortcomment cmt">A bogus class needed for synchronization.</p><div class="fullcomment"><div class="comment cmt"><p>A bogus class needed for synchronization.</p></div><dl class="attributes block"> <dt>See also</dt><dd><span class="cmt"><p>http://docs.scala-lang.org/overviews/reflection/thread-safety.html</p></span><span class="cmt"><p>https://issues.scala-lang.org/browse/SI-6240</p></span></dd></dl></div>
     </li><li name="ch.ninecode.cim.TopoEdge" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="TopoEdgeextendsSerializablewithProduct"></a>
       <a id="TopoEdge:TopoEdge"></a>

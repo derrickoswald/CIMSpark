@@ -84,12 +84,6 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Int = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -111,7 +105,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = DiscExcContIEEEDEC1A.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (DiscExcContIEEEDEC1A.fields (position), value)
         emitelem (0, esc)
         emitelem (1, kan)
@@ -185,8 +178,7 @@ extends
     def parse (context: Context): DiscExcContIEEEDEC1A =
     {
         implicit val ctx: Context = context
-        var fields: Int = 0
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = DiscExcContIEEEDEC1A (
             DiscontinuousExcitationControlDynamics.parse (context),
             toDouble (mask (esc (), 0)),
@@ -208,7 +200,7 @@ extends
             toDouble (mask (vtn (), 16)),
             toDouble (mask (_val (), 17))
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
@@ -250,12 +242,6 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Int = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -277,7 +263,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = DiscExcContIEEEDEC2A.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (DiscExcContIEEEDEC2A.fields (position), value)
         emitelem (0, td1)
         emitelem (1, td2)
@@ -312,8 +297,7 @@ extends
     def parse (context: Context): DiscExcContIEEEDEC2A =
     {
         implicit val ctx: Context = context
-        var fields: Int = 0
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = DiscExcContIEEEDEC2A (
             DiscontinuousExcitationControlDynamics.parse (context),
             toDouble (mask (td1 (), 0)),
@@ -322,7 +306,7 @@ extends
             toDouble (mask (vdmin (), 3)),
             toDouble (mask (vk (), 4))
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
@@ -358,12 +342,6 @@ extends
      */
     def this () = { this (null, 0.0, 0.0) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Int = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -385,7 +363,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = DiscExcContIEEEDEC3A.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (DiscExcContIEEEDEC3A.fields (position), value)
         emitelem (0, tdr)
         emitelem (1, vtmin)
@@ -411,14 +388,13 @@ extends
     def parse (context: Context): DiscExcContIEEEDEC3A =
     {
         implicit val ctx: Context = context
-        var fields: Int = 0
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = DiscExcContIEEEDEC3A (
             DiscontinuousExcitationControlDynamics.parse (context),
             toDouble (mask (tdr (), 0)),
             toDouble (mask (vtmin (), 1))
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
@@ -452,12 +428,6 @@ extends
      */
     def this () = { this (null, null, null) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Int = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -479,7 +449,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = DiscontinuousExcitationControlDynamics.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (DiscontinuousExcitationControlDynamics.fields (position), value)
         emitattr (0, ExcitationSystemDynamics)
         emitattr (1, RemoteInputSignal)
@@ -505,14 +474,13 @@ extends
     def parse (context: Context): DiscontinuousExcitationControlDynamics =
     {
         implicit val ctx: Context = context
-        var fields: Int = 0
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = DiscontinuousExcitationControlDynamics (
             DynamicsFunctionBlock.parse (context),
             mask (ExcitationSystemDynamics (), 0),
             mask (RemoteInputSignal (), 1)
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (

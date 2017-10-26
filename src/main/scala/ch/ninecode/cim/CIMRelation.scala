@@ -44,6 +44,8 @@ with
 
     // check for a storage level option
     implicit val _StorageLevel: StorageLevel = StorageLevel.fromString (parameters.getOrElse ("StorageLevel", "MEMORY_ONLY"))
+    // check for rdf:about option
+    val _About: Boolean = parameters.getOrElse ("ch.ninecode.cim.do_about", "false").toBoolean
     // check for deduplication option
     val _DeDup: Boolean = parameters.getOrElse ("ch.ninecode.cim.do_deduplication", "false").toBoolean
     // check for edge creation option
@@ -94,21 +96,21 @@ with
 
         var ret: RDD[Row] = null
 
-        val path = parameters.getOrElse("path", sys.error("'path' must be specified for CIM data."))
+        val path = parameters.getOrElse ("path", sys.error ("'path' must be specified for CIM data."))
 
         // make a config
         val configuration = new Configuration (spark.sparkContext.hadoopConfiguration)
         configuration.set (FileInputFormat.INPUT_DIR, path)
         configuration.setLong (FileInputFormat.SPLIT_MAXSIZE, _SplitSize)
 
-        val rdd = spark.sparkContext.newAPIHadoopRDD (
+        var rdd = spark.sparkContext.newAPIHadoopRDD (
             configuration,
             classOf[CIMInputFormat],
             classOf[String],
             classOf[Element]).values
 
         ret = rdd.asInstanceOf[RDD[Row]]
-        ret.setName ("Elements") // persist it
+        ret.setName ("Elements")
         ret.persist (_StorageLevel)
         spark.sparkContext.getCheckpointDir match
         {
@@ -116,21 +118,25 @@ with
             case None =>
         }
 
-        // dedup if requested
-        val elements = if (_DeDup)
+        // about processing if requested
+        if (_About)
         {
-            log.info ("eliminating duplicates")
-            val dedup = new CIMDeDup (spark, _StorageLevel)
-            val (e, r) = dedup.do_deduplicate ()
-            ret = r
-            e
+            val about = new CIMAbout (spark, _StorageLevel)
+            rdd = about.do_about ()
+            ret = rdd.asInstanceOf[RDD[Row]]
         }
-        else
-            rdd
+
+        // dedup if requested
+        if (_DeDup)
+        {
+            val dedup = new CIMDeDup (spark, _StorageLevel)
+            rdd = dedup.do_deduplicate ()
+            ret = rdd.asInstanceOf[RDD[Row]]
+        }
 
         // as a side effect, define all the other temporary tables
         log.info ("creating temporary tables")
-        val names = elements.flatMap (
+        val names = rdd.flatMap (
             (x: Element) => // hierarchy: List[String]
             {
                 var ret = List[String]()
@@ -148,7 +154,7 @@ with
         CHIM.apply_to_all_classes (
             (subsetter: CIMSubsetter[_]) =>
             {
-                // sometimes this loop doesn't work well
+                // in earlier Scala versions this loop doesn't work well
                 // the symptoms are:
                 //     scala.reflect.runtime.ReflectError: value ch is not a package
                 // or
@@ -160,7 +166,7 @@ with
                 if (names.contains (subsetter.cls))
                 {
                     log.debug ("building " + subsetter.cls)
-                    subsetter.make (spark.sqlContext, elements, _StorageLevel)
+                    subsetter.make (spark.sqlContext, rdd, _StorageLevel)
                 }
             }
         )
@@ -168,7 +174,6 @@ with
         // merge ISU and NIS ServiceLocations if requested
         if (_Join)
         {
-            log.info ("joining ISU and NIS")
             val join = new CIMJoin (spark, _StorageLevel)
             ret = join.do_join ().asInstanceOf[RDD[Row]]
         }
@@ -176,7 +181,6 @@ with
         // perform topological processing if requested
         if (_Topo)
         {
-            log.info ("performing Network Topology Processing")
             val ntp = new CIMNetworkTopologyProcessor (spark, _StorageLevel)
             ret = ntp.process (_Islands).asInstanceOf[RDD[Row]]
         }
@@ -184,12 +188,10 @@ with
         // set up edge graph if requested
         if (_Edges)
         {
-            log.info ("making Edges RDD")
             val cimedges = new CIMEdges (spark, _StorageLevel)
             ret = cimedges.make_edges (_Topo).asInstanceOf[RDD[Row]]
         }
 
         ret
-  }
-
+    }
 }

@@ -45,12 +45,6 @@ extends
      */
     def this () = { this (null, null, null, null, null) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Int = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -72,7 +66,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = AsynchronousMachineDynamics.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (AsynchronousMachineDynamics.fields (position), value)
         emitattr (0, AsynchronousMachine)
         emitattr (1, MechanicalLoadDynamics)
@@ -104,8 +97,7 @@ extends
     def parse (context: Context): AsynchronousMachineDynamics =
     {
         implicit val ctx: Context = context
-        var fields: Int = 0
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = AsynchronousMachineDynamics (
             RotatingMachineDynamics.parse (context),
             mask (AsynchronousMachine (), 0),
@@ -113,7 +105,7 @@ extends
             mask (TurbineGovernorDynamics (), 2),
             mask (WindTurbineType1or2Dynamics (), 3)
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
@@ -173,12 +165,6 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Int = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -200,7 +186,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = AsynchronousMachineEquivalentCircuit.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (AsynchronousMachineEquivalentCircuit.fields (position), value)
         emitelem (0, rr1)
         emitelem (1, rr2)
@@ -235,8 +220,7 @@ extends
     def parse (context: Context): AsynchronousMachineEquivalentCircuit =
     {
         implicit val ctx: Context = context
-        var fields: Int = 0
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = AsynchronousMachineEquivalentCircuit (
             AsynchronousMachineDynamics.parse (context),
             toDouble (mask (rr1 (), 0)),
@@ -245,7 +229,7 @@ extends
             toDouble (mask (xlr2 (), 3)),
             toDouble (mask (xm (), 4))
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
@@ -313,12 +297,6 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Int = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -340,7 +318,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = AsynchronousMachineTimeConstantReactance.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (AsynchronousMachineTimeConstantReactance.fields (position), value)
         emitelem (0, tpo)
         emitelem (1, tppo)
@@ -375,8 +352,7 @@ extends
     def parse (context: Context): AsynchronousMachineTimeConstantReactance =
     {
         implicit val ctx: Context = context
-        var fields: Int = 0
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = AsynchronousMachineTimeConstantReactance (
             AsynchronousMachineDynamics.parse (context),
             toDouble (mask (tpo (), 0)),
@@ -385,7 +361,7 @@ extends
             toDouble (mask (xpp (), 3)),
             toDouble (mask (xs (), 4))
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (

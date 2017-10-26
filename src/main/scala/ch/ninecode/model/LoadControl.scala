@@ -50,12 +50,6 @@ extends
      */
     def this () = { this (null, 0, false, false, false, false, false, false, null, List()) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Int = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -77,7 +71,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ConnectDisconnectFunction.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ConnectDisconnectFunction.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ConnectDisconnectFunction.fields (position), value)
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ConnectDisconnectFunction.fields (position), x))
@@ -126,9 +119,7 @@ extends
     def parse (context: Context): ConnectDisconnectFunction =
     {
         implicit val ctx: Context = context
-        var fields: Int = 0
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
-        def masks (field: Fields, position: Int): List[String] = { if (field._2) fields |= 1 << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = ConnectDisconnectFunction (
             EndDeviceFunction.parse (context),
             toInteger (mask (eventCount (), 0)),
@@ -141,7 +132,7 @@ extends
             mask (rcdInfo (), 7),
             masks (Switches (), 8)
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
@@ -193,12 +184,6 @@ extends
      */
     def this () = { this (null, 0.0, 0.0, 0.0, null, 0.0, false, false, false, false, false, 0.0, false) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Int = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -220,7 +205,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = RemoteConnectDisconnectInfo.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (RemoteConnectDisconnectInfo.fields (position), value)
         emitelem (0, armedTimeout)
         emitelem (1, customerVoltageLimit)
@@ -276,8 +260,7 @@ extends
     def parse (context: Context): RemoteConnectDisconnectInfo =
     {
         implicit val ctx: Context = context
-        var fields: Int = 0
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = RemoteConnectDisconnectInfo (
             BasicElement.parse (context),
             toDouble (mask (armedTimeout (), 0)),
@@ -293,7 +276,7 @@ extends
             toDouble (mask (powerLimit (), 10)),
             toBoolean (mask (usePushbutton (), 11))
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (

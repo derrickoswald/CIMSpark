@@ -173,6 +173,8 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
      */
     def do_join (): RDD[Element] =
     {
+        log.info ("joining ISU and NIS")
+
         val names = get[Name]
         val service_locations = get[ServiceLocation]
         val points = get[PositionPoint]

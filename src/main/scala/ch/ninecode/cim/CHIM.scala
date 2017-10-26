@@ -349,6 +349,18 @@ extends
     val relations: List[Relationship]
     def register: ClassInfo =
         ClassInfo (cls, this.asInstanceOf[Parseable[Product]], new CIMSubsetter[A](), relations)
+    def mask (field: Field, position: Int) (implicit bitfields: Array[Int]): String =
+    {
+        if (field._2)
+            bitfields(position / 32) |= (1 << (position % 32))
+        field._1
+    }
+    def masks (field: Fields, position: Int) (implicit bitfields: Array[Int]): List[String] =
+    {
+        if (field._2)
+            bitfields(position / 32) |= (1 << (position % 32))
+        field._1
+    }
 }
 
 // Classes are organized by CIM package in .scala files and arranged alphabetically within the package.

@@ -51,12 +51,6 @@ extends
      */
     def this () = { this (null, null, null, null, null, null, null, null, null, null, null) }
     /**
-     * Valid fields bitmap.
-     * One (1) in a bit position means that field was found in parsing, zero means it has an indeterminate value.
-     * Field order is specified by the @see{#fields} array.
-     */
-    var bitfields: Int = -1
-    /**
      * Return the superclass object.
      *
      * @return The typed superclass nested object.
@@ -78,7 +72,6 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = RemoteInputSignal.cls
-        def mask (position: Int): Boolean = 0 != (bitfields & (1 << position))
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (RemoteInputSignal.fields (position), value)
         emitattr (0, remoteSignalType)
         emitattr (1, DiscontinuousExcitationControlDynamics)
@@ -128,8 +121,7 @@ extends
     def parse (context: Context): RemoteInputSignal =
     {
         implicit val ctx: Context = context
-        var fields: Int = 0
-        def mask (field: Field, position: Int): String = { if (field._2) fields |= 1 << position; field._1 }
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = RemoteInputSignal (
             IdentifiedObject.parse (context),
             mask (remoteSignalType (), 0),
@@ -143,7 +135,7 @@ extends
             mask (WindTurbineType1or2Dynamics (), 8),
             mask (WindTurbineType3or4Dynamics (), 9)
         )
-        ret.bitfields = fields
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (

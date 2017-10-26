@@ -518,6 +518,8 @@ class CIMNetworkTopologyProcessor (spark: SparkSession, storage: StorageLevel = 
      */
     def process (identify_islands: Boolean): RDD[Element] =
     {
+        log.info ("performing Network Topology Processing")
+
         // get the initial graph based on edges
         val initial = make_graph ()
 

@@ -113,11 +113,12 @@ class SparkSuite extends fixture.FunSuite
 
     def readFile (filename: String, options: util.Map[String, String] = new util.HashMap[String, String] ())(implicit spark: SparkSession): DataFrame =
     {
-        options.put ("path", filename)
+        //options.put ("path", filename)
         options.put ("StorageLevel", "MEMORY_AND_DISK_SER")
         val files = filename.split (",")
-        spark.read.format ("ch.ninecode.cim").options (options).load (files:_*)
+        spark.read.format ("ch.ninecode.cim").options (options).load (filename) // (files:_*)
     }
+//    val element = spark.read.format ("ch.ninecode.cim").options (opts).load ("hdfs://sandbox:8020/data/bkw_cim_export_equipmentsstripe4and5_with_topology.rdf")
 
     /**
      * Get the named RDD.

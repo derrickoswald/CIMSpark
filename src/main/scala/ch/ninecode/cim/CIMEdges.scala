@@ -364,6 +364,8 @@ class CIMEdges (spark: SparkSession, storage: StorageLevel) extends CIMRDD with 
 
     def make_edges (topological_nodes: Boolean): RDD[Element] =
     {
+        log.info ("making Edges RDD")
+
         // get the elements RDD
         val elements = get[Element]("Elements")
 

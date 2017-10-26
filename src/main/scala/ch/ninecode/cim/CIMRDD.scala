@@ -64,9 +64,7 @@ trait CIMRDD
       */
     def get[T : ClassTag](name: String)(implicit spark: SparkSession, log: Logger): RDD[T] =
     {
-
-        val rdds: collection.Map[Int, RDD[_]] = spark.sparkContext.getPersistentRDDs
-        rdds.find (_._2.name == name) match
+        spark.sparkContext.getPersistentRDDs.find (_._2.name == name) match
         {
             case Some ((_: Int, rdd: RDD[_])) =>
                 rdd.asInstanceOf[RDD[T]]
