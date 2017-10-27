@@ -1,14 +1,30 @@
 package ch.ninecode.cim
 
+import java.io.File
 import java.util
 
 import org.apache.spark.sql.SparkSession
+
 import ch.ninecode.model._
 
-class CIMExportSuite extends ch.ninecode.SparkSuite
+class CIMExportSuite
+extends
+    ch.ninecode.SparkSuite
+with
+    org.scalatest.BeforeAndAfter
 {
     val FILE_DEPOT = "data/"
     val PRIVATE_FILE_DEPOT = "private_data/"
+
+    // test file names
+    val FILENAME: String = FILE_DEPOT + "NIS_CIM_Export_NS_INITIAL_FILL_Oberiberg.rdf"
+
+    before
+    {
+        // unpack the zip file
+        if (!new File (FILENAME).exists)
+            new Unzip ().unzip (FILE_DEPOT + "NIS_CIM_Export_NS_INITIAL_FILL_Oberiberg.zip", FILE_DEPOT)
+    }
 
     test ("Basic")
     {
@@ -104,10 +120,8 @@ voltage +
     {
         implicit spark: SparkSession ⇒
 
-        val filename =
-            FILE_DEPOT + "NIS_CIM_Export_NS_INITIAL_FILL_Oberiberg" + ".rdf"
         val options = new util.HashMap[String, String] ().asInstanceOf[util.Map[String,String]]
-        val elements = readFile (filename, options)
+        val elements = readFile (FILENAME, options)
         println (elements.count + " elements")
         val export = new CIMExport (spark)
         export.exportAll ("target/" + "NIS_CIM_Export_NS_INITIAL_FILL_Oberiberg" + ".rdf")

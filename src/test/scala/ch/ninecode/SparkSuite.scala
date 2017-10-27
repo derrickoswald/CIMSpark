@@ -1,9 +1,15 @@
 package ch.ninecode
 
+import java.io.BufferedOutputStream
+import java.io.File
+import java.io.FileInputStream
+import java.io.FileOutputStream
+import java.io.IOException
 import java.net.Inet4Address
 import java.net.InetAddress
 import java.net.NetworkInterface
 import java.util
+import java.util.zip.ZipInputStream
 
 import scala.collection.JavaConverters._
 import scala.reflect.ClassTag
@@ -19,6 +25,72 @@ import ch.ninecode.cim.CIMClasses
 class SparkSuite extends fixture.FunSuite
 {
     type FixtureParam = SparkSession
+
+    /**
+     * This utility extracts files and directories of a standard zip file to
+     * a destination directory.
+     *
+     * @author www.codejava.net
+     *
+     */
+    class Unzip
+    {
+        /**
+         * Extracts a zip file specified by the file to a directory.
+         *
+         * The directory will be created if does not exist.
+         *
+         * @param file The Zip file.
+         * @param directory The directory to extract it to
+         * @throws IOException If there is a problem with the zip extraction
+         */
+        @throws[IOException]
+        def unzip (file: String, directory: String): Unit =
+        {
+            val dir = new File (directory)
+            if (!dir.exists)
+                dir.mkdir
+            val zip = new ZipInputStream (new FileInputStream (file))
+            var entry = zip.getNextEntry
+            // iterates over entries in the zip file
+            while (null != entry)
+            {
+                val path = directory + entry.getName
+                if (!entry.isDirectory)
+                {
+                    // if the entry is a file, extracts it
+                    extractFile (zip, path)
+                    // recurse
+                    if (path.endsWith (".zip"))
+                        new Unzip ().unzip (path, path.substring (0, path.lastIndexOf ("/") + 1))
+                }
+                else
+                    // if the entry is a directory, make the directory
+                    new File (path).mkdir
+                zip.closeEntry ()
+                entry = zip.getNextEntry
+            }
+            zip.close ()
+        }
+
+        /**
+         * Extracts a zip entry (file entry).
+         *
+         * @param zip The Zip input stream for the file.
+         * @param path The path to extract he file to.
+         * @throws IOException If there is a problem with the zip extraction
+         */
+        @throws[IOException]
+        private def extractFile (zip: ZipInputStream, path: String): Unit =
+        {
+            val bos = new BufferedOutputStream (new FileOutputStream (path))
+            val bytesIn = new Array[Byte](4096)
+            var read = -1
+            while ({ read = zip.read (bytesIn); read != -1 })
+                bos.write (bytesIn, 0, read)
+            bos.close ()
+        }
+    }
 
     /**
      * Add to the process environment.
@@ -113,12 +185,9 @@ class SparkSuite extends fixture.FunSuite
 
     def readFile (filename: String, options: util.Map[String, String] = new util.HashMap[String, String] ())(implicit spark: SparkSession): DataFrame =
     {
-        //options.put ("path", filename)
         options.put ("StorageLevel", "MEMORY_AND_DISK_SER")
-        val files = filename.split (",")
-        spark.read.format ("ch.ninecode.cim").options (options).load (filename) // (files:_*)
+        spark.read.format ("ch.ninecode.cim").options (options).load (filename) // ToDo: why doesn't this work? load (filename.split (","):_*)
     }
-//    val element = spark.read.format ("ch.ninecode.cim").options (opts).load ("hdfs://sandbox:8020/data/bkw_cim_export_equipmentsstripe4and5_with_topology.rdf")
 
     /**
      * Get the named RDD.

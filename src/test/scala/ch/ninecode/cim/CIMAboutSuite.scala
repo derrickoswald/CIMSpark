@@ -1,17 +1,27 @@
 package ch.ninecode.cim
 
-import java.util
+import java.io.File
+import java.util.HashMap
+import java.util.Map
 
 import ch.ninecode.model._
 import org.apache.spark.sql.SparkSession
+import org.scalatest.BeforeAndAfter
 
-class CIMAboutSuite extends ch.ninecode.SparkSuite
+class CIMAboutSuite extends ch.ninecode.SparkSuite with BeforeAndAfter
 {
     val FILE_DEPOT = "data/"
 
+    before
+    {
+        // unpack the zip file
+        if (!new File (FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_EQ_BD.xml").exists)
+            new Unzip ().unzip (FILE_DEPOT + "CGMES_v2.4.15_TestConfigurations_v4.0.3.zip", FILE_DEPOT)
+    }
+
     // values from MicroGrid/Documentation/CGMES_v2.4.15_MicroGridTestConfiguration_v2.docx
 
-    val BelgiumElementCount: Array[(String, Int)] = Array (
+    val BelgiumElementCount = Array (
         ("ACLineSegment", 7),
         ("BaseVoltage", 7),
         ("BusbarSection", 9),
@@ -61,7 +71,7 @@ class CIMAboutSuite extends ch.ninecode.SparkSuite
         ("VoltageLevel", 6)
     )
 
-    val NetherlandsElementCount: Array[(String, Int)] = Array (
+    val NetherlandsElementCount = Array (
         ("ACLineSegment", 5),
         ("BaseVoltage", 5),
         ("Breaker", 1),
@@ -111,7 +121,7 @@ class CIMAboutSuite extends ch.ninecode.SparkSuite
         ("VoltageLevel", 4)
     )
 
-    val BaseCaseElementCount: Array[(String, Int)] = Array (
+    val BaseCaseElementCount = Array (
         ("ACLineSegment", 12),
         ("BaseVoltage", 8),
         ("Breaker", 1),
@@ -182,7 +192,7 @@ class CIMAboutSuite extends ch.ninecode.SparkSuite
             FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_EQ_BD.xml",
             FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_TP_BD.xml"
         )
-        val options = new util.HashMap[String, String] ().asInstanceOf[util.Map[String,String]]
+        val options = new HashMap[String, String] ().asInstanceOf[Map[String,String]]
         options.put ("ch.ninecode.cim.do_about", "true")
         val elements = readFile (filenames.mkString (","), options)
 
@@ -191,6 +201,36 @@ class CIMAboutSuite extends ch.ninecode.SparkSuite
             assert (spark.sparkContext.getPersistentRDDs.exists (_._2.name == pair._1), pair._1)
         for (pair ← BelgiumElementCount)
             assert (spark.sparkContext.getPersistentRDDs.filter (_._2.name == pair._1).head._2.count === pair._2, pair._1)
+
+        // test rdf:about added TopologicalNode values and connected to each Terminal that has a sequenceNumber (Terminals from the boundary do not)
+        val terminals = get[Terminal]
+        val tnodes = terminals.flatMap (terminal ⇒ if (0 != terminal.ACDCTerminal.sequenceNumber) List (terminal) else List ()).collect
+        tnodes.foreach (terminal ⇒
+            {
+                assert (null != terminal.TopologicalNode, terminal.id)
+                assert (terminal.ACDCTerminal.connected, terminal.id)
+            }
+        )
+
+        // test rdf:about added p and q to energy consumers
+        val consumers = get[EnergyConsumer]
+        val enodes = consumers.collect
+        enodes.foreach (consumer ⇒
+            {
+                assert (0.0 != consumer.p, consumer.id)
+                assert (0.0 != consumer.q || consumer.id == "_b1480a00-b427-4001-a26c-51954d2bb7e9", consumer.id) // handle the special snowflake
+            }
+        )
+
+        // test rdf:about added p and q to equivalent injections
+        val injections = get[EquivalentInjection]
+        val inodes = injections.collect
+        inodes.foreach (injection ⇒
+            {
+                assert (0.0 != injection.p, injection.id)
+                assert (0.0 != injection.q, injection.id)
+            }
+        )
     }
 
     test ("Netherlands")
@@ -208,7 +248,7 @@ class CIMAboutSuite extends ch.ninecode.SparkSuite
             FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_EQ_BD.xml",
             FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_TP_BD.xml"
         )
-        val options = new util.HashMap[String, String] ().asInstanceOf[util.Map[String,String]]
+        val options = new HashMap[String, String] ().asInstanceOf[Map[String,String]]
         options.put ("ch.ninecode.cim.do_about", "true")
         val elements = readFile (filenames.mkString (","), options)
 
@@ -217,6 +257,36 @@ class CIMAboutSuite extends ch.ninecode.SparkSuite
             assert (spark.sparkContext.getPersistentRDDs.exists (_._2.name == pair._1), pair._1)
         for (pair ← NetherlandsElementCount)
             assert (spark.sparkContext.getPersistentRDDs.filter (_._2.name == pair._1).head._2.count === pair._2, pair._1)
+
+        // test rdf:about added TopologicalNode values and connected to each Terminal that has a sequenceNumber (Terminals from the boundary do not)
+        val terminals = get[Terminal]
+        val tnodes = terminals.flatMap (terminal ⇒ if (0 != terminal.ACDCTerminal.sequenceNumber) List (terminal) else List ()).collect
+        tnodes.foreach (terminal ⇒
+            {
+                assert (null != terminal.TopologicalNode, terminal.id)
+                assert (terminal.ACDCTerminal.connected, terminal.id)
+            }
+        )
+
+        // test rdf:about added p and q to energy consumers
+        val consumers = get[EnergyConsumer]
+        val enodes = consumers.collect
+        enodes.foreach (consumer ⇒
+            {
+                assert (0.0 != consumer.p, consumer.id)
+                assert (0.0 != consumer.q, consumer.id)
+            }
+        )
+
+        // test rdf:about added p and q to equivalent injections
+        val injections = get[EquivalentInjection]
+        val inodes = injections.collect
+        inodes.foreach (injection ⇒
+            {
+                assert (0.0 != injection.p, injection.id)
+                assert (0.0 != injection.q, injection.id)
+            }
+        )
     }
 
     test ("Base Case")
@@ -241,7 +311,7 @@ class CIMAboutSuite extends ch.ninecode.SparkSuite
             FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_EQ_BD.xml",
             FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_TP_BD.xml"
         )
-        val options = new util.HashMap[String, String] ().asInstanceOf[util.Map[String,String]]
+        val options = new HashMap[String, String] ().asInstanceOf[Map[String,String]]
         options.put ("ch.ninecode.cim.do_about", "true")
         val elements = readFile (filenames.mkString (","), options)
 
@@ -250,5 +320,35 @@ class CIMAboutSuite extends ch.ninecode.SparkSuite
             assert (spark.sparkContext.getPersistentRDDs.exists (_._2.name == pair._1), pair._1)
         for (pair ← BaseCaseElementCount)
             assert (spark.sparkContext.getPersistentRDDs.filter(_._2.name == pair._1).head._2.count === pair._2, pair._1)
+
+        // test rdf:about added TopologicalNode values and connected to each Terminal that has a sequenceNumber (Terminals from the boundary do not)
+        val terminals = get[Terminal]
+        val tnodes = terminals.flatMap (terminal ⇒ if (0 != terminal.ACDCTerminal.sequenceNumber) List (terminal) else List ()).collect
+        tnodes.foreach (terminal ⇒
+            {
+                assert (null != terminal.TopologicalNode, terminal.id)
+                assert (terminal.ACDCTerminal.connected, terminal.id)
+            }
+        )
+
+        // test rdf:about added p and q to energy consumers
+        val consumers = get[EnergyConsumer]
+        val enodes = consumers.collect
+        enodes.foreach (consumer ⇒
+            {
+                assert (0.0 != consumer.p, consumer.id)
+                assert (0.0 != consumer.q || consumer.id == "_b1480a00-b427-4001-a26c-51954d2bb7e9", consumer.id) // handle the special snowflake
+            }
+        )
+
+        // test rdf:about added p and q to equivalent injections
+        val injections = get[EquivalentInjection]
+        val inodes = injections.collect
+        inodes.foreach (injection ⇒
+            {
+                assert (0.0 != injection.p, injection.id)
+                assert (0.0 != injection.q, injection.id)
+            }
+        )
     }
 }

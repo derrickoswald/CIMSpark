@@ -3,6 +3,8 @@ package ch.ninecode.cim
 import java.io.File
 
 import scala.util.Random
+import org.scalatest.BeforeAndAfter
+
 import org.apache.hadoop.conf.Configuration
 import org.apache.hadoop.fs.Path
 import org.apache.hadoop.mapreduce.lib.input.FileSplit
@@ -15,16 +17,27 @@ import org.apache.spark.sql.{Row, SparkSession}
 import ch.ninecode.model.Element
 import ch.ninecode.model.Unknown
 
-class CIMRDDSuite extends ch.ninecode.SparkSuite
+class CIMRDDSuite extends ch.ninecode.SparkSuite with BeforeAndAfter
 {
     val FILE_DEPOT = "data/"
     val PRIVATE_FILE_DEPOT = "private_data/"
 
     // test file names
-    val FILENAME1 = FILE_DEPOT + "NIS_CIM_Export_NS_INITIAL_FILL_Oberiberg.rdf"
-    val FILENAME2 = FILE_DEPOT + "NIS_CIM_Export_NS_INITIAL_FILL_Stoos.rdf"
-    val FILENAME3 = FILE_DEPOT + "NIS_CIM_Export_NS_INITIAL_FILL.rdf"
-    val FILENAME4 = PRIVATE_FILE_DEPOT + "bkw_cim_export_defaultall.rdf"
+    val FILENAME1: String = FILE_DEPOT + "NIS_CIM_Export_NS_INITIAL_FILL_Oberiberg.rdf"
+    val FILENAME2: String = FILE_DEPOT + "NIS_CIM_Export_NS_INITIAL_FILL_Stoos.rdf"
+    val FILENAME3: String = FILE_DEPOT + "NIS_CIM_Export_NS_INITIAL_FILL.rdf"
+    val FILENAME4: String = PRIVATE_FILE_DEPOT + "bkw_cim_export_defaultall.rdf"
+
+    before
+    {
+        // unpack the zip files
+        if (!new File (FILENAME1).exists)
+            new Unzip ().unzip (FILE_DEPOT + "NIS_CIM_Export_NS_INITIAL_FILL_Oberiberg.zip", FILE_DEPOT)
+        if (!new File (FILENAME2).exists)
+            new Unzip ().unzip (FILE_DEPOT + "NIS_CIM_Export_NS_INITIAL_FILL_Stoos.zip", FILE_DEPOT)
+        if (!new File (FILENAME3).exists)
+            new Unzip ().unzip (FILE_DEPOT + "NIS_CIM_Export_NS_INITIAL_FILL.zip", FILE_DEPOT)
+    }
 
     // number of elements in the file
     // get number of lines at the top level with:
