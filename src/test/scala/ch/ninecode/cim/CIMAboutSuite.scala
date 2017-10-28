@@ -15,8 +15,13 @@ class CIMAboutSuite extends ch.ninecode.SparkSuite with BeforeAndAfter
     before
     {
         // unpack the zip file
-        if (!new File (FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_EQ_BD.xml").exists)
+        if (!new File (FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_NL_DL_V2.xml").exists)
+        {
             new Unzip ().unzip (FILE_DEPOT + "CGMES_v2.4.15_TestConfigurations_v4.0.3.zip", FILE_DEPOT)
+            new Unzip ().unzip (FILE_DEPOT + "MicroGrid/BaseCase_BC/CGMES_v2.4.15_MicroGridTestConfiguration_BC_BE_v2.zip", FILE_DEPOT + "MicroGrid/BaseCase_BC/")
+            new Unzip ().unzip (FILE_DEPOT + "MicroGrid/BaseCase_BC/CGMES_v2.4.15_MicroGridTestConfiguration_BC_NL_v2.zip", FILE_DEPOT + "MicroGrid/BaseCase_BC/")
+            new Unzip ().unzip (FILE_DEPOT + "MicroGrid/BaseCase_BC/CGMES_v2.4.15_MicroGridTestConfiguration_BD_v2.zip", FILE_DEPOT + "MicroGrid/BaseCase_BC/")
+        }
     }
 
     // values from MicroGrid/Documentation/CGMES_v2.4.15_MicroGridTestConfiguration_v2.docx

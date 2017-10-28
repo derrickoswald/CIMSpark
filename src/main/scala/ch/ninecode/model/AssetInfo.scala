@@ -699,6 +699,7 @@ extends
  * @param lossZero Load losses from a zero-sequence short-circuit test.
  * @param EnergisedEnd [[ch.ninecode.model.TransformerEndInfo TransformerEndInfo]] Transformer end that voltage is applied to in this short-circuit test.
  *        The test voltage is chosen to induce rated current in the energised end.
+ * @param GroundedEnds [[ch.ninecode.model.TransformerEndInfo TransformerEndInfo]] All ends short-circuited in this short-circuit test.
  * @group AssetInfo
  * @groupname AssetInfo Package AssetInfo
  * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
@@ -712,7 +713,8 @@ case class ShortCircuitTest
     leakageImpedanceZero: Double,
     loss: Double,
     lossZero: Double,
-    EnergisedEnd: String
+    EnergisedEnd: String,
+    GroundedEnds: List[String]
 )
 extends
     Element
@@ -720,7 +722,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0, 0, 0.0, 0.0, 0.0, 0.0, null) }
+    def this () = { this (null, 0, 0, 0.0, 0.0, 0.0, 0.0, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -745,6 +747,7 @@ extends
         implicit val clz: String = ShortCircuitTest.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ShortCircuitTest.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ShortCircuitTest.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ShortCircuitTest.fields (position), x))
         emitelem (0, energisedEndStep)
         emitelem (1, groundedEndStep)
         emitelem (2, leakageImpedance)
@@ -752,6 +755,7 @@ extends
         emitelem (4, loss)
         emitelem (5, lossZero)
         emitattr (6, EnergisedEnd)
+        emitattrs (7, GroundedEnds)
         s.toString
     }
     override def export: String =
@@ -771,7 +775,8 @@ extends
         "leakageImpedanceZero",
         "loss",
         "lossZero",
-        "EnergisedEnd"
+        "EnergisedEnd",
+        "GroundedEnds"
     )
     val energisedEndStep: Fielder = parse_element (element (cls, fields(0)))
     val groundedEndStep: Fielder = parse_element (element (cls, fields(1)))
@@ -780,6 +785,7 @@ extends
     val loss: Fielder = parse_element (element (cls, fields(4)))
     val lossZero: Fielder = parse_element (element (cls, fields(5)))
     val EnergisedEnd: Fielder = parse_attribute (attribute (cls, fields(6)))
+    val GroundedEnds: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
 
     def parse (context: Context): ShortCircuitTest =
     {
@@ -793,13 +799,15 @@ extends
             toDouble (mask (leakageImpedanceZero (), 3)),
             toDouble (mask (loss (), 4)),
             toDouble (mask (lossZero (), 5)),
-            mask (EnergisedEnd (), 6)
+            mask (EnergisedEnd (), 6),
+            masks (GroundedEnds (), 7)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("EnergisedEnd", "TransformerEndInfo", false)
+        Relationship ("EnergisedEnd", "TransformerEndInfo", false),
+        Relationship ("GroundedEnds", "TransformerEndInfo", true)
     )
 }
 
@@ -1272,6 +1280,7 @@ extends
  * @param shortTermS Apparent power that this winding can carry for a short period of time (in emergency).
  * @param CoreAdmittance [[ch.ninecode.model.TransformerCoreAdmittance TransformerCoreAdmittance]] Core admittance calculated from this transformer end datasheet, representing magnetising current and core losses.
  *        The full values of the transformer should be supplied for one transformer end info only.
+ * @param GroundedEndShortCircuitTests [[ch.ninecode.model.ShortCircuitTest ShortCircuitTest]] All short-circuit test measurements in which this transformer end was short-circuited.
  * @param ToMeshImpedances [[ch.ninecode.model.TransformerMeshImpedance TransformerMeshImpedance]] All mesh impedances between this 'from' and other 'to' transformer ends.
  * @param TransformerStarImpedance [[ch.ninecode.model.TransformerStarImpedance TransformerStarImpedance]] Transformer star impedance calculated from this transformer end datasheet.
  * @param TransformerTankInfo [[ch.ninecode.model.TransformerTankInfo TransformerTankInfo]] Transformer tank data that this end description is part of.
@@ -1292,6 +1301,7 @@ case class TransformerEndInfo
     ratedU: Double,
     shortTermS: Double,
     CoreAdmittance: String,
+    GroundedEndShortCircuitTests: List[String],
     ToMeshImpedances: List[String],
     TransformerStarImpedance: String,
     TransformerTankInfo: String
@@ -1302,7 +1312,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, 0.0, 0, 0.0, 0, 0.0, 0.0, 0.0, 0.0, null, List(), null, null) }
+    def this () = { this (null, null, 0.0, 0, 0.0, 0, 0.0, 0.0, 0.0, 0.0, null, List(), List(), null, null) }
     /**
      * Return the superclass object.
      *
@@ -1338,9 +1348,10 @@ extends
         emitelem (7, ratedU)
         emitelem (8, shortTermS)
         emitattr (9, CoreAdmittance)
-        emitattrs (10, ToMeshImpedances)
-        emitattr (11, TransformerStarImpedance)
-        emitattr (12, TransformerTankInfo)
+        emitattrs (10, GroundedEndShortCircuitTests)
+        emitattrs (11, ToMeshImpedances)
+        emitattr (12, TransformerStarImpedance)
+        emitattr (13, TransformerTankInfo)
         s.toString
     }
     override def export: String =
@@ -1364,6 +1375,7 @@ extends
         "ratedU",
         "shortTermS",
         "CoreAdmittance",
+        "GroundedEndShortCircuitTests",
         "ToMeshImpedances",
         "TransformerStarImpedance",
         "TransformerTankInfo"
@@ -1378,9 +1390,10 @@ extends
     val ratedU: Fielder = parse_element (element (cls, fields(7)))
     val shortTermS: Fielder = parse_element (element (cls, fields(8)))
     val CoreAdmittance: Fielder = parse_attribute (attribute (cls, fields(9)))
-    val ToMeshImpedances: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
-    val TransformerStarImpedance: Fielder = parse_attribute (attribute (cls, fields(11)))
-    val TransformerTankInfo: Fielder = parse_attribute (attribute (cls, fields(12)))
+    val GroundedEndShortCircuitTests: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
+    val ToMeshImpedances: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
+    val TransformerStarImpedance: Fielder = parse_attribute (attribute (cls, fields(12)))
+    val TransformerTankInfo: Fielder = parse_attribute (attribute (cls, fields(13)))
 
     def parse (context: Context): TransformerEndInfo =
     {
@@ -1398,15 +1411,17 @@ extends
             toDouble (mask (ratedU (), 7)),
             toDouble (mask (shortTermS (), 8)),
             mask (CoreAdmittance (), 9),
-            masks (ToMeshImpedances (), 10),
-            mask (TransformerStarImpedance (), 11),
-            mask (TransformerTankInfo (), 12)
+            masks (GroundedEndShortCircuitTests (), 10),
+            masks (ToMeshImpedances (), 11),
+            mask (TransformerStarImpedance (), 12),
+            mask (TransformerTankInfo (), 13)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
         Relationship ("CoreAdmittance", "TransformerCoreAdmittance", false),
+        Relationship ("GroundedEndShortCircuitTests", "ShortCircuitTest", true),
         Relationship ("ToMeshImpedances", "TransformerMeshImpedance", true),
         Relationship ("TransformerStarImpedance", "TransformerStarImpedance", false),
         Relationship ("TransformerTankInfo", "TransformerTankInfo", false)

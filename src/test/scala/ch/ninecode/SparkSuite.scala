@@ -57,13 +57,8 @@ class SparkSuite extends fixture.FunSuite
             {
                 val path = directory + entry.getName
                 if (!entry.isDirectory)
-                {
                     // if the entry is a file, extracts it
                     extractFile (zip, path)
-                    // recurse
-                    if (path.endsWith (".zip"))
-                        new Unzip ().unzip (path, path.substring (0, path.lastIndexOf ("/") + 1))
-                }
                 else
                     // if the entry is a directory, make the directory
                     new File (path).mkdir

@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>TariffProfile - CIMReader 2.11-2.2.0-2.4.0 API - ch.ninecode.model.TariffProfile</title>
-          <meta name="description" content="TariffProfile - CIMReader 2.11 - 2.2.0 - 2.4.0 API - ch.ninecode.model.TariffProfile" />
-          <meta name="keywords" content="TariffProfile CIMReader 2.11 2.2.0 2.4.0 API ch.ninecode.model.TariffProfile" />
+          <title>TariffProfile - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.TariffProfile</title>
+          <meta name="description" content="TariffProfile - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.TariffProfile" />
+          <meta name="keywords" content="TariffProfile CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.TariffProfile" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,13 +47,13 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">TariffProfile</span><span class="params">(<span name="sup">sup: <a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a></span>, <span name="tariffCycle">tariffCycle: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ConsumptionTariffIntervals">ConsumptionTariffIntervals: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="TimeTariffIntervals">TimeTariffIntervals: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">TariffProfile</span><span class="params">(<span name="sup">sup: <a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a></span>, <span name="tariffCycle">tariffCycle: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ConsumptionTariffIntervals">ConsumptionTariffIntervals: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Tariffs">Tariffs: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="TimeTariffIntervals">TimeTariffIntervals: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A schedule of charges; structure associated with Tariff that allows the definition of complex tarif structures such as step and time of use when used in conjunction with TimeTariffInterval and Charge.</p><p>Inherited 'status.value' is defined in the context of the utility's business rules, for example: active, inactive, etc.
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a> Reference to the superclass object.</p></dd><dt class="param">tariffCycle</dt><dd class="cmt"><p>The frequency at which the tariff charge schedule is repeated.
-       Examples are: once off on a specified date and time; hourly; daily; weekly; monthly; 3-monthly; 6-monthly; 12-monthly; etc. At the end of each cycle, the business rules are reset to start from the beginning again.</p></dd><dt class="param">ConsumptionTariffIntervals</dt><dd class="cmt"><p><a href="ConsumptionTariffInterval.html" class="extype" name="ch.ninecode.model.ConsumptionTariffInterval">ConsumptionTariffInterval</a> All consumption tariff intervals used to define this tariff profile.</p></dd><dt class="param">TimeTariffIntervals</dt><dd class="cmt"><p><a href="TimeTariffInterval.html" class="extype" name="ch.ninecode.model.TimeTariffInterval">TimeTariffInterval</a> All time tariff intervals used to define this tariff profile.</p></dd></dl><div class="toggleContainer block">
+       Examples are: once off on a specified date and time; hourly; daily; weekly; monthly; 3-monthly; 6-monthly; 12-monthly; etc. At the end of each cycle, the business rules are reset to start from the beginning again.</p></dd><dt class="param">ConsumptionTariffIntervals</dt><dd class="cmt"><p><a href="ConsumptionTariffInterval.html" class="extype" name="ch.ninecode.model.ConsumptionTariffInterval">ConsumptionTariffInterval</a> All consumption tariff intervals used to define this tariff profile.</p></dd><dt class="param">Tariffs</dt><dd class="cmt"><p><a href="Tariff.html" class="extype" name="ch.ninecode.model.Tariff">Tariff</a> All tariffs defined by this tariff profile.</p></dd><dt class="param">TimeTariffIntervals</dt><dd class="cmt"><p><a href="TimeTariffInterval.html" class="extype" name="ch.ninecode.model.TimeTariffInterval">TimeTariffInterval</a> All time tariff intervals used to define this tariff profile.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -110,7 +110,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.TariffProfile#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.Document,tariffCycle:String,ConsumptionTariffIntervals:List[String],TimeTariffIntervals:List[String]):ch.ninecode.model.TariffProfile"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.Document,tariffCycle:String,ConsumptionTariffIntervals:List[String],Tariffs:List[String],TimeTariffIntervals:List[String]):ch.ninecode.model.TariffProfile"></a>
       <a id="&lt;init&gt;:TariffProfile"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -118,15 +118,15 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">TariffProfile</span><span class="params">(<span name="sup">sup: <a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a></span>, <span name="tariffCycle">tariffCycle: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ConsumptionTariffIntervals">ConsumptionTariffIntervals: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="TimeTariffIntervals">TimeTariffIntervals: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
+        <span class="name">TariffProfile</span><span class="params">(<span name="sup">sup: <a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a></span>, <span name="tariffCycle">tariffCycle: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ConsumptionTariffIntervals">ConsumptionTariffIntervals: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Tariffs">Tariffs: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="TimeTariffIntervals">TimeTariffIntervals: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.TariffProfile@&lt;init&gt;(sup:ch.ninecode.model.Document,tariffCycle:String,ConsumptionTariffIntervals:List[String],TimeTariffIntervals:List[String]):ch.ninecode.model.TariffProfile" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.TariffProfile@&lt;init&gt;(sup:ch.ninecode.model.Document,tariffCycle:String,ConsumptionTariffIntervals:List[String],Tariffs:List[String],TimeTariffIntervals:List[String]):ch.ninecode.model.TariffProfile" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a> Reference to the superclass object.</p></dd><dt class="param">tariffCycle</dt><dd class="cmt"><p>The frequency at which the tariff charge schedule is repeated.
-       Examples are: once off on a specified date and time; hourly; daily; weekly; monthly; 3-monthly; 6-monthly; 12-monthly; etc. At the end of each cycle, the business rules are reset to start from the beginning again.</p></dd><dt class="param">ConsumptionTariffIntervals</dt><dd class="cmt"><p><a href="ConsumptionTariffInterval.html" class="extype" name="ch.ninecode.model.ConsumptionTariffInterval">ConsumptionTariffInterval</a> All consumption tariff intervals used to define this tariff profile.</p></dd><dt class="param">TimeTariffIntervals</dt><dd class="cmt"><p><a href="TimeTariffInterval.html" class="extype" name="ch.ninecode.model.TimeTariffInterval">TimeTariffInterval</a> All time tariff intervals used to define this tariff profile.</p></dd></dl></div>
+       Examples are: once off on a specified date and time; hourly; daily; weekly; monthly; 3-monthly; 6-monthly; 12-monthly; etc. At the end of each cycle, the business rules are reset to start from the beginning again.</p></dd><dt class="param">ConsumptionTariffIntervals</dt><dd class="cmt"><p><a href="ConsumptionTariffInterval.html" class="extype" name="ch.ninecode.model.ConsumptionTariffInterval">ConsumptionTariffInterval</a> All consumption tariff intervals used to define this tariff profile.</p></dd><dt class="param">Tariffs</dt><dd class="cmt"><p><a href="Tariff.html" class="extype" name="ch.ninecode.model.Tariff">Tariff</a> All tariffs defined by this tariff profile.</p></dd><dt class="param">TimeTariffIntervals</dt><dd class="cmt"><p><a href="TimeTariffInterval.html" class="extype" name="ch.ninecode.model.TimeTariffInterval">TimeTariffInterval</a> All time tariff intervals used to define this tariff profile.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -222,6 +222,23 @@
     </span>
       <p class="shortcomment cmt">Return the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Return the superclass object.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The typed superclass nested object.</p></dd></dl></div>
+    </li><li name="ch.ninecode.model.TariffProfile#Tariffs" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Tariffs:List[String]"></a>
+      <a id="Tariffs:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Tariffs</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.TariffProfile@Tariffs:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="Tariff.html" class="extype" name="ch.ninecode.model.Tariff">Tariff</a> All tariffs defined by this tariff profile.</p>
     </li><li name="ch.ninecode.model.TariffProfile#TimeTariffIntervals" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="TimeTariffIntervals:List[String]"></a>
       <a id="TimeTariffIntervals:List[String]"></a>

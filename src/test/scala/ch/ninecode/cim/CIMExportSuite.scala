@@ -1,10 +1,10 @@
 package ch.ninecode.cim
 
 import java.io.File
-import java.util
+import java.util.HashMap
+import java.util.Map
 
 import org.apache.spark.sql.SparkSession
-
 import ch.ninecode.model._
 
 class CIMExportSuite
@@ -14,16 +14,45 @@ with
     org.scalatest.BeforeAndAfter
 {
     val FILE_DEPOT = "data/"
-    val PRIVATE_FILE_DEPOT = "private_data/"
 
-    // test file names
-    val FILENAME: String = FILE_DEPOT + "NIS_CIM_Export_NS_INITIAL_FILL_Oberiberg.rdf"
+    val filenames_micro = Array (
+        FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_BE_EQ_V2.xml",
+        FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_BE_TP_V2.xml",
+        FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_BE_SSH_V2.xml",
+        FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_BE_DY_V2.xml",
+        FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_BE_GL_V2.xml",
+        FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_NL_EQ_V2.xml",
+        FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_NL_TP_V2.xml",
+        FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_NL_SSH_V2.xml",
+        FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_NL_DY_V2.xml",
+        FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_NL_GL_V2.xml",
+        FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_EQ_BD.xml",
+        FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_TP_BD.xml",
+        FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_Assembled_DL_V2.xml",
+        FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_Assembled_SV_V2.xml"
+    )
+
+    val filenames_real = Array (
+        FILE_DEPOT + "RealGrid/CGMES_v2.4.15_RealGridTestConfiguration_EQ_v2.xml",
+        FILE_DEPOT + "RealGrid/CGMES_v2.4.15_RealGridTestConfiguration_SSH_v2.xml",
+        FILE_DEPOT + "RealGrid/CGMES_v2.4.15_RealGridTestConfiguration_SV_v2.xml",
+        FILE_DEPOT + "RealGrid/CGMES_v2.4.15_RealGridTestConfiguration_TP_v2.xml"
+    )
 
     before
     {
         // unpack the zip file
-        if (!new File (FILENAME).exists)
-            new Unzip ().unzip (FILE_DEPOT + "NIS_CIM_Export_NS_INITIAL_FILL_Oberiberg.zip", FILE_DEPOT)
+        if (!new File (FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_Assembled_DL_V2.xml").exists)
+        {
+            new Unzip ().unzip (FILE_DEPOT + "CGMES_v2.4.15_TestConfigurations_v4.0.3.zip", FILE_DEPOT)
+            new Unzip ().unzip (FILE_DEPOT + "MicroGrid/BaseCase_BC/CGMES_v2.4.15_MicroGridTestConfiguration_BC_Assembled_v2.zip", FILE_DEPOT + "MicroGrid/BaseCase_BC/")
+        }
+        // unpack the zip file
+        if (!new File (FILE_DEPOT + "RealGrid/CGMES_v2.4.15_RealGridTestConfiguration_EQ_v2.xml").exists)
+        {
+            new Unzip ().unzip (FILE_DEPOT + "CGMES_v2.4.15_TestConfigurations_v4.0.3.zip", FILE_DEPOT)
+            new Unzip ().unzip (FILE_DEPOT + "RealGrid/CGMES_v2.4.15_RealGridTestConfiguration_v2.zip", FILE_DEPOT + "RealGrid/")
+        }
     }
 
     test ("Basic")
@@ -49,8 +78,8 @@ with
         _: SparkSession ⇒
         val loc =
 """	<cim:Location rdf:ID="_location_1623670528_427088716_224817700">
-		<cim:Location.type>geographic</cim:Location.type>
 		<cim:Location.CoordinateSystem rdf:resource="#pseudo_wgs84"/>
+		<cim:Location.type>geographic</cim:Location.type>
 	</cim:Location>"""
         val xml =
             """yadda yadda""" +
@@ -100,10 +129,10 @@ voltage +
 		<cim:Asset.initialLossOfLife>0.0</cim:Asset.initialLossOfLife>
 		<cim:Asset.lifecycle rdf:resource="#STA196_lifecycle"/>
 		<cim:Asset.purchasePrice>0.0</cim:Asset.purchasePrice>
-		<cim:Asset.type>Ortsbeton (TS Gebäude eingebaut)</cim:Asset.type>
 		<cim:Asset.Location rdf:resource="#_location_1745492_973692419_187674644"/>
 		<cim:Asset.PowerSystemResources rdf:resource="#STA196"/>
 		<cim:Asset.PowerSystemResources rdf:resource="#STA197"/>
+		<cim:Asset.type>Ortsbeton (TS Gebäude eingebaut)</cim:Asset.type>
 	</cim:Facility>"""
 
         val parser = new CHIM (xml)
@@ -120,42 +149,49 @@ voltage +
     {
         implicit spark: SparkSession ⇒
 
-        val options = new util.HashMap[String, String] ().asInstanceOf[util.Map[String,String]]
-        val elements = readFile (FILENAME, options)
+        val options = new HashMap[String, String] ().asInstanceOf[Map[String,String]]
+        options.put ("ch.ninecode.cim.do_about", "true")
+        val elements = readFile (filenames_micro.mkString (","), options)
         println (elements.count + " elements")
         val export = new CIMExport (spark)
-        export.exportAll ("target/" + "NIS_CIM_Export_NS_INITIAL_FILL_Oberiberg" + ".rdf")
+        export.exportAll (FILE_DEPOT + "BaseCase_BC.rdf")
+        assert (new File (FILE_DEPOT +"BaseCase_BC.rdf").exists, "export all BaseCase_BC")
     }
 
     test ("ExportIsland")
     {
         implicit spark: SparkSession ⇒
 
-        val filename =
-            PRIVATE_FILE_DEPOT + "bkw_cim_export_haelig" + ".rdf"
-        val options = new util.HashMap[String, String] ().asInstanceOf[util.Map[String,String]]
-        val elements = readFile (filename, options)
+        val options = new HashMap[String, String] ().asInstanceOf[Map[String,String]]
+        options.put ("ch.ninecode.cim.do_about", "true")
+        val elements = readFile (filenames_real.mkString (","), options)
         println (elements.count + " elements")
-        val ntp = new CIMNetworkTopologyProcessor (spark, org.apache.spark.storage.StorageLevel.MEMORY_AND_DISK_SER)
-        val elements2 = ntp.process (true)
-        println (elements2.count + " elements")
         val export = new CIMExport (spark)
-        export.exportIsland ("TRA5200_terminal_2_island", "target/" + "TRA5200" + ".rdf")
+        export.exportIsland ("_TI-1", FILE_DEPOT + "_TI-1_island" + ".rdf")
+        assert (new File (FILE_DEPOT +"_TI-1" + "_island.rdf").exists, "island _TI-1")
+        // ToDo:
+        // The exported island has no elements because the TopologicalIsland references TopologicalNode, e.g.
+        // <cim:TopologicalIsland rdf:ID="_TI-1">
+        //     <cim:TopologicalIsland.TopologicalNodes rdf:resource="#_1841689480_VL_TN2"/>
+        //     <cim:TopologicalIsland.TopologicalNodes rdf:resource="#_1113529077_VL_TN1"/>
+        //     ...
+        // rather than the normalized way (TopologicalNode references TopologicalIsland).
+        // Also, Location references PowerSystemResource (in MicroGrid and SmallGrid samples),
+        // which is also denormalized, so potentially all the relation following logic will need
+        // to be duplicated to follow non-normal relationships.
+        // Fixing this will involve much thought.
     }
 
     test ("ExportAllIslands")
     {
         implicit spark: SparkSession ⇒
 
-            val filename =
-                PRIVATE_FILE_DEPOT + "bkw_cim_export_haelig" + ".rdf"
-            val options = new util.HashMap[String, String] ().asInstanceOf[util.Map[String,String]]
-            val elements = readFile (filename, options)
-            println (elements.count + " elements")
-            val ntp = new CIMNetworkTopologyProcessor (spark, org.apache.spark.storage.StorageLevel.MEMORY_AND_DISK_SER)
-            val elements2 = ntp.process (true)
-            println (elements2.count + " elements")
-            val export = new CIMExport (spark)
-            export.exportAllIslands ("target/simulation")
+        val options = new HashMap[String, String] ().asInstanceOf[Map[String,String]]
+        options.put ("ch.ninecode.cim.do_about", "true")
+        val elements = readFile (filenames_micro.mkString (","), options)
+        println (elements.count + " elements")
+        val export = new CIMExport (spark)
+        export.exportAllIslands (FILE_DEPOT)
+        assert (new File (FILE_DEPOT +"_97e00e77-7a51-4997-8456-4ca94774324d" + ".rdf").exists, "island _97e00e77-7a51-4997-8456-4ca94774324d")
     }
 }

@@ -845,6 +845,7 @@ case class TieLine
 (
     override val sup: IdentifiedObject,
     EnergyTransaction: String,
+    ParentOfA: List[String],
     ParentOfB: String,
     SideA_SubControlArea: String,
     SideB_SubControlArea: String
@@ -855,7 +856,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null) }
+    def this () = { this (null, null, List(), null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -879,10 +880,12 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = TieLine.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TieLine.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (TieLine.fields (position), x))
         emitattr (0, EnergyTransaction)
-        emitattr (1, ParentOfB)
-        emitattr (2, SideA_SubControlArea)
-        emitattr (3, SideB_SubControlArea)
+        emitattrs (1, ParentOfA)
+        emitattr (2, ParentOfB)
+        emitattr (3, SideA_SubControlArea)
+        emitattr (4, SideB_SubControlArea)
         s.toString
     }
     override def export: String =
@@ -897,14 +900,16 @@ extends
 {
     val fields: Array[String] = Array[String] (
         "EnergyTransaction",
+        "ParentOfA",
         "ParentOfB",
         "SideA_SubControlArea",
         "SideB_SubControlArea"
     )
     val EnergyTransaction: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val ParentOfB: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val SideA_SubControlArea: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val SideB_SubControlArea: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val ParentOfA: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val ParentOfB: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val SideA_SubControlArea: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val SideB_SubControlArea: Fielder = parse_attribute (attribute (cls, fields(4)))
 
     def parse (context: Context): TieLine =
     {
@@ -913,15 +918,17 @@ extends
         val ret = TieLine (
             IdentifiedObject.parse (context),
             mask (EnergyTransaction (), 0),
-            mask (ParentOfB (), 1),
-            mask (SideA_SubControlArea (), 2),
-            mask (SideB_SubControlArea (), 3)
+            masks (ParentOfA (), 1),
+            mask (ParentOfB (), 2),
+            mask (SideA_SubControlArea (), 3),
+            mask (SideB_SubControlArea (), 4)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
         Relationship ("EnergyTransaction", "EnergyTransaction", false),
+        Relationship ("ParentOfA", "ControlAreaOperator", true),
         Relationship ("ParentOfB", "CustomerConsumer", false),
         Relationship ("SideA_SubControlArea", "SubControlArea", false),
         Relationship ("SideB_SubControlArea", "SubControlArea", false)

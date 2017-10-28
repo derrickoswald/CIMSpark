@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>MarketQualificationRequirement - CIMReader 2.11-2.2.0-2.4.0 API - ch.ninecode.model.MarketQualificationRequirement</title>
-          <meta name="description" content="MarketQualificationRequirement - CIMReader 2.11 - 2.2.0 - 2.4.0 API - ch.ninecode.model.MarketQualificationRequirement" />
-          <meta name="keywords" content="MarketQualificationRequirement CIMReader 2.11 2.2.0 2.4.0 API ch.ninecode.model.MarketQualificationRequirement" />
+          <title>MarketQualificationRequirement - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.MarketQualificationRequirement</title>
+          <meta name="description" content="MarketQualificationRequirement - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.MarketQualificationRequirement" />
+          <meta name="keywords" content="MarketQualificationRequirement CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.MarketQualificationRequirement" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,14 +47,14 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">MarketQualificationRequirement</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="effectiveDate">effectiveDate: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="expirationDate">expirationDate: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="qualificationID">qualificationID: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="status">status: <span class="extype" name="scala.Int">Int</span></span>, <span name="statusType">statusType: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">MarketQualificationRequirement</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="effectiveDate">effectiveDate: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="expirationDate">expirationDate: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="qualificationID">qualificationID: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="status">status: <span class="extype" name="scala.Int">Int</span></span>, <span name="statusType">statusType: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="MarketSkills">MarketSkills: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Certain skills are required and shall be certified in order for a person (typically a member of a crew) to be qualified to work on types of equipment.
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">effectiveDate</dt><dd class="cmt"><p>Effective date of the privilege, terminate date of the privilege, or effective date of the application for the organization</p></dd><dt class="param">expirationDate</dt><dd class="cmt"><p>This is the terminate date of the application for the organization
        The specific organization can no longer access the application as of the terminate date</p></dd><dt class="param">qualificationID</dt><dd class="cmt"><p>Qualification identifier.</p></dd><dt class="param">status</dt><dd class="cmt"><p>The status of the privilege.
-       Shows the status of the user�s qualification.</p></dd><dt class="param">statusType</dt><dd class="cmt"><p>This is the name of the status of the qualification and is used to display the status of the user's or organization's status.</p></dd></dl><div class="toggleContainer block">
+       Shows the status of the user�s qualification.</p></dd><dt class="param">statusType</dt><dd class="cmt"><p>This is the name of the status of the qualification and is used to display the status of the user's or organization's status.</p></dd><dt class="param">MarketSkills</dt><dd class="cmt"><p><a href="MarketSkill.html" class="extype" name="ch.ninecode.model.MarketSkill">MarketSkill</a> <em>undocumented</em></p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -111,7 +111,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.MarketQualificationRequirement#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,effectiveDate:String,expirationDate:String,qualificationID:String,status:Int,statusType:String):ch.ninecode.model.MarketQualificationRequirement"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,effectiveDate:String,expirationDate:String,qualificationID:String,status:Int,statusType:String,MarketSkills:List[String]):ch.ninecode.model.MarketQualificationRequirement"></a>
       <a id="&lt;init&gt;:MarketQualificationRequirement"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -119,16 +119,16 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">MarketQualificationRequirement</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="effectiveDate">effectiveDate: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="expirationDate">expirationDate: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="qualificationID">qualificationID: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="status">status: <span class="extype" name="scala.Int">Int</span></span>, <span name="statusType">statusType: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
+        <span class="name">MarketQualificationRequirement</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="effectiveDate">effectiveDate: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="expirationDate">expirationDate: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="qualificationID">qualificationID: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="status">status: <span class="extype" name="scala.Int">Int</span></span>, <span name="statusType">statusType: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="MarketSkills">MarketSkills: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.MarketQualificationRequirement@&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,effectiveDate:String,expirationDate:String,qualificationID:String,status:Int,statusType:String):ch.ninecode.model.MarketQualificationRequirement" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.MarketQualificationRequirement@&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,effectiveDate:String,expirationDate:String,qualificationID:String,status:Int,statusType:String,MarketSkills:List[String]):ch.ninecode.model.MarketQualificationRequirement" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">effectiveDate</dt><dd class="cmt"><p>Effective date of the privilege, terminate date of the privilege, or effective date of the application for the organization</p></dd><dt class="param">expirationDate</dt><dd class="cmt"><p>This is the terminate date of the application for the organization
        The specific organization can no longer access the application as of the terminate date</p></dd><dt class="param">qualificationID</dt><dd class="cmt"><p>Qualification identifier.</p></dd><dt class="param">status</dt><dd class="cmt"><p>The status of the privilege.
-       Shows the status of the user�s qualification.</p></dd><dt class="param">statusType</dt><dd class="cmt"><p>This is the name of the status of the qualification and is used to display the status of the user's or organization's status.</p></dd></dl></div>
+       Shows the status of the user�s qualification.</p></dd><dt class="param">statusType</dt><dd class="cmt"><p>This is the name of the status of the qualification and is used to display the status of the user's or organization's status.</p></dd><dt class="param">MarketSkills</dt><dd class="cmt"><p><a href="MarketSkill.html" class="extype" name="ch.ninecode.model.MarketSkill">MarketSkill</a> <em>undocumented</em></p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -207,6 +207,23 @@
     </span>
       <p class="shortcomment cmt">Return the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Return the superclass object.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The typed superclass nested object.</p></dd></dl></div>
+    </li><li name="ch.ninecode.model.MarketQualificationRequirement#MarketSkills" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="MarketSkills:List[String]"></a>
+      <a id="MarketSkills:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">MarketSkills</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.MarketQualificationRequirement@MarketSkills:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="MarketSkill.html" class="extype" name="ch.ninecode.model.MarketSkill">MarketSkill</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="MarketSkill.html" class="extype" name="ch.ninecode.model.MarketSkill">MarketSkill</a> <em>undocumented</em></p></div></div>
     </li><li name="ch.ninecode.model.Element#about" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="about:Boolean"></a>
       <a id="about:Boolean"></a>

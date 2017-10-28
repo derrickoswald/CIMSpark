@@ -2751,10 +2751,6 @@ extends
  *        Typical Value = -5.
  * @param k Steady state gain (K).
  *        Typical Value = 300.
- * @param switch1 Supplementary signal routing selector (switch).
- *        true = Vs connected to 3rd summing point
- *        false =  Vs connected to 1st summing point (see diagram).
- *        Typical Value = true.
  * @param t1 Controller time constant (T1).
  *        Typical Value = 6.
  * @param t2 Controller time constant (T2).
@@ -2769,6 +2765,10 @@ extends
  *        Typical Value = -5.
  * @param xe Effective excitation transformer reactance (Xe).
  *        Typical Value = 0.05.
+ * @param `switch` Supplementary signal routing selector (switch).
+ *        true = Vs connected to 3rd summing point
+ *        false =  Vs connected to 1st summing point (see diagram).
+ *        Typical Value = true.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
  * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
@@ -2779,14 +2779,14 @@ case class ExcBBC
     efdmax: Double,
     efdmin: Double,
     k: Double,
-    switch1: Boolean,
     t1: Double,
     t2: Double,
     t3: Double,
     t4: Double,
     vrmax: Double,
     vrmin: Double,
-    xe: Double
+    xe: Double,
+    `switch`: Boolean
 )
 extends
     Element
@@ -2794,7 +2794,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false) }
     /**
      * Return the superclass object.
      *
@@ -2821,14 +2821,14 @@ extends
         emitelem (0, efdmax)
         emitelem (1, efdmin)
         emitelem (2, k)
-        emitelem (3, switch1)
-        emitelem (4, t1)
-        emitelem (5, t2)
-        emitelem (6, t3)
-        emitelem (7, t4)
-        emitelem (8, vrmax)
-        emitelem (9, vrmin)
-        emitelem (10, xe)
+        emitelem (3, t1)
+        emitelem (4, t2)
+        emitelem (5, t3)
+        emitelem (6, t4)
+        emitelem (7, vrmax)
+        emitelem (8, vrmin)
+        emitelem (9, xe)
+        emitelem (10, `switch`)
         s.toString
     }
     override def export: String =
@@ -2845,26 +2845,26 @@ extends
         "efdmax",
         "efdmin",
         "k",
-        "switch",
         "t1",
         "t2",
         "t3",
         "t4",
         "vrmax",
         "vrmin",
-        "xe"
+        "xe",
+        "switch"
     )
     val efdmax: Fielder = parse_element (element (cls, fields(0)))
     val efdmin: Fielder = parse_element (element (cls, fields(1)))
     val k: Fielder = parse_element (element (cls, fields(2)))
-    val switch1: Fielder = parse_element (element (cls, fields(3)))
-    val t1: Fielder = parse_element (element (cls, fields(4)))
-    val t2: Fielder = parse_element (element (cls, fields(5)))
-    val t3: Fielder = parse_element (element (cls, fields(6)))
-    val t4: Fielder = parse_element (element (cls, fields(7)))
-    val vrmax: Fielder = parse_element (element (cls, fields(8)))
-    val vrmin: Fielder = parse_element (element (cls, fields(9)))
-    val xe: Fielder = parse_element (element (cls, fields(10)))
+    val t1: Fielder = parse_element (element (cls, fields(3)))
+    val t2: Fielder = parse_element (element (cls, fields(4)))
+    val t3: Fielder = parse_element (element (cls, fields(5)))
+    val t4: Fielder = parse_element (element (cls, fields(6)))
+    val vrmax: Fielder = parse_element (element (cls, fields(7)))
+    val vrmin: Fielder = parse_element (element (cls, fields(8)))
+    val xe: Fielder = parse_element (element (cls, fields(9)))
+    val `switch`: Fielder = parse_element (element (cls, fields(10)))
 
     def parse (context: Context): ExcBBC =
     {
@@ -2875,14 +2875,14 @@ extends
             toDouble (mask (efdmax (), 0)),
             toDouble (mask (efdmin (), 1)),
             toDouble (mask (k (), 2)),
-            toBoolean (mask (switch1 (), 3)),
-            toDouble (mask (t1 (), 4)),
-            toDouble (mask (t2 (), 5)),
-            toDouble (mask (t3 (), 6)),
-            toDouble (mask (t4 (), 7)),
-            toDouble (mask (vrmax (), 8)),
-            toDouble (mask (vrmin (), 9)),
-            toDouble (mask (xe (), 10))
+            toDouble (mask (t1 (), 3)),
+            toDouble (mask (t2 (), 4)),
+            toDouble (mask (t3 (), 5)),
+            toDouble (mask (t4 (), 6)),
+            toDouble (mask (vrmax (), 7)),
+            toDouble (mask (vrmin (), 8)),
+            toDouble (mask (xe (), 9)),
+            toBoolean (mask (`switch` (), 10))
         )
         ret.bitfields = bitfields
         ret

@@ -11,9 +11,10 @@ import ch.ninecode.cim.Relationship
  * The Area Control Error tariff type that is applied or used.
  *
  * @param sup Reference to the superclass object.
- * @param typ The coded type of an ACE tariff.
  * @param MarketDocument [[ch.ninecode.model.MarketDocument MarketDocument]] <em>undocumented</em>
+ * @param Point [[ch.ninecode.model.Point Point]] <em>undocumented</em>
  * @param Unit [[ch.ninecode.model.Unit_ Unit_]] <em>undocumented</em>
+ * @param `type` The coded type of an ACE tariff.
  * @group MarketManagement
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
@@ -21,9 +22,10 @@ import ch.ninecode.cim.Relationship
 case class AceTariffType
 (
     override val sup: BasicElement,
-    typ: String,
     MarketDocument: List[String],
-    Unit: List[String]
+    Point: List[String],
+    Unit: List[String],
+    `type`: String
 )
 extends
     Element
@@ -31,7 +33,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, List(), List()) }
+    def this () = { this (null, List(), List(), List(), null) }
     /**
      * Return the superclass object.
      *
@@ -56,9 +58,10 @@ extends
         implicit val clz: String = AceTariffType.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (AceTariffType.fields (position), value)
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (AceTariffType.fields (position), x))
-        emitelem (0, typ)
-        emitattrs (1, MarketDocument)
+        emitattrs (0, MarketDocument)
+        emitattrs (1, Point)
         emitattrs (2, Unit)
+        emitelem (3, `type`)
         s.toString
     }
     override def export: String =
@@ -72,13 +75,15 @@ extends
     Parseable[AceTariffType]
 {
     val fields: Array[String] = Array[String] (
-        "type",
         "MarketDocument",
-        "Unit"
+        "Point",
+        "Unit",
+        "type"
     )
-    val typ: Fielder = parse_element (element (cls, fields(0)))
-    val MarketDocument: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val MarketDocument: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val Point: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
     val Unit: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val `type`: Fielder = parse_element (element (cls, fields(3)))
 
     def parse (context: Context): AceTariffType =
     {
@@ -86,15 +91,17 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = AceTariffType (
             BasicElement.parse (context),
-            mask (typ (), 0),
-            masks (MarketDocument (), 1),
-            masks (Unit (), 2)
+            masks (MarketDocument (), 0),
+            masks (Point (), 1),
+            masks (Unit (), 2),
+            mask (`type` (), 3)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
         Relationship ("MarketDocument", "MarketDocument", true),
+        Relationship ("Point", "Point", true),
         Relationship ("Unit", "Unit_", true)
     )
 }
@@ -106,6 +113,7 @@ extends
  * @param attribute The identification of the formal name of an attribute.
  * @param attributeValue The instance value of the attribute.
  * @param position A sequential value representing a relative sequence number.
+ * @param MarketDocument [[ch.ninecode.model.MarketDocument MarketDocument]] <em>undocumented</em>
  * @param TimeSeries [[ch.ninecode.model.TimeSeries TimeSeries]] <em>undocumented</em>
  * @group MarketManagement
  * @groupname MarketManagement Package MarketManagement
@@ -117,6 +125,7 @@ case class AttributeInstanceComponent
     attribute: String,
     attributeValue: String,
     position: Int,
+    MarketDocument: List[String],
     TimeSeries: List[String]
 )
 extends
@@ -125,7 +134,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, 0, List()) }
+    def this () = { this (null, null, null, 0, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -153,7 +162,8 @@ extends
         emitelem (0, attribute)
         emitelem (1, attributeValue)
         emitelem (2, position)
-        emitattrs (3, TimeSeries)
+        emitattrs (3, MarketDocument)
+        emitattrs (4, TimeSeries)
         s.toString
     }
     override def export: String =
@@ -170,12 +180,14 @@ extends
         "attribute",
         "attributeValue",
         "position",
+        "MarketDocument",
         "TimeSeries"
     )
     val attribute: Fielder = parse_element (element (cls, fields(0)))
     val attributeValue: Fielder = parse_element (element (cls, fields(1)))
     val position: Fielder = parse_element (element (cls, fields(2)))
-    val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val MarketDocument: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
 
     def parse (context: Context): AttributeInstanceComponent =
     {
@@ -186,12 +198,14 @@ extends
             mask (attribute (), 0),
             mask (attributeValue (), 1),
             toInteger (mask (position (), 2)),
-            masks (TimeSeries (), 3)
+            masks (MarketDocument (), 3),
+            masks (TimeSeries (), 4)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
+        Relationship ("MarketDocument", "MarketDocument", true),
         Relationship ("TimeSeries", "TimeSeries", true)
     )
 }
@@ -205,8 +219,8 @@ extends
  * @param category The product category of an auction.
  * @param paymentTerms The terms which dictate the determination of the bid payment price.
  * @param rights The rights of use the transmission capacity acquired in an auction.
- * @param typ The kind of the Auction (e.g. implicit, explicit ...).
  * @param TimeSeries [[ch.ninecode.model.TimeSeries TimeSeries]] <em>undocumented</em>
+ * @param `type` The kind of the Auction (e.g. implicit, explicit ...).
  * @group MarketManagement
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
@@ -219,8 +233,8 @@ case class Auction
     category: String,
     paymentTerms: String,
     rights: String,
-    typ: String,
-    TimeSeries: List[String]
+    TimeSeries: List[String],
+    `type`: String
 )
 extends
     Element
@@ -228,7 +242,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null, null, null, List()) }
+    def this () = { this (null, null, null, null, null, null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -258,8 +272,8 @@ extends
         emitelem (2, category)
         emitelem (3, paymentTerms)
         emitelem (4, rights)
-        emitelem (5, typ)
-        emitattrs (6, TimeSeries)
+        emitattrs (5, TimeSeries)
+        emitelem (6, `type`)
         s.toString
     }
     override def export: String =
@@ -278,16 +292,16 @@ extends
         "category",
         "paymentTerms",
         "rights",
-        "type",
-        "TimeSeries"
+        "TimeSeries",
+        "type"
     )
     val allocationMode: Fielder = parse_element (element (cls, fields(0)))
     val cancelled: Fielder = parse_element (element (cls, fields(1)))
     val category: Fielder = parse_element (element (cls, fields(2)))
     val paymentTerms: Fielder = parse_element (element (cls, fields(3)))
     val rights: Fielder = parse_element (element (cls, fields(4)))
-    val typ: Fielder = parse_element (element (cls, fields(5)))
-    val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
+    val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
+    val `type`: Fielder = parse_element (element (cls, fields(6)))
 
     def parse (context: Context): Auction =
     {
@@ -300,8 +314,8 @@ extends
             mask (category (), 2),
             mask (paymentTerms (), 3),
             mask (rights (), 4),
-            mask (typ (), 5),
-            masks (TimeSeries (), 6)
+            masks (TimeSeries (), 5),
+            mask (`type` (), 6)
         )
         ret.bitfields = bitfields
         ret
@@ -426,6 +440,7 @@ extends
  * @param sup Reference to the superclass object.
  * @param date Date as "yyyy-mm-dd", which conforms with ISO 8601
  * @param time Time as "hh:mm:ss.sssZ", which conforms with ISO 8601.
+ * @param TimeSeries [[ch.ninecode.model.TimeSeries TimeSeries]] <em>undocumented</em>
  * @group MarketManagement
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
@@ -434,7 +449,8 @@ case class DateAndOrTime
 (
     override val sup: BasicElement,
     date: String,
-    time: String
+    time: String,
+    TimeSeries: List[String]
 )
 extends
     Element
@@ -442,7 +458,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null) }
+    def this () = { this (null, null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -466,8 +482,10 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = DateAndOrTime.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (DateAndOrTime.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (DateAndOrTime.fields (position), x))
         emitelem (0, date)
         emitelem (1, time)
+        emitattrs (2, TimeSeries)
         s.toString
     }
     override def export: String =
@@ -482,10 +500,12 @@ extends
 {
     val fields: Array[String] = Array[String] (
         "date",
-        "time"
+        "time",
+        "TimeSeries"
     )
     val date: Fielder = parse_element (element (cls, fields(0)))
     val time: Fielder = parse_element (element (cls, fields(1)))
+    val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
 
     def parse (context: Context): DateAndOrTime =
     {
@@ -494,13 +514,14 @@ extends
         val ret = DateAndOrTime (
             BasicElement.parse (context),
             mask (date (), 0),
-            mask (time (), 1)
+            mask (time (), 1),
+            masks (TimeSeries (), 2)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
-
+        Relationship ("TimeSeries", "TimeSeries", true)
     )
 }
 
@@ -508,13 +529,17 @@ extends
  * An area of activity defined within the energy market.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param MarketDocument [[ch.ninecode.model.MarketDocument MarketDocument]] <em>undocumented</em>
+ * @param TimeSeries [[ch.ninecode.model.TimeSeries TimeSeries]] <em>undocumented</em>
  * @group MarketManagement
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
  */
 case class Domain
 (
-    override val sup: IdentifiedObject
+    override val sup: IdentifiedObject,
+    MarketDocument: List[String],
+    TimeSeries: List[String]
 )
 extends
     Element
@@ -522,7 +547,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -543,7 +568,12 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = Domain.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Domain.fields (position), x))
+        emitattrs (0, MarketDocument)
+        emitattrs (1, TimeSeries)
+        s.toString
     }
     override def export: String =
     {
@@ -555,17 +585,28 @@ object Domain
 extends
     Parseable[Domain]
 {
+    val fields: Array[String] = Array[String] (
+        "MarketDocument",
+        "TimeSeries"
+    )
+    val MarketDocument: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): Domain =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = Domain (
-            IdentifiedObject.parse (context)
+            IdentifiedObject.parse (context),
+            masks (MarketDocument (), 0),
+            masks (TimeSeries (), 1)
         )
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
-
+        Relationship ("MarketDocument", "MarketDocument", true),
+        Relationship ("TimeSeries", "TimeSeries", true)
     )
 }
 
@@ -574,6 +615,7 @@ extends
  *
  * @param sup Reference to the superclass object.
  * @param direction The coded identification of the direction of energy flow.
+ * @param TimeSeries [[ch.ninecode.model.TimeSeries TimeSeries]] <em>undocumented</em>
  * @group MarketManagement
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
@@ -581,7 +623,8 @@ extends
 case class FlowDirection
 (
     override val sup: BasicElement,
-    direction: String
+    direction: String,
+    TimeSeries: List[String]
 )
 extends
     Element
@@ -589,7 +632,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null) }
+    def this () = { this (null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -613,7 +656,9 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = FlowDirection.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (FlowDirection.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (FlowDirection.fields (position), x))
         emitelem (0, direction)
+        emitattrs (1, TimeSeries)
         s.toString
     }
     override def export: String =
@@ -627,9 +672,11 @@ extends
     Parseable[FlowDirection]
 {
     val fields: Array[String] = Array[String] (
-        "direction"
+        "direction",
+        "TimeSeries"
     )
     val direction: Fielder = parse_element (element (cls, fields(0)))
+    val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): FlowDirection =
     {
@@ -637,13 +684,14 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = FlowDirection (
             BasicElement.parse (context),
-            mask (direction (), 0)
+            mask (direction (), 0),
+            masks (TimeSeries (), 1)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
-
+        Relationship ("TimeSeries", "TimeSeries", true)
     )
 }
 
@@ -717,9 +765,15 @@ extends
  *
  * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param selfMarketDocument [[ch.ninecode.model.MarketDocument MarketDocument]] <em>undocumented</em>
+ * @param AceTariffType [[ch.ninecode.model.AceTariffType AceTariffType]] <em>undocumented</em>
  * @param AttributeInstanceComponent [[ch.ninecode.model.AttributeInstanceComponent AttributeInstanceComponent]] <em>undocumented</em>
  * @param Domain [[ch.ninecode.model.Domain Domain]] <em>undocumented</em>
+ * @param MarketDocument_attr [[ch.ninecode.model.MarketDocument MarketDocument]] <em>undocumented</em>
+ * @param MarketParticipant [[ch.ninecode.model.MarketParticipant MarketParticipant]] <em>undocumented</em>
  * @param Period [[ch.ninecode.model.Period Period]] <em>undocumented</em>
+ * @param Process [[ch.ninecode.model.Process Process]] <em>undocumented</em>
+ * @param Reason [[ch.ninecode.model.Reason Reason]] <em>undocumented</em>
+ * @param TimeSeries [[ch.ninecode.model.TimeSeries TimeSeries]] <em>undocumented</em>
  * @group MarketManagement
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
@@ -728,9 +782,15 @@ case class MarketDocument
 (
     override val sup: Document,
     selfMarketDocument: List[String],
+    AceTariffType: List[String],
     AttributeInstanceComponent: List[String],
     Domain: List[String],
-    Period: List[String]
+    MarketDocument_attr: List[String],
+    MarketParticipant: List[String],
+    Period: List[String],
+    Process: List[String],
+    Reason: List[String],
+    TimeSeries: List[String]
 )
 extends
     Element
@@ -738,7 +798,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, List(), List(), List(), List()) }
+    def this () = { this (null, List(), List(), List(), List(), List(), List(), List(), List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -763,9 +823,15 @@ extends
         implicit val clz: String = MarketDocument.cls
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (MarketDocument.fields (position), x))
         emitattrs (0, selfMarketDocument)
-        emitattrs (1, AttributeInstanceComponent)
-        emitattrs (2, Domain)
-        emitattrs (3, Period)
+        emitattrs (1, AceTariffType)
+        emitattrs (2, AttributeInstanceComponent)
+        emitattrs (3, Domain)
+        emitattrs (4, MarketDocument_attr)
+        emitattrs (5, MarketParticipant)
+        emitattrs (6, Period)
+        emitattrs (7, Process)
+        emitattrs (8, Reason)
+        emitattrs (9, TimeSeries)
         s.toString
     }
     override def export: String =
@@ -780,14 +846,26 @@ extends
 {
     val fields: Array[String] = Array[String] (
         "selfMarketDocument",
+        "AceTariffType",
         "AttributeInstanceComponent",
         "Domain",
-        "Period"
+        "MarketDocument",
+        "MarketParticipant",
+        "Period",
+        "Process",
+        "Reason",
+        "TimeSeries"
     )
     val selfMarketDocument: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
-    val AttributeInstanceComponent: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
-    val Domain: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
-    val Period: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val AceTariffType: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val AttributeInstanceComponent: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val Domain: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val MarketDocument_attr: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val MarketParticipant: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
+    val Period: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
+    val Process: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
+    val Reason: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
+    val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
 
     def parse (context: Context): MarketDocument =
     {
@@ -796,18 +874,30 @@ extends
         val ret = MarketDocument (
             Document.parse (context),
             masks (selfMarketDocument (), 0),
-            masks (AttributeInstanceComponent (), 1),
-            masks (Domain (), 2),
-            masks (Period (), 3)
+            masks (AceTariffType (), 1),
+            masks (AttributeInstanceComponent (), 2),
+            masks (Domain (), 3),
+            masks (MarketDocument_attr (), 4),
+            masks (MarketParticipant (), 5),
+            masks (Period (), 6),
+            masks (Process (), 7),
+            masks (Reason (), 8),
+            masks (TimeSeries (), 9)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
         Relationship ("selfMarketDocument", "MarketDocument", true),
+        Relationship ("AceTariffType", "AceTariffType", true),
         Relationship ("AttributeInstanceComponent", "AttributeInstanceComponent", true),
         Relationship ("Domain", "Domain", true),
-        Relationship ("Period", "Period", true)
+        Relationship ("MarketDocument_attr", "MarketDocument", true),
+        Relationship ("MarketParticipant", "MarketParticipant", true),
+        Relationship ("Period", "Period", true),
+        Relationship ("Process", "Process", true),
+        Relationship ("Reason", "Reason", true),
+        Relationship ("TimeSeries", "TimeSeries", true)
     )
 }
 
@@ -815,13 +905,15 @@ extends
  * The identification of an entity where energy products are measured or computed.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param TimeSeries [[ch.ninecode.model.TimeSeries TimeSeries]] <em>undocumented</em>
  * @group MarketManagement
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
  */
 case class MarketEvaluationPoint
 (
-    override val sup: IdentifiedObject
+    override val sup: IdentifiedObject,
+    TimeSeries: List[String]
 )
 extends
     Element
@@ -829,7 +921,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -850,7 +942,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = MarketEvaluationPoint.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (MarketEvaluationPoint.fields (position), x))
+        emitattrs (0, TimeSeries)
+        s.toString
     }
     override def export: String =
     {
@@ -862,17 +958,24 @@ object MarketEvaluationPoint
 extends
     Parseable[MarketEvaluationPoint]
 {
+    val fields: Array[String] = Array[String] (
+        "TimeSeries"
+    )
+    val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): MarketEvaluationPoint =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = MarketEvaluationPoint (
-            IdentifiedObject.parse (context)
+            IdentifiedObject.parse (context),
+            masks (TimeSeries (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
-
+        Relationship ("TimeSeries", "TimeSeries", true)
     )
 }
 
@@ -1052,7 +1155,9 @@ extends
  * @param sup Reference to the superclass object.
  * @param resolution The number of units of time that compose an individual step within a period.
  * @param timeInterval The start and end date and time for a given interval.
+ * @param MarketDocument [[ch.ninecode.model.MarketDocument MarketDocument]] <em>undocumented</em>
  * @param Reason [[ch.ninecode.model.Reason Reason]] <em>undocumented</em>
+ * @param TimeSeries [[ch.ninecode.model.TimeSeries TimeSeries]] <em>undocumented</em>
  * @group MarketManagement
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
@@ -1062,7 +1167,9 @@ case class Period
     override val sup: BasicElement,
     resolution: String,
     timeInterval: String,
-    Reason: List[String]
+    MarketDocument: List[String],
+    Reason: List[String],
+    TimeSeries: List[String]
 )
 extends
     Element
@@ -1070,7 +1177,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, List()) }
+    def this () = { this (null, null, null, List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1098,7 +1205,9 @@ extends
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Period.fields (position), x))
         emitelem (0, resolution)
         emitattr (1, timeInterval)
-        emitattrs (2, Reason)
+        emitattrs (2, MarketDocument)
+        emitattrs (3, Reason)
+        emitattrs (4, TimeSeries)
         s.toString
     }
     override def export: String =
@@ -1114,11 +1223,15 @@ extends
     val fields: Array[String] = Array[String] (
         "resolution",
         "timeInterval",
-        "Reason"
+        "MarketDocument",
+        "Reason",
+        "TimeSeries"
     )
     val resolution: Fielder = parse_element (element (cls, fields(0)))
     val timeInterval: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val Reason: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val MarketDocument: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val Reason: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
 
     def parse (context: Context): Period =
     {
@@ -1128,13 +1241,17 @@ extends
             BasicElement.parse (context),
             mask (resolution (), 0),
             mask (timeInterval (), 1),
-            masks (Reason (), 2)
+            masks (MarketDocument (), 2),
+            masks (Reason (), 3),
+            masks (TimeSeries (), 4)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("Reason", "Reason", true)
+        Relationship ("MarketDocument", "MarketDocument", true),
+        Relationship ("Reason", "Reason", true),
+        Relationship ("TimeSeries", "TimeSeries", true)
     )
 }
 
@@ -1149,6 +1266,7 @@ extends
  * @param secondaryQuantity Secondary quantity identified for a point.
  * @param AceTariffType [[ch.ninecode.model.AceTariffType AceTariffType]] <em>undocumented</em>
  * @param Period [[ch.ninecode.model.Period Period]] <em>undocumented</em>
+ * @param Reason [[ch.ninecode.model.Reason Reason]] <em>undocumented</em>
  * @param TimeSeries [[ch.ninecode.model.TimeSeries TimeSeries]] <em>undocumented</em>
  * @group MarketManagement
  * @groupname MarketManagement Package MarketManagement
@@ -1163,6 +1281,7 @@ case class Point
     secondaryQuantity: Double,
     AceTariffType: List[String],
     Period: String,
+    Reason: List[String],
     TimeSeries: List[String]
 )
 extends
@@ -1171,7 +1290,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0, null, 0.0, 0.0, List(), null, List()) }
+    def this () = { this (null, 0, null, 0.0, 0.0, List(), null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1203,7 +1322,8 @@ extends
         emitelem (3, secondaryQuantity)
         emitattrs (4, AceTariffType)
         emitattr (5, Period)
-        emitattrs (6, TimeSeries)
+        emitattrs (6, Reason)
+        emitattrs (7, TimeSeries)
         s.toString
     }
     override def export: String =
@@ -1223,6 +1343,7 @@ extends
         "secondaryQuantity",
         "AceTariffType",
         "Period",
+        "Reason",
         "TimeSeries"
     )
     val position: Fielder = parse_element (element (cls, fields(0)))
@@ -1231,7 +1352,8 @@ extends
     val secondaryQuantity: Fielder = parse_element (element (cls, fields(3)))
     val AceTariffType: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
     val Period: Fielder = parse_attribute (attribute (cls, fields(5)))
-    val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
+    val Reason: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
+    val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
 
     def parse (context: Context): Point =
     {
@@ -1245,7 +1367,8 @@ extends
             toDouble (mask (secondaryQuantity (), 3)),
             masks (AceTariffType (), 4),
             mask (Period (), 5),
-            masks (TimeSeries (), 6)
+            masks (Reason (), 6),
+            masks (TimeSeries (), 7)
         )
         ret.bitfields = bitfields
         ret
@@ -1253,6 +1376,7 @@ extends
     val relations: List[Relationship] = List (
         Relationship ("AceTariffType", "AceTariffType", true),
         Relationship ("Period", "Period", false),
+        Relationship ("Reason", "Reason", true),
         Relationship ("TimeSeries", "TimeSeries", true)
     )
 }
@@ -1454,7 +1578,9 @@ extends
  * @param code The motivation of an act in coded form.
  * @param text The textual explanation corresponding to the reason code.
  * @param MarketDocument [[ch.ninecode.model.MarketDocument MarketDocument]] <em>undocumented</em>
+ * @param Period [[ch.ninecode.model.Period Period]] <em>undocumented</em>
  * @param Point [[ch.ninecode.model.Point Point]] <em>undocumented</em>
+ * @param TimeSeries [[ch.ninecode.model.TimeSeries TimeSeries]] <em>undocumented</em>
  * @group MarketManagement
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
@@ -1465,7 +1591,9 @@ case class Reason
     code: String,
     text: String,
     MarketDocument: List[String],
-    Point: List[String]
+    Period: List[String],
+    Point: List[String],
+    TimeSeries: List[String]
 )
 extends
     Element
@@ -1473,7 +1601,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, List(), List()) }
+    def this () = { this (null, null, null, List(), List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1501,7 +1629,9 @@ extends
         emitelem (0, code)
         emitelem (1, text)
         emitattrs (2, MarketDocument)
-        emitattrs (3, Point)
+        emitattrs (3, Period)
+        emitattrs (4, Point)
+        emitattrs (5, TimeSeries)
         s.toString
     }
     override def export: String =
@@ -1518,12 +1648,16 @@ extends
         "code",
         "text",
         "MarketDocument",
-        "Point"
+        "Period",
+        "Point",
+        "TimeSeries"
     )
     val code: Fielder = parse_element (element (cls, fields(0)))
     val text: Fielder = parse_element (element (cls, fields(1)))
     val MarketDocument: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
-    val Point: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val Period: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val Point: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
 
     def parse (context: Context): Reason =
     {
@@ -1534,14 +1668,18 @@ extends
             mask (code (), 0),
             mask (text (), 1),
             masks (MarketDocument (), 2),
-            masks (Point (), 3)
+            masks (Period (), 3),
+            masks (Point (), 4),
+            masks (TimeSeries (), 5)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
         Relationship ("MarketDocument", "MarketDocument", true),
-        Relationship ("Point", "Point", true)
+        Relationship ("Period", "Period", true),
+        Relationship ("Point", "Point", true),
+        Relationship ("TimeSeries", "TimeSeries", true)
     )
 }
 
@@ -1555,14 +1693,21 @@ extends
  * @param objectAggregation Identification of the object that is the common dominator used to aggregate a time series.
  * @param product The type of the product such as Power, energy, reactive power, transport capacity that is the subject of the time series.
  * @param version Version of the time series.
+ * @param AttributeInstanceComponent [[ch.ninecode.model.AttributeInstanceComponent AttributeInstanceComponent]] <em>undocumented</em>
+ * @param Auction [[ch.ninecode.model.Auction Auction]] <em>undocumented</em>
  * @param DateAndOrTime [[ch.ninecode.model.DateAndOrTime DateAndOrTime]] <em>undocumented</em>
  * @param Domain [[ch.ninecode.model.Domain Domain]] <em>undocumented</em>
  * @param FlowDirection [[ch.ninecode.model.FlowDirection FlowDirection]] <em>undocumented</em>
  * @param MarketDocument [[ch.ninecode.model.MarketDocument MarketDocument]] <em>undocumented</em>
  * @param MarketEvaluationPoint [[ch.ninecode.model.MarketEvaluationPoint MarketEvaluationPoint]] <em>undocumented</em>
+ * @param MarketObjectStatus [[ch.ninecode.model.MarketObjectStatus MarketObjectStatus]] <em>undocumented</em>
  * @param MarketParticipant [[ch.ninecode.model.MarketParticipant MarketParticipant]] <em>undocumented</em>
+ * @param MktPSRType [[ch.ninecode.model.MktPSRType MktPSRType]] <em>undocumented</em>
  * @param Period [[ch.ninecode.model.Period Period]] <em>undocumented</em>
+ * @param Point [[ch.ninecode.model.Point Point]] <em>undocumented</em>
  * @param Reason [[ch.ninecode.model.Reason Reason]] <em>undocumented</em>
+ * @param RegisteredResource [[ch.ninecode.model.RegisteredResource RegisteredResource]] <em>undocumented</em>
+ * @param Unit [[ch.ninecode.model.Unit_ Unit_]] <em>undocumented</em>
  * @group MarketManagement
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
@@ -1576,14 +1721,21 @@ case class TimeSeries
     objectAggregation: String,
     product: String,
     version: String,
+    AttributeInstanceComponent: List[String],
+    Auction: List[String],
     DateAndOrTime: List[String],
     Domain: List[String],
     FlowDirection: List[String],
     MarketDocument: List[String],
     MarketEvaluationPoint: List[String],
+    MarketObjectStatus: List[String],
     MarketParticipant: List[String],
+    MktPSRType: List[String],
     Period: List[String],
-    Reason: List[String]
+    Point: List[String],
+    Reason: List[String],
+    RegisteredResource: List[String],
+    Unit: List[String]
 )
 extends
     Element
@@ -1591,7 +1743,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null, null, null, List(), List(), List(), List(), List(), List(), List(), List()) }
+    def this () = { this (null, null, null, null, null, null, null, List(), List(), List(), List(), List(), List(), List(), List(), List(), List(), List(), List(), List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1622,14 +1774,21 @@ extends
         emitelem (3, objectAggregation)
         emitelem (4, product)
         emitelem (5, version)
-        emitattrs (6, DateAndOrTime)
-        emitattrs (7, Domain)
-        emitattrs (8, FlowDirection)
-        emitattrs (9, MarketDocument)
-        emitattrs (10, MarketEvaluationPoint)
-        emitattrs (11, MarketParticipant)
-        emitattrs (12, Period)
-        emitattrs (13, Reason)
+        emitattrs (6, AttributeInstanceComponent)
+        emitattrs (7, Auction)
+        emitattrs (8, DateAndOrTime)
+        emitattrs (9, Domain)
+        emitattrs (10, FlowDirection)
+        emitattrs (11, MarketDocument)
+        emitattrs (12, MarketEvaluationPoint)
+        emitattrs (13, MarketObjectStatus)
+        emitattrs (14, MarketParticipant)
+        emitattrs (15, MktPSRType)
+        emitattrs (16, Period)
+        emitattrs (17, Point)
+        emitattrs (18, Reason)
+        emitattrs (19, RegisteredResource)
+        emitattrs (20, Unit)
         s.toString
     }
     override def export: String =
@@ -1649,14 +1808,21 @@ extends
         "objectAggregation",
         "product",
         "version",
+        "AttributeInstanceComponent",
+        "Auction",
         "DateAndOrTime",
         "Domain",
         "FlowDirection",
         "MarketDocument",
         "MarketEvaluationPoint",
+        "MarketObjectStatus",
         "MarketParticipant",
+        "MktPSRType",
         "Period",
-        "Reason"
+        "Point",
+        "Reason",
+        "RegisteredResource",
+        "Unit"
     )
     val businessType: Fielder = parse_element (element (cls, fields(0)))
     val cancelledTS: Fielder = parse_element (element (cls, fields(1)))
@@ -1664,14 +1830,21 @@ extends
     val objectAggregation: Fielder = parse_element (element (cls, fields(3)))
     val product: Fielder = parse_element (element (cls, fields(4)))
     val version: Fielder = parse_element (element (cls, fields(5)))
-    val DateAndOrTime: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
-    val Domain: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
-    val FlowDirection: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
-    val MarketDocument: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
-    val MarketEvaluationPoint: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
-    val MarketParticipant: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
-    val Period: FielderMultiple = parse_attributes (attribute (cls, fields(12)))
-    val Reason: FielderMultiple = parse_attributes (attribute (cls, fields(13)))
+    val AttributeInstanceComponent: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
+    val Auction: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
+    val DateAndOrTime: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
+    val Domain: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
+    val FlowDirection: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
+    val MarketDocument: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
+    val MarketEvaluationPoint: FielderMultiple = parse_attributes (attribute (cls, fields(12)))
+    val MarketObjectStatus: FielderMultiple = parse_attributes (attribute (cls, fields(13)))
+    val MarketParticipant: FielderMultiple = parse_attributes (attribute (cls, fields(14)))
+    val MktPSRType: FielderMultiple = parse_attributes (attribute (cls, fields(15)))
+    val Period: FielderMultiple = parse_attributes (attribute (cls, fields(16)))
+    val Point: FielderMultiple = parse_attributes (attribute (cls, fields(17)))
+    val Reason: FielderMultiple = parse_attributes (attribute (cls, fields(18)))
+    val RegisteredResource: FielderMultiple = parse_attributes (attribute (cls, fields(19)))
+    val Unit: FielderMultiple = parse_attributes (attribute (cls, fields(20)))
 
     def parse (context: Context): TimeSeries =
     {
@@ -1685,27 +1858,41 @@ extends
             mask (objectAggregation (), 3),
             mask (product (), 4),
             mask (version (), 5),
-            masks (DateAndOrTime (), 6),
-            masks (Domain (), 7),
-            masks (FlowDirection (), 8),
-            masks (MarketDocument (), 9),
-            masks (MarketEvaluationPoint (), 10),
-            masks (MarketParticipant (), 11),
-            masks (Period (), 12),
-            masks (Reason (), 13)
+            masks (AttributeInstanceComponent (), 6),
+            masks (Auction (), 7),
+            masks (DateAndOrTime (), 8),
+            masks (Domain (), 9),
+            masks (FlowDirection (), 10),
+            masks (MarketDocument (), 11),
+            masks (MarketEvaluationPoint (), 12),
+            masks (MarketObjectStatus (), 13),
+            masks (MarketParticipant (), 14),
+            masks (MktPSRType (), 15),
+            masks (Period (), 16),
+            masks (Point (), 17),
+            masks (Reason (), 18),
+            masks (RegisteredResource (), 19),
+            masks (Unit (), 20)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
+        Relationship ("AttributeInstanceComponent", "AttributeInstanceComponent", true),
+        Relationship ("Auction", "Auction", true),
         Relationship ("DateAndOrTime", "DateAndOrTime", true),
         Relationship ("Domain", "Domain", true),
         Relationship ("FlowDirection", "FlowDirection", true),
         Relationship ("MarketDocument", "MarketDocument", true),
         Relationship ("MarketEvaluationPoint", "MarketEvaluationPoint", true),
+        Relationship ("MarketObjectStatus", "MarketObjectStatus", true),
         Relationship ("MarketParticipant", "MarketParticipant", true),
+        Relationship ("MktPSRType", "MktPSRType", true),
         Relationship ("Period", "Period", true),
-        Relationship ("Reason", "Reason", true)
+        Relationship ("Point", "Point", true),
+        Relationship ("Reason", "Reason", true),
+        Relationship ("RegisteredResource", "RegisteredResource", true),
+        Relationship ("Unit", "Unit_", true)
     )
 }
 
@@ -1714,6 +1901,7 @@ extends
  *
  * @param sup Reference to the superclass object.
  * @param name The coded representation of the unit.
+ * @param AceTariffType [[ch.ninecode.model.AceTariffType AceTariffType]] <em>undocumented</em>
  * @param TimeSeries [[ch.ninecode.model.TimeSeries TimeSeries]] <em>undocumented</em>
  * @group MarketManagement
  * @groupname MarketManagement Package MarketManagement
@@ -1723,6 +1911,7 @@ case class Unit_
 (
     override val sup: BasicElement,
     name: String,
+    AceTariffType: List[String],
     TimeSeries: List[String]
 )
 extends
@@ -1731,7 +1920,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, List()) }
+    def this () = { this (null, null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1757,7 +1946,8 @@ extends
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Unit_.fields (position), value)
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Unit_.fields (position), x))
         emitelem (0, name)
-        emitattrs (1, TimeSeries)
+        emitattrs (1, AceTariffType)
+        emitattrs (2, TimeSeries)
         s.toString
     }
     override def export: String =
@@ -1772,10 +1962,12 @@ extends
 {
     val fields: Array[String] = Array[String] (
         "name",
+        "AceTariffType",
         "TimeSeries"
     )
     val name: Fielder = parse_element (element (cls, fields(0)))
-    val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val AceTariffType: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
 
     def parse (context: Context): Unit_ =
     {
@@ -1784,12 +1976,14 @@ extends
         val ret = Unit_ (
             BasicElement.parse (context),
             mask (name (), 0),
-            masks (TimeSeries (), 1)
+            masks (AceTariffType (), 1),
+            masks (TimeSeries (), 2)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
+        Relationship ("AceTariffType", "AceTariffType", true),
         Relationship ("TimeSeries", "TimeSeries", true)
     )
 }

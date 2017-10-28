@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>MajorChargeGroup - CIMReader 2.11-2.2.0-2.4.0 API - ch.ninecode.model.MajorChargeGroup</title>
-          <meta name="description" content="MajorChargeGroup - CIMReader 2.11 - 2.2.0 - 2.4.0 API - ch.ninecode.model.MajorChargeGroup" />
-          <meta name="keywords" content="MajorChargeGroup CIMReader 2.11 2.2.0 2.4.0 API ch.ninecode.model.MajorChargeGroup" />
+          <title>MajorChargeGroup - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.MajorChargeGroup</title>
+          <meta name="description" content="MajorChargeGroup - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.MajorChargeGroup" />
+          <meta name="keywords" content="MajorChargeGroup CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.MajorChargeGroup" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,13 +47,13 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">MajorChargeGroup</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="effectiveDate">effectiveDate: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="frequencyType">frequencyType: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="invoiceType">invoiceType: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="requireAutorun">requireAutorun: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="revisionNumber">revisionNumber: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="runType">runType: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="runVersion">runVersion: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="terminationDate">terminationDate: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ChargeType">ChargeType: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">MajorChargeGroup</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="effectiveDate">effectiveDate: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="frequencyType">frequencyType: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="invoiceType">invoiceType: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="requireAutorun">requireAutorun: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="revisionNumber">revisionNumber: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="runType">runType: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="runVersion">runVersion: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="terminationDate">terminationDate: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ChargeType">ChargeType: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="MarketInvoice">MarketInvoice: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Settlement">Settlement: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A Major Charge Group is the same as Invocie Type which provides the highest level of grouping for charge types configration.</p><p>Examples as Market, FERC, RMR,
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">effectiveDate</dt><dd class="cmt"><p><em>undocumented</em></p></dd><dt class="param">frequencyType</dt><dd class="cmt"><p><em>undocumented</em></p></dd><dt class="param">invoiceType</dt><dd class="cmt"><p><em>undocumented</em></p></dd><dt class="param">requireAutorun</dt><dd class="cmt"><p><em>undocumented</em></p></dd><dt class="param">revisionNumber</dt><dd class="cmt"><p>Revision number for the major charge group</p></dd><dt class="param">runType</dt><dd class="cmt"><p><em>undocumented</em></p></dd><dt class="param">runVersion</dt><dd class="cmt"><p><em>undocumented</em></p></dd><dt class="param">terminationDate</dt><dd class="cmt"><p><em>undocumented</em></p></dd><dt class="param">ChargeType</dt><dd class="cmt"><p><a href="ChargeType.html" class="extype" name="ch.ninecode.model.ChargeType">ChargeType</a> A MajorChargeGroup can have 0-n ChargeType.
-       A ChargeType can associate to 0-n MajorChargeGroup.</p></dd></dl><div class="toggleContainer block">
+       A ChargeType can associate to 0-n MajorChargeGroup.</p></dd><dt class="param">MarketInvoice</dt><dd class="cmt"><p><a href="MarketInvoice.html" class="extype" name="ch.ninecode.model.MarketInvoice">MarketInvoice</a> <em>undocumented</em></p></dd><dt class="param">Settlement</dt><dd class="cmt"><p><a href="Settlement.html" class="extype" name="ch.ninecode.model.Settlement">Settlement</a> <em>undocumented</em></p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -110,7 +110,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.MajorChargeGroup#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,effectiveDate:String,frequencyType:String,invoiceType:String,requireAutorun:String,revisionNumber:String,runType:String,runVersion:String,terminationDate:String,ChargeType:List[String]):ch.ninecode.model.MajorChargeGroup"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,effectiveDate:String,frequencyType:String,invoiceType:String,requireAutorun:String,revisionNumber:String,runType:String,runVersion:String,terminationDate:String,ChargeType:List[String],MarketInvoice:List[String],Settlement:List[String]):ch.ninecode.model.MajorChargeGroup"></a>
       <a id="&lt;init&gt;:MajorChargeGroup"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -118,15 +118,15 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">MajorChargeGroup</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="effectiveDate">effectiveDate: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="frequencyType">frequencyType: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="invoiceType">invoiceType: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="requireAutorun">requireAutorun: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="revisionNumber">revisionNumber: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="runType">runType: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="runVersion">runVersion: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="terminationDate">terminationDate: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ChargeType">ChargeType: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
+        <span class="name">MajorChargeGroup</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="effectiveDate">effectiveDate: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="frequencyType">frequencyType: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="invoiceType">invoiceType: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="requireAutorun">requireAutorun: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="revisionNumber">revisionNumber: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="runType">runType: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="runVersion">runVersion: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="terminationDate">terminationDate: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ChargeType">ChargeType: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="MarketInvoice">MarketInvoice: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Settlement">Settlement: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.MajorChargeGroup@&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,effectiveDate:String,frequencyType:String,invoiceType:String,requireAutorun:String,revisionNumber:String,runType:String,runVersion:String,terminationDate:String,ChargeType:List[String]):ch.ninecode.model.MajorChargeGroup" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.MajorChargeGroup@&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,effectiveDate:String,frequencyType:String,invoiceType:String,requireAutorun:String,revisionNumber:String,runType:String,runVersion:String,terminationDate:String,ChargeType:List[String],MarketInvoice:List[String],Settlement:List[String]):ch.ninecode.model.MajorChargeGroup" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">effectiveDate</dt><dd class="cmt"><p><em>undocumented</em></p></dd><dt class="param">frequencyType</dt><dd class="cmt"><p><em>undocumented</em></p></dd><dt class="param">invoiceType</dt><dd class="cmt"><p><em>undocumented</em></p></dd><dt class="param">requireAutorun</dt><dd class="cmt"><p><em>undocumented</em></p></dd><dt class="param">revisionNumber</dt><dd class="cmt"><p>Revision number for the major charge group</p></dd><dt class="param">runType</dt><dd class="cmt"><p><em>undocumented</em></p></dd><dt class="param">runVersion</dt><dd class="cmt"><p><em>undocumented</em></p></dd><dt class="param">terminationDate</dt><dd class="cmt"><p><em>undocumented</em></p></dd><dt class="param">ChargeType</dt><dd class="cmt"><p><a href="ChargeType.html" class="extype" name="ch.ninecode.model.ChargeType">ChargeType</a> A MajorChargeGroup can have 0-n ChargeType.
-       A ChargeType can associate to 0-n MajorChargeGroup.</p></dd></dl></div>
+       A ChargeType can associate to 0-n MajorChargeGroup.</p></dd><dt class="param">MarketInvoice</dt><dd class="cmt"><p><a href="MarketInvoice.html" class="extype" name="ch.ninecode.model.MarketInvoice">MarketInvoice</a> <em>undocumented</em></p></dd><dt class="param">Settlement</dt><dd class="cmt"><p><a href="Settlement.html" class="extype" name="ch.ninecode.model.Settlement">Settlement</a> <em>undocumented</em></p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -223,6 +223,40 @@
     </span>
       <p class="shortcomment cmt">Return the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Return the superclass object.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The typed superclass nested object.</p></dd></dl></div>
+    </li><li name="ch.ninecode.model.MajorChargeGroup#MarketInvoice" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="MarketInvoice:List[String]"></a>
+      <a id="MarketInvoice:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">MarketInvoice</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.MajorChargeGroup@MarketInvoice:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="MarketInvoice.html" class="extype" name="ch.ninecode.model.MarketInvoice">MarketInvoice</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="MarketInvoice.html" class="extype" name="ch.ninecode.model.MarketInvoice">MarketInvoice</a> <em>undocumented</em></p></div></div>
+    </li><li name="ch.ninecode.model.MajorChargeGroup#Settlement" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="Settlement:List[String]"></a>
+      <a id="Settlement:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Settlement</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.MajorChargeGroup@Settlement:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="Settlement.html" class="extype" name="ch.ninecode.model.Settlement">Settlement</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="Settlement.html" class="extype" name="ch.ninecode.model.Settlement">Settlement</a> <em>undocumented</em></p></div></div>
     </li><li name="ch.ninecode.model.Element#about" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="about:Boolean"></a>
       <a id="about:Boolean"></a>

@@ -18,7 +18,7 @@ import ch.ninecode.cim.Relationship
  * @param EnergyPriceCurve [[ch.ninecode.model.EnergyPriceCurve EnergyPriceCurve]] <em>undocumented</em>
  * @param Flowgate [[ch.ninecode.model.Flowgate Flowgate]] <em>undocumented</em>
  * @param Pnodes [[ch.ninecode.model.Pnode Pnode]] <em>undocumented</em>
- * @param _class Peak, Off-peak, 24-hour
+ * @param `class` Peak, Off-peak, 24-hour
  * @group InfCongestionRevenueRights
  * @groupname InfCongestionRevenueRights Package InfCongestionRevenueRights
  */
@@ -32,7 +32,7 @@ case class FTR
     EnergyPriceCurve: String,
     Flowgate: String,
     Pnodes: List[String],
-    _class: String
+    `class`: String
 )
 extends
     Element
@@ -73,7 +73,7 @@ extends
         emitattr (4, EnergyPriceCurve)
         emitattr (5, Flowgate)
         emitattrs (6, Pnodes)
-        emitelem (7, _class)
+        emitelem (7, `class`)
         s.toString
     }
     override def export: String =
@@ -103,7 +103,7 @@ extends
     val EnergyPriceCurve: Fielder = parse_attribute (attribute (cls, fields(4)))
     val Flowgate: Fielder = parse_attribute (attribute (cls, fields(5)))
     val Pnodes: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
-    val _class: Fielder = parse_element (element (cls, fields(7)))
+    val `class`: Fielder = parse_element (element (cls, fields(7)))
 
     def parse (context: Context): FTR =
     {
@@ -118,7 +118,7 @@ extends
             mask (EnergyPriceCurve (), 4),
             mask (Flowgate (), 5),
             masks (Pnodes (), 6),
-            mask (_class (), 7)
+            mask (`class` (), 7)
         )
         ret.bitfields = bitfields
         ret

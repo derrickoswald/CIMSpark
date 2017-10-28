@@ -13,6 +13,7 @@ import ch.ninecode.cim.Relationship
  * Reduntant links may exist. The CommunicationLink class inherit PowerSystemResource. The intention is to allow CommunicationLinks to have Measurements. These Measurements can be used to model link status as operational, out of service, unit failure etc.
  *
  * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
+ * @param RemoteUnits [[ch.ninecode.model.RemoteUnit RemoteUnit]] RTUs may be attached to communication links.
  * @group SCADA
  * @groupname SCADA Package SCADA
  * @groupdesc SCADA Contains entities to model information used by Supervisory Control and Data Acquisition (SCADA) applications. Supervisory control supports operator control of equipment, such as opening or closing a breaker. Data acquisition gathers telemetered data from various sources.  The subtypes of the Telemetry entity deliberately match the UCA and IEC 61850 definitions. 
@@ -20,7 +21,8 @@ This package also supports alarm presentation but it is not expected to be used 
  */
 case class CommunicationLink
 (
-    override val sup: PowerSystemResource
+    override val sup: PowerSystemResource,
+    RemoteUnits: List[String]
 )
 extends
     Element
@@ -28,7 +30,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -49,7 +51,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = CommunicationLink.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (CommunicationLink.fields (position), x))
+        emitattrs (0, RemoteUnits)
+        s.toString
     }
     override def export: String =
     {
@@ -61,17 +67,24 @@ object CommunicationLink
 extends
     Parseable[CommunicationLink]
 {
+    val fields: Array[String] = Array[String] (
+        "RemoteUnits"
+    )
+    val RemoteUnits: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): CommunicationLink =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = CommunicationLink (
-            PowerSystemResource.parse (context)
+            PowerSystemResource.parse (context),
+            masks (RemoteUnits (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
-
+        Relationship ("RemoteUnits", "RemoteUnit", true)
     )
 }
 
@@ -365,6 +378,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @param remoteUnitType Type of remote unit.
+ * @param CommunicationLinks [[ch.ninecode.model.CommunicationLink CommunicationLink]] RTUs may be attached to communication links.
  * @group SCADA
  * @groupname SCADA Package SCADA
  * @groupdesc SCADA Contains entities to model information used by Supervisory Control and Data Acquisition (SCADA) applications. Supervisory control supports operator control of equipment, such as opening or closing a breaker. Data acquisition gathers telemetered data from various sources.  The subtypes of the Telemetry entity deliberately match the UCA and IEC 61850 definitions. 
@@ -373,7 +387,8 @@ This package also supports alarm presentation but it is not expected to be used 
 case class RemoteUnit
 (
     override val sup: PowerSystemResource,
-    remoteUnitType: String
+    remoteUnitType: String,
+    CommunicationLinks: List[String]
 )
 extends
     Element
@@ -381,7 +396,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null) }
+    def this () = { this (null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -405,7 +420,9 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = RemoteUnit.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (RemoteUnit.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (RemoteUnit.fields (position), x))
         emitattr (0, remoteUnitType)
+        emitattrs (1, CommunicationLinks)
         s.toString
     }
     override def export: String =
@@ -419,9 +436,11 @@ extends
     Parseable[RemoteUnit]
 {
     val fields: Array[String] = Array[String] (
-        "remoteUnitType"
+        "remoteUnitType",
+        "CommunicationLinks"
     )
     val remoteUnitType: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val CommunicationLinks: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): RemoteUnit =
     {
@@ -429,13 +448,14 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = RemoteUnit (
             PowerSystemResource.parse (context),
-            mask (remoteUnitType (), 0)
+            mask (remoteUnitType (), 0),
+            masks (CommunicationLinks (), 1)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
-
+        Relationship ("CommunicationLinks", "CommunicationLink", true)
     )
 }
 

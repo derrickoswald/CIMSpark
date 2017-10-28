@@ -235,6 +235,8 @@ extends
  * @param quantity The MW amount associated with the CRR
  * @param startDateTime segment start date time
  * @param CRR [[ch.ninecode.model.CRR CRR]] <em>undocumented</em>
+ * @param Sink [[ch.ninecode.model.Pnode Pnode]] <em>undocumented</em>
+ * @param Source [[ch.ninecode.model.Pnode Pnode]] <em>undocumented</em>
  * @group CongestionRevenueRights
  * @groupname CongestionRevenueRights Package CongestionRevenueRights
  * @groupdesc CongestionRevenueRights Congestion rent is a major, highly volatile charge currently faced by many participants in the LMP-based electrical energy markets. For this reason, the ISOs offer congestion revenue rights (CRR), also known as financial transmission rights or transmission congestion contracts. These are financial instruments that allow market participants to hedge against congestion charges when they schedule their generation, load and bilateral energy transactions.
@@ -247,7 +249,9 @@ case class CRRSegment
     endDateTime: String,
     quantity: Double,
     startDateTime: String,
-    CRR: String
+    CRR: String,
+    Sink: List[String],
+    Source: List[String]
 )
 extends
     Element
@@ -255,7 +259,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, null, 0.0, null, null) }
+    def this () = { this (null, 0.0, 0.0, null, 0.0, null, null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -280,12 +284,15 @@ extends
         implicit val clz: String = CRRSegment.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (CRRSegment.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (CRRSegment.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (CRRSegment.fields (position), x))
         emitelem (0, amount)
         emitelem (1, clearingPrice)
         emitelem (2, endDateTime)
         emitelem (3, quantity)
         emitelem (4, startDateTime)
         emitattr (5, CRR)
+        emitattrs (6, Sink)
+        emitattrs (7, Source)
         s.toString
     }
     override def export: String =
@@ -304,7 +311,9 @@ extends
         "endDateTime",
         "quantity",
         "startDateTime",
-        "CRR"
+        "CRR",
+        "Sink",
+        "Source"
     )
     val amount: Fielder = parse_element (element (cls, fields(0)))
     val clearingPrice: Fielder = parse_element (element (cls, fields(1)))
@@ -312,6 +321,8 @@ extends
     val quantity: Fielder = parse_element (element (cls, fields(3)))
     val startDateTime: Fielder = parse_element (element (cls, fields(4)))
     val CRR: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val Sink: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
+    val Source: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
 
     def parse (context: Context): CRRSegment =
     {
@@ -324,13 +335,17 @@ extends
             mask (endDateTime (), 2),
             toDouble (mask (quantity (), 3)),
             mask (startDateTime (), 4),
-            mask (CRR (), 5)
+            mask (CRR (), 5),
+            masks (Sink (), 6),
+            masks (Source (), 7)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("CRR", "CRR", false)
+        Relationship ("CRR", "CRR", false),
+        Relationship ("Sink", "Pnode", true),
+        Relationship ("Source", "Pnode", true)
     )
 }
 

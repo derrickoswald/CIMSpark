@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>MPMResourceStatus - CIMReader 2.11-2.2.0-2.4.0 API - ch.ninecode.model.MPMResourceStatus</title>
-          <meta name="description" content="MPMResourceStatus - CIMReader 2.11 - 2.2.0 - 2.4.0 API - ch.ninecode.model.MPMResourceStatus" />
-          <meta name="keywords" content="MPMResourceStatus CIMReader 2.11 2.2.0 2.4.0 API ch.ninecode.model.MPMResourceStatus" />
+          <title>MPMResourceStatus - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.MPMResourceStatus</title>
+          <meta name="description" content="MPMResourceStatus - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.MPMResourceStatus" />
+          <meta name="keywords" content="MPMResourceStatus CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.MPMResourceStatus" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,13 +47,13 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">MPMResourceStatus</span><span class="params">(<span name="sup">sup: <a href="BasicElement.html" class="extype" name="ch.ninecode.model.BasicElement">BasicElement</a></span>, <span name="resourceStatus">resourceStatus: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="MPMTestCategory">MPMTestCategory: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="RegisteredResource">RegisteredResource: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">MPMResourceStatus</span><span class="params">(<span name="sup">sup: <a href="BasicElement.html" class="extype" name="ch.ninecode.model.BasicElement">BasicElement</a></span>, <span name="resourceStatus">resourceStatus: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="MPMTestCategory">MPMTestCategory: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="MitigatedBidClearing">MitigatedBidClearing: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="RegisteredResource">RegisteredResource: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Model of results of Market Power tests, gives status of resource for the associated interval
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">resourceStatus</dt><dd class="cmt"><p>Interval Test Status
-       'N' - not applicable</p></dd><dt class="param">MPMTestCategory</dt><dd class="cmt"><p><a href="MPMTestCategory.html" class="extype" name="ch.ninecode.model.MPMTestCategory">MPMTestCategory</a> <em>undocumented</em></p></dd><dt class="param">RegisteredResource</dt><dd class="cmt"><p><a href="RegisteredResource.html" class="extype" name="ch.ninecode.model.RegisteredResource">RegisteredResource</a> <em>undocumented</em></p></dd></dl><div class="toggleContainer block">
+       'N' - not applicable</p></dd><dt class="param">MPMTestCategory</dt><dd class="cmt"><p><a href="MPMTestCategory.html" class="extype" name="ch.ninecode.model.MPMTestCategory">MPMTestCategory</a> <em>undocumented</em></p></dd><dt class="param">MitigatedBidClearing</dt><dd class="cmt"><p><a href="MitigatedBidClearing.html" class="extype" name="ch.ninecode.model.MitigatedBidClearing">MitigatedBidClearing</a> <em>undocumented</em></p></dd><dt class="param">RegisteredResource</dt><dd class="cmt"><p><a href="RegisteredResource.html" class="extype" name="ch.ninecode.model.RegisteredResource">RegisteredResource</a> <em>undocumented</em></p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -110,7 +110,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.MPMResourceStatus#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.BasicElement,resourceStatus:String,MPMTestCategory:String,RegisteredResource:String):ch.ninecode.model.MPMResourceStatus"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.BasicElement,resourceStatus:String,MPMTestCategory:String,MitigatedBidClearing:List[String],RegisteredResource:String):ch.ninecode.model.MPMResourceStatus"></a>
       <a id="&lt;init&gt;:MPMResourceStatus"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -118,15 +118,15 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">MPMResourceStatus</span><span class="params">(<span name="sup">sup: <a href="BasicElement.html" class="extype" name="ch.ninecode.model.BasicElement">BasicElement</a></span>, <span name="resourceStatus">resourceStatus: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="MPMTestCategory">MPMTestCategory: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="RegisteredResource">RegisteredResource: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
+        <span class="name">MPMResourceStatus</span><span class="params">(<span name="sup">sup: <a href="BasicElement.html" class="extype" name="ch.ninecode.model.BasicElement">BasicElement</a></span>, <span name="resourceStatus">resourceStatus: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="MPMTestCategory">MPMTestCategory: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="MitigatedBidClearing">MitigatedBidClearing: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="RegisteredResource">RegisteredResource: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.MPMResourceStatus@&lt;init&gt;(sup:ch.ninecode.model.BasicElement,resourceStatus:String,MPMTestCategory:String,RegisteredResource:String):ch.ninecode.model.MPMResourceStatus" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.MPMResourceStatus@&lt;init&gt;(sup:ch.ninecode.model.BasicElement,resourceStatus:String,MPMTestCategory:String,MitigatedBidClearing:List[String],RegisteredResource:String):ch.ninecode.model.MPMResourceStatus" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">resourceStatus</dt><dd class="cmt"><p>Interval Test Status
-       'N' - not applicable</p></dd><dt class="param">MPMTestCategory</dt><dd class="cmt"><p><a href="MPMTestCategory.html" class="extype" name="ch.ninecode.model.MPMTestCategory">MPMTestCategory</a> <em>undocumented</em></p></dd><dt class="param">RegisteredResource</dt><dd class="cmt"><p><a href="RegisteredResource.html" class="extype" name="ch.ninecode.model.RegisteredResource">RegisteredResource</a> <em>undocumented</em></p></dd></dl></div>
+       'N' - not applicable</p></dd><dt class="param">MPMTestCategory</dt><dd class="cmt"><p><a href="MPMTestCategory.html" class="extype" name="ch.ninecode.model.MPMTestCategory">MPMTestCategory</a> <em>undocumented</em></p></dd><dt class="param">MitigatedBidClearing</dt><dd class="cmt"><p><a href="MitigatedBidClearing.html" class="extype" name="ch.ninecode.model.MitigatedBidClearing">MitigatedBidClearing</a> <em>undocumented</em></p></dd><dt class="param">RegisteredResource</dt><dd class="cmt"><p><a href="RegisteredResource.html" class="extype" name="ch.ninecode.model.RegisteredResource">RegisteredResource</a> <em>undocumented</em></p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -222,6 +222,23 @@
       </a>
     </span>
       <p class="shortcomment cmt"><a href="MPMTestCategory.html" class="extype" name="ch.ninecode.model.MPMTestCategory">MPMTestCategory</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="MPMTestCategory.html" class="extype" name="ch.ninecode.model.MPMTestCategory">MPMTestCategory</a> <em>undocumented</em></p></div></div>
+    </li><li name="ch.ninecode.model.MPMResourceStatus#MitigatedBidClearing" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="MitigatedBidClearing:List[String]"></a>
+      <a id="MitigatedBidClearing:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">MitigatedBidClearing</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.MPMResourceStatus@MitigatedBidClearing:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="MitigatedBidClearing.html" class="extype" name="ch.ninecode.model.MitigatedBidClearing">MitigatedBidClearing</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="MitigatedBidClearing.html" class="extype" name="ch.ninecode.model.MitigatedBidClearing">MitigatedBidClearing</a> <em>undocumented</em></p></div></div>
     </li><li name="ch.ninecode.model.MPMResourceStatus#RegisteredResource" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="RegisteredResource:String"></a>
       <a id="RegisteredResource:String"></a>

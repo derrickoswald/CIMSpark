@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>ConductingEquipment - CIMReader 2.11-2.2.0-2.4.0 API - ch.ninecode.model.ConductingEquipment</title>
-          <meta name="description" content="ConductingEquipment - CIMReader 2.11 - 2.2.0 - 2.4.0 API - ch.ninecode.model.ConductingEquipment" />
-          <meta name="keywords" content="ConductingEquipment CIMReader 2.11 2.2.0 2.4.0 API ch.ninecode.model.ConductingEquipment" />
+          <title>ConductingEquipment - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.ConductingEquipment</title>
+          <meta name="description" content="ConductingEquipment - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.ConductingEquipment" />
+          <meta name="keywords" content="ConductingEquipment CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.ConductingEquipment" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,13 +47,13 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">ConductingEquipment</span><span class="params">(<span name="sup">sup: <a href="Equipment.html" class="extype" name="ch.ninecode.model.Equipment">Equipment</a></span>, <span name="BaseVoltage">BaseVoltage: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="GroundingAction">GroundingAction: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="JumpingAction">JumpingAction: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="SvStatus">SvStatus: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">ConductingEquipment</span><span class="params">(<span name="sup">sup: <a href="Equipment.html" class="extype" name="ch.ninecode.model.Equipment">Equipment</a></span>, <span name="BaseVoltage">BaseVoltage: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="GroundingAction">GroundingAction: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="JumpingAction">JumpingAction: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ProtectionEquipments">ProtectionEquipments: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="SvStatus">SvStatus: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>The parts of the AC power system that are designed to carry current or that are conductively connected through terminals.
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="Equipment.html" class="extype" name="ch.ninecode.model.Equipment">Equipment</a> Reference to the superclass object.</p></dd><dt class="param">BaseVoltage</dt><dd class="cmt"><p><a href="BaseVoltage.html" class="extype" name="ch.ninecode.model.BaseVoltage">BaseVoltage</a> Base voltage of this conducting equipment.
-       Use only when there is no voltage level container used and only one base voltage applies.  For example, not used for transformers.</p></dd><dt class="param">GroundingAction</dt><dd class="cmt"><p><a href="GroundAction.html" class="extype" name="ch.ninecode.model.GroundAction">GroundAction</a> Action involving grounding operation on this conducting equipment.</p></dd><dt class="param">JumpingAction</dt><dd class="cmt"><p><a href="JumperAction.html" class="extype" name="ch.ninecode.model.JumperAction">JumperAction</a> Jumper action involving jumping operation on this conducting equipment.</p></dd><dt class="param">SvStatus</dt><dd class="cmt"><p><a href="SvStatus.html" class="extype" name="ch.ninecode.model.SvStatus">SvStatus</a> The status state variable associated with this conducting equipment.</p></dd></dl><div class="toggleContainer block">
+       Use only when there is no voltage level container used and only one base voltage applies.  For example, not used for transformers.</p></dd><dt class="param">GroundingAction</dt><dd class="cmt"><p><a href="GroundAction.html" class="extype" name="ch.ninecode.model.GroundAction">GroundAction</a> Action involving grounding operation on this conducting equipment.</p></dd><dt class="param">JumpingAction</dt><dd class="cmt"><p><a href="JumperAction.html" class="extype" name="ch.ninecode.model.JumperAction">JumperAction</a> Jumper action involving jumping operation on this conducting equipment.</p></dd><dt class="param">ProtectionEquipments</dt><dd class="cmt"><p><a href="ProtectionEquipment.html" class="extype" name="ch.ninecode.model.ProtectionEquipment">ProtectionEquipment</a> Protection equipment  used to protect specific conducting equipment.</p></dd><dt class="param">SvStatus</dt><dd class="cmt"><p><a href="SvStatus.html" class="extype" name="ch.ninecode.model.SvStatus">SvStatus</a> The status state variable associated with this conducting equipment.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -110,7 +110,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.ConductingEquipment#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.Equipment,BaseVoltage:String,GroundingAction:String,JumpingAction:String,SvStatus:String):ch.ninecode.model.ConductingEquipment"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.Equipment,BaseVoltage:String,GroundingAction:String,JumpingAction:String,ProtectionEquipments:List[String],SvStatus:String):ch.ninecode.model.ConductingEquipment"></a>
       <a id="&lt;init&gt;:ConductingEquipment"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -118,15 +118,15 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">ConductingEquipment</span><span class="params">(<span name="sup">sup: <a href="Equipment.html" class="extype" name="ch.ninecode.model.Equipment">Equipment</a></span>, <span name="BaseVoltage">BaseVoltage: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="GroundingAction">GroundingAction: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="JumpingAction">JumpingAction: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="SvStatus">SvStatus: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
+        <span class="name">ConductingEquipment</span><span class="params">(<span name="sup">sup: <a href="Equipment.html" class="extype" name="ch.ninecode.model.Equipment">Equipment</a></span>, <span name="BaseVoltage">BaseVoltage: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="GroundingAction">GroundingAction: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="JumpingAction">JumpingAction: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ProtectionEquipments">ProtectionEquipments: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="SvStatus">SvStatus: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.ConductingEquipment@&lt;init&gt;(sup:ch.ninecode.model.Equipment,BaseVoltage:String,GroundingAction:String,JumpingAction:String,SvStatus:String):ch.ninecode.model.ConductingEquipment" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.ConductingEquipment@&lt;init&gt;(sup:ch.ninecode.model.Equipment,BaseVoltage:String,GroundingAction:String,JumpingAction:String,ProtectionEquipments:List[String],SvStatus:String):ch.ninecode.model.ConductingEquipment" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="Equipment.html" class="extype" name="ch.ninecode.model.Equipment">Equipment</a> Reference to the superclass object.</p></dd><dt class="param">BaseVoltage</dt><dd class="cmt"><p><a href="BaseVoltage.html" class="extype" name="ch.ninecode.model.BaseVoltage">BaseVoltage</a> Base voltage of this conducting equipment.
-       Use only when there is no voltage level container used and only one base voltage applies.  For example, not used for transformers.</p></dd><dt class="param">GroundingAction</dt><dd class="cmt"><p><a href="GroundAction.html" class="extype" name="ch.ninecode.model.GroundAction">GroundAction</a> Action involving grounding operation on this conducting equipment.</p></dd><dt class="param">JumpingAction</dt><dd class="cmt"><p><a href="JumperAction.html" class="extype" name="ch.ninecode.model.JumperAction">JumperAction</a> Jumper action involving jumping operation on this conducting equipment.</p></dd><dt class="param">SvStatus</dt><dd class="cmt"><p><a href="SvStatus.html" class="extype" name="ch.ninecode.model.SvStatus">SvStatus</a> The status state variable associated with this conducting equipment.</p></dd></dl></div>
+       Use only when there is no voltage level container used and only one base voltage applies.  For example, not used for transformers.</p></dd><dt class="param">GroundingAction</dt><dd class="cmt"><p><a href="GroundAction.html" class="extype" name="ch.ninecode.model.GroundAction">GroundAction</a> Action involving grounding operation on this conducting equipment.</p></dd><dt class="param">JumpingAction</dt><dd class="cmt"><p><a href="JumperAction.html" class="extype" name="ch.ninecode.model.JumperAction">JumperAction</a> Jumper action involving jumping operation on this conducting equipment.</p></dd><dt class="param">ProtectionEquipments</dt><dd class="cmt"><p><a href="ProtectionEquipment.html" class="extype" name="ch.ninecode.model.ProtectionEquipment">ProtectionEquipment</a> Protection equipment  used to protect specific conducting equipment.</p></dd><dt class="param">SvStatus</dt><dd class="cmt"><p><a href="SvStatus.html" class="extype" name="ch.ninecode.model.SvStatus">SvStatus</a> The status state variable associated with this conducting equipment.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -257,6 +257,23 @@
       </a>
     </span>
       <p class="shortcomment cmt"><a href="JumperAction.html" class="extype" name="ch.ninecode.model.JumperAction">JumperAction</a> Jumper action involving jumping operation on this conducting equipment.</p>
+    </li><li name="ch.ninecode.model.ConductingEquipment#ProtectionEquipments" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ProtectionEquipments:List[String]"></a>
+      <a id="ProtectionEquipments:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ProtectionEquipments</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.ConductingEquipment@ProtectionEquipments:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="ProtectionEquipment.html" class="extype" name="ch.ninecode.model.ProtectionEquipment">ProtectionEquipment</a> Protection equipment  used to protect specific conducting equipment.</p>
     </li><li name="ch.ninecode.model.ConductingEquipment#SvStatus" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="SvStatus:String"></a>
       <a id="SvStatus:String"></a>

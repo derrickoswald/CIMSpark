@@ -14,8 +14,10 @@ import ch.ninecode.cim.Relationship
  * @param createdDateTime Date and time this activity record has been created (different from the 'status.dateTime', which is the time of a status change of the associated object, if applicable).
  * @param reason Reason for event resulting in this activity record, typically supplied when user initiated.
  * @param severity Severity level of event resulting in this activity record.
- * @param status Information on consequence of event resulting in this activity record.
- * @param typ Type of event resulting in this activity record.
+ * @param status [[ch.ninecode.model.Status Status]] Information on consequence of event resulting in this activity record.
+ * @param Assets [[ch.ninecode.model.Asset Asset]] All assets for which this activity record has been created.
+ * @param Organisations [[ch.ninecode.model.Organisation Organisation]] <em>undocumented</em>
+ * @param `type` Type of event resulting in this activity record.
  * @group Common
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
@@ -27,7 +29,9 @@ case class ActivityRecord
     reason: String,
     severity: String,
     status: String,
-    typ: String
+    Assets: List[String],
+    Organisations: List[String],
+    `type`: String
 )
 extends
     Element
@@ -35,7 +39,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null, null) }
+    def this () = { this (null, null, null, null, null, List(), List(), null) }
     /**
      * Return the superclass object.
      *
@@ -60,11 +64,14 @@ extends
         implicit val clz: String = ActivityRecord.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ActivityRecord.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ActivityRecord.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ActivityRecord.fields (position), x))
         emitelem (0, createdDateTime)
         emitelem (1, reason)
         emitelem (2, severity)
         emitattr (3, status)
-        emitelem (4, typ)
+        emitattrs (4, Assets)
+        emitattrs (5, Organisations)
+        emitelem (6, `type`)
         s.toString
     }
     override def export: String =
@@ -82,13 +89,17 @@ extends
         "reason",
         "severity",
         "status",
+        "Assets",
+        "Organisations",
         "type"
     )
     val createdDateTime: Fielder = parse_element (element (cls, fields(0)))
     val reason: Fielder = parse_element (element (cls, fields(1)))
     val severity: Fielder = parse_element (element (cls, fields(2)))
     val status: Fielder = parse_attribute (attribute (cls, fields(3)))
-    val typ: Fielder = parse_element (element (cls, fields(4)))
+    val Assets: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val Organisations: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
+    val `type`: Fielder = parse_element (element (cls, fields(6)))
 
     def parse (context: Context): ActivityRecord =
     {
@@ -100,13 +111,17 @@ extends
             mask (reason (), 1),
             mask (severity (), 2),
             mask (status (), 3),
-            mask (typ (), 4)
+            masks (Assets (), 4),
+            masks (Organisations (), 5),
+            mask (`type` (), 6)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
-
+        Relationship ("status", "Status", false),
+        Relationship ("Assets", "Asset", true),
+        Relationship ("Organisations", "Organisation", true)
     )
 }
 
@@ -203,6 +218,7 @@ extends
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param callAhead True if requested to call customer when someone is about to arrive at their premises.
  * @param meetingInterval Date and time reserved for appointment.
+ * @param Persons [[ch.ninecode.model.PersonRole PersonRole]] All persons for this appointment.
  * @param Works [[ch.ninecode.model.Work Work]] All works for this appointment.
  * @group Common
  * @groupname Common Package Common
@@ -213,6 +229,7 @@ case class Appointment
     override val sup: IdentifiedObject,
     callAhead: Boolean,
     meetingInterval: String,
+    Persons: List[String],
     Works: List[String]
 )
 extends
@@ -221,7 +238,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, false, null, List()) }
+    def this () = { this (null, false, null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -249,7 +266,8 @@ extends
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Appointment.fields (position), x))
         emitelem (0, callAhead)
         emitattr (1, meetingInterval)
-        emitattrs (2, Works)
+        emitattrs (2, Persons)
+        emitattrs (3, Works)
         s.toString
     }
     override def export: String =
@@ -265,11 +283,13 @@ extends
     val fields: Array[String] = Array[String] (
         "callAhead",
         "meetingInterval",
+        "Persons",
         "Works"
     )
     val callAhead: Fielder = parse_element (element (cls, fields(0)))
     val meetingInterval: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val Works: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val Persons: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val Works: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
 
     def parse (context: Context): Appointment =
     {
@@ -279,12 +299,14 @@ extends
             IdentifiedObject.parse (context),
             toBoolean (mask (callAhead (), 0)),
             mask (meetingInterval (), 1),
-            masks (Works (), 2)
+            masks (Persons (), 2),
+            masks (Works (), 3)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
+        Relationship ("Persons", "PersonRole", true),
         Relationship ("Works", "Work", true)
     )
 }
@@ -511,8 +533,9 @@ extends
  * Group of people with specific skills, tools, and vehicles.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param status Status of this crew.
+ * @param status [[ch.ninecode.model.Status Status]] Status of this crew.
  * @param CrewType [[ch.ninecode.model.CrewType CrewType]] Type of this crew.
+ * @param WorkTasks [[ch.ninecode.model.WorkTask WorkTask]] All work tasks this crew participates in.
  * @group Common
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
@@ -521,7 +544,8 @@ case class Crew
 (
     override val sup: IdentifiedObject,
     status: String,
-    CrewType: String
+    CrewType: String,
+    WorkTasks: List[String]
 )
 extends
     Element
@@ -529,7 +553,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null) }
+    def this () = { this (null, null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -553,8 +577,10 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Crew.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Crew.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Crew.fields (position), x))
         emitattr (0, status)
         emitattr (1, CrewType)
+        emitattrs (2, WorkTasks)
         s.toString
     }
     override def export: String =
@@ -569,10 +595,12 @@ extends
 {
     val fields: Array[String] = Array[String] (
         "status",
-        "CrewType"
+        "CrewType",
+        "WorkTasks"
     )
     val status: Fielder = parse_attribute (attribute (cls, fields(0)))
     val CrewType: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val WorkTasks: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
 
     def parse (context: Context): Crew =
     {
@@ -581,13 +609,16 @@ extends
         val ret = Crew (
             IdentifiedObject.parse (context),
             mask (status (), 0),
-            mask (CrewType (), 1)
+            mask (CrewType (), 1),
+            masks (WorkTasks (), 2)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("CrewType", "CrewType", false)
+        Relationship ("status", "Status", false),
+        Relationship ("CrewType", "CrewType", false),
+        Relationship ("WorkTasks", "WorkTask", true)
     )
 }
 
@@ -745,17 +776,17 @@ extends
  * @param authorName Name of the author of this document.
  * @param comment Free text comment.
  * @param createdDateTime Date and time that this document was created.
- * @param docStatus Status of this document.
+ * @param docStatus [[ch.ninecode.model.Status Status]] Status of this document.
  *        For status of subject matter this document represents (e.g., Agreement, Work), use 'status' attribute.
- * @param electronicAddress Electronic address.
+ * @param electronicAddress [[ch.ninecode.model.ElectronicAddress ElectronicAddress]] Electronic address.
  * @param lastModifiedDateTime Date and time this document was last modified.
  *        Documents may potentially be modified many times during their lifetime.
  * @param revisionNumber Revision number for this document.
- * @param status Status of subject matter (e.g., Agreement, Work) this document represents.
+ * @param status [[ch.ninecode.model.Status Status]] Status of subject matter (e.g., Agreement, Work) this document represents.
  *        For status of the document itself, use 'docStatus' attribute.
  * @param subject Document subject.
  * @param title Document title.
- * @param typ Utility-specific classification of this document, according to its corporate standards, practices, and existing IT systems (e.g., for management of assets, maintenance, work, outage, customers, etc.).
+ * @param `type` Utility-specific classification of this document, according to its corporate standards, practices, and existing IT systems (e.g., for management of assets, maintenance, work, outage, customers, etc.).
  * @group Common
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
@@ -773,7 +804,7 @@ case class Document
     status: String,
     subject: String,
     title: String,
-    typ: String
+    `type`: String
 )
 extends
     Element
@@ -816,7 +847,7 @@ extends
         emitattr (7, status)
         emitelem (8, subject)
         emitelem (9, title)
-        emitelem (10, typ)
+        emitelem (10, `type`)
         s.toString
     }
     override def export: String =
@@ -852,7 +883,7 @@ extends
     val status: Fielder = parse_attribute (attribute (cls, fields(7)))
     val subject: Fielder = parse_element (element (cls, fields(8)))
     val title: Fielder = parse_element (element (cls, fields(9)))
-    val typ: Fielder = parse_element (element (cls, fields(10)))
+    val `type`: Fielder = parse_element (element (cls, fields(10)))
 
     def parse (context: Context): Document =
     {
@@ -870,13 +901,15 @@ extends
             mask (status (), 7),
             mask (subject (), 8),
             mask (title (), 9),
-            mask (typ (), 10)
+            mask (`type` (), 10)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
-
+        Relationship ("docStatus", "Status", false),
+        Relationship ("electronicAddress", "ElectronicAddress", false),
+        Relationship ("status", "Status", false)
     )
 }
 
@@ -1004,8 +1037,8 @@ extends
  * An object or a condition that is a danger for causing loss or perils to an asset and/or people.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param status Status of this hazard.
- * @param typ Type of this hazard.
+ * @param status [[ch.ninecode.model.Status Status]] Status of this hazard.
+ * @param `type` Type of this hazard.
  * @group Common
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
@@ -1014,7 +1047,7 @@ case class Hazard
 (
     override val sup: IdentifiedObject,
     status: String,
-    typ: String
+    `type`: String
 )
 extends
     Element
@@ -1048,7 +1081,7 @@ extends
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Hazard.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Hazard.fields (position), value)
         emitattr (0, status)
-        emitelem (1, typ)
+        emitelem (1, `type`)
         s.toString
     }
     override def export: String =
@@ -1066,7 +1099,7 @@ extends
         "type"
     )
     val status: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val typ: Fielder = parse_element (element (cls, fields(1)))
+    val `type`: Fielder = parse_element (element (cls, fields(1)))
 
     def parse (context: Context): Hazard =
     {
@@ -1075,13 +1108,13 @@ extends
         val ret = Hazard (
             IdentifiedObject.parse (context),
             mask (status (), 0),
-            mask (typ (), 1)
+            mask (`type` (), 1)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
-
+        Relationship ("status", "Status", false)
     )
 }
 
@@ -1093,17 +1126,21 @@ extends
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param direction (if applicable) Direction that allows field crews to quickly find a given asset.
  *        For a given location, such as a street address, this is the relative direction in which to find the asset. For example, a streetlight may be located at the 'NW' (northwest) corner of the customer's site, or a usage point may be located on the second floor of an apartment building.
- * @param electronicAddress Electronic address.
+ * @param electronicAddress [[ch.ninecode.model.ElectronicAddress ElectronicAddress]] Electronic address.
  * @param geoInfoReference (if applicable) Reference to geographical information source, often external to the utility.
- * @param mainAddress Main address of the location.
- * @param phone1 Phone number.
- * @param phone2 Additional phone number.
- * @param secondaryAddress Secondary address of the location.
+ * @param mainAddress [[ch.ninecode.model.StreetAddress StreetAddress]] Main address of the location.
+ * @param phone1 [[ch.ninecode.model.TelephoneNumber TelephoneNumber]] Phone number.
+ * @param phone2 [[ch.ninecode.model.TelephoneNumber TelephoneNumber]] Additional phone number.
+ * @param secondaryAddress [[ch.ninecode.model.StreetAddress StreetAddress]] Secondary address of the location.
  *        For example, PO Box address may have different ZIP code than that in the 'mainAddress'.
- * @param status Status of this location.
- * @param typ Classification by utility's corporate standards and practices, relative to the location itself (e.g., geographical, functional accounting, etc., not a given property that happens to exist at that location).
+ * @param status [[ch.ninecode.model.Status Status]] Status of this location.
  * @param CoordinateSystem [[ch.ninecode.model.CoordinateSystem CoordinateSystem]] Coordinate system used to describe position points of this location.
+ * @param Crews [[ch.ninecode.model.OldCrew OldCrew]] <em>undocumented</em>
+ * @param Hazards [[ch.ninecode.model.AssetLocationHazard AssetLocationHazard]] All asset hazards at this location.
+ * @param LandProperties [[ch.ninecode.model.LandProperty LandProperty]] <em>undocumented</em>
  * @param Measurements [[ch.ninecode.model.Measurement Measurement]] <em>undocumented</em>
+ * @param Routes [[ch.ninecode.model.Route Route]] <em>undocumented</em>
+ * @param `type` Classification by utility's corporate standards and practices, relative to the location itself (e.g., geographical, functional accounting, etc., not a given property that happens to exist at that location).
  * @group Common
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
@@ -1119,9 +1156,13 @@ case class Location
     phone2: String,
     secondaryAddress: String,
     status: String,
-    typ: String,
     CoordinateSystem: String,
-    Measurements: List[String]
+    Crews: List[String],
+    Hazards: List[String],
+    LandProperties: List[String],
+    Measurements: List[String],
+    Routes: List[String],
+    `type`: String
 )
 extends
     Element
@@ -1129,7 +1170,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null, null, null, null, null, null, null, List()) }
+    def this () = { this (null, null, null, null, null, null, null, null, null, null, List(), List(), List(), List(), List(), null) }
     /**
      * Return the superclass object.
      *
@@ -1163,9 +1204,13 @@ extends
         emitattr (5, phone2)
         emitattr (6, secondaryAddress)
         emitattr (7, status)
-        emitelem (8, typ)
-        emitattr (9, CoordinateSystem)
-        emitattrs (10, Measurements)
+        emitattr (8, CoordinateSystem)
+        emitattrs (9, Crews)
+        emitattrs (10, Hazards)
+        emitattrs (11, LandProperties)
+        emitattrs (12, Measurements)
+        emitattrs (13, Routes)
+        emitelem (14, `type`)
         s.toString
     }
     override def export: String =
@@ -1187,9 +1232,13 @@ extends
         "phone2",
         "secondaryAddress",
         "status",
-        "type",
         "CoordinateSystem",
-        "Measurements"
+        "Crews",
+        "Hazards",
+        "LandProperties",
+        "Measurements",
+        "Routes",
+        "type"
     )
     val direction: Fielder = parse_element (element (cls, fields(0)))
     val electronicAddress: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -1199,9 +1248,13 @@ extends
     val phone2: Fielder = parse_attribute (attribute (cls, fields(5)))
     val secondaryAddress: Fielder = parse_attribute (attribute (cls, fields(6)))
     val status: Fielder = parse_attribute (attribute (cls, fields(7)))
-    val typ: Fielder = parse_element (element (cls, fields(8)))
-    val CoordinateSystem: Fielder = parse_attribute (attribute (cls, fields(9)))
-    val Measurements: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
+    val CoordinateSystem: Fielder = parse_attribute (attribute (cls, fields(8)))
+    val Crews: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
+    val Hazards: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
+    val LandProperties: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
+    val Measurements: FielderMultiple = parse_attributes (attribute (cls, fields(12)))
+    val Routes: FielderMultiple = parse_attributes (attribute (cls, fields(13)))
+    val `type`: Fielder = parse_element (element (cls, fields(14)))
 
     def parse (context: Context): Location =
     {
@@ -1217,16 +1270,30 @@ extends
             mask (phone2 (), 5),
             mask (secondaryAddress (), 6),
             mask (status (), 7),
-            mask (typ (), 8),
-            mask (CoordinateSystem (), 9),
-            masks (Measurements (), 10)
+            mask (CoordinateSystem (), 8),
+            masks (Crews (), 9),
+            masks (Hazards (), 10),
+            masks (LandProperties (), 11),
+            masks (Measurements (), 12),
+            masks (Routes (), 13),
+            mask (`type` (), 14)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
+        Relationship ("electronicAddress", "ElectronicAddress", false),
+        Relationship ("mainAddress", "StreetAddress", false),
+        Relationship ("phone1", "TelephoneNumber", false),
+        Relationship ("phone2", "TelephoneNumber", false),
+        Relationship ("secondaryAddress", "StreetAddress", false),
+        Relationship ("status", "Status", false),
         Relationship ("CoordinateSystem", "CoordinateSystem", false),
-        Relationship ("Measurements", "Measurement", true)
+        Relationship ("Crews", "OldCrew", true),
+        Relationship ("Hazards", "AssetLocationHazard", true),
+        Relationship ("LandProperties", "LandProperty", true),
+        Relationship ("Measurements", "Measurement", true),
+        Relationship ("Routes", "Route", true)
     )
 }
 
@@ -1364,12 +1431,13 @@ extends
  * Organisation that might have roles as utility, contractor, supplier, manufacturer, customer, etc.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param electronicAddress Electronic address.
- * @param phone1 Phone number.
- * @param phone2 Additional phone number.
- * @param postalAddress Postal address, potentially different than 'streetAddress' (e.g., another city).
- * @param streetAddress Street address.
+ * @param electronicAddress [[ch.ninecode.model.ElectronicAddress ElectronicAddress]] Electronic address.
+ * @param phone1 [[ch.ninecode.model.TelephoneNumber TelephoneNumber]] Phone number.
+ * @param phone2 [[ch.ninecode.model.TelephoneNumber TelephoneNumber]] Additional phone number.
+ * @param postalAddress [[ch.ninecode.model.PostalAddress PostalAddress]] Postal address, potentially different than 'streetAddress' (e.g., another city).
+ * @param streetAddress [[ch.ninecode.model.StreetAddress StreetAddress]] Street address.
  * @param ActivityRecords [[ch.ninecode.model.ActivityRecord ActivityRecord]] <em>undocumented</em>
+ * @param Crews [[ch.ninecode.model.OldCrew OldCrew]] <em>undocumented</em>
  * @group Common
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
@@ -1382,7 +1450,8 @@ case class Organisation
     phone2: String,
     postalAddress: String,
     streetAddress: String,
-    ActivityRecords: List[String]
+    ActivityRecords: List[String],
+    Crews: List[String]
 )
 extends
     Element
@@ -1390,7 +1459,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null, null, List()) }
+    def this () = { this (null, null, null, null, null, null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1421,6 +1490,7 @@ extends
         emitattr (3, postalAddress)
         emitattr (4, streetAddress)
         emitattrs (5, ActivityRecords)
+        emitattrs (6, Crews)
         s.toString
     }
     override def export: String =
@@ -1439,7 +1509,8 @@ extends
         "phone2",
         "postalAddress",
         "streetAddress",
-        "ActivityRecords"
+        "ActivityRecords",
+        "Crews"
     )
     val electronicAddress: Fielder = parse_attribute (attribute (cls, fields(0)))
     val phone1: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -1447,6 +1518,7 @@ extends
     val postalAddress: Fielder = parse_attribute (attribute (cls, fields(3)))
     val streetAddress: Fielder = parse_attribute (attribute (cls, fields(4)))
     val ActivityRecords: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
+    val Crews: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
 
     def parse (context: Context): Organisation =
     {
@@ -1459,13 +1531,20 @@ extends
             mask (phone2 (), 2),
             mask (postalAddress (), 3),
             mask (streetAddress (), 4),
-            masks (ActivityRecords (), 5)
+            masks (ActivityRecords (), 5),
+            masks (Crews (), 6)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("ActivityRecords", "ActivityRecord", true)
+        Relationship ("electronicAddress", "ElectronicAddress", false),
+        Relationship ("phone1", "TelephoneNumber", false),
+        Relationship ("phone2", "TelephoneNumber", false),
+        Relationship ("postalAddress", "PostalAddress", false),
+        Relationship ("streetAddress", "StreetAddress", false),
+        Relationship ("ActivityRecords", "ActivityRecord", true),
+        Relationship ("Crews", "OldCrew", true)
     )
 }
 
@@ -1643,12 +1722,12 @@ extends
  * General purpose information for name and other information to contact people.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param electronicAddress Electronic address.
+ * @param electronicAddress [[ch.ninecode.model.ElectronicAddress ElectronicAddress]] Electronic address.
  * @param firstName Person's first name.
- * @param landlinePhone Landline phone number.
+ * @param landlinePhone [[ch.ninecode.model.TelephoneNumber TelephoneNumber]] Landline phone number.
  * @param lastName Person's last (family, sir) name.
  * @param mName Middle name(s) or initial(s).
- * @param mobilePhone Mobile phone number.
+ * @param mobilePhone [[ch.ninecode.model.TelephoneNumber TelephoneNumber]] Mobile phone number.
  * @param prefix A prefix or title for the person's name, such as Miss, Mister, Doctor, etc.
  * @param specialNeed Special service needs for the person (contact) are described; examples include life support, etc.
  * @param suffix A suffix for the person's name, such as II, III, etc.
@@ -1762,7 +1841,9 @@ extends
         ret
     }
     val relations: List[Relationship] = List (
-
+        Relationship ("electronicAddress", "ElectronicAddress", false),
+        Relationship ("landlinePhone", "TelephoneNumber", false),
+        Relationship ("mobilePhone", "TelephoneNumber", false)
     )
 }
 
@@ -1959,8 +2040,8 @@ extends
  * @param sup Reference to the superclass object.
  * @param poBox Post office box.
  * @param postalCode Postal code for the address.
- * @param streetDetail Street detail.
- * @param townDetail Town detail.
+ * @param streetDetail [[ch.ninecode.model.StreetDetail StreetDetail]] Street detail.
+ * @param townDetail [[ch.ninecode.model.TownDetail TownDetail]] Town detail.
  * @group Common
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
@@ -2046,7 +2127,8 @@ extends
         ret
     }
     val relations: List[Relationship] = List (
-
+        Relationship ("streetDetail", "StreetDetail", false),
+        Relationship ("townDetail", "TownDetail", false)
     )
 }
 
@@ -2056,7 +2138,7 @@ extends
  * @param sup Reference to the superclass object.
  * @param justification Justification for 'rank'.
  * @param rank Priority level; usually, lower number means high priority, but the details are provided in 'type'.
- * @param typ Type describing 'rank'; e.g., high, emergency, etc.
+ * @param `type` Type describing 'rank'; e.g., high, emergency, etc.
  * @group Common
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
@@ -2066,7 +2148,7 @@ case class Priority
     override val sup: BasicElement,
     justification: String,
     rank: Int,
-    typ: String
+    `type`: String
 )
 extends
     Element
@@ -2100,7 +2182,7 @@ extends
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Priority.fields (position), value)
         emitelem (0, justification)
         emitelem (1, rank)
-        emitelem (2, typ)
+        emitelem (2, `type`)
         s.toString
     }
     override def export: String =
@@ -2120,7 +2202,7 @@ extends
     )
     val justification: Fielder = parse_element (element (cls, fields(0)))
     val rank: Fielder = parse_element (element (cls, fields(1)))
-    val typ: Fielder = parse_element (element (cls, fields(2)))
+    val `type`: Fielder = parse_element (element (cls, fields(2)))
 
     def parse (context: Context): Priority =
     {
@@ -2130,7 +2212,7 @@ extends
             BasicElement.parse (context),
             mask (justification (), 0),
             toInteger (mask (rank (), 1)),
-            mask (typ (), 2)
+            mask (`type` (), 2)
         )
         ret.bitfields = bitfields
         ret
@@ -2145,10 +2227,10 @@ extends
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param duration Duration of the scheduled event, for example, the time to ramp between values.
- * @param status <em>undocumented</em>
- * @param typ Type of scheduled event.
+ * @param status [[ch.ninecode.model.Status Status]] <em>undocumented</em>
  * @param Assets [[ch.ninecode.model.Asset Asset]] <em>undocumented</em>
  * @param ScheduledEventData [[ch.ninecode.model.ScheduledEventData ScheduledEventData]] Specification for this scheduled event.
+ * @param `type` Type of scheduled event.
  * @group Common
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
@@ -2158,9 +2240,9 @@ case class ScheduledEvent
     override val sup: IdentifiedObject,
     duration: Double,
     status: String,
-    typ: String,
     Assets: List[String],
-    ScheduledEventData: String
+    ScheduledEventData: String,
+    `type`: String
 )
 extends
     Element
@@ -2168,7 +2250,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, null, null, List(), null) }
+    def this () = { this (null, 0.0, null, List(), null, null) }
     /**
      * Return the superclass object.
      *
@@ -2196,9 +2278,9 @@ extends
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ScheduledEvent.fields (position), x))
         emitelem (0, duration)
         emitattr (1, status)
-        emitelem (2, typ)
-        emitattrs (3, Assets)
-        emitattr (4, ScheduledEventData)
+        emitattrs (2, Assets)
+        emitattr (3, ScheduledEventData)
+        emitelem (4, `type`)
         s.toString
     }
     override def export: String =
@@ -2214,15 +2296,15 @@ extends
     val fields: Array[String] = Array[String] (
         "duration",
         "status",
-        "type",
         "Assets",
-        "ScheduledEventData"
+        "ScheduledEventData",
+        "type"
     )
     val duration: Fielder = parse_element (element (cls, fields(0)))
     val status: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val typ: Fielder = parse_element (element (cls, fields(2)))
-    val Assets: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
-    val ScheduledEventData: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val Assets: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val ScheduledEventData: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val `type`: Fielder = parse_element (element (cls, fields(4)))
 
     def parse (context: Context): ScheduledEvent =
     {
@@ -2232,14 +2314,15 @@ extends
             IdentifiedObject.parse (context),
             toDouble (mask (duration (), 0)),
             mask (status (), 1),
-            mask (typ (), 2),
-            masks (Assets (), 3),
-            mask (ScheduledEventData (), 4)
+            masks (Assets (), 2),
+            mask (ScheduledEventData (), 3),
+            mask (`type` (), 4)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
+        Relationship ("status", "Status", false),
         Relationship ("Assets", "Asset", true),
         Relationship ("ScheduledEventData", "ScheduledEventData", false)
     )
@@ -2251,7 +2334,7 @@ extends
  * @param sup Reference to the superclass object.
  * @param estimatedWindow Estimated date and time for activity execution (with earliest possibility of activity initiation and latest possibility of activity completion).
  * @param requestedWindow Requested date and time interval for activity execution.
- * @param status <em>undocumented</em>
+ * @param status [[ch.ninecode.model.Status Status]] <em>undocumented</em>
  * @param InspectionDataSet [[ch.ninecode.model.InspectionDataSet InspectionDataSet]] <em>undocumented</em>
  * @group Common
  * @groupname Common Package Common
@@ -2337,6 +2420,7 @@ extends
         ret
     }
     val relations: List[Relationship] = List (
+        Relationship ("status", "Status", false),
         Relationship ("InspectionDataSet", "InspectionDataSet", false)
     )
 }
@@ -2441,9 +2525,9 @@ extends
  * General purpose street address information.
  *
  * @param sup Reference to the superclass object.
- * @param status Status of this address.
- * @param streetDetail Street detail.
- * @param townDetail Town detail.
+ * @param status [[ch.ninecode.model.Status Status]] Status of this address.
+ * @param streetDetail [[ch.ninecode.model.StreetDetail StreetDetail]] Street detail.
+ * @param townDetail [[ch.ninecode.model.TownDetail TownDetail]] Town detail.
  * @group Common
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
@@ -2523,7 +2607,9 @@ extends
         ret
     }
     val relations: List[Relationship] = List (
-
+        Relationship ("status", "Status", false),
+        Relationship ("streetDetail", "StreetDetail", false),
+        Relationship ("townDetail", "TownDetail", false)
     )
 }
 
@@ -2541,9 +2627,9 @@ extends
  * @param suffix Suffix to the street name.
  *        For example: North, South, East, West.
  * @param suiteNumber Number of the apartment or suite.
- * @param typ Type of street.
- *        Examples include: street, circle, boulevard, avenue, road, drive, etc.
  * @param withinTownLimits True if this street is within the legal geographical boundaries of the specified town (default).
+ * @param `type` Type of street.
+ *        Examples include: street, circle, boulevard, avenue, road, drive, etc.
  * @group Common
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
@@ -2559,8 +2645,8 @@ case class StreetDetail
     prefix: String,
     suffix: String,
     suiteNumber: String,
-    typ: String,
-    withinTownLimits: Boolean
+    withinTownLimits: Boolean,
+    `type`: String
 )
 extends
     Element
@@ -2568,7 +2654,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null, null, null, null, null, null, false) }
+    def this () = { this (null, null, null, null, null, null, null, null, null, false, null) }
     /**
      * Return the superclass object.
      *
@@ -2600,8 +2686,8 @@ extends
         emitelem (5, prefix)
         emitelem (6, suffix)
         emitelem (7, suiteNumber)
-        emitelem (8, typ)
-        emitelem (9, withinTownLimits)
+        emitelem (8, withinTownLimits)
+        emitelem (9, `type`)
         s.toString
     }
     override def export: String =
@@ -2623,8 +2709,8 @@ extends
         "prefix",
         "suffix",
         "suiteNumber",
-        "type",
-        "withinTownLimits"
+        "withinTownLimits",
+        "type"
     )
     val addressGeneral: Fielder = parse_element (element (cls, fields(0)))
     val buildingName: Fielder = parse_element (element (cls, fields(1)))
@@ -2634,8 +2720,8 @@ extends
     val prefix: Fielder = parse_element (element (cls, fields(5)))
     val suffix: Fielder = parse_element (element (cls, fields(6)))
     val suiteNumber: Fielder = parse_element (element (cls, fields(7)))
-    val typ: Fielder = parse_element (element (cls, fields(8)))
-    val withinTownLimits: Fielder = parse_element (element (cls, fields(9)))
+    val withinTownLimits: Fielder = parse_element (element (cls, fields(8)))
+    val `type`: Fielder = parse_element (element (cls, fields(9)))
 
     def parse (context: Context): StreetDetail =
     {
@@ -2651,8 +2737,8 @@ extends
             mask (prefix (), 5),
             mask (suffix (), 6),
             mask (suiteNumber (), 7),
-            mask (typ (), 8),
-            toBoolean (mask (withinTownLimits (), 9))
+            toBoolean (mask (withinTownLimits (), 8)),
+            mask (`type` (), 9)
         )
         ret.bitfields = bitfields
         ret
@@ -2772,7 +2858,7 @@ extends
  *        For calendar-based time point, it is typically manually entered, while for interval-based or sequence-based time point it is derived.
  * @param relativeTimeInterval (if interval-based) A point in time relative to scheduled start time in 'TimeSchedule.scheduleInterval.start'.
  * @param sequenceNumber (if sequence-based) Relative sequence number for this time point.
- * @param status Status of this time point.
+ * @param status [[ch.ninecode.model.Status Status]] Status of this time point.
  * @param window Interval defining the window of time that this time point is valid (for example, seasonal, only on weekends, not on weekends, only 8:00 am to 5:00 pm, etc.).
  * @param TimeSchedule [[ch.ninecode.model.TimeSchedule TimeSchedule]] Time schedule owning this time point.
  * @group Common
@@ -2870,6 +2956,7 @@ extends
         ret
     }
     val relations: List[Relationship] = List (
+        Relationship ("status", "Status", false),
         Relationship ("TimeSchedule", "TimeSchedule", false)
     )
 }
@@ -3091,6 +3178,8 @@ extends
  * @param name Name of an attribute.
  * @param sequenceNumber Sequence number for this attribute in a list of attributes.
  * @param value Value of an attribute, including unit information.
+ * @param ErpInvoiceLineItems [[ch.ninecode.model.ErpInvoiceLineItem ErpInvoiceLineItem]] <em>undocumented</em>
+ * @param ErpLedgerEntries [[ch.ninecode.model.ErpLedgerEntry ErpLedgerEntry]] <em>undocumented</em>
  * @param ProcedureDataSets [[ch.ninecode.model.ProcedureDataSet ProcedureDataSet]] <em>undocumented</em>
  * @param PropertySpecification [[ch.ninecode.model.Specification Specification]] <em>undocumented</em>
  * @param RatingSpecification [[ch.ninecode.model.Specification Specification]] <em>undocumented</em>
@@ -3105,6 +3194,8 @@ case class UserAttribute
     name: String,
     sequenceNumber: Int,
     value: String,
+    ErpInvoiceLineItems: List[String],
+    ErpLedgerEntries: List[String],
     ProcedureDataSets: List[String],
     PropertySpecification: String,
     RatingSpecification: String,
@@ -3116,7 +3207,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, 0, null, List(), null, null, null) }
+    def this () = { this (null, null, 0, null, List(), List(), List(), null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -3145,10 +3236,12 @@ extends
         emitelem (0, name)
         emitelem (1, sequenceNumber)
         emitattr (2, value)
-        emitattrs (3, ProcedureDataSets)
-        emitattr (4, PropertySpecification)
-        emitattr (5, RatingSpecification)
-        emitattr (6, Transaction)
+        emitattrs (3, ErpInvoiceLineItems)
+        emitattrs (4, ErpLedgerEntries)
+        emitattrs (5, ProcedureDataSets)
+        emitattr (6, PropertySpecification)
+        emitattr (7, RatingSpecification)
+        emitattr (8, Transaction)
         s.toString
     }
     override def export: String =
@@ -3165,6 +3258,8 @@ extends
         "name",
         "sequenceNumber",
         "value",
+        "ErpInvoiceLineItems",
+        "ErpLedgerEntries",
         "ProcedureDataSets",
         "PropertySpecification",
         "RatingSpecification",
@@ -3173,10 +3268,12 @@ extends
     val name: Fielder = parse_element (element (cls, fields(0)))
     val sequenceNumber: Fielder = parse_element (element (cls, fields(1)))
     val value: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val ProcedureDataSets: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
-    val PropertySpecification: Fielder = parse_attribute (attribute (cls, fields(4)))
-    val RatingSpecification: Fielder = parse_attribute (attribute (cls, fields(5)))
-    val Transaction: Fielder = parse_attribute (attribute (cls, fields(6)))
+    val ErpInvoiceLineItems: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val ErpLedgerEntries: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val ProcedureDataSets: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
+    val PropertySpecification: Fielder = parse_attribute (attribute (cls, fields(6)))
+    val RatingSpecification: Fielder = parse_attribute (attribute (cls, fields(7)))
+    val Transaction: Fielder = parse_attribute (attribute (cls, fields(8)))
 
     def parse (context: Context): UserAttribute =
     {
@@ -3187,15 +3284,19 @@ extends
             mask (name (), 0),
             toInteger (mask (sequenceNumber (), 1)),
             mask (value (), 2),
-            masks (ProcedureDataSets (), 3),
-            mask (PropertySpecification (), 4),
-            mask (RatingSpecification (), 5),
-            mask (Transaction (), 6)
+            masks (ErpInvoiceLineItems (), 3),
+            masks (ErpLedgerEntries (), 4),
+            masks (ProcedureDataSets (), 5),
+            mask (PropertySpecification (), 6),
+            mask (RatingSpecification (), 7),
+            mask (Transaction (), 8)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
+        Relationship ("ErpInvoiceLineItems", "ErpInvoiceLineItem", true),
+        Relationship ("ErpLedgerEntries", "ErpLedgerEntry", true),
         Relationship ("ProcedureDataSets", "ProcedureDataSet", true),
         Relationship ("PropertySpecification", "Specification", false),
         Relationship ("RatingSpecification", "Specification", false),

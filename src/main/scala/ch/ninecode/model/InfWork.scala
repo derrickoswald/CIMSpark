@@ -128,6 +128,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.WorkDocument WorkDocument]] Reference to the superclass object.
  * @param effectivePeriod Period between the assignment becoming effective and its expiration.
+ * @param Crews [[ch.ninecode.model.OldCrew OldCrew]] All Crews having this Assignment.
  * @group InfWork
  * @groupname InfWork Package InfWork
  * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
@@ -145,7 +146,8 @@ The WorkService package defines Appointment class".
 case class Assignment
 (
     override val sup: WorkDocument,
-    effectivePeriod: String
+    effectivePeriod: String,
+    Crews: List[String]
 )
 extends
     Element
@@ -153,7 +155,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null) }
+    def this () = { this (null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -177,7 +179,9 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Assignment.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Assignment.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Assignment.fields (position), x))
         emitattr (0, effectivePeriod)
+        emitattrs (1, Crews)
         s.toString
     }
     override def export: String =
@@ -191,9 +195,11 @@ extends
     Parseable[Assignment]
 {
     val fields: Array[String] = Array[String] (
-        "effectivePeriod"
+        "effectivePeriod",
+        "Crews"
     )
     val effectivePeriod: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val Crews: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): Assignment =
     {
@@ -201,13 +207,14 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = Assignment (
             WorkDocument.parse (context),
-            mask (effectivePeriod (), 0)
+            mask (effectivePeriod (), 0),
+            masks (Crews (), 1)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
-
+        Relationship ("Crews", "OldCrew", true)
     )
 }
 
@@ -394,6 +401,7 @@ extends
  * @param quantity Quantity of the type asset within the CU.
  * @param status <em>undocumented</em>
  * @param typeAssetCode The code for this type of asset.
+ * @param CompatibleUnits [[ch.ninecode.model.CompatibleUnit CompatibleUnit]] <em>undocumented</em>
  * @param TypeAsset [[ch.ninecode.model.GenericAssetModelOrMaterial GenericAssetModelOrMaterial]] <em>undocumented</em>
  * @group InfWork
  * @groupname InfWork Package InfWork
@@ -415,6 +423,7 @@ case class CUAsset
     quantity: String,
     status: String,
     typeAssetCode: String,
+    CompatibleUnits: List[String],
     TypeAsset: String
 )
 extends
@@ -423,7 +432,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null) }
+    def this () = { this (null, null, null, null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -448,10 +457,12 @@ extends
         implicit val clz: String = CUAsset.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (CUAsset.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (CUAsset.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (CUAsset.fields (position), x))
         emitattr (0, quantity)
         emitattr (1, status)
         emitelem (2, typeAssetCode)
-        emitattr (3, TypeAsset)
+        emitattrs (3, CompatibleUnits)
+        emitattr (4, TypeAsset)
         s.toString
     }
     override def export: String =
@@ -468,12 +479,14 @@ extends
         "quantity",
         "status",
         "typeAssetCode",
+        "CompatibleUnits",
         "TypeAsset"
     )
     val quantity: Fielder = parse_attribute (attribute (cls, fields(0)))
     val status: Fielder = parse_attribute (attribute (cls, fields(1)))
     val typeAssetCode: Fielder = parse_element (element (cls, fields(2)))
-    val TypeAsset: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val CompatibleUnits: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val TypeAsset: Fielder = parse_attribute (attribute (cls, fields(4)))
 
     def parse (context: Context): CUAsset =
     {
@@ -484,12 +497,14 @@ extends
             mask (quantity (), 0),
             mask (status (), 1),
             mask (typeAssetCode (), 2),
-            mask (TypeAsset (), 3)
+            masks (CompatibleUnits (), 3),
+            mask (TypeAsset (), 4)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
+        Relationship ("CompatibleUnits", "CompatibleUnit", true),
         Relationship ("TypeAsset", "GenericAssetModelOrMaterial", false)
     )
 }
@@ -608,6 +623,8 @@ extends
  * @param sup [[ch.ninecode.model.WorkIdentifiedObject WorkIdentifiedObject]] Reference to the superclass object.
  * @param status <em>undocumented</em>
  * @param ChildCUGroups [[ch.ninecode.model.CUGroup CUGroup]] <em>undocumented</em>
+ * @param DesignLocationCUs [[ch.ninecode.model.DesignLocationCU DesignLocationCU]] <em>undocumented</em>
+ * @param ParentCUGroups [[ch.ninecode.model.CUGroup CUGroup]] <em>undocumented</em>
  * @group InfWork
  * @groupname InfWork Package InfWork
  * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
@@ -626,7 +643,9 @@ case class CUGroup
 (
     override val sup: WorkIdentifiedObject,
     status: String,
-    ChildCUGroups: List[String]
+    ChildCUGroups: List[String],
+    DesignLocationCUs: List[String],
+    ParentCUGroups: List[String]
 )
 extends
     Element
@@ -634,7 +653,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, List()) }
+    def this () = { this (null, null, List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -661,6 +680,8 @@ extends
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (CUGroup.fields (position), x))
         emitattr (0, status)
         emitattrs (1, ChildCUGroups)
+        emitattrs (2, DesignLocationCUs)
+        emitattrs (3, ParentCUGroups)
         s.toString
     }
     override def export: String =
@@ -675,10 +696,14 @@ extends
 {
     val fields: Array[String] = Array[String] (
         "status",
-        "ChildCUGroups"
+        "ChildCUGroups",
+        "DesignLocationCUs",
+        "ParentCUGroups"
     )
     val status: Fielder = parse_attribute (attribute (cls, fields(0)))
     val ChildCUGroups: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val DesignLocationCUs: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val ParentCUGroups: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
 
     def parse (context: Context): CUGroup =
     {
@@ -687,13 +712,17 @@ extends
         val ret = CUGroup (
             WorkIdentifiedObject.parse (context),
             mask (status (), 0),
-            masks (ChildCUGroups (), 1)
+            masks (ChildCUGroups (), 1),
+            masks (DesignLocationCUs (), 2),
+            masks (ParentCUGroups (), 3)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("ChildCUGroups", "CUGroup", true)
+        Relationship ("ChildCUGroups", "CUGroup", true),
+        Relationship ("DesignLocationCUs", "DesignLocationCU", true),
+        Relationship ("ParentCUGroups", "CUGroup", true)
     )
 }
 
@@ -930,6 +959,7 @@ extends
  * @param quantity Quantity of the TypeMaterial for this CU, used to determine estimated costs based on a per unit cost or a cost per unit length specified in the TypeMaterial.
  * @param status <em>undocumented</em>
  * @param CompatibleUnits [[ch.ninecode.model.CompatibleUnit CompatibleUnit]] <em>undocumented</em>
+ * @param PropertyUnits [[ch.ninecode.model.PropertyUnit PropertyUnit]] <em>undocumented</em>
  * @param TypeMaterial [[ch.ninecode.model.TypeMaterial TypeMaterial]] <em>undocumented</em>
  * @group InfWork
  * @groupname InfWork Package InfWork
@@ -952,6 +982,7 @@ case class CUMaterialItem
     quantity: String,
     status: String,
     CompatibleUnits: List[String],
+    PropertyUnits: List[String],
     TypeMaterial: String
 )
 extends
@@ -960,7 +991,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, List(), null) }
+    def this () = { this (null, null, null, null, List(), List(), null) }
     /**
      * Return the superclass object.
      *
@@ -990,7 +1021,8 @@ extends
         emitattr (1, quantity)
         emitattr (2, status)
         emitattrs (3, CompatibleUnits)
-        emitattr (4, TypeMaterial)
+        emitattrs (4, PropertyUnits)
+        emitattr (5, TypeMaterial)
         s.toString
     }
     override def export: String =
@@ -1008,13 +1040,15 @@ extends
         "quantity",
         "status",
         "CompatibleUnits",
+        "PropertyUnits",
         "TypeMaterial"
     )
     val corporateCode: Fielder = parse_element (element (cls, fields(0)))
     val quantity: Fielder = parse_attribute (attribute (cls, fields(1)))
     val status: Fielder = parse_attribute (attribute (cls, fields(2)))
     val CompatibleUnits: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
-    val TypeMaterial: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val PropertyUnits: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val TypeMaterial: Fielder = parse_attribute (attribute (cls, fields(5)))
 
     def parse (context: Context): CUMaterialItem =
     {
@@ -1026,13 +1060,15 @@ extends
             mask (quantity (), 1),
             mask (status (), 2),
             masks (CompatibleUnits (), 3),
-            mask (TypeMaterial (), 4)
+            masks (PropertyUnits (), 4),
+            mask (TypeMaterial (), 5)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
         Relationship ("CompatibleUnits", "CompatibleUnit", true),
+        Relationship ("PropertyUnits", "PropertyUnit", true),
         Relationship ("TypeMaterial", "TypeMaterial", false)
     )
 }
@@ -1158,11 +1194,11 @@ extends
  * @param sup [[ch.ninecode.model.WorkIdentifiedObject WorkIdentifiedObject]] Reference to the superclass object.
  * @param performanceFactor Capability performance factor.
  * @param status <em>undocumented</em>
- * @param typ Classification by utility's work management standards and practices.
  * @param validityInterval Date and time interval for which this capability is valid (when it became effective and when it expires).
  * @param Crafts [[ch.ninecode.model.Craft Craft]] <em>undocumented</em>
  * @param Crew [[ch.ninecode.model.OldCrew OldCrew]] <em>undocumented</em>
  * @param WorkTasks [[ch.ninecode.model.OldWorkTask OldWorkTask]] <em>undocumented</em>
+ * @param `type` Classification by utility's work management standards and practices.
  * @group InfWork
  * @groupname InfWork Package InfWork
  * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
@@ -1182,11 +1218,11 @@ case class Capability
     override val sup: WorkIdentifiedObject,
     performanceFactor: String,
     status: String,
-    typ: String,
     validityInterval: String,
     Crafts: List[String],
     Crew: String,
-    WorkTasks: List[String]
+    WorkTasks: List[String],
+    `type`: String
 )
 extends
     Element
@@ -1194,7 +1230,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null, List(), null, List()) }
+    def this () = { this (null, null, null, null, List(), null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -1222,11 +1258,11 @@ extends
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Capability.fields (position), x))
         emitelem (0, performanceFactor)
         emitattr (1, status)
-        emitelem (2, typ)
-        emitattr (3, validityInterval)
-        emitattrs (4, Crafts)
-        emitattr (5, Crew)
-        emitattrs (6, WorkTasks)
+        emitattr (2, validityInterval)
+        emitattrs (3, Crafts)
+        emitattr (4, Crew)
+        emitattrs (5, WorkTasks)
+        emitelem (6, `type`)
         s.toString
     }
     override def export: String =
@@ -1242,19 +1278,19 @@ extends
     val fields: Array[String] = Array[String] (
         "performanceFactor",
         "status",
-        "type",
         "validityInterval",
         "Crafts",
         "Crew",
-        "WorkTasks"
+        "WorkTasks",
+        "type"
     )
     val performanceFactor: Fielder = parse_element (element (cls, fields(0)))
     val status: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val typ: Fielder = parse_element (element (cls, fields(2)))
-    val validityInterval: Fielder = parse_attribute (attribute (cls, fields(3)))
-    val Crafts: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
-    val Crew: Fielder = parse_attribute (attribute (cls, fields(5)))
-    val WorkTasks: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
+    val validityInterval: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val Crafts: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val Crew: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val WorkTasks: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
+    val `type`: Fielder = parse_element (element (cls, fields(6)))
 
     def parse (context: Context): Capability =
     {
@@ -1264,11 +1300,11 @@ extends
             WorkIdentifiedObject.parse (context),
             mask (performanceFactor (), 0),
             mask (status (), 1),
-            mask (typ (), 2),
-            mask (validityInterval (), 3),
-            masks (Crafts (), 4),
-            mask (Crew (), 5),
-            masks (WorkTasks (), 6)
+            mask (validityInterval (), 2),
+            masks (Crafts (), 3),
+            mask (Crew (), 4),
+            masks (WorkTasks (), 5),
+            mask (`type` (), 6)
         )
         ret.bitfields = bitfields
         ret
@@ -1288,7 +1324,11 @@ extends
  * @param quantity The quantity, unit of measure, and multiplier at the CU level that applies to the materials.
  * @param CUAllowableAction [[ch.ninecode.model.CUAllowableAction CUAllowableAction]] <em>undocumented</em>
  * @param CUAssets [[ch.ninecode.model.CUAsset CUAsset]] <em>undocumented</em>
+ * @param CUContractorItems [[ch.ninecode.model.CUContractorItem CUContractorItem]] <em>undocumented</em>
  * @param CUGroup [[ch.ninecode.model.CUGroup CUGroup]] <em>undocumented</em>
+ * @param CULaborItems [[ch.ninecode.model.CULaborItem CULaborItem]] <em>undocumented</em>
+ * @param CUMaterialItems [[ch.ninecode.model.CUMaterialItem CUMaterialItem]] <em>undocumented</em>
+ * @param CUWorkEquipmentItems [[ch.ninecode.model.CUWorkEquipmentItem CUWorkEquipmentItem]] <em>undocumented</em>
  * @param CostType [[ch.ninecode.model.CostType CostType]] <em>undocumented</em>
  * @param DesignLocationCUs [[ch.ninecode.model.DesignLocationCU DesignLocationCU]] <em>undocumented</em>
  * @param Procedures [[ch.ninecode.model.Procedure Procedure]] <em>undocumented</em>
@@ -1314,7 +1354,11 @@ case class CompatibleUnit
     quantity: String,
     CUAllowableAction: String,
     CUAssets: List[String],
+    CUContractorItems: List[String],
     CUGroup: String,
+    CULaborItems: List[String],
+    CUMaterialItems: List[String],
+    CUWorkEquipmentItems: List[String],
     CostType: String,
     DesignLocationCUs: List[String],
     Procedures: List[String],
@@ -1326,7 +1370,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, null, null, List(), null, null, List(), List(), null) }
+    def this () = { this (null, 0.0, null, null, List(), List(), null, List(), List(), List(), null, List(), List(), null) }
     /**
      * Return the superclass object.
      *
@@ -1356,11 +1400,15 @@ extends
         emitelem (1, quantity)
         emitattr (2, CUAllowableAction)
         emitattrs (3, CUAssets)
-        emitattr (4, CUGroup)
-        emitattr (5, CostType)
-        emitattrs (6, DesignLocationCUs)
-        emitattrs (7, Procedures)
-        emitattr (8, PropertyUnit)
+        emitattrs (4, CUContractorItems)
+        emitattr (5, CUGroup)
+        emitattrs (6, CULaborItems)
+        emitattrs (7, CUMaterialItems)
+        emitattrs (8, CUWorkEquipmentItems)
+        emitattr (9, CostType)
+        emitattrs (10, DesignLocationCUs)
+        emitattrs (11, Procedures)
+        emitattr (12, PropertyUnit)
         s.toString
     }
     override def export: String =
@@ -1378,7 +1426,11 @@ extends
         "quantity",
         "CUAllowableAction",
         "CUAssets",
+        "CUContractorItems",
         "CUGroup",
+        "CULaborItems",
+        "CUMaterialItems",
+        "CUWorkEquipmentItems",
         "CostType",
         "DesignLocationCUs",
         "Procedures",
@@ -1388,11 +1440,15 @@ extends
     val quantity: Fielder = parse_element (element (cls, fields(1)))
     val CUAllowableAction: Fielder = parse_attribute (attribute (cls, fields(2)))
     val CUAssets: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
-    val CUGroup: Fielder = parse_attribute (attribute (cls, fields(4)))
-    val CostType: Fielder = parse_attribute (attribute (cls, fields(5)))
-    val DesignLocationCUs: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
-    val Procedures: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
-    val PropertyUnit: Fielder = parse_attribute (attribute (cls, fields(8)))
+    val CUContractorItems: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val CUGroup: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val CULaborItems: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
+    val CUMaterialItems: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
+    val CUWorkEquipmentItems: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
+    val CostType: Fielder = parse_attribute (attribute (cls, fields(9)))
+    val DesignLocationCUs: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
+    val Procedures: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
+    val PropertyUnit: Fielder = parse_attribute (attribute (cls, fields(12)))
 
     def parse (context: Context): CompatibleUnit =
     {
@@ -1404,11 +1460,15 @@ extends
             mask (quantity (), 1),
             mask (CUAllowableAction (), 2),
             masks (CUAssets (), 3),
-            mask (CUGroup (), 4),
-            mask (CostType (), 5),
-            masks (DesignLocationCUs (), 6),
-            masks (Procedures (), 7),
-            mask (PropertyUnit (), 8)
+            masks (CUContractorItems (), 4),
+            mask (CUGroup (), 5),
+            masks (CULaborItems (), 6),
+            masks (CUMaterialItems (), 7),
+            masks (CUWorkEquipmentItems (), 8),
+            mask (CostType (), 9),
+            masks (DesignLocationCUs (), 10),
+            masks (Procedures (), 11),
+            mask (PropertyUnit (), 12)
         )
         ret.bitfields = bitfields
         ret
@@ -1416,7 +1476,11 @@ extends
     val relations: List[Relationship] = List (
         Relationship ("CUAllowableAction", "CUAllowableAction", false),
         Relationship ("CUAssets", "CUAsset", true),
+        Relationship ("CUContractorItems", "CUContractorItem", true),
         Relationship ("CUGroup", "CUGroup", false),
+        Relationship ("CULaborItems", "CULaborItem", true),
+        Relationship ("CUMaterialItems", "CUMaterialItem", true),
+        Relationship ("CUWorkEquipmentItems", "CUWorkEquipmentItem", true),
         Relationship ("CostType", "CostType", false),
         Relationship ("DesignLocationCUs", "DesignLocationCU", true),
         Relationship ("Procedures", "Procedure", true),
@@ -1431,6 +1495,9 @@ extends
  * @param cfValue The actual value of the condition factor, such as labor flat fee or percentage.
  * @param kind Kind of this condition factor.
  * @param status <em>undocumented</em>
+ * @param DesignLocationCUs [[ch.ninecode.model.DesignLocationCU DesignLocationCU]] <em>undocumented</em>
+ * @param DesignLocations [[ch.ninecode.model.DesignLocation DesignLocation]] <em>undocumented</em>
+ * @param Designs [[ch.ninecode.model.Design Design]] <em>undocumented</em>
  * @group InfWork
  * @groupname InfWork Package InfWork
  * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
@@ -1450,7 +1517,10 @@ case class ConditionFactor
     override val sup: WorkIdentifiedObject,
     cfValue: String,
     kind: String,
-    status: String
+    status: String,
+    DesignLocationCUs: List[String],
+    DesignLocations: List[String],
+    Designs: List[String]
 )
 extends
     Element
@@ -1458,7 +1528,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null) }
+    def this () = { this (null, null, null, null, List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1483,9 +1553,13 @@ extends
         implicit val clz: String = ConditionFactor.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ConditionFactor.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ConditionFactor.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ConditionFactor.fields (position), x))
         emitelem (0, cfValue)
         emitattr (1, kind)
         emitattr (2, status)
+        emitattrs (3, DesignLocationCUs)
+        emitattrs (4, DesignLocations)
+        emitattrs (5, Designs)
         s.toString
     }
     override def export: String =
@@ -1501,11 +1575,17 @@ extends
     val fields: Array[String] = Array[String] (
         "cfValue",
         "kind",
-        "status"
+        "status",
+        "DesignLocationCUs",
+        "DesignLocations",
+        "Designs"
     )
     val cfValue: Fielder = parse_element (element (cls, fields(0)))
     val kind: Fielder = parse_attribute (attribute (cls, fields(1)))
     val status: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val DesignLocationCUs: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val DesignLocations: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val Designs: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
 
     def parse (context: Context): ConditionFactor =
     {
@@ -1515,13 +1595,18 @@ extends
             WorkIdentifiedObject.parse (context),
             mask (cfValue (), 0),
             mask (kind (), 1),
-            mask (status (), 2)
+            mask (status (), 2),
+            masks (DesignLocationCUs (), 3),
+            masks (DesignLocations (), 4),
+            masks (Designs (), 5)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
-
+        Relationship ("DesignLocationCUs", "DesignLocationCU", true),
+        Relationship ("DesignLocations", "DesignLocation", true),
+        Relationship ("Designs", "Design", true)
     )
 }
 
@@ -1792,6 +1877,8 @@ extends
  * @param kind Kind of this design.
  * @param price Price to customer for implementing design.
  * @param ConditionFactors [[ch.ninecode.model.ConditionFactor ConditionFactor]] <em>undocumented</em>
+ * @param DesignLocations [[ch.ninecode.model.DesignLocation DesignLocation]] <em>undocumented</em>
+ * @param DesignLocationsCUs [[ch.ninecode.model.DesignLocationCU DesignLocationCU]] <em>undocumented</em>
  * @param ErpQuoteLineItem [[ch.ninecode.model.ErpQuoteLineItem ErpQuoteLineItem]] <em>undocumented</em>
  * @param Work [[ch.ninecode.model.Work Work]] <em>undocumented</em>
  * @group InfWork
@@ -1815,6 +1902,8 @@ case class Design
     kind: String,
     price: Double,
     ConditionFactors: List[String],
+    DesignLocations: List[String],
+    DesignLocationsCUs: List[String],
     ErpQuoteLineItem: String,
     Work: String
 )
@@ -1824,7 +1913,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, null, 0.0, List(), null, null) }
+    def this () = { this (null, 0.0, null, 0.0, List(), List(), List(), null, null) }
     /**
      * Return the superclass object.
      *
@@ -1854,8 +1943,10 @@ extends
         emitattr (1, kind)
         emitelem (2, price)
         emitattrs (3, ConditionFactors)
-        emitattr (4, ErpQuoteLineItem)
-        emitattr (5, Work)
+        emitattrs (4, DesignLocations)
+        emitattrs (5, DesignLocationsCUs)
+        emitattr (6, ErpQuoteLineItem)
+        emitattr (7, Work)
         s.toString
     }
     override def export: String =
@@ -1873,6 +1964,8 @@ extends
         "kind",
         "price",
         "ConditionFactors",
+        "DesignLocations",
+        "DesignLocationsCUs",
         "ErpQuoteLineItem",
         "Work"
     )
@@ -1880,8 +1973,10 @@ extends
     val kind: Fielder = parse_attribute (attribute (cls, fields(1)))
     val price: Fielder = parse_element (element (cls, fields(2)))
     val ConditionFactors: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
-    val ErpQuoteLineItem: Fielder = parse_attribute (attribute (cls, fields(4)))
-    val Work: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val DesignLocations: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val DesignLocationsCUs: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
+    val ErpQuoteLineItem: Fielder = parse_attribute (attribute (cls, fields(6)))
+    val Work: Fielder = parse_attribute (attribute (cls, fields(7)))
 
     def parse (context: Context): Design =
     {
@@ -1893,14 +1988,18 @@ extends
             mask (kind (), 1),
             toDouble (mask (price (), 2)),
             masks (ConditionFactors (), 3),
-            mask (ErpQuoteLineItem (), 4),
-            mask (Work (), 5)
+            masks (DesignLocations (), 4),
+            masks (DesignLocationsCUs (), 5),
+            mask (ErpQuoteLineItem (), 6),
+            mask (Work (), 7)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
         Relationship ("ConditionFactors", "ConditionFactor", true),
+        Relationship ("DesignLocations", "DesignLocation", true),
+        Relationship ("DesignLocationsCUs", "DesignLocationCU", true),
         Relationship ("ErpQuoteLineItem", "ErpQuoteLineItem", false),
         Relationship ("Work", "Work", false)
     )
@@ -1915,6 +2014,8 @@ extends
  * @param spanLength The legth of the span from the previous pole to this pole.
  * @param status <em>undocumented</em>
  * @param ConditionFactors [[ch.ninecode.model.ConditionFactor ConditionFactor]] <em>undocumented</em>
+ * @param Designs [[ch.ninecode.model.Design Design]] <em>undocumented</em>
+ * @param WorkLocations [[ch.ninecode.model.WorkLocation WorkLocation]] <em>undocumented</em>
  * @group InfWork
  * @groupname InfWork Package InfWork
  * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
@@ -1934,7 +2035,9 @@ case class DesignLocation
     override val sup: WorkIdentifiedObject,
     spanLength: Double,
     status: String,
-    ConditionFactors: List[String]
+    ConditionFactors: List[String],
+    Designs: List[String],
+    WorkLocations: List[String]
 )
 extends
     Element
@@ -1942,7 +2045,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, null, List()) }
+    def this () = { this (null, 0.0, null, List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1971,6 +2074,8 @@ extends
         emitelem (0, spanLength)
         emitattr (1, status)
         emitattrs (2, ConditionFactors)
+        emitattrs (3, Designs)
+        emitattrs (4, WorkLocations)
         s.toString
     }
     override def export: String =
@@ -1986,11 +2091,15 @@ extends
     val fields: Array[String] = Array[String] (
         "spanLength",
         "status",
-        "ConditionFactors"
+        "ConditionFactors",
+        "Designs",
+        "WorkLocations"
     )
     val spanLength: Fielder = parse_element (element (cls, fields(0)))
     val status: Fielder = parse_attribute (attribute (cls, fields(1)))
     val ConditionFactors: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val Designs: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val WorkLocations: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
 
     def parse (context: Context): DesignLocation =
     {
@@ -2000,13 +2109,17 @@ extends
             WorkIdentifiedObject.parse (context),
             toDouble (mask (spanLength (), 0)),
             mask (status (), 1),
-            masks (ConditionFactors (), 2)
+            masks (ConditionFactors (), 2),
+            masks (Designs (), 3),
+            masks (WorkLocations (), 4)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("ConditionFactors", "ConditionFactor", true)
+        Relationship ("ConditionFactors", "ConditionFactor", true),
+        Relationship ("Designs", "Design", true),
+        Relationship ("WorkLocations", "WorkLocation", true)
     )
 }
 
@@ -2023,6 +2136,7 @@ extends
  * @param status <em>undocumented</em>
  * @param toBeEnergised True if associated electrical equipment is intended to be energized while work is being performed.
  * @param CUGroups [[ch.ninecode.model.CUGroup CUGroup]] <em>undocumented</em>
+ * @param CompatibleUnits [[ch.ninecode.model.CompatibleUnit CompatibleUnit]] <em>undocumented</em>
  * @param ConditionFactors [[ch.ninecode.model.ConditionFactor ConditionFactor]] <em>undocumented</em>
  * @param DesignLocation [[ch.ninecode.model.DesignLocation DesignLocation]] <em>undocumented</em>
  * @param Designs [[ch.ninecode.model.Design Design]] <em>undocumented</em>
@@ -2052,6 +2166,7 @@ case class DesignLocationCU
     status: String,
     toBeEnergised: Boolean,
     CUGroups: List[String],
+    CompatibleUnits: List[String],
     ConditionFactors: List[String],
     DesignLocation: String,
     Designs: List[String],
@@ -2063,7 +2178,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null, null, null, false, List(), List(), null, List(), List()) }
+    def this () = { this (null, null, null, null, null, null, null, false, List(), List(), List(), null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -2097,10 +2212,11 @@ extends
         emitattr (5, status)
         emitelem (6, toBeEnergised)
         emitattrs (7, CUGroups)
-        emitattrs (8, ConditionFactors)
-        emitattr (9, DesignLocation)
-        emitattrs (10, Designs)
-        emitattrs (11, WorkTasks)
+        emitattrs (8, CompatibleUnits)
+        emitattrs (9, ConditionFactors)
+        emitattr (10, DesignLocation)
+        emitattrs (11, Designs)
+        emitattrs (12, WorkTasks)
         s.toString
     }
     override def export: String =
@@ -2122,6 +2238,7 @@ extends
         "status",
         "toBeEnergised",
         "CUGroups",
+        "CompatibleUnits",
         "ConditionFactors",
         "DesignLocation",
         "Designs",
@@ -2135,10 +2252,11 @@ extends
     val status: Fielder = parse_attribute (attribute (cls, fields(5)))
     val toBeEnergised: Fielder = parse_element (element (cls, fields(6)))
     val CUGroups: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
-    val ConditionFactors: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
-    val DesignLocation: Fielder = parse_attribute (attribute (cls, fields(9)))
-    val Designs: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
-    val WorkTasks: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
+    val CompatibleUnits: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
+    val ConditionFactors: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
+    val DesignLocation: Fielder = parse_attribute (attribute (cls, fields(10)))
+    val Designs: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
+    val WorkTasks: FielderMultiple = parse_attributes (attribute (cls, fields(12)))
 
     def parse (context: Context): DesignLocationCU =
     {
@@ -2154,16 +2272,18 @@ extends
             mask (status (), 5),
             toBoolean (mask (toBeEnergised (), 6)),
             masks (CUGroups (), 7),
-            masks (ConditionFactors (), 8),
-            mask (DesignLocation (), 9),
-            masks (Designs (), 10),
-            masks (WorkTasks (), 11)
+            masks (CompatibleUnits (), 8),
+            masks (ConditionFactors (), 9),
+            mask (DesignLocation (), 10),
+            masks (Designs (), 11),
+            masks (WorkTasks (), 12)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
         Relationship ("CUGroups", "CUGroup", true),
+        Relationship ("CompatibleUnits", "CompatibleUnit", true),
         Relationship ("ConditionFactors", "ConditionFactor", true),
         Relationship ("DesignLocation", "DesignLocation", false),
         Relationship ("Designs", "Design", true),
@@ -2308,6 +2428,7 @@ extends
  * @param laborDuration Time required to perform work.
  * @param laborRate The labor rate applied for work.
  * @param status <em>undocumented</em>
+ * @param ErpPersons [[ch.ninecode.model.OldPerson OldPerson]] <em>undocumented</em>
  * @param WorkCostDetail [[ch.ninecode.model.WorkCostDetail WorkCostDetail]] <em>undocumented</em>
  * @param WorkTask [[ch.ninecode.model.OldWorkTask OldWorkTask]] <em>undocumented</em>
  * @group InfWork
@@ -2332,6 +2453,7 @@ case class LaborItem
     laborDuration: Double,
     laborRate: Double,
     status: String,
+    ErpPersons: List[String],
     WorkCostDetail: String,
     WorkTask: String
 )
@@ -2341,7 +2463,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, 0.0, 0.0, 0.0, null, null, null) }
+    def this () = { this (null, null, 0.0, 0.0, 0.0, null, List(), null, null) }
     /**
      * Return the superclass object.
      *
@@ -2366,13 +2488,15 @@ extends
         implicit val clz: String = LaborItem.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (LaborItem.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (LaborItem.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (LaborItem.fields (position), x))
         emitelem (0, activityCode)
         emitelem (1, cost)
         emitelem (2, laborDuration)
         emitelem (3, laborRate)
         emitattr (4, status)
-        emitattr (5, WorkCostDetail)
-        emitattr (6, WorkTask)
+        emitattrs (5, ErpPersons)
+        emitattr (6, WorkCostDetail)
+        emitattr (7, WorkTask)
         s.toString
     }
     override def export: String =
@@ -2391,6 +2515,7 @@ extends
         "laborDuration",
         "laborRate",
         "status",
+        "ErpPersons",
         "WorkCostDetail",
         "WorkTask"
     )
@@ -2399,8 +2524,9 @@ extends
     val laborDuration: Fielder = parse_element (element (cls, fields(2)))
     val laborRate: Fielder = parse_element (element (cls, fields(3)))
     val status: Fielder = parse_attribute (attribute (cls, fields(4)))
-    val WorkCostDetail: Fielder = parse_attribute (attribute (cls, fields(5)))
-    val WorkTask: Fielder = parse_attribute (attribute (cls, fields(6)))
+    val ErpPersons: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
+    val WorkCostDetail: Fielder = parse_attribute (attribute (cls, fields(6)))
+    val WorkTask: Fielder = parse_attribute (attribute (cls, fields(7)))
 
     def parse (context: Context): LaborItem =
     {
@@ -2413,13 +2539,15 @@ extends
             toDouble (mask (laborDuration (), 2)),
             toDouble (mask (laborRate (), 3)),
             mask (status (), 4),
-            mask (WorkCostDetail (), 5),
-            mask (WorkTask (), 6)
+            masks (ErpPersons (), 5),
+            mask (WorkCostDetail (), 6),
+            mask (WorkTask (), 7)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
+        Relationship ("ErpPersons", "OldPerson", true),
         Relationship ("WorkCostDetail", "WorkCostDetail", false),
         Relationship ("WorkTask", "OldWorkTask", false)
     )
@@ -2658,7 +2786,9 @@ extends
  * A set of tasks is required to implement a design.
  *
  * @param sup [[ch.ninecode.model.WorkTask WorkTask]] Reference to the superclass object.
+ * @param Capabilities [[ch.ninecode.model.Capability Capability]] <em>undocumented</em>
  * @param Design [[ch.ninecode.model.Design Design]] <em>undocumented</em>
+ * @param DesignLocationCUs [[ch.ninecode.model.DesignLocationCU DesignLocationCU]] <em>undocumented</em>
  * @param OverheadCost [[ch.ninecode.model.OverheadCost OverheadCost]] <em>undocumented</em>
  * @param QualificationRequirements [[ch.ninecode.model.QualificationRequirement QualificationRequirement]] <em>undocumented</em>
  * @param WorkFlowStep [[ch.ninecode.model.WorkFlowStep WorkFlowStep]] <em>undocumented</em>
@@ -2679,7 +2809,9 @@ The WorkService package defines Appointment class".
 case class OldWorkTask
 (
     override val sup: WorkTask,
+    Capabilities: List[String],
     Design: String,
+    DesignLocationCUs: List[String],
     OverheadCost: String,
     QualificationRequirements: List[String],
     WorkFlowStep: String
@@ -2690,7 +2822,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, List(), null) }
+    def this () = { this (null, List(), null, List(), null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -2715,10 +2847,12 @@ extends
         implicit val clz: String = OldWorkTask.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (OldWorkTask.fields (position), value)
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (OldWorkTask.fields (position), x))
-        emitattr (0, Design)
-        emitattr (1, OverheadCost)
-        emitattrs (2, QualificationRequirements)
-        emitattr (3, WorkFlowStep)
+        emitattrs (0, Capabilities)
+        emitattr (1, Design)
+        emitattrs (2, DesignLocationCUs)
+        emitattr (3, OverheadCost)
+        emitattrs (4, QualificationRequirements)
+        emitattr (5, WorkFlowStep)
         s.toString
     }
     override def export: String =
@@ -2732,15 +2866,19 @@ extends
     Parseable[OldWorkTask]
 {
     val fields: Array[String] = Array[String] (
+        "Capabilities",
         "Design",
+        "DesignLocationCUs",
         "OverheadCost",
         "QualificationRequirements",
         "WorkFlowStep"
     )
-    val Design: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val OverheadCost: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val QualificationRequirements: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
-    val WorkFlowStep: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val Capabilities: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val Design: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val DesignLocationCUs: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val OverheadCost: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val QualificationRequirements: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val WorkFlowStep: Fielder = parse_attribute (attribute (cls, fields(5)))
 
     def parse (context: Context): OldWorkTask =
     {
@@ -2748,16 +2886,20 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = OldWorkTask (
             WorkTask.parse (context),
-            mask (Design (), 0),
-            mask (OverheadCost (), 1),
-            masks (QualificationRequirements (), 2),
-            mask (WorkFlowStep (), 3)
+            masks (Capabilities (), 0),
+            mask (Design (), 1),
+            masks (DesignLocationCUs (), 2),
+            mask (OverheadCost (), 3),
+            masks (QualificationRequirements (), 4),
+            mask (WorkFlowStep (), 5)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
+        Relationship ("Capabilities", "Capability", true),
         Relationship ("Design", "Design", false),
+        Relationship ("DesignLocationCUs", "DesignLocationCU", true),
         Relationship ("OverheadCost", "OverheadCost", false),
         Relationship ("QualificationRequirements", "QualificationRequirement", true),
         Relationship ("WorkFlowStep", "WorkFlowStep", false)
@@ -3086,6 +3228,7 @@ extends
  *        For example, in the USA, this would be a FERC account.
  * @param status <em>undocumented</em>
  * @param CUMaterialItems [[ch.ninecode.model.CUMaterialItem CUMaterialItem]] <em>undocumented</em>
+ * @param WorkCostDetails [[ch.ninecode.model.WorkCostDetail WorkCostDetail]] <em>undocumented</em>
  * @group InfWork
  * @groupname InfWork Package InfWork
  * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
@@ -3107,7 +3250,8 @@ case class PropertyUnit
     activityCode: String,
     propertyAccount: String,
     status: String,
-    CUMaterialItems: List[String]
+    CUMaterialItems: List[String],
+    WorkCostDetails: List[String]
 )
 extends
     Element
@@ -3115,7 +3259,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null, List()) }
+    def this () = { this (null, null, null, null, null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -3146,6 +3290,7 @@ extends
         emitelem (2, propertyAccount)
         emitattr (3, status)
         emitattrs (4, CUMaterialItems)
+        emitattrs (5, WorkCostDetails)
         s.toString
     }
     override def export: String =
@@ -3163,13 +3308,15 @@ extends
         "activityCode",
         "propertyAccount",
         "status",
-        "CUMaterialItems"
+        "CUMaterialItems",
+        "WorkCostDetails"
     )
     val accountingUsage: Fielder = parse_element (element (cls, fields(0)))
     val activityCode: Fielder = parse_attribute (attribute (cls, fields(1)))
     val propertyAccount: Fielder = parse_element (element (cls, fields(2)))
     val status: Fielder = parse_attribute (attribute (cls, fields(3)))
     val CUMaterialItems: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val WorkCostDetails: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
 
     def parse (context: Context): PropertyUnit =
     {
@@ -3181,13 +3328,15 @@ extends
             mask (activityCode (), 1),
             mask (propertyAccount (), 2),
             mask (status (), 3),
-            masks (CUMaterialItems (), 4)
+            masks (CUMaterialItems (), 4),
+            masks (WorkCostDetails (), 5)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("CUMaterialItems", "CUMaterialItem", true)
+        Relationship ("CUMaterialItems", "CUMaterialItem", true),
+        Relationship ("WorkCostDetails", "WorkCostDetail", true)
     )
 }
 
@@ -3196,7 +3345,10 @@ extends
  *
  * @param sup [[ch.ninecode.model.WorkIdentifiedObject WorkIdentifiedObject]] Reference to the superclass object.
  * @param qualificationID Qualification identifier.
+ * @param CULaborItems [[ch.ninecode.model.CULaborItem CULaborItem]] <em>undocumented</em>
+ * @param Skills [[ch.ninecode.model.Skill Skill]] <em>undocumented</em>
  * @param Specifications [[ch.ninecode.model.Specification Specification]] <em>undocumented</em>
+ * @param WorkTasks [[ch.ninecode.model.OldWorkTask OldWorkTask]] <em>undocumented</em>
  * @group InfWork
  * @groupname InfWork Package InfWork
  * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
@@ -3215,7 +3367,10 @@ case class QualificationRequirement
 (
     override val sup: WorkIdentifiedObject,
     qualificationID: String,
-    Specifications: List[String]
+    CULaborItems: List[String],
+    Skills: List[String],
+    Specifications: List[String],
+    WorkTasks: List[String]
 )
 extends
     Element
@@ -3223,7 +3378,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, List()) }
+    def this () = { this (null, null, List(), List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -3249,7 +3404,10 @@ extends
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (QualificationRequirement.fields (position), value)
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (QualificationRequirement.fields (position), x))
         emitelem (0, qualificationID)
-        emitattrs (1, Specifications)
+        emitattrs (1, CULaborItems)
+        emitattrs (2, Skills)
+        emitattrs (3, Specifications)
+        emitattrs (4, WorkTasks)
         s.toString
     }
     override def export: String =
@@ -3264,10 +3422,16 @@ extends
 {
     val fields: Array[String] = Array[String] (
         "qualificationID",
-        "Specifications"
+        "CULaborItems",
+        "Skills",
+        "Specifications",
+        "WorkTasks"
     )
     val qualificationID: Fielder = parse_element (element (cls, fields(0)))
-    val Specifications: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val CULaborItems: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val Skills: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val Specifications: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val WorkTasks: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
 
     def parse (context: Context): QualificationRequirement =
     {
@@ -3276,13 +3440,19 @@ extends
         val ret = QualificationRequirement (
             WorkIdentifiedObject.parse (context),
             mask (qualificationID (), 0),
-            masks (Specifications (), 1)
+            masks (CULaborItems (), 1),
+            masks (Skills (), 2),
+            masks (Specifications (), 3),
+            masks (WorkTasks (), 4)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("Specifications", "Specification", true)
+        Relationship ("CULaborItems", "CULaborItem", true),
+        Relationship ("Skills", "Skill", true),
+        Relationship ("Specifications", "Specification", true),
+        Relationship ("WorkTasks", "OldWorkTask", true)
     )
 }
 
@@ -3384,6 +3554,7 @@ extends
  * @param cycleCount Number of cycles for a temporary shift.
  * @param status <em>undocumented</em>
  * @param validityInterval Date and time interval for which this shift pattern is valid (when it became effective and when it expires).
+ * @param Crews [[ch.ninecode.model.OldCrew OldCrew]] <em>undocumented</em>
  * @group InfWork
  * @groupname InfWork Package InfWork
  * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
@@ -3404,7 +3575,8 @@ case class ShiftPattern
     assignmentType: String,
     cycleCount: Int,
     status: String,
-    validityInterval: String
+    validityInterval: String,
+    Crews: List[String]
 )
 extends
     Element
@@ -3412,7 +3584,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, 0, null, null) }
+    def this () = { this (null, null, 0, null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -3437,10 +3609,12 @@ extends
         implicit val clz: String = ShiftPattern.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ShiftPattern.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ShiftPattern.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ShiftPattern.fields (position), x))
         emitelem (0, assignmentType)
         emitelem (1, cycleCount)
         emitattr (2, status)
         emitattr (3, validityInterval)
+        emitattrs (4, Crews)
         s.toString
     }
     override def export: String =
@@ -3457,12 +3631,14 @@ extends
         "assignmentType",
         "cycleCount",
         "status",
-        "validityInterval"
+        "validityInterval",
+        "Crews"
     )
     val assignmentType: Fielder = parse_element (element (cls, fields(0)))
     val cycleCount: Fielder = parse_element (element (cls, fields(1)))
     val status: Fielder = parse_attribute (attribute (cls, fields(2)))
     val validityInterval: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val Crews: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
 
     def parse (context: Context): ShiftPattern =
     {
@@ -3473,13 +3649,14 @@ extends
             mask (assignmentType (), 0),
             toInteger (mask (cycleCount (), 1)),
             mask (status (), 2),
-            mask (validityInterval (), 3)
+            mask (validityInterval (), 3),
+            masks (Crews (), 4)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
-
+        Relationship ("Crews", "OldCrew", true)
     )
 }
 

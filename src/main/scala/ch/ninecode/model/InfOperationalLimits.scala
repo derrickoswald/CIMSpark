@@ -167,6 +167,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param Equipment [[ch.ninecode.model.Equipment Equipment]] The equipment for which this limit dependency model is organized under.
+ * @param OperationalLimit [[ch.ninecode.model.OperationalLimit OperationalLimit]] The operational limits to which this limit dependency model applies.
  * @group InfOperationalLimits
  * @groupname InfOperationalLimits Package InfOperationalLimits
  * @groupdesc InfOperationalLimits The description of computed or dynamic limits.
@@ -175,7 +176,8 @@ These classes would likely go into the OperationalLimits package.
 case class LimitDependency
 (
     override val sup: IdentifiedObject,
-    Equipment: String
+    Equipment: String,
+    OperationalLimit: List[String]
 )
 extends
     Element
@@ -183,7 +185,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null) }
+    def this () = { this (null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -207,7 +209,9 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = LimitDependency.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (LimitDependency.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (LimitDependency.fields (position), x))
         emitattr (0, Equipment)
+        emitattrs (1, OperationalLimit)
         s.toString
     }
     override def export: String =
@@ -221,9 +225,11 @@ extends
     Parseable[LimitDependency]
 {
     val fields: Array[String] = Array[String] (
-        "Equipment"
+        "Equipment",
+        "OperationalLimit"
     )
     val Equipment: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val OperationalLimit: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): LimitDependency =
     {
@@ -231,13 +237,15 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = LimitDependency (
             IdentifiedObject.parse (context),
-            mask (Equipment (), 0)
+            mask (Equipment (), 0),
+            masks (OperationalLimit (), 1)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("Equipment", "Equipment", false)
+        Relationship ("Equipment", "Equipment", false),
+        Relationship ("OperationalLimit", "OperationalLimit", true)
     )
 }
 
@@ -1220,6 +1228,7 @@ extends
  * This represents a source of ambient temperature.
  *
  * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
+ * @param Equipment [[ch.ninecode.model.Equipment Equipment]] <em>undocumented</em>
  * @group InfOperationalLimits
  * @groupname InfOperationalLimits Package InfOperationalLimits
  * @groupdesc InfOperationalLimits The description of computed or dynamic limits.
@@ -1227,7 +1236,8 @@ These classes would likely go into the OperationalLimits package.
  */
 case class WeatherStation
 (
-    override val sup: PowerSystemResource
+    override val sup: PowerSystemResource,
+    Equipment: List[String]
 )
 extends
     Element
@@ -1235,7 +1245,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -1256,7 +1266,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = WeatherStation.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (WeatherStation.fields (position), x))
+        emitattrs (0, Equipment)
+        s.toString
     }
     override def export: String =
     {
@@ -1268,17 +1282,24 @@ object WeatherStation
 extends
     Parseable[WeatherStation]
 {
+    val fields: Array[String] = Array[String] (
+        "Equipment"
+    )
+    val Equipment: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): WeatherStation =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = WeatherStation (
-            PowerSystemResource.parse (context)
+            PowerSystemResource.parse (context),
+            masks (Equipment (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
-
+        Relationship ("Equipment", "Equipment", true)
     )
 }
 

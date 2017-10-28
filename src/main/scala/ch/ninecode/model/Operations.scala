@@ -1044,7 +1044,7 @@ extends
  * @param estimatedPeriod Estimated outage period.
  *        The start of the period makes sense in case of a planned outage only, whereas the end of the period corresponds to the estimated restoration time in general.
  * @param isPlanned True if planned, false otherwise (for example due to a breaker trip).
- * @param summary Summary counts of service points (customers) affected by this outage.
+ * @param summary [[ch.ninecode.model.ServicePointOutageSummary ServicePointOutageSummary]] Summary counts of service points (customers) affected by this outage.
  * @param Equipments [[ch.ninecode.model.Equipment Equipment]] All equipments associated with this outage.
  * @param Incident [[ch.ninecode.model.Incident Incident]] Incident reported in trouble call that results in this outage.
  * @param OutageSchedule [[ch.ninecode.model.OutageSchedule OutageSchedule]] Outage schedule whose execution will result in this outage.
@@ -1165,6 +1165,7 @@ extends
         ret
     }
     val relations: List[Relationship] = List (
+        Relationship ("summary", "ServicePointOutageSummary", false),
         Relationship ("Equipments", "Equipment", true),
         Relationship ("Incident", "Incident", false),
         Relationship ("OutageSchedule", "OutageSchedule", false),

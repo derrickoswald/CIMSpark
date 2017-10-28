@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>Appointment - CIMReader 2.11-2.2.0-2.4.0 API - ch.ninecode.model.Appointment</title>
-          <meta name="description" content="Appointment - CIMReader 2.11 - 2.2.0 - 2.4.0 API - ch.ninecode.model.Appointment" />
-          <meta name="keywords" content="Appointment CIMReader 2.11 2.2.0 2.4.0 API ch.ninecode.model.Appointment" />
+          <title>Appointment - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.Appointment</title>
+          <meta name="description" content="Appointment - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.Appointment" />
+          <meta name="keywords" content="Appointment CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.Appointment" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,12 +47,12 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">Appointment</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="callAhead">callAhead: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="meetingInterval">meetingInterval: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Works">Works: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">Appointment</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="callAhead">callAhead: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="meetingInterval">meetingInterval: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Persons">Persons: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Works">Works: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Meeting time and location.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">callAhead</dt><dd class="cmt"><p>True if requested to call customer when someone is about to arrive at their premises.</p></dd><dt class="param">meetingInterval</dt><dd class="cmt"><p>Date and time reserved for appointment.</p></dd><dt class="param">Works</dt><dd class="cmt"><p><a href="Work.html" class="extype" name="ch.ninecode.model.Work">Work</a> All works for this appointment.</p></dd></dl><div class="toggleContainer block">
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">callAhead</dt><dd class="cmt"><p>True if requested to call customer when someone is about to arrive at their premises.</p></dd><dt class="param">meetingInterval</dt><dd class="cmt"><p>Date and time reserved for appointment.</p></dd><dt class="param">Persons</dt><dd class="cmt"><p><a href="PersonRole.html" class="extype" name="ch.ninecode.model.PersonRole">PersonRole</a> All persons for this appointment.</p></dd><dt class="param">Works</dt><dd class="cmt"><p><a href="Work.html" class="extype" name="ch.ninecode.model.Work">Work</a> All works for this appointment.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -109,7 +109,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.Appointment#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,callAhead:Boolean,meetingInterval:String,Works:List[String]):ch.ninecode.model.Appointment"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,callAhead:Boolean,meetingInterval:String,Persons:List[String],Works:List[String]):ch.ninecode.model.Appointment"></a>
       <a id="&lt;init&gt;:Appointment"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -117,14 +117,14 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">Appointment</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="callAhead">callAhead: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="meetingInterval">meetingInterval: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Works">Works: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
+        <span class="name">Appointment</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="callAhead">callAhead: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="meetingInterval">meetingInterval: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Persons">Persons: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Works">Works: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.Appointment@&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,callAhead:Boolean,meetingInterval:String,Works:List[String]):ch.ninecode.model.Appointment" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.Appointment@&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,callAhead:Boolean,meetingInterval:String,Persons:List[String],Works:List[String]):ch.ninecode.model.Appointment" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">callAhead</dt><dd class="cmt"><p>True if requested to call customer when someone is about to arrive at their premises.</p></dd><dt class="param">meetingInterval</dt><dd class="cmt"><p>Date and time reserved for appointment.</p></dd><dt class="param">Works</dt><dd class="cmt"><p><a href="Work.html" class="extype" name="ch.ninecode.model.Work">Work</a> All works for this appointment.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">callAhead</dt><dd class="cmt"><p>True if requested to call customer when someone is about to arrive at their premises.</p></dd><dt class="param">meetingInterval</dt><dd class="cmt"><p>Date and time reserved for appointment.</p></dd><dt class="param">Persons</dt><dd class="cmt"><p><a href="PersonRole.html" class="extype" name="ch.ninecode.model.PersonRole">PersonRole</a> All persons for this appointment.</p></dd><dt class="param">Works</dt><dd class="cmt"><p><a href="Work.html" class="extype" name="ch.ninecode.model.Work">Work</a> All works for this appointment.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -203,6 +203,23 @@
     </span>
       <p class="shortcomment cmt">Return the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Return the superclass object.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The typed superclass nested object.</p></dd></dl></div>
+    </li><li name="ch.ninecode.model.Appointment#Persons" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Persons:List[String]"></a>
+      <a id="Persons:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Persons</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.Appointment@Persons:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="PersonRole.html" class="extype" name="ch.ninecode.model.PersonRole">PersonRole</a> All persons for this appointment.</p>
     </li><li name="ch.ninecode.model.Appointment#Works" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="Works:List[String]"></a>
       <a id="Works:List[String]"></a>

@@ -8383,6 +8383,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
  * @param AsynchronousMachineDynamics [[ch.ninecode.model.AsynchronousMachineDynamics AsynchronousMachineDynamics]] Asynchronous machine model with which this turbine-governor model is associated.
+ * @param SynchronousMachineDynamics [[ch.ninecode.model.SynchronousMachineDynamics SynchronousMachineDynamics]] Synchronous machine model with which this turbine-governor model is associated.
  * @param TurbineLoadControllerDynamics [[ch.ninecode.model.TurbineLoadControllerDynamics TurbineLoadControllerDynamics]] Turbine load controller providing input to this turbine-governor.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
@@ -8394,6 +8395,7 @@ case class TurbineGovernorDynamics
 (
     override val sup: DynamicsFunctionBlock,
     AsynchronousMachineDynamics: String,
+    SynchronousMachineDynamics: List[String],
     TurbineLoadControllerDynamics: String
 )
 extends
@@ -8402,7 +8404,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null) }
+    def this () = { this (null, null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -8426,8 +8428,10 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = TurbineGovernorDynamics.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TurbineGovernorDynamics.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (TurbineGovernorDynamics.fields (position), x))
         emitattr (0, AsynchronousMachineDynamics)
-        emitattr (1, TurbineLoadControllerDynamics)
+        emitattrs (1, SynchronousMachineDynamics)
+        emitattr (2, TurbineLoadControllerDynamics)
         s.toString
     }
     override def export: String =
@@ -8442,10 +8446,12 @@ extends
 {
     val fields: Array[String] = Array[String] (
         "AsynchronousMachineDynamics",
+        "SynchronousMachineDynamics",
         "TurbineLoadControllerDynamics"
     )
     val AsynchronousMachineDynamics: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val TurbineLoadControllerDynamics: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val SynchronousMachineDynamics: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val TurbineLoadControllerDynamics: Fielder = parse_attribute (attribute (cls, fields(2)))
 
     def parse (context: Context): TurbineGovernorDynamics =
     {
@@ -8454,13 +8460,15 @@ extends
         val ret = TurbineGovernorDynamics (
             DynamicsFunctionBlock.parse (context),
             mask (AsynchronousMachineDynamics (), 0),
-            mask (TurbineLoadControllerDynamics (), 1)
+            masks (SynchronousMachineDynamics (), 1),
+            mask (TurbineLoadControllerDynamics (), 2)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
         Relationship ("AsynchronousMachineDynamics", "AsynchronousMachineDynamics", false),
+        Relationship ("SynchronousMachineDynamics", "SynchronousMachineDynamics", true),
         Relationship ("TurbineLoadControllerDynamics", "TurbineLoadControllerDynamics", false)
     )
 }

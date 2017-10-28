@@ -14,6 +14,8 @@ import ch.ninecode.cim.Relationship
  *
  * @param sup [[ch.ninecode.model.Organisation Organisation]] Reference to the superclass object.
  * @param MarketDocument [[ch.ninecode.model.MarketDocument MarketDocument]] <em>undocumented</em>
+ * @param MarketRole [[ch.ninecode.model.MarketRole MarketRole]] <em>undocumented</em>
+ * @param TimeSeries [[ch.ninecode.model.TimeSeries TimeSeries]] <em>undocumented</em>
  * @group MarketCommon
  * @groupname MarketCommon Package MarketCommon
  * @groupdesc MarketCommon This package contains the common objects shared by both MarketManagement and MarketOperations packages.
@@ -21,7 +23,9 @@ import ch.ninecode.cim.Relationship
 case class MarketParticipant
 (
     override val sup: Organisation,
-    MarketDocument: List[String]
+    MarketDocument: List[String],
+    MarketRole: List[String],
+    TimeSeries: List[String]
 )
 extends
     Element
@@ -29,7 +33,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, List()) }
+    def this () = { this (null, List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -54,6 +58,8 @@ extends
         implicit val clz: String = MarketParticipant.cls
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (MarketParticipant.fields (position), x))
         emitattrs (0, MarketDocument)
+        emitattrs (1, MarketRole)
+        emitattrs (2, TimeSeries)
         s.toString
     }
     override def export: String =
@@ -67,9 +73,13 @@ extends
     Parseable[MarketParticipant]
 {
     val fields: Array[String] = Array[String] (
-        "MarketDocument"
+        "MarketDocument",
+        "MarketRole",
+        "TimeSeries"
     )
     val MarketDocument: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val MarketRole: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
 
     def parse (context: Context): MarketParticipant =
     {
@@ -77,13 +87,17 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = MarketParticipant (
             Organisation.parse (context),
-            masks (MarketDocument (), 0)
+            masks (MarketDocument (), 0),
+            masks (MarketRole (), 1),
+            masks (TimeSeries (), 2)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("MarketDocument", "MarketDocument", true)
+        Relationship ("MarketDocument", "MarketDocument", true),
+        Relationship ("MarketRole", "MarketRole", true),
+        Relationship ("TimeSeries", "TimeSeries", true)
     )
 }
 
@@ -93,9 +107,9 @@ extends
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param roleType Defined using an enumerated list of types of market roles for use when a finite list of types are desired.
  * @param status Status of the market role.
- * @param typ The kind of market roles that can be played by parties for given domains within the electricity market.
- *        Types are flexible using dataType of string for free-entry of role types.
  * @param MarketParticipant [[ch.ninecode.model.MarketParticipant MarketParticipant]] <em>undocumented</em>
+ * @param `type` The kind of market roles that can be played by parties for given domains within the electricity market.
+ *        Types are flexible using dataType of string for free-entry of role types.
  * @group MarketCommon
  * @groupname MarketCommon Package MarketCommon
  * @groupdesc MarketCommon This package contains the common objects shared by both MarketManagement and MarketOperations packages.
@@ -105,8 +119,8 @@ case class MarketRole
     override val sup: IdentifiedObject,
     roleType: String,
     status: String,
-    typ: String,
-    MarketParticipant: List[String]
+    MarketParticipant: List[String],
+    `type`: String
 )
 extends
     Element
@@ -114,7 +128,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, List()) }
+    def this () = { this (null, null, null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -142,8 +156,8 @@ extends
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (MarketRole.fields (position), x))
         emitattr (0, roleType)
         emitattr (1, status)
-        emitelem (2, typ)
-        emitattrs (3, MarketParticipant)
+        emitattrs (2, MarketParticipant)
+        emitelem (3, `type`)
         s.toString
     }
     override def export: String =
@@ -159,13 +173,13 @@ extends
     val fields: Array[String] = Array[String] (
         "roleType",
         "status",
-        "type",
-        "MarketParticipant"
+        "MarketParticipant",
+        "type"
     )
     val roleType: Fielder = parse_attribute (attribute (cls, fields(0)))
     val status: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val typ: Fielder = parse_element (element (cls, fields(2)))
-    val MarketParticipant: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val MarketParticipant: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val `type`: Fielder = parse_element (element (cls, fields(3)))
 
     def parse (context: Context): MarketRole =
     {
@@ -175,8 +189,8 @@ extends
             IdentifiedObject.parse (context),
             mask (roleType (), 0),
             mask (status (), 1),
-            mask (typ (), 2),
-            masks (MarketParticipant (), 3)
+            masks (MarketParticipant (), 2),
+            mask (`type` (), 3)
         )
         ret.bitfields = bitfields
         ret
@@ -227,18 +241,22 @@ extends
  * @param ASSPOptimizationFlag Indication that the resource participates in the optimization process by default.
  * @param AdjacentCASet [[ch.ninecode.model.AdjacentCASet AdjacentCASet]] <em>undocumented</em>
  * @param AggregateNode [[ch.ninecode.model.AggregateNode AggregateNode]] <em>undocumented</em>
+ * @param ControlAreaDesignation [[ch.ninecode.model.ControlAreaDesignation ControlAreaDesignation]] <em>undocumented</em>
  * @param DefaultBid [[ch.ninecode.model.DefaultBid DefaultBid]] <em>undocumented</em>
  * @param ECAFlag Indication that this resource is associated with an Embedded Control area
+ * @param EnergyMarkets [[ch.ninecode.model.EnergyMarket EnergyMarket]] <em>undocumented</em>
  * @param ForbiddenRegion [[ch.ninecode.model.ForbiddenRegion ForbiddenRegion]] <em>undocumented</em>
  * @param HostControlArea [[ch.ninecode.model.HostControlArea HostControlArea]] <em>undocumented</em>
  * @param InterTie [[ch.ninecode.model.SchedulingPoint SchedulingPoint]] <em>undocumented</em>
  * @param LMPMFlag LMPM flag: indicates whether the resource is subject to the LMPM test (Yes/No)
+ * @param MPMTestThreshold [[ch.ninecode.model.MPMTestThreshold MPMTestThreshold]] <em>undocumented</em>
  * @param MktConnectivityNode [[ch.ninecode.model.MktConnectivityNode MktConnectivityNode]] <em>undocumented</em>
  * @param MktOrganisation [[ch.ninecode.model.MktOrganisation MktOrganisation]] <em>undocumented</em>
  * @param Pnode [[ch.ninecode.model.Pnode Pnode]] A registered resource injects power at one or more connectivity nodes related to a pnode
  * @param RampRateCurve [[ch.ninecode.model.RampRateCurve RampRateCurve]] <em>undocumented</em>
  * @param ResourceCapacity [[ch.ninecode.model.ResourceCapacity ResourceCapacity]] <em>undocumented</em>
  * @param ResourceCertification [[ch.ninecode.model.ResourceCertification ResourceCertification]] <em>undocumented</em>
+ * @param ResourceGroups [[ch.ninecode.model.ResourceGroup ResourceGroup]] <em>undocumented</em>
  * @param ResourceVerifiableCosts [[ch.ninecode.model.ResourceVerifiableCosts ResourceVerifiableCosts]] <em>undocumented</em>
  * @param SMPMFlag SMPM flag: indicates whether the resource is subject to the SMPM test (Yes/No)
  * @param SubControlArea [[ch.ninecode.model.SubControlArea SubControlArea]] <em>undocumented</em>
@@ -276,18 +294,22 @@ case class RegisteredResource
     ASSPOptimizationFlag: String,
     AdjacentCASet: String,
     AggregateNode: List[String],
+    ControlAreaDesignation: List[String],
     DefaultBid: String,
     ECAFlag: String,
+    EnergyMarkets: List[String],
     ForbiddenRegion: List[String],
     HostControlArea: String,
     InterTie: List[String],
     LMPMFlag: String,
+    MPMTestThreshold: List[String],
     MktConnectivityNode: String,
     MktOrganisation: String,
     Pnode: String,
     RampRateCurve: List[String],
     ResourceCapacity: List[String],
     ResourceCertification: List[String],
+    ResourceGroups: List[String],
     ResourceVerifiableCosts: String,
     SMPMFlag: String,
     SubControlArea: List[String],
@@ -299,7 +321,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null, null, null, null, null, null, 0.0, 0.0, 0.0, 0.0, 0.0, null, null, null, null, null, null, null, null, null, null, null, List(), null, null, List(), null, List(), null, null, null, null, List(), List(), List(), null, null, List(), List()) }
+    def this () = { this (null, null, null, null, null, null, null, null, null, null, 0.0, 0.0, 0.0, 0.0, 0.0, null, null, null, null, null, null, null, null, null, null, null, List(), List(), null, null, List(), List(), null, List(), null, List(), null, null, null, List(), List(), List(), List(), null, null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -351,22 +373,26 @@ extends
         emitattr (23, ASSPOptimizationFlag)
         emitattr (24, AdjacentCASet)
         emitattrs (25, AggregateNode)
-        emitattr (26, DefaultBid)
-        emitattr (27, ECAFlag)
-        emitattrs (28, ForbiddenRegion)
-        emitattr (29, HostControlArea)
-        emitattrs (30, InterTie)
-        emitattr (31, LMPMFlag)
-        emitattr (32, MktConnectivityNode)
-        emitattr (33, MktOrganisation)
-        emitattr (34, Pnode)
-        emitattrs (35, RampRateCurve)
-        emitattrs (36, ResourceCapacity)
-        emitattrs (37, ResourceCertification)
-        emitattr (38, ResourceVerifiableCosts)
-        emitattr (39, SMPMFlag)
-        emitattrs (40, SubControlArea)
-        emitattrs (41, TimeSeries)
+        emitattrs (26, ControlAreaDesignation)
+        emitattr (27, DefaultBid)
+        emitattr (28, ECAFlag)
+        emitattrs (29, EnergyMarkets)
+        emitattrs (30, ForbiddenRegion)
+        emitattr (31, HostControlArea)
+        emitattrs (32, InterTie)
+        emitattr (33, LMPMFlag)
+        emitattrs (34, MPMTestThreshold)
+        emitattr (35, MktConnectivityNode)
+        emitattr (36, MktOrganisation)
+        emitattr (37, Pnode)
+        emitattrs (38, RampRateCurve)
+        emitattrs (39, ResourceCapacity)
+        emitattrs (40, ResourceCertification)
+        emitattrs (41, ResourceGroups)
+        emitattr (42, ResourceVerifiableCosts)
+        emitattr (43, SMPMFlag)
+        emitattrs (44, SubControlArea)
+        emitattrs (45, TimeSeries)
         s.toString
     }
     override def export: String =
@@ -406,18 +432,22 @@ extends
         "ASSPOptimizationFlag",
         "AdjacentCASet",
         "AggregateNode",
+        "ControlAreaDesignation",
         "DefaultBid",
         "ECAFlag",
+        "EnergyMarkets",
         "ForbiddenRegion",
         "HostControlArea",
         "InterTie",
         "LMPMFlag",
+        "MPMTestThreshold",
         "MktConnectivityNode",
         "MktOrganisation",
         "Pnode",
         "RampRateCurve",
         "ResourceCapacity",
         "ResourceCertification",
+        "ResourceGroups",
         "ResourceVerifiableCosts",
         "SMPMFlag",
         "SubControlArea",
@@ -449,22 +479,26 @@ extends
     val ASSPOptimizationFlag: Fielder = parse_attribute (attribute (cls, fields(23)))
     val AdjacentCASet: Fielder = parse_attribute (attribute (cls, fields(24)))
     val AggregateNode: FielderMultiple = parse_attributes (attribute (cls, fields(25)))
-    val DefaultBid: Fielder = parse_attribute (attribute (cls, fields(26)))
-    val ECAFlag: Fielder = parse_attribute (attribute (cls, fields(27)))
-    val ForbiddenRegion: FielderMultiple = parse_attributes (attribute (cls, fields(28)))
-    val HostControlArea: Fielder = parse_attribute (attribute (cls, fields(29)))
-    val InterTie: FielderMultiple = parse_attributes (attribute (cls, fields(30)))
-    val LMPMFlag: Fielder = parse_attribute (attribute (cls, fields(31)))
-    val MktConnectivityNode: Fielder = parse_attribute (attribute (cls, fields(32)))
-    val MktOrganisation: Fielder = parse_attribute (attribute (cls, fields(33)))
-    val Pnode: Fielder = parse_attribute (attribute (cls, fields(34)))
-    val RampRateCurve: FielderMultiple = parse_attributes (attribute (cls, fields(35)))
-    val ResourceCapacity: FielderMultiple = parse_attributes (attribute (cls, fields(36)))
-    val ResourceCertification: FielderMultiple = parse_attributes (attribute (cls, fields(37)))
-    val ResourceVerifiableCosts: Fielder = parse_attribute (attribute (cls, fields(38)))
-    val SMPMFlag: Fielder = parse_attribute (attribute (cls, fields(39)))
-    val SubControlArea: FielderMultiple = parse_attributes (attribute (cls, fields(40)))
-    val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields(41)))
+    val ControlAreaDesignation: FielderMultiple = parse_attributes (attribute (cls, fields(26)))
+    val DefaultBid: Fielder = parse_attribute (attribute (cls, fields(27)))
+    val ECAFlag: Fielder = parse_attribute (attribute (cls, fields(28)))
+    val EnergyMarkets: FielderMultiple = parse_attributes (attribute (cls, fields(29)))
+    val ForbiddenRegion: FielderMultiple = parse_attributes (attribute (cls, fields(30)))
+    val HostControlArea: Fielder = parse_attribute (attribute (cls, fields(31)))
+    val InterTie: FielderMultiple = parse_attributes (attribute (cls, fields(32)))
+    val LMPMFlag: Fielder = parse_attribute (attribute (cls, fields(33)))
+    val MPMTestThreshold: FielderMultiple = parse_attributes (attribute (cls, fields(34)))
+    val MktConnectivityNode: Fielder = parse_attribute (attribute (cls, fields(35)))
+    val MktOrganisation: Fielder = parse_attribute (attribute (cls, fields(36)))
+    val Pnode: Fielder = parse_attribute (attribute (cls, fields(37)))
+    val RampRateCurve: FielderMultiple = parse_attributes (attribute (cls, fields(38)))
+    val ResourceCapacity: FielderMultiple = parse_attributes (attribute (cls, fields(39)))
+    val ResourceCertification: FielderMultiple = parse_attributes (attribute (cls, fields(40)))
+    val ResourceGroups: FielderMultiple = parse_attributes (attribute (cls, fields(41)))
+    val ResourceVerifiableCosts: Fielder = parse_attribute (attribute (cls, fields(42)))
+    val SMPMFlag: Fielder = parse_attribute (attribute (cls, fields(43)))
+    val SubControlArea: FielderMultiple = parse_attributes (attribute (cls, fields(44)))
+    val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields(45)))
 
     def parse (context: Context): RegisteredResource =
     {
@@ -498,22 +532,26 @@ extends
             mask (ASSPOptimizationFlag (), 23),
             mask (AdjacentCASet (), 24),
             masks (AggregateNode (), 25),
-            mask (DefaultBid (), 26),
-            mask (ECAFlag (), 27),
-            masks (ForbiddenRegion (), 28),
-            mask (HostControlArea (), 29),
-            masks (InterTie (), 30),
-            mask (LMPMFlag (), 31),
-            mask (MktConnectivityNode (), 32),
-            mask (MktOrganisation (), 33),
-            mask (Pnode (), 34),
-            masks (RampRateCurve (), 35),
-            masks (ResourceCapacity (), 36),
-            masks (ResourceCertification (), 37),
-            mask (ResourceVerifiableCosts (), 38),
-            mask (SMPMFlag (), 39),
-            masks (SubControlArea (), 40),
-            masks (TimeSeries (), 41)
+            masks (ControlAreaDesignation (), 26),
+            mask (DefaultBid (), 27),
+            mask (ECAFlag (), 28),
+            masks (EnergyMarkets (), 29),
+            masks (ForbiddenRegion (), 30),
+            mask (HostControlArea (), 31),
+            masks (InterTie (), 32),
+            mask (LMPMFlag (), 33),
+            masks (MPMTestThreshold (), 34),
+            mask (MktConnectivityNode (), 35),
+            mask (MktOrganisation (), 36),
+            mask (Pnode (), 37),
+            masks (RampRateCurve (), 38),
+            masks (ResourceCapacity (), 39),
+            masks (ResourceCertification (), 40),
+            masks (ResourceGroups (), 41),
+            mask (ResourceVerifiableCosts (), 42),
+            mask (SMPMFlag (), 43),
+            masks (SubControlArea (), 44),
+            masks (TimeSeries (), 45)
         )
         ret.bitfields = bitfields
         ret
@@ -521,16 +559,20 @@ extends
     val relations: List[Relationship] = List (
         Relationship ("AdjacentCASet", "AdjacentCASet", false),
         Relationship ("AggregateNode", "AggregateNode", true),
+        Relationship ("ControlAreaDesignation", "ControlAreaDesignation", true),
         Relationship ("DefaultBid", "DefaultBid", false),
+        Relationship ("EnergyMarkets", "EnergyMarket", true),
         Relationship ("ForbiddenRegion", "ForbiddenRegion", true),
         Relationship ("HostControlArea", "HostControlArea", false),
         Relationship ("InterTie", "SchedulingPoint", true),
+        Relationship ("MPMTestThreshold", "MPMTestThreshold", true),
         Relationship ("MktConnectivityNode", "MktConnectivityNode", false),
         Relationship ("MktOrganisation", "MktOrganisation", false),
         Relationship ("Pnode", "Pnode", false),
         Relationship ("RampRateCurve", "RampRateCurve", true),
         Relationship ("ResourceCapacity", "ResourceCapacity", true),
         Relationship ("ResourceCertification", "ResourceCertification", true),
+        Relationship ("ResourceGroups", "ResourceGroup", true),
         Relationship ("ResourceVerifiableCosts", "ResourceVerifiableCosts", false),
         Relationship ("SubControlArea", "SubControlArea", true),
         Relationship ("TimeSeries", "TimeSeries", true)

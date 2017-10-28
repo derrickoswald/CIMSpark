@@ -14,7 +14,7 @@ import ch.ninecode.cim.Relationship
  * @param dateTime Date and time the asset was last tested using the 'type' of test and yielding the current status in 'success' attribute.
  * @param success True if asset has passed acceptance test and may be placed in or is in service.
  *        It is set to false if asset is removed from service and is required to be tested again before being placed back in service, possibly in a new location. Since asset may go through multiple tests during its lifecycle, the date of each acceptance test may be recorded in 'Asset.ActivityRecord.status.dateTime'.
- * @param typ Type of test or group of tests that was conducted on 'dateTime'.
+ * @param `type` Type of test or group of tests that was conducted on 'dateTime'.
  * @group Assets
  * @groupname Assets Package Assets
  * @groupdesc Assets This package contains the core information classes that support asset management applications that deal with the physical and lifecycle aspects of various network resources (as opposed to power system resource models defined in IEC61970::Wires package, which support network applications).
@@ -24,7 +24,7 @@ case class AcceptanceTest
     override val sup: BasicElement,
     dateTime: String,
     success: Boolean,
-    typ: String
+    `type`: String
 )
 extends
     Element
@@ -58,7 +58,7 @@ extends
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (AcceptanceTest.fields (position), value)
         emitelem (0, dateTime)
         emitelem (1, success)
-        emitelem (2, typ)
+        emitelem (2, `type`)
         s.toString
     }
     override def export: String =
@@ -78,7 +78,7 @@ extends
     )
     val dateTime: Fielder = parse_element (element (cls, fields(0)))
     val success: Fielder = parse_element (element (cls, fields(1)))
-    val typ: Fielder = parse_element (element (cls, fields(2)))
+    val `type`: Fielder = parse_element (element (cls, fields(2)))
 
     def parse (context: Context): AcceptanceTest =
     {
@@ -88,7 +88,7 @@ extends
             BasicElement.parse (context),
             mask (dateTime (), 0),
             toBoolean (mask (success (), 1)),
-            mask (typ (), 2)
+            mask (`type` (), 2)
         )
         ret.bitfields = bitfields
         ret
@@ -104,19 +104,18 @@ extends
  * For electrical network equipment, the role of the asset is defined through PowerSystemResource and its subclasses, defined mainly in the Wires model (refer to IEC61970-301 and model package IEC61970::Wires). Asset description places emphasis on the physical characteristics of the equipment fulfilling that role.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param acceptanceTest Information on acceptance test.
+ * @param acceptanceTest [[ch.ninecode.model.AcceptanceTest AcceptanceTest]] Information on acceptance test.
  * @param critical True if asset is considered critical for some reason (for example, a pole with critical attachments).
  * @param electronicAddress Electronic address.
  * @param initialCondition Condition of asset in inventory or at time of installation.
  *        Examples include new, rebuilt, overhaul required, other. Refer to inspection data for information on the most current condition of the asset.
  * @param initialLossOfLife Whenever an asset is reconditioned, percentage of expected life for the asset when it was new; zero for new devices.
- * @param lifecycle Lifecycle dates for this asset.
+ * @param lifecycle [[ch.ninecode.model.LifecycleDate LifecycleDate]] Lifecycle dates for this asset.
  * @param lotNumber Lot number for this asset.
  *        Even for the same model and version number, many assets are manufactured in lots.
  * @param purchasePrice Purchase price of asset.
  * @param serialNumber Serial number of this asset.
  * @param status Status of this asset.
- * @param typ Utility-specific classification of Asset and its subtypes, according to their corporate standards, practices, and existing IT systems (e.g., for management of assets, maintenance, work, outage, customers, etc.).
  * @param utcNumber Uniquely tracked commodity (UTC) number.
  * @param ActivityRecords [[ch.ninecode.model.ActivityRecord ActivityRecord]] All activity records created for this asset.
  * @param AssetContainer [[ch.ninecode.model.AssetContainer AssetContainer]] Container of this asset.
@@ -127,9 +126,15 @@ extends
  * @param ErpRecDeliveryItems [[ch.ninecode.model.ErpRecDelvLineItem ErpRecDelvLineItem]] <em>undocumented</em>
  * @param FinancialInfo [[ch.ninecode.model.FinancialInfo FinancialInfo]] <em>undocumented</em>
  * @param Location [[ch.ninecode.model.Location Location]] Location of this asset.
+ * @param Mediums [[ch.ninecode.model.Medium Medium]] <em>undocumented</em>
  * @param OrganisationRoles [[ch.ninecode.model.AssetOrganisationRole AssetOrganisationRole]] All roles an organisation plays for this asset.
  * @param PowerSystemResources [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] All power system resources used to electrically model this asset.
  *        For example, transformer asset is electrically modelled with a transformer and its windings and tap changer.
+ * @param Procedures [[ch.ninecode.model.Procedure Procedure]] All procedures applicable to this asset.
+ * @param ReliabilityInfos [[ch.ninecode.model.ReliabilityInfo ReliabilityInfo]] <em>undocumented</em>
+ * @param ScheduledEvents [[ch.ninecode.model.ScheduledEvent ScheduledEvent]] <em>undocumented</em>
+ * @param WorkTasks [[ch.ninecode.model.WorkTask WorkTask]] All non-replacement work tasks performed on this asset.
+ * @param `type` Utility-specific classification of Asset and its subtypes, according to their corporate standards, practices, and existing IT systems (e.g., for management of assets, maintenance, work, outage, customers, etc.).
  * @group Assets
  * @groupname Assets Package Assets
  * @groupdesc Assets This package contains the core information classes that support asset management applications that deal with the physical and lifecycle aspects of various network resources (as opposed to power system resource models defined in IEC61970::Wires package, which support network applications).
@@ -147,7 +152,6 @@ case class Asset
     purchasePrice: Double,
     serialNumber: String,
     status: String,
-    typ: String,
     utcNumber: String,
     ActivityRecords: List[String],
     AssetContainer: String,
@@ -158,8 +162,14 @@ case class Asset
     ErpRecDeliveryItems: List[String],
     FinancialInfo: String,
     Location: String,
+    Mediums: List[String],
     OrganisationRoles: List[String],
-    PowerSystemResources: List[String]
+    PowerSystemResources: List[String],
+    Procedures: List[String],
+    ReliabilityInfos: List[String],
+    ScheduledEvents: List[String],
+    WorkTasks: List[String],
+    `type`: String
 )
 extends
     Element
@@ -167,7 +177,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, false, null, null, 0.0, null, null, 0.0, null, null, null, null, List(), null, null, List(), null, null, List(), null, null, List(), List()) }
+    def this () = { this (null, null, false, null, null, 0.0, null, null, 0.0, null, null, null, List(), null, null, List(), null, null, List(), null, null, List(), List(), List(), List(), List(), List(), List(), null) }
     /**
      * Return the superclass object.
      *
@@ -203,19 +213,24 @@ extends
         emitelem (7, purchasePrice)
         emitelem (8, serialNumber)
         emitattr (9, status)
-        emitelem (10, typ)
-        emitelem (11, utcNumber)
-        emitattrs (12, ActivityRecords)
-        emitattr (13, AssetContainer)
-        emitattr (14, AssetInfo)
-        emitattrs (15, AssetPropertyCurves)
-        emitattr (16, ErpInventory)
-        emitattr (17, ErpItemMaster)
-        emitattrs (18, ErpRecDeliveryItems)
-        emitattr (19, FinancialInfo)
-        emitattr (20, Location)
+        emitelem (10, utcNumber)
+        emitattrs (11, ActivityRecords)
+        emitattr (12, AssetContainer)
+        emitattr (13, AssetInfo)
+        emitattrs (14, AssetPropertyCurves)
+        emitattr (15, ErpInventory)
+        emitattr (16, ErpItemMaster)
+        emitattrs (17, ErpRecDeliveryItems)
+        emitattr (18, FinancialInfo)
+        emitattr (19, Location)
+        emitattrs (20, Mediums)
         emitattrs (21, OrganisationRoles)
         emitattrs (22, PowerSystemResources)
+        emitattrs (23, Procedures)
+        emitattrs (24, ReliabilityInfos)
+        emitattrs (25, ScheduledEvents)
+        emitattrs (26, WorkTasks)
+        emitelem (27, `type`)
         s.toString
     }
     override def export: String =
@@ -239,7 +254,6 @@ extends
         "purchasePrice",
         "serialNumber",
         "status",
-        "type",
         "utcNumber",
         "ActivityRecords",
         "AssetContainer",
@@ -250,8 +264,14 @@ extends
         "ErpRecDeliveryItems",
         "FinancialInfo",
         "Location",
+        "Mediums",
         "OrganisationRoles",
-        "PowerSystemResources"
+        "PowerSystemResources",
+        "Procedures",
+        "ReliabilityInfos",
+        "ScheduledEvents",
+        "WorkTasks",
+        "type"
     )
     val acceptanceTest: Fielder = parse_attribute (attribute (cls, fields(0)))
     val critical: Fielder = parse_element (element (cls, fields(1)))
@@ -263,19 +283,24 @@ extends
     val purchasePrice: Fielder = parse_element (element (cls, fields(7)))
     val serialNumber: Fielder = parse_element (element (cls, fields(8)))
     val status: Fielder = parse_attribute (attribute (cls, fields(9)))
-    val typ: Fielder = parse_element (element (cls, fields(10)))
-    val utcNumber: Fielder = parse_element (element (cls, fields(11)))
-    val ActivityRecords: FielderMultiple = parse_attributes (attribute (cls, fields(12)))
-    val AssetContainer: Fielder = parse_attribute (attribute (cls, fields(13)))
-    val AssetInfo: Fielder = parse_attribute (attribute (cls, fields(14)))
-    val AssetPropertyCurves: FielderMultiple = parse_attributes (attribute (cls, fields(15)))
-    val ErpInventory: Fielder = parse_attribute (attribute (cls, fields(16)))
-    val ErpItemMaster: Fielder = parse_attribute (attribute (cls, fields(17)))
-    val ErpRecDeliveryItems: FielderMultiple = parse_attributes (attribute (cls, fields(18)))
-    val FinancialInfo: Fielder = parse_attribute (attribute (cls, fields(19)))
-    val Location: Fielder = parse_attribute (attribute (cls, fields(20)))
+    val utcNumber: Fielder = parse_element (element (cls, fields(10)))
+    val ActivityRecords: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
+    val AssetContainer: Fielder = parse_attribute (attribute (cls, fields(12)))
+    val AssetInfo: Fielder = parse_attribute (attribute (cls, fields(13)))
+    val AssetPropertyCurves: FielderMultiple = parse_attributes (attribute (cls, fields(14)))
+    val ErpInventory: Fielder = parse_attribute (attribute (cls, fields(15)))
+    val ErpItemMaster: Fielder = parse_attribute (attribute (cls, fields(16)))
+    val ErpRecDeliveryItems: FielderMultiple = parse_attributes (attribute (cls, fields(17)))
+    val FinancialInfo: Fielder = parse_attribute (attribute (cls, fields(18)))
+    val Location: Fielder = parse_attribute (attribute (cls, fields(19)))
+    val Mediums: FielderMultiple = parse_attributes (attribute (cls, fields(20)))
     val OrganisationRoles: FielderMultiple = parse_attributes (attribute (cls, fields(21)))
     val PowerSystemResources: FielderMultiple = parse_attributes (attribute (cls, fields(22)))
+    val Procedures: FielderMultiple = parse_attributes (attribute (cls, fields(23)))
+    val ReliabilityInfos: FielderMultiple = parse_attributes (attribute (cls, fields(24)))
+    val ScheduledEvents: FielderMultiple = parse_attributes (attribute (cls, fields(25)))
+    val WorkTasks: FielderMultiple = parse_attributes (attribute (cls, fields(26)))
+    val `type`: Fielder = parse_element (element (cls, fields(27)))
 
     def parse (context: Context): Asset =
     {
@@ -293,24 +318,31 @@ extends
             toDouble (mask (purchasePrice (), 7)),
             mask (serialNumber (), 8),
             mask (status (), 9),
-            mask (typ (), 10),
-            mask (utcNumber (), 11),
-            masks (ActivityRecords (), 12),
-            mask (AssetContainer (), 13),
-            mask (AssetInfo (), 14),
-            masks (AssetPropertyCurves (), 15),
-            mask (ErpInventory (), 16),
-            mask (ErpItemMaster (), 17),
-            masks (ErpRecDeliveryItems (), 18),
-            mask (FinancialInfo (), 19),
-            mask (Location (), 20),
+            mask (utcNumber (), 10),
+            masks (ActivityRecords (), 11),
+            mask (AssetContainer (), 12),
+            mask (AssetInfo (), 13),
+            masks (AssetPropertyCurves (), 14),
+            mask (ErpInventory (), 15),
+            mask (ErpItemMaster (), 16),
+            masks (ErpRecDeliveryItems (), 17),
+            mask (FinancialInfo (), 18),
+            mask (Location (), 19),
+            masks (Mediums (), 20),
             masks (OrganisationRoles (), 21),
-            masks (PowerSystemResources (), 22)
+            masks (PowerSystemResources (), 22),
+            masks (Procedures (), 23),
+            masks (ReliabilityInfos (), 24),
+            masks (ScheduledEvents (), 25),
+            masks (WorkTasks (), 26),
+            mask (`type` (), 27)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
+        Relationship ("acceptanceTest", "AcceptanceTest", false),
+        Relationship ("lifecycle", "LifecycleDate", false),
         Relationship ("ActivityRecords", "ActivityRecord", true),
         Relationship ("AssetContainer", "AssetContainer", false),
         Relationship ("AssetInfo", "AssetInfo", false),
@@ -320,8 +352,13 @@ extends
         Relationship ("ErpRecDeliveryItems", "ErpRecDelvLineItem", true),
         Relationship ("FinancialInfo", "FinancialInfo", false),
         Relationship ("Location", "Location", false),
+        Relationship ("Mediums", "Medium", true),
         Relationship ("OrganisationRoles", "AssetOrganisationRole", true),
-        Relationship ("PowerSystemResources", "PowerSystemResource", true)
+        Relationship ("PowerSystemResources", "PowerSystemResource", true),
+        Relationship ("Procedures", "Procedure", true),
+        Relationship ("ReliabilityInfos", "ReliabilityInfo", true),
+        Relationship ("ScheduledEvents", "ScheduledEvent", true),
+        Relationship ("WorkTasks", "WorkTask", true)
     )
 }
 
@@ -329,13 +366,15 @@ extends
  * Asset that is aggregation of other assets such as conductors, transformers, switchgear, land, fences, buildings, equipment, vehicles, etc.
  *
  * @param sup [[ch.ninecode.model.Asset Asset]] Reference to the superclass object.
+ * @param LandProperties [[ch.ninecode.model.LandProperty LandProperty]] <em>undocumented</em>
  * @group Assets
  * @groupname Assets Package Assets
  * @groupdesc Assets This package contains the core information classes that support asset management applications that deal with the physical and lifecycle aspects of various network resources (as opposed to power system resource models defined in IEC61970::Wires package, which support network applications).
  */
 case class AssetContainer
 (
-    override val sup: Asset
+    override val sup: Asset,
+    LandProperties: List[String]
 )
 extends
     Element
@@ -343,7 +382,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -364,7 +403,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = AssetContainer.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (AssetContainer.fields (position), x))
+        emitattrs (0, LandProperties)
+        s.toString
     }
     override def export: String =
     {
@@ -376,17 +419,24 @@ object AssetContainer
 extends
     Parseable[AssetContainer]
 {
+    val fields: Array[String] = Array[String] (
+        "LandProperties"
+    )
+    val LandProperties: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): AssetContainer =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = AssetContainer (
-            Asset.parse (context)
+            Asset.parse (context),
+            masks (LandProperties (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
-
+        Relationship ("LandProperties", "LandProperty", true)
     )
 }
 
@@ -738,13 +788,15 @@ extends
  * Role an organisation plays with respect to asset.
  *
  * @param sup [[ch.ninecode.model.OrganisationRole OrganisationRole]] Reference to the superclass object.
+ * @param Assets [[ch.ninecode.model.Asset Asset]] All assets for this organisation role.
  * @group Assets
  * @groupname Assets Package Assets
  * @groupdesc Assets This package contains the core information classes that support asset management applications that deal with the physical and lifecycle aspects of various network resources (as opposed to power system resource models defined in IEC61970::Wires package, which support network applications).
  */
 case class AssetOrganisationRole
 (
-    override val sup: OrganisationRole
+    override val sup: OrganisationRole,
+    Assets: List[String]
 )
 extends
     Element
@@ -752,7 +804,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -773,7 +825,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = AssetOrganisationRole.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (AssetOrganisationRole.fields (position), x))
+        emitattrs (0, Assets)
+        s.toString
     }
     override def export: String =
     {
@@ -785,17 +841,24 @@ object AssetOrganisationRole
 extends
     Parseable[AssetOrganisationRole]
 {
+    val fields: Array[String] = Array[String] (
+        "Assets"
+    )
+    val Assets: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): AssetOrganisationRole =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = AssetOrganisationRole (
-            OrganisationRole.parse (context)
+            OrganisationRole.parse (context),
+            masks (Assets (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
-
+        Relationship ("Assets", "Asset", true)
     )
 }
 
@@ -1244,6 +1307,7 @@ extends
  * @param kind Kind of procedure.
  * @param sequenceNumber Sequence number in a sequence of procedures being performed.
  * @param Assets [[ch.ninecode.model.Asset Asset]] All assets to which this procedure applies.
+ * @param CompatibleUnits [[ch.ninecode.model.CompatibleUnit CompatibleUnit]] <em>undocumented</em>
  * @param Limits [[ch.ninecode.model.Limit Limit]] <em>undocumented</em>
  * @param Measurements [[ch.ninecode.model.Measurement Measurement]] Document containing this measurement.
  * @group Assets
@@ -1257,6 +1321,7 @@ case class Procedure
     kind: String,
     sequenceNumber: String,
     Assets: List[String],
+    CompatibleUnits: List[String],
     Limits: List[String],
     Measurements: List[String]
 )
@@ -1266,7 +1331,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, List(), List(), List()) }
+    def this () = { this (null, null, null, null, List(), List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1296,8 +1361,9 @@ extends
         emitattr (1, kind)
         emitelem (2, sequenceNumber)
         emitattrs (3, Assets)
-        emitattrs (4, Limits)
-        emitattrs (5, Measurements)
+        emitattrs (4, CompatibleUnits)
+        emitattrs (5, Limits)
+        emitattrs (6, Measurements)
         s.toString
     }
     override def export: String =
@@ -1315,6 +1381,7 @@ extends
         "kind",
         "sequenceNumber",
         "Assets",
+        "CompatibleUnits",
         "Limits",
         "Measurements"
     )
@@ -1322,8 +1389,9 @@ extends
     val kind: Fielder = parse_attribute (attribute (cls, fields(1)))
     val sequenceNumber: Fielder = parse_element (element (cls, fields(2)))
     val Assets: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
-    val Limits: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
-    val Measurements: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
+    val CompatibleUnits: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val Limits: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
+    val Measurements: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
 
     def parse (context: Context): Procedure =
     {
@@ -1335,14 +1403,16 @@ extends
             mask (kind (), 1),
             mask (sequenceNumber (), 2),
             masks (Assets (), 3),
-            masks (Limits (), 4),
-            masks (Measurements (), 5)
+            masks (CompatibleUnits (), 4),
+            masks (Limits (), 5),
+            masks (Measurements (), 6)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
         Relationship ("Assets", "Asset", true),
+        Relationship ("CompatibleUnits", "CompatibleUnit", true),
         Relationship ("Limits", "Limit", true),
         Relationship ("Measurements", "Measurement", true)
     )
@@ -1357,6 +1427,8 @@ extends
  * @param completedDateTime Date and time procedure was completed.
  * @param MeasurementValues [[ch.ninecode.model.MeasurementValue MeasurementValue]] <em>undocumented</em>
  * @param Procedure [[ch.ninecode.model.Procedure Procedure]] Procedure capturing this data set.
+ * @param Properties [[ch.ninecode.model.UserAttribute UserAttribute]] UserAttributes used to specify further properties of this procedure data set.
+ *        Use 'name' to specify what kind of property it is, and 'value.value' attribute for the actual value.
  * @param TransformerObservations [[ch.ninecode.model.TransformerObservation TransformerObservation]] <em>undocumented</em>
  * @group Assets
  * @groupname Assets Package Assets
@@ -1368,6 +1440,7 @@ case class ProcedureDataSet
     completedDateTime: String,
     MeasurementValues: List[String],
     Procedure: String,
+    Properties: List[String],
     TransformerObservations: List[String]
 )
 extends
@@ -1376,7 +1449,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, List(), null, List()) }
+    def this () = { this (null, null, List(), null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1405,7 +1478,8 @@ extends
         emitelem (0, completedDateTime)
         emitattrs (1, MeasurementValues)
         emitattr (2, Procedure)
-        emitattrs (3, TransformerObservations)
+        emitattrs (3, Properties)
+        emitattrs (4, TransformerObservations)
         s.toString
     }
     override def export: String =
@@ -1422,12 +1496,14 @@ extends
         "completedDateTime",
         "MeasurementValues",
         "Procedure",
+        "Properties",
         "TransformerObservations"
     )
     val completedDateTime: Fielder = parse_element (element (cls, fields(0)))
     val MeasurementValues: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
     val Procedure: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val TransformerObservations: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val Properties: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val TransformerObservations: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
 
     def parse (context: Context): ProcedureDataSet =
     {
@@ -1438,7 +1514,8 @@ extends
             mask (completedDateTime (), 0),
             masks (MeasurementValues (), 1),
             mask (Procedure (), 2),
-            masks (TransformerObservations (), 3)
+            masks (Properties (), 3),
+            masks (TransformerObservations (), 4)
         )
         ret.bitfields = bitfields
         ret
@@ -1446,6 +1523,7 @@ extends
     val relations: List[Relationship] = List (
         Relationship ("MeasurementValues", "MeasurementValue", true),
         Relationship ("Procedure", "Procedure", false),
+        Relationship ("Properties", "UserAttribute", true),
         Relationship ("TransformerObservations", "TransformerObservation", true)
     )
 }

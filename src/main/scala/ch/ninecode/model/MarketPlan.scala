@@ -897,6 +897,7 @@ extends
  * @param marketStartTime Market start time.
  * @param marketType Market type.
  * @param MarketPlan [[ch.ninecode.model.MarketPlan MarketPlan]] a market plan has a number of markets (DA, HA, RT)
+ * @param PlannedMarketEvent [[ch.ninecode.model.PlannedMarketEvent PlannedMarketEvent]] A planned market shall have a set of planned events
  * @group MarketPlan
  * @groupname MarketPlan Package MarketPlan
  * @groupdesc MarketPlan Market plan definitions for planned markets, planned market events, actual market runs, actual market events.
@@ -908,7 +909,8 @@ case class PlannedMarket
     marketID: String,
     marketStartTime: String,
     marketType: String,
-    MarketPlan: String
+    MarketPlan: String,
+    PlannedMarketEvent: List[String]
 )
 extends
     Element
@@ -916,7 +918,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null, null) }
+    def this () = { this (null, null, null, null, null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -941,11 +943,13 @@ extends
         implicit val clz: String = PlannedMarket.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PlannedMarket.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PlannedMarket.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (PlannedMarket.fields (position), x))
         emitelem (0, marketEndTime)
         emitelem (1, marketID)
         emitelem (2, marketStartTime)
         emitattr (3, marketType)
         emitattr (4, MarketPlan)
+        emitattrs (5, PlannedMarketEvent)
         s.toString
     }
     override def export: String =
@@ -963,13 +967,15 @@ extends
         "marketID",
         "marketStartTime",
         "marketType",
-        "MarketPlan"
+        "MarketPlan",
+        "PlannedMarketEvent"
     )
     val marketEndTime: Fielder = parse_element (element (cls, fields(0)))
     val marketID: Fielder = parse_element (element (cls, fields(1)))
     val marketStartTime: Fielder = parse_element (element (cls, fields(2)))
     val marketType: Fielder = parse_attribute (attribute (cls, fields(3)))
     val MarketPlan: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val PlannedMarketEvent: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
 
     def parse (context: Context): PlannedMarket =
     {
@@ -981,13 +987,15 @@ extends
             mask (marketID (), 1),
             mask (marketStartTime (), 2),
             mask (marketType (), 3),
-            mask (MarketPlan (), 4)
+            mask (MarketPlan (), 4),
+            masks (PlannedMarketEvent (), 5)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("MarketPlan", "MarketPlan", false)
+        Relationship ("MarketPlan", "MarketPlan", false),
+        Relationship ("PlannedMarketEvent", "PlannedMarketEvent", true)
     )
 }
 
@@ -1002,6 +1010,7 @@ extends
  * @param plannedEventID Planned event identifier.
  * @param plannedTime This is relative time so that this attribute can be used by more than one planned market.
  *        For example the bid submission is 10am everyday.
+ * @param PlannedMarket [[ch.ninecode.model.PlannedMarket PlannedMarket]] A planned market shall have a set of planned events
  * @group MarketPlan
  * @groupname MarketPlan Package MarketPlan
  * @groupdesc MarketPlan Market plan definitions for planned markets, planned market events, actual market runs, actual market events.
@@ -1012,7 +1021,8 @@ case class PlannedMarketEvent
     description: String,
     eventType: String,
     plannedEventID: String,
-    plannedTime: Int
+    plannedTime: Int,
+    PlannedMarket: List[String]
 )
 extends
     Element
@@ -1020,7 +1030,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, 0) }
+    def this () = { this (null, null, null, null, 0, List()) }
     /**
      * Return the superclass object.
      *
@@ -1044,10 +1054,12 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PlannedMarketEvent.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PlannedMarketEvent.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (PlannedMarketEvent.fields (position), x))
         emitelem (0, description)
         emitelem (1, eventType)
         emitelem (2, plannedEventID)
         emitelem (3, plannedTime)
+        emitattrs (4, PlannedMarket)
         s.toString
     }
     override def export: String =
@@ -1064,12 +1076,14 @@ extends
         "description",
         "eventType",
         "plannedEventID",
-        "plannedTime"
+        "plannedTime",
+        "PlannedMarket"
     )
     val description: Fielder = parse_element (element (cls, fields(0)))
     val eventType: Fielder = parse_element (element (cls, fields(1)))
     val plannedEventID: Fielder = parse_element (element (cls, fields(2)))
     val plannedTime: Fielder = parse_element (element (cls, fields(3)))
+    val PlannedMarket: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
 
     def parse (context: Context): PlannedMarketEvent =
     {
@@ -1080,13 +1094,14 @@ extends
             mask (description (), 0),
             mask (eventType (), 1),
             mask (plannedEventID (), 2),
-            toInteger (mask (plannedTime (), 3))
+            toInteger (mask (plannedTime (), 3)),
+            masks (PlannedMarket (), 4)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
-
+        Relationship ("PlannedMarket", "PlannedMarket", true)
     )
 }
 

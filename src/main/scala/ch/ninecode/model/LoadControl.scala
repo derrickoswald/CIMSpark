@@ -23,7 +23,7 @@ import ch.ninecode.cim.Relationship
  *        If set false and if disconnection can be operated remotely, then the operation happens manually.
  * @param isRemoteAutoReconOp If set true and if reconnection can be operated remotely, then the operation happens automatically.
  *        If set false and if reconnection can be operated remotely, then the operation happens manually.
- * @param rcdInfo Information on remote connect disconnect switch.
+ * @param rcdInfo [[ch.ninecode.model.RemoteConnectDisconnectInfo RemoteConnectDisconnectInfo]] Information on remote connect disconnect switch.
  * @param Switches [[ch.ninecode.model.Switch Switch]] <em>undocumented</em>
  * @group LoadControl
  * @groupname LoadControl Package LoadControl
@@ -136,6 +136,7 @@ extends
         ret
     }
     val relations: List[Relationship] = List (
+        Relationship ("rcdInfo", "RemoteConnectDisconnectInfo", false),
         Relationship ("Switches", "Switch", true)
     )
 }

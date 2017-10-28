@@ -395,6 +395,8 @@ case class Model
     scenarioTime: String,
     version: String,
     DependentOn: List[String],
+    Depending: List[String],
+    SupersededBy: List[String],
     Supersedes: List[String]
 )
 extends
@@ -403,7 +405,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null, null, null, List(), List()) }
+    def this () = { this (null, null, null, null, null, null, null, List(), List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -436,7 +438,9 @@ extends
         emitelem (4, scenarioTime)
         emitelem (5, version)
         emitattrs (6, DependentOn)
-        emitattrs (7, Supersedes)
+        emitattrs (7, Depending)
+        emitattrs (8, SupersededBy)
+        emitattrs (9, Supersedes)
         s.toString
     }
     override def export: String =
@@ -457,6 +461,8 @@ extends
         "scenarioTime",
         "version",
         "DependentOn",
+        "Depending",
+        "SupersededBy",
         "Supersedes"
     )
     val created: Fielder = parse_element (element (cls, fields(0)))
@@ -466,7 +472,9 @@ extends
     val scenarioTime: Fielder = parse_element (element (cls, fields(4)))
     val version: Fielder = parse_element (element (cls, fields(5)))
     val DependentOn: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
-    val Supersedes: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
+    val Depending: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
+    val SupersededBy: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
+    val Supersedes: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
 
     def parse (context: Context): Model =
     {
@@ -481,13 +489,17 @@ extends
             mask (scenarioTime (), 4),
             mask (version (), 5),
             masks (DependentOn (), 6),
-            masks (Supersedes (), 7)
+            masks (Depending (), 7),
+            masks (SupersededBy (), 8),
+            masks (Supersedes (), 9)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
         Relationship ("DependentOn", "Model", true),
+        Relationship ("Depending", "Model", true),
+        Relationship ("SupersededBy", "Model", true),
         Relationship ("Supersedes", "Model", true)
     )
 }

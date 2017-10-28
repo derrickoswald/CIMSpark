@@ -16,11 +16,11 @@ import ch.ninecode.cim.Relationship
  * @param priority Priority between competing projects.
  *        Use 0 for don t care.  Use 1 for highest priority.  Use 2 as priority is less than 1 and so on.
  * @param state Describes the state the project realisation are from starting planning until it is commissioned if not cancelled.
- * @param typ Type of project.
  * @param unknown [[ch.ninecode.model.DifferenceModel DifferenceModel]] <em>undocumented</em>
  * @param version Version of the project.
  *        Changes to a project is not modeled. So the project with the highest version are the valid/latest project. Only positive numbers equal or higher than 1 are allowed.
  * @param Project [[ch.ninecode.model.PowerSystemProject PowerSystemProject]] <em>undocumented</em>
+ * @param `type` Type of project.
  * @group PowerSystemProject
  * @groupname PowerSystemProject Package PowerSystemProject
  * @groupdesc PowerSystemProject The package describes how power system model data is managed and evolve over time in projects.
@@ -32,10 +32,10 @@ case class PowerSystemProject
     name: String,
     priority: Int,
     state: String,
-    typ: String,
     unknown: String,
     version: Int,
-    Project: String
+    Project: String,
+    `type`: String
 )
 extends
     Element
@@ -43,7 +43,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, 0, null, null, null, 0, null) }
+    def this () = { this (null, null, null, 0, null, null, 0, null, null) }
     /**
      * Return the superclass object.
      *
@@ -72,10 +72,10 @@ extends
         emitelem (1, name)
         emitelem (2, priority)
         emitattr (3, state)
-        emitelem (4, typ)
-        emitattr (5, unknown)
-        emitelem (6, version)
-        emitattr (7, Project)
+        emitattr (4, unknown)
+        emitelem (5, version)
+        emitattr (6, Project)
+        emitelem (7, `type`)
         s.toString
     }
     override def export: String =
@@ -93,19 +93,19 @@ extends
         "name",
         "priority",
         "state",
-        "type",
         "",
         "version",
-        "Project"
+        "Project",
+        "type"
     )
     val description: Fielder = parse_element (element (cls, fields(0)))
     val name: Fielder = parse_element (element (cls, fields(1)))
     val priority: Fielder = parse_element (element (cls, fields(2)))
     val state: Fielder = parse_attribute (attribute (cls, fields(3)))
-    val typ: Fielder = parse_element (element (cls, fields(4)))
-    val unknown: Fielder = parse_attribute (attribute (cls, fields(5)))
-    val version: Fielder = parse_element (element (cls, fields(6)))
-    val Project: Fielder = parse_attribute (attribute (cls, fields(7)))
+    val unknown: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val version: Fielder = parse_element (element (cls, fields(5)))
+    val Project: Fielder = parse_attribute (attribute (cls, fields(6)))
+    val `type`: Fielder = parse_element (element (cls, fields(7)))
 
     def parse (context: Context): PowerSystemProject =
     {
@@ -117,10 +117,10 @@ extends
             mask (name (), 1),
             toInteger (mask (priority (), 2)),
             mask (state (), 3),
-            mask (typ (), 4),
-            mask (unknown (), 5),
-            toInteger (mask (version (), 6)),
-            mask (Project (), 7)
+            mask (unknown (), 4),
+            toInteger (mask (version (), 5)),
+            mask (Project (), 6),
+            mask (`type` (), 7)
         )
         ret.bitfields = bitfields
         ret

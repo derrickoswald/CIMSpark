@@ -332,7 +332,7 @@ extends
  * @param accuracyClass PT accuracy classification.
  * @param nominalRatio Nominal ratio between the primary and secondary voltage.
  * @param ptClass Potential transformer (PT) classification covering burden.
- * @param typ Potential transformer construction type.
+ * @param `type` Potential transformer construction type.
  * @group AuxiliaryEquipment
  * @groupname AuxiliaryEquipment Package AuxiliaryEquipment
  * @groupdesc AuxiliaryEquipment Contains equipment which is not normal conducting equipment such as sensors, fault locators, and surge protectors.  These devices do not define power carrying topological connections as conducting equipment, but are associated to terminals of other conducting equipment.
@@ -343,7 +343,7 @@ case class PotentialTransformer
     accuracyClass: String,
     nominalRatio: Double,
     ptClass: String,
-    typ: String
+    `type`: String
 )
 extends
     Element
@@ -379,7 +379,7 @@ extends
         emitelem (0, accuracyClass)
         emitelem (1, nominalRatio)
         emitelem (2, ptClass)
-        emitattr (3, typ)
+        emitattr (3, `type`)
         s.toString
     }
     override def export: String =
@@ -401,7 +401,7 @@ extends
     val accuracyClass: Fielder = parse_element (element (cls, fields(0)))
     val nominalRatio: Fielder = parse_element (element (cls, fields(1)))
     val ptClass: Fielder = parse_element (element (cls, fields(2)))
-    val typ: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val `type`: Fielder = parse_attribute (attribute (cls, fields(3)))
 
     def parse (context: Context): PotentialTransformer =
     {
@@ -412,7 +412,7 @@ extends
             mask (accuracyClass (), 0),
             toDouble (mask (nominalRatio (), 1)),
             mask (ptClass (), 2),
-            mask (typ (), 3)
+            mask (`type` (), 3)
         )
         ret.bitfields = bitfields
         ret

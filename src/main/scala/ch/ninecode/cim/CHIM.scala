@@ -558,7 +558,7 @@ class CHIM (val xml: String, val start: Long = 0L, val finish: Long = 0L, val fi
 object CHIM
 {
     val CHUNK: Int = 1024*1024*64
-    val OVERREAD: Int = 1024*32 // should be large enough that no RDF element is bigger than this
+    val OVERREAD: Int = 1024*256 // should be large enough that no RDF element is bigger than this
     val row: Row = null
 
     def parse (parser: CHIM): (scala.collection.mutable.HashMap[String, Element], ArrayBuffer[String]) =

@@ -91,7 +91,7 @@ extends
  * Abnormal condition causing current flow through conducting equipment, such as caused by equipment failure or short circuits from objects not typically modeled (for example, a tree falling on a line).
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param impedance Fault impedance.
+ * @param impedance [[ch.ninecode.model.FaultImpedance FaultImpedance]] Fault impedance.
  *        Its usage is described by 'kind'.
  * @param kind The kind of phase fault.
  * @param phases The phases participating in the fault.
@@ -194,6 +194,7 @@ extends
         ret
     }
     val relations: List[Relationship] = List (
+        Relationship ("impedance", "FaultImpedance", false),
         Relationship ("FaultCauseTypes", "FaultCauseType", true),
         Relationship ("FaultyEquipment", "Equipment", false),
         Relationship ("Outage", "Outage", false)
@@ -204,13 +205,15 @@ extends
  * Type of cause of the fault.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param Faults [[ch.ninecode.model.Fault Fault]] All faults with this cause type.
  * @group Faults
  * @groupname Faults Package Faults
  * @groupdesc Faults The package describe faults that may happen to conducting equipment, e.g. tree falling on a power line.
  */
 case class FaultCauseType
 (
-    override val sup: IdentifiedObject
+    override val sup: IdentifiedObject,
+    Faults: List[String]
 )
 extends
     Element
@@ -218,7 +221,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -239,7 +242,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = FaultCauseType.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (FaultCauseType.fields (position), x))
+        emitattrs (0, Faults)
+        s.toString
     }
     override def export: String =
     {
@@ -251,17 +258,24 @@ object FaultCauseType
 extends
     Parseable[FaultCauseType]
 {
+    val fields: Array[String] = Array[String] (
+        "Faults"
+    )
+    val Faults: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): FaultCauseType =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = FaultCauseType (
-            IdentifiedObject.parse (context)
+            IdentifiedObject.parse (context),
+            masks (Faults (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
-
+        Relationship ("Faults", "Fault", true)
     )
 }
 

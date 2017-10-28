@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>ForbiddenRegion - CIMReader 2.11-2.2.0-2.4.0 API - ch.ninecode.model.ForbiddenRegion</title>
-          <meta name="description" content="ForbiddenRegion - CIMReader 2.11 - 2.2.0 - 2.4.0 API - ch.ninecode.model.ForbiddenRegion" />
-          <meta name="keywords" content="ForbiddenRegion CIMReader 2.11 2.2.0 2.4.0 API ch.ninecode.model.ForbiddenRegion" />
+          <title>ForbiddenRegion - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.ForbiddenRegion</title>
+          <meta name="description" content="ForbiddenRegion - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.ForbiddenRegion" />
+          <meta name="keywords" content="ForbiddenRegion CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.ForbiddenRegion" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,12 +47,12 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">ForbiddenRegion</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="crossTime">crossTime: <span class="extype" name="scala.Int">Int</span></span>, <span name="crossingCost">crossingCost: <span class="extype" name="scala.Double">Double</span></span>, <span name="highMW">highMW: <span class="extype" name="scala.Double">Double</span></span>, <span name="lowMW">lowMW: <span class="extype" name="scala.Double">Double</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">ForbiddenRegion</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="crossTime">crossTime: <span class="extype" name="scala.Int">Int</span></span>, <span name="crossingCost">crossingCost: <span class="extype" name="scala.Double">Double</span></span>, <span name="highMW">highMW: <span class="extype" name="scala.Double">Double</span></span>, <span name="lowMW">lowMW: <span class="extype" name="scala.Double">Double</span></span>, <span name="RegisteredResource">RegisteredResource: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Forbbiden region is operating ranges where the units are unable to maintain steady operation without causing equipment damage.</p><p>The four attributes that define a forbidden region are the low MW, the High MW, the crossing time, and the crossing cost.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">crossTime</dt><dd class="cmt"><p>Time to cross the forbidden region in minutes.</p></dd><dt class="param">crossingCost</dt><dd class="cmt"><p>Cost associated with crossing the forbidden region</p></dd><dt class="param">highMW</dt><dd class="cmt"><p>High end of the region definition</p></dd><dt class="param">lowMW</dt><dd class="cmt"><p>Low end of the region definition.</p></dd></dl><div class="toggleContainer block">
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">crossTime</dt><dd class="cmt"><p>Time to cross the forbidden region in minutes.</p></dd><dt class="param">crossingCost</dt><dd class="cmt"><p>Cost associated with crossing the forbidden region</p></dd><dt class="param">highMW</dt><dd class="cmt"><p>High end of the region definition</p></dd><dt class="param">lowMW</dt><dd class="cmt"><p>Low end of the region definition.</p></dd><dt class="param">RegisteredResource</dt><dd class="cmt"><p><a href="RegisteredResource.html" class="extype" name="ch.ninecode.model.RegisteredResource">RegisteredResource</a> <em>undocumented</em></p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -109,7 +109,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.ForbiddenRegion#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,crossTime:Int,crossingCost:Double,highMW:Double,lowMW:Double):ch.ninecode.model.ForbiddenRegion"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,crossTime:Int,crossingCost:Double,highMW:Double,lowMW:Double,RegisteredResource:List[String]):ch.ninecode.model.ForbiddenRegion"></a>
       <a id="&lt;init&gt;:ForbiddenRegion"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -117,14 +117,14 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">ForbiddenRegion</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="crossTime">crossTime: <span class="extype" name="scala.Int">Int</span></span>, <span name="crossingCost">crossingCost: <span class="extype" name="scala.Double">Double</span></span>, <span name="highMW">highMW: <span class="extype" name="scala.Double">Double</span></span>, <span name="lowMW">lowMW: <span class="extype" name="scala.Double">Double</span></span>)</span>
+        <span class="name">ForbiddenRegion</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="crossTime">crossTime: <span class="extype" name="scala.Int">Int</span></span>, <span name="crossingCost">crossingCost: <span class="extype" name="scala.Double">Double</span></span>, <span name="highMW">highMW: <span class="extype" name="scala.Double">Double</span></span>, <span name="lowMW">lowMW: <span class="extype" name="scala.Double">Double</span></span>, <span name="RegisteredResource">RegisteredResource: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.ForbiddenRegion@&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,crossTime:Int,crossingCost:Double,highMW:Double,lowMW:Double):ch.ninecode.model.ForbiddenRegion" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.ForbiddenRegion@&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,crossTime:Int,crossingCost:Double,highMW:Double,lowMW:Double,RegisteredResource:List[String]):ch.ninecode.model.ForbiddenRegion" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">crossTime</dt><dd class="cmt"><p>Time to cross the forbidden region in minutes.</p></dd><dt class="param">crossingCost</dt><dd class="cmt"><p>Cost associated with crossing the forbidden region</p></dd><dt class="param">highMW</dt><dd class="cmt"><p>High end of the region definition</p></dd><dt class="param">lowMW</dt><dd class="cmt"><p>Low end of the region definition.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">crossTime</dt><dd class="cmt"><p>Time to cross the forbidden region in minutes.</p></dd><dt class="param">crossingCost</dt><dd class="cmt"><p>Cost associated with crossing the forbidden region</p></dd><dt class="param">highMW</dt><dd class="cmt"><p>High end of the region definition</p></dd><dt class="param">lowMW</dt><dd class="cmt"><p>Low end of the region definition.</p></dd><dt class="param">RegisteredResource</dt><dd class="cmt"><p><a href="RegisteredResource.html" class="extype" name="ch.ninecode.model.RegisteredResource">RegisteredResource</a> <em>undocumented</em></p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -203,6 +203,23 @@
     </span>
       <p class="shortcomment cmt">Return the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Return the superclass object.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The typed superclass nested object.</p></dd></dl></div>
+    </li><li name="ch.ninecode.model.ForbiddenRegion#RegisteredResource" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="RegisteredResource:List[String]"></a>
+      <a id="RegisteredResource:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">RegisteredResource</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.ForbiddenRegion@RegisteredResource:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="RegisteredResource.html" class="extype" name="ch.ninecode.model.RegisteredResource">RegisteredResource</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="RegisteredResource.html" class="extype" name="ch.ninecode.model.RegisteredResource">RegisteredResource</a> <em>undocumented</em></p></div></div>
     </li><li name="ch.ninecode.model.Element#about" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="about:Boolean"></a>
       <a id="about:Boolean"></a>

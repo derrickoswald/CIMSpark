@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>LoadReductionTimeCurve - CIMReader 2.11-2.2.0-2.4.0 API - ch.ninecode.model.LoadReductionTimeCurve</title>
-          <meta name="description" content="LoadReductionTimeCurve - CIMReader 2.11 - 2.2.0 - 2.4.0 API - ch.ninecode.model.LoadReductionTimeCurve" />
-          <meta name="keywords" content="LoadReductionTimeCurve CIMReader 2.11 2.2.0 2.4.0 API ch.ninecode.model.LoadReductionTimeCurve" />
+          <title>LoadReductionTimeCurve - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.LoadReductionTimeCurve</title>
+          <meta name="description" content="LoadReductionTimeCurve - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.LoadReductionTimeCurve" />
+          <meta name="keywords" content="LoadReductionTimeCurve CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.LoadReductionTimeCurve" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,13 +47,13 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">LoadReductionTimeCurve</span><span class="params">(<span name="sup">sup: <a href="Curve.html" class="extype" name="ch.ninecode.model.Curve">Curve</a></span>, <span name="loadReductionTimeCurveType">loadReductionTimeCurveType: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">LoadReductionTimeCurve</span><span class="params">(<span name="sup">sup: <a href="Curve.html" class="extype" name="ch.ninecode.model.Curve">Curve</a></span>, <span name="loadReductionTimeCurveType">loadReductionTimeCurveType: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="RegisteredLoad">RegisteredLoad: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>This is the cureve that describes the load reduction time.</p><p>Relationship between time (Y1-axis) vs. MW (X-axis).
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="Curve.html" class="extype" name="ch.ninecode.model.Curve">Curve</a> Reference to the superclass object.</p></dd><dt class="param">loadReductionTimeCurveType</dt><dd class="cmt"><p>type of the curve: Possible values are but not limited to:
-       Max, Min,</p></dd></dl><div class="toggleContainer block">
+       Max, Min,</p></dd><dt class="param">RegisteredLoad</dt><dd class="cmt"><p><a href="RegisteredLoad.html" class="extype" name="ch.ninecode.model.RegisteredLoad">RegisteredLoad</a> <em>undocumented</em></p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -110,7 +110,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.LoadReductionTimeCurve#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.Curve,loadReductionTimeCurveType:String):ch.ninecode.model.LoadReductionTimeCurve"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.Curve,loadReductionTimeCurveType:String,RegisteredLoad:List[String]):ch.ninecode.model.LoadReductionTimeCurve"></a>
       <a id="&lt;init&gt;:LoadReductionTimeCurve"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -118,15 +118,15 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">LoadReductionTimeCurve</span><span class="params">(<span name="sup">sup: <a href="Curve.html" class="extype" name="ch.ninecode.model.Curve">Curve</a></span>, <span name="loadReductionTimeCurveType">loadReductionTimeCurveType: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
+        <span class="name">LoadReductionTimeCurve</span><span class="params">(<span name="sup">sup: <a href="Curve.html" class="extype" name="ch.ninecode.model.Curve">Curve</a></span>, <span name="loadReductionTimeCurveType">loadReductionTimeCurveType: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="RegisteredLoad">RegisteredLoad: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.LoadReductionTimeCurve@&lt;init&gt;(sup:ch.ninecode.model.Curve,loadReductionTimeCurveType:String):ch.ninecode.model.LoadReductionTimeCurve" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.LoadReductionTimeCurve@&lt;init&gt;(sup:ch.ninecode.model.Curve,loadReductionTimeCurveType:String,RegisteredLoad:List[String]):ch.ninecode.model.LoadReductionTimeCurve" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="Curve.html" class="extype" name="ch.ninecode.model.Curve">Curve</a> Reference to the superclass object.</p></dd><dt class="param">loadReductionTimeCurveType</dt><dd class="cmt"><p>type of the curve: Possible values are but not limited to:
-       Max, Min,</p></dd></dl></div>
+       Max, Min,</p></dd><dt class="param">RegisteredLoad</dt><dd class="cmt"><p><a href="RegisteredLoad.html" class="extype" name="ch.ninecode.model.RegisteredLoad">RegisteredLoad</a> <em>undocumented</em></p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -205,6 +205,23 @@
     </span>
       <p class="shortcomment cmt">Return the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Return the superclass object.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The typed superclass nested object.</p></dd></dl></div>
+    </li><li name="ch.ninecode.model.LoadReductionTimeCurve#RegisteredLoad" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="RegisteredLoad:List[String]"></a>
+      <a id="RegisteredLoad:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">RegisteredLoad</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.LoadReductionTimeCurve@RegisteredLoad:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="RegisteredLoad.html" class="extype" name="ch.ninecode.model.RegisteredLoad">RegisteredLoad</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="RegisteredLoad.html" class="extype" name="ch.ninecode.model.RegisteredLoad">RegisteredLoad</a> <em>undocumented</em></p></div></div>
     </li><li name="ch.ninecode.model.Element#about" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="about:Boolean"></a>
       <a id="about:Boolean"></a>

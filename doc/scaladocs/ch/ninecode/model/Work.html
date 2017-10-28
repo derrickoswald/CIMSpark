@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>Work - CIMReader 2.11-2.2.0-2.4.0 API - ch.ninecode.model.Work</title>
-          <meta name="description" content="Work - CIMReader 2.11 - 2.2.0 - 2.4.0 API - ch.ninecode.model.Work" />
-          <meta name="keywords" content="Work CIMReader 2.11 2.2.0 2.4.0 API ch.ninecode.model.Work" />
+          <title>Work - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.Work</title>
+          <meta name="description" content="Work - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.Work" />
+          <meta name="keywords" content="Work CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.Work" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,12 +47,12 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">Work</span><span class="params">(<span name="sup">sup: <a href="BaseWork.html" class="extype" name="ch.ninecode.model.BaseWork">BaseWork</a></span>, <span name="requestDateTime">requestDateTime: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="BusinessCase">BusinessCase: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ErpProjectAccounting">ErpProjectAccounting: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Project">Project: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="WorkBillingInfo">WorkBillingInfo: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">Work</span><span class="params">(<span name="sup">sup: <a href="BaseWork.html" class="extype" name="ch.ninecode.model.BaseWork">BaseWork</a></span>, <span name="requestDateTime">requestDateTime: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Appointments">Appointments: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="BusinessCase">BusinessCase: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Customers">Customers: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="ErpProjectAccounting">ErpProjectAccounting: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Incidents">Incidents: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Project">Project: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="WorkBillingInfo">WorkBillingInfo: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="WorkCostDetails">WorkCostDetails: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Document used to request, initiate, track and record work.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="BaseWork.html" class="extype" name="ch.ninecode.model.BaseWork">BaseWork</a> Reference to the superclass object.</p></dd><dt class="param">requestDateTime</dt><dd class="cmt"><p>Date and time work was requested.</p></dd><dt class="param">BusinessCase</dt><dd class="cmt"><p><a href="BusinessCase.html" class="extype" name="ch.ninecode.model.BusinessCase">BusinessCase</a> <em>undocumented</em></p></dd><dt class="param">ErpProjectAccounting</dt><dd class="cmt"><p><a href="ErpProjectAccounting.html" class="extype" name="ch.ninecode.model.ErpProjectAccounting">ErpProjectAccounting</a> <em>undocumented</em></p></dd><dt class="param">Project</dt><dd class="cmt"><p><a href="Project.html" class="extype" name="ch.ninecode.model.Project">Project</a> <em>undocumented</em></p></dd><dt class="param">WorkBillingInfo</dt><dd class="cmt"><p><a href="WorkBillingInfo.html" class="extype" name="ch.ninecode.model.WorkBillingInfo">WorkBillingInfo</a> <em>undocumented</em></p></dd></dl><div class="toggleContainer block">
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="BaseWork.html" class="extype" name="ch.ninecode.model.BaseWork">BaseWork</a> Reference to the superclass object.</p></dd><dt class="param">requestDateTime</dt><dd class="cmt"><p>Date and time work was requested.</p></dd><dt class="param">Appointments</dt><dd class="cmt"><p><a href="Appointment.html" class="extype" name="ch.ninecode.model.Appointment">Appointment</a> All appointments for this work.</p></dd><dt class="param">BusinessCase</dt><dd class="cmt"><p><a href="BusinessCase.html" class="extype" name="ch.ninecode.model.BusinessCase">BusinessCase</a> <em>undocumented</em></p></dd><dt class="param">Customers</dt><dd class="cmt"><p><a href="Customer.html" class="extype" name="ch.ninecode.model.Customer">Customer</a> All the customers for which this work is performed.</p></dd><dt class="param">ErpProjectAccounting</dt><dd class="cmt"><p><a href="ErpProjectAccounting.html" class="extype" name="ch.ninecode.model.ErpProjectAccounting">ErpProjectAccounting</a> <em>undocumented</em></p></dd><dt class="param">Incidents</dt><dd class="cmt"><p><a href="Incident.html" class="extype" name="ch.ninecode.model.Incident">Incident</a> All incidents being addressed by this work.</p></dd><dt class="param">Project</dt><dd class="cmt"><p><a href="Project.html" class="extype" name="ch.ninecode.model.Project">Project</a> <em>undocumented</em></p></dd><dt class="param">WorkBillingInfo</dt><dd class="cmt"><p><a href="WorkBillingInfo.html" class="extype" name="ch.ninecode.model.WorkBillingInfo">WorkBillingInfo</a> <em>undocumented</em></p></dd><dt class="param">WorkCostDetails</dt><dd class="cmt"><p><a href="WorkCostDetail.html" class="extype" name="ch.ninecode.model.WorkCostDetail">WorkCostDetail</a> <em>undocumented</em></p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -109,7 +109,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.Work#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.BaseWork,requestDateTime:String,BusinessCase:String,ErpProjectAccounting:String,Project:String,WorkBillingInfo:String):ch.ninecode.model.Work"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.BaseWork,requestDateTime:String,Appointments:List[String],BusinessCase:String,Customers:List[String],ErpProjectAccounting:String,Incidents:List[String],Project:String,WorkBillingInfo:String,WorkCostDetails:List[String]):ch.ninecode.model.Work"></a>
       <a id="&lt;init&gt;:Work"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -117,14 +117,14 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">Work</span><span class="params">(<span name="sup">sup: <a href="BaseWork.html" class="extype" name="ch.ninecode.model.BaseWork">BaseWork</a></span>, <span name="requestDateTime">requestDateTime: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="BusinessCase">BusinessCase: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ErpProjectAccounting">ErpProjectAccounting: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Project">Project: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="WorkBillingInfo">WorkBillingInfo: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
+        <span class="name">Work</span><span class="params">(<span name="sup">sup: <a href="BaseWork.html" class="extype" name="ch.ninecode.model.BaseWork">BaseWork</a></span>, <span name="requestDateTime">requestDateTime: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Appointments">Appointments: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="BusinessCase">BusinessCase: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Customers">Customers: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="ErpProjectAccounting">ErpProjectAccounting: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Incidents">Incidents: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Project">Project: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="WorkBillingInfo">WorkBillingInfo: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="WorkCostDetails">WorkCostDetails: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.Work@&lt;init&gt;(sup:ch.ninecode.model.BaseWork,requestDateTime:String,BusinessCase:String,ErpProjectAccounting:String,Project:String,WorkBillingInfo:String):ch.ninecode.model.Work" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.Work@&lt;init&gt;(sup:ch.ninecode.model.BaseWork,requestDateTime:String,Appointments:List[String],BusinessCase:String,Customers:List[String],ErpProjectAccounting:String,Incidents:List[String],Project:String,WorkBillingInfo:String,WorkCostDetails:List[String]):ch.ninecode.model.Work" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="BaseWork.html" class="extype" name="ch.ninecode.model.BaseWork">BaseWork</a> Reference to the superclass object.</p></dd><dt class="param">requestDateTime</dt><dd class="cmt"><p>Date and time work was requested.</p></dd><dt class="param">BusinessCase</dt><dd class="cmt"><p><a href="BusinessCase.html" class="extype" name="ch.ninecode.model.BusinessCase">BusinessCase</a> <em>undocumented</em></p></dd><dt class="param">ErpProjectAccounting</dt><dd class="cmt"><p><a href="ErpProjectAccounting.html" class="extype" name="ch.ninecode.model.ErpProjectAccounting">ErpProjectAccounting</a> <em>undocumented</em></p></dd><dt class="param">Project</dt><dd class="cmt"><p><a href="Project.html" class="extype" name="ch.ninecode.model.Project">Project</a> <em>undocumented</em></p></dd><dt class="param">WorkBillingInfo</dt><dd class="cmt"><p><a href="WorkBillingInfo.html" class="extype" name="ch.ninecode.model.WorkBillingInfo">WorkBillingInfo</a> <em>undocumented</em></p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="BaseWork.html" class="extype" name="ch.ninecode.model.BaseWork">BaseWork</a> Reference to the superclass object.</p></dd><dt class="param">requestDateTime</dt><dd class="cmt"><p>Date and time work was requested.</p></dd><dt class="param">Appointments</dt><dd class="cmt"><p><a href="Appointment.html" class="extype" name="ch.ninecode.model.Appointment">Appointment</a> All appointments for this work.</p></dd><dt class="param">BusinessCase</dt><dd class="cmt"><p><a href="BusinessCase.html" class="extype" name="ch.ninecode.model.BusinessCase">BusinessCase</a> <em>undocumented</em></p></dd><dt class="param">Customers</dt><dd class="cmt"><p><a href="Customer.html" class="extype" name="ch.ninecode.model.Customer">Customer</a> All the customers for which this work is performed.</p></dd><dt class="param">ErpProjectAccounting</dt><dd class="cmt"><p><a href="ErpProjectAccounting.html" class="extype" name="ch.ninecode.model.ErpProjectAccounting">ErpProjectAccounting</a> <em>undocumented</em></p></dd><dt class="param">Incidents</dt><dd class="cmt"><p><a href="Incident.html" class="extype" name="ch.ninecode.model.Incident">Incident</a> All incidents being addressed by this work.</p></dd><dt class="param">Project</dt><dd class="cmt"><p><a href="Project.html" class="extype" name="ch.ninecode.model.Project">Project</a> <em>undocumented</em></p></dd><dt class="param">WorkBillingInfo</dt><dd class="cmt"><p><a href="WorkBillingInfo.html" class="extype" name="ch.ninecode.model.WorkBillingInfo">WorkBillingInfo</a> <em>undocumented</em></p></dd><dt class="param">WorkCostDetails</dt><dd class="cmt"><p><a href="WorkCostDetail.html" class="extype" name="ch.ninecode.model.WorkCostDetail">WorkCostDetail</a> <em>undocumented</em></p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -185,6 +185,23 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="ch.ninecode.model.Work#Appointments" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Appointments:List[String]"></a>
+      <a id="Appointments:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Appointments</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.Work@Appointments:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="Appointment.html" class="extype" name="ch.ninecode.model.Appointment">Appointment</a> All appointments for this work.</p>
     </li><li name="ch.ninecode.model.Work#BaseWork" visbl="pub" data-isabs="false" fullComment="yes" group="Hierarchy">
       <a id="BaseWork:ch.ninecode.model.BaseWork"></a>
       <a id="BaseWork:BaseWork"></a>
@@ -220,6 +237,23 @@
       </a>
     </span>
       <p class="shortcomment cmt"><a href="BusinessCase.html" class="extype" name="ch.ninecode.model.BusinessCase">BusinessCase</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="BusinessCase.html" class="extype" name="ch.ninecode.model.BusinessCase">BusinessCase</a> <em>undocumented</em></p></div></div>
+    </li><li name="ch.ninecode.model.Work#Customers" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Customers:List[String]"></a>
+      <a id="Customers:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Customers</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.Work@Customers:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="Customer.html" class="extype" name="ch.ninecode.model.Customer">Customer</a> All the customers for which this work is performed.</p>
     </li><li name="ch.ninecode.model.Work#ErpProjectAccounting" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ErpProjectAccounting:String"></a>
       <a id="ErpProjectAccounting:String"></a>
@@ -237,6 +271,23 @@
       </a>
     </span>
       <p class="shortcomment cmt"><a href="ErpProjectAccounting.html" class="extype" name="ch.ninecode.model.ErpProjectAccounting">ErpProjectAccounting</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="ErpProjectAccounting.html" class="extype" name="ch.ninecode.model.ErpProjectAccounting">ErpProjectAccounting</a> <em>undocumented</em></p></div></div>
+    </li><li name="ch.ninecode.model.Work#Incidents" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Incidents:List[String]"></a>
+      <a id="Incidents:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Incidents</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.Work@Incidents:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="Incident.html" class="extype" name="ch.ninecode.model.Incident">Incident</a> All incidents being addressed by this work.</p>
     </li><li name="ch.ninecode.model.Work#Project" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="Project:String"></a>
       <a id="Project:String"></a>
@@ -271,6 +322,23 @@
       </a>
     </span>
       <p class="shortcomment cmt"><a href="WorkBillingInfo.html" class="extype" name="ch.ninecode.model.WorkBillingInfo">WorkBillingInfo</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="WorkBillingInfo.html" class="extype" name="ch.ninecode.model.WorkBillingInfo">WorkBillingInfo</a> <em>undocumented</em></p></div></div>
+    </li><li name="ch.ninecode.model.Work#WorkCostDetails" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="WorkCostDetails:List[String]"></a>
+      <a id="WorkCostDetails:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">WorkCostDetails</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.Work@WorkCostDetails:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="WorkCostDetail.html" class="extype" name="ch.ninecode.model.WorkCostDetail">WorkCostDetail</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="WorkCostDetail.html" class="extype" name="ch.ninecode.model.WorkCostDetail">WorkCostDetail</a> <em>undocumented</em></p></div></div>
     </li><li name="ch.ninecode.model.Element#about" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="about:Boolean"></a>
       <a id="about:Boolean"></a>

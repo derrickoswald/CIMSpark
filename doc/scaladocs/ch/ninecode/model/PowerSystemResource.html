@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>PowerSystemResource - CIMReader 2.11-2.2.0-2.4.0 API - ch.ninecode.model.PowerSystemResource</title>
-          <meta name="description" content="PowerSystemResource - CIMReader 2.11 - 2.2.0 - 2.4.0 API - ch.ninecode.model.PowerSystemResource" />
-          <meta name="keywords" content="PowerSystemResource CIMReader 2.11 2.2.0 2.4.0 API ch.ninecode.model.PowerSystemResource" />
+          <title>PowerSystemResource - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.PowerSystemResource</title>
+          <meta name="description" content="PowerSystemResource - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.PowerSystemResource" />
+          <meta name="keywords" content="PowerSystemResource CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.PowerSystemResource" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,12 +47,13 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">PowerSystemResource</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="AssetDatasheet">AssetDatasheet: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Location">Location: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="PSRType">PSRType: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">PowerSystemResource</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="AssetDatasheet">AssetDatasheet: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Assets">Assets: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Clearances">Clearances: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Location">Location: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="PSRType">PSRType: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ReportingGroup">ReportingGroup: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A power system resource can be an item of equipment such as a switch, an equipment container containing many individual items of equipment such as a substation, or an organisational entity such as sub-control area.</p><p>Power system resources can have measurements associated.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">AssetDatasheet</dt><dd class="cmt"><p><a href="AssetInfo.html" class="extype" name="ch.ninecode.model.AssetInfo">AssetInfo</a> Datasheet information for this power system resource.</p></dd><dt class="param">Location</dt><dd class="cmt"><p><a href="Location.html" class="extype" name="ch.ninecode.model.Location">Location</a> Location of this power system resource.</p></dd><dt class="param">PSRType</dt><dd class="cmt"><p><a href="PSRType.html" class="extype" name="ch.ninecode.model.PSRType">PSRType</a> Custom classification for this power system resource.</p></dd></dl><div class="toggleContainer block">
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">AssetDatasheet</dt><dd class="cmt"><p><a href="AssetInfo.html" class="extype" name="ch.ninecode.model.AssetInfo">AssetInfo</a> Datasheet information for this power system resource.</p></dd><dt class="param">Assets</dt><dd class="cmt"><p><a href="Asset.html" class="extype" name="ch.ninecode.model.Asset">Asset</a> All assets represented by this power system resource.
+       For example, multiple conductor assets are electrically modelled as a single AC line segment.</p></dd><dt class="param">Clearances</dt><dd class="cmt"><p><a href="ClearanceDocument.html" class="extype" name="ch.ninecode.model.ClearanceDocument">ClearanceDocument</a> All clearances applicable to this power system resource.</p></dd><dt class="param">Location</dt><dd class="cmt"><p><a href="Location.html" class="extype" name="ch.ninecode.model.Location">Location</a> Location of this power system resource.</p></dd><dt class="param">PSRType</dt><dd class="cmt"><p><a href="PSRType.html" class="extype" name="ch.ninecode.model.PSRType">PSRType</a> Custom classification for this power system resource.</p></dd><dt class="param">ReportingGroup</dt><dd class="cmt"><p><a href="ReportingGroup.html" class="extype" name="ch.ninecode.model.ReportingGroup">ReportingGroup</a> Reporting groups to which this power system resource belongs.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -109,7 +110,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.PowerSystemResource#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,AssetDatasheet:String,Location:String,PSRType:String):ch.ninecode.model.PowerSystemResource"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,AssetDatasheet:String,Assets:List[String],Clearances:List[String],Location:String,PSRType:String,ReportingGroup:List[String]):ch.ninecode.model.PowerSystemResource"></a>
       <a id="&lt;init&gt;:PowerSystemResource"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -117,14 +118,15 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">PowerSystemResource</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="AssetDatasheet">AssetDatasheet: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Location">Location: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="PSRType">PSRType: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
+        <span class="name">PowerSystemResource</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="AssetDatasheet">AssetDatasheet: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Assets">Assets: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Clearances">Clearances: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Location">Location: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="PSRType">PSRType: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ReportingGroup">ReportingGroup: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.PowerSystemResource@&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,AssetDatasheet:String,Location:String,PSRType:String):ch.ninecode.model.PowerSystemResource" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.PowerSystemResource@&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,AssetDatasheet:String,Assets:List[String],Clearances:List[String],Location:String,PSRType:String,ReportingGroup:List[String]):ch.ninecode.model.PowerSystemResource" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">AssetDatasheet</dt><dd class="cmt"><p><a href="AssetInfo.html" class="extype" name="ch.ninecode.model.AssetInfo">AssetInfo</a> Datasheet information for this power system resource.</p></dd><dt class="param">Location</dt><dd class="cmt"><p><a href="Location.html" class="extype" name="ch.ninecode.model.Location">Location</a> Location of this power system resource.</p></dd><dt class="param">PSRType</dt><dd class="cmt"><p><a href="PSRType.html" class="extype" name="ch.ninecode.model.PSRType">PSRType</a> Custom classification for this power system resource.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">AssetDatasheet</dt><dd class="cmt"><p><a href="AssetInfo.html" class="extype" name="ch.ninecode.model.AssetInfo">AssetInfo</a> Datasheet information for this power system resource.</p></dd><dt class="param">Assets</dt><dd class="cmt"><p><a href="Asset.html" class="extype" name="ch.ninecode.model.Asset">Asset</a> All assets represented by this power system resource.
+       For example, multiple conductor assets are electrically modelled as a single AC line segment.</p></dd><dt class="param">Clearances</dt><dd class="cmt"><p><a href="ClearanceDocument.html" class="extype" name="ch.ninecode.model.ClearanceDocument">ClearanceDocument</a> All clearances applicable to this power system resource.</p></dd><dt class="param">Location</dt><dd class="cmt"><p><a href="Location.html" class="extype" name="ch.ninecode.model.Location">Location</a> Location of this power system resource.</p></dd><dt class="param">PSRType</dt><dd class="cmt"><p><a href="PSRType.html" class="extype" name="ch.ninecode.model.PSRType">PSRType</a> Custom classification for this power system resource.</p></dd><dt class="param">ReportingGroup</dt><dd class="cmt"><p><a href="ReportingGroup.html" class="extype" name="ch.ninecode.model.ReportingGroup">ReportingGroup</a> Reporting groups to which this power system resource belongs.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -202,6 +204,41 @@
       </a>
     </span>
       <p class="shortcomment cmt"><a href="AssetInfo.html" class="extype" name="ch.ninecode.model.AssetInfo">AssetInfo</a> Datasheet information for this power system resource.</p>
+    </li><li name="ch.ninecode.model.PowerSystemResource#Assets" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="Assets:List[String]"></a>
+      <a id="Assets:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Assets</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.PowerSystemResource@Assets:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="Asset.html" class="extype" name="ch.ninecode.model.Asset">Asset</a> All assets represented by this power system resource.</p><div class="fullcomment"><div class="comment cmt"><p><a href="Asset.html" class="extype" name="ch.ninecode.model.Asset">Asset</a> All assets represented by this power system resource.
+       For example, multiple conductor assets are electrically modelled as a single AC line segment.</p></div></div>
+    </li><li name="ch.ninecode.model.PowerSystemResource#Clearances" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Clearances:List[String]"></a>
+      <a id="Clearances:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Clearances</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.PowerSystemResource@Clearances:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="ClearanceDocument.html" class="extype" name="ch.ninecode.model.ClearanceDocument">ClearanceDocument</a> All clearances applicable to this power system resource.</p>
     </li><li name="ch.ninecode.model.PowerSystemResource#IdentifiedObject" visbl="pub" data-isabs="false" fullComment="yes" group="Hierarchy">
       <a id="IdentifiedObject:ch.ninecode.model.IdentifiedObject"></a>
       <a id="IdentifiedObject:IdentifiedObject"></a>
@@ -254,6 +291,23 @@
       </a>
     </span>
       <p class="shortcomment cmt"><a href="PSRType.html" class="extype" name="ch.ninecode.model.PSRType">PSRType</a> Custom classification for this power system resource.</p>
+    </li><li name="ch.ninecode.model.PowerSystemResource#ReportingGroup" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ReportingGroup:List[String]"></a>
+      <a id="ReportingGroup:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ReportingGroup</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.PowerSystemResource@ReportingGroup:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="ReportingGroup.html" class="extype" name="ch.ninecode.model.ReportingGroup">ReportingGroup</a> Reporting groups to which this power system resource belongs.</p>
     </li><li name="ch.ninecode.model.Element#about" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="about:Boolean"></a>
       <a id="about:Boolean"></a>

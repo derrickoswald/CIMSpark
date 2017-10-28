@@ -1333,6 +1333,7 @@ extends
  * @param shaft2PowerLP1 Fraction of power from shaft 2 first low pressure turbine output.
  * @param shaft2PowerLP2 Fraction of power from shaft 2 second low pressure turbine output.
  * @param steamChestTC Steam chest time constant.
+ * @param SteamSupplys [[ch.ninecode.model.SteamSupply SteamSupply]] Steam turbines may have steam supplied by a steam supply.
  * @group GenerationTrainingSimulation
  * @groupname GenerationTrainingSimulation Package GenerationTrainingSimulation
  * @groupdesc GenerationTrainingSimulation The Generation Dynamics package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
@@ -1351,7 +1352,8 @@ case class SteamTurbine
     shaft2PowerIP: Double,
     shaft2PowerLP1: Double,
     shaft2PowerLP2: Double,
-    steamChestTC: Double
+    steamChestTC: Double,
+    SteamSupplys: List[String]
 )
 extends
     Element
@@ -1359,7 +1361,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, List()) }
     /**
      * Return the superclass object.
      *
@@ -1383,6 +1385,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = SteamTurbine.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (SteamTurbine.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (SteamTurbine.fields (position), x))
         emitelem (0, crossoverTC)
         emitelem (1, reheater1TC)
         emitelem (2, reheater2TC)
@@ -1395,6 +1398,7 @@ extends
         emitelem (9, shaft2PowerLP1)
         emitelem (10, shaft2PowerLP2)
         emitelem (11, steamChestTC)
+        emitattrs (12, SteamSupplys)
         s.toString
     }
     override def export: String =
@@ -1419,7 +1423,8 @@ extends
         "shaft2PowerIP",
         "shaft2PowerLP1",
         "shaft2PowerLP2",
-        "steamChestTC"
+        "steamChestTC",
+        "SteamSupplys"
     )
     val crossoverTC: Fielder = parse_element (element (cls, fields(0)))
     val reheater1TC: Fielder = parse_element (element (cls, fields(1)))
@@ -1433,6 +1438,7 @@ extends
     val shaft2PowerLP1: Fielder = parse_element (element (cls, fields(9)))
     val shaft2PowerLP2: Fielder = parse_element (element (cls, fields(10)))
     val steamChestTC: Fielder = parse_element (element (cls, fields(11)))
+    val SteamSupplys: FielderMultiple = parse_attributes (attribute (cls, fields(12)))
 
     def parse (context: Context): SteamTurbine =
     {
@@ -1451,13 +1457,14 @@ extends
             toDouble (mask (shaft2PowerIP (), 8)),
             toDouble (mask (shaft2PowerLP1 (), 9)),
             toDouble (mask (shaft2PowerLP2 (), 10)),
-            toDouble (mask (steamChestTC (), 11))
+            toDouble (mask (steamChestTC (), 11)),
+            masks (SteamSupplys (), 12)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
-
+        Relationship ("SteamSupplys", "SteamSupply", true)
     )
 }
 

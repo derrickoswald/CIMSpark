@@ -202,9 +202,9 @@ extends
  * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param balance The total amount currently remaining on this account that is required to be paid in order to settle the account to zero.
  *        This excludes any due amounts not yet paid.
- * @param due Current amounts now due for payment on this account.
- * @param lastCredit Details of the last credit transaction performed on this account.
- * @param lastDebit Details of the last debit transaction performed on this account.
+ * @param due [[ch.ninecode.model.Due Due]] Current amounts now due for payment on this account.
+ * @param lastCredit [[ch.ninecode.model.AccountMovement AccountMovement]] Details of the last credit transaction performed on this account.
+ * @param lastDebit [[ch.ninecode.model.AccountMovement AccountMovement]] Details of the last debit transaction performed on this account.
  * @param principleAmount The initial principle amount, with which this account was instantiated.
  * @param AuxiliaryAgreement [[ch.ninecode.model.AuxiliaryAgreement AuxiliaryAgreement]] Auxiliary agreement regulating this account.
  * @param Charges [[ch.ninecode.model.Charge Charge]] All charges levied on this account.
@@ -309,6 +309,9 @@ extends
         ret
     }
     val relations: List[Relationship] = List (
+        Relationship ("due", "Due", false),
+        Relationship ("lastCredit", "AccountMovement", false),
+        Relationship ("lastDebit", "AccountMovement", false),
         Relationship ("AuxiliaryAgreement", "AuxiliaryAgreement", false),
         Relationship ("Charges", "Charge", true)
     )
@@ -837,10 +840,13 @@ extends
  * The total charge amount applicable to this instance of charge is the sum of fixed and variable portion.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param fixedPortion The fixed portion of this charge element.
+ * @param fixedPortion [[ch.ninecode.model.AccountingUnit AccountingUnit]] The fixed portion of this charge element.
  * @param kind The kind of charge to be applied.
  * @param variablePortion The variable portion of this charge element, calculated as a percentage of the total amount of a parent charge.
+ * @param AuxiliaryAccounts [[ch.ninecode.model.AuxiliaryAccount AuxiliaryAccount]] All auxiliary accounts to which this charge has to be levied.
+ * @param ConsumptionTariffIntervals [[ch.ninecode.model.ConsumptionTariffInterval ConsumptionTariffInterval]] Tariff intervals to which this consumption-based charge has to be levied.
  * @param ParentCharge [[ch.ninecode.model.Charge Charge]] Parent of this charge sub-component.
+ * @param TimeTariffIntervals [[ch.ninecode.model.TimeTariffInterval TimeTariffInterval]] Tariff intervals to which this time-based charge has to be levied.
  * @group PaymentMetering
  * @groupname PaymentMetering Package PaymentMetering
  * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
@@ -851,7 +857,10 @@ case class Charge
     fixedPortion: String,
     kind: String,
     variablePortion: Double,
-    ParentCharge: String
+    AuxiliaryAccounts: List[String],
+    ConsumptionTariffIntervals: List[String],
+    ParentCharge: String,
+    TimeTariffIntervals: List[String]
 )
 extends
     Element
@@ -859,7 +868,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, 0.0, null) }
+    def this () = { this (null, null, null, 0.0, List(), List(), null, List()) }
     /**
      * Return the superclass object.
      *
@@ -884,10 +893,14 @@ extends
         implicit val clz: String = Charge.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Charge.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Charge.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Charge.fields (position), x))
         emitattr (0, fixedPortion)
         emitattr (1, kind)
         emitelem (2, variablePortion)
-        emitattr (3, ParentCharge)
+        emitattrs (3, AuxiliaryAccounts)
+        emitattrs (4, ConsumptionTariffIntervals)
+        emitattr (5, ParentCharge)
+        emitattrs (6, TimeTariffIntervals)
         s.toString
     }
     override def export: String =
@@ -904,12 +917,18 @@ extends
         "fixedPortion",
         "kind",
         "variablePortion",
-        "ParentCharge"
+        "AuxiliaryAccounts",
+        "ConsumptionTariffIntervals",
+        "ParentCharge",
+        "TimeTariffIntervals"
     )
     val fixedPortion: Fielder = parse_attribute (attribute (cls, fields(0)))
     val kind: Fielder = parse_attribute (attribute (cls, fields(1)))
     val variablePortion: Fielder = parse_element (element (cls, fields(2)))
-    val ParentCharge: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val AuxiliaryAccounts: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val ConsumptionTariffIntervals: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val ParentCharge: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val TimeTariffIntervals: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
 
     def parse (context: Context): Charge =
     {
@@ -920,13 +939,20 @@ extends
             mask (fixedPortion (), 0),
             mask (kind (), 1),
             toDouble (mask (variablePortion (), 2)),
-            mask (ParentCharge (), 3)
+            masks (AuxiliaryAccounts (), 3),
+            masks (ConsumptionTariffIntervals (), 4),
+            mask (ParentCharge (), 5),
+            masks (TimeTariffIntervals (), 6)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("ParentCharge", "Charge", false)
+        Relationship ("fixedPortion", "AccountingUnit", false),
+        Relationship ("AuxiliaryAccounts", "AuxiliaryAccount", true),
+        Relationship ("ConsumptionTariffIntervals", "ConsumptionTariffInterval", true),
+        Relationship ("ParentCharge", "Charge", false),
+        Relationship ("TimeTariffIntervals", "TimeTariffInterval", true)
     )
 }
 
@@ -934,7 +960,7 @@ extends
  * The actual tender when it is a type of cheque.
  *
  * @param sup Reference to the superclass object.
- * @param bankAccountDetail Details of the account holder and bank.
+ * @param bankAccountDetail [[ch.ninecode.model.BankAccountDetail BankAccountDetail]] Details of the account holder and bank.
  * @param chequeNumber Cheque reference number as printed on the cheque.
  * @param date Date when cheque becomes valid.
  * @param kind Kind of cheque.
@@ -1035,6 +1061,7 @@ extends
         ret
     }
     val relations: List[Relationship] = List (
+        Relationship ("bankAccountDetail", "BankAccountDetail", false),
         Relationship ("Tender", "Tender", false)
     )
 }
@@ -1049,6 +1076,7 @@ extends
  * @param startValue The lowest level of consumption that defines the starting point of this interval.
  *        The interval extends to the start of the next interval or until it is reset to the start of the first interval by TariffProfile.tariffCycle.
  * @param Charges [[ch.ninecode.model.Charge Charge]] All charges used to define this consumption tariff interval.
+ * @param TariffProfiles [[ch.ninecode.model.TariffProfile TariffProfile]] All tariff profiles defined by this consumption tariff interval.
  * @param TouTariffIntervals [[ch.ninecode.model.TimeTariffInterval TimeTariffInterval]] All time of use tariff intervals influenced by this consumption tariff interval.
  * @group PaymentMetering
  * @groupname PaymentMetering Package PaymentMetering
@@ -1060,6 +1088,7 @@ case class ConsumptionTariffInterval
     sequenceNumber: Int,
     startValue: Double,
     Charges: List[String],
+    TariffProfiles: List[String],
     TouTariffIntervals: List[String]
 )
 extends
@@ -1068,7 +1097,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0, 0.0, List(), List()) }
+    def this () = { this (null, 0, 0.0, List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1096,7 +1125,8 @@ extends
         emitelem (0, sequenceNumber)
         emitelem (1, startValue)
         emitattrs (2, Charges)
-        emitattrs (3, TouTariffIntervals)
+        emitattrs (3, TariffProfiles)
+        emitattrs (4, TouTariffIntervals)
         s.toString
     }
     override def export: String =
@@ -1113,12 +1143,14 @@ extends
         "sequenceNumber",
         "startValue",
         "Charges",
+        "TariffProfiles",
         "TouTariffIntervals"
     )
     val sequenceNumber: Fielder = parse_element (element (cls, fields(0)))
     val startValue: Fielder = parse_element (element (cls, fields(1)))
     val Charges: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
-    val TouTariffIntervals: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val TariffProfiles: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val TouTariffIntervals: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
 
     def parse (context: Context): ConsumptionTariffInterval =
     {
@@ -1129,13 +1161,15 @@ extends
             toInteger (mask (sequenceNumber (), 0)),
             toDouble (mask (startValue (), 1)),
             masks (Charges (), 2),
-            masks (TouTariffIntervals (), 3)
+            masks (TariffProfiles (), 3),
+            masks (TouTariffIntervals (), 4)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
         Relationship ("Charges", "Charge", true),
+        Relationship ("TariffProfiles", "TariffProfile", true),
         Relationship ("TouTariffIntervals", "TimeTariffInterval", true)
     )
 }
@@ -1590,7 +1624,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param isBankable True if this receipted payment is manually bankable, otherwise it is an electronic funds transfer.
- * @param line Receipted amount with rounding, date and note.
+ * @param line [[ch.ninecode.model.LineDetail LineDetail]] Receipted amount with rounding, date and note.
  * @param CashierShift [[ch.ninecode.model.CashierShift CashierShift]] Cashier shift during which this receipt was recorded.
  * @param VendorShift [[ch.ninecode.model.VendorShift VendorShift]] Vendor shift during which this receipt was recorded.
  * @group PaymentMetering
@@ -1678,6 +1712,7 @@ extends
         ret
     }
     val relations: List[Relationship] = List (
+        Relationship ("line", "LineDetail", false),
         Relationship ("CashierShift", "CashierShift", false),
         Relationship ("VendorShift", "VendorShift", false)
     )
@@ -1893,6 +1928,7 @@ extends
  * @param tariffCycle The frequency at which the tariff charge schedule is repeated.
  *        Examples are: once off on a specified date and time; hourly; daily; weekly; monthly; 3-monthly; 6-monthly; 12-monthly; etc. At the end of each cycle, the business rules are reset to start from the beginning again.
  * @param ConsumptionTariffIntervals [[ch.ninecode.model.ConsumptionTariffInterval ConsumptionTariffInterval]] All consumption tariff intervals used to define this tariff profile.
+ * @param Tariffs [[ch.ninecode.model.Tariff Tariff]] All tariffs defined by this tariff profile.
  * @param TimeTariffIntervals [[ch.ninecode.model.TimeTariffInterval TimeTariffInterval]] All time tariff intervals used to define this tariff profile.
  * @group PaymentMetering
  * @groupname PaymentMetering Package PaymentMetering
@@ -1903,6 +1939,7 @@ case class TariffProfile
     override val sup: Document,
     tariffCycle: String,
     ConsumptionTariffIntervals: List[String],
+    Tariffs: List[String],
     TimeTariffIntervals: List[String]
 )
 extends
@@ -1911,7 +1948,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, List(), List()) }
+    def this () = { this (null, null, List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1938,7 +1975,8 @@ extends
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (TariffProfile.fields (position), x))
         emitelem (0, tariffCycle)
         emitattrs (1, ConsumptionTariffIntervals)
-        emitattrs (2, TimeTariffIntervals)
+        emitattrs (2, Tariffs)
+        emitattrs (3, TimeTariffIntervals)
         s.toString
     }
     override def export: String =
@@ -1954,11 +1992,13 @@ extends
     val fields: Array[String] = Array[String] (
         "tariffCycle",
         "ConsumptionTariffIntervals",
+        "Tariffs",
         "TimeTariffIntervals"
     )
     val tariffCycle: Fielder = parse_element (element (cls, fields(0)))
     val ConsumptionTariffIntervals: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
-    val TimeTariffIntervals: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val Tariffs: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val TimeTariffIntervals: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
 
     def parse (context: Context): TariffProfile =
     {
@@ -1968,13 +2008,15 @@ extends
             Document.parse (context),
             mask (tariffCycle (), 0),
             masks (ConsumptionTariffIntervals (), 1),
-            masks (TimeTariffIntervals (), 2)
+            masks (Tariffs (), 2),
+            masks (TimeTariffIntervals (), 3)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
         Relationship ("ConsumptionTariffIntervals", "ConsumptionTariffInterval", true),
+        Relationship ("Tariffs", "Tariff", true),
         Relationship ("TimeTariffIntervals", "TimeTariffInterval", true)
     )
 }
@@ -2102,6 +2144,8 @@ extends
  * @param startTime A real time marker that defines the starting time (typically it is the time of day) for this interval.
  *        The interval extends to the start of the next interval or until it is reset to the start of the first interval by TariffProfile.tariffCycle.
  * @param Charges [[ch.ninecode.model.Charge Charge]] All charges used to define this time tariff interval.
+ * @param ConsumptionTariffIntervals [[ch.ninecode.model.ConsumptionTariffInterval ConsumptionTariffInterval]] All consumption tariff intervals that introduce variation in this time of use tariff interval; allows to express e.g., peak hour prices that are different with different consumption blocks.
+ * @param TariffProfiles [[ch.ninecode.model.TariffProfile TariffProfile]] All tariff profiles defined by this time tariff interval.
  * @group PaymentMetering
  * @groupname PaymentMetering Package PaymentMetering
  * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
@@ -2111,7 +2155,9 @@ case class TimeTariffInterval
     override val sup: BasicElement,
     sequenceNumber: Int,
     startTime: String,
-    Charges: List[String]
+    Charges: List[String],
+    ConsumptionTariffIntervals: List[String],
+    TariffProfiles: List[String]
 )
 extends
     Element
@@ -2119,7 +2165,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0, null, List()) }
+    def this () = { this (null, 0, null, List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -2147,6 +2193,8 @@ extends
         emitelem (0, sequenceNumber)
         emitelem (1, startTime)
         emitattrs (2, Charges)
+        emitattrs (3, ConsumptionTariffIntervals)
+        emitattrs (4, TariffProfiles)
         s.toString
     }
     override def export: String =
@@ -2162,11 +2210,15 @@ extends
     val fields: Array[String] = Array[String] (
         "sequenceNumber",
         "startTime",
-        "Charges"
+        "Charges",
+        "ConsumptionTariffIntervals",
+        "TariffProfiles"
     )
     val sequenceNumber: Fielder = parse_element (element (cls, fields(0)))
     val startTime: Fielder = parse_element (element (cls, fields(1)))
     val Charges: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val ConsumptionTariffIntervals: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val TariffProfiles: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
 
     def parse (context: Context): TimeTariffInterval =
     {
@@ -2176,13 +2228,17 @@ extends
             BasicElement.parse (context),
             toInteger (mask (sequenceNumber (), 0)),
             mask (startTime (), 1),
-            masks (Charges (), 2)
+            masks (Charges (), 2),
+            masks (ConsumptionTariffIntervals (), 3),
+            masks (TariffProfiles (), 4)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("Charges", "Charge", true)
+        Relationship ("Charges", "Charge", true),
+        Relationship ("ConsumptionTariffIntervals", "ConsumptionTariffInterval", true),
+        Relationship ("TariffProfiles", "TariffProfile", true)
     )
 }
 
@@ -2193,7 +2249,7 @@ extends
  * @param diverseReference Formal reference for use with diverse payment (traffic fine for example).
  * @param donorReference Reference to the entity that is the source of 'amount' (for example: customer for token purchase; or supplier for free issue token).
  * @param kind Kind of transaction.
- * @param line Transaction amount, rounding, date and note for this transaction line.
+ * @param line [[ch.ninecode.model.LineDetail LineDetail]] Transaction amount, rounding, date and note for this transaction line.
  * @param receiverReference Reference to the entity that is the recipient of 'amount' (for example, supplier for service charge payment; or tax receiver for VAT).
  * @param reversedId (if 'kind' is transactionReversal) Reference to the original transaction that is being reversed by this transaction.
  * @param serviceUnitsEnergy Actual amount of service units that is being paid for.
@@ -2345,6 +2401,7 @@ extends
         ret
     }
     val relations: List[Relationship] = List (
+        Relationship ("line", "LineDetail", false),
         Relationship ("AuxiliaryAccount", "AuxiliaryAccount", false),
         Relationship ("CashierShift", "CashierShift", false),
         Relationship ("CustomerAccount", "CustomerAccount", false),
@@ -2359,13 +2416,15 @@ extends
  * The entity that ultimately executes the transaction and which is in control of the process; typically this is embodied in secure software running on a server that may employ secure hardware encryption devices for secure transaction processing.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param MerchantAccounts [[ch.ninecode.model.MerchantAccount MerchantAccount]] All merchant accounts registered with this transactor.
  * @group PaymentMetering
  * @groupname PaymentMetering Package PaymentMetering
  * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
  */
 case class Transactor
 (
-    override val sup: IdentifiedObject
+    override val sup: IdentifiedObject,
+    MerchantAccounts: List[String]
 )
 extends
     Element
@@ -2373,7 +2432,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -2394,7 +2453,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = Transactor.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Transactor.fields (position), x))
+        emitattrs (0, MerchantAccounts)
+        s.toString
     }
     override def export: String =
     {
@@ -2406,17 +2469,24 @@ object Transactor
 extends
     Parseable[Transactor]
 {
+    val fields: Array[String] = Array[String] (
+        "MerchantAccounts"
+    )
+    val MerchantAccounts: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): Transactor =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = Transactor (
-            IdentifiedObject.parse (context)
+            IdentifiedObject.parse (context),
+            masks (MerchantAccounts (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
-
+        Relationship ("MerchantAccounts", "MerchantAccount", true)
     )
 }
 

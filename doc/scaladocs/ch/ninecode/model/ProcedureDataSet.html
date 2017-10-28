@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>ProcedureDataSet - CIMReader 2.11-2.2.0-2.4.0 API - ch.ninecode.model.ProcedureDataSet</title>
-          <meta name="description" content="ProcedureDataSet - CIMReader 2.11 - 2.2.0 - 2.4.0 API - ch.ninecode.model.ProcedureDataSet" />
-          <meta name="keywords" content="ProcedureDataSet CIMReader 2.11 2.2.0 2.4.0 API ch.ninecode.model.ProcedureDataSet" />
+          <title>ProcedureDataSet - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.ProcedureDataSet</title>
+          <meta name="description" content="ProcedureDataSet - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.ProcedureDataSet" />
+          <meta name="keywords" content="ProcedureDataSet CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.ProcedureDataSet" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,12 +47,13 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">ProcedureDataSet</span><span class="params">(<span name="sup">sup: <a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a></span>, <span name="completedDateTime">completedDateTime: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="MeasurementValues">MeasurementValues: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Procedure">Procedure: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="TransformerObservations">TransformerObservations: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">ProcedureDataSet</span><span class="params">(<span name="sup">sup: <a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a></span>, <span name="completedDateTime">completedDateTime: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="MeasurementValues">MeasurementValues: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Procedure">Procedure: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Properties">Properties: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="TransformerObservations">TransformerObservations: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A data set recorded each time a procedure is executed.</p><p>Observed results are captured in associated measurement values and/or values for properties relevant to the type of procedure performed.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a> Reference to the superclass object.</p></dd><dt class="param">completedDateTime</dt><dd class="cmt"><p>Date and time procedure was completed.</p></dd><dt class="param">MeasurementValues</dt><dd class="cmt"><p><a href="MeasurementValue.html" class="extype" name="ch.ninecode.model.MeasurementValue">MeasurementValue</a> <em>undocumented</em></p></dd><dt class="param">Procedure</dt><dd class="cmt"><p><a href="Procedure.html" class="extype" name="ch.ninecode.model.Procedure">Procedure</a> Procedure capturing this data set.</p></dd><dt class="param">TransformerObservations</dt><dd class="cmt"><p><a href="TransformerObservation.html" class="extype" name="ch.ninecode.model.TransformerObservation">TransformerObservation</a> <em>undocumented</em></p></dd></dl><div class="toggleContainer block">
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a> Reference to the superclass object.</p></dd><dt class="param">completedDateTime</dt><dd class="cmt"><p>Date and time procedure was completed.</p></dd><dt class="param">MeasurementValues</dt><dd class="cmt"><p><a href="MeasurementValue.html" class="extype" name="ch.ninecode.model.MeasurementValue">MeasurementValue</a> <em>undocumented</em></p></dd><dt class="param">Procedure</dt><dd class="cmt"><p><a href="Procedure.html" class="extype" name="ch.ninecode.model.Procedure">Procedure</a> Procedure capturing this data set.</p></dd><dt class="param">Properties</dt><dd class="cmt"><p><a href="UserAttribute.html" class="extype" name="ch.ninecode.model.UserAttribute">UserAttribute</a> UserAttributes used to specify further properties of this procedure data set.
+       Use 'name' to specify what kind of property it is, and 'value.value' attribute for the actual value.</p></dd><dt class="param">TransformerObservations</dt><dd class="cmt"><p><a href="TransformerObservation.html" class="extype" name="ch.ninecode.model.TransformerObservation">TransformerObservation</a> <em>undocumented</em></p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -109,7 +110,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.ProcedureDataSet#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.Document,completedDateTime:String,MeasurementValues:List[String],Procedure:String,TransformerObservations:List[String]):ch.ninecode.model.ProcedureDataSet"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.Document,completedDateTime:String,MeasurementValues:List[String],Procedure:String,Properties:List[String],TransformerObservations:List[String]):ch.ninecode.model.ProcedureDataSet"></a>
       <a id="&lt;init&gt;:ProcedureDataSet"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -117,14 +118,15 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">ProcedureDataSet</span><span class="params">(<span name="sup">sup: <a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a></span>, <span name="completedDateTime">completedDateTime: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="MeasurementValues">MeasurementValues: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Procedure">Procedure: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="TransformerObservations">TransformerObservations: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
+        <span class="name">ProcedureDataSet</span><span class="params">(<span name="sup">sup: <a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a></span>, <span name="completedDateTime">completedDateTime: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="MeasurementValues">MeasurementValues: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Procedure">Procedure: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Properties">Properties: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="TransformerObservations">TransformerObservations: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.ProcedureDataSet@&lt;init&gt;(sup:ch.ninecode.model.Document,completedDateTime:String,MeasurementValues:List[String],Procedure:String,TransformerObservations:List[String]):ch.ninecode.model.ProcedureDataSet" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.ProcedureDataSet@&lt;init&gt;(sup:ch.ninecode.model.Document,completedDateTime:String,MeasurementValues:List[String],Procedure:String,Properties:List[String],TransformerObservations:List[String]):ch.ninecode.model.ProcedureDataSet" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a> Reference to the superclass object.</p></dd><dt class="param">completedDateTime</dt><dd class="cmt"><p>Date and time procedure was completed.</p></dd><dt class="param">MeasurementValues</dt><dd class="cmt"><p><a href="MeasurementValue.html" class="extype" name="ch.ninecode.model.MeasurementValue">MeasurementValue</a> <em>undocumented</em></p></dd><dt class="param">Procedure</dt><dd class="cmt"><p><a href="Procedure.html" class="extype" name="ch.ninecode.model.Procedure">Procedure</a> Procedure capturing this data set.</p></dd><dt class="param">TransformerObservations</dt><dd class="cmt"><p><a href="TransformerObservation.html" class="extype" name="ch.ninecode.model.TransformerObservation">TransformerObservation</a> <em>undocumented</em></p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a> Reference to the superclass object.</p></dd><dt class="param">completedDateTime</dt><dd class="cmt"><p>Date and time procedure was completed.</p></dd><dt class="param">MeasurementValues</dt><dd class="cmt"><p><a href="MeasurementValue.html" class="extype" name="ch.ninecode.model.MeasurementValue">MeasurementValue</a> <em>undocumented</em></p></dd><dt class="param">Procedure</dt><dd class="cmt"><p><a href="Procedure.html" class="extype" name="ch.ninecode.model.Procedure">Procedure</a> Procedure capturing this data set.</p></dd><dt class="param">Properties</dt><dd class="cmt"><p><a href="UserAttribute.html" class="extype" name="ch.ninecode.model.UserAttribute">UserAttribute</a> UserAttributes used to specify further properties of this procedure data set.
+       Use 'name' to specify what kind of property it is, and 'value.value' attribute for the actual value.</p></dd><dt class="param">TransformerObservations</dt><dd class="cmt"><p><a href="TransformerObservation.html" class="extype" name="ch.ninecode.model.TransformerObservation">TransformerObservation</a> <em>undocumented</em></p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -237,6 +239,24 @@
       </a>
     </span>
       <p class="shortcomment cmt"><a href="Procedure.html" class="extype" name="ch.ninecode.model.Procedure">Procedure</a> Procedure capturing this data set.</p>
+    </li><li name="ch.ninecode.model.ProcedureDataSet#Properties" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="Properties:List[String]"></a>
+      <a id="Properties:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Properties</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.ProcedureDataSet@Properties:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="UserAttribute.html" class="extype" name="ch.ninecode.model.UserAttribute">UserAttribute</a> UserAttributes used to specify further properties of this procedure data set.</p><div class="fullcomment"><div class="comment cmt"><p><a href="UserAttribute.html" class="extype" name="ch.ninecode.model.UserAttribute">UserAttribute</a> UserAttributes used to specify further properties of this procedure data set.
+       Use 'name' to specify what kind of property it is, and 'value.value' attribute for the actual value.</p></div></div>
     </li><li name="ch.ninecode.model.ProcedureDataSet#TransformerObservations" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="TransformerObservations:List[String]"></a>
       <a id="TransformerObservations:List[String]"></a>

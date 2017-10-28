@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>RemoteUnit - CIMReader 2.11-2.2.0-2.4.0 API - ch.ninecode.model.RemoteUnit</title>
-          <meta name="description" content="RemoteUnit - CIMReader 2.11 - 2.2.0 - 2.4.0 API - ch.ninecode.model.RemoteUnit" />
-          <meta name="keywords" content="RemoteUnit CIMReader 2.11 2.2.0 2.4.0 API ch.ninecode.model.RemoteUnit" />
+          <title>RemoteUnit - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.RemoteUnit</title>
+          <meta name="description" content="RemoteUnit - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.RemoteUnit" />
+          <meta name="keywords" content="RemoteUnit CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.RemoteUnit" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,12 +47,12 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">RemoteUnit</span><span class="params">(<span name="sup">sup: <a href="PowerSystemResource.html" class="extype" name="ch.ninecode.model.PowerSystemResource">PowerSystemResource</a></span>, <span name="remoteUnitType">remoteUnitType: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">RemoteUnit</span><span class="params">(<span name="sup">sup: <a href="PowerSystemResource.html" class="extype" name="ch.ninecode.model.PowerSystemResource">PowerSystemResource</a></span>, <span name="remoteUnitType">remoteUnitType: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="CommunicationLinks">CommunicationLinks: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A remote unit can be a RTU, IED, substation control system, control center etc.</p><p>The communication with the remote unit can be through various standard protocols (e.g. IEC 61870, IEC 61850) or non standard protocols (e.g. DNP, RP570 etc.). A remote unit contain remote data points that might be telemetered, collected or calculated. The RemoteUnit class inherit PowerSystemResource. The intention is to allow RemotUnits to have Measurements. These Measurements can be used to model unit status as operational, out of service, unit failure etc.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PowerSystemResource.html" class="extype" name="ch.ninecode.model.PowerSystemResource">PowerSystemResource</a> Reference to the superclass object.</p></dd><dt class="param">remoteUnitType</dt><dd class="cmt"><p>Type of remote unit.</p></dd></dl><div class="toggleContainer block">
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PowerSystemResource.html" class="extype" name="ch.ninecode.model.PowerSystemResource">PowerSystemResource</a> Reference to the superclass object.</p></dd><dt class="param">remoteUnitType</dt><dd class="cmt"><p>Type of remote unit.</p></dd><dt class="param">CommunicationLinks</dt><dd class="cmt"><p><a href="CommunicationLink.html" class="extype" name="ch.ninecode.model.CommunicationLink">CommunicationLink</a> RTUs may be attached to communication links.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -109,7 +109,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.RemoteUnit#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.PowerSystemResource,remoteUnitType:String):ch.ninecode.model.RemoteUnit"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.PowerSystemResource,remoteUnitType:String,CommunicationLinks:List[String]):ch.ninecode.model.RemoteUnit"></a>
       <a id="&lt;init&gt;:RemoteUnit"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -117,14 +117,14 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">RemoteUnit</span><span class="params">(<span name="sup">sup: <a href="PowerSystemResource.html" class="extype" name="ch.ninecode.model.PowerSystemResource">PowerSystemResource</a></span>, <span name="remoteUnitType">remoteUnitType: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
+        <span class="name">RemoteUnit</span><span class="params">(<span name="sup">sup: <a href="PowerSystemResource.html" class="extype" name="ch.ninecode.model.PowerSystemResource">PowerSystemResource</a></span>, <span name="remoteUnitType">remoteUnitType: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="CommunicationLinks">CommunicationLinks: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.RemoteUnit@&lt;init&gt;(sup:ch.ninecode.model.PowerSystemResource,remoteUnitType:String):ch.ninecode.model.RemoteUnit" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.RemoteUnit@&lt;init&gt;(sup:ch.ninecode.model.PowerSystemResource,remoteUnitType:String,CommunicationLinks:List[String]):ch.ninecode.model.RemoteUnit" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PowerSystemResource.html" class="extype" name="ch.ninecode.model.PowerSystemResource">PowerSystemResource</a> Reference to the superclass object.</p></dd><dt class="param">remoteUnitType</dt><dd class="cmt"><p>Type of remote unit.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PowerSystemResource.html" class="extype" name="ch.ninecode.model.PowerSystemResource">PowerSystemResource</a> Reference to the superclass object.</p></dd><dt class="param">remoteUnitType</dt><dd class="cmt"><p>Type of remote unit.</p></dd><dt class="param">CommunicationLinks</dt><dd class="cmt"><p><a href="CommunicationLink.html" class="extype" name="ch.ninecode.model.CommunicationLink">CommunicationLink</a> RTUs may be attached to communication links.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -185,6 +185,23 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="ch.ninecode.model.RemoteUnit#CommunicationLinks" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CommunicationLinks:List[String]"></a>
+      <a id="CommunicationLinks:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CommunicationLinks</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.RemoteUnit@CommunicationLinks:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="CommunicationLink.html" class="extype" name="ch.ninecode.model.CommunicationLink">CommunicationLink</a> RTUs may be attached to communication links.</p>
     </li><li name="ch.ninecode.model.RemoteUnit#PowerSystemResource" visbl="pub" data-isabs="false" fullComment="yes" group="Hierarchy">
       <a id="PowerSystemResource:ch.ninecode.model.PowerSystemResource"></a>
       <a id="PowerSystemResource:PowerSystemResource"></a>

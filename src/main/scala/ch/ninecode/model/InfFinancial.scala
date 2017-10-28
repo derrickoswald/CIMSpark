@@ -315,13 +315,15 @@ extends
  * Matches buyers and sellers, and secures transmission (and other ancillary services) needed to complete the energy transaction.
  *
  * @param sup [[ch.ninecode.model.Organisation Organisation]] Reference to the superclass object.
+ * @param Resells_EnergyProduct [[ch.ninecode.model.EnergyProduct EnergyProduct]] A Marketer may resell an EnergyProduct.
  * @group InfFinancial
  * @groupname InfFinancial Package InfFinancial
  * @groupdesc InfFinancial This package is responsible for Settlement and Billing. These classes represent the legal entities who participate in formal or informal agreements.
  */
 case class Marketer
 (
-    override val sup: Organisation
+    override val sup: Organisation,
+    Resells_EnergyProduct: List[String]
 )
 extends
     Element
@@ -329,7 +331,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -350,7 +352,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = Marketer.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Marketer.fields (position), x))
+        emitattrs (0, Resells_EnergyProduct)
+        s.toString
     }
     override def export: String =
     {
@@ -362,17 +368,24 @@ object Marketer
 extends
     Parseable[Marketer]
 {
+    val fields: Array[String] = Array[String] (
+        "Resells_EnergyProduct"
+    )
+    val Resells_EnergyProduct: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): Marketer =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = Marketer (
-            Organisation.parse (context)
+            Organisation.parse (context),
+            masks (Resells_EnergyProduct (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
-
+        Relationship ("Resells_EnergyProduct", "EnergyProduct", true)
     )
 }
 

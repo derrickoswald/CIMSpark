@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>TimeSeries - CIMReader 2.11-2.2.0-2.4.0 API - ch.ninecode.model.TimeSeries</title>
-          <meta name="description" content="TimeSeries - CIMReader 2.11 - 2.2.0 - 2.4.0 API - ch.ninecode.model.TimeSeries" />
-          <meta name="keywords" content="TimeSeries CIMReader 2.11 2.2.0 2.4.0 API ch.ninecode.model.TimeSeries" />
+          <title>TimeSeries - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.TimeSeries</title>
+          <meta name="description" content="TimeSeries - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.TimeSeries" />
+          <meta name="keywords" content="TimeSeries CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.TimeSeries" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,12 +47,12 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">TimeSeries</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="businessType">businessType: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="cancelledTS">cancelledTS: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="curveType">curveType: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="objectAggregation">objectAggregation: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="product">product: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="version">version: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="DateAndOrTime">DateAndOrTime: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Domain">Domain: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="FlowDirection">FlowDirection: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="MarketDocument">MarketDocument: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="MarketEvaluationPoint">MarketEvaluationPoint: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="MarketParticipant">MarketParticipant: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Period">Period: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Reason">Reason: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">TimeSeries</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="businessType">businessType: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="cancelledTS">cancelledTS: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="curveType">curveType: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="objectAggregation">objectAggregation: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="product">product: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="version">version: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="AttributeInstanceComponent">AttributeInstanceComponent: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Auction">Auction: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="DateAndOrTime">DateAndOrTime: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Domain">Domain: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="FlowDirection">FlowDirection: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="MarketDocument">MarketDocument: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="MarketEvaluationPoint">MarketEvaluationPoint: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="MarketObjectStatus">MarketObjectStatus: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="MarketParticipant">MarketParticipant: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="MktPSRType">MktPSRType: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Period">Period: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Point">Point: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Reason">Reason: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="RegisteredResource">RegisteredResource: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Unit">Unit: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A set of regular time-ordered measurements or values of quantitative nature of an individual or collective phenomenon taken at successive, in most cases equidistant, periods / points of time.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">businessType</dt><dd class="cmt"><p>The identification of the nature of the time series.</p></dd><dt class="param">cancelledTS</dt><dd class="cmt"><p>An indicator stating that the TimeSeries, identified by the mRID, is cancelled as well as all the values sent in a previous version of the TimeSeries in a previous document.</p></dd><dt class="param">curveType</dt><dd class="cmt"><p>The coded representation of the type of curve being described.</p></dd><dt class="param">objectAggregation</dt><dd class="cmt"><p>Identification of the object that is the common dominator used to aggregate a time series.</p></dd><dt class="param">product</dt><dd class="cmt"><p>The type of the product such as Power, energy, reactive power, transport capacity that is the subject of the time series.</p></dd><dt class="param">version</dt><dd class="cmt"><p>Version of the time series.</p></dd><dt class="param">DateAndOrTime</dt><dd class="cmt"><p><a href="DateAndOrTime.html" class="extype" name="ch.ninecode.model.DateAndOrTime">DateAndOrTime</a> <em>undocumented</em></p></dd><dt class="param">Domain</dt><dd class="cmt"><p><a href="Domain.html" class="extype" name="ch.ninecode.model.Domain">Domain</a> <em>undocumented</em></p></dd><dt class="param">FlowDirection</dt><dd class="cmt"><p><a href="FlowDirection.html" class="extype" name="ch.ninecode.model.FlowDirection">FlowDirection</a> <em>undocumented</em></p></dd><dt class="param">MarketDocument</dt><dd class="cmt"><p><a href="MarketDocument.html" class="extype" name="ch.ninecode.model.MarketDocument">MarketDocument</a> <em>undocumented</em></p></dd><dt class="param">MarketEvaluationPoint</dt><dd class="cmt"><p><a href="MarketEvaluationPoint.html" class="extype" name="ch.ninecode.model.MarketEvaluationPoint">MarketEvaluationPoint</a> <em>undocumented</em></p></dd><dt class="param">MarketParticipant</dt><dd class="cmt"><p><a href="MarketParticipant.html" class="extype" name="ch.ninecode.model.MarketParticipant">MarketParticipant</a> <em>undocumented</em></p></dd><dt class="param">Period</dt><dd class="cmt"><p><a href="Period.html" class="extype" name="ch.ninecode.model.Period">Period</a> <em>undocumented</em></p></dd><dt class="param">Reason</dt><dd class="cmt"><p><a href="Reason.html" class="extype" name="ch.ninecode.model.Reason">Reason</a> <em>undocumented</em></p></dd></dl><div class="toggleContainer block">
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">businessType</dt><dd class="cmt"><p>The identification of the nature of the time series.</p></dd><dt class="param">cancelledTS</dt><dd class="cmt"><p>An indicator stating that the TimeSeries, identified by the mRID, is cancelled as well as all the values sent in a previous version of the TimeSeries in a previous document.</p></dd><dt class="param">curveType</dt><dd class="cmt"><p>The coded representation of the type of curve being described.</p></dd><dt class="param">objectAggregation</dt><dd class="cmt"><p>Identification of the object that is the common dominator used to aggregate a time series.</p></dd><dt class="param">product</dt><dd class="cmt"><p>The type of the product such as Power, energy, reactive power, transport capacity that is the subject of the time series.</p></dd><dt class="param">version</dt><dd class="cmt"><p>Version of the time series.</p></dd><dt class="param">AttributeInstanceComponent</dt><dd class="cmt"><p><a href="AttributeInstanceComponent.html" class="extype" name="ch.ninecode.model.AttributeInstanceComponent">AttributeInstanceComponent</a> <em>undocumented</em></p></dd><dt class="param">Auction</dt><dd class="cmt"><p><a href="Auction.html" class="extype" name="ch.ninecode.model.Auction">Auction</a> <em>undocumented</em></p></dd><dt class="param">DateAndOrTime</dt><dd class="cmt"><p><a href="DateAndOrTime.html" class="extype" name="ch.ninecode.model.DateAndOrTime">DateAndOrTime</a> <em>undocumented</em></p></dd><dt class="param">Domain</dt><dd class="cmt"><p><a href="Domain.html" class="extype" name="ch.ninecode.model.Domain">Domain</a> <em>undocumented</em></p></dd><dt class="param">FlowDirection</dt><dd class="cmt"><p><a href="FlowDirection.html" class="extype" name="ch.ninecode.model.FlowDirection">FlowDirection</a> <em>undocumented</em></p></dd><dt class="param">MarketDocument</dt><dd class="cmt"><p><a href="MarketDocument.html" class="extype" name="ch.ninecode.model.MarketDocument">MarketDocument</a> <em>undocumented</em></p></dd><dt class="param">MarketEvaluationPoint</dt><dd class="cmt"><p><a href="MarketEvaluationPoint.html" class="extype" name="ch.ninecode.model.MarketEvaluationPoint">MarketEvaluationPoint</a> <em>undocumented</em></p></dd><dt class="param">MarketObjectStatus</dt><dd class="cmt"><p><a href="MarketObjectStatus.html" class="extype" name="ch.ninecode.model.MarketObjectStatus">MarketObjectStatus</a> <em>undocumented</em></p></dd><dt class="param">MarketParticipant</dt><dd class="cmt"><p><a href="MarketParticipant.html" class="extype" name="ch.ninecode.model.MarketParticipant">MarketParticipant</a> <em>undocumented</em></p></dd><dt class="param">MktPSRType</dt><dd class="cmt"><p><a href="MktPSRType.html" class="extype" name="ch.ninecode.model.MktPSRType">MktPSRType</a> <em>undocumented</em></p></dd><dt class="param">Period</dt><dd class="cmt"><p><a href="Period.html" class="extype" name="ch.ninecode.model.Period">Period</a> <em>undocumented</em></p></dd><dt class="param">Point</dt><dd class="cmt"><p><a href="Point.html" class="extype" name="ch.ninecode.model.Point">Point</a> <em>undocumented</em></p></dd><dt class="param">Reason</dt><dd class="cmt"><p><a href="Reason.html" class="extype" name="ch.ninecode.model.Reason">Reason</a> <em>undocumented</em></p></dd><dt class="param">RegisteredResource</dt><dd class="cmt"><p><a href="RegisteredResource.html" class="extype" name="ch.ninecode.model.RegisteredResource">RegisteredResource</a> <em>undocumented</em></p></dd><dt class="param">Unit</dt><dd class="cmt"><p><a href="Unit_.html" class="extype" name="ch.ninecode.model.Unit_">Unit_</a> <em>undocumented</em></p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -109,7 +109,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.TimeSeries#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,businessType:String,cancelledTS:String,curveType:String,objectAggregation:String,product:String,version:String,DateAndOrTime:List[String],Domain:List[String],FlowDirection:List[String],MarketDocument:List[String],MarketEvaluationPoint:List[String],MarketParticipant:List[String],Period:List[String],Reason:List[String]):ch.ninecode.model.TimeSeries"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,businessType:String,cancelledTS:String,curveType:String,objectAggregation:String,product:String,version:String,AttributeInstanceComponent:List[String],Auction:List[String],DateAndOrTime:List[String],Domain:List[String],FlowDirection:List[String],MarketDocument:List[String],MarketEvaluationPoint:List[String],MarketObjectStatus:List[String],MarketParticipant:List[String],MktPSRType:List[String],Period:List[String],Point:List[String],Reason:List[String],RegisteredResource:List[String],Unit:List[String]):ch.ninecode.model.TimeSeries"></a>
       <a id="&lt;init&gt;:TimeSeries"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -117,14 +117,14 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">TimeSeries</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="businessType">businessType: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="cancelledTS">cancelledTS: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="curveType">curveType: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="objectAggregation">objectAggregation: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="product">product: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="version">version: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="DateAndOrTime">DateAndOrTime: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Domain">Domain: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="FlowDirection">FlowDirection: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="MarketDocument">MarketDocument: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="MarketEvaluationPoint">MarketEvaluationPoint: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="MarketParticipant">MarketParticipant: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Period">Period: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Reason">Reason: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
+        <span class="name">TimeSeries</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="businessType">businessType: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="cancelledTS">cancelledTS: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="curveType">curveType: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="objectAggregation">objectAggregation: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="product">product: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="version">version: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="AttributeInstanceComponent">AttributeInstanceComponent: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Auction">Auction: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="DateAndOrTime">DateAndOrTime: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Domain">Domain: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="FlowDirection">FlowDirection: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="MarketDocument">MarketDocument: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="MarketEvaluationPoint">MarketEvaluationPoint: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="MarketObjectStatus">MarketObjectStatus: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="MarketParticipant">MarketParticipant: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="MktPSRType">MktPSRType: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Period">Period: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Point">Point: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Reason">Reason: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="RegisteredResource">RegisteredResource: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Unit">Unit: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.TimeSeries@&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,businessType:String,cancelledTS:String,curveType:String,objectAggregation:String,product:String,version:String,DateAndOrTime:List[String],Domain:List[String],FlowDirection:List[String],MarketDocument:List[String],MarketEvaluationPoint:List[String],MarketParticipant:List[String],Period:List[String],Reason:List[String]):ch.ninecode.model.TimeSeries" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.TimeSeries@&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,businessType:String,cancelledTS:String,curveType:String,objectAggregation:String,product:String,version:String,AttributeInstanceComponent:List[String],Auction:List[String],DateAndOrTime:List[String],Domain:List[String],FlowDirection:List[String],MarketDocument:List[String],MarketEvaluationPoint:List[String],MarketObjectStatus:List[String],MarketParticipant:List[String],MktPSRType:List[String],Period:List[String],Point:List[String],Reason:List[String],RegisteredResource:List[String],Unit:List[String]):ch.ninecode.model.TimeSeries" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">businessType</dt><dd class="cmt"><p>The identification of the nature of the time series.</p></dd><dt class="param">cancelledTS</dt><dd class="cmt"><p>An indicator stating that the TimeSeries, identified by the mRID, is cancelled as well as all the values sent in a previous version of the TimeSeries in a previous document.</p></dd><dt class="param">curveType</dt><dd class="cmt"><p>The coded representation of the type of curve being described.</p></dd><dt class="param">objectAggregation</dt><dd class="cmt"><p>Identification of the object that is the common dominator used to aggregate a time series.</p></dd><dt class="param">product</dt><dd class="cmt"><p>The type of the product such as Power, energy, reactive power, transport capacity that is the subject of the time series.</p></dd><dt class="param">version</dt><dd class="cmt"><p>Version of the time series.</p></dd><dt class="param">DateAndOrTime</dt><dd class="cmt"><p><a href="DateAndOrTime.html" class="extype" name="ch.ninecode.model.DateAndOrTime">DateAndOrTime</a> <em>undocumented</em></p></dd><dt class="param">Domain</dt><dd class="cmt"><p><a href="Domain.html" class="extype" name="ch.ninecode.model.Domain">Domain</a> <em>undocumented</em></p></dd><dt class="param">FlowDirection</dt><dd class="cmt"><p><a href="FlowDirection.html" class="extype" name="ch.ninecode.model.FlowDirection">FlowDirection</a> <em>undocumented</em></p></dd><dt class="param">MarketDocument</dt><dd class="cmt"><p><a href="MarketDocument.html" class="extype" name="ch.ninecode.model.MarketDocument">MarketDocument</a> <em>undocumented</em></p></dd><dt class="param">MarketEvaluationPoint</dt><dd class="cmt"><p><a href="MarketEvaluationPoint.html" class="extype" name="ch.ninecode.model.MarketEvaluationPoint">MarketEvaluationPoint</a> <em>undocumented</em></p></dd><dt class="param">MarketParticipant</dt><dd class="cmt"><p><a href="MarketParticipant.html" class="extype" name="ch.ninecode.model.MarketParticipant">MarketParticipant</a> <em>undocumented</em></p></dd><dt class="param">Period</dt><dd class="cmt"><p><a href="Period.html" class="extype" name="ch.ninecode.model.Period">Period</a> <em>undocumented</em></p></dd><dt class="param">Reason</dt><dd class="cmt"><p><a href="Reason.html" class="extype" name="ch.ninecode.model.Reason">Reason</a> <em>undocumented</em></p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">businessType</dt><dd class="cmt"><p>The identification of the nature of the time series.</p></dd><dt class="param">cancelledTS</dt><dd class="cmt"><p>An indicator stating that the TimeSeries, identified by the mRID, is cancelled as well as all the values sent in a previous version of the TimeSeries in a previous document.</p></dd><dt class="param">curveType</dt><dd class="cmt"><p>The coded representation of the type of curve being described.</p></dd><dt class="param">objectAggregation</dt><dd class="cmt"><p>Identification of the object that is the common dominator used to aggregate a time series.</p></dd><dt class="param">product</dt><dd class="cmt"><p>The type of the product such as Power, energy, reactive power, transport capacity that is the subject of the time series.</p></dd><dt class="param">version</dt><dd class="cmt"><p>Version of the time series.</p></dd><dt class="param">AttributeInstanceComponent</dt><dd class="cmt"><p><a href="AttributeInstanceComponent.html" class="extype" name="ch.ninecode.model.AttributeInstanceComponent">AttributeInstanceComponent</a> <em>undocumented</em></p></dd><dt class="param">Auction</dt><dd class="cmt"><p><a href="Auction.html" class="extype" name="ch.ninecode.model.Auction">Auction</a> <em>undocumented</em></p></dd><dt class="param">DateAndOrTime</dt><dd class="cmt"><p><a href="DateAndOrTime.html" class="extype" name="ch.ninecode.model.DateAndOrTime">DateAndOrTime</a> <em>undocumented</em></p></dd><dt class="param">Domain</dt><dd class="cmt"><p><a href="Domain.html" class="extype" name="ch.ninecode.model.Domain">Domain</a> <em>undocumented</em></p></dd><dt class="param">FlowDirection</dt><dd class="cmt"><p><a href="FlowDirection.html" class="extype" name="ch.ninecode.model.FlowDirection">FlowDirection</a> <em>undocumented</em></p></dd><dt class="param">MarketDocument</dt><dd class="cmt"><p><a href="MarketDocument.html" class="extype" name="ch.ninecode.model.MarketDocument">MarketDocument</a> <em>undocumented</em></p></dd><dt class="param">MarketEvaluationPoint</dt><dd class="cmt"><p><a href="MarketEvaluationPoint.html" class="extype" name="ch.ninecode.model.MarketEvaluationPoint">MarketEvaluationPoint</a> <em>undocumented</em></p></dd><dt class="param">MarketObjectStatus</dt><dd class="cmt"><p><a href="MarketObjectStatus.html" class="extype" name="ch.ninecode.model.MarketObjectStatus">MarketObjectStatus</a> <em>undocumented</em></p></dd><dt class="param">MarketParticipant</dt><dd class="cmt"><p><a href="MarketParticipant.html" class="extype" name="ch.ninecode.model.MarketParticipant">MarketParticipant</a> <em>undocumented</em></p></dd><dt class="param">MktPSRType</dt><dd class="cmt"><p><a href="MktPSRType.html" class="extype" name="ch.ninecode.model.MktPSRType">MktPSRType</a> <em>undocumented</em></p></dd><dt class="param">Period</dt><dd class="cmt"><p><a href="Period.html" class="extype" name="ch.ninecode.model.Period">Period</a> <em>undocumented</em></p></dd><dt class="param">Point</dt><dd class="cmt"><p><a href="Point.html" class="extype" name="ch.ninecode.model.Point">Point</a> <em>undocumented</em></p></dd><dt class="param">Reason</dt><dd class="cmt"><p><a href="Reason.html" class="extype" name="ch.ninecode.model.Reason">Reason</a> <em>undocumented</em></p></dd><dt class="param">RegisteredResource</dt><dd class="cmt"><p><a href="RegisteredResource.html" class="extype" name="ch.ninecode.model.RegisteredResource">RegisteredResource</a> <em>undocumented</em></p></dd><dt class="param">Unit</dt><dd class="cmt"><p><a href="Unit_.html" class="extype" name="ch.ninecode.model.Unit_">Unit_</a> <em>undocumented</em></p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -185,6 +185,40 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="ch.ninecode.model.TimeSeries#AttributeInstanceComponent" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="AttributeInstanceComponent:List[String]"></a>
+      <a id="AttributeInstanceComponent:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">AttributeInstanceComponent</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.TimeSeries@AttributeInstanceComponent:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="AttributeInstanceComponent.html" class="extype" name="ch.ninecode.model.AttributeInstanceComponent">AttributeInstanceComponent</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="AttributeInstanceComponent.html" class="extype" name="ch.ninecode.model.AttributeInstanceComponent">AttributeInstanceComponent</a> <em>undocumented</em></p></div></div>
+    </li><li name="ch.ninecode.model.TimeSeries#Auction" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="Auction:List[String]"></a>
+      <a id="Auction:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Auction</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.TimeSeries@Auction:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="Auction.html" class="extype" name="ch.ninecode.model.Auction">Auction</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="Auction.html" class="extype" name="ch.ninecode.model.Auction">Auction</a> <em>undocumented</em></p></div></div>
     </li><li name="ch.ninecode.model.TimeSeries#DateAndOrTime" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="DateAndOrTime:List[String]"></a>
       <a id="DateAndOrTime:List[String]"></a>
@@ -288,6 +322,23 @@
       </a>
     </span>
       <p class="shortcomment cmt"><a href="MarketEvaluationPoint.html" class="extype" name="ch.ninecode.model.MarketEvaluationPoint">MarketEvaluationPoint</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="MarketEvaluationPoint.html" class="extype" name="ch.ninecode.model.MarketEvaluationPoint">MarketEvaluationPoint</a> <em>undocumented</em></p></div></div>
+    </li><li name="ch.ninecode.model.TimeSeries#MarketObjectStatus" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="MarketObjectStatus:List[String]"></a>
+      <a id="MarketObjectStatus:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">MarketObjectStatus</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.TimeSeries@MarketObjectStatus:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="MarketObjectStatus.html" class="extype" name="ch.ninecode.model.MarketObjectStatus">MarketObjectStatus</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="MarketObjectStatus.html" class="extype" name="ch.ninecode.model.MarketObjectStatus">MarketObjectStatus</a> <em>undocumented</em></p></div></div>
     </li><li name="ch.ninecode.model.TimeSeries#MarketParticipant" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="MarketParticipant:List[String]"></a>
       <a id="MarketParticipant:List[String]"></a>
@@ -305,6 +356,23 @@
       </a>
     </span>
       <p class="shortcomment cmt"><a href="MarketParticipant.html" class="extype" name="ch.ninecode.model.MarketParticipant">MarketParticipant</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="MarketParticipant.html" class="extype" name="ch.ninecode.model.MarketParticipant">MarketParticipant</a> <em>undocumented</em></p></div></div>
+    </li><li name="ch.ninecode.model.TimeSeries#MktPSRType" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="MktPSRType:List[String]"></a>
+      <a id="MktPSRType:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">MktPSRType</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.TimeSeries@MktPSRType:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="MktPSRType.html" class="extype" name="ch.ninecode.model.MktPSRType">MktPSRType</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="MktPSRType.html" class="extype" name="ch.ninecode.model.MktPSRType">MktPSRType</a> <em>undocumented</em></p></div></div>
     </li><li name="ch.ninecode.model.TimeSeries#Period" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="Period:List[String]"></a>
       <a id="Period:List[String]"></a>
@@ -322,6 +390,23 @@
       </a>
     </span>
       <p class="shortcomment cmt"><a href="Period.html" class="extype" name="ch.ninecode.model.Period">Period</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="Period.html" class="extype" name="ch.ninecode.model.Period">Period</a> <em>undocumented</em></p></div></div>
+    </li><li name="ch.ninecode.model.TimeSeries#Point" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="Point:List[String]"></a>
+      <a id="Point:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Point</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.TimeSeries@Point:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="Point.html" class="extype" name="ch.ninecode.model.Point">Point</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="Point.html" class="extype" name="ch.ninecode.model.Point">Point</a> <em>undocumented</em></p></div></div>
     </li><li name="ch.ninecode.model.TimeSeries#Reason" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="Reason:List[String]"></a>
       <a id="Reason:List[String]"></a>
@@ -339,6 +424,40 @@
       </a>
     </span>
       <p class="shortcomment cmt"><a href="Reason.html" class="extype" name="ch.ninecode.model.Reason">Reason</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="Reason.html" class="extype" name="ch.ninecode.model.Reason">Reason</a> <em>undocumented</em></p></div></div>
+    </li><li name="ch.ninecode.model.TimeSeries#RegisteredResource" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="RegisteredResource:List[String]"></a>
+      <a id="RegisteredResource:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">RegisteredResource</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.TimeSeries@RegisteredResource:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="RegisteredResource.html" class="extype" name="ch.ninecode.model.RegisteredResource">RegisteredResource</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="RegisteredResource.html" class="extype" name="ch.ninecode.model.RegisteredResource">RegisteredResource</a> <em>undocumented</em></p></div></div>
+    </li><li name="ch.ninecode.model.TimeSeries#Unit" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="Unit:List[String]"></a>
+      <a id="Unit:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Unit</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.TimeSeries@Unit:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="Unit_.html" class="extype" name="ch.ninecode.model.Unit_">Unit_</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="Unit_.html" class="extype" name="ch.ninecode.model.Unit_">Unit_</a> <em>undocumented</em></p></div></div>
     </li><li name="ch.ninecode.model.Element#about" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="about:Boolean"></a>
       <a id="about:Boolean"></a>

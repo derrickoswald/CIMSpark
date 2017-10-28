@@ -232,6 +232,7 @@ extends
  * @param loadMgmt Load management code.
  * @param Customer [[ch.ninecode.model.Customer Customer]] Customer for this agreement.
  * @param CustomerAccount [[ch.ninecode.model.CustomerAccount CustomerAccount]] Customer account owning this agreement.
+ * @param DemandResponsePrograms [[ch.ninecode.model.DemandResponseProgram DemandResponseProgram]] All demand response programs the customer is enrolled in through this customer agreement.
  * @param PricingStructures [[ch.ninecode.model.PricingStructure PricingStructure]] All pricing structures applicable to this customer agreement.
  * @param ServiceCategory [[ch.ninecode.model.ServiceCategory ServiceCategory]] Service category for this agreement.
  * @param ServiceLocations [[ch.ninecode.model.ServiceLocation ServiceLocation]] All service locations regulated by this customer agreement.
@@ -247,6 +248,7 @@ case class CustomerAgreement
     loadMgmt: String,
     Customer: String,
     CustomerAccount: String,
+    DemandResponsePrograms: List[String],
     PricingStructures: List[String],
     ServiceCategory: String,
     ServiceLocations: List[String],
@@ -259,7 +261,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, List(), null, List(), null, null) }
+    def this () = { this (null, null, null, null, List(), List(), null, List(), null, null) }
     /**
      * Return the superclass object.
      *
@@ -288,11 +290,12 @@ extends
         emitelem (0, loadMgmt)
         emitattr (1, Customer)
         emitattr (2, CustomerAccount)
-        emitattrs (3, PricingStructures)
-        emitattr (4, ServiceCategory)
-        emitattrs (5, ServiceLocations)
-        emitattr (6, ServiceSupplier)
-        emitattr (7, StandardIndustryCode)
+        emitattrs (3, DemandResponsePrograms)
+        emitattrs (4, PricingStructures)
+        emitattr (5, ServiceCategory)
+        emitattrs (6, ServiceLocations)
+        emitattr (7, ServiceSupplier)
+        emitattr (8, StandardIndustryCode)
         s.toString
     }
     override def export: String =
@@ -309,6 +312,7 @@ extends
         "loadMgmt",
         "Customer",
         "CustomerAccount",
+        "DemandResponsePrograms",
         "PricingStructures",
         "ServiceCategory",
         "ServiceLocations",
@@ -318,11 +322,12 @@ extends
     val loadMgmt: Fielder = parse_element (element (cls, fields(0)))
     val Customer: Fielder = parse_attribute (attribute (cls, fields(1)))
     val CustomerAccount: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val PricingStructures: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
-    val ServiceCategory: Fielder = parse_attribute (attribute (cls, fields(4)))
-    val ServiceLocations: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
-    val ServiceSupplier: Fielder = parse_attribute (attribute (cls, fields(6)))
-    val StandardIndustryCode: Fielder = parse_attribute (attribute (cls, fields(7)))
+    val DemandResponsePrograms: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val PricingStructures: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val ServiceCategory: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val ServiceLocations: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
+    val ServiceSupplier: Fielder = parse_attribute (attribute (cls, fields(7)))
+    val StandardIndustryCode: Fielder = parse_attribute (attribute (cls, fields(8)))
 
     def parse (context: Context): CustomerAgreement =
     {
@@ -333,11 +338,12 @@ extends
             mask (loadMgmt (), 0),
             mask (Customer (), 1),
             mask (CustomerAccount (), 2),
-            masks (PricingStructures (), 3),
-            mask (ServiceCategory (), 4),
-            masks (ServiceLocations (), 5),
-            mask (ServiceSupplier (), 6),
-            mask (StandardIndustryCode (), 7)
+            masks (DemandResponsePrograms (), 3),
+            masks (PricingStructures (), 4),
+            mask (ServiceCategory (), 5),
+            masks (ServiceLocations (), 6),
+            mask (ServiceSupplier (), 7),
+            mask (StandardIndustryCode (), 8)
         )
         ret.bitfields = bitfields
         ret
@@ -345,6 +351,7 @@ extends
     val relations: List[Relationship] = List (
         Relationship ("Customer", "Customer", false),
         Relationship ("CustomerAccount", "CustomerAccount", false),
+        Relationship ("DemandResponsePrograms", "DemandResponseProgram", true),
         Relationship ("PricingStructures", "PricingStructure", true),
         Relationship ("ServiceCategory", "ServiceCategory", false),
         Relationship ("ServiceLocations", "ServiceLocation", true),
@@ -569,6 +576,7 @@ extends
  * @param dailyFloorUsage Absolute minimum valid non-demand usage quantity used in validating a customer's billed non-demand usage.
  * @param revenueKind (accounting) Kind of revenue, often used to determine the grace period allowed, before collection actions are taken on a customer (grace periods vary between revenue classes).
  * @param taxExemption True if this pricing structure is not taxable.
+ * @param CustomerAgreements [[ch.ninecode.model.CustomerAgreement CustomerAgreement]] All customer agreements with this pricing structure.
  * @param ServiceCategory [[ch.ninecode.model.ServiceCategory ServiceCategory]] Service category to which this pricing structure applies.
  * @param Tariffs [[ch.ninecode.model.Tariff Tariff]] All tariffs used by this pricing structure.
  * @param UsagePoints [[ch.ninecode.model.UsagePoint UsagePoint]] All service delivery points (with prepayment meter running as a stand-alone device, with no CustomerAgreement or Customer) to which this pricing structure applies.
@@ -585,6 +593,7 @@ case class PricingStructure
     dailyFloorUsage: Int,
     revenueKind: String,
     taxExemption: Boolean,
+    CustomerAgreements: List[String],
     ServiceCategory: String,
     Tariffs: List[String],
     UsagePoints: List[String]
@@ -595,7 +604,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, 0, 0, 0, null, false, null, List(), List()) }
+    def this () = { this (null, null, 0, 0, 0, null, false, List(), null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -627,9 +636,10 @@ extends
         emitelem (3, dailyFloorUsage)
         emitattr (4, revenueKind)
         emitelem (5, taxExemption)
-        emitattr (6, ServiceCategory)
-        emitattrs (7, Tariffs)
-        emitattrs (8, UsagePoints)
+        emitattrs (6, CustomerAgreements)
+        emitattr (7, ServiceCategory)
+        emitattrs (8, Tariffs)
+        emitattrs (9, UsagePoints)
         s.toString
     }
     override def export: String =
@@ -649,6 +659,7 @@ extends
         "dailyFloorUsage",
         "revenueKind",
         "taxExemption",
+        "CustomerAgreements",
         "ServiceCategory",
         "Tariffs",
         "UsagePoints"
@@ -659,9 +670,10 @@ extends
     val dailyFloorUsage: Fielder = parse_element (element (cls, fields(3)))
     val revenueKind: Fielder = parse_attribute (attribute (cls, fields(4)))
     val taxExemption: Fielder = parse_element (element (cls, fields(5)))
-    val ServiceCategory: Fielder = parse_attribute (attribute (cls, fields(6)))
-    val Tariffs: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
-    val UsagePoints: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
+    val CustomerAgreements: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
+    val ServiceCategory: Fielder = parse_attribute (attribute (cls, fields(7)))
+    val Tariffs: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
+    val UsagePoints: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
 
     def parse (context: Context): PricingStructure =
     {
@@ -675,14 +687,16 @@ extends
             toInteger (mask (dailyFloorUsage (), 3)),
             mask (revenueKind (), 4),
             toBoolean (mask (taxExemption (), 5)),
-            mask (ServiceCategory (), 6),
-            masks (Tariffs (), 7),
-            masks (UsagePoints (), 8)
+            masks (CustomerAgreements (), 6),
+            mask (ServiceCategory (), 7),
+            masks (Tariffs (), 8),
+            masks (UsagePoints (), 9)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
+        Relationship ("CustomerAgreements", "CustomerAgreement", true),
         Relationship ("ServiceCategory", "ServiceCategory", false),
         Relationship ("Tariffs", "Tariff", true),
         Relationship ("UsagePoints", "UsagePoint", true)
@@ -777,6 +791,7 @@ extends
  *        This could be requested by a customer, due to suspected tampering, environmental concerns (e.g., a fire in the vicinity), or to correct incompatible data.
  * @param siteAccessProblem Problems previously encountered when visiting or performing work on this location.
  *        Examples include: bad dog, violent customer, verbally abusive occupant, obstructions, safety hazards, etc.
+ * @param CustomerAgreements [[ch.ninecode.model.CustomerAgreement CustomerAgreement]] All customer agreements regulating this service location.
  * @group Customers
  * @groupname Customers Package Customers
  * @groupdesc Customers This package contains the core information classes that support customer billing applications.
@@ -786,7 +801,8 @@ case class ServiceLocation
     override val sup: WorkLocation,
     accessMethod: String,
     needsInspection: Boolean,
-    siteAccessProblem: String
+    siteAccessProblem: String,
+    CustomerAgreements: List[String]
 )
 extends
     Element
@@ -794,7 +810,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, false, null) }
+    def this () = { this (null, null, false, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -818,9 +834,11 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ServiceLocation.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ServiceLocation.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ServiceLocation.fields (position), x))
         emitelem (0, accessMethod)
         emitelem (1, needsInspection)
         emitelem (2, siteAccessProblem)
+        emitattrs (3, CustomerAgreements)
         s.toString
     }
     override def export: String =
@@ -836,11 +854,13 @@ extends
     val fields: Array[String] = Array[String] (
         "accessMethod",
         "needsInspection",
-        "siteAccessProblem"
+        "siteAccessProblem",
+        "CustomerAgreements"
     )
     val accessMethod: Fielder = parse_element (element (cls, fields(0)))
     val needsInspection: Fielder = parse_element (element (cls, fields(1)))
     val siteAccessProblem: Fielder = parse_element (element (cls, fields(2)))
+    val CustomerAgreements: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
 
     def parse (context: Context): ServiceLocation =
     {
@@ -850,13 +870,14 @@ extends
             WorkLocation.parse (context),
             mask (accessMethod (), 0),
             toBoolean (mask (needsInspection (), 1)),
-            mask (siteAccessProblem (), 2)
+            mask (siteAccessProblem (), 2),
+            masks (CustomerAgreements (), 3)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
-
+        Relationship ("CustomerAgreements", "CustomerAgreement", true)
     )
 }
 
@@ -868,6 +889,7 @@ extends
  * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param endDate (if tariff became inactive) Date tariff was terminated.
  * @param startDate Date tariff was activated.
+ * @param PricingStructures [[ch.ninecode.model.PricingStructure PricingStructure]] All pricing structures using this tariff.
  * @param TariffProfiles [[ch.ninecode.model.TariffProfile TariffProfile]] All tariff profiles using this tariff.
  * @group Customers
  * @groupname Customers Package Customers
@@ -878,6 +900,7 @@ case class Tariff
     override val sup: Document,
     endDate: String,
     startDate: String,
+    PricingStructures: List[String],
     TariffProfiles: List[String]
 )
 extends
@@ -886,7 +909,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, List()) }
+    def this () = { this (null, null, null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -913,7 +936,8 @@ extends
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Tariff.fields (position), x))
         emitelem (0, endDate)
         emitelem (1, startDate)
-        emitattrs (2, TariffProfiles)
+        emitattrs (2, PricingStructures)
+        emitattrs (3, TariffProfiles)
         s.toString
     }
     override def export: String =
@@ -929,11 +953,13 @@ extends
     val fields: Array[String] = Array[String] (
         "endDate",
         "startDate",
+        "PricingStructures",
         "TariffProfiles"
     )
     val endDate: Fielder = parse_element (element (cls, fields(0)))
     val startDate: Fielder = parse_element (element (cls, fields(1)))
-    val TariffProfiles: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val PricingStructures: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val TariffProfiles: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
 
     def parse (context: Context): Tariff =
     {
@@ -943,12 +969,14 @@ extends
             Document.parse (context),
             mask (endDate (), 0),
             mask (startDate (), 1),
-            masks (TariffProfiles (), 2)
+            masks (PricingStructures (), 2),
+            masks (TariffProfiles (), 3)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
+        Relationship ("PricingStructures", "PricingStructure", true),
         Relationship ("TariffProfiles", "TariffProfile", true)
     )
 }

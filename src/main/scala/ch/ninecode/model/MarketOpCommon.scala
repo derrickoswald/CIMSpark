@@ -23,6 +23,7 @@ import ch.ninecode.cim.Relationship
  * @param referenceNumber Number of an invoice to be reference by this invoice.
  * @param transactionDateTime Date and time when the invoice is issued.
  * @param transferType Type of invoice transfer.
+ * @param MajorChargeGroup [[ch.ninecode.model.MajorChargeGroup MajorChargeGroup]] <em>undocumented</em>
  * @group MarketOpCommon
  * @groupname MarketOpCommon Package MarketOpCommon
  * @groupdesc MarketOpCommon This package contains the common objects shared by MarketOperations packages.
@@ -38,7 +39,8 @@ case class MarketInvoice
     proForma: Boolean,
     referenceNumber: String,
     transactionDateTime: String,
-    transferType: String
+    transferType: String,
+    MajorChargeGroup: List[String]
 )
 extends
     Element
@@ -46,7 +48,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, null, null, null, null, false, null, null, null) }
+    def this () = { this (null, 0.0, null, null, null, null, false, null, null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -71,6 +73,7 @@ extends
         implicit val clz: String = MarketInvoice.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (MarketInvoice.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (MarketInvoice.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (MarketInvoice.fields (position), x))
         emitelem (0, amount)
         emitattr (1, billMediaKind)
         emitelem (2, dueDate)
@@ -80,6 +83,7 @@ extends
         emitelem (6, referenceNumber)
         emitelem (7, transactionDateTime)
         emitelem (8, transferType)
+        emitattrs (9, MajorChargeGroup)
         s.toString
     }
     override def export: String =
@@ -101,7 +105,8 @@ extends
         "proForma",
         "referenceNumber",
         "transactionDateTime",
-        "transferType"
+        "transferType",
+        "MajorChargeGroup"
     )
     val amount: Fielder = parse_element (element (cls, fields(0)))
     val billMediaKind: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -112,6 +117,7 @@ extends
     val referenceNumber: Fielder = parse_element (element (cls, fields(6)))
     val transactionDateTime: Fielder = parse_element (element (cls, fields(7)))
     val transferType: Fielder = parse_element (element (cls, fields(8)))
+    val MajorChargeGroup: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
 
     def parse (context: Context): MarketInvoice =
     {
@@ -127,13 +133,14 @@ extends
             toBoolean (mask (proForma (), 5)),
             mask (referenceNumber (), 6),
             mask (transactionDateTime (), 7),
-            mask (transferType (), 8)
+            mask (transferType (), 8),
+            masks (MajorChargeGroup (), 9)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
-
+        Relationship ("MajorChargeGroup", "MajorChargeGroup", true)
     )
 }
 
@@ -479,13 +486,15 @@ extends
  * Subclass of IEC61968: Common:ActivityRecord
  *
  * @param sup [[ch.ninecode.model.ActivityRecord ActivityRecord]] Reference to the superclass object.
+ * @param MarketFactors [[ch.ninecode.model.MarketFactors MarketFactors]] <em>undocumented</em>
  * @group MarketOpCommon
  * @groupname MarketOpCommon Package MarketOpCommon
  * @groupdesc MarketOpCommon This package contains the common objects shared by MarketOperations packages.
  */
 case class MktActivityRecord
 (
-    override val sup: ActivityRecord
+    override val sup: ActivityRecord,
+    MarketFactors: List[String]
 )
 extends
     Element
@@ -493,7 +502,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -514,7 +523,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = MktActivityRecord.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (MktActivityRecord.fields (position), x))
+        emitattrs (0, MarketFactors)
+        s.toString
     }
     override def export: String =
     {
@@ -526,17 +539,24 @@ object MktActivityRecord
 extends
     Parseable[MktActivityRecord]
 {
+    val fields: Array[String] = Array[String] (
+        "MarketFactors"
+    )
+    val MarketFactors: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): MktActivityRecord =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = MktActivityRecord (
-            ActivityRecord.parse (context)
+            ActivityRecord.parse (context),
+            masks (MarketFactors (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
-
+        Relationship ("MarketFactors", "MarketFactors", true)
     )
 }
 
@@ -805,6 +825,7 @@ extends
  * Subclass for IEC61970:Wires:Line
  *
  * @param sup [[ch.ninecode.model.Line Line]] Reference to the superclass object.
+ * @param Flowgate [[ch.ninecode.model.Flowgate Flowgate]] <em>undocumented</em>
  * @param TransmissionRightOfWay [[ch.ninecode.model.TransmissionRightOfWay TransmissionRightOfWay]] <em>undocumented</em>
  * @group MarketOpCommon
  * @groupname MarketOpCommon Package MarketOpCommon
@@ -813,6 +834,7 @@ extends
 case class MktLine
 (
     override val sup: Line,
+    Flowgate: List[String],
     TransmissionRightOfWay: String
 )
 extends
@@ -821,7 +843,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null) }
+    def this () = { this (null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -845,7 +867,9 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MktLine.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (MktLine.fields (position), value)
-        emitattr (0, TransmissionRightOfWay)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (MktLine.fields (position), x))
+        emitattrs (0, Flowgate)
+        emitattr (1, TransmissionRightOfWay)
         s.toString
     }
     override def export: String =
@@ -859,9 +883,11 @@ extends
     Parseable[MktLine]
 {
     val fields: Array[String] = Array[String] (
+        "Flowgate",
         "TransmissionRightOfWay"
     )
-    val TransmissionRightOfWay: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val Flowgate: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val TransmissionRightOfWay: Fielder = parse_attribute (attribute (cls, fields(1)))
 
     def parse (context: Context): MktLine =
     {
@@ -869,12 +895,14 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = MktLine (
             Line.parse (context),
-            mask (TransmissionRightOfWay (), 0)
+            masks (Flowgate (), 0),
+            mask (TransmissionRightOfWay (), 1)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
+        Relationship ("Flowgate", "Flowgate", true),
         Relationship ("TransmissionRightOfWay", "TransmissionRightOfWay", false)
     )
 }
@@ -1047,7 +1075,9 @@ extends
  * @param organisationID Organisation (internal) ID
  * @param qualificationStatus Organisation qualification status, Qualified, Not Qualified, or Disqualified
  * @param startEffectiveDate start effective date
+ * @param IntSchedAgreement [[ch.ninecode.model.IntSchedAgreement IntSchedAgreement]] <em>undocumented</em>
  * @param MarketPerson [[ch.ninecode.model.MarketPerson MarketPerson]] <em>undocumented</em>
+ * @param ViolationLimit [[ch.ninecode.model.ViolationLimit ViolationLimit]] <em>undocumented</em>
  * @group MarketOpCommon
  * @groupname MarketOpCommon Package MarketOpCommon
  * @groupdesc MarketOpCommon This package contains the common objects shared by MarketOperations packages.
@@ -1062,7 +1092,9 @@ case class MktOrganisation
     organisationID: Int,
     qualificationStatus: String,
     startEffectiveDate: String,
-    MarketPerson: List[String]
+    IntSchedAgreement: List[String],
+    MarketPerson: List[String],
+    ViolationLimit: List[String]
 )
 extends
     Element
@@ -1070,7 +1102,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null, 0, null, null, List()) }
+    def this () = { this (null, null, null, null, null, 0, null, null, List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1103,7 +1135,9 @@ extends
         emitelem (4, organisationID)
         emitelem (5, qualificationStatus)
         emitelem (6, startEffectiveDate)
-        emitattrs (7, MarketPerson)
+        emitattrs (7, IntSchedAgreement)
+        emitattrs (8, MarketPerson)
+        emitattrs (9, ViolationLimit)
         s.toString
     }
     override def export: String =
@@ -1124,7 +1158,9 @@ extends
         "organisationID",
         "qualificationStatus",
         "startEffectiveDate",
-        "MarketPerson"
+        "IntSchedAgreement",
+        "MarketPerson",
+        "ViolationLimit"
     )
     val creditFlag: Fielder = parse_attribute (attribute (cls, fields(0)))
     val creditStartEffectiveDate: Fielder = parse_element (element (cls, fields(1)))
@@ -1133,7 +1169,9 @@ extends
     val organisationID: Fielder = parse_element (element (cls, fields(4)))
     val qualificationStatus: Fielder = parse_element (element (cls, fields(5)))
     val startEffectiveDate: Fielder = parse_element (element (cls, fields(6)))
-    val MarketPerson: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
+    val IntSchedAgreement: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
+    val MarketPerson: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
+    val ViolationLimit: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
 
     def parse (context: Context): MktOrganisation =
     {
@@ -1148,13 +1186,17 @@ extends
             toInteger (mask (organisationID (), 4)),
             mask (qualificationStatus (), 5),
             mask (startEffectiveDate (), 6),
-            masks (MarketPerson (), 7)
+            masks (IntSchedAgreement (), 7),
+            masks (MarketPerson (), 8),
+            masks (ViolationLimit (), 9)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("MarketPerson", "MarketPerson", true)
+        Relationship ("IntSchedAgreement", "IntSchedAgreement", true),
+        Relationship ("MarketPerson", "MarketPerson", true),
+        Relationship ("ViolationLimit", "ViolationLimit", true)
     )
 }
 
@@ -1164,6 +1206,7 @@ extends
  * @param sup [[ch.ninecode.model.PowerTransformer PowerTransformer]] Reference to the superclass object.
  * @param EndAFlow [[ch.ninecode.model.BranchEndFlow BranchEndFlow]] <em>undocumented</em>
  * @param EndBFlow [[ch.ninecode.model.BranchEndFlow BranchEndFlow]] <em>undocumented</em>
+ * @param Flowgate [[ch.ninecode.model.Flowgate Flowgate]] <em>undocumented</em>
  * @group MarketOpCommon
  * @groupname MarketOpCommon Package MarketOpCommon
  * @groupdesc MarketOpCommon This package contains the common objects shared by MarketOperations packages.
@@ -1172,7 +1215,8 @@ case class MktPowerTransformer
 (
     override val sup: PowerTransformer,
     EndAFlow: String,
-    EndBFlow: String
+    EndBFlow: String,
+    Flowgate: List[String]
 )
 extends
     Element
@@ -1180,7 +1224,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null) }
+    def this () = { this (null, null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -1204,8 +1248,10 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MktPowerTransformer.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (MktPowerTransformer.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (MktPowerTransformer.fields (position), x))
         emitattr (0, EndAFlow)
         emitattr (1, EndBFlow)
+        emitattrs (2, Flowgate)
         s.toString
     }
     override def export: String =
@@ -1220,10 +1266,12 @@ extends
 {
     val fields: Array[String] = Array[String] (
         "EndAFlow",
-        "EndBFlow"
+        "EndBFlow",
+        "Flowgate"
     )
     val EndAFlow: Fielder = parse_attribute (attribute (cls, fields(0)))
     val EndBFlow: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val Flowgate: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
 
     def parse (context: Context): MktPowerTransformer =
     {
@@ -1232,14 +1280,16 @@ extends
         val ret = MktPowerTransformer (
             PowerTransformer.parse (context),
             mask (EndAFlow (), 0),
-            mask (EndBFlow (), 1)
+            mask (EndBFlow (), 1),
+            masks (Flowgate (), 2)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
         Relationship ("EndAFlow", "BranchEndFlow", false),
-        Relationship ("EndBFlow", "BranchEndFlow", false)
+        Relationship ("EndBFlow", "BranchEndFlow", false),
+        Relationship ("Flowgate", "Flowgate", true)
     )
 }
 
@@ -1338,13 +1388,23 @@ extends
  * Subclass of IEC61968:Domain2:UserAttribute
  *
  * @param sup [[ch.ninecode.model.UserAttribute UserAttribute]] Reference to the superclass object.
+ * @param BillDeterminant [[ch.ninecode.model.BillDeterminant BillDeterminant]] <em>undocumented</em>
+ * @param ChargeGroup [[ch.ninecode.model.ChargeGroup ChargeGroup]] <em>undocumented</em>
+ * @param ChargeType [[ch.ninecode.model.ChargeType ChargeType]] <em>undocumented</em>
+ * @param MarketStatementLineItem [[ch.ninecode.model.MarketStatementLineItem MarketStatementLineItem]] <em>undocumented</em>
+ * @param PassThroughBill [[ch.ninecode.model.PassThroughBill PassThroughBill]] <em>undocumented</em>
  * @group MarketOpCommon
  * @groupname MarketOpCommon Package MarketOpCommon
  * @groupdesc MarketOpCommon This package contains the common objects shared by MarketOperations packages.
  */
 case class MktUserAttribute
 (
-    override val sup: UserAttribute
+    override val sup: UserAttribute,
+    BillDeterminant: List[String],
+    ChargeGroup: List[String],
+    ChargeType: List[String],
+    MarketStatementLineItem: List[String],
+    PassThroughBill: List[String]
 )
 extends
     Element
@@ -1352,7 +1412,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List(), List(), List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1373,7 +1433,15 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = MktUserAttribute.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (MktUserAttribute.fields (position), x))
+        emitattrs (0, BillDeterminant)
+        emitattrs (1, ChargeGroup)
+        emitattrs (2, ChargeType)
+        emitattrs (3, MarketStatementLineItem)
+        emitattrs (4, PassThroughBill)
+        s.toString
     }
     override def export: String =
     {
@@ -1385,17 +1453,40 @@ object MktUserAttribute
 extends
     Parseable[MktUserAttribute]
 {
+    val fields: Array[String] = Array[String] (
+        "BillDeterminant",
+        "ChargeGroup",
+        "ChargeType",
+        "MarketStatementLineItem",
+        "PassThroughBill"
+    )
+    val BillDeterminant: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val ChargeGroup: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val ChargeType: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val MarketStatementLineItem: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val PassThroughBill: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
 
     def parse (context: Context): MktUserAttribute =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = MktUserAttribute (
-            UserAttribute.parse (context)
+            UserAttribute.parse (context),
+            masks (BillDeterminant (), 0),
+            masks (ChargeGroup (), 1),
+            masks (ChargeType (), 2),
+            masks (MarketStatementLineItem (), 3),
+            masks (PassThroughBill (), 4)
         )
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
-
+        Relationship ("BillDeterminant", "BillDeterminant", true),
+        Relationship ("ChargeGroup", "ChargeGroup", true),
+        Relationship ("ChargeType", "ChargeType", true),
+        Relationship ("MarketStatementLineItem", "MarketStatementLineItem", true),
+        Relationship ("PassThroughBill", "PassThroughBill", true)
     )
 }
 

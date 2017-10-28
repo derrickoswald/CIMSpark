@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>TransformerMeshImpedance - CIMReader 2.11-2.2.0-2.4.0 API - ch.ninecode.model.TransformerMeshImpedance</title>
-          <meta name="description" content="TransformerMeshImpedance - CIMReader 2.11 - 2.2.0 - 2.4.0 API - ch.ninecode.model.TransformerMeshImpedance" />
-          <meta name="keywords" content="TransformerMeshImpedance CIMReader 2.11 2.2.0 2.4.0 API ch.ninecode.model.TransformerMeshImpedance" />
+          <title>TransformerMeshImpedance - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.TransformerMeshImpedance</title>
+          <meta name="description" content="TransformerMeshImpedance - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.TransformerMeshImpedance" />
+          <meta name="keywords" content="TransformerMeshImpedance CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.TransformerMeshImpedance" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,14 +47,14 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">TransformerMeshImpedance</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="r">r: <span class="extype" name="scala.Double">Double</span></span>, <span name="r0">r0: <span class="extype" name="scala.Double">Double</span></span>, <span name="x">x: <span class="extype" name="scala.Double">Double</span></span>, <span name="x0">x0: <span class="extype" name="scala.Double">Double</span></span>, <span name="FromTransformerEnd">FromTransformerEnd: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="FromTransformerEndInfo">FromTransformerEndInfo: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">TransformerMeshImpedance</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="r">r: <span class="extype" name="scala.Double">Double</span></span>, <span name="r0">r0: <span class="extype" name="scala.Double">Double</span></span>, <span name="x">x: <span class="extype" name="scala.Double">Double</span></span>, <span name="x0">x0: <span class="extype" name="scala.Double">Double</span></span>, <span name="FromTransformerEnd">FromTransformerEnd: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="FromTransformerEndInfo">FromTransformerEndInfo: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ToTransformerEnd">ToTransformerEnd: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="ToTransformerEndInfos">ToTransformerEndInfos: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Transformer mesh impedance (Delta-model) between transformer ends.</p><p>The typical case is that this class describes the impedance between two transformer ends pair-wise, i.e. the cardinalities at both tranformer end associations are 1. But in cases where two or more transformer ends are modeled the cardinalities are larger than 1.
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">r</dt><dd class="cmt"><p>Resistance between the 'from' and the 'to' end, seen from the 'from' end.</p></dd><dt class="param">r0</dt><dd class="cmt"><p>Zero-sequence resistance between the 'from' and the 'to' end, seen from the 'from' end.</p></dd><dt class="param">x</dt><dd class="cmt"><p>Reactance between the 'from' and the 'to' end, seen from the 'from' end.</p></dd><dt class="param">x0</dt><dd class="cmt"><p>Zero-sequence reactance between the 'from' and the 'to' end, seen from the 'from' end.</p></dd><dt class="param">FromTransformerEnd</dt><dd class="cmt"><p><a href="TransformerEnd.html" class="extype" name="ch.ninecode.model.TransformerEnd">TransformerEnd</a> From end this mesh impedance is connected to.
        It determines the voltage reference.</p></dd><dt class="param">FromTransformerEndInfo</dt><dd class="cmt"><p><a href="TransformerEndInfo.html" class="extype" name="ch.ninecode.model.TransformerEndInfo">TransformerEndInfo</a> 'from' transformer end datasheet this mesh impedance is calculated from.
-       It determines the voltage reference.</p></dd></dl><div class="toggleContainer block">
+       It determines the voltage reference.</p></dd><dt class="param">ToTransformerEnd</dt><dd class="cmt"><p><a href="TransformerEnd.html" class="extype" name="ch.ninecode.model.TransformerEnd">TransformerEnd</a> All transformer ends this mesh impedance is connected to.</p></dd><dt class="param">ToTransformerEndInfos</dt><dd class="cmt"><p><a href="TransformerEndInfo.html" class="extype" name="ch.ninecode.model.TransformerEndInfo">TransformerEndInfo</a> All 'to' transformer end datasheets this mesh impedance for 'from' transformer end is calculated from.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -111,7 +111,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.TransformerMeshImpedance#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,r:Double,r0:Double,x:Double,x0:Double,FromTransformerEnd:String,FromTransformerEndInfo:String):ch.ninecode.model.TransformerMeshImpedance"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,r:Double,r0:Double,x:Double,x0:Double,FromTransformerEnd:String,FromTransformerEndInfo:String,ToTransformerEnd:List[String],ToTransformerEndInfos:List[String]):ch.ninecode.model.TransformerMeshImpedance"></a>
       <a id="&lt;init&gt;:TransformerMeshImpedance"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -119,16 +119,16 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">TransformerMeshImpedance</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="r">r: <span class="extype" name="scala.Double">Double</span></span>, <span name="r0">r0: <span class="extype" name="scala.Double">Double</span></span>, <span name="x">x: <span class="extype" name="scala.Double">Double</span></span>, <span name="x0">x0: <span class="extype" name="scala.Double">Double</span></span>, <span name="FromTransformerEnd">FromTransformerEnd: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="FromTransformerEndInfo">FromTransformerEndInfo: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
+        <span class="name">TransformerMeshImpedance</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="r">r: <span class="extype" name="scala.Double">Double</span></span>, <span name="r0">r0: <span class="extype" name="scala.Double">Double</span></span>, <span name="x">x: <span class="extype" name="scala.Double">Double</span></span>, <span name="x0">x0: <span class="extype" name="scala.Double">Double</span></span>, <span name="FromTransformerEnd">FromTransformerEnd: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="FromTransformerEndInfo">FromTransformerEndInfo: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ToTransformerEnd">ToTransformerEnd: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="ToTransformerEndInfos">ToTransformerEndInfos: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.TransformerMeshImpedance@&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,r:Double,r0:Double,x:Double,x0:Double,FromTransformerEnd:String,FromTransformerEndInfo:String):ch.ninecode.model.TransformerMeshImpedance" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.TransformerMeshImpedance@&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,r:Double,r0:Double,x:Double,x0:Double,FromTransformerEnd:String,FromTransformerEndInfo:String,ToTransformerEnd:List[String],ToTransformerEndInfos:List[String]):ch.ninecode.model.TransformerMeshImpedance" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">r</dt><dd class="cmt"><p>Resistance between the 'from' and the 'to' end, seen from the 'from' end.</p></dd><dt class="param">r0</dt><dd class="cmt"><p>Zero-sequence resistance between the 'from' and the 'to' end, seen from the 'from' end.</p></dd><dt class="param">x</dt><dd class="cmt"><p>Reactance between the 'from' and the 'to' end, seen from the 'from' end.</p></dd><dt class="param">x0</dt><dd class="cmt"><p>Zero-sequence reactance between the 'from' and the 'to' end, seen from the 'from' end.</p></dd><dt class="param">FromTransformerEnd</dt><dd class="cmt"><p><a href="TransformerEnd.html" class="extype" name="ch.ninecode.model.TransformerEnd">TransformerEnd</a> From end this mesh impedance is connected to.
        It determines the voltage reference.</p></dd><dt class="param">FromTransformerEndInfo</dt><dd class="cmt"><p><a href="TransformerEndInfo.html" class="extype" name="ch.ninecode.model.TransformerEndInfo">TransformerEndInfo</a> 'from' transformer end datasheet this mesh impedance is calculated from.
-       It determines the voltage reference.</p></dd></dl></div>
+       It determines the voltage reference.</p></dd><dt class="param">ToTransformerEnd</dt><dd class="cmt"><p><a href="TransformerEnd.html" class="extype" name="ch.ninecode.model.TransformerEnd">TransformerEnd</a> All transformer ends this mesh impedance is connected to.</p></dd><dt class="param">ToTransformerEndInfos</dt><dd class="cmt"><p><a href="TransformerEndInfo.html" class="extype" name="ch.ninecode.model.TransformerEndInfo">TransformerEndInfo</a> All 'to' transformer end datasheets this mesh impedance for 'from' transformer end is calculated from.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -243,6 +243,40 @@
     </span>
       <p class="shortcomment cmt">Return the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Return the superclass object.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The typed superclass nested object.</p></dd></dl></div>
+    </li><li name="ch.ninecode.model.TransformerMeshImpedance#ToTransformerEnd" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ToTransformerEnd:List[String]"></a>
+      <a id="ToTransformerEnd:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ToTransformerEnd</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.TransformerMeshImpedance@ToTransformerEnd:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="TransformerEnd.html" class="extype" name="ch.ninecode.model.TransformerEnd">TransformerEnd</a> All transformer ends this mesh impedance is connected to.</p>
+    </li><li name="ch.ninecode.model.TransformerMeshImpedance#ToTransformerEndInfos" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ToTransformerEndInfos:List[String]"></a>
+      <a id="ToTransformerEndInfos:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ToTransformerEndInfos</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.TransformerMeshImpedance@ToTransformerEndInfos:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="TransformerEndInfo.html" class="extype" name="ch.ninecode.model.TransformerEndInfo">TransformerEndInfo</a> All 'to' transformer end datasheets this mesh impedance for 'from' transformer end is calculated from.</p>
     </li><li name="ch.ninecode.model.Element#about" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="about:Boolean"></a>
       <a id="about:Boolean"></a>

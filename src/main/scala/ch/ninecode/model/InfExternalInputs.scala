@@ -182,7 +182,8 @@ extends
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param status Status of this group.
- * @param typ Type of this group.
+ * @param RegisteredResources [[ch.ninecode.model.RegisteredResource RegisteredResource]] <em>undocumented</em>
+ * @param `type` Type of this group.
  * @group InfExternalInputs
  * @groupname InfExternalInputs Package InfExternalInputs
  */
@@ -190,7 +191,8 @@ case class ResourceGroup
 (
     override val sup: IdentifiedObject,
     status: String,
-    typ: String
+    RegisteredResources: List[String],
+    `type`: String
 )
 extends
     Element
@@ -198,7 +200,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null) }
+    def this () = { this (null, null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -223,8 +225,10 @@ extends
         implicit val clz: String = ResourceGroup.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ResourceGroup.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ResourceGroup.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ResourceGroup.fields (position), x))
         emitattr (0, status)
-        emitelem (1, typ)
+        emitattrs (1, RegisteredResources)
+        emitelem (2, `type`)
         s.toString
     }
     override def export: String =
@@ -239,10 +243,12 @@ extends
 {
     val fields: Array[String] = Array[String] (
         "status",
+        "RegisteredResources",
         "type"
     )
     val status: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val typ: Fielder = parse_element (element (cls, fields(1)))
+    val RegisteredResources: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val `type`: Fielder = parse_element (element (cls, fields(2)))
 
     def parse (context: Context): ResourceGroup =
     {
@@ -251,13 +257,14 @@ extends
         val ret = ResourceGroup (
             IdentifiedObject.parse (context),
             mask (status (), 0),
-            mask (typ (), 1)
+            masks (RegisteredResources (), 1),
+            mask (`type` (), 2)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
-
+        Relationship ("RegisteredResources", "RegisteredResource", true)
     )
 }
 

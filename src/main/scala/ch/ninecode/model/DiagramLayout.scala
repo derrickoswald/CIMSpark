@@ -653,6 +653,7 @@ extends
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param drawingOrder The drawing order for this layer.
  *        The higher the number, the later the layer and the objects within it are rendered.
+ * @param VisibleObjects [[ch.ninecode.model.DiagramObject DiagramObject]] A visibility layer can contain one or more diagram objects.
  * @group DiagramLayout
  * @groupname DiagramLayout Package DiagramLayout
  * @groupdesc DiagramLayout This package describes diagram layout. This describes how objects are arranged in a coordianate system rather than how they are rendered.
@@ -660,7 +661,8 @@ extends
 case class VisibilityLayer
 (
     override val sup: IdentifiedObject,
-    drawingOrder: Int
+    drawingOrder: Int,
+    VisibleObjects: List[String]
 )
 extends
     Element
@@ -668,7 +670,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0) }
+    def this () = { this (null, 0, List()) }
     /**
      * Return the superclass object.
      *
@@ -692,7 +694,9 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = VisibilityLayer.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (VisibilityLayer.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (VisibilityLayer.fields (position), x))
         emitelem (0, drawingOrder)
+        emitattrs (1, VisibleObjects)
         s.toString
     }
     override def export: String =
@@ -706,9 +710,11 @@ extends
     Parseable[VisibilityLayer]
 {
     val fields: Array[String] = Array[String] (
-        "drawingOrder"
+        "drawingOrder",
+        "VisibleObjects"
     )
     val drawingOrder: Fielder = parse_element (element (cls, fields(0)))
+    val VisibleObjects: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): VisibilityLayer =
     {
@@ -716,13 +722,14 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = VisibilityLayer (
             IdentifiedObject.parse (context),
-            toInteger (mask (drawingOrder (), 0))
+            toInteger (mask (drawingOrder (), 0)),
+            masks (VisibleObjects (), 1)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
-
+        Relationship ("VisibleObjects", "DiagramObject", true)
     )
 }
 

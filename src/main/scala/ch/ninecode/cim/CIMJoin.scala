@@ -56,20 +56,25 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
                     phone2 = isu.WorkLocation.Location.phone2,
                     secondaryAddress = nis.WorkLocation.Location.secondaryAddress, // take any NIS address it might have
                     status = isu.WorkLocation.Location.status,
-                    typ = nis.WorkLocation.Location.typ,               // e.g. geographic
-// legacy
-                    Measurements = nis.WorkLocation.Location.Measurements,
-                    CoordinateSystem = nis.WorkLocation.Location.CoordinateSystem  // e.g. wgs_84
+                    `type` = nis.WorkLocation.Location.`type`,               // e.g. geographic
+                    CoordinateSystem = nis.WorkLocation.Location.CoordinateSystem,  // e.g. wgs_84
+                    Crews = isu.WorkLocation.Location.Crews,
+                    Hazards = isu.WorkLocation.Location.Hazards,
+                    LandProperties = isu.WorkLocation.Location.LandProperties,
+                    Measurements = isu.WorkLocation.Location.Measurements,
+                    Routes = isu.WorkLocation.Location.Routes
                 )
                 val worklocation = WorkLocation (
                     location,
+                    isu.WorkLocation.DesignLocations,
                     isu.WorkLocation.OneCallRequest
                 )
                 ServiceLocation (
                     worklocation,
                     isu.accessMethod,
                     isu.needsInspection,
-                    isu.siteAccessProblem
+                    isu.siteAccessProblem,
+                    isu.CustomerAgreements
                 )
             case (None) ⇒
                 // the default action is to keep the original ServiceLocation (both NIS and ISU) where there isn't a match
@@ -117,11 +122,12 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
                     name = x._1.id,
                     sequenceNumber = a._1.sequenceNumber,
                     value = a._1.value,
-                    Transaction = a._1.Transaction,
-                    RatingSpecification = a._1.RatingSpecification,
-// legacy
+                    ErpInvoiceLineItems = a._1.ErpInvoiceLineItems,
+                    ErpLedgerEntries = a._1.ErpLedgerEntries,
                     ProcedureDataSets = a._1.ProcedureDataSets,
-                    PropertySpecification = a._1.PropertySpecification
+                    PropertySpecification = a._1.PropertySpecification,
+                    RatingSpecification = a._1.RatingSpecification,
+                    Transaction = a._1.Transaction
                     )
 
             // default is to keep the original UserAttribute where there isn't a match

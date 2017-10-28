@@ -231,6 +231,7 @@ extends
  * @param certifiedReplaceAS <em>undocumented</em>
  * @param certifiedSpin <em>undocumented</em>
  * @param certifiedSpinMw <em>undocumented</em>
+ * @param RegisteredResource [[ch.ninecode.model.RegisteredResource RegisteredResource]] <em>undocumented</em>
  * @group InfMarketOperations
  * @groupname InfMarketOperations Package InfMarketOperations
  */
@@ -249,7 +250,8 @@ case class ResourceCertification
     certifiedRegulationMw: Double,
     certifiedReplaceAS: String,
     certifiedSpin: String,
-    certifiedSpinMw: Double
+    certifiedSpinMw: Double,
+    RegisteredResource: List[String]
 )
 extends
     Element
@@ -257,7 +259,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, 0.0, null, 0.0, null, null, null, null, 0.0, null, null, 0.0) }
+    def this () = { this (null, null, null, 0.0, null, 0.0, null, null, null, null, 0.0, null, null, 0.0, List()) }
     /**
      * Return the superclass object.
      *
@@ -282,6 +284,7 @@ extends
         implicit val clz: String = ResourceCertification.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ResourceCertification.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ResourceCertification.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ResourceCertification.fields (position), x))
         emitattr (0, certifiedDAM)
         emitattr (1, certifiedNonspinDAM)
         emitelem (2, certifiedNonspinDAMMw)
@@ -295,6 +298,7 @@ extends
         emitattr (10, certifiedReplaceAS)
         emitattr (11, certifiedSpin)
         emitelem (12, certifiedSpinMw)
+        emitattrs (13, RegisteredResource)
         s.toString
     }
     override def export: String =
@@ -320,7 +324,8 @@ extends
         "certifiedRegulationMw",
         "certifiedReplaceAS",
         "certifiedSpin",
-        "certifiedSpinMw"
+        "certifiedSpinMw",
+        "RegisteredResource"
     )
     val certifiedDAM: Fielder = parse_attribute (attribute (cls, fields(0)))
     val certifiedNonspinDAM: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -335,6 +340,7 @@ extends
     val certifiedReplaceAS: Fielder = parse_attribute (attribute (cls, fields(10)))
     val certifiedSpin: Fielder = parse_attribute (attribute (cls, fields(11)))
     val certifiedSpinMw: Fielder = parse_element (element (cls, fields(12)))
+    val RegisteredResource: FielderMultiple = parse_attributes (attribute (cls, fields(13)))
 
     def parse (context: Context): ResourceCertification =
     {
@@ -354,13 +360,14 @@ extends
             toDouble (mask (certifiedRegulationMw (), 9)),
             mask (certifiedReplaceAS (), 10),
             mask (certifiedSpin (), 11),
-            toDouble (mask (certifiedSpinMw (), 12))
+            toDouble (mask (certifiedSpinMw (), 12)),
+            masks (RegisteredResource (), 13)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
-
+        Relationship ("RegisteredResource", "RegisteredResource", true)
     )
 }
 

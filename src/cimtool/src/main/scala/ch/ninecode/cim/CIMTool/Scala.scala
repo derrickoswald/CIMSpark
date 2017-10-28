@@ -19,13 +19,13 @@ case class Scala (parser: ModelParser, pkg: Package)
         val name = s match
         {
             // ToDo: all keywords
-            case "type" => "typ"
-            case "val" => "_val"
-            case "class" => "_class"
+            case "type" => "`type`"
+            case "val" => "`val`"
+            case "class" => "`class`"
             case "%" => "percent"
             case "length" => "len"
-            case "Boolean" => "Boolean_"
-            case "String" => "String_"
+            case "Boolean" => "`Boolean`"
+            case "String" => "`String`"
             case "" => "unknown" // ToDo: WTF?
             case _ =>
                 val identifier = (if (s.charAt (0).isDigit) "_" else "") +
@@ -44,17 +44,17 @@ case class Scala (parser: ModelParser, pkg: Package)
         val name = s match
         {
             // ToDo: all keywords
-            case "type" => "typ"
-            case "val" => "_val"
-            case "class" => "_class"
+            case "type" => "`type`"
+            case "val" => "`val`"
+            case "class" => "`class`"
             case "%" => "percent"
             case "length" => "len"
             case "size" => "size1"
             case "lock" => "lock1"
-            case "switch" => "switch1"
-            case "char" => "char1"
-            case "default" => "default1"
-            case "native" => "native1"
+            case "switch" => "`switch`"
+            case "char" => "`char`"
+            case "default" => "`default`"
+            case "native" => "`native`"
             case "" => "unknown" // ToDo: WTF?
             case _ => 
                 val identifier = (if (s.charAt (0).isDigit) "_" else "") +
@@ -77,17 +77,17 @@ case class Scala (parser: ModelParser, pkg: Package)
         val name = s match
         {
             // ToDo: all keywords
-            case "type" => "typ"
-            case "val" => "_val"
-            case "class" => "_class"
+            case "type" => "`type`"
+            case "val" => "`val`"
+            case "class" => "`class`"
             case "%" => "percent"
             case "length" => "len"
             case "size" => "size1"
             case "lock" => "lock1"
-            case "switch" => "switch1"
-            case "char" => "char1"
-            case "default" => "default1"
-            case "native" => "native1"
+            case "switch" => "`switch`"
+            case "char" => "`char`"
+            case "default" => "`default`"
+            case "native" => "`native`"
             case "" => "unknown" // ToDo: WTF?
             case _ => 
                 val identifier = (if (s.charAt (0).isDigit) "_" else "") +
@@ -109,9 +109,11 @@ case class Scala (parser: ModelParser, pkg: Package)
         "_" + valid_class_name (pkg.name)
     }
 
-    def details (attribute: Attribute): Member =
+    def details (classes: mutable.Set[(String, Int)]) (attribute: Attribute): Member =
     {
         val name = attribute.name
+        if (name == "phone1")
+            println ("gotcha")
         val variable = valid_attribute_name (attribute)
         val comment = attribute.notes
         parser.domains.find (_.name == attribute.typ) match
@@ -149,7 +151,14 @@ case class Scala (parser: ModelParser, pkg: Package)
                                         Member (name, variable, false, comment, false, false, "String", "null", "", null)
                             }
                 }
-            case None => Member (name, variable, false, comment, true, false, "String", "null", "", null)
+            case None =>
+                val maybe_referenced_class = classes.find (_._1 == attribute.typ)
+                val referenced_class = maybe_referenced_class match
+                {
+                    case Some (clz) ⇒ clz._1
+                    case None ⇒ null
+                }
+                Member (name, variable, false, comment, true, false, "String", "null", "", referenced_class)
         }
     }
 
@@ -190,11 +199,6 @@ case class Scala (parser: ModelParser, pkg: Package)
             val name = valid_class_name (cls.name)
             val identified_object = name == "IdentifiedObject" // special handling for IdentifiedObject.mRID
             def myattribute (attribute: Attribute): Boolean = attribute.name != "" // ToDo: why empty names?
-            def myrole (role: Role): Boolean =
-            {
-                def many_to_many: Boolean = (role.card == "0..*") && (role.mate.card == "0..*") && role.sideA
-                role.src == cls && ((role.upper == 1) || many_to_many)
-            }
             implicit val ordering: Ordering[Member] = new Ordering[Member]
             {
                def compare (a: Member, b: Member): Int =
@@ -217,8 +221,8 @@ case class Scala (parser: ModelParser, pkg: Package)
             val sup = Member ("sup", "sup", true, "Reference to the superclass object.", false, false, if (null != cls.sup) cls.sup.name else "BasicElement", "null", "", if (null == cls.sup) null else valid_class_name (cls.sup.name))
             val members: mutable.SortedSet[Member] =
                 mutable.SortedSet[Member](sup) ++
-                    parser.attributes.getOrElse(c._2, List[Attribute]()).filter(myattribute).map(details).toSet
-                        .union(parser.roles.filter(myrole).map(details))
+                    parser.attributes.getOrElse (c._2, List[Attribute]()).filter (myattribute).map (details (case_classes)).toSet
+                        .union (parser.roles.filter (_.for_class (cls)).map (details))
             val fields: mutable.SortedSet[Member] = members.filter ("sup" != _.name)
             val isLong: Boolean = fields.size > 32
             val s = new StringBuilder ()

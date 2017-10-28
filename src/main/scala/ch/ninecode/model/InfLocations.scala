@@ -20,6 +20,7 @@ import ch.ninecode.cim.Relationship
  * @param status <em>undocumented</em>
  * @param AssetContainers [[ch.ninecode.model.AssetContainer AssetContainer]] <em>undocumented</em>
  * @param Locations [[ch.ninecode.model.Location Location]] The spatail description of a piece of property.
+ * @param RightOfWays [[ch.ninecode.model.RightOfWay RightOfWay]] All rights of way this land property has.
  * @group InfLocations
  * @groupname InfLocations Package InfLocations
  */
@@ -31,7 +32,8 @@ case class LandProperty
     kind: String,
     status: String,
     AssetContainers: List[String],
-    Locations: List[String]
+    Locations: List[String],
+    RightOfWays: List[String]
 )
 extends
     Element
@@ -39,7 +41,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null, List(), List()) }
+    def this () = { this (null, null, null, null, null, List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -71,6 +73,7 @@ extends
         emitattr (3, status)
         emitattrs (4, AssetContainers)
         emitattrs (5, Locations)
+        emitattrs (6, RightOfWays)
         s.toString
     }
     override def export: String =
@@ -89,7 +92,8 @@ extends
         "kind",
         "status",
         "AssetContainers",
-        "Locations"
+        "Locations",
+        "RightOfWays"
     )
     val demographicKind: Fielder = parse_attribute (attribute (cls, fields(0)))
     val externalRecordReference: Fielder = parse_element (element (cls, fields(1)))
@@ -97,6 +101,7 @@ extends
     val status: Fielder = parse_attribute (attribute (cls, fields(3)))
     val AssetContainers: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
     val Locations: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
+    val RightOfWays: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
 
     def parse (context: Context): LandProperty =
     {
@@ -109,14 +114,16 @@ extends
             mask (kind (), 2),
             mask (status (), 3),
             masks (AssetContainers (), 4),
-            masks (Locations (), 5)
+            masks (Locations (), 5),
+            masks (RightOfWays (), 6)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
         Relationship ("AssetContainers", "AssetContainer", true),
-        Relationship ("Locations", "Location", true)
+        Relationship ("Locations", "Location", true),
+        Relationship ("RightOfWays", "RightOfWay", true)
     )
 }
 
@@ -378,8 +385,8 @@ extends
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param status <em>undocumented</em>
- * @param typ Classification by utility's work management standards and practices.
  * @param Locations [[ch.ninecode.model.Location Location]] <em>undocumented</em>
+ * @param `type` Classification by utility's work management standards and practices.
  * @group InfLocations
  * @groupname InfLocations Package InfLocations
  */
@@ -387,8 +394,8 @@ case class Route
 (
     override val sup: IdentifiedObject,
     status: String,
-    typ: String,
-    Locations: List[String]
+    Locations: List[String],
+    `type`: String
 )
 extends
     Element
@@ -396,7 +403,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, List()) }
+    def this () = { this (null, null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -423,8 +430,8 @@ extends
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Route.fields (position), value)
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Route.fields (position), x))
         emitattr (0, status)
-        emitelem (1, typ)
-        emitattrs (2, Locations)
+        emitattrs (1, Locations)
+        emitelem (2, `type`)
         s.toString
     }
     override def export: String =
@@ -439,12 +446,12 @@ extends
 {
     val fields: Array[String] = Array[String] (
         "status",
-        "type",
-        "Locations"
+        "Locations",
+        "type"
     )
     val status: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val typ: Fielder = parse_element (element (cls, fields(1)))
-    val Locations: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val Locations: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val `type`: Fielder = parse_element (element (cls, fields(2)))
 
     def parse (context: Context): Route =
     {
@@ -453,8 +460,8 @@ extends
         val ret = Route (
             IdentifiedObject.parse (context),
             mask (status (), 0),
-            mask (typ (), 1),
-            masks (Locations (), 2)
+            masks (Locations (), 1),
+            mask (`type` (), 2)
         )
         ret.bitfields = bitfields
         ret

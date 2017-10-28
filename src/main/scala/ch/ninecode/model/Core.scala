@@ -561,6 +561,7 @@ extends
  *        Use only when there is no voltage level container used and only one base voltage applies.  For example, not used for transformers.
  * @param GroundingAction [[ch.ninecode.model.GroundAction GroundAction]] Action involving grounding operation on this conducting equipment.
  * @param JumpingAction [[ch.ninecode.model.JumperAction JumperAction]] Jumper action involving jumping operation on this conducting equipment.
+ * @param ProtectionEquipments [[ch.ninecode.model.ProtectionEquipment ProtectionEquipment]] Protection equipment  used to protect specific conducting equipment.
  * @param SvStatus [[ch.ninecode.model.SvStatus SvStatus]] The status state variable associated with this conducting equipment.
  * @group Core
  * @groupname Core Package Core
@@ -572,6 +573,7 @@ case class ConductingEquipment
     BaseVoltage: String,
     GroundingAction: String,
     JumpingAction: String,
+    ProtectionEquipments: List[String],
     SvStatus: String
 )
 extends
@@ -580,7 +582,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null) }
+    def this () = { this (null, null, null, null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -604,10 +606,12 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ConductingEquipment.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ConductingEquipment.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ConductingEquipment.fields (position), x))
         emitattr (0, BaseVoltage)
         emitattr (1, GroundingAction)
         emitattr (2, JumpingAction)
-        emitattr (3, SvStatus)
+        emitattrs (3, ProtectionEquipments)
+        emitattr (4, SvStatus)
         s.toString
     }
     override def export: String =
@@ -624,12 +628,14 @@ extends
         "BaseVoltage",
         "GroundingAction",
         "JumpingAction",
+        "ProtectionEquipments",
         "SvStatus"
     )
     val BaseVoltage: Fielder = parse_attribute (attribute (cls, fields(0)))
     val GroundingAction: Fielder = parse_attribute (attribute (cls, fields(1)))
     val JumpingAction: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val SvStatus: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val ProtectionEquipments: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val SvStatus: Fielder = parse_attribute (attribute (cls, fields(4)))
 
     def parse (context: Context): ConductingEquipment =
     {
@@ -640,7 +646,8 @@ extends
             mask (BaseVoltage (), 0),
             mask (GroundingAction (), 1),
             mask (JumpingAction (), 2),
-            mask (SvStatus (), 3)
+            masks (ProtectionEquipments (), 3),
+            mask (SvStatus (), 4)
         )
         ret.bitfields = bitfields
         ret
@@ -649,6 +656,7 @@ extends
         Relationship ("BaseVoltage", "BaseVoltage", false),
         Relationship ("GroundingAction", "GroundAction", false),
         Relationship ("JumpingAction", "JumperAction", false),
+        Relationship ("ProtectionEquipments", "ProtectionEquipment", true),
         Relationship ("SvStatus", "SvStatus", false)
     )
 }
@@ -1043,6 +1051,9 @@ extends
  *        Examples would be power transformers or synchronous machines operating in parallel modeled as a single aggregate power transformer or aggregate synchronous machine.  This is not to be used to indicate equipment that is part of a group of interdependent equipment produced by a network production program.
  * @param normallyInService If true, the equipment is normally in service.
  * @param EquipmentContainer [[ch.ninecode.model.EquipmentContainer EquipmentContainer]] Container of this equipment.
+ * @param OperationalRestrictions [[ch.ninecode.model.OperationalRestriction OperationalRestriction]] All operational restrictions for this equipment.
+ * @param Outages [[ch.ninecode.model.Outage Outage]] All outages in which this equipment is involved.
+ * @param UsagePoints [[ch.ninecode.model.UsagePoint UsagePoint]] All usage points connected to the electrical grid through this equipment.
  * @param WeatherStation [[ch.ninecode.model.WeatherStation WeatherStation]] <em>undocumented</em>
  * @group Core
  * @groupname Core Package Core
@@ -1054,6 +1065,9 @@ case class Equipment
     aggregate: Boolean,
     normallyInService: Boolean,
     EquipmentContainer: String,
+    OperationalRestrictions: List[String],
+    Outages: List[String],
+    UsagePoints: List[String],
     WeatherStation: List[String]
 )
 extends
@@ -1062,7 +1076,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, false, false, null, List()) }
+    def this () = { this (null, false, false, null, List(), List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1091,7 +1105,10 @@ extends
         emitelem (0, aggregate)
         emitelem (1, normallyInService)
         emitattr (2, EquipmentContainer)
-        emitattrs (3, WeatherStation)
+        emitattrs (3, OperationalRestrictions)
+        emitattrs (4, Outages)
+        emitattrs (5, UsagePoints)
+        emitattrs (6, WeatherStation)
         s.toString
     }
     override def export: String =
@@ -1108,12 +1125,18 @@ extends
         "aggregate",
         "normallyInService",
         "EquipmentContainer",
+        "OperationalRestrictions",
+        "Outages",
+        "UsagePoints",
         "WeatherStation"
     )
     val aggregate: Fielder = parse_element (element (cls, fields(0)))
     val normallyInService: Fielder = parse_element (element (cls, fields(1)))
     val EquipmentContainer: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val WeatherStation: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val OperationalRestrictions: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val Outages: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val UsagePoints: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
+    val WeatherStation: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
 
     def parse (context: Context): Equipment =
     {
@@ -1124,13 +1147,19 @@ extends
             toBoolean (mask (aggregate (), 0)),
             toBoolean (mask (normallyInService (), 1)),
             mask (EquipmentContainer (), 2),
-            masks (WeatherStation (), 3)
+            masks (OperationalRestrictions (), 3),
+            masks (Outages (), 4),
+            masks (UsagePoints (), 5),
+            masks (WeatherStation (), 6)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
         Relationship ("EquipmentContainer", "EquipmentContainer", false),
+        Relationship ("OperationalRestrictions", "OperationalRestriction", true),
+        Relationship ("Outages", "Outage", true),
+        Relationship ("UsagePoints", "UsagePoint", true),
         Relationship ("WeatherStation", "WeatherStation", true)
     )
 }
@@ -2034,8 +2063,12 @@ extends
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param AssetDatasheet [[ch.ninecode.model.AssetInfo AssetInfo]] Datasheet information for this power system resource.
+ * @param Assets [[ch.ninecode.model.Asset Asset]] All assets represented by this power system resource.
+ *        For example, multiple conductor assets are electrically modelled as a single AC line segment.
+ * @param Clearances [[ch.ninecode.model.ClearanceDocument ClearanceDocument]] All clearances applicable to this power system resource.
  * @param Location [[ch.ninecode.model.Location Location]] Location of this power system resource.
  * @param PSRType [[ch.ninecode.model.PSRType PSRType]] Custom classification for this power system resource.
+ * @param ReportingGroup [[ch.ninecode.model.ReportingGroup ReportingGroup]] Reporting groups to which this power system resource belongs.
  * @group Core
  * @groupname Core Package Core
  * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
@@ -2044,8 +2077,11 @@ case class PowerSystemResource
 (
     override val sup: IdentifiedObject,
     AssetDatasheet: String,
+    Assets: List[String],
+    Clearances: List[String],
     Location: String,
-    PSRType: String
+    PSRType: String,
+    ReportingGroup: List[String]
 )
 extends
     Element
@@ -2053,7 +2089,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null) }
+    def this () = { this (null, null, List(), List(), null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -2077,9 +2113,13 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PowerSystemResource.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PowerSystemResource.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (PowerSystemResource.fields (position), x))
         emitattr (0, AssetDatasheet)
-        emitattr (1, Location)
-        emitattr (2, PSRType)
+        emitattrs (1, Assets)
+        emitattrs (2, Clearances)
+        emitattr (3, Location)
+        emitattr (4, PSRType)
+        emitattrs (5, ReportingGroup)
         s.toString
     }
     override def export: String =
@@ -2094,12 +2134,18 @@ extends
 {
     val fields: Array[String] = Array[String] (
         "AssetDatasheet",
+        "Assets",
+        "Clearances",
         "Location",
-        "PSRType"
+        "PSRType",
+        "ReportingGroup"
     )
     val AssetDatasheet: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val Location: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val PSRType: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val Assets: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val Clearances: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val Location: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val PSRType: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val ReportingGroup: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
 
     def parse (context: Context): PowerSystemResource =
     {
@@ -2108,16 +2154,22 @@ extends
         val ret = PowerSystemResource (
             IdentifiedObject.parse (context),
             mask (AssetDatasheet (), 0),
-            mask (Location (), 1),
-            mask (PSRType (), 2)
+            masks (Assets (), 1),
+            masks (Clearances (), 2),
+            mask (Location (), 3),
+            mask (PSRType (), 4),
+            masks (ReportingGroup (), 5)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
         Relationship ("AssetDatasheet", "AssetInfo", false),
+        Relationship ("Assets", "Asset", true),
+        Relationship ("Clearances", "ClearanceDocument", true),
         Relationship ("Location", "Location", false),
-        Relationship ("PSRType", "PSRType", false)
+        Relationship ("PSRType", "PSRType", false),
+        Relationship ("ReportingGroup", "ReportingGroup", true)
     )
 }
 

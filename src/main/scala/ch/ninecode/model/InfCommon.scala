@@ -257,7 +257,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.OrganisationRole OrganisationRole]] Reference to the superclass object.
  * @param status <em>undocumented</em>
- * @param typ Classification by utility's corporate standards and practices.
+ * @param `type` Classification by utility's corporate standards and practices.
  * @group InfCommon
  * @groupname InfCommon Package InfCommon
  * @groupdesc InfCommon This package contains functions common for distribution management.
@@ -266,7 +266,7 @@ case class BusinessRole
 (
     override val sup: OrganisationRole,
     status: String,
-    typ: String
+    `type`: String
 )
 extends
     Element
@@ -300,7 +300,7 @@ extends
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (BusinessRole.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (BusinessRole.fields (position), value)
         emitattr (0, status)
-        emitelem (1, typ)
+        emitelem (1, `type`)
         s.toString
     }
     override def export: String =
@@ -318,7 +318,7 @@ extends
         "type"
     )
     val status: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val typ: Fielder = parse_element (element (cls, fields(1)))
+    val `type`: Fielder = parse_element (element (cls, fields(1)))
 
     def parse (context: Context): BusinessRole =
     {
@@ -327,7 +327,7 @@ extends
         val ret = BusinessRole (
             OrganisationRole.parse (context),
             mask (status (), 0),
-            mask (typ (), 1)
+            mask (`type` (), 1)
         )
         ret.bitfields = bitfields
         ret
@@ -344,8 +344,10 @@ extends
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param status <em>undocumented</em>
- * @param typ Classification by utility's work mangement standards and practices.
+ * @param Capabilities [[ch.ninecode.model.Capability Capability]] <em>undocumented</em>
  * @param ErpPersons [[ch.ninecode.model.OldPerson OldPerson]] <em>undocumented</em>
+ * @param Skills [[ch.ninecode.model.Skill Skill]] <em>undocumented</em>
+ * @param type Classification by utility's work mangement standards and practices.
  * @group InfCommon
  * @groupname InfCommon Package InfCommon
  * @groupdesc InfCommon This package contains functions common for distribution management.
@@ -354,8 +356,10 @@ case class Craft
 (
     override val sup: IdentifiedObject,
     status: String,
-    typ: String,
-    ErpPersons: List[String]
+    Capabilities: List[String],
+    ErpPersons: List[String],
+    Skills: List[String],
+    `type`: String
 )
 extends
     Element
@@ -363,7 +367,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, List()) }
+    def this () = { this (null, null, List(), List(), List(), null) }
     /**
      * Return the superclass object.
      *
@@ -390,8 +394,10 @@ extends
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Craft.fields (position), value)
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Craft.fields (position), x))
         emitattr (0, status)
-        emitelem (1, typ)
+        emitattrs (1, Capabilities)
         emitattrs (2, ErpPersons)
+        emitattrs (3, Skills)
+        emitelem (4, `type`)
         s.toString
     }
     override def export: String =
@@ -406,12 +412,16 @@ extends
 {
     val fields: Array[String] = Array[String] (
         "status",
-        "type",
-        "ErpPersons"
+        "Capabilities",
+        "ErpPersons",
+        "Skills",
+        "type"
     )
     val status: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val typ: Fielder = parse_element (element (cls, fields(1)))
+    val Capabilities: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
     val ErpPersons: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val Skills: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val `type`: Fielder = parse_element (element (cls, fields(4)))
 
     def parse (context: Context): Craft =
     {
@@ -420,14 +430,18 @@ extends
         val ret = Craft (
             IdentifiedObject.parse (context),
             mask (status (), 0),
-            mask (typ (), 1),
-            masks (ErpPersons (), 2)
+            masks (Capabilities (), 1),
+            masks (ErpPersons (), 2),
+            masks (Skills (), 3),
+            mask (`type` (), 4)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("ErpPersons", "OldPerson", true)
+        Relationship ("Capabilities", "Capability", true),
+        Relationship ("ErpPersons", "OldPerson", true),
+        Relationship ("Skills", "Skill", true)
     )
 }
 
@@ -500,11 +514,12 @@ extends
  * A crew is a group of people with specific skills, tools, and vehicles.
  *
  * @param sup [[ch.ninecode.model.Crew Crew]] Reference to the superclass object.
- * @param typ Classification by utility's work management standards and practices.
  * @param Assignments [[ch.ninecode.model.Assignment Assignment]] All Assignments for this Crew.
  * @param Locations [[ch.ninecode.model.Location Location]] <em>undocumented</em>
+ * @param Organisations [[ch.ninecode.model.Organisation Organisation]] <em>undocumented</em>
  * @param Route [[ch.ninecode.model.Route Route]] <em>undocumented</em>
  * @param ShiftPatterns [[ch.ninecode.model.ShiftPattern ShiftPattern]] <em>undocumented</em>
+ * @param `type` Classification by utility's work management standards and practices.
  * @group InfCommon
  * @groupname InfCommon Package InfCommon
  * @groupdesc InfCommon This package contains functions common for distribution management.
@@ -512,11 +527,12 @@ extends
 case class OldCrew
 (
     override val sup: Crew,
-    typ: String,
     Assignments: List[String],
     Locations: List[String],
+    Organisations: List[String],
     Route: String,
-    ShiftPatterns: List[String]
+    ShiftPatterns: List[String],
+    `type`: String
 )
 extends
     Element
@@ -524,7 +540,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, List(), List(), null, List()) }
+    def this () = { this (null, List(), List(), List(), null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -550,11 +566,12 @@ extends
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (OldCrew.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (OldCrew.fields (position), value)
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (OldCrew.fields (position), x))
-        emitelem (0, typ)
-        emitattrs (1, Assignments)
-        emitattrs (2, Locations)
+        emitattrs (0, Assignments)
+        emitattrs (1, Locations)
+        emitattrs (2, Organisations)
         emitattr (3, Route)
         emitattrs (4, ShiftPatterns)
+        emitelem (5, `type`)
         s.toString
     }
     override def export: String =
@@ -568,17 +585,19 @@ extends
     Parseable[OldCrew]
 {
     val fields: Array[String] = Array[String] (
-        "type",
         "Assignments",
         "Locations",
+        "Organisations",
         "Route",
-        "ShiftPatterns"
+        "ShiftPatterns",
+        "type"
     )
-    val typ: Fielder = parse_element (element (cls, fields(0)))
-    val Assignments: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
-    val Locations: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val Assignments: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val Locations: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val Organisations: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
     val Route: Fielder = parse_attribute (attribute (cls, fields(3)))
     val ShiftPatterns: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val `type`: Fielder = parse_element (element (cls, fields(5)))
 
     def parse (context: Context): OldCrew =
     {
@@ -586,11 +605,12 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = OldCrew (
             Crew.parse (context),
-            mask (typ (), 0),
-            masks (Assignments (), 1),
-            masks (Locations (), 2),
+            masks (Assignments (), 0),
+            masks (Locations (), 1),
+            masks (Organisations (), 2),
             mask (Route (), 3),
-            masks (ShiftPatterns (), 4)
+            masks (ShiftPatterns (), 4),
+            mask (`type` (), 5)
         )
         ret.bitfields = bitfields
         ret
@@ -598,6 +618,7 @@ extends
     val relations: List[Relationship] = List (
         Relationship ("Assignments", "Assignment", true),
         Relationship ("Locations", "Location", true),
+        Relationship ("Organisations", "Organisation", true),
         Relationship ("Route", "Route", false),
         Relationship ("ShiftPatterns", "ShiftPattern", true)
     )
@@ -608,12 +629,13 @@ extends
  *
  * @param sup [[ch.ninecode.model.Person Person]] Reference to the superclass object.
  * @param status <em>undocumented</em>
- * @param typ Utility-specific classification for this person, according to the utility's corporate standards and practices.
- *        Examples include employee, contractor, agent, not affiliated, etc.
+ * @param Crafts [[ch.ninecode.model.Craft Craft]] <em>undocumented</em>
  * @param CustomerData [[ch.ninecode.model.Customer Customer]] <em>undocumented</em>
  * @param ErpCompetency [[ch.ninecode.model.ErpCompetency ErpCompetency]] <em>undocumented</em>
  * @param ErpPersonnel [[ch.ninecode.model.ErpPersonnel ErpPersonnel]] <em>undocumented</em>
  * @param LaborItems [[ch.ninecode.model.LaborItem LaborItem]] <em>undocumented</em>
+ * @param `type` Utility-specific classification for this person, according to the utility's corporate standards and practices.
+ *        Examples include employee, contractor, agent, not affiliated, etc.
  * @group InfCommon
  * @groupname InfCommon Package InfCommon
  * @groupdesc InfCommon This package contains functions common for distribution management.
@@ -622,11 +644,12 @@ case class OldPerson
 (
     override val sup: Person,
     status: String,
-    typ: String,
+    Crafts: List[String],
     CustomerData: String,
     ErpCompetency: String,
     ErpPersonnel: String,
-    LaborItems: List[String]
+    LaborItems: List[String],
+    `type`: String
 )
 extends
     Element
@@ -634,7 +657,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null, null, List()) }
+    def this () = { this (null, null, List(), null, null, null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -661,11 +684,12 @@ extends
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (OldPerson.fields (position), value)
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (OldPerson.fields (position), x))
         emitattr (0, status)
-        emitelem (1, typ)
+        emitattrs (1, Crafts)
         emitattr (2, CustomerData)
         emitattr (3, ErpCompetency)
         emitattr (4, ErpPersonnel)
         emitattrs (5, LaborItems)
+        emitelem (6, `type`)
         s.toString
     }
     override def export: String =
@@ -680,18 +704,20 @@ extends
 {
     val fields: Array[String] = Array[String] (
         "status",
-        "type",
+        "Crafts",
         "CustomerData",
         "ErpCompetency",
         "ErpPersonnel",
-        "LaborItems"
+        "LaborItems",
+        "type"
     )
     val status: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val typ: Fielder = parse_element (element (cls, fields(1)))
+    val Crafts: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
     val CustomerData: Fielder = parse_attribute (attribute (cls, fields(2)))
     val ErpCompetency: Fielder = parse_attribute (attribute (cls, fields(3)))
     val ErpPersonnel: Fielder = parse_attribute (attribute (cls, fields(4)))
     val LaborItems: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
+    val `type`: Fielder = parse_element (element (cls, fields(6)))
 
     def parse (context: Context): OldPerson =
     {
@@ -700,16 +726,18 @@ extends
         val ret = OldPerson (
             Person.parse (context),
             mask (status (), 0),
-            mask (typ (), 1),
+            masks (Crafts (), 1),
             mask (CustomerData (), 2),
             mask (ErpCompetency (), 3),
             mask (ErpPersonnel (), 4),
-            masks (LaborItems (), 5)
+            masks (LaborItems (), 5),
+            mask (`type` (), 6)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
+        Relationship ("Crafts", "Craft", true),
         Relationship ("CustomerData", "Customer", false),
         Relationship ("ErpCompetency", "ErpCompetency", false),
         Relationship ("ErpPersonnel", "ErpPersonnel", false),
@@ -1201,7 +1229,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param status <em>undocumented</em>
- * @param typ Type of role.
+ * @param `type` Type of role.
  * @group InfCommon
  * @groupname InfCommon Package InfCommon
  * @groupdesc InfCommon This package contains functions common for distribution management.
@@ -1210,7 +1238,7 @@ case class Role
 (
     override val sup: IdentifiedObject,
     status: String,
-    typ: String
+    `type`: String
 )
 extends
     Element
@@ -1244,7 +1272,7 @@ extends
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Role.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Role.fields (position), value)
         emitattr (0, status)
-        emitelem (1, typ)
+        emitelem (1, `type`)
         s.toString
     }
     override def export: String =
@@ -1262,7 +1290,7 @@ extends
         "type"
     )
     val status: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val typ: Fielder = parse_element (element (cls, fields(1)))
+    val `type`: Fielder = parse_element (element (cls, fields(1)))
 
     def parse (context: Context): Role =
     {
@@ -1271,7 +1299,7 @@ extends
         val ret = Role (
             IdentifiedObject.parse (context),
             mask (status (), 0),
-            mask (typ (), 1)
+            mask (`type` (), 1)
         )
         ret.bitfields = bitfields
         ret

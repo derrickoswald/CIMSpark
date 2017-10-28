@@ -26,6 +26,14 @@ case class Role (
 {
     lazy val upper: Int = if (card.equals ("1") || card.endsWith ("..1")) 1 else 0
     lazy val lower: Int = if (card.equals ("*") || card.startsWith ("0..")) 0 else 1
+    lazy val many_to_many: Boolean = ((card == "0..*") || (card == "1..*")) && ((mate.card == "0..*") || (mate.card == "1..*"))
+    def for_class (cls: Class): Boolean =
+    {
+        if (src == cls)
+            (upper == 1) || many_to_many
+        else
+            false
+    }
     override def hashCode: Int = xuid.hashCode
     override def toString: String = "" + name + " from " + src.name + " to " + dst.name
 }

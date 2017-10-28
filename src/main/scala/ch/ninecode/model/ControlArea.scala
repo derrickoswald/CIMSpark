@@ -201,9 +201,9 @@ extends
  * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @param netInterchange The specified positive net interchange into the control area, i.e. positive sign means flow in to the area.
  * @param pTolerance Active power net interchange tolerance
- * @param typ The primary type of control area definition used to determine if this is used for automatic generation control, for planning interchange control, or other purposes.
- *        A control area specified with primary type of automatic generation control could still be forecast and used as an interchange area in power flow analysis.
  * @param EnergyArea [[ch.ninecode.model.EnergyArea EnergyArea]] The energy area that is forecast from this control area specification.
+ * @param `type` The primary type of control area definition used to determine if this is used for automatic generation control, for planning interchange control, or other purposes.
+ *        A control area specified with primary type of automatic generation control could still be forecast and used as an interchange area in power flow analysis.
  * @group ControlArea
  * @groupname ControlArea Package ControlArea
  * @groupdesc ControlArea The ControlArea package models area specifications which can be used for a variety of purposes.  The package as a whole models potentially overlapping control area specifications for the purpose of actual generation control, load forecast area load capture, or powerflow based analysis.
@@ -213,8 +213,8 @@ case class ControlArea
     override val sup: PowerSystemResource,
     netInterchange: Double,
     pTolerance: Double,
-    typ: String,
-    EnergyArea: String
+    EnergyArea: String,
+    `type`: String
 )
 extends
     Element
@@ -249,8 +249,8 @@ extends
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ControlArea.fields (position), value)
         emitelem (0, netInterchange)
         emitelem (1, pTolerance)
-        emitattr (2, typ)
-        emitattr (3, EnergyArea)
+        emitattr (2, EnergyArea)
+        emitattr (3, `type`)
         s.toString
     }
     override def export: String =
@@ -266,13 +266,13 @@ extends
     val fields: Array[String] = Array[String] (
         "netInterchange",
         "pTolerance",
-        "type",
-        "EnergyArea"
+        "EnergyArea",
+        "type"
     )
     val netInterchange: Fielder = parse_element (element (cls, fields(0)))
     val pTolerance: Fielder = parse_element (element (cls, fields(1)))
-    val typ: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val EnergyArea: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val EnergyArea: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val `type`: Fielder = parse_attribute (attribute (cls, fields(3)))
 
     def parse (context: Context): ControlArea =
     {
@@ -282,8 +282,8 @@ extends
             PowerSystemResource.parse (context),
             toDouble (mask (netInterchange (), 0)),
             toDouble (mask (pTolerance (), 1)),
-            mask (typ (), 2),
-            mask (EnergyArea (), 3)
+            mask (EnergyArea (), 2),
+            mask (`type` (), 3)
         )
         ret.bitfields = bitfields
         ret

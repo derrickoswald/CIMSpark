@@ -543,12 +543,12 @@ extends
  * Demand response program.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param typ Type of demand response program; examples are CPP (critical-peak pricing), RTP (real-time pricing), DLC (direct load control), DBP (demand bidding program), BIP (base interruptible program).
- *        Note that possible types change a lot and it would be impossible to enumerate them all.
  * @param validityInterval Interval within which the program is valid.
  * @param CustomerAgreements [[ch.ninecode.model.CustomerAgreement CustomerAgreement]] All customer agreements through which the customer is enrolled in this demand response program.
  * @param EndDeviceGroups [[ch.ninecode.model.EndDeviceGroup EndDeviceGroup]] All groups of end devices enrolled in this demand response program.
  * @param UsagePointGroups [[ch.ninecode.model.UsagePointGroup UsagePointGroup]] All usage point groups enrolled in this demand response program.
+ * @param `type` Type of demand response program; examples are CPP (critical-peak pricing), RTP (real-time pricing), DLC (direct load control), DBP (demand bidding program), BIP (base interruptible program).
+ *        Note that possible types change a lot and it would be impossible to enumerate them all.
  * @group Metering
  * @groupname Metering Package Metering
  * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
@@ -556,11 +556,11 @@ extends
 case class DemandResponseProgram
 (
     override val sup: IdentifiedObject,
-    typ: String,
     validityInterval: String,
     CustomerAgreements: List[String],
     EndDeviceGroups: List[String],
-    UsagePointGroups: List[String]
+    UsagePointGroups: List[String],
+    `type`: String
 )
 extends
     Element
@@ -568,7 +568,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, List(), List(), List()) }
+    def this () = { this (null, null, List(), List(), List(), null) }
     /**
      * Return the superclass object.
      *
@@ -594,11 +594,11 @@ extends
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (DemandResponseProgram.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (DemandResponseProgram.fields (position), value)
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (DemandResponseProgram.fields (position), x))
-        emitelem (0, typ)
-        emitattr (1, validityInterval)
-        emitattrs (2, CustomerAgreements)
-        emitattrs (3, EndDeviceGroups)
-        emitattrs (4, UsagePointGroups)
+        emitattr (0, validityInterval)
+        emitattrs (1, CustomerAgreements)
+        emitattrs (2, EndDeviceGroups)
+        emitattrs (3, UsagePointGroups)
+        emitelem (4, `type`)
         s.toString
     }
     override def export: String =
@@ -612,17 +612,17 @@ extends
     Parseable[DemandResponseProgram]
 {
     val fields: Array[String] = Array[String] (
-        "type",
         "validityInterval",
         "CustomerAgreements",
         "EndDeviceGroups",
-        "UsagePointGroups"
+        "UsagePointGroups",
+        "type"
     )
-    val typ: Fielder = parse_element (element (cls, fields(0)))
-    val validityInterval: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val CustomerAgreements: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
-    val EndDeviceGroups: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
-    val UsagePointGroups: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val validityInterval: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val CustomerAgreements: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val EndDeviceGroups: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val UsagePointGroups: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val `type`: Fielder = parse_element (element (cls, fields(4)))
 
     def parse (context: Context): DemandResponseProgram =
     {
@@ -630,11 +630,11 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = DemandResponseProgram (
             IdentifiedObject.parse (context),
-            mask (typ (), 0),
-            mask (validityInterval (), 1),
-            masks (CustomerAgreements (), 2),
-            masks (EndDeviceGroups (), 3),
-            masks (UsagePointGroups (), 4)
+            mask (validityInterval (), 0),
+            masks (CustomerAgreements (), 1),
+            masks (EndDeviceGroups (), 2),
+            masks (UsagePointGroups (), 3),
+            mask (`type` (), 4)
         )
         ret.bitfields = bitfields
         ret
@@ -659,6 +659,8 @@ extends
  *        As an example, a virtual meter can be defined to aggregate the consumption for two or more physical meters. Otherwise, this is a physical hardware device.
  * @param timeZoneOffset Time zone offset relative to GMT for the location of this end device.
  * @param Customer [[ch.ninecode.model.Customer Customer]] Customer owning this end device.
+ * @param EndDeviceControls [[ch.ninecode.model.EndDeviceControl EndDeviceControl]] All end device controls sending commands to this end device.
+ * @param EndDeviceGroups [[ch.ninecode.model.EndDeviceGroup EndDeviceGroup]] All end device groups referring to this end device.
  * @param EndDeviceInfo [[ch.ninecode.model.EndDeviceInfo EndDeviceInfo]] End device data.
  * @param ServiceLocation [[ch.ninecode.model.ServiceLocation ServiceLocation]] Service location whose service delivery is measured by this end device.
  * @param UsagePoint [[ch.ninecode.model.UsagePoint UsagePoint]] Usage point to which this end device belongs.
@@ -675,6 +677,8 @@ case class EndDevice
     isVirtual: Boolean,
     timeZoneOffset: Double,
     Customer: String,
+    EndDeviceControls: List[String],
+    EndDeviceGroups: List[String],
     EndDeviceInfo: String,
     ServiceLocation: String,
     UsagePoint: String
@@ -685,7 +689,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, false, false, 0.0, null, null, null, null) }
+    def this () = { this (null, null, null, false, false, 0.0, null, List(), List(), null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -710,15 +714,18 @@ extends
         implicit val clz: String = EndDevice.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (EndDevice.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (EndDevice.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (EndDevice.fields (position), x))
         emitelem (0, amrSystem)
         emitelem (1, installCode)
         emitelem (2, isPan)
         emitelem (3, isVirtual)
         emitelem (4, timeZoneOffset)
         emitattr (5, Customer)
-        emitattr (6, EndDeviceInfo)
-        emitattr (7, ServiceLocation)
-        emitattr (8, UsagePoint)
+        emitattrs (6, EndDeviceControls)
+        emitattrs (7, EndDeviceGroups)
+        emitattr (8, EndDeviceInfo)
+        emitattr (9, ServiceLocation)
+        emitattr (10, UsagePoint)
         s.toString
     }
     override def export: String =
@@ -738,6 +745,8 @@ extends
         "isVirtual",
         "timeZoneOffset",
         "Customer",
+        "EndDeviceControls",
+        "EndDeviceGroups",
         "EndDeviceInfo",
         "ServiceLocation",
         "UsagePoint"
@@ -748,9 +757,11 @@ extends
     val isVirtual: Fielder = parse_element (element (cls, fields(3)))
     val timeZoneOffset: Fielder = parse_element (element (cls, fields(4)))
     val Customer: Fielder = parse_attribute (attribute (cls, fields(5)))
-    val EndDeviceInfo: Fielder = parse_attribute (attribute (cls, fields(6)))
-    val ServiceLocation: Fielder = parse_attribute (attribute (cls, fields(7)))
-    val UsagePoint: Fielder = parse_attribute (attribute (cls, fields(8)))
+    val EndDeviceControls: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
+    val EndDeviceGroups: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
+    val EndDeviceInfo: Fielder = parse_attribute (attribute (cls, fields(8)))
+    val ServiceLocation: Fielder = parse_attribute (attribute (cls, fields(9)))
+    val UsagePoint: Fielder = parse_attribute (attribute (cls, fields(10)))
 
     def parse (context: Context): EndDevice =
     {
@@ -764,15 +775,19 @@ extends
             toBoolean (mask (isVirtual (), 3)),
             toDouble (mask (timeZoneOffset (), 4)),
             mask (Customer (), 5),
-            mask (EndDeviceInfo (), 6),
-            mask (ServiceLocation (), 7),
-            mask (UsagePoint (), 8)
+            masks (EndDeviceControls (), 6),
+            masks (EndDeviceGroups (), 7),
+            mask (EndDeviceInfo (), 8),
+            mask (ServiceLocation (), 9),
+            mask (UsagePoint (), 10)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
         Relationship ("Customer", "Customer", false),
+        Relationship ("EndDeviceControls", "EndDeviceControl", true),
+        Relationship ("EndDeviceGroups", "EndDeviceGroup", true),
         Relationship ("EndDeviceInfo", "EndDeviceInfo", false),
         Relationship ("ServiceLocation", "ServiceLocation", false),
         Relationship ("UsagePoint", "UsagePoint", false)
@@ -1074,14 +1089,15 @@ extends
  * @param issuerTrackingID Identifier assigned by the initiator (e.g. retail electric provider) of an end device control action to uniquely identify the demand response event, text message, or other subject of the control action.
  *        Can be used when cancelling an event or text message request or to identify the originating event or text message in a consequential end device event.
  * @param priceSignal (if applicable) Price signal used as parameter for this end device control.
- * @param primaryDeviceTiming Timing for the control actions performed on the device identified in the end device control.
+ * @param primaryDeviceTiming [[ch.ninecode.model.EndDeviceTiming EndDeviceTiming]] Timing for the control actions performed on the device identified in the end device control.
  * @param reason Reason for the control action that allows to determine how to continue processing.
  *        For example, disconnect meter command may require different processing by the receiving system if it has been issued for a network-related reason (protection) or for a payment-related reason.
  * @param scheduledInterval (if control has scheduled duration) Date and time interval the control has been scheduled to execute within.
- * @param secondaryDeviceTiming Timing for the control actions performed by devices that are responding to event related information sent to the primary device indicated in the end device control.
+ * @param secondaryDeviceTiming [[ch.ninecode.model.EndDeviceTiming EndDeviceTiming]] Timing for the control actions performed by devices that are responding to event related information sent to the primary device indicated in the end device control.
  *        For example, load control actions performed by a PAN device in response to demand response event information sent to a PAN gateway server.
  * @param EndDeviceAction [[ch.ninecode.model.EndDeviceAction EndDeviceAction]] End device action issued by this end device control.
  * @param EndDeviceControlType [[ch.ninecode.model.EndDeviceControlType EndDeviceControlType]] Type of this end device control.
+ * @param EndDeviceGroups [[ch.ninecode.model.EndDeviceGroup EndDeviceGroup]] All end device groups receiving commands from this end device control.
  * @param EndDevices [[ch.ninecode.model.EndDevice EndDevice]] All end devices receiving commands from this end device control.
  * @param UsagePointGroups [[ch.ninecode.model.UsagePointGroup UsagePointGroup]] All usage point groups receiving commands from this end device control.
  * @param UsagePoints [[ch.ninecode.model.UsagePoint UsagePoint]] All usage points receiving commands from this end device control.
@@ -1103,6 +1119,7 @@ case class EndDeviceControl
     secondaryDeviceTiming: String,
     EndDeviceAction: String,
     EndDeviceControlType: String,
+    EndDeviceGroups: List[String],
     EndDevices: List[String],
     UsagePointGroups: List[String],
     UsagePoints: List[String]
@@ -1113,7 +1130,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0, false, null, null, null, null, null, null, null, null, null, List(), List(), List()) }
+    def this () = { this (null, 0, false, null, null, null, null, null, null, null, null, null, List(), List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1150,9 +1167,10 @@ extends
         emitattr (8, secondaryDeviceTiming)
         emitattr (9, EndDeviceAction)
         emitattr (10, EndDeviceControlType)
-        emitattrs (11, EndDevices)
-        emitattrs (12, UsagePointGroups)
-        emitattrs (13, UsagePoints)
+        emitattrs (11, EndDeviceGroups)
+        emitattrs (12, EndDevices)
+        emitattrs (13, UsagePointGroups)
+        emitattrs (14, UsagePoints)
         s.toString
     }
     override def export: String =
@@ -1177,6 +1195,7 @@ extends
         "secondaryDeviceTiming",
         "EndDeviceAction",
         "EndDeviceControlType",
+        "EndDeviceGroups",
         "EndDevices",
         "UsagePointGroups",
         "UsagePoints"
@@ -1192,9 +1211,10 @@ extends
     val secondaryDeviceTiming: Fielder = parse_attribute (attribute (cls, fields(8)))
     val EndDeviceAction: Fielder = parse_attribute (attribute (cls, fields(9)))
     val EndDeviceControlType: Fielder = parse_attribute (attribute (cls, fields(10)))
-    val EndDevices: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
-    val UsagePointGroups: FielderMultiple = parse_attributes (attribute (cls, fields(12)))
-    val UsagePoints: FielderMultiple = parse_attributes (attribute (cls, fields(13)))
+    val EndDeviceGroups: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
+    val EndDevices: FielderMultiple = parse_attributes (attribute (cls, fields(12)))
+    val UsagePointGroups: FielderMultiple = parse_attributes (attribute (cls, fields(13)))
+    val UsagePoints: FielderMultiple = parse_attributes (attribute (cls, fields(14)))
 
     def parse (context: Context): EndDeviceControl =
     {
@@ -1213,16 +1233,20 @@ extends
             mask (secondaryDeviceTiming (), 8),
             mask (EndDeviceAction (), 9),
             mask (EndDeviceControlType (), 10),
-            masks (EndDevices (), 11),
-            masks (UsagePointGroups (), 12),
-            masks (UsagePoints (), 13)
+            masks (EndDeviceGroups (), 11),
+            masks (EndDevices (), 12),
+            masks (UsagePointGroups (), 13),
+            masks (UsagePoints (), 14)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
+        Relationship ("primaryDeviceTiming", "EndDeviceTiming", false),
+        Relationship ("secondaryDeviceTiming", "EndDeviceTiming", false),
         Relationship ("EndDeviceAction", "EndDeviceAction", false),
         Relationship ("EndDeviceControlType", "EndDeviceControlType", false),
+        Relationship ("EndDeviceGroups", "EndDeviceGroup", true),
         Relationship ("EndDevices", "EndDevice", true),
         Relationship ("UsagePointGroups", "UsagePointGroup", true),
         Relationship ("UsagePoints", "UsagePoint", true)
@@ -1239,7 +1263,7 @@ extends
  * @param eventOrAction The most specific part of this control type.
  *        It is mainly in the form of a verb that gives action to the control that just occurred.
  * @param subDomain More specific nature of the control, as a further sub-categorisation of 'domain'.
- * @param typ Type of physical device from which the control was created.
+ * @param `type` Type of physical device from which the control was created.
  *        A value of zero (0) can be used when the source is unknown.
  * @group Metering
  * @groupname Metering Package Metering
@@ -1251,7 +1275,7 @@ case class EndDeviceControlType
     domain: String,
     eventOrAction: String,
     subDomain: String,
-    typ: String
+    `type`: String
 )
 extends
     Element
@@ -1286,7 +1310,7 @@ extends
         emitelem (0, domain)
         emitelem (1, eventOrAction)
         emitelem (2, subDomain)
-        emitelem (3, typ)
+        emitelem (3, `type`)
         s.toString
     }
     override def export: String =
@@ -1308,7 +1332,7 @@ extends
     val domain: Fielder = parse_element (element (cls, fields(0)))
     val eventOrAction: Fielder = parse_element (element (cls, fields(1)))
     val subDomain: Fielder = parse_element (element (cls, fields(2)))
-    val typ: Fielder = parse_element (element (cls, fields(3)))
+    val `type`: Fielder = parse_element (element (cls, fields(3)))
 
     def parse (context: Context): EndDeviceControlType =
     {
@@ -1319,7 +1343,7 @@ extends
             mask (domain (), 0),
             mask (eventOrAction (), 1),
             mask (subDomain (), 2),
-            mask (typ (), 3)
+            mask (`type` (), 3)
         )
         ret.bitfields = bitfields
         ret
@@ -1550,7 +1574,7 @@ extends
  * @param eventOrAction The most specific part of this event type.
  *        It is mainly in the form of a verb that gives action to the event that just occurred.
  * @param subDomain More specific nature of the event, as a further sub-categorisation of 'domain'.
- * @param typ Type of physical device from which the event was created.
+ * @param `type` Type of physical device from which the event was created.
  *        A value of zero (0) can be used when the source is unknown.
  * @group Metering
  * @groupname Metering Package Metering
@@ -1562,7 +1586,7 @@ case class EndDeviceEventType
     domain: String,
     eventOrAction: String,
     subDomain: String,
-    typ: String
+    `type`: String
 )
 extends
     Element
@@ -1597,7 +1621,7 @@ extends
         emitelem (0, domain)
         emitelem (1, eventOrAction)
         emitelem (2, subDomain)
-        emitelem (3, typ)
+        emitelem (3, `type`)
         s.toString
     }
     override def export: String =
@@ -1619,7 +1643,7 @@ extends
     val domain: Fielder = parse_element (element (cls, fields(0)))
     val eventOrAction: Fielder = parse_element (element (cls, fields(1)))
     val subDomain: Fielder = parse_element (element (cls, fields(2)))
-    val typ: Fielder = parse_element (element (cls, fields(3)))
+    val `type`: Fielder = parse_element (element (cls, fields(3)))
 
     def parse (context: Context): EndDeviceEventType =
     {
@@ -1630,7 +1654,7 @@ extends
             mask (domain (), 0),
             mask (eventOrAction (), 1),
             mask (subDomain (), 2),
-            mask (typ (), 3)
+            mask (`type` (), 3)
         )
         ret.bitfields = bitfields
         ret
@@ -1731,9 +1755,10 @@ extends
  * Commands can be issued to all of the end devices that belong to the group using a defined group address and the underlying AMR communication infrastructure.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param typ Type of this group.
+ * @param DemandResponsePrograms [[ch.ninecode.model.DemandResponseProgram DemandResponseProgram]] All demand response programs this group of end devices is enrolled in.
  * @param EndDeviceControls [[ch.ninecode.model.EndDeviceControl EndDeviceControl]] All end device controls sending commands to this end device group.
  * @param EndDevices [[ch.ninecode.model.EndDevice EndDevice]] All end devices this end device group refers to.
+ * @param `type` Type of this group.
  * @group Metering
  * @groupname Metering Package Metering
  * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
@@ -1741,9 +1766,10 @@ extends
 case class EndDeviceGroup
 (
     override val sup: IdentifiedObject,
-    typ: String,
+    DemandResponsePrograms: List[String],
     EndDeviceControls: List[String],
-    EndDevices: List[String]
+    EndDevices: List[String],
+    `type`: String
 )
 extends
     Element
@@ -1751,7 +1777,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, List(), List()) }
+    def this () = { this (null, List(), List(), List(), null) }
     /**
      * Return the superclass object.
      *
@@ -1776,9 +1802,10 @@ extends
         implicit val clz: String = EndDeviceGroup.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (EndDeviceGroup.fields (position), value)
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (EndDeviceGroup.fields (position), x))
-        emitelem (0, typ)
+        emitattrs (0, DemandResponsePrograms)
         emitattrs (1, EndDeviceControls)
         emitattrs (2, EndDevices)
+        emitelem (3, `type`)
         s.toString
     }
     override def export: String =
@@ -1792,13 +1819,15 @@ extends
     Parseable[EndDeviceGroup]
 {
     val fields: Array[String] = Array[String] (
-        "type",
+        "DemandResponsePrograms",
         "EndDeviceControls",
-        "EndDevices"
+        "EndDevices",
+        "type"
     )
-    val typ: Fielder = parse_element (element (cls, fields(0)))
+    val DemandResponsePrograms: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
     val EndDeviceControls: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
     val EndDevices: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val `type`: Fielder = parse_element (element (cls, fields(3)))
 
     def parse (context: Context): EndDeviceGroup =
     {
@@ -1806,14 +1835,16 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = EndDeviceGroup (
             IdentifiedObject.parse (context),
-            mask (typ (), 0),
+            masks (DemandResponsePrograms (), 0),
             masks (EndDeviceControls (), 1),
-            masks (EndDevices (), 2)
+            masks (EndDevices (), 2),
+            mask (`type` (), 3)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
+        Relationship ("DemandResponsePrograms", "DemandResponseProgram", true),
         Relationship ("EndDeviceControls", "EndDeviceControl", true),
         Relationship ("EndDevices", "EndDevice", true)
     )
@@ -1823,7 +1854,7 @@ extends
  * End device data.
  *
  * @param sup [[ch.ninecode.model.AssetInfo AssetInfo]] Reference to the superclass object.
- * @param capability Inherent capabilities of the device (i.e., the functions it supports).
+ * @param capability [[ch.ninecode.model.EndDeviceCapability EndDeviceCapability]] Inherent capabilities of the device (i.e., the functions it supports).
  * @param isSolidState If true, this is a solid state end device (as opposed to a mechanical or electromechanical device).
  * @param phaseCount Number of potential phases the end device supports, typically 0, 1 or 3.
  * @param ratedCurrent Rated current.
@@ -1918,7 +1949,7 @@ extends
         ret
     }
     val relations: List[Relationship] = List (
-
+        Relationship ("capability", "EndDeviceCapability", false)
     )
 }
 
@@ -2127,13 +2158,15 @@ extends
  * Interval data could be captured as incremental data, absolute data, or relative data. The source for the data is usually a tariff quantity or an engineering quantity. Data is typically captured in time-tagged, uniform, fixed-length intervals of 5 min, 10 min, 15 min, 30 min, or 60 min.
  *
  * @param sup [[ch.ninecode.model.BaseReading BaseReading]] Reference to the superclass object.
+ * @param IntervalBlocks [[ch.ninecode.model.IntervalBlock IntervalBlock]] All blocks containing this interval reading.
  * @group Metering
  * @groupname Metering Package Metering
  * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
  */
 case class IntervalReading
 (
-    override val sup: BaseReading
+    override val sup: BaseReading,
+    IntervalBlocks: List[String]
 )
 extends
     Element
@@ -2141,7 +2174,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -2162,7 +2195,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = IntervalReading.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (IntervalReading.fields (position), x))
+        emitattrs (0, IntervalBlocks)
+        s.toString
     }
     override def export: String =
     {
@@ -2174,17 +2211,24 @@ object IntervalReading
 extends
     Parseable[IntervalReading]
 {
+    val fields: Array[String] = Array[String] (
+        "IntervalBlocks"
+    )
+    val IntervalBlocks: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): IntervalReading =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = IntervalReading (
-            BaseReading.parse (context)
+            BaseReading.parse (context),
+            masks (IntervalBlocks (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
-
+        Relationship ("IntervalBlocks", "IntervalBlock", true)
     )
 }
 
@@ -2368,6 +2412,7 @@ extends
  * @param valuesInterval Date and time interval of the data items contained within this meter reading.
  * @param CustomerAgreement [[ch.ninecode.model.CustomerAgreement CustomerAgreement]] (could be deprecated in the future) Customer agreement for this meter reading.
  * @param Meter [[ch.ninecode.model.Meter Meter]] Meter providing this reading.
+ * @param Readings [[ch.ninecode.model.Reading Reading]] All reading values contained within this meter reading.
  * @param UsagePoint [[ch.ninecode.model.UsagePoint UsagePoint]] Usage point from which this meter reading (set of values) has been obtained.
  * @group Metering
  * @groupname Metering Package Metering
@@ -2380,6 +2425,7 @@ case class MeterReading
     valuesInterval: String,
     CustomerAgreement: String,
     Meter: String,
+    Readings: List[String],
     UsagePoint: String
 )
 extends
@@ -2388,7 +2434,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, false, null, null, null, null) }
+    def this () = { this (null, false, null, null, null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -2413,11 +2459,13 @@ extends
         implicit val clz: String = MeterReading.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (MeterReading.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (MeterReading.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (MeterReading.fields (position), x))
         emitelem (0, isCoincidentTrigger)
         emitattr (1, valuesInterval)
         emitattr (2, CustomerAgreement)
         emitattr (3, Meter)
-        emitattr (4, UsagePoint)
+        emitattrs (4, Readings)
+        emitattr (5, UsagePoint)
         s.toString
     }
     override def export: String =
@@ -2435,13 +2483,15 @@ extends
         "valuesInterval",
         "CustomerAgreement",
         "Meter",
+        "Readings",
         "UsagePoint"
     )
     val isCoincidentTrigger: Fielder = parse_element (element (cls, fields(0)))
     val valuesInterval: Fielder = parse_attribute (attribute (cls, fields(1)))
     val CustomerAgreement: Fielder = parse_attribute (attribute (cls, fields(2)))
     val Meter: Fielder = parse_attribute (attribute (cls, fields(3)))
-    val UsagePoint: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val Readings: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val UsagePoint: Fielder = parse_attribute (attribute (cls, fields(5)))
 
     def parse (context: Context): MeterReading =
     {
@@ -2453,7 +2503,8 @@ extends
             mask (valuesInterval (), 1),
             mask (CustomerAgreement (), 2),
             mask (Meter (), 3),
-            mask (UsagePoint (), 4)
+            masks (Readings (), 4),
+            mask (UsagePoint (), 5)
         )
         ret.bitfields = bitfields
         ret
@@ -2461,6 +2512,7 @@ extends
     val relations: List[Relationship] = List (
         Relationship ("CustomerAgreement", "CustomerAgreement", false),
         Relationship ("Meter", "Meter", false),
+        Relationship ("Readings", "Reading", true),
         Relationship ("UsagePoint", "UsagePoint", false)
     )
 }
@@ -2562,6 +2614,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param reason Reason for this metrology requirement being specified.
+ * @param ReadingTypes [[ch.ninecode.model.ReadingType ReadingType]] All reading types required to be collected by this metrology requirement.
  * @param UsagePoints [[ch.ninecode.model.UsagePoint UsagePoint]] All usage points having this metrology requirement.
  * @group Metering
  * @groupname Metering Package Metering
@@ -2571,6 +2624,7 @@ case class MetrologyRequirement
 (
     override val sup: IdentifiedObject,
     reason: String,
+    ReadingTypes: List[String],
     UsagePoints: List[String]
 )
 extends
@@ -2579,7 +2633,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, List()) }
+    def this () = { this (null, null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -2605,7 +2659,8 @@ extends
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (MetrologyRequirement.fields (position), value)
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (MetrologyRequirement.fields (position), x))
         emitattr (0, reason)
-        emitattrs (1, UsagePoints)
+        emitattrs (1, ReadingTypes)
+        emitattrs (2, UsagePoints)
         s.toString
     }
     override def export: String =
@@ -2620,10 +2675,12 @@ extends
 {
     val fields: Array[String] = Array[String] (
         "reason",
+        "ReadingTypes",
         "UsagePoints"
     )
     val reason: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val UsagePoints: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val ReadingTypes: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val UsagePoints: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
 
     def parse (context: Context): MetrologyRequirement =
     {
@@ -2632,12 +2689,14 @@ extends
         val ret = MetrologyRequirement (
             IdentifiedObject.parse (context),
             mask (reason (), 0),
-            masks (UsagePoints (), 1)
+            masks (ReadingTypes (), 1),
+            masks (UsagePoints (), 2)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
+        Relationship ("ReadingTypes", "ReadingType", true),
         Relationship ("UsagePoints", "UsagePoint", true)
     )
 }
@@ -2646,7 +2705,7 @@ extends
  * PAN control used to issue action/command to PAN devices during a demand response/load control event.
  *
  * @param sup [[ch.ninecode.model.EndDeviceAction EndDeviceAction]] Reference to the superclass object.
- * @param appliance Appliance being controlled.
+ * @param appliance [[ch.ninecode.model.ControlledAppliance ControlledAppliance]] Appliance being controlled.
  * @param avgLoadAdjustment Used to define a maximum energy usage limit as a percentage of the client implementations specific average energy usage.
  *        The load adjustment percentage is added to 100% creating a percentage limit applied to the client implementations specific average energy usage. A -10% load adjustment percentage will establish an energy usage limit equal to 90% of the client implementations specific average energy usage. Each load adjustment percentage is referenced to the client implementations specific average energy usage. There are no cumulative effects.
  * @param cancelControlMode Encoding of cancel control.
@@ -2791,7 +2850,7 @@ extends
         ret
     }
     val relations: List[Relationship] = List (
-
+        Relationship ("appliance", "ControlledAppliance", false)
     )
 }
 
@@ -3713,7 +3772,7 @@ extends
  * @param accumulation Accumulation behaviour of a reading over time, usually 'measuringPeriod', to be used with individual endpoints (as opposed to 'macroPeriod' and 'aggregate' that are used to describe aggregations of data from individual endpoints).
  * @param aggregate Salient attribute of the reading data aggregated from individual endpoints.
  *        This is mainly used to define a mathematical operation carried out over 'macroPeriod', but may also be used to describe an attribute of the data when the 'macroPeriod' is not defined.
- * @param argument Argument used to introduce numbers into the unit of measure description where they are needed (e.g., 4 where the measure needs an argument such as CEMI(n=4)).
+ * @param argument [[ch.ninecode.model.RationalNumber RationalNumber]] Argument used to introduce numbers into the unit of measure description where they are needed (e.g., 4 where the measure needs an argument such as CEMI(n=4)).
  *        Most arguments used in practice however will be integers (i.e., 'denominator'=1).
  * @param commodity Commodity being measured.
  * @param consumptionTier In case of common flat-rate pricing for power, in which all purchases are at a given rate, 'consumptionTier'=0.
@@ -3722,7 +3781,7 @@ extends
  *        Value 0 means not applicable. Even though CPP is usually considered a specialised form of time of use 'tou', this attribute is defined explicitly for flexibility.
  * @param currency Metering-specific currency.
  * @param flowDirection Flow direction for a reading where the direction of flow of the commodity is important (for electricity measurements this includes current, energy, power, and demand).
- * @param interharmonic Indication of a "harmonic" or "interharmonic" basis for the measurement.
+ * @param interharmonic [[ch.ninecode.model.ReadingInterharmonic ReadingInterharmonic]] Indication of a "harmonic" or "interharmonic" basis for the measurement.
  *        Value 0 in 'numerator' and 'denominator' means not applicable.
  * @param macroPeriod Time period of interest that reflects how the reading is viewed or captured over a long period of time.
  * @param measurementKind Identifies "what" is being measured, as refinement of 'commodity'.
@@ -3735,6 +3794,7 @@ extends
  *        Value 0 means not applicable.
  * @param unit Metering-specific unit.
  * @param Channel [[ch.ninecode.model.Channel Channel]] Channel reporting/collecting register values with this type information.
+ * @param MetrologyRequirements [[ch.ninecode.model.MetrologyRequirement MetrologyRequirement]] All metrology requirements that require this reading type to be collected.
  * @param PendingCalculation [[ch.ninecode.model.PendingCalculation PendingCalculation]] Pending calculation that produced this reading type.
  * @group Metering
  * @groupname Metering Package Metering
@@ -3760,6 +3820,7 @@ case class ReadingType
     tou: Int,
     unit: String,
     Channel: String,
+    MetrologyRequirements: List[String],
     PendingCalculation: String
 )
 extends
@@ -3768,7 +3829,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null, 0, 0, null, null, null, null, null, null, null, null, 0, null, null, null) }
+    def this () = { this (null, null, null, null, null, 0, 0, null, null, null, null, null, null, null, null, 0, null, null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -3793,6 +3854,7 @@ extends
         implicit val clz: String = ReadingType.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ReadingType.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ReadingType.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ReadingType.fields (position), x))
         emitelem (0, accumulation)
         emitelem (1, aggregate)
         emitattr (2, argument)
@@ -3810,7 +3872,8 @@ extends
         emitelem (14, tou)
         emitelem (15, unit)
         emitattr (16, Channel)
-        emitattr (17, PendingCalculation)
+        emitattrs (17, MetrologyRequirements)
+        emitattr (18, PendingCalculation)
         s.toString
     }
     override def export: String =
@@ -3841,6 +3904,7 @@ extends
         "tou",
         "unit",
         "Channel",
+        "MetrologyRequirements",
         "PendingCalculation"
     )
     val accumulation: Fielder = parse_element (element (cls, fields(0)))
@@ -3860,7 +3924,8 @@ extends
     val tou: Fielder = parse_element (element (cls, fields(14)))
     val unit: Fielder = parse_element (element (cls, fields(15)))
     val Channel: Fielder = parse_attribute (attribute (cls, fields(16)))
-    val PendingCalculation: Fielder = parse_attribute (attribute (cls, fields(17)))
+    val MetrologyRequirements: FielderMultiple = parse_attributes (attribute (cls, fields(17)))
+    val PendingCalculation: Fielder = parse_attribute (attribute (cls, fields(18)))
 
     def parse (context: Context): ReadingType =
     {
@@ -3885,13 +3950,17 @@ extends
             toInteger (mask (tou (), 14)),
             mask (unit (), 15),
             mask (Channel (), 16),
-            mask (PendingCalculation (), 17)
+            masks (MetrologyRequirements (), 17),
+            mask (PendingCalculation (), 18)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
+        Relationship ("argument", "RationalNumber", false),
+        Relationship ("interharmonic", "ReadingInterharmonic", false),
         Relationship ("Channel", "Channel", false),
+        Relationship ("MetrologyRequirements", "MetrologyRequirement", true),
         Relationship ("PendingCalculation", "PendingCalculation", false)
     )
 }
@@ -4209,10 +4278,15 @@ extends
  * @param servicePriority Priority of service for this usage point.
  *        Note that usage points at the same service location can have different priorities.
  * @param CustomerAgreement [[ch.ninecode.model.CustomerAgreement CustomerAgreement]] Customer agreement regulating this service delivery point.
+ * @param EndDeviceControls [[ch.ninecode.model.EndDeviceControl EndDeviceControl]] All end device controls sending commands to this usage point.
  * @param Equipments [[ch.ninecode.model.Equipment Equipment]] All equipment connecting this usage point to the electrical grid.
+ * @param MetrologyRequirements [[ch.ninecode.model.MetrologyRequirement MetrologyRequirement]] All metrology requirements for this usage point.
+ * @param Outages [[ch.ninecode.model.Outage Outage]] All outages at this usage point.
+ * @param PricingStructures [[ch.ninecode.model.PricingStructure PricingStructure]] All pricing structures applicable to this service delivery point (with prepayment meter running as a stand-alone device, with no CustomerAgreement or Customer).
  * @param ServiceCategory [[ch.ninecode.model.ServiceCategory ServiceCategory]] Service category delivered by this usage point.
  * @param ServiceLocation [[ch.ninecode.model.ServiceLocation ServiceLocation]] Service location where the service delivered by this usage point is consumed.
  * @param ServiceSupplier [[ch.ninecode.model.ServiceSupplier ServiceSupplier]] ServiceSupplier (utility) utilising this usage point to deliver a service.
+ * @param UsagePointGroups [[ch.ninecode.model.UsagePointGroup UsagePointGroup]] All groups to which this usage point belongs.
  * @param UsagePointLocation [[ch.ninecode.model.UsagePointLocation UsagePointLocation]] Location of this usage point.
  * @group Metering
  * @groupname Metering Package Metering
@@ -4239,10 +4313,15 @@ case class UsagePoint
     serviceDeliveryRemark: String,
     servicePriority: String,
     CustomerAgreement: String,
+    EndDeviceControls: List[String],
     Equipments: List[String],
+    MetrologyRequirements: List[String],
+    Outages: List[String],
+    PricingStructures: List[String],
     ServiceCategory: String,
     ServiceLocation: String,
     ServiceSupplier: String,
+    UsagePointGroups: List[String],
     UsagePointLocation: String
 )
 extends
@@ -4251,7 +4330,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, false, null, 0.0, false, false, false, false, 0.0, null, null, 0.0, 0.0, null, null, null, null, null, List(), null, null, null, null) }
+    def this () = { this (null, null, false, null, 0.0, false, false, false, false, 0.0, null, null, 0.0, 0.0, null, null, null, null, null, List(), List(), List(), List(), List(), null, null, null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -4295,11 +4374,16 @@ extends
         emitelem (15, serviceDeliveryRemark)
         emitelem (16, servicePriority)
         emitattr (17, CustomerAgreement)
-        emitattrs (18, Equipments)
-        emitattr (19, ServiceCategory)
-        emitattr (20, ServiceLocation)
-        emitattr (21, ServiceSupplier)
-        emitattr (22, UsagePointLocation)
+        emitattrs (18, EndDeviceControls)
+        emitattrs (19, Equipments)
+        emitattrs (20, MetrologyRequirements)
+        emitattrs (21, Outages)
+        emitattrs (22, PricingStructures)
+        emitattr (23, ServiceCategory)
+        emitattr (24, ServiceLocation)
+        emitattr (25, ServiceSupplier)
+        emitattrs (26, UsagePointGroups)
+        emitattr (27, UsagePointLocation)
         s.toString
     }
     override def export: String =
@@ -4331,10 +4415,15 @@ extends
         "serviceDeliveryRemark",
         "servicePriority",
         "CustomerAgreement",
+        "EndDeviceControls",
         "Equipments",
+        "MetrologyRequirements",
+        "Outages",
+        "PricingStructures",
         "ServiceCategory",
         "ServiceLocation",
         "ServiceSupplier",
+        "UsagePointGroups",
         "UsagePointLocation"
     )
     val amiBillingReady: Fielder = parse_attribute (attribute (cls, fields(0)))
@@ -4355,11 +4444,16 @@ extends
     val serviceDeliveryRemark: Fielder = parse_element (element (cls, fields(15)))
     val servicePriority: Fielder = parse_element (element (cls, fields(16)))
     val CustomerAgreement: Fielder = parse_attribute (attribute (cls, fields(17)))
-    val Equipments: FielderMultiple = parse_attributes (attribute (cls, fields(18)))
-    val ServiceCategory: Fielder = parse_attribute (attribute (cls, fields(19)))
-    val ServiceLocation: Fielder = parse_attribute (attribute (cls, fields(20)))
-    val ServiceSupplier: Fielder = parse_attribute (attribute (cls, fields(21)))
-    val UsagePointLocation: Fielder = parse_attribute (attribute (cls, fields(22)))
+    val EndDeviceControls: FielderMultiple = parse_attributes (attribute (cls, fields(18)))
+    val Equipments: FielderMultiple = parse_attributes (attribute (cls, fields(19)))
+    val MetrologyRequirements: FielderMultiple = parse_attributes (attribute (cls, fields(20)))
+    val Outages: FielderMultiple = parse_attributes (attribute (cls, fields(21)))
+    val PricingStructures: FielderMultiple = parse_attributes (attribute (cls, fields(22)))
+    val ServiceCategory: Fielder = parse_attribute (attribute (cls, fields(23)))
+    val ServiceLocation: Fielder = parse_attribute (attribute (cls, fields(24)))
+    val ServiceSupplier: Fielder = parse_attribute (attribute (cls, fields(25)))
+    val UsagePointGroups: FielderMultiple = parse_attributes (attribute (cls, fields(26)))
+    val UsagePointLocation: Fielder = parse_attribute (attribute (cls, fields(27)))
 
     def parse (context: Context): UsagePoint =
     {
@@ -4385,21 +4479,31 @@ extends
             mask (serviceDeliveryRemark (), 15),
             mask (servicePriority (), 16),
             mask (CustomerAgreement (), 17),
-            masks (Equipments (), 18),
-            mask (ServiceCategory (), 19),
-            mask (ServiceLocation (), 20),
-            mask (ServiceSupplier (), 21),
-            mask (UsagePointLocation (), 22)
+            masks (EndDeviceControls (), 18),
+            masks (Equipments (), 19),
+            masks (MetrologyRequirements (), 20),
+            masks (Outages (), 21),
+            masks (PricingStructures (), 22),
+            mask (ServiceCategory (), 23),
+            mask (ServiceLocation (), 24),
+            mask (ServiceSupplier (), 25),
+            masks (UsagePointGroups (), 26),
+            mask (UsagePointLocation (), 27)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
         Relationship ("CustomerAgreement", "CustomerAgreement", false),
+        Relationship ("EndDeviceControls", "EndDeviceControl", true),
         Relationship ("Equipments", "Equipment", true),
+        Relationship ("MetrologyRequirements", "MetrologyRequirement", true),
+        Relationship ("Outages", "Outage", true),
+        Relationship ("PricingStructures", "PricingStructure", true),
         Relationship ("ServiceCategory", "ServiceCategory", false),
         Relationship ("ServiceLocation", "ServiceLocation", false),
         Relationship ("ServiceSupplier", "ServiceSupplier", false),
+        Relationship ("UsagePointGroups", "UsagePointGroup", true),
         Relationship ("UsagePointLocation", "UsagePointLocation", false)
     )
 }
@@ -4410,8 +4514,10 @@ extends
  * Commands can be issued to all of the usage points that belong to a usage point group using a defined group address and the underlying AMR communication infrastructure.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param typ Type of this group.
+ * @param DemandResponsePrograms [[ch.ninecode.model.DemandResponseProgram DemandResponseProgram]] All demand response programs this usage point group is enrolled in.
+ * @param EndDeviceControls [[ch.ninecode.model.EndDeviceControl EndDeviceControl]] All end device controls sending commands to this usage point group.
  * @param UsagePoints [[ch.ninecode.model.UsagePoint UsagePoint]] All usage points in this group.
+ * @param `type` Type of this group.
  * @group Metering
  * @groupname Metering Package Metering
  * @groupdesc Metering This package contains the core information classes that support end device applications with specialized classes for metering and premises area network devices, and remote reading functions. These classes are generally associated with the point where a service is delivered to the customer.
@@ -4419,8 +4525,10 @@ extends
 case class UsagePointGroup
 (
     override val sup: IdentifiedObject,
-    typ: String,
-    UsagePoints: List[String]
+    DemandResponsePrograms: List[String],
+    EndDeviceControls: List[String],
+    UsagePoints: List[String],
+    `type`: String
 )
 extends
     Element
@@ -4428,7 +4536,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, List()) }
+    def this () = { this (null, List(), List(), List(), null) }
     /**
      * Return the superclass object.
      *
@@ -4453,8 +4561,10 @@ extends
         implicit val clz: String = UsagePointGroup.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (UsagePointGroup.fields (position), value)
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (UsagePointGroup.fields (position), x))
-        emitelem (0, typ)
-        emitattrs (1, UsagePoints)
+        emitattrs (0, DemandResponsePrograms)
+        emitattrs (1, EndDeviceControls)
+        emitattrs (2, UsagePoints)
+        emitelem (3, `type`)
         s.toString
     }
     override def export: String =
@@ -4468,11 +4578,15 @@ extends
     Parseable[UsagePointGroup]
 {
     val fields: Array[String] = Array[String] (
-        "type",
-        "UsagePoints"
+        "DemandResponsePrograms",
+        "EndDeviceControls",
+        "UsagePoints",
+        "type"
     )
-    val typ: Fielder = parse_element (element (cls, fields(0)))
-    val UsagePoints: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val DemandResponsePrograms: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val EndDeviceControls: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val UsagePoints: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val `type`: Fielder = parse_element (element (cls, fields(3)))
 
     def parse (context: Context): UsagePointGroup =
     {
@@ -4480,13 +4594,17 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = UsagePointGroup (
             IdentifiedObject.parse (context),
-            mask (typ (), 0),
-            masks (UsagePoints (), 1)
+            masks (DemandResponsePrograms (), 0),
+            masks (EndDeviceControls (), 1),
+            masks (UsagePoints (), 2),
+            mask (`type` (), 3)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
+        Relationship ("DemandResponsePrograms", "DemandResponseProgram", true),
+        Relationship ("EndDeviceControls", "EndDeviceControl", true),
         Relationship ("UsagePoints", "UsagePoint", true)
     )
 }

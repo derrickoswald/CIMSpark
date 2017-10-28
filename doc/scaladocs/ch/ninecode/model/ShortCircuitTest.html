@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>ShortCircuitTest - CIMReader 2.11-2.2.0-2.4.0 API - ch.ninecode.model.ShortCircuitTest</title>
-          <meta name="description" content="ShortCircuitTest - CIMReader 2.11 - 2.2.0 - 2.4.0 API - ch.ninecode.model.ShortCircuitTest" />
-          <meta name="keywords" content="ShortCircuitTest CIMReader 2.11 2.2.0 2.4.0 API ch.ninecode.model.ShortCircuitTest" />
+          <title>ShortCircuitTest - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.ShortCircuitTest</title>
+          <meta name="description" content="ShortCircuitTest - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.ShortCircuitTest" />
+          <meta name="keywords" content="ShortCircuitTest CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.ShortCircuitTest" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,13 +47,13 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">ShortCircuitTest</span><span class="params">(<span name="sup">sup: <a href="TransformerTest.html" class="extype" name="ch.ninecode.model.TransformerTest">TransformerTest</a></span>, <span name="energisedEndStep">energisedEndStep: <span class="extype" name="scala.Int">Int</span></span>, <span name="groundedEndStep">groundedEndStep: <span class="extype" name="scala.Int">Int</span></span>, <span name="leakageImpedance">leakageImpedance: <span class="extype" name="scala.Double">Double</span></span>, <span name="leakageImpedanceZero">leakageImpedanceZero: <span class="extype" name="scala.Double">Double</span></span>, <span name="loss">loss: <span class="extype" name="scala.Double">Double</span></span>, <span name="lossZero">lossZero: <span class="extype" name="scala.Double">Double</span></span>, <span name="EnergisedEnd">EnergisedEnd: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">ShortCircuitTest</span><span class="params">(<span name="sup">sup: <a href="TransformerTest.html" class="extype" name="ch.ninecode.model.TransformerTest">TransformerTest</a></span>, <span name="energisedEndStep">energisedEndStep: <span class="extype" name="scala.Int">Int</span></span>, <span name="groundedEndStep">groundedEndStep: <span class="extype" name="scala.Int">Int</span></span>, <span name="leakageImpedance">leakageImpedance: <span class="extype" name="scala.Double">Double</span></span>, <span name="leakageImpedanceZero">leakageImpedanceZero: <span class="extype" name="scala.Double">Double</span></span>, <span name="loss">loss: <span class="extype" name="scala.Double">Double</span></span>, <span name="lossZero">lossZero: <span class="extype" name="scala.Double">Double</span></span>, <span name="EnergisedEnd">EnergisedEnd: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="GroundedEnds">GroundedEnds: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Short-circuit test results determine mesh impedance parameters.</p><p>They include load losses and leakage impedances. For three-phase windings, the excitation can be a positive sequence (the default) or a zero sequence. There shall be at least one grounded winding.
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="TransformerTest.html" class="extype" name="ch.ninecode.model.TransformerTest">TransformerTest</a> Reference to the superclass object.</p></dd><dt class="param">energisedEndStep</dt><dd class="cmt"><p>Tap step number for the energised end of the test pair.</p></dd><dt class="param">groundedEndStep</dt><dd class="cmt"><p>Tap step number for the grounded end of the test pair.</p></dd><dt class="param">leakageImpedance</dt><dd class="cmt"><p>Leakage impedance measured from a positive-sequence or single-phase short-circuit test.</p></dd><dt class="param">leakageImpedanceZero</dt><dd class="cmt"><p>Leakage impedance measured from a zero-sequence short-circuit test.</p></dd><dt class="param">loss</dt><dd class="cmt"><p>Load losses from a positive-sequence or single-phase short-circuit test.</p></dd><dt class="param">lossZero</dt><dd class="cmt"><p>Load losses from a zero-sequence short-circuit test.</p></dd><dt class="param">EnergisedEnd</dt><dd class="cmt"><p><a href="TransformerEndInfo.html" class="extype" name="ch.ninecode.model.TransformerEndInfo">TransformerEndInfo</a> Transformer end that voltage is applied to in this short-circuit test.
-       The test voltage is chosen to induce rated current in the energised end.</p></dd></dl><div class="toggleContainer block">
+       The test voltage is chosen to induce rated current in the energised end.</p></dd><dt class="param">GroundedEnds</dt><dd class="cmt"><p><a href="TransformerEndInfo.html" class="extype" name="ch.ninecode.model.TransformerEndInfo">TransformerEndInfo</a> All ends short-circuited in this short-circuit test.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -110,7 +110,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.ShortCircuitTest#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.TransformerTest,energisedEndStep:Int,groundedEndStep:Int,leakageImpedance:Double,leakageImpedanceZero:Double,loss:Double,lossZero:Double,EnergisedEnd:String):ch.ninecode.model.ShortCircuitTest"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.TransformerTest,energisedEndStep:Int,groundedEndStep:Int,leakageImpedance:Double,leakageImpedanceZero:Double,loss:Double,lossZero:Double,EnergisedEnd:String,GroundedEnds:List[String]):ch.ninecode.model.ShortCircuitTest"></a>
       <a id="&lt;init&gt;:ShortCircuitTest"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -118,15 +118,15 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">ShortCircuitTest</span><span class="params">(<span name="sup">sup: <a href="TransformerTest.html" class="extype" name="ch.ninecode.model.TransformerTest">TransformerTest</a></span>, <span name="energisedEndStep">energisedEndStep: <span class="extype" name="scala.Int">Int</span></span>, <span name="groundedEndStep">groundedEndStep: <span class="extype" name="scala.Int">Int</span></span>, <span name="leakageImpedance">leakageImpedance: <span class="extype" name="scala.Double">Double</span></span>, <span name="leakageImpedanceZero">leakageImpedanceZero: <span class="extype" name="scala.Double">Double</span></span>, <span name="loss">loss: <span class="extype" name="scala.Double">Double</span></span>, <span name="lossZero">lossZero: <span class="extype" name="scala.Double">Double</span></span>, <span name="EnergisedEnd">EnergisedEnd: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
+        <span class="name">ShortCircuitTest</span><span class="params">(<span name="sup">sup: <a href="TransformerTest.html" class="extype" name="ch.ninecode.model.TransformerTest">TransformerTest</a></span>, <span name="energisedEndStep">energisedEndStep: <span class="extype" name="scala.Int">Int</span></span>, <span name="groundedEndStep">groundedEndStep: <span class="extype" name="scala.Int">Int</span></span>, <span name="leakageImpedance">leakageImpedance: <span class="extype" name="scala.Double">Double</span></span>, <span name="leakageImpedanceZero">leakageImpedanceZero: <span class="extype" name="scala.Double">Double</span></span>, <span name="loss">loss: <span class="extype" name="scala.Double">Double</span></span>, <span name="lossZero">lossZero: <span class="extype" name="scala.Double">Double</span></span>, <span name="EnergisedEnd">EnergisedEnd: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="GroundedEnds">GroundedEnds: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.ShortCircuitTest@&lt;init&gt;(sup:ch.ninecode.model.TransformerTest,energisedEndStep:Int,groundedEndStep:Int,leakageImpedance:Double,leakageImpedanceZero:Double,loss:Double,lossZero:Double,EnergisedEnd:String):ch.ninecode.model.ShortCircuitTest" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.ShortCircuitTest@&lt;init&gt;(sup:ch.ninecode.model.TransformerTest,energisedEndStep:Int,groundedEndStep:Int,leakageImpedance:Double,leakageImpedanceZero:Double,loss:Double,lossZero:Double,EnergisedEnd:String,GroundedEnds:List[String]):ch.ninecode.model.ShortCircuitTest" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="TransformerTest.html" class="extype" name="ch.ninecode.model.TransformerTest">TransformerTest</a> Reference to the superclass object.</p></dd><dt class="param">energisedEndStep</dt><dd class="cmt"><p>Tap step number for the energised end of the test pair.</p></dd><dt class="param">groundedEndStep</dt><dd class="cmt"><p>Tap step number for the grounded end of the test pair.</p></dd><dt class="param">leakageImpedance</dt><dd class="cmt"><p>Leakage impedance measured from a positive-sequence or single-phase short-circuit test.</p></dd><dt class="param">leakageImpedanceZero</dt><dd class="cmt"><p>Leakage impedance measured from a zero-sequence short-circuit test.</p></dd><dt class="param">loss</dt><dd class="cmt"><p>Load losses from a positive-sequence or single-phase short-circuit test.</p></dd><dt class="param">lossZero</dt><dd class="cmt"><p>Load losses from a zero-sequence short-circuit test.</p></dd><dt class="param">EnergisedEnd</dt><dd class="cmt"><p><a href="TransformerEndInfo.html" class="extype" name="ch.ninecode.model.TransformerEndInfo">TransformerEndInfo</a> Transformer end that voltage is applied to in this short-circuit test.
-       The test voltage is chosen to induce rated current in the energised end.</p></dd></dl></div>
+       The test voltage is chosen to induce rated current in the energised end.</p></dd><dt class="param">GroundedEnds</dt><dd class="cmt"><p><a href="TransformerEndInfo.html" class="extype" name="ch.ninecode.model.TransformerEndInfo">TransformerEndInfo</a> All ends short-circuited in this short-circuit test.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -205,6 +205,23 @@
     </span>
       <p class="shortcomment cmt"><a href="TransformerEndInfo.html" class="extype" name="ch.ninecode.model.TransformerEndInfo">TransformerEndInfo</a> Transformer end that voltage is applied to in this short-circuit test.</p><div class="fullcomment"><div class="comment cmt"><p><a href="TransformerEndInfo.html" class="extype" name="ch.ninecode.model.TransformerEndInfo">TransformerEndInfo</a> Transformer end that voltage is applied to in this short-circuit test.
        The test voltage is chosen to induce rated current in the energised end.</p></div></div>
+    </li><li name="ch.ninecode.model.ShortCircuitTest#GroundedEnds" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="GroundedEnds:List[String]"></a>
+      <a id="GroundedEnds:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">GroundedEnds</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.ShortCircuitTest@GroundedEnds:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="TransformerEndInfo.html" class="extype" name="ch.ninecode.model.TransformerEndInfo">TransformerEndInfo</a> All ends short-circuited in this short-circuit test.</p>
     </li><li name="ch.ninecode.model.ShortCircuitTest#TransformerTest" visbl="pub" data-isabs="false" fullComment="yes" group="Hierarchy">
       <a id="TransformerTest:ch.ninecode.model.TransformerTest"></a>
       <a id="TransformerTest:TransformerTest"></a>

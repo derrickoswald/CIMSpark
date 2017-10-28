@@ -106,6 +106,7 @@ extends
  * @param source <em>undocumented</em>
  * @param terminationDate <em>undocumented</em>
  * @param unitOfMeasure The UOM for the current value of the Bill Determinant.
+ * @param ChargeComponents [[ch.ninecode.model.ChargeComponent ChargeComponent]] A BillDeterminant can have 0-n ChargeComponent and a ChargeComponent can associate to 0-n BillDeterminant.
  * @param ChargeProfile [[ch.ninecode.model.ChargeProfile ChargeProfile]] <em>undocumented</em>
  * @param MktUserAttribute [[ch.ninecode.model.MktUserAttribute MktUserAttribute]] <em>undocumented</em>
  * @group MarketResults
@@ -132,6 +133,7 @@ case class BillDeterminant
     source: String,
     terminationDate: String,
     unitOfMeasure: String,
+    ChargeComponents: List[String],
     ChargeProfile: String,
     MktUserAttribute: List[String]
 )
@@ -141,7 +143,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null, null, null, null, 0, null, null, null, null, null, null, null, null, null, null, List()) }
+    def this () = { this (null, null, null, null, null, null, null, null, 0, null, null, null, null, null, null, null, null, null, List(), null, List()) }
     /**
      * Return the superclass object.
      *
@@ -184,8 +186,9 @@ extends
         emitelem (14, source)
         emitelem (15, terminationDate)
         emitelem (16, unitOfMeasure)
-        emitattr (17, ChargeProfile)
-        emitattrs (18, MktUserAttribute)
+        emitattrs (17, ChargeComponents)
+        emitattr (18, ChargeProfile)
+        emitattrs (19, MktUserAttribute)
         s.toString
     }
     override def export: String =
@@ -216,6 +219,7 @@ extends
         "source",
         "terminationDate",
         "unitOfMeasure",
+        "ChargeComponents",
         "ChargeProfile",
         "MktUserAttribute"
     )
@@ -236,8 +240,9 @@ extends
     val source: Fielder = parse_element (element (cls, fields(14)))
     val terminationDate: Fielder = parse_element (element (cls, fields(15)))
     val unitOfMeasure: Fielder = parse_element (element (cls, fields(16)))
-    val ChargeProfile: Fielder = parse_attribute (attribute (cls, fields(17)))
-    val MktUserAttribute: FielderMultiple = parse_attributes (attribute (cls, fields(18)))
+    val ChargeComponents: FielderMultiple = parse_attributes (attribute (cls, fields(17)))
+    val ChargeProfile: Fielder = parse_attribute (attribute (cls, fields(18)))
+    val MktUserAttribute: FielderMultiple = parse_attributes (attribute (cls, fields(19)))
 
     def parse (context: Context): BillDeterminant =
     {
@@ -262,13 +267,15 @@ extends
             mask (source (), 14),
             mask (terminationDate (), 15),
             mask (unitOfMeasure (), 16),
-            mask (ChargeProfile (), 17),
-            masks (MktUserAttribute (), 18)
+            masks (ChargeComponents (), 17),
+            mask (ChargeProfile (), 18),
+            masks (MktUserAttribute (), 19)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
+        Relationship ("ChargeComponents", "ChargeComponent", true),
         Relationship ("ChargeProfile", "ChargeProfile", false),
         Relationship ("MktUserAttribute", "MktUserAttribute", true)
     )
@@ -280,12 +287,12 @@ extends
  * @param sup [[ch.ninecode.model.Profile Profile]] Reference to the superclass object.
  * @param frequency The calculation frequency, daily or monthly.
  * @param numberInterval The number of intervals in the profile data.
- * @param typ The type of profile.
- *        It could be amount, price, or quantity.
  * @param unitOfMeasure The unit of measure applied to the value attribute of the profile data.
  * @param Bid [[ch.ninecode.model.Bid Bid]] <em>undocumented</em>
  * @param BillDeterminant [[ch.ninecode.model.BillDeterminant BillDeterminant]] <em>undocumented</em>
  * @param PassTroughBill [[ch.ninecode.model.PassThroughBill PassThroughBill]] <em>undocumented</em>
+ * @param `type` The type of profile.
+ *        It could be amount, price, or quantity.
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
@@ -295,11 +302,11 @@ case class ChargeProfile
     override val sup: Profile,
     frequency: String,
     numberInterval: Int,
-    typ: String,
     unitOfMeasure: String,
     Bid: String,
     BillDeterminant: String,
-    PassTroughBill: String
+    PassTroughBill: String,
+    `type`: String
 )
 extends
     Element
@@ -334,11 +341,11 @@ extends
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ChargeProfile.fields (position), value)
         emitelem (0, frequency)
         emitelem (1, numberInterval)
-        emitelem (2, typ)
-        emitelem (3, unitOfMeasure)
-        emitattr (4, Bid)
-        emitattr (5, BillDeterminant)
-        emitattr (6, PassTroughBill)
+        emitelem (2, unitOfMeasure)
+        emitattr (3, Bid)
+        emitattr (4, BillDeterminant)
+        emitattr (5, PassTroughBill)
+        emitelem (6, `type`)
         s.toString
     }
     override def export: String =
@@ -354,19 +361,19 @@ extends
     val fields: Array[String] = Array[String] (
         "frequency",
         "numberInterval",
-        "type",
         "unitOfMeasure",
         "Bid",
         "BillDeterminant",
-        "PassTroughBill"
+        "PassTroughBill",
+        "type"
     )
     val frequency: Fielder = parse_element (element (cls, fields(0)))
     val numberInterval: Fielder = parse_element (element (cls, fields(1)))
-    val typ: Fielder = parse_element (element (cls, fields(2)))
-    val unitOfMeasure: Fielder = parse_element (element (cls, fields(3)))
-    val Bid: Fielder = parse_attribute (attribute (cls, fields(4)))
-    val BillDeterminant: Fielder = parse_attribute (attribute (cls, fields(5)))
-    val PassTroughBill: Fielder = parse_attribute (attribute (cls, fields(6)))
+    val unitOfMeasure: Fielder = parse_element (element (cls, fields(2)))
+    val Bid: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val BillDeterminant: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val PassTroughBill: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val `type`: Fielder = parse_element (element (cls, fields(6)))
 
     def parse (context: Context): ChargeProfile =
     {
@@ -376,11 +383,11 @@ extends
             Profile.parse (context),
             mask (frequency (), 0),
             toInteger (mask (numberInterval (), 1)),
-            mask (typ (), 2),
-            mask (unitOfMeasure (), 3),
-            mask (Bid (), 4),
-            mask (BillDeterminant (), 5),
-            mask (PassTroughBill (), 6)
+            mask (unitOfMeasure (), 2),
+            mask (Bid (), 3),
+            mask (BillDeterminant (), 4),
+            mask (PassTroughBill (), 5),
+            mask (`type` (), 6)
         )
         ret.bitfields = bitfields
         ret
@@ -500,13 +507,15 @@ extends
  * Models results of market clearing which call for commitment of units.
  *
  * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
+ * @param Commitments [[ch.ninecode.model.Commitments Commitments]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
  */
 case class CommitmentClearing
 (
-    override val sup: MarketFactors
+    override val sup: MarketFactors,
+    Commitments: List[String]
 )
 extends
     Element
@@ -514,7 +523,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -535,7 +544,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = CommitmentClearing.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (CommitmentClearing.fields (position), x))
+        emitattrs (0, Commitments)
+        s.toString
     }
     override def export: String =
     {
@@ -547,17 +560,24 @@ object CommitmentClearing
 extends
     Parseable[CommitmentClearing]
 {
+    val fields: Array[String] = Array[String] (
+        "Commitments"
+    )
+    val Commitments: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): CommitmentClearing =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = CommitmentClearing (
-            MarketFactors.parse (context)
+            MarketFactors.parse (context),
+            masks (Commitments (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
-
+        Relationship ("Commitments", "Commitments", true)
     )
 }
 
@@ -580,6 +600,7 @@ extends
  * @param updateTimeStamp <em>undocumented</em>
  * @param updateType <em>undocumented</em>
  * @param updateUser <em>undocumented</em>
+ * @param CommitmentClearing [[ch.ninecode.model.CommitmentClearing CommitmentClearing]] <em>undocumented</em>
  * @param RegisteredResource [[ch.ninecode.model.RegisteredResource RegisteredResource]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
@@ -598,6 +619,7 @@ case class Commitments
     updateTimeStamp: String,
     updateType: String,
     updateUser: String,
+    CommitmentClearing: List[String],
     RegisteredResource: String
 )
 extends
@@ -606,7 +628,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, 0.0, null, null, null, 0, 0.0, null, null, null, null) }
+    def this () = { this (null, null, 0.0, null, null, null, 0, 0.0, null, null, null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -631,6 +653,7 @@ extends
         implicit val clz: String = Commitments.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Commitments.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Commitments.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Commitments.fields (position), x))
         emitattr (0, commitmentType)
         emitelem (1, instructionCost)
         emitattr (2, instructionType)
@@ -641,7 +664,8 @@ extends
         emitelem (7, updateTimeStamp)
         emitattr (8, updateType)
         emitelem (9, updateUser)
-        emitattr (10, RegisteredResource)
+        emitattrs (10, CommitmentClearing)
+        emitattr (11, RegisteredResource)
         s.toString
     }
     override def export: String =
@@ -665,6 +689,7 @@ extends
         "updateTimeStamp",
         "updateType",
         "updateUser",
+        "CommitmentClearing",
         "RegisteredResource"
     )
     val commitmentType: Fielder = parse_attribute (attribute (cls, fields(0)))
@@ -677,7 +702,8 @@ extends
     val updateTimeStamp: Fielder = parse_element (element (cls, fields(7)))
     val updateType: Fielder = parse_attribute (attribute (cls, fields(8)))
     val updateUser: Fielder = parse_element (element (cls, fields(9)))
-    val RegisteredResource: Fielder = parse_attribute (attribute (cls, fields(10)))
+    val CommitmentClearing: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
+    val RegisteredResource: Fielder = parse_attribute (attribute (cls, fields(11)))
 
     def parse (context: Context): Commitments =
     {
@@ -695,12 +721,14 @@ extends
             mask (updateTimeStamp (), 7),
             mask (updateType (), 8),
             mask (updateUser (), 9),
-            mask (RegisteredResource (), 10)
+            masks (CommitmentClearing (), 10),
+            mask (RegisteredResource (), 11)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
+        Relationship ("CommitmentClearing", "CommitmentClearing", true),
         Relationship ("RegisteredResource", "RegisteredResource", false)
     )
 }
@@ -973,6 +1001,7 @@ extends
  * @param updateTimeStamp <em>undocumented</em>
  * @param updateType <em>undocumented</em>
  * @param updateUser <em>undocumented</em>
+ * @param InstructionClearingDOP [[ch.ninecode.model.InstructionClearingDOP InstructionClearingDOP]] <em>undocumented</em>
  * @param RegisteredResouce [[ch.ninecode.model.RegisteredResource RegisteredResource]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
@@ -988,6 +1017,7 @@ case class DopInstruction
     updateTimeStamp: String,
     updateType: String,
     updateUser: String,
+    InstructionClearingDOP: List[String],
     RegisteredResouce: String
 )
 extends
@@ -996,7 +1026,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0, null, null, null, null, null, null) }
+    def this () = { this (null, 0.0, 0, null, null, null, null, null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -1021,6 +1051,7 @@ extends
         implicit val clz: String = DopInstruction.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (DopInstruction.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (DopInstruction.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (DopInstruction.fields (position), x))
         emitelem (0, mwDOP)
         emitelem (1, plotPriority)
         emitattr (2, runIndicatorDOP)
@@ -1028,7 +1059,8 @@ extends
         emitelem (4, updateTimeStamp)
         emitattr (5, updateType)
         emitelem (6, updateUser)
-        emitattr (7, RegisteredResouce)
+        emitattrs (7, InstructionClearingDOP)
+        emitattr (8, RegisteredResouce)
         s.toString
     }
     override def export: String =
@@ -1049,6 +1081,7 @@ extends
         "updateTimeStamp",
         "updateType",
         "updateUser",
+        "InstructionClearingDOP",
         "RegisteredResouce"
     )
     val mwDOP: Fielder = parse_element (element (cls, fields(0)))
@@ -1058,7 +1091,8 @@ extends
     val updateTimeStamp: Fielder = parse_element (element (cls, fields(4)))
     val updateType: Fielder = parse_attribute (attribute (cls, fields(5)))
     val updateUser: Fielder = parse_element (element (cls, fields(6)))
-    val RegisteredResouce: Fielder = parse_attribute (attribute (cls, fields(7)))
+    val InstructionClearingDOP: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
+    val RegisteredResouce: Fielder = parse_attribute (attribute (cls, fields(8)))
 
     def parse (context: Context): DopInstruction =
     {
@@ -1073,12 +1107,14 @@ extends
             mask (updateTimeStamp (), 4),
             mask (updateType (), 5),
             mask (updateUser (), 6),
-            mask (RegisteredResouce (), 7)
+            masks (InstructionClearingDOP (), 7),
+            mask (RegisteredResouce (), 8)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
+        Relationship ("InstructionClearingDOP", "InstructionClearingDOP", true),
         Relationship ("RegisteredResouce", "RegisteredResource", false)
     )
 }
@@ -1115,6 +1151,7 @@ extends
  * @param supplementalEnergy Supplemental Energy procure by Real Time Dispatch.
  * @param unitStatus Output results from the case identifying the reason the unit was committed by the software.
  * @param DOT Dispatch operating target value.
+ * @param InstructionClearingDOT [[ch.ninecode.model.InstructionClearingDOT InstructionClearingDOT]] <em>undocumented</em>
  * @param RegisteredResource [[ch.ninecode.model.RegisteredResource RegisteredResource]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
@@ -1143,6 +1180,7 @@ case class DotInstruction
     supplementalEnergy: Double,
     unitStatus: Int,
     DOT: Double,
+    InstructionClearingDOT: List[String],
     RegisteredResource: String
 )
 extends
@@ -1151,7 +1189,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0.0, null, false, 0.0, 0.0, 0.0, null, 0.0, null, 0.0, 0.0, 0.0, 0, 0.0, null) }
+    def this () = { this (null, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0.0, null, false, 0.0, 0.0, 0.0, null, 0.0, null, 0.0, 0.0, 0.0, 0, 0.0, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -1176,6 +1214,7 @@ extends
         implicit val clz: String = DotInstruction.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (DotInstruction.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (DotInstruction.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (DotInstruction.fields (position), x))
         emitelem (0, actualRampRate)
         emitattr (1, compliantIndicator)
         emitelem (2, economicMaxOverride)
@@ -1196,7 +1235,8 @@ extends
         emitelem (17, supplementalEnergy)
         emitelem (18, unitStatus)
         emitelem (19, DOT)
-        emitattr (20, RegisteredResource)
+        emitattrs (20, InstructionClearingDOT)
+        emitattr (21, RegisteredResource)
         s.toString
     }
     override def export: String =
@@ -1230,6 +1270,7 @@ extends
         "supplementalEnergy",
         "unitStatus",
         "DOT",
+        "InstructionClearingDOT",
         "RegisteredResource"
     )
     val actualRampRate: Fielder = parse_element (element (cls, fields(0)))
@@ -1252,7 +1293,8 @@ extends
     val supplementalEnergy: Fielder = parse_element (element (cls, fields(17)))
     val unitStatus: Fielder = parse_element (element (cls, fields(18)))
     val DOT: Fielder = parse_element (element (cls, fields(19)))
-    val RegisteredResource: Fielder = parse_attribute (attribute (cls, fields(20)))
+    val InstructionClearingDOT: FielderMultiple = parse_attributes (attribute (cls, fields(20)))
+    val RegisteredResource: Fielder = parse_attribute (attribute (cls, fields(21)))
 
     def parse (context: Context): DotInstruction =
     {
@@ -1280,12 +1322,14 @@ extends
             toDouble (mask (supplementalEnergy (), 17)),
             toInteger (mask (unitStatus (), 18)),
             toDouble (mask (DOT (), 19)),
-            mask (RegisteredResource (), 20)
+            masks (InstructionClearingDOT (), 20),
+            mask (RegisteredResource (), 21)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
+        Relationship ("InstructionClearingDOT", "InstructionClearingDOT", true),
         Relationship ("RegisteredResource", "RegisteredResource", false)
     )
 }
@@ -2203,13 +2247,15 @@ extends
  * Identifies interval
  *
  * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
+ * @param Instructions [[ch.ninecode.model.Instructions Instructions]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
  */
 case class InstructionClearing
 (
-    override val sup: MarketFactors
+    override val sup: MarketFactors,
+    Instructions: List[String]
 )
 extends
     Element
@@ -2217,7 +2263,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -2238,7 +2284,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = InstructionClearing.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (InstructionClearing.fields (position), x))
+        emitattrs (0, Instructions)
+        s.toString
     }
     override def export: String =
     {
@@ -2250,17 +2300,24 @@ object InstructionClearing
 extends
     Parseable[InstructionClearing]
 {
+    val fields: Array[String] = Array[String] (
+        "Instructions"
+    )
+    val Instructions: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): InstructionClearing =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = InstructionClearing (
-            MarketFactors.parse (context)
+            MarketFactors.parse (context),
+            masks (Instructions (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
-
+        Relationship ("Instructions", "Instructions", true)
     )
 }
 
@@ -2270,13 +2327,15 @@ extends
  * Identifies interval
  *
  * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
+ * @param DopInstruction [[ch.ninecode.model.DopInstruction DopInstruction]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
  */
 case class InstructionClearingDOP
 (
-    override val sup: MarketFactors
+    override val sup: MarketFactors,
+    DopInstruction: List[String]
 )
 extends
     Element
@@ -2284,7 +2343,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -2305,7 +2364,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = InstructionClearingDOP.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (InstructionClearingDOP.fields (position), x))
+        emitattrs (0, DopInstruction)
+        s.toString
     }
     override def export: String =
     {
@@ -2317,17 +2380,24 @@ object InstructionClearingDOP
 extends
     Parseable[InstructionClearingDOP]
 {
+    val fields: Array[String] = Array[String] (
+        "DopInstruction"
+    )
+    val DopInstruction: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): InstructionClearingDOP =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = InstructionClearingDOP (
-            MarketFactors.parse (context)
+            MarketFactors.parse (context),
+            masks (DopInstruction (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
-
+        Relationship ("DopInstruction", "DopInstruction", true)
     )
 }
 
@@ -2339,6 +2409,7 @@ extends
  * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
  * @param contingencyActive Indication that the system is currently operating in a contingency mode.
  * @param dispatchMode <em>undocumented</em>
+ * @param DotInstruction [[ch.ninecode.model.DotInstruction DotInstruction]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
@@ -2347,7 +2418,8 @@ case class InstructionClearingDOT
 (
     override val sup: MarketFactors,
     contingencyActive: String,
-    dispatchMode: String
+    dispatchMode: String,
+    DotInstruction: List[String]
 )
 extends
     Element
@@ -2355,7 +2427,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null) }
+    def this () = { this (null, null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -2379,8 +2451,10 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = InstructionClearingDOT.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (InstructionClearingDOT.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (InstructionClearingDOT.fields (position), x))
         emitattr (0, contingencyActive)
         emitattr (1, dispatchMode)
+        emitattrs (2, DotInstruction)
         s.toString
     }
     override def export: String =
@@ -2395,10 +2469,12 @@ extends
 {
     val fields: Array[String] = Array[String] (
         "contingencyActive",
-        "dispatchMode"
+        "dispatchMode",
+        "DotInstruction"
     )
     val contingencyActive: Fielder = parse_attribute (attribute (cls, fields(0)))
     val dispatchMode: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val DotInstruction: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
 
     def parse (context: Context): InstructionClearingDOT =
     {
@@ -2407,13 +2483,14 @@ extends
         val ret = InstructionClearingDOT (
             MarketFactors.parse (context),
             mask (contingencyActive (), 0),
-            mask (dispatchMode (), 1)
+            mask (dispatchMode (), 1),
+            masks (DotInstruction (), 2)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
-
+        Relationship ("DotInstruction", "DotInstruction", true)
     )
 }
 
@@ -2437,6 +2514,7 @@ extends
  * @param updateTimeStamp <em>undocumented</em>
  * @param updateType <em>undocumented</em>
  * @param updateUser <em>undocumented</em>
+ * @param InstructionClearing [[ch.ninecode.model.InstructionClearing InstructionClearing]] <em>undocumented</em>
  * @param RegisteredResource [[ch.ninecode.model.RegisteredResource RegisteredResource]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
@@ -2456,6 +2534,7 @@ case class Instructions
     updateTimeStamp: String,
     updateType: String,
     updateUser: String,
+    InstructionClearing: List[String],
     RegisteredResource: String
 )
 extends
@@ -2464,7 +2543,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, null, 0.0, null, null, null, null, 0, null, null, null, null) }
+    def this () = { this (null, 0.0, null, 0.0, null, null, null, null, 0, null, null, null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -2489,6 +2568,7 @@ extends
         implicit val clz: String = Instructions.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Instructions.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Instructions.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Instructions.fields (position), x))
         emitelem (0, bindingDOT)
         emitattr (1, bindingInstruction)
         emitelem (2, instructionCost)
@@ -2500,7 +2580,8 @@ extends
         emitelem (8, updateTimeStamp)
         emitattr (9, updateType)
         emitelem (10, updateUser)
-        emitattr (11, RegisteredResource)
+        emitattrs (11, InstructionClearing)
+        emitattr (12, RegisteredResource)
         s.toString
     }
     override def export: String =
@@ -2525,6 +2606,7 @@ extends
         "updateTimeStamp",
         "updateType",
         "updateUser",
+        "InstructionClearing",
         "RegisteredResource"
     )
     val bindingDOT: Fielder = parse_element (element (cls, fields(0)))
@@ -2538,7 +2620,8 @@ extends
     val updateTimeStamp: Fielder = parse_element (element (cls, fields(8)))
     val updateType: Fielder = parse_attribute (attribute (cls, fields(9)))
     val updateUser: Fielder = parse_element (element (cls, fields(10)))
-    val RegisteredResource: Fielder = parse_attribute (attribute (cls, fields(11)))
+    val InstructionClearing: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
+    val RegisteredResource: Fielder = parse_attribute (attribute (cls, fields(12)))
 
     def parse (context: Context): Instructions =
     {
@@ -2557,12 +2640,14 @@ extends
             mask (updateTimeStamp (), 8),
             mask (updateType (), 9),
             mask (updateUser (), 10),
-            mask (RegisteredResource (), 11)
+            masks (InstructionClearing (), 11),
+            mask (RegisteredResource (), 12)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
+        Relationship ("InstructionClearing", "InstructionClearing", true),
         Relationship ("RegisteredResource", "RegisteredResource", false)
     )
 }
@@ -2954,6 +3039,7 @@ extends
  * @param resourceStatus Interval Test Status
  *        'N' - not applicable
  * @param MPMTestCategory [[ch.ninecode.model.MPMTestCategory MPMTestCategory]] <em>undocumented</em>
+ * @param MitigatedBidClearing [[ch.ninecode.model.MitigatedBidClearing MitigatedBidClearing]] <em>undocumented</em>
  * @param RegisteredResource [[ch.ninecode.model.RegisteredResource RegisteredResource]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
@@ -2964,6 +3050,7 @@ case class MPMResourceStatus
     override val sup: BasicElement,
     resourceStatus: String,
     MPMTestCategory: String,
+    MitigatedBidClearing: List[String],
     RegisteredResource: String
 )
 extends
@@ -2972,7 +3059,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null) }
+    def this () = { this (null, null, null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -2997,9 +3084,11 @@ extends
         implicit val clz: String = MPMResourceStatus.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (MPMResourceStatus.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (MPMResourceStatus.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (MPMResourceStatus.fields (position), x))
         emitelem (0, resourceStatus)
         emitattr (1, MPMTestCategory)
-        emitattr (2, RegisteredResource)
+        emitattrs (2, MitigatedBidClearing)
+        emitattr (3, RegisteredResource)
         s.toString
     }
     override def export: String =
@@ -3015,11 +3104,13 @@ extends
     val fields: Array[String] = Array[String] (
         "resourceStatus",
         "MPMTestCategory",
+        "MitigatedBidClearing",
         "RegisteredResource"
     )
     val resourceStatus: Fielder = parse_element (element (cls, fields(0)))
     val MPMTestCategory: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val RegisteredResource: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val MitigatedBidClearing: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val RegisteredResource: Fielder = parse_attribute (attribute (cls, fields(3)))
 
     def parse (context: Context): MPMResourceStatus =
     {
@@ -3029,13 +3120,15 @@ extends
             BasicElement.parse (context),
             mask (resourceStatus (), 0),
             mask (MPMTestCategory (), 1),
-            mask (RegisteredResource (), 2)
+            masks (MitigatedBidClearing (), 2),
+            mask (RegisteredResource (), 3)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
         Relationship ("MPMTestCategory", "MPMTestCategory", false),
+        Relationship ("MitigatedBidClearing", "MitigatedBidClearing", true),
         Relationship ("RegisteredResource", "RegisteredResource", false)
     )
 }
@@ -3770,6 +3863,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param Bid [[ch.ninecode.model.Bid Bid]] <em>undocumented</em>
+ * @param MitigatedBidClearing [[ch.ninecode.model.MitigatedBidClearing MitigatedBidClearing]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
@@ -3777,7 +3871,8 @@ extends
 case class MitigatedBid
 (
     override val sup: IdentifiedObject,
-    Bid: String
+    Bid: String,
+    MitigatedBidClearing: List[String]
 )
 extends
     Element
@@ -3785,7 +3880,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null) }
+    def this () = { this (null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -3809,7 +3904,9 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MitigatedBid.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (MitigatedBid.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (MitigatedBid.fields (position), x))
         emitattr (0, Bid)
+        emitattrs (1, MitigatedBidClearing)
         s.toString
     }
     override def export: String =
@@ -3823,9 +3920,11 @@ extends
     Parseable[MitigatedBid]
 {
     val fields: Array[String] = Array[String] (
-        "Bid"
+        "Bid",
+        "MitigatedBidClearing"
     )
     val Bid: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val MitigatedBidClearing: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): MitigatedBid =
     {
@@ -3833,13 +3932,15 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = MitigatedBid (
             IdentifiedObject.parse (context),
-            mask (Bid (), 0)
+            mask (Bid (), 0),
+            masks (MitigatedBidClearing (), 1)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("Bid", "Bid", false)
+        Relationship ("Bid", "Bid", false),
+        Relationship ("MitigatedBidClearing", "MitigatedBidClearing", true)
     )
 }
 
@@ -3849,13 +3950,19 @@ extends
  * Interval based.
  *
  * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
+ * @param MPMResourceStatus [[ch.ninecode.model.MPMResourceStatus MPMResourceStatus]] <em>undocumented</em>
+ * @param MitigatedBid [[ch.ninecode.model.MitigatedBid MitigatedBid]] <em>undocumented</em>
+ * @param RMRDetermination [[ch.ninecode.model.RMRDetermination RMRDetermination]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
  */
 case class MitigatedBidClearing
 (
-    override val sup: MarketFactors
+    override val sup: MarketFactors,
+    MPMResourceStatus: List[String],
+    MitigatedBid: List[String],
+    RMRDetermination: List[String]
 )
 extends
     Element
@@ -3863,7 +3970,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -3884,7 +3991,13 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = MitigatedBidClearing.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (MitigatedBidClearing.fields (position), x))
+        emitattrs (0, MPMResourceStatus)
+        emitattrs (1, MitigatedBid)
+        emitattrs (2, RMRDetermination)
+        s.toString
     }
     override def export: String =
     {
@@ -3896,17 +4009,32 @@ object MitigatedBidClearing
 extends
     Parseable[MitigatedBidClearing]
 {
+    val fields: Array[String] = Array[String] (
+        "MPMResourceStatus",
+        "MitigatedBid",
+        "RMRDetermination"
+    )
+    val MPMResourceStatus: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val MitigatedBid: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val RMRDetermination: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
 
     def parse (context: Context): MitigatedBidClearing =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = MitigatedBidClearing (
-            MarketFactors.parse (context)
+            MarketFactors.parse (context),
+            masks (MPMResourceStatus (), 0),
+            masks (MitigatedBid (), 1),
+            masks (RMRDetermination (), 2)
         )
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
-
+        Relationship ("MPMResourceStatus", "MPMResourceStatus", true),
+        Relationship ("MitigatedBid", "MitigatedBid", true),
+        Relationship ("RMRDetermination", "RMRDetermination", true)
     )
 }
 
@@ -4457,6 +4585,7 @@ extends
  *
  * @param sup Reference to the superclass object.
  * @param Bid [[ch.ninecode.model.Bid Bid]] <em>undocumented</em>
+ * @param MitigatedBidClearing [[ch.ninecode.model.MitigatedBidClearing MitigatedBidClearing]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
@@ -4464,7 +4593,8 @@ extends
 case class RMRDetermination
 (
     override val sup: BasicElement,
-    Bid: String
+    Bid: String,
+    MitigatedBidClearing: List[String]
 )
 extends
     Element
@@ -4472,7 +4602,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null) }
+    def this () = { this (null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -4496,7 +4626,9 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = RMRDetermination.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (RMRDetermination.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (RMRDetermination.fields (position), x))
         emitattr (0, Bid)
+        emitattrs (1, MitigatedBidClearing)
         s.toString
     }
     override def export: String =
@@ -4510,9 +4642,11 @@ extends
     Parseable[RMRDetermination]
 {
     val fields: Array[String] = Array[String] (
-        "Bid"
+        "Bid",
+        "MitigatedBidClearing"
     )
     val Bid: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val MitigatedBidClearing: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): RMRDetermination =
     {
@@ -4520,13 +4654,15 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = RMRDetermination (
             BasicElement.parse (context),
-            mask (Bid (), 0)
+            mask (Bid (), 0),
+            masks (MitigatedBidClearing (), 1)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("Bid", "Bid", false)
+        Relationship ("Bid", "Bid", false),
+        Relationship ("MitigatedBidClearing", "MitigatedBidClearing", true)
     )
 }
 
@@ -4649,6 +4785,7 @@ extends
  * @param updateTimeStamp <em>undocumented</em>
  * @param updateType <em>undocumented</em>
  * @param updateUser <em>undocumented</em>
+ * @param ClearingResourceAward [[ch.ninecode.model.ResourceAwardClearing ResourceAwardClearing]] <em>undocumented</em>
  * @param RUCAward The RUC Award of a resource is the portion of the RUC Capacity that is not under RA or RMR contracts.
  *        The RUC Award of a resource is the portion of the RUC Capacity that is eligible for RUC Availability payment.
  * @param RUCCapacity The RUC Capacity of a resource is the difference between (i) the RUC Schedule and (ii) the higher of the DA Schedule and the Minimum Load.
@@ -4667,6 +4804,7 @@ case class RUCAwardInstruction
     updateTimeStamp: String,
     updateType: String,
     updateUser: String,
+    ClearingResourceAward: List[String],
     RUCAward: Double,
     RUCCapacity: Double,
     RUCSchedule: Double,
@@ -4678,7 +4816,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, null, null, null, null, 0.0, 0.0, 0.0, null) }
+    def this () = { this (null, 0.0, null, null, null, null, List(), 0.0, 0.0, 0.0, null) }
     /**
      * Return the superclass object.
      *
@@ -4703,15 +4841,17 @@ extends
         implicit val clz: String = RUCAwardInstruction.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (RUCAwardInstruction.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (RUCAwardInstruction.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (RUCAwardInstruction.fields (position), x))
         emitelem (0, clearedPrice)
         emitattr (1, marketProductType)
         emitelem (2, updateTimeStamp)
         emitattr (3, updateType)
         emitelem (4, updateUser)
-        emitelem (5, RUCAward)
-        emitelem (6, RUCCapacity)
-        emitelem (7, RUCSchedule)
-        emitattr (8, RegisteredResource)
+        emitattrs (5, ClearingResourceAward)
+        emitelem (6, RUCAward)
+        emitelem (7, RUCCapacity)
+        emitelem (8, RUCSchedule)
+        emitattr (9, RegisteredResource)
         s.toString
     }
     override def export: String =
@@ -4730,6 +4870,7 @@ extends
         "updateTimeStamp",
         "updateType",
         "updateUser",
+        "ClearingResourceAward",
         "RUCAward",
         "RUCCapacity",
         "RUCSchedule",
@@ -4740,10 +4881,11 @@ extends
     val updateTimeStamp: Fielder = parse_element (element (cls, fields(2)))
     val updateType: Fielder = parse_attribute (attribute (cls, fields(3)))
     val updateUser: Fielder = parse_element (element (cls, fields(4)))
-    val RUCAward: Fielder = parse_element (element (cls, fields(5)))
-    val RUCCapacity: Fielder = parse_element (element (cls, fields(6)))
-    val RUCSchedule: Fielder = parse_element (element (cls, fields(7)))
-    val RegisteredResource: Fielder = parse_attribute (attribute (cls, fields(8)))
+    val ClearingResourceAward: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
+    val RUCAward: Fielder = parse_element (element (cls, fields(6)))
+    val RUCCapacity: Fielder = parse_element (element (cls, fields(7)))
+    val RUCSchedule: Fielder = parse_element (element (cls, fields(8)))
+    val RegisteredResource: Fielder = parse_attribute (attribute (cls, fields(9)))
 
     def parse (context: Context): RUCAwardInstruction =
     {
@@ -4756,15 +4898,17 @@ extends
             mask (updateTimeStamp (), 2),
             mask (updateType (), 3),
             mask (updateUser (), 4),
-            toDouble (mask (RUCAward (), 5)),
-            toDouble (mask (RUCCapacity (), 6)),
-            toDouble (mask (RUCSchedule (), 7)),
-            mask (RegisteredResource (), 8)
+            masks (ClearingResourceAward (), 5),
+            toDouble (mask (RUCAward (), 6)),
+            toDouble (mask (RUCCapacity (), 7)),
+            toDouble (mask (RUCSchedule (), 8)),
+            mask (RegisteredResource (), 9)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
+        Relationship ("ClearingResourceAward", "ResourceAwardClearing", true),
         Relationship ("RegisteredResource", "RegisteredResource", false)
     )
 }
@@ -4777,6 +4921,8 @@ extends
  * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
  * @param contingencyActive Indication that the system is currently operating in a contingency mode.
  * @param dispatchMode <em>undocumented</em>
+ * @param RUCAwardInstruction [[ch.ninecode.model.RUCAwardInstruction RUCAwardInstruction]] <em>undocumented</em>
+ * @param ResourceAwardInstruction [[ch.ninecode.model.ResourceAwardInstruction ResourceAwardInstruction]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
@@ -4785,7 +4931,9 @@ case class ResourceAwardClearing
 (
     override val sup: MarketFactors,
     contingencyActive: String,
-    dispatchMode: String
+    dispatchMode: String,
+    RUCAwardInstruction: List[String],
+    ResourceAwardInstruction: List[String]
 )
 extends
     Element
@@ -4793,7 +4941,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null) }
+    def this () = { this (null, null, null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -4817,8 +4965,11 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ResourceAwardClearing.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ResourceAwardClearing.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ResourceAwardClearing.fields (position), x))
         emitattr (0, contingencyActive)
         emitattr (1, dispatchMode)
+        emitattrs (2, RUCAwardInstruction)
+        emitattrs (3, ResourceAwardInstruction)
         s.toString
     }
     override def export: String =
@@ -4833,10 +4984,14 @@ extends
 {
     val fields: Array[String] = Array[String] (
         "contingencyActive",
-        "dispatchMode"
+        "dispatchMode",
+        "RUCAwardInstruction",
+        "ResourceAwardInstruction"
     )
     val contingencyActive: Fielder = parse_attribute (attribute (cls, fields(0)))
     val dispatchMode: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val RUCAwardInstruction: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val ResourceAwardInstruction: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
 
     def parse (context: Context): ResourceAwardClearing =
     {
@@ -4845,13 +5000,16 @@ extends
         val ret = ResourceAwardClearing (
             MarketFactors.parse (context),
             mask (contingencyActive (), 0),
-            mask (dispatchMode (), 1)
+            mask (dispatchMode (), 1),
+            masks (RUCAwardInstruction (), 2),
+            masks (ResourceAwardInstruction (), 3)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
-
+        Relationship ("RUCAwardInstruction", "RUCAwardInstruction", true),
+        Relationship ("ResourceAwardInstruction", "ResourceAwardInstruction", true)
     )
 }
 
@@ -4905,6 +5063,7 @@ extends
  * @param updateTimeStamp <em>undocumented</em>
  * @param updateType <em>undocumented</em>
  * @param updateUser <em>undocumented</em>
+ * @param ClearingResourceAward [[ch.ninecode.model.ResourceAwardClearing ResourceAwardClearing]] <em>undocumented</em>
  * @param MarketProduct [[ch.ninecode.model.MarketProduct MarketProduct]] <em>undocumented</em>
  * @param RegisteredResource [[ch.ninecode.model.RegisteredResource RegisteredResource]] <em>undocumented</em>
  * @group MarketResults
@@ -4942,6 +5101,7 @@ case class ResourceAwardInstruction
     updateTimeStamp: String,
     updateType: String,
     updateUser: String,
+    ClearingResourceAward: List[String],
     MarketProduct: String,
     RegisteredResource: String
 )
@@ -4951,7 +5111,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, null, false, 0.0, 0.0, 0.0, 0.0, null, 0.0, 0.0, 0.0, null, 0.0, null, null, null, null, null) }
+    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, null, false, 0.0, 0.0, 0.0, 0.0, null, 0.0, 0.0, 0.0, null, 0.0, null, null, null, List(), null, null) }
     /**
      * Return the superclass object.
      *
@@ -4976,6 +5136,7 @@ extends
         implicit val clz: String = ResourceAwardInstruction.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ResourceAwardInstruction.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ResourceAwardInstruction.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ResourceAwardInstruction.fields (position), x))
         emitelem (0, awardMW)
         emitelem (1, clearedMW)
         emitelem (2, clearedPrice)
@@ -5004,8 +5165,9 @@ extends
         emitelem (25, updateTimeStamp)
         emitattr (26, updateType)
         emitelem (27, updateUser)
-        emitattr (28, MarketProduct)
-        emitattr (29, RegisteredResource)
+        emitattrs (28, ClearingResourceAward)
+        emitattr (29, MarketProduct)
+        emitattr (30, RegisteredResource)
         s.toString
     }
     override def export: String =
@@ -5047,6 +5209,7 @@ extends
         "updateTimeStamp",
         "updateType",
         "updateUser",
+        "ClearingResourceAward",
         "MarketProduct",
         "RegisteredResource"
     )
@@ -5078,8 +5241,9 @@ extends
     val updateTimeStamp: Fielder = parse_element (element (cls, fields(25)))
     val updateType: Fielder = parse_attribute (attribute (cls, fields(26)))
     val updateUser: Fielder = parse_element (element (cls, fields(27)))
-    val MarketProduct: Fielder = parse_attribute (attribute (cls, fields(28)))
-    val RegisteredResource: Fielder = parse_attribute (attribute (cls, fields(29)))
+    val ClearingResourceAward: FielderMultiple = parse_attributes (attribute (cls, fields(28)))
+    val MarketProduct: Fielder = parse_attribute (attribute (cls, fields(29)))
+    val RegisteredResource: Fielder = parse_attribute (attribute (cls, fields(30)))
 
     def parse (context: Context): ResourceAwardInstruction =
     {
@@ -5115,13 +5279,15 @@ extends
             mask (updateTimeStamp (), 25),
             mask (updateType (), 26),
             mask (updateUser (), 27),
-            mask (MarketProduct (), 28),
-            mask (RegisteredResource (), 29)
+            masks (ClearingResourceAward (), 28),
+            mask (MarketProduct (), 29),
+            mask (RegisteredResource (), 30)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
+        Relationship ("ClearingResourceAward", "ResourceAwardClearing", true),
         Relationship ("MarketProduct", "MarketProduct", false),
         Relationship ("RegisteredResource", "RegisteredResource", false)
     )
@@ -5601,6 +5767,9 @@ extends
  * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param tradeDate The trade date on which the settlement is run.
  * @param EnergyMarket [[ch.ninecode.model.EnergyMarket EnergyMarket]] <em>undocumented</em>
+ * @param MajorChargeGroup [[ch.ninecode.model.MajorChargeGroup MajorChargeGroup]] <em>undocumented</em>
+ * @param MarketInvoiceLineItem [[ch.ninecode.model.MarketInvoiceLineItem MarketInvoiceLineItem]] <em>undocumented</em>
+ * @param MarketLedgerEntry [[ch.ninecode.model.MarketLedgerEntry MarketLedgerEntry]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
@@ -5609,7 +5778,10 @@ case class Settlement
 (
     override val sup: Document,
     tradeDate: String,
-    EnergyMarket: String
+    EnergyMarket: String,
+    MajorChargeGroup: List[String],
+    MarketInvoiceLineItem: List[String],
+    MarketLedgerEntry: List[String]
 )
 extends
     Element
@@ -5617,7 +5789,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null) }
+    def this () = { this (null, null, null, List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -5642,8 +5814,12 @@ extends
         implicit val clz: String = Settlement.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Settlement.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Settlement.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Settlement.fields (position), x))
         emitelem (0, tradeDate)
         emitattr (1, EnergyMarket)
+        emitattrs (2, MajorChargeGroup)
+        emitattrs (3, MarketInvoiceLineItem)
+        emitattrs (4, MarketLedgerEntry)
         s.toString
     }
     override def export: String =
@@ -5658,10 +5834,16 @@ extends
 {
     val fields: Array[String] = Array[String] (
         "tradeDate",
-        "EnergyMarket"
+        "EnergyMarket",
+        "MajorChargeGroup",
+        "MarketInvoiceLineItem",
+        "MarketLedgerEntry"
     )
     val tradeDate: Fielder = parse_element (element (cls, fields(0)))
     val EnergyMarket: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val MajorChargeGroup: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val MarketInvoiceLineItem: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val MarketLedgerEntry: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
 
     def parse (context: Context): Settlement =
     {
@@ -5670,13 +5852,19 @@ extends
         val ret = Settlement (
             Document.parse (context),
             mask (tradeDate (), 0),
-            mask (EnergyMarket (), 1)
+            mask (EnergyMarket (), 1),
+            masks (MajorChargeGroup (), 2),
+            masks (MarketInvoiceLineItem (), 3),
+            masks (MarketLedgerEntry (), 4)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
-        Relationship ("EnergyMarket", "EnergyMarket", false)
+        Relationship ("EnergyMarket", "EnergyMarket", false),
+        Relationship ("MajorChargeGroup", "MajorChargeGroup", true),
+        Relationship ("MarketInvoiceLineItem", "MarketInvoiceLineItem", true),
+        Relationship ("MarketLedgerEntry", "MarketLedgerEntry", true)
     )
 }
 

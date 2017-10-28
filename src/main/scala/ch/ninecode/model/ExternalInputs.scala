@@ -1765,6 +1765,7 @@ extends
  * @param sup Reference to the superclass object.
  * @param factor Used to calculate generation "participation" of an individual pnond in an AggregatePnode.
  * @param AggregatedPnode [[ch.ninecode.model.AggregatedPnode AggregatedPnode]] <em>undocumented</em>
+ * @param DistributionFactorSet [[ch.ninecode.model.DistributionFactorSet DistributionFactorSet]] <em>undocumented</em>
  * @param IndividualPnode [[ch.ninecode.model.IndividualPnode IndividualPnode]] <em>undocumented</em>
  * @group ExternalInputs
  * @groupname ExternalInputs Package ExternalInputs
@@ -1775,6 +1776,7 @@ case class GenDistributionFactor
     override val sup: BasicElement,
     factor: Double,
     AggregatedPnode: String,
+    DistributionFactorSet: List[String],
     IndividualPnode: String
 )
 extends
@@ -1783,7 +1785,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, null, null) }
+    def this () = { this (null, 0.0, null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -1808,9 +1810,11 @@ extends
         implicit val clz: String = GenDistributionFactor.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GenDistributionFactor.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (GenDistributionFactor.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (GenDistributionFactor.fields (position), x))
         emitelem (0, factor)
         emitattr (1, AggregatedPnode)
-        emitattr (2, IndividualPnode)
+        emitattrs (2, DistributionFactorSet)
+        emitattr (3, IndividualPnode)
         s.toString
     }
     override def export: String =
@@ -1826,11 +1830,13 @@ extends
     val fields: Array[String] = Array[String] (
         "factor",
         "AggregatedPnode",
+        "DistributionFactorSet",
         "IndividualPnode"
     )
     val factor: Fielder = parse_element (element (cls, fields(0)))
     val AggregatedPnode: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val IndividualPnode: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val DistributionFactorSet: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val IndividualPnode: Fielder = parse_attribute (attribute (cls, fields(3)))
 
     def parse (context: Context): GenDistributionFactor =
     {
@@ -1840,13 +1846,15 @@ extends
             BasicElement.parse (context),
             toDouble (mask (factor (), 0)),
             mask (AggregatedPnode (), 1),
-            mask (IndividualPnode (), 2)
+            masks (DistributionFactorSet (), 2),
+            mask (IndividualPnode (), 3)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
         Relationship ("AggregatedPnode", "AggregatedPnode", false),
+        Relationship ("DistributionFactorSet", "DistributionFactorSet", true),
         Relationship ("IndividualPnode", "IndividualPnode", false)
     )
 }
@@ -2399,6 +2407,7 @@ extends
  * @param pDistFactor Real power (MW) load distribution factor
  * @param qDistFactor Reactive power (MVAr) load distribution factor
  * @param AggregatedPnode [[ch.ninecode.model.AggregatedPnode AggregatedPnode]] <em>undocumented</em>
+ * @param DistributionFactorSet [[ch.ninecode.model.DistributionFactorSet DistributionFactorSet]] <em>undocumented</em>
  * @param IndividualPnode [[ch.ninecode.model.IndividualPnode IndividualPnode]] <em>undocumented</em>
  * @group ExternalInputs
  * @groupname ExternalInputs Package ExternalInputs
@@ -2410,6 +2419,7 @@ case class LoadDistributionFactor
     pDistFactor: Double,
     qDistFactor: Double,
     AggregatedPnode: String,
+    DistributionFactorSet: List[String],
     IndividualPnode: String
 )
 extends
@@ -2418,7 +2428,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, null, null) }
+    def this () = { this (null, 0.0, 0.0, null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -2443,10 +2453,12 @@ extends
         implicit val clz: String = LoadDistributionFactor.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (LoadDistributionFactor.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (LoadDistributionFactor.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (LoadDistributionFactor.fields (position), x))
         emitelem (0, pDistFactor)
         emitelem (1, qDistFactor)
         emitattr (2, AggregatedPnode)
-        emitattr (3, IndividualPnode)
+        emitattrs (3, DistributionFactorSet)
+        emitattr (4, IndividualPnode)
         s.toString
     }
     override def export: String =
@@ -2463,12 +2475,14 @@ extends
         "pDistFactor",
         "qDistFactor",
         "AggregatedPnode",
+        "DistributionFactorSet",
         "IndividualPnode"
     )
     val pDistFactor: Fielder = parse_element (element (cls, fields(0)))
     val qDistFactor: Fielder = parse_element (element (cls, fields(1)))
     val AggregatedPnode: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val IndividualPnode: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val DistributionFactorSet: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val IndividualPnode: Fielder = parse_attribute (attribute (cls, fields(4)))
 
     def parse (context: Context): LoadDistributionFactor =
     {
@@ -2479,13 +2493,15 @@ extends
             toDouble (mask (pDistFactor (), 0)),
             toDouble (mask (qDistFactor (), 1)),
             mask (AggregatedPnode (), 2),
-            mask (IndividualPnode (), 3)
+            masks (DistributionFactorSet (), 3),
+            mask (IndividualPnode (), 4)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
         Relationship ("AggregatedPnode", "AggregatedPnode", false),
+        Relationship ("DistributionFactorSet", "DistributionFactorSet", true),
         Relationship ("IndividualPnode", "IndividualPnode", false)
     )
 }
@@ -3468,13 +3484,15 @@ extends
  * A profile is a simpler curve type.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param ProfileDatas [[ch.ninecode.model.ProfileData ProfileData]] A profile has profile data associated with it.
  * @group ExternalInputs
  * @groupname ExternalInputs Package ExternalInputs
  * @groupdesc ExternalInputs Inputs to the market system from external sources.
  */
 case class Profile
 (
-    override val sup: IdentifiedObject
+    override val sup: IdentifiedObject,
+    ProfileDatas: List[String]
 )
 extends
     Element
@@ -3482,7 +3500,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -3503,7 +3521,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = Profile.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Profile.fields (position), x))
+        emitattrs (0, ProfileDatas)
+        s.toString
     }
     override def export: String =
     {
@@ -3515,17 +3537,24 @@ object Profile
 extends
     Parseable[Profile]
 {
+    val fields: Array[String] = Array[String] (
+        "ProfileDatas"
+    )
+    val ProfileDatas: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): Profile =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = Profile (
-            IdentifiedObject.parse (context)
+            IdentifiedObject.parse (context),
+            masks (ProfileDatas (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
-
+        Relationship ("ProfileDatas", "ProfileData", true)
     )
 }
 
@@ -4303,6 +4332,7 @@ extends
  *
  * @param sup Reference to the superclass object.
  * @param factor Used to calculate load "participation" of a connectivity node in an host control area
+ * @param DistributionFactorSet [[ch.ninecode.model.DistributionFactorSet DistributionFactorSet]] <em>undocumented</em>
  * @param HostControlArea [[ch.ninecode.model.HostControlArea HostControlArea]] <em>undocumented</em>
  * @param MktConnectivityNode [[ch.ninecode.model.MktConnectivityNode MktConnectivityNode]] <em>undocumented</em>
  * @group ExternalInputs
@@ -4313,6 +4343,7 @@ case class SysLoadDistributionFactor
 (
     override val sup: BasicElement,
     factor: Double,
+    DistributionFactorSet: List[String],
     HostControlArea: String,
     MktConnectivityNode: String
 )
@@ -4322,7 +4353,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, null, null) }
+    def this () = { this (null, 0.0, List(), null, null) }
     /**
      * Return the superclass object.
      *
@@ -4347,9 +4378,11 @@ extends
         implicit val clz: String = SysLoadDistributionFactor.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (SysLoadDistributionFactor.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (SysLoadDistributionFactor.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (SysLoadDistributionFactor.fields (position), x))
         emitelem (0, factor)
-        emitattr (1, HostControlArea)
-        emitattr (2, MktConnectivityNode)
+        emitattrs (1, DistributionFactorSet)
+        emitattr (2, HostControlArea)
+        emitattr (3, MktConnectivityNode)
         s.toString
     }
     override def export: String =
@@ -4364,12 +4397,14 @@ extends
 {
     val fields: Array[String] = Array[String] (
         "factor",
+        "DistributionFactorSet",
         "HostControlArea",
         "MktConnectivityNode"
     )
     val factor: Fielder = parse_element (element (cls, fields(0)))
-    val HostControlArea: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val MktConnectivityNode: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val DistributionFactorSet: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val HostControlArea: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val MktConnectivityNode: Fielder = parse_attribute (attribute (cls, fields(3)))
 
     def parse (context: Context): SysLoadDistributionFactor =
     {
@@ -4378,13 +4413,15 @@ extends
         val ret = SysLoadDistributionFactor (
             BasicElement.parse (context),
             toDouble (mask (factor (), 0)),
-            mask (HostControlArea (), 1),
-            mask (MktConnectivityNode (), 2)
+            masks (DistributionFactorSet (), 1),
+            mask (HostControlArea (), 2),
+            mask (MktConnectivityNode (), 3)
         )
         ret.bitfields = bitfields
         ret
     }
     val relations: List[Relationship] = List (
+        Relationship ("DistributionFactorSet", "DistributionFactorSet", true),
         Relationship ("HostControlArea", "HostControlArea", false),
         Relationship ("MktConnectivityNode", "MktConnectivityNode", false)
     )
@@ -5149,6 +5186,7 @@ extends
  * @param totalTransferCapability The total transmission capability of a transmission path in the reference direction.
  * @param DeliveryPoint [[ch.ninecode.model.ServicePoint ServicePoint]] A transmission path has a "point-of-delivery" service point
  * @param For [[ch.ninecode.model.TransmissionCorridor TransmissionCorridor]] A TransmissionPath is contained in a TransmissionCorridor.
+ * @param LocatedOn [[ch.ninecode.model.TransmissionProduct TransmissionProduct]] A transmission product is located on a transmission path.
  * @param PointOfReceipt [[ch.ninecode.model.ServicePoint ServicePoint]] A transmission path has a "point-of-receipt" service point
  * @group ExternalInputs
  * @groupname ExternalInputs Package ExternalInputs
@@ -5162,6 +5200,7 @@ case class TransmissionPath
     totalTransferCapability: Double,
     DeliveryPoint: String,
     For: String,
+    LocatedOn: List[String],
     PointOfReceipt: String
 )
 extends
@@ -5170,7 +5209,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, false, 0.0, null, null, null) }
+    def this () = { this (null, 0.0, false, 0.0, null, null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -5195,12 +5234,14 @@ extends
         implicit val clz: String = TransmissionPath.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TransmissionPath.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TransmissionPath.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (TransmissionPath.fields (position), x))
         emitelem (0, availTransferCapability)
         emitelem (1, parallelPathFlag)
         emitelem (2, totalTransferCapability)
         emitattr (3, DeliveryPoint)
         emitattr (4, For)
-        emitattr (5, PointOfReceipt)
+        emitattrs (5, LocatedOn)
+        emitattr (6, PointOfReceipt)
         s.toString
     }
     override def export: String =
@@ -5219,6 +5260,7 @@ extends
         "totalTransferCapability",
         "DeliveryPoint",
         "For",
+        "LocatedOn",
         "PointOfReceipt"
     )
     val availTransferCapability: Fielder = parse_element (element (cls, fields(0)))
@@ -5226,7 +5268,8 @@ extends
     val totalTransferCapability: Fielder = parse_element (element (cls, fields(2)))
     val DeliveryPoint: Fielder = parse_attribute (attribute (cls, fields(3)))
     val For: Fielder = parse_attribute (attribute (cls, fields(4)))
-    val PointOfReceipt: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val LocatedOn: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
+    val PointOfReceipt: Fielder = parse_attribute (attribute (cls, fields(6)))
 
     def parse (context: Context): TransmissionPath =
     {
@@ -5239,7 +5282,8 @@ extends
             toDouble (mask (totalTransferCapability (), 2)),
             mask (DeliveryPoint (), 3),
             mask (For (), 4),
-            mask (PointOfReceipt (), 5)
+            masks (LocatedOn (), 5),
+            mask (PointOfReceipt (), 6)
         )
         ret.bitfields = bitfields
         ret
@@ -5247,6 +5291,7 @@ extends
     val relations: List[Relationship] = List (
         Relationship ("DeliveryPoint", "ServicePoint", false),
         Relationship ("For", "TransmissionCorridor", false),
+        Relationship ("LocatedOn", "TransmissionProduct", true),
         Relationship ("PointOfReceipt", "ServicePoint", false)
     )
 }

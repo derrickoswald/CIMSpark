@@ -46,7 +46,7 @@ import ch.ninecode.cim.Relationship
  *        Typical Value = 1.13.
  * @param vtn Voltage limits (<i>V</i><i><sub>TN</sub></i>).
  *        Typical Value = 1.12.
- * @param _val Regulator voltage reference (<i>V</i><i><sub>AL</sub></i>).
+ * @param `val` Regulator voltage reference (<i>V</i><i><sub>AL</sub></i>).
  *        Typical Value = 5.5.
  * @group DiscontinuousExcitationControlDynamics
  * @groupname DiscontinuousExcitationControlDynamics Package DiscontinuousExcitationControlDynamics
@@ -74,7 +74,7 @@ case class DiscExcContIEEEDEC1A
     vtlmt: Double,
     vtm: Double,
     vtn: Double,
-    _val: Double
+    `val`: Double
 )
 extends
     Element
@@ -123,7 +123,7 @@ extends
         emitelem (14, vtlmt)
         emitelem (15, vtm)
         emitelem (16, vtn)
-        emitelem (17, _val)
+        emitelem (17, `val`)
         s.toString
     }
     override def export: String =
@@ -173,7 +173,7 @@ extends
     val vtlmt: Fielder = parse_element (element (cls, fields(14)))
     val vtm: Fielder = parse_element (element (cls, fields(15)))
     val vtn: Fielder = parse_element (element (cls, fields(16)))
-    val _val: Fielder = parse_element (element (cls, fields(17)))
+    val `val`: Fielder = parse_element (element (cls, fields(17)))
 
     def parse (context: Context): DiscExcContIEEEDEC1A =
     {
@@ -198,7 +198,7 @@ extends
             toDouble (mask (vtlmt (), 14)),
             toDouble (mask (vtm (), 15)),
             toDouble (mask (vtn (), 16)),
-            toDouble (mask (_val (), 17))
+            toDouble (mask (`val` (), 17))
         )
         ret.bitfields = bitfields
         ret

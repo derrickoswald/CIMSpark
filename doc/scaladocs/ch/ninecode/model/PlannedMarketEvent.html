@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>PlannedMarketEvent - CIMReader 2.11-2.2.0-2.4.0 API - ch.ninecode.model.PlannedMarketEvent</title>
-          <meta name="description" content="PlannedMarketEvent - CIMReader 2.11 - 2.2.0 - 2.4.0 API - ch.ninecode.model.PlannedMarketEvent" />
-          <meta name="keywords" content="PlannedMarketEvent CIMReader 2.11 2.2.0 2.4.0 API ch.ninecode.model.PlannedMarketEvent" />
+          <title>PlannedMarketEvent - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.PlannedMarketEvent</title>
+          <meta name="description" content="PlannedMarketEvent - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.PlannedMarketEvent" />
+          <meta name="keywords" content="PlannedMarketEvent CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.PlannedMarketEvent" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,13 +47,13 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">PlannedMarketEvent</span><span class="params">(<span name="sup">sup: <a href="BasicElement.html" class="extype" name="ch.ninecode.model.BasicElement">BasicElement</a></span>, <span name="description">description: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="eventType">eventType: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="plannedEventID">plannedEventID: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="plannedTime">plannedTime: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">PlannedMarketEvent</span><span class="params">(<span name="sup">sup: <a href="BasicElement.html" class="extype" name="ch.ninecode.model.BasicElement">BasicElement</a></span>, <span name="description">description: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="eventType">eventType: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="plannedEventID">plannedEventID: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="plannedTime">plannedTime: <span class="extype" name="scala.Int">Int</span></span>, <span name="PlannedMarket">PlannedMarket: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>This class represents planned events.</p><p>Used to model the various planned events in a market (closing time, clearing time, etc).
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">description</dt><dd class="cmt"><p>Description of the planned event.</p></dd><dt class="param">eventType</dt><dd class="cmt"><p>Planned event type.</p></dd><dt class="param">plannedEventID</dt><dd class="cmt"><p>Planned event identifier.</p></dd><dt class="param">plannedTime</dt><dd class="cmt"><p>This is relative time so that this attribute can be used by more than one planned market.
-       For example the bid submission is 10am everyday.</p></dd></dl><div class="toggleContainer block">
+       For example the bid submission is 10am everyday.</p></dd><dt class="param">PlannedMarket</dt><dd class="cmt"><p><a href="PlannedMarket.html" class="extype" name="ch.ninecode.model.PlannedMarket">PlannedMarket</a> A planned market shall have a set of planned events</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -110,7 +110,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.PlannedMarketEvent#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.BasicElement,description:String,eventType:String,plannedEventID:String,plannedTime:Int):ch.ninecode.model.PlannedMarketEvent"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.BasicElement,description:String,eventType:String,plannedEventID:String,plannedTime:Int,PlannedMarket:List[String]):ch.ninecode.model.PlannedMarketEvent"></a>
       <a id="&lt;init&gt;:PlannedMarketEvent"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -118,15 +118,15 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">PlannedMarketEvent</span><span class="params">(<span name="sup">sup: <a href="BasicElement.html" class="extype" name="ch.ninecode.model.BasicElement">BasicElement</a></span>, <span name="description">description: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="eventType">eventType: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="plannedEventID">plannedEventID: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="plannedTime">plannedTime: <span class="extype" name="scala.Int">Int</span></span>)</span>
+        <span class="name">PlannedMarketEvent</span><span class="params">(<span name="sup">sup: <a href="BasicElement.html" class="extype" name="ch.ninecode.model.BasicElement">BasicElement</a></span>, <span name="description">description: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="eventType">eventType: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="plannedEventID">plannedEventID: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="plannedTime">plannedTime: <span class="extype" name="scala.Int">Int</span></span>, <span name="PlannedMarket">PlannedMarket: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.PlannedMarketEvent@&lt;init&gt;(sup:ch.ninecode.model.BasicElement,description:String,eventType:String,plannedEventID:String,plannedTime:Int):ch.ninecode.model.PlannedMarketEvent" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.PlannedMarketEvent@&lt;init&gt;(sup:ch.ninecode.model.BasicElement,description:String,eventType:String,plannedEventID:String,plannedTime:Int,PlannedMarket:List[String]):ch.ninecode.model.PlannedMarketEvent" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">description</dt><dd class="cmt"><p>Description of the planned event.</p></dd><dt class="param">eventType</dt><dd class="cmt"><p>Planned event type.</p></dd><dt class="param">plannedEventID</dt><dd class="cmt"><p>Planned event identifier.</p></dd><dt class="param">plannedTime</dt><dd class="cmt"><p>This is relative time so that this attribute can be used by more than one planned market.
-       For example the bid submission is 10am everyday.</p></dd></dl></div>
+       For example the bid submission is 10am everyday.</p></dd><dt class="param">PlannedMarket</dt><dd class="cmt"><p><a href="PlannedMarket.html" class="extype" name="ch.ninecode.model.PlannedMarket">PlannedMarket</a> A planned market shall have a set of planned events</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -205,6 +205,23 @@
     </span>
       <p class="shortcomment cmt">Return the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Return the superclass object.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The typed superclass nested object.</p></dd></dl></div>
+    </li><li name="ch.ninecode.model.PlannedMarketEvent#PlannedMarket" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="PlannedMarket:List[String]"></a>
+      <a id="PlannedMarket:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">PlannedMarket</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.PlannedMarketEvent@PlannedMarket:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="PlannedMarket.html" class="extype" name="ch.ninecode.model.PlannedMarket">PlannedMarket</a> A planned market shall have a set of planned events</p>
     </li><li name="ch.ninecode.model.Element#about" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="about:Boolean"></a>
       <a id="about:Boolean"></a>
