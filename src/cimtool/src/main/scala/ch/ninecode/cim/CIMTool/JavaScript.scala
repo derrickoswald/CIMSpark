@@ -57,34 +57,17 @@ case class JavaScript (parser: ModelParser, pkg: Package)
             {
                 s.append (JavaDoc (attribute.notes, 12).asText)
                 val n = attribute.name.replace ("""/""", """\/""")
-                s.append ("""            obj["""");
-                s.append (attribute.name);
-                s.append (""""] = """)
-                s.append (attribute.typ match
+                var fn = attribute.typ match
                 {
-                    case "Boolean" => "base.to_boolean ("
-                    case "DateTime" => "base.to_datetime ("
-                    case "Float" => "base.to_float ("
-                    case _ => ""
-                })
-                s.append ("""base.parse_element (/<cim:""");
-                s.append (cls._2.name);
-                s.append (""".""");
-                s.append (n);
-                s.append (""">([\s\S]*?)<\/cim:""");
-                s.append (cls._2.name);
-                s.append (""".""");
-                s.append (n);
-                s.append (""">/g, sub, context, true)""")
-                s.append (attribute.typ match
-                {
-                    case "Boolean" => ")"
-                    case "DateTime" => ")"
-                    case "Float" => ")"
-                    case _ => ""
-                })
-                s.append (""";
-                |""".stripMargin)
+                    case "Boolean" => "base.to_boolean"
+                    case "DateTime" => "base.to_datetime"
+                    case "Float" => "base.to_float"
+                    case _ => "base.to_string"
+                }
+                s.append (
+                    """            base.parse_element (/<cim:%s.%s>([\s\S]*?)<\/cim:%s.%s>/g, obj, "%s", %s, sub, context);
+                    |
+                    |""".stripMargin.format (cls._2.name, n, cls._2.name, n, attribute.name, fn))
             }
             val roles = parser.roles.filter(_.src == cls._2)
             for (role <- roles)
@@ -92,14 +75,10 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                 {
                     s.append (JavaDoc (role.note, 12).asText)
                     val n = role.name.replace ("""/""", """\/""")
-                    s.append ("""            obj["""");
-                    s.append (role.name);
-                    s.append (""""] = base.parse_attribute (/<cim:""");
-                    s.append (cls._2.name);
-                    s.append (""".""");
-                    s.append (n);
-                    s.append ("""\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, sub, context, true);
-                    |""".stripMargin)
+                    s.append (
+                        """            base.parse_attribute (/<cim:%s.%s\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "%s", sub, context, true);
+                        |
+                        |""".stripMargin.format (cls._2.name, n, role.name))
                 }
             // special handling for mRID in IdentifiedObject
             if (cls._2.name == "IdentifiedObject")

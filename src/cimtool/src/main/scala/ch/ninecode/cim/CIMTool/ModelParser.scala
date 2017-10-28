@@ -199,7 +199,7 @@ case class ModelParser (db: Database)
 object ModelParser
 {
     val VERSION = "16"
-    val SCALA = true
+    val SCALA = false
 
     def main(args : Array[String])
     {
