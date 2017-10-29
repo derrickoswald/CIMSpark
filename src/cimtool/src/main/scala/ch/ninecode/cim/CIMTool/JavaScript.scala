@@ -27,35 +27,27 @@ case class JavaScript (parser: ModelParser, pkg: Package)
             val s = new StringBuilder ()
             if (null != cls._2.note)
                 s.append (JavaDoc (cls._2.note, 8).asText)
-            s.append ("        function parse_")
-            s.append (name)
-            s.append (""" (context, sub)
+            s.append (
+                """        function parse_%s (context, sub)
                 |        {
                 |            var obj;
                 |            var bucket;
-                |""".stripMargin)
+                |
+                |""".stripMargin.format (name))
             if (null != cls._2.sup)
             {
                 val sup_pkg = cls._2.sup.pkg
                 val prefix = if (sup_pkg != pkg) { requires.add (sup_pkg); sup_pkg.name + "." } else ""
-                s.append ("""
-                   |            obj = """.stripMargin)
-                s.append (prefix)
-                s.append ("""parse_""".stripMargin)
-                s.append (cls._2.sup.name)
-                s.append (""" (context, sub);""".stripMargin)
+                s.append ("""            obj = %sparse_%s (context, sub);""".format (prefix, cls._2.sup.name))
             }
             else
-                s.append ("""
-                   |            obj = base.parse_Element (context, sub);""".stripMargin)
-            s.append ("""
-               |            obj.cls = """".stripMargin)
-            s.append (cls._2.name)
-            s.append ("""";
-               |""".stripMargin)
+                s.append ("""            obj = base.parse_Element (context, sub);""")
+            s.append (
+                """
+                |            obj.cls = "%s";
+                |""".stripMargin.format (cls._2.name))
             for (attribute <- attributes)
             {
-                s.append (JavaDoc (attribute.notes, 12).asText)
                 val n = attribute.name.replace ("""/""", """\/""")
                 var fn = attribute.typ match
                 {
@@ -66,18 +58,15 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                 }
                 s.append (
                     """            base.parse_element (/<cim:%s.%s>([\s\S]*?)<\/cim:%s.%s>/g, obj, "%s", %s, sub, context);
-                    |
                     |""".stripMargin.format (cls._2.name, n, cls._2.name, n, attribute.name, fn))
             }
             val roles = parser.roles.filter(_.src == cls._2)
             for (role <- roles)
                 if (role.upper == 1)
                 {
-                    s.append (JavaDoc (role.note, 12).asText)
                     val n = role.name.replace ("""/""", """\/""")
                     s.append (
-                        """            base.parse_attribute (/<cim:%s.%s\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "%s", sub, context, true);
-                        |
+                        """            base.parse_attribute (/<cim:%s.%s\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "%s", sub, context);
                         |""".stripMargin.format (cls._2.name, n, role.name))
                 }
             // special handling for mRID in IdentifiedObject
@@ -92,26 +81,65 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                 |                    print ("***Warning*** rdf:ID != mRID [" + obj.id + " != " + obj.mRID + "]");
                 |                obj.id = obj.mRID;
                 |            }
-                |""".stripMargin);
-            s.append ("""            bucket = context.parsed.""")
-            s.append (name)
-            s.append (""";""")
-            s.append ("""
-               |            if (null == bucket)
-               |                context.parsed.""".stripMargin)
-            s.append (name)
-            s.append (""" = bucket = {};
-               |            bucket[obj.id] = obj;
-               |
-               |            return (obj);
-               |        }
-               |
-               |""".stripMargin)
+                |""".stripMargin)
+            s.append (
+                """            bucket = context.parsed.%s;
+                |            if (null == bucket)
+                |                context.parsed.%s = bucket = {};
+                |            bucket[obj.id] = obj;
+                |
+                |            return (obj);
+                |        }
+                |
+                |""".stripMargin.format (name, name))
+
+            // output the export function
+            provides.add ("export_" + name)
+            s.append (
+                """        function export_%s (obj, exporters, full)
+                  |        {
+                  |""".stripMargin.format (name))
+            if (null != cls._2.sup)
+                s.append ("""            var fields = exporters["%s"](obj, exporters, false);""".format (cls._2.sup.name))
+            else
+                s.append ("""            var fields = [];""")
+            s.append ("\n\n")
+            for (attribute <- attributes)
+            {
+                val n = attribute.name.replace ("""/""", """\/""")
+                var fn = attribute.typ match
+                {
+                    case "Boolean" => "base.from_boolean"
+                    case "DateTime" => "base.from_datetime"
+                    case "Float" => "base.from_float"
+                    case _ => "base.from_string"
+                }
+                if ((cls._2.name != "IdentifiedObject") || (n != "mRID"))
+                    s.append (
+                        """            base.export_element (obj, "%s", "%s", %s, fields);
+                        |""".stripMargin.format (cls._2.name, n, fn))
+            }
+            for (role <- roles)
+                if (role.upper == 1)
+                {
+                    val n = role.name.replace ("""/""", """\/""")
+                    s.append (
+                        """            base.export_attribute (obj, "%s", "%s", fields);
+                          |""".stripMargin.format (cls._2.name, n, role.name))
+                }
+            s.append (
+                """            if (full)
+                |                base.export_Element (obj, fields)
+                |
+                |            return (fields);
+                |        }
+                |
+                |""".stripMargin.format (name))
 
             p.append (s)
         }
 
-        if (provides.size > 0)
+        if (provides.nonEmpty)
         {
             val v = new StringBuilder ()
             val r = scala.collection.mutable.SortedSet[String]()
