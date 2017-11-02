@@ -37,64 +37,155 @@ Subclasses and the superclass have open arrow icons.
 Comparing the image with the [ACLineSegment class in Wires.scala](https://github.com/derrickoswald/CIMReader/blob/master/src/main/scala/ch/ninecode/model/Wires.scala) you will see a high degree of similarity. Where possible, the names of attributes in the Scala code are the same as the names in the UML diagram. Discrepancies occur where Scala reserved words and other software related issues arise (e.g. attribute length must be changed to len in the Scala code due to a superclass member method).
 
 ```Scala
+/**
+ * A wire or combination of wires, with consistent electrical characteristics, building a single electrical system, used to carry alternating current between points in the power system.
+ *
+ * For symmetrical, transposed 3ph lines, it is sufficient to use  attributes of the line segment, which describe impedances and admittances for the entire length of the segment.  Additionally impedances can be computed by using length and associated per length impedances.
+ *
+ * @param sup [[ch.ninecode.model.Conductor Conductor]] Reference to the superclass object.
+ * @param b0ch Zero sequence shunt (charging) susceptance, uniformly distributed, of the entire line section.
+ * @param bch Positive sequence shunt (charging) susceptance, uniformly distributed, of the entire line section.
+ *        This value represents the full charging over the full length of the line.
+ * @param g0ch Zero sequence shunt (charging) conductance, uniformly distributed, of the entire line section.
+ * @param gch Positive sequence shunt (charging) conductance, uniformly distributed, of the entire line section.
+ * @param r Positive sequence series resistance of the entire line section.
+ * @param r0 Zero sequence series resistance of the entire line section.
+ * @param shortCircuitEndTemperature Maximum permitted temperature at the end of SC for the calculation of minimum short-circuit currents.
+ *        Used for short circuit data exchange according to IEC 60909
+ * @param x Positive sequence series reactance of the entire line section.
+ * @param x0 Zero sequence series reactance of the entire line section.
+ * @param LineGroundingAction [[ch.ninecode.model.GroundAction GroundAction]] Ground action involving clamp usage (for the case when the ground is applied along the line segment instead of at its terminals).
+ * @param LineJumpingAction [[ch.ninecode.model.JumperAction JumperAction]] Jumper action involving clamp usage (for the case when the jumper is applied along the line segment instead of at its terminals).
+ * @param PerLengthImpedance [[ch.ninecode.model.PerLengthImpedance PerLengthImpedance]] Per-length impedance of this line segment.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
+ */
 case class ACLineSegment
 (
     override val sup: Conductor,
-    val b0ch: Double,
-    val bch: Double,
-    val g0ch: Double,
-    val gch: Double,
-    val r0: Double,
-    val r: Double,
-    val shortCircuitEndTemperature: Double,
-    val x0: Double,
-    val x: Double,
-    val LineGroundingAction: String,
-    val LineJumpingAction: String,
-    val PerLengthImpedance: String
+    b0ch: Double,
+    bch: Double,
+    g0ch: Double,
+    gch: Double,
+    r: Double,
+    r0: Double,
+    shortCircuitEndTemperature: Double,
+    x: Double,
+    x0: Double,
+    LineGroundingAction: String,
+    LineJumpingAction: String,
+    PerLengthImpedance: String
 )
 extends
     Element
 {
+    /**
+     * Zero args constructor.
+     */
     def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
     def Conductor: Conductor = sup.asInstanceOf[Conductor]
+    override def copy (): Row = { clone ().asInstanceOf[ACLineSegment] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ACLineSegment.cls
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ACLineSegment.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ACLineSegment.fields (position), value)
+        emitelem (0, b0ch)
+        emitelem (1, bch)
+        emitelem (2, g0ch)
+        emitelem (3, gch)
+        emitelem (4, r)
+        emitelem (5, r0)
+        emitelem (6, shortCircuitEndTemperature)
+        emitelem (7, x)
+        emitelem (8, x0)
+        emitattr (9, LineGroundingAction)
+        emitattr (10, LineJumpingAction)
+        emitattr (11, PerLengthImpedance)
+        s.toString
+    }
+    override def export: String =
+    {
+        "\t<cim:ACLineSegment rdf:ID=\"%s\">\n%s\t</cim:ACLineSegment>".format (id, export_fields)
+    }
 }
 
 object ACLineSegment
 extends
     Parseable[ACLineSegment]
 {
-    val b0ch = parse_element (element ("""ACLineSegment.b0ch"""))_
-    val bch = parse_element (element ("""ACLineSegment.bch"""))_
-    val g0ch = parse_element (element ("""ACLineSegment.g0ch"""))_
-    val gch = parse_element (element ("""ACLineSegment.gch"""))_
-    val r0 = parse_element (element ("""ACLineSegment.r0"""))_
-    val r = parse_element (element ("""ACLineSegment.r"""))_
-    val shortCircuitEndTemperature = parse_element (element ("""ACLineSegment.shortCircuitEndTemperature"""))_
-    val x0 = parse_element (element ("""ACLineSegment.x0"""))_
-    val x = parse_element (element ("""ACLineSegment.x"""))_
-    val LineGroundingAction = parse_attribute (attribute ("""ACLineSegment.LineGroundingAction"""))_
-    val LineJumpingAction = parse_attribute (attribute ("""ACLineSegment.LineJumpingAction"""))_
-    val PerLengthImpedance = parse_attribute (attribute ("""ACLineSegment.PerLengthImpedance"""))_
+    val fields: Array[String] = Array[String] (
+        "b0ch",
+        "bch",
+        "g0ch",
+        "gch",
+        "r",
+        "r0",
+        "shortCircuitEndTemperature",
+        "x",
+        "x0",
+        "LineGroundingAction",
+        "LineJumpingAction",
+        "PerLengthImpedance"
+    )
+    val b0ch: Fielder = parse_element (element (cls, fields(0)))
+    val bch: Fielder = parse_element (element (cls, fields(1)))
+    val g0ch: Fielder = parse_element (element (cls, fields(2)))
+    val gch: Fielder = parse_element (element (cls, fields(3)))
+    val r: Fielder = parse_element (element (cls, fields(4)))
+    val r0: Fielder = parse_element (element (cls, fields(5)))
+    val shortCircuitEndTemperature: Fielder = parse_element (element (cls, fields(6)))
+    val x: Fielder = parse_element (element (cls, fields(7)))
+    val x0: Fielder = parse_element (element (cls, fields(8)))
+    val LineGroundingAction: Fielder = parse_attribute (attribute (cls, fields(9)))
+    val LineJumpingAction: Fielder = parse_attribute (attribute (cls, fields(10)))
+    val PerLengthImpedance: Fielder = parse_attribute (attribute (cls, fields(11)))
+
     def parse (context: Context): ACLineSegment =
     {
-        ACLineSegment
-        (
+        implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
+        val ret = ACLineSegment (
             Conductor.parse (context),
-            toDouble (b0ch (context), context),
-            toDouble (bch (context), context),
-            toDouble (g0ch (context), context),
-            toDouble (gch (context), context),
-            toDouble (r0 (context), context),
-            toDouble (r (context), context),
-            toDouble (shortCircuitEndTemperature (context), context),
-            toDouble (x0 (context), context),
-            toDouble (x (context), context),
-            LineGroundingAction (context),
-            LineJumpingAction (context),
-            PerLengthImpedance (context)
+            toDouble (mask (b0ch (), 0)),
+            toDouble (mask (bch (), 1)),
+            toDouble (mask (g0ch (), 2)),
+            toDouble (mask (gch (), 3)),
+            toDouble (mask (r (), 4)),
+            toDouble (mask (r0 (), 5)),
+            toDouble (mask (shortCircuitEndTemperature (), 6)),
+            toDouble (mask (x (), 7)),
+            toDouble (mask (x0 (), 8)),
+            mask (LineGroundingAction (), 9),
+            mask (LineJumpingAction (), 10),
+            mask (PerLengthImpedance (), 11)
         )
+        ret.bitfields = bitfields
+        ret
     }
+    val relations: List[Relationship] = List (
+        Relationship ("LineGroundingAction", "GroundAction", false),
+        Relationship ("LineJumpingAction", "JumperAction", false),
+        Relationship ("PerLengthImpedance", "PerLengthImpedance", false)
+    )
 }
 ```
 

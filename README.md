@@ -83,11 +83,7 @@ cd CIMReader/src/test/resources/
 ```
 * Initialize the cluster:
 ```
-docker-compose up&
-```
-* To increase the number of worker nodes (default is two containers, "spark_master" and "spark_worker_1"):
-```
-docker-compose scale worker=2
+docker-compose up --scale worker=2&
 ```
 * To shut down the cluster:
 ```
@@ -99,43 +95,53 @@ docker exec --interactive --tty spark_master bash
 ```
 * From within the interactive shell, to copy data files to HDFS
 ```
-hdfs dfs -fs hdfs://sandbox:8020 -mkdir /data
-hdfs dfs -fs hdfs://sandbox:8020 -put /opt/data/* /data
-hdfs dfs -fs hdfs://sandbox:8020 -ls /data
+hdfs dfs -mkdir /data
+hdfs dfs -put /opt/data/* /data
+hdfs dfs -ls /data
 ```
-* Optionally, to install R so that the sparkR command works:
-```
-apt-get install r-base
-```
-
 From within the interactive shell in the master container, to start the Spark shell with the CIMReader jar file on the classpath
-[Note: to avoid "java.io.IOException: No FileSystem for scheme: null" when executing spark in the root directory,
-either change to any subdirectory (i.e. ```cd /opt```) or
-add the warehouse.dir configuration as shown here] 
 ```
-spark-shell --master spark://sandbox:7077 --executor-memory 4g --driver-memory 1g --conf spark.sql.warehouse.dir=file:/tmp/spark-warehouse --jars /opt/code/CIMReader-2.11-2.0.2-2.2.1.jar
+spark-shell --master spark://sandbox:7077 --executor-memory 4g --driver-memory 1g --packages ch.ninecode.cim:CIMReader:2.11-2.2.0-2.4.0
 ```
 This should print out the Scala shell welcome screen with cool ASCII art:
 ```
-Setting default log level to "WARN".
-To adjust logging level use sc.setLogLevel(newLevel).
-16/12/04 13:25:09 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
-16/12/04 13:25:10 WARN spark.SparkContext: Use an existing SparkContext, some configuration may not take effect.
-Spark context Web UI available at http://172.18.0.4:4040
-Spark context available as 'sc' (master = local[*], app id = local-1480857910650).
+Ivy Default Cache set to: /root/.ivy2/cache
+The jars for the packages stored in: /root/.ivy2/jars
+:: loading settings :: url = jar:file:/usr/local/spark-2.2.0/jars/ivy-2.4.0.jar!/org/apache/ivy/core/settings/ivysettings.xml
+ch.ninecode.cim#CIMReader added as a dependency
+:: resolving dependencies :: org.apache.spark#spark-submit-parent;1.0
+	confs: [default]
+	found ch.ninecode.cim#CIMReader;2.11-2.2.0-2.4.0 in central
+	found com.github.scopt#scopt_2.11;3.6.0 in central
+:: resolution report :: resolve 245ms :: artifacts dl 6ms
+	:: modules in use:
+	ch.ninecode.cim#CIMReader;2.11-2.2.0-2.4.0 from central in [default]
+	com.github.scopt#scopt_2.11;3.6.0 from central in [default]
+	---------------------------------------------------------------------
+	|                  |            modules            ||   artifacts   |
+	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+	---------------------------------------------------------------------
+	|      default     |   2   |   0   |   0   |   0   ||   2   |   0   |
+	---------------------------------------------------------------------
+:: retrieving :: org.apache.spark#spark-submit-parent
+	confs: [default]
+	0 artifacts copied, 2 already retrieved (0kB/10ms)
+17/11/02 08:40:09 WARN ObjectStore: Failed to get database global_temp, returning NoSuchObjectException
+Spark context Web UI available at http://172.18.0.2:4040
+Spark context available as 'sc' (master = spark://sandbox:7077, app id = app-20171102083959-0012).
 Spark session available as 'spark'.
 Welcome to
       ____              __
      / __/__  ___ _____/ /__
     _\ \/ _ \/ _ `/ __/  '_/
-   /___/ .__/\_,_/_/ /_/\_\   version 2.0.2
+   /___/ .__/\_,_/_/ /_/\_\   version 2.2.0
       /_/
          
-Using Scala version 2.11.8 (OpenJDK 64-Bit Server VM, Java 1.8.0_111)
+Using Scala version 2.11.8 (OpenJDK 64-Bit Server VM, Java 1.8.0_121)
 Type in expressions to have them evaluated.
 Type :help for more information.
 
-scala>
+scala> 
 ```
 * At the scala prompt one can import the classes defined in the CIMReader jar:
 ```scala
@@ -165,6 +171,18 @@ You can get a named RDD using the class name:
 ```scala
 val lines = sc.getPersistentRDDs.filter(_._2.name == "ACLineSegment").head._2.asInstanceOf[RDD[ACLineSegment]]
 ```
+
+# Logging
+
+To quiet down the tremendously verbose logging for Spark to just the minimum,
+i.e. just warnings and errors, copy and edit the log4j configuration
+and set the console logging to WARN instead of INFO:
+
+    $ cd $SPARK_HOME/conf
+    $ cp log4j.properties.template log4j.properties
+    $ sed -i 's/log4j.rootCategory=INFO/log4j.rootCategory=WARN/g' log4j.properties
+
+This has already been done in the Spark Docker container.
 
 # Reader API
 
@@ -253,37 +271,6 @@ the maven pom:
 
 Then most of the code found in the [Hive2 JDBC client](https://cwiki.apache.org/confluence/display/Hive/HiveServer2+Clients#HiveServer2Clients-JDBC) will work, except for "show tables name" (although "show tables" works).
 
-
-# Notes
-
-good pictures:
-http://blog.cloudera.com/blog/2014/05/apache-spark-resource-management-and-yarn-app-models/
-
-
-/usr/local/spark/bin/spark-submit   "sparkr-shell" /tmp/RtmpSScO6S/backend_port1b6469f08b97
-
-.combineByKey  -- coalesce chunks
-
-[probably will cause a shuffle]
-.join
-.leftOuterJoin -- join operations
-.rightOuterJoin
-.fullOuterJoin
-
-# EC2
-
-Export the [necessary keys](https://spark.apache.org/docs/latest/ec2-scripts.html), then launch a hadoop cluster on AWS with:
-
-    ./spark-ec2 --key-pair=FirstMicro --identity-file=/home/derrick/.ssh/FirstMicro.pem --region=eu-west-1 --ebs-vol-size=0 --master-instance-type=m3.medium --instance-type=m3.large --spot-price=0.025 --slaves=2 --spark-version=1.6.0 --hadoop-major-version=yarn --deploy-root-dir=/home/derrick/code/CIMReader/target/ launch playpen
-
-# Notes
-
-    options (width=255)
-    elements = loadDF (sqlContext, "hdfs:/data/dump_bkw.xml", "ch.ninecode.cim")
-    head (elements, n=25)
-    edges = sql (sqlContext, "select * from edges")
-    ee = collect (edges)
-    head (ee, n=50)
 
 # RStudio & R Remote Client
 
@@ -374,14 +361,4 @@ rterminals = SparkR::collect (terminals, stringsAsFactors=FALSE)
 switch = sql (("select s.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.mRID, s.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.aliasName, s.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.name, s.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.description, open, normalOpen, l.CoordinateSystem, p.xPosition, p.yPosition from Switch s, Location l, PositionPoint p where s.ConductingEquipment.Equipment.PowerSystemResource.Location = l.IdentifiedObject.mRID and s.ConductingEquipment.Equipment.PowerSystemResource.Location = p.Location and p.sequenceNumber = 0")
 rswitch = SparkR::collect (switch, stringsAsFactors=FALSE)
 ```
-
-# Logging
-
-To quiet down the tremendously verbose logging for Spark to just the minimum,
-i.e. just warnings and errors, copy and edit the log4j configuration
-and set the console logging to WARN instead of INFO:
-
-    $ cd /usr/local/spark-1.6.0-bin-hadoop2.6/conf
-    $ cp log4j.properties.template log4j.properties
-    $ sed -i 's/log4j.rootCategory=INFO/log4j.rootCategory=WARN/g' log4j.properties
 
