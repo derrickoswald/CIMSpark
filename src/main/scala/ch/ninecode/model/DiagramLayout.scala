@@ -18,6 +18,7 @@ import ch.ninecode.cim.Relationship
  * @param x2InitialView X coordinate of the second corner of the initial view.
  * @param y1InitialView Y coordinate of the first corner of the initial view.
  * @param y2InitialView Y coordinate of the second corner of the initial view.
+ * @param DiagramElements [[ch.ninecode.model.DiagramObject DiagramObject]] A diagram is made up of multiple diagram objects.
  * @param DiagramStyle [[ch.ninecode.model.DiagramStyle DiagramStyle]] A Diagram may have a DiagramStyle.
  * @group DiagramLayout
  * @groupname DiagramLayout Package DiagramLayout
@@ -31,6 +32,7 @@ case class Diagram
     x2InitialView: Double,
     y1InitialView: Double,
     y2InitialView: Double,
+    DiagramElements: List[String],
     DiagramStyle: String
 )
 extends
@@ -39,7 +41,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, 0.0, 0.0, 0.0, 0.0, null) }
+    def this () = { this (null, null, 0.0, 0.0, 0.0, 0.0, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -64,12 +66,14 @@ extends
         implicit val clz: String = Diagram.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Diagram.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Diagram.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Diagram.fields (position), x))
         emitattr (0, orientation)
         emitelem (1, x1InitialView)
         emitelem (2, x2InitialView)
         emitelem (3, y1InitialView)
         emitelem (4, y2InitialView)
-        emitattr (5, DiagramStyle)
+        emitattrs (5, DiagramElements)
+        emitattr (6, DiagramStyle)
         s.toString
     }
     override def export: String =
@@ -82,20 +86,26 @@ object Diagram
 extends
     Parseable[Diagram]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "orientation",
         "x1InitialView",
         "x2InitialView",
         "y1InitialView",
         "y2InitialView",
+        "DiagramElements",
         "DiagramStyle"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("DiagramElements", "DiagramObject", "0..*", "0..1"),
+        Relationship ("DiagramStyle", "DiagramStyle", "0..1", "0..*")
     )
     val orientation: Fielder = parse_attribute (attribute (cls, fields(0)))
     val x1InitialView: Fielder = parse_element (element (cls, fields(1)))
     val x2InitialView: Fielder = parse_element (element (cls, fields(2)))
     val y1InitialView: Fielder = parse_element (element (cls, fields(3)))
     val y2InitialView: Fielder = parse_element (element (cls, fields(4)))
-    val DiagramStyle: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val DiagramElements: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
+    val DiagramStyle: Fielder = parse_attribute (attribute (cls, fields(6)))
 
     def parse (context: Context): Diagram =
     {
@@ -108,14 +118,12 @@ extends
             toDouble (mask (x2InitialView (), 2)),
             toDouble (mask (y1InitialView (), 3)),
             toDouble (mask (y2InitialView (), 4)),
-            mask (DiagramStyle (), 5)
+            masks (DiagramElements (), 5),
+            mask (DiagramStyle (), 6)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("DiagramStyle", "DiagramStyle", false)
-    )
 }
 
 /**
@@ -135,6 +143,7 @@ extends
  * @param rotation Sets the angle of rotation of the diagram object.
  *        Zero degrees is pointing to the top of the diagram.  Rotation is clockwise.
  * @param Diagram [[ch.ninecode.model.Diagram Diagram]] A diagram object is part of a diagram.
+ * @param DiagramObjectPoints [[ch.ninecode.model.DiagramObjectPoint DiagramObjectPoint]] A diagram object can have 0 or more points to reflect its layout position, routing (for polylines) or boundary (for polygons).
  * @param DiagramObjectStyle [[ch.ninecode.model.DiagramObjectStyle DiagramObjectStyle]] A diagram object has a style associated that provides a reference for the style used in the originating system.
  * @param IdentifiedObject_attr [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] The domain object to which this diagram object is associated.
  * @param VisibilityLayers [[ch.ninecode.model.VisibilityLayer VisibilityLayer]] A diagram object can be part of multiple visibility layers.
@@ -151,6 +160,7 @@ case class DiagramObject
     offsetY: Double,
     rotation: Double,
     Diagram: String,
+    DiagramObjectPoints: List[String],
     DiagramObjectStyle: String,
     IdentifiedObject_attr: String,
     VisibilityLayers: List[String]
@@ -161,7 +171,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0, false, 0.0, 0.0, 0.0, null, null, null, List()) }
+    def this () = { this (null, 0, false, 0.0, 0.0, 0.0, null, List(), null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -193,9 +203,10 @@ extends
         emitelem (3, offsetY)
         emitelem (4, rotation)
         emitattr (5, Diagram)
-        emitattr (6, DiagramObjectStyle)
-        emitattr (7, IdentifiedObject_attr)
-        emitattrs (8, VisibilityLayers)
+        emitattrs (6, DiagramObjectPoints)
+        emitattr (7, DiagramObjectStyle)
+        emitattr (8, IdentifiedObject_attr)
+        emitattrs (9, VisibilityLayers)
         s.toString
     }
     override def export: String =
@@ -208,16 +219,24 @@ object DiagramObject
 extends
     Parseable[DiagramObject]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "drawingOrder",
         "isPolygon",
         "offsetX",
         "offsetY",
         "rotation",
         "Diagram",
+        "DiagramObjectPoints",
         "DiagramObjectStyle",
         "IdentifiedObject",
         "VisibilityLayers"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Diagram", "Diagram", "0..1", "0..*"),
+        Relationship ("DiagramObjectPoints", "DiagramObjectPoint", "0..*", "1"),
+        Relationship ("DiagramObjectStyle", "DiagramObjectStyle", "0..1", "0..*"),
+        Relationship ("IdentifiedObject_attr", "IdentifiedObject", "0..1", "0..*"),
+        Relationship ("VisibilityLayers", "VisibilityLayer", "0..*", "0..*")
     )
     val drawingOrder: Fielder = parse_element (element (cls, fields(0)))
     val isPolygon: Fielder = parse_element (element (cls, fields(1)))
@@ -225,9 +244,10 @@ extends
     val offsetY: Fielder = parse_element (element (cls, fields(3)))
     val rotation: Fielder = parse_element (element (cls, fields(4)))
     val Diagram: Fielder = parse_attribute (attribute (cls, fields(5)))
-    val DiagramObjectStyle: Fielder = parse_attribute (attribute (cls, fields(6)))
-    val IdentifiedObject_attr: Fielder = parse_attribute (attribute (cls, fields(7)))
-    val VisibilityLayers: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
+    val DiagramObjectPoints: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
+    val DiagramObjectStyle: Fielder = parse_attribute (attribute (cls, fields(7)))
+    val IdentifiedObject_attr: Fielder = parse_attribute (attribute (cls, fields(8)))
+    val VisibilityLayers: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
 
     def parse (context: Context): DiagramObject =
     {
@@ -241,32 +261,29 @@ extends
             toDouble (mask (offsetY (), 3)),
             toDouble (mask (rotation (), 4)),
             mask (Diagram (), 5),
-            mask (DiagramObjectStyle (), 6),
-            mask (IdentifiedObject_attr (), 7),
-            masks (VisibilityLayers (), 8)
+            masks (DiagramObjectPoints (), 6),
+            mask (DiagramObjectStyle (), 7),
+            mask (IdentifiedObject_attr (), 8),
+            masks (VisibilityLayers (), 9)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Diagram", "Diagram", false),
-        Relationship ("DiagramObjectStyle", "DiagramObjectStyle", false),
-        Relationship ("IdentifiedObject_attr", "IdentifiedObject", false),
-        Relationship ("VisibilityLayers", "VisibilityLayer", true)
-    )
 }
 
 /**
  * This is used for grouping diagram object points from different diagram objects that are considered to be glued together in a diagram even if they are not at the exact same coordinates.
  *
  * @param sup Reference to the superclass object.
+ * @param DiagramObjectPoints [[ch.ninecode.model.DiagramObjectPoint DiagramObjectPoint]] A diagram object glue point is associated with 2 or more object points that are considered to be 'glued' together.
  * @group DiagramLayout
  * @groupname DiagramLayout Package DiagramLayout
  * @groupdesc DiagramLayout This package describes diagram layout. This describes how objects are arranged in a coordianate system rather than how they are rendered.
  */
 case class DiagramObjectGluePoint
 (
-    override val sup: BasicElement
+    override val sup: BasicElement,
+    DiagramObjectPoints: List[String]
 )
 extends
     Element
@@ -274,7 +291,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -295,7 +312,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = DiagramObjectGluePoint.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (DiagramObjectGluePoint.fields (position), x))
+        emitattrs (0, DiagramObjectPoints)
+        s.toString
     }
     override def export: String =
     {
@@ -307,18 +328,25 @@ object DiagramObjectGluePoint
 extends
     Parseable[DiagramObjectGluePoint]
 {
+    override val fields: Array[String] = Array[String] (
+        "DiagramObjectPoints"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("DiagramObjectPoints", "DiagramObjectPoint", "2..*", "0..1")
+    )
+    val DiagramObjectPoints: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): DiagramObjectGluePoint =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = DiagramObjectGluePoint (
-            BasicElement.parse (context)
+            BasicElement.parse (context),
+            masks (DiagramObjectPoints (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -396,13 +424,17 @@ object DiagramObjectPoint
 extends
     Parseable[DiagramObjectPoint]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "sequenceNumber",
         "xPosition",
         "yPosition",
         "zPosition",
         "DiagramObject",
         "DiagramObjectGluePoint"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("DiagramObject", "DiagramObject", "1", "0..*"),
+        Relationship ("DiagramObjectGluePoint", "DiagramObjectGluePoint", "0..1", "2..*")
     )
     val sequenceNumber: Fielder = parse_element (element (cls, fields(0)))
     val xPosition: Fielder = parse_element (element (cls, fields(1)))
@@ -427,10 +459,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("DiagramObject", "DiagramObject", false),
-        Relationship ("DiagramObjectGluePoint", "DiagramObjectGluePoint", false)
-    )
 }
 
 /**
@@ -439,13 +467,15 @@ extends
  * A diagram object style describes information such as line thickness, shape such as circle or rectangle etc, and color.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param StyledObjects [[ch.ninecode.model.DiagramObject DiagramObject]] A style can be assigned to multiple diagram objects.
  * @group DiagramLayout
  * @groupname DiagramLayout Package DiagramLayout
  * @groupdesc DiagramLayout This package describes diagram layout. This describes how objects are arranged in a coordianate system rather than how they are rendered.
  */
 case class DiagramObjectStyle
 (
-    override val sup: IdentifiedObject
+    override val sup: IdentifiedObject,
+    StyledObjects: List[String]
 )
 extends
     Element
@@ -453,7 +483,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -474,7 +504,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = DiagramObjectStyle.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (DiagramObjectStyle.fields (position), x))
+        emitattrs (0, StyledObjects)
+        s.toString
     }
     override def export: String =
     {
@@ -486,18 +520,25 @@ object DiagramObjectStyle
 extends
     Parseable[DiagramObjectStyle]
 {
+    override val fields: Array[String] = Array[String] (
+        "StyledObjects"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("StyledObjects", "DiagramObject", "0..*", "0..1")
+    )
+    val StyledObjects: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): DiagramObjectStyle =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = DiagramObjectStyle (
-            IdentifiedObject.parse (context)
+            IdentifiedObject.parse (context),
+            masks (StyledObjects (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -506,13 +547,15 @@ extends
  * A diagram style describes information such as schematic, geographic, bus-branch etc.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param Diagram [[ch.ninecode.model.Diagram Diagram]] A DiagramStyle can be used by many Diagrams.
  * @group DiagramLayout
  * @groupname DiagramLayout Package DiagramLayout
  * @groupdesc DiagramLayout This package describes diagram layout. This describes how objects are arranged in a coordianate system rather than how they are rendered.
  */
 case class DiagramStyle
 (
-    override val sup: IdentifiedObject
+    override val sup: IdentifiedObject,
+    Diagram: List[String]
 )
 extends
     Element
@@ -520,7 +563,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -541,7 +584,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = DiagramStyle.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (DiagramStyle.fields (position), x))
+        emitattrs (0, Diagram)
+        s.toString
     }
     override def export: String =
     {
@@ -553,18 +600,25 @@ object DiagramStyle
 extends
     Parseable[DiagramStyle]
 {
+    override val fields: Array[String] = Array[String] (
+        "Diagram"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Diagram", "Diagram", "0..*", "0..1")
+    )
+    val Diagram: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): DiagramStyle =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = DiagramStyle (
-            IdentifiedObject.parse (context)
+            IdentifiedObject.parse (context),
+            masks (Diagram (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -624,7 +678,7 @@ object TextDiagramObject
 extends
     Parseable[TextDiagramObject]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "text"
     )
     val text: Fielder = parse_element (element (cls, fields(0)))
@@ -640,9 +694,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -709,9 +760,12 @@ object VisibilityLayer
 extends
     Parseable[VisibilityLayer]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "drawingOrder",
         "VisibleObjects"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("VisibleObjects", "DiagramObject", "0..*", "0..*")
     )
     val drawingOrder: Fielder = parse_element (element (cls, fields(0)))
     val VisibleObjects: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
@@ -728,9 +782,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("VisibleObjects", "DiagramObject", true)
-    )
 }
 
 private[ninecode] object _DiagramLayout

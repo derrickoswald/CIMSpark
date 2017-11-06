@@ -20,6 +20,8 @@ import ch.ninecode.cim.Relationship
  * @param timeOfUse Time of Use flag of the CRR - Peak (ON), Offpeak (OFF) or all 24 hours (24HR).
  * @param tradeSliceID Segment of the CRR described in the current record
  * @param CRRMarket [[ch.ninecode.model.CRRMarket CRRMarket]] <em>undocumented</em>
+ * @param CRROrgRole [[ch.ninecode.model.CRROrgRole CRROrgRole]] <em>undocumented</em>
+ * @param CRRSegment [[ch.ninecode.model.CRRSegment CRRSegment]] <em>undocumented</em>
  * @param Flowgate [[ch.ninecode.model.Flowgate Flowgate]] <em>undocumented</em>
  * @group CongestionRevenueRights
  * @groupname CongestionRevenueRights Package CongestionRevenueRights
@@ -34,6 +36,8 @@ case class CRR
     timeOfUse: String,
     tradeSliceID: String,
     CRRMarket: String,
+    CRROrgRole: List[String],
+    CRRSegment: List[String],
     Flowgate: String
 )
 extends
@@ -42,7 +46,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null, null, null, null) }
+    def this () = { this (null, null, null, null, null, null, null, List(), List(), null) }
     /**
      * Return the superclass object.
      *
@@ -67,13 +71,16 @@ extends
         implicit val clz: String = CRR.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (CRR.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (CRR.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (CRR.fields (position), x))
         emitattr (0, cRRcategory)
         emitattr (1, cRRtype)
         emitattr (2, hedgeType)
         emitattr (3, timeOfUse)
         emitelem (4, tradeSliceID)
         emitattr (5, CRRMarket)
-        emitattr (6, Flowgate)
+        emitattrs (6, CRROrgRole)
+        emitattrs (7, CRRSegment)
+        emitattr (8, Flowgate)
         s.toString
     }
     override def export: String =
@@ -86,14 +93,22 @@ object CRR
 extends
     Parseable[CRR]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "cRRcategory",
         "cRRtype",
         "hedgeType",
         "timeOfUse",
         "tradeSliceID",
         "CRRMarket",
+        "CRROrgRole",
+        "CRRSegment",
         "Flowgate"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("CRRMarket", "CRRMarket", "1", "1..*"),
+        Relationship ("CRROrgRole", "CRROrgRole", "1..*", "1"),
+        Relationship ("CRRSegment", "CRRSegment", "1..*", "1"),
+        Relationship ("Flowgate", "Flowgate", "0..1", "0..1")
     )
     val cRRcategory: Fielder = parse_attribute (attribute (cls, fields(0)))
     val cRRtype: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -101,7 +116,9 @@ extends
     val timeOfUse: Fielder = parse_attribute (attribute (cls, fields(3)))
     val tradeSliceID: Fielder = parse_element (element (cls, fields(4)))
     val CRRMarket: Fielder = parse_attribute (attribute (cls, fields(5)))
-    val Flowgate: Fielder = parse_attribute (attribute (cls, fields(6)))
+    val CRROrgRole: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
+    val CRRSegment: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
+    val Flowgate: Fielder = parse_attribute (attribute (cls, fields(8)))
 
     def parse (context: Context): CRR =
     {
@@ -115,15 +132,13 @@ extends
             mask (timeOfUse (), 3),
             mask (tradeSliceID (), 4),
             mask (CRRMarket (), 5),
-            mask (Flowgate (), 6)
+            masks (CRROrgRole (), 6),
+            masks (CRRSegment (), 7),
+            mask (Flowgate (), 8)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("CRRMarket", "CRRMarket", false),
-        Relationship ("Flowgate", "Flowgate", false)
-    )
 }
 
 /**
@@ -192,11 +207,15 @@ object CRROrgRole
 extends
     Parseable[CRROrgRole]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "kind",
         "status",
         "CRR",
         "MktOrganisation"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("CRR", "CRR", "1", "1..*"),
+        Relationship ("MktOrganisation", "MktOrganisation", "1", "0..*")
     )
     val kind: Fielder = parse_attribute (attribute (cls, fields(0)))
     val status: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -217,10 +236,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("CRR", "CRR", false),
-        Relationship ("MktOrganisation", "MktOrganisation", false)
-    )
 }
 
 /**
@@ -305,7 +320,7 @@ object CRRSegment
 extends
     Parseable[CRRSegment]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "amount",
         "clearingPrice",
         "endDateTime",
@@ -314,6 +329,11 @@ extends
         "CRR",
         "Sink",
         "Source"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("CRR", "CRR", "1", "1..*"),
+        Relationship ("Sink", "Pnode", "0..*", "0..*"),
+        Relationship ("Source", "Pnode", "0..*", "0..*")
     )
     val amount: Fielder = parse_element (element (cls, fields(0)))
     val clearingPrice: Fielder = parse_element (element (cls, fields(1)))
@@ -342,11 +362,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("CRR", "CRR", false),
-        Relationship ("Sink", "Pnode", true),
-        Relationship ("Source", "Pnode", true)
-    )
 }
 
 private[ninecode] object _CongestionRevenueRights

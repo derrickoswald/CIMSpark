@@ -208,7 +208,7 @@ object GovCT1
 extends
     Parseable[GovCT1]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "aset",
         "db",
         "dm",
@@ -326,9 +326,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -616,7 +613,7 @@ object GovCT2
 extends
     Parseable[GovCT2]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "aset",
         "db",
         "dm",
@@ -797,9 +794,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -897,7 +891,7 @@ object GovGAST
 extends
     Parseable[GovGAST]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "at",
         "dturb",
         "kt",
@@ -940,9 +934,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1137,7 +1128,7 @@ object GovGAST1
 extends
     Parseable[GovGAST1]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "a",
         "b",
         "db1",
@@ -1252,9 +1243,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1418,7 +1406,7 @@ object GovGAST2
 extends
     Parseable[GovGAST2]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "a",
         "af1",
         "af2",
@@ -1527,9 +1515,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1672,7 +1657,7 @@ object GovGAST3
 extends
     Parseable[GovGAST3]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "bca",
         "bp",
         "dtc",
@@ -1748,9 +1733,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1853,7 +1835,7 @@ object GovGAST4
 extends
     Parseable[GovGAST4]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "bp",
         "ktm",
         "mnef",
@@ -1899,9 +1881,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -2063,7 +2042,7 @@ object GovGASTWD
 extends
     Parseable[GovGASTWD]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "a",
         "af1",
         "af2",
@@ -2175,9 +2154,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -2292,7 +2268,7 @@ object GovHydro1
 extends
     Parseable[GovHydro1]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "at",
         "dturb",
         "gmax",
@@ -2347,9 +2323,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -2524,7 +2497,7 @@ object GovHydro2
 extends
     Parseable[GovHydro2]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "aturb",
         "bturb",
         "db1",
@@ -2624,9 +2597,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -2833,7 +2803,7 @@ object GovHydro3
 extends
     Parseable[GovHydro3]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "at",
         "db1",
         "db2",
@@ -2954,9 +2924,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -3169,7 +3136,7 @@ object GovHydro4
 extends
     Parseable[GovHydro4]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "at",
         "bgv0",
         "bgv1",
@@ -3296,9 +3263,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -3499,7 +3463,7 @@ object GovHydroDD
 extends
     Parseable[GovHydroDD]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "aturb",
         "bturb",
         "db1",
@@ -3617,9 +3581,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -3791,7 +3752,7 @@ object GovHydroFrancis
 extends
     Parseable[GovHydroFrancis]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "am",
         "av0",
         "av1",
@@ -3885,9 +3846,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -3976,7 +3934,7 @@ object GovHydroIEEE0
 extends
     Parseable[GovHydroIEEE0]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "k",
         "mwbase",
         "pmax",
@@ -4013,9 +3971,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -4180,7 +4135,7 @@ object GovHydroIEEE2
 extends
     Parseable[GovHydroIEEE2]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "aturb",
         "bturb",
         "gv1",
@@ -4271,9 +4226,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -4466,7 +4418,7 @@ object GovHydroPID
 extends
     Parseable[GovHydroPID]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "aturb",
         "bturb",
         "db1",
@@ -4578,9 +4530,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -4730,7 +4679,7 @@ object GovHydroPID2
 extends
     Parseable[GovHydroPID2]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "atw",
         "d",
         "feedbackSignal",
@@ -4809,9 +4758,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -4990,7 +4936,7 @@ object GovHydroPelton
 extends
     Parseable[GovHydroPelton]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "av0",
         "av1",
         "bp",
@@ -5087,9 +5033,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -5318,7 +5261,7 @@ object GovHydroR
 extends
     Parseable[GovHydroR]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "at",
         "db1",
         "db2",
@@ -5457,9 +5400,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -5706,7 +5646,7 @@ object GovHydroWEH
 extends
     Parseable[GovHydroWEH]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "db",
         "dicn",
         "dpv",
@@ -5872,9 +5812,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -6009,7 +5946,7 @@ object GovHydroWPID
 extends
     Parseable[GovHydroWPID]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "d",
         "gatmax",
         "gatmin",
@@ -6088,9 +6025,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -6181,7 +6115,7 @@ object GovSteam0
 extends
     Parseable[GovSteam0]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "dt",
         "mwbase",
         "r",
@@ -6218,9 +6152,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -6441,7 +6372,7 @@ object GovSteam1
 extends
     Parseable[GovSteam1]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "db1",
         "db2",
         "eps",
@@ -6571,9 +6502,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -6664,7 +6592,7 @@ object GovSteam2
 extends
     Parseable[GovSteam2]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "dbf",
         "k",
         "mnef",
@@ -6701,9 +6629,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -6830,7 +6755,7 @@ object GovSteamCC
 extends
     Parseable[GovSteamCC]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "dhp",
         "dlp",
         "fhp",
@@ -6894,9 +6819,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -7095,7 +7017,7 @@ object GovSteamEU
 extends
     Parseable[GovSteamEU]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "chc",
         "cho",
         "cic",
@@ -7213,9 +7135,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -7314,7 +7233,7 @@ object GovSteamFV2
 extends
     Parseable[GovSteamFV2]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "dt",
         "k",
         "mwbase",
@@ -7366,9 +7285,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -7503,7 +7419,7 @@ object GovSteamFV3
 extends
     Parseable[GovSteamFV3]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "k",
         "k1",
         "k2",
@@ -7573,9 +7489,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -7838,7 +7751,7 @@ object GovSteamFV4
 extends
     Parseable[GovSteamFV4]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "cpsmn",
         "cpsmx",
         "crmn",
@@ -8004,9 +7917,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -8150,7 +8060,7 @@ object GovSteamIEEE1
 extends
     Parseable[GovSteamIEEE1]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "k",
         "k1",
         "k2",
@@ -8226,9 +8136,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -8324,7 +8231,7 @@ object GovSteamSGO
 extends
     Parseable[GovSteamSGO]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "k1",
         "k2",
         "k3",
@@ -8373,9 +8280,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -8444,10 +8348,15 @@ object TurbineGovernorDynamics
 extends
     Parseable[TurbineGovernorDynamics]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "AsynchronousMachineDynamics",
         "SynchronousMachineDynamics",
         "TurbineLoadControllerDynamics"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("AsynchronousMachineDynamics", "AsynchronousMachineDynamics", "0..1", "0..1"),
+        Relationship ("SynchronousMachineDynamics", "SynchronousMachineDynamics", "0..*", "0..*"),
+        Relationship ("TurbineLoadControllerDynamics", "TurbineLoadControllerDynamics", "0..1", "1")
     )
     val AsynchronousMachineDynamics: Fielder = parse_attribute (attribute (cls, fields(0)))
     val SynchronousMachineDynamics: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
@@ -8466,11 +8375,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("AsynchronousMachineDynamics", "AsynchronousMachineDynamics", false),
-        Relationship ("SynchronousMachineDynamics", "SynchronousMachineDynamics", true),
-        Relationship ("TurbineLoadControllerDynamics", "TurbineLoadControllerDynamics", false)
-    )
 }
 
 private[ninecode] object _TurbineGovernorDynamics

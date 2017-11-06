@@ -15,9 +15,9 @@ import ch.ninecode.cim.Relationship
  * @param reason Reason for event resulting in this activity record, typically supplied when user initiated.
  * @param severity Severity level of event resulting in this activity record.
  * @param status [[ch.ninecode.model.Status Status]] Information on consequence of event resulting in this activity record.
+ * @param `type` Type of event resulting in this activity record.
  * @param Assets [[ch.ninecode.model.Asset Asset]] All assets for which this activity record has been created.
  * @param Organisations [[ch.ninecode.model.Organisation Organisation]] <em>undocumented</em>
- * @param `type` Type of event resulting in this activity record.
  * @group Common
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
@@ -29,9 +29,9 @@ case class ActivityRecord
     reason: String,
     severity: String,
     status: String,
+    `type`: String,
     Assets: List[String],
-    Organisations: List[String],
-    `type`: String
+    Organisations: List[String]
 )
 extends
     Element
@@ -39,7 +39,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null, List(), List(), null) }
+    def this () = { this (null, null, null, null, null, null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -69,9 +69,9 @@ extends
         emitelem (1, reason)
         emitelem (2, severity)
         emitattr (3, status)
-        emitattrs (4, Assets)
-        emitattrs (5, Organisations)
-        emitelem (6, `type`)
+        emitelem (4, `type`)
+        emitattrs (5, Assets)
+        emitattrs (6, Organisations)
         s.toString
     }
     override def export: String =
@@ -84,22 +84,27 @@ object ActivityRecord
 extends
     Parseable[ActivityRecord]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "createdDateTime",
         "reason",
         "severity",
         "status",
+        "type",
         "Assets",
-        "Organisations",
-        "type"
+        "Organisations"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("status", "Status", "0..1", "0..*"),
+        Relationship ("Assets", "Asset", "0..*", "0..*"),
+        Relationship ("Organisations", "Organisation", "0..*", "0..*")
     )
     val createdDateTime: Fielder = parse_element (element (cls, fields(0)))
     val reason: Fielder = parse_element (element (cls, fields(1)))
     val severity: Fielder = parse_element (element (cls, fields(2)))
     val status: Fielder = parse_attribute (attribute (cls, fields(3)))
-    val Assets: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
-    val Organisations: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
-    val `type`: Fielder = parse_element (element (cls, fields(6)))
+    val `type`: Fielder = parse_element (element (cls, fields(4)))
+    val Assets: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
+    val Organisations: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
 
     def parse (context: Context): ActivityRecord =
     {
@@ -111,18 +116,13 @@ extends
             mask (reason (), 1),
             mask (severity (), 2),
             mask (status (), 3),
-            masks (Assets (), 4),
-            masks (Organisations (), 5),
-            mask (`type` (), 6)
+            mask (`type` (), 4),
+            masks (Assets (), 5),
+            masks (Organisations (), 6)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("status", "Status", false),
-        Relationship ("Assets", "Asset", true),
-        Relationship ("Organisations", "Organisation", true)
-    )
 }
 
 /**
@@ -188,7 +188,7 @@ object Agreement
 extends
     Parseable[Agreement]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "signDate",
         "validityInterval"
     )
@@ -207,9 +207,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -280,11 +277,15 @@ object Appointment
 extends
     Parseable[Appointment]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "callAhead",
         "meetingInterval",
         "Persons",
         "Works"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Persons", "PersonRole", "0..*", "0..*"),
+        Relationship ("Works", "Work", "0..*", "0..*")
     )
     val callAhead: Fielder = parse_element (element (cls, fields(0)))
     val meetingInterval: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -305,10 +306,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Persons", "PersonRole", true),
-        Relationship ("Works", "Work", true)
-    )
 }
 
 /**
@@ -396,7 +393,7 @@ object ConfigurationEvent
 extends
     Parseable[ConfigurationEvent]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "effectiveDateTime",
         "modifiedBy",
         "remark",
@@ -407,6 +404,15 @@ extends
         "ChangedPersonRole",
         "ChangedServiceCategory",
         "ChangedUsagePoint"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ChangedAsset", "Asset", "0..1", "0..*"),
+        Relationship ("ChangedDocument", "Document", "0..1", "0..*"),
+        Relationship ("ChangedLocation", "Location", "0..1", "0..*"),
+        Relationship ("ChangedOrganisationRole", "OrganisationRole", "0..1", "0..*"),
+        Relationship ("ChangedPersonRole", "PersonRole", "0..1", "0..*"),
+        Relationship ("ChangedServiceCategory", "ServiceCategory", "0..1", "0..*"),
+        Relationship ("ChangedUsagePoint", "UsagePoint", "0..1", "0..*")
     )
     val effectiveDateTime: Fielder = parse_element (element (cls, fields(0)))
     val modifiedBy: Fielder = parse_element (element (cls, fields(1)))
@@ -439,15 +445,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("ChangedAsset", "Asset", false),
-        Relationship ("ChangedDocument", "Document", false),
-        Relationship ("ChangedLocation", "Location", false),
-        Relationship ("ChangedOrganisationRole", "OrganisationRole", false),
-        Relationship ("ChangedPersonRole", "PersonRole", false),
-        Relationship ("ChangedServiceCategory", "ServiceCategory", false),
-        Relationship ("ChangedUsagePoint", "UsagePoint", false)
-    )
 }
 
 /**
@@ -456,6 +453,7 @@ extends
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param crsUrn A Uniform Resource Name (URN) for the coordinate reference system (crs) used to define 'Location.
  *        PositionPoints'.
+ * @param Locations [[ch.ninecode.model.Location Location]] All locations described with position points in this coordinate system.
  * @group Common
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
@@ -463,7 +461,8 @@ extends
 case class CoordinateSystem
 (
     override val sup: IdentifiedObject,
-    crsUrn: String
+    crsUrn: String,
+    Locations: List[String]
 )
 extends
     Element
@@ -471,7 +470,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null) }
+    def this () = { this (null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -495,7 +494,9 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = CoordinateSystem.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (CoordinateSystem.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (CoordinateSystem.fields (position), x))
         emitelem (0, crsUrn)
+        emitattrs (1, Locations)
         s.toString
     }
     override def export: String =
@@ -508,10 +509,15 @@ object CoordinateSystem
 extends
     Parseable[CoordinateSystem]
 {
-    val fields: Array[String] = Array[String] (
-        "crsUrn"
+    override val fields: Array[String] = Array[String] (
+        "crsUrn",
+        "Locations"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Locations", "Location", "0..*", "0..1")
     )
     val crsUrn: Fielder = parse_element (element (cls, fields(0)))
+    val Locations: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): CoordinateSystem =
     {
@@ -519,14 +525,12 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = CoordinateSystem (
             IdentifiedObject.parse (context),
-            mask (crsUrn (), 0)
+            mask (crsUrn (), 0),
+            masks (Locations (), 1)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -534,7 +538,9 @@ extends
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param status [[ch.ninecode.model.Status Status]] Status of this crew.
+ * @param CrewMembers [[ch.ninecode.model.CrewMember CrewMember]] All members of this crew.
  * @param CrewType [[ch.ninecode.model.CrewType CrewType]] Type of this crew.
+ * @param WorkAssets [[ch.ninecode.model.WorkAsset WorkAsset]] All work assets used by this crew.
  * @param WorkTasks [[ch.ninecode.model.WorkTask WorkTask]] All work tasks this crew participates in.
  * @group Common
  * @groupname Common Package Common
@@ -544,7 +550,9 @@ case class Crew
 (
     override val sup: IdentifiedObject,
     status: String,
+    CrewMembers: List[String],
     CrewType: String,
+    WorkAssets: List[String],
     WorkTasks: List[String]
 )
 extends
@@ -553,7 +561,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, List()) }
+    def this () = { this (null, null, List(), null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -579,8 +587,10 @@ extends
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Crew.fields (position), value)
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Crew.fields (position), x))
         emitattr (0, status)
-        emitattr (1, CrewType)
-        emitattrs (2, WorkTasks)
+        emitattrs (1, CrewMembers)
+        emitattr (2, CrewType)
+        emitattrs (3, WorkAssets)
+        emitattrs (4, WorkTasks)
         s.toString
     }
     override def export: String =
@@ -593,14 +603,25 @@ object Crew
 extends
     Parseable[Crew]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "status",
+        "CrewMembers",
         "CrewType",
+        "WorkAssets",
         "WorkTasks"
     )
+    override val relations: List[Relationship] = List (
+        Relationship ("status", "Status", "0..1", "0..*"),
+        Relationship ("CrewMembers", "CrewMember", "0..*", "0..1"),
+        Relationship ("CrewType", "CrewType", "0..1", "0..*"),
+        Relationship ("WorkAssets", "WorkAsset", "0..*", "0..1"),
+        Relationship ("WorkTasks", "WorkTask", "0..*", "0..*")
+    )
     val status: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val CrewType: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val WorkTasks: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val CrewMembers: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val CrewType: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val WorkAssets: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val WorkTasks: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
 
     def parse (context: Context): Crew =
     {
@@ -609,17 +630,14 @@ extends
         val ret = Crew (
             IdentifiedObject.parse (context),
             mask (status (), 0),
-            mask (CrewType (), 1),
-            masks (WorkTasks (), 2)
+            masks (CrewMembers (), 1),
+            mask (CrewType (), 2),
+            masks (WorkAssets (), 3),
+            masks (WorkTasks (), 4)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("status", "Status", false),
-        Relationship ("CrewType", "CrewType", false),
-        Relationship ("WorkTasks", "WorkTask", true)
-    )
 }
 
 /**
@@ -627,6 +645,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.OperationPersonRole OperationPersonRole]] Reference to the superclass object.
  * @param Crew [[ch.ninecode.model.Crew Crew]] Crew to which this crew member belongs.
+ * @param SwitchingSteps [[ch.ninecode.model.SwitchingStep SwitchingStep]] All switching steps this crew member is responsible for.
  * @group Common
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
@@ -634,7 +653,8 @@ extends
 case class CrewMember
 (
     override val sup: OperationPersonRole,
-    Crew: String
+    Crew: String,
+    SwitchingSteps: List[String]
 )
 extends
     Element
@@ -642,7 +662,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null) }
+    def this () = { this (null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -666,7 +686,9 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = CrewMember.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (CrewMember.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (CrewMember.fields (position), x))
         emitattr (0, Crew)
+        emitattrs (1, SwitchingSteps)
         s.toString
     }
     override def export: String =
@@ -679,10 +701,16 @@ object CrewMember
 extends
     Parseable[CrewMember]
 {
-    val fields: Array[String] = Array[String] (
-        "Crew"
+    override val fields: Array[String] = Array[String] (
+        "Crew",
+        "SwitchingSteps"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Crew", "Crew", "0..1", "0..*"),
+        Relationship ("SwitchingSteps", "SwitchingStep", "0..*", "0..1")
     )
     val Crew: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val SwitchingSteps: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): CrewMember =
     {
@@ -690,14 +718,12 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = CrewMember (
             OperationPersonRole.parse (context),
-            mask (Crew (), 0)
+            mask (Crew (), 0),
+            masks (SwitchingSteps (), 1)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Crew", "Crew", false)
-    )
 }
 
 /**
@@ -706,13 +732,15 @@ extends
  * This may be used to determine the type of work the crew can be assigned to. Examples include repair, tree trimming, switching, etc.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param Crews [[ch.ninecode.model.Crew Crew]] All crews of this type.
  * @group Common
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
 case class CrewType
 (
-    override val sup: IdentifiedObject
+    override val sup: IdentifiedObject,
+    Crews: List[String]
 )
 extends
     Element
@@ -720,7 +748,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -741,7 +769,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = CrewType.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (CrewType.fields (position), x))
+        emitattrs (0, Crews)
+        s.toString
     }
     override def export: String =
     {
@@ -753,18 +785,25 @@ object CrewType
 extends
     Parseable[CrewType]
 {
+    override val fields: Array[String] = Array[String] (
+        "Crews"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Crews", "Crew", "0..*", "0..1")
+    )
+    val Crews: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): CrewType =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = CrewType (
-            IdentifiedObject.parse (context)
+            IdentifiedObject.parse (context),
+            masks (Crews (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -787,6 +826,7 @@ extends
  * @param subject Document subject.
  * @param title Document title.
  * @param `type` Utility-specific classification of this document, according to its corporate standards, practices, and existing IT systems (e.g., for management of assets, maintenance, work, outage, customers, etc.).
+ * @param ConfigurationEvents [[ch.ninecode.model.ConfigurationEvent ConfigurationEvent]] All configuration events created for this document.
  * @group Common
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
@@ -804,7 +844,8 @@ case class Document
     status: String,
     subject: String,
     title: String,
-    `type`: String
+    `type`: String,
+    ConfigurationEvents: List[String]
 )
 extends
     Element
@@ -812,7 +853,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null, null, null, null, null, null, null, null) }
+    def this () = { this (null, null, null, null, null, null, null, null, null, null, null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -837,6 +878,7 @@ extends
         implicit val clz: String = Document.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Document.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Document.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Document.fields (position), x))
         emitelem (0, authorName)
         emitelem (1, comment)
         emitelem (2, createdDateTime)
@@ -848,6 +890,7 @@ extends
         emitelem (8, subject)
         emitelem (9, title)
         emitelem (10, `type`)
+        emitattrs (11, ConfigurationEvents)
         s.toString
     }
     override def export: String =
@@ -860,7 +903,7 @@ object Document
 extends
     Parseable[Document]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "authorName",
         "comment",
         "createdDateTime",
@@ -871,7 +914,14 @@ extends
         "status",
         "subject",
         "title",
-        "type"
+        "type",
+        "ConfigurationEvents"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("docStatus", "Status", "0..1", "0..*"),
+        Relationship ("electronicAddress", "ElectronicAddress", "0..1", "0..*"),
+        Relationship ("status", "Status", "0..1", "0..*"),
+        Relationship ("ConfigurationEvents", "ConfigurationEvent", "0..*", "0..1")
     )
     val authorName: Fielder = parse_element (element (cls, fields(0)))
     val comment: Fielder = parse_element (element (cls, fields(1)))
@@ -884,6 +934,7 @@ extends
     val subject: Fielder = parse_element (element (cls, fields(8)))
     val title: Fielder = parse_element (element (cls, fields(9)))
     val `type`: Fielder = parse_element (element (cls, fields(10)))
+    val ConfigurationEvents: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
 
     def parse (context: Context): Document =
     {
@@ -901,16 +952,12 @@ extends
             mask (status (), 7),
             mask (subject (), 8),
             mask (title (), 9),
-            mask (`type` (), 10)
+            mask (`type` (), 10),
+            masks (ConfigurationEvents (), 11)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("docStatus", "Status", false),
-        Relationship ("electronicAddress", "ElectronicAddress", false),
-        Relationship ("status", "Status", false)
-    )
 }
 
 /**
@@ -991,7 +1038,7 @@ object ElectronicAddress
 extends
     Parseable[ElectronicAddress]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "email1",
         "email2",
         "lan",
@@ -1028,9 +1075,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1094,9 +1138,12 @@ object Hazard
 extends
     Parseable[Hazard]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "status",
         "type"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("status", "Status", "0..1", "0..*")
     )
     val status: Fielder = parse_attribute (attribute (cls, fields(0)))
     val `type`: Fielder = parse_element (element (cls, fields(1)))
@@ -1113,9 +1160,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("status", "Status", false)
-    )
 }
 
 /**
@@ -1134,13 +1178,18 @@ extends
  * @param secondaryAddress [[ch.ninecode.model.StreetAddress StreetAddress]] Secondary address of the location.
  *        For example, PO Box address may have different ZIP code than that in the 'mainAddress'.
  * @param status [[ch.ninecode.model.Status Status]] Status of this location.
+ * @param `type` Classification by utility's corporate standards and practices, relative to the location itself (e.g., geographical, functional accounting, etc., not a given property that happens to exist at that location).
+ * @param Assets [[ch.ninecode.model.Asset Asset]] All assets at this location.
+ * @param ConfigurationEvents [[ch.ninecode.model.ConfigurationEvent ConfigurationEvent]] All configuration events created for this location.
  * @param CoordinateSystem [[ch.ninecode.model.CoordinateSystem CoordinateSystem]] Coordinate system used to describe position points of this location.
  * @param Crews [[ch.ninecode.model.OldCrew OldCrew]] <em>undocumented</em>
  * @param Hazards [[ch.ninecode.model.AssetLocationHazard AssetLocationHazard]] All asset hazards at this location.
  * @param LandProperties [[ch.ninecode.model.LandProperty LandProperty]] <em>undocumented</em>
  * @param Measurements [[ch.ninecode.model.Measurement Measurement]] <em>undocumented</em>
+ * @param PositionPoints [[ch.ninecode.model.PositionPoint PositionPoint]] Sequence of position points describing this location, expressed in coordinate system 'Location.
+ *        CoordinateSystem'.
+ * @param PowerSystemResources [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] All power system resources at this location.
  * @param Routes [[ch.ninecode.model.Route Route]] <em>undocumented</em>
- * @param `type` Classification by utility's corporate standards and practices, relative to the location itself (e.g., geographical, functional accounting, etc., not a given property that happens to exist at that location).
  * @group Common
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
@@ -1156,13 +1205,17 @@ case class Location
     phone2: String,
     secondaryAddress: String,
     status: String,
+    `type`: String,
+    Assets: List[String],
+    ConfigurationEvents: List[String],
     CoordinateSystem: String,
     Crews: List[String],
     Hazards: List[String],
     LandProperties: List[String],
     Measurements: List[String],
-    Routes: List[String],
-    `type`: String
+    PositionPoints: List[String],
+    PowerSystemResources: List[String],
+    Routes: List[String]
 )
 extends
     Element
@@ -1170,7 +1223,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null, null, null, null, null, null, List(), List(), List(), List(), List(), null) }
+    def this () = { this (null, null, null, null, null, null, null, null, null, null, List(), List(), null, List(), List(), List(), List(), List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1204,13 +1257,17 @@ extends
         emitattr (5, phone2)
         emitattr (6, secondaryAddress)
         emitattr (7, status)
-        emitattr (8, CoordinateSystem)
-        emitattrs (9, Crews)
-        emitattrs (10, Hazards)
-        emitattrs (11, LandProperties)
-        emitattrs (12, Measurements)
-        emitattrs (13, Routes)
-        emitelem (14, `type`)
+        emitelem (8, `type`)
+        emitattrs (9, Assets)
+        emitattrs (10, ConfigurationEvents)
+        emitattr (11, CoordinateSystem)
+        emitattrs (12, Crews)
+        emitattrs (13, Hazards)
+        emitattrs (14, LandProperties)
+        emitattrs (15, Measurements)
+        emitattrs (16, PositionPoints)
+        emitattrs (17, PowerSystemResources)
+        emitattrs (18, Routes)
         s.toString
     }
     override def export: String =
@@ -1223,7 +1280,7 @@ object Location
 extends
     Parseable[Location]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "direction",
         "electronicAddress",
         "geoInfoReference",
@@ -1232,13 +1289,35 @@ extends
         "phone2",
         "secondaryAddress",
         "status",
+        "type",
+        "Assets",
+        "ConfigurationEvents",
         "CoordinateSystem",
         "Crews",
         "Hazards",
         "LandProperties",
         "Measurements",
-        "Routes",
-        "type"
+        "PositionPoints",
+        "PowerSystemResources",
+        "Routes"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("electronicAddress", "ElectronicAddress", "0..1", "0..*"),
+        Relationship ("mainAddress", "StreetAddress", "0..1", "0..*"),
+        Relationship ("phone1", "TelephoneNumber", "0..1", "0..*"),
+        Relationship ("phone2", "TelephoneNumber", "0..1", "0..*"),
+        Relationship ("secondaryAddress", "StreetAddress", "0..1", "0..*"),
+        Relationship ("status", "Status", "0..1", "0..*"),
+        Relationship ("Assets", "Asset", "0..*", "0..1"),
+        Relationship ("ConfigurationEvents", "ConfigurationEvent", "0..*", "0..1"),
+        Relationship ("CoordinateSystem", "CoordinateSystem", "0..1", "0..*"),
+        Relationship ("Crews", "OldCrew", "0..*", "0..*"),
+        Relationship ("Hazards", "AssetLocationHazard", "0..*", "0..*"),
+        Relationship ("LandProperties", "LandProperty", "0..*", "0..*"),
+        Relationship ("Measurements", "Measurement", "0..*", "0..*"),
+        Relationship ("PositionPoints", "PositionPoint", "0..*", "1"),
+        Relationship ("PowerSystemResources", "PowerSystemResource", "0..*", "0..1"),
+        Relationship ("Routes", "Route", "0..*", "0..*")
     )
     val direction: Fielder = parse_element (element (cls, fields(0)))
     val electronicAddress: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -1248,13 +1327,17 @@ extends
     val phone2: Fielder = parse_attribute (attribute (cls, fields(5)))
     val secondaryAddress: Fielder = parse_attribute (attribute (cls, fields(6)))
     val status: Fielder = parse_attribute (attribute (cls, fields(7)))
-    val CoordinateSystem: Fielder = parse_attribute (attribute (cls, fields(8)))
-    val Crews: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
-    val Hazards: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
-    val LandProperties: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
-    val Measurements: FielderMultiple = parse_attributes (attribute (cls, fields(12)))
-    val Routes: FielderMultiple = parse_attributes (attribute (cls, fields(13)))
-    val `type`: Fielder = parse_element (element (cls, fields(14)))
+    val `type`: Fielder = parse_element (element (cls, fields(8)))
+    val Assets: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
+    val ConfigurationEvents: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
+    val CoordinateSystem: Fielder = parse_attribute (attribute (cls, fields(11)))
+    val Crews: FielderMultiple = parse_attributes (attribute (cls, fields(12)))
+    val Hazards: FielderMultiple = parse_attributes (attribute (cls, fields(13)))
+    val LandProperties: FielderMultiple = parse_attributes (attribute (cls, fields(14)))
+    val Measurements: FielderMultiple = parse_attributes (attribute (cls, fields(15)))
+    val PositionPoints: FielderMultiple = parse_attributes (attribute (cls, fields(16)))
+    val PowerSystemResources: FielderMultiple = parse_attributes (attribute (cls, fields(17)))
+    val Routes: FielderMultiple = parse_attributes (attribute (cls, fields(18)))
 
     def parse (context: Context): Location =
     {
@@ -1270,31 +1353,21 @@ extends
             mask (phone2 (), 5),
             mask (secondaryAddress (), 6),
             mask (status (), 7),
-            mask (CoordinateSystem (), 8),
-            masks (Crews (), 9),
-            masks (Hazards (), 10),
-            masks (LandProperties (), 11),
-            masks (Measurements (), 12),
-            masks (Routes (), 13),
-            mask (`type` (), 14)
+            mask (`type` (), 8),
+            masks (Assets (), 9),
+            masks (ConfigurationEvents (), 10),
+            mask (CoordinateSystem (), 11),
+            masks (Crews (), 12),
+            masks (Hazards (), 13),
+            masks (LandProperties (), 14),
+            masks (Measurements (), 15),
+            masks (PositionPoints (), 16),
+            masks (PowerSystemResources (), 17),
+            masks (Routes (), 18)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("electronicAddress", "ElectronicAddress", false),
-        Relationship ("mainAddress", "StreetAddress", false),
-        Relationship ("phone1", "TelephoneNumber", false),
-        Relationship ("phone2", "TelephoneNumber", false),
-        Relationship ("secondaryAddress", "StreetAddress", false),
-        Relationship ("status", "Status", false),
-        Relationship ("CoordinateSystem", "CoordinateSystem", false),
-        Relationship ("Crews", "OldCrew", true),
-        Relationship ("Hazards", "AssetLocationHazard", true),
-        Relationship ("LandProperties", "LandProperty", true),
-        Relationship ("Measurements", "Measurement", true),
-        Relationship ("Routes", "Route", true)
-    )
 }
 
 /**
@@ -1357,22 +1430,23 @@ extends
         )
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
  * Control room operator.
  *
  * @param sup [[ch.ninecode.model.OperationPersonRole OperationPersonRole]] Reference to the superclass object.
+ * @param Incidents [[ch.ninecode.model.Incident Incident]] All incidents owned by this operator.
+ * @param SwitchingSteps [[ch.ninecode.model.SwitchingStep SwitchingStep]] All switching steps this operator is responsible for.
  * @group Common
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
  */
 case class Operator
 (
-    override val sup: OperationPersonRole
+    override val sup: OperationPersonRole,
+    Incidents: List[String],
+    SwitchingSteps: List[String]
 )
 extends
     Element
@@ -1380,7 +1454,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1401,7 +1475,12 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = Operator.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Operator.fields (position), x))
+        emitattrs (0, Incidents)
+        emitattrs (1, SwitchingSteps)
+        s.toString
     }
     override def export: String =
     {
@@ -1413,18 +1492,29 @@ object Operator
 extends
     Parseable[Operator]
 {
+    override val fields: Array[String] = Array[String] (
+        "Incidents",
+        "SwitchingSteps"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Incidents", "Incident", "0..*", "0..1"),
+        Relationship ("SwitchingSteps", "SwitchingStep", "0..*", "0..1")
+    )
+    val Incidents: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val SwitchingSteps: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): Operator =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = Operator (
-            OperationPersonRole.parse (context)
+            OperationPersonRole.parse (context),
+            masks (Incidents (), 0),
+            masks (SwitchingSteps (), 1)
         )
+        ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1438,6 +1528,7 @@ extends
  * @param streetAddress [[ch.ninecode.model.StreetAddress StreetAddress]] Street address.
  * @param ActivityRecords [[ch.ninecode.model.ActivityRecord ActivityRecord]] <em>undocumented</em>
  * @param Crews [[ch.ninecode.model.OldCrew OldCrew]] <em>undocumented</em>
+ * @param Roles [[ch.ninecode.model.OrganisationRole OrganisationRole]] All roles of this organisation.
  * @group Common
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
@@ -1451,7 +1542,8 @@ case class Organisation
     postalAddress: String,
     streetAddress: String,
     ActivityRecords: List[String],
-    Crews: List[String]
+    Crews: List[String],
+    Roles: List[String]
 )
 extends
     Element
@@ -1459,7 +1551,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null, null, List(), List()) }
+    def this () = { this (null, null, null, null, null, null, List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1491,6 +1583,7 @@ extends
         emitattr (4, streetAddress)
         emitattrs (5, ActivityRecords)
         emitattrs (6, Crews)
+        emitattrs (7, Roles)
         s.toString
     }
     override def export: String =
@@ -1503,14 +1596,25 @@ object Organisation
 extends
     Parseable[Organisation]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "electronicAddress",
         "phone1",
         "phone2",
         "postalAddress",
         "streetAddress",
         "ActivityRecords",
-        "Crews"
+        "Crews",
+        "Roles"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("electronicAddress", "ElectronicAddress", "0..1", "0..*"),
+        Relationship ("phone1", "TelephoneNumber", "0..1", "0..*"),
+        Relationship ("phone2", "TelephoneNumber", "0..1", "0..*"),
+        Relationship ("postalAddress", "PostalAddress", "0..1", "0..*"),
+        Relationship ("streetAddress", "StreetAddress", "0..1", "0..*"),
+        Relationship ("ActivityRecords", "ActivityRecord", "0..*", "0..*"),
+        Relationship ("Crews", "OldCrew", "0..*", "1..*"),
+        Relationship ("Roles", "OrganisationRole", "0..*", "0..1")
     )
     val electronicAddress: Fielder = parse_attribute (attribute (cls, fields(0)))
     val phone1: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -1519,6 +1623,7 @@ extends
     val streetAddress: Fielder = parse_attribute (attribute (cls, fields(4)))
     val ActivityRecords: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
     val Crews: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
+    val Roles: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
 
     def parse (context: Context): Organisation =
     {
@@ -1532,26 +1637,19 @@ extends
             mask (postalAddress (), 3),
             mask (streetAddress (), 4),
             masks (ActivityRecords (), 5),
-            masks (Crews (), 6)
+            masks (Crews (), 6),
+            masks (Roles (), 7)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("electronicAddress", "ElectronicAddress", false),
-        Relationship ("phone1", "TelephoneNumber", false),
-        Relationship ("phone2", "TelephoneNumber", false),
-        Relationship ("postalAddress", "PostalAddress", false),
-        Relationship ("streetAddress", "StreetAddress", false),
-        Relationship ("ActivityRecords", "ActivityRecord", true),
-        Relationship ("Crews", "OldCrew", true)
-    )
 }
 
 /**
  * Identifies a way in which an organisation may participate in the utility enterprise (e.g., customer, manufacturer, etc).
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param ConfigurationEvents [[ch.ninecode.model.ConfigurationEvent ConfigurationEvent]] All configuration events created for this organisation role.
  * @param Organisation [[ch.ninecode.model.Organisation Organisation]] Organisation having this role.
  * @group Common
  * @groupname Common Package Common
@@ -1560,6 +1658,7 @@ extends
 case class OrganisationRole
 (
     override val sup: IdentifiedObject,
+    ConfigurationEvents: List[String],
     Organisation: String
 )
 extends
@@ -1568,7 +1667,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null) }
+    def this () = { this (null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -1592,7 +1691,9 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = OrganisationRole.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (OrganisationRole.fields (position), value)
-        emitattr (0, Organisation)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (OrganisationRole.fields (position), x))
+        emitattrs (0, ConfigurationEvents)
+        emitattr (1, Organisation)
         s.toString
     }
     override def export: String =
@@ -1605,10 +1706,16 @@ object OrganisationRole
 extends
     Parseable[OrganisationRole]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
+        "ConfigurationEvents",
         "Organisation"
     )
-    val Organisation: Fielder = parse_attribute (attribute (cls, fields(0)))
+    override val relations: List[Relationship] = List (
+        Relationship ("ConfigurationEvents", "ConfigurationEvent", "0..*", "0..1"),
+        Relationship ("Organisation", "Organisation", "0..1", "0..*")
+    )
+    val ConfigurationEvents: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val Organisation: Fielder = parse_attribute (attribute (cls, fields(1)))
 
     def parse (context: Context): OrganisationRole =
     {
@@ -1616,14 +1723,12 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = OrganisationRole (
             IdentifiedObject.parse (context),
-            mask (Organisation (), 0)
+            masks (ConfigurationEvents (), 0),
+            mask (Organisation (), 1)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Organisation", "Organisation", false)
-    )
 }
 
 /**
@@ -1690,10 +1795,14 @@ object Ownership
 extends
     Parseable[Ownership]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "share",
         "Asset",
         "AssetOwner"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Asset", "Asset", "0..1", "0..*"),
+        Relationship ("AssetOwner", "AssetOwner", "0..1", "0..*")
     )
     val share: Fielder = parse_element (element (cls, fields(0)))
     val Asset: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -1712,10 +1821,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Asset", "Asset", false),
-        Relationship ("AssetOwner", "AssetOwner", false)
-    )
 }
 
 /**
@@ -1731,6 +1836,7 @@ extends
  * @param prefix A prefix or title for the person's name, such as Miss, Mister, Doctor, etc.
  * @param specialNeed Special service needs for the person (contact) are described; examples include life support, etc.
  * @param suffix A suffix for the person's name, such as II, III, etc.
+ * @param Roles [[ch.ninecode.model.PersonRole PersonRole]] All roles of this person.
  * @group Common
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
@@ -1746,7 +1852,8 @@ case class Person
     mobilePhone: String,
     prefix: String,
     specialNeed: String,
-    suffix: String
+    suffix: String,
+    Roles: List[String]
 )
 extends
     Element
@@ -1754,7 +1861,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null, null, null, null, null, null) }
+    def this () = { this (null, null, null, null, null, null, null, null, null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -1779,6 +1886,7 @@ extends
         implicit val clz: String = Person.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Person.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Person.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Person.fields (position), x))
         emitattr (0, electronicAddress)
         emitelem (1, firstName)
         emitattr (2, landlinePhone)
@@ -1788,6 +1896,7 @@ extends
         emitelem (6, prefix)
         emitelem (7, specialNeed)
         emitelem (8, suffix)
+        emitattrs (9, Roles)
         s.toString
     }
     override def export: String =
@@ -1800,7 +1909,7 @@ object Person
 extends
     Parseable[Person]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "electronicAddress",
         "firstName",
         "landlinePhone",
@@ -1809,7 +1918,14 @@ extends
         "mobilePhone",
         "prefix",
         "specialNeed",
-        "suffix"
+        "suffix",
+        "Roles"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("electronicAddress", "ElectronicAddress", "0..1", "0..*"),
+        Relationship ("landlinePhone", "TelephoneNumber", "0..1", "0..*"),
+        Relationship ("mobilePhone", "TelephoneNumber", "0..1", "0..*"),
+        Relationship ("Roles", "PersonRole", "0..*", "0..1")
     )
     val electronicAddress: Fielder = parse_attribute (attribute (cls, fields(0)))
     val firstName: Fielder = parse_element (element (cls, fields(1)))
@@ -1820,6 +1936,7 @@ extends
     val prefix: Fielder = parse_element (element (cls, fields(6)))
     val specialNeed: Fielder = parse_element (element (cls, fields(7)))
     val suffix: Fielder = parse_element (element (cls, fields(8)))
+    val Roles: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
 
     def parse (context: Context): Person =
     {
@@ -1835,16 +1952,12 @@ extends
             mask (mobilePhone (), 5),
             mask (prefix (), 6),
             mask (specialNeed (), 7),
-            mask (suffix (), 8)
+            mask (suffix (), 8),
+            masks (Roles (), 9)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("electronicAddress", "ElectronicAddress", false),
-        Relationship ("landlinePhone", "TelephoneNumber", false),
-        Relationship ("mobilePhone", "TelephoneNumber", false)
-    )
 }
 
 /**
@@ -1857,6 +1970,7 @@ case class PersonRole
 (
     override val sup: IdentifiedObject,
     Appointments: List[String],
+    ConfigurationEvents: List[String],
     Person: String
 )
 extends
@@ -1865,7 +1979,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, List(), null) }
+    def this () = { this (null, List(), List(), null) }
     /**
      * Return the superclass object.
      *
@@ -1891,7 +2005,8 @@ extends
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PersonRole.fields (position), value)
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (PersonRole.fields (position), x))
         emitattrs (0, Appointments)
-        emitattr (1, Person)
+        emitattrs (1, ConfigurationEvents)
+        emitattr (2, Person)
         s.toString
     }
     override def export: String =
@@ -1904,12 +2019,19 @@ object PersonRole
 extends
     Parseable[PersonRole]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "Appointments",
+        "ConfigurationEvents",
         "Person"
     )
+    override val relations: List[Relationship] = List (
+        Relationship ("Appointments", "Appointment", "0..*", "0..*"),
+        Relationship ("ConfigurationEvents", "ConfigurationEvent", "0..*", "0..1"),
+        Relationship ("Person", "Person", "0..1", "0..*")
+    )
     val Appointments: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
-    val Person: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val ConfigurationEvents: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val Person: Fielder = parse_attribute (attribute (cls, fields(2)))
 
     def parse (context: Context): PersonRole =
     {
@@ -1918,15 +2040,12 @@ extends
         val ret = PersonRole (
             IdentifiedObject.parse (context),
             masks (Appointments (), 0),
-            mask (Person (), 1)
+            masks (ConfigurationEvents (), 1),
+            mask (Person (), 2)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Appointments", "Appointment", true),
-        Relationship ("Person", "Person", false)
-    )
 }
 
 /**
@@ -2001,12 +2120,15 @@ object PositionPoint
 extends
     Parseable[PositionPoint]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "sequenceNumber",
         "xPosition",
         "yPosition",
         "zPosition",
         "Location"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Location", "Location", "1", "0..*")
     )
     val sequenceNumber: Fielder = parse_element (element (cls, fields(0)))
     val xPosition: Fielder = parse_element (element (cls, fields(1)))
@@ -2029,9 +2151,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Location", "Location", false)
-    )
 }
 
 /**
@@ -2101,11 +2220,15 @@ object PostalAddress
 extends
     Parseable[PostalAddress]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "poBox",
         "postalCode",
         "streetDetail",
         "townDetail"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("streetDetail", "StreetDetail", "0..1", "0..*"),
+        Relationship ("townDetail", "TownDetail", "0..1", "0..*")
     )
     val poBox: Fielder = parse_element (element (cls, fields(0)))
     val postalCode: Fielder = parse_element (element (cls, fields(1)))
@@ -2126,10 +2249,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("streetDetail", "StreetDetail", false),
-        Relationship ("townDetail", "TownDetail", false)
-    )
 }
 
 /**
@@ -2195,7 +2314,7 @@ object Priority
 extends
     Parseable[Priority]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "justification",
         "rank",
         "type"
@@ -2217,9 +2336,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -2228,9 +2344,9 @@ extends
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param duration Duration of the scheduled event, for example, the time to ramp between values.
  * @param status [[ch.ninecode.model.Status Status]] <em>undocumented</em>
+ * @param `type` Type of scheduled event.
  * @param Assets [[ch.ninecode.model.Asset Asset]] <em>undocumented</em>
  * @param ScheduledEventData [[ch.ninecode.model.ScheduledEventData ScheduledEventData]] Specification for this scheduled event.
- * @param `type` Type of scheduled event.
  * @group Common
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
@@ -2240,9 +2356,9 @@ case class ScheduledEvent
     override val sup: IdentifiedObject,
     duration: Double,
     status: String,
+    `type`: String,
     Assets: List[String],
-    ScheduledEventData: String,
-    `type`: String
+    ScheduledEventData: String
 )
 extends
     Element
@@ -2250,7 +2366,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, null, List(), null, null) }
+    def this () = { this (null, 0.0, null, null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -2278,9 +2394,9 @@ extends
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ScheduledEvent.fields (position), x))
         emitelem (0, duration)
         emitattr (1, status)
-        emitattrs (2, Assets)
-        emitattr (3, ScheduledEventData)
-        emitelem (4, `type`)
+        emitelem (2, `type`)
+        emitattrs (3, Assets)
+        emitattr (4, ScheduledEventData)
         s.toString
     }
     override def export: String =
@@ -2293,18 +2409,23 @@ object ScheduledEvent
 extends
     Parseable[ScheduledEvent]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "duration",
         "status",
+        "type",
         "Assets",
-        "ScheduledEventData",
-        "type"
+        "ScheduledEventData"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("status", "Status", "0..1", "0..*"),
+        Relationship ("Assets", "Asset", "0..*", "0..*"),
+        Relationship ("ScheduledEventData", "ScheduledEventData", "0..1", "0..*")
     )
     val duration: Fielder = parse_element (element (cls, fields(0)))
     val status: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val Assets: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
-    val ScheduledEventData: Fielder = parse_attribute (attribute (cls, fields(3)))
-    val `type`: Fielder = parse_element (element (cls, fields(4)))
+    val `type`: Fielder = parse_element (element (cls, fields(2)))
+    val Assets: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val ScheduledEventData: Fielder = parse_attribute (attribute (cls, fields(4)))
 
     def parse (context: Context): ScheduledEvent =
     {
@@ -2314,18 +2435,13 @@ extends
             IdentifiedObject.parse (context),
             toDouble (mask (duration (), 0)),
             mask (status (), 1),
-            masks (Assets (), 2),
-            mask (ScheduledEventData (), 3),
-            mask (`type` (), 4)
+            mask (`type` (), 2),
+            masks (Assets (), 3),
+            mask (ScheduledEventData (), 4)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("status", "Status", false),
-        Relationship ("Assets", "Asset", true),
-        Relationship ("ScheduledEventData", "ScheduledEventData", false)
-    )
 }
 
 /**
@@ -2336,6 +2452,7 @@ extends
  * @param requestedWindow Requested date and time interval for activity execution.
  * @param status [[ch.ninecode.model.Status Status]] <em>undocumented</em>
  * @param InspectionDataSet [[ch.ninecode.model.InspectionDataSet InspectionDataSet]] <em>undocumented</em>
+ * @param ScheduledEvents [[ch.ninecode.model.ScheduledEvent ScheduledEvent]] All scheduled events with this specification.
  * @group Common
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
@@ -2346,7 +2463,8 @@ case class ScheduledEventData
     estimatedWindow: String,
     requestedWindow: String,
     status: String,
-    InspectionDataSet: String
+    InspectionDataSet: String,
+    ScheduledEvents: List[String]
 )
 extends
     Element
@@ -2354,7 +2472,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null) }
+    def this () = { this (null, null, null, null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -2378,10 +2496,12 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ScheduledEventData.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ScheduledEventData.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ScheduledEventData.fields (position), x))
         emitattr (0, estimatedWindow)
         emitattr (1, requestedWindow)
         emitattr (2, status)
         emitattr (3, InspectionDataSet)
+        emitattrs (4, ScheduledEvents)
         s.toString
     }
     override def export: String =
@@ -2394,16 +2514,23 @@ object ScheduledEventData
 extends
     Parseable[ScheduledEventData]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "estimatedWindow",
         "requestedWindow",
         "status",
-        "InspectionDataSet"
+        "InspectionDataSet",
+        "ScheduledEvents"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("status", "Status", "0..1", "0..*"),
+        Relationship ("InspectionDataSet", "InspectionDataSet", "1", "0..*"),
+        Relationship ("ScheduledEvents", "ScheduledEvent", "0..*", "0..1")
     )
     val estimatedWindow: Fielder = parse_attribute (attribute (cls, fields(0)))
     val requestedWindow: Fielder = parse_attribute (attribute (cls, fields(1)))
     val status: Fielder = parse_attribute (attribute (cls, fields(2)))
     val InspectionDataSet: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val ScheduledEvents: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
 
     def parse (context: Context): ScheduledEventData =
     {
@@ -2414,15 +2541,12 @@ extends
             mask (estimatedWindow (), 0),
             mask (requestedWindow (), 1),
             mask (status (), 2),
-            mask (InspectionDataSet (), 3)
+            mask (InspectionDataSet (), 3),
+            masks (ScheduledEvents (), 4)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("status", "Status", false),
-        Relationship ("InspectionDataSet", "InspectionDataSet", false)
-    )
 }
 
 /**
@@ -2491,7 +2615,7 @@ object Status
 extends
     Parseable[Status]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "dateTime",
         "reason",
         "remark",
@@ -2516,9 +2640,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -2584,10 +2705,15 @@ object StreetAddress
 extends
     Parseable[StreetAddress]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "status",
         "streetDetail",
         "townDetail"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("status", "Status", "0..1", "0..*"),
+        Relationship ("streetDetail", "StreetDetail", "0..1", "0..*"),
+        Relationship ("townDetail", "TownDetail", "0..1", "0..*")
     )
     val status: Fielder = parse_attribute (attribute (cls, fields(0)))
     val streetDetail: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -2606,11 +2732,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("status", "Status", false),
-        Relationship ("streetDetail", "StreetDetail", false),
-        Relationship ("townDetail", "TownDetail", false)
-    )
 }
 
 /**
@@ -2627,9 +2748,9 @@ extends
  * @param suffix Suffix to the street name.
  *        For example: North, South, East, West.
  * @param suiteNumber Number of the apartment or suite.
- * @param withinTownLimits True if this street is within the legal geographical boundaries of the specified town (default).
  * @param `type` Type of street.
  *        Examples include: street, circle, boulevard, avenue, road, drive, etc.
+ * @param withinTownLimits True if this street is within the legal geographical boundaries of the specified town (default).
  * @group Common
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
@@ -2645,8 +2766,8 @@ case class StreetDetail
     prefix: String,
     suffix: String,
     suiteNumber: String,
-    withinTownLimits: Boolean,
-    `type`: String
+    `type`: String,
+    withinTownLimits: Boolean
 )
 extends
     Element
@@ -2654,7 +2775,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null, null, null, null, null, false, null) }
+    def this () = { this (null, null, null, null, null, null, null, null, null, null, false) }
     /**
      * Return the superclass object.
      *
@@ -2686,8 +2807,8 @@ extends
         emitelem (5, prefix)
         emitelem (6, suffix)
         emitelem (7, suiteNumber)
-        emitelem (8, withinTownLimits)
-        emitelem (9, `type`)
+        emitelem (8, `type`)
+        emitelem (9, withinTownLimits)
         s.toString
     }
     override def export: String =
@@ -2700,7 +2821,7 @@ object StreetDetail
 extends
     Parseable[StreetDetail]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "addressGeneral",
         "buildingName",
         "code",
@@ -2709,8 +2830,8 @@ extends
         "prefix",
         "suffix",
         "suiteNumber",
-        "withinTownLimits",
-        "type"
+        "type",
+        "withinTownLimits"
     )
     val addressGeneral: Fielder = parse_element (element (cls, fields(0)))
     val buildingName: Fielder = parse_element (element (cls, fields(1)))
@@ -2720,8 +2841,8 @@ extends
     val prefix: Fielder = parse_element (element (cls, fields(5)))
     val suffix: Fielder = parse_element (element (cls, fields(6)))
     val suiteNumber: Fielder = parse_element (element (cls, fields(7)))
-    val withinTownLimits: Fielder = parse_element (element (cls, fields(8)))
-    val `type`: Fielder = parse_element (element (cls, fields(9)))
+    val `type`: Fielder = parse_element (element (cls, fields(8)))
+    val withinTownLimits: Fielder = parse_element (element (cls, fields(9)))
 
     def parse (context: Context): StreetDetail =
     {
@@ -2737,15 +2858,12 @@ extends
             mask (prefix (), 5),
             mask (suffix (), 6),
             mask (suiteNumber (), 7),
-            toBoolean (mask (withinTownLimits (), 8)),
-            mask (`type` (), 9)
+            mask (`type` (), 8),
+            toBoolean (mask (withinTownLimits (), 9))
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -2817,7 +2935,7 @@ object TelephoneNumber
 extends
     Parseable[TelephoneNumber]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "areaCode",
         "cityCode",
         "countryCode",
@@ -2845,9 +2963,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -2924,13 +3039,17 @@ object TimePoint
 extends
     Parseable[TimePoint]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "dateTime",
         "relativeTimeInterval",
         "sequenceNumber",
         "status",
         "window",
         "TimeSchedule"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("status", "Status", "0..1", "0..*"),
+        Relationship ("TimeSchedule", "TimeSchedule", "1", "0..*")
     )
     val dateTime: Fielder = parse_element (element (cls, fields(0)))
     val relativeTimeInterval: Fielder = parse_element (element (cls, fields(1)))
@@ -2955,10 +3074,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("status", "Status", false),
-        Relationship ("TimeSchedule", "TimeSchedule", false)
-    )
 }
 
 /**
@@ -2974,6 +3089,7 @@ extends
  * @param recurrencePeriod Duration between time points, from the beginning of one period to the beginning of the next period.
  *        Note that a device like a meter may have multiple interval periods (e.g., 1 min, 5 min, 15 min, 30 min, or 60 min).
  * @param scheduleInterval Schedule date and time interval.
+ * @param TimePoints [[ch.ninecode.model.TimePoint TimePoint]] Sequence of time points belonging to this time schedule.
  * @group Common
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
@@ -2985,7 +3101,8 @@ case class TimeSchedule
     offset: Double,
     recurrencePattern: String,
     recurrencePeriod: Double,
-    scheduleInterval: String
+    scheduleInterval: String,
+    TimePoints: List[String]
 )
 extends
     Element
@@ -2993,7 +3110,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, false, 0.0, null, 0.0, null) }
+    def this () = { this (null, false, 0.0, null, 0.0, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -3018,11 +3135,13 @@ extends
         implicit val clz: String = TimeSchedule.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TimeSchedule.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TimeSchedule.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (TimeSchedule.fields (position), x))
         emitelem (0, disabled)
         emitelem (1, offset)
         emitelem (2, recurrencePattern)
         emitelem (3, recurrencePeriod)
         emitattr (4, scheduleInterval)
+        emitattrs (5, TimePoints)
         s.toString
     }
     override def export: String =
@@ -3035,18 +3154,23 @@ object TimeSchedule
 extends
     Parseable[TimeSchedule]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "disabled",
         "offset",
         "recurrencePattern",
         "recurrencePeriod",
-        "scheduleInterval"
+        "scheduleInterval",
+        "TimePoints"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("TimePoints", "TimePoint", "0..*", "1")
     )
     val disabled: Fielder = parse_element (element (cls, fields(0)))
     val offset: Fielder = parse_element (element (cls, fields(1)))
     val recurrencePattern: Fielder = parse_element (element (cls, fields(2)))
     val recurrencePeriod: Fielder = parse_element (element (cls, fields(3)))
     val scheduleInterval: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val TimePoints: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
 
     def parse (context: Context): TimeSchedule =
     {
@@ -3058,14 +3182,12 @@ extends
             toDouble (mask (offset (), 1)),
             mask (recurrencePattern (), 2),
             toDouble (mask (recurrencePeriod (), 3)),
-            mask (scheduleInterval (), 4)
+            mask (scheduleInterval (), 4),
+            masks (TimePoints (), 5)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -3138,7 +3260,7 @@ object TownDetail
 extends
     Parseable[TownDetail]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "code",
         "country",
         "name",
@@ -3166,9 +3288,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -3254,7 +3373,7 @@ object UserAttribute
 extends
     Parseable[UserAttribute]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "name",
         "sequenceNumber",
         "value",
@@ -3264,6 +3383,14 @@ extends
         "PropertySpecification",
         "RatingSpecification",
         "Transaction"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ErpInvoiceLineItems", "ErpInvoiceLineItem", "0..*", "0..*"),
+        Relationship ("ErpLedgerEntries", "ErpLedgerEntry", "0..*", "0..*"),
+        Relationship ("ProcedureDataSets", "ProcedureDataSet", "0..*", "0..*"),
+        Relationship ("PropertySpecification", "Specification", "0..1", "0..*"),
+        Relationship ("RatingSpecification", "Specification", "0..1", "0..*"),
+        Relationship ("Transaction", "Transaction", "0..1", "0..*")
     )
     val name: Fielder = parse_element (element (cls, fields(0)))
     val sequenceNumber: Fielder = parse_element (element (cls, fields(1)))
@@ -3294,14 +3421,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("ErpInvoiceLineItems", "ErpInvoiceLineItem", true),
-        Relationship ("ErpLedgerEntries", "ErpLedgerEntry", true),
-        Relationship ("ProcedureDataSets", "ProcedureDataSet", true),
-        Relationship ("PropertySpecification", "Specification", false),
-        Relationship ("RatingSpecification", "Specification", false),
-        Relationship ("Transaction", "Transaction", false)
-    )
 }
 
 private[ninecode] object _Common

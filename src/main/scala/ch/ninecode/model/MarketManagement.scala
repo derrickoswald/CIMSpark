@@ -11,10 +11,10 @@ import ch.ninecode.cim.Relationship
  * The Area Control Error tariff type that is applied or used.
  *
  * @param sup Reference to the superclass object.
+ * @param `type` The coded type of an ACE tariff.
  * @param MarketDocument [[ch.ninecode.model.MarketDocument MarketDocument]] <em>undocumented</em>
  * @param Point [[ch.ninecode.model.Point Point]] <em>undocumented</em>
  * @param Unit [[ch.ninecode.model.Unit_ Unit_]] <em>undocumented</em>
- * @param `type` The coded type of an ACE tariff.
  * @group MarketManagement
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
@@ -22,10 +22,10 @@ import ch.ninecode.cim.Relationship
 case class AceTariffType
 (
     override val sup: BasicElement,
+    `type`: String,
     MarketDocument: List[String],
     Point: List[String],
-    Unit: List[String],
-    `type`: String
+    Unit: List[String]
 )
 extends
     Element
@@ -33,7 +33,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, List(), List(), List(), null) }
+    def this () = { this (null, null, List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -58,10 +58,10 @@ extends
         implicit val clz: String = AceTariffType.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (AceTariffType.fields (position), value)
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (AceTariffType.fields (position), x))
-        emitattrs (0, MarketDocument)
-        emitattrs (1, Point)
-        emitattrs (2, Unit)
-        emitelem (3, `type`)
+        emitelem (0, `type`)
+        emitattrs (1, MarketDocument)
+        emitattrs (2, Point)
+        emitattrs (3, Unit)
         s.toString
     }
     override def export: String =
@@ -74,16 +74,21 @@ object AceTariffType
 extends
     Parseable[AceTariffType]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
+        "type",
         "MarketDocument",
         "Point",
-        "Unit",
-        "type"
+        "Unit"
     )
-    val MarketDocument: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
-    val Point: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
-    val Unit: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
-    val `type`: Fielder = parse_element (element (cls, fields(3)))
+    override val relations: List[Relationship] = List (
+        Relationship ("MarketDocument", "MarketDocument", "0..*", "0..*"),
+        Relationship ("Point", "Point", "0..*", "0..*"),
+        Relationship ("Unit", "Unit_", "0..*", "0..*")
+    )
+    val `type`: Fielder = parse_element (element (cls, fields(0)))
+    val MarketDocument: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val Point: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val Unit: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
 
     def parse (context: Context): AceTariffType =
     {
@@ -91,19 +96,14 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = AceTariffType (
             BasicElement.parse (context),
-            masks (MarketDocument (), 0),
-            masks (Point (), 1),
-            masks (Unit (), 2),
-            mask (`type` (), 3)
+            mask (`type` (), 0),
+            masks (MarketDocument (), 1),
+            masks (Point (), 2),
+            masks (Unit (), 3)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("MarketDocument", "MarketDocument", true),
-        Relationship ("Point", "Point", true),
-        Relationship ("Unit", "Unit_", true)
-    )
 }
 
 /**
@@ -176,12 +176,16 @@ object AttributeInstanceComponent
 extends
     Parseable[AttributeInstanceComponent]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "attribute",
         "attributeValue",
         "position",
         "MarketDocument",
         "TimeSeries"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("MarketDocument", "MarketDocument", "0..*", "0..*"),
+        Relationship ("TimeSeries", "TimeSeries", "0..*", "0..*")
     )
     val attribute: Fielder = parse_element (element (cls, fields(0)))
     val attributeValue: Fielder = parse_element (element (cls, fields(1)))
@@ -204,10 +208,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("MarketDocument", "MarketDocument", true),
-        Relationship ("TimeSeries", "TimeSeries", true)
-    )
 }
 
 /**
@@ -219,8 +219,8 @@ extends
  * @param category The product category of an auction.
  * @param paymentTerms The terms which dictate the determination of the bid payment price.
  * @param rights The rights of use the transmission capacity acquired in an auction.
- * @param TimeSeries [[ch.ninecode.model.TimeSeries TimeSeries]] <em>undocumented</em>
  * @param `type` The kind of the Auction (e.g. implicit, explicit ...).
+ * @param TimeSeries [[ch.ninecode.model.TimeSeries TimeSeries]] <em>undocumented</em>
  * @group MarketManagement
  * @groupname MarketManagement Package MarketManagement
  * @groupdesc MarketManagement This package contains all core CIM Market Extensions required for market management systems.
@@ -233,8 +233,8 @@ case class Auction
     category: String,
     paymentTerms: String,
     rights: String,
-    TimeSeries: List[String],
-    `type`: String
+    `type`: String,
+    TimeSeries: List[String]
 )
 extends
     Element
@@ -242,7 +242,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null, null, List(), null) }
+    def this () = { this (null, null, null, null, null, null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -272,8 +272,8 @@ extends
         emitelem (2, category)
         emitelem (3, paymentTerms)
         emitelem (4, rights)
-        emitattrs (5, TimeSeries)
-        emitelem (6, `type`)
+        emitelem (5, `type`)
+        emitattrs (6, TimeSeries)
         s.toString
     }
     override def export: String =
@@ -286,22 +286,25 @@ object Auction
 extends
     Parseable[Auction]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "allocationMode",
         "cancelled",
         "category",
         "paymentTerms",
         "rights",
-        "TimeSeries",
-        "type"
+        "type",
+        "TimeSeries"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("TimeSeries", "TimeSeries", "0..*", "0..*")
     )
     val allocationMode: Fielder = parse_element (element (cls, fields(0)))
     val cancelled: Fielder = parse_element (element (cls, fields(1)))
     val category: Fielder = parse_element (element (cls, fields(2)))
     val paymentTerms: Fielder = parse_element (element (cls, fields(3)))
     val rights: Fielder = parse_element (element (cls, fields(4)))
-    val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
-    val `type`: Fielder = parse_element (element (cls, fields(6)))
+    val `type`: Fielder = parse_element (element (cls, fields(5)))
+    val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
 
     def parse (context: Context): Auction =
     {
@@ -314,15 +317,12 @@ extends
             mask (category (), 2),
             mask (paymentTerms (), 3),
             mask (rights (), 4),
-            masks (TimeSeries (), 5),
-            mask (`type` (), 6)
+            mask (`type` (), 5),
+            masks (TimeSeries (), 6)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("TimeSeries", "TimeSeries", true)
-    )
 }
 
 /**
@@ -398,7 +398,7 @@ object BidTimeSeries
 extends
     Parseable[BidTimeSeries]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "blockBid",
         "direction",
         "divisible",
@@ -429,9 +429,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -498,10 +495,13 @@ object DateAndOrTime
 extends
     Parseable[DateAndOrTime]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "date",
         "time",
         "TimeSeries"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("TimeSeries", "TimeSeries", "0..*", "0..*")
     )
     val date: Fielder = parse_element (element (cls, fields(0)))
     val time: Fielder = parse_element (element (cls, fields(1)))
@@ -520,9 +520,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("TimeSeries", "TimeSeries", true)
-    )
 }
 
 /**
@@ -585,9 +582,13 @@ object Domain
 extends
     Parseable[Domain]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "MarketDocument",
         "TimeSeries"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("MarketDocument", "MarketDocument", "0..*", "0..*"),
+        Relationship ("TimeSeries", "TimeSeries", "0..*", "0..*")
     )
     val MarketDocument: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
     val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
@@ -604,10 +605,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("MarketDocument", "MarketDocument", true),
-        Relationship ("TimeSeries", "TimeSeries", true)
-    )
 }
 
 /**
@@ -671,9 +668,12 @@ object FlowDirection
 extends
     Parseable[FlowDirection]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "direction",
         "TimeSeries"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("TimeSeries", "TimeSeries", "0..*", "0..*")
     )
     val direction: Fielder = parse_element (element (cls, fields(0)))
     val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
@@ -690,9 +690,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("TimeSeries", "TimeSeries", true)
-    )
 }
 
 /**
@@ -755,9 +752,6 @@ extends
         )
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -844,7 +838,7 @@ object MarketDocument
 extends
     Parseable[MarketDocument]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "selfMarketDocument",
         "AceTariffType",
         "AttributeInstanceComponent",
@@ -855,6 +849,18 @@ extends
         "Process",
         "Reason",
         "TimeSeries"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("selfMarketDocument", "MarketDocument", "0..*", "0..*"),
+        Relationship ("AceTariffType", "AceTariffType", "0..*", "0..*"),
+        Relationship ("AttributeInstanceComponent", "AttributeInstanceComponent", "0..*", "0..*"),
+        Relationship ("Domain", "Domain", "0..*", "0..*"),
+        Relationship ("MarketDocument_attr", "MarketDocument", "0..*", "0..*"),
+        Relationship ("MarketParticipant", "MarketParticipant", "0..*", "0..*"),
+        Relationship ("Period", "Period", "0..*", "0..*"),
+        Relationship ("Process", "Process", "0..*", "0..*"),
+        Relationship ("Reason", "Reason", "0..*", "0..*"),
+        Relationship ("TimeSeries", "TimeSeries", "0..*", "0..*")
     )
     val selfMarketDocument: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
     val AceTariffType: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
@@ -887,18 +893,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("selfMarketDocument", "MarketDocument", true),
-        Relationship ("AceTariffType", "AceTariffType", true),
-        Relationship ("AttributeInstanceComponent", "AttributeInstanceComponent", true),
-        Relationship ("Domain", "Domain", true),
-        Relationship ("MarketDocument_attr", "MarketDocument", true),
-        Relationship ("MarketParticipant", "MarketParticipant", true),
-        Relationship ("Period", "Period", true),
-        Relationship ("Process", "Process", true),
-        Relationship ("Reason", "Reason", true),
-        Relationship ("TimeSeries", "TimeSeries", true)
-    )
 }
 
 /**
@@ -958,8 +952,11 @@ object MarketEvaluationPoint
 extends
     Parseable[MarketEvaluationPoint]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "TimeSeries"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("TimeSeries", "TimeSeries", "0..*", "0..*")
     )
     val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
@@ -974,9 +971,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("TimeSeries", "TimeSeries", true)
-    )
 }
 
 /**
@@ -1040,9 +1034,12 @@ object MarketObjectStatus
 extends
     Parseable[MarketObjectStatus]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "status",
         "TimeSeries"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("TimeSeries", "TimeSeries", "0..*", "0..*")
     )
     val status: Fielder = parse_element (element (cls, fields(0)))
     val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
@@ -1059,9 +1056,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("TimeSeries", "TimeSeries", true)
-    )
 }
 
 /**
@@ -1125,9 +1119,12 @@ object MktPSRType
 extends
     Parseable[MktPSRType]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "psrType",
         "TimeSeries"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("TimeSeries", "TimeSeries", "0..*", "0..*")
     )
     val psrType: Fielder = parse_element (element (cls, fields(0)))
     val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
@@ -1144,9 +1141,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("TimeSeries", "TimeSeries", true)
-    )
 }
 
 /**
@@ -1156,6 +1150,7 @@ extends
  * @param resolution The number of units of time that compose an individual step within a period.
  * @param timeInterval The start and end date and time for a given interval.
  * @param MarketDocument [[ch.ninecode.model.MarketDocument MarketDocument]] <em>undocumented</em>
+ * @param Point [[ch.ninecode.model.Point Point]] <em>undocumented</em>
  * @param Reason [[ch.ninecode.model.Reason Reason]] <em>undocumented</em>
  * @param TimeSeries [[ch.ninecode.model.TimeSeries TimeSeries]] <em>undocumented</em>
  * @group MarketManagement
@@ -1168,6 +1163,7 @@ case class Period
     resolution: String,
     timeInterval: String,
     MarketDocument: List[String],
+    Point: List[String],
     Reason: List[String],
     TimeSeries: List[String]
 )
@@ -1177,7 +1173,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, List(), List(), List()) }
+    def this () = { this (null, null, null, List(), List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1206,8 +1202,9 @@ extends
         emitelem (0, resolution)
         emitattr (1, timeInterval)
         emitattrs (2, MarketDocument)
-        emitattrs (3, Reason)
-        emitattrs (4, TimeSeries)
+        emitattrs (3, Point)
+        emitattrs (4, Reason)
+        emitattrs (5, TimeSeries)
         s.toString
     }
     override def export: String =
@@ -1220,18 +1217,26 @@ object Period
 extends
     Parseable[Period]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "resolution",
         "timeInterval",
         "MarketDocument",
+        "Point",
         "Reason",
         "TimeSeries"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("MarketDocument", "MarketDocument", "0..*", "0..*"),
+        Relationship ("Point", "Point", "0..*", "1"),
+        Relationship ("Reason", "Reason", "0..*", "0..*"),
+        Relationship ("TimeSeries", "TimeSeries", "0..*", "0..*")
     )
     val resolution: Fielder = parse_element (element (cls, fields(0)))
     val timeInterval: Fielder = parse_attribute (attribute (cls, fields(1)))
     val MarketDocument: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
-    val Reason: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
-    val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val Point: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val Reason: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
 
     def parse (context: Context): Period =
     {
@@ -1242,17 +1247,13 @@ extends
             mask (resolution (), 0),
             mask (timeInterval (), 1),
             masks (MarketDocument (), 2),
-            masks (Reason (), 3),
-            masks (TimeSeries (), 4)
+            masks (Point (), 3),
+            masks (Reason (), 4),
+            masks (TimeSeries (), 5)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("MarketDocument", "MarketDocument", true),
-        Relationship ("Reason", "Reason", true),
-        Relationship ("TimeSeries", "TimeSeries", true)
-    )
 }
 
 /**
@@ -1266,6 +1267,7 @@ extends
  * @param secondaryQuantity Secondary quantity identified for a point.
  * @param AceTariffType [[ch.ninecode.model.AceTariffType AceTariffType]] <em>undocumented</em>
  * @param Period [[ch.ninecode.model.Period Period]] <em>undocumented</em>
+ * @param Price [[ch.ninecode.model.Price Price]] <em>undocumented</em>
  * @param Reason [[ch.ninecode.model.Reason Reason]] <em>undocumented</em>
  * @param TimeSeries [[ch.ninecode.model.TimeSeries TimeSeries]] <em>undocumented</em>
  * @group MarketManagement
@@ -1281,6 +1283,7 @@ case class Point
     secondaryQuantity: Double,
     AceTariffType: List[String],
     Period: String,
+    Price: List[String],
     Reason: List[String],
     TimeSeries: List[String]
 )
@@ -1290,7 +1293,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0, null, 0.0, 0.0, List(), null, List(), List()) }
+    def this () = { this (null, 0, null, 0.0, 0.0, List(), null, List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1322,8 +1325,9 @@ extends
         emitelem (3, secondaryQuantity)
         emitattrs (4, AceTariffType)
         emitattr (5, Period)
-        emitattrs (6, Reason)
-        emitattrs (7, TimeSeries)
+        emitattrs (6, Price)
+        emitattrs (7, Reason)
+        emitattrs (8, TimeSeries)
         s.toString
     }
     override def export: String =
@@ -1336,15 +1340,23 @@ object Point
 extends
     Parseable[Point]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "position",
         "quality",
         "quantity",
         "secondaryQuantity",
         "AceTariffType",
         "Period",
+        "Price",
         "Reason",
         "TimeSeries"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("AceTariffType", "AceTariffType", "0..*", "0..*"),
+        Relationship ("Period", "Period", "1", "0..*"),
+        Relationship ("Price", "Price", "0..*", "0..1"),
+        Relationship ("Reason", "Reason", "0..*", "0..*"),
+        Relationship ("TimeSeries", "TimeSeries", "0..*", "0..*")
     )
     val position: Fielder = parse_element (element (cls, fields(0)))
     val quality: Fielder = parse_element (element (cls, fields(1)))
@@ -1352,8 +1364,9 @@ extends
     val secondaryQuantity: Fielder = parse_element (element (cls, fields(3)))
     val AceTariffType: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
     val Period: Fielder = parse_attribute (attribute (cls, fields(5)))
-    val Reason: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
-    val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
+    val Price: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
+    val Reason: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
+    val TimeSeries: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
 
     def parse (context: Context): Point =
     {
@@ -1367,18 +1380,13 @@ extends
             toDouble (mask (secondaryQuantity (), 3)),
             masks (AceTariffType (), 4),
             mask (Period (), 5),
-            masks (Reason (), 6),
-            masks (TimeSeries (), 7)
+            masks (Price (), 6),
+            masks (Reason (), 7),
+            masks (TimeSeries (), 8)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("AceTariffType", "AceTariffType", true),
-        Relationship ("Period", "Period", false),
-        Relationship ("Reason", "Reason", true),
-        Relationship ("TimeSeries", "TimeSeries", true)
-    )
 }
 
 /**
@@ -1449,11 +1457,14 @@ object Price
 extends
     Parseable[Price]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "amount",
         "category",
         "direction",
         "Point"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Point", "Point", "0..1", "0..*")
     )
     val amount: Fielder = parse_element (element (cls, fields(0)))
     val category: Fielder = parse_element (element (cls, fields(1)))
@@ -1474,9 +1485,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Point", "Point", false)
-    )
 }
 
 /**
@@ -1544,10 +1552,13 @@ object Process
 extends
     Parseable[Process]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "classificationType",
         "processType",
         "MarketDocument"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("MarketDocument", "MarketDocument", "0..*", "0..*")
     )
     val classificationType: Fielder = parse_element (element (cls, fields(0)))
     val processType: Fielder = parse_element (element (cls, fields(1)))
@@ -1566,9 +1577,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("MarketDocument", "MarketDocument", true)
-    )
 }
 
 /**
@@ -1644,13 +1652,19 @@ object Reason
 extends
     Parseable[Reason]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "code",
         "text",
         "MarketDocument",
         "Period",
         "Point",
         "TimeSeries"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("MarketDocument", "MarketDocument", "0..*", "0..*"),
+        Relationship ("Period", "Period", "0..*", "0..*"),
+        Relationship ("Point", "Point", "0..*", "0..*"),
+        Relationship ("TimeSeries", "TimeSeries", "0..*", "0..*")
     )
     val code: Fielder = parse_element (element (cls, fields(0)))
     val text: Fielder = parse_element (element (cls, fields(1)))
@@ -1675,12 +1689,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("MarketDocument", "MarketDocument", true),
-        Relationship ("Period", "Period", true),
-        Relationship ("Point", "Point", true),
-        Relationship ("TimeSeries", "TimeSeries", true)
-    )
 }
 
 /**
@@ -1801,7 +1809,7 @@ object TimeSeries
 extends
     Parseable[TimeSeries]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "businessType",
         "cancelledTS",
         "curveType",
@@ -1823,6 +1831,23 @@ extends
         "Reason",
         "RegisteredResource",
         "Unit"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("AttributeInstanceComponent", "AttributeInstanceComponent", "0..*", "0..*"),
+        Relationship ("Auction", "Auction", "0..*", "0..*"),
+        Relationship ("DateAndOrTime", "DateAndOrTime", "0..*", "0..*"),
+        Relationship ("Domain", "Domain", "0..*", "0..*"),
+        Relationship ("FlowDirection", "FlowDirection", "0..*", "0..*"),
+        Relationship ("MarketDocument", "MarketDocument", "0..*", "0..*"),
+        Relationship ("MarketEvaluationPoint", "MarketEvaluationPoint", "0..*", "0..*"),
+        Relationship ("MarketObjectStatus", "MarketObjectStatus", "0..*", "0..*"),
+        Relationship ("MarketParticipant", "MarketParticipant", "0..*", "0..*"),
+        Relationship ("MktPSRType", "MktPSRType", "0..*", "0..*"),
+        Relationship ("Period", "Period", "0..*", "0..*"),
+        Relationship ("Point", "Point", "0..*", "0..*"),
+        Relationship ("Reason", "Reason", "0..*", "0..*"),
+        Relationship ("RegisteredResource", "RegisteredResource", "0..*", "0..*"),
+        Relationship ("Unit", "Unit_", "0..*", "0..*")
     )
     val businessType: Fielder = parse_element (element (cls, fields(0)))
     val cancelledTS: Fielder = parse_element (element (cls, fields(1)))
@@ -1877,23 +1902,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("AttributeInstanceComponent", "AttributeInstanceComponent", true),
-        Relationship ("Auction", "Auction", true),
-        Relationship ("DateAndOrTime", "DateAndOrTime", true),
-        Relationship ("Domain", "Domain", true),
-        Relationship ("FlowDirection", "FlowDirection", true),
-        Relationship ("MarketDocument", "MarketDocument", true),
-        Relationship ("MarketEvaluationPoint", "MarketEvaluationPoint", true),
-        Relationship ("MarketObjectStatus", "MarketObjectStatus", true),
-        Relationship ("MarketParticipant", "MarketParticipant", true),
-        Relationship ("MktPSRType", "MktPSRType", true),
-        Relationship ("Period", "Period", true),
-        Relationship ("Point", "Point", true),
-        Relationship ("Reason", "Reason", true),
-        Relationship ("RegisteredResource", "RegisteredResource", true),
-        Relationship ("Unit", "Unit_", true)
-    )
 }
 
 /**
@@ -1960,10 +1968,14 @@ object Unit_
 extends
     Parseable[Unit_]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "name",
         "AceTariffType",
         "TimeSeries"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("AceTariffType", "AceTariffType", "0..*", "0..*"),
+        Relationship ("TimeSeries", "TimeSeries", "0..*", "0..*")
     )
     val name: Fielder = parse_element (element (cls, fields(0)))
     val AceTariffType: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
@@ -1982,10 +1994,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("AceTariffType", "AceTariffType", true),
-        Relationship ("TimeSeries", "TimeSeries", true)
-    )
 }
 
 private[ninecode] object _MarketManagement

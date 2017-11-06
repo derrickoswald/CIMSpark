@@ -14,13 +14,15 @@ import ch.ninecode.cim.Relationship
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param status <em>undocumented</em>
+ * @param AssetModelCatalogueItems [[ch.ninecode.model.AssetModelCatalogueItem AssetModelCatalogueItem]] <em>undocumented</em>
  * @group InfAssetInfo
  * @groupname InfAssetInfo Package InfAssetInfo
  */
 case class AssetModelCatalogue
 (
     override val sup: IdentifiedObject,
-    status: String
+    status: String,
+    AssetModelCatalogueItems: List[String]
 )
 extends
     Element
@@ -28,7 +30,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null) }
+    def this () = { this (null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -52,7 +54,9 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = AssetModelCatalogue.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (AssetModelCatalogue.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (AssetModelCatalogue.fields (position), x))
         emitattr (0, status)
+        emitattrs (1, AssetModelCatalogueItems)
         s.toString
     }
     override def export: String =
@@ -65,10 +69,15 @@ object AssetModelCatalogue
 extends
     Parseable[AssetModelCatalogue]
 {
-    val fields: Array[String] = Array[String] (
-        "status"
+    override val fields: Array[String] = Array[String] (
+        "status",
+        "AssetModelCatalogueItems"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("AssetModelCatalogueItems", "AssetModelCatalogueItem", "0..*", "1")
     )
     val status: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val AssetModelCatalogueItems: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): AssetModelCatalogue =
     {
@@ -76,14 +85,12 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = AssetModelCatalogue (
             IdentifiedObject.parse (context),
-            mask (status (), 0)
+            mask (status (), 0),
+            masks (AssetModelCatalogueItems (), 1)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -96,6 +103,8 @@ extends
  *        Cost is for material or asset only and does not include labor to install/construct or configure it.
  * @param AssetModel [[ch.ninecode.model.ProductAssetModel ProductAssetModel]] <em>undocumented</em>
  * @param AssetModelCatalogue [[ch.ninecode.model.AssetModelCatalogue AssetModelCatalogue]] <em>undocumented</em>
+ * @param ErpPOLineItems [[ch.ninecode.model.ErpPOLineItem ErpPOLineItem]] <em>undocumented</em>
+ * @param ErpQuoteLineItems [[ch.ninecode.model.ErpQuoteLineItem ErpQuoteLineItem]] <em>undocumented</em>
  * @group InfAssetInfo
  * @groupname InfAssetInfo Package InfAssetInfo
  */
@@ -104,7 +113,9 @@ case class AssetModelCatalogueItem
     override val sup: Document,
     unitCost: Double,
     AssetModel: String,
-    AssetModelCatalogue: String
+    AssetModelCatalogue: String,
+    ErpPOLineItems: List[String],
+    ErpQuoteLineItems: List[String]
 )
 extends
     Element
@@ -112,7 +123,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, null, null) }
+    def this () = { this (null, 0.0, null, null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -137,9 +148,12 @@ extends
         implicit val clz: String = AssetModelCatalogueItem.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (AssetModelCatalogueItem.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (AssetModelCatalogueItem.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (AssetModelCatalogueItem.fields (position), x))
         emitelem (0, unitCost)
         emitattr (1, AssetModel)
         emitattr (2, AssetModelCatalogue)
+        emitattrs (3, ErpPOLineItems)
+        emitattrs (4, ErpQuoteLineItems)
         s.toString
     }
     override def export: String =
@@ -152,14 +166,24 @@ object AssetModelCatalogueItem
 extends
     Parseable[AssetModelCatalogueItem]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "unitCost",
         "AssetModel",
-        "AssetModelCatalogue"
+        "AssetModelCatalogue",
+        "ErpPOLineItems",
+        "ErpQuoteLineItems"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("AssetModel", "ProductAssetModel", "0..1", "0..*"),
+        Relationship ("AssetModelCatalogue", "AssetModelCatalogue", "1", "0..*"),
+        Relationship ("ErpPOLineItems", "ErpPOLineItem", "0..*", "0..1"),
+        Relationship ("ErpQuoteLineItems", "ErpQuoteLineItem", "0..*", "0..1")
     )
     val unitCost: Fielder = parse_element (element (cls, fields(0)))
     val AssetModel: Fielder = parse_attribute (attribute (cls, fields(1)))
     val AssetModelCatalogue: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val ErpPOLineItems: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val ErpQuoteLineItems: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
 
     def parse (context: Context): AssetModelCatalogueItem =
     {
@@ -169,15 +193,13 @@ extends
             Document.parse (context),
             toDouble (mask (unitCost (), 0)),
             mask (AssetModel (), 1),
-            mask (AssetModelCatalogue (), 2)
+            mask (AssetModelCatalogue (), 2),
+            masks (ErpPOLineItems (), 3),
+            masks (ErpQuoteLineItems (), 4)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("AssetModel", "ProductAssetModel", false),
-        Relationship ("AssetModelCatalogue", "AssetModelCatalogue", false)
-    )
 }
 
 /**
@@ -236,7 +258,7 @@ object BreakerInfo
 extends
     Parseable[BreakerInfo]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "phaseTrip"
     )
     val phaseTrip: Fielder = parse_element (element (cls, fields(0)))
@@ -252,9 +274,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -338,7 +357,7 @@ object CompositeSwitchInfo
 extends
     Parseable[CompositeSwitchInfo]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "ganged",
         "initOpMode",
         "interruptingRating",
@@ -378,9 +397,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -485,7 +501,7 @@ object CurrentTransformerInfo
 extends
     Parseable[CurrentTransformerInfo]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "accuracyClass",
         "accuracyLimit",
         "coreCount",
@@ -546,9 +562,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -607,7 +620,7 @@ object FaultIndicatorInfo
 extends
     Parseable[FaultIndicatorInfo]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "resetKind"
     )
     val resetKind: Fielder = parse_attribute (attribute (cls, fields(0)))
@@ -623,9 +636,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -703,7 +713,7 @@ object OldSwitchInfo
 extends
     Parseable[OldSwitchInfo]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "dielectricStrength",
         "loadBreak",
         "makingCapacity",
@@ -737,9 +747,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -802,7 +809,7 @@ object OldTransformerEndInfo
 extends
     Parseable[OldTransformerEndInfo]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "dayOverLoadRating",
         "hourOverLoadRating",
         "solidInsulationWeight",
@@ -827,9 +834,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -896,7 +900,7 @@ object OldTransformerTankInfo
 extends
     Parseable[OldTransformerTankInfo]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "constructionKind",
         "coreCoilsWeight",
         "coreKind",
@@ -927,9 +931,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1007,7 +1008,7 @@ object PotentialTransformerInfo
 extends
     Parseable[PotentialTransformerInfo]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "accuracyClass",
         "nominalRatio",
         "primaryRatio",
@@ -1041,9 +1042,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1105,7 +1103,7 @@ object ProtectionEquipmentInfo
 extends
     Parseable[ProtectionEquipmentInfo]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "groundTrip",
         "phaseTrip"
     )
@@ -1124,9 +1122,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1197,7 +1192,7 @@ object RecloserInfo
 extends
     Parseable[RecloserInfo]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "groundTripCapable",
         "groundTripNormalEnabled",
         "groundTripRating",
@@ -1225,9 +1220,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1313,7 +1305,7 @@ object SurgeArresterInfo
 extends
     Parseable[SurgeArresterInfo]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "continuousOperatingVoltage",
         "isPolymer",
         "lightningImpulseDischargeVoltage",
@@ -1353,9 +1345,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 private[ninecode] object _InfAssetInfo

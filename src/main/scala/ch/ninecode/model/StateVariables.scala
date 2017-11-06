@@ -67,9 +67,6 @@ extends
         )
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -140,10 +137,13 @@ object SvInjection
 extends
     Parseable[SvInjection]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "pInjection",
         "qInjection",
         "TopologicalNode"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("TopologicalNode", "TopologicalNode", "1", "0..1")
     )
     val pInjection: Fielder = parse_element (element (cls, fields(0)))
     val qInjection: Fielder = parse_element (element (cls, fields(1)))
@@ -162,9 +162,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("TopologicalNode", "TopologicalNode", false)
-    )
 }
 
 /**
@@ -235,10 +232,13 @@ object SvPowerFlow
 extends
     Parseable[SvPowerFlow]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "p",
         "q",
         "Terminal"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Terminal", "Terminal", "1", "0..1")
     )
     val p: Fielder = parse_element (element (cls, fields(0)))
     val q: Fielder = parse_element (element (cls, fields(1)))
@@ -257,9 +257,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Terminal", "Terminal", false)
-    )
 }
 
 /**
@@ -324,9 +321,12 @@ object SvShuntCompensatorSections
 extends
     Parseable[SvShuntCompensatorSections]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "sections",
         "ShuntCompensator"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ShuntCompensator", "ShuntCompensator", "1", "0..1")
     )
     val sections: Fielder = parse_element (element (cls, fields(0)))
     val ShuntCompensator: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -343,9 +343,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("ShuntCompensator", "ShuntCompensator", false)
-    )
 }
 
 /**
@@ -409,9 +406,12 @@ object SvStatus
 extends
     Parseable[SvStatus]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "inService",
         "ConductingEquipment"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ConductingEquipment", "ConductingEquipment", "1", "0..1")
     )
     val inService: Fielder = parse_element (element (cls, fields(0)))
     val ConductingEquipment: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -428,9 +428,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("ConductingEquipment", "ConductingEquipment", false)
-    )
 }
 
 /**
@@ -497,9 +494,12 @@ object SvTapStep
 extends
     Parseable[SvTapStep]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "position",
         "TapChanger"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("TapChanger", "TapChanger", "1", "0..1")
     )
     val position: Fielder = parse_element (element (cls, fields(0)))
     val TapChanger: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -516,9 +516,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("TapChanger", "TapChanger", false)
-    )
 }
 
 /**
@@ -585,10 +582,13 @@ object SvVoltage
 extends
     Parseable[SvVoltage]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "angle",
         "v",
         "TopologicalNode"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("TopologicalNode", "TopologicalNode", "1", "0..1")
     )
     val angle: Fielder = parse_element (element (cls, fields(0)))
     val v: Fielder = parse_element (element (cls, fields(1)))
@@ -607,9 +607,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("TopologicalNode", "TopologicalNode", false)
-    )
 }
 
 private[ninecode] object _StateVariables

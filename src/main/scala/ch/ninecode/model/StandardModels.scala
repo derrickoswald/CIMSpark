@@ -67,7 +67,7 @@ object DynamicsFunctionBlock
 extends
     Parseable[DynamicsFunctionBlock]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "enabled"
     )
     val enabled: Fielder = parse_element (element (cls, fields(0)))
@@ -83,9 +83,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -167,7 +164,7 @@ object RotatingMachineDynamics
 extends
     Parseable[RotatingMachineDynamics]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "damping",
         "inertia",
         "saturationFactor",
@@ -198,9 +195,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 private[ninecode] object _StandardModels

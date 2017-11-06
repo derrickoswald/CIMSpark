@@ -12,6 +12,15 @@ import ch.ninecode.cim.Relationship
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param kind The logical operation of the gate.
+ * @param GateInputPin [[ch.ninecode.model.GateInputPin GateInputPin]] <em>undocumented</em>
+ * @param PinGate [[ch.ninecode.model.PinGate PinGate]] <em>undocumented</em>
+ * @param ProtectiveActionCom [[ch.ninecode.model.ProtectiveAction ProtectiveAction]] <em>undocumented</em>
+ * @param ProtectiveActionEnabled [[ch.ninecode.model.ProtectiveAction ProtectiveAction]] <em>undocumented</em>
+ * @param RemedialActionScheme [[ch.ninecode.model.RemedialActionScheme RemedialActionScheme]] <em>undocumented</em>
+ * @param StageTrigger [[ch.ninecode.model.StageTrigger StageTrigger]] <em>undocumented</em>
+ * @param StageTriggerArmed [[ch.ninecode.model.StageTrigger StageTrigger]] <em>undocumented</em>
+ * @param StageTriggerCom [[ch.ninecode.model.StageTrigger StageTrigger]] <em>undocumented</em>
+ * @param TriggerCondition [[ch.ninecode.model.TriggerCondition TriggerCondition]] <em>undocumented</em>
  * @group InfSIPS
  * @groupname InfSIPS Package InfSIPS
  * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS)
@@ -19,7 +28,16 @@ import ch.ninecode.cim.Relationship
 case class Gate
 (
     override val sup: IdentifiedObject,
-    kind: String
+    kind: String,
+    GateInputPin: List[String],
+    PinGate: List[String],
+    ProtectiveActionCom: List[String],
+    ProtectiveActionEnabled: List[String],
+    RemedialActionScheme: List[String],
+    StageTrigger: List[String],
+    StageTriggerArmed: List[String],
+    StageTriggerCom: List[String],
+    TriggerCondition: List[String]
 )
 extends
     Element
@@ -27,7 +45,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null) }
+    def this () = { this (null, null, List(), List(), List(), List(), List(), List(), List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -51,7 +69,17 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Gate.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Gate.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Gate.fields (position), x))
         emitattr (0, kind)
+        emitattrs (1, GateInputPin)
+        emitattrs (2, PinGate)
+        emitattrs (3, ProtectiveActionCom)
+        emitattrs (4, ProtectiveActionEnabled)
+        emitattrs (5, RemedialActionScheme)
+        emitattrs (6, StageTrigger)
+        emitattrs (7, StageTriggerArmed)
+        emitattrs (8, StageTriggerCom)
+        emitattrs (9, TriggerCondition)
         s.toString
     }
     override def export: String =
@@ -64,10 +92,39 @@ object Gate
 extends
     Parseable[Gate]
 {
-    val fields: Array[String] = Array[String] (
-        "kind"
+    override val fields: Array[String] = Array[String] (
+        "kind",
+        "GateInputPin",
+        "PinGate",
+        "ProtectiveActionCom",
+        "ProtectiveActionEnabled",
+        "RemedialActionScheme",
+        "StageTrigger",
+        "StageTriggerArmed",
+        "StageTriggerCom",
+        "TriggerCondition"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("GateInputPin", "GateInputPin", "1..*", "1"),
+        Relationship ("PinGate", "PinGate", "0..*", "1"),
+        Relationship ("ProtectiveActionCom", "ProtectiveAction", "0..*", "0..1"),
+        Relationship ("ProtectiveActionEnabled", "ProtectiveAction", "0..*", "0..1"),
+        Relationship ("RemedialActionScheme", "RemedialActionScheme", "0..*", "0..1"),
+        Relationship ("StageTrigger", "StageTrigger", "0..*", "0..1"),
+        Relationship ("StageTriggerArmed", "StageTrigger", "0..*", "0..1"),
+        Relationship ("StageTriggerCom", "StageTrigger", "0..*", "0..1"),
+        Relationship ("TriggerCondition", "TriggerCondition", "0..*", "1")
     )
     val kind: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val GateInputPin: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val PinGate: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val ProtectiveActionCom: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val ProtectiveActionEnabled: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val RemedialActionScheme: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
+    val StageTrigger: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
+    val StageTriggerArmed: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
+    val StageTriggerCom: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
+    val TriggerCondition: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
 
     def parse (context: Context): Gate =
     {
@@ -75,14 +132,20 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = Gate (
             IdentifiedObject.parse (context),
-            mask (kind (), 0)
+            mask (kind (), 0),
+            masks (GateInputPin (), 1),
+            masks (PinGate (), 2),
+            masks (ProtectiveActionCom (), 3),
+            masks (ProtectiveActionEnabled (), 4),
+            masks (RemedialActionScheme (), 5),
+            masks (StageTrigger (), 6),
+            masks (StageTriggerArmed (), 7),
+            masks (StageTriggerCom (), 8),
+            masks (TriggerCondition (), 9)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -164,7 +227,7 @@ object GateInputPin
 extends
     Parseable[GateInputPin]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "aDLogicKind",
         "absoluteValue",
         "duration",
@@ -172,6 +235,9 @@ extends
         "thresholdPercentage",
         "thresholdValue",
         "Gate"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Gate", "Gate", "1", "1..*")
     )
     val aDLogicKind: Fielder = parse_attribute (attribute (cls, fields(0)))
     val absoluteValue: Fielder = parse_element (element (cls, fields(1)))
@@ -198,9 +264,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Gate", "Gate", false)
-    )
 }
 
 /**
@@ -208,6 +271,8 @@ extends
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param kind Calculation operation executed on the operants.
+ * @param MeasurementCalculatorInput [[ch.ninecode.model.MeasurementCalculatorInput MeasurementCalculatorInput]] <em>undocumented</em>
+ * @param PinMeasurement [[ch.ninecode.model.PinMeasurement PinMeasurement]] <em>undocumented</em>
  * @group InfSIPS
  * @groupname InfSIPS Package InfSIPS
  * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS)
@@ -215,7 +280,9 @@ extends
 case class MeasurementCalculator
 (
     override val sup: IdentifiedObject,
-    kind: String
+    kind: String,
+    MeasurementCalculatorInput: List[String],
+    PinMeasurement: List[String]
 )
 extends
     Element
@@ -223,7 +290,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null) }
+    def this () = { this (null, null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -247,7 +314,10 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MeasurementCalculator.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (MeasurementCalculator.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (MeasurementCalculator.fields (position), x))
         emitattr (0, kind)
+        emitattrs (1, MeasurementCalculatorInput)
+        emitattrs (2, PinMeasurement)
         s.toString
     }
     override def export: String =
@@ -260,10 +330,18 @@ object MeasurementCalculator
 extends
     Parseable[MeasurementCalculator]
 {
-    val fields: Array[String] = Array[String] (
-        "kind"
+    override val fields: Array[String] = Array[String] (
+        "kind",
+        "MeasurementCalculatorInput",
+        "PinMeasurement"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("MeasurementCalculatorInput", "MeasurementCalculatorInput", "1..*", "1"),
+        Relationship ("PinMeasurement", "PinMeasurement", "0..*", "0..1")
     )
     val kind: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val MeasurementCalculatorInput: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val PinMeasurement: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
 
     def parse (context: Context): MeasurementCalculator =
     {
@@ -271,14 +349,13 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = MeasurementCalculator (
             IdentifiedObject.parse (context),
-            mask (kind (), 0)
+            mask (kind (), 0),
+            masks (MeasurementCalculatorInput (), 1),
+            masks (PinMeasurement (), 2)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -351,11 +428,15 @@ object MeasurementCalculatorInput
 extends
     Parseable[MeasurementCalculatorInput]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "absoluteValue",
         "order",
         "Measurement",
         "MeasurementCalculator"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Measurement", "Measurement", "1", "0..*"),
+        Relationship ("MeasurementCalculator", "MeasurementCalculator", "1", "1..*")
     )
     val absoluteValue: Fielder = parse_element (element (cls, fields(0)))
     val order: Fielder = parse_element (element (cls, fields(1)))
@@ -376,10 +457,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Measurement", "Measurement", false),
-        Relationship ("MeasurementCalculator", "MeasurementCalculator", false)
-    )
 }
 
 /**
@@ -442,9 +519,12 @@ object PinBranchGroup
 extends
     Parseable[PinBranchGroup]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "kind",
         "BranchGroup"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("BranchGroup", "BranchGroup", "1", "0..*")
     )
     val kind: Fielder = parse_attribute (attribute (cls, fields(0)))
     val BranchGroup: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -461,9 +541,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("BranchGroup", "BranchGroup", false)
-    )
 }
 
 /**
@@ -526,9 +603,12 @@ object PinEquipment
 extends
     Parseable[PinEquipment]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "kind",
         "Equipment"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Equipment", "Equipment", "1", "0..*")
     )
     val kind: Fielder = parse_attribute (attribute (cls, fields(0)))
     val Equipment: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -545,9 +625,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Equipment", "Equipment", false)
-    )
 }
 
 /**
@@ -607,8 +684,11 @@ object PinGate
 extends
     Parseable[PinGate]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "GateOutput"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("GateOutput", "Gate", "1", "0..*")
     )
     val GateOutput: Fielder = parse_attribute (attribute (cls, fields(0)))
 
@@ -623,9 +703,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("GateOutput", "Gate", false)
-    )
 }
 
 /**
@@ -688,9 +765,13 @@ object PinMeasurement
 extends
     Parseable[PinMeasurement]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "Measurement",
         "MeasurementCalculator"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Measurement", "Measurement", "0..1", "0..*"),
+        Relationship ("MeasurementCalculator", "MeasurementCalculator", "0..1", "0..*")
     )
     val Measurement: Fielder = parse_attribute (attribute (cls, fields(0)))
     val MeasurementCalculator: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -707,10 +788,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Measurement", "Measurement", false),
-        Relationship ("MeasurementCalculator", "MeasurementCalculator", false)
-    )
 }
 
 /**
@@ -773,9 +850,12 @@ object PinTerminal
 extends
     Parseable[PinTerminal]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "kind",
         "Terminal"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Terminal", "Terminal", "1", "0..*")
     )
     val kind: Fielder = parse_attribute (attribute (cls, fields(0)))
     val Terminal: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -792,9 +872,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Terminal", "Terminal", false)
-    )
 }
 
 /**
@@ -871,13 +948,19 @@ object ProtectiveAction
 extends
     Parseable[ProtectiveAction]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "enabled",
         "normalEnabled",
         "GateComCondition",
         "GateEnabledCondition",
         "ProtectionEquipment",
         "ProtectiveActionCollection"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("GateComCondition", "Gate", "0..1", "0..*"),
+        Relationship ("GateEnabledCondition", "Gate", "0..1", "0..*"),
+        Relationship ("ProtectionEquipment", "ProtectionEquipment", "0..1", "0..*"),
+        Relationship ("ProtectiveActionCollection", "ProtectiveActionCollection", "1", "1..*")
     )
     val enabled: Fielder = parse_element (element (cls, fields(0)))
     val normalEnabled: Fielder = parse_element (element (cls, fields(1)))
@@ -902,12 +985,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("GateComCondition", "Gate", false),
-        Relationship ("GateEnabledCondition", "Gate", false),
-        Relationship ("ProtectionEquipment", "ProtectionEquipment", false),
-        Relationship ("ProtectiveActionCollection", "ProtectiveActionCollection", false)
-    )
 }
 
 /**
@@ -993,7 +1070,7 @@ object ProtectiveActionAdjustment
 extends
     Parseable[ProtectiveActionAdjustment]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "byPercentage",
         "byValue",
         "kind",
@@ -1002,6 +1079,11 @@ extends
         "ConductingEquipment",
         "DCConductingEquipment",
         "Measurement"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ConductingEquipment", "ConductingEquipment", "1", "0..*"),
+        Relationship ("DCConductingEquipment", "DCConductingEquipment", "1", "0..*"),
+        Relationship ("Measurement", "Measurement", "0..1", "0..*")
     )
     val byPercentage: Fielder = parse_element (element (cls, fields(0)))
     val byValue: Fielder = parse_element (element (cls, fields(1)))
@@ -1030,24 +1112,23 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("ConductingEquipment", "ConductingEquipment", false),
-        Relationship ("DCConductingEquipment", "DCConductingEquipment", false),
-        Relationship ("Measurement", "Measurement", false)
-    )
 }
 
 /**
  * A collection of protective actions to protect the integrity of the power system.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param ProtectiveAction [[ch.ninecode.model.ProtectiveAction ProtectiveAction]] <em>undocumented</em>
+ * @param StageTrigger [[ch.ninecode.model.StageTrigger StageTrigger]] <em>undocumented</em>
  * @group InfSIPS
  * @groupname InfSIPS Package InfSIPS
  * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS)
  */
 case class ProtectiveActionCollection
 (
-    override val sup: IdentifiedObject
+    override val sup: IdentifiedObject,
+    ProtectiveAction: List[String],
+    StageTrigger: List[String]
 )
 extends
     Element
@@ -1055,7 +1136,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1076,7 +1157,12 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ProtectiveActionCollection.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ProtectiveActionCollection.fields (position), x))
+        emitattrs (0, ProtectiveAction)
+        emitattrs (1, StageTrigger)
+        s.toString
     }
     override def export: String =
     {
@@ -1088,18 +1174,29 @@ object ProtectiveActionCollection
 extends
     Parseable[ProtectiveActionCollection]
 {
+    override val fields: Array[String] = Array[String] (
+        "ProtectiveAction",
+        "StageTrigger"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ProtectiveAction", "ProtectiveAction", "1..*", "1"),
+        Relationship ("StageTrigger", "StageTrigger", "0..*", "1")
+    )
+    val ProtectiveAction: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val StageTrigger: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): ProtectiveActionCollection =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = ProtectiveActionCollection (
-            IdentifiedObject.parse (context)
+            IdentifiedObject.parse (context),
+            masks (ProtectiveAction (), 0),
+            masks (StageTrigger (), 1)
         )
+        ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1163,9 +1260,12 @@ object ProtectiveActionEquipment
 extends
     Parseable[ProtectiveActionEquipment]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "inService",
         "Equipment"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Equipment", "Equipment", "1", "0..*")
     )
     val inService: Fielder = parse_element (element (cls, fields(0)))
     val Equipment: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -1182,9 +1282,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Equipment", "Equipment", false)
-    )
 }
 
 /**
@@ -1252,10 +1349,13 @@ object ProtectiveActionRegulation
 extends
     Parseable[ProtectiveActionRegulation]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "isRegulating",
         "targetValue",
         "RegulatingControl"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("RegulatingControl", "RegulatingControl", "1", "0..*")
     )
     val isRegulating: Fielder = parse_element (element (cls, fields(0)))
     val targetValue: Fielder = parse_element (element (cls, fields(1)))
@@ -1274,9 +1374,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("RegulatingControl", "RegulatingControl", false)
-    )
 }
 
 /**
@@ -1288,6 +1385,8 @@ extends
  * @param kind Kind of Remedial Action Scheme (RAS)
  * @param normalArmed The default/normal value used when other active signal/values are missing.
  * @param GateArmed [[ch.ninecode.model.Gate Gate]] <em>undocumented</em>
+ * @param Stage [[ch.ninecode.model.Stage Stage]] <em>undocumented</em>
+ * @param TriggerCondition [[ch.ninecode.model.TriggerCondition TriggerCondition]] <em>undocumented</em>
  * @group InfSIPS
  * @groupname InfSIPS Package InfSIPS
  * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS)
@@ -1298,7 +1397,9 @@ case class RemedialActionScheme
     armed: Boolean,
     kind: String,
     normalArmed: Boolean,
-    GateArmed: String
+    GateArmed: String,
+    Stage: List[String],
+    TriggerCondition: List[String]
 )
 extends
     Element
@@ -1306,7 +1407,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, false, null, false, null) }
+    def this () = { this (null, false, null, false, null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1331,10 +1432,13 @@ extends
         implicit val clz: String = RemedialActionScheme.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (RemedialActionScheme.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (RemedialActionScheme.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (RemedialActionScheme.fields (position), x))
         emitelem (0, armed)
         emitattr (1, kind)
         emitelem (2, normalArmed)
         emitattr (3, GateArmed)
+        emitattrs (4, Stage)
+        emitattrs (5, TriggerCondition)
         s.toString
     }
     override def export: String =
@@ -1347,16 +1451,25 @@ object RemedialActionScheme
 extends
     Parseable[RemedialActionScheme]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "armed",
         "kind",
         "normalArmed",
-        "GateArmed"
+        "GateArmed",
+        "Stage",
+        "TriggerCondition"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("GateArmed", "Gate", "0..1", "0..*"),
+        Relationship ("Stage", "Stage", "1..*", "1"),
+        Relationship ("TriggerCondition", "TriggerCondition", "0..*", "1")
     )
     val armed: Fielder = parse_element (element (cls, fields(0)))
     val kind: Fielder = parse_attribute (attribute (cls, fields(1)))
     val normalArmed: Fielder = parse_element (element (cls, fields(2)))
     val GateArmed: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val Stage: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val TriggerCondition: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
 
     def parse (context: Context): RemedialActionScheme =
     {
@@ -1367,14 +1480,13 @@ extends
             toBoolean (mask (armed (), 0)),
             mask (kind (), 1),
             toBoolean (mask (normalArmed (), 2)),
-            mask (GateArmed (), 3)
+            mask (GateArmed (), 3),
+            masks (Stage (), 4),
+            masks (TriggerCondition (), 5)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("GateArmed", "Gate", false)
-    )
 }
 
 /**
@@ -1384,6 +1496,7 @@ extends
  * @param priority The priority of the stage.   0 = don t care (default) 1 = highest priority. 2 is less than 1 and so on.
  *        A stage with higher priority needs be activated before a lower stage can be activated.
  * @param RemedialActionScheme [[ch.ninecode.model.RemedialActionScheme RemedialActionScheme]] <em>undocumented</em>
+ * @param StageTrigger [[ch.ninecode.model.StageTrigger StageTrigger]] <em>undocumented</em>
  * @group InfSIPS
  * @groupname InfSIPS Package InfSIPS
  * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS)
@@ -1392,7 +1505,8 @@ case class Stage
 (
     override val sup: IdentifiedObject,
     priority: Int,
-    RemedialActionScheme: String
+    RemedialActionScheme: String,
+    StageTrigger: List[String]
 )
 extends
     Element
@@ -1400,7 +1514,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0, null) }
+    def this () = { this (null, 0, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -1425,8 +1539,10 @@ extends
         implicit val clz: String = Stage.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Stage.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Stage.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Stage.fields (position), x))
         emitelem (0, priority)
         emitattr (1, RemedialActionScheme)
+        emitattrs (2, StageTrigger)
         s.toString
     }
     override def export: String =
@@ -1439,12 +1555,18 @@ object Stage
 extends
     Parseable[Stage]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "priority",
-        "RemedialActionScheme"
+        "RemedialActionScheme",
+        "StageTrigger"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("RemedialActionScheme", "RemedialActionScheme", "1", "1..*"),
+        Relationship ("StageTrigger", "StageTrigger", "1..*", "1")
     )
     val priority: Fielder = parse_element (element (cls, fields(0)))
     val RemedialActionScheme: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val StageTrigger: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
 
     def parse (context: Context): Stage =
     {
@@ -1453,14 +1575,12 @@ extends
         val ret = Stage (
             IdentifiedObject.parse (context),
             toInteger (mask (priority (), 0)),
-            mask (RemedialActionScheme (), 1)
+            mask (RemedialActionScheme (), 1),
+            masks (StageTrigger (), 2)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("RemedialActionScheme", "RemedialActionScheme", false)
-    )
 }
 
 /**
@@ -1544,7 +1664,7 @@ object StageTrigger
 extends
     Parseable[StageTrigger]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "armed",
         "normalArmed",
         "priority",
@@ -1553,6 +1673,13 @@ extends
         "GateTrigger",
         "ProtectiveActionCollection",
         "Stage"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("GateArmed", "Gate", "0..1", "0..*"),
+        Relationship ("GateComCondition", "Gate", "0..1", "0..*"),
+        Relationship ("GateTrigger", "Gate", "0..1", "0..*"),
+        Relationship ("ProtectiveActionCollection", "ProtectiveActionCollection", "1", "0..*"),
+        Relationship ("Stage", "Stage", "1", "1..*")
     )
     val armed: Fielder = parse_element (element (cls, fields(0)))
     val normalArmed: Fielder = parse_element (element (cls, fields(1)))
@@ -1581,13 +1708,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("GateArmed", "Gate", false),
-        Relationship ("GateComCondition", "Gate", false),
-        Relationship ("GateTrigger", "Gate", false),
-        Relationship ("ProtectiveActionCollection", "ProtectiveActionCollection", false),
-        Relationship ("Stage", "Stage", false)
-    )
 }
 
 /**
@@ -1650,9 +1770,13 @@ object TriggerCondition
 extends
     Parseable[TriggerCondition]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "GateTrigger",
         "RemedialActionScheme"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("GateTrigger", "Gate", "1", "0..*"),
+        Relationship ("RemedialActionScheme", "RemedialActionScheme", "1", "0..*")
     )
     val GateTrigger: Fielder = parse_attribute (attribute (cls, fields(0)))
     val RemedialActionScheme: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -1669,10 +1793,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("GateTrigger", "Gate", false),
-        Relationship ("RemedialActionScheme", "RemedialActionScheme", false)
-    )
 }
 
 private[ninecode] object _InfSIPS

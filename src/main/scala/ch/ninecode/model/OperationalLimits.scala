@@ -64,7 +64,7 @@ object ActivePowerLimit
 extends
     Parseable[ActivePowerLimit]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "value"
     )
     val value: Fielder = parse_element (element (cls, fields(0)))
@@ -80,9 +80,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -142,7 +139,7 @@ object ApparentPowerLimit
 extends
     Parseable[ApparentPowerLimit]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "value"
     )
     val value: Fielder = parse_element (element (cls, fields(0)))
@@ -158,9 +155,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -175,6 +169,8 @@ extends
  * @param minimumReactivePower The minimum reactive power flow.
  * @param monitorActivePower Monitor the active power flow.
  * @param monitorReactivePower Monitor the reactive power flow.
+ * @param BranchGroupTerminal [[ch.ninecode.model.BranchGroupTerminal BranchGroupTerminal]] The directed branch group terminals to be summed.
+ * @param PinBranchGroup [[ch.ninecode.model.PinBranchGroup PinBranchGroup]] <em>undocumented</em>
  * @group OperationalLimits
  * @groupname OperationalLimits Package OperationalLimits
  * @groupdesc OperationalLimits This package models a specification of limits associated with equipment and other operational entities.
@@ -187,7 +183,9 @@ case class BranchGroup
     minimumActivePower: Double,
     minimumReactivePower: Double,
     monitorActivePower: Boolean,
-    monitorReactivePower: Boolean
+    monitorReactivePower: Boolean,
+    BranchGroupTerminal: List[String],
+    PinBranchGroup: List[String]
 )
 extends
     Element
@@ -195,7 +193,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, false, false) }
+    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, false, false, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -219,12 +217,15 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = BranchGroup.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (BranchGroup.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (BranchGroup.fields (position), x))
         emitelem (0, maximumActivePower)
         emitelem (1, maximumReactivePower)
         emitelem (2, minimumActivePower)
         emitelem (3, minimumReactivePower)
         emitelem (4, monitorActivePower)
         emitelem (5, monitorReactivePower)
+        emitattrs (6, BranchGroupTerminal)
+        emitattrs (7, PinBranchGroup)
         s.toString
     }
     override def export: String =
@@ -237,13 +238,19 @@ object BranchGroup
 extends
     Parseable[BranchGroup]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "maximumActivePower",
         "maximumReactivePower",
         "minimumActivePower",
         "minimumReactivePower",
         "monitorActivePower",
-        "monitorReactivePower"
+        "monitorReactivePower",
+        "BranchGroupTerminal",
+        "PinBranchGroup"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("BranchGroupTerminal", "BranchGroupTerminal", "0..*", "1"),
+        Relationship ("PinBranchGroup", "PinBranchGroup", "0..*", "1")
     )
     val maximumActivePower: Fielder = parse_element (element (cls, fields(0)))
     val maximumReactivePower: Fielder = parse_element (element (cls, fields(1)))
@@ -251,6 +258,8 @@ extends
     val minimumReactivePower: Fielder = parse_element (element (cls, fields(3)))
     val monitorActivePower: Fielder = parse_element (element (cls, fields(4)))
     val monitorReactivePower: Fielder = parse_element (element (cls, fields(5)))
+    val BranchGroupTerminal: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
+    val PinBranchGroup: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
 
     def parse (context: Context): BranchGroup =
     {
@@ -263,14 +272,13 @@ extends
             toDouble (mask (minimumActivePower (), 2)),
             toDouble (mask (minimumReactivePower (), 3)),
             toBoolean (mask (monitorActivePower (), 4)),
-            toBoolean (mask (monitorReactivePower (), 5))
+            toBoolean (mask (monitorReactivePower (), 5)),
+            masks (BranchGroupTerminal (), 6),
+            masks (PinBranchGroup (), 7)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -338,10 +346,14 @@ object BranchGroupTerminal
 extends
     Parseable[BranchGroupTerminal]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "positiveFlowIn",
         "BranchGroup",
         "Terminal"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("BranchGroup", "BranchGroup", "1", "0..*"),
+        Relationship ("Terminal", "Terminal", "1", "0..*")
     )
     val positiveFlowIn: Fielder = parse_element (element (cls, fields(0)))
     val BranchGroup: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -360,10 +372,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("BranchGroup", "BranchGroup", false),
-        Relationship ("Terminal", "Terminal", false)
-    )
 }
 
 /**
@@ -423,7 +431,7 @@ object CurrentLimit
 extends
     Parseable[CurrentLimit]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "value"
     )
     val value: Fielder = parse_element (element (cls, fields(0)))
@@ -439,9 +447,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -452,6 +457,7 @@ extends
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param LimitDependencyModel [[ch.ninecode.model.LimitDependency LimitDependency]] The limit dependency models which are used to calculate this limit.
  *        If no limit dependencies are specified then the native limit value is used.
+ * @param LimitScalingLimit [[ch.ninecode.model.LimitScalingLimit LimitScalingLimit]] <em>undocumented</em>
  * @param OperationalLimitSet [[ch.ninecode.model.OperationalLimitSet OperationalLimitSet]] The limit set to which the limit values belong.
  * @param OperationalLimitType [[ch.ninecode.model.OperationalLimitType OperationalLimitType]] The limit type associated with this limit.
  * @group OperationalLimits
@@ -462,6 +468,7 @@ case class OperationalLimit
 (
     override val sup: IdentifiedObject,
     LimitDependencyModel: List[String],
+    LimitScalingLimit: List[String],
     OperationalLimitSet: String,
     OperationalLimitType: String
 )
@@ -471,7 +478,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, List(), null, null) }
+    def this () = { this (null, List(), List(), null, null) }
     /**
      * Return the superclass object.
      *
@@ -497,8 +504,9 @@ extends
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (OperationalLimit.fields (position), value)
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (OperationalLimit.fields (position), x))
         emitattrs (0, LimitDependencyModel)
-        emitattr (1, OperationalLimitSet)
-        emitattr (2, OperationalLimitType)
+        emitattrs (1, LimitScalingLimit)
+        emitattr (2, OperationalLimitSet)
+        emitattr (3, OperationalLimitType)
         s.toString
     }
     override def export: String =
@@ -511,14 +519,22 @@ object OperationalLimit
 extends
     Parseable[OperationalLimit]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "LimitDependencyModel",
+        "LimitScalingLimit",
         "OperationalLimitSet",
         "OperationalLimitType"
     )
+    override val relations: List[Relationship] = List (
+        Relationship ("LimitDependencyModel", "LimitDependency", "0..*", "0..*"),
+        Relationship ("LimitScalingLimit", "LimitScalingLimit", "0..*", "1"),
+        Relationship ("OperationalLimitSet", "OperationalLimitSet", "1", "0..*"),
+        Relationship ("OperationalLimitType", "OperationalLimitType", "0..1", "0..*")
+    )
     val LimitDependencyModel: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
-    val OperationalLimitSet: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val OperationalLimitType: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val LimitScalingLimit: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val OperationalLimitSet: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val OperationalLimitType: Fielder = parse_attribute (attribute (cls, fields(3)))
 
     def parse (context: Context): OperationalLimit =
     {
@@ -527,17 +543,13 @@ extends
         val ret = OperationalLimit (
             IdentifiedObject.parse (context),
             masks (LimitDependencyModel (), 0),
-            mask (OperationalLimitSet (), 1),
-            mask (OperationalLimitType (), 2)
+            masks (LimitScalingLimit (), 1),
+            mask (OperationalLimitSet (), 2),
+            mask (OperationalLimitType (), 3)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("LimitDependencyModel", "LimitDependency", true),
-        Relationship ("OperationalLimitSet", "OperationalLimitSet", false),
-        Relationship ("OperationalLimitType", "OperationalLimitType", false)
-    )
 }
 
 /**
@@ -547,6 +559,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param Equipment [[ch.ninecode.model.Equipment Equipment]] The equipment to which the limit set applies.
+ * @param OperationalLimitValue [[ch.ninecode.model.OperationalLimit OperationalLimit]] Values of equipment limits.
  * @param Terminal [[ch.ninecode.model.ACDCTerminal ACDCTerminal]] <em>undocumented</em>
  * @group OperationalLimits
  * @groupname OperationalLimits Package OperationalLimits
@@ -556,6 +569,7 @@ case class OperationalLimitSet
 (
     override val sup: IdentifiedObject,
     Equipment: String,
+    OperationalLimitValue: List[String],
     Terminal: String
 )
 extends
@@ -564,7 +578,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null) }
+    def this () = { this (null, null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -588,8 +602,10 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = OperationalLimitSet.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (OperationalLimitSet.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (OperationalLimitSet.fields (position), x))
         emitattr (0, Equipment)
-        emitattr (1, Terminal)
+        emitattrs (1, OperationalLimitValue)
+        emitattr (2, Terminal)
         s.toString
     }
     override def export: String =
@@ -602,12 +618,19 @@ object OperationalLimitSet
 extends
     Parseable[OperationalLimitSet]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "Equipment",
+        "OperationalLimitValue",
         "Terminal"
     )
+    override val relations: List[Relationship] = List (
+        Relationship ("Equipment", "Equipment", "0..1", "0..*"),
+        Relationship ("OperationalLimitValue", "OperationalLimit", "0..*", "1"),
+        Relationship ("Terminal", "ACDCTerminal", "0..1", "0..*")
+    )
     val Equipment: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val Terminal: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val OperationalLimitValue: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val Terminal: Fielder = parse_attribute (attribute (cls, fields(2)))
 
     def parse (context: Context): OperationalLimitSet =
     {
@@ -616,15 +639,12 @@ extends
         val ret = OperationalLimitSet (
             IdentifiedObject.parse (context),
             mask (Equipment (), 0),
-            mask (Terminal (), 1)
+            masks (OperationalLimitValue (), 1),
+            mask (Terminal (), 2)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Equipment", "Equipment", false),
-        Relationship ("Terminal", "ACDCTerminal", false)
-    )
 }
 
 /**
@@ -634,6 +654,8 @@ extends
  * @param acceptableDuration The nominal acceptable duration of the limit.
  *        Limits are commonly expressed in terms of the a time limit for which the limit is normally acceptable.   The actual acceptable duration of a specific limit may depend on other local factors such as temperature or wind speed.
  * @param direction The direction of the limit.
+ * @param OperationalLimit [[ch.ninecode.model.OperationalLimit OperationalLimit]] The operational limits associated with this type of limit.
+ * @param SourceOperationalLimitTypeScaling [[ch.ninecode.model.OperatonalLimitTypeScaling OperatonalLimitTypeScaling]] <em>undocumented</em>
  * @param TargetOperationalLimitmTypeScaling [[ch.ninecode.model.OperatonalLimitTypeScaling OperatonalLimitTypeScaling]] <em>undocumented</em>
  * @group OperationalLimits
  * @groupname OperationalLimits Package OperationalLimits
@@ -644,6 +666,8 @@ case class OperationalLimitType
     override val sup: IdentifiedObject,
     acceptableDuration: Double,
     direction: String,
+    OperationalLimit: List[String],
+    SourceOperationalLimitTypeScaling: List[String],
     TargetOperationalLimitmTypeScaling: String
 )
 extends
@@ -652,7 +676,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, null, null) }
+    def this () = { this (null, 0.0, null, List(), List(), null) }
     /**
      * Return the superclass object.
      *
@@ -677,9 +701,12 @@ extends
         implicit val clz: String = OperationalLimitType.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (OperationalLimitType.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (OperationalLimitType.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (OperationalLimitType.fields (position), x))
         emitelem (0, acceptableDuration)
         emitattr (1, direction)
-        emitattr (2, TargetOperationalLimitmTypeScaling)
+        emitattrs (2, OperationalLimit)
+        emitattrs (3, SourceOperationalLimitTypeScaling)
+        emitattr (4, TargetOperationalLimitmTypeScaling)
         s.toString
     }
     override def export: String =
@@ -692,14 +719,23 @@ object OperationalLimitType
 extends
     Parseable[OperationalLimitType]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "acceptableDuration",
         "direction",
+        "OperationalLimit",
+        "SourceOperationalLimitTypeScaling",
         "TargetOperationalLimitmTypeScaling"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("OperationalLimit", "OperationalLimit", "0..*", "0..1"),
+        Relationship ("SourceOperationalLimitTypeScaling", "OperatonalLimitTypeScaling", "0..*", "0..1"),
+        Relationship ("TargetOperationalLimitmTypeScaling", "OperatonalLimitTypeScaling", "0..1", "1")
     )
     val acceptableDuration: Fielder = parse_element (element (cls, fields(0)))
     val direction: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val TargetOperationalLimitmTypeScaling: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val OperationalLimit: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val SourceOperationalLimitTypeScaling: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val TargetOperationalLimitmTypeScaling: Fielder = parse_attribute (attribute (cls, fields(4)))
 
     def parse (context: Context): OperationalLimitType =
     {
@@ -709,14 +745,13 @@ extends
             IdentifiedObject.parse (context),
             toDouble (mask (acceptableDuration (), 0)),
             mask (direction (), 1),
-            mask (TargetOperationalLimitmTypeScaling (), 2)
+            masks (OperationalLimit (), 2),
+            masks (SourceOperationalLimitTypeScaling (), 3),
+            mask (TargetOperationalLimitmTypeScaling (), 4)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("TargetOperationalLimitmTypeScaling", "OperatonalLimitTypeScaling", false)
-    )
 }
 
 /**
@@ -777,7 +812,7 @@ object VoltageLimit
 extends
     Parseable[VoltageLimit]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "value"
     )
     val value: Fielder = parse_element (element (cls, fields(0)))
@@ -793,9 +828,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 private[ninecode] object _OperationalLimits

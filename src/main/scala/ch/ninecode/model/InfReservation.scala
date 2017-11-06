@@ -14,13 +14,17 @@ import ch.ninecode.cim.Relationship
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param tiePointMWRating The MW rating of the tie point.
+ * @param ByMktMeasurement [[ch.ninecode.model.MktMeasurement MktMeasurement]] A measurement is made on the B side of a tie point
+ * @param ForMktMeasurement [[ch.ninecode.model.MktMeasurement MktMeasurement]] A measurement is made on the A side of a tie point
  * @group InfReservation
  * @groupname InfReservation Package InfReservation
  */
 case class TiePoint
 (
     override val sup: IdentifiedObject,
-    tiePointMWRating: Double
+    tiePointMWRating: Double,
+    ByMktMeasurement: List[String],
+    ForMktMeasurement: List[String]
 )
 extends
     Element
@@ -28,7 +32,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0) }
+    def this () = { this (null, 0.0, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -52,7 +56,10 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = TiePoint.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TiePoint.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (TiePoint.fields (position), x))
         emitelem (0, tiePointMWRating)
+        emitattrs (1, ByMktMeasurement)
+        emitattrs (2, ForMktMeasurement)
         s.toString
     }
     override def export: String =
@@ -65,10 +72,18 @@ object TiePoint
 extends
     Parseable[TiePoint]
 {
-    val fields: Array[String] = Array[String] (
-        "tiePointMWRating"
+    override val fields: Array[String] = Array[String] (
+        "tiePointMWRating",
+        "ByMktMeasurement",
+        "ForMktMeasurement"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ByMktMeasurement", "MktMeasurement", "1..*", "1"),
+        Relationship ("ForMktMeasurement", "MktMeasurement", "1..*", "1")
     )
     val tiePointMWRating: Fielder = parse_element (element (cls, fields(0)))
+    val ByMktMeasurement: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val ForMktMeasurement: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
 
     def parse (context: Context): TiePoint =
     {
@@ -76,14 +91,13 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = TiePoint (
             IdentifiedObject.parse (context),
-            toDouble (mask (tiePointMWRating (), 0))
+            toDouble (mask (tiePointMWRating (), 0)),
+            masks (ByMktMeasurement (), 1),
+            masks (ForMktMeasurement (), 2)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 private[ninecode] object _InfReservation

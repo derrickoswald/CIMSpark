@@ -65,7 +65,7 @@ object WheelingReferenceSchedule
 extends
     Parseable[WheelingReferenceSchedule]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "value"
     )
     val value: Fielder = parse_element (element (cls, fields(0)))
@@ -81,9 +81,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 private[ninecode] object _InfParticipantInterfaces

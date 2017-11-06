@@ -66,7 +66,7 @@ object SVC
 extends
     Parseable[SVC]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "capacitiveRating",
         "inductiveRating"
     )
@@ -85,9 +85,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -201,7 +198,7 @@ object ShuntCompensatorControl
 extends
     Parseable[ShuntCompensatorControl]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "branchDirect",
         "cellSize",
         "controlKind",
@@ -220,6 +217,9 @@ extends
         "switchOperationCycle",
         "vRegLineLine",
         "ShuntCompensatorInfo"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ShuntCompensatorInfo", "ShuntCompensatorInfo", "0..1", "0..1")
     )
     val branchDirect: Fielder = parse_element (element (cls, fields(0)))
     val cellSize: Fielder = parse_element (element (cls, fields(1)))
@@ -268,9 +268,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("ShuntCompensatorInfo", "ShuntCompensatorInfo", false)
-    )
 }
 
 private[ninecode] object _InfWiresExt

@@ -73,7 +73,7 @@ object MechLoad1
 extends
     Parseable[MechLoad1]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "a",
         "b",
         "d",
@@ -98,9 +98,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -163,9 +160,13 @@ object MechanicalLoadDynamics
 extends
     Parseable[MechanicalLoadDynamics]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "AsynchronousMachineDynamics",
         "SynchronousMachineDynamics"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("AsynchronousMachineDynamics", "AsynchronousMachineDynamics", "0..1", "0..1"),
+        Relationship ("SynchronousMachineDynamics", "SynchronousMachineDynamics", "0..1", "0..1")
     )
     val AsynchronousMachineDynamics: Fielder = parse_attribute (attribute (cls, fields(0)))
     val SynchronousMachineDynamics: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -182,10 +183,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("AsynchronousMachineDynamics", "AsynchronousMachineDynamics", false),
-        Relationship ("SynchronousMachineDynamics", "SynchronousMachineDynamics", false)
-    )
 }
 
 private[ninecode] object _MechanicalLoadDynamics

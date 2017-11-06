@@ -91,7 +91,7 @@ object UnderexcLim2Simplified
 extends
     Parseable[UnderexcLim2Simplified]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "kui",
         "p0",
         "p1",
@@ -125,9 +125,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -244,7 +241,7 @@ object UnderexcLimIEEE1
 extends
     Parseable[UnderexcLimIEEE1]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "kuc",
         "kuf",
         "kui",
@@ -302,9 +299,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -511,7 +505,7 @@ object UnderexcLimIEEE2
 extends
     Parseable[UnderexcLimIEEE2]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "k1",
         "k2",
         "kfb",
@@ -644,9 +638,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -721,7 +712,7 @@ object UnderexcLimX1
 extends
     Parseable[UnderexcLimX1]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "k",
         "kf2",
         "km",
@@ -752,9 +743,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -832,7 +820,7 @@ object UnderexcLimX2
 extends
     Parseable[UnderexcLimX2]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "kf2",
         "km",
         "melmax",
@@ -866,9 +854,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -931,9 +916,13 @@ object UnderexcitationLimiterDynamics
 extends
     Parseable[UnderexcitationLimiterDynamics]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "ExcitationSystemDynamics",
         "RemoteInputSignal"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ExcitationSystemDynamics", "ExcitationSystemDynamics", "1", "0..1"),
+        Relationship ("RemoteInputSignal", "RemoteInputSignal", "0..1", "0..1")
     )
     val ExcitationSystemDynamics: Fielder = parse_attribute (attribute (cls, fields(0)))
     val RemoteInputSignal: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -950,10 +939,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("ExcitationSystemDynamics", "ExcitationSystemDynamics", false),
-        Relationship ("RemoteInputSignal", "RemoteInputSignal", false)
-    )
 }
 
 private[ninecode] object _UnderexcitationLimiterDynamics

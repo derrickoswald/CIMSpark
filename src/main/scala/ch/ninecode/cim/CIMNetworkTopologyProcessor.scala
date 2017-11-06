@@ -332,12 +332,15 @@ class CIMNetworkTopologyProcessor (spark: SparkSession, storage: StorageLevel = 
                         null,
                         name
                     ),
-                    cn.IdentifiedObject.aliasName, // aliasName: String
-                    cn.IdentifiedObject.description, // description: String
-                    name,  // mRID: String
-                    cn.id  // name: String
+                    aliasName = cn.IdentifiedObject.aliasName,
+                    description = cn.IdentifiedObject.description,
+                    mRID = name,
+                    name = cn.id,
+                    DiagramObjects = List (),
+                    Names = List ()
                 ),
-                null // AngleRefTopologicalNode: String
+                AngleRefTopologicalNode = null,
+                TopologicalNodes = List()
             )
         )
     }
@@ -360,20 +363,24 @@ class CIMNetworkTopologyProcessor (spark: SparkSession, storage: StorageLevel = 
                     null,
                     name
                 ),
-                arg._1.toString, // aliasName: String
-                null, // description: String
-                name,  // mRID: String
-                null  // name: String
+                aliasName = arg._1.toString,
+                description = null,
+                mRID = name,
+                name = null,
+                DiagramObjects = List (),
+                Names = List ()
             ),
-            0.0, // pInjection: Double,
-            0.0, // qInjection: Double,
-            null, // AngleRefTopologicalIsland: String,
-            null, // BaseVoltage: String,
-            null, // ConnectivityNodeContainer: String,
-            null, // ReportingGroup: String,
-            null, // SvInjection: String,
-            null, // SvVoltage: String,
-            island  // TopologicalIsland: String
+            pInjection = 0.0,
+            qInjection = 0.0,
+            AngleRefTopologicalIsland = null,
+            BaseVoltage = null,
+            ConnectivityNodeContainer = null,
+            ConnectivityNodes = List (),
+            ReportingGroup = null,
+            SvInjection = null,
+            SvVoltage = null,
+            Terminal = List (),
+            TopologicalIsland = island
         )
     }
 
@@ -387,6 +394,7 @@ class CIMNetworkTopologyProcessor (spark: SparkSession, storage: StorageLevel = 
                 ConnectivityNode (
                     c.IdentifiedObject,
                     ConnectivityNodeContainer = c.ConnectivityNodeContainer,
+                    Terminals = List (),
                     TopologicalNode = node.name
                 )
             case None => c
@@ -403,11 +411,22 @@ class CIMNetworkTopologyProcessor (spark: SparkSession, storage: StorageLevel = 
                 Terminal (
                     t.ACDCTerminal,
                     phases = t.phases,
+                    AuxiliaryEquipment = t.AuxiliaryEquipment,
+                    BranchGroupTerminal = t.BranchGroupTerminal,
                     Bushing = t.Bushing,
                     ConductingEquipment = t.ConductingEquipment,
                     ConnectivityNode = t.ConnectivityNode,
+                    ConverterDCSides = t.ConverterDCSides,
+                    EquipmentFaults = t.EquipmentFaults,
+                    HasFirstMutualCoupling = t.HasFirstMutualCoupling,
+                    HasSecondMutualCoupling = t.HasSecondMutualCoupling,
+                    PinTerminal = t.PinTerminal,
+                    RegulatingControl = t.RegulatingControl,
+                    RemoteInputSignal = t.RemoteInputSignal,
                     SvPowerFlow = t.SvPowerFlow,
-                    TopologicalNode = node.name
+                    TieFlow = t.TieFlow,
+                    TopologicalNode = node.name, // the one changed property
+                    TransformerEnd = t.TransformerEnd
                 )
             case None => t
         }

@@ -117,7 +117,7 @@ object TurbLCFB1
 extends
     Parseable[TurbLCFB1]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "db",
         "emax",
         "fb",
@@ -166,9 +166,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -228,8 +225,11 @@ object TurbineLoadControllerDynamics
 extends
     Parseable[TurbineLoadControllerDynamics]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "TurbineGovernorDynamics"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("TurbineGovernorDynamics", "TurbineGovernorDynamics", "1", "0..1")
     )
     val TurbineGovernorDynamics: Fielder = parse_attribute (attribute (cls, fields(0)))
 
@@ -244,9 +244,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("TurbineGovernorDynamics", "TurbineGovernorDynamics", false)
-    )
 }
 
 private[ninecode] object _TurbineLoadControllerDynamics

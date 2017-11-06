@@ -13,12 +13,12 @@ import ch.ninecode.cim.Relationship
  * @param sup [[ch.ninecode.model.Agreement Agreement]] Reference to the superclass object.
  * @param action Buy, Sell
  * @param baseEnergy Quantity, typically MWs - Seller owns all rights being offered, MWs over time on same Point of Receipt, Point of Delivery, or Resource.
+ * @param `class` Peak, Off-peak, 24-hour
  * @param ftrType Type of rights being offered (product) allowed to be auctioned (option, obligation).
  * @param optimized Fixed (covers re-configuration, grandfathering) or Optimized (up for sale/purchase
  * @param EnergyPriceCurve [[ch.ninecode.model.EnergyPriceCurve EnergyPriceCurve]] <em>undocumented</em>
  * @param Flowgate [[ch.ninecode.model.Flowgate Flowgate]] <em>undocumented</em>
  * @param Pnodes [[ch.ninecode.model.Pnode Pnode]] <em>undocumented</em>
- * @param `class` Peak, Off-peak, 24-hour
  * @group InfCongestionRevenueRights
  * @groupname InfCongestionRevenueRights Package InfCongestionRevenueRights
  */
@@ -27,12 +27,12 @@ case class FTR
     override val sup: Agreement,
     action: String,
     baseEnergy: Double,
+    `class`: String,
     ftrType: String,
     optimized: String,
     EnergyPriceCurve: String,
     Flowgate: String,
-    Pnodes: List[String],
-    `class`: String
+    Pnodes: List[String]
 )
 extends
     Element
@@ -40,7 +40,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, 0.0, null, null, null, null, List(), null) }
+    def this () = { this (null, null, 0.0, null, null, null, null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -68,12 +68,12 @@ extends
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (FTR.fields (position), x))
         emitelem (0, action)
         emitelem (1, baseEnergy)
-        emitelem (2, ftrType)
-        emitelem (3, optimized)
-        emitattr (4, EnergyPriceCurve)
-        emitattr (5, Flowgate)
-        emitattrs (6, Pnodes)
-        emitelem (7, `class`)
+        emitelem (2, `class`)
+        emitelem (3, ftrType)
+        emitelem (4, optimized)
+        emitattr (5, EnergyPriceCurve)
+        emitattr (6, Flowgate)
+        emitattrs (7, Pnodes)
         s.toString
     }
     override def export: String =
@@ -86,24 +86,29 @@ object FTR
 extends
     Parseable[FTR]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "action",
         "baseEnergy",
+        "class",
         "ftrType",
         "optimized",
         "EnergyPriceCurve",
         "Flowgate",
-        "Pnodes",
-        "class"
+        "Pnodes"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("EnergyPriceCurve", "EnergyPriceCurve", "0..1", "0..*"),
+        Relationship ("Flowgate", "Flowgate", "0..1", "0..*"),
+        Relationship ("Pnodes", "Pnode", "0..*", "0..*")
     )
     val action: Fielder = parse_element (element (cls, fields(0)))
     val baseEnergy: Fielder = parse_element (element (cls, fields(1)))
-    val ftrType: Fielder = parse_element (element (cls, fields(2)))
-    val optimized: Fielder = parse_element (element (cls, fields(3)))
-    val EnergyPriceCurve: Fielder = parse_attribute (attribute (cls, fields(4)))
-    val Flowgate: Fielder = parse_attribute (attribute (cls, fields(5)))
-    val Pnodes: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
-    val `class`: Fielder = parse_element (element (cls, fields(7)))
+    val `class`: Fielder = parse_element (element (cls, fields(2)))
+    val ftrType: Fielder = parse_element (element (cls, fields(3)))
+    val optimized: Fielder = parse_element (element (cls, fields(4)))
+    val EnergyPriceCurve: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val Flowgate: Fielder = parse_attribute (attribute (cls, fields(6)))
+    val Pnodes: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
 
     def parse (context: Context): FTR =
     {
@@ -113,21 +118,16 @@ extends
             Agreement.parse (context),
             mask (action (), 0),
             toDouble (mask (baseEnergy (), 1)),
-            mask (ftrType (), 2),
-            mask (optimized (), 3),
-            mask (EnergyPriceCurve (), 4),
-            mask (Flowgate (), 5),
-            masks (Pnodes (), 6),
-            mask (`class` (), 7)
+            mask (`class` (), 2),
+            mask (ftrType (), 3),
+            mask (optimized (), 4),
+            mask (EnergyPriceCurve (), 5),
+            mask (Flowgate (), 6),
+            masks (Pnodes (), 7)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("EnergyPriceCurve", "EnergyPriceCurve", false),
-        Relationship ("Flowgate", "Flowgate", false),
-        Relationship ("Pnodes", "Pnode", true)
-    )
 }
 
 /**
@@ -197,11 +197,16 @@ object ViolationLimit
 extends
     Parseable[ViolationLimit]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "enforced",
         "Flowgate",
         "MktMeasurement",
         "MktOrganisation"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Flowgate", "Flowgate", "0..1", "0..*"),
+        Relationship ("MktMeasurement", "MktMeasurement", "0..1", "0..*"),
+        Relationship ("MktOrganisation", "MktOrganisation", "0..*", "0..*")
     )
     val enforced: Fielder = parse_element (element (cls, fields(0)))
     val Flowgate: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -222,11 +227,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Flowgate", "Flowgate", false),
-        Relationship ("MktMeasurement", "MktMeasurement", false),
-        Relationship ("MktOrganisation", "MktOrganisation", true)
-    )
 }
 
 private[ninecode] object _InfCongestionRevenueRights

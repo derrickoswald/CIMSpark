@@ -70,10 +70,14 @@ object ClearanceAction
 extends
     Parseable[ClearanceAction]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "kind",
         "Clearance",
         "SwitchingStepGroup"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Clearance", "ClearanceDocument", "0..1", "0..1"),
+        Relationship ("SwitchingStepGroup", "SwitchingStepGroup", "0..1", "0..*")
     )
     val kind: Fielder = parse_attribute (attribute (cls, fields(0)))
     val Clearance: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -92,10 +96,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Clearance", "ClearanceDocument", false),
-        Relationship ("SwitchingStepGroup", "SwitchingStepGroup", false)
-    )
 }
 
 /**
@@ -168,11 +168,15 @@ object ClearanceDocument
 extends
     Parseable[ClearanceDocument]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "mustBeDeenergised",
         "mustBeGrounded",
         "ClearanceAction",
         "TaggedPSRs"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ClearanceAction", "ClearanceAction", "0..1", "0..1"),
+        Relationship ("TaggedPSRs", "PowerSystemResource", "0..*", "0..*")
     )
     val mustBeDeenergised: Fielder = parse_element (element (cls, fields(0)))
     val mustBeGrounded: Fielder = parse_element (element (cls, fields(1)))
@@ -193,10 +197,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("ClearanceAction", "ClearanceAction", false),
-        Relationship ("TaggedPSRs", "PowerSystemResource", true)
-    )
 }
 
 /**
@@ -262,10 +262,14 @@ object CutAction
 extends
     Parseable[CutAction]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "kind",
         "Cut",
         "SwitchingStepGroup"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Cut", "Cut", "0..1", "0..1"),
+        Relationship ("SwitchingStepGroup", "SwitchingStepGroup", "0..1", "0..*")
     )
     val kind: Fielder = parse_attribute (attribute (cls, fields(0)))
     val Cut: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -284,10 +288,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Cut", "Cut", false),
-        Relationship ("SwitchingStepGroup", "SwitchingStepGroup", false)
-    )
 }
 
 /**
@@ -353,10 +353,14 @@ object EnergySourceAction
 extends
     Parseable[EnergySourceAction]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "kind",
         "EnergySource",
         "SwitchingStepGroup"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("EnergySource", "EnergySource", "0..1", "0..1"),
+        Relationship ("SwitchingStepGroup", "SwitchingStepGroup", "0..1", "0..*")
     )
     val kind: Fielder = parse_attribute (attribute (cls, fields(0)))
     val EnergySource: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -375,10 +379,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("EnergySource", "EnergySource", false),
-        Relationship ("SwitchingStepGroup", "SwitchingStepGroup", false)
-    )
 }
 
 /**
@@ -438,8 +438,11 @@ object GenericAction
 extends
     Parseable[GenericAction]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "SwitchingStepGroup"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("SwitchingStepGroup", "SwitchingStepGroup", "0..1", "0..*")
     )
     val SwitchingStepGroup: Fielder = parse_attribute (attribute (cls, fields(0)))
 
@@ -454,9 +457,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("SwitchingStepGroup", "SwitchingStepGroup", false)
-    )
 }
 
 /**
@@ -530,12 +530,18 @@ object GroundAction
 extends
     Parseable[GroundAction]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "kind",
         "AlongACLineSegment",
         "Ground",
         "GroundedEquipment",
         "SwitchingStepGroup"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("AlongACLineSegment", "ACLineSegment", "0..1", "0..1"),
+        Relationship ("Ground", "Ground", "0..1", "0..1"),
+        Relationship ("GroundedEquipment", "ConductingEquipment", "0..1", "0..1"),
+        Relationship ("SwitchingStepGroup", "SwitchingStepGroup", "0..1", "0..*")
     )
     val kind: Fielder = parse_attribute (attribute (cls, fields(0)))
     val AlongACLineSegment: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -558,12 +564,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("AlongACLineSegment", "ACLineSegment", false),
-        Relationship ("Ground", "Ground", false),
-        Relationship ("GroundedEquipment", "ConductingEquipment", false),
-        Relationship ("SwitchingStepGroup", "SwitchingStepGroup", false)
-    )
 }
 
 /**
@@ -573,8 +573,11 @@ extends
  *
  * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param cause Cause of this incident.
+ * @param CustomerNotifications [[ch.ninecode.model.CustomerNotification CustomerNotification]] All notifications for a customer related to the status change of this incident.
+ * @param Hazards [[ch.ninecode.model.IncidentHazard IncidentHazard]] All hazards associated with this incident.
  * @param Outage [[ch.ninecode.model.Outage Outage]] Outage for this incident.
  * @param Owner [[ch.ninecode.model.Operator Operator]] Operator who owns this incident.
+ * @param TroubleTickets [[ch.ninecode.model.TroubleTicket TroubleTicket]] All trouble tickets reporting this incident.
  * @param Works [[ch.ninecode.model.Work Work]] All works addressing this incident.
  * @group Operations
  * @groupname Operations Package Operations
@@ -584,8 +587,11 @@ case class Incident
 (
     override val sup: Document,
     cause: String,
+    CustomerNotifications: List[String],
+    Hazards: List[String],
     Outage: String,
     Owner: String,
+    TroubleTickets: List[String],
     Works: List[String]
 )
 extends
@@ -594,7 +600,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, List()) }
+    def this () = { this (null, null, List(), List(), null, null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -621,9 +627,12 @@ extends
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Incident.fields (position), value)
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Incident.fields (position), x))
         emitelem (0, cause)
-        emitattr (1, Outage)
-        emitattr (2, Owner)
-        emitattrs (3, Works)
+        emitattrs (1, CustomerNotifications)
+        emitattrs (2, Hazards)
+        emitattr (3, Outage)
+        emitattr (4, Owner)
+        emitattrs (5, TroubleTickets)
+        emitattrs (6, Works)
         s.toString
     }
     override def export: String =
@@ -636,16 +645,30 @@ object Incident
 extends
     Parseable[Incident]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "cause",
+        "CustomerNotifications",
+        "Hazards",
         "Outage",
         "Owner",
+        "TroubleTickets",
         "Works"
     )
+    override val relations: List[Relationship] = List (
+        Relationship ("CustomerNotifications", "CustomerNotification", "0..*", "0..1"),
+        Relationship ("Hazards", "IncidentHazard", "0..*", "0..1"),
+        Relationship ("Outage", "Outage", "0..1", "0..1"),
+        Relationship ("Owner", "Operator", "0..1", "0..*"),
+        Relationship ("TroubleTickets", "TroubleTicket", "0..*", "0..1"),
+        Relationship ("Works", "Work", "0..*", "0..*")
+    )
     val cause: Fielder = parse_element (element (cls, fields(0)))
-    val Outage: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val Owner: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val Works: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val CustomerNotifications: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val Hazards: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val Outage: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val Owner: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val TroubleTickets: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
+    val Works: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
 
     def parse (context: Context): Incident =
     {
@@ -654,18 +677,16 @@ extends
         val ret = Incident (
             Document.parse (context),
             mask (cause (), 0),
-            mask (Outage (), 1),
-            mask (Owner (), 2),
-            masks (Works (), 3)
+            masks (CustomerNotifications (), 1),
+            masks (Hazards (), 2),
+            mask (Outage (), 3),
+            mask (Owner (), 4),
+            masks (TroubleTickets (), 5),
+            masks (Works (), 6)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Outage", "Outage", false),
-        Relationship ("Owner", "Operator", false),
-        Relationship ("Works", "Work", true)
-    )
 }
 
 /**
@@ -673,6 +694,10 @@ extends
  *
  * @param sup [[ch.ninecode.model.SwitchingStep SwitchingStep]] Reference to the superclass object.
  * @param kind Switching action to perform.
+ * @param AlongACLineSegments [[ch.ninecode.model.ACLineSegment ACLineSegment]] The line segment that this jumper action will affect.
+ *        This is the only way to access relationship to clamp in case the jumper needs to connect along the line segment.
+ * @param JumpedEquipments [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] The conducting equipment that this jumper action will affect.
+ *        In case of placing a jumper anywhere along a line segment, you must use the clamp (to get the distance from one terminal), so use the explicit relation with line segment. In all other cases (including placing the jumper at a line segment terminal), reference to one or more conducting equipment is sufficient.
  * @param Jumper [[ch.ninecode.model.Jumper Jumper]] Jumper on which this action is taken.
  * @param SwitchingStepGroup [[ch.ninecode.model.SwitchingStepGroup SwitchingStepGroup]] Group to which this step belongs.
  * @group Operations
@@ -683,6 +708,8 @@ case class JumperAction
 (
     override val sup: SwitchingStep,
     kind: String,
+    AlongACLineSegments: List[String],
+    JumpedEquipments: List[String],
     Jumper: String,
     SwitchingStepGroup: String
 )
@@ -692,7 +719,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null) }
+    def this () = { this (null, null, List(), List(), null, null) }
     /**
      * Return the superclass object.
      *
@@ -716,9 +743,12 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = JumperAction.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (JumperAction.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (JumperAction.fields (position), x))
         emitattr (0, kind)
-        emitattr (1, Jumper)
-        emitattr (2, SwitchingStepGroup)
+        emitattrs (1, AlongACLineSegments)
+        emitattrs (2, JumpedEquipments)
+        emitattr (3, Jumper)
+        emitattr (4, SwitchingStepGroup)
         s.toString
     }
     override def export: String =
@@ -731,14 +761,24 @@ object JumperAction
 extends
     Parseable[JumperAction]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "kind",
+        "AlongACLineSegments",
+        "JumpedEquipments",
         "Jumper",
         "SwitchingStepGroup"
     )
+    override val relations: List[Relationship] = List (
+        Relationship ("AlongACLineSegments", "ACLineSegment", "0..*", "0..1"),
+        Relationship ("JumpedEquipments", "ConductingEquipment", "0..*", "0..1"),
+        Relationship ("Jumper", "Jumper", "0..1", "0..1"),
+        Relationship ("SwitchingStepGroup", "SwitchingStepGroup", "0..1", "0..*")
+    )
     val kind: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val Jumper: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val SwitchingStepGroup: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val AlongACLineSegments: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val JumpedEquipments: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val Jumper: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val SwitchingStepGroup: Fielder = parse_attribute (attribute (cls, fields(4)))
 
     def parse (context: Context): JumperAction =
     {
@@ -747,16 +787,14 @@ extends
         val ret = JumperAction (
             SwitchingStep.parse (context),
             mask (kind (), 0),
-            mask (Jumper (), 1),
-            mask (SwitchingStepGroup (), 2)
+            masks (AlongACLineSegments (), 1),
+            masks (JumpedEquipments (), 2),
+            mask (Jumper (), 3),
+            mask (SwitchingStepGroup (), 4)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Jumper", "Jumper", false),
-        Relationship ("SwitchingStepGroup", "SwitchingStepGroup", false)
-    )
 }
 
 /**
@@ -817,10 +855,15 @@ object OperationTag
 extends
     Parseable[OperationTag]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "Asset",
         "PowerSystemResource",
         "TagAction"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Asset", "Asset", "0..1", "0..*"),
+        Relationship ("PowerSystemResource", "PowerSystemResource", "0..1", "0..*"),
+        Relationship ("TagAction", "TagAction", "0..1", "0..1")
     )
     val Asset: Fielder = parse_attribute (attribute (cls, fields(0)))
     val PowerSystemResource: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -839,11 +882,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Asset", "Asset", false),
-        Relationship ("PowerSystemResource", "PowerSystemResource", false),
-        Relationship ("TagAction", "TagAction", false)
-    )
 }
 
 /**
@@ -915,11 +953,15 @@ object OperationalRestriction
 extends
     Parseable[OperationalRestriction]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "activePeriod",
         "restrictedValue",
         "Equipments",
         "ProductAssetModel"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Equipments", "Equipment", "0..*", "0..*"),
+        Relationship ("ProductAssetModel", "ProductAssetModel", "0..1", "0..*")
     )
     val activePeriod: Fielder = parse_attribute (attribute (cls, fields(0)))
     val restrictedValue: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -940,10 +982,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Equipments", "Equipment", true),
-        Relationship ("ProductAssetModel", "ProductAssetModel", false)
-    )
 }
 
 /**
@@ -1007,9 +1045,12 @@ object OperationalUpdatedRating
 extends
     Parseable[OperationalUpdatedRating]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "changeType",
         "PlannedOutage"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("PlannedOutage", "Outage", "1", "0..*")
     )
     val changeType: Fielder = parse_element (element (cls, fields(0)))
     val PlannedOutage: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -1026,9 +1067,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("PlannedOutage", "Outage", false)
-    )
 }
 
 /**
@@ -1046,8 +1084,16 @@ extends
  * @param isPlanned True if planned, false otherwise (for example due to a breaker trip).
  * @param summary [[ch.ninecode.model.ServicePointOutageSummary ServicePointOutageSummary]] Summary counts of service points (customers) affected by this outage.
  * @param Equipments [[ch.ninecode.model.Equipment Equipment]] All equipments associated with this outage.
+ * @param Faults [[ch.ninecode.model.Fault Fault]] All faults involved in this outage.
  * @param Incident [[ch.ninecode.model.Incident Incident]] Incident reported in trouble call that results in this outage.
+ * @param OpenedSwitches [[ch.ninecode.model.Switch Switch]] All potentially open switches causing this outage.
+ *        This realationship is meant to be used as "indication" for initiation of outage-related business processes, whereas for actual actions of switches, SwitchAction-Switch relationship should be used.
  * @param OutageSchedule [[ch.ninecode.model.OutageSchedule OutageSchedule]] Outage schedule whose execution will result in this outage.
+ * @param PlannedSwitchActions [[ch.ninecode.model.SwitchAction SwitchAction]] All switch actions to apply within the scope of this planned outage.
+ *        Each such action groups switches to which the action is to apply in order to produce the desired network state considered as outage.
+ * @param SwitchingPlans [[ch.ninecode.model.SwitchingPlan SwitchingPlan]] All switching plans that lead to supply restoration due to this outage.
+ *        Only one will be retained for execution.
+ * @param UpdatedRatings [[ch.ninecode.model.OperationalUpdatedRating OperationalUpdatedRating]] All updated ratings for this planned equipment outage.
  * @param UsagePoints [[ch.ninecode.model.UsagePoint UsagePoint]] All usage points associated with this outage.
  * @group Operations
  * @groupname Operations Package Operations
@@ -1063,8 +1109,13 @@ case class Outage
     isPlanned: Boolean,
     summary: String,
     Equipments: List[String],
+    Faults: List[String],
     Incident: String,
+    OpenedSwitches: List[String],
     OutageSchedule: String,
+    PlannedSwitchActions: List[String],
+    SwitchingPlans: List[String],
+    UpdatedRatings: List[String],
     UsagePoints: List[String]
 )
 extends
@@ -1073,7 +1124,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null, false, null, List(), null, null, List()) }
+    def this () = { this (null, null, null, null, null, false, null, List(), List(), null, List(), null, List(), List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1106,9 +1157,14 @@ extends
         emitelem (4, isPlanned)
         emitattr (5, summary)
         emitattrs (6, Equipments)
-        emitattr (7, Incident)
-        emitattr (8, OutageSchedule)
-        emitattrs (9, UsagePoints)
+        emitattrs (7, Faults)
+        emitattr (8, Incident)
+        emitattrs (9, OpenedSwitches)
+        emitattr (10, OutageSchedule)
+        emitattrs (11, PlannedSwitchActions)
+        emitattrs (12, SwitchingPlans)
+        emitattrs (13, UpdatedRatings)
+        emitattrs (14, UsagePoints)
         s.toString
     }
     override def export: String =
@@ -1121,7 +1177,7 @@ object Outage
 extends
     Parseable[Outage]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "actualPeriod",
         "cancelledDateTime",
         "cause",
@@ -1129,9 +1185,26 @@ extends
         "isPlanned",
         "summary",
         "Equipments",
+        "Faults",
         "Incident",
+        "OpenedSwitches",
         "OutageSchedule",
+        "PlannedSwitchActions",
+        "SwitchingPlans",
+        "UpdatedRatings",
         "UsagePoints"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("summary", "ServicePointOutageSummary", "0..1", "0..*"),
+        Relationship ("Equipments", "Equipment", "0..*", "0..*"),
+        Relationship ("Faults", "Fault", "0..*", "0..1"),
+        Relationship ("Incident", "Incident", "0..1", "0..1"),
+        Relationship ("OpenedSwitches", "Switch", "0..*", "0..1"),
+        Relationship ("OutageSchedule", "OutageSchedule", "0..1", "0..*"),
+        Relationship ("PlannedSwitchActions", "SwitchAction", "0..*", "0..1"),
+        Relationship ("SwitchingPlans", "SwitchingPlan", "0..*", "0..1"),
+        Relationship ("UpdatedRatings", "OperationalUpdatedRating", "0..*", "1"),
+        Relationship ("UsagePoints", "UsagePoint", "0..*", "0..*")
     )
     val actualPeriod: Fielder = parse_attribute (attribute (cls, fields(0)))
     val cancelledDateTime: Fielder = parse_element (element (cls, fields(1)))
@@ -1140,9 +1213,14 @@ extends
     val isPlanned: Fielder = parse_element (element (cls, fields(4)))
     val summary: Fielder = parse_attribute (attribute (cls, fields(5)))
     val Equipments: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
-    val Incident: Fielder = parse_attribute (attribute (cls, fields(7)))
-    val OutageSchedule: Fielder = parse_attribute (attribute (cls, fields(8)))
-    val UsagePoints: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
+    val Faults: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
+    val Incident: Fielder = parse_attribute (attribute (cls, fields(8)))
+    val OpenedSwitches: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
+    val OutageSchedule: Fielder = parse_attribute (attribute (cls, fields(10)))
+    val PlannedSwitchActions: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
+    val SwitchingPlans: FielderMultiple = parse_attributes (attribute (cls, fields(12)))
+    val UpdatedRatings: FielderMultiple = parse_attributes (attribute (cls, fields(13)))
+    val UsagePoints: FielderMultiple = parse_attributes (attribute (cls, fields(14)))
 
     def parse (context: Context): Outage =
     {
@@ -1157,20 +1235,18 @@ extends
             toBoolean (mask (isPlanned (), 4)),
             mask (summary (), 5),
             masks (Equipments (), 6),
-            mask (Incident (), 7),
-            mask (OutageSchedule (), 8),
-            masks (UsagePoints (), 9)
+            masks (Faults (), 7),
+            mask (Incident (), 8),
+            masks (OpenedSwitches (), 9),
+            mask (OutageSchedule (), 10),
+            masks (PlannedSwitchActions (), 11),
+            masks (SwitchingPlans (), 12),
+            masks (UpdatedRatings (), 13),
+            masks (UsagePoints (), 14)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("summary", "ServicePointOutageSummary", false),
-        Relationship ("Equipments", "Equipment", true),
-        Relationship ("Incident", "Incident", false),
-        Relationship ("OutageSchedule", "OutageSchedule", false),
-        Relationship ("UsagePoints", "UsagePoint", true)
-    )
 }
 
 /**
@@ -1179,13 +1255,15 @@ extends
  * It is used as specification for producing switching plans.
  *
  * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
+ * @param PlannedOutages [[ch.ninecode.model.Outage Outage]] All outages resulting from the execution of this outage schedule.
  * @group Operations
  * @groupname Operations Package Operations
  * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
  */
 case class OutageSchedule
 (
-    override val sup: Document
+    override val sup: Document,
+    PlannedOutages: List[String]
 )
 extends
     Element
@@ -1193,7 +1271,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -1214,7 +1292,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = OutageSchedule.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (OutageSchedule.fields (position), x))
+        emitattrs (0, PlannedOutages)
+        s.toString
     }
     override def export: String =
     {
@@ -1226,18 +1308,25 @@ object OutageSchedule
 extends
     Parseable[OutageSchedule]
 {
+    override val fields: Array[String] = Array[String] (
+        "PlannedOutages"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("PlannedOutages", "Outage", "0..*", "0..1")
+    )
+    val PlannedOutages: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): OutageSchedule =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = OutageSchedule (
-            Document.parse (context)
+            Document.parse (context),
+            masks (PlannedOutages (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1300,9 +1389,12 @@ object PSREvent
 extends
     Parseable[PSREvent]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "kind",
         "PowerSystemResource"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("PowerSystemResource", "PowerSystemResource", "0..1", "0..*")
     )
     val kind: Fielder = parse_attribute (attribute (cls, fields(0)))
     val PowerSystemResource: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -1319,9 +1411,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("PowerSystemResource", "PowerSystemResource", false)
-    )
 }
 
 /**
@@ -1381,8 +1470,11 @@ object SafetyDocument
 extends
     Parseable[SafetyDocument]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "SwitchingPlan"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("SwitchingPlan", "SwitchingPlan", "0..1", "0..*")
     )
     val SwitchingPlan: Fielder = parse_attribute (attribute (cls, fields(0)))
 
@@ -1397,9 +1489,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("SwitchingPlan", "SwitchingPlan", false)
-    )
 }
 
 /**
@@ -1464,7 +1553,7 @@ object ServicePointOutageSummary
 extends
     Parseable[ServicePointOutageSummary]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "criticalCount",
         "totalCount"
     )
@@ -1483,9 +1572,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1554,11 +1640,16 @@ object SwitchAction
 extends
     Parseable[SwitchAction]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "kind",
         "OperatedSwitch",
         "PlannedOutage",
         "SwitchingStepGroup"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("OperatedSwitch", "Switch", "0..1", "0..1"),
+        Relationship ("PlannedOutage", "Outage", "0..1", "0..*"),
+        Relationship ("SwitchingStepGroup", "SwitchingStepGroup", "0..1", "0..*")
     )
     val kind: Fielder = parse_attribute (attribute (cls, fields(0)))
     val OperatedSwitch: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -1579,11 +1670,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("OperatedSwitch", "Switch", false),
-        Relationship ("PlannedOutage", "Outage", false),
-        Relationship ("SwitchingStepGroup", "SwitchingStepGroup", false)
-    )
 }
 
 /**
@@ -1596,6 +1682,9 @@ extends
  * @param purpose Purpose of  this plan, such as whether it is to move the state from normal to some abnormal condition, or to restore the normal state after an abnormal condition, or to perform some kind of optimisation such as correction of overload, voltage control, etc.
  * @param rank Ranking in comparison to other switching plans.
  * @param Outage [[ch.ninecode.model.Outage Outage]] Outage that will be eliminated when this switching plan gets executed.
+ * @param SafetyDocuments [[ch.ninecode.model.SafetyDocument SafetyDocument]] All safety documents applicable to this swtiching plan.
+ * @param SwitchingStepGroups [[ch.ninecode.model.SwitchingStepGroup SwitchingStepGroup]] All groups of switching steps within this switching plan.
+ * @param WorkTasks [[ch.ninecode.model.WorkTask WorkTask]] All work tasks to execute this switching plan.
  * @group Operations
  * @groupname Operations Package Operations
  * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
@@ -1605,7 +1694,10 @@ case class SwitchingPlan
     override val sup: SwitchingStepGroup,
     purpose: String,
     rank: Int,
-    Outage: String
+    Outage: String,
+    SafetyDocuments: List[String],
+    SwitchingStepGroups: List[String],
+    WorkTasks: List[String]
 )
 extends
     Element
@@ -1613,7 +1705,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, 0, null) }
+    def this () = { this (null, null, 0, null, List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1638,9 +1730,13 @@ extends
         implicit val clz: String = SwitchingPlan.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (SwitchingPlan.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (SwitchingPlan.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (SwitchingPlan.fields (position), x))
         emitelem (0, purpose)
         emitelem (1, rank)
         emitattr (2, Outage)
+        emitattrs (3, SafetyDocuments)
+        emitattrs (4, SwitchingStepGroups)
+        emitattrs (5, WorkTasks)
         s.toString
     }
     override def export: String =
@@ -1653,14 +1749,26 @@ object SwitchingPlan
 extends
     Parseable[SwitchingPlan]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "purpose",
         "rank",
-        "Outage"
+        "Outage",
+        "SafetyDocuments",
+        "SwitchingStepGroups",
+        "WorkTasks"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Outage", "Outage", "0..1", "0..*"),
+        Relationship ("SafetyDocuments", "SafetyDocument", "0..*", "0..1"),
+        Relationship ("SwitchingStepGroups", "SwitchingStepGroup", "0..*", "0..1"),
+        Relationship ("WorkTasks", "WorkTask", "0..*", "0..1")
     )
     val purpose: Fielder = parse_element (element (cls, fields(0)))
     val rank: Fielder = parse_element (element (cls, fields(1)))
     val Outage: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val SafetyDocuments: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val SwitchingStepGroups: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val WorkTasks: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
 
     def parse (context: Context): SwitchingPlan =
     {
@@ -1670,14 +1778,14 @@ extends
             SwitchingStepGroup.parse (context),
             mask (purpose (), 0),
             toInteger (mask (rank (), 1)),
-            mask (Outage (), 2)
+            mask (Outage (), 2),
+            masks (SafetyDocuments (), 3),
+            masks (SwitchingStepGroups (), 4),
+            masks (WorkTasks (), 5)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Outage", "Outage", false)
-    )
 }
 
 /**
@@ -1756,7 +1864,7 @@ object SwitchingStep
 extends
     Parseable[SwitchingStep]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "description",
         "executedDateTime",
         "isFreeSequence",
@@ -1764,6 +1872,10 @@ extends
         "sequenceNumber",
         "CrewMember",
         "Operator"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("CrewMember", "CrewMember", "0..1", "0..*"),
+        Relationship ("Operator", "Operator", "0..1", "0..*")
     )
     val description: Fielder = parse_element (element (cls, fields(0)))
     val executedDateTime: Fielder = parse_element (element (cls, fields(1)))
@@ -1790,10 +1902,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("CrewMember", "CrewMember", false),
-        Relationship ("Operator", "Operator", false)
-    )
 }
 
 /**
@@ -1802,7 +1910,15 @@ extends
  * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param isFreeSequence If true, the sequence number serves for presentation purposes only, and the activity itself may be executed at any time.
  * @param sequenceNumber Order of this activity in the sequence of activities within the switching plan.
+ * @param ClearanceActions [[ch.ninecode.model.ClearanceAction ClearanceAction]] All clearance action steps in this group.
+ * @param CutActions [[ch.ninecode.model.CutAction CutAction]] All cut action steps in this group.
+ * @param EnergySourceActions [[ch.ninecode.model.EnergySourceAction EnergySourceAction]] All energy source action steps in this group.
+ * @param GenericActions [[ch.ninecode.model.GenericAction GenericAction]] All generic action steps in this group.
+ * @param GroundActions [[ch.ninecode.model.GroundAction GroundAction]] All ground action steps in this group.
+ * @param JumperActions [[ch.ninecode.model.JumperAction JumperAction]] All jumper action steps in this group.
+ * @param SwitchActions [[ch.ninecode.model.SwitchAction SwitchAction]] All switch action steps in this group.
  * @param SwitchingPlan [[ch.ninecode.model.SwitchingPlan SwitchingPlan]] Switching plan to which this group belongs.
+ * @param TagActions [[ch.ninecode.model.TagAction TagAction]] All tag action steps in this group.
  * @group Operations
  * @groupname Operations Package Operations
  * @groupdesc Operations This package contains the core information classes that support operations and outage management applications.
@@ -1812,7 +1928,15 @@ case class SwitchingStepGroup
     override val sup: Document,
     isFreeSequence: Boolean,
     sequenceNumber: Int,
-    SwitchingPlan: String
+    ClearanceActions: List[String],
+    CutActions: List[String],
+    EnergySourceActions: List[String],
+    GenericActions: List[String],
+    GroundActions: List[String],
+    JumperActions: List[String],
+    SwitchActions: List[String],
+    SwitchingPlan: String,
+    TagActions: List[String]
 )
 extends
     Element
@@ -1820,7 +1944,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, false, 0, null) }
+    def this () = { this (null, false, 0, List(), List(), List(), List(), List(), List(), List(), null, List()) }
     /**
      * Return the superclass object.
      *
@@ -1845,9 +1969,18 @@ extends
         implicit val clz: String = SwitchingStepGroup.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (SwitchingStepGroup.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (SwitchingStepGroup.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (SwitchingStepGroup.fields (position), x))
         emitelem (0, isFreeSequence)
         emitelem (1, sequenceNumber)
-        emitattr (2, SwitchingPlan)
+        emitattrs (2, ClearanceActions)
+        emitattrs (3, CutActions)
+        emitattrs (4, EnergySourceActions)
+        emitattrs (5, GenericActions)
+        emitattrs (6, GroundActions)
+        emitattrs (7, JumperActions)
+        emitattrs (8, SwitchActions)
+        emitattr (9, SwitchingPlan)
+        emitattrs (10, TagActions)
         s.toString
     }
     override def export: String =
@@ -1860,14 +1993,41 @@ object SwitchingStepGroup
 extends
     Parseable[SwitchingStepGroup]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "isFreeSequence",
         "sequenceNumber",
-        "SwitchingPlan"
+        "ClearanceActions",
+        "CutActions",
+        "EnergySourceActions",
+        "GenericActions",
+        "GroundActions",
+        "JumperActions",
+        "SwitchActions",
+        "SwitchingPlan",
+        "TagActions"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ClearanceActions", "ClearanceAction", "0..*", "0..1"),
+        Relationship ("CutActions", "CutAction", "0..*", "0..1"),
+        Relationship ("EnergySourceActions", "EnergySourceAction", "0..*", "0..1"),
+        Relationship ("GenericActions", "GenericAction", "0..*", "0..1"),
+        Relationship ("GroundActions", "GroundAction", "0..*", "0..1"),
+        Relationship ("JumperActions", "JumperAction", "0..*", "0..1"),
+        Relationship ("SwitchActions", "SwitchAction", "0..*", "0..1"),
+        Relationship ("SwitchingPlan", "SwitchingPlan", "0..1", "0..*"),
+        Relationship ("TagActions", "TagAction", "0..*", "0..1")
     )
     val isFreeSequence: Fielder = parse_element (element (cls, fields(0)))
     val sequenceNumber: Fielder = parse_element (element (cls, fields(1)))
-    val SwitchingPlan: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val ClearanceActions: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val CutActions: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val EnergySourceActions: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val GenericActions: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
+    val GroundActions: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
+    val JumperActions: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
+    val SwitchActions: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
+    val SwitchingPlan: Fielder = parse_attribute (attribute (cls, fields(9)))
+    val TagActions: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
 
     def parse (context: Context): SwitchingStepGroup =
     {
@@ -1877,14 +2037,19 @@ extends
             Document.parse (context),
             toBoolean (mask (isFreeSequence (), 0)),
             toInteger (mask (sequenceNumber (), 1)),
-            mask (SwitchingPlan (), 2)
+            masks (ClearanceActions (), 2),
+            masks (CutActions (), 3),
+            masks (EnergySourceActions (), 4),
+            masks (GenericActions (), 5),
+            masks (GroundActions (), 6),
+            masks (JumperActions (), 7),
+            masks (SwitchActions (), 8),
+            mask (SwitchingPlan (), 9),
+            masks (TagActions (), 10)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("SwitchingPlan", "SwitchingPlan", false)
-    )
 }
 
 /**
@@ -1950,10 +2115,14 @@ object TagAction
 extends
     Parseable[TagAction]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "kind",
         "OperationTag",
         "SwitchingStepGroup"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("OperationTag", "OperationTag", "0..1", "0..1"),
+        Relationship ("SwitchingStepGroup", "SwitchingStepGroup", "0..1", "0..*")
     )
     val kind: Fielder = parse_attribute (attribute (cls, fields(0)))
     val OperationTag: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -1972,10 +2141,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("OperationTag", "OperationTag", false),
-        Relationship ("SwitchingStepGroup", "SwitchingStepGroup", false)
-    )
 }
 
 private[ninecode] object _Operations

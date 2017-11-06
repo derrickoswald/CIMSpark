@@ -14,6 +14,7 @@ import ch.ninecode.cim.Relationship
  *
  * @param sup Reference to the superclass object.
  * @param intervalStartTime The start of the time interval for which requirement is defined.
+ * @param ReserveDemandCurve [[ch.ninecode.model.ReserveDemandCurve ReserveDemandCurve]] <em>undocumented</em>
  * @group ExternalInputs
  * @groupname ExternalInputs Package ExternalInputs
  * @groupdesc ExternalInputs Inputs to the market system from external sources.
@@ -21,7 +22,8 @@ import ch.ninecode.cim.Relationship
 case class ASRequirements
 (
     override val sup: BasicElement,
-    intervalStartTime: String
+    intervalStartTime: String,
+    ReserveDemandCurve: List[String]
 )
 extends
     Element
@@ -29,7 +31,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null) }
+    def this () = { this (null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -53,7 +55,9 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ASRequirements.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ASRequirements.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ASRequirements.fields (position), x))
         emitelem (0, intervalStartTime)
+        emitattrs (1, ReserveDemandCurve)
         s.toString
     }
     override def export: String =
@@ -66,10 +70,15 @@ object ASRequirements
 extends
     Parseable[ASRequirements]
 {
-    val fields: Array[String] = Array[String] (
-        "intervalStartTime"
+    override val fields: Array[String] = Array[String] (
+        "intervalStartTime",
+        "ReserveDemandCurve"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ReserveDemandCurve", "ReserveDemandCurve", "1..*", "1")
     )
     val intervalStartTime: Fielder = parse_element (element (cls, fields(0)))
+    val ReserveDemandCurve: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): ASRequirements =
     {
@@ -77,14 +86,12 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = ASRequirements (
             BasicElement.parse (context),
-            mask (intervalStartTime (), 0)
+            mask (intervalStartTime (), 0),
+            masks (ReserveDemandCurve (), 1)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -148,9 +155,12 @@ object AnalogMeasurementValueQuality
 extends
     Parseable[AnalogMeasurementValueQuality]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "scadaQualityCode",
         "MktAnalogValue"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("MktAnalogValue", "MktAnalogValue", "1", "0..*")
     )
     val scadaQualityCode: Fielder = parse_element (element (cls, fields(0)))
     val MktAnalogValue: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -167,9 +177,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("MktAnalogValue", "MktAnalogValue", false)
-    )
 }
 
 /**
@@ -238,11 +245,16 @@ object AreaLoadCurve
 extends
     Parseable[AreaLoadCurve]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "forecastType",
         "AggregateNode",
         "MktLoadArea",
         "TACArea"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("AggregateNode", "AggregateNode", "0..1", "0..*"),
+        Relationship ("MktLoadArea", "MktLoadArea", "0..1", "0..*"),
+        Relationship ("TACArea", "TACArea", "0..1", "0..*")
     )
     val forecastType: Fielder = parse_attribute (attribute (cls, fields(0)))
     val AggregateNode: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -263,11 +275,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("AggregateNode", "AggregateNode", false),
-        Relationship ("MktLoadArea", "MktLoadArea", false),
-        Relationship ("TACArea", "TACArea", false)
-    )
 }
 
 /**
@@ -329,8 +336,11 @@ object BaseCaseConstraintLimit
 extends
     Parseable[BaseCaseConstraintLimit]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "SecurityConstraintSum"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("SecurityConstraintSum", "SecurityConstraintSum", "1", "0..1")
     )
     val SecurityConstraintSum: Fielder = parse_attribute (attribute (cls, fields(0)))
 
@@ -345,9 +355,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("SecurityConstraintSum", "SecurityConstraintSum", false)
-    )
 }
 
 /**
@@ -362,6 +369,12 @@ extends
  *        Attribute Usage: Active power flow at the series device, transformer, phase shifter, or line end
  * @param normalRating The Normal Rating for the branch
  * @param shortTermRating The Short Term Rating for the branch
+ * @param MktACLineSegmentEndAFlow [[ch.ninecode.model.MktACLineSegment MktACLineSegment]] <em>undocumented</em>
+ * @param MktACLineSegmentEndBFlow [[ch.ninecode.model.MktACLineSegment MktACLineSegment]] <em>undocumented</em>
+ * @param MktPowerTransformerEndAFlow [[ch.ninecode.model.MktPowerTransformer MktPowerTransformer]] <em>undocumented</em>
+ * @param MktPowerTransformerEndBFlow [[ch.ninecode.model.MktPowerTransformer MktPowerTransformer]] <em>undocumented</em>
+ * @param MktSeriesCompensatorEndBFlow [[ch.ninecode.model.MktSeriesCompensator MktSeriesCompensator]] <em>undocumented</em>
+ * @param MktSeriresCompensatorEndAFlow [[ch.ninecode.model.MktSeriesCompensator MktSeriesCompensator]] <em>undocumented</em>
  * @group ExternalInputs
  * @groupname ExternalInputs Package ExternalInputs
  * @groupdesc ExternalInputs Inputs to the market system from external sources.
@@ -374,7 +387,13 @@ case class BranchEndFlow
     mVARFlow: Double,
     mwFlow: Double,
     normalRating: Double,
-    shortTermRating: Double
+    shortTermRating: Double,
+    MktACLineSegmentEndAFlow: List[String],
+    MktACLineSegmentEndBFlow: List[String],
+    MktPowerTransformerEndAFlow: List[String],
+    MktPowerTransformerEndBFlow: List[String],
+    MktSeriesCompensatorEndBFlow: List[String],
+    MktSeriresCompensatorEndAFlow: List[String]
 )
 extends
     Element
@@ -382,7 +401,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, List(), List(), List(), List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -406,12 +425,19 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = BranchEndFlow.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (BranchEndFlow.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (BranchEndFlow.fields (position), x))
         emitelem (0, loadDumpRating)
         emitelem (1, longTermRating)
         emitelem (2, mVARFlow)
         emitelem (3, mwFlow)
         emitelem (4, normalRating)
         emitelem (5, shortTermRating)
+        emitattrs (6, MktACLineSegmentEndAFlow)
+        emitattrs (7, MktACLineSegmentEndBFlow)
+        emitattrs (8, MktPowerTransformerEndAFlow)
+        emitattrs (9, MktPowerTransformerEndBFlow)
+        emitattrs (10, MktSeriesCompensatorEndBFlow)
+        emitattrs (11, MktSeriresCompensatorEndAFlow)
         s.toString
     }
     override def export: String =
@@ -424,13 +450,27 @@ object BranchEndFlow
 extends
     Parseable[BranchEndFlow]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "loadDumpRating",
         "longTermRating",
         "mVARFlow",
         "mwFlow",
         "normalRating",
-        "shortTermRating"
+        "shortTermRating",
+        "MktACLineSegmentEndAFlow",
+        "MktACLineSegmentEndBFlow",
+        "MktPowerTransformerEndAFlow",
+        "MktPowerTransformerEndBFlow",
+        "MktSeriesCompensatorEndBFlow",
+        "MktSeriresCompensatorEndAFlow"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("MktACLineSegmentEndAFlow", "MktACLineSegment", "0..*", "0..1"),
+        Relationship ("MktACLineSegmentEndBFlow", "MktACLineSegment", "0..*", "0..1"),
+        Relationship ("MktPowerTransformerEndAFlow", "MktPowerTransformer", "0..*", "0..1"),
+        Relationship ("MktPowerTransformerEndBFlow", "MktPowerTransformer", "0..*", "0..1"),
+        Relationship ("MktSeriesCompensatorEndBFlow", "MktSeriesCompensator", "0..*", "0..1"),
+        Relationship ("MktSeriresCompensatorEndAFlow", "MktSeriesCompensator", "0..*", "0..1")
     )
     val loadDumpRating: Fielder = parse_element (element (cls, fields(0)))
     val longTermRating: Fielder = parse_element (element (cls, fields(1)))
@@ -438,6 +478,12 @@ extends
     val mwFlow: Fielder = parse_element (element (cls, fields(3)))
     val normalRating: Fielder = parse_element (element (cls, fields(4)))
     val shortTermRating: Fielder = parse_element (element (cls, fields(5)))
+    val MktACLineSegmentEndAFlow: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
+    val MktACLineSegmentEndBFlow: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
+    val MktPowerTransformerEndAFlow: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
+    val MktPowerTransformerEndBFlow: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
+    val MktSeriesCompensatorEndBFlow: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
+    val MktSeriresCompensatorEndAFlow: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
 
     def parse (context: Context): BranchEndFlow =
     {
@@ -450,14 +496,17 @@ extends
             toDouble (mask (mVARFlow (), 2)),
             toDouble (mask (mwFlow (), 3)),
             toDouble (mask (normalRating (), 4)),
-            toDouble (mask (shortTermRating (), 5))
+            toDouble (mask (shortTermRating (), 5)),
+            masks (MktACLineSegmentEndAFlow (), 6),
+            masks (MktACLineSegmentEndBFlow (), 7),
+            masks (MktPowerTransformerEndAFlow (), 8),
+            masks (MktPowerTransformerEndBFlow (), 9),
+            masks (MktSeriesCompensatorEndBFlow (), 10),
+            masks (MktSeriresCompensatorEndAFlow (), 11)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -524,10 +573,13 @@ object ConstraintTerm
 extends
     Parseable[ConstraintTerm]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "factor",
         "function",
         "SecurityConstraintSum"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("SecurityConstraintSum", "SecurityConstraintSum", "1", "0..*")
     )
     val factor: Fielder = parse_element (element (cls, fields(0)))
     val function: Fielder = parse_element (element (cls, fields(1)))
@@ -546,9 +598,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("SecurityConstraintSum", "SecurityConstraintSum", false)
-    )
 }
 
 /**
@@ -616,10 +665,15 @@ object ContingencyConstraintLimit
 extends
     Parseable[ContingencyConstraintLimit]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "MWLimitSchedules",
         "MktContingency",
         "SecurityConstraintSum"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("MWLimitSchedules", "MWLimitSchedule", "1", "1"),
+        Relationship ("MktContingency", "MktContingency", "1", "0..*"),
+        Relationship ("SecurityConstraintSum", "SecurityConstraintSum", "1", "0..*")
     )
     val MWLimitSchedules: Fielder = parse_attribute (attribute (cls, fields(0)))
     val MktContingency: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -638,11 +692,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("MWLimitSchedules", "MWLimitSchedule", false),
-        Relationship ("MktContingency", "MktContingency", false),
-        Relationship ("SecurityConstraintSum", "SecurityConstraintSum", false)
-    )
 }
 
 /**
@@ -711,10 +760,13 @@ object ControlAreaSolutionData
 extends
     Parseable[ControlAreaSolutionData]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "solvedInterchange",
         "solvedLosses",
         "MktControlArea"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("MktControlArea", "MktControlArea", "0..1", "0..*")
     )
     val solvedInterchange: Fielder = parse_element (element (cls, fields(0)))
     val solvedLosses: Fielder = parse_element (element (cls, fields(1)))
@@ -733,9 +785,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("MktControlArea", "MktControlArea", false)
-    )
 }
 
 /**
@@ -813,12 +862,16 @@ object DefaultBid
 extends
     Parseable[DefaultBid]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "bidType",
         "minLoadCost",
         "peakFlag",
         "DefaultBidCurve",
         "RegisteredResource"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("DefaultBidCurve", "DefaultBidCurve", "0..1", "0..1"),
+        Relationship ("RegisteredResource", "RegisteredResource", "1", "0..1")
     )
     val bidType: Fielder = parse_attribute (attribute (cls, fields(0)))
     val minLoadCost: Fielder = parse_element (element (cls, fields(1)))
@@ -841,10 +894,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("DefaultBidCurve", "DefaultBidCurve", false),
-        Relationship ("RegisteredResource", "RegisteredResource", false)
-    )
 }
 
 /**
@@ -911,10 +960,13 @@ object DefaultBidCurve
 extends
     Parseable[DefaultBidCurve]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "curveType",
         "debAdderFlag",
         "DefaultBid"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("DefaultBid", "DefaultBid", "0..1", "0..1")
     )
     val curveType: Fielder = parse_element (element (cls, fields(0)))
     val debAdderFlag: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -933,9 +985,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("DefaultBid", "DefaultBid", false)
-    )
 }
 
 /**
@@ -995,7 +1044,7 @@ object DefaultBidCurveData
 extends
     Parseable[DefaultBidCurveData]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "bidSegmentCalcType"
     )
     val bidSegmentCalcType: Fielder = parse_attribute (attribute (cls, fields(0)))
@@ -1011,9 +1060,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1075,8 +1121,11 @@ object DefaultConstraintLimit
 extends
     Parseable[DefaultConstraintLimit]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "SecurityConstraintSum"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("SecurityConstraintSum", "SecurityConstraintSum", "1", "0..1")
     )
     val SecurityConstraintSum: Fielder = parse_attribute (attribute (cls, fields(0)))
 
@@ -1091,9 +1140,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("SecurityConstraintSum", "SecurityConstraintSum", false)
-    )
 }
 
 /**
@@ -1162,10 +1208,13 @@ object DiscreteMeasurementValueQuality
 extends
     Parseable[DiscreteMeasurementValueQuality]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "manualReplaceIndicator",
         "removeFromOperationIndicator",
         "MktDiscreteValue"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("MktDiscreteValue", "MktDiscreteValue", "1", "0..*")
     )
     val manualReplaceIndicator: Fielder = parse_element (element (cls, fields(0)))
     val removeFromOperationIndicator: Fielder = parse_element (element (cls, fields(1)))
@@ -1184,9 +1233,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("MktDiscreteValue", "MktDiscreteValue", false)
-    )
 }
 
 /**
@@ -1265,13 +1311,18 @@ object DistributionFactorSet
 extends
     Parseable[DistributionFactorSet]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "intervalEndTime",
         "intervalStartTime",
         "marketType",
         "GenDistributionFactor",
         "LoadDistributionFactor",
         "SysLoadDistribuFactor"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("GenDistributionFactor", "GenDistributionFactor", "0..*", "0..*"),
+        Relationship ("LoadDistributionFactor", "LoadDistributionFactor", "0..*", "0..*"),
+        Relationship ("SysLoadDistribuFactor", "SysLoadDistributionFactor", "0..*", "0..*")
     )
     val intervalEndTime: Fielder = parse_element (element (cls, fields(0)))
     val intervalStartTime: Fielder = parse_element (element (cls, fields(1)))
@@ -1296,11 +1347,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("GenDistributionFactor", "GenDistributionFactor", true),
-        Relationship ("LoadDistributionFactor", "LoadDistributionFactor", true),
-        Relationship ("SysLoadDistribuFactor", "SysLoadDistributionFactor", true)
-    )
 }
 
 /**
@@ -1370,10 +1416,13 @@ object EnergyConsumerData
 extends
     Parseable[EnergyConsumerData]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "loadMVAR",
         "loadMW",
         "MktEnergyConsumer"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("MktEnergyConsumer", "MktEnergyConsumer", "1", "0..*")
     )
     val loadMVAR: Fielder = parse_element (element (cls, fields(0)))
     val loadMW: Fielder = parse_element (element (cls, fields(1)))
@@ -1392,9 +1441,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("MktEnergyConsumer", "MktEnergyConsumer", false)
-    )
 }
 
 /**
@@ -1472,13 +1518,16 @@ object EnergyPriceIndex
 extends
     Parseable[EnergyPriceIndex]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "endEffectiveDate",
         "energyPriceIndex",
         "energyPriceIndexType",
         "lastModified",
         "startEffectiveDate",
         "RegisteredGenerator"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("RegisteredGenerator", "RegisteredGenerator", "1", "1")
     )
     val endEffectiveDate: Fielder = parse_element (element (cls, fields(0)))
     val energyPriceIndex: Fielder = parse_element (element (cls, fields(1)))
@@ -1503,9 +1552,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("RegisteredGenerator", "RegisteredGenerator", false)
-    )
 }
 
 /**
@@ -1568,9 +1614,13 @@ object EnergyProfile
 extends
     Parseable[EnergyProfile]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "EnergyTransaction",
         "TransactionBid"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("EnergyTransaction", "EnergyTransaction", "1", "1..*"),
+        Relationship ("TransactionBid", "TransactionBid", "1", "1..*")
     )
     val EnergyTransaction: Fielder = parse_attribute (attribute (cls, fields(0)))
     val TransactionBid: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -1587,10 +1637,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("EnergyTransaction", "EnergyTransaction", false),
-        Relationship ("TransactionBid", "TransactionBid", false)
-    )
 }
 
 /**
@@ -1607,11 +1653,15 @@ extends
  * @param reason Reason for energy transaction.
  * @param receiptPointP Receipt point active power.
  * @param state { Approve | Deny | Study }
+ * @param CurtailmentProfiles [[ch.ninecode.model.CurtailmentProfile CurtailmentProfile]] An EnergyTransaction may be curtailed by any of the participating entities.
  * @param EnergyPriceCurves [[ch.ninecode.model.EnergyPriceCurve EnergyPriceCurve]] <em>undocumented</em>
  * @param EnergyProduct [[ch.ninecode.model.EnergyProduct EnergyProduct]] The "Source" for an EnergyTransaction is an EnergyProduct which is injected into a ControlArea.
  *        Typically this is a ServicePoint.
+ * @param EnergyProfiles [[ch.ninecode.model.EnergyProfile EnergyProfile]] An EnergyTransaction shall have at least one EnergyProfile.
  * @param Export_SubControlArea [[ch.ninecode.model.SubControlArea SubControlArea]] Energy is transferred between interchange areas
  * @param Import_SubControlArea [[ch.ninecode.model.SubControlArea SubControlArea]] Energy is transferred between interchange areas
+ * @param LossProfiles [[ch.ninecode.model.LossProfile LossProfile]] An EnergyTransaction may have a LossProfile.
+ * @param TieLines [[ch.ninecode.model.TieLine TieLine]] A dynamic energy transaction can act as a pseudo tie line.
  * @param TransmissionReservation [[ch.ninecode.model.TransmissionReservation TransmissionReservation]] <em>undocumented</em>
  * @group ExternalInputs
  * @groupname ExternalInputs Package ExternalInputs
@@ -1629,10 +1679,14 @@ case class EnergyTransaction
     reason: String,
     receiptPointP: Double,
     state: String,
+    CurtailmentProfiles: List[String],
     EnergyPriceCurves: List[String],
     EnergyProduct: String,
+    EnergyProfiles: List[String],
     Export_SubControlArea: String,
     Import_SubControlArea: String,
+    LossProfiles: List[String],
+    TieLines: List[String],
     TransmissionReservation: String
 )
 extends
@@ -1641,7 +1695,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, false, 0.0, 0.0, 0.0, false, false, null, 0.0, null, List(), null, null, null, null) }
+    def this () = { this (null, false, 0.0, 0.0, 0.0, false, false, null, 0.0, null, List(), List(), null, List(), null, null, List(), List(), null) }
     /**
      * Return the superclass object.
      *
@@ -1676,11 +1730,15 @@ extends
         emitelem (6, reason)
         emitelem (7, receiptPointP)
         emitattr (8, state)
-        emitattrs (9, EnergyPriceCurves)
-        emitattr (10, EnergyProduct)
-        emitattr (11, Export_SubControlArea)
-        emitattr (12, Import_SubControlArea)
-        emitattr (13, TransmissionReservation)
+        emitattrs (9, CurtailmentProfiles)
+        emitattrs (10, EnergyPriceCurves)
+        emitattr (11, EnergyProduct)
+        emitattrs (12, EnergyProfiles)
+        emitattr (13, Export_SubControlArea)
+        emitattr (14, Import_SubControlArea)
+        emitattrs (15, LossProfiles)
+        emitattrs (16, TieLines)
+        emitattr (17, TransmissionReservation)
         s.toString
     }
     override def export: String =
@@ -1693,7 +1751,7 @@ object EnergyTransaction
 extends
     Parseable[EnergyTransaction]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "capacityBacked",
         "congestChargeMax",
         "deliveryPointP",
@@ -1703,11 +1761,26 @@ extends
         "reason",
         "receiptPointP",
         "state",
+        "CurtailmentProfiles",
         "EnergyPriceCurves",
         "EnergyProduct",
+        "EnergyProfiles",
         "Export_SubControlArea",
         "Import_SubControlArea",
+        "LossProfiles",
+        "TieLines",
         "TransmissionReservation"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("CurtailmentProfiles", "CurtailmentProfile", "0..*", "1"),
+        Relationship ("EnergyPriceCurves", "EnergyPriceCurve", "0..*", "0..*"),
+        Relationship ("EnergyProduct", "EnergyProduct", "1", "1..*"),
+        Relationship ("EnergyProfiles", "EnergyProfile", "1..*", "1"),
+        Relationship ("Export_SubControlArea", "SubControlArea", "1", "0..*"),
+        Relationship ("Import_SubControlArea", "SubControlArea", "1", "0..*"),
+        Relationship ("LossProfiles", "LossProfile", "0..*", "1"),
+        Relationship ("TieLines", "TieLine", "0..*", "0..1"),
+        Relationship ("TransmissionReservation", "TransmissionReservation", "0..1", "0..1")
     )
     val capacityBacked: Fielder = parse_element (element (cls, fields(0)))
     val congestChargeMax: Fielder = parse_element (element (cls, fields(1)))
@@ -1718,11 +1791,15 @@ extends
     val reason: Fielder = parse_element (element (cls, fields(6)))
     val receiptPointP: Fielder = parse_element (element (cls, fields(7)))
     val state: Fielder = parse_attribute (attribute (cls, fields(8)))
-    val EnergyPriceCurves: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
-    val EnergyProduct: Fielder = parse_attribute (attribute (cls, fields(10)))
-    val Export_SubControlArea: Fielder = parse_attribute (attribute (cls, fields(11)))
-    val Import_SubControlArea: Fielder = parse_attribute (attribute (cls, fields(12)))
-    val TransmissionReservation: Fielder = parse_attribute (attribute (cls, fields(13)))
+    val CurtailmentProfiles: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
+    val EnergyPriceCurves: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
+    val EnergyProduct: Fielder = parse_attribute (attribute (cls, fields(11)))
+    val EnergyProfiles: FielderMultiple = parse_attributes (attribute (cls, fields(12)))
+    val Export_SubControlArea: Fielder = parse_attribute (attribute (cls, fields(13)))
+    val Import_SubControlArea: Fielder = parse_attribute (attribute (cls, fields(14)))
+    val LossProfiles: FielderMultiple = parse_attributes (attribute (cls, fields(15)))
+    val TieLines: FielderMultiple = parse_attributes (attribute (cls, fields(16)))
+    val TransmissionReservation: Fielder = parse_attribute (attribute (cls, fields(17)))
 
     def parse (context: Context): EnergyTransaction =
     {
@@ -1739,22 +1816,19 @@ extends
             mask (reason (), 6),
             toDouble (mask (receiptPointP (), 7)),
             mask (state (), 8),
-            masks (EnergyPriceCurves (), 9),
-            mask (EnergyProduct (), 10),
-            mask (Export_SubControlArea (), 11),
-            mask (Import_SubControlArea (), 12),
-            mask (TransmissionReservation (), 13)
+            masks (CurtailmentProfiles (), 9),
+            masks (EnergyPriceCurves (), 10),
+            mask (EnergyProduct (), 11),
+            masks (EnergyProfiles (), 12),
+            mask (Export_SubControlArea (), 13),
+            mask (Import_SubControlArea (), 14),
+            masks (LossProfiles (), 15),
+            masks (TieLines (), 16),
+            mask (TransmissionReservation (), 17)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("EnergyPriceCurves", "EnergyPriceCurve", true),
-        Relationship ("EnergyProduct", "EnergyProduct", false),
-        Relationship ("Export_SubControlArea", "SubControlArea", false),
-        Relationship ("Import_SubControlArea", "SubControlArea", false),
-        Relationship ("TransmissionReservation", "TransmissionReservation", false)
-    )
 }
 
 /**
@@ -1827,11 +1901,16 @@ object GenDistributionFactor
 extends
     Parseable[GenDistributionFactor]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "factor",
         "AggregatedPnode",
         "DistributionFactorSet",
         "IndividualPnode"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("AggregatedPnode", "AggregatedPnode", "0..1", "1..*"),
+        Relationship ("DistributionFactorSet", "DistributionFactorSet", "0..*", "0..*"),
+        Relationship ("IndividualPnode", "IndividualPnode", "0..1", "0..1")
     )
     val factor: Fielder = parse_element (element (cls, fields(0)))
     val AggregatedPnode: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -1852,11 +1931,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("AggregatedPnode", "AggregatedPnode", false),
-        Relationship ("DistributionFactorSet", "DistributionFactorSet", true),
-        Relationship ("IndividualPnode", "IndividualPnode", false)
-    )
 }
 
 /**
@@ -1941,7 +2015,7 @@ object GeneratingUnitDynamicValues
 extends
     Parseable[GeneratingUnitDynamicValues]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "lossFactor",
         "mVAR",
         "maximumMW",
@@ -1950,6 +2024,10 @@ extends
         "sensitivity",
         "Flowgate",
         "MktGeneratingUnit"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Flowgate", "Flowgate", "0..1", "0..*"),
+        Relationship ("MktGeneratingUnit", "MktGeneratingUnit", "1", "0..*")
     )
     val lossFactor: Fielder = parse_element (element (cls, fields(0)))
     val mVAR: Fielder = parse_element (element (cls, fields(1)))
@@ -1978,10 +2056,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Flowgate", "Flowgate", false),
-        Relationship ("MktGeneratingUnit", "MktGeneratingUnit", false)
-    )
 }
 
 /**
@@ -1994,6 +2068,8 @@ extends
  * @param intervalStartTime Interval Start Time
  * @param maxLimit Maximum Limit (MW)
  * @param minLimit Minimum Limit (MW)
+ * @param Flowgate [[ch.ninecode.model.Flowgate Flowgate]] <em>undocumented</em>
+ * @param TransmissionCapacity [[ch.ninecode.model.TransmissionCapacity TransmissionCapacity]] <em>undocumented</em>
  * @group ExternalInputs
  * @groupname ExternalInputs Package ExternalInputs
  * @groupdesc ExternalInputs Inputs to the market system from external sources.
@@ -2004,7 +2080,9 @@ case class GenericConstraints
     intervalEndTime: String,
     intervalStartTime: String,
     maxLimit: Double,
-    minLimit: Double
+    minLimit: Double,
+    Flowgate: List[String],
+    TransmissionCapacity: List[String]
 )
 extends
     Element
@@ -2012,7 +2090,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, 0.0, 0.0) }
+    def this () = { this (null, null, null, 0.0, 0.0, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -2036,10 +2114,13 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GenericConstraints.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GenericConstraints.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (GenericConstraints.fields (position), x))
         emitelem (0, intervalEndTime)
         emitelem (1, intervalStartTime)
         emitelem (2, maxLimit)
         emitelem (3, minLimit)
+        emitattrs (4, Flowgate)
+        emitattrs (5, TransmissionCapacity)
         s.toString
     }
     override def export: String =
@@ -2052,16 +2133,24 @@ object GenericConstraints
 extends
     Parseable[GenericConstraints]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "intervalEndTime",
         "intervalStartTime",
         "maxLimit",
-        "minLimit"
+        "minLimit",
+        "Flowgate",
+        "TransmissionCapacity"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Flowgate", "Flowgate", "0..*", "0..1"),
+        Relationship ("TransmissionCapacity", "TransmissionCapacity", "0..*", "0..1")
     )
     val intervalEndTime: Fielder = parse_element (element (cls, fields(0)))
     val intervalStartTime: Fielder = parse_element (element (cls, fields(1)))
     val maxLimit: Fielder = parse_element (element (cls, fields(2)))
     val minLimit: Fielder = parse_element (element (cls, fields(3)))
+    val Flowgate: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val TransmissionCapacity: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
 
     def parse (context: Context): GenericConstraints =
     {
@@ -2072,14 +2161,13 @@ extends
             mask (intervalEndTime (), 0),
             mask (intervalStartTime (), 1),
             toDouble (mask (maxLimit (), 2)),
-            toDouble (mask (minLimit (), 3))
+            toDouble (mask (minLimit (), 3)),
+            masks (Flowgate (), 4),
+            masks (TransmissionCapacity (), 5)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -2146,10 +2234,13 @@ object InterchangeETCData
 extends
     Parseable[InterchangeETCData]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "contractNumber",
         "usageMW",
         "InterchangeSchedule"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("InterchangeSchedule", "InterchangeSchedule", "0..1", "0..*")
     )
     val contractNumber: Fielder = parse_element (element (cls, fields(0)))
     val usageMW: Fielder = parse_element (element (cls, fields(1)))
@@ -2168,9 +2259,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("InterchangeSchedule", "InterchangeSchedule", false)
-    )
 }
 
 /**
@@ -2187,6 +2275,7 @@ extends
  * @param scheduleType Schedule type.
  * @param wcrID Wheeling Counter-Resource ID (required when Schedule Type=Wheel).
  * @param InterTie [[ch.ninecode.model.SchedulingPoint SchedulingPoint]] <em>undocumented</em>
+ * @param InterchangeETCData [[ch.ninecode.model.InterchangeETCData InterchangeETCData]] <em>undocumented</em>
  * @param RegisteredInterTie [[ch.ninecode.model.RegisteredInterTie RegisteredInterTie]] <em>undocumented</em>
  * @group ExternalInputs
  * @groupname ExternalInputs Package ExternalInputs
@@ -2205,6 +2294,7 @@ case class InterchangeSchedule
     scheduleType: String,
     wcrID: String,
     InterTie: String,
+    InterchangeETCData: List[String],
     RegisteredInterTie: String
 )
 extends
@@ -2213,7 +2303,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, 0, null, null, false, null, null, null, null) }
+    def this () = { this (null, null, null, null, 0, null, null, false, null, null, null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -2238,6 +2328,7 @@ extends
         implicit val clz: String = InterchangeSchedule.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (InterchangeSchedule.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (InterchangeSchedule.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (InterchangeSchedule.fields (position), x))
         emitattr (0, checkOutType)
         emitattr (1, directionType)
         emitattr (2, energyType)
@@ -2248,7 +2339,8 @@ extends
         emitattr (7, scheduleType)
         emitelem (8, wcrID)
         emitattr (9, InterTie)
-        emitattr (10, RegisteredInterTie)
+        emitattrs (10, InterchangeETCData)
+        emitattr (11, RegisteredInterTie)
         s.toString
     }
     override def export: String =
@@ -2261,7 +2353,7 @@ object InterchangeSchedule
 extends
     Parseable[InterchangeSchedule]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "checkOutType",
         "directionType",
         "energyType",
@@ -2272,7 +2364,13 @@ extends
         "scheduleType",
         "wcrID",
         "InterTie",
+        "InterchangeETCData",
         "RegisteredInterTie"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("InterTie", "SchedulingPoint", "0..1", "0..*"),
+        Relationship ("InterchangeETCData", "InterchangeETCData", "0..*", "0..1"),
+        Relationship ("RegisteredInterTie", "RegisteredInterTie", "0..1", "0..*")
     )
     val checkOutType: Fielder = parse_attribute (attribute (cls, fields(0)))
     val directionType: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -2284,7 +2382,8 @@ extends
     val scheduleType: Fielder = parse_attribute (attribute (cls, fields(7)))
     val wcrID: Fielder = parse_element (element (cls, fields(8)))
     val InterTie: Fielder = parse_attribute (attribute (cls, fields(9)))
-    val RegisteredInterTie: Fielder = parse_attribute (attribute (cls, fields(10)))
+    val InterchangeETCData: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
+    val RegisteredInterTie: Fielder = parse_attribute (attribute (cls, fields(11)))
 
     def parse (context: Context): InterchangeSchedule =
     {
@@ -2302,15 +2401,12 @@ extends
             mask (scheduleType (), 7),
             mask (wcrID (), 8),
             mask (InterTie (), 9),
-            mask (RegisteredInterTie (), 10)
+            masks (InterchangeETCData (), 10),
+            mask (RegisteredInterTie (), 11)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("InterTie", "SchedulingPoint", false),
-        Relationship ("RegisteredInterTie", "RegisteredInterTie", false)
-    )
 }
 
 /**
@@ -2374,9 +2470,12 @@ object IntermittentResourceEligibility
 extends
     Parseable[IntermittentResourceEligibility]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "eligibilityStatus",
         "RegisteredResource"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("RegisteredResource", "RegisteredResource", "1", "0..*")
     )
     val eligibilityStatus: Fielder = parse_element (element (cls, fields(0)))
     val RegisteredResource: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -2393,9 +2492,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("RegisteredResource", "RegisteredResource", false)
-    )
 }
 
 /**
@@ -2471,12 +2567,17 @@ object LoadDistributionFactor
 extends
     Parseable[LoadDistributionFactor]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "pDistFactor",
         "qDistFactor",
         "AggregatedPnode",
         "DistributionFactorSet",
         "IndividualPnode"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("AggregatedPnode", "AggregatedPnode", "0..1", "1..*"),
+        Relationship ("DistributionFactorSet", "DistributionFactorSet", "0..*", "0..*"),
+        Relationship ("IndividualPnode", "IndividualPnode", "0..1", "0..1")
     )
     val pDistFactor: Fielder = parse_element (element (cls, fields(0)))
     val qDistFactor: Fielder = parse_element (element (cls, fields(1)))
@@ -2499,11 +2600,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("AggregatedPnode", "AggregatedPnode", false),
-        Relationship ("DistributionFactorSet", "DistributionFactorSet", true),
-        Relationship ("IndividualPnode", "IndividualPnode", false)
-    )
 }
 
 /**
@@ -2568,9 +2664,12 @@ object LossSensitivity
 extends
     Parseable[LossSensitivity]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "lossFactor",
         "MktConnectivityNode"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("MktConnectivityNode", "MktConnectivityNode", "1", "0..*")
     )
     val lossFactor: Fielder = parse_element (element (cls, fields(0)))
     val MktConnectivityNode: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -2587,9 +2686,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("MktConnectivityNode", "MktConnectivityNode", false)
-    )
 }
 
 /**
@@ -2649,8 +2745,11 @@ object MWLimitSchedule
 extends
     Parseable[MWLimitSchedule]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "SecurityConstraintLimit"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("SecurityConstraintLimit", "ContingencyConstraintLimit", "1", "1")
     )
     val SecurityConstraintLimit: Fielder = parse_attribute (attribute (cls, fields(0)))
 
@@ -2665,9 +2764,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("SecurityConstraintLimit", "ContingencyConstraintLimit", false)
-    )
 }
 
 /**
@@ -2730,9 +2826,13 @@ object MktACLineSegment
 extends
     Parseable[MktACLineSegment]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "EndAFlow",
         "EndBFlow"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("EndAFlow", "BranchEndFlow", "0..1", "0..*"),
+        Relationship ("EndBFlow", "BranchEndFlow", "0..1", "0..*")
     )
     val EndAFlow: Fielder = parse_attribute (attribute (cls, fields(0)))
     val EndBFlow: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -2749,10 +2849,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("EndAFlow", "BranchEndFlow", false),
-        Relationship ("EndBFlow", "BranchEndFlow", false)
-    )
 }
 
 /**
@@ -2823,7 +2919,7 @@ object MktAnalogLimit
 extends
     Parseable[MktAnalogLimit]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "exceededLimit",
         "limitType"
     )
@@ -2842,9 +2938,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -2904,7 +2997,7 @@ object MktAnalogLimitSet
 extends
     Parseable[MktAnalogLimitSet]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "ratingSet"
     )
     val ratingSet: Fielder = parse_element (element (cls, fields(0)))
@@ -2920,22 +3013,21 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
  * Subclass of IEC61970:Meas:AnalogValue
  *
  * @param sup [[ch.ninecode.model.AnalogValue AnalogValue]] Reference to the superclass object.
+ * @param AnalogMeasurementValueQuality [[ch.ninecode.model.AnalogMeasurementValueQuality AnalogMeasurementValueQuality]] <em>undocumented</em>
  * @group ExternalInputs
  * @groupname ExternalInputs Package ExternalInputs
  * @groupdesc ExternalInputs Inputs to the market system from external sources.
  */
 case class MktAnalogValue
 (
-    override val sup: AnalogValue
+    override val sup: AnalogValue,
+    AnalogMeasurementValueQuality: List[String]
 )
 extends
     Element
@@ -2943,7 +3035,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -2964,7 +3056,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = MktAnalogValue.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (MktAnalogValue.fields (position), x))
+        emitattrs (0, AnalogMeasurementValueQuality)
+        s.toString
     }
     override def export: String =
     {
@@ -2976,31 +3072,40 @@ object MktAnalogValue
 extends
     Parseable[MktAnalogValue]
 {
+    override val fields: Array[String] = Array[String] (
+        "AnalogMeasurementValueQuality"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("AnalogMeasurementValueQuality", "AnalogMeasurementValueQuality", "0..*", "1")
+    )
+    val AnalogMeasurementValueQuality: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): MktAnalogValue =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = MktAnalogValue (
-            AnalogValue.parse (context)
+            AnalogValue.parse (context),
+            masks (AnalogMeasurementValueQuality (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
  * Market subclass of IEC61970:ControlArea
  *
  * @param sup [[ch.ninecode.model.ControlArea ControlArea]] Reference to the superclass object.
+ * @param ControlAreaSolutionData [[ch.ninecode.model.ControlAreaSolutionData ControlAreaSolutionData]] <em>undocumented</em>
  * @group ExternalInputs
  * @groupname ExternalInputs Package ExternalInputs
  * @groupdesc ExternalInputs Inputs to the market system from external sources.
  */
 case class MktControlArea
 (
-    override val sup: ControlArea
+    override val sup: ControlArea,
+    ControlAreaSolutionData: List[String]
 )
 extends
     Element
@@ -3008,7 +3113,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -3029,7 +3134,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = MktControlArea.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (MktControlArea.fields (position), x))
+        emitattrs (0, ControlAreaSolutionData)
+        s.toString
     }
     override def export: String =
     {
@@ -3041,31 +3150,40 @@ object MktControlArea
 extends
     Parseable[MktControlArea]
 {
+    override val fields: Array[String] = Array[String] (
+        "ControlAreaSolutionData"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ControlAreaSolutionData", "ControlAreaSolutionData", "0..*", "0..1")
+    )
+    val ControlAreaSolutionData: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): MktControlArea =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = MktControlArea (
-            ControlArea.parse (context)
+            ControlArea.parse (context),
+            masks (ControlAreaSolutionData (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
  * Subclass of IEC61970:Meas:DiscreteValue
  *
  * @param sup [[ch.ninecode.model.DiscreteValue DiscreteValue]] Reference to the superclass object.
+ * @param DiscreteMeasurementValueQuality [[ch.ninecode.model.DiscreteMeasurementValueQuality DiscreteMeasurementValueQuality]] <em>undocumented</em>
  * @group ExternalInputs
  * @groupname ExternalInputs Package ExternalInputs
  * @groupdesc ExternalInputs Inputs to the market system from external sources.
  */
 case class MktDiscreteValue
 (
-    override val sup: DiscreteValue
+    override val sup: DiscreteValue,
+    DiscreteMeasurementValueQuality: List[String]
 )
 extends
     Element
@@ -3073,7 +3191,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -3094,7 +3212,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = MktDiscreteValue.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (MktDiscreteValue.fields (position), x))
+        emitattrs (0, DiscreteMeasurementValueQuality)
+        s.toString
     }
     override def export: String =
     {
@@ -3106,18 +3228,25 @@ object MktDiscreteValue
 extends
     Parseable[MktDiscreteValue]
 {
+    override val fields: Array[String] = Array[String] (
+        "DiscreteMeasurementValueQuality"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("DiscreteMeasurementValueQuality", "DiscreteMeasurementValueQuality", "0..*", "1")
+    )
+    val DiscreteMeasurementValueQuality: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): MktDiscreteValue =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = MktDiscreteValue (
-            DiscreteValue.parse (context)
+            DiscreteValue.parse (context),
+            masks (DiscreteMeasurementValueQuality (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -3180,9 +3309,13 @@ object MktSeriesCompensator
 extends
     Parseable[MktSeriesCompensator]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "EndAFlow",
         "EndBFlow"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("EndAFlow", "BranchEndFlow", "0..1", "0..*"),
+        Relationship ("EndBFlow", "BranchEndFlow", "0..1", "0..*")
     )
     val EndAFlow: Fielder = parse_attribute (attribute (cls, fields(0)))
     val EndBFlow: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -3199,23 +3332,21 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("EndAFlow", "BranchEndFlow", false),
-        Relationship ("EndBFlow", "BranchEndFlow", false)
-    )
 }
 
 /**
  * Subclass of IEC61970:Wires:ShuntCompensator
  *
  * @param sup [[ch.ninecode.model.ShuntCompensator ShuntCompensator]] Reference to the superclass object.
+ * @param ShuntCompensatorDynamicData [[ch.ninecode.model.ShuntCompensatorDynamicData ShuntCompensatorDynamicData]] <em>undocumented</em>
  * @group ExternalInputs
  * @groupname ExternalInputs Package ExternalInputs
  * @groupdesc ExternalInputs Inputs to the market system from external sources.
  */
 case class MktShuntCompensator
 (
-    override val sup: ShuntCompensator
+    override val sup: ShuntCompensator,
+    ShuntCompensatorDynamicData: List[String]
 )
 extends
     Element
@@ -3223,7 +3354,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -3244,7 +3375,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = MktShuntCompensator.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (MktShuntCompensator.fields (position), x))
+        emitattrs (0, ShuntCompensatorDynamicData)
+        s.toString
     }
     override def export: String =
     {
@@ -3256,31 +3391,40 @@ object MktShuntCompensator
 extends
     Parseable[MktShuntCompensator]
 {
+    override val fields: Array[String] = Array[String] (
+        "ShuntCompensatorDynamicData"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ShuntCompensatorDynamicData", "ShuntCompensatorDynamicData", "0..*", "1")
+    )
+    val ShuntCompensatorDynamicData: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): MktShuntCompensator =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = MktShuntCompensator (
-            ShuntCompensator.parse (context)
+            ShuntCompensator.parse (context),
+            masks (ShuntCompensatorDynamicData (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
  * Subclass of IEC61970:Wires:Switch
  *
  * @param sup [[ch.ninecode.model.Switch Switch]] Reference to the superclass object.
+ * @param SwitchStatus [[ch.ninecode.model.SwitchStatus SwitchStatus]] <em>undocumented</em>
  * @group ExternalInputs
  * @groupname ExternalInputs Package ExternalInputs
  * @groupdesc ExternalInputs Inputs to the market system from external sources.
  */
 case class MktSwitch
 (
-    override val sup: Switch
+    override val sup: Switch,
+    SwitchStatus: List[String]
 )
 extends
     Element
@@ -3288,7 +3432,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -3309,7 +3453,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = MktSwitch.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (MktSwitch.fields (position), x))
+        emitattrs (0, SwitchStatus)
+        s.toString
     }
     override def export: String =
     {
@@ -3321,31 +3469,40 @@ object MktSwitch
 extends
     Parseable[MktSwitch]
 {
+    override val fields: Array[String] = Array[String] (
+        "SwitchStatus"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("SwitchStatus", "SwitchStatus", "0..*", "1")
+    )
+    val SwitchStatus: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): MktSwitch =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = MktSwitch (
-            Switch.parse (context)
+            Switch.parse (context),
+            masks (SwitchStatus (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
  * Subclass of IEC61970:Wires:TapChanger
  *
  * @param sup [[ch.ninecode.model.TapChanger TapChanger]] Reference to the superclass object.
+ * @param TapChangerDynamicData [[ch.ninecode.model.TapChangerDynamicData TapChangerDynamicData]] <em>undocumented</em>
  * @group ExternalInputs
  * @groupname ExternalInputs Package ExternalInputs
  * @groupdesc ExternalInputs Inputs to the market system from external sources.
  */
 case class MktTapChanger
 (
-    override val sup: TapChanger
+    override val sup: TapChanger,
+    TapChangerDynamicData: List[String]
 )
 extends
     Element
@@ -3353,7 +3510,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -3374,7 +3531,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = MktTapChanger.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (MktTapChanger.fields (position), x))
+        emitattrs (0, TapChangerDynamicData)
+        s.toString
     }
     override def export: String =
     {
@@ -3386,18 +3547,25 @@ object MktTapChanger
 extends
     Parseable[MktTapChanger]
 {
+    override val fields: Array[String] = Array[String] (
+        "TapChangerDynamicData"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("TapChangerDynamicData", "TapChangerDynamicData", "0..*", "1")
+    )
+    val TapChangerDynamicData: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): MktTapChanger =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = MktTapChanger (
-            TapChanger.parse (context)
+            TapChanger.parse (context),
+            masks (TapChangerDynamicData (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -3459,8 +3627,11 @@ object NodeConstraintTerm
 extends
     Parseable[NodeConstraintTerm]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "MktConnectivityNode"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("MktConnectivityNode", "MktConnectivityNode", "1", "0..*")
     )
     val MktConnectivityNode: Fielder = parse_attribute (attribute (cls, fields(0)))
 
@@ -3475,9 +3646,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("MktConnectivityNode", "MktConnectivityNode", false)
-    )
 }
 
 /**
@@ -3537,8 +3705,11 @@ object Profile
 extends
     Parseable[Profile]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "ProfileDatas"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ProfileDatas", "ProfileData", "0..*", "0..*")
     )
     val ProfileDatas: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
@@ -3553,9 +3724,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("ProfileDatas", "ProfileData", true)
-    )
 }
 
 /**
@@ -3637,7 +3805,7 @@ object ProfileData
 extends
     Parseable[ProfileData]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "bidPrice",
         "capacityLevel",
         "energyLevel",
@@ -3646,6 +3814,9 @@ extends
         "startDateTime",
         "stopDateTime",
         "Profile"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Profile", "Profile", "0..*", "0..*")
     )
     val bidPrice: Fielder = parse_element (element (cls, fields(0)))
     val capacityLevel: Fielder = parse_element (element (cls, fields(1)))
@@ -3674,9 +3845,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Profile", "Profile", true)
-    )
 }
 
 /**
@@ -3749,11 +3917,15 @@ object ReserveDemandCurve
 extends
     Parseable[ReserveDemandCurve]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "reqMaxMW",
         "reserveRequirementType",
         "ASRequirements",
         "MarketRegion"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ASRequirements", "ASRequirements", "1", "1..*"),
+        Relationship ("MarketRegion", "MarketRegion", "1", "0..*")
     )
     val reqMaxMW: Fielder = parse_element (element (cls, fields(0)))
     val reserveRequirementType: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -3774,10 +3946,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("ASRequirements", "ASRequirements", false),
-        Relationship ("MarketRegion", "MarketRegion", false)
-    )
 }
 
 /**
@@ -3837,7 +4005,7 @@ object SCADAInformation
 extends
     Parseable[SCADAInformation]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "timeStamp"
     )
     val timeStamp: Fielder = parse_element (element (cls, fields(0)))
@@ -3853,9 +4021,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -3865,6 +4030,8 @@ extends
  *
  * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
  * @param BaseCaseConstraintLimit [[ch.ninecode.model.BaseCaseConstraintLimit BaseCaseConstraintLimit]] <em>undocumented</em>
+ * @param ConstraintTerms [[ch.ninecode.model.ConstraintTerm ConstraintTerm]] <em>undocumented</em>
+ * @param ContingencyConstraintLimits [[ch.ninecode.model.ContingencyConstraintLimit ContingencyConstraintLimit]] <em>undocumented</em>
  * @param DefaultConstraintLimit [[ch.ninecode.model.DefaultConstraintLimit DefaultConstraintLimit]] <em>undocumented</em>
  * @param RTO [[ch.ninecode.model.RTO RTO]] <em>undocumented</em>
  * @group ExternalInputs
@@ -3875,6 +4042,8 @@ case class SecurityConstraintSum
 (
     override val sup: MarketFactors,
     BaseCaseConstraintLimit: String,
+    ConstraintTerms: List[String],
+    ContingencyConstraintLimits: List[String],
     DefaultConstraintLimit: String,
     RTO: String
 )
@@ -3884,7 +4053,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null) }
+    def this () = { this (null, null, List(), List(), null, null) }
     /**
      * Return the superclass object.
      *
@@ -3908,9 +4077,12 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = SecurityConstraintSum.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (SecurityConstraintSum.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (SecurityConstraintSum.fields (position), x))
         emitattr (0, BaseCaseConstraintLimit)
-        emitattr (1, DefaultConstraintLimit)
-        emitattr (2, RTO)
+        emitattrs (1, ConstraintTerms)
+        emitattrs (2, ContingencyConstraintLimits)
+        emitattr (3, DefaultConstraintLimit)
+        emitattr (4, RTO)
         s.toString
     }
     override def export: String =
@@ -3923,14 +4095,25 @@ object SecurityConstraintSum
 extends
     Parseable[SecurityConstraintSum]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "BaseCaseConstraintLimit",
+        "ConstraintTerms",
+        "ContingencyConstraintLimits",
         "DefaultConstraintLimit",
         "RTO"
     )
+    override val relations: List[Relationship] = List (
+        Relationship ("BaseCaseConstraintLimit", "BaseCaseConstraintLimit", "0..1", "1"),
+        Relationship ("ConstraintTerms", "ConstraintTerm", "0..*", "1"),
+        Relationship ("ContingencyConstraintLimits", "ContingencyConstraintLimit", "0..*", "1"),
+        Relationship ("DefaultConstraintLimit", "DefaultConstraintLimit", "0..1", "1"),
+        Relationship ("RTO", "RTO", "0..1", "0..*")
+    )
     val BaseCaseConstraintLimit: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val DefaultConstraintLimit: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val RTO: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val ConstraintTerms: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val ContingencyConstraintLimits: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val DefaultConstraintLimit: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val RTO: Fielder = parse_attribute (attribute (cls, fields(4)))
 
     def parse (context: Context): SecurityConstraintSum =
     {
@@ -3939,17 +4122,14 @@ extends
         val ret = SecurityConstraintSum (
             MarketFactors.parse (context),
             mask (BaseCaseConstraintLimit (), 0),
-            mask (DefaultConstraintLimit (), 1),
-            mask (RTO (), 2)
+            masks (ConstraintTerms (), 1),
+            masks (ContingencyConstraintLimits (), 2),
+            mask (DefaultConstraintLimit (), 3),
+            mask (RTO (), 4)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("BaseCaseConstraintLimit", "BaseCaseConstraintLimit", false),
-        Relationship ("DefaultConstraintLimit", "DefaultConstraintLimit", false),
-        Relationship ("RTO", "RTO", false)
-    )
 }
 
 /**
@@ -4025,13 +4205,18 @@ object SecurityConstraints
 extends
     Parseable[SecurityConstraints]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "actualMW",
         "maxMW",
         "minMW",
         "Flowgate",
         "GeneratingBid",
         "RTO"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Flowgate", "Flowgate", "0..1", "0..1"),
+        Relationship ("GeneratingBid", "GeneratingBid", "0..1", "0..*"),
+        Relationship ("RTO", "RTO", "0..1", "0..*")
     )
     val actualMW: Fielder = parse_element (element (cls, fields(0)))
     val maxMW: Fielder = parse_element (element (cls, fields(1)))
@@ -4056,11 +4241,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Flowgate", "Flowgate", false),
-        Relationship ("GeneratingBid", "GeneratingBid", false),
-        Relationship ("RTO", "RTO", false)
-    )
 }
 
 /**
@@ -4069,13 +4249,21 @@ extends
  * Service points are defined from the viewpoint of the transmission service. Each service point is contained within (or on the boundary of) an interchange area. A service point is source or destination of a transaction.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param PODTransmissionPath [[ch.ninecode.model.TransmissionPath TransmissionPath]] A transmission path has a "point-of-delivery" service point
+ * @param PORTransmissionPath [[ch.ninecode.model.TransmissionPath TransmissionPath]] A transmission path has a "point-of-receipt" service point
+ * @param SinkReservation [[ch.ninecode.model.TransmissionReservation TransmissionReservation]] <em>undocumented</em>
+ * @param SourceReservation [[ch.ninecode.model.TransmissionReservation TransmissionReservation]] <em>undocumented</em>
  * @group ExternalInputs
  * @groupname ExternalInputs Package ExternalInputs
  * @groupdesc ExternalInputs Inputs to the market system from external sources.
  */
 case class ServicePoint
 (
-    override val sup: IdentifiedObject
+    override val sup: IdentifiedObject,
+    PODTransmissionPath: List[String],
+    PORTransmissionPath: List[String],
+    SinkReservation: List[String],
+    SourceReservation: List[String]
 )
 extends
     Element
@@ -4083,7 +4271,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List(), List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -4104,7 +4292,14 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ServicePoint.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ServicePoint.fields (position), x))
+        emitattrs (0, PODTransmissionPath)
+        emitattrs (1, PORTransmissionPath)
+        emitattrs (2, SinkReservation)
+        emitattrs (3, SourceReservation)
+        s.toString
     }
     override def export: String =
     {
@@ -4116,18 +4311,37 @@ object ServicePoint
 extends
     Parseable[ServicePoint]
 {
+    override val fields: Array[String] = Array[String] (
+        "PODTransmissionPath",
+        "PORTransmissionPath",
+        "SinkReservation",
+        "SourceReservation"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("PODTransmissionPath", "TransmissionPath", "0..*", "1"),
+        Relationship ("PORTransmissionPath", "TransmissionPath", "0..*", "1"),
+        Relationship ("SinkReservation", "TransmissionReservation", "0..*", "0..1"),
+        Relationship ("SourceReservation", "TransmissionReservation", "0..*", "0..1")
+    )
+    val PODTransmissionPath: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val PORTransmissionPath: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val SinkReservation: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val SourceReservation: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
 
     def parse (context: Context): ServicePoint =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = ServicePoint (
-            IdentifiedObject.parse (context)
+            IdentifiedObject.parse (context),
+            masks (PODTransmissionPath (), 0),
+            masks (PORTransmissionPath (), 1),
+            masks (SinkReservation (), 2),
+            masks (SourceReservation (), 3)
         )
+        ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -4205,13 +4419,16 @@ object ShuntCompensatorDynamicData
 extends
     Parseable[ShuntCompensatorDynamicData]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "connectionStatus",
         "desiredVoltage",
         "mVARInjection",
         "stepPosition",
         "voltageRegulationStatus",
         "MktShuntCompensator"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("MktShuntCompensator", "MktShuntCompensator", "1", "0..*")
     )
     val connectionStatus: Fielder = parse_element (element (cls, fields(0)))
     val desiredVoltage: Fielder = parse_element (element (cls, fields(1)))
@@ -4236,9 +4453,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("MktShuntCompensator", "MktShuntCompensator", false)
-    )
 }
 
 /**
@@ -4301,9 +4515,12 @@ object SwitchStatus
 extends
     Parseable[SwitchStatus]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "switchStatus",
         "MktSwitch"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("MktSwitch", "MktSwitch", "1", "0..*")
     )
     val switchStatus: Fielder = parse_attribute (attribute (cls, fields(0)))
     val MktSwitch: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -4320,9 +4537,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("MktSwitch", "MktSwitch", false)
-    )
 }
 
 /**
@@ -4395,11 +4609,16 @@ object SysLoadDistributionFactor
 extends
     Parseable[SysLoadDistributionFactor]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "factor",
         "DistributionFactorSet",
         "HostControlArea",
         "MktConnectivityNode"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("DistributionFactorSet", "DistributionFactorSet", "0..*", "0..*"),
+        Relationship ("HostControlArea", "HostControlArea", "1", "0..*"),
+        Relationship ("MktConnectivityNode", "MktConnectivityNode", "1", "0..1")
     )
     val factor: Fielder = parse_element (element (cls, fields(0)))
     val DistributionFactorSet: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
@@ -4420,11 +4639,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("DistributionFactorSet", "DistributionFactorSet", true),
-        Relationship ("HostControlArea", "HostControlArea", false),
-        Relationship ("MktConnectivityNode", "MktConnectivityNode", false)
-    )
 }
 
 /**
@@ -4493,10 +4707,13 @@ object TREntitlement
 extends
     Parseable[TREntitlement]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "entitlement",
         "startOperatingDate",
         "TransmissionContractRight"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("TransmissionContractRight", "ContractRight", "1", "0..*")
     )
     val entitlement: Fielder = parse_element (element (cls, fields(0)))
     val startOperatingDate: Fielder = parse_element (element (cls, fields(1)))
@@ -4515,9 +4732,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("TransmissionContractRight", "ContractRight", false)
-    )
 }
 
 /**
@@ -4606,7 +4820,7 @@ object TapChangerDynamicData
 extends
     Parseable[TapChangerDynamicData]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "angleRegulationStatus",
         "desiredMW",
         "desiredVoltage",
@@ -4616,6 +4830,9 @@ extends
         "tapPosition",
         "voltageRegulationStatus",
         "MktTapChanger"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("MktTapChanger", "MktTapChanger", "1", "0..*")
     )
     val angleRegulationStatus: Fielder = parse_element (element (cls, fields(0)))
     val desiredMW: Fielder = parse_element (element (cls, fields(1)))
@@ -4646,9 +4863,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("MktTapChanger", "MktTapChanger", false)
-    )
 }
 
 /**
@@ -4708,8 +4922,11 @@ object TerminalConstraintTerm
 extends
     Parseable[TerminalConstraintTerm]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "MktTerminal"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("MktTerminal", "MktTerminal", "1", "0..*")
     )
     val MktTerminal: Fielder = parse_attribute (attribute (cls, fields(0)))
 
@@ -4724,9 +4941,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("MktTerminal", "MktTerminal", false)
-    )
 }
 
 /**
@@ -4789,9 +5003,13 @@ object TransferInterface
 extends
     Parseable[TransferInterface]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "HostControlArea",
         "TransferInterfaceSolution"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("HostControlArea", "HostControlArea", "0..1", "0..*"),
+        Relationship ("TransferInterfaceSolution", "TransferInterfaceSolution", "1", "1")
     )
     val HostControlArea: Fielder = parse_attribute (attribute (cls, fields(0)))
     val TransferInterfaceSolution: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -4808,10 +5026,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("HostControlArea", "HostControlArea", false),
-        Relationship ("TransferInterfaceSolution", "TransferInterfaceSolution", false)
-    )
 }
 
 /**
@@ -4889,13 +5103,18 @@ object TransferInterfaceSolution
 extends
     Parseable[TransferInterfaceSolution]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "interfaceMargin",
         "postTransferMW",
         "transferLimit",
         "MktContingencyB",
         "TransferInterface",
         " MktContingencyA"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("MktContingencyB", "MktContingency", "0..1", "0..1"),
+        Relationship ("TransferInterface", "TransferInterface", "1", "1"),
+        Relationship ("_MktContingencyA", "MktContingency", "0..1", "0..1")
     )
     val interfaceMargin: Fielder = parse_element (element (cls, fields(0)))
     val postTransferMW: Fielder = parse_element (element (cls, fields(1)))
@@ -4920,11 +5139,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("MktContingencyB", "MktContingency", false),
-        Relationship ("TransferInterface", "TransferInterface", false),
-        Relationship ("_MktContingencyA", "MktContingency", false)
-    )
 }
 
 /**
@@ -5014,7 +5228,7 @@ object TransmissionCapacity
 extends
     Parseable[TransmissionCapacity]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "capacityBenefitMargin",
         "operationalTransmissionCapacity",
         "startOperatingDate",
@@ -5025,6 +5239,10 @@ extends
         "OTCemergency",
         "POD",
         "POR"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Flowgate", "Flowgate", "0..1", "0..*"),
+        Relationship ("GenericConstraints", "GenericConstraints", "0..1", "0..*")
     )
     val capacityBenefitMargin: Fielder = parse_element (element (cls, fields(0)))
     val operationalTransmissionCapacity: Fielder = parse_element (element (cls, fields(1)))
@@ -5057,10 +5275,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Flowgate", "Flowgate", false),
-        Relationship ("GenericConstraints", "GenericConstraints", false)
-    )
 }
 
 /**
@@ -5138,13 +5352,17 @@ object TransmissionInterfaceRightEntitlement
 extends
     Parseable[TransmissionInterfaceRightEntitlement]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "entitlement",
         "startOperatingDate",
         "ContractRight",
         "Flowgate",
         "POD",
         "POR"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ContractRight", "ContractRight", "1", "0..*"),
+        Relationship ("Flowgate", "Flowgate", "0..1", "0..*")
     )
     val entitlement: Fielder = parse_element (element (cls, fields(0)))
     val startOperatingDate: Fielder = parse_element (element (cls, fields(1)))
@@ -5169,10 +5387,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("ContractRight", "ContractRight", false),
-        Relationship ("Flowgate", "Flowgate", false)
-    )
 }
 
 /**
@@ -5188,6 +5402,7 @@ extends
  * @param For [[ch.ninecode.model.TransmissionCorridor TransmissionCorridor]] A TransmissionPath is contained in a TransmissionCorridor.
  * @param LocatedOn [[ch.ninecode.model.TransmissionProduct TransmissionProduct]] A transmission product is located on a transmission path.
  * @param PointOfReceipt [[ch.ninecode.model.ServicePoint ServicePoint]] A transmission path has a "point-of-receipt" service point
+ * @param TransmissionReservation [[ch.ninecode.model.TransmissionReservation TransmissionReservation]] <em>undocumented</em>
  * @group ExternalInputs
  * @groupname ExternalInputs Package ExternalInputs
  * @groupdesc ExternalInputs Inputs to the market system from external sources.
@@ -5201,7 +5416,8 @@ case class TransmissionPath
     DeliveryPoint: String,
     For: String,
     LocatedOn: List[String],
-    PointOfReceipt: String
+    PointOfReceipt: String,
+    TransmissionReservation: List[String]
 )
 extends
     Element
@@ -5209,7 +5425,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, false, 0.0, null, null, List(), null) }
+    def this () = { this (null, 0.0, false, 0.0, null, null, List(), null, List()) }
     /**
      * Return the superclass object.
      *
@@ -5242,6 +5458,7 @@ extends
         emitattr (4, For)
         emitattrs (5, LocatedOn)
         emitattr (6, PointOfReceipt)
+        emitattrs (7, TransmissionReservation)
         s.toString
     }
     override def export: String =
@@ -5254,14 +5471,22 @@ object TransmissionPath
 extends
     Parseable[TransmissionPath]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "availTransferCapability",
         "parallelPathFlag",
         "totalTransferCapability",
         "DeliveryPoint",
         "For",
         "LocatedOn",
-        "PointOfReceipt"
+        "PointOfReceipt",
+        "TransmissionReservation"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("DeliveryPoint", "ServicePoint", "1", "0..*"),
+        Relationship ("For", "TransmissionCorridor", "1", "0..*"),
+        Relationship ("LocatedOn", "TransmissionProduct", "0..*", "0..*"),
+        Relationship ("PointOfReceipt", "ServicePoint", "1", "0..*"),
+        Relationship ("TransmissionReservation", "TransmissionReservation", "0..*", "1")
     )
     val availTransferCapability: Fielder = parse_element (element (cls, fields(0)))
     val parallelPathFlag: Fielder = parse_element (element (cls, fields(1)))
@@ -5270,6 +5495,7 @@ extends
     val For: Fielder = parse_attribute (attribute (cls, fields(4)))
     val LocatedOn: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
     val PointOfReceipt: Fielder = parse_attribute (attribute (cls, fields(6)))
+    val TransmissionReservation: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
 
     def parse (context: Context): TransmissionPath =
     {
@@ -5283,17 +5509,12 @@ extends
             mask (DeliveryPoint (), 3),
             mask (For (), 4),
             masks (LocatedOn (), 5),
-            mask (PointOfReceipt (), 6)
+            mask (PointOfReceipt (), 6),
+            masks (TransmissionReservation (), 7)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("DeliveryPoint", "ServicePoint", false),
-        Relationship ("For", "TransmissionCorridor", false),
-        Relationship ("LocatedOn", "TransmissionProduct", true),
-        Relationship ("PointOfReceipt", "ServicePoint", false)
-    )
 }
 
 /**
@@ -5365,12 +5586,19 @@ object TransmissionReservation
 extends
     Parseable[TransmissionReservation]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "EnergyTransaction",
         "Sink",
         "Source",
         "TransactionBid",
         "TransmissionPath"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("EnergyTransaction", "EnergyTransaction", "0..1", "0..1"),
+        Relationship ("Sink", "ServicePoint", "0..1", "0..*"),
+        Relationship ("Source", "ServicePoint", "0..1", "0..*"),
+        Relationship ("TransactionBid", "TransactionBid", "0..1", "0..1"),
+        Relationship ("TransmissionPath", "TransmissionPath", "1", "0..*")
     )
     val EnergyTransaction: Fielder = parse_attribute (attribute (cls, fields(0)))
     val Sink: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -5393,13 +5621,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("EnergyTransaction", "EnergyTransaction", false),
-        Relationship ("Sink", "ServicePoint", false),
-        Relationship ("Source", "ServicePoint", false),
-        Relationship ("TransactionBid", "TransactionBid", false),
-        Relationship ("TransmissionPath", "TransmissionPath", false)
-    )
 }
 
 /**
@@ -5491,7 +5712,7 @@ object UnitInitialConditions
 extends
     Parseable[UnitInitialConditions]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "cumEnergy",
         "cumStatusChanges",
         "numberOfStartups",
@@ -5502,6 +5723,9 @@ extends
         "timeInStatus",
         "timeInterval",
         "GeneratingUnit"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("GeneratingUnit", "RegisteredGenerator", "0..1", "0..*")
     )
     val cumEnergy: Fielder = parse_element (element (cls, fields(0)))
     val cumStatusChanges: Fielder = parse_element (element (cls, fields(1)))
@@ -5534,9 +5758,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("GeneratingUnit", "RegisteredGenerator", false)
-    )
 }
 
 private[ninecode] object _ExternalInputs

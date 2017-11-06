@@ -18,6 +18,9 @@ import ch.ninecode.cim.Relationship
  * @param sequenceNumber The orientation of the terminal connections for a multiple terminal conducting equipment.
  *        The sequence numbering starts with 1 and additional terminals should follow in increasing order.   The first terminal is the "starting point" for a two terminal branch.
  * @param BusNameMarker [[ch.ninecode.model.BusNameMarker BusNameMarker]] The bus name marker used to name the bus (topological node).
+ * @param Measurements [[ch.ninecode.model.Measurement Measurement]] Measurements associated with this terminal defining  where the measurement is placed in the network topology.
+ *        It may be used, for instance, to capture the sensor position, such as a voltage transformer (PT) at a busbar or a current transformer (CT) at the bar between a breaker and an isolator.
+ * @param OperationalLimitSet [[ch.ninecode.model.OperationalLimitSet OperationalLimitSet]] <em>undocumented</em>
  * @group Core
  * @groupname Core Package Core
  * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
@@ -27,7 +30,9 @@ case class ACDCTerminal
     override val sup: IdentifiedObject,
     connected: Boolean,
     sequenceNumber: Int,
-    BusNameMarker: String
+    BusNameMarker: String,
+    Measurements: List[String],
+    OperationalLimitSet: List[String]
 )
 extends
     Element
@@ -35,7 +40,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, false, 0, null) }
+    def this () = { this (null, false, 0, null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -60,9 +65,12 @@ extends
         implicit val clz: String = ACDCTerminal.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ACDCTerminal.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ACDCTerminal.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ACDCTerminal.fields (position), x))
         emitelem (0, connected)
         emitelem (1, sequenceNumber)
         emitattr (2, BusNameMarker)
+        emitattrs (3, Measurements)
+        emitattrs (4, OperationalLimitSet)
         s.toString
     }
     override def export: String =
@@ -75,14 +83,23 @@ object ACDCTerminal
 extends
     Parseable[ACDCTerminal]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "connected",
         "sequenceNumber",
-        "BusNameMarker"
+        "BusNameMarker",
+        "Measurements",
+        "OperationalLimitSet"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("BusNameMarker", "BusNameMarker", "0..1", "1..*"),
+        Relationship ("Measurements", "Measurement", "0..*", "0..1"),
+        Relationship ("OperationalLimitSet", "OperationalLimitSet", "0..*", "0..1")
     )
     val connected: Fielder = parse_element (element (cls, fields(0)))
     val sequenceNumber: Fielder = parse_element (element (cls, fields(1)))
     val BusNameMarker: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val Measurements: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val OperationalLimitSet: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
 
     def parse (context: Context): ACDCTerminal =
     {
@@ -92,14 +109,13 @@ extends
             IdentifiedObject.parse (context),
             toBoolean (mask (connected (), 0)),
             toInteger (mask (sequenceNumber (), 1)),
-            mask (BusNameMarker (), 2)
+            mask (BusNameMarker (), 2),
+            masks (Measurements (), 3),
+            masks (OperationalLimitSet (), 4)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("BusNameMarker", "BusNameMarker", false)
-    )
 }
 
 /**
@@ -161,7 +177,7 @@ object BaseFrequency
 extends
     Parseable[BaseFrequency]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "frequency"
     )
     val frequency: Fielder = parse_element (element (cls, fields(0)))
@@ -177,9 +193,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -239,7 +252,7 @@ object BasePower
 extends
     Parseable[BasePower]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "basePower"
     )
     val basePower: Fielder = parse_element (element (cls, fields(0)))
@@ -255,9 +268,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -265,6 +275,12 @@ extends
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param nominalVoltage The power system resource's base voltage.
+ * @param ConductingEquipment [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] All conducting equipment with this base voltage.
+ *        Use only when there is no voltage level container used and only one base voltage applies.  For example, not used for transformers.
+ * @param TopologicalNode [[ch.ninecode.model.TopologicalNode TopologicalNode]] The topological nodes at the base voltage.
+ * @param TransformerEnds [[ch.ninecode.model.TransformerEnd TransformerEnd]] Transformer ends at the base voltage.
+ *        This is essential for PU calculation.
+ * @param VoltageLevel [[ch.ninecode.model.VoltageLevel VoltageLevel]] The voltage levels having this base voltage.
  * @group Core
  * @groupname Core Package Core
  * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
@@ -272,7 +288,11 @@ extends
 case class BaseVoltage
 (
     override val sup: IdentifiedObject,
-    nominalVoltage: Double
+    nominalVoltage: Double,
+    ConductingEquipment: List[String],
+    TopologicalNode: List[String],
+    TransformerEnds: List[String],
+    VoltageLevel: List[String]
 )
 extends
     Element
@@ -280,7 +300,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0) }
+    def this () = { this (null, 0.0, List(), List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -304,7 +324,12 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = BaseVoltage.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (BaseVoltage.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (BaseVoltage.fields (position), x))
         emitelem (0, nominalVoltage)
+        emitattrs (1, ConductingEquipment)
+        emitattrs (2, TopologicalNode)
+        emitattrs (3, TransformerEnds)
+        emitattrs (4, VoltageLevel)
         s.toString
     }
     override def export: String =
@@ -317,10 +342,24 @@ object BaseVoltage
 extends
     Parseable[BaseVoltage]
 {
-    val fields: Array[String] = Array[String] (
-        "nominalVoltage"
+    override val fields: Array[String] = Array[String] (
+        "nominalVoltage",
+        "ConductingEquipment",
+        "TopologicalNode",
+        "TransformerEnds",
+        "VoltageLevel"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ConductingEquipment", "ConductingEquipment", "0..*", "0..1"),
+        Relationship ("TopologicalNode", "TopologicalNode", "0..*", "0..1"),
+        Relationship ("TransformerEnds", "TransformerEnd", "0..*", "0..1"),
+        Relationship ("VoltageLevel", "VoltageLevel", "0..*", "1")
     )
     val nominalVoltage: Fielder = parse_element (element (cls, fields(0)))
+    val ConductingEquipment: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val TopologicalNode: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val TransformerEnds: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val VoltageLevel: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
 
     def parse (context: Context): BaseVoltage =
     {
@@ -328,14 +367,15 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = BaseVoltage (
             IdentifiedObject.parse (context),
-            toDouble (mask (nominalVoltage (), 0))
+            toDouble (mask (nominalVoltage (), 0)),
+            masks (ConductingEquipment (), 1),
+            masks (TopologicalNode (), 2),
+            masks (TransformerEnds (), 3),
+            masks (VoltageLevel (), 4)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -408,7 +448,7 @@ object BasicIntervalSchedule
 extends
     Parseable[BasicIntervalSchedule]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "startTime",
         "value1Multiplier",
         "value1Unit",
@@ -436,9 +476,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -516,13 +553,17 @@ object Bay
 extends
     Parseable[Bay]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "bayEnergyMeasFlag",
         "bayPowerMeasFlag",
         "breakerConfiguration",
         "busBarConfiguration",
         "Substation",
         "VoltageLevel"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Substation", "Substation", "0..1", "0..*"),
+        Relationship ("VoltageLevel", "VoltageLevel", "0..1", "0..*")
     )
     val bayEnergyMeasFlag: Fielder = parse_element (element (cls, fields(0)))
     val bayPowerMeasFlag: Fielder = parse_element (element (cls, fields(1)))
@@ -547,10 +588,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Substation", "Substation", false),
-        Relationship ("VoltageLevel", "VoltageLevel", false)
-    )
 }
 
 /**
@@ -562,7 +599,9 @@ extends
  * @param GroundingAction [[ch.ninecode.model.GroundAction GroundAction]] Action involving grounding operation on this conducting equipment.
  * @param JumpingAction [[ch.ninecode.model.JumperAction JumperAction]] Jumper action involving jumping operation on this conducting equipment.
  * @param ProtectionEquipments [[ch.ninecode.model.ProtectionEquipment ProtectionEquipment]] Protection equipment  used to protect specific conducting equipment.
+ * @param ProtectiveActionAdjustment [[ch.ninecode.model.ProtectiveActionAdjustment ProtectiveActionAdjustment]] <em>undocumented</em>
  * @param SvStatus [[ch.ninecode.model.SvStatus SvStatus]] The status state variable associated with this conducting equipment.
+ * @param Terminals [[ch.ninecode.model.Terminal Terminal]] Conducting equipment have terminals that may be connected to other conducting equipment terminals via connectivity nodes or topological nodes.
  * @group Core
  * @groupname Core Package Core
  * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
@@ -574,7 +613,9 @@ case class ConductingEquipment
     GroundingAction: String,
     JumpingAction: String,
     ProtectionEquipments: List[String],
-    SvStatus: String
+    ProtectiveActionAdjustment: List[String],
+    SvStatus: String,
+    Terminals: List[String]
 )
 extends
     Element
@@ -582,7 +623,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, List(), null) }
+    def this () = { this (null, null, null, null, List(), List(), null, List()) }
     /**
      * Return the superclass object.
      *
@@ -611,7 +652,9 @@ extends
         emitattr (1, GroundingAction)
         emitattr (2, JumpingAction)
         emitattrs (3, ProtectionEquipments)
-        emitattr (4, SvStatus)
+        emitattrs (4, ProtectiveActionAdjustment)
+        emitattr (5, SvStatus)
+        emitattrs (6, Terminals)
         s.toString
     }
     override def export: String =
@@ -624,18 +667,31 @@ object ConductingEquipment
 extends
     Parseable[ConductingEquipment]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "BaseVoltage",
         "GroundingAction",
         "JumpingAction",
         "ProtectionEquipments",
-        "SvStatus"
+        "ProtectiveActionAdjustment",
+        "SvStatus",
+        "Terminals"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("BaseVoltage", "BaseVoltage", "0..1", "0..*"),
+        Relationship ("GroundingAction", "GroundAction", "0..1", "0..1"),
+        Relationship ("JumpingAction", "JumperAction", "0..1", "0..*"),
+        Relationship ("ProtectionEquipments", "ProtectionEquipment", "0..*", "0..*"),
+        Relationship ("ProtectiveActionAdjustment", "ProtectiveActionAdjustment", "0..*", "1"),
+        Relationship ("SvStatus", "SvStatus", "0..1", "1"),
+        Relationship ("Terminals", "Terminal", "0..*", "1")
     )
     val BaseVoltage: Fielder = parse_attribute (attribute (cls, fields(0)))
     val GroundingAction: Fielder = parse_attribute (attribute (cls, fields(1)))
     val JumpingAction: Fielder = parse_attribute (attribute (cls, fields(2)))
     val ProtectionEquipments: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
-    val SvStatus: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val ProtectiveActionAdjustment: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val SvStatus: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val Terminals: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
 
     def parse (context: Context): ConductingEquipment =
     {
@@ -647,18 +703,13 @@ extends
             mask (GroundingAction (), 1),
             mask (JumpingAction (), 2),
             masks (ProtectionEquipments (), 3),
-            mask (SvStatus (), 4)
+            masks (ProtectiveActionAdjustment (), 4),
+            mask (SvStatus (), 5),
+            masks (Terminals (), 6)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("BaseVoltage", "BaseVoltage", false),
-        Relationship ("GroundingAction", "GroundAction", false),
-        Relationship ("JumpingAction", "JumperAction", false),
-        Relationship ("ProtectionEquipments", "ProtectionEquipment", true),
-        Relationship ("SvStatus", "SvStatus", false)
-    )
 }
 
 /**
@@ -666,6 +717,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param ConnectivityNodeContainer [[ch.ninecode.model.ConnectivityNodeContainer ConnectivityNodeContainer]] Container of this connectivity node.
+ * @param Terminals [[ch.ninecode.model.Terminal Terminal]] Terminals interconnected with zero impedance at a this connectivity node.
  * @param TopologicalNode [[ch.ninecode.model.TopologicalNode TopologicalNode]] The topological node to which this connectivity node is assigned.
  *        May depend on the current state of switches in the network.
  * @group Core
@@ -676,6 +728,7 @@ case class ConnectivityNode
 (
     override val sup: IdentifiedObject,
     ConnectivityNodeContainer: String,
+    Terminals: List[String],
     TopologicalNode: String
 )
 extends
@@ -684,7 +737,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null) }
+    def this () = { this (null, null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -708,8 +761,10 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ConnectivityNode.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ConnectivityNode.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ConnectivityNode.fields (position), x))
         emitattr (0, ConnectivityNodeContainer)
-        emitattr (1, TopologicalNode)
+        emitattrs (1, Terminals)
+        emitattr (2, TopologicalNode)
         s.toString
     }
     override def export: String =
@@ -722,12 +777,19 @@ object ConnectivityNode
 extends
     Parseable[ConnectivityNode]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "ConnectivityNodeContainer",
+        "Terminals",
         "TopologicalNode"
     )
+    override val relations: List[Relationship] = List (
+        Relationship ("ConnectivityNodeContainer", "ConnectivityNodeContainer", "1", "0..*"),
+        Relationship ("Terminals", "Terminal", "0..*", "0..1"),
+        Relationship ("TopologicalNode", "TopologicalNode", "0..1", "0..*")
+    )
     val ConnectivityNodeContainer: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val TopologicalNode: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val Terminals: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val TopologicalNode: Fielder = parse_attribute (attribute (cls, fields(2)))
 
     def parse (context: Context): ConnectivityNode =
     {
@@ -736,28 +798,29 @@ extends
         val ret = ConnectivityNode (
             IdentifiedObject.parse (context),
             mask (ConnectivityNodeContainer (), 0),
-            mask (TopologicalNode (), 1)
+            masks (Terminals (), 1),
+            mask (TopologicalNode (), 2)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("ConnectivityNodeContainer", "ConnectivityNodeContainer", false),
-        Relationship ("TopologicalNode", "TopologicalNode", false)
-    )
 }
 
 /**
  * A base class for all objects that may contain connectivity nodes or topological nodes.
  *
  * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
+ * @param ConnectivityNodes [[ch.ninecode.model.ConnectivityNode ConnectivityNode]] Connectivity nodes which belong to this connectivity node container.
+ * @param TopologicalNode [[ch.ninecode.model.TopologicalNode TopologicalNode]] The topological nodes which belong to this connectivity node container.
  * @group Core
  * @groupname Core Package Core
  * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
  */
 case class ConnectivityNodeContainer
 (
-    override val sup: PowerSystemResource
+    override val sup: PowerSystemResource,
+    ConnectivityNodes: List[String],
+    TopologicalNode: List[String]
 )
 extends
     Element
@@ -765,7 +828,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -786,7 +849,12 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ConnectivityNodeContainer.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ConnectivityNodeContainer.fields (position), x))
+        emitattrs (0, ConnectivityNodes)
+        emitattrs (1, TopologicalNode)
+        s.toString
     }
     override def export: String =
     {
@@ -798,18 +866,29 @@ object ConnectivityNodeContainer
 extends
     Parseable[ConnectivityNodeContainer]
 {
+    override val fields: Array[String] = Array[String] (
+        "ConnectivityNodes",
+        "TopologicalNode"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ConnectivityNodes", "ConnectivityNode", "0..*", "1"),
+        Relationship ("TopologicalNode", "TopologicalNode", "0..*", "0..1")
+    )
+    val ConnectivityNodes: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val TopologicalNode: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): ConnectivityNodeContainer =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = ConnectivityNodeContainer (
-            PowerSystemResource.parse (context)
+            PowerSystemResource.parse (context),
+            masks (ConnectivityNodes (), 0),
+            masks (TopologicalNode (), 1)
         )
+        ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -825,6 +904,7 @@ extends
  * @param y2Unit The Y2-axis units of measure.
  * @param y3Multiplier Multiplier for Y3-axis.
  * @param y3Unit The Y3-axis units of measure.
+ * @param CurveDatas [[ch.ninecode.model.CurveData CurveData]] The point data values that define this curve.
  * @group Core
  * @groupname Core Package Core
  * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
@@ -840,7 +920,8 @@ case class Curve
     y2Multiplier: String,
     y2Unit: String,
     y3Multiplier: String,
-    y3Unit: String
+    y3Unit: String,
+    CurveDatas: List[String]
 )
 extends
     Element
@@ -848,7 +929,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null, null, null, null, null, null) }
+    def this () = { this (null, null, null, null, null, null, null, null, null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -872,6 +953,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Curve.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Curve.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Curve.fields (position), x))
         emitattr (0, curveStyle)
         emitattr (1, xMultiplier)
         emitattr (2, xUnit)
@@ -881,6 +963,7 @@ extends
         emitattr (6, y2Unit)
         emitattr (7, y3Multiplier)
         emitattr (8, y3Unit)
+        emitattrs (9, CurveDatas)
         s.toString
     }
     override def export: String =
@@ -893,7 +976,7 @@ object Curve
 extends
     Parseable[Curve]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "curveStyle",
         "xMultiplier",
         "xUnit",
@@ -902,7 +985,11 @@ extends
         "y2Multiplier",
         "y2Unit",
         "y3Multiplier",
-        "y3Unit"
+        "y3Unit",
+        "CurveDatas"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("CurveDatas", "CurveData", "0..*", "1")
     )
     val curveStyle: Fielder = parse_attribute (attribute (cls, fields(0)))
     val xMultiplier: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -913,6 +1000,7 @@ extends
     val y2Unit: Fielder = parse_attribute (attribute (cls, fields(6)))
     val y3Multiplier: Fielder = parse_attribute (attribute (cls, fields(7)))
     val y3Unit: Fielder = parse_attribute (attribute (cls, fields(8)))
+    val CurveDatas: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
 
     def parse (context: Context): Curve =
     {
@@ -928,14 +1016,12 @@ extends
             mask (y2Multiplier (), 5),
             mask (y2Unit (), 6),
             mask (y3Multiplier (), 7),
-            mask (y3Unit (), 8)
+            mask (y3Unit (), 8),
+            masks (CurveDatas (), 9)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1010,12 +1096,15 @@ object CurveData
 extends
     Parseable[CurveData]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "xvalue",
         "y1value",
         "y2value",
         "y3value",
         "Curve"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Curve", "Curve", "1", "0..*")
     )
     val xvalue: Fielder = parse_element (element (cls, fields(0)))
     val y1value: Fielder = parse_element (element (cls, fields(1)))
@@ -1038,9 +1127,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Curve", "Curve", false)
-    )
 }
 
 /**
@@ -1050,9 +1136,16 @@ extends
  * @param aggregate The single instance of equipment represents multiple pieces of equipment that have been modeled together as an aggregate.
  *        Examples would be power transformers or synchronous machines operating in parallel modeled as a single aggregate power transformer or aggregate synchronous machine.  This is not to be used to indicate equipment that is part of a group of interdependent equipment produced by a network production program.
  * @param normallyInService If true, the equipment is normally in service.
+ * @param ContingencyEquipment [[ch.ninecode.model.ContingencyEquipment ContingencyEquipment]] The contingency equipments in which this equipment participates.
+ * @param EqiupmentLimitSeriesComponent [[ch.ninecode.model.EquipmentLimitSeriesComponent EquipmentLimitSeriesComponent]] Equipment limit series calculation component to which this equipment contributes.
  * @param EquipmentContainer [[ch.ninecode.model.EquipmentContainer EquipmentContainer]] Container of this equipment.
+ * @param Faults [[ch.ninecode.model.Fault Fault]] All faults on this equipment.
+ * @param LimitDependencyModel [[ch.ninecode.model.LimitDependency LimitDependency]] Limit dependencymodels organized under this equipment as a means for organizing the model in a tree view.
+ * @param OperationalLimitSet [[ch.ninecode.model.OperationalLimitSet OperationalLimitSet]] The operational limit sets associated with this equipment.
  * @param OperationalRestrictions [[ch.ninecode.model.OperationalRestriction OperationalRestriction]] All operational restrictions for this equipment.
  * @param Outages [[ch.ninecode.model.Outage Outage]] All outages in which this equipment is involved.
+ * @param PinEquipment [[ch.ninecode.model.PinEquipment PinEquipment]] <em>undocumented</em>
+ * @param ProtectiveActionEquipment [[ch.ninecode.model.ProtectiveActionEquipment ProtectiveActionEquipment]] <em>undocumented</em>
  * @param UsagePoints [[ch.ninecode.model.UsagePoint UsagePoint]] All usage points connected to the electrical grid through this equipment.
  * @param WeatherStation [[ch.ninecode.model.WeatherStation WeatherStation]] <em>undocumented</em>
  * @group Core
@@ -1064,9 +1157,16 @@ case class Equipment
     override val sup: PowerSystemResource,
     aggregate: Boolean,
     normallyInService: Boolean,
+    ContingencyEquipment: List[String],
+    EqiupmentLimitSeriesComponent: List[String],
     EquipmentContainer: String,
+    Faults: List[String],
+    LimitDependencyModel: List[String],
+    OperationalLimitSet: List[String],
     OperationalRestrictions: List[String],
     Outages: List[String],
+    PinEquipment: List[String],
+    ProtectiveActionEquipment: List[String],
     UsagePoints: List[String],
     WeatherStation: List[String]
 )
@@ -1076,7 +1176,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, false, false, null, List(), List(), List(), List()) }
+    def this () = { this (null, false, false, List(), List(), null, List(), List(), List(), List(), List(), List(), List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1104,11 +1204,18 @@ extends
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Equipment.fields (position), x))
         emitelem (0, aggregate)
         emitelem (1, normallyInService)
-        emitattr (2, EquipmentContainer)
-        emitattrs (3, OperationalRestrictions)
-        emitattrs (4, Outages)
-        emitattrs (5, UsagePoints)
-        emitattrs (6, WeatherStation)
+        emitattrs (2, ContingencyEquipment)
+        emitattrs (3, EqiupmentLimitSeriesComponent)
+        emitattr (4, EquipmentContainer)
+        emitattrs (5, Faults)
+        emitattrs (6, LimitDependencyModel)
+        emitattrs (7, OperationalLimitSet)
+        emitattrs (8, OperationalRestrictions)
+        emitattrs (9, Outages)
+        emitattrs (10, PinEquipment)
+        emitattrs (11, ProtectiveActionEquipment)
+        emitattrs (12, UsagePoints)
+        emitattrs (13, WeatherStation)
         s.toString
     }
     override def export: String =
@@ -1121,22 +1228,50 @@ object Equipment
 extends
     Parseable[Equipment]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "aggregate",
         "normallyInService",
+        "ContingencyEquipment",
+        "EqiupmentLimitSeriesComponent",
         "EquipmentContainer",
+        "Faults",
+        "LimitDependencyModel",
+        "OperationalLimitSet",
         "OperationalRestrictions",
         "Outages",
+        "PinEquipment",
+        "ProtectiveActionEquipment",
         "UsagePoints",
         "WeatherStation"
     )
+    override val relations: List[Relationship] = List (
+        Relationship ("ContingencyEquipment", "ContingencyEquipment", "0..*", "1"),
+        Relationship ("EqiupmentLimitSeriesComponent", "EquipmentLimitSeriesComponent", "0..*", "1"),
+        Relationship ("EquipmentContainer", "EquipmentContainer", "0..1", "0..*"),
+        Relationship ("Faults", "Fault", "0..*", "0..1"),
+        Relationship ("LimitDependencyModel", "LimitDependency", "0..*", "0..1"),
+        Relationship ("OperationalLimitSet", "OperationalLimitSet", "0..*", "0..1"),
+        Relationship ("OperationalRestrictions", "OperationalRestriction", "0..*", "0..*"),
+        Relationship ("Outages", "Outage", "0..*", "0..*"),
+        Relationship ("PinEquipment", "PinEquipment", "0..*", "1"),
+        Relationship ("ProtectiveActionEquipment", "ProtectiveActionEquipment", "0..*", "1"),
+        Relationship ("UsagePoints", "UsagePoint", "0..*", "0..*"),
+        Relationship ("WeatherStation", "WeatherStation", "0..*", "0..*")
+    )
     val aggregate: Fielder = parse_element (element (cls, fields(0)))
     val normallyInService: Fielder = parse_element (element (cls, fields(1)))
-    val EquipmentContainer: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val OperationalRestrictions: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
-    val Outages: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
-    val UsagePoints: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
-    val WeatherStation: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
+    val ContingencyEquipment: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val EqiupmentLimitSeriesComponent: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val EquipmentContainer: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val Faults: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
+    val LimitDependencyModel: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
+    val OperationalLimitSet: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
+    val OperationalRestrictions: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
+    val Outages: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
+    val PinEquipment: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
+    val ProtectiveActionEquipment: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
+    val UsagePoints: FielderMultiple = parse_attributes (attribute (cls, fields(12)))
+    val WeatherStation: FielderMultiple = parse_attributes (attribute (cls, fields(13)))
 
     def parse (context: Context): Equipment =
     {
@@ -1146,35 +1281,37 @@ extends
             PowerSystemResource.parse (context),
             toBoolean (mask (aggregate (), 0)),
             toBoolean (mask (normallyInService (), 1)),
-            mask (EquipmentContainer (), 2),
-            masks (OperationalRestrictions (), 3),
-            masks (Outages (), 4),
-            masks (UsagePoints (), 5),
-            masks (WeatherStation (), 6)
+            masks (ContingencyEquipment (), 2),
+            masks (EqiupmentLimitSeriesComponent (), 3),
+            mask (EquipmentContainer (), 4),
+            masks (Faults (), 5),
+            masks (LimitDependencyModel (), 6),
+            masks (OperationalLimitSet (), 7),
+            masks (OperationalRestrictions (), 8),
+            masks (Outages (), 9),
+            masks (PinEquipment (), 10),
+            masks (ProtectiveActionEquipment (), 11),
+            masks (UsagePoints (), 12),
+            masks (WeatherStation (), 13)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("EquipmentContainer", "EquipmentContainer", false),
-        Relationship ("OperationalRestrictions", "OperationalRestriction", true),
-        Relationship ("Outages", "Outage", true),
-        Relationship ("UsagePoints", "UsagePoint", true),
-        Relationship ("WeatherStation", "WeatherStation", true)
-    )
 }
 
 /**
  * A modeling construct to provide a root class for containing equipment.
  *
  * @param sup [[ch.ninecode.model.ConnectivityNodeContainer ConnectivityNodeContainer]] Reference to the superclass object.
+ * @param Equipments [[ch.ninecode.model.Equipment Equipment]] Contained equipment.
  * @group Core
  * @groupname Core Package Core
  * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
  */
 case class EquipmentContainer
 (
-    override val sup: ConnectivityNodeContainer
+    override val sup: ConnectivityNodeContainer,
+    Equipments: List[String]
 )
 extends
     Element
@@ -1182,7 +1319,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -1203,7 +1340,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = EquipmentContainer.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (EquipmentContainer.fields (position), x))
+        emitattrs (0, Equipments)
+        s.toString
     }
     override def export: String =
     {
@@ -1215,31 +1356,40 @@ object EquipmentContainer
 extends
     Parseable[EquipmentContainer]
 {
+    override val fields: Array[String] = Array[String] (
+        "Equipments"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Equipments", "Equipment", "0..*", "0..1")
+    )
+    val Equipments: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): EquipmentContainer =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = EquipmentContainer (
-            ConnectivityNodeContainer.parse (context)
+            ConnectivityNodeContainer.parse (context),
+            masks (Equipments (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
  * A geographical region of a power system network model.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param Regions [[ch.ninecode.model.SubGeographicalRegion SubGeographicalRegion]] All sub-geograhpical regions within this geographical region.
  * @group Core
  * @groupname Core Package Core
  * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
  */
 case class GeographicalRegion
 (
-    override val sup: IdentifiedObject
+    override val sup: IdentifiedObject,
+    Regions: List[String]
 )
 extends
     Element
@@ -1247,7 +1397,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -1268,7 +1418,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = GeographicalRegion.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (GeographicalRegion.fields (position), x))
+        emitattrs (0, Regions)
+        s.toString
     }
     override def export: String =
     {
@@ -1280,18 +1434,25 @@ object GeographicalRegion
 extends
     Parseable[GeographicalRegion]
 {
+    override val fields: Array[String] = Array[String] (
+        "Regions"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Regions", "SubGeographicalRegion", "0..*", "0..1")
+    )
+    val Regions: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): GeographicalRegion =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = GeographicalRegion (
-            IdentifiedObject.parse (context)
+            IdentifiedObject.parse (context),
+            masks (Regions (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1305,6 +1466,8 @@ extends
  * @param mRID Master resource identifier issued by a model authority.
  *        The mRID is globally unique within an exchange context. Global uniqueness is easily achieved by using a UUID,  as specified in RFC 4122, for the mRID.  The use of UUID is strongly recommended.
  * @param name The name is any free human readable and possibly non unique text naming the object.
+ * @param DiagramObjects [[ch.ninecode.model.DiagramObject DiagramObject]] The diagram objects that are associated with the domain object.
+ * @param Names [[ch.ninecode.model.Name Name]] All names of this identified object.
  * @group Core
  * @groupname Core Package Core
  * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
@@ -1315,7 +1478,9 @@ case class IdentifiedObject
     aliasName: String,
     description: String,
     mRID: String,
-    name: String
+    name: String,
+    DiagramObjects: List[String],
+    Names: List[String]
 )
 extends
     Element
@@ -1323,7 +1488,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null) }
+    def this () = { this (null, null, null, null, null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1347,10 +1512,13 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = IdentifiedObject.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (IdentifiedObject.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (IdentifiedObject.fields (position), x))
         emitelem (0, aliasName)
         emitelem (1, description)
         emitelem (2, mRID)
         emitelem (3, name)
+        emitattrs (4, DiagramObjects)
+        emitattrs (5, Names)
         s.toString
     }
     override def export: String =
@@ -1363,16 +1531,24 @@ object IdentifiedObject
 extends
     Parseable[IdentifiedObject]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "aliasName",
         "description",
         "mRID",
-        "name"
+        "name",
+        "DiagramObjects",
+        "Names"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("DiagramObjects", "DiagramObject", "0..*", "0..1"),
+        Relationship ("Names", "Name", "0..*", "1")
     )
     val aliasName: Fielder = parse_element (element (cls, fields(0)))
     val description: Fielder = parse_element (element (cls, fields(1)))
     val mRID: Fielder = parse_element (element (cls, fields(2)))
     val name: Fielder = parse_element (element (cls, fields(3)))
+    val DiagramObjects: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val Names: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
 
     def parse (context: Context): IdentifiedObject =
     {
@@ -1384,27 +1560,28 @@ extends
             mask (aliasName (), 0),
             mask (description (), 1),
             base.id,
-            mask (name (), 3)
+            mask (name (), 3),
+            masks (DiagramObjects (), 4),
+            masks (Names (), 5)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
  * The schedule has time points where the time between them varies.
  *
  * @param sup [[ch.ninecode.model.BasicIntervalSchedule BasicIntervalSchedule]] Reference to the superclass object.
+ * @param TimePoints [[ch.ninecode.model.IrregularTimePoint IrregularTimePoint]] The point data values that define a curve.
  * @group Core
  * @groupname Core Package Core
  * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
  */
 case class IrregularIntervalSchedule
 (
-    override val sup: BasicIntervalSchedule
+    override val sup: BasicIntervalSchedule,
+    TimePoints: List[String]
 )
 extends
     Element
@@ -1412,7 +1589,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -1433,7 +1610,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = IrregularIntervalSchedule.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (IrregularIntervalSchedule.fields (position), x))
+        emitattrs (0, TimePoints)
+        s.toString
     }
     override def export: String =
     {
@@ -1445,18 +1626,25 @@ object IrregularIntervalSchedule
 extends
     Parseable[IrregularIntervalSchedule]
 {
+    override val fields: Array[String] = Array[String] (
+        "TimePoints"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("TimePoints", "IrregularTimePoint", "1..*", "1")
+    )
+    val TimePoints: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): IrregularIntervalSchedule =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = IrregularIntervalSchedule (
-            BasicIntervalSchedule.parse (context)
+            BasicIntervalSchedule.parse (context),
+            masks (TimePoints (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1528,11 +1716,14 @@ object IrregularTimePoint
 extends
     Parseable[IrregularTimePoint]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "time",
         "value1",
         "value2",
         "IntervalSchedule"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("IntervalSchedule", "IrregularIntervalSchedule", "1", "1..*")
     )
     val time: Fielder = parse_element (element (cls, fields(0)))
     val value1: Fielder = parse_element (element (cls, fields(1)))
@@ -1553,9 +1744,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("IntervalSchedule", "IrregularIntervalSchedule", false)
-    )
 }
 
 /**
@@ -1624,10 +1812,14 @@ object Name
 extends
     Parseable[Name]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "name",
         "IdentifiedObject",
         "NameType"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("IdentifiedObject", "IdentifiedObject", "1", "0..*"),
+        Relationship ("NameType", "NameType", "1", "0..*")
     )
     val name: Fielder = parse_element (element (cls, fields(0)))
     val IdentifiedObject: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -1646,10 +1838,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("IdentifiedObject", "IdentifiedObject", false),
-        Relationship ("NameType", "NameType", false)
-    )
 }
 
 /**
@@ -1661,6 +1849,7 @@ extends
  * @param description Description of the name type.
  * @param name Name of the name type.
  * @param NameTypeAuthority [[ch.ninecode.model.NameTypeAuthority NameTypeAuthority]] Authority responsible for managing names of this type.
+ * @param Names [[ch.ninecode.model.Name Name]] All names of this type.
  * @group Core
  * @groupname Core Package Core
  * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
@@ -1670,7 +1859,8 @@ case class NameType
     override val sup: BasicElement,
     description: String,
     name: String,
-    NameTypeAuthority: String
+    NameTypeAuthority: String,
+    Names: List[String]
 )
 extends
     Element
@@ -1678,7 +1868,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null) }
+    def this () = { this (null, null, null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -1703,9 +1893,11 @@ extends
         implicit val clz: String = NameType.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (NameType.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (NameType.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (NameType.fields (position), x))
         emitelem (0, description)
         emitelem (1, name)
         emitattr (2, NameTypeAuthority)
+        emitattrs (3, Names)
         s.toString
     }
     override def export: String =
@@ -1718,14 +1910,20 @@ object NameType
 extends
     Parseable[NameType]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "description",
         "name",
-        "NameTypeAuthority"
+        "NameTypeAuthority",
+        "Names"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("NameTypeAuthority", "NameTypeAuthority", "0..1", "0..*"),
+        Relationship ("Names", "Name", "0..*", "1")
     )
     val description: Fielder = parse_element (element (cls, fields(0)))
     val name: Fielder = parse_element (element (cls, fields(1)))
     val NameTypeAuthority: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val Names: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
 
     def parse (context: Context): NameType =
     {
@@ -1735,14 +1933,12 @@ extends
             BasicElement.parse (context),
             mask (description (), 0),
             mask (name (), 1),
-            mask (NameTypeAuthority (), 2)
+            mask (NameTypeAuthority (), 2),
+            masks (Names (), 3)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("NameTypeAuthority", "NameTypeAuthority", false)
-    )
 }
 
 /**
@@ -1751,6 +1947,7 @@ extends
  * @param sup Reference to the superclass object.
  * @param description Description of the name type authority.
  * @param name Name of the name type authority.
+ * @param NameTypes [[ch.ninecode.model.NameType NameType]] All name types managed by this authority.
  * @group Core
  * @groupname Core Package Core
  * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
@@ -1759,7 +1956,8 @@ case class NameTypeAuthority
 (
     override val sup: BasicElement,
     description: String,
-    name: String
+    name: String,
+    NameTypes: List[String]
 )
 extends
     Element
@@ -1767,7 +1965,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null) }
+    def this () = { this (null, null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -1791,8 +1989,10 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = NameTypeAuthority.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (NameTypeAuthority.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (NameTypeAuthority.fields (position), x))
         emitelem (0, description)
         emitelem (1, name)
+        emitattrs (2, NameTypes)
         s.toString
     }
     override def export: String =
@@ -1805,12 +2005,17 @@ object NameTypeAuthority
 extends
     Parseable[NameTypeAuthority]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "description",
-        "name"
+        "name",
+        "NameTypes"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("NameTypes", "NameType", "0..*", "0..1")
     )
     val description: Fielder = parse_element (element (cls, fields(0)))
     val name: Fielder = parse_element (element (cls, fields(1)))
+    val NameTypes: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
 
     def parse (context: Context): NameTypeAuthority =
     {
@@ -1819,14 +2024,12 @@ extends
         val ret = NameTypeAuthority (
             BasicElement.parse (context),
             mask (description (), 0),
-            mask (name (), 1)
+            mask (name (), 1),
+            masks (NameTypes (), 2)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1835,13 +2038,16 @@ extends
  * Note multple operating participants may operate the same power system resource object.   This can be used for modeling jointly owned units where each owner operates as a contractual share.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param OperatingShare [[ch.ninecode.model.OperatingShare OperatingShare]] The operating shares of this operating participant.
+ *        An operating participant can be resused for any number of power system resources.
  * @group Core
  * @groupname Core Package Core
  * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
  */
 case class OperatingParticipant
 (
-    override val sup: IdentifiedObject
+    override val sup: IdentifiedObject,
+    OperatingShare: List[String]
 )
 extends
     Element
@@ -1849,7 +2055,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -1870,7 +2076,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = OperatingParticipant.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (OperatingParticipant.fields (position), x))
+        emitattrs (0, OperatingShare)
+        s.toString
     }
     override def export: String =
     {
@@ -1882,18 +2092,25 @@ object OperatingParticipant
 extends
     Parseable[OperatingParticipant]
 {
+    override val fields: Array[String] = Array[String] (
+        "OperatingShare"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("OperatingShare", "OperatingShare", "0..*", "1")
+    )
+    val OperatingShare: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): OperatingParticipant =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = OperatingParticipant (
-            IdentifiedObject.parse (context)
+            IdentifiedObject.parse (context),
+            masks (OperatingShare (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1961,10 +2178,14 @@ object OperatingShare
 extends
     Parseable[OperatingShare]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "percentage",
         "OperatingParticipant",
         "PowerSystemResource"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("OperatingParticipant", "OperatingParticipant", "1", "0..*"),
+        Relationship ("PowerSystemResource", "PowerSystemResource", "1", "0..*")
     )
     val percentage: Fielder = parse_element (element (cls, fields(0)))
     val OperatingParticipant: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -1983,10 +2204,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("OperatingParticipant", "OperatingParticipant", false),
-        Relationship ("PowerSystemResource", "PowerSystemResource", false)
-    )
 }
 
 /**
@@ -1995,13 +2212,15 @@ extends
  * This classification mechanism is intended to provide flexibility outside the scope of this standard, i.e. provide customisation that is non standard.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param PowerSystemResources [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Power system resources classified with this power system resource type.
  * @group Core
  * @groupname Core Package Core
  * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
  */
 case class PSRType
 (
-    override val sup: IdentifiedObject
+    override val sup: IdentifiedObject,
+    PowerSystemResources: List[String]
 )
 extends
     Element
@@ -2009,7 +2228,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -2030,7 +2249,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = PSRType.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (PSRType.fields (position), x))
+        emitattrs (0, PowerSystemResources)
+        s.toString
     }
     override def export: String =
     {
@@ -2042,18 +2265,25 @@ object PSRType
 extends
     Parseable[PSRType]
 {
+    override val fields: Array[String] = Array[String] (
+        "PowerSystemResources"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("PowerSystemResources", "PowerSystemResource", "0..*", "0..1")
+    )
+    val PowerSystemResources: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): PSRType =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = PSRType (
-            IdentifiedObject.parse (context)
+            IdentifiedObject.parse (context),
+            masks (PowerSystemResources (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -2066,7 +2296,12 @@ extends
  * @param Assets [[ch.ninecode.model.Asset Asset]] All assets represented by this power system resource.
  *        For example, multiple conductor assets are electrically modelled as a single AC line segment.
  * @param Clearances [[ch.ninecode.model.ClearanceDocument ClearanceDocument]] All clearances applicable to this power system resource.
+ * @param Controls [[ch.ninecode.model.Control Control]] The controller outputs used to actually govern a regulating device, e.g. the magnetization of a synchronous machine or capacitor bank breaker actuator.
  * @param Location [[ch.ninecode.model.Location Location]] Location of this power system resource.
+ * @param Measurements [[ch.ninecode.model.Measurement Measurement]] The measurements associated with this power system resource.
+ * @param OperatingShare [[ch.ninecode.model.OperatingShare OperatingShare]] The operating shares of this power system resource.
+ * @param OperationTags [[ch.ninecode.model.OperationTag OperationTag]] All operation tags placed on this power system resource.
+ * @param PSREvents [[ch.ninecode.model.PSREvent PSREvent]] All events associated with this power system resource.
  * @param PSRType [[ch.ninecode.model.PSRType PSRType]] Custom classification for this power system resource.
  * @param ReportingGroup [[ch.ninecode.model.ReportingGroup ReportingGroup]] Reporting groups to which this power system resource belongs.
  * @group Core
@@ -2079,7 +2314,12 @@ case class PowerSystemResource
     AssetDatasheet: String,
     Assets: List[String],
     Clearances: List[String],
+    Controls: List[String],
     Location: String,
+    Measurements: List[String],
+    OperatingShare: List[String],
+    OperationTags: List[String],
+    PSREvents: List[String],
     PSRType: String,
     ReportingGroup: List[String]
 )
@@ -2089,7 +2329,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, List(), List(), null, null, List()) }
+    def this () = { this (null, null, List(), List(), List(), null, List(), List(), List(), List(), null, List()) }
     /**
      * Return the superclass object.
      *
@@ -2117,9 +2357,14 @@ extends
         emitattr (0, AssetDatasheet)
         emitattrs (1, Assets)
         emitattrs (2, Clearances)
-        emitattr (3, Location)
-        emitattr (4, PSRType)
-        emitattrs (5, ReportingGroup)
+        emitattrs (3, Controls)
+        emitattr (4, Location)
+        emitattrs (5, Measurements)
+        emitattrs (6, OperatingShare)
+        emitattrs (7, OperationTags)
+        emitattrs (8, PSREvents)
+        emitattr (9, PSRType)
+        emitattrs (10, ReportingGroup)
         s.toString
     }
     override def export: String =
@@ -2132,20 +2377,43 @@ object PowerSystemResource
 extends
     Parseable[PowerSystemResource]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "AssetDatasheet",
         "Assets",
         "Clearances",
+        "Controls",
         "Location",
+        "Measurements",
+        "OperatingShare",
+        "OperationTags",
+        "PSREvents",
         "PSRType",
         "ReportingGroup"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("AssetDatasheet", "AssetInfo", "0..1", "0..*"),
+        Relationship ("Assets", "Asset", "0..*", "0..*"),
+        Relationship ("Clearances", "ClearanceDocument", "0..*", "0..*"),
+        Relationship ("Controls", "Control", "0..*", "0..1"),
+        Relationship ("Location", "Location", "0..1", "0..*"),
+        Relationship ("Measurements", "Measurement", "0..*", "0..1"),
+        Relationship ("OperatingShare", "OperatingShare", "0..*", "1"),
+        Relationship ("OperationTags", "OperationTag", "0..*", "0..1"),
+        Relationship ("PSREvents", "PSREvent", "0..*", "0..1"),
+        Relationship ("PSRType", "PSRType", "0..1", "0..*"),
+        Relationship ("ReportingGroup", "ReportingGroup", "0..*", "0..*")
     )
     val AssetDatasheet: Fielder = parse_attribute (attribute (cls, fields(0)))
     val Assets: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
     val Clearances: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
-    val Location: Fielder = parse_attribute (attribute (cls, fields(3)))
-    val PSRType: Fielder = parse_attribute (attribute (cls, fields(4)))
-    val ReportingGroup: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
+    val Controls: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val Location: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val Measurements: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
+    val OperatingShare: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
+    val OperationTags: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
+    val PSREvents: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
+    val PSRType: Fielder = parse_attribute (attribute (cls, fields(9)))
+    val ReportingGroup: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
 
     def parse (context: Context): PowerSystemResource =
     {
@@ -2156,21 +2424,18 @@ extends
             mask (AssetDatasheet (), 0),
             masks (Assets (), 1),
             masks (Clearances (), 2),
-            mask (Location (), 3),
-            mask (PSRType (), 4),
-            masks (ReportingGroup (), 5)
+            masks (Controls (), 3),
+            mask (Location (), 4),
+            masks (Measurements (), 5),
+            masks (OperatingShare (), 6),
+            masks (OperationTags (), 7),
+            masks (PSREvents (), 8),
+            mask (PSRType (), 9),
+            masks (ReportingGroup (), 10)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("AssetDatasheet", "AssetInfo", false),
-        Relationship ("Assets", "Asset", true),
-        Relationship ("Clearances", "ClearanceDocument", true),
-        Relationship ("Location", "Location", false),
-        Relationship ("PSRType", "PSRType", false),
-        Relationship ("ReportingGroup", "ReportingGroup", true)
-    )
 }
 
 /**
@@ -2179,6 +2444,7 @@ extends
  * @param sup [[ch.ninecode.model.BasicIntervalSchedule BasicIntervalSchedule]] Reference to the superclass object.
  * @param endTime The time for the last time point.
  * @param timeStep The time between each pair of subsequent regular time points in sequence order.
+ * @param TimePoints [[ch.ninecode.model.RegularTimePoint RegularTimePoint]] The regular interval time point data values that define this schedule.
  * @group Core
  * @groupname Core Package Core
  * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
@@ -2187,7 +2453,8 @@ case class RegularIntervalSchedule
 (
     override val sup: BasicIntervalSchedule,
     endTime: String,
-    timeStep: Double
+    timeStep: Double,
+    TimePoints: List[String]
 )
 extends
     Element
@@ -2195,7 +2462,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, 0.0) }
+    def this () = { this (null, null, 0.0, List()) }
     /**
      * Return the superclass object.
      *
@@ -2219,8 +2486,10 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = RegularIntervalSchedule.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (RegularIntervalSchedule.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (RegularIntervalSchedule.fields (position), x))
         emitelem (0, endTime)
         emitelem (1, timeStep)
+        emitattrs (2, TimePoints)
         s.toString
     }
     override def export: String =
@@ -2233,12 +2502,17 @@ object RegularIntervalSchedule
 extends
     Parseable[RegularIntervalSchedule]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "endTime",
-        "timeStep"
+        "timeStep",
+        "TimePoints"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("TimePoints", "RegularTimePoint", "1..*", "1")
     )
     val endTime: Fielder = parse_element (element (cls, fields(0)))
     val timeStep: Fielder = parse_element (element (cls, fields(1)))
+    val TimePoints: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
 
     def parse (context: Context): RegularIntervalSchedule =
     {
@@ -2247,14 +2521,12 @@ extends
         val ret = RegularIntervalSchedule (
             BasicIntervalSchedule.parse (context),
             mask (endTime (), 0),
-            toDouble (mask (timeStep (), 1))
+            toDouble (mask (timeStep (), 1)),
+            masks (TimePoints (), 2)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -2327,11 +2599,14 @@ object RegularTimePoint
 extends
     Parseable[RegularTimePoint]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "sequenceNumber",
         "value1",
         "value2",
         "IntervalSchedule"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("IntervalSchedule", "RegularIntervalSchedule", "1", "1..*")
     )
     val sequenceNumber: Fielder = parse_element (element (cls, fields(0)))
     val value1: Fielder = parse_element (element (cls, fields(1)))
@@ -2352,17 +2627,16 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("IntervalSchedule", "RegularIntervalSchedule", false)
-    )
 }
 
 /**
  * A reporting group is used for various ad-hoc groupings used for reporting.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param BusNameMarker [[ch.ninecode.model.BusNameMarker BusNameMarker]] The bus name markers that belong to this reporting group.
  * @param PowerSystemResource [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Power system resources which belong to this reporting group.
  * @param ReportingSuperGroup [[ch.ninecode.model.ReportingSuperGroup ReportingSuperGroup]] Reporting super group to which this reporting group belongs.
+ * @param TopologicalNode [[ch.ninecode.model.TopologicalNode TopologicalNode]] The topological nodes that belong to the reporting group.
  * @group Core
  * @groupname Core Package Core
  * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
@@ -2370,8 +2644,10 @@ extends
 case class ReportingGroup
 (
     override val sup: IdentifiedObject,
+    BusNameMarker: List[String],
     PowerSystemResource: List[String],
-    ReportingSuperGroup: String
+    ReportingSuperGroup: String,
+    TopologicalNode: List[String]
 )
 extends
     Element
@@ -2379,7 +2655,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, List(), null) }
+    def this () = { this (null, List(), List(), null, List()) }
     /**
      * Return the superclass object.
      *
@@ -2404,8 +2680,10 @@ extends
         implicit val clz: String = ReportingGroup.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ReportingGroup.fields (position), value)
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ReportingGroup.fields (position), x))
-        emitattrs (0, PowerSystemResource)
-        emitattr (1, ReportingSuperGroup)
+        emitattrs (0, BusNameMarker)
+        emitattrs (1, PowerSystemResource)
+        emitattr (2, ReportingSuperGroup)
+        emitattrs (3, TopologicalNode)
         s.toString
     }
     override def export: String =
@@ -2418,12 +2696,22 @@ object ReportingGroup
 extends
     Parseable[ReportingGroup]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
+        "BusNameMarker",
         "PowerSystemResource",
-        "ReportingSuperGroup"
+        "ReportingSuperGroup",
+        "TopologicalNode"
     )
-    val PowerSystemResource: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
-    val ReportingSuperGroup: Fielder = parse_attribute (attribute (cls, fields(1)))
+    override val relations: List[Relationship] = List (
+        Relationship ("BusNameMarker", "BusNameMarker", "0..*", "0..1"),
+        Relationship ("PowerSystemResource", "PowerSystemResource", "0..*", "0..*"),
+        Relationship ("ReportingSuperGroup", "ReportingSuperGroup", "0..1", "0..*"),
+        Relationship ("TopologicalNode", "TopologicalNode", "0..*", "0..1")
+    )
+    val BusNameMarker: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val PowerSystemResource: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val ReportingSuperGroup: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val TopologicalNode: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
 
     def parse (context: Context): ReportingGroup =
     {
@@ -2431,29 +2719,29 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = ReportingGroup (
             IdentifiedObject.parse (context),
-            masks (PowerSystemResource (), 0),
-            mask (ReportingSuperGroup (), 1)
+            masks (BusNameMarker (), 0),
+            masks (PowerSystemResource (), 1),
+            mask (ReportingSuperGroup (), 2),
+            masks (TopologicalNode (), 3)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("PowerSystemResource", "PowerSystemResource", true),
-        Relationship ("ReportingSuperGroup", "ReportingSuperGroup", false)
-    )
 }
 
 /**
  * A reporting super group, groups reporting groups for a higher level report.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param ReportingGroup [[ch.ninecode.model.ReportingGroup ReportingGroup]] Reporting groups that are grouped under this super group.
  * @group Core
  * @groupname Core Package Core
  * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
  */
 case class ReportingSuperGroup
 (
-    override val sup: IdentifiedObject
+    override val sup: IdentifiedObject,
+    ReportingGroup: List[String]
 )
 extends
     Element
@@ -2461,7 +2749,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -2482,7 +2770,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ReportingSuperGroup.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ReportingSuperGroup.fields (position), x))
+        emitattrs (0, ReportingGroup)
+        s.toString
     }
     override def export: String =
     {
@@ -2494,25 +2786,35 @@ object ReportingSuperGroup
 extends
     Parseable[ReportingSuperGroup]
 {
+    override val fields: Array[String] = Array[String] (
+        "ReportingGroup"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ReportingGroup", "ReportingGroup", "0..*", "0..1")
+    )
+    val ReportingGroup: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): ReportingSuperGroup =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = ReportingSuperGroup (
-            IdentifiedObject.parse (context)
+            IdentifiedObject.parse (context),
+            masks (ReportingGroup (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
  * A subset of a geographical region of a power system network model.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param DCLines [[ch.ninecode.model.DCLine DCLine]] <em>undocumented</em>
+ * @param Lines [[ch.ninecode.model.Line Line]] The lines within the sub-geographical region.
  * @param Region [[ch.ninecode.model.GeographicalRegion GeographicalRegion]] The geographical region to which this sub-geographical region is within.
+ * @param Substations [[ch.ninecode.model.Substation Substation]] The substations in this sub-geographical region.
  * @group Core
  * @groupname Core Package Core
  * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
@@ -2520,7 +2822,10 @@ extends
 case class SubGeographicalRegion
 (
     override val sup: IdentifiedObject,
-    Region: String
+    DCLines: List[String],
+    Lines: List[String],
+    Region: String,
+    Substations: List[String]
 )
 extends
     Element
@@ -2528,7 +2833,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null) }
+    def this () = { this (null, List(), List(), null, List()) }
     /**
      * Return the superclass object.
      *
@@ -2552,7 +2857,11 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = SubGeographicalRegion.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (SubGeographicalRegion.fields (position), value)
-        emitattr (0, Region)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (SubGeographicalRegion.fields (position), x))
+        emitattrs (0, DCLines)
+        emitattrs (1, Lines)
+        emitattr (2, Region)
+        emitattrs (3, Substations)
         s.toString
     }
     override def export: String =
@@ -2565,10 +2874,22 @@ object SubGeographicalRegion
 extends
     Parseable[SubGeographicalRegion]
 {
-    val fields: Array[String] = Array[String] (
-        "Region"
+    override val fields: Array[String] = Array[String] (
+        "DCLines",
+        "Lines",
+        "Region",
+        "Substations"
     )
-    val Region: Fielder = parse_attribute (attribute (cls, fields(0)))
+    override val relations: List[Relationship] = List (
+        Relationship ("DCLines", "DCLine", "0..*", "0..1"),
+        Relationship ("Lines", "Line", "0..*", "0..1"),
+        Relationship ("Region", "GeographicalRegion", "0..1", "0..*"),
+        Relationship ("Substations", "Substation", "0..*", "0..1")
+    )
+    val DCLines: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val Lines: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val Region: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val Substations: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
 
     def parse (context: Context): SubGeographicalRegion =
     {
@@ -2576,21 +2897,24 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = SubGeographicalRegion (
             IdentifiedObject.parse (context),
-            mask (Region (), 0)
+            masks (DCLines (), 0),
+            masks (Lines (), 1),
+            mask (Region (), 2),
+            masks (Substations (), 3)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Region", "GeographicalRegion", false)
-    )
 }
 
 /**
  * A collection of equipment for purposes other than generation or utilization, through which electric energy in bulk is passed for the purposes of switching or modifying its characteristics.
  *
  * @param sup [[ch.ninecode.model.EquipmentContainer EquipmentContainer]] Reference to the superclass object.
+ * @param Bays [[ch.ninecode.model.Bay Bay]] Bays contained in the substation.
+ * @param DCConverterUnit [[ch.ninecode.model.DCConverterUnit DCConverterUnit]] <em>undocumented</em>
  * @param Region [[ch.ninecode.model.SubGeographicalRegion SubGeographicalRegion]] The SubGeographicalRegion containing the substation.
+ * @param VoltageLevels [[ch.ninecode.model.VoltageLevel VoltageLevel]] The voltage levels within this substation.
  * @group Core
  * @groupname Core Package Core
  * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
@@ -2598,7 +2922,10 @@ extends
 case class Substation
 (
     override val sup: EquipmentContainer,
-    Region: String
+    Bays: List[String],
+    DCConverterUnit: List[String],
+    Region: String,
+    VoltageLevels: List[String]
 )
 extends
     Element
@@ -2606,7 +2933,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null) }
+    def this () = { this (null, List(), List(), null, List()) }
     /**
      * Return the superclass object.
      *
@@ -2630,7 +2957,11 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Substation.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Substation.fields (position), value)
-        emitattr (0, Region)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Substation.fields (position), x))
+        emitattrs (0, Bays)
+        emitattrs (1, DCConverterUnit)
+        emitattr (2, Region)
+        emitattrs (3, VoltageLevels)
         s.toString
     }
     override def export: String =
@@ -2643,10 +2974,22 @@ object Substation
 extends
     Parseable[Substation]
 {
-    val fields: Array[String] = Array[String] (
-        "Region"
+    override val fields: Array[String] = Array[String] (
+        "Bays",
+        "DCConverterUnit",
+        "Region",
+        "VoltageLevels"
     )
-    val Region: Fielder = parse_attribute (attribute (cls, fields(0)))
+    override val relations: List[Relationship] = List (
+        Relationship ("Bays", "Bay", "0..*", "0..1"),
+        Relationship ("DCConverterUnit", "DCConverterUnit", "0..*", "0..1"),
+        Relationship ("Region", "SubGeographicalRegion", "0..1", "0..*"),
+        Relationship ("VoltageLevels", "VoltageLevel", "0..*", "1")
+    )
+    val Bays: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val DCConverterUnit: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val Region: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val VoltageLevels: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
 
     def parse (context: Context): Substation =
     {
@@ -2654,14 +2997,14 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = Substation (
             EquipmentContainer.parse (context),
-            mask (Region (), 0)
+            masks (Bays (), 0),
+            masks (DCConverterUnit (), 1),
+            mask (Region (), 2),
+            masks (VoltageLevels (), 3)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Region", "SubGeographicalRegion", false)
-    )
 }
 
 /**
@@ -2672,13 +3015,24 @@ extends
  * @param sup [[ch.ninecode.model.ACDCTerminal ACDCTerminal]] Reference to the superclass object.
  * @param phases Represents the normal network phasing condition.
  *        If the attribute is missing three phases (ABC or ABCN) shall be assumed.
+ * @param AuxiliaryEquipment [[ch.ninecode.model.AuxiliaryEquipment AuxiliaryEquipment]] The auxiliary equipment connected to the terminal.
+ * @param BranchGroupTerminal [[ch.ninecode.model.BranchGroupTerminal BranchGroupTerminal]] The directed branch group terminals for which this terminal is monitored.
  * @param Bushing [[ch.ninecode.model.Bushing Bushing]] <em>undocumented</em>
  * @param ConductingEquipment [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] The conducting equipment of the terminal.
  *        Conducting equipment have  terminals that may be connected to other conducting equipment terminals via connectivity nodes or topological nodes.
  * @param ConnectivityNode [[ch.ninecode.model.ConnectivityNode ConnectivityNode]] The connectivity node to which this terminal connects with zero impedance.
+ * @param ConverterDCSides [[ch.ninecode.model.ACDCConverter ACDCConverter]] All converters' DC sides linked to this point of common coupling terminal.
+ * @param EquipmentFaults [[ch.ninecode.model.EquipmentFault EquipmentFault]] The equipment faults at this terminal.
+ * @param HasFirstMutualCoupling [[ch.ninecode.model.MutualCoupling MutualCoupling]] Mutual couplings associated with the branch as the first branch.
+ * @param HasSecondMutualCoupling [[ch.ninecode.model.MutualCoupling MutualCoupling]] Mutual couplings with the branch associated as the first branch.
+ * @param PinTerminal [[ch.ninecode.model.PinTerminal PinTerminal]] <em>undocumented</em>
+ * @param RegulatingControl [[ch.ninecode.model.RegulatingControl RegulatingControl]] The controls regulating this terminal.
+ * @param RemoteInputSignal [[ch.ninecode.model.RemoteInputSignal RemoteInputSignal]] Input signal coming from this terminal.
  * @param SvPowerFlow [[ch.ninecode.model.SvPowerFlow SvPowerFlow]] The power flow state variable associated with the terminal.
+ * @param TieFlow [[ch.ninecode.model.TieFlow TieFlow]] The control area tie flows to which this terminal associates.
  * @param TopologicalNode [[ch.ninecode.model.TopologicalNode TopologicalNode]] The topological node associated with the terminal.
  *        This can be used as an alternative to the connectivity node path to topological node, thus making it unneccesary to model connectivity nodes in some cases.   Note that the if connectivity nodes are in the model, this association would probably not be used as an input specification.
+ * @param TransformerEnd [[ch.ninecode.model.TransformerEnd TransformerEnd]] All transformer ends connected at this terminal.
  * @group Core
  * @groupname Core Package Core
  * @groupdesc Core Contains the core PowerSystemResource and ConductingEquipment entities shared by all applications plus common collections of those entities. Not all applications require all the Core entities.  This package does not depend on any other package except the Domain package, but most of the other packages have associations and generalizations that depend on it.
@@ -2687,11 +3041,22 @@ case class Terminal
 (
     override val sup: ACDCTerminal,
     phases: String,
+    AuxiliaryEquipment: List[String],
+    BranchGroupTerminal: List[String],
     Bushing: String,
     ConductingEquipment: String,
     ConnectivityNode: String,
+    ConverterDCSides: List[String],
+    EquipmentFaults: List[String],
+    HasFirstMutualCoupling: List[String],
+    HasSecondMutualCoupling: List[String],
+    PinTerminal: List[String],
+    RegulatingControl: List[String],
+    RemoteInputSignal: List[String],
     SvPowerFlow: String,
-    TopologicalNode: String
+    TieFlow: List[String],
+    TopologicalNode: String,
+    TransformerEnd: List[String]
 )
 extends
     Element
@@ -2699,7 +3064,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null, null, null) }
+    def this () = { this (null, null, List(), List(), null, null, null, List(), List(), List(), List(), List(), List(), List(), null, List(), null, List()) }
     /**
      * Return the superclass object.
      *
@@ -2723,12 +3088,24 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Terminal.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Terminal.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Terminal.fields (position), x))
         emitattr (0, phases)
-        emitattr (1, Bushing)
-        emitattr (2, ConductingEquipment)
-        emitattr (3, ConnectivityNode)
-        emitattr (4, SvPowerFlow)
-        emitattr (5, TopologicalNode)
+        emitattrs (1, AuxiliaryEquipment)
+        emitattrs (2, BranchGroupTerminal)
+        emitattr (3, Bushing)
+        emitattr (4, ConductingEquipment)
+        emitattr (5, ConnectivityNode)
+        emitattrs (6, ConverterDCSides)
+        emitattrs (7, EquipmentFaults)
+        emitattrs (8, HasFirstMutualCoupling)
+        emitattrs (9, HasSecondMutualCoupling)
+        emitattrs (10, PinTerminal)
+        emitattrs (11, RegulatingControl)
+        emitattrs (12, RemoteInputSignal)
+        emitattr (13, SvPowerFlow)
+        emitattrs (14, TieFlow)
+        emitattr (15, TopologicalNode)
+        emitattrs (16, TransformerEnd)
         s.toString
     }
     override def export: String =
@@ -2741,20 +3118,60 @@ object Terminal
 extends
     Parseable[Terminal]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "phases",
+        "AuxiliaryEquipment",
+        "BranchGroupTerminal",
         "Bushing",
         "ConductingEquipment",
         "ConnectivityNode",
+        "ConverterDCSides",
+        "EquipmentFaults",
+        "HasFirstMutualCoupling",
+        "HasSecondMutualCoupling",
+        "PinTerminal",
+        "RegulatingControl",
+        "RemoteInputSignal",
         "SvPowerFlow",
-        "TopologicalNode"
+        "TieFlow",
+        "TopologicalNode",
+        "TransformerEnd"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("AuxiliaryEquipment", "AuxiliaryEquipment", "0..*", "1"),
+        Relationship ("BranchGroupTerminal", "BranchGroupTerminal", "0..*", "1"),
+        Relationship ("Bushing", "Bushing", "0..1", "0..1"),
+        Relationship ("ConductingEquipment", "ConductingEquipment", "1", "0..*"),
+        Relationship ("ConnectivityNode", "ConnectivityNode", "0..1", "0..*"),
+        Relationship ("ConverterDCSides", "ACDCConverter", "0..*", "0..1"),
+        Relationship ("EquipmentFaults", "EquipmentFault", "0..*", "0..1"),
+        Relationship ("HasFirstMutualCoupling", "MutualCoupling", "0..*", "1"),
+        Relationship ("HasSecondMutualCoupling", "MutualCoupling", "0..*", "1"),
+        Relationship ("PinTerminal", "PinTerminal", "0..*", "1"),
+        Relationship ("RegulatingControl", "RegulatingControl", "0..*", "0..1"),
+        Relationship ("RemoteInputSignal", "RemoteInputSignal", "0..*", "1"),
+        Relationship ("SvPowerFlow", "SvPowerFlow", "0..1", "1"),
+        Relationship ("TieFlow", "TieFlow", "0..2", "1"),
+        Relationship ("TopologicalNode", "TopologicalNode", "0..1", "0..*"),
+        Relationship ("TransformerEnd", "TransformerEnd", "0..*", "0..1")
     )
     val phases: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val Bushing: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val ConductingEquipment: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val ConnectivityNode: Fielder = parse_attribute (attribute (cls, fields(3)))
-    val SvPowerFlow: Fielder = parse_attribute (attribute (cls, fields(4)))
-    val TopologicalNode: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val AuxiliaryEquipment: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val BranchGroupTerminal: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val Bushing: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val ConductingEquipment: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val ConnectivityNode: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val ConverterDCSides: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
+    val EquipmentFaults: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
+    val HasFirstMutualCoupling: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
+    val HasSecondMutualCoupling: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
+    val PinTerminal: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
+    val RegulatingControl: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
+    val RemoteInputSignal: FielderMultiple = parse_attributes (attribute (cls, fields(12)))
+    val SvPowerFlow: Fielder = parse_attribute (attribute (cls, fields(13)))
+    val TieFlow: FielderMultiple = parse_attributes (attribute (cls, fields(14)))
+    val TopologicalNode: Fielder = parse_attribute (attribute (cls, fields(15)))
+    val TransformerEnd: FielderMultiple = parse_attributes (attribute (cls, fields(16)))
 
     def parse (context: Context): Terminal =
     {
@@ -2763,22 +3180,26 @@ extends
         val ret = Terminal (
             ACDCTerminal.parse (context),
             mask (phases (), 0),
-            mask (Bushing (), 1),
-            mask (ConductingEquipment (), 2),
-            mask (ConnectivityNode (), 3),
-            mask (SvPowerFlow (), 4),
-            mask (TopologicalNode (), 5)
+            masks (AuxiliaryEquipment (), 1),
+            masks (BranchGroupTerminal (), 2),
+            mask (Bushing (), 3),
+            mask (ConductingEquipment (), 4),
+            mask (ConnectivityNode (), 5),
+            masks (ConverterDCSides (), 6),
+            masks (EquipmentFaults (), 7),
+            masks (HasFirstMutualCoupling (), 8),
+            masks (HasSecondMutualCoupling (), 9),
+            masks (PinTerminal (), 10),
+            masks (RegulatingControl (), 11),
+            masks (RemoteInputSignal (), 12),
+            mask (SvPowerFlow (), 13),
+            masks (TieFlow (), 14),
+            mask (TopologicalNode (), 15),
+            masks (TransformerEnd (), 16)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Bushing", "Bushing", false),
-        Relationship ("ConductingEquipment", "ConductingEquipment", false),
-        Relationship ("ConnectivityNode", "ConnectivityNode", false),
-        Relationship ("SvPowerFlow", "SvPowerFlow", false),
-        Relationship ("TopologicalNode", "TopologicalNode", false)
-    )
 }
 
 /**
@@ -2790,6 +3211,7 @@ extends
  * @param highVoltageLimit The bus bar's high voltage limit
  * @param lowVoltageLimit The bus bar's low voltage limit
  * @param BaseVoltage [[ch.ninecode.model.BaseVoltage BaseVoltage]] The base voltage used for all equipment within the voltage level.
+ * @param Bays [[ch.ninecode.model.Bay Bay]] The bays within this voltage level.
  * @param Substation [[ch.ninecode.model.Substation Substation]] The substation of the voltage level.
  * @group Core
  * @groupname Core Package Core
@@ -2801,6 +3223,7 @@ case class VoltageLevel
     highVoltageLimit: Double,
     lowVoltageLimit: Double,
     BaseVoltage: String,
+    Bays: List[String],
     Substation: String
 )
 extends
@@ -2809,7 +3232,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, null, null) }
+    def this () = { this (null, 0.0, 0.0, null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -2834,10 +3257,12 @@ extends
         implicit val clz: String = VoltageLevel.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (VoltageLevel.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (VoltageLevel.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (VoltageLevel.fields (position), x))
         emitelem (0, highVoltageLimit)
         emitelem (1, lowVoltageLimit)
         emitattr (2, BaseVoltage)
-        emitattr (3, Substation)
+        emitattrs (3, Bays)
+        emitattr (4, Substation)
         s.toString
     }
     override def export: String =
@@ -2850,16 +3275,23 @@ object VoltageLevel
 extends
     Parseable[VoltageLevel]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "highVoltageLimit",
         "lowVoltageLimit",
         "BaseVoltage",
+        "Bays",
         "Substation"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("BaseVoltage", "BaseVoltage", "1", "0..*"),
+        Relationship ("Bays", "Bay", "0..*", "0..1"),
+        Relationship ("Substation", "Substation", "1", "0..*")
     )
     val highVoltageLimit: Fielder = parse_element (element (cls, fields(0)))
     val lowVoltageLimit: Fielder = parse_element (element (cls, fields(1)))
     val BaseVoltage: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val Substation: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val Bays: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val Substation: Fielder = parse_attribute (attribute (cls, fields(4)))
 
     def parse (context: Context): VoltageLevel =
     {
@@ -2870,15 +3302,12 @@ extends
             toDouble (mask (highVoltageLimit (), 0)),
             toDouble (mask (lowVoltageLimit (), 1)),
             mask (BaseVoltage (), 2),
-            mask (Substation (), 3)
+            masks (Bays (), 3),
+            mask (Substation (), 4)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("BaseVoltage", "BaseVoltage", false),
-        Relationship ("Substation", "Substation", false)
-    )
 }
 
 private[ninecode] object _Core

@@ -71,10 +71,14 @@ object AirCompressor
 extends
     Parseable[AirCompressor]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "airCompressorRating",
         "CAESPlant",
         "CombustionTurbine"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("CAESPlant", "CAESPlant", "1", "1"),
+        Relationship ("CombustionTurbine", "CombustionTurbine", "1", "0..1")
     )
     val airCompressorRating: Fielder = parse_element (element (cls, fields(0)))
     val CAESPlant: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -93,10 +97,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("CAESPlant", "CAESPlant", false),
-        Relationship ("CombustionTurbine", "CombustionTurbine", false)
-    )
 }
 
 /**
@@ -166,11 +166,15 @@ object CAESPlant
 extends
     Parseable[CAESPlant]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "energyStorageCapacity",
         "ratedCapacityP",
         "AirCompressor",
         "ThermalGeneratingUnit"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("AirCompressor", "AirCompressor", "1", "1"),
+        Relationship ("ThermalGeneratingUnit", "ThermalGeneratingUnit", "0..1", "0..1")
     )
     val energyStorageCapacity: Fielder = parse_element (element (cls, fields(0)))
     val ratedCapacityP: Fielder = parse_element (element (cls, fields(1)))
@@ -191,10 +195,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("AirCompressor", "AirCompressor", false),
-        Relationship ("ThermalGeneratingUnit", "ThermalGeneratingUnit", false)
-    )
 }
 
 /**
@@ -209,6 +209,7 @@ extends
  * @param cogenLPSteamRating The low pressure steam rating.
  * @param ratedP The rated output active power of the cogeneration plant.
  * @param SteamSendoutSchedule [[ch.ninecode.model.SteamSendoutSchedule SteamSendoutSchedule]] A cogeneration plant has a steam sendout schedule.
+ * @param ThermalGeneratingUnits [[ch.ninecode.model.ThermalGeneratingUnit ThermalGeneratingUnit]] A thermal generating unit may be a member of a cogeneration plant.
  * @group Production
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
@@ -221,7 +222,8 @@ case class CogenerationPlant
     cogenLPSendoutRating: Double,
     cogenLPSteamRating: Double,
     ratedP: Double,
-    SteamSendoutSchedule: String
+    SteamSendoutSchedule: String,
+    ThermalGeneratingUnits: List[String]
 )
 extends
     Element
@@ -229,7 +231,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, null) }
+    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -254,12 +256,14 @@ extends
         implicit val clz: String = CogenerationPlant.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (CogenerationPlant.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (CogenerationPlant.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (CogenerationPlant.fields (position), x))
         emitelem (0, cogenHPSendoutRating)
         emitelem (1, cogenHPSteamRating)
         emitelem (2, cogenLPSendoutRating)
         emitelem (3, cogenLPSteamRating)
         emitelem (4, ratedP)
         emitattr (5, SteamSendoutSchedule)
+        emitattrs (6, ThermalGeneratingUnits)
         s.toString
     }
     override def export: String =
@@ -272,13 +276,18 @@ object CogenerationPlant
 extends
     Parseable[CogenerationPlant]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "cogenHPSendoutRating",
         "cogenHPSteamRating",
         "cogenLPSendoutRating",
         "cogenLPSteamRating",
         "ratedP",
-        "SteamSendoutSchedule"
+        "SteamSendoutSchedule",
+        "ThermalGeneratingUnits"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("SteamSendoutSchedule", "SteamSendoutSchedule", "1", "1"),
+        Relationship ("ThermalGeneratingUnits", "ThermalGeneratingUnit", "0..*", "0..1")
     )
     val cogenHPSendoutRating: Fielder = parse_element (element (cls, fields(0)))
     val cogenHPSteamRating: Fielder = parse_element (element (cls, fields(1)))
@@ -286,6 +295,7 @@ extends
     val cogenLPSteamRating: Fielder = parse_element (element (cls, fields(3)))
     val ratedP: Fielder = parse_element (element (cls, fields(4)))
     val SteamSendoutSchedule: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val ThermalGeneratingUnits: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
 
     def parse (context: Context): CogenerationPlant =
     {
@@ -298,14 +308,12 @@ extends
             toDouble (mask (cogenLPSendoutRating (), 2)),
             toDouble (mask (cogenLPSteamRating (), 3)),
             toDouble (mask (ratedP (), 4)),
-            mask (SteamSendoutSchedule (), 5)
+            mask (SteamSendoutSchedule (), 5),
+            masks (ThermalGeneratingUnits (), 6)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("SteamSendoutSchedule", "SteamSendoutSchedule", false)
-    )
 }
 
 /**
@@ -313,6 +321,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @param combCyclePlantRating The combined cycle plant's active power output rating.
+ * @param ThermalGeneratingUnits [[ch.ninecode.model.ThermalGeneratingUnit ThermalGeneratingUnit]] A thermal generating unit may be a member of a combined cycle plant.
  * @group Production
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
@@ -320,7 +329,8 @@ extends
 case class CombinedCyclePlant
 (
     override val sup: PowerSystemResource,
-    combCyclePlantRating: Double
+    combCyclePlantRating: Double,
+    ThermalGeneratingUnits: List[String]
 )
 extends
     Element
@@ -328,7 +338,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0) }
+    def this () = { this (null, 0.0, List()) }
     /**
      * Return the superclass object.
      *
@@ -352,7 +362,9 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = CombinedCyclePlant.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (CombinedCyclePlant.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (CombinedCyclePlant.fields (position), x))
         emitelem (0, combCyclePlantRating)
+        emitattrs (1, ThermalGeneratingUnits)
         s.toString
     }
     override def export: String =
@@ -365,10 +377,15 @@ object CombinedCyclePlant
 extends
     Parseable[CombinedCyclePlant]
 {
-    val fields: Array[String] = Array[String] (
-        "combCyclePlantRating"
+    override val fields: Array[String] = Array[String] (
+        "combCyclePlantRating",
+        "ThermalGeneratingUnits"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ThermalGeneratingUnits", "ThermalGeneratingUnit", "0..*", "0..1")
     )
     val combCyclePlantRating: Fielder = parse_element (element (cls, fields(0)))
+    val ThermalGeneratingUnits: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): CombinedCyclePlant =
     {
@@ -376,14 +393,12 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = CombinedCyclePlant (
             PowerSystemResource.parse (context),
-            toDouble (mask (combCyclePlantRating (), 0))
+            toDouble (mask (combCyclePlantRating (), 0)),
+            masks (ThermalGeneratingUnits (), 1)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -452,10 +467,13 @@ object EmissionAccount
 extends
     Parseable[EmissionAccount]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "emissionType",
         "emissionValueSource",
         "ThermalGeneratingUnit"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ThermalGeneratingUnit", "ThermalGeneratingUnit", "1", "0..*")
     )
     val emissionType: Fielder = parse_attribute (attribute (cls, fields(0)))
     val emissionValueSource: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -474,9 +492,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("ThermalGeneratingUnit", "ThermalGeneratingUnit", false)
-    )
 }
 
 /**
@@ -549,11 +564,14 @@ object EmissionCurve
 extends
     Parseable[EmissionCurve]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "emissionContent",
         "emissionType",
         "isNetGrossP",
         "ThermalGeneratingUnit"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ThermalGeneratingUnit", "ThermalGeneratingUnit", "1", "0..*")
     )
     val emissionContent: Fielder = parse_attribute (attribute (cls, fields(0)))
     val emissionType: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -574,9 +592,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("ThermalGeneratingUnit", "ThermalGeneratingUnit", false)
-    )
 }
 
 /**
@@ -597,6 +612,7 @@ extends
  *        This fuel (e.g., oil) is sometimes used to supplement the base fuel (e.g., coal) at high active power output levels.
  * @param lowBreakpointP The active power output level of the unit at which the given type of fuel is switched off.
  *        This fuel (e.g., oil) is sometimes used to stabilize the base fuel (e.g., coal) at low active power output levels.
+ * @param FuelAllocationSchedules [[ch.ninecode.model.FuelAllocationSchedule FuelAllocationSchedule]] A fuel allocation schedule must have a fossil fuel.
  * @param ThermalGeneratingUnit [[ch.ninecode.model.ThermalGeneratingUnit ThermalGeneratingUnit]] A thermal generating unit may have one or more fossil fuels.
  * @group Production
  * @groupname Production Package Production
@@ -615,6 +631,7 @@ case class FossilFuel
     fuelSulfur: Double,
     highBreakpointP: Double,
     lowBreakpointP: Double,
+    FuelAllocationSchedules: List[String],
     ThermalGeneratingUnit: String
 )
 extends
@@ -623,7 +640,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0.0, null) }
+    def this () = { this (null, null, null, null, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0.0, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -648,6 +665,7 @@ extends
         implicit val clz: String = FossilFuel.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (FossilFuel.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (FossilFuel.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (FossilFuel.fields (position), x))
         emitattr (0, fossilFuelType)
         emitattr (1, fuelCost)
         emitattr (2, fuelDispatchCost)
@@ -658,7 +676,8 @@ extends
         emitelem (7, fuelSulfur)
         emitelem (8, highBreakpointP)
         emitelem (9, lowBreakpointP)
-        emitattr (10, ThermalGeneratingUnit)
+        emitattrs (10, FuelAllocationSchedules)
+        emitattr (11, ThermalGeneratingUnit)
         s.toString
     }
     override def export: String =
@@ -671,7 +690,7 @@ object FossilFuel
 extends
     Parseable[FossilFuel]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "fossilFuelType",
         "fuelCost",
         "fuelDispatchCost",
@@ -682,7 +701,12 @@ extends
         "fuelSulfur",
         "highBreakpointP",
         "lowBreakpointP",
+        "FuelAllocationSchedules",
         "ThermalGeneratingUnit"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("FuelAllocationSchedules", "FuelAllocationSchedule", "0..*", "1"),
+        Relationship ("ThermalGeneratingUnit", "ThermalGeneratingUnit", "1", "0..*")
     )
     val fossilFuelType: Fielder = parse_attribute (attribute (cls, fields(0)))
     val fuelCost: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -694,7 +718,8 @@ extends
     val fuelSulfur: Fielder = parse_element (element (cls, fields(7)))
     val highBreakpointP: Fielder = parse_element (element (cls, fields(8)))
     val lowBreakpointP: Fielder = parse_element (element (cls, fields(9)))
-    val ThermalGeneratingUnit: Fielder = parse_attribute (attribute (cls, fields(10)))
+    val FuelAllocationSchedules: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
+    val ThermalGeneratingUnit: Fielder = parse_attribute (attribute (cls, fields(11)))
 
     def parse (context: Context): FossilFuel =
     {
@@ -712,14 +737,12 @@ extends
             toDouble (mask (fuelSulfur (), 7)),
             toDouble (mask (highBreakpointP (), 8)),
             toDouble (mask (lowBreakpointP (), 9)),
-            mask (ThermalGeneratingUnit (), 10)
+            masks (FuelAllocationSchedules (), 10),
+            mask (ThermalGeneratingUnit (), 11)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("ThermalGeneratingUnit", "ThermalGeneratingUnit", false)
-    )
 }
 
 /**
@@ -798,7 +821,7 @@ object FuelAllocationSchedule
 extends
     Parseable[FuelAllocationSchedule]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "fuelAllocationEndDate",
         "fuelAllocationStartDate",
         "fuelType",
@@ -806,6 +829,10 @@ extends
         "minFuelAllocation",
         "FossilFuel",
         "ThermalGeneratingUnit"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("FossilFuel", "FossilFuel", "1", "0..*"),
+        Relationship ("ThermalGeneratingUnit", "ThermalGeneratingUnit", "1", "0..*")
     )
     val fuelAllocationEndDate: Fielder = parse_element (element (cls, fields(0)))
     val fuelAllocationStartDate: Fielder = parse_element (element (cls, fields(1)))
@@ -832,10 +859,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("FossilFuel", "FossilFuel", false),
-        Relationship ("ThermalGeneratingUnit", "ThermalGeneratingUnit", false)
-    )
 }
 
 /**
@@ -901,9 +924,12 @@ object GenUnitOpCostCurve
 extends
     Parseable[GenUnitOpCostCurve]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "isNetGrossP",
         "GeneratingUnit"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("GeneratingUnit", "GeneratingUnit", "1", "0..*")
     )
     val isNetGrossP: Fielder = parse_element (element (cls, fields(0)))
     val GeneratingUnit: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -920,9 +946,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("GeneratingUnit", "GeneratingUnit", false)
-    )
 }
 
 /**
@@ -984,8 +1007,11 @@ object GenUnitOpSchedule
 extends
     Parseable[GenUnitOpSchedule]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "GeneratingUnit"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("GeneratingUnit", "GeneratingUnit", "1", "0..1")
     )
     val GeneratingUnit: Fielder = parse_attribute (attribute (cls, fields(0)))
 
@@ -1000,9 +1026,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("GeneratingUnit", "GeneratingUnit", false)
-    )
 }
 
 /**
@@ -1054,7 +1077,11 @@ extends
  * @param tieLinePF Generating unit economic participation factor.
  * @param totalEfficiency The efficiency of the unit in converting the fuel into electrical energy.
  * @param variableCost The variable cost component of production per unit of ActivePower.
+ * @param ControlAreaGeneratingUnit [[ch.ninecode.model.ControlAreaGeneratingUnit ControlAreaGeneratingUnit]] ControlArea specifications for this generating unit.
+ * @param GenUnitOpCostCurves [[ch.ninecode.model.GenUnitOpCostCurve GenUnitOpCostCurve]] A generating unit may have one or more cost curves, depending upon fuel mixture and fuel cost.
  * @param GenUnitOpSchedule [[ch.ninecode.model.GenUnitOpSchedule GenUnitOpSchedule]] A generating unit may have an operating schedule, indicating the planned operation of the unit.
+ * @param GrossToNetActivePowerCurves [[ch.ninecode.model.GrossToNetActivePowerCurve GrossToNetActivePowerCurve]] A generating unit may have a gross active power to net active power curve, describing the losses and auxiliary power requirements of the unit.
+ * @param RotatingMachine [[ch.ninecode.model.RotatingMachine RotatingMachine]] A synchronous machine may operate as a generator and as such becomes a member of a generating unit.
  * @group Production
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
@@ -1099,7 +1126,11 @@ case class GeneratingUnit
     tieLinePF: Double,
     totalEfficiency: Double,
     variableCost: Double,
-    GenUnitOpSchedule: String
+    ControlAreaGeneratingUnit: List[String],
+    GenUnitOpCostCurves: List[String],
+    GenUnitOpSchedule: String,
+    GrossToNetActivePowerCurves: List[String],
+    RotatingMachine: List[String]
 )
 extends
     Element
@@ -1107,7 +1138,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null) }
+    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, List(), List(), null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1132,6 +1163,7 @@ extends
         implicit val clz: String = GeneratingUnit.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GeneratingUnit.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (GeneratingUnit.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (GeneratingUnit.fields (position), x))
         emitelem (0, allocSpinResP)
         emitelem (1, autoCntrlMarginP)
         emitelem (2, baseP)
@@ -1169,7 +1201,11 @@ extends
         emitelem (34, tieLinePF)
         emitelem (35, totalEfficiency)
         emitelem (36, variableCost)
-        emitattr (37, GenUnitOpSchedule)
+        emitattrs (37, ControlAreaGeneratingUnit)
+        emitattrs (38, GenUnitOpCostCurves)
+        emitattr (39, GenUnitOpSchedule)
+        emitattrs (40, GrossToNetActivePowerCurves)
+        emitattrs (41, RotatingMachine)
         s.toString
     }
     override def export: String =
@@ -1182,7 +1218,7 @@ object GeneratingUnit
 extends
     Parseable[GeneratingUnit]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "allocSpinResP",
         "autoCntrlMarginP",
         "baseP",
@@ -1220,7 +1256,18 @@ extends
         "tieLinePF",
         "totalEfficiency",
         "variableCost",
-        "GenUnitOpSchedule"
+        "ControlAreaGeneratingUnit",
+        "GenUnitOpCostCurves",
+        "GenUnitOpSchedule",
+        "GrossToNetActivePowerCurves",
+        "RotatingMachine"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ControlAreaGeneratingUnit", "ControlAreaGeneratingUnit", "0..*", "1"),
+        Relationship ("GenUnitOpCostCurves", "GenUnitOpCostCurve", "0..*", "1"),
+        Relationship ("GenUnitOpSchedule", "GenUnitOpSchedule", "0..1", "1"),
+        Relationship ("GrossToNetActivePowerCurves", "GrossToNetActivePowerCurve", "0..*", "1"),
+        Relationship ("RotatingMachine", "RotatingMachine", "1..*", "0..1")
     )
     val allocSpinResP: Fielder = parse_element (element (cls, fields(0)))
     val autoCntrlMarginP: Fielder = parse_element (element (cls, fields(1)))
@@ -1259,7 +1306,11 @@ extends
     val tieLinePF: Fielder = parse_element (element (cls, fields(34)))
     val totalEfficiency: Fielder = parse_element (element (cls, fields(35)))
     val variableCost: Fielder = parse_element (element (cls, fields(36)))
-    val GenUnitOpSchedule: Fielder = parse_attribute (attribute (cls, fields(37)))
+    val ControlAreaGeneratingUnit: FielderMultiple = parse_attributes (attribute (cls, fields(37)))
+    val GenUnitOpCostCurves: FielderMultiple = parse_attributes (attribute (cls, fields(38)))
+    val GenUnitOpSchedule: Fielder = parse_attribute (attribute (cls, fields(39)))
+    val GrossToNetActivePowerCurves: FielderMultiple = parse_attributes (attribute (cls, fields(40)))
+    val RotatingMachine: FielderMultiple = parse_attributes (attribute (cls, fields(41)))
 
     def parse (context: Context): GeneratingUnit =
     {
@@ -1304,14 +1355,15 @@ extends
             toDouble (mask (tieLinePF (), 34)),
             toDouble (mask (totalEfficiency (), 35)),
             toDouble (mask (variableCost (), 36)),
-            mask (GenUnitOpSchedule (), 37)
+            masks (ControlAreaGeneratingUnit (), 37),
+            masks (GenUnitOpCostCurves (), 38),
+            mask (GenUnitOpSchedule (), 39),
+            masks (GrossToNetActivePowerCurves (), 40),
+            masks (RotatingMachine (), 41)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("GenUnitOpSchedule", "GenUnitOpSchedule", false)
-    )
 }
 
 /**
@@ -1373,8 +1425,11 @@ object GrossToNetActivePowerCurve
 extends
     Parseable[GrossToNetActivePowerCurve]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "GeneratingUnit"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("GeneratingUnit", "GeneratingUnit", "1", "0..*")
     )
     val GeneratingUnit: Fielder = parse_attribute (attribute (cls, fields(0)))
 
@@ -1389,9 +1444,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("GeneratingUnit", "GeneratingUnit", false)
-    )
 }
 
 /**
@@ -1469,13 +1521,16 @@ object HeatInputCurve
 extends
     Parseable[HeatInputCurve]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "auxPowerMult",
         "auxPowerOffset",
         "heatInputEff",
         "heatInputOffset",
         "isNetGrossP",
         "ThermalGeneratingUnit"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ThermalGeneratingUnit", "ThermalGeneratingUnit", "1", "0..1")
     )
     val auxPowerMult: Fielder = parse_element (element (cls, fields(0)))
     val auxPowerOffset: Fielder = parse_element (element (cls, fields(1)))
@@ -1500,9 +1555,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("ThermalGeneratingUnit", "ThermalGeneratingUnit", false)
-    )
 }
 
 /**
@@ -1568,9 +1620,12 @@ object HeatRateCurve
 extends
     Parseable[HeatRateCurve]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "isNetGrossP",
         "ThermalGeneratingUnit"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ThermalGeneratingUnit", "ThermalGeneratingUnit", "1", "0..1")
     )
     val isNetGrossP: Fielder = parse_element (element (cls, fields(0)))
     val ThermalGeneratingUnit: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -1587,9 +1642,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("ThermalGeneratingUnit", "ThermalGeneratingUnit", false)
-    )
 }
 
 /**
@@ -1651,8 +1703,11 @@ object HydroGeneratingEfficiencyCurve
 extends
     Parseable[HydroGeneratingEfficiencyCurve]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "HydroGeneratingUnit"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("HydroGeneratingUnit", "HydroGeneratingUnit", "1", "0..*")
     )
     val HydroGeneratingUnit: Fielder = parse_attribute (attribute (cls, fields(0)))
 
@@ -1667,9 +1722,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("HydroGeneratingUnit", "HydroGeneratingUnit", false)
-    )
 }
 
 /**
@@ -1678,8 +1730,10 @@ extends
  * @param sup [[ch.ninecode.model.GeneratingUnit GeneratingUnit]] Reference to the superclass object.
  * @param energyConversionCapability Energy conversion capability for generating.
  * @param hydroUnitWaterCost The equivalent cost of water that drives the hydro turbine.
+ * @param HydroGeneratingEfficiencyCurves [[ch.ninecode.model.HydroGeneratingEfficiencyCurve HydroGeneratingEfficiencyCurve]] A hydro generating unit has an efficiency curve.
  * @param HydroPowerPlant [[ch.ninecode.model.HydroPowerPlant HydroPowerPlant]] The hydro generating unit belongs to a hydro power plant.
  * @param PenstockLossCurve [[ch.ninecode.model.PenstockLossCurve PenstockLossCurve]] A hydro generating unit has a penstock loss curve.
+ * @param TailbayLossCurve [[ch.ninecode.model.TailbayLossCurve TailbayLossCurve]] A hydro generating unit has a tailbay loss curve.
  * @group Production
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
@@ -1689,8 +1743,10 @@ case class HydroGeneratingUnit
     override val sup: GeneratingUnit,
     energyConversionCapability: String,
     hydroUnitWaterCost: Double,
+    HydroGeneratingEfficiencyCurves: List[String],
     HydroPowerPlant: String,
-    PenstockLossCurve: String
+    PenstockLossCurve: String,
+    TailbayLossCurve: List[String]
 )
 extends
     Element
@@ -1698,7 +1754,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, 0.0, null, null) }
+    def this () = { this (null, null, 0.0, List(), null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -1723,10 +1779,13 @@ extends
         implicit val clz: String = HydroGeneratingUnit.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (HydroGeneratingUnit.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (HydroGeneratingUnit.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (HydroGeneratingUnit.fields (position), x))
         emitattr (0, energyConversionCapability)
         emitelem (1, hydroUnitWaterCost)
-        emitattr (2, HydroPowerPlant)
-        emitattr (3, PenstockLossCurve)
+        emitattrs (2, HydroGeneratingEfficiencyCurves)
+        emitattr (3, HydroPowerPlant)
+        emitattr (4, PenstockLossCurve)
+        emitattrs (5, TailbayLossCurve)
         s.toString
     }
     override def export: String =
@@ -1739,16 +1798,26 @@ object HydroGeneratingUnit
 extends
     Parseable[HydroGeneratingUnit]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "energyConversionCapability",
         "hydroUnitWaterCost",
+        "HydroGeneratingEfficiencyCurves",
         "HydroPowerPlant",
-        "PenstockLossCurve"
+        "PenstockLossCurve",
+        "TailbayLossCurve"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("HydroGeneratingEfficiencyCurves", "HydroGeneratingEfficiencyCurve", "0..*", "1"),
+        Relationship ("HydroPowerPlant", "HydroPowerPlant", "0..1", "0..*"),
+        Relationship ("PenstockLossCurve", "PenstockLossCurve", "0..1", "1"),
+        Relationship ("TailbayLossCurve", "TailbayLossCurve", "0..*", "1")
     )
     val energyConversionCapability: Fielder = parse_attribute (attribute (cls, fields(0)))
     val hydroUnitWaterCost: Fielder = parse_element (element (cls, fields(1)))
-    val HydroPowerPlant: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val PenstockLossCurve: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val HydroGeneratingEfficiencyCurves: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val HydroPowerPlant: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val PenstockLossCurve: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val TailbayLossCurve: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
 
     def parse (context: Context): HydroGeneratingUnit =
     {
@@ -1758,16 +1827,14 @@ extends
             GeneratingUnit.parse (context),
             mask (energyConversionCapability (), 0),
             toDouble (mask (hydroUnitWaterCost (), 1)),
-            mask (HydroPowerPlant (), 2),
-            mask (PenstockLossCurve (), 3)
+            masks (HydroGeneratingEfficiencyCurves (), 2),
+            mask (HydroPowerPlant (), 3),
+            mask (PenstockLossCurve (), 4),
+            masks (TailbayLossCurve (), 5)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("HydroPowerPlant", "HydroPowerPlant", false),
-        Relationship ("PenstockLossCurve", "PenstockLossCurve", false)
-    )
 }
 
 /**
@@ -1786,6 +1853,8 @@ extends
  * @param surgeTankCode A code describing the type (or absence) of surge tank that is associated with the hydro power plant.
  * @param surgeTankCrestLevel The level at which the surge tank spills.
  * @param GenSourcePumpDischargeReservoir [[ch.ninecode.model.Reservoir Reservoir]] Generators are supplied water from or pumps discharge water to an upstream reservoir.
+ * @param HydroGeneratingUnits [[ch.ninecode.model.HydroGeneratingUnit HydroGeneratingUnit]] The hydro generating unit belongs to a hydro power plant.
+ * @param HydroPumps [[ch.ninecode.model.HydroPump HydroPump]] The hydro pump may be a member of a pumped storage plant or a pump for distributing water.
  * @param Reservoir [[ch.ninecode.model.Reservoir Reservoir]] Generators discharge water to or pumps are supplied water from a downstream reservoir.
  * @group Production
  * @groupname Production Package Production
@@ -1804,6 +1873,8 @@ case class HydroPowerPlant
     surgeTankCode: String,
     surgeTankCrestLevel: Double,
     GenSourcePumpDischargeReservoir: String,
+    HydroGeneratingUnits: List[String],
+    HydroPumps: List[String],
     Reservoir: String
 )
 extends
@@ -1812,7 +1883,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, null, null, 0.0, 0.0, 0.0, null, 0.0, null, null) }
+    def this () = { this (null, 0.0, 0.0, null, null, 0.0, 0.0, 0.0, null, 0.0, null, List(), List(), null) }
     /**
      * Return the superclass object.
      *
@@ -1837,6 +1908,7 @@ extends
         implicit val clz: String = HydroPowerPlant.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (HydroPowerPlant.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (HydroPowerPlant.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (HydroPowerPlant.fields (position), x))
         emitelem (0, dischargeTravelDelay)
         emitelem (1, genRatedP)
         emitattr (2, hydroPlantStorageType)
@@ -1847,7 +1919,9 @@ extends
         emitelem (7, surgeTankCode)
         emitelem (8, surgeTankCrestLevel)
         emitattr (9, GenSourcePumpDischargeReservoir)
-        emitattr (10, Reservoir)
+        emitattrs (10, HydroGeneratingUnits)
+        emitattrs (11, HydroPumps)
+        emitattr (12, Reservoir)
         s.toString
     }
     override def export: String =
@@ -1860,7 +1934,7 @@ object HydroPowerPlant
 extends
     Parseable[HydroPowerPlant]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "dischargeTravelDelay",
         "genRatedP",
         "hydroPlantStorageType",
@@ -1871,7 +1945,15 @@ extends
         "surgeTankCode",
         "surgeTankCrestLevel",
         "GenSourcePumpDischargeReservoir",
+        "HydroGeneratingUnits",
+        "HydroPumps",
         "Reservoir"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("GenSourcePumpDischargeReservoir", "Reservoir", "1", "0..*"),
+        Relationship ("HydroGeneratingUnits", "HydroGeneratingUnit", "0..*", "0..1"),
+        Relationship ("HydroPumps", "HydroPump", "0..*", "0..1"),
+        Relationship ("Reservoir", "Reservoir", "0..1", "0..*")
     )
     val dischargeTravelDelay: Fielder = parse_element (element (cls, fields(0)))
     val genRatedP: Fielder = parse_element (element (cls, fields(1)))
@@ -1883,7 +1965,9 @@ extends
     val surgeTankCode: Fielder = parse_element (element (cls, fields(7)))
     val surgeTankCrestLevel: Fielder = parse_element (element (cls, fields(8)))
     val GenSourcePumpDischargeReservoir: Fielder = parse_attribute (attribute (cls, fields(9)))
-    val Reservoir: Fielder = parse_attribute (attribute (cls, fields(10)))
+    val HydroGeneratingUnits: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
+    val HydroPumps: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
+    val Reservoir: Fielder = parse_attribute (attribute (cls, fields(12)))
 
     def parse (context: Context): HydroPowerPlant =
     {
@@ -1901,15 +1985,13 @@ extends
             mask (surgeTankCode (), 7),
             toDouble (mask (surgeTankCrestLevel (), 8)),
             mask (GenSourcePumpDischargeReservoir (), 9),
-            mask (Reservoir (), 10)
+            masks (HydroGeneratingUnits (), 10),
+            masks (HydroPumps (), 11),
+            mask (Reservoir (), 12)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("GenSourcePumpDischargeReservoir", "Reservoir", false),
-        Relationship ("Reservoir", "Reservoir", false)
-    )
 }
 
 /**
@@ -1989,7 +2071,7 @@ object HydroPump
 extends
     Parseable[HydroPump]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "pumpDischAtMaxHead",
         "pumpDischAtMinHead",
         "pumpPowerAtMaxHead",
@@ -1997,6 +2079,11 @@ extends
         "HydroPowerPlant",
         "HydroPumpOpSchedule",
         "RotatingMachine"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("HydroPowerPlant", "HydroPowerPlant", "0..1", "0..*"),
+        Relationship ("HydroPumpOpSchedule", "HydroPumpOpSchedule", "0..1", "1"),
+        Relationship ("RotatingMachine", "RotatingMachine", "1", "0..1")
     )
     val pumpDischAtMaxHead: Fielder = parse_element (element (cls, fields(0)))
     val pumpDischAtMinHead: Fielder = parse_element (element (cls, fields(1)))
@@ -2023,11 +2110,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("HydroPowerPlant", "HydroPowerPlant", false),
-        Relationship ("HydroPumpOpSchedule", "HydroPumpOpSchedule", false),
-        Relationship ("RotatingMachine", "RotatingMachine", false)
-    )
 }
 
 /**
@@ -2089,8 +2171,11 @@ object HydroPumpOpSchedule
 extends
     Parseable[HydroPumpOpSchedule]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "HydroPump"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("HydroPump", "HydroPump", "1", "0..1")
     )
     val HydroPump: Fielder = parse_attribute (attribute (cls, fields(0)))
 
@@ -2105,9 +2190,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("HydroPump", "HydroPump", false)
-    )
 }
 
 /**
@@ -2173,9 +2255,12 @@ object IncrementalHeatRateCurve
 extends
     Parseable[IncrementalHeatRateCurve]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "isNetGrossP",
         "ThermalGeneratingUnit"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ThermalGeneratingUnit", "ThermalGeneratingUnit", "1", "0..1")
     )
     val isNetGrossP: Fielder = parse_element (element (cls, fields(0)))
     val ThermalGeneratingUnit: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -2192,9 +2277,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("ThermalGeneratingUnit", "ThermalGeneratingUnit", false)
-    )
 }
 
 /**
@@ -2256,8 +2338,11 @@ object InflowForecast
 extends
     Parseable[InflowForecast]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "Reservoir"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Reservoir", "Reservoir", "1", "0..*")
     )
     val Reservoir: Fielder = parse_attribute (attribute (cls, fields(0)))
 
@@ -2272,9 +2357,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Reservoir", "Reservoir", false)
-    )
 }
 
 /**
@@ -2336,8 +2418,11 @@ object LevelVsVolumeCurve
 extends
     Parseable[LevelVsVolumeCurve]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "Reservoir"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Reservoir", "Reservoir", "1", "0..*")
     )
     val Reservoir: Fielder = parse_attribute (attribute (cls, fields(0)))
 
@@ -2352,9 +2437,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Reservoir", "Reservoir", false)
-    )
 }
 
 /**
@@ -2417,9 +2499,6 @@ extends
         )
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -2481,8 +2560,11 @@ object PenstockLossCurve
 extends
     Parseable[PenstockLossCurve]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "HydroGeneratingUnit"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("HydroGeneratingUnit", "HydroGeneratingUnit", "1", "0..1")
     )
     val HydroGeneratingUnit: Fielder = parse_attribute (attribute (cls, fields(0)))
 
@@ -2497,9 +2579,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("HydroGeneratingUnit", "HydroGeneratingUnit", false)
-    )
 }
 
 /**
@@ -2520,8 +2599,13 @@ extends
  * @param spillwayCapacity The flow capacity of the spillway in cubic meters per second.
  * @param spillwayCrestLength The length of the spillway crest.
  * @param spillwayCrestLevel Spillway crest level above which water will spill.
+ * @param HydroPowerPlants [[ch.ninecode.model.HydroPowerPlant HydroPowerPlant]] Generators discharge water to or pumps are supplied water from a downstream reservoir.
+ * @param InflowForecasts [[ch.ninecode.model.InflowForecast InflowForecast]] A reservoir may have a "natural" inflow forecast.
+ * @param LevelVsVolumeCurves [[ch.ninecode.model.LevelVsVolumeCurve LevelVsVolumeCurve]] A reservoir may have a level versus volume relationship.
  * @param SpillsFromReservoir [[ch.ninecode.model.Reservoir Reservoir]] A reservoir may spill into a downstream reservoir.
+ * @param SpillsIntoReservoirs [[ch.ninecode.model.Reservoir Reservoir]] A reservoir may spill into a downstream reservoir.
  * @param TargetLevelSchedule [[ch.ninecode.model.TargetLevelSchedule TargetLevelSchedule]] A reservoir may have a water level target schedule.
+ * @param UpstreamFromHydroPowerPlants [[ch.ninecode.model.HydroPowerPlant HydroPowerPlant]] Generators are supplied water from or pumps discharge water to an upstream reservoir.
  * @group Production
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
@@ -2540,8 +2624,13 @@ case class Reservoir
     spillwayCapacity: Double,
     spillwayCrestLength: Double,
     spillwayCrestLevel: Double,
+    HydroPowerPlants: List[String],
+    InflowForecasts: List[String],
+    LevelVsVolumeCurves: List[String],
     SpillsFromReservoir: String,
-    TargetLevelSchedule: String
+    SpillsIntoReservoirs: List[String],
+    TargetLevelSchedule: String,
+    UpstreamFromHydroPowerPlants: List[String]
 )
 extends
     Element
@@ -2549,7 +2638,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, null, 0.0, 0.0, 0.0, null, null) }
+    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, null, 0.0, 0.0, 0.0, List(), List(), List(), null, List(), null, List()) }
     /**
      * Return the superclass object.
      *
@@ -2574,6 +2663,7 @@ extends
         implicit val clz: String = Reservoir.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Reservoir.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Reservoir.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Reservoir.fields (position), x))
         emitelem (0, activeStorageCapacity)
         emitelem (1, energyStorageRating)
         emitelem (2, fullSupplyLevel)
@@ -2585,8 +2675,13 @@ extends
         emitelem (8, spillwayCapacity)
         emitelem (9, spillwayCrestLength)
         emitelem (10, spillwayCrestLevel)
-        emitattr (11, SpillsFromReservoir)
-        emitattr (12, TargetLevelSchedule)
+        emitattrs (11, HydroPowerPlants)
+        emitattrs (12, InflowForecasts)
+        emitattrs (13, LevelVsVolumeCurves)
+        emitattr (14, SpillsFromReservoir)
+        emitattrs (15, SpillsIntoReservoirs)
+        emitattr (16, TargetLevelSchedule)
+        emitattrs (17, UpstreamFromHydroPowerPlants)
         s.toString
     }
     override def export: String =
@@ -2599,7 +2694,7 @@ object Reservoir
 extends
     Parseable[Reservoir]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "activeStorageCapacity",
         "energyStorageRating",
         "fullSupplyLevel",
@@ -2611,8 +2706,22 @@ extends
         "spillwayCapacity",
         "spillwayCrestLength",
         "spillwayCrestLevel",
+        "HydroPowerPlants",
+        "InflowForecasts",
+        "LevelVsVolumeCurves",
         "SpillsFromReservoir",
-        "TargetLevelSchedule"
+        "SpillsIntoReservoirs",
+        "TargetLevelSchedule",
+        "UpstreamFromHydroPowerPlants"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("HydroPowerPlants", "HydroPowerPlant", "0..*", "0..1"),
+        Relationship ("InflowForecasts", "InflowForecast", "0..*", "1"),
+        Relationship ("LevelVsVolumeCurves", "LevelVsVolumeCurve", "0..*", "1"),
+        Relationship ("SpillsFromReservoir", "Reservoir", "0..1", "0..*"),
+        Relationship ("SpillsIntoReservoirs", "Reservoir", "0..*", "0..1"),
+        Relationship ("TargetLevelSchedule", "TargetLevelSchedule", "0..1", "1"),
+        Relationship ("UpstreamFromHydroPowerPlants", "HydroPowerPlant", "0..*", "1")
     )
     val activeStorageCapacity: Fielder = parse_element (element (cls, fields(0)))
     val energyStorageRating: Fielder = parse_element (element (cls, fields(1)))
@@ -2625,8 +2734,13 @@ extends
     val spillwayCapacity: Fielder = parse_element (element (cls, fields(8)))
     val spillwayCrestLength: Fielder = parse_element (element (cls, fields(9)))
     val spillwayCrestLevel: Fielder = parse_element (element (cls, fields(10)))
-    val SpillsFromReservoir: Fielder = parse_attribute (attribute (cls, fields(11)))
-    val TargetLevelSchedule: Fielder = parse_attribute (attribute (cls, fields(12)))
+    val HydroPowerPlants: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
+    val InflowForecasts: FielderMultiple = parse_attributes (attribute (cls, fields(12)))
+    val LevelVsVolumeCurves: FielderMultiple = parse_attributes (attribute (cls, fields(13)))
+    val SpillsFromReservoir: Fielder = parse_attribute (attribute (cls, fields(14)))
+    val SpillsIntoReservoirs: FielderMultiple = parse_attributes (attribute (cls, fields(15)))
+    val TargetLevelSchedule: Fielder = parse_attribute (attribute (cls, fields(16)))
+    val UpstreamFromHydroPowerPlants: FielderMultiple = parse_attributes (attribute (cls, fields(17)))
 
     def parse (context: Context): Reservoir =
     {
@@ -2645,16 +2759,17 @@ extends
             toDouble (mask (spillwayCapacity (), 8)),
             toDouble (mask (spillwayCrestLength (), 9)),
             toDouble (mask (spillwayCrestLevel (), 10)),
-            mask (SpillsFromReservoir (), 11),
-            mask (TargetLevelSchedule (), 12)
+            masks (HydroPowerPlants (), 11),
+            masks (InflowForecasts (), 12),
+            masks (LevelVsVolumeCurves (), 13),
+            mask (SpillsFromReservoir (), 14),
+            masks (SpillsIntoReservoirs (), 15),
+            mask (TargetLevelSchedule (), 16),
+            masks (UpstreamFromHydroPowerPlants (), 17)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("SpillsFromReservoir", "Reservoir", false),
-        Relationship ("TargetLevelSchedule", "TargetLevelSchedule", false)
-    )
 }
 
 /**
@@ -2721,10 +2836,13 @@ object ShutdownCurve
 extends
     Parseable[ShutdownCurve]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "shutdownCost",
         "shutdownDate",
         "ThermalGeneratingUnit"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ThermalGeneratingUnit", "ThermalGeneratingUnit", "1", "0..1")
     )
     val shutdownCost: Fielder = parse_element (element (cls, fields(0)))
     val shutdownDate: Fielder = parse_element (element (cls, fields(1)))
@@ -2743,9 +2861,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("ThermalGeneratingUnit", "ThermalGeneratingUnit", false)
-    )
 }
 
 /**
@@ -2808,9 +2923,6 @@ extends
         )
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -2873,9 +2985,12 @@ object StartIgnFuelCurve
 extends
     Parseable[StartIgnFuelCurve]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "ignitionFuelType",
         "StartupModel"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("StartupModel", "StartupModel", "1", "0..1")
     )
     val ignitionFuelType: Fielder = parse_attribute (attribute (cls, fields(0)))
     val StartupModel: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -2892,9 +3007,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("StartupModel", "StartupModel", false)
-    )
 }
 
 /**
@@ -2957,9 +3069,12 @@ object StartMainFuelCurve
 extends
     Parseable[StartMainFuelCurve]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "mainFuelType",
         "StartupModel"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("StartupModel", "StartupModel", "1", "0..1")
     )
     val mainFuelType: Fielder = parse_attribute (attribute (cls, fields(0)))
     val StartupModel: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -2976,9 +3091,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("StartupModel", "StartupModel", false)
-    )
 }
 
 /**
@@ -3042,9 +3154,12 @@ object StartRampCurve
 extends
     Parseable[StartRampCurve]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "hotStandbyRamp",
         "StartupModel"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("StartupModel", "StartupModel", "1", "0..1")
     )
     val hotStandbyRamp: Fielder = parse_element (element (cls, fields(0)))
     val StartupModel: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -3061,9 +3176,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("StartupModel", "StartupModel", false)
-    )
 }
 
 /**
@@ -3165,7 +3277,7 @@ object StartupModel
 extends
     Parseable[StartupModel]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "fixedMaintCost",
         "hotStandbyHeat",
         "incrementalMaintCost",
@@ -3180,6 +3292,12 @@ extends
         "StartMainFuelCurve",
         "StartRampCurve",
         "ThermalGeneratingUnit"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("StartIgnFuelCurve", "StartIgnFuelCurve", "0..1", "1"),
+        Relationship ("StartMainFuelCurve", "StartMainFuelCurve", "0..1", "1"),
+        Relationship ("StartRampCurve", "StartRampCurve", "0..1", "1"),
+        Relationship ("ThermalGeneratingUnit", "ThermalGeneratingUnit", "1", "0..1")
     )
     val fixedMaintCost: Fielder = parse_element (element (cls, fields(0)))
     val hotStandbyHeat: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -3220,12 +3338,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("StartIgnFuelCurve", "StartIgnFuelCurve", false),
-        Relationship ("StartMainFuelCurve", "StartMainFuelCurve", false),
-        Relationship ("StartRampCurve", "StartRampCurve", false),
-        Relationship ("ThermalGeneratingUnit", "ThermalGeneratingUnit", false)
-    )
 }
 
 /**
@@ -3285,8 +3397,11 @@ object SteamSendoutSchedule
 extends
     Parseable[SteamSendoutSchedule]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "CogenerationPlant"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("CogenerationPlant", "CogenerationPlant", "1", "1")
     )
     val CogenerationPlant: Fielder = parse_attribute (attribute (cls, fields(0)))
 
@@ -3301,9 +3416,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("CogenerationPlant", "CogenerationPlant", false)
-    )
 }
 
 /**
@@ -3365,8 +3477,11 @@ object TailbayLossCurve
 extends
     Parseable[TailbayLossCurve]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "HydroGeneratingUnit"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("HydroGeneratingUnit", "HydroGeneratingUnit", "1", "0..*")
     )
     val HydroGeneratingUnit: Fielder = parse_attribute (attribute (cls, fields(0)))
 
@@ -3381,9 +3496,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("HydroGeneratingUnit", "HydroGeneratingUnit", false)
-    )
 }
 
 /**
@@ -3452,10 +3564,13 @@ object TargetLevelSchedule
 extends
     Parseable[TargetLevelSchedule]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "highLevelLimit",
         "lowLevelLimit",
         "Reservoir"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Reservoir", "Reservoir", "1", "0..1")
     )
     val highLevelLimit: Fielder = parse_element (element (cls, fields(0)))
     val lowLevelLimit: Fielder = parse_element (element (cls, fields(1)))
@@ -3474,9 +3589,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Reservoir", "Reservoir", false)
-    )
 }
 
 /**
@@ -3487,6 +3599,10 @@ extends
  * @param CAESPlant [[ch.ninecode.model.CAESPlant CAESPlant]] A thermal generating unit may be a member of a compressed air energy storage plant.
  * @param CogenerationPlant [[ch.ninecode.model.CogenerationPlant CogenerationPlant]] A thermal generating unit may be a member of a cogeneration plant.
  * @param CombinedCyclePlant [[ch.ninecode.model.CombinedCyclePlant CombinedCyclePlant]] A thermal generating unit may be a member of a combined cycle plant.
+ * @param EmissionCurves [[ch.ninecode.model.EmissionCurve EmissionCurve]] A thermal generating unit may have  one or more emission curves.
+ * @param EmmissionAccounts [[ch.ninecode.model.EmissionAccount EmissionAccount]] A thermal generating unit may have one or more emission allowance accounts.
+ * @param FossilFuels [[ch.ninecode.model.FossilFuel FossilFuel]] A thermal generating unit may have one or more fossil fuels.
+ * @param FuelAllocationSchedules [[ch.ninecode.model.FuelAllocationSchedule FuelAllocationSchedule]] A thermal generating unit may have one or more fuel allocation schedules.
  * @param HeatInputCurve [[ch.ninecode.model.HeatInputCurve HeatInputCurve]] A thermal generating unit may have a heat input curve.
  * @param HeatRateCurve [[ch.ninecode.model.HeatRateCurve HeatRateCurve]] A thermal generating unit may have a heat rate curve.
  * @param IncrementalHeatRateCurve [[ch.ninecode.model.IncrementalHeatRateCurve IncrementalHeatRateCurve]] A thermal generating unit may have an incremental heat rate curve.
@@ -3503,6 +3619,10 @@ case class ThermalGeneratingUnit
     CAESPlant: String,
     CogenerationPlant: String,
     CombinedCyclePlant: String,
+    EmissionCurves: List[String],
+    EmmissionAccounts: List[String],
+    FossilFuels: List[String],
+    FuelAllocationSchedules: List[String],
     HeatInputCurve: String,
     HeatRateCurve: String,
     IncrementalHeatRateCurve: String,
@@ -3515,7 +3635,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null, null, null, null, null, null) }
+    def this () = { this (null, null, null, null, null, List(), List(), List(), List(), null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -3539,15 +3659,20 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ThermalGeneratingUnit.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ThermalGeneratingUnit.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ThermalGeneratingUnit.fields (position), x))
         emitattr (0, oMCost)
         emitattr (1, CAESPlant)
         emitattr (2, CogenerationPlant)
         emitattr (3, CombinedCyclePlant)
-        emitattr (4, HeatInputCurve)
-        emitattr (5, HeatRateCurve)
-        emitattr (6, IncrementalHeatRateCurve)
-        emitattr (7, ShutdownCurve)
-        emitattr (8, StartupModel)
+        emitattrs (4, EmissionCurves)
+        emitattrs (5, EmmissionAccounts)
+        emitattrs (6, FossilFuels)
+        emitattrs (7, FuelAllocationSchedules)
+        emitattr (8, HeatInputCurve)
+        emitattr (9, HeatRateCurve)
+        emitattr (10, IncrementalHeatRateCurve)
+        emitattr (11, ShutdownCurve)
+        emitattr (12, StartupModel)
         s.toString
     }
     override def export: String =
@@ -3560,26 +3685,48 @@ object ThermalGeneratingUnit
 extends
     Parseable[ThermalGeneratingUnit]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "oMCost",
         "CAESPlant",
         "CogenerationPlant",
         "CombinedCyclePlant",
+        "EmissionCurves",
+        "EmmissionAccounts",
+        "FossilFuels",
+        "FuelAllocationSchedules",
         "HeatInputCurve",
         "HeatRateCurve",
         "IncrementalHeatRateCurve",
         "ShutdownCurve",
         "StartupModel"
     )
+    override val relations: List[Relationship] = List (
+        Relationship ("CAESPlant", "CAESPlant", "0..1", "0..1"),
+        Relationship ("CogenerationPlant", "CogenerationPlant", "0..1", "0..*"),
+        Relationship ("CombinedCyclePlant", "CombinedCyclePlant", "0..1", "0..*"),
+        Relationship ("EmissionCurves", "EmissionCurve", "0..*", "1"),
+        Relationship ("EmmissionAccounts", "EmissionAccount", "0..*", "1"),
+        Relationship ("FossilFuels", "FossilFuel", "0..*", "1"),
+        Relationship ("FuelAllocationSchedules", "FuelAllocationSchedule", "0..*", "1"),
+        Relationship ("HeatInputCurve", "HeatInputCurve", "0..1", "1"),
+        Relationship ("HeatRateCurve", "HeatRateCurve", "0..1", "1"),
+        Relationship ("IncrementalHeatRateCurve", "IncrementalHeatRateCurve", "0..1", "1"),
+        Relationship ("ShutdownCurve", "ShutdownCurve", "0..1", "1"),
+        Relationship ("StartupModel", "StartupModel", "0..1", "1")
+    )
     val oMCost: Fielder = parse_attribute (attribute (cls, fields(0)))
     val CAESPlant: Fielder = parse_attribute (attribute (cls, fields(1)))
     val CogenerationPlant: Fielder = parse_attribute (attribute (cls, fields(2)))
     val CombinedCyclePlant: Fielder = parse_attribute (attribute (cls, fields(3)))
-    val HeatInputCurve: Fielder = parse_attribute (attribute (cls, fields(4)))
-    val HeatRateCurve: Fielder = parse_attribute (attribute (cls, fields(5)))
-    val IncrementalHeatRateCurve: Fielder = parse_attribute (attribute (cls, fields(6)))
-    val ShutdownCurve: Fielder = parse_attribute (attribute (cls, fields(7)))
-    val StartupModel: Fielder = parse_attribute (attribute (cls, fields(8)))
+    val EmissionCurves: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val EmmissionAccounts: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
+    val FossilFuels: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
+    val FuelAllocationSchedules: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
+    val HeatInputCurve: Fielder = parse_attribute (attribute (cls, fields(8)))
+    val HeatRateCurve: Fielder = parse_attribute (attribute (cls, fields(9)))
+    val IncrementalHeatRateCurve: Fielder = parse_attribute (attribute (cls, fields(10)))
+    val ShutdownCurve: Fielder = parse_attribute (attribute (cls, fields(11)))
+    val StartupModel: Fielder = parse_attribute (attribute (cls, fields(12)))
 
     def parse (context: Context): ThermalGeneratingUnit =
     {
@@ -3591,25 +3738,19 @@ extends
             mask (CAESPlant (), 1),
             mask (CogenerationPlant (), 2),
             mask (CombinedCyclePlant (), 3),
-            mask (HeatInputCurve (), 4),
-            mask (HeatRateCurve (), 5),
-            mask (IncrementalHeatRateCurve (), 6),
-            mask (ShutdownCurve (), 7),
-            mask (StartupModel (), 8)
+            masks (EmissionCurves (), 4),
+            masks (EmmissionAccounts (), 5),
+            masks (FossilFuels (), 6),
+            masks (FuelAllocationSchedules (), 7),
+            mask (HeatInputCurve (), 8),
+            mask (HeatRateCurve (), 9),
+            mask (IncrementalHeatRateCurve (), 10),
+            mask (ShutdownCurve (), 11),
+            mask (StartupModel (), 12)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("CAESPlant", "CAESPlant", false),
-        Relationship ("CogenerationPlant", "CogenerationPlant", false),
-        Relationship ("CombinedCyclePlant", "CombinedCyclePlant", false),
-        Relationship ("HeatInputCurve", "HeatInputCurve", false),
-        Relationship ("HeatRateCurve", "HeatRateCurve", false),
-        Relationship ("IncrementalHeatRateCurve", "IncrementalHeatRateCurve", false),
-        Relationship ("ShutdownCurve", "ShutdownCurve", false),
-        Relationship ("StartupModel", "StartupModel", false)
-    )
 }
 
 /**
@@ -3671,7 +3812,7 @@ object WindGeneratingUnit
 extends
     Parseable[WindGeneratingUnit]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "windGenUnitType"
     )
     val windGenUnitType: Fielder = parse_attribute (attribute (cls, fields(0)))
@@ -3687,9 +3828,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 private[ninecode] object _Production

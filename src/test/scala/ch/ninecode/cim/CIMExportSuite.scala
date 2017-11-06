@@ -78,8 +78,8 @@ with
         _: SparkSession ⇒
         val loc =
 """	<cim:Location rdf:ID="_location_1623670528_427088716_224817700">
-		<cim:Location.CoordinateSystem rdf:resource="#pseudo_wgs84"/>
 		<cim:Location.type>geographic</cim:Location.type>
+		<cim:Location.CoordinateSystem rdf:resource="#pseudo_wgs84"/>
 	</cim:Location>"""
         val xml =
             """yadda yadda""" +
@@ -129,10 +129,10 @@ voltage +
 		<cim:Asset.initialLossOfLife>0.0</cim:Asset.initialLossOfLife>
 		<cim:Asset.lifecycle rdf:resource="#STA196_lifecycle"/>
 		<cim:Asset.purchasePrice>0.0</cim:Asset.purchasePrice>
+		<cim:Asset.type>Ortsbeton (TS Gebäude eingebaut)</cim:Asset.type>
 		<cim:Asset.Location rdf:resource="#_location_1745492_973692419_187674644"/>
 		<cim:Asset.PowerSystemResources rdf:resource="#STA196"/>
 		<cim:Asset.PowerSystemResources rdf:resource="#STA197"/>
-		<cim:Asset.type>Ortsbeton (TS Gebäude eingebaut)</cim:Asset.type>
 	</cim:Facility>"""
 
         val parser = new CHIM (xml)

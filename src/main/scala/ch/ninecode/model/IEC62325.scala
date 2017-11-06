@@ -68,7 +68,7 @@ object IEC62325CIMVersion
 extends
     Parseable[IEC62325CIMVersion]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "date",
         "version"
     )
@@ -87,9 +87,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 private[ninecode] object _IEC62325

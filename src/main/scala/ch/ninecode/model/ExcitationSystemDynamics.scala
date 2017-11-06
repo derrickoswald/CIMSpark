@@ -151,7 +151,7 @@ object ExcAC1A
 extends
     Parseable[ExcAC1A]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "hvlvgates",
         "ka",
         "kc",
@@ -230,9 +230,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -405,7 +402,7 @@ object ExcAC2A
 extends
     Parseable[ExcAC2A]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "hvgate",
         "ka",
         "kb",
@@ -502,9 +499,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -665,7 +659,7 @@ object ExcAC3A
 extends
     Parseable[ExcAC3A]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "efdn",
         "ka",
         "kc",
@@ -756,9 +750,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -851,7 +842,7 @@ object ExcAC4A
 extends
     Parseable[ExcAC4A]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "ka",
         "kc",
         "ta",
@@ -891,9 +882,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1022,7 +1010,7 @@ object ExcAC5A
 extends
     Parseable[ExcAC5A]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "a",
         "efd1",
         "efd2",
@@ -1089,9 +1077,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1240,7 +1225,7 @@ object ExcAC6A
 extends
     Parseable[ExcAC6A]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "ka",
         "kc",
         "kd",
@@ -1322,9 +1307,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1495,7 +1477,7 @@ object ExcAC8B
 extends
     Parseable[ExcAC8B]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "inlim",
         "ka",
         "kc",
@@ -1589,9 +1571,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1712,7 +1691,7 @@ object ExcANS
 extends
     Parseable[ExcANS]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "blint",
         "ifmn",
         "ifmx",
@@ -1767,9 +1746,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1876,7 +1852,7 @@ object ExcAVR1
 extends
     Parseable[ExcAVR1]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "e1",
         "e2",
         "ka",
@@ -1925,9 +1901,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -2038,7 +2011,7 @@ object ExcAVR2
 extends
     Parseable[ExcAVR2]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "e1",
         "e2",
         "ka",
@@ -2090,9 +2063,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -2199,7 +2169,7 @@ object ExcAVR3
 extends
     Parseable[ExcAVR3]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "e1",
         "e2",
         "ka",
@@ -2248,9 +2218,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -2367,7 +2334,7 @@ object ExcAVR4
 extends
     Parseable[ExcAVR4]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "imul",
         "ka",
         "ke",
@@ -2422,9 +2389,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -2493,7 +2457,7 @@ object ExcAVR5
 extends
     Parseable[ExcAVR5]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "ka",
         "rex",
         "ta"
@@ -2515,9 +2479,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -2658,7 +2619,7 @@ object ExcAVR7
 extends
     Parseable[ExcAVR7]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "a1",
         "a2",
         "a3",
@@ -2734,9 +2695,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -2751,6 +2709,10 @@ extends
  *        Typical Value = -5.
  * @param k Steady state gain (K).
  *        Typical Value = 300.
+ * @param `switch` Supplementary signal routing selector (switch).
+ *        true = Vs connected to 3rd summing point
+ *        false =  Vs connected to 1st summing point (see diagram).
+ *        Typical Value = true.
  * @param t1 Controller time constant (T1).
  *        Typical Value = 6.
  * @param t2 Controller time constant (T2).
@@ -2765,10 +2727,6 @@ extends
  *        Typical Value = -5.
  * @param xe Effective excitation transformer reactance (Xe).
  *        Typical Value = 0.05.
- * @param `switch` Supplementary signal routing selector (switch).
- *        true = Vs connected to 3rd summing point
- *        false =  Vs connected to 1st summing point (see diagram).
- *        Typical Value = true.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
  * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
@@ -2779,14 +2737,14 @@ case class ExcBBC
     efdmax: Double,
     efdmin: Double,
     k: Double,
+    `switch`: Boolean,
     t1: Double,
     t2: Double,
     t3: Double,
     t4: Double,
     vrmax: Double,
     vrmin: Double,
-    xe: Double,
-    `switch`: Boolean
+    xe: Double
 )
 extends
     Element
@@ -2794,7 +2752,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false) }
+    def this () = { this (null, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -2821,14 +2779,14 @@ extends
         emitelem (0, efdmax)
         emitelem (1, efdmin)
         emitelem (2, k)
-        emitelem (3, t1)
-        emitelem (4, t2)
-        emitelem (5, t3)
-        emitelem (6, t4)
-        emitelem (7, vrmax)
-        emitelem (8, vrmin)
-        emitelem (9, xe)
-        emitelem (10, `switch`)
+        emitelem (3, `switch`)
+        emitelem (4, t1)
+        emitelem (5, t2)
+        emitelem (6, t3)
+        emitelem (7, t4)
+        emitelem (8, vrmax)
+        emitelem (9, vrmin)
+        emitelem (10, xe)
         s.toString
     }
     override def export: String =
@@ -2841,30 +2799,30 @@ object ExcBBC
 extends
     Parseable[ExcBBC]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "efdmax",
         "efdmin",
         "k",
+        "switch",
         "t1",
         "t2",
         "t3",
         "t4",
         "vrmax",
         "vrmin",
-        "xe",
-        "switch"
+        "xe"
     )
     val efdmax: Fielder = parse_element (element (cls, fields(0)))
     val efdmin: Fielder = parse_element (element (cls, fields(1)))
     val k: Fielder = parse_element (element (cls, fields(2)))
-    val t1: Fielder = parse_element (element (cls, fields(3)))
-    val t2: Fielder = parse_element (element (cls, fields(4)))
-    val t3: Fielder = parse_element (element (cls, fields(5)))
-    val t4: Fielder = parse_element (element (cls, fields(6)))
-    val vrmax: Fielder = parse_element (element (cls, fields(7)))
-    val vrmin: Fielder = parse_element (element (cls, fields(8)))
-    val xe: Fielder = parse_element (element (cls, fields(9)))
-    val `switch`: Fielder = parse_element (element (cls, fields(10)))
+    val `switch`: Fielder = parse_element (element (cls, fields(3)))
+    val t1: Fielder = parse_element (element (cls, fields(4)))
+    val t2: Fielder = parse_element (element (cls, fields(5)))
+    val t3: Fielder = parse_element (element (cls, fields(6)))
+    val t4: Fielder = parse_element (element (cls, fields(7)))
+    val vrmax: Fielder = parse_element (element (cls, fields(8)))
+    val vrmin: Fielder = parse_element (element (cls, fields(9)))
+    val xe: Fielder = parse_element (element (cls, fields(10)))
 
     def parse (context: Context): ExcBBC =
     {
@@ -2875,21 +2833,18 @@ extends
             toDouble (mask (efdmax (), 0)),
             toDouble (mask (efdmin (), 1)),
             toDouble (mask (k (), 2)),
-            toDouble (mask (t1 (), 3)),
-            toDouble (mask (t2 (), 4)),
-            toDouble (mask (t3 (), 5)),
-            toDouble (mask (t4 (), 6)),
-            toDouble (mask (vrmax (), 7)),
-            toDouble (mask (vrmin (), 8)),
-            toDouble (mask (xe (), 9)),
-            toBoolean (mask (`switch` (), 10))
+            toBoolean (mask (`switch` (), 3)),
+            toDouble (mask (t1 (), 4)),
+            toDouble (mask (t2 (), 5)),
+            toDouble (mask (t3 (), 6)),
+            toDouble (mask (t4 (), 7)),
+            toDouble (mask (vrmax (), 8)),
+            toDouble (mask (vrmin (), 9)),
+            toDouble (mask (xe (), 10))
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -2976,7 +2931,7 @@ object ExcCZ
 extends
     Parseable[ExcCZ]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "efdmax",
         "efdmin",
         "ka",
@@ -3019,9 +2974,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -3150,7 +3102,7 @@ object ExcDC1A
 extends
     Parseable[ExcDC1A]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "edfmax",
         "efd1",
         "efd2",
@@ -3217,9 +3169,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -3352,7 +3301,7 @@ object ExcDC2A
 extends
     Parseable[ExcDC2A]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "efd1",
         "efd2",
         "exclim",
@@ -3419,9 +3368,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -3546,7 +3492,7 @@ object ExcDC3A
 extends
     Parseable[ExcDC3A]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "edfmax",
         "efd1",
         "efd2",
@@ -3607,9 +3553,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -3726,7 +3669,7 @@ object ExcDC3A1
 extends
     Parseable[ExcDC3A1]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "exclim",
         "ka",
         "ke",
@@ -3781,9 +3724,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -3902,7 +3842,7 @@ object ExcELIN1
 extends
     Parseable[ExcELIN1]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "dpnf",
         "efmax",
         "efmin",
@@ -3960,9 +3900,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -4129,7 +4066,7 @@ object ExcELIN2
 extends
     Parseable[ExcELIN2]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "efdbas",
         "iefmax",
         "iefmax2",
@@ -4223,9 +4160,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -4330,7 +4264,7 @@ object ExcHU
 extends
     Parseable[ExcHU]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "ae",
         "ai",
         "atr",
@@ -4379,9 +4313,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -4512,7 +4443,7 @@ object ExcIEEEAC1A
 extends
     Parseable[ExcIEEEAC1A]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "ka",
         "kc",
         "kd",
@@ -4579,9 +4510,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -4724,7 +4652,7 @@ object ExcIEEEAC2A
 extends
     Parseable[ExcIEEEAC2A]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "ka",
         "kb",
         "kc",
@@ -4800,9 +4728,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -4945,7 +4870,7 @@ object ExcIEEEAC3A
 extends
     Parseable[ExcIEEEAC3A]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "efdn",
         "ka",
         "kc",
@@ -5021,9 +4946,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -5118,7 +5040,7 @@ object ExcIEEEAC4A
 extends
     Parseable[ExcIEEEAC4A]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "ka",
         "kc",
         "ta",
@@ -5158,9 +5080,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -5275,7 +5194,7 @@ object ExcIEEEAC5A
 extends
     Parseable[ExcIEEEAC5A]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "efd1",
         "efd2",
         "ka",
@@ -5330,9 +5249,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -5479,7 +5395,7 @@ object ExcIEEEAC6A
 extends
     Parseable[ExcIEEEAC6A]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "ka",
         "kc",
         "kd",
@@ -5558,9 +5474,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -5723,7 +5636,7 @@ object ExcIEEEAC7B
 extends
     Parseable[ExcIEEEAC7B]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "kc",
         "kd",
         "kdr",
@@ -5814,9 +5727,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -5947,7 +5857,7 @@ object ExcIEEEAC8B
 extends
     Parseable[ExcIEEEAC8B]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "ka",
         "kc",
         "kd",
@@ -6014,9 +5924,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -6141,7 +6048,7 @@ object ExcIEEEDC1A
 extends
     Parseable[ExcIEEEDC1A]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "efd1",
         "efd2",
         "exclim",
@@ -6202,9 +6109,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -6329,7 +6233,7 @@ object ExcIEEEDC2A
 extends
     Parseable[ExcIEEEDC2A]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "efd1",
         "efd2",
         "exclim",
@@ -6390,9 +6294,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -6495,7 +6396,7 @@ object ExcIEEEDC3A
 extends
     Parseable[ExcIEEEDC3A]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "efd1",
         "efd2",
         "exclim",
@@ -6541,9 +6442,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -6682,7 +6580,7 @@ object ExcIEEEDC4B
 extends
     Parseable[ExcIEEEDC4B]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "efd1",
         "efd2",
         "ka",
@@ -6752,9 +6650,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -6892,7 +6787,7 @@ object ExcIEEEST1A
 extends
     Parseable[ExcIEEEST1A]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "ilr",
         "ka",
         "kc",
@@ -6962,9 +6857,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -7077,7 +6969,7 @@ object ExcIEEEST2A
 extends
     Parseable[ExcIEEEST2A]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "efdmax",
         "ka",
         "kc",
@@ -7129,9 +7021,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -7270,7 +7159,7 @@ object ExcIEEEST3A
 extends
     Parseable[ExcIEEEST3A]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "ka",
         "kc",
         "kg",
@@ -7343,9 +7232,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -7468,7 +7354,7 @@ object ExcIEEEST4B
 extends
     Parseable[ExcIEEEST4B]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "kc",
         "kg",
         "ki",
@@ -7529,9 +7415,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -7658,7 +7541,7 @@ object ExcIEEEST5B
 extends
     Parseable[ExcIEEEST5B]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "kc",
         "kr",
         "t1",
@@ -7722,9 +7605,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -7840,7 +7720,7 @@ object ExcIEEEST6B
 extends
     Parseable[ExcIEEEST6B]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "ilr",
         "kci",
         "kff",
@@ -7895,9 +7775,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -8017,7 +7894,7 @@ object ExcIEEEST7B
 extends
     Parseable[ExcIEEEST7B]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "kh",
         "kia",
         "kl",
@@ -8075,9 +7952,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -8191,7 +8065,7 @@ object ExcOEX3T
 extends
     Parseable[ExcOEX3T]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "e1",
         "e2",
         "ka",
@@ -8261,9 +8135,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -8414,7 +8285,7 @@ object ExcPIC
 extends
     Parseable[ExcPIC]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "e1",
         "e2",
         "efdmax",
@@ -8496,9 +8367,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -8702,7 +8570,7 @@ object ExcREXS
 extends
     Parseable[ExcREXS]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "e1",
         "e2",
         "fbf",
@@ -8823,9 +8691,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -8915,7 +8780,7 @@ object ExcSCRX
 extends
     Parseable[ExcSCRX]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "cswitch",
         "emax",
         "emin",
@@ -8952,9 +8817,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -9051,7 +8913,7 @@ object ExcSEXS
 extends
     Parseable[ExcSEXS]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "efdmax",
         "efdmin",
         "emax",
@@ -9094,9 +8956,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -9283,7 +9142,7 @@ object ExcSK
 extends
     Parseable[ExcSK]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "efdmax",
         "efdmin",
         "emax",
@@ -9392,9 +9251,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -9523,7 +9379,7 @@ object ExcST1A
 extends
     Parseable[ExcST1A]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "ilr",
         "ka",
         "kc",
@@ -9590,9 +9446,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -9711,7 +9564,7 @@ object ExcST2A
 extends
     Parseable[ExcST2A]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "efdmax",
         "ka",
         "kc",
@@ -9769,9 +9622,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -9908,7 +9758,7 @@ object ExcST3A
 extends
     Parseable[ExcST3A]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "efdmax",
         "kc",
         "kg",
@@ -9981,9 +9831,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -10120,7 +9967,7 @@ object ExcST4B
 extends
     Parseable[ExcST4B]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "kc",
         "kg",
         "ki",
@@ -10190,9 +10037,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -10348,7 +10192,7 @@ object ExcST6B
 extends
     Parseable[ExcST6B]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "ilr",
         "k1",
         "kcl",
@@ -10430,9 +10274,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -10554,7 +10395,7 @@ object ExcST7B
 extends
     Parseable[ExcST7B]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "kh",
         "kia",
         "kl",
@@ -10615,9 +10456,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -10698,7 +10536,7 @@ object ExcitationSystemDynamics
 extends
     Parseable[ExcitationSystemDynamics]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "DiscontinuousExcitationControlDynamics",
         "OverexcitationLimiterDynamics",
         "PFVArControllerType1Dynamics",
@@ -10707,6 +10545,16 @@ extends
         "SynchronousMachineDynamics",
         "UnderexcitationLimiterDynamics",
         "VoltageCompensatorDynamics"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("DiscontinuousExcitationControlDynamics", "DiscontinuousExcitationControlDynamics", "0..1", "1"),
+        Relationship ("OverexcitationLimiterDynamics", "OverexcitationLimiterDynamics", "0..1", "1"),
+        Relationship ("PFVArControllerType1Dynamics", "PFVArControllerType1Dynamics", "0..1", "1"),
+        Relationship ("PFVArControllerType2Dynamics", "PFVArControllerType2Dynamics", "0..1", "1"),
+        Relationship ("PowerSystemStabilizerDynamics", "PowerSystemStabilizerDynamics", "0..1", "1"),
+        Relationship ("SynchronousMachineDynamics", "SynchronousMachineDynamics", "1", "0..1"),
+        Relationship ("UnderexcitationLimiterDynamics", "UnderexcitationLimiterDynamics", "0..1", "1"),
+        Relationship ("VoltageCompensatorDynamics", "VoltageCompensatorDynamics", "0..1", "1")
     )
     val DiscontinuousExcitationControlDynamics: Fielder = parse_attribute (attribute (cls, fields(0)))
     val OverexcitationLimiterDynamics: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -10735,16 +10583,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("DiscontinuousExcitationControlDynamics", "DiscontinuousExcitationControlDynamics", false),
-        Relationship ("OverexcitationLimiterDynamics", "OverexcitationLimiterDynamics", false),
-        Relationship ("PFVArControllerType1Dynamics", "PFVArControllerType1Dynamics", false),
-        Relationship ("PFVArControllerType2Dynamics", "PFVArControllerType2Dynamics", false),
-        Relationship ("PowerSystemStabilizerDynamics", "PowerSystemStabilizerDynamics", false),
-        Relationship ("SynchronousMachineDynamics", "SynchronousMachineDynamics", false),
-        Relationship ("UnderexcitationLimiterDynamics", "UnderexcitationLimiterDynamics", false),
-        Relationship ("VoltageCompensatorDynamics", "VoltageCompensatorDynamics", false)
-    )
 }
 
 private[ninecode] object _ExcitationSystemDynamics

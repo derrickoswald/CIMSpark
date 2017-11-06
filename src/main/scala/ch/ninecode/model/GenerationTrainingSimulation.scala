@@ -124,7 +124,7 @@ object BWRSteamSupply
 extends
     Parseable[BWRSteamSupply]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "highPowerLimit",
         "inCoreThermalTC",
         "integralGain",
@@ -200,9 +200,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -262,8 +259,11 @@ object CTTempActivePowerCurve
 extends
     Parseable[CTTempActivePowerCurve]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "CombustionTurbine"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("CombustionTurbine", "CombustionTurbine", "1", "0..1")
     )
     val CombustionTurbine: Fielder = parse_attribute (attribute (cls, fields(0)))
 
@@ -278,9 +278,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("CombustionTurbine", "CombustionTurbine", false)
-    )
 }
 
 /**
@@ -374,7 +371,7 @@ object CombustionTurbine
 extends
     Parseable[CombustionTurbine]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "ambientTemp",
         "auxPowerVersusFrequency",
         "auxPowerVersusVoltage",
@@ -386,6 +383,11 @@ extends
         "AirCompressor",
         "CTTempActivePowerCurve",
         "HeatRecoveryBoiler"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("AirCompressor", "AirCompressor", "0..1", "1"),
+        Relationship ("CTTempActivePowerCurve", "CTTempActivePowerCurve", "0..1", "1"),
+        Relationship ("HeatRecoveryBoiler", "HeatRecoveryBoiler", "0..1", "0..*")
     )
     val ambientTemp: Fielder = parse_element (element (cls, fields(0)))
     val auxPowerVersusFrequency: Fielder = parse_element (element (cls, fields(1)))
@@ -420,11 +422,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("AirCompressor", "AirCompressor", false),
-        Relationship ("CTTempActivePowerCurve", "CTTempActivePowerCurve", false),
-        Relationship ("HeatRecoveryBoiler", "HeatRecoveryBoiler", false)
-    )
 }
 
 /**
@@ -484,7 +481,7 @@ object DrumBoiler
 extends
     Parseable[DrumBoiler]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "drumBoilerRating"
     )
     val drumBoilerRating: Fielder = parse_element (element (cls, fields(0)))
@@ -500,9 +497,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -640,7 +634,7 @@ object FossilSteamSupply
 extends
     Parseable[FossilSteamSupply]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "auxPowerVersusFrequency",
         "auxPowerVersusVoltage",
         "boilerControlMode",
@@ -731,9 +725,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -741,6 +732,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.FossilSteamSupply FossilSteamSupply]] Reference to the superclass object.
  * @param steamSupplyRating2 The steam supply rating in kilopounds per hour, if dual pressure boiler.
+ * @param CombustionTurbines [[ch.ninecode.model.CombustionTurbine CombustionTurbine]] A combustion turbine may have a heat recovery boiler for making steam.
  * @group GenerationTrainingSimulation
  * @groupname GenerationTrainingSimulation Package GenerationTrainingSimulation
  * @groupdesc GenerationTrainingSimulation The Generation Dynamics package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
@@ -748,7 +740,8 @@ extends
 case class HeatRecoveryBoiler
 (
     override val sup: FossilSteamSupply,
-    steamSupplyRating2: Double
+    steamSupplyRating2: Double,
+    CombustionTurbines: List[String]
 )
 extends
     Element
@@ -756,7 +749,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0) }
+    def this () = { this (null, 0.0, List()) }
     /**
      * Return the superclass object.
      *
@@ -780,7 +773,9 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = HeatRecoveryBoiler.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (HeatRecoveryBoiler.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (HeatRecoveryBoiler.fields (position), x))
         emitelem (0, steamSupplyRating2)
+        emitattrs (1, CombustionTurbines)
         s.toString
     }
     override def export: String =
@@ -793,10 +788,15 @@ object HeatRecoveryBoiler
 extends
     Parseable[HeatRecoveryBoiler]
 {
-    val fields: Array[String] = Array[String] (
-        "steamSupplyRating2"
+    override val fields: Array[String] = Array[String] (
+        "steamSupplyRating2",
+        "CombustionTurbines"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("CombustionTurbines", "CombustionTurbine", "0..*", "0..1")
     )
     val steamSupplyRating2: Fielder = parse_element (element (cls, fields(0)))
+    val CombustionTurbines: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): HeatRecoveryBoiler =
     {
@@ -804,14 +804,12 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = HeatRecoveryBoiler (
             FossilSteamSupply.parse (context),
-            toDouble (mask (steamSupplyRating2 (), 0))
+            toDouble (mask (steamSupplyRating2 (), 0)),
+            masks (CombustionTurbines (), 1)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -904,7 +902,7 @@ object HydroTurbine
 extends
     Parseable[HydroTurbine]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "gateRateLimit",
         "gateUpperLimit",
         "maxHeadMaxP",
@@ -950,9 +948,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1069,7 +1064,7 @@ object PWRSteamSupply
 extends
     Parseable[PWRSteamSupply]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "coldLegFBLagTC",
         "coldLegFBLeadTC1",
         "coldLegFBLeadTC2",
@@ -1142,9 +1137,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1208,9 +1200,12 @@ object PrimeMover
 extends
     Parseable[PrimeMover]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "primeMoverRating",
         "SynchronousMachines"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("SynchronousMachines", "SynchronousMachine", "0..*", "0..*")
     )
     val primeMoverRating: Fielder = parse_element (element (cls, fields(0)))
     val SynchronousMachines: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
@@ -1227,9 +1222,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("SynchronousMachines", "SynchronousMachine", true)
-    )
 }
 
 /**
@@ -1293,9 +1285,12 @@ object SteamSupply
 extends
     Parseable[SteamSupply]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "steamSupplyRating",
         "SteamTurbines"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("SteamTurbines", "SteamTurbine", "0..*", "0..*")
     )
     val steamSupplyRating: Fielder = parse_element (element (cls, fields(0)))
     val SteamTurbines: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
@@ -1312,9 +1307,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("SteamTurbines", "SteamTurbine", true)
-    )
 }
 
 /**
@@ -1411,7 +1403,7 @@ object SteamTurbine
 extends
     Parseable[SteamTurbine]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "crossoverTC",
         "reheater1TC",
         "reheater2TC",
@@ -1425,6 +1417,9 @@ extends
         "shaft2PowerLP2",
         "steamChestTC",
         "SteamSupplys"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("SteamSupplys", "SteamSupply", "0..*", "0..*")
     )
     val crossoverTC: Fielder = parse_element (element (cls, fields(0)))
     val reheater1TC: Fielder = parse_element (element (cls, fields(1)))
@@ -1463,9 +1458,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("SteamSupplys", "SteamSupply", true)
-    )
 }
 
 /**
@@ -1528,9 +1520,6 @@ extends
         )
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1593,9 +1582,6 @@ extends
         )
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 private[ninecode] object _GenerationTrainingSimulation

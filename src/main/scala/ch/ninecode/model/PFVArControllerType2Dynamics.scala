@@ -68,8 +68,11 @@ object PFVArControllerType2Dynamics
 extends
     Parseable[PFVArControllerType2Dynamics]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "ExcitationSystemDynamics"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ExcitationSystemDynamics", "ExcitationSystemDynamics", "1", "0..1")
     )
     val ExcitationSystemDynamics: Fielder = parse_attribute (attribute (cls, fields(0)))
 
@@ -84,9 +87,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("ExcitationSystemDynamics", "ExcitationSystemDynamics", false)
-    )
 }
 
 /**
@@ -167,7 +167,7 @@ object PFVArType2Common1
 extends
     Parseable[PFVArType2Common1]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "j",
         "ki",
         "kp",
@@ -195,9 +195,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -286,7 +283,7 @@ object PFVArType2IEEEPFController
 extends
     Parseable[PFVArType2IEEEPFController]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "exlon",
         "ki",
         "kp",
@@ -320,9 +317,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -408,7 +402,7 @@ object PFVArType2IEEEVArController
 extends
     Parseable[PFVArType2IEEEVArController]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "exlon",
         "ki",
         "kp",
@@ -442,9 +436,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 private[ninecode] object _PFVArControllerType2Dynamics

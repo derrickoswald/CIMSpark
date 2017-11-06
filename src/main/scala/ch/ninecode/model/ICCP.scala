@@ -60,8 +60,11 @@ object ICCPCommandPoint
 extends
     Parseable[ICCPCommandPoint]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         ""
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("unknown", "Command", "1", "0..*")
     )
     val unknown: Fielder = parse_attribute (attribute (cls, fields(0)))
 
@@ -76,9 +79,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("unknown", "Command", false)
-    )
 }
 
 /**
@@ -136,9 +136,12 @@ object ICCPControlPoint
 extends
     Parseable[ICCPControlPoint]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "deviceClass",
         ""
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("unknown", "ICCPIndicationPoint", "0..1", "0..1")
     )
     val deviceClass: Fielder = parse_attribute (attribute (cls, fields(0)))
     val unknown: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -155,9 +158,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("unknown", "ICCPIndicationPoint", false)
-    )
 }
 
 /**
@@ -168,8 +168,8 @@ extends
 case class ICCPIndicationPoint
 (
     override val sup: ICCPPoint,
-    unknown: String,
-    `type`: String
+    `type`: String,
+    unknown: String
 )
 extends
     Element
@@ -201,8 +201,8 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ICCPIndicationPoint.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ICCPIndicationPoint.fields (position), value)
-        emitattr (0, unknown)
-        emitattr (1, `type`)
+        emitattr (0, `type`)
+        emitattr (1, unknown)
         s.toString
     }
     override def export: String =
@@ -215,12 +215,15 @@ object ICCPIndicationPoint
 extends
     Parseable[ICCPIndicationPoint]
 {
-    val fields: Array[String] = Array[String] (
-        "",
-        "type"
+    override val fields: Array[String] = Array[String] (
+        "type",
+        ""
     )
-    val unknown: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val `type`: Fielder = parse_attribute (attribute (cls, fields(1)))
+    override val relations: List[Relationship] = List (
+        Relationship ("unknown", "ICCPControlPoint", "0..1", "0..1")
+    )
+    val `type`: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val unknown: Fielder = parse_attribute (attribute (cls, fields(1)))
 
     def parse (context: Context): ICCPIndicationPoint =
     {
@@ -228,15 +231,12 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = ICCPIndicationPoint (
             ICCPPoint.parse (context),
-            mask (unknown (), 0),
-            mask (`type` (), 1)
+            mask (`type` (), 0),
+            mask (unknown (), 1)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("unknown", "ICCPControlPoint", false)
-    )
 }
 
 /**
@@ -306,10 +306,13 @@ object ICCPInformationMessage
 extends
     Parseable[ICCPInformationMessage]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "localReference",
         "scope",
         ""
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("unknown", "TASE2BilateralTable", "0..*", "0..*")
     )
     val localReference: Fielder = parse_element (element (cls, fields(0)))
     val scope: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -328,9 +331,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("unknown", "TASE2BilateralTable", true)
-    )
 }
 
 /**
@@ -394,9 +394,12 @@ object ICCPPoint
 extends
     Parseable[ICCPPoint]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "scope",
         ""
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("unknown", "TASE2BilateralTable", "1", "0..*")
     )
     val scope: Fielder = parse_attribute (attribute (cls, fields(0)))
     val unknown: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -413,9 +416,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("unknown", "TASE2BilateralTable", false)
-    )
 }
 
 /**
@@ -426,8 +426,8 @@ extends
 case class ICCPSetPoint
 (
     override val sup: ICCPControlPoint,
-    unknown: String,
-    `type`: String
+    `type`: String,
+    unknown: String
 )
 extends
     Element
@@ -459,8 +459,8 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ICCPSetPoint.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ICCPSetPoint.fields (position), value)
-        emitattr (0, unknown)
-        emitattr (1, `type`)
+        emitattr (0, `type`)
+        emitattr (1, unknown)
         s.toString
     }
     override def export: String =
@@ -473,12 +473,15 @@ object ICCPSetPoint
 extends
     Parseable[ICCPSetPoint]
 {
-    val fields: Array[String] = Array[String] (
-        "",
-        "type"
+    override val fields: Array[String] = Array[String] (
+        "type",
+        ""
     )
-    val unknown: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val `type`: Fielder = parse_attribute (attribute (cls, fields(1)))
+    override val relations: List[Relationship] = List (
+        Relationship ("unknown", "AnalogControl", "1", "0..*")
+    )
+    val `type`: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val unknown: Fielder = parse_attribute (attribute (cls, fields(1)))
 
     def parse (context: Context): ICCPSetPoint =
     {
@@ -486,15 +489,12 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = ICCPSetPoint (
             ICCPControlPoint.parse (context),
-            mask (unknown (), 0),
-            mask (`type` (), 1)
+            mask (`type` (), 0),
+            mask (unknown (), 1)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("unknown", "AnalogControl", false)
-    )
 }
 
 /**
@@ -559,12 +559,15 @@ object IPAccessPoint
 extends
     Parseable[IPAccessPoint]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "address",
         "addressType",
         "gateway",
         "subnet",
         ""
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("unknown", "TASE2BilateralTable", "1", "0..*")
     )
     val address: Fielder = parse_element (element (cls, fields(0)))
     val addressType: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -587,9 +590,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("unknown", "TASE2BilateralTable", false)
-    )
 }
 
 /**
@@ -652,7 +652,7 @@ object ISOUpperLayer
 extends
     Parseable[ISOUpperLayer]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "ap",
         "osiPsel",
         "osiSsel",
@@ -677,9 +677,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -755,12 +752,15 @@ object TASE2BilateralTable
 extends
     Parseable[TASE2BilateralTable]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "bilateralTableID",
         "calling",
         "nameOfICC",
         "tase2version",
         ""
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("unknown", "ICCPInformationMessage", "0..*", "0..*")
     )
     val bilateralTableID: Fielder = parse_element (element (cls, fields(0)))
     val calling: Fielder = parse_element (element (cls, fields(1)))
@@ -783,9 +783,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("unknown", "ICCPInformationMessage", true)
-    )
 }
 
 /**
@@ -843,7 +840,7 @@ object TCPAcessPoint
 extends
     Parseable[TCPAcessPoint]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "keepAliveTime",
         "port"
     )
@@ -862,9 +859,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 private[ninecode] object _ICCP

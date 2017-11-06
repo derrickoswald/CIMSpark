@@ -13,6 +13,7 @@ import ch.ninecode.cim.Relationship
  * @param sup [[ch.ninecode.model.Measurement Measurement]] Reference to the superclass object.
  * @param maxValue Normal value range maximum for any of the MeasurementValue.values.
  *        Used for scaling, e.g. in bar graphs or of telemetered raw values.
+ * @param AccumulatorValues [[ch.ninecode.model.AccumulatorValue AccumulatorValue]] The values connected to this measurement.
  * @param LimitSets [[ch.ninecode.model.AccumulatorLimitSet AccumulatorLimitSet]] A measurement may have zero or more limit ranges defined for it.
  * @group Meas
  * @groupname Meas Package Meas
@@ -22,6 +23,7 @@ case class Accumulator
 (
     override val sup: Measurement,
     maxValue: Int,
+    AccumulatorValues: List[String],
     LimitSets: List[String]
 )
 extends
@@ -30,7 +32,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0, List()) }
+    def this () = { this (null, 0, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -56,7 +58,8 @@ extends
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Accumulator.fields (position), value)
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Accumulator.fields (position), x))
         emitelem (0, maxValue)
-        emitattrs (1, LimitSets)
+        emitattrs (1, AccumulatorValues)
+        emitattrs (2, LimitSets)
         s.toString
     }
     override def export: String =
@@ -69,12 +72,18 @@ object Accumulator
 extends
     Parseable[Accumulator]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "maxValue",
+        "AccumulatorValues",
         "LimitSets"
     )
+    override val relations: List[Relationship] = List (
+        Relationship ("AccumulatorValues", "AccumulatorValue", "0..*", "1"),
+        Relationship ("LimitSets", "AccumulatorLimitSet", "0..*", "0..*")
+    )
     val maxValue: Fielder = parse_element (element (cls, fields(0)))
-    val LimitSets: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val AccumulatorValues: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val LimitSets: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
 
     def parse (context: Context): Accumulator =
     {
@@ -83,14 +92,12 @@ extends
         val ret = Accumulator (
             Measurement.parse (context),
             toInteger (mask (maxValue (), 0)),
-            masks (LimitSets (), 1)
+            masks (AccumulatorValues (), 1),
+            masks (LimitSets (), 2)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("LimitSets", "AccumulatorLimitSet", true)
-    )
 }
 
 /**
@@ -155,9 +162,12 @@ object AccumulatorLimit
 extends
     Parseable[AccumulatorLimit]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "value",
         "LimitSet"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("LimitSet", "AccumulatorLimitSet", "1", "1..*")
     )
     val value: Fielder = parse_element (element (cls, fields(0)))
     val LimitSet: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -174,15 +184,13 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("LimitSet", "AccumulatorLimitSet", false)
-    )
 }
 
 /**
  * An AccumulatorLimitSet specifies a set of Limits that are associated with an Accumulator measurement.
  *
  * @param sup [[ch.ninecode.model.LimitSet LimitSet]] Reference to the superclass object.
+ * @param Limits [[ch.ninecode.model.AccumulatorLimit AccumulatorLimit]] The limit values used for supervision of Measurements.
  * @param Measurements [[ch.ninecode.model.Accumulator Accumulator]] The Measurements using the LimitSet.
  * @group Meas
  * @groupname Meas Package Meas
@@ -191,6 +199,7 @@ extends
 case class AccumulatorLimitSet
 (
     override val sup: LimitSet,
+    Limits: List[String],
     Measurements: List[String]
 )
 extends
@@ -199,7 +208,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, List()) }
+    def this () = { this (null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -223,7 +232,8 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = AccumulatorLimitSet.cls
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (AccumulatorLimitSet.fields (position), x))
-        emitattrs (0, Measurements)
+        emitattrs (0, Limits)
+        emitattrs (1, Measurements)
         s.toString
     }
     override def export: String =
@@ -236,10 +246,16 @@ object AccumulatorLimitSet
 extends
     Parseable[AccumulatorLimitSet]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
+        "Limits",
         "Measurements"
     )
-    val Measurements: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    override val relations: List[Relationship] = List (
+        Relationship ("Limits", "AccumulatorLimit", "1..*", "1"),
+        Relationship ("Measurements", "Accumulator", "0..*", "0..*")
+    )
+    val Limits: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val Measurements: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): AccumulatorLimitSet =
     {
@@ -247,14 +263,12 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = AccumulatorLimitSet (
             LimitSet.parse (context),
-            masks (Measurements (), 0)
+            masks (Limits (), 0),
+            masks (Measurements (), 1)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Measurements", "Accumulator", true)
-    )
 }
 
 /**
@@ -314,8 +328,11 @@ object AccumulatorReset
 extends
     Parseable[AccumulatorReset]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "AccumulatorValue"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("AccumulatorValue", "AccumulatorValue", "1", "0..1")
     )
     val AccumulatorValue: Fielder = parse_attribute (attribute (cls, fields(0)))
 
@@ -330,9 +347,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("AccumulatorValue", "AccumulatorValue", false)
-    )
 }
 
 /**
@@ -400,10 +414,14 @@ object AccumulatorValue
 extends
     Parseable[AccumulatorValue]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "value",
         "Accumulator",
         "AccumulatorReset"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Accumulator", "Accumulator", "1", "0..*"),
+        Relationship ("AccumulatorReset", "AccumulatorReset", "0..1", "1")
     )
     val value: Fielder = parse_element (element (cls, fields(0)))
     val Accumulator: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -422,10 +440,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Accumulator", "Accumulator", false),
-        Relationship ("AccumulatorReset", "AccumulatorReset", false)
-    )
 }
 
 /**
@@ -438,6 +452,7 @@ extends
  *        Used for scaling, e.g. in bar graphs or of telemetered raw values.
  * @param normalValue Normal measurement value, e.g., used for percentage calculations.
  * @param positiveFlowIn If true then this measurement is an active power, reactive power or current with the convention that a positive value measured at the Terminal means power is flowing into the related PowerSystemResource.
+ * @param AnalogValues [[ch.ninecode.model.AnalogValue AnalogValue]] The values connected to this measurement.
  * @param LimitSets [[ch.ninecode.model.AnalogLimitSet AnalogLimitSet]] A measurement may have zero or more limit ranges defined for it.
  * @group Meas
  * @groupname Meas Package Meas
@@ -450,6 +465,7 @@ case class Analog
     minValue: Double,
     normalValue: Double,
     positiveFlowIn: Boolean,
+    AnalogValues: List[String],
     LimitSets: List[String]
 )
 extends
@@ -458,7 +474,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, 0.0, false, List()) }
+    def this () = { this (null, 0.0, 0.0, 0.0, false, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -487,7 +503,8 @@ extends
         emitelem (1, minValue)
         emitelem (2, normalValue)
         emitelem (3, positiveFlowIn)
-        emitattrs (4, LimitSets)
+        emitattrs (4, AnalogValues)
+        emitattrs (5, LimitSets)
         s.toString
     }
     override def export: String =
@@ -500,18 +517,24 @@ object Analog
 extends
     Parseable[Analog]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "maxValue",
         "minValue",
         "normalValue",
         "positiveFlowIn",
+        "AnalogValues",
         "LimitSets"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("AnalogValues", "AnalogValue", "0..*", "1"),
+        Relationship ("LimitSets", "AnalogLimitSet", "0..*", "0..*")
     )
     val maxValue: Fielder = parse_element (element (cls, fields(0)))
     val minValue: Fielder = parse_element (element (cls, fields(1)))
     val normalValue: Fielder = parse_element (element (cls, fields(2)))
     val positiveFlowIn: Fielder = parse_element (element (cls, fields(3)))
-    val LimitSets: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val AnalogValues: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val LimitSets: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
 
     def parse (context: Context): Analog =
     {
@@ -523,14 +546,12 @@ extends
             toDouble (mask (minValue (), 1)),
             toDouble (mask (normalValue (), 2)),
             toBoolean (mask (positiveFlowIn (), 3)),
-            masks (LimitSets (), 4)
+            masks (AnalogValues (), 4),
+            masks (LimitSets (), 5)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("LimitSets", "AnalogLimitSet", true)
-    )
 }
 
 /**
@@ -541,6 +562,7 @@ extends
  *        Used for scaling, e.g. in bar graphs.
  * @param minValue Normal value range minimum for any of the Control.value.
  *        Used for scaling, e.g. in bar graphs.
+ * @param unknown [[ch.ninecode.model.ICCPSetPoint ICCPSetPoint]] <em>undocumented</em>
  * @param AnalogValue [[ch.ninecode.model.AnalogValue AnalogValue]] The MeasurementValue that is controlled.
  * @group Meas
  * @groupname Meas Package Meas
@@ -551,6 +573,7 @@ case class AnalogControl
     override val sup: Control,
     maxValue: Double,
     minValue: Double,
+    unknown: List[String],
     AnalogValue: String
 )
 extends
@@ -559,7 +582,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, null) }
+    def this () = { this (null, 0.0, 0.0, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -584,9 +607,11 @@ extends
         implicit val clz: String = AnalogControl.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (AnalogControl.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (AnalogControl.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (AnalogControl.fields (position), x))
         emitelem (0, maxValue)
         emitelem (1, minValue)
-        emitattr (2, AnalogValue)
+        emitattrs (2, unknown)
+        emitattr (3, AnalogValue)
         s.toString
     }
     override def export: String =
@@ -599,14 +624,20 @@ object AnalogControl
 extends
     Parseable[AnalogControl]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "maxValue",
         "minValue",
+        "",
         "AnalogValue"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("unknown", "ICCPSetPoint", "0..*", "1"),
+        Relationship ("AnalogValue", "AnalogValue", "1", "0..1")
     )
     val maxValue: Fielder = parse_element (element (cls, fields(0)))
     val minValue: Fielder = parse_element (element (cls, fields(1)))
-    val AnalogValue: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val unknown: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val AnalogValue: Fielder = parse_attribute (attribute (cls, fields(3)))
 
     def parse (context: Context): AnalogControl =
     {
@@ -616,14 +647,12 @@ extends
             Control.parse (context),
             toDouble (mask (maxValue (), 0)),
             toDouble (mask (minValue (), 1)),
-            mask (AnalogValue (), 2)
+            masks (unknown (), 2),
+            mask (AnalogValue (), 3)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("AnalogValue", "AnalogValue", false)
-    )
 }
 
 /**
@@ -687,9 +716,12 @@ object AnalogLimit
 extends
     Parseable[AnalogLimit]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "value",
         "LimitSet"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("LimitSet", "AnalogLimitSet", "1", "0..*")
     )
     val value: Fielder = parse_element (element (cls, fields(0)))
     val LimitSet: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -706,15 +738,13 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("LimitSet", "AnalogLimitSet", false)
-    )
 }
 
 /**
  * An AnalogLimitSet specifies a set of Limits that are associated with an Analog measurement.
  *
  * @param sup [[ch.ninecode.model.LimitSet LimitSet]] Reference to the superclass object.
+ * @param Limits [[ch.ninecode.model.AnalogLimit AnalogLimit]] The limit values used for supervision of Measurements.
  * @param Measurements [[ch.ninecode.model.Analog Analog]] The Measurements using the LimitSet.
  * @group Meas
  * @groupname Meas Package Meas
@@ -723,6 +753,7 @@ extends
 case class AnalogLimitSet
 (
     override val sup: LimitSet,
+    Limits: List[String],
     Measurements: List[String]
 )
 extends
@@ -731,7 +762,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, List()) }
+    def this () = { this (null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -755,7 +786,8 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = AnalogLimitSet.cls
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (AnalogLimitSet.fields (position), x))
-        emitattrs (0, Measurements)
+        emitattrs (0, Limits)
+        emitattrs (1, Measurements)
         s.toString
     }
     override def export: String =
@@ -768,10 +800,16 @@ object AnalogLimitSet
 extends
     Parseable[AnalogLimitSet]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
+        "Limits",
         "Measurements"
     )
-    val Measurements: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    override val relations: List[Relationship] = List (
+        Relationship ("Limits", "AnalogLimit", "0..*", "1"),
+        Relationship ("Measurements", "Analog", "0..*", "0..*")
+    )
+    val Limits: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val Measurements: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): AnalogLimitSet =
     {
@@ -779,14 +817,12 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = AnalogLimitSet (
             LimitSet.parse (context),
-            masks (Measurements (), 0)
+            masks (Limits (), 0),
+            masks (Measurements (), 1)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Measurements", "Analog", true)
-    )
 }
 
 /**
@@ -794,6 +830,8 @@ extends
  *
  * @param sup [[ch.ninecode.model.MeasurementValue MeasurementValue]] Reference to the superclass object.
  * @param value The value to supervise.
+ * @param AltGeneratingUnit [[ch.ninecode.model.AltGeneratingUnitMeas AltGeneratingUnitMeas]] The alternate generating unit for which this measurement value applies.
+ * @param AltTieMeas [[ch.ninecode.model.AltTieMeas AltTieMeas]] The usage of the measurement within the control area specification.
  * @param Analog [[ch.ninecode.model.Analog Analog]] Measurement to which this value is connected.
  * @param AnalogControl [[ch.ninecode.model.AnalogControl AnalogControl]] The Control variable associated with the MeasurementValue.
  * @group Meas
@@ -804,6 +842,8 @@ case class AnalogValue
 (
     override val sup: MeasurementValue,
     value: Double,
+    AltGeneratingUnit: List[String],
+    AltTieMeas: List[String],
     Analog: String,
     AnalogControl: String
 )
@@ -813,7 +853,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, null, null) }
+    def this () = { this (null, 0.0, List(), List(), null, null) }
     /**
      * Return the superclass object.
      *
@@ -838,9 +878,12 @@ extends
         implicit val clz: String = AnalogValue.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (AnalogValue.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (AnalogValue.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (AnalogValue.fields (position), x))
         emitelem (0, value)
-        emitattr (1, Analog)
-        emitattr (2, AnalogControl)
+        emitattrs (1, AltGeneratingUnit)
+        emitattrs (2, AltTieMeas)
+        emitattr (3, Analog)
+        emitattr (4, AnalogControl)
         s.toString
     }
     override def export: String =
@@ -853,14 +896,24 @@ object AnalogValue
 extends
     Parseable[AnalogValue]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "value",
+        "AltGeneratingUnit",
+        "AltTieMeas",
         "Analog",
         "AnalogControl"
     )
+    override val relations: List[Relationship] = List (
+        Relationship ("AltGeneratingUnit", "AltGeneratingUnitMeas", "0..*", "1"),
+        Relationship ("AltTieMeas", "AltTieMeas", "0..*", "1"),
+        Relationship ("Analog", "Analog", "1", "0..*"),
+        Relationship ("AnalogControl", "AnalogControl", "0..1", "1")
+    )
     val value: Fielder = parse_element (element (cls, fields(0)))
-    val Analog: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val AnalogControl: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val AltGeneratingUnit: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val AltTieMeas: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val Analog: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val AnalogControl: Fielder = parse_attribute (attribute (cls, fields(4)))
 
     def parse (context: Context): AnalogValue =
     {
@@ -869,16 +922,14 @@ extends
         val ret = AnalogValue (
             MeasurementValue.parse (context),
             toDouble (mask (value (), 0)),
-            mask (Analog (), 1),
-            mask (AnalogControl (), 2)
+            masks (AltGeneratingUnit (), 1),
+            masks (AltTieMeas (), 2),
+            mask (Analog (), 3),
+            mask (AnalogControl (), 4)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Analog", "Analog", false),
-        Relationship ("AnalogControl", "AnalogControl", false)
-    )
 }
 
 /**
@@ -886,6 +937,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.Control Control]] Reference to the superclass object.
  * @param normalValue Normal value for Control.value e.g. used for percentage scaling.
+ * @param unknown [[ch.ninecode.model.ICCPCommandPoint ICCPCommandPoint]] <em>undocumented</em>
  * @param value The value representing the actuator output.
  * @param DiscreteValue [[ch.ninecode.model.DiscreteValue DiscreteValue]] The MeasurementValue that is controlled.
  * @param ValueAliasSet [[ch.ninecode.model.ValueAliasSet ValueAliasSet]] The ValueAliasSet used for translation of a Control value to a name.
@@ -897,6 +949,7 @@ case class Command
 (
     override val sup: Control,
     normalValue: Int,
+    unknown: List[String],
     value: Int,
     DiscreteValue: String,
     ValueAliasSet: String
@@ -907,7 +960,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0, 0, null, null) }
+    def this () = { this (null, 0, List(), 0, null, null) }
     /**
      * Return the superclass object.
      *
@@ -932,10 +985,12 @@ extends
         implicit val clz: String = Command.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Command.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Command.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Command.fields (position), x))
         emitelem (0, normalValue)
-        emitelem (1, value)
-        emitattr (2, DiscreteValue)
-        emitattr (3, ValueAliasSet)
+        emitattrs (1, unknown)
+        emitelem (2, value)
+        emitattr (3, DiscreteValue)
+        emitattr (4, ValueAliasSet)
         s.toString
     }
     override def export: String =
@@ -948,16 +1003,23 @@ object Command
 extends
     Parseable[Command]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "normalValue",
+        "",
         "value",
         "DiscreteValue",
         "ValueAliasSet"
     )
+    override val relations: List[Relationship] = List (
+        Relationship ("unknown", "ICCPCommandPoint", "0..*", "1"),
+        Relationship ("DiscreteValue", "DiscreteValue", "1", "0..1"),
+        Relationship ("ValueAliasSet", "ValueAliasSet", "0..1", "0..*")
+    )
     val normalValue: Fielder = parse_element (element (cls, fields(0)))
-    val value: Fielder = parse_element (element (cls, fields(1)))
-    val DiscreteValue: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val ValueAliasSet: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val unknown: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val value: Fielder = parse_element (element (cls, fields(2)))
+    val DiscreteValue: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val ValueAliasSet: Fielder = parse_attribute (attribute (cls, fields(4)))
 
     def parse (context: Context): Command =
     {
@@ -966,17 +1028,14 @@ extends
         val ret = Command (
             Control.parse (context),
             toInteger (mask (normalValue (), 0)),
-            toInteger (mask (value (), 1)),
-            mask (DiscreteValue (), 2),
-            mask (ValueAliasSet (), 3)
+            masks (unknown (), 1),
+            toInteger (mask (value (), 2)),
+            mask (DiscreteValue (), 3),
+            mask (ValueAliasSet (), 4)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("DiscreteValue", "DiscreteValue", false),
-        Relationship ("ValueAliasSet", "ValueAliasSet", false)
-    )
 }
 
 /**
@@ -1058,7 +1117,7 @@ object Control
 extends
     Parseable[Control]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "controlType",
         "operationInProgress",
         "timeStamp",
@@ -1066,6 +1125,10 @@ extends
         "unitSymbol",
         "PowerSystemResource",
         "RemoteControl"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("PowerSystemResource", "PowerSystemResource", "0..1", "0..*"),
+        Relationship ("RemoteControl", "RemoteControl", "0..1", "1")
     )
     val controlType: Fielder = parse_element (element (cls, fields(0)))
     val operationInProgress: Fielder = parse_element (element (cls, fields(1)))
@@ -1092,10 +1155,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("PowerSystemResource", "PowerSystemResource", false),
-        Relationship ("RemoteControl", "RemoteControl", false)
-    )
 }
 
 /**
@@ -1107,6 +1166,7 @@ extends
  * @param minValue Normal value range minimum for any of the MeasurementValue.values.
  *        Used for scaling, e.g. in bar graphs or of telemetered raw values.
  * @param normalValue Normal measurement value, e.g., used for percentage calculations.
+ * @param DiscreteValues [[ch.ninecode.model.DiscreteValue DiscreteValue]] The values connected to this measurement.
  * @param ValueAliasSet [[ch.ninecode.model.ValueAliasSet ValueAliasSet]] The ValueAliasSet used for translation of a MeasurementValue.value to a name.
  * @group Meas
  * @groupname Meas Package Meas
@@ -1118,6 +1178,7 @@ case class Discrete
     maxValue: Int,
     minValue: Int,
     normalValue: Int,
+    DiscreteValues: List[String],
     ValueAliasSet: String
 )
 extends
@@ -1126,7 +1187,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0, 0, 0, null) }
+    def this () = { this (null, 0, 0, 0, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -1151,10 +1212,12 @@ extends
         implicit val clz: String = Discrete.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Discrete.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Discrete.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Discrete.fields (position), x))
         emitelem (0, maxValue)
         emitelem (1, minValue)
         emitelem (2, normalValue)
-        emitattr (3, ValueAliasSet)
+        emitattrs (3, DiscreteValues)
+        emitattr (4, ValueAliasSet)
         s.toString
     }
     override def export: String =
@@ -1167,16 +1230,22 @@ object Discrete
 extends
     Parseable[Discrete]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "maxValue",
         "minValue",
         "normalValue",
+        "DiscreteValues",
         "ValueAliasSet"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("DiscreteValues", "DiscreteValue", "0..*", "1"),
+        Relationship ("ValueAliasSet", "ValueAliasSet", "0..1", "0..*")
     )
     val maxValue: Fielder = parse_element (element (cls, fields(0)))
     val minValue: Fielder = parse_element (element (cls, fields(1)))
     val normalValue: Fielder = parse_element (element (cls, fields(2)))
-    val ValueAliasSet: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val DiscreteValues: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val ValueAliasSet: Fielder = parse_attribute (attribute (cls, fields(4)))
 
     def parse (context: Context): Discrete =
     {
@@ -1187,14 +1256,12 @@ extends
             toInteger (mask (maxValue (), 0)),
             toInteger (mask (minValue (), 1)),
             toInteger (mask (normalValue (), 2)),
-            mask (ValueAliasSet (), 3)
+            masks (DiscreteValues (), 3),
+            mask (ValueAliasSet (), 4)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("ValueAliasSet", "ValueAliasSet", false)
-    )
 }
 
 /**
@@ -1255,9 +1322,6 @@ extends
         )
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1324,10 +1388,14 @@ object DiscreteValue
 extends
     Parseable[DiscreteValue]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "value",
         "Command",
         "Discrete"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Command", "Command", "0..1", "1"),
+        Relationship ("Discrete", "Discrete", "1", "0..*")
     )
     val value: Fielder = parse_element (element (cls, fields(0)))
     val Command: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -1346,10 +1414,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Command", "Command", false),
-        Relationship ("Discrete", "Discrete", false)
-    )
 }
 
 /**
@@ -1411,8 +1475,11 @@ object Limit
 extends
     Parseable[Limit]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "Procedures"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Procedures", "Procedure", "0..*", "0..*")
     )
     val Procedures: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
@@ -1427,9 +1494,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Procedures", "Procedure", true)
-    )
 }
 
 /**
@@ -1491,7 +1555,7 @@ object LimitSet
 extends
     Parseable[LimitSet]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "isPercentageLimits"
     )
     val isPercentageLimits: Fielder = parse_element (element (cls, fields(0)))
@@ -1507,9 +1571,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1526,8 +1587,11 @@ extends
  * @param unitSymbol The unit of measure of the measured quantity.
  * @param Asset [[ch.ninecode.model.Asset Asset]] <em>undocumented</em>
  * @param Locations [[ch.ninecode.model.Location Location]] <em>undocumented</em>
+ * @param MeasurementCalculatorInput [[ch.ninecode.model.MeasurementCalculatorInput MeasurementCalculatorInput]] <em>undocumented</em>
+ * @param PinMeasurement [[ch.ninecode.model.PinMeasurement PinMeasurement]] <em>undocumented</em>
  * @param PowerSystemResource [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] The power system resource that contains the measurement.
  * @param Procedures [[ch.ninecode.model.Procedure Procedure]] Measurements are specified in types of documents, such as procedures.
+ * @param ProtectiveActionAdjustment [[ch.ninecode.model.ProtectiveActionAdjustment ProtectiveActionAdjustment]] <em>undocumented</em>
  * @param Terminal [[ch.ninecode.model.ACDCTerminal ACDCTerminal]] One or more measurements may be associated with a terminal in the network.
  * @group Meas
  * @groupname Meas Package Meas
@@ -1542,8 +1606,11 @@ case class Measurement
     unitSymbol: String,
     Asset: String,
     Locations: List[String],
+    MeasurementCalculatorInput: List[String],
+    PinMeasurement: List[String],
     PowerSystemResource: String,
     Procedures: List[String],
+    ProtectiveActionAdjustment: List[String],
     Terminal: String
 )
 extends
@@ -1552,7 +1619,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null, null, List(), null, List(), null) }
+    def this () = { this (null, null, null, null, null, null, List(), List(), List(), null, List(), List(), null) }
     /**
      * Return the superclass object.
      *
@@ -1584,9 +1651,12 @@ extends
         emitattr (3, unitSymbol)
         emitattr (4, Asset)
         emitattrs (5, Locations)
-        emitattr (6, PowerSystemResource)
-        emitattrs (7, Procedures)
-        emitattr (8, Terminal)
+        emitattrs (6, MeasurementCalculatorInput)
+        emitattrs (7, PinMeasurement)
+        emitattr (8, PowerSystemResource)
+        emitattrs (9, Procedures)
+        emitattrs (10, ProtectiveActionAdjustment)
+        emitattr (11, Terminal)
         s.toString
     }
     override def export: String =
@@ -1599,16 +1669,29 @@ object Measurement
 extends
     Parseable[Measurement]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "measurementType",
         "phases",
         "unitMultiplier",
         "unitSymbol",
         "Asset",
         "Locations",
+        "MeasurementCalculatorInput",
+        "PinMeasurement",
         "PowerSystemResource",
         "Procedures",
+        "ProtectiveActionAdjustment",
         "Terminal"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Asset", "Asset", "0..1", "0..*"),
+        Relationship ("Locations", "Location", "0..*", "0..*"),
+        Relationship ("MeasurementCalculatorInput", "MeasurementCalculatorInput", "0..*", "1"),
+        Relationship ("PinMeasurement", "PinMeasurement", "0..*", "0..1"),
+        Relationship ("PowerSystemResource", "PowerSystemResource", "0..1", "0..*"),
+        Relationship ("Procedures", "Procedure", "0..*", "0..*"),
+        Relationship ("ProtectiveActionAdjustment", "ProtectiveActionAdjustment", "0..*", "0..1"),
+        Relationship ("Terminal", "ACDCTerminal", "0..1", "0..*")
     )
     val measurementType: Fielder = parse_element (element (cls, fields(0)))
     val phases: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -1616,9 +1699,12 @@ extends
     val unitSymbol: Fielder = parse_attribute (attribute (cls, fields(3)))
     val Asset: Fielder = parse_attribute (attribute (cls, fields(4)))
     val Locations: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
-    val PowerSystemResource: Fielder = parse_attribute (attribute (cls, fields(6)))
-    val Procedures: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
-    val Terminal: Fielder = parse_attribute (attribute (cls, fields(8)))
+    val MeasurementCalculatorInput: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
+    val PinMeasurement: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
+    val PowerSystemResource: Fielder = parse_attribute (attribute (cls, fields(8)))
+    val Procedures: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
+    val ProtectiveActionAdjustment: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
+    val Terminal: Fielder = parse_attribute (attribute (cls, fields(11)))
 
     def parse (context: Context): Measurement =
     {
@@ -1632,20 +1718,16 @@ extends
             mask (unitSymbol (), 3),
             mask (Asset (), 4),
             masks (Locations (), 5),
-            mask (PowerSystemResource (), 6),
-            masks (Procedures (), 7),
-            mask (Terminal (), 8)
+            masks (MeasurementCalculatorInput (), 6),
+            masks (PinMeasurement (), 7),
+            mask (PowerSystemResource (), 8),
+            masks (Procedures (), 9),
+            masks (ProtectiveActionAdjustment (), 10),
+            mask (Terminal (), 11)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Asset", "Asset", false),
-        Relationship ("Locations", "Location", true),
-        Relationship ("PowerSystemResource", "PowerSystemResource", false),
-        Relationship ("Procedures", "Procedure", true),
-        Relationship ("Terminal", "ACDCTerminal", false)
-    )
 }
 
 /**
@@ -1731,7 +1813,7 @@ object MeasurementValue
 extends
     Parseable[MeasurementValue]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "sensorAccuracy",
         "timeStamp",
         "",
@@ -1740,6 +1822,14 @@ extends
         "MeasurementValueSource",
         "ProcedureDataSets",
         "RemoteSource"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("unknown", "ICCPIndicationPoint", "0..1", "0..*"),
+        Relationship ("ErpPerson", "OldPerson", "0..1", "0..*"),
+        Relationship ("MeasurementValueQuality", "MeasurementValueQuality", "0..1", "1"),
+        Relationship ("MeasurementValueSource", "MeasurementValueSource", "1", "0..*"),
+        Relationship ("ProcedureDataSets", "ProcedureDataSet", "0..*", "0..*"),
+        Relationship ("RemoteSource", "RemoteSource", "0..1", "1")
     )
     val sensorAccuracy: Fielder = parse_element (element (cls, fields(0)))
     val timeStamp: Fielder = parse_element (element (cls, fields(1)))
@@ -1768,14 +1858,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("unknown", "ICCPIndicationPoint", false),
-        Relationship ("ErpPerson", "OldPerson", false),
-        Relationship ("MeasurementValueQuality", "MeasurementValueQuality", false),
-        Relationship ("MeasurementValueSource", "MeasurementValueSource", false),
-        Relationship ("ProcedureDataSets", "ProcedureDataSet", true),
-        Relationship ("RemoteSource", "RemoteSource", false)
-    )
 }
 
 /**
@@ -1837,8 +1919,11 @@ object MeasurementValueQuality
 extends
     Parseable[MeasurementValueQuality]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "MeasurementValue"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("MeasurementValue", "MeasurementValue", "1", "0..1")
     )
     val MeasurementValue: Fielder = parse_attribute (attribute (cls, fields(0)))
 
@@ -1853,9 +1938,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("MeasurementValue", "MeasurementValue", false)
-    )
 }
 
 /**
@@ -1864,13 +1946,15 @@ extends
  * User conventions for how to use the MeasurementValueSource attributes are described in the introduction to IEC 61970-301.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param MeasurementValues [[ch.ninecode.model.MeasurementValue MeasurementValue]] The MeasurementValues updated by the source.
  * @group Meas
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
 case class MeasurementValueSource
 (
-    override val sup: IdentifiedObject
+    override val sup: IdentifiedObject,
+    MeasurementValues: List[String]
 )
 extends
     Element
@@ -1878,7 +1962,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -1899,7 +1983,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = MeasurementValueSource.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (MeasurementValueSource.fields (position), x))
+        emitattrs (0, MeasurementValues)
+        s.toString
     }
     override def export: String =
     {
@@ -1911,18 +1999,25 @@ object MeasurementValueSource
 extends
     Parseable[MeasurementValueSource]
 {
+    override val fields: Array[String] = Array[String] (
+        "MeasurementValues"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("MeasurementValues", "MeasurementValue", "0..*", "1")
+    )
+    val MeasurementValues: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): MeasurementValueSource =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = MeasurementValueSource (
-            IdentifiedObject.parse (context)
+            IdentifiedObject.parse (context),
+            masks (MeasurementValues (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -2020,7 +2115,7 @@ object Quality61850
 extends
     Parseable[Quality61850]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "badReference",
         "estimatorReplaced",
         "failure",
@@ -2069,9 +2164,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -2131,8 +2223,11 @@ object RaiseLowerCommand
 extends
     Parseable[RaiseLowerCommand]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "ValueAliasSet"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ValueAliasSet", "ValueAliasSet", "0..1", "0..*")
     )
     val ValueAliasSet: Fielder = parse_attribute (attribute (cls, fields(0)))
 
@@ -2147,9 +2242,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("ValueAliasSet", "ValueAliasSet", false)
-    )
 }
 
 /**
@@ -2212,7 +2304,7 @@ object SetPoint
 extends
     Parseable[SetPoint]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "normalValue",
         "value"
     )
@@ -2231,22 +2323,21 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
  * StringMeasurement represents a measurement with values of type string.
  *
  * @param sup [[ch.ninecode.model.Measurement Measurement]] Reference to the superclass object.
+ * @param StringMeasurementValues [[ch.ninecode.model.StringMeasurementValue StringMeasurementValue]] The values connected to this measurement.
  * @group Meas
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
 case class StringMeasurement
 (
-    override val sup: Measurement
+    override val sup: Measurement,
+    StringMeasurementValues: List[String]
 )
 extends
     Element
@@ -2254,7 +2345,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -2275,7 +2366,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = StringMeasurement.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (StringMeasurement.fields (position), x))
+        emitattrs (0, StringMeasurementValues)
+        s.toString
     }
     override def export: String =
     {
@@ -2287,18 +2382,25 @@ object StringMeasurement
 extends
     Parseable[StringMeasurement]
 {
+    override val fields: Array[String] = Array[String] (
+        "StringMeasurementValues"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("StringMeasurementValues", "StringMeasurementValue", "0..*", "1")
+    )
+    val StringMeasurementValues: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): StringMeasurement =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = StringMeasurement (
-            Measurement.parse (context)
+            Measurement.parse (context),
+            masks (StringMeasurementValues (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -2362,9 +2464,12 @@ object StringMeasurementValue
 extends
     Parseable[StringMeasurementValue]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "value",
         "StringMeasurement"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("StringMeasurement", "StringMeasurement", "1", "0..*")
     )
     val value: Fielder = parse_element (element (cls, fields(0)))
     val StringMeasurement: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -2381,9 +2486,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("StringMeasurement", "StringMeasurement", false)
-    )
 }
 
 /**
@@ -2392,13 +2494,21 @@ extends
  * Each ValueAliasSet has a name, description etc. A specific Measurement may represent a discrete state like Open, Closed, Intermediate etc. This requires a translation from the MeasurementValue.value number to a string, e.g. 0-&gt;"Invalid", 1-&gt;"Open", 2-&gt;"Closed", 3-&gt;"Intermediate". Each ValueToAlias member in ValueAliasSet.Value describe a mapping for one particular value to a name.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param Commands [[ch.ninecode.model.Command Command]] The Commands using the set for translation.
+ * @param Discretes [[ch.ninecode.model.Discrete Discrete]] The Measurements using the set for translation.
+ * @param RaiseLowerCommands [[ch.ninecode.model.RaiseLowerCommand RaiseLowerCommand]] The Commands using the set for translation.
+ * @param Values [[ch.ninecode.model.ValueToAlias ValueToAlias]] The ValueToAlias mappings included in the set.
  * @group Meas
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
  */
 case class ValueAliasSet
 (
-    override val sup: IdentifiedObject
+    override val sup: IdentifiedObject,
+    Commands: List[String],
+    Discretes: List[String],
+    RaiseLowerCommands: List[String],
+    Values: List[String]
 )
 extends
     Element
@@ -2406,7 +2516,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List(), List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -2427,7 +2537,14 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ValueAliasSet.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ValueAliasSet.fields (position), x))
+        emitattrs (0, Commands)
+        emitattrs (1, Discretes)
+        emitattrs (2, RaiseLowerCommands)
+        emitattrs (3, Values)
+        s.toString
     }
     override def export: String =
     {
@@ -2439,18 +2556,37 @@ object ValueAliasSet
 extends
     Parseable[ValueAliasSet]
 {
+    override val fields: Array[String] = Array[String] (
+        "Commands",
+        "Discretes",
+        "RaiseLowerCommands",
+        "Values"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Commands", "Command", "0..*", "0..1"),
+        Relationship ("Discretes", "Discrete", "0..*", "0..1"),
+        Relationship ("RaiseLowerCommands", "RaiseLowerCommand", "0..*", "0..1"),
+        Relationship ("Values", "ValueToAlias", "1..*", "1")
+    )
+    val Commands: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val Discretes: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val RaiseLowerCommands: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val Values: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
 
     def parse (context: Context): ValueAliasSet =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = ValueAliasSet (
-            IdentifiedObject.parse (context)
+            IdentifiedObject.parse (context),
+            masks (Commands (), 0),
+            masks (Discretes (), 1),
+            masks (RaiseLowerCommands (), 2),
+            masks (Values (), 3)
         )
+        ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -2514,9 +2650,12 @@ object ValueToAlias
 extends
     Parseable[ValueToAlias]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "value",
         "ValueAliasSet"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ValueAliasSet", "ValueAliasSet", "1", "1..*")
     )
     val value: Fielder = parse_element (element (cls, fields(0)))
     val ValueAliasSet: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -2533,9 +2672,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("ValueAliasSet", "ValueAliasSet", false)
-    )
 }
 
 private[ninecode] object _Meas

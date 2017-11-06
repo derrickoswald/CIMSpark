@@ -71,7 +71,7 @@ object DateInterval
 extends
     Parseable[DateInterval]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "end",
         "start"
     )
@@ -90,9 +90,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -159,7 +156,7 @@ object DateTimeInterval
 extends
     Parseable[DateTimeInterval]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "end",
         "start"
     )
@@ -178,9 +175,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -248,7 +242,7 @@ object DecimalQuantity
 extends
     Parseable[DecimalQuantity]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "currency",
         "multiplier",
         "unit",
@@ -273,9 +267,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -346,7 +337,7 @@ object FloatQuantity
 extends
     Parseable[FloatQuantity]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "multiplier",
         "unit",
         "value"
@@ -368,9 +359,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -441,7 +429,7 @@ object IntegerQuantity
 extends
     Parseable[IntegerQuantity]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "multiplier",
         "unit",
         "value"
@@ -463,9 +451,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -532,7 +517,7 @@ object MonthDayInterval
 extends
     Parseable[MonthDayInterval]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "end",
         "start"
     )
@@ -551,9 +536,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -624,7 +606,7 @@ object StringQuantity
 extends
     Parseable[StringQuantity]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "multiplier",
         "unit",
         "value"
@@ -646,9 +628,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -715,7 +694,7 @@ object TimeInterval
 extends
     Parseable[TimeInterval]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "end",
         "start"
     )
@@ -734,9 +713,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 private[ninecode] object _Domain

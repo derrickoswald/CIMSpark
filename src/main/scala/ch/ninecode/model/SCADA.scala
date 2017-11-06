@@ -67,8 +67,11 @@ object CommunicationLink
 extends
     Parseable[CommunicationLink]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "RemoteUnits"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("RemoteUnits", "RemoteUnit", "0..*", "1..*")
     )
     val RemoteUnits: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
@@ -83,9 +86,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("RemoteUnits", "RemoteUnit", true)
-    )
 }
 
 /**
@@ -156,11 +156,14 @@ object RemoteControl
 extends
     Parseable[RemoteControl]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "actuatorMaximum",
         "actuatorMinimum",
         "remoteControlled",
         "Control"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Control", "Control", "1", "0..1")
     )
     val actuatorMaximum: Fielder = parse_element (element (cls, fields(0)))
     val actuatorMinimum: Fielder = parse_element (element (cls, fields(1)))
@@ -181,9 +184,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Control", "Control", false)
-    )
 }
 
 /**
@@ -246,8 +246,11 @@ object RemotePoint
 extends
     Parseable[RemotePoint]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "RemoteUnit"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("RemoteUnit", "RemoteUnit", "1", "0..*")
     )
     val RemoteUnit: Fielder = parse_attribute (attribute (cls, fields(0)))
 
@@ -262,9 +265,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("RemoteUnit", "RemoteUnit", false)
-    )
 }
 
 /**
@@ -338,12 +338,15 @@ object RemoteSource
 extends
     Parseable[RemoteSource]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "deadband",
         "scanInterval",
         "sensorMaximum",
         "sensorMinimum",
         "MeasurementValue"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("MeasurementValue", "MeasurementValue", "1", "0..1")
     )
     val deadband: Fielder = parse_element (element (cls, fields(0)))
     val scanInterval: Fielder = parse_element (element (cls, fields(1)))
@@ -366,9 +369,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("MeasurementValue", "MeasurementValue", false)
-    )
 }
 
 /**
@@ -379,6 +379,7 @@ extends
  * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @param remoteUnitType Type of remote unit.
  * @param CommunicationLinks [[ch.ninecode.model.CommunicationLink CommunicationLink]] RTUs may be attached to communication links.
+ * @param RemotePoints [[ch.ninecode.model.RemotePoint RemotePoint]] Remote points this Remote unit contains.
  * @group SCADA
  * @groupname SCADA Package SCADA
  * @groupdesc SCADA Contains entities to model information used by Supervisory Control and Data Acquisition (SCADA) applications. Supervisory control supports operator control of equipment, such as opening or closing a breaker. Data acquisition gathers telemetered data from various sources.  The subtypes of the Telemetry entity deliberately match the UCA and IEC 61850 definitions. 
@@ -388,7 +389,8 @@ case class RemoteUnit
 (
     override val sup: PowerSystemResource,
     remoteUnitType: String,
-    CommunicationLinks: List[String]
+    CommunicationLinks: List[String],
+    RemotePoints: List[String]
 )
 extends
     Element
@@ -396,7 +398,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, List()) }
+    def this () = { this (null, null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -423,6 +425,7 @@ extends
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (RemoteUnit.fields (position), x))
         emitattr (0, remoteUnitType)
         emitattrs (1, CommunicationLinks)
+        emitattrs (2, RemotePoints)
         s.toString
     }
     override def export: String =
@@ -435,12 +438,18 @@ object RemoteUnit
 extends
     Parseable[RemoteUnit]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "remoteUnitType",
-        "CommunicationLinks"
+        "CommunicationLinks",
+        "RemotePoints"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("CommunicationLinks", "CommunicationLink", "1..*", "0..*"),
+        Relationship ("RemotePoints", "RemotePoint", "0..*", "1")
     )
     val remoteUnitType: Fielder = parse_attribute (attribute (cls, fields(0)))
     val CommunicationLinks: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val RemotePoints: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
 
     def parse (context: Context): RemoteUnit =
     {
@@ -449,14 +458,12 @@ extends
         val ret = RemoteUnit (
             PowerSystemResource.parse (context),
             mask (remoteUnitType (), 0),
-            masks (CommunicationLinks (), 1)
+            masks (CommunicationLinks (), 1),
+            masks (RemotePoints (), 2)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("CommunicationLinks", "CommunicationLink", true)
-    )
 }
 
 private[ninecode] object _SCADA

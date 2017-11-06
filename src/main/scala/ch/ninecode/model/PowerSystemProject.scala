@@ -16,11 +16,12 @@ import ch.ninecode.cim.Relationship
  * @param priority Priority between competing projects.
  *        Use 0 for don t care.  Use 1 for highest priority.  Use 2 as priority is less than 1 and so on.
  * @param state Describes the state the project realisation are from starting planning until it is commissioned if not cancelled.
- * @param unknown [[ch.ninecode.model.DifferenceModel DifferenceModel]] <em>undocumented</em>
+ * @param `type` Type of project.
+ * @param unknown [[ch.ninecode.model.PowerSystemProjectSchedule PowerSystemProjectSchedule]] <em>undocumented</em>
  * @param version Version of the project.
  *        Changes to a project is not modeled. So the project with the highest version are the valid/latest project. Only positive numbers equal or higher than 1 are allowed.
+ * @param Collection [[ch.ninecode.model.PowerSystemSubProject PowerSystemSubProject]] <em>undocumented</em>
  * @param Project [[ch.ninecode.model.PowerSystemProject PowerSystemProject]] <em>undocumented</em>
- * @param `type` Type of project.
  * @group PowerSystemProject
  * @groupname PowerSystemProject Package PowerSystemProject
  * @groupdesc PowerSystemProject The package describes how power system model data is managed and evolve over time in projects.
@@ -32,10 +33,11 @@ case class PowerSystemProject
     name: String,
     priority: Int,
     state: String,
-    unknown: String,
+    `type`: String,
+    unknown: List[String],
     version: Int,
-    Project: String,
-    `type`: String
+    Collection: List[String],
+    Project: String
 )
 extends
     Element
@@ -43,7 +45,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, 0, null, null, 0, null, null) }
+    def this () = { this (null, null, null, 0, null, null, List(), 0, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -68,14 +70,16 @@ extends
         implicit val clz: String = PowerSystemProject.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PowerSystemProject.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PowerSystemProject.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (PowerSystemProject.fields (position), x))
         emitelem (0, description)
         emitelem (1, name)
         emitelem (2, priority)
         emitattr (3, state)
-        emitattr (4, unknown)
-        emitelem (5, version)
-        emitattr (6, Project)
-        emitelem (7, `type`)
+        emitelem (4, `type`)
+        emitattrs (5, unknown)
+        emitelem (6, version)
+        emitattrs (7, Collection)
+        emitattr (8, Project)
         s.toString
     }
     override def export: String =
@@ -88,24 +92,31 @@ object PowerSystemProject
 extends
     Parseable[PowerSystemProject]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "description",
         "name",
         "priority",
         "state",
+        "type",
         "",
         "version",
-        "Project",
-        "type"
+        "Collection",
+        "Project"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("unknown", "PowerSystemProjectSchedule", "1..*", "1"),
+        Relationship ("Collection", "PowerSystemSubProject", "0..*", "1"),
+        Relationship ("Project", "PowerSystemProject", "0..1", "0..*")
     )
     val description: Fielder = parse_element (element (cls, fields(0)))
     val name: Fielder = parse_element (element (cls, fields(1)))
     val priority: Fielder = parse_element (element (cls, fields(2)))
     val state: Fielder = parse_attribute (attribute (cls, fields(3)))
-    val unknown: Fielder = parse_attribute (attribute (cls, fields(4)))
-    val version: Fielder = parse_element (element (cls, fields(5)))
-    val Project: Fielder = parse_attribute (attribute (cls, fields(6)))
-    val `type`: Fielder = parse_element (element (cls, fields(7)))
+    val `type`: Fielder = parse_element (element (cls, fields(4)))
+    val unknown: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
+    val version: Fielder = parse_element (element (cls, fields(6)))
+    val Collection: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
+    val Project: Fielder = parse_attribute (attribute (cls, fields(8)))
 
     def parse (context: Context): PowerSystemProject =
     {
@@ -117,18 +128,15 @@ extends
             mask (name (), 1),
             toInteger (mask (priority (), 2)),
             mask (state (), 3),
-            mask (unknown (), 4),
-            toInteger (mask (version (), 5)),
-            mask (Project (), 6),
-            mask (`type` (), 7)
+            mask (`type` (), 4),
+            masks (unknown (), 5),
+            toInteger (mask (version (), 6)),
+            masks (Collection (), 7),
+            mask (Project (), 8)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("unknown", "DifferenceModel", false),
-        Relationship ("Project", "PowerSystemProject", false)
-    )
 }
 
 /**
@@ -198,7 +206,7 @@ object PowerSystemProjectSchedule
 extends
     Parseable[PowerSystemProjectSchedule]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "actualEnd",
         "actualStart",
         "scheduledEnd",
@@ -206,6 +214,9 @@ extends
         "status",
         "stepType",
         ""
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("unknown", "PowerSystemProject", "1", "1..*")
     )
     val actualEnd: Fielder = parse_element (element (cls, fields(0)))
     val actualStart: Fielder = parse_element (element (cls, fields(1)))
@@ -232,9 +243,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("unknown", "PowerSystemProject", false)
-    )
 }
 
 /**
@@ -294,8 +302,11 @@ object PowerSystemSubProject
 extends
     Parseable[PowerSystemSubProject]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "Project"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Project", "PowerSystemProject", "1", "0..*")
     )
     val Project: Fielder = parse_attribute (attribute (cls, fields(0)))
 
@@ -310,9 +321,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Project", "PowerSystemProject", false)
-    )
 }
 
 /**
@@ -388,7 +396,7 @@ object ProjectStep
 extends
     Parseable[ProjectStep]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "actualEnd",
         "actualStart",
         "scheduledEnd",
@@ -419,9 +427,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 private[ninecode] object _PowerSystemProject

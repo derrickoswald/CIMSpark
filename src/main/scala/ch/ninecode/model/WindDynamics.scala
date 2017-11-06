@@ -76,8 +76,11 @@ object WindAeroConstIEC
 extends
     Parseable[WindAeroConstIEC]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "WindGenTurbineType1aIEC"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("WindGenTurbineType1aIEC", "WindGenTurbineType1aIEC", "1", "1")
     )
     val WindGenTurbineType1aIEC: Fielder = parse_attribute (attribute (cls, fields(0)))
 
@@ -92,9 +95,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("WindGenTurbineType1aIEC", "WindGenTurbineType1aIEC", false)
-    )
 }
 
 /**
@@ -175,10 +175,13 @@ object WindAeroOneDimIEC
 extends
     Parseable[WindAeroOneDimIEC]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "ka",
         "thetaomega",
         "WindTurbineType3IEC"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("WindTurbineType3IEC", "WindTurbineType3IEC", "1", "0..1")
     )
     val ka: Fielder = parse_element (element (cls, fields(0)))
     val thetaomega: Fielder = parse_element (element (cls, fields(1)))
@@ -197,9 +200,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("WindTurbineType3IEC", "WindTurbineType3IEC", false)
-    )
 }
 
 /**
@@ -300,7 +300,7 @@ object WindAeroTwoDimIEC
 extends
     Parseable[WindAeroTwoDimIEC]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "dpomega",
         "dptheta",
         "dpv1",
@@ -309,6 +309,9 @@ extends
         "thetav2",
         "thetazero",
         "WindTurbineType3IEC"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("WindTurbineType3IEC", "WindTurbineType3IEC", "1", "0..1")
     )
     val dpomega: Fielder = parse_element (element (cls, fields(0)))
     val dptheta: Fielder = parse_element (element (cls, fields(1)))
@@ -337,9 +340,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("WindTurbineType3IEC", "WindTurbineType3IEC", false)
-    )
 }
 
 /**
@@ -366,6 +366,7 @@ extends
  *        It is type dependent parameter.
  * @param upqumax Wind turbine voltage in the operation point where zero reactive current can be delivered (<i>u</i><sub>pqumax</sub>).
  *        It is type dependent parameter.
+ * @param WindDynamicsLookupTable [[ch.ninecode.model.WindDynamicsLookupTable WindDynamicsLookupTable]] The wind dynamics lookup table associated with this current control limitation model.
  * @param WindTurbineType3or4IEC [[ch.ninecode.model.WindTurbineType3or4IEC WindTurbineType3or4IEC]] Wind turbine type 3 or 4 model with which this wind control current limitation model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
@@ -391,6 +392,7 @@ case class WindContCurrLimIEC
     mqpri: Boolean,
     tufiltcl: Double,
     upqumax: Double,
+    WindDynamicsLookupTable: List[String],
     WindTurbineType3or4IEC: String
 )
 extends
@@ -399,7 +401,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, 0.0, false, false, 0.0, 0.0, null) }
+    def this () = { this (null, 0.0, 0.0, 0.0, false, false, 0.0, 0.0, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -424,6 +426,7 @@ extends
         implicit val clz: String = WindContCurrLimIEC.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindContCurrLimIEC.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindContCurrLimIEC.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (WindContCurrLimIEC.fields (position), x))
         emitelem (0, imax)
         emitelem (1, imaxdip)
         emitelem (2, kpqu)
@@ -431,7 +434,8 @@ extends
         emitelem (4, mqpri)
         emitelem (5, tufiltcl)
         emitelem (6, upqumax)
-        emitattr (7, WindTurbineType3or4IEC)
+        emitattrs (7, WindDynamicsLookupTable)
+        emitattr (8, WindTurbineType3or4IEC)
         s.toString
     }
     override def export: String =
@@ -444,7 +448,7 @@ object WindContCurrLimIEC
 extends
     Parseable[WindContCurrLimIEC]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "imax",
         "imaxdip",
         "kpqu",
@@ -452,7 +456,12 @@ extends
         "mqpri",
         "tufiltcl",
         "upqumax",
+        "WindDynamicsLookupTable",
         "WindTurbineType3or4IEC"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("WindDynamicsLookupTable", "WindDynamicsLookupTable", "1..*", "0..1"),
+        Relationship ("WindTurbineType3or4IEC", "WindTurbineType3or4IEC", "1", "1")
     )
     val imax: Fielder = parse_element (element (cls, fields(0)))
     val imaxdip: Fielder = parse_element (element (cls, fields(1)))
@@ -461,7 +470,8 @@ extends
     val mqpri: Fielder = parse_element (element (cls, fields(4)))
     val tufiltcl: Fielder = parse_element (element (cls, fields(5)))
     val upqumax: Fielder = parse_element (element (cls, fields(6)))
-    val WindTurbineType3or4IEC: Fielder = parse_attribute (attribute (cls, fields(7)))
+    val WindDynamicsLookupTable: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
+    val WindTurbineType3or4IEC: Fielder = parse_attribute (attribute (cls, fields(8)))
 
     def parse (context: Context): WindContCurrLimIEC =
     {
@@ -476,14 +486,12 @@ extends
             toBoolean (mask (mqpri (), 4)),
             toDouble (mask (tufiltcl (), 5)),
             toDouble (mask (upqumax (), 6)),
-            mask (WindTurbineType3or4IEC (), 7)
+            masks (WindDynamicsLookupTable (), 7),
+            mask (WindTurbineType3or4IEC (), 8)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("WindTurbineType3or4IEC", "WindTurbineType3or4IEC", false)
-    )
 }
 
 /**
@@ -540,6 +548,7 @@ extends
  *        It can be calculated from two mass model parameters. It is type dependent parameter.
  * @param zeta Coefficient for active drive train damping (zeta).
  *        It is type dependent parameter.
+ * @param WindDynamicsLookupTable [[ch.ninecode.model.WindDynamicsLookupTable WindDynamicsLookupTable]] The wind dynamics lookup table associated with this P control type 3 model.
  * @param WindTurbineType3IEC [[ch.ninecode.model.WindTurbineType3IEC WindTurbineType3IEC]] Wind turbine type 3 model with which this Wind control P type 3 model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
@@ -581,6 +590,7 @@ case class WindContPType3IEC
     updip: Double,
     wdtd: Double,
     zeta: Double,
+    WindDynamicsLookupTable: List[String],
     WindTurbineType3IEC: String
 )
 extends
@@ -589,7 +599,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null) }
+    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -614,6 +624,7 @@ extends
         implicit val clz: String = WindContPType3IEC.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindContPType3IEC.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindContPType3IEC.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (WindContPType3IEC.fields (position), x))
         emitelem (0, dpmax)
         emitelem (1, dprefmax)
         emitelem (2, dprefmin)
@@ -637,7 +648,8 @@ extends
         emitelem (20, updip)
         emitelem (21, wdtd)
         emitelem (22, zeta)
-        emitattr (23, WindTurbineType3IEC)
+        emitattrs (23, WindDynamicsLookupTable)
+        emitattr (24, WindTurbineType3IEC)
         s.toString
     }
     override def export: String =
@@ -650,7 +662,7 @@ object WindContPType3IEC
 extends
     Parseable[WindContPType3IEC]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "dpmax",
         "dprefmax",
         "dprefmin",
@@ -674,7 +686,12 @@ extends
         "updip",
         "wdtd",
         "zeta",
+        "WindDynamicsLookupTable",
         "WindTurbineType3IEC"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("WindDynamicsLookupTable", "WindDynamicsLookupTable", "1..*", "0..1"),
+        Relationship ("WindTurbineType3IEC", "WindTurbineType3IEC", "1", "1")
     )
     val dpmax: Fielder = parse_element (element (cls, fields(0)))
     val dprefmax: Fielder = parse_element (element (cls, fields(1)))
@@ -699,7 +716,8 @@ extends
     val updip: Fielder = parse_element (element (cls, fields(20)))
     val wdtd: Fielder = parse_element (element (cls, fields(21)))
     val zeta: Fielder = parse_element (element (cls, fields(22)))
-    val WindTurbineType3IEC: Fielder = parse_attribute (attribute (cls, fields(23)))
+    val WindDynamicsLookupTable: FielderMultiple = parse_attributes (attribute (cls, fields(23)))
+    val WindTurbineType3IEC: Fielder = parse_attribute (attribute (cls, fields(24)))
 
     def parse (context: Context): WindContPType3IEC =
     {
@@ -730,14 +748,12 @@ extends
             toDouble (mask (updip (), 20)),
             toDouble (mask (wdtd (), 21)),
             toDouble (mask (zeta (), 22)),
-            mask (WindTurbineType3IEC (), 23)
+            masks (WindDynamicsLookupTable (), 23),
+            mask (WindTurbineType3IEC (), 24)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("WindTurbineType3IEC", "WindTurbineType3IEC", false)
-    )
 }
 
 /**
@@ -822,11 +838,14 @@ object WindContPType4aIEC
 extends
     Parseable[WindContPType4aIEC]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "dpmaxp4a",
         "tpordp4a",
         "tufiltp4a",
         "WindTurbineType4aIEC"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("WindTurbineType4aIEC", "WindTurbineType4aIEC", "1", "1")
     )
     val dpmaxp4a: Fielder = parse_element (element (cls, fields(0)))
     val tpordp4a: Fielder = parse_element (element (cls, fields(1)))
@@ -847,9 +866,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("WindTurbineType4aIEC", "WindTurbineType4aIEC", false)
-    )
 }
 
 /**
@@ -938,12 +954,15 @@ object WindContPType4bIEC
 extends
     Parseable[WindContPType4bIEC]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "dpmaxp4b",
         "tpaero",
         "tpordp4b",
         "tufiltp4b",
         "WindTurbineType4bIEC"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("WindTurbineType4bIEC", "WindTurbineType4bIEC", "1", "1")
     )
     val dpmaxp4b: Fielder = parse_element (element (cls, fields(0)))
     val tpaero: Fielder = parse_element (element (cls, fields(1)))
@@ -966,9 +985,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("WindTurbineType4bIEC", "WindTurbineType4bIEC", false)
-    )
 }
 
 /**
@@ -1081,7 +1097,7 @@ object WindContPitchAngleIEC
 extends
     Parseable[WindContPitchAngleIEC]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "dthetamax",
         "dthetamin",
         "kic",
@@ -1093,6 +1109,9 @@ extends
         "thetamin",
         "ttheta",
         "WindTurbineType3IEC"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("WindTurbineType3IEC", "WindTurbineType3IEC", "1", "1")
     )
     val dthetamax: Fielder = parse_element (element (cls, fields(0)))
     val dthetamin: Fielder = parse_element (element (cls, fields(1)))
@@ -1127,9 +1146,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("WindTurbineType3IEC", "WindTurbineType3IEC", false)
-    )
 }
 
 /**
@@ -1294,7 +1310,7 @@ object WindContQIEC
 extends
     Parseable[WindContQIEC]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "iqh1",
         "iqmax",
         "iqmin",
@@ -1319,6 +1335,9 @@ extends
         "windUVRTQcontrolModesType",
         "xdroop",
         "WindTurbineType3or4IEC"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("WindTurbineType3or4IEC", "WindTurbineType3or4IEC", "1", "1")
     )
     val iqh1: Fielder = parse_element (element (cls, fields(0)))
     val iqmax: Fielder = parse_element (element (cls, fields(1)))
@@ -1379,9 +1398,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("WindTurbineType3or4IEC", "WindTurbineType3or4IEC", false)
-    )
 }
 
 /**
@@ -1462,10 +1478,13 @@ object WindContQLimIEC
 extends
     Parseable[WindContQLimIEC]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "qmax",
         "qmin",
         "WindTurbineType3or4IEC"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("WindTurbineType3or4IEC", "WindTurbineType3or4IEC", "0..1", "0..1")
     )
     val qmax: Fielder = parse_element (element (cls, fields(0)))
     val qmin: Fielder = parse_element (element (cls, fields(1)))
@@ -1484,9 +1503,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("WindTurbineType3or4IEC", "WindTurbineType3or4IEC", false)
-    )
 }
 
 /**
@@ -1499,6 +1515,7 @@ extends
  *        It is type dependent parameter.
  * @param tufiltql Voltage measurement filter time constant for Q capacity (<i>T</i><sub>ufiltql</sub>).
  *        It is type dependent parameter.
+ * @param WindDynamicsLookupTable [[ch.ninecode.model.WindDynamicsLookupTable WindDynamicsLookupTable]] The wind dynamics lookup table associated with this QP and QU limitation model.
  * @param WindTurbineType3or4IEC [[ch.ninecode.model.WindTurbineType3or4IEC WindTurbineType3or4IEC]] Wind generator type 3 or 4 model with which this QP and QU limitation model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
@@ -1519,6 +1536,7 @@ case class WindContQPQULimIEC
     override val sup: IdentifiedObject,
     tpfiltql: Double,
     tufiltql: Double,
+    WindDynamicsLookupTable: List[String],
     WindTurbineType3or4IEC: String
 )
 extends
@@ -1527,7 +1545,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, null) }
+    def this () = { this (null, 0.0, 0.0, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -1552,9 +1570,11 @@ extends
         implicit val clz: String = WindContQPQULimIEC.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindContQPQULimIEC.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindContQPQULimIEC.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (WindContQPQULimIEC.fields (position), x))
         emitelem (0, tpfiltql)
         emitelem (1, tufiltql)
-        emitattr (2, WindTurbineType3or4IEC)
+        emitattrs (2, WindDynamicsLookupTable)
+        emitattr (3, WindTurbineType3or4IEC)
         s.toString
     }
     override def export: String =
@@ -1567,14 +1587,20 @@ object WindContQPQULimIEC
 extends
     Parseable[WindContQPQULimIEC]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "tpfiltql",
         "tufiltql",
+        "WindDynamicsLookupTable",
         "WindTurbineType3or4IEC"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("WindDynamicsLookupTable", "WindDynamicsLookupTable", "1..*", "0..1"),
+        Relationship ("WindTurbineType3or4IEC", "WindTurbineType3or4IEC", "0..1", "0..1")
     )
     val tpfiltql: Fielder = parse_element (element (cls, fields(0)))
     val tufiltql: Fielder = parse_element (element (cls, fields(1)))
-    val WindTurbineType3or4IEC: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val WindDynamicsLookupTable: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val WindTurbineType3or4IEC: Fielder = parse_attribute (attribute (cls, fields(3)))
 
     def parse (context: Context): WindContQPQULimIEC =
     {
@@ -1584,14 +1610,12 @@ extends
             IdentifiedObject.parse (context),
             toDouble (mask (tpfiltql (), 0)),
             toDouble (mask (tufiltql (), 1)),
-            mask (WindTurbineType3or4IEC (), 2)
+            masks (WindDynamicsLookupTable (), 2),
+            mask (WindTurbineType3or4IEC (), 3)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("WindTurbineType3or4IEC", "WindTurbineType3or4IEC", false)
-    )
 }
 
 /**
@@ -1616,6 +1640,7 @@ extends
  *        It is type dependent parameter.
  * @param tpfiltrr Filter time constant for power measurement (<i>T</i><sub>pfiltrr</sub>).
  *        It is type dependent parameter.
+ * @param WindDynamicsLookupTable [[ch.ninecode.model.WindDynamicsLookupTable WindDynamicsLookupTable]] The wind dynamics lookup table associated with this rotor resistance control model.
  * @param WindGenTurbineType2IEC [[ch.ninecode.model.WindGenTurbineType2IEC WindGenTurbineType2IEC]] Wind turbine type 2 model with whitch this wind control rotor resistance model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
@@ -1642,6 +1667,7 @@ case class WindContRotorRIEC
     rmin: Double,
     tomegafiltrr: Double,
     tpfiltrr: Double,
+    WindDynamicsLookupTable: List[String],
     WindGenTurbineType2IEC: String
 )
 extends
@@ -1650,7 +1676,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null) }
+    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -1675,6 +1701,7 @@ extends
         implicit val clz: String = WindContRotorRIEC.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindContRotorRIEC.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindContRotorRIEC.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (WindContRotorRIEC.fields (position), x))
         emitelem (0, kirr)
         emitelem (1, komegafilt)
         emitelem (2, kpfilt)
@@ -1683,7 +1710,8 @@ extends
         emitelem (5, rmin)
         emitelem (6, tomegafiltrr)
         emitelem (7, tpfiltrr)
-        emitattr (8, WindGenTurbineType2IEC)
+        emitattrs (8, WindDynamicsLookupTable)
+        emitattr (9, WindGenTurbineType2IEC)
         s.toString
     }
     override def export: String =
@@ -1696,7 +1724,7 @@ object WindContRotorRIEC
 extends
     Parseable[WindContRotorRIEC]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "kirr",
         "komegafilt",
         "kpfilt",
@@ -1705,7 +1733,12 @@ extends
         "rmin",
         "tomegafiltrr",
         "tpfiltrr",
+        "WindDynamicsLookupTable",
         "WindGenTurbineType2IEC"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("WindDynamicsLookupTable", "WindDynamicsLookupTable", "1..*", "0..1"),
+        Relationship ("WindGenTurbineType2IEC", "WindGenTurbineType2IEC", "1", "1")
     )
     val kirr: Fielder = parse_element (element (cls, fields(0)))
     val komegafilt: Fielder = parse_element (element (cls, fields(1)))
@@ -1715,7 +1748,8 @@ extends
     val rmin: Fielder = parse_element (element (cls, fields(5)))
     val tomegafiltrr: Fielder = parse_element (element (cls, fields(6)))
     val tpfiltrr: Fielder = parse_element (element (cls, fields(7)))
-    val WindGenTurbineType2IEC: Fielder = parse_attribute (attribute (cls, fields(8)))
+    val WindDynamicsLookupTable: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
+    val WindGenTurbineType2IEC: Fielder = parse_attribute (attribute (cls, fields(9)))
 
     def parse (context: Context): WindContRotorRIEC =
     {
@@ -1731,14 +1765,12 @@ extends
             toDouble (mask (rmin (), 5)),
             toDouble (mask (tomegafiltrr (), 6)),
             toDouble (mask (tpfiltrr (), 7)),
-            mask (WindGenTurbineType2IEC (), 8)
+            masks (WindDynamicsLookupTable (), 8),
+            mask (WindGenTurbineType2IEC (), 9)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("WindGenTurbineType2IEC", "WindGenTurbineType2IEC", false)
-    )
 }
 
 /**
@@ -1845,7 +1877,7 @@ object WindDynamicsLookupTable
 extends
     Parseable[WindDynamicsLookupTable]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "input",
         "lookupTableFunctionType",
         "output",
@@ -1859,6 +1891,17 @@ extends
         "WindPlantFreqPcontrolIEC",
         "WindPlantReactiveControlIEC",
         "WindProtectionIEC"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("WindContCurrLimIEC", "WindContCurrLimIEC", "0..1", "1..*"),
+        Relationship ("WindContPType3IEC", "WindContPType3IEC", "0..1", "1..*"),
+        Relationship ("WindContQPQULimIEC", "WindContQPQULimIEC", "0..1", "1..*"),
+        Relationship ("WindContRotorRIEC", "WindContRotorRIEC", "0..1", "1..*"),
+        Relationship ("WindGenType3bIEC", "WindGenType3bIEC", "0..1", "1..*"),
+        Relationship ("WindPitchContPowerIEC", "WindPitchContPowerIEC", "0..1", "1..*"),
+        Relationship ("WindPlantFreqPcontrolIEC", "WindPlantFreqPcontrolIEC", "0..1", "1..*"),
+        Relationship ("WindPlantReactiveControlIEC", "WindPlantReactiveControlIEC", "0..1", "1..*"),
+        Relationship ("WindProtectionIEC", "WindProtectionIEC", "0..1", "1..*")
     )
     val input: Fielder = parse_element (element (cls, fields(0)))
     val lookupTableFunctionType: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -1897,17 +1940,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("WindContCurrLimIEC", "WindContCurrLimIEC", false),
-        Relationship ("WindContPType3IEC", "WindContPType3IEC", false),
-        Relationship ("WindContQPQULimIEC", "WindContQPQULimIEC", false),
-        Relationship ("WindContRotorRIEC", "WindContRotorRIEC", false),
-        Relationship ("WindGenType3bIEC", "WindGenType3bIEC", false),
-        Relationship ("WindPitchContPowerIEC", "WindPitchContPowerIEC", false),
-        Relationship ("WindPlantFreqPcontrolIEC", "WindPlantFreqPcontrolIEC", false),
-        Relationship ("WindPlantReactiveControlIEC", "WindPlantReactiveControlIEC", false),
-        Relationship ("WindProtectionIEC", "WindProtectionIEC", false)
-    )
 }
 
 /**
@@ -1979,8 +2011,11 @@ object WindGenTurbineType1aIEC
 extends
     Parseable[WindGenTurbineType1aIEC]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "WindAeroConstIEC"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("WindAeroConstIEC", "WindAeroConstIEC", "1", "1")
     )
     val WindAeroConstIEC: Fielder = parse_attribute (attribute (cls, fields(0)))
 
@@ -1995,9 +2030,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("WindAeroConstIEC", "WindAeroConstIEC", false)
-    )
 }
 
 /**
@@ -2069,8 +2101,11 @@ object WindGenTurbineType1bIEC
 extends
     Parseable[WindGenTurbineType1bIEC]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "WindPitchContPowerIEC"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("WindPitchContPowerIEC", "WindPitchContPowerIEC", "1", "0..1")
     )
     val WindPitchContPowerIEC: Fielder = parse_attribute (attribute (cls, fields(0)))
 
@@ -2085,9 +2120,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("WindPitchContPowerIEC", "WindPitchContPowerIEC", false)
-    )
 }
 
 /**
@@ -2162,9 +2194,13 @@ object WindGenTurbineType2IEC
 extends
     Parseable[WindGenTurbineType2IEC]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "WindContRotorRIEC",
         "WindPitchContPowerIEC"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("WindContRotorRIEC", "WindContRotorRIEC", "1", "1"),
+        Relationship ("WindPitchContPowerIEC", "WindPitchContPowerIEC", "1", "0..1")
     )
     val WindContRotorRIEC: Fielder = parse_attribute (attribute (cls, fields(0)))
     val WindPitchContPowerIEC: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -2181,10 +2217,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("WindContRotorRIEC", "WindContRotorRIEC", false),
-        Relationship ("WindPitchContPowerIEC", "WindPitchContPowerIEC", false)
-    )
 }
 
 /**
@@ -2267,11 +2299,14 @@ object WindGenType3IEC
 extends
     Parseable[WindGenType3IEC]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "dipmax",
         "diqmax",
         "xs",
         "WindTurbineType3IEC"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("WindTurbineType3IEC", "WindTurbineType3IEC", "0..1", "0..1")
     )
     val dipmax: Fielder = parse_element (element (cls, fields(0)))
     val diqmax: Fielder = parse_element (element (cls, fields(1)))
@@ -2292,9 +2327,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("WindTurbineType3IEC", "WindTurbineType3IEC", false)
-    )
 }
 
 /**
@@ -2375,10 +2407,13 @@ object WindGenType3aIEC
 extends
     Parseable[WindGenType3aIEC]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "kpc",
         "tic",
         "WindTurbineType4IEC"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("WindTurbineType4IEC", "WindTurbineType4IEC", "0..1", "0..1")
     )
     val kpc: Fielder = parse_element (element (cls, fields(0)))
     val tic: Fielder = parse_element (element (cls, fields(1)))
@@ -2397,9 +2432,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("WindTurbineType4IEC", "WindTurbineType4IEC", false)
-    )
 }
 
 /**
@@ -2418,6 +2450,7 @@ extends
  *        It is type dependent parameter.
  * @param two Time constant for crowbar washout filter (<i>T</i><sub>wo</sub>).
  *        It is case dependent parameter.
+ * @param WindDynamicsLookupTable [[ch.ninecode.model.WindDynamicsLookupTable WindDynamicsLookupTable]] The wind dynamics lookup table associated with this generator type 3B model.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
@@ -2437,7 +2470,8 @@ case class WindGenType3bIEC
     override val sup: WindGenType3IEC,
     mwtcwp: Boolean,
     tg: Double,
-    two: Double
+    two: Double,
+    WindDynamicsLookupTable: List[String]
 )
 extends
     Element
@@ -2445,7 +2479,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, false, 0.0, 0.0) }
+    def this () = { this (null, false, 0.0, 0.0, List()) }
     /**
      * Return the superclass object.
      *
@@ -2469,9 +2503,11 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WindGenType3bIEC.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindGenType3bIEC.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (WindGenType3bIEC.fields (position), x))
         emitelem (0, mwtcwp)
         emitelem (1, tg)
         emitelem (2, two)
+        emitattrs (3, WindDynamicsLookupTable)
         s.toString
     }
     override def export: String =
@@ -2484,14 +2520,19 @@ object WindGenType3bIEC
 extends
     Parseable[WindGenType3bIEC]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "mwtcwp",
         "tg",
-        "two"
+        "two",
+        "WindDynamicsLookupTable"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("WindDynamicsLookupTable", "WindDynamicsLookupTable", "1..*", "0..1")
     )
     val mwtcwp: Fielder = parse_element (element (cls, fields(0)))
     val tg: Fielder = parse_element (element (cls, fields(1)))
     val two: Fielder = parse_element (element (cls, fields(2)))
+    val WindDynamicsLookupTable: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
 
     def parse (context: Context): WindGenType3bIEC =
     {
@@ -2501,14 +2542,12 @@ extends
             WindGenType3IEC.parse (context),
             toBoolean (mask (mwtcwp (), 0)),
             toDouble (mask (tg (), 1)),
-            toDouble (mask (two (), 2))
+            toDouble (mask (two (), 2)),
+            masks (WindDynamicsLookupTable (), 3)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -2600,13 +2639,17 @@ object WindGenType4IEC
 extends
     Parseable[WindGenType4IEC]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "dipmax",
         "diqmax",
         "diqmin",
         "tg",
         "WindTurbineType4aIEC",
         "WindTurbineType4bIEC"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("WindTurbineType4aIEC", "WindTurbineType4aIEC", "0..1", "0..1"),
+        Relationship ("WindTurbineType4bIEC", "WindTurbineType4bIEC", "0..1", "0..1")
     )
     val dipmax: Fielder = parse_element (element (cls, fields(0)))
     val diqmax: Fielder = parse_element (element (cls, fields(1)))
@@ -2631,10 +2674,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("WindTurbineType4aIEC", "WindTurbineType4aIEC", false),
-        Relationship ("WindTurbineType4bIEC", "WindTurbineType4bIEC", false)
-    )
 }
 
 /**
@@ -2729,7 +2768,7 @@ object WindMechIEC
 extends
     Parseable[WindMechIEC]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "cdrt",
         "hgen",
         "hwtr",
@@ -2737,6 +2776,11 @@ extends
         "WindTurbineType1or2IEC",
         "WindTurbineType3IEC",
         "WindTurbineType4bIEC"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("WindTurbineType1or2IEC", "WindTurbineType1or2IEC", "0..1", "1"),
+        Relationship ("WindTurbineType3IEC", "WindTurbineType3IEC", "0..1", "1"),
+        Relationship ("WindTurbineType4bIEC", "WindTurbineType4bIEC", "0..1", "1")
     )
     val cdrt: Fielder = parse_element (element (cls, fields(0)))
     val hgen: Fielder = parse_element (element (cls, fields(1)))
@@ -2763,11 +2807,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("WindTurbineType1or2IEC", "WindTurbineType1or2IEC", false),
-        Relationship ("WindTurbineType3IEC", "WindTurbineType3IEC", false),
-        Relationship ("WindTurbineType4bIEC", "WindTurbineType4bIEC", false)
-    )
 }
 
 /**
@@ -2790,6 +2829,7 @@ extends
  *        It is type dependent parameter.
  * @param uuvrt Dip detection threshold (u<sub>UVRT</sub>).
  *        It is type dependent parameter.
+ * @param WindDynamicsLookupTable [[ch.ninecode.model.WindDynamicsLookupTable WindDynamicsLookupTable]] The wind dynamics lookup table associated with this pitch control power model.
  * @param WindGenTurbineType1bIEC [[ch.ninecode.model.WindGenTurbineType1bIEC WindGenTurbineType1bIEC]] Wind turbine type 1B model with which this Pitch control power model is associated.
  * @param WindGenTurbineType2IEC [[ch.ninecode.model.WindGenTurbineType2IEC WindGenTurbineType2IEC]] Wind turbine type 2 model with which this Pitch control power model is associated.
  * @group WindDynamics
@@ -2816,6 +2856,7 @@ case class WindPitchContPowerIEC
     t1: Double,
     tr: Double,
     uuvrt: Double,
+    WindDynamicsLookupTable: List[String],
     WindGenTurbineType1bIEC: String,
     WindGenTurbineType2IEC: String
 )
@@ -2825,7 +2866,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, null) }
+    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, List(), null, null) }
     /**
      * Return the superclass object.
      *
@@ -2850,6 +2891,7 @@ extends
         implicit val clz: String = WindPitchContPowerIEC.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindPitchContPowerIEC.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindPitchContPowerIEC.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (WindPitchContPowerIEC.fields (position), x))
         emitelem (0, dpmax)
         emitelem (1, dpmin)
         emitelem (2, pmin)
@@ -2857,8 +2899,9 @@ extends
         emitelem (4, t1)
         emitelem (5, tr)
         emitelem (6, uuvrt)
-        emitattr (7, WindGenTurbineType1bIEC)
-        emitattr (8, WindGenTurbineType2IEC)
+        emitattrs (7, WindDynamicsLookupTable)
+        emitattr (8, WindGenTurbineType1bIEC)
+        emitattr (9, WindGenTurbineType2IEC)
         s.toString
     }
     override def export: String =
@@ -2871,7 +2914,7 @@ object WindPitchContPowerIEC
 extends
     Parseable[WindPitchContPowerIEC]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "dpmax",
         "dpmin",
         "pmin",
@@ -2879,8 +2922,14 @@ extends
         "t1",
         "tr",
         "uuvrt",
+        "WindDynamicsLookupTable",
         "WindGenTurbineType1bIEC",
         "WindGenTurbineType2IEC"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("WindDynamicsLookupTable", "WindDynamicsLookupTable", "1..*", "0..1"),
+        Relationship ("WindGenTurbineType1bIEC", "WindGenTurbineType1bIEC", "0..1", "1"),
+        Relationship ("WindGenTurbineType2IEC", "WindGenTurbineType2IEC", "0..1", "1")
     )
     val dpmax: Fielder = parse_element (element (cls, fields(0)))
     val dpmin: Fielder = parse_element (element (cls, fields(1)))
@@ -2889,8 +2938,9 @@ extends
     val t1: Fielder = parse_element (element (cls, fields(4)))
     val tr: Fielder = parse_element (element (cls, fields(5)))
     val uuvrt: Fielder = parse_element (element (cls, fields(6)))
-    val WindGenTurbineType1bIEC: Fielder = parse_attribute (attribute (cls, fields(7)))
-    val WindGenTurbineType2IEC: Fielder = parse_attribute (attribute (cls, fields(8)))
+    val WindDynamicsLookupTable: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
+    val WindGenTurbineType1bIEC: Fielder = parse_attribute (attribute (cls, fields(8)))
+    val WindGenTurbineType2IEC: Fielder = parse_attribute (attribute (cls, fields(9)))
 
     def parse (context: Context): WindPitchContPowerIEC =
     {
@@ -2905,16 +2955,13 @@ extends
             toDouble (mask (t1 (), 4)),
             toDouble (mask (tr (), 5)),
             toDouble (mask (uuvrt (), 6)),
-            mask (WindGenTurbineType1bIEC (), 7),
-            mask (WindGenTurbineType2IEC (), 8)
+            masks (WindDynamicsLookupTable (), 7),
+            mask (WindGenTurbineType1bIEC (), 8),
+            mask (WindGenTurbineType2IEC (), 9)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("WindGenTurbineType1bIEC", "WindGenTurbineType1bIEC", false),
-        Relationship ("WindGenTurbineType2IEC", "WindGenTurbineType2IEC", false)
-    )
 }
 
 /**
@@ -2922,6 +2969,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
  * @param RemoteInputSignal [[ch.ninecode.model.RemoteInputSignal RemoteInputSignal]] The remote signal with which this power plant is associated.
+ * @param WindTurbineType3or4Dynamics [[ch.ninecode.model.WindTurbineType3or4Dynamics WindTurbineType3or4Dynamics]] The wind turbine type 3 or 4 associated with this wind plant.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
  * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
@@ -2939,7 +2987,8 @@ Note: Each attribute is categorized as type, project, or case parameter. The def
 case class WindPlantDynamics
 (
     override val sup: DynamicsFunctionBlock,
-    RemoteInputSignal: String
+    RemoteInputSignal: String,
+    WindTurbineType3or4Dynamics: List[String]
 )
 extends
     Element
@@ -2947,7 +2996,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null) }
+    def this () = { this (null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -2971,7 +3020,9 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WindPlantDynamics.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindPlantDynamics.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (WindPlantDynamics.fields (position), x))
         emitattr (0, RemoteInputSignal)
+        emitattrs (1, WindTurbineType3or4Dynamics)
         s.toString
     }
     override def export: String =
@@ -2984,10 +3035,16 @@ object WindPlantDynamics
 extends
     Parseable[WindPlantDynamics]
 {
-    val fields: Array[String] = Array[String] (
-        "RemoteInputSignal"
+    override val fields: Array[String] = Array[String] (
+        "RemoteInputSignal",
+        "WindTurbineType3or4Dynamics"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("RemoteInputSignal", "RemoteInputSignal", "0..1", "0..1"),
+        Relationship ("WindTurbineType3or4Dynamics", "WindTurbineType3or4Dynamics", "1..*", "0..1")
     )
     val RemoteInputSignal: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val WindTurbineType3or4Dynamics: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): WindPlantDynamics =
     {
@@ -2995,14 +3052,12 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = WindPlantDynamics (
             DynamicsFunctionBlock.parse (context),
-            mask (RemoteInputSignal (), 0)
+            mask (RemoteInputSignal (), 0),
+            masks (WindTurbineType3or4Dynamics (), 1)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("RemoteInputSignal", "RemoteInputSignal", false)
-    )
 }
 
 /**
@@ -3041,6 +3096,7 @@ extends
  *        It is project dependent parameter.
  * @param twppfiltp Filter time constant for active power measurement (<i>T</i><sub>WPpfiltp</sub>).
  *        It is project dependent parameter.
+ * @param WindDynamicsLookupTable [[ch.ninecode.model.WindDynamicsLookupTable WindDynamicsLookupTable]] The wind dynamics lookup table associated with this frequency and active power wind plant model.
  * @param WindPlantIEC [[ch.ninecode.model.WindPlantIEC WindPlantIEC]] Wind plant model with which this wind plant frequency and active power control is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
@@ -3074,6 +3130,7 @@ case class WindPlantFreqPcontrolIEC
     tpfv: Double,
     twpffiltp: Double,
     twppfiltp: Double,
+    WindDynamicsLookupTable: List[String],
     WindPlantIEC: String
 )
 extends
@@ -3082,7 +3139,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null) }
+    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -3107,6 +3164,7 @@ extends
         implicit val clz: String = WindPlantFreqPcontrolIEC.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindPlantFreqPcontrolIEC.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindPlantFreqPcontrolIEC.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (WindPlantFreqPcontrolIEC.fields (position), x))
         emitelem (0, dprefmax)
         emitelem (1, dprefmin)
         emitelem (2, dpwprefmax)
@@ -3122,7 +3180,8 @@ extends
         emitelem (12, tpfv)
         emitelem (13, twpffiltp)
         emitelem (14, twppfiltp)
-        emitattr (15, WindPlantIEC)
+        emitattrs (15, WindDynamicsLookupTable)
+        emitattr (16, WindPlantIEC)
         s.toString
     }
     override def export: String =
@@ -3135,7 +3194,7 @@ object WindPlantFreqPcontrolIEC
 extends
     Parseable[WindPlantFreqPcontrolIEC]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "dprefmax",
         "dprefmin",
         "dpwprefmax",
@@ -3151,7 +3210,12 @@ extends
         "tpfv",
         "twpffiltp",
         "twppfiltp",
+        "WindDynamicsLookupTable",
         "WindPlantIEC"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("WindDynamicsLookupTable", "WindDynamicsLookupTable", "1..*", "0..1"),
+        Relationship ("WindPlantIEC", "WindPlantIEC", "1", "1")
     )
     val dprefmax: Fielder = parse_element (element (cls, fields(0)))
     val dprefmin: Fielder = parse_element (element (cls, fields(1)))
@@ -3168,7 +3232,8 @@ extends
     val tpfv: Fielder = parse_element (element (cls, fields(12)))
     val twpffiltp: Fielder = parse_element (element (cls, fields(13)))
     val twppfiltp: Fielder = parse_element (element (cls, fields(14)))
-    val WindPlantIEC: Fielder = parse_attribute (attribute (cls, fields(15)))
+    val WindDynamicsLookupTable: FielderMultiple = parse_attributes (attribute (cls, fields(15)))
+    val WindPlantIEC: Fielder = parse_attribute (attribute (cls, fields(16)))
 
     def parse (context: Context): WindPlantFreqPcontrolIEC =
     {
@@ -3191,14 +3256,12 @@ extends
             toDouble (mask (tpfv (), 12)),
             toDouble (mask (twpffiltp (), 13)),
             toDouble (mask (twppfiltp (), 14)),
-            mask (WindPlantIEC (), 15)
+            masks (WindDynamicsLookupTable (), 15),
+            mask (WindPlantIEC (), 16)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("WindPlantIEC", "WindPlantIEC", false)
-    )
 }
 
 /**
@@ -3273,9 +3336,13 @@ object WindPlantIEC
 extends
     Parseable[WindPlantIEC]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "WindPlantFreqPcontrolIEC",
         "WindPlantReactiveControlIEC"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("WindPlantFreqPcontrolIEC", "WindPlantFreqPcontrolIEC", "1", "1"),
+        Relationship ("WindPlantReactiveControlIEC", "WindPlantReactiveControlIEC", "1", "1")
     )
     val WindPlantFreqPcontrolIEC: Fielder = parse_attribute (attribute (cls, fields(0)))
     val WindPlantReactiveControlIEC: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -3292,10 +3359,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("WindPlantFreqPcontrolIEC", "WindPlantFreqPcontrolIEC", false),
-        Relationship ("WindPlantReactiveControlIEC", "WindPlantReactiveControlIEC", false)
-    )
 }
 
 /**
@@ -3340,6 +3403,7 @@ extends
  *        It is case dependent parameter.
  * @param xrefmin Minimum <i>x</i><sub>WTref</sub> (<i>q</i><sub>WTref</sub> or delta<i>u</i><sub>WTref</sub>) request from the plant controller (<i>x</i><sub>refmin</sub>).
  *        It is project dependent parameter.
+ * @param WindDynamicsLookupTable [[ch.ninecode.model.WindDynamicsLookupTable WindDynamicsLookupTable]] The wind dynamics lookup table associated with this voltage and reactive power wind plant model.
  * @param WindPlantIEC [[ch.ninecode.model.WindPlantIEC WindPlantIEC]] Wind plant reactive control model associated with this wind plant.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
@@ -3376,6 +3440,7 @@ case class WindPlantReactiveControlIEC
     windPlantQcontrolModesType: String,
     xrefmax: Double,
     xrefmin: Double,
+    WindDynamicsLookupTable: List[String],
     WindPlantIEC: String
 )
 extends
@@ -3384,7 +3449,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, 0.0, null) }
+    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, 0.0, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -3409,6 +3474,7 @@ extends
         implicit val clz: String = WindPlantReactiveControlIEC.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindPlantReactiveControlIEC.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindPlantReactiveControlIEC.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (WindPlantReactiveControlIEC.fields (position), x))
         emitelem (0, dxrefmax)
         emitelem (1, dxrefmin)
         emitelem (2, kiwpx)
@@ -3427,7 +3493,8 @@ extends
         emitattr (15, windPlantQcontrolModesType)
         emitelem (16, xrefmax)
         emitelem (17, xrefmin)
-        emitattr (18, WindPlantIEC)
+        emitattrs (18, WindDynamicsLookupTable)
+        emitattr (19, WindPlantIEC)
         s.toString
     }
     override def export: String =
@@ -3440,7 +3507,7 @@ object WindPlantReactiveControlIEC
 extends
     Parseable[WindPlantReactiveControlIEC]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "dxrefmax",
         "dxrefmin",
         "kiwpx",
@@ -3459,7 +3526,12 @@ extends
         "windPlantQcontrolModesType",
         "xrefmax",
         "xrefmin",
+        "WindDynamicsLookupTable",
         "WindPlantIEC"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("WindDynamicsLookupTable", "WindDynamicsLookupTable", "1..*", "0..1"),
+        Relationship ("WindPlantIEC", "WindPlantIEC", "1", "1")
     )
     val dxrefmax: Fielder = parse_element (element (cls, fields(0)))
     val dxrefmin: Fielder = parse_element (element (cls, fields(1)))
@@ -3479,7 +3551,8 @@ extends
     val windPlantQcontrolModesType: Fielder = parse_attribute (attribute (cls, fields(15)))
     val xrefmax: Fielder = parse_element (element (cls, fields(16)))
     val xrefmin: Fielder = parse_element (element (cls, fields(17)))
-    val WindPlantIEC: Fielder = parse_attribute (attribute (cls, fields(18)))
+    val WindDynamicsLookupTable: FielderMultiple = parse_attributes (attribute (cls, fields(18)))
+    val WindPlantIEC: Fielder = parse_attribute (attribute (cls, fields(19)))
 
     def parse (context: Context): WindPlantReactiveControlIEC =
     {
@@ -3505,14 +3578,12 @@ extends
             mask (windPlantQcontrolModesType (), 15),
             toDouble (mask (xrefmax (), 16)),
             toDouble (mask (xrefmin (), 17)),
-            mask (WindPlantIEC (), 18)
+            masks (WindDynamicsLookupTable (), 18),
+            mask (WindPlantIEC (), 19)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("WindPlantIEC", "WindPlantIEC", false)
-    )
 }
 
 /**
@@ -3535,6 +3606,7 @@ extends
  *        It is project dependent parameter.
  * @param uunder Wind turbine under voltage protection activation threshold (<i>u</i><i><sub>under</sub></i>).
  *        It is project dependent parameter.
+ * @param WindDynamicsLookupTable [[ch.ninecode.model.WindDynamicsLookupTable WindDynamicsLookupTable]] The wind dynamics lookup table associated with this grid protection model.
  * @param WindTurbineType1or2IEC [[ch.ninecode.model.WindTurbineType1or2IEC WindTurbineType1or2IEC]] Wind generator type 1 or 2 model with which this wind turbine protection model is associated.
  * @param WindTurbineType3or4IEC [[ch.ninecode.model.WindTurbineType3or4IEC WindTurbineType3or4IEC]] Wind generator type 3 or 4 model with which this wind turbine protection model is associated.
  * @group WindDynamics
@@ -3561,6 +3633,7 @@ case class WindProtectionIEC
     tfma: Double,
     uover: Double,
     uunder: Double,
+    WindDynamicsLookupTable: List[String],
     WindTurbineType1or2IEC: String,
     WindTurbineType3or4IEC: String
 )
@@ -3570,7 +3643,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, null, null) }
+    def this () = { this (null, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, List(), null, null) }
     /**
      * Return the superclass object.
      *
@@ -3595,6 +3668,7 @@ extends
         implicit val clz: String = WindProtectionIEC.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindProtectionIEC.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindProtectionIEC.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (WindProtectionIEC.fields (position), x))
         emitelem (0, dfimax)
         emitelem (1, fover)
         emitelem (2, funder)
@@ -3602,8 +3676,9 @@ extends
         emitelem (4, tfma)
         emitelem (5, uover)
         emitelem (6, uunder)
-        emitattr (7, WindTurbineType1or2IEC)
-        emitattr (8, WindTurbineType3or4IEC)
+        emitattrs (7, WindDynamicsLookupTable)
+        emitattr (8, WindTurbineType1or2IEC)
+        emitattr (9, WindTurbineType3or4IEC)
         s.toString
     }
     override def export: String =
@@ -3616,7 +3691,7 @@ object WindProtectionIEC
 extends
     Parseable[WindProtectionIEC]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "dfimax",
         "fover",
         "funder",
@@ -3624,8 +3699,14 @@ extends
         "tfma",
         "uover",
         "uunder",
+        "WindDynamicsLookupTable",
         "WindTurbineType1or2IEC",
         "WindTurbineType3or4IEC"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("WindDynamicsLookupTable", "WindDynamicsLookupTable", "1..*", "0..1"),
+        Relationship ("WindTurbineType1or2IEC", "WindTurbineType1or2IEC", "0..1", "1"),
+        Relationship ("WindTurbineType3or4IEC", "WindTurbineType3or4IEC", "0..1", "1")
     )
     val dfimax: Fielder = parse_element (element (cls, fields(0)))
     val fover: Fielder = parse_element (element (cls, fields(1)))
@@ -3634,8 +3715,9 @@ extends
     val tfma: Fielder = parse_element (element (cls, fields(4)))
     val uover: Fielder = parse_element (element (cls, fields(5)))
     val uunder: Fielder = parse_element (element (cls, fields(6)))
-    val WindTurbineType1or2IEC: Fielder = parse_attribute (attribute (cls, fields(7)))
-    val WindTurbineType3or4IEC: Fielder = parse_attribute (attribute (cls, fields(8)))
+    val WindDynamicsLookupTable: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
+    val WindTurbineType1or2IEC: Fielder = parse_attribute (attribute (cls, fields(8)))
+    val WindTurbineType3or4IEC: Fielder = parse_attribute (attribute (cls, fields(9)))
 
     def parse (context: Context): WindProtectionIEC =
     {
@@ -3650,16 +3732,13 @@ extends
             toDouble (mask (tfma (), 4)),
             toDouble (mask (uover (), 5)),
             toDouble (mask (uunder (), 6)),
-            mask (WindTurbineType1or2IEC (), 7),
-            mask (WindTurbineType3or4IEC (), 8)
+            masks (WindDynamicsLookupTable (), 7),
+            mask (WindTurbineType1or2IEC (), 8),
+            mask (WindTurbineType3or4IEC (), 9)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("WindTurbineType1or2IEC", "WindTurbineType1or2IEC", false),
-        Relationship ("WindTurbineType3or4IEC", "WindTurbineType3or4IEC", false)
-    )
 }
 
 /**
@@ -3744,11 +3823,14 @@ object WindRefFrameRotIEC
 extends
     Parseable[WindRefFrameRotIEC]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "tpll",
         "upll1",
         "upll2",
         "WindTurbineType3or4IEC"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("WindTurbineType3or4IEC", "WindTurbineType3or4IEC", "1", "1")
     )
     val tpll: Fielder = parse_element (element (cls, fields(0)))
     val upll1: Fielder = parse_element (element (cls, fields(1)))
@@ -3769,9 +3851,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("WindTurbineType3or4IEC", "WindTurbineType3or4IEC", false)
-    )
 }
 
 /**
@@ -3844,9 +3923,13 @@ object WindTurbineType1or2Dynamics
 extends
     Parseable[WindTurbineType1or2Dynamics]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "AsynchronousMachineDynamics",
         "RemoteInputSignal"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("AsynchronousMachineDynamics", "AsynchronousMachineDynamics", "1", "0..1"),
+        Relationship ("RemoteInputSignal", "RemoteInputSignal", "0..1", "0..1")
     )
     val AsynchronousMachineDynamics: Fielder = parse_attribute (attribute (cls, fields(0)))
     val RemoteInputSignal: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -3863,10 +3946,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("AsynchronousMachineDynamics", "AsynchronousMachineDynamics", false),
-        Relationship ("RemoteInputSignal", "RemoteInputSignal", false)
-    )
 }
 
 /**
@@ -3941,9 +4020,13 @@ object WindTurbineType1or2IEC
 extends
     Parseable[WindTurbineType1or2IEC]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "WindMechIEC",
         "WindProtectionIEC"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("WindMechIEC", "WindMechIEC", "1", "0..1"),
+        Relationship ("WindProtectionIEC", "WindProtectionIEC", "1", "0..1")
     )
     val WindMechIEC: Fielder = parse_attribute (attribute (cls, fields(0)))
     val WindProtectionIEC: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -3960,10 +4043,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("WindMechIEC", "WindMechIEC", false),
-        Relationship ("WindProtectionIEC", "WindProtectionIEC", false)
-    )
 }
 
 /**
@@ -4048,13 +4127,21 @@ object WindTurbineType3IEC
 extends
     Parseable[WindTurbineType3IEC]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "WindAeroOneDimIEC",
         "WindAeroTwoDimIEC",
         "WindContPType3IEC",
         "WindContPitchAngleIEC",
         "WindGenType3IEC",
         "WindMechIEC"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("WindAeroOneDimIEC", "WindAeroOneDimIEC", "0..1", "1"),
+        Relationship ("WindAeroTwoDimIEC", "WindAeroTwoDimIEC", "0..1", "1"),
+        Relationship ("WindContPType3IEC", "WindContPType3IEC", "1", "1"),
+        Relationship ("WindContPitchAngleIEC", "WindContPitchAngleIEC", "1", "1"),
+        Relationship ("WindGenType3IEC", "WindGenType3IEC", "0..1", "0..1"),
+        Relationship ("WindMechIEC", "WindMechIEC", "1", "0..1")
     )
     val WindAeroOneDimIEC: Fielder = parse_attribute (attribute (cls, fields(0)))
     val WindAeroTwoDimIEC: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -4079,14 +4166,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("WindAeroOneDimIEC", "WindAeroOneDimIEC", false),
-        Relationship ("WindAeroTwoDimIEC", "WindAeroTwoDimIEC", false),
-        Relationship ("WindContPType3IEC", "WindContPType3IEC", false),
-        Relationship ("WindContPitchAngleIEC", "WindContPitchAngleIEC", false),
-        Relationship ("WindGenType3IEC", "WindGenType3IEC", false),
-        Relationship ("WindMechIEC", "WindMechIEC", false)
-    )
 }
 
 /**
@@ -4162,10 +4241,15 @@ object WindTurbineType3or4Dynamics
 extends
     Parseable[WindTurbineType3or4Dynamics]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "EnergySource",
         "RemoteInputSignal",
         "WindPlantDynamics"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("EnergySource", "EnergySource", "1", "0..1"),
+        Relationship ("RemoteInputSignal", "RemoteInputSignal", "0..1", "0..1"),
+        Relationship ("WindPlantDynamics", "WindPlantDynamics", "0..1", "1..*")
     )
     val EnergySource: Fielder = parse_attribute (attribute (cls, fields(0)))
     val RemoteInputSignal: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -4184,11 +4268,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("EnergySource", "EnergySource", false),
-        Relationship ("RemoteInputSignal", "RemoteInputSignal", false),
-        Relationship ("WindPlantDynamics", "WindPlantDynamics", false)
-    )
 }
 
 /**
@@ -4273,13 +4352,21 @@ object WindTurbineType3or4IEC
 extends
     Parseable[WindTurbineType3or4IEC]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "WIndContQIEC",
         "WindContCurrLimIEC",
         "WindContQLimIEC",
         "WindContQPQULimIEC",
         "WindProtectionIEC",
         "WindRefFrameRotIEC"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("WIndContQIEC", "WindContQIEC", "1", "1"),
+        Relationship ("WindContCurrLimIEC", "WindContCurrLimIEC", "1", "1"),
+        Relationship ("WindContQLimIEC", "WindContQLimIEC", "0..1", "0..1"),
+        Relationship ("WindContQPQULimIEC", "WindContQPQULimIEC", "0..1", "0..1"),
+        Relationship ("WindProtectionIEC", "WindProtectionIEC", "1", "0..1"),
+        Relationship ("WindRefFrameRotIEC", "WindRefFrameRotIEC", "1", "1")
     )
     val WIndContQIEC: Fielder = parse_attribute (attribute (cls, fields(0)))
     val WindContCurrLimIEC: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -4304,14 +4391,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("WIndContQIEC", "WindContQIEC", false),
-        Relationship ("WindContCurrLimIEC", "WindContCurrLimIEC", false),
-        Relationship ("WindContQLimIEC", "WindContQLimIEC", false),
-        Relationship ("WindContQPQULimIEC", "WindContQPQULimIEC", false),
-        Relationship ("WindProtectionIEC", "WindProtectionIEC", false),
-        Relationship ("WindRefFrameRotIEC", "WindRefFrameRotIEC", false)
-    )
 }
 
 /**
@@ -4381,8 +4460,11 @@ object WindTurbineType4IEC
 extends
     Parseable[WindTurbineType4IEC]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "WindGenType3aIEC"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("WindGenType3aIEC", "WindGenType3aIEC", "0..1", "0..1")
     )
     val WindGenType3aIEC: Fielder = parse_attribute (attribute (cls, fields(0)))
 
@@ -4397,9 +4479,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("WindGenType3aIEC", "WindGenType3aIEC", false)
-    )
 }
 
 /**
@@ -4474,9 +4553,13 @@ object WindTurbineType4aIEC
 extends
     Parseable[WindTurbineType4aIEC]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "WindContPType4aIEC",
         "WindGenType4IEC"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("WindContPType4aIEC", "WindContPType4aIEC", "1", "1"),
+        Relationship ("WindGenType4IEC", "WindGenType4IEC", "0..1", "0..1")
     )
     val WindContPType4aIEC: Fielder = parse_attribute (attribute (cls, fields(0)))
     val WindGenType4IEC: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -4493,10 +4576,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("WindContPType4aIEC", "WindContPType4aIEC", false),
-        Relationship ("WindGenType4IEC", "WindGenType4IEC", false)
-    )
 }
 
 /**
@@ -4574,10 +4653,15 @@ object WindTurbineType4bIEC
 extends
     Parseable[WindTurbineType4bIEC]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "WindContPType4bIEC",
         "WindGenType4IEC",
         "WindMechIEC"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("WindContPType4bIEC", "WindContPType4bIEC", "1", "1"),
+        Relationship ("WindGenType4IEC", "WindGenType4IEC", "0..1", "0..1"),
+        Relationship ("WindMechIEC", "WindMechIEC", "1", "0..1")
     )
     val WindContPType4bIEC: Fielder = parse_attribute (attribute (cls, fields(0)))
     val WindGenType4IEC: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -4596,11 +4680,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("WindContPType4bIEC", "WindContPType4bIEC", false),
-        Relationship ("WindGenType4IEC", "WindGenType4IEC", false),
-        Relationship ("WindMechIEC", "WindMechIEC", false)
-    )
 }
 
 private[ninecode] object _WindDynamics

@@ -72,7 +72,7 @@ object AccountMovement
 extends
     Parseable[AccountMovement]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "amount",
         "dateTime",
         "reason"
@@ -94,9 +94,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -166,7 +163,7 @@ object AccountingUnit
 extends
     Parseable[AccountingUnit]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "energyUnit",
         "monetaryUnit",
         "multiplier",
@@ -191,9 +188,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -208,6 +202,7 @@ extends
  * @param principleAmount The initial principle amount, with which this account was instantiated.
  * @param AuxiliaryAgreement [[ch.ninecode.model.AuxiliaryAgreement AuxiliaryAgreement]] Auxiliary agreement regulating this account.
  * @param Charges [[ch.ninecode.model.Charge Charge]] All charges levied on this account.
+ * @param PaymentTransactions [[ch.ninecode.model.Transaction Transaction]] All payments against this account.
  * @group PaymentMetering
  * @groupname PaymentMetering Package PaymentMetering
  * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
@@ -221,7 +216,8 @@ case class AuxiliaryAccount
     lastDebit: String,
     principleAmount: Double,
     AuxiliaryAgreement: String,
-    Charges: List[String]
+    Charges: List[String],
+    PaymentTransactions: List[String]
 )
 extends
     Element
@@ -229,7 +225,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, null, null, null, 0.0, null, List()) }
+    def this () = { this (null, 0.0, null, null, null, 0.0, null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -262,6 +258,7 @@ extends
         emitelem (4, principleAmount)
         emitattr (5, AuxiliaryAgreement)
         emitattrs (6, Charges)
+        emitattrs (7, PaymentTransactions)
         s.toString
     }
     override def export: String =
@@ -274,14 +271,23 @@ object AuxiliaryAccount
 extends
     Parseable[AuxiliaryAccount]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "balance",
         "due",
         "lastCredit",
         "lastDebit",
         "principleAmount",
         "AuxiliaryAgreement",
-        "Charges"
+        "Charges",
+        "PaymentTransactions"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("due", "Due", "0..1", "0..*"),
+        Relationship ("lastCredit", "AccountMovement", "0..1", "0..*"),
+        Relationship ("lastDebit", "AccountMovement", "0..1", "0..*"),
+        Relationship ("AuxiliaryAgreement", "AuxiliaryAgreement", "0..1", "1..*"),
+        Relationship ("Charges", "Charge", "0..*", "0..*"),
+        Relationship ("PaymentTransactions", "Transaction", "0..*", "0..1")
     )
     val balance: Fielder = parse_element (element (cls, fields(0)))
     val due: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -290,6 +296,7 @@ extends
     val principleAmount: Fielder = parse_element (element (cls, fields(4)))
     val AuxiliaryAgreement: Fielder = parse_attribute (attribute (cls, fields(5)))
     val Charges: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
+    val PaymentTransactions: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
 
     def parse (context: Context): AuxiliaryAccount =
     {
@@ -303,18 +310,12 @@ extends
             mask (lastDebit (), 3),
             toDouble (mask (principleAmount (), 4)),
             mask (AuxiliaryAgreement (), 5),
-            masks (Charges (), 6)
+            masks (Charges (), 6),
+            masks (PaymentTransactions (), 7)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("due", "Due", false),
-        Relationship ("lastCredit", "AccountMovement", false),
-        Relationship ("lastDebit", "AccountMovement", false),
-        Relationship ("AuxiliaryAgreement", "AuxiliaryAgreement", false),
-        Relationship ("Charges", "Charge", true)
-    )
 }
 
 /**
@@ -337,6 +338,7 @@ extends
  *        Note that there may be multiple tokens vended per vending transaction, but this is not relevant.
  * @param vendPortionArrear The percentage of the transaction amount that has to be collected from each vending transaction towards settlement of this auxiliary agreement when payments are in arrears.
  *        Note that there may be multiple tokens vended per vending transaction, but this is not relevant.
+ * @param AuxiliaryAccounts [[ch.ninecode.model.AuxiliaryAccount AuxiliaryAccount]] All auxiliary accounts regulated by this agreement.
  * @param CustomerAgreement [[ch.ninecode.model.CustomerAgreement CustomerAgreement]] Customer agreement this (non-service related) auxiliary agreement refers to.
  * @group PaymentMetering
  * @groupname PaymentMetering Package PaymentMetering
@@ -354,6 +356,7 @@ case class AuxiliaryAgreement
     subType: String,
     vendPortion: Double,
     vendPortionArrear: Double,
+    AuxiliaryAccounts: List[String],
     CustomerAgreement: String
 )
 extends
@@ -362,7 +365,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, null, null, 0.0, 0.0, null, null, 0.0, 0.0, null) }
+    def this () = { this (null, 0.0, null, null, 0.0, 0.0, null, null, 0.0, 0.0, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -387,6 +390,7 @@ extends
         implicit val clz: String = AuxiliaryAgreement.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (AuxiliaryAgreement.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (AuxiliaryAgreement.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (AuxiliaryAgreement.fields (position), x))
         emitelem (0, arrearsInterest)
         emitelem (1, auxCycle)
         emitelem (2, auxPriorityCode)
@@ -396,7 +400,8 @@ extends
         emitelem (6, subType)
         emitelem (7, vendPortion)
         emitelem (8, vendPortionArrear)
-        emitattr (9, CustomerAgreement)
+        emitattrs (9, AuxiliaryAccounts)
+        emitattr (10, CustomerAgreement)
         s.toString
     }
     override def export: String =
@@ -409,7 +414,7 @@ object AuxiliaryAgreement
 extends
     Parseable[AuxiliaryAgreement]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "arrearsInterest",
         "auxCycle",
         "auxPriorityCode",
@@ -419,7 +424,12 @@ extends
         "subType",
         "vendPortion",
         "vendPortionArrear",
+        "AuxiliaryAccounts",
         "CustomerAgreement"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("AuxiliaryAccounts", "AuxiliaryAccount", "1..*", "0..1"),
+        Relationship ("CustomerAgreement", "CustomerAgreement", "0..1", "0..*")
     )
     val arrearsInterest: Fielder = parse_element (element (cls, fields(0)))
     val auxCycle: Fielder = parse_element (element (cls, fields(1)))
@@ -430,7 +440,8 @@ extends
     val subType: Fielder = parse_element (element (cls, fields(6)))
     val vendPortion: Fielder = parse_element (element (cls, fields(7)))
     val vendPortionArrear: Fielder = parse_element (element (cls, fields(8)))
-    val CustomerAgreement: Fielder = parse_attribute (attribute (cls, fields(9)))
+    val AuxiliaryAccounts: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
+    val CustomerAgreement: Fielder = parse_attribute (attribute (cls, fields(10)))
 
     def parse (context: Context): AuxiliaryAgreement =
     {
@@ -447,14 +458,12 @@ extends
             mask (subType (), 6),
             toDouble (mask (vendPortion (), 7)),
             toDouble (mask (vendPortionArrear (), 8)),
-            mask (CustomerAgreement (), 9)
+            masks (AuxiliaryAccounts (), 9),
+            mask (CustomerAgreement (), 10)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("CustomerAgreement", "CustomerAgreement", false)
-    )
 }
 
 /**
@@ -526,7 +535,7 @@ object BankAccountDetail
 extends
     Parseable[BankAccountDetail]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "accountNumber",
         "bankName",
         "branchCode",
@@ -554,9 +563,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -629,12 +635,15 @@ object Card
 extends
     Parseable[Card]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "accountHolderName",
         "cvNumber",
         "expiryDate",
         "pan",
         "Tender"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Tender", "Tender", "1", "0..1")
     )
     val accountHolderName: Fielder = parse_element (element (cls, fields(0)))
     val cvNumber: Fielder = parse_element (element (cls, fields(1)))
@@ -657,9 +666,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Tender", "Tender", false)
-    )
 }
 
 /**
@@ -669,6 +675,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param electronicAddress Electronic address.
+ * @param CashierShifts [[ch.ninecode.model.CashierShift CashierShift]] All shifts operated by this cashier.
  * @group PaymentMetering
  * @groupname PaymentMetering Package PaymentMetering
  * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
@@ -676,7 +683,8 @@ extends
 case class Cashier
 (
     override val sup: IdentifiedObject,
-    electronicAddress: String
+    electronicAddress: String,
+    CashierShifts: List[String]
 )
 extends
     Element
@@ -684,7 +692,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null) }
+    def this () = { this (null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -708,7 +716,9 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Cashier.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Cashier.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Cashier.fields (position), x))
         emitattr (0, electronicAddress)
+        emitattrs (1, CashierShifts)
         s.toString
     }
     override def export: String =
@@ -721,10 +731,15 @@ object Cashier
 extends
     Parseable[Cashier]
 {
-    val fields: Array[String] = Array[String] (
-        "electronicAddress"
+    override val fields: Array[String] = Array[String] (
+        "electronicAddress",
+        "CashierShifts"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("CashierShifts", "CashierShift", "0..*", "0..1")
     )
     val electronicAddress: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val CashierShifts: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): Cashier =
     {
@@ -732,14 +747,12 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = Cashier (
             IdentifiedObject.parse (context),
-            mask (electronicAddress (), 0)
+            mask (electronicAddress (), 0),
+            masks (CashierShifts (), 1)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -749,6 +762,8 @@ extends
  * @param cashFloat The amount of cash that the cashier brings to start the shift and that will be taken away at the end of the shift; i.e. the cash float does not get banked.
  * @param Cashier [[ch.ninecode.model.Cashier Cashier]] Cashier operating this shift.
  * @param PointOfSale [[ch.ninecode.model.PointOfSale PointOfSale]] Point of sale that is in operation during this shift.
+ * @param Receipts [[ch.ninecode.model.Receipt Receipt]] All Receipts recorded for this Shift.
+ * @param Transactions [[ch.ninecode.model.Transaction Transaction]] All transactions recorded during this cashier shift.
  * @group PaymentMetering
  * @groupname PaymentMetering Package PaymentMetering
  * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
@@ -758,7 +773,9 @@ case class CashierShift
     override val sup: Shift,
     cashFloat: Double,
     Cashier: String,
-    PointOfSale: String
+    PointOfSale: String,
+    Receipts: List[String],
+    Transactions: List[String]
 )
 extends
     Element
@@ -766,7 +783,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, null, null) }
+    def this () = { this (null, 0.0, null, null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -791,9 +808,12 @@ extends
         implicit val clz: String = CashierShift.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (CashierShift.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (CashierShift.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (CashierShift.fields (position), x))
         emitelem (0, cashFloat)
         emitattr (1, Cashier)
         emitattr (2, PointOfSale)
+        emitattrs (3, Receipts)
+        emitattrs (4, Transactions)
         s.toString
     }
     override def export: String =
@@ -806,14 +826,24 @@ object CashierShift
 extends
     Parseable[CashierShift]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "cashFloat",
         "Cashier",
-        "PointOfSale"
+        "PointOfSale",
+        "Receipts",
+        "Transactions"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Cashier", "Cashier", "0..1", "0..*"),
+        Relationship ("PointOfSale", "PointOfSale", "0..1", "0..*"),
+        Relationship ("Receipts", "Receipt", "0..*", "0..1"),
+        Relationship ("Transactions", "Transaction", "0..*", "0..1")
     )
     val cashFloat: Fielder = parse_element (element (cls, fields(0)))
     val Cashier: Fielder = parse_attribute (attribute (cls, fields(1)))
     val PointOfSale: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val Receipts: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val Transactions: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
 
     def parse (context: Context): CashierShift =
     {
@@ -823,15 +853,13 @@ extends
             Shift.parse (context),
             toDouble (mask (cashFloat (), 0)),
             mask (Cashier (), 1),
-            mask (PointOfSale (), 2)
+            mask (PointOfSale (), 2),
+            masks (Receipts (), 3),
+            masks (Transactions (), 4)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Cashier", "Cashier", false),
-        Relationship ("PointOfSale", "PointOfSale", false)
-    )
 }
 
 /**
@@ -844,6 +872,7 @@ extends
  * @param kind The kind of charge to be applied.
  * @param variablePortion The variable portion of this charge element, calculated as a percentage of the total amount of a parent charge.
  * @param AuxiliaryAccounts [[ch.ninecode.model.AuxiliaryAccount AuxiliaryAccount]] All auxiliary accounts to which this charge has to be levied.
+ * @param ChildCharges [[ch.ninecode.model.Charge Charge]] All sub-components of this complex charge.
  * @param ConsumptionTariffIntervals [[ch.ninecode.model.ConsumptionTariffInterval ConsumptionTariffInterval]] Tariff intervals to which this consumption-based charge has to be levied.
  * @param ParentCharge [[ch.ninecode.model.Charge Charge]] Parent of this charge sub-component.
  * @param TimeTariffIntervals [[ch.ninecode.model.TimeTariffInterval TimeTariffInterval]] Tariff intervals to which this time-based charge has to be levied.
@@ -858,6 +887,7 @@ case class Charge
     kind: String,
     variablePortion: Double,
     AuxiliaryAccounts: List[String],
+    ChildCharges: List[String],
     ConsumptionTariffIntervals: List[String],
     ParentCharge: String,
     TimeTariffIntervals: List[String]
@@ -868,7 +898,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, 0.0, List(), List(), null, List()) }
+    def this () = { this (null, null, null, 0.0, List(), List(), List(), null, List()) }
     /**
      * Return the superclass object.
      *
@@ -898,9 +928,10 @@ extends
         emitattr (1, kind)
         emitelem (2, variablePortion)
         emitattrs (3, AuxiliaryAccounts)
-        emitattrs (4, ConsumptionTariffIntervals)
-        emitattr (5, ParentCharge)
-        emitattrs (6, TimeTariffIntervals)
+        emitattrs (4, ChildCharges)
+        emitattrs (5, ConsumptionTariffIntervals)
+        emitattr (6, ParentCharge)
+        emitattrs (7, TimeTariffIntervals)
         s.toString
     }
     override def export: String =
@@ -913,22 +944,32 @@ object Charge
 extends
     Parseable[Charge]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "fixedPortion",
         "kind",
         "variablePortion",
         "AuxiliaryAccounts",
+        "ChildCharges",
         "ConsumptionTariffIntervals",
         "ParentCharge",
         "TimeTariffIntervals"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("fixedPortion", "AccountingUnit", "0..1", "0..*"),
+        Relationship ("AuxiliaryAccounts", "AuxiliaryAccount", "0..*", "0..*"),
+        Relationship ("ChildCharges", "Charge", "0..*", "0..1"),
+        Relationship ("ConsumptionTariffIntervals", "ConsumptionTariffInterval", "0..*", "0..*"),
+        Relationship ("ParentCharge", "Charge", "0..1", "0..*"),
+        Relationship ("TimeTariffIntervals", "TimeTariffInterval", "0..*", "0..*")
     )
     val fixedPortion: Fielder = parse_attribute (attribute (cls, fields(0)))
     val kind: Fielder = parse_attribute (attribute (cls, fields(1)))
     val variablePortion: Fielder = parse_element (element (cls, fields(2)))
     val AuxiliaryAccounts: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
-    val ConsumptionTariffIntervals: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
-    val ParentCharge: Fielder = parse_attribute (attribute (cls, fields(5)))
-    val TimeTariffIntervals: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
+    val ChildCharges: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val ConsumptionTariffIntervals: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
+    val ParentCharge: Fielder = parse_attribute (attribute (cls, fields(6)))
+    val TimeTariffIntervals: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
 
     def parse (context: Context): Charge =
     {
@@ -940,20 +981,14 @@ extends
             mask (kind (), 1),
             toDouble (mask (variablePortion (), 2)),
             masks (AuxiliaryAccounts (), 3),
-            masks (ConsumptionTariffIntervals (), 4),
-            mask (ParentCharge (), 5),
-            masks (TimeTariffIntervals (), 6)
+            masks (ChildCharges (), 4),
+            masks (ConsumptionTariffIntervals (), 5),
+            mask (ParentCharge (), 6),
+            masks (TimeTariffIntervals (), 7)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("fixedPortion", "AccountingUnit", false),
-        Relationship ("AuxiliaryAccounts", "AuxiliaryAccount", true),
-        Relationship ("ConsumptionTariffIntervals", "ConsumptionTariffInterval", true),
-        Relationship ("ParentCharge", "Charge", false),
-        Relationship ("TimeTariffIntervals", "TimeTariffInterval", true)
-    )
 }
 
 /**
@@ -1029,13 +1064,17 @@ object Cheque
 extends
     Parseable[Cheque]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "bankAccountDetail",
         "chequeNumber",
         "date",
         "kind",
         "micrNumber",
         "Tender"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("bankAccountDetail", "BankAccountDetail", "0..1", "0..*"),
+        Relationship ("Tender", "Tender", "1", "0..1")
     )
     val bankAccountDetail: Fielder = parse_attribute (attribute (cls, fields(0)))
     val chequeNumber: Fielder = parse_element (element (cls, fields(1)))
@@ -1060,10 +1099,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("bankAccountDetail", "BankAccountDetail", false),
-        Relationship ("Tender", "Tender", false)
-    )
 }
 
 /**
@@ -1139,12 +1174,17 @@ object ConsumptionTariffInterval
 extends
     Parseable[ConsumptionTariffInterval]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "sequenceNumber",
         "startValue",
         "Charges",
         "TariffProfiles",
         "TouTariffIntervals"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Charges", "Charge", "0..*", "0..*"),
+        Relationship ("TariffProfiles", "TariffProfile", "0..*", "0..*"),
+        Relationship ("TouTariffIntervals", "TimeTariffInterval", "0..*", "0..*")
     )
     val sequenceNumber: Fielder = parse_element (element (cls, fields(0)))
     val startValue: Fielder = parse_element (element (cls, fields(1)))
@@ -1167,11 +1207,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Charges", "Charge", true),
-        Relationship ("TariffProfiles", "TariffProfile", true),
-        Relationship ("TouTariffIntervals", "TimeTariffInterval", true)
-    )
 }
 
 /**
@@ -1244,7 +1279,7 @@ object Due
 extends
     Parseable[Due]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "arrears",
         "charges",
         "current",
@@ -1272,9 +1307,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1343,7 +1375,7 @@ object LineDetail
 extends
     Parseable[LineDetail]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "amount",
         "dateTime",
         "note",
@@ -1368,9 +1400,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1383,6 +1412,7 @@ extends
  * @param provisionalBalance The balance of this account after taking into account any pending debits from VendorShift.merchantDebitAmount and pending credits from BankStatement.merchantCreditAmount or credits (see also BankStatement attributes and VendorShift attributes).
  * @param MerchantAgreement [[ch.ninecode.model.MerchantAgreement MerchantAgreement]] Merchant agreement that instantiated this merchant account.
  * @param Transactors [[ch.ninecode.model.Transactor Transactor]] All transactors this merchant account is registered with.
+ * @param VendorShifts [[ch.ninecode.model.VendorShift VendorShift]] All vendor shifts that operate on this merchant account.
  * @group PaymentMetering
  * @groupname PaymentMetering Package PaymentMetering
  * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
@@ -1393,7 +1423,8 @@ case class MerchantAccount
     currentBalance: Double,
     provisionalBalance: Double,
     MerchantAgreement: String,
-    Transactors: List[String]
+    Transactors: List[String],
+    VendorShifts: List[String]
 )
 extends
     Element
@@ -1401,7 +1432,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, null, List()) }
+    def this () = { this (null, 0.0, 0.0, null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1431,6 +1462,7 @@ extends
         emitelem (1, provisionalBalance)
         emitattr (2, MerchantAgreement)
         emitattrs (3, Transactors)
+        emitattrs (4, VendorShifts)
         s.toString
     }
     override def export: String =
@@ -1443,16 +1475,23 @@ object MerchantAccount
 extends
     Parseable[MerchantAccount]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "currentBalance",
         "provisionalBalance",
         "MerchantAgreement",
-        "Transactors"
+        "Transactors",
+        "VendorShifts"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("MerchantAgreement", "MerchantAgreement", "0..1", "0..*"),
+        Relationship ("Transactors", "Transactor", "0..*", "0..*"),
+        Relationship ("VendorShifts", "VendorShift", "0..*", "0..1")
     )
     val currentBalance: Fielder = parse_element (element (cls, fields(0)))
     val provisionalBalance: Fielder = parse_element (element (cls, fields(1)))
     val MerchantAgreement: Fielder = parse_attribute (attribute (cls, fields(2)))
     val Transactors: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val VendorShifts: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
 
     def parse (context: Context): MerchantAccount =
     {
@@ -1463,15 +1502,12 @@ extends
             toDouble (mask (currentBalance (), 0)),
             toDouble (mask (provisionalBalance (), 1)),
             mask (MerchantAgreement (), 2),
-            masks (Transactors (), 3)
+            masks (Transactors (), 3),
+            masks (VendorShifts (), 4)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("MerchantAgreement", "MerchantAgreement", false),
-        Relationship ("Transactors", "Transactor", true)
-    )
 }
 
 /**
@@ -1480,13 +1516,15 @@ extends
  * The merchant is accountable to the supplier for revenue collected at point of sale.
  *
  * @param sup [[ch.ninecode.model.Agreement Agreement]] Reference to the superclass object.
+ * @param MerchantAccounts [[ch.ninecode.model.MerchantAccount MerchantAccount]] All merchant accounts instantiated as a result of this merchant agreement.
  * @group PaymentMetering
  * @groupname PaymentMetering Package PaymentMetering
  * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
  */
 case class MerchantAgreement
 (
-    override val sup: Agreement
+    override val sup: Agreement,
+    MerchantAccounts: List[String]
 )
 extends
     Element
@@ -1494,7 +1532,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -1515,7 +1553,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = MerchantAgreement.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (MerchantAgreement.fields (position), x))
+        emitattrs (0, MerchantAccounts)
+        s.toString
     }
     override def export: String =
     {
@@ -1527,18 +1569,25 @@ object MerchantAgreement
 extends
     Parseable[MerchantAgreement]
 {
+    override val fields: Array[String] = Array[String] (
+        "MerchantAccounts"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("MerchantAccounts", "MerchantAccount", "0..*", "0..1")
+    )
+    val MerchantAccounts: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): MerchantAgreement =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = MerchantAgreement (
-            Agreement.parse (context)
+            Agreement.parse (context),
+            masks (MerchantAccounts (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1546,6 +1595,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param location Local description for where this point of sale is physically located.
+ * @param CashierShifts [[ch.ninecode.model.CashierShift CashierShift]] All shifts this point of sale operated in.
  * @group PaymentMetering
  * @groupname PaymentMetering Package PaymentMetering
  * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
@@ -1553,7 +1603,8 @@ extends
 case class PointOfSale
 (
     override val sup: IdentifiedObject,
-    location: String
+    location: String,
+    CashierShifts: List[String]
 )
 extends
     Element
@@ -1561,7 +1612,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null) }
+    def this () = { this (null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -1585,7 +1636,9 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PointOfSale.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PointOfSale.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (PointOfSale.fields (position), x))
         emitelem (0, location)
+        emitattrs (1, CashierShifts)
         s.toString
     }
     override def export: String =
@@ -1598,10 +1651,15 @@ object PointOfSale
 extends
     Parseable[PointOfSale]
 {
-    val fields: Array[String] = Array[String] (
-        "location"
+    override val fields: Array[String] = Array[String] (
+        "location",
+        "CashierShifts"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("CashierShifts", "CashierShift", "0..*", "0..1")
     )
     val location: Fielder = parse_element (element (cls, fields(0)))
+    val CashierShifts: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): PointOfSale =
     {
@@ -1609,14 +1667,12 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = PointOfSale (
             IdentifiedObject.parse (context),
-            mask (location (), 0)
+            mask (location (), 0),
+            masks (CashierShifts (), 1)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1626,6 +1682,8 @@ extends
  * @param isBankable True if this receipted payment is manually bankable, otherwise it is an electronic funds transfer.
  * @param line [[ch.ninecode.model.LineDetail LineDetail]] Receipted amount with rounding, date and note.
  * @param CashierShift [[ch.ninecode.model.CashierShift CashierShift]] Cashier shift during which this receipt was recorded.
+ * @param Tenders [[ch.ninecode.model.Tender Tender]] All payments received in the form of tenders recorded by this receipt.
+ * @param Transactions [[ch.ninecode.model.Transaction Transaction]] All transactions recorded for this receipted payment.
  * @param VendorShift [[ch.ninecode.model.VendorShift VendorShift]] Vendor shift during which this receipt was recorded.
  * @group PaymentMetering
  * @groupname PaymentMetering Package PaymentMetering
@@ -1637,6 +1695,8 @@ case class Receipt
     isBankable: Boolean,
     line: String,
     CashierShift: String,
+    Tenders: List[String],
+    Transactions: List[String],
     VendorShift: String
 )
 extends
@@ -1645,7 +1705,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, false, null, null, null) }
+    def this () = { this (null, false, null, null, List(), List(), null) }
     /**
      * Return the superclass object.
      *
@@ -1670,10 +1730,13 @@ extends
         implicit val clz: String = Receipt.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Receipt.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Receipt.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Receipt.fields (position), x))
         emitelem (0, isBankable)
         emitattr (1, line)
         emitattr (2, CashierShift)
-        emitattr (3, VendorShift)
+        emitattrs (3, Tenders)
+        emitattrs (4, Transactions)
+        emitattr (5, VendorShift)
         s.toString
     }
     override def export: String =
@@ -1686,16 +1749,27 @@ object Receipt
 extends
     Parseable[Receipt]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "isBankable",
         "line",
         "CashierShift",
+        "Tenders",
+        "Transactions",
         "VendorShift"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("line", "LineDetail", "0..1", "0..*"),
+        Relationship ("CashierShift", "CashierShift", "0..1", "0..*"),
+        Relationship ("Tenders", "Tender", "1..*", "1"),
+        Relationship ("Transactions", "Transaction", "1..*", "0..1"),
+        Relationship ("VendorShift", "VendorShift", "0..1", "0..*")
     )
     val isBankable: Fielder = parse_element (element (cls, fields(0)))
     val line: Fielder = parse_attribute (attribute (cls, fields(1)))
     val CashierShift: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val VendorShift: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val Tenders: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val Transactions: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val VendorShift: Fielder = parse_attribute (attribute (cls, fields(5)))
 
     def parse (context: Context): Receipt =
     {
@@ -1706,16 +1780,13 @@ extends
             toBoolean (mask (isBankable (), 0)),
             mask (line (), 1),
             mask (CashierShift (), 2),
-            mask (VendorShift (), 3)
+            masks (Tenders (), 3),
+            masks (Transactions (), 4),
+            mask (VendorShift (), 5)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("line", "LineDetail", false),
-        Relationship ("CashierShift", "CashierShift", false),
-        Relationship ("VendorShift", "VendorShift", false)
-    )
 }
 
 /**
@@ -1724,6 +1795,9 @@ extends
  * @param sup [[ch.ninecode.model.OrganisationRole OrganisationRole]] Reference to the superclass object.
  * @param issuerIdentificationNumber Unique transaction reference prefix number issued to an entity by the International Organization for Standardization for the purpose of tagging onto electronic financial transactions, as defined in ISO/IEC 7812-1 and ISO/IEC 7812-2.
  * @param kind Kind of supplier.
+ * @param BankAccounts [[ch.ninecode.model.BankAccount BankAccount]] All BackAccounts this ServiceSupplier owns.
+ * @param CustomerAgreements [[ch.ninecode.model.CustomerAgreement CustomerAgreement]] All customer agreements of this service supplier.
+ * @param UsagePoints [[ch.ninecode.model.UsagePoint UsagePoint]] All usage points this service supplier utilises to deliver a service.
  * @group PaymentMetering
  * @groupname PaymentMetering Package PaymentMetering
  * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
@@ -1732,7 +1806,10 @@ case class ServiceSupplier
 (
     override val sup: OrganisationRole,
     issuerIdentificationNumber: String,
-    kind: String
+    kind: String,
+    BankAccounts: List[String],
+    CustomerAgreements: List[String],
+    UsagePoints: List[String]
 )
 extends
     Element
@@ -1740,7 +1817,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null) }
+    def this () = { this (null, null, null, List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1765,8 +1842,12 @@ extends
         implicit val clz: String = ServiceSupplier.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ServiceSupplier.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ServiceSupplier.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ServiceSupplier.fields (position), x))
         emitelem (0, issuerIdentificationNumber)
         emitattr (1, kind)
+        emitattrs (2, BankAccounts)
+        emitattrs (3, CustomerAgreements)
+        emitattrs (4, UsagePoints)
         s.toString
     }
     override def export: String =
@@ -1779,12 +1860,23 @@ object ServiceSupplier
 extends
     Parseable[ServiceSupplier]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "issuerIdentificationNumber",
-        "kind"
+        "kind",
+        "BankAccounts",
+        "CustomerAgreements",
+        "UsagePoints"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("BankAccounts", "BankAccount", "0..*", "0..1"),
+        Relationship ("CustomerAgreements", "CustomerAgreement", "0..*", "1"),
+        Relationship ("UsagePoints", "UsagePoint", "0..*", "0..1")
     )
     val issuerIdentificationNumber: Fielder = parse_element (element (cls, fields(0)))
     val kind: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val BankAccounts: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val CustomerAgreements: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val UsagePoints: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
 
     def parse (context: Context): ServiceSupplier =
     {
@@ -1793,14 +1885,14 @@ extends
         val ret = ServiceSupplier (
             OrganisationRole.parse (context),
             mask (issuerIdentificationNumber (), 0),
-            mask (kind (), 1)
+            mask (kind (), 1),
+            masks (BankAccounts (), 2),
+            masks (CustomerAgreements (), 3),
+            masks (UsagePoints (), 4)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1883,7 +1975,7 @@ object Shift
 extends
     Parseable[Shift]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "activityInterval",
         "receiptsGrandTotalBankable",
         "receiptsGrandTotalNonBankable",
@@ -1914,9 +2006,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1989,11 +2078,16 @@ object TariffProfile
 extends
     Parseable[TariffProfile]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "tariffCycle",
         "ConsumptionTariffIntervals",
         "Tariffs",
         "TimeTariffIntervals"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ConsumptionTariffIntervals", "ConsumptionTariffInterval", "0..*", "0..*"),
+        Relationship ("Tariffs", "Tariff", "0..*", "0..*"),
+        Relationship ("TimeTariffIntervals", "TimeTariffInterval", "0..*", "0..*")
     )
     val tariffCycle: Fielder = parse_element (element (cls, fields(0)))
     val ConsumptionTariffIntervals: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
@@ -2014,11 +2108,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("ConsumptionTariffIntervals", "ConsumptionTariffInterval", true),
-        Relationship ("Tariffs", "Tariff", true),
-        Relationship ("TimeTariffIntervals", "TimeTariffInterval", true)
-    )
 }
 
 /**
@@ -2096,13 +2185,18 @@ object Tender
 extends
     Parseable[Tender]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "amount",
         "change",
         "kind",
         "Card",
         "Cheque",
         "Receipt"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Card", "Card", "0..1", "1"),
+        Relationship ("Cheque", "Cheque", "0..1", "1"),
+        Relationship ("Receipt", "Receipt", "1", "1..*")
     )
     val amount: Fielder = parse_element (element (cls, fields(0)))
     val change: Fielder = parse_element (element (cls, fields(1)))
@@ -2127,11 +2221,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Card", "Card", false),
-        Relationship ("Cheque", "Cheque", false),
-        Relationship ("Receipt", "Receipt", false)
-    )
 }
 
 /**
@@ -2207,12 +2296,17 @@ object TimeTariffInterval
 extends
     Parseable[TimeTariffInterval]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "sequenceNumber",
         "startTime",
         "Charges",
         "ConsumptionTariffIntervals",
         "TariffProfiles"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Charges", "Charge", "0..*", "0..*"),
+        Relationship ("ConsumptionTariffIntervals", "ConsumptionTariffInterval", "0..*", "0..*"),
+        Relationship ("TariffProfiles", "TariffProfile", "0..*", "0..*")
     )
     val sequenceNumber: Fielder = parse_element (element (cls, fields(0)))
     val startTime: Fielder = parse_element (element (cls, fields(1)))
@@ -2235,11 +2329,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Charges", "Charge", true),
-        Relationship ("ConsumptionTariffIntervals", "ConsumptionTariffInterval", true),
-        Relationship ("TariffProfiles", "TariffProfile", true)
-    )
 }
 
 /**
@@ -2260,6 +2349,8 @@ extends
  * @param Meter [[ch.ninecode.model.Meter Meter]] Meter for this vending transaction.
  * @param PricingStructure [[ch.ninecode.model.PricingStructure PricingStructure]] Pricing structure applicable for this transaction.
  * @param Receipt [[ch.ninecode.model.Receipt Receipt]] The receipted payment for which this transaction has been recorded.
+ * @param UserAttributes [[ch.ninecode.model.UserAttribute UserAttribute]] All snapshots of meter parameters recorded at the time of this transaction.
+ *        Use 'name' and 'value.value' attributes to specify name and value of a parameter from meter.
  * @param VendorShift [[ch.ninecode.model.VendorShift VendorShift]] Vendor shift during which this transaction was recorded.
  * @group PaymentMetering
  * @groupname PaymentMetering Package PaymentMetering
@@ -2282,6 +2373,7 @@ case class Transaction
     Meter: String,
     PricingStructure: String,
     Receipt: String,
+    UserAttributes: List[String],
     VendorShift: String
 )
 extends
@@ -2290,7 +2382,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null, null, null, 0.0, 0.0, null, null, null, null, null, null, null) }
+    def this () = { this (null, null, null, null, null, null, null, 0.0, 0.0, null, null, null, null, null, null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -2315,6 +2407,7 @@ extends
         implicit val clz: String = Transaction.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Transaction.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Transaction.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Transaction.fields (position), x))
         emitelem (0, diverseReference)
         emitelem (1, donorReference)
         emitattr (2, kind)
@@ -2329,7 +2422,8 @@ extends
         emitattr (11, Meter)
         emitattr (12, PricingStructure)
         emitattr (13, Receipt)
-        emitattr (14, VendorShift)
+        emitattrs (14, UserAttributes)
+        emitattr (15, VendorShift)
         s.toString
     }
     override def export: String =
@@ -2342,7 +2436,7 @@ object Transaction
 extends
     Parseable[Transaction]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "diverseReference",
         "donorReference",
         "kind",
@@ -2357,7 +2451,19 @@ extends
         "Meter",
         "PricingStructure",
         "Receipt",
+        "UserAttributes",
         "VendorShift"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("line", "LineDetail", "0..1", "0..*"),
+        Relationship ("AuxiliaryAccount", "AuxiliaryAccount", "0..1", "0..*"),
+        Relationship ("CashierShift", "CashierShift", "0..1", "0..*"),
+        Relationship ("CustomerAccount", "CustomerAccount", "0..1", "0..*"),
+        Relationship ("Meter", "Meter", "0..1", "0..*"),
+        Relationship ("PricingStructure", "PricingStructure", "0..1", "0..*"),
+        Relationship ("Receipt", "Receipt", "0..1", "1..*"),
+        Relationship ("UserAttributes", "UserAttribute", "0..*", "0..1"),
+        Relationship ("VendorShift", "VendorShift", "0..1", "0..*")
     )
     val diverseReference: Fielder = parse_element (element (cls, fields(0)))
     val donorReference: Fielder = parse_element (element (cls, fields(1)))
@@ -2373,7 +2479,8 @@ extends
     val Meter: Fielder = parse_attribute (attribute (cls, fields(11)))
     val PricingStructure: Fielder = parse_attribute (attribute (cls, fields(12)))
     val Receipt: Fielder = parse_attribute (attribute (cls, fields(13)))
-    val VendorShift: Fielder = parse_attribute (attribute (cls, fields(14)))
+    val UserAttributes: FielderMultiple = parse_attributes (attribute (cls, fields(14)))
+    val VendorShift: Fielder = parse_attribute (attribute (cls, fields(15)))
 
     def parse (context: Context): Transaction =
     {
@@ -2395,21 +2502,12 @@ extends
             mask (Meter (), 11),
             mask (PricingStructure (), 12),
             mask (Receipt (), 13),
-            mask (VendorShift (), 14)
+            masks (UserAttributes (), 14),
+            mask (VendorShift (), 15)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("line", "LineDetail", false),
-        Relationship ("AuxiliaryAccount", "AuxiliaryAccount", false),
-        Relationship ("CashierShift", "CashierShift", false),
-        Relationship ("CustomerAccount", "CustomerAccount", false),
-        Relationship ("Meter", "Meter", false),
-        Relationship ("PricingStructure", "PricingStructure", false),
-        Relationship ("Receipt", "Receipt", false),
-        Relationship ("VendorShift", "VendorShift", false)
-    )
 }
 
 /**
@@ -2469,8 +2567,11 @@ object Transactor
 extends
     Parseable[Transactor]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "MerchantAccounts"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("MerchantAccounts", "MerchantAccount", "0..*", "0..*")
     )
     val MerchantAccounts: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
@@ -2485,9 +2586,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("MerchantAccounts", "MerchantAccount", true)
-    )
 }
 
 /**
@@ -2496,13 +2594,15 @@ extends
  * The vendor has a private contract with and is managed by the merchant which is a type of organisation. The vendor is accountable to the merchant for revenue collected, and the merchant is in turn accountable to the supplier.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param VendorShifts [[ch.ninecode.model.VendorShift VendorShift]] All vendor shifts opened and owned by this vendor.
  * @group PaymentMetering
  * @groupname PaymentMetering Package PaymentMetering
  * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
  */
 case class Vendor
 (
-    override val sup: IdentifiedObject
+    override val sup: IdentifiedObject,
+    VendorShifts: List[String]
 )
 extends
     Element
@@ -2510,7 +2610,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -2531,7 +2631,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = Vendor.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Vendor.fields (position), x))
+        emitattrs (0, VendorShifts)
+        s.toString
     }
     override def export: String =
     {
@@ -2543,18 +2647,25 @@ object Vendor
 extends
     Parseable[Vendor]
 {
+    override val fields: Array[String] = Array[String] (
+        "VendorShifts"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("VendorShifts", "VendorShift", "0..*", "0..1")
+    )
+    val VendorShifts: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): Vendor =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = Vendor (
-            IdentifiedObject.parse (context)
+            IdentifiedObject.parse (context),
+            masks (VendorShifts (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -2567,6 +2678,8 @@ extends
  *        This amount reflects the sum(PaymentTransaction.transactionAmount).
  * @param posted If true, merchantDebitAmount has been debited from MerchantAccount; typically happens at the end of VendorShift when it closes.
  * @param MerchantAccount [[ch.ninecode.model.MerchantAccount MerchantAccount]] Merchant account this vendor shift periodically debits (based on aggregated transactions).
+ * @param Receipts [[ch.ninecode.model.Receipt Receipt]] All receipts recorded during this vendor shift.
+ * @param Transactions [[ch.ninecode.model.Transaction Transaction]] All transactions recorded during this vendor shift.
  * @param Vendor [[ch.ninecode.model.Vendor Vendor]] Vendor that opens and owns this vendor shift.
  * @group PaymentMetering
  * @groupname PaymentMetering Package PaymentMetering
@@ -2578,6 +2691,8 @@ case class VendorShift
     merchantDebitAmount: Double,
     posted: Boolean,
     MerchantAccount: String,
+    Receipts: List[String],
+    Transactions: List[String],
     Vendor: String
 )
 extends
@@ -2586,7 +2701,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, false, null, null) }
+    def this () = { this (null, 0.0, false, null, List(), List(), null) }
     /**
      * Return the superclass object.
      *
@@ -2611,10 +2726,13 @@ extends
         implicit val clz: String = VendorShift.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (VendorShift.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (VendorShift.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (VendorShift.fields (position), x))
         emitelem (0, merchantDebitAmount)
         emitelem (1, posted)
         emitattr (2, MerchantAccount)
-        emitattr (3, Vendor)
+        emitattrs (3, Receipts)
+        emitattrs (4, Transactions)
+        emitattr (5, Vendor)
         s.toString
     }
     override def export: String =
@@ -2627,16 +2745,26 @@ object VendorShift
 extends
     Parseable[VendorShift]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "merchantDebitAmount",
         "posted",
         "MerchantAccount",
+        "Receipts",
+        "Transactions",
         "Vendor"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("MerchantAccount", "MerchantAccount", "0..1", "0..*"),
+        Relationship ("Receipts", "Receipt", "0..*", "0..1"),
+        Relationship ("Transactions", "Transaction", "0..*", "0..1"),
+        Relationship ("Vendor", "Vendor", "0..1", "0..*")
     )
     val merchantDebitAmount: Fielder = parse_element (element (cls, fields(0)))
     val posted: Fielder = parse_element (element (cls, fields(1)))
     val MerchantAccount: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val Vendor: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val Receipts: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val Transactions: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val Vendor: Fielder = parse_attribute (attribute (cls, fields(5)))
 
     def parse (context: Context): VendorShift =
     {
@@ -2647,15 +2775,13 @@ extends
             toDouble (mask (merchantDebitAmount (), 0)),
             toBoolean (mask (posted (), 1)),
             mask (MerchantAccount (), 2),
-            mask (Vendor (), 3)
+            masks (Receipts (), 3),
+            masks (Transactions (), 4),
+            mask (Vendor (), 5)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("MerchantAccount", "MerchantAccount", false),
-        Relationship ("Vendor", "Vendor", false)
-    )
 }
 
 private[ninecode] object _PaymentMetering

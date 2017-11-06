@@ -74,9 +74,13 @@ object LoadAggregate
 extends
     Parseable[LoadAggregate]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "LoadMotor",
         "LoadStatic"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("LoadMotor", "LoadMotor", "0..1", "1"),
+        Relationship ("LoadStatic", "LoadStatic", "0..1", "1")
     )
     val LoadMotor: Fielder = parse_attribute (attribute (cls, fields(0)))
     val LoadStatic: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -93,10 +97,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("LoadMotor", "LoadMotor", false),
-        Relationship ("LoadStatic", "LoadStatic", false)
-    )
 }
 
 /**
@@ -204,7 +204,7 @@ object LoadComposite
 extends
     Parseable[LoadComposite]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "epfd",
         "epfs",
         "epvd",
@@ -250,9 +250,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -263,6 +260,7 @@ extends
  * Aggregate loads are used to represent all or part of the real and reactive load from one or more loads in the static (power flow) data. This load is usually the aggregation of many individual load devices and the load model is approximate representation of the aggregate response of the load devices to system disturbances. The load model is always applied to individual bus loads (energy consumers) but a single set of load model parameters can used for all loads in the grouping.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param EnergyConsumer [[ch.ninecode.model.EnergyConsumer EnergyConsumer]] Energy consumer to which this dynamics load model applies.
  * @group LoadDynamics
  * @groupname LoadDynamics Package LoadDynamics
  * @groupdesc LoadDynamics Dynamic load models are used to represent the dynamic real and reactive load behaviour of a load from the static power flow model.  
@@ -274,7 +272,8 @@ In the CIM, such individual modelling is handled by child classes of either the 
  */
 case class LoadDynamics
 (
-    override val sup: IdentifiedObject
+    override val sup: IdentifiedObject,
+    EnergyConsumer: List[String]
 )
 extends
     Element
@@ -282,7 +281,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -303,7 +302,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = LoadDynamics.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (LoadDynamics.fields (position), x))
+        emitattrs (0, EnergyConsumer)
+        s.toString
     }
     override def export: String =
     {
@@ -315,18 +318,25 @@ object LoadDynamics
 extends
     Parseable[LoadDynamics]
 {
+    override val fields: Array[String] = Array[String] (
+        "EnergyConsumer"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("EnergyConsumer", "EnergyConsumer", "0..*", "0..1")
+    )
+    val EnergyConsumer: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): LoadDynamics =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = LoadDynamics (
-            IdentifiedObject.parse (context)
+            IdentifiedObject.parse (context),
+            masks (EnergyConsumer (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -416,7 +426,7 @@ object LoadGenericNonLinear
 extends
     Parseable[LoadGenericNonLinear]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "bs",
         "bt",
         "genericNonLinearLoadModelType",
@@ -456,9 +466,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -578,7 +585,7 @@ object LoadMotor
 extends
     Parseable[LoadMotor]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "d",
         "h",
         "lfac",
@@ -593,6 +600,9 @@ extends
         "tv",
         "vt",
         "LoadAggregate"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("LoadAggregate", "LoadAggregate", "1", "0..1")
     )
     val d: Fielder = parse_element (element (cls, fields(0)))
     val h: Fielder = parse_element (element (cls, fields(1)))
@@ -633,9 +643,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("LoadAggregate", "LoadAggregate", false)
-    )
 }
 
 /**
@@ -769,7 +776,7 @@ object LoadStatic
 extends
     Parseable[LoadStatic]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "ep1",
         "ep2",
         "ep3",
@@ -788,6 +795,9 @@ extends
         "kqf",
         "staticLoadModelType",
         "LoadAggregate"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("LoadAggregate", "LoadAggregate", "1", "0..1")
     )
     val ep1: Fielder = parse_element (element (cls, fields(0)))
     val ep2: Fielder = parse_element (element (cls, fields(1)))
@@ -836,9 +846,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("LoadAggregate", "LoadAggregate", false)
-    )
 }
 
 private[ninecode] object _LoadDynamics

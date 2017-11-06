@@ -72,10 +72,14 @@ object AltGeneratingUnitMeas
 extends
     Parseable[AltGeneratingUnitMeas]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "priority",
         "AnalogValue",
         "ControlAreaGeneratingUnit"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("AnalogValue", "AnalogValue", "1", "0..*"),
+        Relationship ("ControlAreaGeneratingUnit", "ControlAreaGeneratingUnit", "1", "0..*")
     )
     val priority: Fielder = parse_element (element (cls, fields(0)))
     val AnalogValue: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -94,10 +98,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("AnalogValue", "AnalogValue", false),
-        Relationship ("ControlAreaGeneratingUnit", "ControlAreaGeneratingUnit", false)
-    )
 }
 
 /**
@@ -165,10 +165,14 @@ object AltTieMeas
 extends
     Parseable[AltTieMeas]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "priority",
         "AnalogValue",
         "TieFlow"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("AnalogValue", "AnalogValue", "1", "0..*"),
+        Relationship ("TieFlow", "TieFlow", "1", "0..*")
     )
     val priority: Fielder = parse_element (element (cls, fields(0)))
     val AnalogValue: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -187,10 +191,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("AnalogValue", "AnalogValue", false),
-        Relationship ("TieFlow", "TieFlow", false)
-    )
 }
 
 /**
@@ -201,9 +201,11 @@ extends
  * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @param netInterchange The specified positive net interchange into the control area, i.e. positive sign means flow in to the area.
  * @param pTolerance Active power net interchange tolerance
- * @param EnergyArea [[ch.ninecode.model.EnergyArea EnergyArea]] The energy area that is forecast from this control area specification.
  * @param `type` The primary type of control area definition used to determine if this is used for automatic generation control, for planning interchange control, or other purposes.
  *        A control area specified with primary type of automatic generation control could still be forecast and used as an interchange area in power flow analysis.
+ * @param ControlAreaGeneratingUnit [[ch.ninecode.model.ControlAreaGeneratingUnit ControlAreaGeneratingUnit]] The generating unit specificaitons for the control area.
+ * @param EnergyArea [[ch.ninecode.model.EnergyArea EnergyArea]] The energy area that is forecast from this control area specification.
+ * @param TieFlow [[ch.ninecode.model.TieFlow TieFlow]] The tie flows associated with the control area.
  * @group ControlArea
  * @groupname ControlArea Package ControlArea
  * @groupdesc ControlArea The ControlArea package models area specifications which can be used for a variety of purposes.  The package as a whole models potentially overlapping control area specifications for the purpose of actual generation control, load forecast area load capture, or powerflow based analysis.
@@ -213,8 +215,10 @@ case class ControlArea
     override val sup: PowerSystemResource,
     netInterchange: Double,
     pTolerance: Double,
+    `type`: String,
+    ControlAreaGeneratingUnit: List[String],
     EnergyArea: String,
-    `type`: String
+    TieFlow: List[String]
 )
 extends
     Element
@@ -222,7 +226,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, null, null) }
+    def this () = { this (null, 0.0, 0.0, null, List(), null, List()) }
     /**
      * Return the superclass object.
      *
@@ -247,10 +251,13 @@ extends
         implicit val clz: String = ControlArea.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ControlArea.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ControlArea.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ControlArea.fields (position), x))
         emitelem (0, netInterchange)
         emitelem (1, pTolerance)
-        emitattr (2, EnergyArea)
-        emitattr (3, `type`)
+        emitattr (2, `type`)
+        emitattrs (3, ControlAreaGeneratingUnit)
+        emitattr (4, EnergyArea)
+        emitattrs (5, TieFlow)
         s.toString
     }
     override def export: String =
@@ -263,16 +270,25 @@ object ControlArea
 extends
     Parseable[ControlArea]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "netInterchange",
         "pTolerance",
+        "type",
+        "ControlAreaGeneratingUnit",
         "EnergyArea",
-        "type"
+        "TieFlow"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ControlAreaGeneratingUnit", "ControlAreaGeneratingUnit", "0..*", "1"),
+        Relationship ("EnergyArea", "EnergyArea", "0..1", "0..1"),
+        Relationship ("TieFlow", "TieFlow", "0..*", "1")
     )
     val netInterchange: Fielder = parse_element (element (cls, fields(0)))
     val pTolerance: Fielder = parse_element (element (cls, fields(1)))
-    val EnergyArea: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val `type`: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val `type`: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val ControlAreaGeneratingUnit: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val EnergyArea: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val TieFlow: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
 
     def parse (context: Context): ControlArea =
     {
@@ -282,15 +298,14 @@ extends
             PowerSystemResource.parse (context),
             toDouble (mask (netInterchange (), 0)),
             toDouble (mask (pTolerance (), 1)),
-            mask (EnergyArea (), 2),
-            mask (`type` (), 3)
+            mask (`type` (), 2),
+            masks (ControlAreaGeneratingUnit (), 3),
+            mask (EnergyArea (), 4),
+            masks (TieFlow (), 5)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("EnergyArea", "EnergyArea", false)
-    )
 }
 
 /**
@@ -299,6 +314,7 @@ extends
  * This class is needed so that alternate control area definitions may include the same generating unit.   Note only one instance within a control area should reference a specific generating unit.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param AltGeneratingUnitMeas [[ch.ninecode.model.AltGeneratingUnitMeas AltGeneratingUnitMeas]] The link to prioritized measurements for this GeneratingUnit.
  * @param ControlArea [[ch.ninecode.model.ControlArea ControlArea]] The parent control area for the generating unit specifications.
  * @param GeneratingUnit [[ch.ninecode.model.GeneratingUnit GeneratingUnit]] The generating unit specified for this control area.
  *        Note that a control area should include a GeneratingUnit only once.
@@ -309,6 +325,7 @@ extends
 case class ControlAreaGeneratingUnit
 (
     override val sup: IdentifiedObject,
+    AltGeneratingUnitMeas: List[String],
     ControlArea: String,
     GeneratingUnit: String
 )
@@ -318,7 +335,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null) }
+    def this () = { this (null, List(), null, null) }
     /**
      * Return the superclass object.
      *
@@ -342,8 +359,10 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ControlAreaGeneratingUnit.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ControlAreaGeneratingUnit.fields (position), value)
-        emitattr (0, ControlArea)
-        emitattr (1, GeneratingUnit)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ControlAreaGeneratingUnit.fields (position), x))
+        emitattrs (0, AltGeneratingUnitMeas)
+        emitattr (1, ControlArea)
+        emitattr (2, GeneratingUnit)
         s.toString
     }
     override def export: String =
@@ -356,12 +375,19 @@ object ControlAreaGeneratingUnit
 extends
     Parseable[ControlAreaGeneratingUnit]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
+        "AltGeneratingUnitMeas",
         "ControlArea",
         "GeneratingUnit"
     )
-    val ControlArea: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val GeneratingUnit: Fielder = parse_attribute (attribute (cls, fields(1)))
+    override val relations: List[Relationship] = List (
+        Relationship ("AltGeneratingUnitMeas", "AltGeneratingUnitMeas", "0..*", "1"),
+        Relationship ("ControlArea", "ControlArea", "1", "0..*"),
+        Relationship ("GeneratingUnit", "GeneratingUnit", "1", "0..*")
+    )
+    val AltGeneratingUnitMeas: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val ControlArea: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val GeneratingUnit: Fielder = parse_attribute (attribute (cls, fields(2)))
 
     def parse (context: Context): ControlAreaGeneratingUnit =
     {
@@ -369,16 +395,13 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = ControlAreaGeneratingUnit (
             IdentifiedObject.parse (context),
-            mask (ControlArea (), 0),
-            mask (GeneratingUnit (), 1)
+            masks (AltGeneratingUnitMeas (), 0),
+            mask (ControlArea (), 1),
+            mask (GeneratingUnit (), 2)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("ControlArea", "ControlArea", false),
-        Relationship ("GeneratingUnit", "GeneratingUnit", false)
-    )
 }
 
 /**
@@ -387,6 +410,7 @@ extends
  * @param sup Reference to the superclass object.
  * @param positiveFlowIn True if the flow into the terminal (load convention) is also flow into the control area.
  *        For example, this attribute should be true if using the tie line terminal further away from the control area. For example to represent a tie to a shunt component (like a load or generator) in another area, this is the near end of a branch and this attribute would be specified as false.
+ * @param AltTieMeas [[ch.ninecode.model.AltTieMeas AltTieMeas]] The primary and alternate tie flow measurements associated with the tie flow.
  * @param ControlArea [[ch.ninecode.model.ControlArea ControlArea]] The control area of the tie flows.
  * @param Terminal [[ch.ninecode.model.Terminal Terminal]] The terminal to which this tie flow belongs.
  * @group ControlArea
@@ -397,6 +421,7 @@ case class TieFlow
 (
     override val sup: BasicElement,
     positiveFlowIn: Boolean,
+    AltTieMeas: List[String],
     ControlArea: String,
     Terminal: String
 )
@@ -406,7 +431,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, false, null, null) }
+    def this () = { this (null, false, List(), null, null) }
     /**
      * Return the superclass object.
      *
@@ -431,9 +456,11 @@ extends
         implicit val clz: String = TieFlow.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TieFlow.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TieFlow.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (TieFlow.fields (position), x))
         emitelem (0, positiveFlowIn)
-        emitattr (1, ControlArea)
-        emitattr (2, Terminal)
+        emitattrs (1, AltTieMeas)
+        emitattr (2, ControlArea)
+        emitattr (3, Terminal)
         s.toString
     }
     override def export: String =
@@ -446,14 +473,21 @@ object TieFlow
 extends
     Parseable[TieFlow]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "positiveFlowIn",
+        "AltTieMeas",
         "ControlArea",
         "Terminal"
     )
+    override val relations: List[Relationship] = List (
+        Relationship ("AltTieMeas", "AltTieMeas", "0..*", "1"),
+        Relationship ("ControlArea", "ControlArea", "1", "0..*"),
+        Relationship ("Terminal", "Terminal", "1", "0..2")
+    )
     val positiveFlowIn: Fielder = parse_element (element (cls, fields(0)))
-    val ControlArea: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val Terminal: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val AltTieMeas: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val ControlArea: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val Terminal: Fielder = parse_attribute (attribute (cls, fields(3)))
 
     def parse (context: Context): TieFlow =
     {
@@ -462,16 +496,13 @@ extends
         val ret = TieFlow (
             BasicElement.parse (context),
             toBoolean (mask (positiveFlowIn (), 0)),
-            mask (ControlArea (), 1),
-            mask (Terminal (), 2)
+            masks (AltTieMeas (), 1),
+            mask (ControlArea (), 2),
+            mask (Terminal (), 3)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("ControlArea", "ControlArea", false),
-        Relationship ("Terminal", "Terminal", false)
-    )
 }
 
 private[ninecode] object _ControlArea

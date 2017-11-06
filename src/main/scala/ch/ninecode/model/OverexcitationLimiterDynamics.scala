@@ -79,7 +79,7 @@ object OverexcLim2
 extends
     Parseable[OverexcLim2]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "ifdlim",
         "koi",
         "voimax",
@@ -104,9 +104,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -189,7 +186,7 @@ object OverexcLimIEEE
 extends
     Parseable[OverexcLimIEEE]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "hyst",
         "ifdlim",
         "ifdmax",
@@ -220,9 +217,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -318,7 +312,7 @@ object OverexcLimX1
 extends
     Parseable[OverexcLimX1]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "efd1",
         "efd2",
         "efd3",
@@ -361,9 +355,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -464,7 +455,7 @@ object OverexcLimX2
 extends
     Parseable[OverexcLimX2]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "efd1",
         "efd2",
         "efd3",
@@ -510,9 +501,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -572,8 +560,11 @@ object OverexcitationLimiterDynamics
 extends
     Parseable[OverexcitationLimiterDynamics]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "ExcitationSystemDynamics"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ExcitationSystemDynamics", "ExcitationSystemDynamics", "1", "0..1")
     )
     val ExcitationSystemDynamics: Fielder = parse_attribute (attribute (cls, fields(0)))
 
@@ -588,9 +579,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("ExcitationSystemDynamics", "ExcitationSystemDynamics", false)
-    )
 }
 
 private[ninecode] object _OverexcitationLimiterDynamics

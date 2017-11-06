@@ -11,12 +11,14 @@ import ch.ninecode.cim.Relationship
  * Used to define the type of generation for scheduling purposes.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param EnergySource [[ch.ninecode.model.EnergySource EnergySource]] Energy Source of a particular Energy Scheduling Type
  * @group InfEnergySource
  * @groupname InfEnergySource Package InfEnergySource
  */
 case class EnergySchedulingType
 (
-    override val sup: IdentifiedObject
+    override val sup: IdentifiedObject,
+    EnergySource: List[String]
 )
 extends
     Element
@@ -24,7 +26,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -45,7 +47,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = EnergySchedulingType.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (EnergySchedulingType.fields (position), x))
+        emitattrs (0, EnergySource)
+        s.toString
     }
     override def export: String =
     {
@@ -57,18 +63,25 @@ object EnergySchedulingType
 extends
     Parseable[EnergySchedulingType]
 {
+    override val fields: Array[String] = Array[String] (
+        "EnergySource"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("EnergySource", "EnergySource", "0..*", "0..1")
+    )
+    val EnergySource: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): EnergySchedulingType =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = EnergySchedulingType (
-            IdentifiedObject.parse (context)
+            IdentifiedObject.parse (context),
+            masks (EnergySource (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 private[ninecode] object _InfEnergySource

@@ -46,6 +46,7 @@ import ch.ninecode.cim.Relationship
  *        Converter state variable, result from power flow.
  * @param valveU0 Valve threshold voltage, also called Uvalve.
  *        Forward voltage drop when the valve is conducting. Used in loss calculations, i.e. the switchLoss depends on numberOfValves * valveU0.
+ * @param DCTerminals [[ch.ninecode.model.ACDCConverterDCTerminal ACDCConverterDCTerminal]] <em>undocumented</em>
  * @param PccTerminal [[ch.ninecode.model.Terminal Terminal]] Point of common coupling terminal for this converter DC side.
  *        It is typically the terminal on the power transformer (or switch) closest to the AC network. The power flow measurement must be the sum of all flows into the transformer.
  * @group DC
@@ -72,6 +73,7 @@ case class ACDCConverter
     uc: Double,
     udc: Double,
     valveU0: Double,
+    DCTerminals: List[String],
     PccTerminal: String
 )
 extends
@@ -80,7 +82,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null) }
+    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -105,6 +107,7 @@ extends
         implicit val clz: String = ACDCConverter.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ACDCConverter.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ACDCConverter.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ACDCConverter.fields (position), x))
         emitelem (0, baseS)
         emitelem (1, idc)
         emitelem (2, idleLoss)
@@ -122,7 +125,8 @@ extends
         emitelem (14, uc)
         emitelem (15, udc)
         emitelem (16, valveU0)
-        emitattr (17, PccTerminal)
+        emitattrs (17, DCTerminals)
+        emitattr (18, PccTerminal)
         s.toString
     }
     override def export: String =
@@ -135,7 +139,7 @@ object ACDCConverter
 extends
     Parseable[ACDCConverter]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "baseS",
         "idc",
         "idleLoss",
@@ -153,7 +157,12 @@ extends
         "uc",
         "udc",
         "valveU0",
+        "DCTerminals",
         "PccTerminal"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("DCTerminals", "ACDCConverterDCTerminal", "0..*", "1"),
+        Relationship ("PccTerminal", "Terminal", "0..1", "0..*")
     )
     val baseS: Fielder = parse_element (element (cls, fields(0)))
     val idc: Fielder = parse_element (element (cls, fields(1)))
@@ -172,7 +181,8 @@ extends
     val uc: Fielder = parse_element (element (cls, fields(14)))
     val udc: Fielder = parse_element (element (cls, fields(15)))
     val valveU0: Fielder = parse_element (element (cls, fields(16)))
-    val PccTerminal: Fielder = parse_attribute (attribute (cls, fields(17)))
+    val DCTerminals: FielderMultiple = parse_attributes (attribute (cls, fields(17)))
+    val PccTerminal: Fielder = parse_attribute (attribute (cls, fields(18)))
 
     def parse (context: Context): ACDCConverter =
     {
@@ -197,14 +207,12 @@ extends
             toDouble (mask (uc (), 14)),
             toDouble (mask (udc (), 15)),
             toDouble (mask (valveU0 (), 16)),
-            mask (PccTerminal (), 17)
+            masks (DCTerminals (), 17),
+            mask (PccTerminal (), 18)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("PccTerminal", "Terminal", false)
-    )
 }
 
 /**
@@ -269,9 +277,12 @@ object ACDCConverterDCTerminal
 extends
     Parseable[ACDCConverterDCTerminal]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "polarity",
         "DCConductingEquipment"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("DCConductingEquipment", "ACDCConverter", "1", "0..*")
     )
     val polarity: Fielder = parse_attribute (attribute (cls, fields(0)))
     val DCConductingEquipment: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -288,9 +299,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("DCConductingEquipment", "ACDCConverter", false)
-    )
 }
 
 /**
@@ -403,7 +411,7 @@ object CsConverter
 extends
     Parseable[CsConverter]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "alpha",
         "gamma",
         "maxAlpha",
@@ -458,9 +466,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -526,9 +531,13 @@ object DCBaseTerminal
 extends
     Parseable[DCBaseTerminal]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "DCNode",
         "DCTopologicalNode"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("DCNode", "DCNode", "0..1", "0..*"),
+        Relationship ("DCTopologicalNode", "DCTopologicalNode", "0..1", "0..*")
     )
     val DCNode: Fielder = parse_attribute (attribute (cls, fields(0)))
     val DCTopologicalNode: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -545,10 +554,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("DCNode", "DCNode", false),
-        Relationship ("DCTopologicalNode", "DCTopologicalNode", false)
-    )
 }
 
 /**
@@ -611,9 +616,6 @@ extends
         )
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -676,9 +678,6 @@ extends
         )
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -743,22 +742,23 @@ extends
         )
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
  * The parts of the DC power system that are designed to carry current or that are conductively connected through DC terminals.
  *
  * @param sup [[ch.ninecode.model.Equipment Equipment]] Reference to the superclass object.
+ * @param DCTerminals [[ch.ninecode.model.DCTerminal DCTerminal]] <em>undocumented</em>
+ * @param ProtectiveActionAdjustment [[ch.ninecode.model.ProtectiveActionAdjustment ProtectiveActionAdjustment]] <em>undocumented</em>
  * @group DC
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
  */
 case class DCConductingEquipment
 (
-    override val sup: Equipment
+    override val sup: Equipment,
+    DCTerminals: List[String],
+    ProtectiveActionAdjustment: List[String]
 )
 extends
     Element
@@ -766,7 +766,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -787,7 +787,12 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = DCConductingEquipment.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (DCConductingEquipment.fields (position), x))
+        emitattrs (0, DCTerminals)
+        emitattrs (1, ProtectiveActionAdjustment)
+        s.toString
     }
     override def export: String =
     {
@@ -799,18 +804,29 @@ object DCConductingEquipment
 extends
     Parseable[DCConductingEquipment]
 {
+    override val fields: Array[String] = Array[String] (
+        "DCTerminals",
+        "ProtectiveActionAdjustment"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("DCTerminals", "DCTerminal", "0..*", "1"),
+        Relationship ("ProtectiveActionAdjustment", "ProtectiveActionAdjustment", "0..*", "1")
+    )
+    val DCTerminals: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val ProtectiveActionAdjustment: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): DCConductingEquipment =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = DCConductingEquipment (
-            Equipment.parse (context)
+            Equipment.parse (context),
+            masks (DCTerminals (), 0),
+            masks (ProtectiveActionAdjustment (), 1)
         )
+        ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -873,9 +889,12 @@ object DCConverterUnit
 extends
     Parseable[DCConverterUnit]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "operationMode",
         "Substation"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Substation", "Substation", "0..1", "0..*")
     )
     val operationMode: Fielder = parse_attribute (attribute (cls, fields(0)))
     val Substation: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -892,9 +911,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Substation", "Substation", false)
-    )
 }
 
 /**
@@ -957,9 +973,6 @@ extends
         )
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -968,13 +981,17 @@ extends
  * The class differ from the EquipmentContaner for AC in that it may also contain DCNodes. Hence it can contain both AC and DC equipment.
  *
  * @param sup [[ch.ninecode.model.EquipmentContainer EquipmentContainer]] Reference to the superclass object.
+ * @param DCNodes [[ch.ninecode.model.DCNode DCNode]] <em>undocumented</em>
+ * @param DCTopologicalNode [[ch.ninecode.model.DCTopologicalNode DCTopologicalNode]] <em>undocumented</em>
  * @group DC
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
  */
 case class DCEquipmentContainer
 (
-    override val sup: EquipmentContainer
+    override val sup: EquipmentContainer,
+    DCNodes: List[String],
+    DCTopologicalNode: List[String]
 )
 extends
     Element
@@ -982,7 +999,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1003,7 +1020,12 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = DCEquipmentContainer.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (DCEquipmentContainer.fields (position), x))
+        emitattrs (0, DCNodes)
+        emitattrs (1, DCTopologicalNode)
+        s.toString
     }
     override def export: String =
     {
@@ -1015,18 +1037,29 @@ object DCEquipmentContainer
 extends
     Parseable[DCEquipmentContainer]
 {
+    override val fields: Array[String] = Array[String] (
+        "DCNodes",
+        "DCTopologicalNode"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("DCNodes", "DCNode", "0..*", "1"),
+        Relationship ("DCTopologicalNode", "DCTopologicalNode", "0..*", "0..1")
+    )
+    val DCNodes: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val DCTopologicalNode: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): DCEquipmentContainer =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = DCEquipmentContainer (
-            EquipmentContainer.parse (context)
+            EquipmentContainer.parse (context),
+            masks (DCNodes (), 0),
+            masks (DCTopologicalNode (), 1)
         )
+        ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1089,7 +1122,7 @@ object DCGround
 extends
     Parseable[DCGround]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "inductance",
         "r"
     )
@@ -1108,9 +1141,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1170,8 +1200,11 @@ object DCLine
 extends
     Parseable[DCLine]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "Region"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Region", "SubGeographicalRegion", "0..1", "0..*")
     )
     val Region: Fielder = parse_attribute (attribute (cls, fields(0)))
 
@@ -1186,9 +1219,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Region", "SubGeographicalRegion", false)
-    )
 }
 
 /**
@@ -1263,12 +1293,15 @@ object DCLineSegment
 extends
     Parseable[DCLineSegment]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "capacitance",
         "inductance",
         "length",
         "resistance",
         "PerLengthParameter"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("PerLengthParameter", "PerLengthDCLineParameter", "0..1", "0..*")
     )
     val capacitance: Fielder = parse_element (element (cls, fields(0)))
     val inductance: Fielder = parse_element (element (cls, fields(1)))
@@ -1291,9 +1324,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("PerLengthParameter", "PerLengthDCLineParameter", false)
-    )
 }
 
 /**
@@ -1301,6 +1331,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param DCEquipmentContainer [[ch.ninecode.model.DCEquipmentContainer DCEquipmentContainer]] <em>undocumented</em>
+ * @param DCTerminals [[ch.ninecode.model.DCBaseTerminal DCBaseTerminal]] <em>undocumented</em>
  * @param DCTopologicalNode [[ch.ninecode.model.DCTopologicalNode DCTopologicalNode]] See association end ConnectivityNode.
  *        TopologicalNode.
  * @group DC
@@ -1311,6 +1342,7 @@ case class DCNode
 (
     override val sup: IdentifiedObject,
     DCEquipmentContainer: String,
+    DCTerminals: List[String],
     DCTopologicalNode: String
 )
 extends
@@ -1319,7 +1351,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null) }
+    def this () = { this (null, null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -1343,8 +1375,10 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = DCNode.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (DCNode.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (DCNode.fields (position), x))
         emitattr (0, DCEquipmentContainer)
-        emitattr (1, DCTopologicalNode)
+        emitattrs (1, DCTerminals)
+        emitattr (2, DCTopologicalNode)
         s.toString
     }
     override def export: String =
@@ -1357,12 +1391,19 @@ object DCNode
 extends
     Parseable[DCNode]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "DCEquipmentContainer",
+        "DCTerminals",
         "DCTopologicalNode"
     )
+    override val relations: List[Relationship] = List (
+        Relationship ("DCEquipmentContainer", "DCEquipmentContainer", "1", "0..*"),
+        Relationship ("DCTerminals", "DCBaseTerminal", "0..*", "0..1"),
+        Relationship ("DCTopologicalNode", "DCTopologicalNode", "0..1", "0..*")
+    )
     val DCEquipmentContainer: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val DCTopologicalNode: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val DCTerminals: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val DCTopologicalNode: Fielder = parse_attribute (attribute (cls, fields(2)))
 
     def parse (context: Context): DCNode =
     {
@@ -1371,15 +1412,12 @@ extends
         val ret = DCNode (
             IdentifiedObject.parse (context),
             mask (DCEquipmentContainer (), 0),
-            mask (DCTopologicalNode (), 1)
+            masks (DCTerminals (), 1),
+            mask (DCTopologicalNode (), 2)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("DCEquipmentContainer", "DCEquipmentContainer", false),
-        Relationship ("DCTopologicalNode", "DCTopologicalNode", false)
-    )
 }
 
 /**
@@ -1448,7 +1486,7 @@ object DCSeriesDevice
 extends
     Parseable[DCSeriesDevice]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "inductance",
         "ratedUdc",
         "resistance"
@@ -1470,9 +1508,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1541,7 +1576,7 @@ object DCShunt
 extends
     Parseable[DCShunt]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "capacitance",
         "ratedUdc",
         "resistance"
@@ -1563,9 +1598,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1628,9 +1660,6 @@ extends
         )
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1690,8 +1719,11 @@ object DCTerminal
 extends
     Parseable[DCTerminal]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "DCConductingEquipment"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("DCConductingEquipment", "DCConductingEquipment", "1", "0..*")
     )
     val DCConductingEquipment: Fielder = parse_attribute (attribute (cls, fields(0)))
 
@@ -1706,9 +1738,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("DCConductingEquipment", "DCConductingEquipment", false)
-    )
 }
 
 /**
@@ -1717,13 +1746,15 @@ extends
  * DC topological islands can change as the current network state changes: e.g. due to
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param DCTopologicalNodes [[ch.ninecode.model.DCTopologicalNode DCTopologicalNode]] <em>undocumented</em>
  * @group DC
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
  */
 case class DCTopologicalIsland
 (
-    override val sup: IdentifiedObject
+    override val sup: IdentifiedObject,
+    DCTopologicalNodes: List[String]
 )
 extends
     Element
@@ -1731,7 +1762,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -1752,7 +1783,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = DCTopologicalIsland.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (DCTopologicalIsland.fields (position), x))
+        emitattrs (0, DCTopologicalNodes)
+        s.toString
     }
     override def export: String =
     {
@@ -1764,18 +1799,25 @@ object DCTopologicalIsland
 extends
     Parseable[DCTopologicalIsland]
 {
+    override val fields: Array[String] = Array[String] (
+        "DCTopologicalNodes"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("DCTopologicalNodes", "DCTopologicalNode", "1..*", "0..1")
+    )
+    val DCTopologicalNodes: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): DCTopologicalIsland =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = DCTopologicalIsland (
-            IdentifiedObject.parse (context)
+            IdentifiedObject.parse (context),
+            masks (DCTopologicalNodes (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1789,7 +1831,8 @@ case class PerLengthDCLineParameter
     override val sup: PerLengthLineParameter,
     capacitance: Double,
     inductance: Double,
-    resistance: Double
+    resistance: Double,
+    DCLineSegments: List[String]
 )
 extends
     Element
@@ -1797,7 +1840,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, 0.0) }
+    def this () = { this (null, 0.0, 0.0, 0.0, List()) }
     /**
      * Return the superclass object.
      *
@@ -1821,9 +1864,11 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PerLengthDCLineParameter.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PerLengthDCLineParameter.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (PerLengthDCLineParameter.fields (position), x))
         emitelem (0, capacitance)
         emitelem (1, inductance)
         emitelem (2, resistance)
+        emitattrs (3, DCLineSegments)
         s.toString
     }
     override def export: String =
@@ -1836,14 +1881,19 @@ object PerLengthDCLineParameter
 extends
     Parseable[PerLengthDCLineParameter]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "capacitance",
         "inductance",
-        "resistance"
+        "resistance",
+        "DCLineSegments"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("DCLineSegments", "DCLineSegment", "0..*", "0..1")
     )
     val capacitance: Fielder = parse_element (element (cls, fields(0)))
     val inductance: Fielder = parse_element (element (cls, fields(1)))
     val resistance: Fielder = parse_element (element (cls, fields(2)))
+    val DCLineSegments: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
 
     def parse (context: Context): PerLengthDCLineParameter =
     {
@@ -1853,27 +1903,27 @@ extends
             PerLengthLineParameter.parse (context),
             toDouble (mask (capacitance (), 0)),
             toDouble (mask (inductance (), 1)),
-            toDouble (mask (resistance (), 2))
+            toDouble (mask (resistance (), 2)),
+            masks (DCLineSegments (), 3)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
  * The P-Q capability curve for a voltage source converter, with P on x-axis and Qmin and Qmax on y1-axis and y2-axis.
  *
  * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
+ * @param VsConverterDCSides [[ch.ninecode.model.VsConverter VsConverter]] All converters with this capability curve.
  * @group DC
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
  */
 case class VsCapabilityCurve
 (
-    override val sup: Curve
+    override val sup: Curve,
+    VsConverterDCSides: List[String]
 )
 extends
     Element
@@ -1881,7 +1931,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -1902,7 +1952,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = VsCapabilityCurve.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (VsCapabilityCurve.fields (position), x))
+        emitattrs (0, VsConverterDCSides)
+        s.toString
     }
     override def export: String =
     {
@@ -1914,18 +1968,25 @@ object VsCapabilityCurve
 extends
     Parseable[VsCapabilityCurve]
 {
+    override val fields: Array[String] = Array[String] (
+        "VsConverterDCSides"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("VsConverterDCSides", "VsConverter", "0..*", "0..1")
+    )
+    val VsConverterDCSides: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): VsCapabilityCurve =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = VsCapabilityCurve (
-            Curve.parse (context)
+            Curve.parse (context),
+            masks (VsConverterDCSides (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -2024,7 +2085,7 @@ object VsConverter
 extends
     Parseable[VsConverter]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "delta",
         "droop",
         "droopCompensation",
@@ -2037,6 +2098,9 @@ extends
         "targetUpcc",
         "uf",
         "CapabilityCurve"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("CapabilityCurve", "VsCapabilityCurve", "0..1", "0..*")
     )
     val delta: Fielder = parse_element (element (cls, fields(0)))
     val droop: Fielder = parse_element (element (cls, fields(1)))
@@ -2073,9 +2137,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("CapabilityCurve", "VsCapabilityCurve", false)
-    )
 }
 
 private[ninecode] object _DC

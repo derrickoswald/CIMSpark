@@ -14,6 +14,7 @@ import ch.ninecode.cim.Relationship
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
+ * @param ProprietaryParameterDynamics [[ch.ninecode.model.ProprietaryParameterDynamics ProprietaryParameterDynamics]] Parameter of this proprietary user-defined model.
  * @group UserDefinedModels
  * @groupname UserDefinedModels Package UserDefinedModels
  * @groupdesc UserDefinedModels This section contains user-defined dynamic model classes to support the exchange of both proprietary and explicitly defined user-defined models.  
@@ -33,7 +34,8 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
 case class AsynchronousMachineUserDefined
 (
     override val sup: AsynchronousMachineDynamics,
-    proprietary: Boolean
+    proprietary: Boolean,
+    ProprietaryParameterDynamics: List[String]
 )
 extends
     Element
@@ -41,7 +43,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, false) }
+    def this () = { this (null, false, List()) }
     /**
      * Return the superclass object.
      *
@@ -65,7 +67,9 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = AsynchronousMachineUserDefined.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (AsynchronousMachineUserDefined.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (AsynchronousMachineUserDefined.fields (position), x))
         emitelem (0, proprietary)
+        emitattrs (1, ProprietaryParameterDynamics)
         s.toString
     }
     override def export: String =
@@ -78,10 +82,15 @@ object AsynchronousMachineUserDefined
 extends
     Parseable[AsynchronousMachineUserDefined]
 {
-    val fields: Array[String] = Array[String] (
-        "proprietary"
+    override val fields: Array[String] = Array[String] (
+        "proprietary",
+        "ProprietaryParameterDynamics"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
     )
     val proprietary: Fielder = parse_element (element (cls, fields(0)))
+    val ProprietaryParameterDynamics: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): AsynchronousMachineUserDefined =
     {
@@ -89,14 +98,12 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = AsynchronousMachineUserDefined (
             AsynchronousMachineDynamics.parse (context),
-            toBoolean (mask (proprietary (), 0))
+            toBoolean (mask (proprietary (), 0)),
+            masks (ProprietaryParameterDynamics (), 1)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -106,6 +113,7 @@ extends
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
+ * @param ProprietaryParameterDynamics [[ch.ninecode.model.ProprietaryParameterDynamics ProprietaryParameterDynamics]] Parameter of this proprietary user-defined model.
  * @group UserDefinedModels
  * @groupname UserDefinedModels Package UserDefinedModels
  * @groupdesc UserDefinedModels This section contains user-defined dynamic model classes to support the exchange of both proprietary and explicitly defined user-defined models.  
@@ -125,7 +133,8 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
 case class DiscontinuousExcitationControlUserDefined
 (
     override val sup: DiscontinuousExcitationControlDynamics,
-    proprietary: Boolean
+    proprietary: Boolean,
+    ProprietaryParameterDynamics: List[String]
 )
 extends
     Element
@@ -133,7 +142,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, false) }
+    def this () = { this (null, false, List()) }
     /**
      * Return the superclass object.
      *
@@ -157,7 +166,9 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = DiscontinuousExcitationControlUserDefined.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (DiscontinuousExcitationControlUserDefined.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (DiscontinuousExcitationControlUserDefined.fields (position), x))
         emitelem (0, proprietary)
+        emitattrs (1, ProprietaryParameterDynamics)
         s.toString
     }
     override def export: String =
@@ -170,10 +181,15 @@ object DiscontinuousExcitationControlUserDefined
 extends
     Parseable[DiscontinuousExcitationControlUserDefined]
 {
-    val fields: Array[String] = Array[String] (
-        "proprietary"
+    override val fields: Array[String] = Array[String] (
+        "proprietary",
+        "ProprietaryParameterDynamics"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
     )
     val proprietary: Fielder = parse_element (element (cls, fields(0)))
+    val ProprietaryParameterDynamics: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): DiscontinuousExcitationControlUserDefined =
     {
@@ -181,14 +197,12 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = DiscontinuousExcitationControlUserDefined (
             DiscontinuousExcitationControlDynamics.parse (context),
-            toBoolean (mask (proprietary (), 0))
+            toBoolean (mask (proprietary (), 0)),
+            masks (ProprietaryParameterDynamics (), 1)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -198,6 +212,7 @@ extends
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
+ * @param ProprietaryParameterDynamics [[ch.ninecode.model.ProprietaryParameterDynamics ProprietaryParameterDynamics]] Parameter of this proprietary user-defined model.
  * @group UserDefinedModels
  * @groupname UserDefinedModels Package UserDefinedModels
  * @groupdesc UserDefinedModels This section contains user-defined dynamic model classes to support the exchange of both proprietary and explicitly defined user-defined models.  
@@ -217,7 +232,8 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
 case class ExcitationSystemUserDefined
 (
     override val sup: ExcitationSystemDynamics,
-    proprietary: Boolean
+    proprietary: Boolean,
+    ProprietaryParameterDynamics: List[String]
 )
 extends
     Element
@@ -225,7 +241,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, false) }
+    def this () = { this (null, false, List()) }
     /**
      * Return the superclass object.
      *
@@ -249,7 +265,9 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcitationSystemUserDefined.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcitationSystemUserDefined.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ExcitationSystemUserDefined.fields (position), x))
         emitelem (0, proprietary)
+        emitattrs (1, ProprietaryParameterDynamics)
         s.toString
     }
     override def export: String =
@@ -262,10 +280,15 @@ object ExcitationSystemUserDefined
 extends
     Parseable[ExcitationSystemUserDefined]
 {
-    val fields: Array[String] = Array[String] (
-        "proprietary"
+    override val fields: Array[String] = Array[String] (
+        "proprietary",
+        "ProprietaryParameterDynamics"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
     )
     val proprietary: Fielder = parse_element (element (cls, fields(0)))
+    val ProprietaryParameterDynamics: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): ExcitationSystemUserDefined =
     {
@@ -273,14 +296,12 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = ExcitationSystemUserDefined (
             ExcitationSystemDynamics.parse (context),
-            toBoolean (mask (proprietary (), 0))
+            toBoolean (mask (proprietary (), 0)),
+            masks (ProprietaryParameterDynamics (), 1)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -290,6 +311,7 @@ extends
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
+ * @param ProprietaryParameterDynamics [[ch.ninecode.model.ProprietaryParameterDynamics ProprietaryParameterDynamics]] Parameter of this proprietary user-defined model.
  * @group UserDefinedModels
  * @groupname UserDefinedModels Package UserDefinedModels
  * @groupdesc UserDefinedModels This section contains user-defined dynamic model classes to support the exchange of both proprietary and explicitly defined user-defined models.  
@@ -309,7 +331,8 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
 case class LoadUserDefined
 (
     override val sup: LoadDynamics,
-    proprietary: Boolean
+    proprietary: Boolean,
+    ProprietaryParameterDynamics: List[String]
 )
 extends
     Element
@@ -317,7 +340,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, false) }
+    def this () = { this (null, false, List()) }
     /**
      * Return the superclass object.
      *
@@ -341,7 +364,9 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = LoadUserDefined.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (LoadUserDefined.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (LoadUserDefined.fields (position), x))
         emitelem (0, proprietary)
+        emitattrs (1, ProprietaryParameterDynamics)
         s.toString
     }
     override def export: String =
@@ -354,10 +379,15 @@ object LoadUserDefined
 extends
     Parseable[LoadUserDefined]
 {
-    val fields: Array[String] = Array[String] (
-        "proprietary"
+    override val fields: Array[String] = Array[String] (
+        "proprietary",
+        "ProprietaryParameterDynamics"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
     )
     val proprietary: Fielder = parse_element (element (cls, fields(0)))
+    val ProprietaryParameterDynamics: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): LoadUserDefined =
     {
@@ -365,14 +395,12 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = LoadUserDefined (
             LoadDynamics.parse (context),
-            toBoolean (mask (proprietary (), 0))
+            toBoolean (mask (proprietary (), 0)),
+            masks (ProprietaryParameterDynamics (), 1)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -382,6 +410,7 @@ extends
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
+ * @param ProprietaryParameterDynamics [[ch.ninecode.model.ProprietaryParameterDynamics ProprietaryParameterDynamics]] Parameter of this proprietary user-defined model.
  * @group UserDefinedModels
  * @groupname UserDefinedModels Package UserDefinedModels
  * @groupdesc UserDefinedModels This section contains user-defined dynamic model classes to support the exchange of both proprietary and explicitly defined user-defined models.  
@@ -401,7 +430,8 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
 case class MechanicalLoadUserDefined
 (
     override val sup: MechanicalLoadDynamics,
-    proprietary: Boolean
+    proprietary: Boolean,
+    ProprietaryParameterDynamics: List[String]
 )
 extends
     Element
@@ -409,7 +439,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, false) }
+    def this () = { this (null, false, List()) }
     /**
      * Return the superclass object.
      *
@@ -433,7 +463,9 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MechanicalLoadUserDefined.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (MechanicalLoadUserDefined.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (MechanicalLoadUserDefined.fields (position), x))
         emitelem (0, proprietary)
+        emitattrs (1, ProprietaryParameterDynamics)
         s.toString
     }
     override def export: String =
@@ -446,10 +478,15 @@ object MechanicalLoadUserDefined
 extends
     Parseable[MechanicalLoadUserDefined]
 {
-    val fields: Array[String] = Array[String] (
-        "proprietary"
+    override val fields: Array[String] = Array[String] (
+        "proprietary",
+        "ProprietaryParameterDynamics"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
     )
     val proprietary: Fielder = parse_element (element (cls, fields(0)))
+    val ProprietaryParameterDynamics: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): MechanicalLoadUserDefined =
     {
@@ -457,14 +494,12 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = MechanicalLoadUserDefined (
             MechanicalLoadDynamics.parse (context),
-            toBoolean (mask (proprietary (), 0))
+            toBoolean (mask (proprietary (), 0)),
+            masks (ProprietaryParameterDynamics (), 1)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -474,6 +509,7 @@ extends
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
+ * @param ProprietaryParameterDynamics [[ch.ninecode.model.ProprietaryParameterDynamics ProprietaryParameterDynamics]] Parameter of this proprietary user-defined model.
  * @group UserDefinedModels
  * @groupname UserDefinedModels Package UserDefinedModels
  * @groupdesc UserDefinedModels This section contains user-defined dynamic model classes to support the exchange of both proprietary and explicitly defined user-defined models.  
@@ -493,7 +529,8 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
 case class OverexcitationLimiterUserDefined
 (
     override val sup: OverexcitationLimiterDynamics,
-    proprietary: Boolean
+    proprietary: Boolean,
+    ProprietaryParameterDynamics: List[String]
 )
 extends
     Element
@@ -501,7 +538,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, false) }
+    def this () = { this (null, false, List()) }
     /**
      * Return the superclass object.
      *
@@ -525,7 +562,9 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = OverexcitationLimiterUserDefined.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (OverexcitationLimiterUserDefined.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (OverexcitationLimiterUserDefined.fields (position), x))
         emitelem (0, proprietary)
+        emitattrs (1, ProprietaryParameterDynamics)
         s.toString
     }
     override def export: String =
@@ -538,10 +577,15 @@ object OverexcitationLimiterUserDefined
 extends
     Parseable[OverexcitationLimiterUserDefined]
 {
-    val fields: Array[String] = Array[String] (
-        "proprietary"
+    override val fields: Array[String] = Array[String] (
+        "proprietary",
+        "ProprietaryParameterDynamics"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
     )
     val proprietary: Fielder = parse_element (element (cls, fields(0)))
+    val ProprietaryParameterDynamics: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): OverexcitationLimiterUserDefined =
     {
@@ -549,14 +593,12 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = OverexcitationLimiterUserDefined (
             OverexcitationLimiterDynamics.parse (context),
-            toBoolean (mask (proprietary (), 0))
+            toBoolean (mask (proprietary (), 0)),
+            masks (ProprietaryParameterDynamics (), 1)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -566,6 +608,7 @@ extends
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
+ * @param ProprietaryParameterDynamics [[ch.ninecode.model.ProprietaryParameterDynamics ProprietaryParameterDynamics]] Parameter of this proprietary user-defined model.
  * @group UserDefinedModels
  * @groupname UserDefinedModels Package UserDefinedModels
  * @groupdesc UserDefinedModels This section contains user-defined dynamic model classes to support the exchange of both proprietary and explicitly defined user-defined models.  
@@ -585,7 +628,8 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
 case class PFVArControllerType1UserDefined
 (
     override val sup: PFVArControllerType1Dynamics,
-    proprietary: Boolean
+    proprietary: Boolean,
+    ProprietaryParameterDynamics: List[String]
 )
 extends
     Element
@@ -593,7 +637,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, false) }
+    def this () = { this (null, false, List()) }
     /**
      * Return the superclass object.
      *
@@ -617,7 +661,9 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PFVArControllerType1UserDefined.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PFVArControllerType1UserDefined.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (PFVArControllerType1UserDefined.fields (position), x))
         emitelem (0, proprietary)
+        emitattrs (1, ProprietaryParameterDynamics)
         s.toString
     }
     override def export: String =
@@ -630,10 +676,15 @@ object PFVArControllerType1UserDefined
 extends
     Parseable[PFVArControllerType1UserDefined]
 {
-    val fields: Array[String] = Array[String] (
-        "proprietary"
+    override val fields: Array[String] = Array[String] (
+        "proprietary",
+        "ProprietaryParameterDynamics"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
     )
     val proprietary: Fielder = parse_element (element (cls, fields(0)))
+    val ProprietaryParameterDynamics: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): PFVArControllerType1UserDefined =
     {
@@ -641,14 +692,12 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = PFVArControllerType1UserDefined (
             PFVArControllerType1Dynamics.parse (context),
-            toBoolean (mask (proprietary (), 0))
+            toBoolean (mask (proprietary (), 0)),
+            masks (ProprietaryParameterDynamics (), 1)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -658,6 +707,7 @@ extends
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
+ * @param ProprietaryParameterDynamics [[ch.ninecode.model.ProprietaryParameterDynamics ProprietaryParameterDynamics]] Parameter of this proprietary user-defined model.
  * @group UserDefinedModels
  * @groupname UserDefinedModels Package UserDefinedModels
  * @groupdesc UserDefinedModels This section contains user-defined dynamic model classes to support the exchange of both proprietary and explicitly defined user-defined models.  
@@ -677,7 +727,8 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
 case class PFVArControllerType2UserDefined
 (
     override val sup: PFVArControllerType2Dynamics,
-    proprietary: Boolean
+    proprietary: Boolean,
+    ProprietaryParameterDynamics: List[String]
 )
 extends
     Element
@@ -685,7 +736,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, false) }
+    def this () = { this (null, false, List()) }
     /**
      * Return the superclass object.
      *
@@ -709,7 +760,9 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PFVArControllerType2UserDefined.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PFVArControllerType2UserDefined.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (PFVArControllerType2UserDefined.fields (position), x))
         emitelem (0, proprietary)
+        emitattrs (1, ProprietaryParameterDynamics)
         s.toString
     }
     override def export: String =
@@ -722,10 +775,15 @@ object PFVArControllerType2UserDefined
 extends
     Parseable[PFVArControllerType2UserDefined]
 {
-    val fields: Array[String] = Array[String] (
-        "proprietary"
+    override val fields: Array[String] = Array[String] (
+        "proprietary",
+        "ProprietaryParameterDynamics"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
     )
     val proprietary: Fielder = parse_element (element (cls, fields(0)))
+    val ProprietaryParameterDynamics: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): PFVArControllerType2UserDefined =
     {
@@ -733,14 +791,12 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = PFVArControllerType2UserDefined (
             PFVArControllerType2Dynamics.parse (context),
-            toBoolean (mask (proprietary (), 0))
+            toBoolean (mask (proprietary (), 0)),
+            masks (ProprietaryParameterDynamics (), 1)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -750,6 +806,7 @@ extends
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
+ * @param ProprietaryParameterDynamics [[ch.ninecode.model.ProprietaryParameterDynamics ProprietaryParameterDynamics]] Parameter of this proprietary user-defined model.
  * @group UserDefinedModels
  * @groupname UserDefinedModels Package UserDefinedModels
  * @groupdesc UserDefinedModels This section contains user-defined dynamic model classes to support the exchange of both proprietary and explicitly defined user-defined models.  
@@ -769,7 +826,8 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
 case class PowerSystemStabilizerUserDefined
 (
     override val sup: PowerSystemStabilizerDynamics,
-    proprietary: Boolean
+    proprietary: Boolean,
+    ProprietaryParameterDynamics: List[String]
 )
 extends
     Element
@@ -777,7 +835,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, false) }
+    def this () = { this (null, false, List()) }
     /**
      * Return the superclass object.
      *
@@ -801,7 +859,9 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PowerSystemStabilizerUserDefined.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PowerSystemStabilizerUserDefined.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (PowerSystemStabilizerUserDefined.fields (position), x))
         emitelem (0, proprietary)
+        emitattrs (1, ProprietaryParameterDynamics)
         s.toString
     }
     override def export: String =
@@ -814,10 +874,15 @@ object PowerSystemStabilizerUserDefined
 extends
     Parseable[PowerSystemStabilizerUserDefined]
 {
-    val fields: Array[String] = Array[String] (
-        "proprietary"
+    override val fields: Array[String] = Array[String] (
+        "proprietary",
+        "ProprietaryParameterDynamics"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
     )
     val proprietary: Fielder = parse_element (element (cls, fields(0)))
+    val ProprietaryParameterDynamics: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): PowerSystemStabilizerUserDefined =
     {
@@ -825,14 +890,12 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = PowerSystemStabilizerUserDefined (
             PowerSystemStabilizerDynamics.parse (context),
-            toBoolean (mask (proprietary (), 0))
+            toBoolean (mask (proprietary (), 0)),
+            masks (ProprietaryParameterDynamics (), 1)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -973,7 +1036,7 @@ object ProprietaryParameterDynamics
 extends
     Parseable[ProprietaryParameterDynamics]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "booleanParameterValue",
         "floatParameterValue",
         "integerParameterValue",
@@ -996,6 +1059,26 @@ extends
         "WindPlantUserDefined",
         "WindType1or2UserDefined",
         "WindType3or4UserDefined"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("AsynchronousMachineUserDefined", "AsynchronousMachineUserDefined", "0..1", "0..*"),
+        Relationship ("DiscontinuousExcitationControlUserDefined", "DiscontinuousExcitationControlUserDefined", "0..1", "0..*"),
+        Relationship ("ExcitationSystemUserDefined", "ExcitationSystemUserDefined", "0..1", "0..*"),
+        Relationship ("LoadUserDefined", "LoadUserDefined", "0..1", "0..*"),
+        Relationship ("MechanicalLoadUserDefined", "MechanicalLoadUserDefined", "0..1", "0..*"),
+        Relationship ("OverexcitationLimiterUserDefined", "OverexcitationLimiterUserDefined", "0..1", "0..*"),
+        Relationship ("PFVArControllerType1UserDefined", "PFVArControllerType1UserDefined", "0..1", "0..*"),
+        Relationship ("PFVArControllerType2UserDefined", "PFVArControllerType2UserDefined", "0..1", "0..*"),
+        Relationship ("PowerSystemStabilizerUserDefined", "PowerSystemStabilizerUserDefined", "0..1", "0..*"),
+        Relationship ("SynchronousMachineUserDefined", "SynchronousMachineUserDefined", "0..1", "0..*"),
+        Relationship ("TurbineGovernorUserDefined", "TurbineGovernorUserDefined", "0..1", "0..*"),
+        Relationship ("TurbineLoadControllerUserDefined", "TurbineLoadControllerUserDefined", "0..1", "0..*"),
+        Relationship ("UnderexcitationLimiterUserDefined", "UnderexcitationLimiterUserDefined", "0..1", "0..*"),
+        Relationship ("VoltageAdjusterUserDefined", "VoltageAdjusterUserDefined", "0..1", "0..*"),
+        Relationship ("VoltageCompensatorUserDefined", "VoltageCompensatorUserDefined", "0..1", "0..*"),
+        Relationship ("WindPlantUserDefined", "WindPlantUserDefined", "0..1", "0..*"),
+        Relationship ("WindType1or2UserDefined", "WindType1or2UserDefined", "0..1", "0..*"),
+        Relationship ("WindType3or4UserDefined", "WindType3or4UserDefined", "0..1", "0..*")
     )
     val booleanParameterValue: Fielder = parse_element (element (cls, fields(0)))
     val floatParameterValue: Fielder = parse_element (element (cls, fields(1)))
@@ -1052,26 +1135,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("AsynchronousMachineUserDefined", "AsynchronousMachineUserDefined", false),
-        Relationship ("DiscontinuousExcitationControlUserDefined", "DiscontinuousExcitationControlUserDefined", false),
-        Relationship ("ExcitationSystemUserDefined", "ExcitationSystemUserDefined", false),
-        Relationship ("LoadUserDefined", "LoadUserDefined", false),
-        Relationship ("MechanicalLoadUserDefined", "MechanicalLoadUserDefined", false),
-        Relationship ("OverexcitationLimiterUserDefined", "OverexcitationLimiterUserDefined", false),
-        Relationship ("PFVArControllerType1UserDefined", "PFVArControllerType1UserDefined", false),
-        Relationship ("PFVArControllerType2UserDefined", "PFVArControllerType2UserDefined", false),
-        Relationship ("PowerSystemStabilizerUserDefined", "PowerSystemStabilizerUserDefined", false),
-        Relationship ("SynchronousMachineUserDefined", "SynchronousMachineUserDefined", false),
-        Relationship ("TurbineGovernorUserDefined", "TurbineGovernorUserDefined", false),
-        Relationship ("TurbineLoadControllerUserDefined", "TurbineLoadControllerUserDefined", false),
-        Relationship ("UnderexcitationLimiterUserDefined", "UnderexcitationLimiterUserDefined", false),
-        Relationship ("VoltageAdjusterUserDefined", "VoltageAdjusterUserDefined", false),
-        Relationship ("VoltageCompensatorUserDefined", "VoltageCompensatorUserDefined", false),
-        Relationship ("WindPlantUserDefined", "WindPlantUserDefined", false),
-        Relationship ("WindType1or2UserDefined", "WindType1or2UserDefined", false),
-        Relationship ("WindType3or4UserDefined", "WindType3or4UserDefined", false)
-    )
 }
 
 /**
@@ -1081,6 +1144,7 @@ extends
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
+ * @param ProprietaryParameterDynamics [[ch.ninecode.model.ProprietaryParameterDynamics ProprietaryParameterDynamics]] Parameter of this proprietary user-defined model.
  * @group UserDefinedModels
  * @groupname UserDefinedModels Package UserDefinedModels
  * @groupdesc UserDefinedModels This section contains user-defined dynamic model classes to support the exchange of both proprietary and explicitly defined user-defined models.  
@@ -1100,7 +1164,8 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
 case class SynchronousMachineUserDefined
 (
     override val sup: SynchronousMachineDynamics,
-    proprietary: Boolean
+    proprietary: Boolean,
+    ProprietaryParameterDynamics: List[String]
 )
 extends
     Element
@@ -1108,7 +1173,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, false) }
+    def this () = { this (null, false, List()) }
     /**
      * Return the superclass object.
      *
@@ -1132,7 +1197,9 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = SynchronousMachineUserDefined.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (SynchronousMachineUserDefined.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (SynchronousMachineUserDefined.fields (position), x))
         emitelem (0, proprietary)
+        emitattrs (1, ProprietaryParameterDynamics)
         s.toString
     }
     override def export: String =
@@ -1145,10 +1212,15 @@ object SynchronousMachineUserDefined
 extends
     Parseable[SynchronousMachineUserDefined]
 {
-    val fields: Array[String] = Array[String] (
-        "proprietary"
+    override val fields: Array[String] = Array[String] (
+        "proprietary",
+        "ProprietaryParameterDynamics"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
     )
     val proprietary: Fielder = parse_element (element (cls, fields(0)))
+    val ProprietaryParameterDynamics: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): SynchronousMachineUserDefined =
     {
@@ -1156,14 +1228,12 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = SynchronousMachineUserDefined (
             SynchronousMachineDynamics.parse (context),
-            toBoolean (mask (proprietary (), 0))
+            toBoolean (mask (proprietary (), 0)),
+            masks (ProprietaryParameterDynamics (), 1)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1173,6 +1243,7 @@ extends
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
+ * @param ProprietaryParameterDynamics [[ch.ninecode.model.ProprietaryParameterDynamics ProprietaryParameterDynamics]] Parameter of this proprietary user-defined model.
  * @group UserDefinedModels
  * @groupname UserDefinedModels Package UserDefinedModels
  * @groupdesc UserDefinedModels This section contains user-defined dynamic model classes to support the exchange of both proprietary and explicitly defined user-defined models.  
@@ -1192,7 +1263,8 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
 case class TurbineGovernorUserDefined
 (
     override val sup: TurbineGovernorDynamics,
-    proprietary: Boolean
+    proprietary: Boolean,
+    ProprietaryParameterDynamics: List[String]
 )
 extends
     Element
@@ -1200,7 +1272,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, false) }
+    def this () = { this (null, false, List()) }
     /**
      * Return the superclass object.
      *
@@ -1224,7 +1296,9 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = TurbineGovernorUserDefined.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TurbineGovernorUserDefined.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (TurbineGovernorUserDefined.fields (position), x))
         emitelem (0, proprietary)
+        emitattrs (1, ProprietaryParameterDynamics)
         s.toString
     }
     override def export: String =
@@ -1237,10 +1311,15 @@ object TurbineGovernorUserDefined
 extends
     Parseable[TurbineGovernorUserDefined]
 {
-    val fields: Array[String] = Array[String] (
-        "proprietary"
+    override val fields: Array[String] = Array[String] (
+        "proprietary",
+        "ProprietaryParameterDynamics"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
     )
     val proprietary: Fielder = parse_element (element (cls, fields(0)))
+    val ProprietaryParameterDynamics: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): TurbineGovernorUserDefined =
     {
@@ -1248,14 +1327,12 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = TurbineGovernorUserDefined (
             TurbineGovernorDynamics.parse (context),
-            toBoolean (mask (proprietary (), 0))
+            toBoolean (mask (proprietary (), 0)),
+            masks (ProprietaryParameterDynamics (), 1)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1265,6 +1342,7 @@ extends
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
+ * @param ProprietaryParameterDynamics [[ch.ninecode.model.ProprietaryParameterDynamics ProprietaryParameterDynamics]] Parameter of this proprietary user-defined model.
  * @group UserDefinedModels
  * @groupname UserDefinedModels Package UserDefinedModels
  * @groupdesc UserDefinedModels This section contains user-defined dynamic model classes to support the exchange of both proprietary and explicitly defined user-defined models.  
@@ -1284,7 +1362,8 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
 case class TurbineLoadControllerUserDefined
 (
     override val sup: TurbineLoadControllerDynamics,
-    proprietary: Boolean
+    proprietary: Boolean,
+    ProprietaryParameterDynamics: List[String]
 )
 extends
     Element
@@ -1292,7 +1371,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, false) }
+    def this () = { this (null, false, List()) }
     /**
      * Return the superclass object.
      *
@@ -1316,7 +1395,9 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = TurbineLoadControllerUserDefined.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TurbineLoadControllerUserDefined.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (TurbineLoadControllerUserDefined.fields (position), x))
         emitelem (0, proprietary)
+        emitattrs (1, ProprietaryParameterDynamics)
         s.toString
     }
     override def export: String =
@@ -1329,10 +1410,15 @@ object TurbineLoadControllerUserDefined
 extends
     Parseable[TurbineLoadControllerUserDefined]
 {
-    val fields: Array[String] = Array[String] (
-        "proprietary"
+    override val fields: Array[String] = Array[String] (
+        "proprietary",
+        "ProprietaryParameterDynamics"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
     )
     val proprietary: Fielder = parse_element (element (cls, fields(0)))
+    val ProprietaryParameterDynamics: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): TurbineLoadControllerUserDefined =
     {
@@ -1340,14 +1426,12 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = TurbineLoadControllerUserDefined (
             TurbineLoadControllerDynamics.parse (context),
-            toBoolean (mask (proprietary (), 0))
+            toBoolean (mask (proprietary (), 0)),
+            masks (ProprietaryParameterDynamics (), 1)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1357,6 +1441,7 @@ extends
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
+ * @param ProprietaryParameterDynamics [[ch.ninecode.model.ProprietaryParameterDynamics ProprietaryParameterDynamics]] Parameter of this proprietary user-defined model.
  * @group UserDefinedModels
  * @groupname UserDefinedModels Package UserDefinedModels
  * @groupdesc UserDefinedModels This section contains user-defined dynamic model classes to support the exchange of both proprietary and explicitly defined user-defined models.  
@@ -1376,7 +1461,8 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
 case class UnderexcitationLimiterUserDefined
 (
     override val sup: UnderexcitationLimiterDynamics,
-    proprietary: Boolean
+    proprietary: Boolean,
+    ProprietaryParameterDynamics: List[String]
 )
 extends
     Element
@@ -1384,7 +1470,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, false) }
+    def this () = { this (null, false, List()) }
     /**
      * Return the superclass object.
      *
@@ -1408,7 +1494,9 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = UnderexcitationLimiterUserDefined.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (UnderexcitationLimiterUserDefined.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (UnderexcitationLimiterUserDefined.fields (position), x))
         emitelem (0, proprietary)
+        emitattrs (1, ProprietaryParameterDynamics)
         s.toString
     }
     override def export: String =
@@ -1421,10 +1509,15 @@ object UnderexcitationLimiterUserDefined
 extends
     Parseable[UnderexcitationLimiterUserDefined]
 {
-    val fields: Array[String] = Array[String] (
-        "proprietary"
+    override val fields: Array[String] = Array[String] (
+        "proprietary",
+        "ProprietaryParameterDynamics"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
     )
     val proprietary: Fielder = parse_element (element (cls, fields(0)))
+    val ProprietaryParameterDynamics: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): UnderexcitationLimiterUserDefined =
     {
@@ -1432,14 +1525,12 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = UnderexcitationLimiterUserDefined (
             UnderexcitationLimiterDynamics.parse (context),
-            toBoolean (mask (proprietary (), 0))
+            toBoolean (mask (proprietary (), 0)),
+            masks (ProprietaryParameterDynamics (), 1)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1449,6 +1540,7 @@ extends
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
+ * @param ProprietaryParameterDynamics [[ch.ninecode.model.ProprietaryParameterDynamics ProprietaryParameterDynamics]] Parameter of this proprietary user-defined model.
  * @group UserDefinedModels
  * @groupname UserDefinedModels Package UserDefinedModels
  * @groupdesc UserDefinedModels This section contains user-defined dynamic model classes to support the exchange of both proprietary and explicitly defined user-defined models.  
@@ -1468,7 +1560,8 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
 case class VoltageAdjusterUserDefined
 (
     override val sup: VoltageAdjusterDynamics,
-    proprietary: Boolean
+    proprietary: Boolean,
+    ProprietaryParameterDynamics: List[String]
 )
 extends
     Element
@@ -1476,7 +1569,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, false) }
+    def this () = { this (null, false, List()) }
     /**
      * Return the superclass object.
      *
@@ -1500,7 +1593,9 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = VoltageAdjusterUserDefined.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (VoltageAdjusterUserDefined.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (VoltageAdjusterUserDefined.fields (position), x))
         emitelem (0, proprietary)
+        emitattrs (1, ProprietaryParameterDynamics)
         s.toString
     }
     override def export: String =
@@ -1513,10 +1608,15 @@ object VoltageAdjusterUserDefined
 extends
     Parseable[VoltageAdjusterUserDefined]
 {
-    val fields: Array[String] = Array[String] (
-        "proprietary"
+    override val fields: Array[String] = Array[String] (
+        "proprietary",
+        "ProprietaryParameterDynamics"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
     )
     val proprietary: Fielder = parse_element (element (cls, fields(0)))
+    val ProprietaryParameterDynamics: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): VoltageAdjusterUserDefined =
     {
@@ -1524,14 +1624,12 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = VoltageAdjusterUserDefined (
             VoltageAdjusterDynamics.parse (context),
-            toBoolean (mask (proprietary (), 0))
+            toBoolean (mask (proprietary (), 0)),
+            masks (ProprietaryParameterDynamics (), 1)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1541,6 +1639,7 @@ extends
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
+ * @param ProprietaryParameterDynamics [[ch.ninecode.model.ProprietaryParameterDynamics ProprietaryParameterDynamics]] Parameter of this proprietary user-defined model.
  * @group UserDefinedModels
  * @groupname UserDefinedModels Package UserDefinedModels
  * @groupdesc UserDefinedModels This section contains user-defined dynamic model classes to support the exchange of both proprietary and explicitly defined user-defined models.  
@@ -1560,7 +1659,8 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
 case class VoltageCompensatorUserDefined
 (
     override val sup: VoltageCompensatorDynamics,
-    proprietary: Boolean
+    proprietary: Boolean,
+    ProprietaryParameterDynamics: List[String]
 )
 extends
     Element
@@ -1568,7 +1668,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, false) }
+    def this () = { this (null, false, List()) }
     /**
      * Return the superclass object.
      *
@@ -1592,7 +1692,9 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = VoltageCompensatorUserDefined.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (VoltageCompensatorUserDefined.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (VoltageCompensatorUserDefined.fields (position), x))
         emitelem (0, proprietary)
+        emitattrs (1, ProprietaryParameterDynamics)
         s.toString
     }
     override def export: String =
@@ -1605,10 +1707,15 @@ object VoltageCompensatorUserDefined
 extends
     Parseable[VoltageCompensatorUserDefined]
 {
-    val fields: Array[String] = Array[String] (
-        "proprietary"
+    override val fields: Array[String] = Array[String] (
+        "proprietary",
+        "ProprietaryParameterDynamics"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
     )
     val proprietary: Fielder = parse_element (element (cls, fields(0)))
+    val ProprietaryParameterDynamics: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): VoltageCompensatorUserDefined =
     {
@@ -1616,14 +1723,12 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = VoltageCompensatorUserDefined (
             VoltageCompensatorDynamics.parse (context),
-            toBoolean (mask (proprietary (), 0))
+            toBoolean (mask (proprietary (), 0)),
+            masks (ProprietaryParameterDynamics (), 1)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1633,6 +1738,7 @@ extends
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
+ * @param ProprietaryParameterDynamics [[ch.ninecode.model.ProprietaryParameterDynamics ProprietaryParameterDynamics]] Parameter of this proprietary user-defined model.
  * @group UserDefinedModels
  * @groupname UserDefinedModels Package UserDefinedModels
  * @groupdesc UserDefinedModels This section contains user-defined dynamic model classes to support the exchange of both proprietary and explicitly defined user-defined models.  
@@ -1652,7 +1758,8 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
 case class WindPlantUserDefined
 (
     override val sup: WindPlantDynamics,
-    proprietary: Boolean
+    proprietary: Boolean,
+    ProprietaryParameterDynamics: List[String]
 )
 extends
     Element
@@ -1660,7 +1767,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, false) }
+    def this () = { this (null, false, List()) }
     /**
      * Return the superclass object.
      *
@@ -1684,7 +1791,9 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WindPlantUserDefined.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindPlantUserDefined.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (WindPlantUserDefined.fields (position), x))
         emitelem (0, proprietary)
+        emitattrs (1, ProprietaryParameterDynamics)
         s.toString
     }
     override def export: String =
@@ -1697,10 +1806,15 @@ object WindPlantUserDefined
 extends
     Parseable[WindPlantUserDefined]
 {
-    val fields: Array[String] = Array[String] (
-        "proprietary"
+    override val fields: Array[String] = Array[String] (
+        "proprietary",
+        "ProprietaryParameterDynamics"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
     )
     val proprietary: Fielder = parse_element (element (cls, fields(0)))
+    val ProprietaryParameterDynamics: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): WindPlantUserDefined =
     {
@@ -1708,14 +1822,12 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = WindPlantUserDefined (
             WindPlantDynamics.parse (context),
-            toBoolean (mask (proprietary (), 0))
+            toBoolean (mask (proprietary (), 0)),
+            masks (ProprietaryParameterDynamics (), 1)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1725,6 +1837,7 @@ extends
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
+ * @param ProprietaryParameterDynamics [[ch.ninecode.model.ProprietaryParameterDynamics ProprietaryParameterDynamics]] Parameter of this proprietary user-defined model.
  * @group UserDefinedModels
  * @groupname UserDefinedModels Package UserDefinedModels
  * @groupdesc UserDefinedModels This section contains user-defined dynamic model classes to support the exchange of both proprietary and explicitly defined user-defined models.  
@@ -1744,7 +1857,8 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
 case class WindType1or2UserDefined
 (
     override val sup: WindTurbineType1or2Dynamics,
-    proprietary: Boolean
+    proprietary: Boolean,
+    ProprietaryParameterDynamics: List[String]
 )
 extends
     Element
@@ -1752,7 +1866,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, false) }
+    def this () = { this (null, false, List()) }
     /**
      * Return the superclass object.
      *
@@ -1776,7 +1890,9 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WindType1or2UserDefined.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindType1or2UserDefined.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (WindType1or2UserDefined.fields (position), x))
         emitelem (0, proprietary)
+        emitattrs (1, ProprietaryParameterDynamics)
         s.toString
     }
     override def export: String =
@@ -1789,10 +1905,15 @@ object WindType1or2UserDefined
 extends
     Parseable[WindType1or2UserDefined]
 {
-    val fields: Array[String] = Array[String] (
-        "proprietary"
+    override val fields: Array[String] = Array[String] (
+        "proprietary",
+        "ProprietaryParameterDynamics"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
     )
     val proprietary: Fielder = parse_element (element (cls, fields(0)))
+    val ProprietaryParameterDynamics: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): WindType1or2UserDefined =
     {
@@ -1800,14 +1921,12 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = WindType1or2UserDefined (
             WindTurbineType1or2Dynamics.parse (context),
-            toBoolean (mask (proprietary (), 0))
+            toBoolean (mask (proprietary (), 0)),
+            masks (ProprietaryParameterDynamics (), 1)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1817,6 +1936,7 @@ extends
  * @param proprietary Behaviour is based on proprietary model as opposed to detailed model.
  *        true = user-defined model is proprietary with behaviour mutually understood by sending and receiving applications and parameters passed as general attributes
  *        false = user-defined model is explicitly defined in terms of control blocks and their input and output signals.
+ * @param ProprietaryParameterDynamics [[ch.ninecode.model.ProprietaryParameterDynamics ProprietaryParameterDynamics]] Parameter of this proprietary user-defined model.
  * @group UserDefinedModels
  * @groupname UserDefinedModels Package UserDefinedModels
  * @groupdesc UserDefinedModels This section contains user-defined dynamic model classes to support the exchange of both proprietary and explicitly defined user-defined models.  
@@ -1836,7 +1956,8 @@ Both types of user-defined models use the family of xxxUserDefined classes, whic
 case class WindType3or4UserDefined
 (
     override val sup: WindTurbineType3or4Dynamics,
-    proprietary: Boolean
+    proprietary: Boolean,
+    ProprietaryParameterDynamics: List[String]
 )
 extends
     Element
@@ -1844,7 +1965,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, false) }
+    def this () = { this (null, false, List()) }
     /**
      * Return the superclass object.
      *
@@ -1868,7 +1989,9 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WindType3or4UserDefined.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindType3or4UserDefined.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (WindType3or4UserDefined.fields (position), x))
         emitelem (0, proprietary)
+        emitattrs (1, ProprietaryParameterDynamics)
         s.toString
     }
     override def export: String =
@@ -1881,10 +2004,15 @@ object WindType3or4UserDefined
 extends
     Parseable[WindType3or4UserDefined]
 {
-    val fields: Array[String] = Array[String] (
-        "proprietary"
+    override val fields: Array[String] = Array[String] (
+        "proprietary",
+        "ProprietaryParameterDynamics"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ProprietaryParameterDynamics", "ProprietaryParameterDynamics", "0..*", "0..1")
     )
     val proprietary: Fielder = parse_element (element (cls, fields(0)))
+    val ProprietaryParameterDynamics: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): WindType3or4UserDefined =
     {
@@ -1892,14 +2020,12 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = WindType3or4UserDefined (
             WindTurbineType3or4Dynamics.parse (context),
-            toBoolean (mask (proprietary (), 0))
+            toBoolean (mask (proprietary (), 0)),
+            masks (ProprietaryParameterDynamics (), 1)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 private[ninecode] object _UserDefinedModels

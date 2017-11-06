@@ -11,13 +11,15 @@ import ch.ninecode.cim.Relationship
  * A Modeling Authority is an entity responsible for supplying and maintaining the data defining a specific set of objects in a network model.
  *
  * @param sup Reference to the superclass object.
+ * @param ModelingAuthoritySets [[ch.ninecode.model.ModelingAuthoritySet ModelingAuthoritySet]] A Modeling Authority set supplies and maintains the data for the objects in a Modeling Authority Set.
  * @group ModelAuthority
  * @groupname ModelAuthority Package ModelAuthority
  * @groupdesc ModelAuthority The package describes meta data for partitioning  power system models into non overlapping subsets of objects managed by a model authority.
  */
 case class ModelingAuthority
 (
-    override val sup: BasicElement
+    override val sup: BasicElement,
+    ModelingAuthoritySets: List[String]
 )
 extends
     Element
@@ -25,7 +27,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -46,7 +48,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ModelingAuthority.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ModelingAuthority.fields (position), x))
+        emitattrs (0, ModelingAuthoritySets)
+        s.toString
     }
     override def export: String =
     {
@@ -58,18 +64,25 @@ object ModelingAuthority
 extends
     Parseable[ModelingAuthority]
 {
+    override val fields: Array[String] = Array[String] (
+        "ModelingAuthoritySets"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ModelingAuthoritySets", "ModelingAuthoritySet", "1..*", "1")
+    )
+    val ModelingAuthoritySets: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): ModelingAuthority =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = ModelingAuthority (
-            BasicElement.parse (context)
+            BasicElement.parse (context),
+            masks (ModelingAuthoritySets (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -131,8 +144,11 @@ object ModelingAuthoritySet
 extends
     Parseable[ModelingAuthoritySet]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "ModelingAuthority"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ModelingAuthority", "ModelingAuthority", "1", "1..*")
     )
     val ModelingAuthority: Fielder = parse_attribute (attribute (cls, fields(0)))
 
@@ -147,9 +163,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("ModelingAuthority", "ModelingAuthority", false)
-    )
 }
 
 private[ninecode] object _ModelAuthority

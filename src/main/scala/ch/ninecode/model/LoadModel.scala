@@ -66,8 +66,11 @@ object ConformLoad
 extends
     Parseable[ConformLoad]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "LoadGroup"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("LoadGroup", "ConformLoadGroup", "0..1", "0..*")
     )
     val LoadGroup: Fielder = parse_attribute (attribute (cls, fields(0)))
 
@@ -82,15 +85,14 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("LoadGroup", "ConformLoadGroup", false)
-    )
 }
 
 /**
  * A group of loads conforming to an allocation pattern.
  *
  * @param sup [[ch.ninecode.model.LoadGroup LoadGroup]] Reference to the superclass object.
+ * @param ConformLoadSchedules [[ch.ninecode.model.ConformLoadSchedule ConformLoadSchedule]] The ConformLoadSchedules in the ConformLoadGroup.
+ * @param EnergyConsumers [[ch.ninecode.model.ConformLoad ConformLoad]] Conform loads assigned to this ConformLoadGroup.
  * @group LoadModel
  * @groupname LoadModel Package LoadModel
  * @groupdesc LoadModel This package is responsible for modeling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and daytypes, are also included here.
@@ -99,7 +101,9 @@ This information is used by Load Forecasting and Load Management.
  */
 case class ConformLoadGroup
 (
-    override val sup: LoadGroup
+    override val sup: LoadGroup,
+    ConformLoadSchedules: List[String],
+    EnergyConsumers: List[String]
 )
 extends
     Element
@@ -107,7 +111,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -128,7 +132,12 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ConformLoadGroup.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ConformLoadGroup.fields (position), x))
+        emitattrs (0, ConformLoadSchedules)
+        emitattrs (1, EnergyConsumers)
+        s.toString
     }
     override def export: String =
     {
@@ -140,18 +149,29 @@ object ConformLoadGroup
 extends
     Parseable[ConformLoadGroup]
 {
+    override val fields: Array[String] = Array[String] (
+        "ConformLoadSchedules",
+        "EnergyConsumers"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ConformLoadSchedules", "ConformLoadSchedule", "1..*", "1"),
+        Relationship ("EnergyConsumers", "ConformLoad", "0..*", "0..1")
+    )
+    val ConformLoadSchedules: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val EnergyConsumers: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): ConformLoadGroup =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = ConformLoadGroup (
-            LoadGroup.parse (context)
+            LoadGroup.parse (context),
+            masks (ConformLoadSchedules (), 0),
+            masks (EnergyConsumers (), 1)
         )
+        ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -215,8 +235,11 @@ object ConformLoadSchedule
 extends
     Parseable[ConformLoadSchedule]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "ConformLoadGroup"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ConformLoadGroup", "ConformLoadGroup", "1", "1..*")
     )
     val ConformLoadGroup: Fielder = parse_attribute (attribute (cls, fields(0)))
 
@@ -231,9 +254,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("ConformLoadGroup", "ConformLoadGroup", false)
-    )
 }
 
 /**
@@ -242,6 +262,7 @@ extends
  * For example it could be used to represent weekdays, weekend, or holidays.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param SeasonDayTypeSchedules [[ch.ninecode.model.SeasonDayTypeSchedule SeasonDayTypeSchedule]] Schedules that use this DayType.
  * @group LoadModel
  * @groupname LoadModel Package LoadModel
  * @groupdesc LoadModel This package is responsible for modeling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and daytypes, are also included here.
@@ -250,7 +271,8 @@ This information is used by Load Forecasting and Load Management.
  */
 case class DayType
 (
-    override val sup: IdentifiedObject
+    override val sup: IdentifiedObject,
+    SeasonDayTypeSchedules: List[String]
 )
 extends
     Element
@@ -258,7 +280,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -279,7 +301,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = DayType.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (DayType.fields (position), x))
+        emitattrs (0, SeasonDayTypeSchedules)
+        s.toString
     }
     override def export: String =
     {
@@ -291,18 +317,25 @@ object DayType
 extends
     Parseable[DayType]
 {
+    override val fields: Array[String] = Array[String] (
+        "SeasonDayTypeSchedules"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("SeasonDayTypeSchedules", "SeasonDayTypeSchedule", "0..*", "0..1")
+    )
+    val SeasonDayTypeSchedules: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): DayType =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = DayType (
-            IdentifiedObject.parse (context)
+            IdentifiedObject.parse (context),
+            masks (SeasonDayTypeSchedules (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -366,8 +399,11 @@ object EnergyArea
 extends
     Parseable[EnergyArea]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "ControlArea"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ControlArea", "ControlArea", "0..1", "0..1")
     )
     val ControlArea: Fielder = parse_attribute (attribute (cls, fields(0)))
 
@@ -382,15 +418,13 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("ControlArea", "ControlArea", false)
-    )
 }
 
 /**
  * The class is the root or first level in a hierarchical structure for grouping of loads for the purpose of load flow load scaling.
  *
  * @param sup [[ch.ninecode.model.EnergyArea EnergyArea]] Reference to the superclass object.
+ * @param SubLoadAreas [[ch.ninecode.model.SubLoadArea SubLoadArea]] The SubLoadAreas in the LoadArea.
  * @group LoadModel
  * @groupname LoadModel Package LoadModel
  * @groupdesc LoadModel This package is responsible for modeling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and daytypes, are also included here.
@@ -399,7 +433,8 @@ This information is used by Load Forecasting and Load Management.
  */
 case class LoadArea
 (
-    override val sup: EnergyArea
+    override val sup: EnergyArea,
+    SubLoadAreas: List[String]
 )
 extends
     Element
@@ -407,7 +442,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -428,7 +463,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = LoadArea.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (LoadArea.fields (position), x))
+        emitattrs (0, SubLoadAreas)
+        s.toString
     }
     override def export: String =
     {
@@ -440,18 +479,25 @@ object LoadArea
 extends
     Parseable[LoadArea]
 {
+    override val fields: Array[String] = Array[String] (
+        "SubLoadAreas"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("SubLoadAreas", "SubLoadArea", "1..*", "1")
+    )
+    val SubLoadAreas: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): LoadArea =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = LoadArea (
-            EnergyArea.parse (context)
+            EnergyArea.parse (context),
+            masks (SubLoadAreas (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -513,8 +559,11 @@ object LoadGroup
 extends
     Parseable[LoadGroup]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "SubLoadArea"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("SubLoadArea", "SubLoadArea", "1", "1..*")
     )
     val SubLoadArea: Fielder = parse_attribute (attribute (cls, fields(0)))
 
@@ -529,9 +578,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("SubLoadArea", "SubLoadArea", false)
-    )
 }
 
 /**
@@ -552,6 +598,7 @@ extends
  * @param qConstantPower Portion of reactive power load modeled as constant power.
  * @param qFrequencyExponent Exponent of per unit frequency effecting reactive power.
  * @param qVoltageExponent Exponent of per unit voltage effecting reactive power.
+ * @param EnergyConsumer [[ch.ninecode.model.EnergyConsumer EnergyConsumer]] The set of loads that have the response characteristics.
  * @group LoadModel
  * @groupname LoadModel Package LoadModel
  * @groupdesc LoadModel This package is responsible for modeling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and daytypes, are also included here.
@@ -571,7 +618,8 @@ case class LoadResponseCharacteristic
     qConstantImpedance: Double,
     qConstantPower: Double,
     qFrequencyExponent: Double,
-    qVoltageExponent: Double
+    qVoltageExponent: Double,
+    EnergyConsumer: List[String]
 )
 extends
     Element
@@ -579,7 +627,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    def this () = { this (null, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, List()) }
     /**
      * Return the superclass object.
      *
@@ -603,6 +651,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = LoadResponseCharacteristic.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (LoadResponseCharacteristic.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (LoadResponseCharacteristic.fields (position), x))
         emitelem (0, exponentModel)
         emitelem (1, pConstantCurrent)
         emitelem (2, pConstantImpedance)
@@ -614,6 +663,7 @@ extends
         emitelem (8, qConstantPower)
         emitelem (9, qFrequencyExponent)
         emitelem (10, qVoltageExponent)
+        emitattrs (11, EnergyConsumer)
         s.toString
     }
     override def export: String =
@@ -626,7 +676,7 @@ object LoadResponseCharacteristic
 extends
     Parseable[LoadResponseCharacteristic]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "exponentModel",
         "pConstantCurrent",
         "pConstantImpedance",
@@ -637,7 +687,11 @@ extends
         "qConstantImpedance",
         "qConstantPower",
         "qFrequencyExponent",
-        "qVoltageExponent"
+        "qVoltageExponent",
+        "EnergyConsumer"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("EnergyConsumer", "EnergyConsumer", "0..*", "0..1")
     )
     val exponentModel: Fielder = parse_element (element (cls, fields(0)))
     val pConstantCurrent: Fielder = parse_element (element (cls, fields(1)))
@@ -650,6 +704,7 @@ extends
     val qConstantPower: Fielder = parse_element (element (cls, fields(8)))
     val qFrequencyExponent: Fielder = parse_element (element (cls, fields(9)))
     val qVoltageExponent: Fielder = parse_element (element (cls, fields(10)))
+    val EnergyConsumer: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
 
     def parse (context: Context): LoadResponseCharacteristic =
     {
@@ -667,14 +722,12 @@ extends
             toDouble (mask (qConstantImpedance (), 7)),
             toDouble (mask (qConstantPower (), 8)),
             toDouble (mask (qFrequencyExponent (), 9)),
-            toDouble (mask (qVoltageExponent (), 10))
+            toDouble (mask (qVoltageExponent (), 10)),
+            masks (EnergyConsumer (), 11)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -736,8 +789,11 @@ object NonConformLoad
 extends
     Parseable[NonConformLoad]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "LoadGroup"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("LoadGroup", "NonConformLoadGroup", "0..1", "0..*")
     )
     val LoadGroup: Fielder = parse_attribute (attribute (cls, fields(0)))
 
@@ -752,15 +808,14 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("LoadGroup", "NonConformLoadGroup", false)
-    )
 }
 
 /**
  * Loads that do not follow a daily and seasonal load variation pattern.
  *
  * @param sup [[ch.ninecode.model.LoadGroup LoadGroup]] Reference to the superclass object.
+ * @param EnergyConsumers [[ch.ninecode.model.NonConformLoad NonConformLoad]] Conform loads assigned to this ConformLoadGroup.
+ * @param NonConformLoadSchedules [[ch.ninecode.model.NonConformLoadSchedule NonConformLoadSchedule]] The NonConformLoadSchedules in the NonConformLoadGroup.
  * @group LoadModel
  * @groupname LoadModel Package LoadModel
  * @groupdesc LoadModel This package is responsible for modeling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and daytypes, are also included here.
@@ -769,7 +824,9 @@ This information is used by Load Forecasting and Load Management.
  */
 case class NonConformLoadGroup
 (
-    override val sup: LoadGroup
+    override val sup: LoadGroup,
+    EnergyConsumers: List[String],
+    NonConformLoadSchedules: List[String]
 )
 extends
     Element
@@ -777,7 +834,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -798,7 +855,12 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = NonConformLoadGroup.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (NonConformLoadGroup.fields (position), x))
+        emitattrs (0, EnergyConsumers)
+        emitattrs (1, NonConformLoadSchedules)
+        s.toString
     }
     override def export: String =
     {
@@ -810,18 +872,29 @@ object NonConformLoadGroup
 extends
     Parseable[NonConformLoadGroup]
 {
+    override val fields: Array[String] = Array[String] (
+        "EnergyConsumers",
+        "NonConformLoadSchedules"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("EnergyConsumers", "NonConformLoad", "0..*", "0..1"),
+        Relationship ("NonConformLoadSchedules", "NonConformLoadSchedule", "1..*", "1")
+    )
+    val EnergyConsumers: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val NonConformLoadSchedules: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): NonConformLoadGroup =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = NonConformLoadGroup (
-            LoadGroup.parse (context)
+            LoadGroup.parse (context),
+            masks (EnergyConsumers (), 0),
+            masks (NonConformLoadSchedules (), 1)
         )
+        ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -883,8 +956,11 @@ object NonConformLoadSchedule
 extends
     Parseable[NonConformLoadSchedule]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "NonConformLoadGroup"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("NonConformLoadGroup", "NonConformLoadGroup", "1", "1..*")
     )
     val NonConformLoadGroup: Fielder = parse_attribute (attribute (cls, fields(0)))
 
@@ -899,9 +975,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("NonConformLoadGroup", "NonConformLoadGroup", false)
-    )
 }
 
 /**
@@ -910,6 +983,7 @@ extends
  * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @param cutLevel1 First level (amount) of load to cut as a percentage of total zone load.
  * @param cutLevel2 Second level (amount) of load to cut as a percentage of total zone load.
+ * @param EnergyConsumers [[ch.ninecode.model.EnergyConsumer EnergyConsumer]] Energy consumer is assigned to the power cut zone.
  * @group LoadModel
  * @groupname LoadModel Package LoadModel
  * @groupdesc LoadModel This package is responsible for modeling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and daytypes, are also included here.
@@ -920,7 +994,8 @@ case class PowerCutZone
 (
     override val sup: PowerSystemResource,
     cutLevel1: Double,
-    cutLevel2: Double
+    cutLevel2: Double,
+    EnergyConsumers: List[String]
 )
 extends
     Element
@@ -928,7 +1003,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0) }
+    def this () = { this (null, 0.0, 0.0, List()) }
     /**
      * Return the superclass object.
      *
@@ -952,8 +1027,10 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PowerCutZone.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PowerCutZone.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (PowerCutZone.fields (position), x))
         emitelem (0, cutLevel1)
         emitelem (1, cutLevel2)
+        emitattrs (2, EnergyConsumers)
         s.toString
     }
     override def export: String =
@@ -966,12 +1043,17 @@ object PowerCutZone
 extends
     Parseable[PowerCutZone]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "cutLevel1",
-        "cutLevel2"
+        "cutLevel2",
+        "EnergyConsumers"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("EnergyConsumers", "EnergyConsumer", "1..*", "0..1")
     )
     val cutLevel1: Fielder = parse_element (element (cls, fields(0)))
     val cutLevel2: Fielder = parse_element (element (cls, fields(1)))
+    val EnergyConsumers: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
 
     def parse (context: Context): PowerCutZone =
     {
@@ -980,14 +1062,12 @@ extends
         val ret = PowerCutZone (
             PowerSystemResource.parse (context),
             toDouble (mask (cutLevel1 (), 0)),
-            toDouble (mask (cutLevel2 (), 1))
+            toDouble (mask (cutLevel2 (), 1)),
+            masks (EnergyConsumers (), 2)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -996,6 +1076,8 @@ extends
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param endDate Date season ends.
  * @param startDate Date season starts.
+ * @param ScheduledLimits [[ch.ninecode.model.ScheduledLimitValue ScheduledLimitValue]] The scheduled limits associated with the season.
+ * @param SeasonDayTypeSchedules [[ch.ninecode.model.SeasonDayTypeSchedule SeasonDayTypeSchedule]] Schedules that use this Season.
  * @group LoadModel
  * @groupname LoadModel Package LoadModel
  * @groupdesc LoadModel This package is responsible for modeling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and daytypes, are also included here.
@@ -1006,7 +1088,9 @@ case class Season
 (
     override val sup: IdentifiedObject,
     endDate: String,
-    startDate: String
+    startDate: String,
+    ScheduledLimits: List[String],
+    SeasonDayTypeSchedules: List[String]
 )
 extends
     Element
@@ -1014,7 +1098,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null) }
+    def this () = { this (null, null, null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1038,8 +1122,11 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Season.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Season.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Season.fields (position), x))
         emitelem (0, endDate)
         emitelem (1, startDate)
+        emitattrs (2, ScheduledLimits)
+        emitattrs (3, SeasonDayTypeSchedules)
         s.toString
     }
     override def export: String =
@@ -1052,12 +1139,20 @@ object Season
 extends
     Parseable[Season]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "endDate",
-        "startDate"
+        "startDate",
+        "ScheduledLimits",
+        "SeasonDayTypeSchedules"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ScheduledLimits", "ScheduledLimitValue", "0..*", "0..1"),
+        Relationship ("SeasonDayTypeSchedules", "SeasonDayTypeSchedule", "0..*", "0..1")
     )
     val endDate: Fielder = parse_element (element (cls, fields(0)))
     val startDate: Fielder = parse_element (element (cls, fields(1)))
+    val ScheduledLimits: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val SeasonDayTypeSchedules: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
 
     def parse (context: Context): Season =
     {
@@ -1066,14 +1161,13 @@ extends
         val ret = Season (
             IdentifiedObject.parse (context),
             mask (endDate (), 0),
-            mask (startDate (), 1)
+            mask (startDate (), 1),
+            masks (ScheduledLimits (), 2),
+            masks (SeasonDayTypeSchedules (), 3)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1138,9 +1232,13 @@ object SeasonDayTypeSchedule
 extends
     Parseable[SeasonDayTypeSchedule]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "DayType",
         "Season"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("DayType", "DayType", "0..1", "0..*"),
+        Relationship ("Season", "Season", "0..1", "0..*")
     )
     val DayType: Fielder = parse_attribute (attribute (cls, fields(0)))
     val Season: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -1157,10 +1255,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("DayType", "DayType", false),
-        Relationship ("Season", "Season", false)
-    )
 }
 
 /**
@@ -1225,9 +1319,6 @@ extends
         )
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1235,6 +1326,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.EnergyArea EnergyArea]] Reference to the superclass object.
  * @param LoadArea [[ch.ninecode.model.LoadArea LoadArea]] The LoadArea where the SubLoadArea belongs.
+ * @param LoadGroups [[ch.ninecode.model.LoadGroup LoadGroup]] The Loadgroups in the SubLoadArea.
  * @group LoadModel
  * @groupname LoadModel Package LoadModel
  * @groupdesc LoadModel This package is responsible for modeling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and daytypes, are also included here.
@@ -1244,7 +1336,8 @@ This information is used by Load Forecasting and Load Management.
 case class SubLoadArea
 (
     override val sup: EnergyArea,
-    LoadArea: String
+    LoadArea: String,
+    LoadGroups: List[String]
 )
 extends
     Element
@@ -1252,7 +1345,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null) }
+    def this () = { this (null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -1276,7 +1369,9 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = SubLoadArea.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (SubLoadArea.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (SubLoadArea.fields (position), x))
         emitattr (0, LoadArea)
+        emitattrs (1, LoadGroups)
         s.toString
     }
     override def export: String =
@@ -1289,10 +1384,16 @@ object SubLoadArea
 extends
     Parseable[SubLoadArea]
 {
-    val fields: Array[String] = Array[String] (
-        "LoadArea"
+    override val fields: Array[String] = Array[String] (
+        "LoadArea",
+        "LoadGroups"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("LoadArea", "LoadArea", "1", "1..*"),
+        Relationship ("LoadGroups", "LoadGroup", "1..*", "1")
     )
     val LoadArea: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val LoadGroups: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): SubLoadArea =
     {
@@ -1300,14 +1401,12 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = SubLoadArea (
             EnergyArea.parse (context),
-            mask (LoadArea (), 0)
+            mask (LoadArea (), 0),
+            masks (LoadGroups (), 1)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("LoadArea", "LoadArea", false)
-    )
 }
 
 private[ninecode] object _LoadModel

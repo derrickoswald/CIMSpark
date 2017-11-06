@@ -84,11 +84,15 @@ object GenICompensationForGenJ
 extends
     Parseable[GenICompensationForGenJ]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "rcij",
         "xcij",
         "SynchronousMachineDynamics",
         "VcompIEEEType2"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("SynchronousMachineDynamics", "SynchronousMachineDynamics", "1", "0..*"),
+        Relationship ("VcompIEEEType2", "VCompIEEEType2", "1", "2..*")
     )
     val rcij: Fielder = parse_element (element (cls, fields(0)))
     val xcij: Fielder = parse_element (element (cls, fields(1)))
@@ -109,10 +113,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("SynchronousMachineDynamics", "SynchronousMachineDynamics", false),
-        Relationship ("VcompIEEEType2", "VCompIEEEType2", false)
-    )
 }
 
 /**
@@ -190,7 +190,7 @@ object VCompIEEEType1
 extends
     Parseable[VCompIEEEType1]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "rc",
         "tr",
         "xc"
@@ -212,9 +212,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -224,6 +221,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.VoltageCompensatorDynamics VoltageCompensatorDynamics]] Reference to the superclass object.
  * @param tr <font color="#0f0f0f">Time constant which is used for the combined voltage sensing and compensation signal (Tr).</font>
+ * @param GenICompensationForGenJ [[ch.ninecode.model.GenICompensationForGenJ GenICompensationForGenJ]] Compensation of this voltage compensator's generator for current flow out of another generator.
  * @group VoltageCompensatorDynamics
  * @groupname VoltageCompensatorDynamics Package VoltageCompensatorDynamics
  * @groupdesc VoltageCompensatorDynamics <font color="#0f0f0f">Synchronous machine terminal voltage transducer and current compensator models</font> adjust the terminal voltage feedback to the excitation system by adding a quantity that is proportional to the terminal current of the generator.  It is linked to a specific generator (synchronous machine).
@@ -241,7 +239,8 @@ extends
 case class VCompIEEEType2
 (
     override val sup: VoltageCompensatorDynamics,
-    tr: Double
+    tr: Double,
+    GenICompensationForGenJ: List[String]
 )
 extends
     Element
@@ -249,7 +248,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0) }
+    def this () = { this (null, 0.0, List()) }
     /**
      * Return the superclass object.
      *
@@ -273,7 +272,9 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = VCompIEEEType2.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (VCompIEEEType2.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (VCompIEEEType2.fields (position), x))
         emitelem (0, tr)
+        emitattrs (1, GenICompensationForGenJ)
         s.toString
     }
     override def export: String =
@@ -286,10 +287,15 @@ object VCompIEEEType2
 extends
     Parseable[VCompIEEEType2]
 {
-    val fields: Array[String] = Array[String] (
-        "tr"
+    override val fields: Array[String] = Array[String] (
+        "tr",
+        "GenICompensationForGenJ"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("GenICompensationForGenJ", "GenICompensationForGenJ", "2..*", "1")
     )
     val tr: Fielder = parse_element (element (cls, fields(0)))
+    val GenICompensationForGenJ: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): VCompIEEEType2 =
     {
@@ -297,14 +303,12 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = VCompIEEEType2 (
             VoltageCompensatorDynamics.parse (context),
-            toDouble (mask (tr (), 0))
+            toDouble (mask (tr (), 0)),
+            masks (GenICompensationForGenJ (), 1)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -377,9 +381,13 @@ object VoltageCompensatorDynamics
 extends
     Parseable[VoltageCompensatorDynamics]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "ExcitationSystemDynamics",
         "RemoteInputSignal"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ExcitationSystemDynamics", "ExcitationSystemDynamics", "1", "0..1"),
+        Relationship ("RemoteInputSignal", "RemoteInputSignal", "0..1", "0..1")
     )
     val ExcitationSystemDynamics: Fielder = parse_attribute (attribute (cls, fields(0)))
     val RemoteInputSignal: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -396,10 +404,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("ExcitationSystemDynamics", "ExcitationSystemDynamics", false),
-        Relationship ("RemoteInputSignal", "RemoteInputSignal", false)
-    )
 }
 
 private[ninecode] object _VoltageCompensatorDynamics

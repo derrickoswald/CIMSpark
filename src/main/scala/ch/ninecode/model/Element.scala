@@ -293,7 +293,6 @@ object BasicElement
         basic._about = isab
         basic
     }
-    val relations: List[Relationship] = List ()
 }
 
 /**
@@ -356,5 +355,5 @@ extends
             context.start,
             context.end)
     }
-    val relations: List[Relationship] = List ()
+    override val relations: List[Relationship] = List ()
 }

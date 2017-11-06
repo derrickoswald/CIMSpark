@@ -92,7 +92,7 @@ object BilateralTransaction
 extends
     Parseable[BilateralTransaction]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "curtailTimeMax",
         "curtailTimeMin",
         "marketType",
@@ -129,9 +129,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -191,7 +188,7 @@ object Participation
 extends
     Parseable[Participation]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "factor"
     )
     val factor: Fielder = parse_element (element (cls, fields(0)))
@@ -207,9 +204,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -311,7 +305,7 @@ object ResourceCertification
 extends
     Parseable[ResourceCertification]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "certifiedDAM",
         "certifiedNonspinDAM",
         "certifiedNonspinDAMMw",
@@ -326,6 +320,9 @@ extends
         "certifiedSpin",
         "certifiedSpinMw",
         "RegisteredResource"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("RegisteredResource", "RegisteredResource", "0..*", "0..*")
     )
     val certifiedDAM: Fielder = parse_attribute (attribute (cls, fields(0)))
     val certifiedNonspinDAM: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -366,9 +363,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("RegisteredResource", "RegisteredResource", true)
-    )
 }
 
 private[ninecode] object _InfMarketOperations

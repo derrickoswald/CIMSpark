@@ -66,8 +66,11 @@ object EquipmentFault
 extends
     Parseable[EquipmentFault]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "Terminal"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Terminal", "Terminal", "0..1", "0..*")
     )
     val Terminal: Fielder = parse_attribute (attribute (cls, fields(0)))
 
@@ -82,9 +85,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Terminal", "Terminal", false)
-    )
 }
 
 /**
@@ -162,13 +162,19 @@ object Fault
 extends
     Parseable[Fault]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "impedance",
         "kind",
         "phases",
         "FaultCauseTypes",
         "FaultyEquipment",
         "Outage"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("impedance", "FaultImpedance", "0..1", "0..*"),
+        Relationship ("FaultCauseTypes", "FaultCauseType", "0..*", "0..*"),
+        Relationship ("FaultyEquipment", "Equipment", "0..1", "0..*"),
+        Relationship ("Outage", "Outage", "0..1", "0..*")
     )
     val impedance: Fielder = parse_attribute (attribute (cls, fields(0)))
     val kind: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -193,12 +199,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("impedance", "FaultImpedance", false),
-        Relationship ("FaultCauseTypes", "FaultCauseType", true),
-        Relationship ("FaultyEquipment", "Equipment", false),
-        Relationship ("Outage", "Outage", false)
-    )
 }
 
 /**
@@ -258,8 +258,11 @@ object FaultCauseType
 extends
     Parseable[FaultCauseType]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "Faults"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Faults", "Fault", "0..*", "0..*")
     )
     val Faults: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
@@ -274,9 +277,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Faults", "Fault", true)
-    )
 }
 
 /**
@@ -345,7 +345,7 @@ object FaultImpedance
 extends
     Parseable[FaultImpedance]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "rGround",
         "rLineToLine",
         "xGround",
@@ -370,9 +370,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -436,9 +433,12 @@ object LineFault
 extends
     Parseable[LineFault]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "lengthFromTerminal1",
         "ACLineSegment"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ACLineSegment", "ACLineSegment", "0..1", "0..*")
     )
     val lengthFromTerminal1: Fielder = parse_element (element (cls, fields(0)))
     val ACLineSegment: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -455,9 +455,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("ACLineSegment", "ACLineSegment", false)
-    )
 }
 
 private[ninecode] object _Faults

@@ -46,6 +46,8 @@ with
     implicit val _StorageLevel: StorageLevel = StorageLevel.fromString (parameters.getOrElse ("StorageLevel", "MEMORY_ONLY"))
     // check for rdf:about option
     val _About: Boolean = parameters.getOrElse ("ch.ninecode.cim.do_about", "false").toBoolean
+    // check for normalization option
+    val _Normalize: Boolean = parameters.getOrElse ("ch.ninecode.cim.do_normalize", "false").toBoolean
     // check for deduplication option
     val _DeDup: Boolean = parameters.getOrElse ("ch.ninecode.cim.do_deduplication", "false").toBoolean
     // check for edge creation option
@@ -123,6 +125,14 @@ with
         {
             val about = new CIMAbout (spark, _StorageLevel)
             rdd = about.do_about ()
+            ret = rdd.asInstanceOf[RDD[Row]]
+        }
+
+        // normalize if requested
+        if (_Normalize)
+        {
+            val normalize = new CIMNormalize (spark, _StorageLevel)
+            rdd = normalize.do_normalization ()
             ret = rdd.asInstanceOf[RDD[Row]]
         }
 

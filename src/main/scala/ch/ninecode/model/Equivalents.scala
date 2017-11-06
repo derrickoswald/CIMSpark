@@ -123,7 +123,7 @@ object EquivalentBranch
 extends
     Parseable[EquivalentBranch]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "negativeR12",
         "negativeR21",
         "negativeX12",
@@ -184,9 +184,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -248,8 +245,11 @@ object EquivalentEquipment
 extends
     Parseable[EquivalentEquipment]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "EquivalentNetwork"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("EquivalentNetwork", "EquivalentNetwork", "0..1", "0..*")
     )
     val EquivalentNetwork: Fielder = parse_attribute (attribute (cls, fields(0)))
 
@@ -264,9 +264,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("EquivalentNetwork", "EquivalentNetwork", false)
-    )
 }
 
 /**
@@ -385,7 +382,7 @@ object EquivalentInjection
 extends
     Parseable[EquivalentInjection]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "maxP",
         "maxQ",
         "minP",
@@ -402,6 +399,9 @@ extends
         "x0",
         "x2",
         "ReactiveCapabilityCurve"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ReactiveCapabilityCurve", "ReactiveCapabilityCurve", "0..1", "0..*")
     )
     val maxP: Fielder = parse_element (element (cls, fields(0)))
     val maxQ: Fielder = parse_element (element (cls, fields(1)))
@@ -446,9 +446,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("ReactiveCapabilityCurve", "ReactiveCapabilityCurve", false)
-    )
 }
 
 /**
@@ -457,13 +454,15 @@ extends
  * The ConnectivityNodes contained in the equivalent are intended to reflect internal nodes of the equivalent. The boundary Connectivity nodes where the equivalent connects outside itself are NOT contained by the equivalent.
  *
  * @param sup [[ch.ninecode.model.ConnectivityNodeContainer ConnectivityNodeContainer]] Reference to the superclass object.
+ * @param EquivalentEquipments [[ch.ninecode.model.EquivalentEquipment EquivalentEquipment]] The associated reduced equivalents.
  * @group Equivalents
  * @groupname Equivalents Package Equivalents
  * @groupdesc Equivalents The equivalents package models equivalent networks.
  */
 case class EquivalentNetwork
 (
-    override val sup: ConnectivityNodeContainer
+    override val sup: ConnectivityNodeContainer,
+    EquivalentEquipments: List[String]
 )
 extends
     Element
@@ -471,7 +470,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -492,7 +491,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = EquivalentNetwork.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (EquivalentNetwork.fields (position), x))
+        emitattrs (0, EquivalentEquipments)
+        s.toString
     }
     override def export: String =
     {
@@ -504,18 +507,25 @@ object EquivalentNetwork
 extends
     Parseable[EquivalentNetwork]
 {
+    override val fields: Array[String] = Array[String] (
+        "EquivalentEquipments"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("EquivalentEquipments", "EquivalentEquipment", "0..*", "0..1")
+    )
+    val EquivalentEquipments: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): EquivalentNetwork =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = EquivalentNetwork (
-            ConnectivityNodeContainer.parse (context)
+            ConnectivityNodeContainer.parse (context),
+            masks (EquivalentEquipments (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -578,7 +588,7 @@ object EquivalentShunt
 extends
     Parseable[EquivalentShunt]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "b",
         "g"
     )
@@ -597,9 +607,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 private[ninecode] object _Equivalents

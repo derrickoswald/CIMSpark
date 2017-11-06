@@ -71,7 +71,7 @@ object PackageDependenciesCIMVersion
 extends
     Parseable[PackageDependenciesCIMVersion]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "date",
         "version"
     )
@@ -90,9 +90,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 private[ninecode] object _PackageDependencies

@@ -100,7 +100,7 @@ object DiagnosisDataSet
 extends
     Parseable[DiagnosisDataSet]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "effect",
         "failureMode",
         "finalCause",
@@ -152,9 +152,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -162,13 +159,15 @@ extends
  *
  * @param sup [[ch.ninecode.model.ProcedureDataSet ProcedureDataSet]] Reference to the superclass object.
  * @param locationCondition Description of the conditions of the location where the asset resides.
+ * @param AccordingToSchedules [[ch.ninecode.model.ScheduledEventData ScheduledEventData]] <em>undocumented</em>
  * @group InfNewAssets
  * @groupname InfNewAssets Package InfNewAssets
  */
 case class InspectionDataSet
 (
     override val sup: ProcedureDataSet,
-    locationCondition: String
+    locationCondition: String,
+    AccordingToSchedules: List[String]
 )
 extends
     Element
@@ -176,7 +175,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null) }
+    def this () = { this (null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -200,7 +199,9 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = InspectionDataSet.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (InspectionDataSet.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (InspectionDataSet.fields (position), x))
         emitelem (0, locationCondition)
+        emitattrs (1, AccordingToSchedules)
         s.toString
     }
     override def export: String =
@@ -213,10 +214,15 @@ object InspectionDataSet
 extends
     Parseable[InspectionDataSet]
 {
-    val fields: Array[String] = Array[String] (
-        "locationCondition"
+    override val fields: Array[String] = Array[String] (
+        "locationCondition",
+        "AccordingToSchedules"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("AccordingToSchedules", "ScheduledEventData", "0..*", "1")
     )
     val locationCondition: Fielder = parse_element (element (cls, fields(0)))
+    val AccordingToSchedules: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): InspectionDataSet =
     {
@@ -224,14 +230,12 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = InspectionDataSet (
             ProcedureDataSet.parse (context),
-            mask (locationCondition (), 0)
+            mask (locationCondition (), 0),
+            masks (AccordingToSchedules (), 1)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -296,7 +300,7 @@ object MaintenanceDataSet
 extends
     Parseable[MaintenanceDataSet]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "conditionAfter",
         "conditionBefore",
         "maintCode"
@@ -318,9 +322,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -385,7 +386,7 @@ object TestDataSet
 extends
     Parseable[TestDataSet]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "conclusion",
         "specimenID",
         "specimenToLabDateTime"
@@ -407,9 +408,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 private[ninecode] object _InfNewAssets

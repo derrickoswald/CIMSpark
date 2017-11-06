@@ -12,6 +12,7 @@ import ch.ninecode.cim.Relationship
  *
  * @param sup [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Excitation system model with which this power system stabilizer model is associated.
+ * @param RemoteInputSignal [[ch.ninecode.model.RemoteInputSignal RemoteInputSignal]] Remote input signal used by this power system stabilizer model.
  * @group PowerSystemStabilizerDynamics
  * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
  * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (Vs) to the excitation system model to improve damping of system oscillations.  A variety of input signals may be used depending on the particular design.
@@ -19,7 +20,8 @@ import ch.ninecode.cim.Relationship
 case class PowerSystemStabilizerDynamics
 (
     override val sup: DynamicsFunctionBlock,
-    ExcitationSystemDynamics: String
+    ExcitationSystemDynamics: String,
+    RemoteInputSignal: List[String]
 )
 extends
     Element
@@ -27,7 +29,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null) }
+    def this () = { this (null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -51,7 +53,9 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PowerSystemStabilizerDynamics.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PowerSystemStabilizerDynamics.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (PowerSystemStabilizerDynamics.fields (position), x))
         emitattr (0, ExcitationSystemDynamics)
+        emitattrs (1, RemoteInputSignal)
         s.toString
     }
     override def export: String =
@@ -64,10 +68,16 @@ object PowerSystemStabilizerDynamics
 extends
     Parseable[PowerSystemStabilizerDynamics]
 {
-    val fields: Array[String] = Array[String] (
-        "ExcitationSystemDynamics"
+    override val fields: Array[String] = Array[String] (
+        "ExcitationSystemDynamics",
+        "RemoteInputSignal"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ExcitationSystemDynamics", "ExcitationSystemDynamics", "1", "0..1"),
+        Relationship ("RemoteInputSignal", "RemoteInputSignal", "0..*", "0..1")
     )
     val ExcitationSystemDynamics: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val RemoteInputSignal: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): PowerSystemStabilizerDynamics =
     {
@@ -75,14 +85,12 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = PowerSystemStabilizerDynamics (
             DynamicsFunctionBlock.parse (context),
-            mask (ExcitationSystemDynamics (), 0)
+            mask (ExcitationSystemDynamics (), 0),
+            masks (RemoteInputSignal (), 1)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("ExcitationSystemDynamics", "ExcitationSystemDynamics", false)
-    )
 }
 
 /**
@@ -201,7 +209,7 @@ object Pss1
 extends
     Parseable[Pss1]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "kf",
         "kpe",
         "ks",
@@ -259,9 +267,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -389,7 +394,7 @@ object Pss1A
 extends
     Parseable[Pss1A]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "a1",
         "a2",
         "a3",
@@ -468,9 +473,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -654,7 +656,7 @@ object Pss2B
 extends
     Parseable[Pss2B]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "a",
         "inputSignal1Type",
         "inputSignal2Type",
@@ -760,9 +762,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -876,7 +875,7 @@ object Pss2ST
 extends
     Parseable[Pss2ST]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "inputSignal1Type",
         "inputSignal2Type",
         "k1",
@@ -943,9 +942,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1076,7 +1072,7 @@ object Pss5
 extends
     Parseable[Pss5]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "ctw2",
         "deadband",
         "isfreq",
@@ -1140,9 +1136,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1243,7 +1236,7 @@ object PssELIN2
 extends
     Parseable[PssELIN2]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "apss",
         "ks1",
         "ks2",
@@ -1289,9 +1282,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1399,7 +1389,7 @@ object PssIEEE1A
 extends
     Parseable[PssIEEE1A]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "a1",
         "a2",
         "inputSignalType",
@@ -1448,9 +1438,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1618,7 +1605,7 @@ object PssIEEE2B
 extends
     Parseable[PssIEEE2B]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "inputSignal1Type",
         "inputSignal2Type",
         "ks1",
@@ -1712,9 +1699,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1850,7 +1834,7 @@ object PssIEEE3B
 extends
     Parseable[PssIEEE3B]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "a1",
         "a2",
         "a3",
@@ -1920,9 +1904,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -2241,7 +2222,7 @@ object PssIEEE4B
 extends
     Parseable[PssIEEE4B]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "bwh1",
         "bwh2",
         "bwl1",
@@ -2455,9 +2436,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -2558,7 +2536,7 @@ object PssPTIST1
 extends
     Parseable[PssPTIST1]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "dtc",
         "dtf",
         "dtp",
@@ -2604,9 +2582,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -2780,7 +2755,7 @@ object PssPTIST3
 extends
     Parseable[PssPTIST3]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "a0",
         "a1",
         "a2",
@@ -2895,9 +2870,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -2987,7 +2959,7 @@ object PssSB4
 extends
     Parseable[PssSB4]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "kx",
         "ta",
         "tb",
@@ -3033,9 +3005,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -3144,7 +3113,7 @@ object PssSH
 extends
     Parseable[PssSH]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "k",
         "k0",
         "k1",
@@ -3196,9 +3165,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -3299,7 +3265,7 @@ object PssSK
 extends
     Parseable[PssSK]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "k1",
         "k2",
         "k3",
@@ -3345,9 +3311,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -3459,7 +3422,7 @@ object PssWECC
 extends
     Parseable[PssWECC]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "inputSignal1Type",
         "inputSignal2Type",
         "k1",
@@ -3526,9 +3489,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 private[ninecode] object _PowerSystemStabilizerDynamics

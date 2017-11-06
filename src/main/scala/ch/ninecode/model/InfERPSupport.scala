@@ -14,6 +14,7 @@ import ch.ninecode.cim.Relationship
  *
  * @param sup [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
  * @param Design [[ch.ninecode.model.Design Design]] <em>undocumented</em>
+ * @param ErpBomItemDatas [[ch.ninecode.model.ErpBomItemData ErpBomItemData]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
@@ -26,7 +27,8 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
 case class ErpBOM
 (
     override val sup: ErpDocument,
-    Design: String
+    Design: String,
+    ErpBomItemDatas: List[String]
 )
 extends
     Element
@@ -34,7 +36,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null) }
+    def this () = { this (null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -58,7 +60,9 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ErpBOM.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ErpBOM.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ErpBOM.fields (position), x))
         emitattr (0, Design)
+        emitattrs (1, ErpBomItemDatas)
         s.toString
     }
     override def export: String =
@@ -71,10 +75,16 @@ object ErpBOM
 extends
     Parseable[ErpBOM]
 {
-    val fields: Array[String] = Array[String] (
-        "Design"
+    override val fields: Array[String] = Array[String] (
+        "Design",
+        "ErpBomItemDatas"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Design", "Design", "0..1", "0..*"),
+        Relationship ("ErpBomItemDatas", "ErpBomItemData", "0..*", "1")
     )
     val Design: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val ErpBomItemDatas: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): ErpBOM =
     {
@@ -82,14 +92,12 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = ErpBOM (
             ErpDocument.parse (context),
-            mask (Design (), 0)
+            mask (Design (), 0),
+            masks (ErpBomItemDatas (), 1)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Design", "Design", false)
-    )
 }
 
 /**
@@ -156,7 +164,7 @@ object ErpBankAccount
 extends
     Parseable[ErpBankAccount]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "bankABA"
     )
     val bankABA: Fielder = parse_element (element (cls, fields(0)))
@@ -172,9 +180,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -245,10 +250,15 @@ object ErpBomItemData
 extends
     Parseable[ErpBomItemData]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "DesignLocation",
         "ErpBOM",
         "TypeAsset"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("DesignLocation", "DesignLocation", "0..1", "0..*"),
+        Relationship ("ErpBOM", "ErpBOM", "1", "0..*"),
+        Relationship ("TypeAsset", "GenericAssetModelOrMaterial", "0..1", "0..*")
     )
     val DesignLocation: Fielder = parse_attribute (attribute (cls, fields(0)))
     val ErpBOM: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -267,11 +277,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("DesignLocation", "DesignLocation", false),
-        Relationship ("ErpBOM", "ErpBOM", false),
-        Relationship ("TypeAsset", "GenericAssetModelOrMaterial", false)
-    )
 }
 
 /**
@@ -341,9 +346,6 @@ extends
         )
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -352,6 +354,7 @@ extends
  * Unlike Skills that an ErpPerson must be certified to perform before undertaking certain type of assignments (to be able to perfrom a Craft), ErpCompetency has more to do with typical Human Resource (HR) matters such as schooling, training, etc.
  *
  * @param sup [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
+ * @param ErpPersons [[ch.ninecode.model.OldPerson OldPerson]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
@@ -363,7 +366,8 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 case class ErpCompetency
 (
-    override val sup: ErpIdentifiedObject
+    override val sup: ErpIdentifiedObject,
+    ErpPersons: List[String]
 )
 extends
     Element
@@ -371,7 +375,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -392,7 +396,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ErpCompetency.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ErpCompetency.fields (position), x))
+        emitattrs (0, ErpPersons)
+        s.toString
     }
     override def export: String =
     {
@@ -404,18 +412,25 @@ object ErpCompetency
 extends
     Parseable[ErpCompetency]
 {
+    override val fields: Array[String] = Array[String] (
+        "ErpPersons"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ErpPersons", "OldPerson", "0..*", "0..1")
+    )
+    val ErpPersons: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): ErpCompetency =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = ErpCompetency (
-            ErpIdentifiedObject.parse (context)
+            ErpIdentifiedObject.parse (context),
+            masks (ErpPersons (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -485,9 +500,6 @@ extends
         )
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -555,9 +567,6 @@ extends
         )
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -627,9 +636,6 @@ extends
         )
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -699,9 +705,12 @@ object ErpInventory
 extends
     Parseable[ErpInventory]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "status",
         "Asset"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Asset", "Asset", "0..1", "0..1")
     )
     val status: Fielder = parse_attribute (attribute (cls, fields(0)))
     val Asset: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -718,9 +727,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Asset", "Asset", false)
-    )
 }
 
 /**
@@ -790,9 +796,12 @@ object ErpInventoryCount
 extends
     Parseable[ErpInventoryCount]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "status",
         "AssetModel"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("AssetModel", "AssetModel", "0..1", "0..*")
     )
     val status: Fielder = parse_attribute (attribute (cls, fields(0)))
     val AssetModel: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -809,9 +818,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("AssetModel", "AssetModel", false)
-    )
 }
 
 /**
@@ -831,6 +837,7 @@ extends
  * @param transactionDateTime Date and time when the invoice is issued.
  * @param transferType Type of invoice transfer.
  * @param CustomerAccount [[ch.ninecode.model.CustomerAccount CustomerAccount]] <em>undocumented</em>
+ * @param ErpInvoiceLineItems [[ch.ninecode.model.ErpInvoiceLineItem ErpInvoiceLineItem]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
@@ -852,7 +859,8 @@ case class ErpInvoice
     referenceNumber: String,
     transactionDateTime: String,
     transferType: String,
-    CustomerAccount: String
+    CustomerAccount: String,
+    ErpInvoiceLineItems: List[String]
 )
 extends
     Element
@@ -860,7 +868,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, null, null, null, null, false, null, null, null, null) }
+    def this () = { this (null, 0.0, null, null, null, null, false, null, null, null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -885,6 +893,7 @@ extends
         implicit val clz: String = ErpInvoice.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ErpInvoice.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ErpInvoice.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ErpInvoice.fields (position), x))
         emitelem (0, amount)
         emitattr (1, billMediaKind)
         emitelem (2, dueDate)
@@ -895,6 +904,7 @@ extends
         emitelem (7, transactionDateTime)
         emitelem (8, transferType)
         emitattr (9, CustomerAccount)
+        emitattrs (10, ErpInvoiceLineItems)
         s.toString
     }
     override def export: String =
@@ -907,7 +917,7 @@ object ErpInvoice
 extends
     Parseable[ErpInvoice]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "amount",
         "billMediaKind",
         "dueDate",
@@ -917,7 +927,12 @@ extends
         "referenceNumber",
         "transactionDateTime",
         "transferType",
-        "CustomerAccount"
+        "CustomerAccount",
+        "ErpInvoiceLineItems"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("CustomerAccount", "CustomerAccount", "0..1", "0..*"),
+        Relationship ("ErpInvoiceLineItems", "ErpInvoiceLineItem", "0..*", "1")
     )
     val amount: Fielder = parse_element (element (cls, fields(0)))
     val billMediaKind: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -929,6 +944,7 @@ extends
     val transactionDateTime: Fielder = parse_element (element (cls, fields(7)))
     val transferType: Fielder = parse_element (element (cls, fields(8)))
     val CustomerAccount: Fielder = parse_attribute (attribute (cls, fields(9)))
+    val ErpInvoiceLineItems: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
 
     def parse (context: Context): ErpInvoice =
     {
@@ -945,14 +961,12 @@ extends
             mask (referenceNumber (), 6),
             mask (transactionDateTime (), 7),
             mask (transferType (), 8),
-            mask (CustomerAccount (), 9)
+            mask (CustomerAccount (), 9),
+            masks (ErpInvoiceLineItems (), 10)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("CustomerAccount", "CustomerAccount", false)
-    )
 }
 
 /**
@@ -968,9 +982,11 @@ extends
  * @param lineVersion Version number of the bill run.
  * @param netAmount Net line item charge amount.
  * @param previousAmount Previous line item charge amount.
+ * @param ComponentErpInvoiceLineItems [[ch.ninecode.model.ErpInvoiceLineItem ErpInvoiceLineItem]] <em>undocumented</em>
  * @param ContainerErpInvoiceLineItem [[ch.ninecode.model.ErpInvoiceLineItem ErpInvoiceLineItem]] <em>undocumented</em>
  * @param CustomerBillingInfos [[ch.ninecode.model.CustomerBillingInfo CustomerBillingInfo]] Customer billing for services rendered.
  * @param ErpInvoice [[ch.ninecode.model.ErpInvoice ErpInvoice]] <em>undocumented</em>
+ * @param ErpJournalEntries [[ch.ninecode.model.ErpJournalEntry ErpJournalEntry]] <em>undocumented</em>
  * @param ErpPayableLineItem [[ch.ninecode.model.ErpPayableLineItem ErpPayableLineItem]] <em>undocumented</em>
  * @param ErpPayments [[ch.ninecode.model.ErpPayment ErpPayment]] <em>undocumented</em>
  * @param ErpQuoteLineItem [[ch.ninecode.model.ErpQuoteLineItem ErpQuoteLineItem]] <em>undocumented</em>
@@ -999,9 +1015,11 @@ case class ErpInvoiceLineItem
     lineVersion: String,
     netAmount: Double,
     previousAmount: Double,
+    ComponentErpInvoiceLineItems: List[String],
     ContainerErpInvoiceLineItem: String,
     CustomerBillingInfos: List[String],
     ErpInvoice: String,
+    ErpJournalEntries: List[String],
     ErpPayableLineItem: String,
     ErpPayments: List[String],
     ErpQuoteLineItem: String,
@@ -1016,7 +1034,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null, 0.0, null, null, 0.0, 0.0, null, List(), null, null, List(), null, null, null, List(), List()) }
+    def this () = { this (null, null, null, null, null, 0.0, null, null, 0.0, 0.0, List(), null, List(), null, List(), null, List(), null, null, null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1051,16 +1069,18 @@ extends
         emitelem (6, lineVersion)
         emitelem (7, netAmount)
         emitelem (8, previousAmount)
-        emitattr (9, ContainerErpInvoiceLineItem)
-        emitattrs (10, CustomerBillingInfos)
-        emitattr (11, ErpInvoice)
-        emitattr (12, ErpPayableLineItem)
-        emitattrs (13, ErpPayments)
-        emitattr (14, ErpQuoteLineItem)
-        emitattr (15, ErpRecDelvLineItem)
-        emitattr (16, ErpRecLineItem)
-        emitattrs (17, UserAttributes)
-        emitattrs (18, WorkBillingInfos)
+        emitattrs (9, ComponentErpInvoiceLineItems)
+        emitattr (10, ContainerErpInvoiceLineItem)
+        emitattrs (11, CustomerBillingInfos)
+        emitattr (12, ErpInvoice)
+        emitattrs (13, ErpJournalEntries)
+        emitattr (14, ErpPayableLineItem)
+        emitattrs (15, ErpPayments)
+        emitattr (16, ErpQuoteLineItem)
+        emitattr (17, ErpRecDelvLineItem)
+        emitattr (18, ErpRecLineItem)
+        emitattrs (19, UserAttributes)
+        emitattrs (20, WorkBillingInfos)
         s.toString
     }
     override def export: String =
@@ -1073,7 +1093,7 @@ object ErpInvoiceLineItem
 extends
     Parseable[ErpInvoiceLineItem]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "billPeriod",
         "glAccount",
         "glDateTime",
@@ -1083,9 +1103,11 @@ extends
         "lineVersion",
         "netAmount",
         "previousAmount",
+        "ComponentErpInvoiceLineItems",
         "ContainerErpInvoiceLineItem",
         "CustomerBillingInfos",
         "ErpInvoice",
+        "ErpJournalEntries",
         "ErpPayableLineItem",
         "ErpPayments",
         "ErpQuoteLineItem",
@@ -1093,6 +1115,20 @@ extends
         "ErpRecLineItem",
         "UserAttributes",
         "WorkBillingInfos"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ComponentErpInvoiceLineItems", "ErpInvoiceLineItem", "0..*", "0..1"),
+        Relationship ("ContainerErpInvoiceLineItem", "ErpInvoiceLineItem", "0..1", "0..*"),
+        Relationship ("CustomerBillingInfos", "CustomerBillingInfo", "0..*", "0..*"),
+        Relationship ("ErpInvoice", "ErpInvoice", "1", "0..*"),
+        Relationship ("ErpJournalEntries", "ErpJournalEntry", "0..*", "0..1"),
+        Relationship ("ErpPayableLineItem", "ErpPayableLineItem", "0..1", "0..1"),
+        Relationship ("ErpPayments", "ErpPayment", "0..*", "0..*"),
+        Relationship ("ErpQuoteLineItem", "ErpQuoteLineItem", "0..1", "0..1"),
+        Relationship ("ErpRecDelvLineItem", "ErpRecDelvLineItem", "0..1", "0..1"),
+        Relationship ("ErpRecLineItem", "ErpRecLineItem", "0..1", "0..1"),
+        Relationship ("UserAttributes", "UserAttribute", "0..*", "0..*"),
+        Relationship ("WorkBillingInfos", "WorkBillingInfo", "0..*", "0..*")
     )
     val billPeriod: Fielder = parse_attribute (attribute (cls, fields(0)))
     val glAccount: Fielder = parse_element (element (cls, fields(1)))
@@ -1103,16 +1139,18 @@ extends
     val lineVersion: Fielder = parse_element (element (cls, fields(6)))
     val netAmount: Fielder = parse_element (element (cls, fields(7)))
     val previousAmount: Fielder = parse_element (element (cls, fields(8)))
-    val ContainerErpInvoiceLineItem: Fielder = parse_attribute (attribute (cls, fields(9)))
-    val CustomerBillingInfos: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
-    val ErpInvoice: Fielder = parse_attribute (attribute (cls, fields(11)))
-    val ErpPayableLineItem: Fielder = parse_attribute (attribute (cls, fields(12)))
-    val ErpPayments: FielderMultiple = parse_attributes (attribute (cls, fields(13)))
-    val ErpQuoteLineItem: Fielder = parse_attribute (attribute (cls, fields(14)))
-    val ErpRecDelvLineItem: Fielder = parse_attribute (attribute (cls, fields(15)))
-    val ErpRecLineItem: Fielder = parse_attribute (attribute (cls, fields(16)))
-    val UserAttributes: FielderMultiple = parse_attributes (attribute (cls, fields(17)))
-    val WorkBillingInfos: FielderMultiple = parse_attributes (attribute (cls, fields(18)))
+    val ComponentErpInvoiceLineItems: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
+    val ContainerErpInvoiceLineItem: Fielder = parse_attribute (attribute (cls, fields(10)))
+    val CustomerBillingInfos: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
+    val ErpInvoice: Fielder = parse_attribute (attribute (cls, fields(12)))
+    val ErpJournalEntries: FielderMultiple = parse_attributes (attribute (cls, fields(13)))
+    val ErpPayableLineItem: Fielder = parse_attribute (attribute (cls, fields(14)))
+    val ErpPayments: FielderMultiple = parse_attributes (attribute (cls, fields(15)))
+    val ErpQuoteLineItem: Fielder = parse_attribute (attribute (cls, fields(16)))
+    val ErpRecDelvLineItem: Fielder = parse_attribute (attribute (cls, fields(17)))
+    val ErpRecLineItem: Fielder = parse_attribute (attribute (cls, fields(18)))
+    val UserAttributes: FielderMultiple = parse_attributes (attribute (cls, fields(19)))
+    val WorkBillingInfos: FielderMultiple = parse_attributes (attribute (cls, fields(20)))
 
     def parse (context: Context): ErpInvoiceLineItem =
     {
@@ -1129,32 +1167,22 @@ extends
             mask (lineVersion (), 6),
             toDouble (mask (netAmount (), 7)),
             toDouble (mask (previousAmount (), 8)),
-            mask (ContainerErpInvoiceLineItem (), 9),
-            masks (CustomerBillingInfos (), 10),
-            mask (ErpInvoice (), 11),
-            mask (ErpPayableLineItem (), 12),
-            masks (ErpPayments (), 13),
-            mask (ErpQuoteLineItem (), 14),
-            mask (ErpRecDelvLineItem (), 15),
-            mask (ErpRecLineItem (), 16),
-            masks (UserAttributes (), 17),
-            masks (WorkBillingInfos (), 18)
+            masks (ComponentErpInvoiceLineItems (), 9),
+            mask (ContainerErpInvoiceLineItem (), 10),
+            masks (CustomerBillingInfos (), 11),
+            mask (ErpInvoice (), 12),
+            masks (ErpJournalEntries (), 13),
+            mask (ErpPayableLineItem (), 14),
+            masks (ErpPayments (), 15),
+            mask (ErpQuoteLineItem (), 16),
+            mask (ErpRecDelvLineItem (), 17),
+            mask (ErpRecLineItem (), 18),
+            masks (UserAttributes (), 19),
+            masks (WorkBillingInfos (), 20)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("ContainerErpInvoiceLineItem", "ErpInvoiceLineItem", false),
-        Relationship ("CustomerBillingInfos", "CustomerBillingInfo", true),
-        Relationship ("ErpInvoice", "ErpInvoice", false),
-        Relationship ("ErpPayableLineItem", "ErpPayableLineItem", false),
-        Relationship ("ErpPayments", "ErpPayment", true),
-        Relationship ("ErpQuoteLineItem", "ErpQuoteLineItem", false),
-        Relationship ("ErpRecDelvLineItem", "ErpRecDelvLineItem", false),
-        Relationship ("ErpRecLineItem", "ErpRecLineItem", false),
-        Relationship ("UserAttributes", "UserAttribute", true),
-        Relationship ("WorkBillingInfos", "WorkBillingInfo", true)
-    )
 }
 
 /**
@@ -1225,10 +1253,14 @@ object ErpIssueInventory
 extends
     Parseable[ErpIssueInventory]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "status",
         "TypeAsset",
         "TypeMaterial"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("TypeAsset", "GenericAssetModelOrMaterial", "0..1", "0..*"),
+        Relationship ("TypeMaterial", "TypeMaterial", "0..1", "0..*")
     )
     val status: Fielder = parse_attribute (attribute (cls, fields(0)))
     val TypeAsset: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -1247,10 +1279,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("TypeAsset", "GenericAssetModelOrMaterial", false),
-        Relationship ("TypeMaterial", "TypeMaterial", false)
-    )
 }
 
 /**
@@ -1320,9 +1348,12 @@ object ErpItemMaster
 extends
     Parseable[ErpItemMaster]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "status",
         "Asset"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Asset", "Asset", "0..1", "0..1")
     )
     val status: Fielder = parse_attribute (attribute (cls, fields(0)))
     val Asset: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -1339,9 +1370,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Asset", "Asset", false)
-    )
 }
 
 /**
@@ -1350,6 +1378,7 @@ extends
  * Transactions and adjustments are first recorded in a journal, which is like a diary of instructions, advising which account to be charged and by how much.
  *
  * @param sup [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
+ * @param ErpJournalEntries [[ch.ninecode.model.ErpJournalEntry ErpJournalEntry]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
@@ -1361,7 +1390,8 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 case class ErpJournal
 (
-    override val sup: ErpDocument
+    override val sup: ErpDocument,
+    ErpJournalEntries: List[String]
 )
 extends
     Element
@@ -1369,7 +1399,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -1390,7 +1420,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ErpJournal.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ErpJournal.fields (position), x))
+        emitattrs (0, ErpJournalEntries)
+        s.toString
     }
     override def export: String =
     {
@@ -1402,18 +1436,25 @@ object ErpJournal
 extends
     Parseable[ErpJournal]
 {
+    override val fields: Array[String] = Array[String] (
+        "ErpJournalEntries"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ErpJournalEntries", "ErpJournalEntry", "0..*", "1")
+    )
+    val ErpJournalEntries: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): ErpJournal =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = ErpJournal (
-            ErpDocument.parse (context)
+            ErpDocument.parse (context),
+            masks (ErpJournalEntries (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1513,7 +1554,7 @@ object ErpJournalEntry
 extends
     Parseable[ErpJournalEntry]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "accountID",
         "amount",
         "postingDateTime",
@@ -1526,6 +1567,14 @@ extends
         "ErpLedgerEntry",
         "ErpPayableLineItems",
         "ErpRecLineItems"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("CostTypes", "CostType", "0..*", "0..*"),
+        Relationship ("ErpInvoiceLineItem", "ErpInvoiceLineItem", "0..1", "0..*"),
+        Relationship ("ErpJournal", "ErpJournal", "1", "0..*"),
+        Relationship ("ErpLedgerEntry", "ErpLedgerEntry", "0..1", "0..1"),
+        Relationship ("ErpPayableLineItems", "ErpPayableLineItem", "0..*", "0..*"),
+        Relationship ("ErpRecLineItems", "ErpRecLineItem", "0..*", "0..*")
     )
     val accountID: Fielder = parse_element (element (cls, fields(0)))
     val amount: Fielder = parse_element (element (cls, fields(1)))
@@ -1562,14 +1611,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("CostTypes", "CostType", true),
-        Relationship ("ErpInvoiceLineItem", "ErpInvoiceLineItem", false),
-        Relationship ("ErpJournal", "ErpJournal", false),
-        Relationship ("ErpLedgerEntry", "ErpLedgerEntry", false),
-        Relationship ("ErpPayableLineItems", "ErpPayableLineItem", true),
-        Relationship ("ErpRecLineItems", "ErpRecLineItem", true)
-    )
 }
 
 /**
@@ -1640,10 +1681,14 @@ object ErpLedBudLineItem
 extends
     Parseable[ErpLedBudLineItem]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "status",
         "ErpLedBudLineItem",
         "ErpLedgerBudget"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ErpLedBudLineItem_attr", "ErpLedgerEntry", "0..1", "0..1"),
+        Relationship ("ErpLedgerBudget", "ErpLedgerBudget", "1", "0..*")
     )
     val status: Fielder = parse_attribute (attribute (cls, fields(0)))
     val ErpLedBudLineItem_attr: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -1662,10 +1707,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("ErpLedBudLineItem_attr", "ErpLedgerEntry", false),
-        Relationship ("ErpLedgerBudget", "ErpLedgerBudget", false)
-    )
 }
 
 /**
@@ -1674,6 +1715,7 @@ extends
  * Journal entries are periodically posted to the ledger. Ledger Actual represents actual amounts by account within ledger within company or business area. Actual amounts may be generated in a source application and then loaded to a specific ledger within the enterprise general ledger or budget application.
  *
  * @param sup [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
+ * @param ErpLedgerEntries [[ch.ninecode.model.ErpLedgerEntry ErpLedgerEntry]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
@@ -1685,7 +1727,8 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 case class ErpLedger
 (
-    override val sup: ErpDocument
+    override val sup: ErpDocument,
+    ErpLedgerEntries: List[String]
 )
 extends
     Element
@@ -1693,7 +1736,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -1714,7 +1757,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ErpLedger.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ErpLedger.fields (position), x))
+        emitattrs (0, ErpLedgerEntries)
+        s.toString
     }
     override def export: String =
     {
@@ -1726,18 +1773,25 @@ object ErpLedger
 extends
     Parseable[ErpLedger]
 {
+    override val fields: Array[String] = Array[String] (
+        "ErpLedgerEntries"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ErpLedgerEntries", "ErpLedgerEntry", "0..*", "1")
+    )
+    val ErpLedgerEntries: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): ErpLedger =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = ErpLedger (
-            ErpDocument.parse (context)
+            ErpDocument.parse (context),
+            masks (ErpLedgerEntries (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1746,6 +1800,7 @@ extends
  * They support the transfer budget amounts between all possible source applications throughout an enterprise and a general ledger or budget application.
  *
  * @param sup [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
+ * @param ErpLedBudLineItems [[ch.ninecode.model.ErpLedBudLineItem ErpLedBudLineItem]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
@@ -1757,7 +1812,8 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 case class ErpLedgerBudget
 (
-    override val sup: ErpDocument
+    override val sup: ErpDocument,
+    ErpLedBudLineItems: List[String]
 )
 extends
     Element
@@ -1765,7 +1821,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -1786,7 +1842,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ErpLedgerBudget.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ErpLedgerBudget.fields (position), x))
+        emitattrs (0, ErpLedBudLineItems)
+        s.toString
     }
     override def export: String =
     {
@@ -1798,18 +1858,25 @@ object ErpLedgerBudget
 extends
     Parseable[ErpLedgerBudget]
 {
+    override val fields: Array[String] = Array[String] (
+        "ErpLedBudLineItems"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ErpLedBudLineItems", "ErpLedBudLineItem", "0..*", "1")
+    )
+    val ErpLedBudLineItems: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): ErpLedgerBudget =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = ErpLedgerBudget (
-            ErpDocument.parse (context)
+            ErpDocument.parse (context),
+            masks (ErpLedBudLineItems (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1903,7 +1970,7 @@ object ErpLedgerEntry
 extends
     Parseable[ErpLedgerEntry]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "accountID",
         "accountKind",
         "amount",
@@ -1914,6 +1981,12 @@ extends
         "ErpLedger",
         "ErpLedgerEntry",
         "UserAttributes"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ErpJounalEntry", "ErpJournalEntry", "0..1", "0..1"),
+        Relationship ("ErpLedger", "ErpLedger", "1", "0..*"),
+        Relationship ("ErpLedgerEntry_attr", "ErpLedBudLineItem", "0..1", "0..1"),
+        Relationship ("UserAttributes", "UserAttribute", "0..*", "0..*")
     )
     val accountID: Fielder = parse_element (element (cls, fields(0)))
     val accountKind: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -1946,12 +2019,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("ErpJounalEntry", "ErpJournalEntry", false),
-        Relationship ("ErpLedger", "ErpLedger", false),
-        Relationship ("ErpLedgerEntry_attr", "ErpLedBudLineItem", false),
-        Relationship ("UserAttributes", "UserAttribute", true)
-    )
 }
 
 /**
@@ -2025,11 +2092,17 @@ object ErpPOLineItem
 extends
     Parseable[ErpPOLineItem]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "AssetModelCatalogueItem",
         "ErpPurchaseOrder",
         "ErpRecDelLineItem",
         "ErpReqLineItem"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("AssetModelCatalogueItem", "AssetModelCatalogueItem", "0..1", "0..*"),
+        Relationship ("ErpPurchaseOrder", "ErpPurchaseOrder", "1", "0..*"),
+        Relationship ("ErpRecDelLineItem", "ErpRecDelvLineItem", "0..1", "0..1"),
+        Relationship ("ErpReqLineItem", "ErpReqLineItem", "0..1", "0..1")
     )
     val AssetModelCatalogueItem: Fielder = parse_attribute (attribute (cls, fields(0)))
     val ErpPurchaseOrder: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -2050,12 +2123,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("AssetModelCatalogueItem", "AssetModelCatalogueItem", false),
-        Relationship ("ErpPurchaseOrder", "ErpPurchaseOrder", false),
-        Relationship ("ErpRecDelLineItem", "ErpRecDelvLineItem", false),
-        Relationship ("ErpReqLineItem", "ErpReqLineItem", false)
-    )
 }
 
 /**
@@ -2065,6 +2132,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
  * @param ContractorItems [[ch.ninecode.model.ContractorItem ContractorItem]] <em>undocumented</em>
+ * @param ErpPayableLineItems [[ch.ninecode.model.ErpPayableLineItem ErpPayableLineItem]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
@@ -2077,7 +2145,8 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
 case class ErpPayable
 (
     override val sup: ErpDocument,
-    ContractorItems: List[String]
+    ContractorItems: List[String],
+    ErpPayableLineItems: List[String]
 )
 extends
     Element
@@ -2085,7 +2154,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, List()) }
+    def this () = { this (null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -2110,6 +2179,7 @@ extends
         implicit val clz: String = ErpPayable.cls
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ErpPayable.fields (position), x))
         emitattrs (0, ContractorItems)
+        emitattrs (1, ErpPayableLineItems)
         s.toString
     }
     override def export: String =
@@ -2122,10 +2192,16 @@ object ErpPayable
 extends
     Parseable[ErpPayable]
 {
-    val fields: Array[String] = Array[String] (
-        "ContractorItems"
+    override val fields: Array[String] = Array[String] (
+        "ContractorItems",
+        "ErpPayableLineItems"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ContractorItems", "ContractorItem", "0..*", "0..*"),
+        Relationship ("ErpPayableLineItems", "ErpPayableLineItem", "0..*", "1")
     )
     val ContractorItems: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val ErpPayableLineItems: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): ErpPayable =
     {
@@ -2133,14 +2209,12 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = ErpPayable (
             ErpDocument.parse (context),
-            masks (ContractorItems (), 0)
+            masks (ContractorItems (), 0),
+            masks (ErpPayableLineItems (), 1)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("ContractorItems", "ContractorItem", true)
-    )
 }
 
 /**
@@ -2218,12 +2292,18 @@ object ErpPayableLineItem
 extends
     Parseable[ErpPayableLineItem]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "status",
         "ErpInvoiceLineItem",
         "ErpJournalEntries",
         "ErpPayable",
         "ErpPayments"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ErpInvoiceLineItem", "ErpInvoiceLineItem", "0..1", "0..1"),
+        Relationship ("ErpJournalEntries", "ErpJournalEntry", "0..*", "0..*"),
+        Relationship ("ErpPayable", "ErpPayable", "1", "0..*"),
+        Relationship ("ErpPayments", "ErpPayment", "0..*", "0..*")
     )
     val status: Fielder = parse_attribute (attribute (cls, fields(0)))
     val ErpInvoiceLineItem: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -2246,12 +2326,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("ErpInvoiceLineItem", "ErpInvoiceLineItem", false),
-        Relationship ("ErpJournalEntries", "ErpJournalEntry", true),
-        Relationship ("ErpPayable", "ErpPayable", false),
-        Relationship ("ErpPayments", "ErpPayment", true)
-    )
 }
 
 /**
@@ -2328,11 +2402,16 @@ object ErpPayment
 extends
     Parseable[ErpPayment]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "termsPayment",
         "ErpInvoiceLineItems",
         "ErpPayableLineItems",
         "ErpRecLineItems"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ErpInvoiceLineItems", "ErpInvoiceLineItem", "0..*", "0..*"),
+        Relationship ("ErpPayableLineItems", "ErpPayableLineItem", "0..*", "0..*"),
+        Relationship ("ErpRecLineItems", "ErpRecLineItem", "0..*", "0..*")
     )
     val termsPayment: Fielder = parse_element (element (cls, fields(0)))
     val ErpInvoiceLineItems: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
@@ -2353,11 +2432,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("ErpInvoiceLineItems", "ErpInvoiceLineItem", true),
-        Relationship ("ErpPayableLineItems", "ErpPayableLineItem", true),
-        Relationship ("ErpRecLineItems", "ErpRecLineItem", true)
-    )
 }
 
 /**
@@ -2365,6 +2439,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
  * @param status <em>undocumented</em>
+ * @param ErpPersons [[ch.ninecode.model.OldPerson OldPerson]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
@@ -2377,7 +2452,8 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
 case class ErpPersonnel
 (
     override val sup: ErpIdentifiedObject,
-    status: String
+    status: String,
+    ErpPersons: List[String]
 )
 extends
     Element
@@ -2385,7 +2461,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null) }
+    def this () = { this (null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -2409,7 +2485,9 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ErpPersonnel.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ErpPersonnel.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ErpPersonnel.fields (position), x))
         emitattr (0, status)
+        emitattrs (1, ErpPersons)
         s.toString
     }
     override def export: String =
@@ -2422,10 +2500,15 @@ object ErpPersonnel
 extends
     Parseable[ErpPersonnel]
 {
-    val fields: Array[String] = Array[String] (
-        "status"
+    override val fields: Array[String] = Array[String] (
+        "status",
+        "ErpPersons"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ErpPersons", "OldPerson", "0..*", "0..1")
     )
     val status: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val ErpPersons: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): ErpPersonnel =
     {
@@ -2433,14 +2516,12 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = ErpPersonnel (
             ErpIdentifiedObject.parse (context),
-            mask (status (), 0)
+            mask (status (), 0),
+            masks (ErpPersons (), 1)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -2449,6 +2530,10 @@ extends
  * This would include, but not necessarily be limited to: Accounts Payable, Accounts Receivable, Budget, Order Management, Purchasing, Time and Labor, Travel and Expense.
  *
  * @param sup [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
+ * @param ErpTimeEntries [[ch.ninecode.model.ErpTimeEntry ErpTimeEntry]] <em>undocumented</em>
+ * @param Projects [[ch.ninecode.model.Project Project]] <em>undocumented</em>
+ * @param WorkCostDetails [[ch.ninecode.model.WorkCostDetail WorkCostDetail]] <em>undocumented</em>
+ * @param Works [[ch.ninecode.model.Work Work]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
@@ -2460,7 +2545,11 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 case class ErpProjectAccounting
 (
-    override val sup: ErpDocument
+    override val sup: ErpDocument,
+    ErpTimeEntries: List[String],
+    Projects: List[String],
+    WorkCostDetails: List[String],
+    Works: List[String]
 )
 extends
     Element
@@ -2468,7 +2557,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List(), List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -2489,7 +2578,14 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ErpProjectAccounting.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ErpProjectAccounting.fields (position), x))
+        emitattrs (0, ErpTimeEntries)
+        emitattrs (1, Projects)
+        emitattrs (2, WorkCostDetails)
+        emitattrs (3, Works)
+        s.toString
     }
     override def export: String =
     {
@@ -2501,18 +2597,37 @@ object ErpProjectAccounting
 extends
     Parseable[ErpProjectAccounting]
 {
+    override val fields: Array[String] = Array[String] (
+        "ErpTimeEntries",
+        "Projects",
+        "WorkCostDetails",
+        "Works"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ErpTimeEntries", "ErpTimeEntry", "0..*", "0..1"),
+        Relationship ("Projects", "Project", "0..*", "1"),
+        Relationship ("WorkCostDetails", "WorkCostDetail", "0..*", "1"),
+        Relationship ("Works", "Work", "0..*", "0..1")
+    )
+    val ErpTimeEntries: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val Projects: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val WorkCostDetails: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val Works: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
 
     def parse (context: Context): ErpProjectAccounting =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = ErpProjectAccounting (
-            ErpDocument.parse (context)
+            ErpDocument.parse (context),
+            masks (ErpTimeEntries (), 0),
+            masks (Projects (), 1),
+            masks (WorkCostDetails (), 2),
+            masks (Works (), 3)
         )
+        ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -2521,6 +2636,7 @@ extends
  * The PurchaseOrder carries information to and from the buyer and supplier. It is a legally binding document once both Parties agree to the contents and the specified terms and conditions of the order.
  *
  * @param sup [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
+ * @param ErpPOLineItems [[ch.ninecode.model.ErpPOLineItem ErpPOLineItem]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
@@ -2532,7 +2648,8 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 case class ErpPurchaseOrder
 (
-    override val sup: ErpDocument
+    override val sup: ErpDocument,
+    ErpPOLineItems: List[String]
 )
 extends
     Element
@@ -2540,7 +2657,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -2561,7 +2678,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ErpPurchaseOrder.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ErpPurchaseOrder.fields (position), x))
+        emitattrs (0, ErpPOLineItems)
+        s.toString
     }
     override def export: String =
     {
@@ -2573,18 +2694,25 @@ object ErpPurchaseOrder
 extends
     Parseable[ErpPurchaseOrder]
 {
+    override val fields: Array[String] = Array[String] (
+        "ErpPOLineItems"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ErpPOLineItems", "ErpPOLineItem", "0..*", "1")
+    )
+    val ErpPOLineItems: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): ErpPurchaseOrder =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = ErpPurchaseOrder (
-            ErpDocument.parse (context)
+            ErpDocument.parse (context),
+            masks (ErpPOLineItems (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -2593,6 +2721,7 @@ extends
  * It includes the terms of the purchase, delivery proposals, identification of goods or services ordered, as well as their quantities.
  *
  * @param sup [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
+ * @param ErpQuoteLineItems [[ch.ninecode.model.ErpQuoteLineItem ErpQuoteLineItem]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
@@ -2604,7 +2733,8 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 case class ErpQuote
 (
-    override val sup: ErpDocument
+    override val sup: ErpDocument,
+    ErpQuoteLineItems: List[String]
 )
 extends
     Element
@@ -2612,7 +2742,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -2633,7 +2763,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ErpQuote.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ErpQuote.fields (position), x))
+        emitattrs (0, ErpQuoteLineItems)
+        s.toString
     }
     override def export: String =
     {
@@ -2645,18 +2779,25 @@ object ErpQuote
 extends
     Parseable[ErpQuote]
 {
+    override val fields: Array[String] = Array[String] (
+        "ErpQuoteLineItems"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ErpQuoteLineItems", "ErpQuoteLineItem", "0..*", "1")
+    )
+    val ErpQuoteLineItems: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): ErpQuote =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = ErpQuote (
-            ErpDocument.parse (context)
+            ErpDocument.parse (context),
+            masks (ErpQuoteLineItems (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -2737,13 +2878,20 @@ object ErpQuoteLineItem
 extends
     Parseable[ErpQuoteLineItem]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "status",
         "AssetModelCatalogueItem",
         "Design",
         "ErpInvoiceLineItem",
         "ErpQuote",
         "ErpReqLineItem"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("AssetModelCatalogueItem", "AssetModelCatalogueItem", "0..1", "0..*"),
+        Relationship ("Design", "Design", "0..1", "0..1"),
+        Relationship ("ErpInvoiceLineItem", "ErpInvoiceLineItem", "0..1", "0..1"),
+        Relationship ("ErpQuote", "ErpQuote", "1", "0..*"),
+        Relationship ("ErpReqLineItem", "ErpReqLineItem", "0..1", "0..1")
     )
     val status: Fielder = parse_attribute (attribute (cls, fields(0)))
     val AssetModelCatalogueItem: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -2768,13 +2916,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("AssetModelCatalogueItem", "AssetModelCatalogueItem", false),
-        Relationship ("Design", "Design", false),
-        Relationship ("ErpInvoiceLineItem", "ErpInvoiceLineItem", false),
-        Relationship ("ErpQuote", "ErpQuote", false),
-        Relationship ("ErpReqLineItem", "ErpReqLineItem", false)
-    )
 }
 
 /**
@@ -2854,12 +2995,18 @@ object ErpRecDelvLineItem
 extends
     Parseable[ErpRecDelvLineItem]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "status",
         "Assets",
         "ErpInvoiceLineItem",
         "ErpPOLineItem",
         "ErpReceiveDelivery"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Assets", "Asset", "0..*", "0..*"),
+        Relationship ("ErpInvoiceLineItem", "ErpInvoiceLineItem", "0..1", "0..1"),
+        Relationship ("ErpPOLineItem", "ErpPOLineItem", "0..1", "0..1"),
+        Relationship ("ErpReceiveDelivery", "ErpReceiveDelivery", "1", "0..*")
     )
     val status: Fielder = parse_attribute (attribute (cls, fields(0)))
     val Assets: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
@@ -2882,12 +3029,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Assets", "Asset", true),
-        Relationship ("ErpInvoiceLineItem", "ErpInvoiceLineItem", false),
-        Relationship ("ErpPOLineItem", "ErpPOLineItem", false),
-        Relationship ("ErpReceiveDelivery", "ErpReceiveDelivery", false)
-    )
 }
 
 /**
@@ -2965,12 +3106,18 @@ object ErpRecLineItem
 extends
     Parseable[ErpRecLineItem]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "status",
         "ErpInvoiceLineItem",
         "ErpJournalEntries",
         "ErpPayments",
         "ErpReceivable"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ErpInvoiceLineItem", "ErpInvoiceLineItem", "0..1", "0..1"),
+        Relationship ("ErpJournalEntries", "ErpJournalEntry", "0..*", "0..*"),
+        Relationship ("ErpPayments", "ErpPayment", "0..*", "0..*"),
+        Relationship ("ErpReceivable", "ErpReceivable", "1", "0..*")
     )
     val status: Fielder = parse_attribute (attribute (cls, fields(0)))
     val ErpInvoiceLineItem: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -2993,12 +3140,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("ErpInvoiceLineItem", "ErpInvoiceLineItem", false),
-        Relationship ("ErpJournalEntries", "ErpJournalEntry", true),
-        Relationship ("ErpPayments", "ErpPayment", true),
-        Relationship ("ErpReceivable", "ErpReceivable", false)
-    )
 }
 
 /**
@@ -3007,6 +3148,7 @@ extends
  * It is an open (unpaid) item in the Accounts Receivable ledger.
  *
  * @param sup [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
+ * @param ErpRecLineItems [[ch.ninecode.model.ErpRecLineItem ErpRecLineItem]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
@@ -3018,7 +3160,8 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 case class ErpReceivable
 (
-    override val sup: ErpDocument
+    override val sup: ErpDocument,
+    ErpRecLineItems: List[String]
 )
 extends
     Element
@@ -3026,7 +3169,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -3047,7 +3190,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ErpReceivable.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ErpReceivable.fields (position), x))
+        emitattrs (0, ErpRecLineItems)
+        s.toString
     }
     override def export: String =
     {
@@ -3059,18 +3206,25 @@ object ErpReceivable
 extends
     Parseable[ErpReceivable]
 {
+    override val fields: Array[String] = Array[String] (
+        "ErpRecLineItems"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ErpRecLineItems", "ErpRecLineItem", "0..*", "1")
+    )
+    val ErpRecLineItems: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): ErpReceivable =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = ErpReceivable (
-            ErpDocument.parse (context)
+            ErpDocument.parse (context),
+            masks (ErpRecLineItems (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -3079,6 +3233,7 @@ extends
  * A receivable is an open (unpaid) item in the Accounts Receivable ledger.
  *
  * @param sup [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
+ * @param ErpRecDelvLineItems [[ch.ninecode.model.ErpRecDelvLineItem ErpRecDelvLineItem]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
@@ -3090,7 +3245,8 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 case class ErpReceiveDelivery
 (
-    override val sup: ErpDocument
+    override val sup: ErpDocument,
+    ErpRecDelvLineItems: List[String]
 )
 extends
     Element
@@ -3098,7 +3254,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -3119,7 +3275,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ErpReceiveDelivery.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ErpReceiveDelivery.fields (position), x))
+        emitattrs (0, ErpRecDelvLineItems)
+        s.toString
     }
     override def export: String =
     {
@@ -3131,18 +3291,25 @@ object ErpReceiveDelivery
 extends
     Parseable[ErpReceiveDelivery]
 {
+    override val fields: Array[String] = Array[String] (
+        "ErpRecDelvLineItems"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ErpRecDelvLineItems", "ErpRecDelvLineItem", "0..*", "1")
+    )
+    val ErpRecDelvLineItems: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): ErpReceiveDelivery =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = ErpReceiveDelivery (
-            ErpDocument.parse (context)
+            ErpDocument.parse (context),
+            masks (ErpRecDelvLineItems (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -3235,7 +3402,7 @@ object ErpReqLineItem
 extends
     Parseable[ErpReqLineItem]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "code",
         "cost",
         "deliveryDate",
@@ -3246,6 +3413,13 @@ extends
         "ErpRequisition",
         "TypeAsset",
         "TypeMaterial"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ErpPOLineItem", "ErpPOLineItem", "0..1", "0..1"),
+        Relationship ("ErpQuoteLineItem", "ErpQuoteLineItem", "0..1", "0..1"),
+        Relationship ("ErpRequisition", "ErpRequisition", "1", "0..*"),
+        Relationship ("TypeAsset", "GenericAssetModelOrMaterial", "0..1", "0..*"),
+        Relationship ("TypeMaterial", "TypeMaterial", "0..1", "0..*")
     )
     val code: Fielder = parse_element (element (cls, fields(0)))
     val cost: Fielder = parse_element (element (cls, fields(1)))
@@ -3278,13 +3452,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("ErpPOLineItem", "ErpPOLineItem", false),
-        Relationship ("ErpQuoteLineItem", "ErpQuoteLineItem", false),
-        Relationship ("ErpRequisition", "ErpRequisition", false),
-        Relationship ("TypeAsset", "GenericAssetModelOrMaterial", false),
-        Relationship ("TypeMaterial", "TypeMaterial", false)
-    )
 }
 
 /**
@@ -3293,6 +3460,7 @@ extends
  * Typically, a requisition leads to the creation of a purchase order to a specific supplier.
  *
  * @param sup [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
+ * @param ErpReqLineItems [[ch.ninecode.model.ErpReqLineItem ErpReqLineItem]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
@@ -3304,7 +3472,8 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 case class ErpRequisition
 (
-    override val sup: ErpDocument
+    override val sup: ErpDocument,
+    ErpReqLineItems: List[String]
 )
 extends
     Element
@@ -3312,7 +3481,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -3333,7 +3502,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ErpRequisition.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ErpRequisition.fields (position), x))
+        emitattrs (0, ErpReqLineItems)
+        s.toString
     }
     override def export: String =
     {
@@ -3345,18 +3518,25 @@ object ErpRequisition
 extends
     Parseable[ErpRequisition]
 {
+    override val fields: Array[String] = Array[String] (
+        "ErpReqLineItems"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ErpReqLineItems", "ErpReqLineItem", "0..*", "1")
+    )
+    val ErpReqLineItems: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): ErpRequisition =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = ErpRequisition (
-            ErpDocument.parse (context)
+            ErpDocument.parse (context),
+            masks (ErpReqLineItems (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -3426,9 +3606,6 @@ extends
         )
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -3498,9 +3675,12 @@ object ErpSiteLevelData
 extends
     Parseable[ErpSiteLevelData]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "status",
         "LandProperty"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("LandProperty", "LandProperty", "0..1", "0..*")
     )
     val status: Fielder = parse_attribute (attribute (cls, fields(0)))
     val LandProperty: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -3517,9 +3697,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("LandProperty", "LandProperty", false)
-    )
 }
 
 /**
@@ -3590,10 +3767,14 @@ object ErpTimeEntry
 extends
     Parseable[ErpTimeEntry]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "status",
         "ErpProjectAccounting",
         "ErpTimeSheet"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ErpProjectAccounting", "ErpProjectAccounting", "0..1", "0..*"),
+        Relationship ("ErpTimeSheet", "ErpTimeSheet", "1", "0..*")
     )
     val status: Fielder = parse_attribute (attribute (cls, fields(0)))
     val ErpProjectAccounting: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -3612,10 +3793,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("ErpProjectAccounting", "ErpProjectAccounting", false),
-        Relationship ("ErpTimeSheet", "ErpTimeSheet", false)
-    )
 }
 
 /**
@@ -3624,6 +3801,7 @@ extends
  * Note that ErpTimeSheet inherits the relationship to ErpPerson from Document.
  *
  * @param sup [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
+ * @param ErpTimeEntries [[ch.ninecode.model.ErpTimeEntry ErpTimeEntry]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
@@ -3635,7 +3813,8 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
  */
 case class ErpTimeSheet
 (
-    override val sup: ErpDocument
+    override val sup: ErpDocument,
+    ErpTimeEntries: List[String]
 )
 extends
     Element
@@ -3643,7 +3822,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -3664,7 +3843,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ErpTimeSheet.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ErpTimeSheet.fields (position), x))
+        emitattrs (0, ErpTimeEntries)
+        s.toString
     }
     override def export: String =
     {
@@ -3676,18 +3859,25 @@ object ErpTimeSheet
 extends
     Parseable[ErpTimeSheet]
 {
+    override val fields: Array[String] = Array[String] (
+        "ErpTimeEntries"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ErpTimeEntries", "ErpTimeEntry", "0..*", "1")
+    )
+    val ErpTimeEntries: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): ErpTimeSheet =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = ErpTimeSheet (
-            ErpDocument.parse (context)
+            ErpDocument.parse (context),
+            masks (ErpTimeEntries (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 private[ninecode] object _InfERPSupport

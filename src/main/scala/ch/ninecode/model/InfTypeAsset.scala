@@ -110,7 +110,7 @@ object GeneratorTypeAsset
 extends
     Parseable[GeneratorTypeAsset]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "maxP",
         "maxQ",
         "minP",
@@ -171,9 +171,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -183,13 +180,15 @@ extends
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param status <em>undocumented</em>
+ * @param TypeAssets [[ch.ninecode.model.GenericAssetModelOrMaterial GenericAssetModelOrMaterial]] <em>undocumented</em>
  * @group InfTypeAsset
  * @groupname InfTypeAsset Package InfTypeAsset
  */
 case class TypeAssetCatalogue
 (
     override val sup: IdentifiedObject,
-    status: String
+    status: String,
+    TypeAssets: List[String]
 )
 extends
     Element
@@ -197,7 +196,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null) }
+    def this () = { this (null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -221,7 +220,9 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = TypeAssetCatalogue.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TypeAssetCatalogue.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (TypeAssetCatalogue.fields (position), x))
         emitattr (0, status)
+        emitattrs (1, TypeAssets)
         s.toString
     }
     override def export: String =
@@ -234,10 +235,15 @@ object TypeAssetCatalogue
 extends
     Parseable[TypeAssetCatalogue]
 {
-    val fields: Array[String] = Array[String] (
-        "status"
+    override val fields: Array[String] = Array[String] (
+        "status",
+        "TypeAssets"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("TypeAssets", "GenericAssetModelOrMaterial", "0..*", "0..1")
     )
     val status: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val TypeAssets: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): TypeAssetCatalogue =
     {
@@ -245,14 +251,12 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = TypeAssetCatalogue (
             IdentifiedObject.parse (context),
-            mask (status (), 0)
+            mask (status (), 0),
+            masks (TypeAssets (), 1)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 private[ninecode] object _InfTypeAsset

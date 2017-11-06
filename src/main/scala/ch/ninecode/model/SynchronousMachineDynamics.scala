@@ -82,7 +82,7 @@ object SynchronousMachineDetailed
 extends
     Parseable[SynchronousMachineDetailed]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "efdBaseRatio",
         "ifdBaseType",
         "saturationFactor120QAxis",
@@ -107,9 +107,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -129,6 +126,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.RotatingMachineDynamics RotatingMachineDynamics]] Reference to the superclass object.
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Excitation system model associated with this synchronous machine model.
+ * @param GenICompensationForGenJ [[ch.ninecode.model.GenICompensationForGenJ GenICompensationForGenJ]] Compensation of voltage compensator's generator for current flow out of this  generator.
  * @param MechanicalLoadDynamics [[ch.ninecode.model.MechanicalLoadDynamics MechanicalLoadDynamics]] Mechanical load model associated with this synchronous machine model.
  * @param SynchronousMachine [[ch.ninecode.model.SynchronousMachine SynchronousMachine]] Synchronous machine to which synchronous machine dynamics model applies.
  * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Turbine-governor model associated with this synchronous machine model.
@@ -142,6 +140,7 @@ case class SynchronousMachineDynamics
 (
     override val sup: RotatingMachineDynamics,
     ExcitationSystemDynamics: String,
+    GenICompensationForGenJ: List[String],
     MechanicalLoadDynamics: String,
     SynchronousMachine: String,
     TurbineGovernorDynamics: List[String]
@@ -152,7 +151,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, List()) }
+    def this () = { this (null, null, List(), null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -178,9 +177,10 @@ extends
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (SynchronousMachineDynamics.fields (position), value)
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (SynchronousMachineDynamics.fields (position), x))
         emitattr (0, ExcitationSystemDynamics)
-        emitattr (1, MechanicalLoadDynamics)
-        emitattr (2, SynchronousMachine)
-        emitattrs (3, TurbineGovernorDynamics)
+        emitattrs (1, GenICompensationForGenJ)
+        emitattr (2, MechanicalLoadDynamics)
+        emitattr (3, SynchronousMachine)
+        emitattrs (4, TurbineGovernorDynamics)
         s.toString
     }
     override def export: String =
@@ -193,16 +193,25 @@ object SynchronousMachineDynamics
 extends
     Parseable[SynchronousMachineDynamics]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "ExcitationSystemDynamics",
+        "GenICompensationForGenJ",
         "MechanicalLoadDynamics",
         "SynchronousMachine",
         "TurbineGovernorDynamics"
     )
+    override val relations: List[Relationship] = List (
+        Relationship ("ExcitationSystemDynamics", "ExcitationSystemDynamics", "0..1", "1"),
+        Relationship ("GenICompensationForGenJ", "GenICompensationForGenJ", "0..*", "1"),
+        Relationship ("MechanicalLoadDynamics", "MechanicalLoadDynamics", "0..1", "0..1"),
+        Relationship ("SynchronousMachine", "SynchronousMachine", "1", "0..1"),
+        Relationship ("TurbineGovernorDynamics", "TurbineGovernorDynamics", "0..*", "0..*")
+    )
     val ExcitationSystemDynamics: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val MechanicalLoadDynamics: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val SynchronousMachine: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val TurbineGovernorDynamics: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val GenICompensationForGenJ: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val MechanicalLoadDynamics: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val SynchronousMachine: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val TurbineGovernorDynamics: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
 
     def parse (context: Context): SynchronousMachineDynamics =
     {
@@ -211,19 +220,14 @@ extends
         val ret = SynchronousMachineDynamics (
             RotatingMachineDynamics.parse (context),
             mask (ExcitationSystemDynamics (), 0),
-            mask (MechanicalLoadDynamics (), 1),
-            mask (SynchronousMachine (), 2),
-            masks (TurbineGovernorDynamics (), 3)
+            masks (GenICompensationForGenJ (), 1),
+            mask (MechanicalLoadDynamics (), 2),
+            mask (SynchronousMachine (), 3),
+            masks (TurbineGovernorDynamics (), 4)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("ExcitationSystemDynamics", "ExcitationSystemDynamics", false),
-        Relationship ("MechanicalLoadDynamics", "MechanicalLoadDynamics", false),
-        Relationship ("SynchronousMachine", "SynchronousMachine", false),
-        Relationship ("TurbineGovernorDynamics", "TurbineGovernorDynamics", true)
-    )
 }
 
 /**
@@ -341,7 +345,7 @@ object SynchronousMachineEquivalentCircuit
 extends
     Parseable[SynchronousMachineEquivalentCircuit]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "r1d",
         "r1q",
         "r2q",
@@ -387,9 +391,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -456,9 +457,6 @@ extends
         )
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -606,7 +604,7 @@ object SynchronousMachineTimeConstantReactance
 extends
     Parseable[SynchronousMachineTimeConstantReactance]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "ks",
         "modelType",
         "rotorType",
@@ -661,9 +659,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 private[ninecode] object _SynchronousMachineDynamics

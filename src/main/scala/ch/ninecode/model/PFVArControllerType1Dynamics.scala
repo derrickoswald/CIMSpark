@@ -72,10 +72,15 @@ object PFVArControllerType1Dynamics
 extends
     Parseable[PFVArControllerType1Dynamics]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "ExcitationSystemDynamics",
         "RemoteInputSignal",
         "VoltageAdjusterDynamics"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ExcitationSystemDynamics", "ExcitationSystemDynamics", "1", "0..1"),
+        Relationship ("RemoteInputSignal", "RemoteInputSignal", "0..1", "0..1"),
+        Relationship ("VoltageAdjusterDynamics", "VoltageAdjusterDynamics", "0..1", "1")
     )
     val ExcitationSystemDynamics: Fielder = parse_attribute (attribute (cls, fields(0)))
     val RemoteInputSignal: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -94,11 +99,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("ExcitationSystemDynamics", "ExcitationSystemDynamics", false),
-        Relationship ("RemoteInputSignal", "RemoteInputSignal", false),
-        Relationship ("VoltageAdjusterDynamics", "VoltageAdjusterDynamics", false)
-    )
 }
 
 /**
@@ -187,7 +187,7 @@ object PFVArType1IEEEPFController
 extends
     Parseable[PFVArType1IEEEPFController]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "ovex",
         "tpfc",
         "vitmin",
@@ -224,9 +224,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -307,7 +304,7 @@ object PFVArType1IEEEVArController
 extends
     Parseable[PFVArType1IEEEVArController]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "tvarc",
         "vvar",
         "vvarcbw",
@@ -338,9 +335,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 private[ninecode] object _PFVArControllerType1Dynamics

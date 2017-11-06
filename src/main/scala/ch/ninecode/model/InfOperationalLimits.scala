@@ -68,9 +68,6 @@ extends
         )
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -135,9 +132,13 @@ object EquipmentLimitSeriesComponent
 extends
     Parseable[EquipmentLimitSeriesComponent]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "Equipment",
         "SeriesEquipmentDependentLimit"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Equipment", "Equipment", "1", "0..*"),
+        Relationship ("SeriesEquipmentDependentLimit", "SeriesEquipmentDependentLimit", "1", "0..*")
     )
     val Equipment: Fielder = parse_attribute (attribute (cls, fields(0)))
     val SeriesEquipmentDependentLimit: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -154,10 +155,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Equipment", "Equipment", false),
-        Relationship ("SeriesEquipmentDependentLimit", "SeriesEquipmentDependentLimit", false)
-    )
 }
 
 /**
@@ -224,9 +221,13 @@ object LimitDependency
 extends
     Parseable[LimitDependency]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "Equipment",
         "OperationalLimit"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Equipment", "Equipment", "0..1", "0..*"),
+        Relationship ("OperationalLimit", "OperationalLimit", "0..*", "0..*")
     )
     val Equipment: Fielder = parse_attribute (attribute (cls, fields(0)))
     val OperationalLimit: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
@@ -243,10 +244,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Equipment", "Equipment", false),
-        Relationship ("OperationalLimit", "OperationalLimit", true)
-    )
 }
 
 /**
@@ -311,9 +308,12 @@ object LimitScalingLimit
 extends
     Parseable[LimitScalingLimit]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "limitScalingPercent",
         "SourceOperationalLimit"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("SourceOperationalLimit", "OperationalLimit", "1", "0..*")
     )
     val limitScalingPercent: Fielder = parse_element (element (cls, fields(0)))
     val SourceOperationalLimit: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -330,9 +330,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("SourceOperationalLimit", "OperationalLimit", false)
-    )
 }
 
 /**
@@ -403,10 +400,14 @@ object OperatonalLimitTypeScaling
 extends
     Parseable[OperatonalLimitTypeScaling]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "scalingPercent",
         "SourceOperationalLimitType",
         "TargetOperationalLimit"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("SourceOperationalLimitType", "OperationalLimitType", "0..1", "0..*"),
+        Relationship ("TargetOperationalLimit", "OperationalLimitType", "1", "0..1")
     )
     val scalingPercent: Fielder = parse_element (element (cls, fields(0)))
     val SourceOperationalLimitType: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -425,10 +426,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("SourceOperationalLimitType", "OperationalLimitType", false),
-        Relationship ("TargetOperationalLimit", "OperationalLimitType", false)
-    )
 }
 
 /**
@@ -486,7 +483,7 @@ object ScheduledActivePowerLimitValue
 extends
     Parseable[ScheduledActivePowerLimitValue]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "value"
     )
     val value: Fielder = parse_element (element (cls, fields(0)))
@@ -502,9 +499,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -565,7 +559,7 @@ object ScheduledApparentPowerLimitValue
 extends
     Parseable[ScheduledApparentPowerLimitValue]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "value"
     )
     val value: Fielder = parse_element (element (cls, fields(0)))
@@ -581,9 +575,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -644,7 +635,7 @@ object ScheduledCurrentLimitValue
 extends
     Parseable[ScheduledCurrentLimitValue]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "value"
     )
     val value: Fielder = parse_element (element (cls, fields(0)))
@@ -660,9 +651,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -674,7 +662,8 @@ These classes would likely go into the OperationalLimits package.
  */
 case class ScheduledLimitDependency
 (
-    override val sup: LimitDependency
+    override val sup: LimitDependency,
+    ScheduledLimitValues: List[String]
 )
 extends
     Element
@@ -682,7 +671,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -703,7 +692,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ScheduledLimitDependency.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ScheduledLimitDependency.fields (position), x))
+        emitattrs (0, ScheduledLimitValues)
+        s.toString
     }
     override def export: String =
     {
@@ -715,18 +708,25 @@ object ScheduledLimitDependency
 extends
     Parseable[ScheduledLimitDependency]
 {
+    override val fields: Array[String] = Array[String] (
+        "ScheduledLimitValues"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ScheduledLimitValues", "ScheduledLimitValue", "0..*", "1")
+    )
+    val ScheduledLimitValues: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): ScheduledLimitDependency =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = ScheduledLimitDependency (
-            LimitDependency.parse (context)
+            LimitDependency.parse (context),
+            masks (ScheduledLimitValues (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -791,9 +791,13 @@ object ScheduledLimitValue
 extends
     Parseable[ScheduledLimitValue]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "ScheduledLimitDependency",
         "Season"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ScheduledLimitDependency", "ScheduledLimitDependency", "1", "0..*"),
+        Relationship ("Season", "Season", "0..1", "0..*")
     )
     val ScheduledLimitDependency: Fielder = parse_attribute (attribute (cls, fields(0)))
     val Season: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -810,10 +814,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("ScheduledLimitDependency", "ScheduledLimitDependency", false),
-        Relationship ("Season", "Season", false)
-    )
 }
 
 /**
@@ -874,7 +874,7 @@ object ScheduledVoltageLimitValue
 extends
     Parseable[ScheduledVoltageLimitValue]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "value"
     )
     val value: Fielder = parse_element (element (cls, fields(0)))
@@ -890,9 +890,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -901,6 +898,7 @@ extends
  * A specification of  of equipment that determines the calculated operational limit values based upon other equipment and their ratings.  The most restrictive limit connected in series within the group is used.   The physical connection based on switch status for example may also impact which elements in the group are considered. Any equipment in the group that are presently connected in series with the equipment of the directly associated operational limit are used.   This provides a means to indicate which potentially series equipment limits are considered for a computed operational limit. The operational limit of the same operational limit type is assumed to be used from the grouped equipment.   It is also possible to make assumptions or calculations regarding how flow might split if the equipment is not simply in series.
  *
  * @param sup [[ch.ninecode.model.LimitDependency LimitDependency]] Reference to the superclass object.
+ * @param EquipmentLimitSeriesComponent [[ch.ninecode.model.EquipmentLimitSeriesComponent EquipmentLimitSeriesComponent]] Equipment linkages that participates in the limit calculation.
  * @group InfOperationalLimits
  * @groupname InfOperationalLimits Package InfOperationalLimits
  * @groupdesc InfOperationalLimits The description of computed or dynamic limits.
@@ -908,7 +906,8 @@ These classes would likely go into the OperationalLimits package.
  */
 case class SeriesEquipmentDependentLimit
 (
-    override val sup: LimitDependency
+    override val sup: LimitDependency,
+    EquipmentLimitSeriesComponent: List[String]
 )
 extends
     Element
@@ -916,7 +915,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -937,7 +936,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = SeriesEquipmentDependentLimit.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (SeriesEquipmentDependentLimit.fields (position), x))
+        emitattrs (0, EquipmentLimitSeriesComponent)
+        s.toString
     }
     override def export: String =
     {
@@ -949,18 +952,25 @@ object SeriesEquipmentDependentLimit
 extends
     Parseable[SeriesEquipmentDependentLimit]
 {
+    override val fields: Array[String] = Array[String] (
+        "EquipmentLimitSeriesComponent"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("EquipmentLimitSeriesComponent", "EquipmentLimitSeriesComponent", "0..*", "1")
+    )
+    val EquipmentLimitSeriesComponent: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): SeriesEquipmentDependentLimit =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = SeriesEquipmentDependentLimit (
-            LimitDependency.parse (context)
+            LimitDependency.parse (context),
+            masks (EquipmentLimitSeriesComponent (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1028,10 +1038,13 @@ object TemperatureDependentLimitPoint
 extends
     Parseable[TemperatureDependentLimitPoint]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "limitPercent",
         "temperature",
         "TemperatureDependentLimitTable"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("TemperatureDependentLimitTable", "TemperatureDependentLimitTable", "1", "0..*")
     )
     val limitPercent: Fielder = parse_element (element (cls, fields(0)))
     val temperature: Fielder = parse_element (element (cls, fields(1)))
@@ -1050,15 +1063,13 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("TemperatureDependentLimitTable", "TemperatureDependentLimitTable", false)
-    )
 }
 
 /**
  * This is a table lookup that provides limit values corresponding to a temperature input.
  *
  * @param sup [[ch.ninecode.model.EnvironmentalDependentLimit EnvironmentalDependentLimit]] Reference to the superclass object.
+ * @param TemperatureLimitTablePoint [[ch.ninecode.model.TemperatureDependentLimitPoint TemperatureDependentLimitPoint]] <em>undocumented</em>
  * @group InfOperationalLimits
  * @groupname InfOperationalLimits Package InfOperationalLimits
  * @groupdesc InfOperationalLimits The description of computed or dynamic limits.
@@ -1066,7 +1077,8 @@ These classes would likely go into the OperationalLimits package.
  */
 case class TemperatureDependentLimitTable
 (
-    override val sup: EnvironmentalDependentLimit
+    override val sup: EnvironmentalDependentLimit,
+    TemperatureLimitTablePoint: List[String]
 )
 extends
     Element
@@ -1074,7 +1086,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -1095,7 +1107,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = TemperatureDependentLimitTable.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (TemperatureDependentLimitTable.fields (position), x))
+        emitattrs (0, TemperatureLimitTablePoint)
+        s.toString
     }
     override def export: String =
     {
@@ -1107,18 +1123,25 @@ object TemperatureDependentLimitTable
 extends
     Parseable[TemperatureDependentLimitTable]
 {
+    override val fields: Array[String] = Array[String] (
+        "TemperatureLimitTablePoint"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("TemperatureLimitTablePoint", "TemperatureDependentLimitPoint", "0..*", "1")
+    )
+    val TemperatureLimitTablePoint: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): TemperatureDependentLimitTable =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = TemperatureDependentLimitTable (
-            EnvironmentalDependentLimit.parse (context)
+            EnvironmentalDependentLimit.parse (context),
+            masks (TemperatureLimitTablePoint (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1191,7 +1214,7 @@ object TemperaturePolynomialLimit
 extends
     Parseable[TemperaturePolynomialLimit]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "coefficient0",
         "coefficient1",
         "coefficient2",
@@ -1219,9 +1242,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1282,8 +1302,11 @@ object WeatherStation
 extends
     Parseable[WeatherStation]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "Equipment"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Equipment", "Equipment", "0..*", "0..*")
     )
     val Equipment: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
@@ -1298,9 +1321,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Equipment", "Equipment", true)
-    )
 }
 
 private[ninecode] object _InfOperationalLimits

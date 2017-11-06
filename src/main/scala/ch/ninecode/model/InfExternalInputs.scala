@@ -69,10 +69,15 @@ object ReserveReq
 extends
     Parseable[ReserveReq]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "MarketProduct",
         "ReserveReqCurve",
         "SensitivityPriceCurve"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("MarketProduct", "MarketProduct", "1", "0..*"),
+        Relationship ("ReserveReqCurve", "ReserveReqCurve", "1", "1"),
+        Relationship ("SensitivityPriceCurve", "SensitivityPriceCurve", "0..1", "0..1")
     )
     val MarketProduct: Fielder = parse_attribute (attribute (cls, fields(0)))
     val ReserveReqCurve: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -91,11 +96,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("MarketProduct", "MarketProduct", false),
-        Relationship ("ReserveReqCurve", "ReserveReqCurve", false),
-        Relationship ("SensitivityPriceCurve", "SensitivityPriceCurve", false)
-    )
 }
 
 /**
@@ -156,8 +156,11 @@ object ReserveReqCurve
 extends
     Parseable[ReserveReqCurve]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "ReserveReq"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ReserveReq", "ReserveReq", "1", "1")
     )
     val ReserveReq: Fielder = parse_attribute (attribute (cls, fields(0)))
 
@@ -172,9 +175,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("ReserveReq", "ReserveReq", false)
-    )
 }
 
 /**
@@ -182,8 +182,9 @@ extends
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param status Status of this group.
- * @param RegisteredResources [[ch.ninecode.model.RegisteredResource RegisteredResource]] <em>undocumented</em>
  * @param `type` Type of this group.
+ * @param RegisteredResources [[ch.ninecode.model.RegisteredResource RegisteredResource]] <em>undocumented</em>
+ * @param ResourceGroupReqs [[ch.ninecode.model.ResourceGroupReq ResourceGroupReq]] <em>undocumented</em>
  * @group InfExternalInputs
  * @groupname InfExternalInputs Package InfExternalInputs
  */
@@ -191,8 +192,9 @@ case class ResourceGroup
 (
     override val sup: IdentifiedObject,
     status: String,
+    `type`: String,
     RegisteredResources: List[String],
-    `type`: String
+    ResourceGroupReqs: List[String]
 )
 extends
     Element
@@ -200,7 +202,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, List(), null) }
+    def this () = { this (null, null, null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -227,8 +229,9 @@ extends
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ResourceGroup.fields (position), value)
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ResourceGroup.fields (position), x))
         emitattr (0, status)
-        emitattrs (1, RegisteredResources)
-        emitelem (2, `type`)
+        emitelem (1, `type`)
+        emitattrs (2, RegisteredResources)
+        emitattrs (3, ResourceGroupReqs)
         s.toString
     }
     override def export: String =
@@ -241,14 +244,20 @@ object ResourceGroup
 extends
     Parseable[ResourceGroup]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "status",
+        "type",
         "RegisteredResources",
-        "type"
+        "ResourceGroupReqs"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("RegisteredResources", "RegisteredResource", "1..*", "0..*"),
+        Relationship ("ResourceGroupReqs", "ResourceGroupReq", "0..*", "1")
     )
     val status: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val RegisteredResources: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
-    val `type`: Fielder = parse_element (element (cls, fields(2)))
+    val `type`: Fielder = parse_element (element (cls, fields(1)))
+    val RegisteredResources: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val ResourceGroupReqs: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
 
     def parse (context: Context): ResourceGroup =
     {
@@ -257,15 +266,13 @@ extends
         val ret = ResourceGroup (
             IdentifiedObject.parse (context),
             mask (status (), 0),
-            masks (RegisteredResources (), 1),
-            mask (`type` (), 2)
+            mask (`type` (), 1),
+            masks (RegisteredResources (), 2),
+            masks (ResourceGroupReqs (), 3)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("RegisteredResources", "RegisteredResource", true)
-    )
 }
 
 /**
@@ -328,9 +335,13 @@ object ResourceGroupReq
 extends
     Parseable[ResourceGroupReq]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "RTOs",
         "ResourceGroup"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("RTOs", "RTO", "0..*", "0..*"),
+        Relationship ("ResourceGroup", "ResourceGroup", "1", "0..*")
     )
     val RTOs: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
     val ResourceGroup: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -347,10 +358,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("RTOs", "RTO", true),
-        Relationship ("ResourceGroup", "ResourceGroup", false)
-    )
 }
 
 /**
@@ -411,8 +418,11 @@ object SensitivityPriceCurve
 extends
     Parseable[SensitivityPriceCurve]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "ReserveReq"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ReserveReq", "ReserveReq", "0..1", "0..1")
     )
     val ReserveReq: Fielder = parse_attribute (attribute (cls, fields(0)))
 
@@ -427,9 +437,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("ReserveReq", "ReserveReq", false)
-    )
 }
 
 private[ninecode] object _InfExternalInputs

@@ -82,7 +82,7 @@ object CurrentRelay
 extends
     Parseable[CurrentRelay]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "currentLimit1",
         "currentLimit2",
         "currentLimit3",
@@ -116,9 +116,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -135,6 +132,7 @@ extends
  * @param unitSymbol The unit of measure of the value.
  * @param ConductingEquipments [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] Protection equipment may be used to protect specific conducting equipment.
  * @param ProtectedSwitches [[ch.ninecode.model.ProtectedSwitch ProtectedSwitch]] Protected switches operated by this ProtectionEquipment.
+ * @param ProtectiveAction [[ch.ninecode.model.ProtectiveAction ProtectiveAction]] <em>undocumented</em>
  * @group Protection
  * @groupname Protection Package Protection
  * @groupdesc Protection An extension to the Core and Wires packages that models information for protection equipment such as relays. These entities are used within training simulators and distribution network fault location applications.
@@ -149,7 +147,8 @@ case class ProtectionEquipment
     unitMultiplier: String,
     unitSymbol: String,
     ConductingEquipments: List[String],
-    ProtectedSwitches: List[String]
+    ProtectedSwitches: List[String],
+    ProtectiveAction: List[String]
 )
 extends
     Element
@@ -157,7 +156,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, false, 0.0, null, null, List(), List()) }
+    def this () = { this (null, 0.0, 0.0, false, 0.0, null, null, List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -191,6 +190,7 @@ extends
         emitattr (5, unitSymbol)
         emitattrs (6, ConductingEquipments)
         emitattrs (7, ProtectedSwitches)
+        emitattrs (8, ProtectiveAction)
         s.toString
     }
     override def export: String =
@@ -203,7 +203,7 @@ object ProtectionEquipment
 extends
     Parseable[ProtectionEquipment]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "highLimit",
         "lowLimit",
         "powerDirectionFlag",
@@ -211,7 +211,13 @@ extends
         "unitMultiplier",
         "unitSymbol",
         "ConductingEquipments",
-        "ProtectedSwitches"
+        "ProtectedSwitches",
+        "ProtectiveAction"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ConductingEquipments", "ConductingEquipment", "0..*", "0..*"),
+        Relationship ("ProtectedSwitches", "ProtectedSwitch", "0..*", "0..*"),
+        Relationship ("ProtectiveAction", "ProtectiveAction", "0..*", "0..1")
     )
     val highLimit: Fielder = parse_element (element (cls, fields(0)))
     val lowLimit: Fielder = parse_element (element (cls, fields(1)))
@@ -221,6 +227,7 @@ extends
     val unitSymbol: Fielder = parse_attribute (attribute (cls, fields(5)))
     val ConductingEquipments: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
     val ProtectedSwitches: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
+    val ProtectiveAction: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
 
     def parse (context: Context): ProtectionEquipment =
     {
@@ -235,15 +242,12 @@ extends
             mask (unitMultiplier (), 4),
             mask (unitSymbol (), 5),
             masks (ConductingEquipments (), 6),
-            masks (ProtectedSwitches (), 7)
+            masks (ProtectedSwitches (), 7),
+            masks (ProtectiveAction (), 8)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("ConductingEquipments", "ConductingEquipment", true),
-        Relationship ("ProtectedSwitches", "ProtectedSwitch", true)
-    )
 }
 
 /**
@@ -310,10 +314,13 @@ object RecloseSequence
 extends
     Parseable[RecloseSequence]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "recloseDelay",
         "recloseStep",
         "ProtectedSwitch"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ProtectedSwitch", "ProtectedSwitch", "1", "0..*")
     )
     val recloseDelay: Fielder = parse_element (element (cls, fields(0)))
     val recloseStep: Fielder = parse_element (element (cls, fields(1)))
@@ -332,9 +339,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("ProtectedSwitch", "ProtectedSwitch", false)
-    )
 }
 
 /**
@@ -402,7 +406,7 @@ object SynchrocheckRelay
 extends
     Parseable[SynchrocheckRelay]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "maxAngleDiff",
         "maxFreqDiff",
         "maxVoltDiff"
@@ -424,9 +428,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 private[ninecode] object _Protection

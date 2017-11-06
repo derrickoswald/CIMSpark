@@ -88,7 +88,7 @@ object VAdjIEEE
 extends
     Parseable[VAdjIEEE]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "adjslew",
         "taoff",
         "taon",
@@ -119,9 +119,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -183,8 +180,11 @@ object VoltageAdjusterDynamics
 extends
     Parseable[VoltageAdjusterDynamics]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "PFVArControllerType1Dynamics"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("PFVArControllerType1Dynamics", "PFVArControllerType1Dynamics", "1", "0..1")
     )
     val PFVArControllerType1Dynamics: Fielder = parse_attribute (attribute (cls, fields(0)))
 
@@ -199,9 +199,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("PFVArControllerType1Dynamics", "PFVArControllerType1Dynamics", false)
-    )
 }
 
 private[ninecode] object _VoltageAdjusterDynamics

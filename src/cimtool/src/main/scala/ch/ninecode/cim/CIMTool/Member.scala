@@ -7,12 +7,15 @@ case class Member (
     overrid: Boolean,
     comment: String,
     reference: Boolean,
-    multiple: Boolean,
+    this_cardinality: String,
+    mate_cardinality: String,
     datatype: String,
     initializer: String,
     function: String,
     referenced_class: String)
 {
+
+    def multiple:Boolean = !(this_cardinality.equals ("1") || this_cardinality.endsWith ("..1"))
 
     def edit (s: String): String =
     {

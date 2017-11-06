@@ -19,6 +19,10 @@ import ch.ninecode.cim.Relationship
  * @param kind Kind of (land) property, categorised according to its main functional use from the utility's perspective.
  * @param status <em>undocumented</em>
  * @param AssetContainers [[ch.ninecode.model.AssetContainer AssetContainer]] <em>undocumented</em>
+ * @param ErpOrganisationRoles [[ch.ninecode.model.PropertyOrganisationRole PropertyOrganisationRole]] <em>undocumented</em>
+ * @param ErpPersonRoles [[ch.ninecode.model.PersonPropertyRole PersonPropertyRole]] <em>undocumented</em>
+ * @param ErpSiteLevelDatas [[ch.ninecode.model.ErpSiteLevelData ErpSiteLevelData]] <em>undocumented</em>
+ * @param LocationGrants [[ch.ninecode.model.LocationGrant LocationGrant]] All location grants this land property has.
  * @param Locations [[ch.ninecode.model.Location Location]] The spatail description of a piece of property.
  * @param RightOfWays [[ch.ninecode.model.RightOfWay RightOfWay]] All rights of way this land property has.
  * @group InfLocations
@@ -32,6 +36,10 @@ case class LandProperty
     kind: String,
     status: String,
     AssetContainers: List[String],
+    ErpOrganisationRoles: List[String],
+    ErpPersonRoles: List[String],
+    ErpSiteLevelDatas: List[String],
+    LocationGrants: List[String],
     Locations: List[String],
     RightOfWays: List[String]
 )
@@ -41,7 +49,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null, List(), List(), List()) }
+    def this () = { this (null, null, null, null, null, List(), List(), List(), List(), List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -72,8 +80,12 @@ extends
         emitattr (2, kind)
         emitattr (3, status)
         emitattrs (4, AssetContainers)
-        emitattrs (5, Locations)
-        emitattrs (6, RightOfWays)
+        emitattrs (5, ErpOrganisationRoles)
+        emitattrs (6, ErpPersonRoles)
+        emitattrs (7, ErpSiteLevelDatas)
+        emitattrs (8, LocationGrants)
+        emitattrs (9, Locations)
+        emitattrs (10, RightOfWays)
         s.toString
     }
     override def export: String =
@@ -86,22 +98,39 @@ object LandProperty
 extends
     Parseable[LandProperty]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "demographicKind",
         "externalRecordReference",
         "kind",
         "status",
         "AssetContainers",
+        "ErpOrganisationRoles",
+        "ErpPersonRoles",
+        "ErpSiteLevelDatas",
+        "LocationGrants",
         "Locations",
         "RightOfWays"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("AssetContainers", "AssetContainer", "0..*", "0..*"),
+        Relationship ("ErpOrganisationRoles", "PropertyOrganisationRole", "0..*", "1.."),
+        Relationship ("ErpPersonRoles", "PersonPropertyRole", "0..*", "1"),
+        Relationship ("ErpSiteLevelDatas", "ErpSiteLevelData", "0..*", "0..1"),
+        Relationship ("LocationGrants", "LocationGrant", "0..*", "0..1"),
+        Relationship ("Locations", "Location", "0..*", "0..*"),
+        Relationship ("RightOfWays", "RightOfWay", "0..*", "0..*")
     )
     val demographicKind: Fielder = parse_attribute (attribute (cls, fields(0)))
     val externalRecordReference: Fielder = parse_element (element (cls, fields(1)))
     val kind: Fielder = parse_attribute (attribute (cls, fields(2)))
     val status: Fielder = parse_attribute (attribute (cls, fields(3)))
     val AssetContainers: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
-    val Locations: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
-    val RightOfWays: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
+    val ErpOrganisationRoles: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
+    val ErpPersonRoles: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
+    val ErpSiteLevelDatas: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
+    val LocationGrants: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
+    val Locations: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
+    val RightOfWays: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
 
     def parse (context: Context): LandProperty =
     {
@@ -114,17 +143,16 @@ extends
             mask (kind (), 2),
             mask (status (), 3),
             masks (AssetContainers (), 4),
-            masks (Locations (), 5),
-            masks (RightOfWays (), 6)
+            masks (ErpOrganisationRoles (), 5),
+            masks (ErpPersonRoles (), 6),
+            masks (ErpSiteLevelDatas (), 7),
+            masks (LocationGrants (), 8),
+            masks (Locations (), 9),
+            masks (RightOfWays (), 10)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("AssetContainers", "AssetContainer", true),
-        Relationship ("Locations", "Location", true),
-        Relationship ("RightOfWays", "RightOfWay", true)
-    )
 }
 
 /**
@@ -190,9 +218,12 @@ object LocationGrant
 extends
     Parseable[LocationGrant]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "propertyData",
         "LandProperty"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("LandProperty", "LandProperty", "0..1", "0..*")
     )
     val propertyData: Fielder = parse_element (element (cls, fields(0)))
     val LandProperty: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -209,9 +240,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("LandProperty", "LandProperty", false)
-    )
 }
 
 /**
@@ -272,7 +300,7 @@ object RedLine
 extends
     Parseable[RedLine]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "status"
     )
     val status: Fielder = parse_attribute (attribute (cls, fields(0)))
@@ -288,9 +316,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -356,9 +381,12 @@ object RightOfWay
 extends
     Parseable[RightOfWay]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "propertyData",
         "LandProperties"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("LandProperties", "LandProperty", "0..*", "0..*")
     )
     val propertyData: Fielder = parse_element (element (cls, fields(0)))
     val LandProperties: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
@@ -375,9 +403,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("LandProperties", "LandProperty", true)
-    )
 }
 
 /**
@@ -385,8 +410,9 @@ extends
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param status <em>undocumented</em>
- * @param Locations [[ch.ninecode.model.Location Location]] <em>undocumented</em>
  * @param `type` Classification by utility's work management standards and practices.
+ * @param Crews [[ch.ninecode.model.OldCrew OldCrew]] <em>undocumented</em>
+ * @param Locations [[ch.ninecode.model.Location Location]] <em>undocumented</em>
  * @group InfLocations
  * @groupname InfLocations Package InfLocations
  */
@@ -394,8 +420,9 @@ case class Route
 (
     override val sup: IdentifiedObject,
     status: String,
-    Locations: List[String],
-    `type`: String
+    `type`: String,
+    Crews: List[String],
+    Locations: List[String]
 )
 extends
     Element
@@ -403,7 +430,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, List(), null) }
+    def this () = { this (null, null, null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -430,8 +457,9 @@ extends
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Route.fields (position), value)
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Route.fields (position), x))
         emitattr (0, status)
-        emitattrs (1, Locations)
-        emitelem (2, `type`)
+        emitelem (1, `type`)
+        emitattrs (2, Crews)
+        emitattrs (3, Locations)
         s.toString
     }
     override def export: String =
@@ -444,14 +472,20 @@ object Route
 extends
     Parseable[Route]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "status",
-        "Locations",
-        "type"
+        "type",
+        "Crews",
+        "Locations"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Crews", "OldCrew", "0..*", "0..1"),
+        Relationship ("Locations", "Location", "0..*", "0..*")
     )
     val status: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val Locations: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
-    val `type`: Fielder = parse_element (element (cls, fields(2)))
+    val `type`: Fielder = parse_element (element (cls, fields(1)))
+    val Crews: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val Locations: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
 
     def parse (context: Context): Route =
     {
@@ -460,15 +494,13 @@ extends
         val ret = Route (
             IdentifiedObject.parse (context),
             mask (status (), 0),
-            masks (Locations (), 1),
-            mask (`type` (), 2)
+            mask (`type` (), 1),
+            masks (Crews (), 2),
+            masks (Locations (), 3)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Locations", "Location", true)
-    )
 }
 
 /**
@@ -529,7 +561,7 @@ object Zone
 extends
     Parseable[Zone]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "kind"
     )
     val kind: Fielder = parse_attribute (attribute (cls, fields(0)))
@@ -545,9 +577,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 private[ninecode] object _InfLocations

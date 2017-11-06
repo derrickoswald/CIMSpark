@@ -16,6 +16,7 @@ import ch.ninecode.cim.Relationship
  * @param priority Priority of bus name marker for use as topology bus name.
  *        Use 0 for don t care.  Use 1 for highest priority.  Use 2 as priority is less than 1 and so on.
  * @param ReportingGroup [[ch.ninecode.model.ReportingGroup ReportingGroup]] The reporting group to which this bus name marker belongs.
+ * @param Terminal [[ch.ninecode.model.ACDCTerminal ACDCTerminal]] The terminals associated with this bus name marker.
  * @group Topology
  * @groupname Topology Package Topology
  * @groupdesc Topology An extension to the Core Package that in association with the Terminal class models Connectivity, that is the physical definition of how equipment is connected together. In addition it models Topology, that is the logical definition of how equipment is connected via closed switches. The Topology definition is independent of the other electrical characteristics.
@@ -24,7 +25,8 @@ case class BusNameMarker
 (
     override val sup: IdentifiedObject,
     priority: Int,
-    ReportingGroup: String
+    ReportingGroup: String,
+    Terminal: List[String]
 )
 extends
     Element
@@ -32,7 +34,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0, null) }
+    def this () = { this (null, 0, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -57,8 +59,10 @@ extends
         implicit val clz: String = BusNameMarker.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (BusNameMarker.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (BusNameMarker.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (BusNameMarker.fields (position), x))
         emitelem (0, priority)
         emitattr (1, ReportingGroup)
+        emitattrs (2, Terminal)
         s.toString
     }
     override def export: String =
@@ -71,12 +75,18 @@ object BusNameMarker
 extends
     Parseable[BusNameMarker]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "priority",
-        "ReportingGroup"
+        "ReportingGroup",
+        "Terminal"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ReportingGroup", "ReportingGroup", "0..1", "0..*"),
+        Relationship ("Terminal", "ACDCTerminal", "1..*", "0..1")
     )
     val priority: Fielder = parse_element (element (cls, fields(0)))
     val ReportingGroup: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val Terminal: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
 
     def parse (context: Context): BusNameMarker =
     {
@@ -85,14 +95,12 @@ extends
         val ret = BusNameMarker (
             IdentifiedObject.parse (context),
             toInteger (mask (priority (), 0)),
-            mask (ReportingGroup (), 1)
+            mask (ReportingGroup (), 1),
+            masks (Terminal (), 2)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("ReportingGroup", "ReportingGroup", false)
-    )
 }
 
 /**
@@ -100,6 +108,10 @@ extends
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param DCEquipmentContainer [[ch.ninecode.model.DCEquipmentContainer DCEquipmentContainer]] <em>undocumented</em>
+ * @param DCNodes [[ch.ninecode.model.DCNode DCNode]] See association end TopologicalNode.
+ *        ConnectivityNodes.
+ * @param DCTerminals [[ch.ninecode.model.DCBaseTerminal DCBaseTerminal]] See association end TopologicalNode.
+ *        Terminal.
  * @param DCTopologicalIsland [[ch.ninecode.model.DCTopologicalIsland DCTopologicalIsland]] <em>undocumented</em>
  * @group Topology
  * @groupname Topology Package Topology
@@ -109,6 +121,8 @@ case class DCTopologicalNode
 (
     override val sup: IdentifiedObject,
     DCEquipmentContainer: String,
+    DCNodes: List[String],
+    DCTerminals: List[String],
     DCTopologicalIsland: String
 )
 extends
@@ -117,7 +131,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null) }
+    def this () = { this (null, null, List(), List(), null) }
     /**
      * Return the superclass object.
      *
@@ -141,8 +155,11 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = DCTopologicalNode.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (DCTopologicalNode.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (DCTopologicalNode.fields (position), x))
         emitattr (0, DCEquipmentContainer)
-        emitattr (1, DCTopologicalIsland)
+        emitattrs (1, DCNodes)
+        emitattrs (2, DCTerminals)
+        emitattr (3, DCTopologicalIsland)
         s.toString
     }
     override def export: String =
@@ -155,12 +172,22 @@ object DCTopologicalNode
 extends
     Parseable[DCTopologicalNode]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "DCEquipmentContainer",
+        "DCNodes",
+        "DCTerminals",
         "DCTopologicalIsland"
     )
+    override val relations: List[Relationship] = List (
+        Relationship ("DCEquipmentContainer", "DCEquipmentContainer", "0..1", "0..*"),
+        Relationship ("DCNodes", "DCNode", "0..*", "0..1"),
+        Relationship ("DCTerminals", "DCBaseTerminal", "0..*", "0..1"),
+        Relationship ("DCTopologicalIsland", "DCTopologicalIsland", "0..1", "1..*")
+    )
     val DCEquipmentContainer: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val DCTopologicalIsland: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val DCNodes: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val DCTerminals: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val DCTopologicalIsland: Fielder = parse_attribute (attribute (cls, fields(3)))
 
     def parse (context: Context): DCTopologicalNode =
     {
@@ -169,15 +196,13 @@ extends
         val ret = DCTopologicalNode (
             IdentifiedObject.parse (context),
             mask (DCEquipmentContainer (), 0),
-            mask (DCTopologicalIsland (), 1)
+            masks (DCNodes (), 1),
+            masks (DCTerminals (), 2),
+            mask (DCTopologicalIsland (), 3)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("DCEquipmentContainer", "DCEquipmentContainer", false),
-        Relationship ("DCTopologicalIsland", "DCTopologicalIsland", false)
-    )
 }
 
 /**
@@ -188,6 +213,7 @@ extends
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param AngleRefTopologicalNode [[ch.ninecode.model.TopologicalNode TopologicalNode]] The angle reference for the island.
  *        Normally there is one TopologicalNode that is selected as the angle reference for each island.   Other reference schemes exist, so the association is typically optional.
+ * @param TopologicalNodes [[ch.ninecode.model.TopologicalNode TopologicalNode]] A topological node belongs to a topological island.
  * @group Topology
  * @groupname Topology Package Topology
  * @groupdesc Topology An extension to the Core Package that in association with the Terminal class models Connectivity, that is the physical definition of how equipment is connected together. In addition it models Topology, that is the logical definition of how equipment is connected via closed switches. The Topology definition is independent of the other electrical characteristics.
@@ -195,7 +221,8 @@ extends
 case class TopologicalIsland
 (
     override val sup: IdentifiedObject,
-    AngleRefTopologicalNode: String
+    AngleRefTopologicalNode: String,
+    TopologicalNodes: List[String]
 )
 extends
     Element
@@ -203,7 +230,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null) }
+    def this () = { this (null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -227,7 +254,9 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = TopologicalIsland.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TopologicalIsland.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (TopologicalIsland.fields (position), x))
         emitattr (0, AngleRefTopologicalNode)
+        emitattrs (1, TopologicalNodes)
         s.toString
     }
     override def export: String =
@@ -240,10 +269,16 @@ object TopologicalIsland
 extends
     Parseable[TopologicalIsland]
 {
-    val fields: Array[String] = Array[String] (
-        "AngleRefTopologicalNode"
+    override val fields: Array[String] = Array[String] (
+        "AngleRefTopologicalNode",
+        "TopologicalNodes"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("AngleRefTopologicalNode", "TopologicalNode", "0..1", "0..1"),
+        Relationship ("TopologicalNodes", "TopologicalNode", "1..*", "0..1")
     )
     val AngleRefTopologicalNode: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val TopologicalNodes: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): TopologicalIsland =
     {
@@ -251,14 +286,12 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = TopologicalIsland (
             IdentifiedObject.parse (context),
-            mask (AngleRefTopologicalNode (), 0)
+            mask (AngleRefTopologicalNode (), 0),
+            masks (TopologicalNodes (), 1)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("AngleRefTopologicalNode", "TopologicalNode", false)
-    )
 }
 
 /**
@@ -275,9 +308,13 @@ extends
  *        Normally there is one angle reference node for each island.
  * @param BaseVoltage [[ch.ninecode.model.BaseVoltage BaseVoltage]] The base voltage of the topologocial node.
  * @param ConnectivityNodeContainer [[ch.ninecode.model.ConnectivityNodeContainer ConnectivityNodeContainer]] The connectivity node container to which the toplogical node belongs.
+ * @param ConnectivityNodes [[ch.ninecode.model.ConnectivityNode ConnectivityNode]] The connectivity nodes combine together to form this topological node.
+ *        May depend on the current state of switches in the network.
  * @param ReportingGroup [[ch.ninecode.model.ReportingGroup ReportingGroup]] The reporting group to which the topological node belongs.
  * @param SvInjection [[ch.ninecode.model.SvInjection SvInjection]] The injection flows state variables associated with the topological node.
  * @param SvVoltage [[ch.ninecode.model.SvVoltage SvVoltage]] The state voltage associated with the topological node.
+ * @param Terminal [[ch.ninecode.model.Terminal Terminal]] The terminals associated with the topological node.
+ *        This can be used as an alternative to the connectivity node path to terminal, thus making it unneccesary to model connectivity nodes in some cases.   Note that if connectivity nodes are in the model, this association would probably not be used as an input specification.
  * @param TopologicalIsland [[ch.ninecode.model.TopologicalIsland TopologicalIsland]] A topological node belongs to a topological island.
  * @group Topology
  * @groupname Topology Package Topology
@@ -291,9 +328,11 @@ case class TopologicalNode
     AngleRefTopologicalIsland: String,
     BaseVoltage: String,
     ConnectivityNodeContainer: String,
+    ConnectivityNodes: List[String],
     ReportingGroup: String,
     SvInjection: String,
     SvVoltage: String,
+    Terminal: List[String],
     TopologicalIsland: String
 )
 extends
@@ -302,7 +341,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, null, null, null, null, null, null, null) }
+    def this () = { this (null, 0.0, 0.0, null, null, null, List(), null, null, null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -327,15 +366,18 @@ extends
         implicit val clz: String = TopologicalNode.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TopologicalNode.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TopologicalNode.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (TopologicalNode.fields (position), x))
         emitelem (0, pInjection)
         emitelem (1, qInjection)
         emitattr (2, AngleRefTopologicalIsland)
         emitattr (3, BaseVoltage)
         emitattr (4, ConnectivityNodeContainer)
-        emitattr (5, ReportingGroup)
-        emitattr (6, SvInjection)
-        emitattr (7, SvVoltage)
-        emitattr (8, TopologicalIsland)
+        emitattrs (5, ConnectivityNodes)
+        emitattr (6, ReportingGroup)
+        emitattr (7, SvInjection)
+        emitattr (8, SvVoltage)
+        emitattrs (9, Terminal)
+        emitattr (10, TopologicalIsland)
         s.toString
     }
     override def export: String =
@@ -348,26 +390,41 @@ object TopologicalNode
 extends
     Parseable[TopologicalNode]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "pInjection",
         "qInjection",
         "AngleRefTopologicalIsland",
         "BaseVoltage",
         "ConnectivityNodeContainer",
+        "ConnectivityNodes",
         "ReportingGroup",
         "SvInjection",
         "SvVoltage",
+        "Terminal",
         "TopologicalIsland"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("AngleRefTopologicalIsland", "TopologicalIsland", "0..1", "0..1"),
+        Relationship ("BaseVoltage", "BaseVoltage", "0..1", "0..*"),
+        Relationship ("ConnectivityNodeContainer", "ConnectivityNodeContainer", "0..1", "0..*"),
+        Relationship ("ConnectivityNodes", "ConnectivityNode", "0..*", "0..1"),
+        Relationship ("ReportingGroup", "ReportingGroup", "0..1", "0..*"),
+        Relationship ("SvInjection", "SvInjection", "0..1", "1"),
+        Relationship ("SvVoltage", "SvVoltage", "0..1", "1"),
+        Relationship ("Terminal", "Terminal", "0..*", "0..1"),
+        Relationship ("TopologicalIsland", "TopologicalIsland", "0..1", "1..*")
     )
     val pInjection: Fielder = parse_element (element (cls, fields(0)))
     val qInjection: Fielder = parse_element (element (cls, fields(1)))
     val AngleRefTopologicalIsland: Fielder = parse_attribute (attribute (cls, fields(2)))
     val BaseVoltage: Fielder = parse_attribute (attribute (cls, fields(3)))
     val ConnectivityNodeContainer: Fielder = parse_attribute (attribute (cls, fields(4)))
-    val ReportingGroup: Fielder = parse_attribute (attribute (cls, fields(5)))
-    val SvInjection: Fielder = parse_attribute (attribute (cls, fields(6)))
-    val SvVoltage: Fielder = parse_attribute (attribute (cls, fields(7)))
-    val TopologicalIsland: Fielder = parse_attribute (attribute (cls, fields(8)))
+    val ConnectivityNodes: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
+    val ReportingGroup: Fielder = parse_attribute (attribute (cls, fields(6)))
+    val SvInjection: Fielder = parse_attribute (attribute (cls, fields(7)))
+    val SvVoltage: Fielder = parse_attribute (attribute (cls, fields(8)))
+    val Terminal: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
+    val TopologicalIsland: Fielder = parse_attribute (attribute (cls, fields(10)))
 
     def parse (context: Context): TopologicalNode =
     {
@@ -380,23 +437,16 @@ extends
             mask (AngleRefTopologicalIsland (), 2),
             mask (BaseVoltage (), 3),
             mask (ConnectivityNodeContainer (), 4),
-            mask (ReportingGroup (), 5),
-            mask (SvInjection (), 6),
-            mask (SvVoltage (), 7),
-            mask (TopologicalIsland (), 8)
+            masks (ConnectivityNodes (), 5),
+            mask (ReportingGroup (), 6),
+            mask (SvInjection (), 7),
+            mask (SvVoltage (), 8),
+            masks (Terminal (), 9),
+            mask (TopologicalIsland (), 10)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("AngleRefTopologicalIsland", "TopologicalIsland", false),
-        Relationship ("BaseVoltage", "BaseVoltage", false),
-        Relationship ("ConnectivityNodeContainer", "ConnectivityNodeContainer", false),
-        Relationship ("ReportingGroup", "ReportingGroup", false),
-        Relationship ("SvInjection", "SvInjection", false),
-        Relationship ("SvVoltage", "SvVoltage", false),
-        Relationship ("TopologicalIsland", "TopologicalIsland", false)
-    )
 }
 
 private[ninecode] object _Topology

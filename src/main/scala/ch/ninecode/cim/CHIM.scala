@@ -41,6 +41,9 @@ trait Parser
     }
     type FielderMultiple = FielderFunctionMultiple
 
+    val fields: Array[String] = Array ()
+    val relations: List[Relationship] = List ()
+
     /**
      * Regular expression to parse an element.
      * For example: <cim:ACLineSegment.r>0.224</cim:ACLineSegment.r>
@@ -316,7 +319,13 @@ object Parser
 case class Relationship (
     field: String,
     clazz: String,
-    multiple: Boolean)
+    this_cardinality: String,
+    mate_cardinality: String)
+{
+    def multiple: Boolean = !(this_cardinality.equals ("1") || this_cardinality.endsWith ("..1"))
+    // true if the class with this relationship is the N side in a 1:N relation
+    def heavyside: Boolean = multiple && (mate_cardinality.equals ("1") || mate_cardinality.endsWith ("..1"))
+}
 
 case class ClassInfo (
     name: String,
@@ -346,7 +355,6 @@ extends
     val runtime_class: Class[_] = classTag[A].runtimeClass
     val classname: String = runtime_class.getName
     val cls: String = classname.substring (classname.lastIndexOf (".") + 1)
-    val relations: List[Relationship]
     def register: ClassInfo =
         ClassInfo (cls, this.asInstanceOf[Parseable[Product]], new CIMSubsetter[A](), relations)
     def mask (field: Field, position: Int) (implicit bitfields: Array[Int]): String =

@@ -66,7 +66,7 @@ object ComplianceEvent
 extends
     Parseable[ComplianceEvent]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "deadline"
     )
     val deadline: Fielder = parse_element (element (cls, fields(0)))
@@ -82,9 +82,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -178,7 +175,7 @@ object CustomerBillingInfo
 extends
     Parseable[CustomerBillingInfo]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "billingDate",
         "dueDate",
         "kind",
@@ -189,6 +186,10 @@ extends
         "pymtPlanType",
         "CustomerAccount",
         "ErpInvoiceLineItems"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("CustomerAccount", "CustomerAccount", "0..1", "0..*"),
+        Relationship ("ErpInvoiceLineItems", "ErpInvoiceLineItem", "0..*", "0..*")
     )
     val billingDate: Fielder = parse_element (element (cls, fields(0)))
     val dueDate: Fielder = parse_element (element (cls, fields(1)))
@@ -221,10 +222,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("CustomerAccount", "CustomerAccount", false),
-        Relationship ("ErpInvoiceLineItems", "ErpInvoiceLineItem", true)
-    )
 }
 
 /**
@@ -289,9 +286,6 @@ extends
         )
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -375,7 +369,7 @@ object PowerQualityPricing
 extends
     Parseable[PowerQualityPricing]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "emergencyHighVoltLimit",
         "emergencyLowVoltLimit",
         "normalHighVoltLimit",
@@ -415,9 +409,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -489,7 +480,7 @@ object ServiceGuarantee
 extends
     Parseable[ServiceGuarantee]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "applicationPeriod",
         "automaticPay",
         "payAmount",
@@ -514,9 +505,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -526,6 +514,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param code Standard alphanumeric code assigned to a particular product/service within an industry.
+ * @param CustomerAgreements [[ch.ninecode.model.CustomerAgreement CustomerAgreement]] <em>undocumented</em>
  * @group InfCustomers
  * @groupname InfCustomers Package InfCustomers
  * @groupdesc InfCustomers The package is used to define detailed customer models.
@@ -533,7 +522,8 @@ extends
 case class StandardIndustryCode
 (
     override val sup: Document,
-    code: String
+    code: String,
+    CustomerAgreements: List[String]
 )
 extends
     Element
@@ -541,7 +531,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null) }
+    def this () = { this (null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -565,7 +555,9 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = StandardIndustryCode.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (StandardIndustryCode.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (StandardIndustryCode.fields (position), x))
         emitelem (0, code)
+        emitattrs (1, CustomerAgreements)
         s.toString
     }
     override def export: String =
@@ -578,10 +570,15 @@ object StandardIndustryCode
 extends
     Parseable[StandardIndustryCode]
 {
-    val fields: Array[String] = Array[String] (
-        "code"
+    override val fields: Array[String] = Array[String] (
+        "code",
+        "CustomerAgreements"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("CustomerAgreements", "CustomerAgreement", "0..*", "0..1")
     )
     val code: Fielder = parse_element (element (cls, fields(0)))
+    val CustomerAgreements: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): StandardIndustryCode =
     {
@@ -589,14 +586,12 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = StandardIndustryCode (
             Document.parse (context),
-            mask (code (), 0)
+            mask (code (), 0),
+            masks (CustomerAgreements (), 1)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -659,9 +654,6 @@ extends
         )
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -679,6 +671,7 @@ extends
  * @param workPrice Amount of bill.
  * @param CustomerAccount [[ch.ninecode.model.CustomerAccount CustomerAccount]] <em>undocumented</em>
  * @param ErpLineItems [[ch.ninecode.model.ErpInvoiceLineItem ErpInvoiceLineItem]] <em>undocumented</em>
+ * @param Works [[ch.ninecode.model.Work Work]] <em>undocumented</em>
  * @group InfCustomers
  * @groupname InfCustomers Package InfCustomers
  * @groupdesc InfCustomers The package is used to define detailed customer models.
@@ -694,7 +687,8 @@ case class WorkBillingInfo
     receivedDateTime: String,
     workPrice: Double,
     CustomerAccount: String,
-    ErpLineItems: List[String]
+    ErpLineItems: List[String],
+    Works: List[String]
 )
 extends
     Element
@@ -702,7 +696,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, 0.0, null, null, null, 0.0, null, List()) }
+    def this () = { this (null, 0.0, 0.0, 0.0, null, null, null, 0.0, null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -737,6 +731,7 @@ extends
         emitelem (6, workPrice)
         emitattr (7, CustomerAccount)
         emitattrs (8, ErpLineItems)
+        emitattrs (9, Works)
         s.toString
     }
     override def export: String =
@@ -749,7 +744,7 @@ object WorkBillingInfo
 extends
     Parseable[WorkBillingInfo]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "costEstimate",
         "deposit",
         "discount",
@@ -758,7 +753,13 @@ extends
         "receivedDateTime",
         "workPrice",
         "CustomerAccount",
-        "ErpLineItems"
+        "ErpLineItems",
+        "Works"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("CustomerAccount", "CustomerAccount", "0..1", "0..*"),
+        Relationship ("ErpLineItems", "ErpInvoiceLineItem", "0..*", "0..*"),
+        Relationship ("Works", "Work", "0..*", "0..1")
     )
     val costEstimate: Fielder = parse_element (element (cls, fields(0)))
     val deposit: Fielder = parse_element (element (cls, fields(1)))
@@ -769,6 +770,7 @@ extends
     val workPrice: Fielder = parse_element (element (cls, fields(6)))
     val CustomerAccount: Fielder = parse_attribute (attribute (cls, fields(7)))
     val ErpLineItems: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
+    val Works: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
 
     def parse (context: Context): WorkBillingInfo =
     {
@@ -784,15 +786,12 @@ extends
             mask (receivedDateTime (), 5),
             toDouble (mask (workPrice (), 6)),
             mask (CustomerAccount (), 7),
-            masks (ErpLineItems (), 8)
+            masks (ErpLineItems (), 8),
+            masks (Works (), 9)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("CustomerAccount", "CustomerAccount", false),
-        Relationship ("ErpLineItems", "ErpInvoiceLineItem", true)
-    )
 }
 
 private[ninecode] object _InfCustomers

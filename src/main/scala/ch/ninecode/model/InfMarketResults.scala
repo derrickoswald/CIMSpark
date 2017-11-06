@@ -13,12 +13,14 @@ import ch.ninecode.cim.Relationship
  * Identifies interval
  *
  * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
+ * @param InterTieResults [[ch.ninecode.model.InterTieResults InterTieResults]] <em>undocumented</em>
  * @group InfMarketResults
  * @groupname InfMarketResults Package InfMarketResults
  */
 case class InterTieClearing
 (
-    override val sup: MarketFactors
+    override val sup: MarketFactors,
+    InterTieResults: List[String]
 )
 extends
     Element
@@ -26,7 +28,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -47,7 +49,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = InterTieClearing.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (InterTieClearing.fields (position), x))
+        emitattrs (0, InterTieResults)
+        s.toString
     }
     override def export: String =
     {
@@ -59,18 +65,25 @@ object InterTieClearing
 extends
     Parseable[InterTieClearing]
 {
+    override val fields: Array[String] = Array[String] (
+        "InterTieResults"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("InterTieResults", "InterTieResults", "0..*", "0..1")
+    )
+    val InterTieResults: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): InterTieClearing =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = InterTieClearing (
-            MarketFactors.parse (context)
+            MarketFactors.parse (context),
+            masks (InterTieResults (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -141,11 +154,15 @@ object InterTieResults
 extends
     Parseable[InterTieResults]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "baseMW",
         "clearedValue",
         "Flowgate",
         "InterTieClearing"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Flowgate", "Flowgate", "1", "1..*"),
+        Relationship ("InterTieClearing", "InterTieClearing", "0..1", "0..*")
     )
     val baseMW: Fielder = parse_element (element (cls, fields(0)))
     val clearedValue: Fielder = parse_element (element (cls, fields(1)))
@@ -166,10 +183,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Flowgate", "Flowgate", false),
-        Relationship ("InterTieClearing", "InterTieClearing", false)
-    )
 }
 
 /**
@@ -187,6 +200,7 @@ extends
  *        'RT - Amp2'
  * @param modifiedDate Last time and date clearing results were manually modified.
  * @param postedDate Bid clearing results posted time and date.
+ * @param MarketProductClearing [[ch.ninecode.model.AncillaryServiceClearing AncillaryServiceClearing]] <em>undocumented</em>
  * @group InfMarketResults
  * @groupname InfMarketResults Package InfMarketResults
  */
@@ -195,7 +209,8 @@ case class MarketCaseClearing
     override val sup: MarketFactors,
     caseType: String,
     modifiedDate: String,
-    postedDate: String
+    postedDate: String,
+    MarketProductClearing: List[String]
 )
 extends
     Element
@@ -203,7 +218,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null) }
+    def this () = { this (null, null, null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -227,9 +242,11 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MarketCaseClearing.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (MarketCaseClearing.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (MarketCaseClearing.fields (position), x))
         emitelem (0, caseType)
         emitelem (1, modifiedDate)
         emitelem (2, postedDate)
+        emitattrs (3, MarketProductClearing)
         s.toString
     }
     override def export: String =
@@ -242,14 +259,19 @@ object MarketCaseClearing
 extends
     Parseable[MarketCaseClearing]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "caseType",
         "modifiedDate",
-        "postedDate"
+        "postedDate",
+        "MarketProductClearing"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("MarketProductClearing", "AncillaryServiceClearing", "0..*", "0..1")
     )
     val caseType: Fielder = parse_element (element (cls, fields(0)))
     val modifiedDate: Fielder = parse_element (element (cls, fields(1)))
     val postedDate: Fielder = parse_element (element (cls, fields(2)))
+    val MarketProductClearing: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
 
     def parse (context: Context): MarketCaseClearing =
     {
@@ -259,14 +281,12 @@ extends
             MarketFactors.parse (context),
             mask (caseType (), 0),
             mask (modifiedDate (), 1),
-            mask (postedDate (), 2)
+            mask (postedDate (), 2),
+            masks (MarketProductClearing (), 3)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -331,7 +351,7 @@ object SecurityConstraintsClearing
 extends
     Parseable[SecurityConstraintsClearing]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "mwFlow",
         "mwLimit",
         "shadowPrice"
@@ -353,9 +373,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 private[ninecode] object _InfMarketResults

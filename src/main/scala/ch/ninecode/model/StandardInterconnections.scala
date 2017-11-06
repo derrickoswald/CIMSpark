@@ -95,7 +95,7 @@ object RemoteInputSignal
 extends
     Parseable[RemoteInputSignal]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "remoteSignalType",
         "DiscontinuousExcitationControlDynamics",
         "PFVArControllerType1Dynamics",
@@ -106,6 +106,17 @@ extends
         "WindPlantDynamics",
         "WindTurbineType1or2Dynamics",
         "WindTurbineType3or4Dynamics"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("DiscontinuousExcitationControlDynamics", "DiscontinuousExcitationControlDynamics", "0..1", "0..1"),
+        Relationship ("PFVArControllerType1Dynamics", "PFVArControllerType1Dynamics", "0..1", "0..1"),
+        Relationship ("PowerSystemStabilizerDynamics", "PowerSystemStabilizerDynamics", "0..1", "0..*"),
+        Relationship ("Terminal", "Terminal", "1", "0..*"),
+        Relationship ("UnderexcitationLimiterDynamics", "UnderexcitationLimiterDynamics", "0..1", "0..1"),
+        Relationship ("VoltageCompensatorDynamics", "VoltageCompensatorDynamics", "0..1", "0..1"),
+        Relationship ("WindPlantDynamics", "WindPlantDynamics", "0..1", "0..1"),
+        Relationship ("WindTurbineType1or2Dynamics", "WindTurbineType1or2Dynamics", "0..1", "0..1"),
+        Relationship ("WindTurbineType3or4Dynamics", "WindTurbineType3or4Dynamics", "0..1", "0..1")
     )
     val remoteSignalType: Fielder = parse_attribute (attribute (cls, fields(0)))
     val DiscontinuousExcitationControlDynamics: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -138,17 +149,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("DiscontinuousExcitationControlDynamics", "DiscontinuousExcitationControlDynamics", false),
-        Relationship ("PFVArControllerType1Dynamics", "PFVArControllerType1Dynamics", false),
-        Relationship ("PowerSystemStabilizerDynamics", "PowerSystemStabilizerDynamics", false),
-        Relationship ("Terminal", "Terminal", false),
-        Relationship ("UnderexcitationLimiterDynamics", "UnderexcitationLimiterDynamics", false),
-        Relationship ("VoltageCompensatorDynamics", "VoltageCompensatorDynamics", false),
-        Relationship ("WindPlantDynamics", "WindPlantDynamics", false),
-        Relationship ("WindTurbineType1or2Dynamics", "WindTurbineType1or2Dynamics", false),
-        Relationship ("WindTurbineType3or4Dynamics", "WindTurbineType3or4Dynamics", false)
-    )
 }
 
 private[ninecode] object _StandardInterconnections

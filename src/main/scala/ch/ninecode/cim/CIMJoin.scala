@@ -44,7 +44,9 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
                     nis.WorkLocation.Location.IdentifiedObject.aliasName, // aliasName, e.g. ######:nis_el_meter_point
                     isu.WorkLocation.Location.IdentifiedObject.aliasName, // description, e.g. Anschlussobjekt
                     element.mRID,                            // mRID
-                    nis.WorkLocation.Location.IdentifiedObject.name       // name, e.g. MST###
+                    nis.WorkLocation.Location.IdentifiedObject.name,       // name, e.g. MST###
+                    nis.WorkLocation.Location.IdentifiedObject.DiagramObjects,
+                    nis.WorkLocation.Location.IdentifiedObject.Names
                 )
                 val location = Location (
                     sup = id,
@@ -57,24 +59,31 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
                     secondaryAddress = nis.WorkLocation.Location.secondaryAddress, // take any NIS address it might have
                     status = isu.WorkLocation.Location.status,
                     `type` = nis.WorkLocation.Location.`type`,               // e.g. geographic
+                    Assets = isu.WorkLocation.Location.Assets,
+                    ConfigurationEvents = isu.WorkLocation.Location.ConfigurationEvents,
                     CoordinateSystem = nis.WorkLocation.Location.CoordinateSystem,  // e.g. wgs_84
                     Crews = isu.WorkLocation.Location.Crews,
                     Hazards = isu.WorkLocation.Location.Hazards,
                     LandProperties = isu.WorkLocation.Location.LandProperties,
                     Measurements = isu.WorkLocation.Location.Measurements,
+                    PositionPoints = nis.WorkLocation.Location.PositionPoints,
+                    PowerSystemResources = nis.WorkLocation.Location.PowerSystemResources,
                     Routes = isu.WorkLocation.Location.Routes
                 )
                 val worklocation = WorkLocation (
                     location,
+                    BaseWorks = isu.WorkLocation.BaseWorks,
                     isu.WorkLocation.DesignLocations,
                     isu.WorkLocation.OneCallRequest
                 )
                 ServiceLocation (
                     worklocation,
-                    isu.accessMethod,
-                    isu.needsInspection,
-                    isu.siteAccessProblem,
-                    isu.CustomerAgreements
+                    accessMethod = isu.accessMethod,
+                    needsInspection = isu.needsInspection,
+                    siteAccessProblem = isu.siteAccessProblem,
+                    CustomerAgreements = isu.CustomerAgreements,
+                    EndDevices = isu.EndDevices,
+                    UsagePoints = isu.UsagePoints
                 )
             case (None) ⇒
                 // the default action is to keep the original ServiceLocation (both NIS and ISU) where there isn't a match

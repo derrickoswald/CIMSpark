@@ -29,6 +29,8 @@ import ch.ninecode.cim.Relationship
  *        Typical Value = 1.25.
  * @param tw5 DEC washout time constant (<i>T</i><i><sub>W</sub></i><sub>5</sub>).
  *        Typical Value = 5.
+ * @param `val` Regulator voltage reference (<i>V</i><i><sub>AL</sub></i>).
+ *        Typical Value = 5.5.
  * @param vanmax Limiter for Van (<i>V</i><i><sub>ANMAX</sub></i>).
  * @param vomax Limiter (<i>V</i><i><sub>OMAX</sub></i>).
  *        Typical Value = 0.3.
@@ -46,8 +48,6 @@ import ch.ninecode.cim.Relationship
  *        Typical Value = 1.13.
  * @param vtn Voltage limits (<i>V</i><i><sub>TN</sub></i>).
  *        Typical Value = 1.12.
- * @param `val` Regulator voltage reference (<i>V</i><i><sub>AL</sub></i>).
- *        Typical Value = 5.5.
  * @group DiscontinuousExcitationControlDynamics
  * @groupname DiscontinuousExcitationControlDynamics Package DiscontinuousExcitationControlDynamics
  * @groupdesc DiscontinuousExcitationControlDynamics <font colour="#0f0f0f">In some particular system configurations, continuous excitation control with terminal voltage and power system stabilizing regulator input signals does not ensure that the potential of the excitation system for improving system stability is fully exploited. For these situations, discontinuous excitation control signals may be employed to enhance stability following large transient disturbances.</font>
@@ -65,6 +65,7 @@ case class DiscExcContIEEEDEC1A
     tl1: Double,
     tl2: Double,
     tw5: Double,
+    `val`: Double,
     vanmax: Double,
     vomax: Double,
     vomin: Double,
@@ -73,8 +74,7 @@ case class DiscExcContIEEEDEC1A
     vtc: Double,
     vtlmt: Double,
     vtm: Double,
-    vtn: Double,
-    `val`: Double
+    vtn: Double
 )
 extends
     Element
@@ -114,16 +114,16 @@ extends
         emitelem (5, tl1)
         emitelem (6, tl2)
         emitelem (7, tw5)
-        emitelem (8, vanmax)
-        emitelem (9, vomax)
-        emitelem (10, vomin)
-        emitelem (11, vsmax)
-        emitelem (12, vsmin)
-        emitelem (13, vtc)
-        emitelem (14, vtlmt)
-        emitelem (15, vtm)
-        emitelem (16, vtn)
-        emitelem (17, `val`)
+        emitelem (8, `val`)
+        emitelem (9, vanmax)
+        emitelem (10, vomax)
+        emitelem (11, vomin)
+        emitelem (12, vsmax)
+        emitelem (13, vsmin)
+        emitelem (14, vtc)
+        emitelem (15, vtlmt)
+        emitelem (16, vtm)
+        emitelem (17, vtn)
         s.toString
     }
     override def export: String =
@@ -136,7 +136,7 @@ object DiscExcContIEEEDEC1A
 extends
     Parseable[DiscExcContIEEEDEC1A]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "esc",
         "kan",
         "ketl",
@@ -145,6 +145,7 @@ extends
         "tl1",
         "tl2",
         "tw5",
+        "val",
         "vanmax",
         "vomax",
         "vomin",
@@ -153,8 +154,7 @@ extends
         "vtc",
         "vtlmt",
         "vtm",
-        "vtn",
-        "val"
+        "vtn"
     )
     val esc: Fielder = parse_element (element (cls, fields(0)))
     val kan: Fielder = parse_element (element (cls, fields(1)))
@@ -164,16 +164,16 @@ extends
     val tl1: Fielder = parse_element (element (cls, fields(5)))
     val tl2: Fielder = parse_element (element (cls, fields(6)))
     val tw5: Fielder = parse_element (element (cls, fields(7)))
-    val vanmax: Fielder = parse_element (element (cls, fields(8)))
-    val vomax: Fielder = parse_element (element (cls, fields(9)))
-    val vomin: Fielder = parse_element (element (cls, fields(10)))
-    val vsmax: Fielder = parse_element (element (cls, fields(11)))
-    val vsmin: Fielder = parse_element (element (cls, fields(12)))
-    val vtc: Fielder = parse_element (element (cls, fields(13)))
-    val vtlmt: Fielder = parse_element (element (cls, fields(14)))
-    val vtm: Fielder = parse_element (element (cls, fields(15)))
-    val vtn: Fielder = parse_element (element (cls, fields(16)))
-    val `val`: Fielder = parse_element (element (cls, fields(17)))
+    val `val`: Fielder = parse_element (element (cls, fields(8)))
+    val vanmax: Fielder = parse_element (element (cls, fields(9)))
+    val vomax: Fielder = parse_element (element (cls, fields(10)))
+    val vomin: Fielder = parse_element (element (cls, fields(11)))
+    val vsmax: Fielder = parse_element (element (cls, fields(12)))
+    val vsmin: Fielder = parse_element (element (cls, fields(13)))
+    val vtc: Fielder = parse_element (element (cls, fields(14)))
+    val vtlmt: Fielder = parse_element (element (cls, fields(15)))
+    val vtm: Fielder = parse_element (element (cls, fields(16)))
+    val vtn: Fielder = parse_element (element (cls, fields(17)))
 
     def parse (context: Context): DiscExcContIEEEDEC1A =
     {
@@ -189,23 +189,20 @@ extends
             toDouble (mask (tl1 (), 5)),
             toDouble (mask (tl2 (), 6)),
             toDouble (mask (tw5 (), 7)),
-            toDouble (mask (vanmax (), 8)),
-            toDouble (mask (vomax (), 9)),
-            toDouble (mask (vomin (), 10)),
-            toDouble (mask (vsmax (), 11)),
-            toDouble (mask (vsmin (), 12)),
-            toDouble (mask (vtc (), 13)),
-            toDouble (mask (vtlmt (), 14)),
-            toDouble (mask (vtm (), 15)),
-            toDouble (mask (vtn (), 16)),
-            toDouble (mask (`val` (), 17))
+            toDouble (mask (`val` (), 8)),
+            toDouble (mask (vanmax (), 9)),
+            toDouble (mask (vomax (), 10)),
+            toDouble (mask (vomin (), 11)),
+            toDouble (mask (vsmax (), 12)),
+            toDouble (mask (vsmin (), 13)),
+            toDouble (mask (vtc (), 14)),
+            toDouble (mask (vtlmt (), 15)),
+            toDouble (mask (vtm (), 16)),
+            toDouble (mask (vtn (), 17))
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -281,7 +278,7 @@ object DiscExcContIEEEDEC2A
 extends
     Parseable[DiscExcContIEEEDEC2A]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "td1",
         "td2",
         "vdmax",
@@ -309,9 +306,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -378,7 +372,7 @@ object DiscExcContIEEEDEC3A
 extends
     Parseable[DiscExcContIEEEDEC3A]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "tdr",
         "vtmin"
     )
@@ -397,9 +391,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -464,9 +455,13 @@ object DiscontinuousExcitationControlDynamics
 extends
     Parseable[DiscontinuousExcitationControlDynamics]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "ExcitationSystemDynamics",
         "RemoteInputSignal"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ExcitationSystemDynamics", "ExcitationSystemDynamics", "1", "0..1"),
+        Relationship ("RemoteInputSignal", "RemoteInputSignal", "0..1", "0..1")
     )
     val ExcitationSystemDynamics: Fielder = parse_attribute (attribute (cls, fields(0)))
     val RemoteInputSignal: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -483,10 +478,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("ExcitationSystemDynamics", "ExcitationSystemDynamics", false),
-        Relationship ("RemoteInputSignal", "RemoteInputSignal", false)
-    )
 }
 
 private[ninecode] object _DiscontinuousExcitationControlDynamics

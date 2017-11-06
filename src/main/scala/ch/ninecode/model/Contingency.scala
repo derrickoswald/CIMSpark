@@ -12,6 +12,7 @@ import ch.ninecode.cim.Relationship
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param mustStudy Set true if must study this contingency.
+ * @param ContingencyElement [[ch.ninecode.model.ContingencyElement ContingencyElement]] A contingency can have any number of contingency elements.
  * @group Contingency
  * @groupname Contingency Package Contingency
  * @groupdesc Contingency Contingencies to be studied.
@@ -19,7 +20,8 @@ import ch.ninecode.cim.Relationship
 case class Contingency
 (
     override val sup: IdentifiedObject,
-    mustStudy: Boolean
+    mustStudy: Boolean,
+    ContingencyElement: List[String]
 )
 extends
     Element
@@ -27,7 +29,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, false) }
+    def this () = { this (null, false, List()) }
     /**
      * Return the superclass object.
      *
@@ -51,7 +53,9 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Contingency.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Contingency.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Contingency.fields (position), x))
         emitelem (0, mustStudy)
+        emitattrs (1, ContingencyElement)
         s.toString
     }
     override def export: String =
@@ -64,10 +68,15 @@ object Contingency
 extends
     Parseable[Contingency]
 {
-    val fields: Array[String] = Array[String] (
-        "mustStudy"
+    override val fields: Array[String] = Array[String] (
+        "mustStudy",
+        "ContingencyElement"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ContingencyElement", "ContingencyElement", "0..*", "1")
     )
     val mustStudy: Fielder = parse_element (element (cls, fields(0)))
+    val ContingencyElement: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): Contingency =
     {
@@ -75,14 +84,12 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = Contingency (
             IdentifiedObject.parse (context),
-            toBoolean (mask (mustStudy (), 0))
+            toBoolean (mask (mustStudy (), 0)),
+            masks (ContingencyElement (), 1)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -142,8 +149,11 @@ object ContingencyElement
 extends
     Parseable[ContingencyElement]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "Contingency"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Contingency", "Contingency", "1", "0..*")
     )
     val Contingency: Fielder = parse_attribute (attribute (cls, fields(0)))
 
@@ -158,9 +168,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Contingency", "Contingency", false)
-    )
 }
 
 /**
@@ -224,9 +231,12 @@ object ContingencyEquipment
 extends
     Parseable[ContingencyEquipment]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "contingentStatus",
         "Equipment"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Equipment", "Equipment", "1", "0..*")
     )
     val contingentStatus: Fielder = parse_attribute (attribute (cls, fields(0)))
     val Equipment: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -243,9 +253,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Equipment", "Equipment", false)
-    )
 }
 
 private[ninecode] object _Contingency

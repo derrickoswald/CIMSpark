@@ -67,7 +67,7 @@ object BusbarSectionInfo
 extends
     Parseable[BusbarSectionInfo]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "ratedCurrent",
         "ratedVoltage"
     )
@@ -86,9 +86,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -176,7 +173,7 @@ object CableInfo
 extends
     Parseable[CableInfo]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "constructionKind",
         "diameterOverCore",
         "diameterOverInsulation",
@@ -219,9 +216,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -293,7 +287,7 @@ object ConcentricNeutralCableInfo
 extends
     Parseable[ConcentricNeutralCableInfo]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "diameterOverNeutral",
         "neutralStrandCount",
         "neutralStrandGmr",
@@ -321,9 +315,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -401,13 +392,16 @@ object NoLoadTest
 extends
     Parseable[NoLoadTest]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "energisedEndVoltage",
         "excitingCurrent",
         "excitingCurrentZero",
         "loss",
         "lossZero",
         "EnergisedEnd"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("EnergisedEnd", "TransformerEndInfo", "0..1", "0..*")
     )
     val energisedEndVoltage: Fielder = parse_element (element (cls, fields(0)))
     val excitingCurrent: Fielder = parse_element (element (cls, fields(1)))
@@ -432,9 +426,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("EnergisedEnd", "TransformerEndInfo", false)
-    )
 }
 
 /**
@@ -515,7 +506,7 @@ object OpenCircuitTest
 extends
     Parseable[OpenCircuitTest]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "energisedEndStep",
         "energisedEndVoltage",
         "openEndStep",
@@ -523,6 +514,10 @@ extends
         "phaseShift",
         "EnergisedEnd",
         "OpenEnd"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("EnergisedEnd", "TransformerEndInfo", "1", "0..*"),
+        Relationship ("OpenEnd", "TransformerEndInfo", "1", "0..*")
     )
     val energisedEndStep: Fielder = parse_element (element (cls, fields(0)))
     val energisedEndVoltage: Fielder = parse_element (element (cls, fields(1)))
@@ -549,10 +544,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("EnergisedEnd", "TransformerEndInfo", false),
-        Relationship ("OpenEnd", "TransformerEndInfo", false)
-    )
 }
 
 /**
@@ -615,22 +606,21 @@ extends
         )
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
  * Set of power transformer data, from an equipment library.
  *
  * @param sup [[ch.ninecode.model.AssetInfo AssetInfo]] Reference to the superclass object.
+ * @param TransformerTankInfos [[ch.ninecode.model.TransformerTankInfo TransformerTankInfo]] Data for all the tanks described by this power transformer data.
  * @group AssetInfo
  * @groupname AssetInfo Package AssetInfo
  * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
  */
 case class PowerTransformerInfo
 (
-    override val sup: AssetInfo
+    override val sup: AssetInfo,
+    TransformerTankInfos: List[String]
 )
 extends
     Element
@@ -638,7 +628,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null) }
+    def this () = { this (null, List()) }
     /**
      * Return the superclass object.
      *
@@ -659,7 +649,11 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        sup.export_fields
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = PowerTransformerInfo.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (PowerTransformerInfo.fields (position), x))
+        emitattrs (0, TransformerTankInfos)
+        s.toString
     }
     override def export: String =
     {
@@ -671,18 +665,25 @@ object PowerTransformerInfo
 extends
     Parseable[PowerTransformerInfo]
 {
+    override val fields: Array[String] = Array[String] (
+        "TransformerTankInfos"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("TransformerTankInfos", "TransformerTankInfo", "1..*", "1")
+    )
+    val TransformerTankInfos: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): PowerTransformerInfo =
     {
         implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
         val ret = PowerTransformerInfo (
-            AssetInfo.parse (context)
+            AssetInfo.parse (context),
+            masks (TransformerTankInfos (), 0)
         )
+        ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -768,7 +769,7 @@ object ShortCircuitTest
 extends
     Parseable[ShortCircuitTest]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "energisedEndStep",
         "groundedEndStep",
         "leakageImpedance",
@@ -777,6 +778,10 @@ extends
         "lossZero",
         "EnergisedEnd",
         "GroundedEnds"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("EnergisedEnd", "TransformerEndInfo", "1", "0..*"),
+        Relationship ("GroundedEnds", "TransformerEndInfo", "1..*", "0..*")
     )
     val energisedEndStep: Fielder = parse_element (element (cls, fields(0)))
     val groundedEndStep: Fielder = parse_element (element (cls, fields(1)))
@@ -805,10 +810,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("EnergisedEnd", "TransformerEndInfo", false),
-        Relationship ("GroundedEnds", "TransformerEndInfo", true)
-    )
 }
 
 /**
@@ -881,12 +882,15 @@ object ShuntCompensatorInfo
 extends
     Parseable[ShuntCompensatorInfo]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "maxPowerLoss",
         "ratedCurrent",
         "ratedReactivePower",
         "ratedVoltage",
         "ShuntCompensatorControl"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ShuntCompensatorControl", "ShuntCompensatorControl", "0..1", "0..1")
     )
     val maxPowerLoss: Fielder = parse_element (element (cls, fields(0)))
     val ratedCurrent: Fielder = parse_element (element (cls, fields(1)))
@@ -909,9 +913,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("ShuntCompensatorControl", "ShuntCompensatorControl", false)
-    )
 }
 
 /**
@@ -983,7 +984,7 @@ object SwitchInfo
 extends
     Parseable[SwitchInfo]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "breakingCapacity",
         "isSinglePhase",
         "isUnganged",
@@ -1011,9 +1012,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1116,7 +1114,7 @@ object TapChangerInfo
 extends
     Parseable[TapChangerInfo]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "bil",
         "ctRating",
         "ctRatio",
@@ -1174,9 +1172,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1239,7 +1234,7 @@ object TapeShieldCableInfo
 extends
     Parseable[TapeShieldCableInfo]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "tapeLap",
         "tapeThickness"
     )
@@ -1258,9 +1253,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1280,7 +1272,12 @@ extends
  * @param shortTermS Apparent power that this winding can carry for a short period of time (in emergency).
  * @param CoreAdmittance [[ch.ninecode.model.TransformerCoreAdmittance TransformerCoreAdmittance]] Core admittance calculated from this transformer end datasheet, representing magnetising current and core losses.
  *        The full values of the transformer should be supplied for one transformer end info only.
+ * @param EnergisedEndNoLoadTests [[ch.ninecode.model.NoLoadTest NoLoadTest]] All no-load test measurements in which this transformer end was energised.
+ * @param EnergisedEndOpenCircuitTests [[ch.ninecode.model.OpenCircuitTest OpenCircuitTest]] All open-circuit test measurements in which this transformer end was excited.
+ * @param EnergisedEndShortCircuitTests [[ch.ninecode.model.ShortCircuitTest ShortCircuitTest]] All short-circuit test measurements in which this transformer end was energised.
+ * @param FromMeshImpedances [[ch.ninecode.model.TransformerMeshImpedance TransformerMeshImpedance]] All mesh impedances between this 'to' and other 'from' transformer ends.
  * @param GroundedEndShortCircuitTests [[ch.ninecode.model.ShortCircuitTest ShortCircuitTest]] All short-circuit test measurements in which this transformer end was short-circuited.
+ * @param OpenEndOpenCircuitTests [[ch.ninecode.model.OpenCircuitTest OpenCircuitTest]] All open-circuit test measurements in which this transformer end was not excited.
  * @param ToMeshImpedances [[ch.ninecode.model.TransformerMeshImpedance TransformerMeshImpedance]] All mesh impedances between this 'from' and other 'to' transformer ends.
  * @param TransformerStarImpedance [[ch.ninecode.model.TransformerStarImpedance TransformerStarImpedance]] Transformer star impedance calculated from this transformer end datasheet.
  * @param TransformerTankInfo [[ch.ninecode.model.TransformerTankInfo TransformerTankInfo]] Transformer tank data that this end description is part of.
@@ -1301,7 +1298,12 @@ case class TransformerEndInfo
     ratedU: Double,
     shortTermS: Double,
     CoreAdmittance: String,
+    EnergisedEndNoLoadTests: List[String],
+    EnergisedEndOpenCircuitTests: List[String],
+    EnergisedEndShortCircuitTests: List[String],
+    FromMeshImpedances: List[String],
     GroundedEndShortCircuitTests: List[String],
+    OpenEndOpenCircuitTests: List[String],
     ToMeshImpedances: List[String],
     TransformerStarImpedance: String,
     TransformerTankInfo: String
@@ -1312,7 +1314,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, 0.0, 0, 0.0, 0, 0.0, 0.0, 0.0, 0.0, null, List(), List(), null, null) }
+    def this () = { this (null, null, 0.0, 0, 0.0, 0, 0.0, 0.0, 0.0, 0.0, null, List(), List(), List(), List(), List(), List(), List(), null, null) }
     /**
      * Return the superclass object.
      *
@@ -1348,10 +1350,15 @@ extends
         emitelem (7, ratedU)
         emitelem (8, shortTermS)
         emitattr (9, CoreAdmittance)
-        emitattrs (10, GroundedEndShortCircuitTests)
-        emitattrs (11, ToMeshImpedances)
-        emitattr (12, TransformerStarImpedance)
-        emitattr (13, TransformerTankInfo)
+        emitattrs (10, EnergisedEndNoLoadTests)
+        emitattrs (11, EnergisedEndOpenCircuitTests)
+        emitattrs (12, EnergisedEndShortCircuitTests)
+        emitattrs (13, FromMeshImpedances)
+        emitattrs (14, GroundedEndShortCircuitTests)
+        emitattrs (15, OpenEndOpenCircuitTests)
+        emitattrs (16, ToMeshImpedances)
+        emitattr (17, TransformerStarImpedance)
+        emitattr (18, TransformerTankInfo)
         s.toString
     }
     override def export: String =
@@ -1364,7 +1371,7 @@ object TransformerEndInfo
 extends
     Parseable[TransformerEndInfo]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "connectionKind",
         "emergencyS",
         "endNumber",
@@ -1375,10 +1382,27 @@ extends
         "ratedU",
         "shortTermS",
         "CoreAdmittance",
+        "EnergisedEndNoLoadTests",
+        "EnergisedEndOpenCircuitTests",
+        "EnergisedEndShortCircuitTests",
+        "FromMeshImpedances",
         "GroundedEndShortCircuitTests",
+        "OpenEndOpenCircuitTests",
         "ToMeshImpedances",
         "TransformerStarImpedance",
         "TransformerTankInfo"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("CoreAdmittance", "TransformerCoreAdmittance", "0..1", "0..1"),
+        Relationship ("EnergisedEndNoLoadTests", "NoLoadTest", "0..*", "0..1"),
+        Relationship ("EnergisedEndOpenCircuitTests", "OpenCircuitTest", "0..*", "1"),
+        Relationship ("EnergisedEndShortCircuitTests", "ShortCircuitTest", "0..*", "1"),
+        Relationship ("FromMeshImpedances", "TransformerMeshImpedance", "0..*", "0..1"),
+        Relationship ("GroundedEndShortCircuitTests", "ShortCircuitTest", "0..*", "1..*"),
+        Relationship ("OpenEndOpenCircuitTests", "OpenCircuitTest", "0..*", "1"),
+        Relationship ("ToMeshImpedances", "TransformerMeshImpedance", "0..*", "0..*"),
+        Relationship ("TransformerStarImpedance", "TransformerStarImpedance", "0..1", "0..1"),
+        Relationship ("TransformerTankInfo", "TransformerTankInfo", "1", "1..*")
     )
     val connectionKind: Fielder = parse_attribute (attribute (cls, fields(0)))
     val emergencyS: Fielder = parse_element (element (cls, fields(1)))
@@ -1390,10 +1414,15 @@ extends
     val ratedU: Fielder = parse_element (element (cls, fields(7)))
     val shortTermS: Fielder = parse_element (element (cls, fields(8)))
     val CoreAdmittance: Fielder = parse_attribute (attribute (cls, fields(9)))
-    val GroundedEndShortCircuitTests: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
-    val ToMeshImpedances: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
-    val TransformerStarImpedance: Fielder = parse_attribute (attribute (cls, fields(12)))
-    val TransformerTankInfo: Fielder = parse_attribute (attribute (cls, fields(13)))
+    val EnergisedEndNoLoadTests: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
+    val EnergisedEndOpenCircuitTests: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
+    val EnergisedEndShortCircuitTests: FielderMultiple = parse_attributes (attribute (cls, fields(12)))
+    val FromMeshImpedances: FielderMultiple = parse_attributes (attribute (cls, fields(13)))
+    val GroundedEndShortCircuitTests: FielderMultiple = parse_attributes (attribute (cls, fields(14)))
+    val OpenEndOpenCircuitTests: FielderMultiple = parse_attributes (attribute (cls, fields(15)))
+    val ToMeshImpedances: FielderMultiple = parse_attributes (attribute (cls, fields(16)))
+    val TransformerStarImpedance: Fielder = parse_attribute (attribute (cls, fields(17)))
+    val TransformerTankInfo: Fielder = parse_attribute (attribute (cls, fields(18)))
 
     def parse (context: Context): TransformerEndInfo =
     {
@@ -1411,21 +1440,19 @@ extends
             toDouble (mask (ratedU (), 7)),
             toDouble (mask (shortTermS (), 8)),
             mask (CoreAdmittance (), 9),
-            masks (GroundedEndShortCircuitTests (), 10),
-            masks (ToMeshImpedances (), 11),
-            mask (TransformerStarImpedance (), 12),
-            mask (TransformerTankInfo (), 13)
+            masks (EnergisedEndNoLoadTests (), 10),
+            masks (EnergisedEndOpenCircuitTests (), 11),
+            masks (EnergisedEndShortCircuitTests (), 12),
+            masks (FromMeshImpedances (), 13),
+            masks (GroundedEndShortCircuitTests (), 14),
+            masks (OpenEndOpenCircuitTests (), 15),
+            masks (ToMeshImpedances (), 16),
+            mask (TransformerStarImpedance (), 17),
+            mask (TransformerTankInfo (), 18)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("CoreAdmittance", "TransformerCoreAdmittance", false),
-        Relationship ("GroundedEndShortCircuitTests", "ShortCircuitTest", true),
-        Relationship ("ToMeshImpedances", "TransformerMeshImpedance", true),
-        Relationship ("TransformerStarImpedance", "TransformerStarImpedance", false),
-        Relationship ("TransformerTankInfo", "TransformerTankInfo", false)
-    )
 }
 
 /**
@@ -1433,6 +1460,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.AssetInfo AssetInfo]] Reference to the superclass object.
  * @param PowerTransformerInfo [[ch.ninecode.model.PowerTransformerInfo PowerTransformerInfo]] Power transformer data that this tank description is part of.
+ * @param TransformerEndInfos [[ch.ninecode.model.TransformerEndInfo TransformerEndInfo]] Data for all the ends described by this transformer tank data.
  * @group AssetInfo
  * @groupname AssetInfo Package AssetInfo
  * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
@@ -1440,7 +1468,8 @@ extends
 case class TransformerTankInfo
 (
     override val sup: AssetInfo,
-    PowerTransformerInfo: String
+    PowerTransformerInfo: String,
+    TransformerEndInfos: List[String]
 )
 extends
     Element
@@ -1448,7 +1477,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null) }
+    def this () = { this (null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -1472,7 +1501,9 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = TransformerTankInfo.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TransformerTankInfo.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (TransformerTankInfo.fields (position), x))
         emitattr (0, PowerTransformerInfo)
+        emitattrs (1, TransformerEndInfos)
         s.toString
     }
     override def export: String =
@@ -1485,10 +1516,16 @@ object TransformerTankInfo
 extends
     Parseable[TransformerTankInfo]
 {
-    val fields: Array[String] = Array[String] (
-        "PowerTransformerInfo"
+    override val fields: Array[String] = Array[String] (
+        "PowerTransformerInfo",
+        "TransformerEndInfos"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("PowerTransformerInfo", "PowerTransformerInfo", "1", "1..*"),
+        Relationship ("TransformerEndInfos", "TransformerEndInfo", "1..*", "1")
     )
     val PowerTransformerInfo: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val TransformerEndInfos: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): TransformerTankInfo =
     {
@@ -1496,14 +1533,12 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = TransformerTankInfo (
             AssetInfo.parse (context),
-            mask (PowerTransformerInfo (), 0)
+            mask (PowerTransformerInfo (), 0),
+            masks (TransformerEndInfos (), 1)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("PowerTransformerInfo", "PowerTransformerInfo", false)
-    )
 }
 
 /**
@@ -1566,7 +1601,7 @@ object TransformerTest
 extends
     Parseable[TransformerTest]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "basePower",
         "temperature"
     )
@@ -1585,9 +1620,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1695,7 +1727,7 @@ object WireInfo
 extends
     Parseable[WireInfo]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "coreRadius",
         "coreStrandCount",
         "gmr",
@@ -1712,6 +1744,9 @@ extends
         "sizeDescription",
         "strandCount",
         "PerLengthParameters"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("PerLengthParameters", "PerLengthLineParameter", "0..*", "0..*")
     )
     val coreRadius: Fielder = parse_element (element (cls, fields(0)))
     val coreStrandCount: Fielder = parse_element (element (cls, fields(1)))
@@ -1756,9 +1791,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("PerLengthParameters", "PerLengthLineParameter", true)
-    )
 }
 
 /**
@@ -1828,11 +1860,14 @@ object WirePosition
 extends
     Parseable[WirePosition]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "phase",
         "xCoord",
         "yCoord",
         "WireSpacingInfo"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("WireSpacingInfo", "WireSpacingInfo", "0..1", "1..*")
     )
     val phase: Fielder = parse_attribute (attribute (cls, fields(0)))
     val xCoord: Fielder = parse_element (element (cls, fields(1)))
@@ -1853,9 +1888,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("WireSpacingInfo", "WireSpacingInfo", false)
-    )
 }
 
 /**
@@ -1869,7 +1901,9 @@ extends
  * @param phaseWireSpacing Distance between wire sub-conductors in a symmetrical bundle.
  * @param usage Usage of the associated wires.
  * @param DuctBank [[ch.ninecode.model.DuctBank DuctBank]] <em>undocumented</em>
+ * @param PerLengthParameters [[ch.ninecode.model.PerLengthLineParameter PerLengthLineParameter]] All per-length parameters calculated from this wire spacing datasheet.
  * @param Structures [[ch.ninecode.model.Structure Structure]] <em>undocumented</em>
+ * @param WirePositions [[ch.ninecode.model.WirePosition WirePosition]] All positions of single wires (phase or neutral) making the conductor.
  * @group AssetInfo
  * @groupname AssetInfo Package AssetInfo
  * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
@@ -1882,7 +1916,9 @@ case class WireSpacingInfo
     phaseWireSpacing: Double,
     usage: String,
     DuctBank: String,
-    Structures: List[String]
+    PerLengthParameters: List[String],
+    Structures: List[String],
+    WirePositions: List[String]
 )
 extends
     Element
@@ -1890,7 +1926,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, false, 0, 0.0, null, null, List()) }
+    def this () = { this (null, false, 0, 0.0, null, null, List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1921,7 +1957,9 @@ extends
         emitelem (2, phaseWireSpacing)
         emitattr (3, usage)
         emitattr (4, DuctBank)
-        emitattrs (5, Structures)
+        emitattrs (5, PerLengthParameters)
+        emitattrs (6, Structures)
+        emitattrs (7, WirePositions)
         s.toString
     }
     override def export: String =
@@ -1934,20 +1972,30 @@ object WireSpacingInfo
 extends
     Parseable[WireSpacingInfo]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "isCable",
         "phaseWireCount",
         "phaseWireSpacing",
         "usage",
         "DuctBank",
-        "Structures"
+        "PerLengthParameters",
+        "Structures",
+        "WirePositions"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("DuctBank", "DuctBank", "0..1", "0..*"),
+        Relationship ("PerLengthParameters", "PerLengthLineParameter", "0..*", "0..1"),
+        Relationship ("Structures", "Structure", "0..*", "0..*"),
+        Relationship ("WirePositions", "WirePosition", "1..*", "0..1")
     )
     val isCable: Fielder = parse_element (element (cls, fields(0)))
     val phaseWireCount: Fielder = parse_element (element (cls, fields(1)))
     val phaseWireSpacing: Fielder = parse_element (element (cls, fields(2)))
     val usage: Fielder = parse_attribute (attribute (cls, fields(3)))
     val DuctBank: Fielder = parse_attribute (attribute (cls, fields(4)))
-    val Structures: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
+    val PerLengthParameters: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
+    val Structures: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
+    val WirePositions: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
 
     def parse (context: Context): WireSpacingInfo =
     {
@@ -1960,15 +2008,13 @@ extends
             toDouble (mask (phaseWireSpacing (), 2)),
             mask (usage (), 3),
             mask (DuctBank (), 4),
-            masks (Structures (), 5)
+            masks (PerLengthParameters (), 5),
+            masks (Structures (), 6),
+            masks (WirePositions (), 7)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("DuctBank", "DuctBank", false),
-        Relationship ("Structures", "Structure", true)
-    )
 }
 
 private[ninecode] object _AssetInfo

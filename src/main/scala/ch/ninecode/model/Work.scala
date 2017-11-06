@@ -14,6 +14,7 @@ import ch.ninecode.cim.Relationship
  * @param kind Kind of work.
  * @param priority Priority of work.
  * @param statusKind Kind of work status.
+ * @param TimeSchedules [[ch.ninecode.model.WorkTimeSchedule WorkTimeSchedule]] All time schedules for this work or work task.
  * @param WorkLocation [[ch.ninecode.model.WorkLocation WorkLocation]] Location for this work/task.
  * @group Work
  * @groupname Work Package Work
@@ -25,6 +26,7 @@ case class BaseWork
     kind: String,
     priority: String,
     statusKind: String,
+    TimeSchedules: List[String],
     WorkLocation: String
 )
 extends
@@ -33,7 +35,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null) }
+    def this () = { this (null, null, null, null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -57,10 +59,12 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = BaseWork.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (BaseWork.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (BaseWork.fields (position), x))
         emitattr (0, kind)
         emitattr (1, priority)
         emitattr (2, statusKind)
-        emitattr (3, WorkLocation)
+        emitattrs (3, TimeSchedules)
+        emitattr (4, WorkLocation)
         s.toString
     }
     override def export: String =
@@ -73,16 +77,22 @@ object BaseWork
 extends
     Parseable[BaseWork]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "kind",
         "priority",
         "statusKind",
+        "TimeSchedules",
         "WorkLocation"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("TimeSchedules", "WorkTimeSchedule", "0..*", "0..1"),
+        Relationship ("WorkLocation", "WorkLocation", "0..1", "0..*")
     )
     val kind: Fielder = parse_attribute (attribute (cls, fields(0)))
     val priority: Fielder = parse_attribute (attribute (cls, fields(1)))
     val statusKind: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val WorkLocation: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val TimeSchedules: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val WorkLocation: Fielder = parse_attribute (attribute (cls, fields(4)))
 
     def parse (context: Context): BaseWork =
     {
@@ -93,14 +103,12 @@ extends
             mask (kind (), 0),
             mask (priority (), 1),
             mask (statusKind (), 2),
-            mask (WorkLocation (), 3)
+            masks (TimeSchedules (), 3),
+            mask (WorkLocation (), 4)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("WorkLocation", "WorkLocation", false)
-    )
 }
 
 /**
@@ -169,7 +177,7 @@ object MaintenanceLocation
 extends
     Parseable[MaintenanceLocation]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "block",
         "lot",
         "nearestIntersection",
@@ -194,9 +202,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -264,10 +269,14 @@ object MaterialItem
 extends
     Parseable[MaterialItem]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "quantity",
         "TypeMaterial",
         "WorkTask"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("TypeMaterial", "TypeMaterial", "0..1", "0..*"),
+        Relationship ("WorkTask", "WorkTask", "0..1", "0..*")
     )
     val quantity: Fielder = parse_attribute (attribute (cls, fields(0)))
     val TypeMaterial: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -286,10 +295,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("TypeMaterial", "TypeMaterial", false),
-        Relationship ("WorkTask", "WorkTask", false)
-    )
 }
 
 /**
@@ -349,7 +354,7 @@ object Tool
 extends
     Parseable[Tool]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "lastCalibrationDate"
     )
     val lastCalibrationDate: Fielder = parse_element (element (cls, fields(0)))
@@ -365,9 +370,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -435,7 +437,7 @@ object Vehicle
 extends
     Parseable[Vehicle]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "odometerReadDateTime",
         "odometerReading",
         "usageKind"
@@ -457,9 +459,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -470,11 +469,14 @@ extends
  * @param Appointments [[ch.ninecode.model.Appointment Appointment]] All appointments for this work.
  * @param BusinessCase [[ch.ninecode.model.BusinessCase BusinessCase]] <em>undocumented</em>
  * @param Customers [[ch.ninecode.model.Customer Customer]] All the customers for which this work is performed.
+ * @param Designs [[ch.ninecode.model.Design Design]] <em>undocumented</em>
  * @param ErpProjectAccounting [[ch.ninecode.model.ErpProjectAccounting ErpProjectAccounting]] <em>undocumented</em>
  * @param Incidents [[ch.ninecode.model.Incident Incident]] All incidents being addressed by this work.
  * @param Project [[ch.ninecode.model.Project Project]] <em>undocumented</em>
  * @param WorkBillingInfo [[ch.ninecode.model.WorkBillingInfo WorkBillingInfo]] <em>undocumented</em>
  * @param WorkCostDetails [[ch.ninecode.model.WorkCostDetail WorkCostDetail]] <em>undocumented</em>
+ * @param WorkFlowSteps [[ch.ninecode.model.WorkFlowStep WorkFlowStep]] <em>undocumented</em>
+ * @param WorkTasks [[ch.ninecode.model.WorkTask WorkTask]] All tasks in this work.
  * @group Work
  * @groupname Work Package Work
  * @groupdesc Work This package contains the core information classes that support work management and network extension planning applications.
@@ -486,11 +488,14 @@ case class Work
     Appointments: List[String],
     BusinessCase: String,
     Customers: List[String],
+    Designs: List[String],
     ErpProjectAccounting: String,
     Incidents: List[String],
     Project: String,
     WorkBillingInfo: String,
-    WorkCostDetails: List[String]
+    WorkCostDetails: List[String],
+    WorkFlowSteps: List[String],
+    WorkTasks: List[String]
 )
 extends
     Element
@@ -498,7 +503,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, List(), null, List(), null, List(), null, null, List()) }
+    def this () = { this (null, null, List(), null, List(), List(), null, List(), null, null, List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -528,11 +533,14 @@ extends
         emitattrs (1, Appointments)
         emitattr (2, BusinessCase)
         emitattrs (3, Customers)
-        emitattr (4, ErpProjectAccounting)
-        emitattrs (5, Incidents)
-        emitattr (6, Project)
-        emitattr (7, WorkBillingInfo)
-        emitattrs (8, WorkCostDetails)
+        emitattrs (4, Designs)
+        emitattr (5, ErpProjectAccounting)
+        emitattrs (6, Incidents)
+        emitattr (7, Project)
+        emitattr (8, WorkBillingInfo)
+        emitattrs (9, WorkCostDetails)
+        emitattrs (10, WorkFlowSteps)
+        emitattrs (11, WorkTasks)
         s.toString
     }
     override def export: String =
@@ -545,26 +553,45 @@ object Work
 extends
     Parseable[Work]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "requestDateTime",
         "Appointments",
         "BusinessCase",
         "Customers",
+        "Designs",
         "ErpProjectAccounting",
         "Incidents",
         "Project",
         "WorkBillingInfo",
-        "WorkCostDetails"
+        "WorkCostDetails",
+        "WorkFlowSteps",
+        "WorkTasks"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Appointments", "Appointment", "0..*", "0..*"),
+        Relationship ("BusinessCase", "BusinessCase", "0..1", "0..*"),
+        Relationship ("Customers", "Customer", "0..*", "0..*"),
+        Relationship ("Designs", "Design", "0..*", "0..1"),
+        Relationship ("ErpProjectAccounting", "ErpProjectAccounting", "0..1", "0..*"),
+        Relationship ("Incidents", "Incident", "0..*", "0..*"),
+        Relationship ("Project", "Project", "0..1", "0..*"),
+        Relationship ("WorkBillingInfo", "WorkBillingInfo", "0..1", "0..*"),
+        Relationship ("WorkCostDetails", "WorkCostDetail", "0..*", "0..*"),
+        Relationship ("WorkFlowSteps", "WorkFlowStep", "0..*", "0..1"),
+        Relationship ("WorkTasks", "WorkTask", "0..*", "1")
     )
     val requestDateTime: Fielder = parse_element (element (cls, fields(0)))
     val Appointments: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
     val BusinessCase: Fielder = parse_attribute (attribute (cls, fields(2)))
     val Customers: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
-    val ErpProjectAccounting: Fielder = parse_attribute (attribute (cls, fields(4)))
-    val Incidents: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
-    val Project: Fielder = parse_attribute (attribute (cls, fields(6)))
-    val WorkBillingInfo: Fielder = parse_attribute (attribute (cls, fields(7)))
-    val WorkCostDetails: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
+    val Designs: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val ErpProjectAccounting: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val Incidents: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
+    val Project: Fielder = parse_attribute (attribute (cls, fields(7)))
+    val WorkBillingInfo: Fielder = parse_attribute (attribute (cls, fields(8)))
+    val WorkCostDetails: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
+    val WorkFlowSteps: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
+    val WorkTasks: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
 
     def parse (context: Context): Work =
     {
@@ -576,25 +603,18 @@ extends
             masks (Appointments (), 1),
             mask (BusinessCase (), 2),
             masks (Customers (), 3),
-            mask (ErpProjectAccounting (), 4),
-            masks (Incidents (), 5),
-            mask (Project (), 6),
-            mask (WorkBillingInfo (), 7),
-            masks (WorkCostDetails (), 8)
+            masks (Designs (), 4),
+            mask (ErpProjectAccounting (), 5),
+            masks (Incidents (), 6),
+            mask (Project (), 7),
+            mask (WorkBillingInfo (), 8),
+            masks (WorkCostDetails (), 9),
+            masks (WorkFlowSteps (), 10),
+            masks (WorkTasks (), 11)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Appointments", "Appointment", true),
-        Relationship ("BusinessCase", "BusinessCase", false),
-        Relationship ("Customers", "Customer", true),
-        Relationship ("ErpProjectAccounting", "ErpProjectAccounting", false),
-        Relationship ("Incidents", "Incident", true),
-        Relationship ("Project", "Project", false),
-        Relationship ("WorkBillingInfo", "WorkBillingInfo", false),
-        Relationship ("WorkCostDetails", "WorkCostDetail", true)
-    )
 }
 
 /**
@@ -654,8 +674,11 @@ object WorkAsset
 extends
     Parseable[WorkAsset]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "Crew"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Crew", "Crew", "0..1", "0..*")
     )
     val Crew: Fielder = parse_attribute (attribute (cls, fields(0)))
 
@@ -670,15 +693,13 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Crew", "Crew", false)
-    )
 }
 
 /**
  * Information about a particular location for various forms of work.
  *
  * @param sup [[ch.ninecode.model.Location Location]] Reference to the superclass object.
+ * @param BaseWorks [[ch.ninecode.model.BaseWork BaseWork]] All works/tasks at this location.
  * @param DesignLocations [[ch.ninecode.model.DesignLocation DesignLocation]] <em>undocumented</em>
  * @param OneCallRequest [[ch.ninecode.model.OneCallRequest OneCallRequest]] <em>undocumented</em>
  * @group Work
@@ -688,6 +709,7 @@ extends
 case class WorkLocation
 (
     override val sup: Location,
+    BaseWorks: List[String],
     DesignLocations: List[String],
     OneCallRequest: String
 )
@@ -697,7 +719,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, List(), null) }
+    def this () = { this (null, List(), List(), null) }
     /**
      * Return the superclass object.
      *
@@ -722,8 +744,9 @@ extends
         implicit val clz: String = WorkLocation.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WorkLocation.fields (position), value)
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (WorkLocation.fields (position), x))
-        emitattrs (0, DesignLocations)
-        emitattr (1, OneCallRequest)
+        emitattrs (0, BaseWorks)
+        emitattrs (1, DesignLocations)
+        emitattr (2, OneCallRequest)
         s.toString
     }
     override def export: String =
@@ -736,12 +759,19 @@ object WorkLocation
 extends
     Parseable[WorkLocation]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
+        "BaseWorks",
         "DesignLocations",
         "OneCallRequest"
     )
-    val DesignLocations: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
-    val OneCallRequest: Fielder = parse_attribute (attribute (cls, fields(1)))
+    override val relations: List[Relationship] = List (
+        Relationship ("BaseWorks", "BaseWork", "0..*", "0..1"),
+        Relationship ("DesignLocations", "DesignLocation", "0..*", "1..*"),
+        Relationship ("OneCallRequest", "OneCallRequest", "0..1", "0..*")
+    )
+    val BaseWorks: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val DesignLocations: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val OneCallRequest: Fielder = parse_attribute (attribute (cls, fields(2)))
 
     def parse (context: Context): WorkLocation =
     {
@@ -749,16 +779,13 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = WorkLocation (
             Location.parse (context),
-            masks (DesignLocations (), 0),
-            mask (OneCallRequest (), 1)
+            masks (BaseWorks (), 0),
+            masks (DesignLocations (), 1),
+            mask (OneCallRequest (), 2)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("DesignLocations", "DesignLocation", true),
-        Relationship ("OneCallRequest", "OneCallRequest", false)
-    )
 }
 
 /**
@@ -776,6 +803,7 @@ case class WorkTask
     taskKind: String,
     Assets: List[String],
     Crews: List[String],
+    MaterialItems: List[String],
     OldAsset: String,
     SwitchingPlan: String,
     Work: String
@@ -786,7 +814,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null, List(), List(), null, null, null) }
+    def this () = { this (null, null, null, null, null, List(), List(), List(), null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -818,9 +846,10 @@ extends
         emitattr (3, taskKind)
         emitattrs (4, Assets)
         emitattrs (5, Crews)
-        emitattr (6, OldAsset)
-        emitattr (7, SwitchingPlan)
-        emitattr (8, Work)
+        emitattrs (6, MaterialItems)
+        emitattr (7, OldAsset)
+        emitattr (8, SwitchingPlan)
+        emitattr (9, Work)
         s.toString
     }
     override def export: String =
@@ -833,16 +862,25 @@ object WorkTask
 extends
     Parseable[WorkTask]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "crewETA",
         "instruction",
         "schedOverride",
         "taskKind",
         "Assets",
         "Crews",
+        "MaterialItems",
         "OldAsset",
         "SwitchingPlan",
         "Work"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Assets", "Asset", "0..*", "0..*"),
+        Relationship ("Crews", "Crew", "0..*", "0..*"),
+        Relationship ("MaterialItems", "MaterialItem", "0..*", "0..1"),
+        Relationship ("OldAsset", "Asset", "0..1", "0..*"),
+        Relationship ("SwitchingPlan", "SwitchingPlan", "0..1", "0..*"),
+        Relationship ("Work", "Work", "1", "0..*")
     )
     val crewETA: Fielder = parse_element (element (cls, fields(0)))
     val instruction: Fielder = parse_element (element (cls, fields(1)))
@@ -850,9 +888,10 @@ extends
     val taskKind: Fielder = parse_attribute (attribute (cls, fields(3)))
     val Assets: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
     val Crews: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
-    val OldAsset: Fielder = parse_attribute (attribute (cls, fields(6)))
-    val SwitchingPlan: Fielder = parse_attribute (attribute (cls, fields(7)))
-    val Work: Fielder = parse_attribute (attribute (cls, fields(8)))
+    val MaterialItems: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
+    val OldAsset: Fielder = parse_attribute (attribute (cls, fields(7)))
+    val SwitchingPlan: Fielder = parse_attribute (attribute (cls, fields(8)))
+    val Work: Fielder = parse_attribute (attribute (cls, fields(9)))
 
     def parse (context: Context): WorkTask =
     {
@@ -866,20 +905,14 @@ extends
             mask (taskKind (), 3),
             masks (Assets (), 4),
             masks (Crews (), 5),
-            mask (OldAsset (), 6),
-            mask (SwitchingPlan (), 7),
-            mask (Work (), 8)
+            masks (MaterialItems (), 6),
+            mask (OldAsset (), 7),
+            mask (SwitchingPlan (), 8),
+            mask (Work (), 9)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Assets", "Asset", true),
-        Relationship ("Crews", "Crew", true),
-        Relationship ("OldAsset", "Asset", false),
-        Relationship ("SwitchingPlan", "SwitchingPlan", false),
-        Relationship ("Work", "Work", false)
-    )
 }
 
 /**
@@ -942,9 +975,12 @@ object WorkTimeSchedule
 extends
     Parseable[WorkTimeSchedule]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "kind",
         "BaseWork"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("BaseWork", "BaseWork", "0..1", "0..*")
     )
     val kind: Fielder = parse_attribute (attribute (cls, fields(0)))
     val BaseWork: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -961,9 +997,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("BaseWork", "BaseWork", false)
-    )
 }
 
 private[ninecode] object _Work

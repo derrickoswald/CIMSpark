@@ -83,11 +83,17 @@ object AsynchronousMachineDynamics
 extends
     Parseable[AsynchronousMachineDynamics]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "AsynchronousMachine",
         "MechanicalLoadDynamics",
         "TurbineGovernorDynamics",
         "WindTurbineType1or2Dynamics"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("AsynchronousMachine", "AsynchronousMachine", "1", "0..1"),
+        Relationship ("MechanicalLoadDynamics", "MechanicalLoadDynamics", "0..1", "0..1"),
+        Relationship ("TurbineGovernorDynamics", "TurbineGovernorDynamics", "0..1", "0..1"),
+        Relationship ("WindTurbineType1or2Dynamics", "WindTurbineType1or2Dynamics", "0..1", "1")
     )
     val AsynchronousMachine: Fielder = parse_attribute (attribute (cls, fields(0)))
     val MechanicalLoadDynamics: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -108,12 +114,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("AsynchronousMachine", "AsynchronousMachine", false),
-        Relationship ("MechanicalLoadDynamics", "MechanicalLoadDynamics", false),
-        Relationship ("TurbineGovernorDynamics", "TurbineGovernorDynamics", false),
-        Relationship ("WindTurbineType1or2Dynamics", "WindTurbineType1or2Dynamics", false)
-    )
 }
 
 /**
@@ -204,7 +204,7 @@ object AsynchronousMachineEquivalentCircuit
 extends
     Parseable[AsynchronousMachineEquivalentCircuit]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "rr1",
         "rr2",
         "xlr1",
@@ -232,9 +232,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -336,7 +333,7 @@ object AsynchronousMachineTimeConstantReactance
 extends
     Parseable[AsynchronousMachineTimeConstantReactance]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "tpo",
         "tppo",
         "xp",
@@ -364,9 +361,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 private[ninecode] object _AsynchronousMachineDynamics

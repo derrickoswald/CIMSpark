@@ -66,8 +66,11 @@ object AuxiliaryEquipment
 extends
     Parseable[AuxiliaryEquipment]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "Terminal"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Terminal", "Terminal", "1", "0..*")
     )
     val Terminal: Fielder = parse_attribute (attribute (cls, fields(0)))
 
@@ -82,9 +85,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("Terminal", "Terminal", false)
-    )
 }
 
 /**
@@ -158,7 +158,7 @@ object CurrentTransformer
 extends
     Parseable[CurrentTransformer]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "accuracyClass",
         "accuracyLimit",
         "coreBurden",
@@ -186,9 +186,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -253,9 +250,6 @@ extends
         )
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -318,9 +312,6 @@ extends
         )
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -392,7 +383,7 @@ object PotentialTransformer
 extends
     Parseable[PotentialTransformer]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "accuracyClass",
         "nominalRatio",
         "ptClass",
@@ -417,9 +408,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -482,9 +470,6 @@ extends
         )
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -547,9 +532,6 @@ extends
         )
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -612,9 +594,6 @@ extends
         )
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 private[ninecode] object _AuxiliaryEquipment

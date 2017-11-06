@@ -95,7 +95,7 @@ object ConnectDisconnectFunction
 extends
     Parseable[ConnectDisconnectFunction]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "eventCount",
         "isConnected",
         "isDelayedDiscon",
@@ -105,6 +105,10 @@ extends
         "isRemoteAutoReconOp",
         "rcdInfo",
         "Switches"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("rcdInfo", "RemoteConnectDisconnectInfo", "0..1", "0..*"),
+        Relationship ("Switches", "Switch", "0..*", "0..*")
     )
     val eventCount: Fielder = parse_element (element (cls, fields(0)))
     val isConnected: Fielder = parse_element (element (cls, fields(1)))
@@ -135,10 +139,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("rcdInfo", "RemoteConnectDisconnectInfo", false),
-        Relationship ("Switches", "Switch", true)
-    )
 }
 
 /**
@@ -231,7 +231,7 @@ object RemoteConnectDisconnectInfo
 extends
     Parseable[RemoteConnectDisconnectInfo]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "armedTimeout",
         "customerVoltageLimit",
         "energyLimit",
@@ -280,9 +280,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 private[ninecode] object _LoadControl

@@ -16,6 +16,7 @@ import ch.ninecode.cim.Relationship
  * @param intervalStartTime <em>undocumented</em>
  * @param updateTimeStamp <em>undocumented</em>
  * @param updateUser <em>undocumented</em>
+ * @param AllocationResultValues [[ch.ninecode.model.AllocationResultValues AllocationResultValues]] <em>undocumented</em>
  * @group MarketQualitySystem
  * @groupname MarketQualitySystem Package MarketQualitySystem
  * @groupdesc MarketQualitySystem Post-market accounting, calculation and meter data corrections to reduce invoicing errors and disputes. Reduces manual validation, verification and correction of transactional data that could affect market settlements. Republishing of market results with affected data corrected.
@@ -25,7 +26,8 @@ case class AllocationResult
     override val sup: BasicElement,
     intervalStartTime: String,
     updateTimeStamp: String,
-    updateUser: String
+    updateUser: String,
+    AllocationResultValues: List[String]
 )
 extends
     Element
@@ -33,7 +35,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null) }
+    def this () = { this (null, null, null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -57,9 +59,11 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = AllocationResult.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (AllocationResult.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (AllocationResult.fields (position), x))
         emitelem (0, intervalStartTime)
         emitelem (1, updateTimeStamp)
         emitelem (2, updateUser)
+        emitattrs (3, AllocationResultValues)
         s.toString
     }
     override def export: String =
@@ -72,14 +76,19 @@ object AllocationResult
 extends
     Parseable[AllocationResult]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "intervalStartTime",
         "updateTimeStamp",
-        "updateUser"
+        "updateUser",
+        "AllocationResultValues"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("AllocationResultValues", "AllocationResultValues", "1..*", "1")
     )
     val intervalStartTime: Fielder = parse_element (element (cls, fields(0)))
     val updateTimeStamp: Fielder = parse_element (element (cls, fields(1)))
     val updateUser: Fielder = parse_element (element (cls, fields(2)))
+    val AllocationResultValues: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
 
     def parse (context: Context): AllocationResult =
     {
@@ -89,14 +98,12 @@ extends
             BasicElement.parse (context),
             mask (intervalStartTime (), 0),
             mask (updateTimeStamp (), 1),
-            mask (updateUser (), 2)
+            mask (updateUser (), 2),
+            masks (AllocationResultValues (), 3)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -182,7 +189,7 @@ object AllocationResultValues
 extends
     Parseable[AllocationResultValues]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "aggregateType",
         "allocationMwHour",
         "allocationPrice",
@@ -190,6 +197,10 @@ extends
         "marketServiceType",
         "AllocationResult",
         "RegisteredResource"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("AllocationResult", "AllocationResult", "1", "1..*"),
+        Relationship ("RegisteredResource", "RegisteredResource", "0..1", "0..*")
     )
     val aggregateType: Fielder = parse_element (element (cls, fields(0)))
     val allocationMwHour: Fielder = parse_element (element (cls, fields(1)))
@@ -216,10 +227,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("AllocationResult", "AllocationResult", false),
-        Relationship ("RegisteredResource", "RegisteredResource", false)
-    )
 }
 
 /**
@@ -230,6 +237,7 @@ extends
  * @param marketType <em>undocumented</em>
  * @param updateTimeStamp <em>undocumented</em>
  * @param updateUser <em>undocumented</em>
+ * @param AuxillaryValues [[ch.ninecode.model.AuxiliaryValues AuxiliaryValues]] <em>undocumented</em>
  * @group MarketQualitySystem
  * @groupname MarketQualitySystem Package MarketQualitySystem
  * @groupdesc MarketQualitySystem Post-market accounting, calculation and meter data corrections to reduce invoicing errors and disputes. Reduces manual validation, verification and correction of transactional data that could affect market settlements. Republishing of market results with affected data corrected.
@@ -240,7 +248,8 @@ case class AuxiliaryCost
     intervalStartTime: String,
     marketType: String,
     updateTimeStamp: String,
-    updateUser: String
+    updateUser: String,
+    AuxillaryValues: List[String]
 )
 extends
     Element
@@ -248,7 +257,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null) }
+    def this () = { this (null, null, null, null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -273,10 +282,12 @@ extends
         implicit val clz: String = AuxiliaryCost.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (AuxiliaryCost.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (AuxiliaryCost.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (AuxiliaryCost.fields (position), x))
         emitelem (0, intervalStartTime)
         emitattr (1, marketType)
         emitelem (2, updateTimeStamp)
         emitelem (3, updateUser)
+        emitattrs (4, AuxillaryValues)
         s.toString
     }
     override def export: String =
@@ -289,16 +300,21 @@ object AuxiliaryCost
 extends
     Parseable[AuxiliaryCost]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "intervalStartTime",
         "marketType",
         "updateTimeStamp",
-        "updateUser"
+        "updateUser",
+        "AuxillaryValues"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("AuxillaryValues", "AuxiliaryValues", "1..*", "1")
     )
     val intervalStartTime: Fielder = parse_element (element (cls, fields(0)))
     val marketType: Fielder = parse_attribute (attribute (cls, fields(1)))
     val updateTimeStamp: Fielder = parse_element (element (cls, fields(2)))
     val updateUser: Fielder = parse_element (element (cls, fields(3)))
+    val AuxillaryValues: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
 
     def parse (context: Context): AuxiliaryCost =
     {
@@ -309,14 +325,12 @@ extends
             mask (intervalStartTime (), 0),
             mask (marketType (), 1),
             mask (updateTimeStamp (), 2),
-            mask (updateUser (), 3)
+            mask (updateUser (), 3),
+            masks (AuxillaryValues (), 4)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -379,9 +393,13 @@ object AuxiliaryObject
 extends
     Parseable[AuxiliaryObject]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "RegisteredGenerator",
         "RegisteredLoad"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("RegisteredGenerator", "RegisteredGenerator", "0..1", "0..*"),
+        Relationship ("RegisteredLoad", "RegisteredLoad", "0..1", "0..*")
     )
     val RegisteredGenerator: Fielder = parse_attribute (attribute (cls, fields(0)))
     val RegisteredLoad: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -398,10 +416,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("RegisteredGenerator", "RegisteredGenerator", false),
-        Relationship ("RegisteredLoad", "RegisteredLoad", false)
-    )
 }
 
 /**
@@ -492,7 +506,7 @@ object AuxiliaryValues
 extends
     Parseable[AuxiliaryValues]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "availUndispatchedQ",
         "incrementalORAvail",
         "maxExpostCapacity",
@@ -504,6 +518,11 @@ extends
         "AuxillaryCost",
         "FiveMinAuxillaryData",
         "TenMinAuxillaryData"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("AuxillaryCost", "AuxiliaryCost", "1", "1..*"),
+        Relationship ("FiveMinAuxillaryData", "FiveMinAuxiliaryData", "1", "1..*"),
+        Relationship ("TenMinAuxillaryData", "TenMinAuxiliaryData", "1", "1..*")
     )
     val availUndispatchedQ: Fielder = parse_element (element (cls, fields(0)))
     val incrementalORAvail: Fielder = parse_element (element (cls, fields(1)))
@@ -538,11 +557,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("AuxillaryCost", "AuxiliaryCost", false),
-        Relationship ("FiveMinAuxillaryData", "FiveMinAuxiliaryData", false),
-        Relationship ("TenMinAuxillaryData", "TenMinAuxiliaryData", false)
-    )
 }
 
 /**
@@ -552,6 +566,7 @@ extends
  * @param intervalStartTime <em>undocumented</em>
  * @param updateTimeStamp <em>undocumented</em>
  * @param updateUser <em>undocumented</em>
+ * @param ExpectedEnergyValues [[ch.ninecode.model.ExpectedEnergyValues ExpectedEnergyValues]] <em>undocumented</em>
  * @group MarketQualitySystem
  * @groupname MarketQualitySystem Package MarketQualitySystem
  * @groupdesc MarketQualitySystem Post-market accounting, calculation and meter data corrections to reduce invoicing errors and disputes. Reduces manual validation, verification and correction of transactional data that could affect market settlements. Republishing of market results with affected data corrected.
@@ -561,7 +576,8 @@ case class ExpectedEnergy
     override val sup: BasicElement,
     intervalStartTime: String,
     updateTimeStamp: String,
-    updateUser: String
+    updateUser: String,
+    ExpectedEnergyValues: List[String]
 )
 extends
     Element
@@ -569,7 +585,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null) }
+    def this () = { this (null, null, null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -593,9 +609,11 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExpectedEnergy.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExpectedEnergy.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ExpectedEnergy.fields (position), x))
         emitelem (0, intervalStartTime)
         emitelem (1, updateTimeStamp)
         emitelem (2, updateUser)
+        emitattrs (3, ExpectedEnergyValues)
         s.toString
     }
     override def export: String =
@@ -608,14 +626,19 @@ object ExpectedEnergy
 extends
     Parseable[ExpectedEnergy]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "intervalStartTime",
         "updateTimeStamp",
-        "updateUser"
+        "updateUser",
+        "ExpectedEnergyValues"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ExpectedEnergyValues", "ExpectedEnergyValues", "1..*", "1")
     )
     val intervalStartTime: Fielder = parse_element (element (cls, fields(0)))
     val updateTimeStamp: Fielder = parse_element (element (cls, fields(1)))
     val updateUser: Fielder = parse_element (element (cls, fields(2)))
+    val ExpectedEnergyValues: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
 
     def parse (context: Context): ExpectedEnergy =
     {
@@ -625,14 +648,12 @@ extends
             BasicElement.parse (context),
             mask (intervalStartTime (), 0),
             mask (updateTimeStamp (), 1),
-            mask (updateUser (), 2)
+            mask (updateUser (), 2),
+            masks (ExpectedEnergyValues (), 3)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -702,11 +723,15 @@ object ExpectedEnergyValues
 extends
     Parseable[ExpectedEnergyValues]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "energyTypeCode",
         "expectedMwh",
         "ExpectedEnergy",
         "RegisteredResource"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ExpectedEnergy", "ExpectedEnergy", "1", "1..*"),
+        Relationship ("RegisteredResource", "RegisteredResource", "0..1", "0..*")
     )
     val energyTypeCode: Fielder = parse_element (element (cls, fields(0)))
     val expectedMwh: Fielder = parse_element (element (cls, fields(1)))
@@ -727,10 +752,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("ExpectedEnergy", "ExpectedEnergy", false),
-        Relationship ("RegisteredResource", "RegisteredResource", false)
-    )
 }
 
 /**
@@ -740,6 +761,7 @@ extends
  * @param intervalStartTime <em>undocumented</em>
  * @param updateTimeStamp <em>undocumented</em>
  * @param updateUser <em>undocumented</em>
+ * @param AuxillaryValues [[ch.ninecode.model.AuxiliaryValues AuxiliaryValues]] <em>undocumented</em>
  * @group MarketQualitySystem
  * @groupname MarketQualitySystem Package MarketQualitySystem
  * @groupdesc MarketQualitySystem Post-market accounting, calculation and meter data corrections to reduce invoicing errors and disputes. Reduces manual validation, verification and correction of transactional data that could affect market settlements. Republishing of market results with affected data corrected.
@@ -749,7 +771,8 @@ case class FiveMinAuxiliaryData
     override val sup: BasicElement,
     intervalStartTime: String,
     updateTimeStamp: String,
-    updateUser: String
+    updateUser: String,
+    AuxillaryValues: List[String]
 )
 extends
     Element
@@ -757,7 +780,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null) }
+    def this () = { this (null, null, null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -781,9 +804,11 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = FiveMinAuxiliaryData.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (FiveMinAuxiliaryData.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (FiveMinAuxiliaryData.fields (position), x))
         emitelem (0, intervalStartTime)
         emitelem (1, updateTimeStamp)
         emitelem (2, updateUser)
+        emitattrs (3, AuxillaryValues)
         s.toString
     }
     override def export: String =
@@ -796,14 +821,19 @@ object FiveMinAuxiliaryData
 extends
     Parseable[FiveMinAuxiliaryData]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "intervalStartTime",
         "updateTimeStamp",
-        "updateUser"
+        "updateUser",
+        "AuxillaryValues"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("AuxillaryValues", "AuxiliaryValues", "1..*", "1")
     )
     val intervalStartTime: Fielder = parse_element (element (cls, fields(0)))
     val updateTimeStamp: Fielder = parse_element (element (cls, fields(1)))
     val updateUser: Fielder = parse_element (element (cls, fields(2)))
+    val AuxillaryValues: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
 
     def parse (context: Context): FiveMinAuxiliaryData =
     {
@@ -813,14 +843,12 @@ extends
             BasicElement.parse (context),
             mask (intervalStartTime (), 0),
             mask (updateTimeStamp (), 1),
-            mask (updateUser (), 2)
+            mask (updateUser (), 2),
+            masks (AuxillaryValues (), 3)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -830,6 +858,7 @@ extends
  * @param intervalStartTime <em>undocumented</em>
  * @param updateTimeStamp <em>undocumented</em>
  * @param updateUser <em>undocumented</em>
+ * @param AuxillaryData [[ch.ninecode.model.AuxiliaryValues AuxiliaryValues]] <em>undocumented</em>
  * @group MarketQualitySystem
  * @groupname MarketQualitySystem Package MarketQualitySystem
  * @groupdesc MarketQualitySystem Post-market accounting, calculation and meter data corrections to reduce invoicing errors and disputes. Reduces manual validation, verification and correction of transactional data that could affect market settlements. Republishing of market results with affected data corrected.
@@ -839,7 +868,8 @@ case class TenMinAuxiliaryData
     override val sup: BasicElement,
     intervalStartTime: String,
     updateTimeStamp: String,
-    updateUser: String
+    updateUser: String,
+    AuxillaryData: List[String]
 )
 extends
     Element
@@ -847,7 +877,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null) }
+    def this () = { this (null, null, null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -871,9 +901,11 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = TenMinAuxiliaryData.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TenMinAuxiliaryData.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (TenMinAuxiliaryData.fields (position), x))
         emitelem (0, intervalStartTime)
         emitelem (1, updateTimeStamp)
         emitelem (2, updateUser)
+        emitattrs (3, AuxillaryData)
         s.toString
     }
     override def export: String =
@@ -886,14 +918,19 @@ object TenMinAuxiliaryData
 extends
     Parseable[TenMinAuxiliaryData]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "intervalStartTime",
         "updateTimeStamp",
-        "updateUser"
+        "updateUser",
+        "AuxillaryData"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("AuxillaryData", "AuxiliaryValues", "1..*", "1")
     )
     val intervalStartTime: Fielder = parse_element (element (cls, fields(0)))
     val updateTimeStamp: Fielder = parse_element (element (cls, fields(1)))
     val updateUser: Fielder = parse_element (element (cls, fields(2)))
+    val AuxillaryData: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
 
     def parse (context: Context): TenMinAuxiliaryData =
     {
@@ -903,14 +940,12 @@ extends
             BasicElement.parse (context),
             mask (intervalStartTime (), 0),
             mask (updateTimeStamp (), 1),
-            mask (updateUser (), 2)
+            mask (updateUser (), 2),
+            masks (AuxillaryData (), 3)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -921,6 +956,7 @@ extends
  * @param marketType <em>undocumented</em>
  * @param updateTimeStamp <em>undocumented</em>
  * @param updateUser <em>undocumented</em>
+ * @param TradingHubValues [[ch.ninecode.model.TradingHubValues TradingHubValues]] <em>undocumented</em>
  * @group MarketQualitySystem
  * @groupname MarketQualitySystem Package MarketQualitySystem
  * @groupdesc MarketQualitySystem Post-market accounting, calculation and meter data corrections to reduce invoicing errors and disputes. Reduces manual validation, verification and correction of transactional data that could affect market settlements. Republishing of market results with affected data corrected.
@@ -931,7 +967,8 @@ case class TradingHubPrice
     intervalStartTime: String,
     marketType: String,
     updateTimeStamp: String,
-    updateUser: String
+    updateUser: String,
+    TradingHubValues: List[String]
 )
 extends
     Element
@@ -939,7 +976,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null) }
+    def this () = { this (null, null, null, null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -964,10 +1001,12 @@ extends
         implicit val clz: String = TradingHubPrice.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TradingHubPrice.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TradingHubPrice.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (TradingHubPrice.fields (position), x))
         emitelem (0, intervalStartTime)
         emitattr (1, marketType)
         emitelem (2, updateTimeStamp)
         emitelem (3, updateUser)
+        emitattrs (4, TradingHubValues)
         s.toString
     }
     override def export: String =
@@ -980,16 +1019,21 @@ object TradingHubPrice
 extends
     Parseable[TradingHubPrice]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "intervalStartTime",
         "marketType",
         "updateTimeStamp",
-        "updateUser"
+        "updateUser",
+        "TradingHubValues"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("TradingHubValues", "TradingHubValues", "1..*", "1")
     )
     val intervalStartTime: Fielder = parse_element (element (cls, fields(0)))
     val marketType: Fielder = parse_attribute (attribute (cls, fields(1)))
     val updateTimeStamp: Fielder = parse_element (element (cls, fields(2)))
     val updateUser: Fielder = parse_element (element (cls, fields(3)))
+    val TradingHubValues: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
 
     def parse (context: Context): TradingHubPrice =
     {
@@ -1000,14 +1044,12 @@ extends
             mask (intervalStartTime (), 0),
             mask (marketType (), 1),
             mask (updateTimeStamp (), 2),
-            mask (updateUser (), 3)
+            mask (updateUser (), 3),
+            masks (TradingHubValues (), 4)
         )
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-
-    )
 }
 
 /**
@@ -1075,10 +1117,14 @@ object TradingHubValues
 extends
     Parseable[TradingHubValues]
 {
-    val fields: Array[String] = Array[String] (
+    override val fields: Array[String] = Array[String] (
         "price",
         "AggregatedPnode",
         "TradingHubPrice"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("AggregatedPnode", "AggregatedPnode", "1", "0..*"),
+        Relationship ("TradingHubPrice", "TradingHubPrice", "1", "1..*")
     )
     val price: Fielder = parse_element (element (cls, fields(0)))
     val AggregatedPnode: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -1097,10 +1143,6 @@ extends
         ret.bitfields = bitfields
         ret
     }
-    val relations: List[Relationship] = List (
-        Relationship ("AggregatedPnode", "AggregatedPnode", false),
-        Relationship ("TradingHubPrice", "TradingHubPrice", false)
-    )
 }
 
 private[ninecode] object _MarketQualitySystem
