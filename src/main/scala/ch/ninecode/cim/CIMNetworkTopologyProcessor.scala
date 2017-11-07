@@ -559,7 +559,6 @@ class CIMNetworkTopologyProcessor (spark: SparkSession, storage: StorageLevel = 
             log.info ("identifyIslands")
             graph = identifyIslands (graph)
 
-            log.info ("islands")
             // get the terminals keyed by equipment with equipment
             val elements = get[Element]("Elements").keyBy (_.id)
             val terms = get[Terminal].keyBy (_.ConductingEquipment).join (elements).values
@@ -570,6 +569,8 @@ class CIMNetworkTopologyProcessor (spark: SparkSession, storage: StorageLevel = 
 
             // create a new TopologicalIsland RDD
             val new_ti = islands.values
+            if (debug && log.isDebugEnabled)
+                log.debug (new_ti.count + " islands identified")
 
             // swap the old TopologicalIsland RDD for the new one
             if (null != _old_ti)
@@ -587,10 +588,19 @@ class CIMNetworkTopologyProcessor (spark: SparkSession, storage: StorageLevel = 
             spark.createDataFrame (new_ti).createOrReplaceTempView ("TopologicalIsland")
 
             val nodes_with_islands = graph.vertices.values.keyBy (_.island).join (islands).values
-            (nodes_with_islands.groupBy (_._1.node).map ((x) => (x._1, x._2.head._1, Some (x._2.head._2))).map (to_nodes), new_ti)
+            val nodes = nodes_with_islands.groupBy (_._1.node).map ((x) => (x._1, x._2.head._1, Some (x._2.head._2))).map (to_nodes)
+            if (debug && log.isDebugEnabled)
+                log.debug (nodes.count + " nodes")
+            (nodes, new_ti)
         }
         else
-            (graph.vertices.values.groupBy (_.node).map ((x) => (x._1, x._2.head, None)).map (to_nodes), spark.sparkContext.emptyRDD[TopologicalIsland])
+        {
+            log.info ("identifyNodes")
+            val nodes = graph.vertices.values.groupBy (_.node).map ((x) => (x._1, x._2.head, None)).map (to_nodes)
+            if (debug && log.isDebugEnabled)
+                log.debug (nodes.count + " nodes")
+            (nodes, spark.sparkContext.emptyRDD[TopologicalIsland])
+        }
 
         // swap the old TopologicalNode RDD for the new one
         if (null != _old_tn)

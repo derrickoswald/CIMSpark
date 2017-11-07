@@ -4,10 +4,10 @@ import java.io.File
 import java.util.HashMap
 import java.util.Map
 
-import ch.ninecode.model._
-import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.SparkSession
 import org.scalatest.BeforeAndAfter
+
+import ch.ninecode.model._
 
 class CIMNormalizeSuite extends ch.ninecode.SparkSuite with BeforeAndAfter
 {
@@ -71,6 +71,9 @@ class CIMNormalizeSuite extends ch.ninecode.SparkSuite with BeforeAndAfter
                     assert (location._2 != null, location._1)
                 }
             )
+
+            val export = new CIMExport (spark)
+            export.exportAll (FILE_DEPOT + "BaseCase_BC.rdf", "MicroGridTestConfiguration")
     }
 
     test ("TopologicalNodes")

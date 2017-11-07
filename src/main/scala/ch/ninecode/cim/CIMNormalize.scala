@@ -100,7 +100,7 @@ with
         val fields = (for (i <- 0 until element.length) yield element.get (i)).toArray // current field data
         val clz = element.getClass
         val class_name = clz.getName
-        val bitfields = element.bitfields
+        val bitfields = element.bitfields.clone ()
         if (child == class_name.substring (class_name.lastIndexOf (".") + 1)) // e.g. ACLineSegment
         {
             val field_names = companion[Parser](class_name).fields
@@ -121,7 +121,9 @@ with
             fields(0) = set (element.sup, child, field, value)
         val c = clz.getConstructors.filter (_.getParameterCount == fields.length).head
         val obj = c.newInstance (fields: _*)
-        obj.asInstanceOf[Element]
+        val new_element = obj.asInstanceOf[Element]
+        new_element.bitfields = bitfields
+        new_element
     }
 
     /**
