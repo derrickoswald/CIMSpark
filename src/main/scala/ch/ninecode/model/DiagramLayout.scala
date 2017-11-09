@@ -66,7 +66,7 @@ extends
         implicit val clz: String = Diagram.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Diagram.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Diagram.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Diagram.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Diagram.fields (position), x))
         emitattr (0, orientation)
         emitelem (1, x1InitialView)
         emitelem (2, x2InitialView)
@@ -196,7 +196,7 @@ extends
         implicit val clz: String = DiagramObject.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (DiagramObject.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (DiagramObject.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (DiagramObject.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (DiagramObject.fields (position), x))
         emitelem (0, drawingOrder)
         emitelem (1, isPolygon)
         emitelem (2, offsetX)
@@ -314,7 +314,7 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = DiagramObjectGluePoint.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (DiagramObjectGluePoint.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (DiagramObjectGluePoint.fields (position), x))
         emitattrs (0, DiagramObjectPoints)
         s.toString
     }
@@ -506,7 +506,7 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = DiagramObjectStyle.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (DiagramObjectStyle.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (DiagramObjectStyle.fields (position), x))
         emitattrs (0, StyledObjects)
         s.toString
     }
@@ -586,7 +586,7 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = DiagramStyle.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (DiagramStyle.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (DiagramStyle.fields (position), x))
         emitattrs (0, Diagram)
         s.toString
     }
@@ -745,7 +745,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = VisibilityLayer.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (VisibilityLayer.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (VisibilityLayer.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (VisibilityLayer.fields (position), x))
         emitelem (0, drawingOrder)
         emitattrs (1, VisibleObjects)
         s.toString

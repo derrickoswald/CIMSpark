@@ -211,7 +211,7 @@ extends
         implicit val clz: String = Asset.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Asset.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Asset.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Asset.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Asset.fields (position), x))
         emitattr (0, acceptanceTest)
         emitelem (1, critical)
         emitattr (2, electronicAddress)
@@ -448,7 +448,7 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = AssetContainer.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (AssetContainer.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (AssetContainer.fields (position), x))
         emitattrs (0, Assets)
         emitattrs (1, LandProperties)
         emitattrs (2, Seals)
@@ -644,7 +644,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = AssetInfo.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (AssetInfo.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (AssetInfo.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (AssetInfo.fields (position), x))
         emitattr (0, AssetModel)
         emitattrs (1, Assets)
         emitattrs (2, PowerSystemResources)
@@ -734,7 +734,7 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = AssetLocationHazard.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (AssetLocationHazard.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (AssetLocationHazard.fields (position), x))
         emitattrs (0, Locations)
         s.toString
     }
@@ -817,7 +817,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = AssetModel.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (AssetModel.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (AssetModel.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (AssetModel.fields (position), x))
         emitattr (0, AssetInfo)
         emitattrs (1, ErpInventoryCounts)
         s.toString
@@ -900,7 +900,7 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = AssetOrganisationRole.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (AssetOrganisationRole.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (AssetOrganisationRole.fields (position), x))
         emitattrs (0, Assets)
         s.toString
     }
@@ -978,7 +978,7 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = AssetOwner.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (AssetOwner.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (AssetOwner.fields (position), x))
         emitattrs (0, Ownerships)
         s.toString
     }
@@ -1351,7 +1351,7 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Manufacturer.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Manufacturer.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Manufacturer.fields (position), x))
         emitattrs (0, ProductAssetModels)
         s.toString
     }
@@ -1445,7 +1445,7 @@ extends
         implicit val clz: String = Procedure.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Procedure.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Procedure.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Procedure.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Procedure.fields (position), x))
         emitelem (0, instruction)
         emitattr (1, kind)
         emitelem (2, sequenceNumber)
@@ -1568,7 +1568,7 @@ extends
         implicit val clz: String = ProcedureDataSet.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ProcedureDataSet.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ProcedureDataSet.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ProcedureDataSet.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ProcedureDataSet.fields (position), x))
         emitelem (0, completedDateTime)
         emitattrs (1, MeasurementValues)
         emitattr (2, Procedure)
@@ -1683,7 +1683,7 @@ extends
         implicit val clz: String = ProductAssetModel.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ProductAssetModel.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ProductAssetModel.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ProductAssetModel.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ProductAssetModel.fields (position), x))
         emitattr (0, corporateStandardKind)
         emitelem (1, modelNumber)
         emitelem (2, modelVersion)

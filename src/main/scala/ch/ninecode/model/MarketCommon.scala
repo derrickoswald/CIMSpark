@@ -58,7 +58,7 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MarketParticipant.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (MarketParticipant.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (MarketParticipant.fields (position), x))
         emitattrs (0, Bid)
         emitattrs (1, MarketDocument)
         emitattrs (2, MarketRole)
@@ -160,7 +160,7 @@ extends
         implicit val clz: String = MarketRole.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (MarketRole.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (MarketRole.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (MarketRole.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (MarketRole.fields (position), x))
         emitattr (0, roleType)
         emitattr (1, status)
         emitelem (2, `type`)
@@ -397,7 +397,7 @@ extends
         implicit val clz: String = RegisteredResource.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (RegisteredResource.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (RegisteredResource.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (RegisteredResource.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (RegisteredResource.fields (position), x))
         emitelem (0, commercialOpDate)
         emitattr (1, contingencyAvailFlag)
         emitattr (2, dispatchFlag)

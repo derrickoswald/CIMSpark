@@ -251,7 +251,7 @@ extends
         implicit val clz: String = ControlArea.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ControlArea.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ControlArea.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ControlArea.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ControlArea.fields (position), x))
         emitelem (0, netInterchange)
         emitelem (1, pTolerance)
         emitattr (2, `type`)
@@ -359,7 +359,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ControlAreaGeneratingUnit.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ControlAreaGeneratingUnit.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ControlAreaGeneratingUnit.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ControlAreaGeneratingUnit.fields (position), x))
         emitattrs (0, AltGeneratingUnitMeas)
         emitattr (1, ControlArea)
         emitattr (2, GeneratingUnit)
@@ -456,7 +456,7 @@ extends
         implicit val clz: String = TieFlow.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TieFlow.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TieFlow.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (TieFlow.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (TieFlow.fields (position), x))
         emitelem (0, positiveFlowIn)
         emitattrs (1, AltTieMeas)
         emitattr (2, ControlArea)

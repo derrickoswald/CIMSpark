@@ -64,7 +64,7 @@ extends
         implicit val clz: String = ActivityRecord.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ActivityRecord.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ActivityRecord.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ActivityRecord.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ActivityRecord.fields (position), x))
         emitelem (0, createdDateTime)
         emitelem (1, reason)
         emitelem (2, severity)
@@ -260,7 +260,7 @@ extends
         implicit val clz: String = Appointment.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Appointment.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Appointment.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Appointment.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Appointment.fields (position), x))
         emitelem (0, callAhead)
         emitattr (1, meetingInterval)
         emitattrs (2, Persons)
@@ -494,7 +494,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = CoordinateSystem.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (CoordinateSystem.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (CoordinateSystem.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (CoordinateSystem.fields (position), x))
         emitelem (0, crsUrn)
         emitattrs (1, Locations)
         s.toString
@@ -585,7 +585,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Crew.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Crew.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Crew.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Crew.fields (position), x))
         emitattr (0, status)
         emitattrs (1, CrewMembers)
         emitattr (2, CrewType)
@@ -686,7 +686,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = CrewMember.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (CrewMember.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (CrewMember.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (CrewMember.fields (position), x))
         emitattr (0, Crew)
         emitattrs (1, SwitchingSteps)
         s.toString
@@ -771,7 +771,7 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = CrewType.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (CrewType.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (CrewType.fields (position), x))
         emitattrs (0, Crews)
         s.toString
     }
@@ -878,7 +878,7 @@ extends
         implicit val clz: String = Document.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Document.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Document.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Document.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Document.fields (position), x))
         emitelem (0, authorName)
         emitelem (1, comment)
         emitelem (2, createdDateTime)
@@ -1248,7 +1248,7 @@ extends
         implicit val clz: String = Location.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Location.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Location.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Location.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Location.fields (position), x))
         emitelem (0, direction)
         emitattr (1, electronicAddress)
         emitelem (2, geoInfoReference)
@@ -1477,7 +1477,7 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Operator.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Operator.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Operator.fields (position), x))
         emitattrs (0, Incidents)
         emitattrs (1, SwitchingSteps)
         s.toString
@@ -1575,7 +1575,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Organisation.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Organisation.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Organisation.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Organisation.fields (position), x))
         emitattr (0, electronicAddress)
         emitattr (1, phone1)
         emitattr (2, phone2)
@@ -1691,7 +1691,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = OrganisationRole.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (OrganisationRole.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (OrganisationRole.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (OrganisationRole.fields (position), x))
         emitattrs (0, ConfigurationEvents)
         emitattr (1, Organisation)
         s.toString
@@ -1886,7 +1886,7 @@ extends
         implicit val clz: String = Person.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Person.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Person.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Person.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Person.fields (position), x))
         emitattr (0, electronicAddress)
         emitelem (1, firstName)
         emitattr (2, landlinePhone)
@@ -2003,7 +2003,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PersonRole.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PersonRole.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (PersonRole.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (PersonRole.fields (position), x))
         emitattrs (0, Appointments)
         emitattrs (1, ConfigurationEvents)
         emitattr (2, Person)
@@ -2391,7 +2391,7 @@ extends
         implicit val clz: String = ScheduledEvent.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ScheduledEvent.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ScheduledEvent.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ScheduledEvent.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ScheduledEvent.fields (position), x))
         emitelem (0, duration)
         emitattr (1, status)
         emitelem (2, `type`)
@@ -2496,7 +2496,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ScheduledEventData.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ScheduledEventData.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ScheduledEventData.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ScheduledEventData.fields (position), x))
         emitattr (0, estimatedWindow)
         emitattr (1, requestedWindow)
         emitattr (2, status)
@@ -3135,7 +3135,7 @@ extends
         implicit val clz: String = TimeSchedule.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TimeSchedule.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TimeSchedule.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (TimeSchedule.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (TimeSchedule.fields (position), x))
         emitelem (0, disabled)
         emitelem (1, offset)
         emitelem (2, recurrencePattern)
@@ -3351,7 +3351,7 @@ extends
         implicit val clz: String = UserAttribute.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (UserAttribute.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (UserAttribute.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (UserAttribute.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (UserAttribute.fields (position), x))
         emitelem (0, name)
         emitelem (1, sequenceNumber)
         emitattr (2, value)

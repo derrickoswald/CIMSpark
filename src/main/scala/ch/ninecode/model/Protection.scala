@@ -181,7 +181,7 @@ extends
         implicit val clz: String = ProtectionEquipment.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ProtectionEquipment.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ProtectionEquipment.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ProtectionEquipment.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ProtectionEquipment.fields (position), x))
         emitelem (0, highLimit)
         emitelem (1, lowLimit)
         emitelem (2, powerDirectionFlag)

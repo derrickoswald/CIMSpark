@@ -70,7 +70,7 @@ extends
         implicit val clz: String = PowerSystemProject.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PowerSystemProject.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PowerSystemProject.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (PowerSystemProject.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (PowerSystemProject.fields (position), x))
         emitelem (0, description)
         emitelem (1, name)
         emitelem (2, priority)

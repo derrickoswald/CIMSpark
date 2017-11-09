@@ -290,7 +290,7 @@ extends
         implicit val clz: String = ICCPInformationMessage.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ICCPInformationMessage.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ICCPInformationMessage.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ICCPInformationMessage.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ICCPInformationMessage.fields (position), x))
         emitelem (0, localReference)
         emitattr (1, scope)
         emitattrs (2, unknown)
@@ -734,7 +734,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = TASE2BilateralTable.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TASE2BilateralTable.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (TASE2BilateralTable.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (TASE2BilateralTable.fields (position), x))
         emitelem (0, bilateralTableID)
         emitelem (1, calling)
         emitelem (2, nameOfICC)

@@ -206,7 +206,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = LimitDependency.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (LimitDependency.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (LimitDependency.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (LimitDependency.fields (position), x))
         emitattr (0, Equipment)
         emitattrs (1, OperationalLimit)
         s.toString
@@ -694,7 +694,7 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ScheduledLimitDependency.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ScheduledLimitDependency.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ScheduledLimitDependency.fields (position), x))
         emitattrs (0, ScheduledLimitValues)
         s.toString
     }
@@ -938,7 +938,7 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = SeriesEquipmentDependentLimit.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (SeriesEquipmentDependentLimit.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (SeriesEquipmentDependentLimit.fields (position), x))
         emitattrs (0, EquipmentLimitSeriesComponent)
         s.toString
     }
@@ -1109,7 +1109,7 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = TemperatureDependentLimitTable.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (TemperatureDependentLimitTable.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (TemperatureDependentLimitTable.fields (position), x))
         emitattrs (0, TemperatureLimitTablePoint)
         s.toString
     }
@@ -1288,7 +1288,7 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WeatherStation.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (WeatherStation.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (WeatherStation.fields (position), x))
         emitattrs (0, Equipment)
         s.toString
     }

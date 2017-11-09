@@ -107,7 +107,7 @@ extends
         implicit val clz: String = ACDCConverter.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ACDCConverter.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ACDCConverter.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ACDCConverter.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ACDCConverter.fields (position), x))
         emitelem (0, baseS)
         emitelem (1, idc)
         emitelem (2, idleLoss)
@@ -789,7 +789,7 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = DCConductingEquipment.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (DCConductingEquipment.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (DCConductingEquipment.fields (position), x))
         emitattrs (0, DCTerminals)
         emitattrs (1, ProtectiveActionAdjustment)
         s.toString
@@ -1022,7 +1022,7 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = DCEquipmentContainer.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (DCEquipmentContainer.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (DCEquipmentContainer.fields (position), x))
         emitattrs (0, DCNodes)
         emitattrs (1, DCTopologicalNode)
         s.toString
@@ -1375,7 +1375,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = DCNode.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (DCNode.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (DCNode.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (DCNode.fields (position), x))
         emitattr (0, DCEquipmentContainer)
         emitattrs (1, DCTerminals)
         emitattr (2, DCTopologicalNode)
@@ -1785,7 +1785,7 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = DCTopologicalIsland.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (DCTopologicalIsland.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (DCTopologicalIsland.fields (position), x))
         emitattrs (0, DCTopologicalNodes)
         s.toString
     }
@@ -1864,7 +1864,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PerLengthDCLineParameter.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PerLengthDCLineParameter.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (PerLengthDCLineParameter.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (PerLengthDCLineParameter.fields (position), x))
         emitelem (0, capacitance)
         emitelem (1, inductance)
         emitelem (2, resistance)
@@ -1954,7 +1954,7 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = VsCapabilityCurve.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (VsCapabilityCurve.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (VsCapabilityCurve.fields (position), x))
         emitattrs (0, VsConverterDCSides)
         s.toString
     }

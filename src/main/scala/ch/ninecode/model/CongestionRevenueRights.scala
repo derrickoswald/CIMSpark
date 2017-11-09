@@ -71,7 +71,7 @@ extends
         implicit val clz: String = CRR.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (CRR.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (CRR.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (CRR.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (CRR.fields (position), x))
         emitattr (0, cRRcategory)
         emitattr (1, cRRtype)
         emitattr (2, hedgeType)
@@ -299,7 +299,7 @@ extends
         implicit val clz: String = CRRSegment.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (CRRSegment.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (CRRSegment.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (CRRSegment.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (CRRSegment.fields (position), x))
         emitelem (0, amount)
         emitelem (1, clearingPrice)
         emitelem (2, endDateTime)

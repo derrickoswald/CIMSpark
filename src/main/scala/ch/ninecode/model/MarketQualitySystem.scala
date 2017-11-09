@@ -59,7 +59,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = AllocationResult.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (AllocationResult.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (AllocationResult.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (AllocationResult.fields (position), x))
         emitelem (0, intervalStartTime)
         emitelem (1, updateTimeStamp)
         emitelem (2, updateUser)
@@ -282,7 +282,7 @@ extends
         implicit val clz: String = AuxiliaryCost.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (AuxiliaryCost.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (AuxiliaryCost.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (AuxiliaryCost.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (AuxiliaryCost.fields (position), x))
         emitelem (0, intervalStartTime)
         emitattr (1, marketType)
         emitelem (2, updateTimeStamp)
@@ -609,7 +609,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExpectedEnergy.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExpectedEnergy.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ExpectedEnergy.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ExpectedEnergy.fields (position), x))
         emitelem (0, intervalStartTime)
         emitelem (1, updateTimeStamp)
         emitelem (2, updateUser)
@@ -804,7 +804,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = FiveMinAuxiliaryData.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (FiveMinAuxiliaryData.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (FiveMinAuxiliaryData.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (FiveMinAuxiliaryData.fields (position), x))
         emitelem (0, intervalStartTime)
         emitelem (1, updateTimeStamp)
         emitelem (2, updateUser)
@@ -901,7 +901,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = TenMinAuxiliaryData.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TenMinAuxiliaryData.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (TenMinAuxiliaryData.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (TenMinAuxiliaryData.fields (position), x))
         emitelem (0, intervalStartTime)
         emitelem (1, updateTimeStamp)
         emitelem (2, updateUser)
@@ -1001,7 +1001,7 @@ extends
         implicit val clz: String = TradingHubPrice.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TradingHubPrice.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TradingHubPrice.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (TradingHubPrice.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (TradingHubPrice.fields (position), x))
         emitelem (0, intervalStartTime)
         emitattr (1, marketType)
         emitelem (2, updateTimeStamp)

@@ -209,7 +209,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = DifferenceModel.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (DifferenceModel.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (DifferenceModel.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (DifferenceModel.fields (position), x))
         emitattr (0, forwardDifferences)
         emitattr (1, reverseDifferences)
         emitattrs (2, unknown)
@@ -425,7 +425,7 @@ extends
         implicit val clz: String = Model.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Model.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Model.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Model.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Model.fields (position), x))
         emitelem (0, created)
         emitelem (1, description)
         emitattr (2, modelingAuthoritySet)
@@ -616,7 +616,7 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Statements.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Statements.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Statements.fields (position), x))
         emitattrs (0, unknown)
         s.toString
     }

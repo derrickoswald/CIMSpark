@@ -426,7 +426,7 @@ extends
         implicit val clz: String = WindContCurrLimIEC.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindContCurrLimIEC.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindContCurrLimIEC.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (WindContCurrLimIEC.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (WindContCurrLimIEC.fields (position), x))
         emitelem (0, imax)
         emitelem (1, imaxdip)
         emitelem (2, kpqu)
@@ -624,7 +624,7 @@ extends
         implicit val clz: String = WindContPType3IEC.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindContPType3IEC.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindContPType3IEC.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (WindContPType3IEC.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (WindContPType3IEC.fields (position), x))
         emitelem (0, dpmax)
         emitelem (1, dprefmax)
         emitelem (2, dprefmin)
@@ -1570,7 +1570,7 @@ extends
         implicit val clz: String = WindContQPQULimIEC.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindContQPQULimIEC.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindContQPQULimIEC.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (WindContQPQULimIEC.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (WindContQPQULimIEC.fields (position), x))
         emitelem (0, tpfiltql)
         emitelem (1, tufiltql)
         emitattrs (2, WindDynamicsLookupTable)
@@ -1701,7 +1701,7 @@ extends
         implicit val clz: String = WindContRotorRIEC.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindContRotorRIEC.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindContRotorRIEC.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (WindContRotorRIEC.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (WindContRotorRIEC.fields (position), x))
         emitelem (0, kirr)
         emitelem (1, komegafilt)
         emitelem (2, kpfilt)
@@ -2503,7 +2503,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WindGenType3bIEC.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindGenType3bIEC.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (WindGenType3bIEC.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (WindGenType3bIEC.fields (position), x))
         emitelem (0, mwtcwp)
         emitelem (1, tg)
         emitelem (2, two)
@@ -2891,7 +2891,7 @@ extends
         implicit val clz: String = WindPitchContPowerIEC.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindPitchContPowerIEC.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindPitchContPowerIEC.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (WindPitchContPowerIEC.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (WindPitchContPowerIEC.fields (position), x))
         emitelem (0, dpmax)
         emitelem (1, dpmin)
         emitelem (2, pmin)
@@ -3020,7 +3020,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WindPlantDynamics.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindPlantDynamics.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (WindPlantDynamics.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (WindPlantDynamics.fields (position), x))
         emitattr (0, RemoteInputSignal)
         emitattrs (1, WindTurbineType3or4Dynamics)
         s.toString
@@ -3164,7 +3164,7 @@ extends
         implicit val clz: String = WindPlantFreqPcontrolIEC.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindPlantFreqPcontrolIEC.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindPlantFreqPcontrolIEC.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (WindPlantFreqPcontrolIEC.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (WindPlantFreqPcontrolIEC.fields (position), x))
         emitelem (0, dprefmax)
         emitelem (1, dprefmin)
         emitelem (2, dpwprefmax)
@@ -3474,7 +3474,7 @@ extends
         implicit val clz: String = WindPlantReactiveControlIEC.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindPlantReactiveControlIEC.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindPlantReactiveControlIEC.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (WindPlantReactiveControlIEC.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (WindPlantReactiveControlIEC.fields (position), x))
         emitelem (0, dxrefmax)
         emitelem (1, dxrefmin)
         emitelem (2, kiwpx)
@@ -3668,7 +3668,7 @@ extends
         implicit val clz: String = WindProtectionIEC.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindProtectionIEC.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindProtectionIEC.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (WindProtectionIEC.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (WindProtectionIEC.fields (position), x))
         emitelem (0, dfimax)
         emitelem (1, fover)
         emitelem (2, funder)

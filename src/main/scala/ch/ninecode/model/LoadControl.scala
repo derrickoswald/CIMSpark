@@ -73,7 +73,7 @@ extends
         implicit val clz: String = ConnectDisconnectFunction.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ConnectDisconnectFunction.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ConnectDisconnectFunction.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ConnectDisconnectFunction.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ConnectDisconnectFunction.fields (position), x))
         emitelem (0, eventCount)
         emitelem (1, isConnected)
         emitelem (2, isDelayedDiscon)

@@ -256,7 +256,7 @@ extends
         implicit val clz: String = CogenerationPlant.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (CogenerationPlant.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (CogenerationPlant.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (CogenerationPlant.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (CogenerationPlant.fields (position), x))
         emitelem (0, cogenHPSendoutRating)
         emitelem (1, cogenHPSteamRating)
         emitelem (2, cogenLPSendoutRating)
@@ -362,7 +362,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = CombinedCyclePlant.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (CombinedCyclePlant.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (CombinedCyclePlant.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (CombinedCyclePlant.fields (position), x))
         emitelem (0, combCyclePlantRating)
         emitattrs (1, ThermalGeneratingUnits)
         s.toString
@@ -665,7 +665,7 @@ extends
         implicit val clz: String = FossilFuel.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (FossilFuel.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (FossilFuel.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (FossilFuel.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (FossilFuel.fields (position), x))
         emitattr (0, fossilFuelType)
         emitattr (1, fuelCost)
         emitattr (2, fuelDispatchCost)
@@ -1163,7 +1163,7 @@ extends
         implicit val clz: String = GeneratingUnit.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GeneratingUnit.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (GeneratingUnit.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (GeneratingUnit.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (GeneratingUnit.fields (position), x))
         emitelem (0, allocSpinResP)
         emitelem (1, autoCntrlMarginP)
         emitelem (2, baseP)
@@ -1779,7 +1779,7 @@ extends
         implicit val clz: String = HydroGeneratingUnit.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (HydroGeneratingUnit.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (HydroGeneratingUnit.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (HydroGeneratingUnit.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (HydroGeneratingUnit.fields (position), x))
         emitattr (0, energyConversionCapability)
         emitelem (1, hydroUnitWaterCost)
         emitattrs (2, HydroGeneratingEfficiencyCurves)
@@ -1908,7 +1908,7 @@ extends
         implicit val clz: String = HydroPowerPlant.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (HydroPowerPlant.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (HydroPowerPlant.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (HydroPowerPlant.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (HydroPowerPlant.fields (position), x))
         emitelem (0, dischargeTravelDelay)
         emitelem (1, genRatedP)
         emitattr (2, hydroPlantStorageType)
@@ -2663,7 +2663,7 @@ extends
         implicit val clz: String = Reservoir.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Reservoir.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Reservoir.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Reservoir.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Reservoir.fields (position), x))
         emitelem (0, activeStorageCapacity)
         emitelem (1, energyStorageRating)
         emitelem (2, fullSupplyLevel)
@@ -3659,7 +3659,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ThermalGeneratingUnit.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ThermalGeneratingUnit.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ThermalGeneratingUnit.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ThermalGeneratingUnit.fields (position), x))
         emitattr (0, oMCost)
         emitattr (1, CAESPlant)
         emitattr (2, CogenerationPlant)

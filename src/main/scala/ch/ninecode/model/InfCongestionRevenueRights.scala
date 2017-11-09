@@ -65,7 +65,7 @@ extends
         implicit val clz: String = FTR.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (FTR.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (FTR.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (FTR.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (FTR.fields (position), x))
         emitelem (0, action)
         emitelem (1, baseEnergy)
         emitelem (2, `class`)
@@ -180,7 +180,7 @@ extends
         implicit val clz: String = ViolationLimit.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ViolationLimit.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ViolationLimit.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ViolationLimit.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ViolationLimit.fields (position), x))
         emitelem (0, enforced)
         emitattr (1, Flowgate)
         emitattr (2, MktMeasurement)

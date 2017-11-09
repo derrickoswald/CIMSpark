@@ -56,7 +56,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Accumulator.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Accumulator.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Accumulator.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Accumulator.fields (position), x))
         emitelem (0, maxValue)
         emitattrs (1, AccumulatorValues)
         emitattrs (2, LimitSets)
@@ -231,7 +231,7 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = AccumulatorLimitSet.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (AccumulatorLimitSet.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (AccumulatorLimitSet.fields (position), x))
         emitattrs (0, Limits)
         emitattrs (1, Measurements)
         s.toString
@@ -498,7 +498,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Analog.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Analog.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Analog.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Analog.fields (position), x))
         emitelem (0, maxValue)
         emitelem (1, minValue)
         emitelem (2, normalValue)
@@ -607,7 +607,7 @@ extends
         implicit val clz: String = AnalogControl.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (AnalogControl.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (AnalogControl.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (AnalogControl.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (AnalogControl.fields (position), x))
         emitelem (0, maxValue)
         emitelem (1, minValue)
         emitattrs (2, unknown)
@@ -785,7 +785,7 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = AnalogLimitSet.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (AnalogLimitSet.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (AnalogLimitSet.fields (position), x))
         emitattrs (0, Limits)
         emitattrs (1, Measurements)
         s.toString
@@ -878,7 +878,7 @@ extends
         implicit val clz: String = AnalogValue.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (AnalogValue.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (AnalogValue.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (AnalogValue.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (AnalogValue.fields (position), x))
         emitelem (0, value)
         emitattrs (1, AltGeneratingUnit)
         emitattrs (2, AltTieMeas)
@@ -985,7 +985,7 @@ extends
         implicit val clz: String = Command.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Command.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Command.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Command.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Command.fields (position), x))
         emitelem (0, normalValue)
         emitattrs (1, unknown)
         emitelem (2, value)
@@ -1212,7 +1212,7 @@ extends
         implicit val clz: String = Discrete.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Discrete.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Discrete.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Discrete.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Discrete.fields (position), x))
         emitelem (0, maxValue)
         emitelem (1, minValue)
         emitelem (2, normalValue)
@@ -1461,7 +1461,7 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Limit.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Limit.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Limit.fields (position), x))
         emitattrs (0, Procedures)
         s.toString
     }
@@ -1644,7 +1644,7 @@ extends
         implicit val clz: String = Measurement.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Measurement.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Measurement.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Measurement.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Measurement.fields (position), x))
         emitelem (0, measurementType)
         emitattr (1, phases)
         emitattr (2, unitMultiplier)
@@ -1792,7 +1792,7 @@ extends
         implicit val clz: String = MeasurementValue.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (MeasurementValue.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (MeasurementValue.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (MeasurementValue.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (MeasurementValue.fields (position), x))
         emitelem (0, sensorAccuracy)
         emitelem (1, timeStamp)
         emitattr (2, unknown)
@@ -1985,7 +1985,7 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MeasurementValueSource.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (MeasurementValueSource.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (MeasurementValueSource.fields (position), x))
         emitattrs (0, MeasurementValues)
         s.toString
     }
@@ -2368,7 +2368,7 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = StringMeasurement.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (StringMeasurement.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (StringMeasurement.fields (position), x))
         emitattrs (0, StringMeasurementValues)
         s.toString
     }
@@ -2539,7 +2539,7 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ValueAliasSet.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ValueAliasSet.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ValueAliasSet.fields (position), x))
         emitattrs (0, Commands)
         emitattrs (1, Discretes)
         emitattrs (2, RaiseLowerCommands)

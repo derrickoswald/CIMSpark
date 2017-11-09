@@ -60,7 +60,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ErpBOM.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ErpBOM.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ErpBOM.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ErpBOM.fields (position), x))
         emitattr (0, Design)
         emitattrs (1, ErpBomItemDatas)
         s.toString
@@ -398,7 +398,7 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ErpCompetency.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ErpCompetency.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ErpCompetency.fields (position), x))
         emitattrs (0, ErpPersons)
         s.toString
     }
@@ -893,7 +893,7 @@ extends
         implicit val clz: String = ErpInvoice.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ErpInvoice.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ErpInvoice.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ErpInvoice.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ErpInvoice.fields (position), x))
         emitelem (0, amount)
         emitattr (1, billMediaKind)
         emitelem (2, dueDate)
@@ -1059,7 +1059,7 @@ extends
         implicit val clz: String = ErpInvoiceLineItem.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ErpInvoiceLineItem.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ErpInvoiceLineItem.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ErpInvoiceLineItem.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ErpInvoiceLineItem.fields (position), x))
         emitattr (0, billPeriod)
         emitelem (1, glAccount)
         emitelem (2, glDateTime)
@@ -1422,7 +1422,7 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ErpJournal.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ErpJournal.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ErpJournal.fields (position), x))
         emitattrs (0, ErpJournalEntries)
         s.toString
     }
@@ -1529,7 +1529,7 @@ extends
         implicit val clz: String = ErpJournalEntry.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ErpJournalEntry.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ErpJournalEntry.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ErpJournalEntry.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ErpJournalEntry.fields (position), x))
         emitelem (0, accountID)
         emitelem (1, amount)
         emitelem (2, postingDateTime)
@@ -1759,7 +1759,7 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ErpLedger.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ErpLedger.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ErpLedger.fields (position), x))
         emitattrs (0, ErpLedgerEntries)
         s.toString
     }
@@ -1844,7 +1844,7 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ErpLedgerBudget.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ErpLedgerBudget.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ErpLedgerBudget.fields (position), x))
         emitattrs (0, ErpLedBudLineItems)
         s.toString
     }
@@ -1947,7 +1947,7 @@ extends
         implicit val clz: String = ErpLedgerEntry.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ErpLedgerEntry.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ErpLedgerEntry.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ErpLedgerEntry.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ErpLedgerEntry.fields (position), x))
         emitelem (0, accountID)
         emitattr (1, accountKind)
         emitelem (2, amount)
@@ -2177,7 +2177,7 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ErpPayable.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ErpPayable.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ErpPayable.fields (position), x))
         emitattrs (0, ContractorItems)
         emitattrs (1, ErpPayableLineItems)
         s.toString
@@ -2274,7 +2274,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ErpPayableLineItem.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ErpPayableLineItem.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ErpPayableLineItem.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ErpPayableLineItem.fields (position), x))
         emitattr (0, status)
         emitattr (1, ErpInvoiceLineItem)
         emitattrs (2, ErpJournalEntries)
@@ -2385,7 +2385,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ErpPayment.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ErpPayment.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ErpPayment.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ErpPayment.fields (position), x))
         emitelem (0, termsPayment)
         emitattrs (1, ErpInvoiceLineItems)
         emitattrs (2, ErpPayableLineItems)
@@ -2485,7 +2485,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ErpPersonnel.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ErpPersonnel.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ErpPersonnel.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ErpPersonnel.fields (position), x))
         emitattr (0, status)
         emitattrs (1, ErpPersons)
         s.toString
@@ -2580,7 +2580,7 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ErpProjectAccounting.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ErpProjectAccounting.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ErpProjectAccounting.fields (position), x))
         emitattrs (0, ErpTimeEntries)
         emitattrs (1, Projects)
         emitattrs (2, WorkCostDetails)
@@ -2680,7 +2680,7 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ErpPurchaseOrder.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ErpPurchaseOrder.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ErpPurchaseOrder.fields (position), x))
         emitattrs (0, ErpPOLineItems)
         s.toString
     }
@@ -2765,7 +2765,7 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ErpQuote.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ErpQuote.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ErpQuote.fields (position), x))
         emitattrs (0, ErpQuoteLineItems)
         s.toString
     }
@@ -2977,7 +2977,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ErpRecDelvLineItem.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ErpRecDelvLineItem.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ErpRecDelvLineItem.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ErpRecDelvLineItem.fields (position), x))
         emitattr (0, status)
         emitattrs (1, Assets)
         emitattr (2, ErpInvoiceLineItem)
@@ -3088,7 +3088,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ErpRecLineItem.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ErpRecLineItem.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ErpRecLineItem.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ErpRecLineItem.fields (position), x))
         emitattr (0, status)
         emitattr (1, ErpInvoiceLineItem)
         emitattrs (2, ErpJournalEntries)
@@ -3192,7 +3192,7 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ErpReceivable.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ErpReceivable.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ErpReceivable.fields (position), x))
         emitattrs (0, ErpRecLineItems)
         s.toString
     }
@@ -3277,7 +3277,7 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ErpReceiveDelivery.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ErpReceiveDelivery.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ErpReceiveDelivery.fields (position), x))
         emitattrs (0, ErpRecDelvLineItems)
         s.toString
     }
@@ -3504,7 +3504,7 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ErpRequisition.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ErpRequisition.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ErpRequisition.fields (position), x))
         emitattrs (0, ErpReqLineItems)
         s.toString
     }
@@ -3845,7 +3845,7 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ErpTimeSheet.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ErpTimeSheet.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ErpTimeSheet.fields (position), x))
         emitattrs (0, ErpTimeEntries)
         s.toString
     }

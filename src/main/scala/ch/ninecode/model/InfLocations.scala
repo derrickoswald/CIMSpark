@@ -74,7 +74,7 @@ extends
         implicit val clz: String = LandProperty.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (LandProperty.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (LandProperty.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (LandProperty.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (LandProperty.fields (position), x))
         emitattr (0, demographicKind)
         emitelem (1, externalRecordReference)
         emitattr (2, kind)
@@ -366,7 +366,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = RightOfWay.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (RightOfWay.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (RightOfWay.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (RightOfWay.fields (position), x))
         emitelem (0, propertyData)
         emitattrs (1, LandProperties)
         s.toString
@@ -455,7 +455,7 @@ extends
         implicit val clz: String = Route.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Route.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Route.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Route.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Route.fields (position), x))
         emitattr (0, status)
         emitelem (1, `type`)
         emitattrs (2, Crews)

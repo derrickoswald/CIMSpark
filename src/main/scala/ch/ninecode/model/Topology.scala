@@ -59,7 +59,7 @@ extends
         implicit val clz: String = BusNameMarker.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (BusNameMarker.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (BusNameMarker.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (BusNameMarker.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (BusNameMarker.fields (position), x))
         emitelem (0, priority)
         emitattr (1, ReportingGroup)
         emitattrs (2, Terminal)
@@ -155,7 +155,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = DCTopologicalNode.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (DCTopologicalNode.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (DCTopologicalNode.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (DCTopologicalNode.fields (position), x))
         emitattr (0, DCEquipmentContainer)
         emitattrs (1, DCNodes)
         emitattrs (2, DCTerminals)
@@ -254,7 +254,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = TopologicalIsland.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TopologicalIsland.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (TopologicalIsland.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (TopologicalIsland.fields (position), x))
         emitattr (0, AngleRefTopologicalNode)
         emitattrs (1, TopologicalNodes)
         s.toString
@@ -366,7 +366,7 @@ extends
         implicit val clz: String = TopologicalNode.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TopologicalNode.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TopologicalNode.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (TopologicalNode.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (TopologicalNode.fields (position), x))
         emitelem (0, pInjection)
         emitelem (1, qInjection)
         emitattr (2, AngleRefTopologicalIsland)

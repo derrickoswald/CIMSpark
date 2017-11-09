@@ -86,7 +86,7 @@ extends
         implicit val clz: String = ACLineSegment.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ACLineSegment.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ACLineSegment.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ACLineSegment.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ACLineSegment.fields (position), x))
         emitelem (0, b0ch)
         emitelem (1, bch)
         emitelem (2, g0ch)
@@ -778,7 +778,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = CompositeSwitch.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (CompositeSwitch.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (CompositeSwitch.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (CompositeSwitch.fields (position), x))
         emitelem (0, compositeSwitchType)
         emitattrs (1, Switches)
         s.toString
@@ -1266,7 +1266,7 @@ extends
         implicit val clz: String = EnergyConsumer.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (EnergyConsumer.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (EnergyConsumer.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (EnergyConsumer.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (EnergyConsumer.fields (position), x))
         emitelem (0, customerCount)
         emitelem (1, grounded)
         emitelem (2, p)
@@ -2835,7 +2835,7 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = NonlinearShuntCompensator.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (NonlinearShuntCompensator.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (NonlinearShuntCompensator.fields (position), x))
         emitattrs (0, NonlinearShuntCompensatorPoints)
         s.toString
     }
@@ -2913,7 +2913,7 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = NonlinearShuntCompensatorPhase.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (NonlinearShuntCompensatorPhase.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (NonlinearShuntCompensatorPhase.fields (position), x))
         emitattrs (0, NonlinearShuntCompensatorPhasePoints)
         s.toString
     }
@@ -3197,7 +3197,7 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PerLengthImpedance.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (PerLengthImpedance.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (PerLengthImpedance.fields (position), x))
         emitattrs (0, ACLineSegments)
         s.toString
     }
@@ -3278,7 +3278,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PerLengthLineParameter.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PerLengthLineParameter.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (PerLengthLineParameter.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (PerLengthLineParameter.fields (position), x))
         emitattrs (0, WireInfos)
         emitattr (1, WireSpacingInfo)
         s.toString
@@ -3365,7 +3365,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PerLengthPhaseImpedance.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PerLengthPhaseImpedance.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (PerLengthPhaseImpedance.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (PerLengthPhaseImpedance.fields (position), x))
         emitelem (0, conductorCount)
         emitattrs (1, PhaseImpedanceData)
         s.toString
@@ -4192,7 +4192,7 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PhaseTapChangerTable.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (PhaseTapChangerTable.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (PhaseTapChangerTable.fields (position), x))
         emitattrs (0, PhaseTapChangerTablePoint)
         emitattrs (1, PhaseTapChangerTabular)
         s.toString
@@ -4523,7 +4523,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PowerTransformer.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PowerTransformer.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (PowerTransformer.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (PowerTransformer.fields (position), x))
         emitelem (0, beforeShCircuitHighestOperatingCurrent)
         emitelem (1, beforeShCircuitHighestOperatingVoltage)
         emitelem (2, beforeShortCircuitAnglePf)
@@ -4797,7 +4797,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ProtectedSwitch.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ProtectedSwitch.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ProtectedSwitch.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ProtectedSwitch.fields (position), x))
         emitelem (0, breakingCapacity)
         emitattrs (1, OperatedByProtectionEquipment)
         emitattrs (2, RecloseSequences)
@@ -4984,7 +4984,7 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = RatioTapChangerTable.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (RatioTapChangerTable.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (RatioTapChangerTable.fields (position), x))
         emitattrs (0, RatioTapChanger)
         emitattrs (1, RatioTapChangerTablePoint)
         s.toString
@@ -5156,7 +5156,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ReactiveCapabilityCurve.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ReactiveCapabilityCurve.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ReactiveCapabilityCurve.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ReactiveCapabilityCurve.fields (position), x))
         emitelem (0, coolantTemperature)
         emitelem (1, hydrogenPressure)
         emitattrs (2, EquivalentInjection)
@@ -5429,7 +5429,7 @@ extends
         implicit val clz: String = RegulatingControl.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (RegulatingControl.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (RegulatingControl.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (RegulatingControl.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (RegulatingControl.fields (position), x))
         emitelem (0, discrete)
         emitelem (1, enabled)
         emitattr (2, mode)
@@ -5553,7 +5553,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = RegulationSchedule.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (RegulationSchedule.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (RegulationSchedule.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (RegulationSchedule.fields (position), x))
         emitattr (0, RegulatingControl)
         emitattrs (1, VoltageControlZones)
         s.toString
@@ -5964,7 +5964,7 @@ extends
         implicit val clz: String = ShuntCompensator.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ShuntCompensator.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ShuntCompensator.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ShuntCompensator.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ShuntCompensator.fields (position), x))
         emitelem (0, aVRDelay)
         emitelem (1, grounded)
         emitelem (2, maximumSections)
@@ -6323,7 +6323,7 @@ extends
         implicit val clz: String = Switch.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Switch.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Switch.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Switch.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Switch.fields (position), x))
         emitelem (0, normalOpen)
         emitelem (1, open)
         emitelem (2, ratedCurrent)
@@ -6720,7 +6720,7 @@ extends
         implicit val clz: String = SynchronousMachine.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (SynchronousMachine.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (SynchronousMachine.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (SynchronousMachine.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (SynchronousMachine.fields (position), x))
         emitelem (0, aVRToManualLag)
         emitelem (1, aVRToManualLead)
         emitelem (2, baseQ)
@@ -6964,7 +6964,7 @@ extends
         implicit val clz: String = TapChanger.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TapChanger.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TapChanger.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (TapChanger.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (TapChanger.fields (position), x))
         emitelem (0, controlEnabled)
         emitelem (1, highStep)
         emitelem (2, initialDelay)
@@ -7106,7 +7106,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = TapChangerControl.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TapChangerControl.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (TapChangerControl.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (TapChangerControl.fields (position), x))
         emitelem (0, limitVoltage)
         emitelem (1, lineDropCompensation)
         emitelem (2, lineDropR)
@@ -7398,7 +7398,7 @@ extends
         implicit val clz: String = TransformerCoreAdmittance.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TransformerCoreAdmittance.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TransformerCoreAdmittance.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (TransformerCoreAdmittance.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (TransformerCoreAdmittance.fields (position), x))
         emitelem (0, b)
         emitelem (1, b0)
         emitelem (2, g)
@@ -7537,7 +7537,7 @@ extends
         implicit val clz: String = TransformerEnd.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TransformerEnd.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TransformerEnd.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (TransformerEnd.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (TransformerEnd.fields (position), x))
         emitelem (0, bmagSat)
         emitelem (1, endNumber)
         emitelem (2, grounded)
@@ -7708,7 +7708,7 @@ extends
         implicit val clz: String = TransformerMeshImpedance.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TransformerMeshImpedance.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TransformerMeshImpedance.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (TransformerMeshImpedance.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (TransformerMeshImpedance.fields (position), x))
         emitelem (0, r)
         emitelem (1, r0)
         emitelem (2, x)
@@ -7831,7 +7831,7 @@ extends
         implicit val clz: String = TransformerStarImpedance.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TransformerStarImpedance.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TransformerStarImpedance.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (TransformerStarImpedance.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (TransformerStarImpedance.fields (position), x))
         emitelem (0, r)
         emitelem (1, r0)
         emitelem (2, x)
@@ -7937,7 +7937,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = TransformerTank.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TransformerTank.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (TransformerTank.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (TransformerTank.fields (position), x))
         emitattr (0, PowerTransformer)
         emitattrs (1, TransformerObservations)
         emitattrs (2, TransformerTankEnds)

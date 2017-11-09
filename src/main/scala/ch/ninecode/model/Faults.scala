@@ -143,7 +143,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Fault.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Fault.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Fault.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Fault.fields (position), x))
         emitattr (0, impedance)
         emitattr (1, kind)
         emitattr (2, phases)
@@ -244,7 +244,7 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = FaultCauseType.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (FaultCauseType.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (FaultCauseType.fields (position), x))
         emitattrs (0, Faults)
         s.toString
     }

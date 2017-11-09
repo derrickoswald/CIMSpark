@@ -67,7 +67,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = AsynchronousMachineUserDefined.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (AsynchronousMachineUserDefined.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (AsynchronousMachineUserDefined.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (AsynchronousMachineUserDefined.fields (position), x))
         emitelem (0, proprietary)
         emitattrs (1, ProprietaryParameterDynamics)
         s.toString
@@ -166,7 +166,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = DiscontinuousExcitationControlUserDefined.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (DiscontinuousExcitationControlUserDefined.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (DiscontinuousExcitationControlUserDefined.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (DiscontinuousExcitationControlUserDefined.fields (position), x))
         emitelem (0, proprietary)
         emitattrs (1, ProprietaryParameterDynamics)
         s.toString
@@ -265,7 +265,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcitationSystemUserDefined.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcitationSystemUserDefined.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ExcitationSystemUserDefined.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ExcitationSystemUserDefined.fields (position), x))
         emitelem (0, proprietary)
         emitattrs (1, ProprietaryParameterDynamics)
         s.toString
@@ -364,7 +364,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = LoadUserDefined.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (LoadUserDefined.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (LoadUserDefined.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (LoadUserDefined.fields (position), x))
         emitelem (0, proprietary)
         emitattrs (1, ProprietaryParameterDynamics)
         s.toString
@@ -463,7 +463,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MechanicalLoadUserDefined.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (MechanicalLoadUserDefined.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (MechanicalLoadUserDefined.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (MechanicalLoadUserDefined.fields (position), x))
         emitelem (0, proprietary)
         emitattrs (1, ProprietaryParameterDynamics)
         s.toString
@@ -562,7 +562,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = OverexcitationLimiterUserDefined.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (OverexcitationLimiterUserDefined.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (OverexcitationLimiterUserDefined.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (OverexcitationLimiterUserDefined.fields (position), x))
         emitelem (0, proprietary)
         emitattrs (1, ProprietaryParameterDynamics)
         s.toString
@@ -661,7 +661,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PFVArControllerType1UserDefined.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PFVArControllerType1UserDefined.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (PFVArControllerType1UserDefined.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (PFVArControllerType1UserDefined.fields (position), x))
         emitelem (0, proprietary)
         emitattrs (1, ProprietaryParameterDynamics)
         s.toString
@@ -760,7 +760,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PFVArControllerType2UserDefined.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PFVArControllerType2UserDefined.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (PFVArControllerType2UserDefined.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (PFVArControllerType2UserDefined.fields (position), x))
         emitelem (0, proprietary)
         emitattrs (1, ProprietaryParameterDynamics)
         s.toString
@@ -859,7 +859,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PowerSystemStabilizerUserDefined.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PowerSystemStabilizerUserDefined.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (PowerSystemStabilizerUserDefined.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (PowerSystemStabilizerUserDefined.fields (position), x))
         emitelem (0, proprietary)
         emitattrs (1, ProprietaryParameterDynamics)
         s.toString
@@ -1197,7 +1197,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = SynchronousMachineUserDefined.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (SynchronousMachineUserDefined.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (SynchronousMachineUserDefined.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (SynchronousMachineUserDefined.fields (position), x))
         emitelem (0, proprietary)
         emitattrs (1, ProprietaryParameterDynamics)
         s.toString
@@ -1296,7 +1296,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = TurbineGovernorUserDefined.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TurbineGovernorUserDefined.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (TurbineGovernorUserDefined.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (TurbineGovernorUserDefined.fields (position), x))
         emitelem (0, proprietary)
         emitattrs (1, ProprietaryParameterDynamics)
         s.toString
@@ -1395,7 +1395,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = TurbineLoadControllerUserDefined.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TurbineLoadControllerUserDefined.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (TurbineLoadControllerUserDefined.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (TurbineLoadControllerUserDefined.fields (position), x))
         emitelem (0, proprietary)
         emitattrs (1, ProprietaryParameterDynamics)
         s.toString
@@ -1494,7 +1494,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = UnderexcitationLimiterUserDefined.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (UnderexcitationLimiterUserDefined.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (UnderexcitationLimiterUserDefined.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (UnderexcitationLimiterUserDefined.fields (position), x))
         emitelem (0, proprietary)
         emitattrs (1, ProprietaryParameterDynamics)
         s.toString
@@ -1593,7 +1593,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = VoltageAdjusterUserDefined.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (VoltageAdjusterUserDefined.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (VoltageAdjusterUserDefined.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (VoltageAdjusterUserDefined.fields (position), x))
         emitelem (0, proprietary)
         emitattrs (1, ProprietaryParameterDynamics)
         s.toString
@@ -1692,7 +1692,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = VoltageCompensatorUserDefined.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (VoltageCompensatorUserDefined.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (VoltageCompensatorUserDefined.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (VoltageCompensatorUserDefined.fields (position), x))
         emitelem (0, proprietary)
         emitattrs (1, ProprietaryParameterDynamics)
         s.toString
@@ -1791,7 +1791,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WindPlantUserDefined.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindPlantUserDefined.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (WindPlantUserDefined.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (WindPlantUserDefined.fields (position), x))
         emitelem (0, proprietary)
         emitattrs (1, ProprietaryParameterDynamics)
         s.toString
@@ -1890,7 +1890,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WindType1or2UserDefined.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindType1or2UserDefined.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (WindType1or2UserDefined.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (WindType1or2UserDefined.fields (position), x))
         emitelem (0, proprietary)
         emitattrs (1, ProprietaryParameterDynamics)
         s.toString
@@ -1989,7 +1989,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WindType3or4UserDefined.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WindType3or4UserDefined.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (WindType3or4UserDefined.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (WindType3or4UserDefined.fields (position), x))
         emitelem (0, proprietary)
         emitattrs (1, ProprietaryParameterDynamics)
         s.toString

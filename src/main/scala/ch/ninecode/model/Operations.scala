@@ -151,7 +151,7 @@ extends
         implicit val clz: String = ClearanceDocument.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ClearanceDocument.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ClearanceDocument.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ClearanceDocument.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ClearanceDocument.fields (position), x))
         emitelem (0, mustBeDeenergised)
         emitelem (1, mustBeGrounded)
         emitattr (2, ClearanceAction)
@@ -625,7 +625,7 @@ extends
         implicit val clz: String = Incident.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Incident.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Incident.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Incident.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Incident.fields (position), x))
         emitelem (0, cause)
         emitattrs (1, CustomerNotifications)
         emitattrs (2, Hazards)
@@ -743,7 +743,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = JumperAction.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (JumperAction.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (JumperAction.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (JumperAction.fields (position), x))
         emitattr (0, kind)
         emitattrs (1, AlongACLineSegments)
         emitattrs (2, JumpedEquipments)
@@ -936,7 +936,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = OperationalRestriction.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (OperationalRestriction.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (OperationalRestriction.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (OperationalRestriction.fields (position), x))
         emitattr (0, activePeriod)
         emitattr (1, restrictedValue)
         emitattrs (2, Equipments)
@@ -1149,7 +1149,7 @@ extends
         implicit val clz: String = Outage.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Outage.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Outage.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Outage.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Outage.fields (position), x))
         emitattr (0, actualPeriod)
         emitelem (1, cancelledDateTime)
         emitelem (2, cause)
@@ -1294,7 +1294,7 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = OutageSchedule.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (OutageSchedule.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (OutageSchedule.fields (position), x))
         emitattrs (0, PlannedOutages)
         s.toString
     }
@@ -1730,7 +1730,7 @@ extends
         implicit val clz: String = SwitchingPlan.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (SwitchingPlan.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (SwitchingPlan.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (SwitchingPlan.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (SwitchingPlan.fields (position), x))
         emitelem (0, purpose)
         emitelem (1, rank)
         emitattr (2, Outage)
@@ -1969,7 +1969,7 @@ extends
         implicit val clz: String = SwitchingStepGroup.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (SwitchingStepGroup.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (SwitchingStepGroup.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (SwitchingStepGroup.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (SwitchingStepGroup.fields (position), x))
         emitelem (0, isFreeSequence)
         emitelem (1, sequenceNumber)
         emitattrs (2, ClearanceActions)

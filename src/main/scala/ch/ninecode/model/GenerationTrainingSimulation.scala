@@ -773,7 +773,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = HeatRecoveryBoiler.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (HeatRecoveryBoiler.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (HeatRecoveryBoiler.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (HeatRecoveryBoiler.fields (position), x))
         emitelem (0, steamSupplyRating2)
         emitattrs (1, CombustionTurbines)
         s.toString
@@ -1185,7 +1185,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PrimeMover.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PrimeMover.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (PrimeMover.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (PrimeMover.fields (position), x))
         emitelem (0, primeMoverRating)
         emitattrs (1, SynchronousMachines)
         s.toString
@@ -1270,7 +1270,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = SteamSupply.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (SteamSupply.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (SteamSupply.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (SteamSupply.fields (position), x))
         emitelem (0, steamSupplyRating)
         emitattrs (1, SteamTurbines)
         s.toString
@@ -1377,7 +1377,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = SteamTurbine.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (SteamTurbine.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (SteamTurbine.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (SteamTurbine.fields (position), x))
         emitelem (0, crossoverTC)
         emitelem (1, reheater1TC)
         emitelem (2, reheater2TC)

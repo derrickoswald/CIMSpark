@@ -59,7 +59,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = BaseWork.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (BaseWork.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (BaseWork.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (BaseWork.fields (position), x))
         emitattr (0, kind)
         emitattr (1, priority)
         emitattr (2, statusKind)
@@ -528,7 +528,7 @@ extends
         implicit val clz: String = Work.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Work.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Work.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Work.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Work.fields (position), x))
         emitelem (0, requestDateTime)
         emitattrs (1, Appointments)
         emitattr (2, BusinessCase)
@@ -743,7 +743,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WorkLocation.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WorkLocation.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (WorkLocation.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (WorkLocation.fields (position), x))
         emitattrs (0, BaseWorks)
         emitattrs (1, DesignLocations)
         emitattr (2, OneCallRequest)
@@ -839,7 +839,7 @@ extends
         implicit val clz: String = WorkTask.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WorkTask.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WorkTask.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (WorkTask.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (WorkTask.fields (position), x))
         emitelem (0, crewETA)
         emitelem (1, instruction)
         emitelem (2, schedOverride)

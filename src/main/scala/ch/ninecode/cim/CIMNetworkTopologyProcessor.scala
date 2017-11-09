@@ -391,12 +391,17 @@ class CIMNetworkTopologyProcessor (spark: SparkSession, storage: StorageLevel = 
         {
             case Some (node) =>
                 // ToDo: should be: c.copy (TopologicalNode = node.name)
-                ConnectivityNode (
+                val cn = ConnectivityNode (
                     c.IdentifiedObject,
                     ConnectivityNodeContainer = c.ConnectivityNodeContainer,
                     Terminals = List (),
                     TopologicalNode = node.name
                 )
+                val bitfields = c.bitfields.clone ()
+                val position = ConnectivityNode.fields.indexOf ("TopologicalNode")
+                bitfields(position / 32) |= (1 << (position % 32))
+                cn.bitfields = bitfields
+                cn
             case None => c
         }
     }
@@ -408,7 +413,7 @@ class CIMNetworkTopologyProcessor (spark: SparkSession, storage: StorageLevel = 
         {
             case Some (node) =>
                 // ToDo: should be: t.copy (TopologicalNode = node.name)
-                Terminal (
+                val terminal = Terminal (
                     t.ACDCTerminal,
                     phases = t.phases,
                     AuxiliaryEquipment = t.AuxiliaryEquipment,
@@ -428,6 +433,11 @@ class CIMNetworkTopologyProcessor (spark: SparkSession, storage: StorageLevel = 
                     TopologicalNode = node.name, // the one changed property
                     TransformerEnd = t.TransformerEnd
                 )
+                val bitfields = t.bitfields.clone ()
+                val position = Terminal.fields.indexOf ("TopologicalNode")
+                bitfields(position / 32) |= (1 << (position % 32))
+                terminal.bitfields = bitfields
+                terminal
             case None => t
         }
     }

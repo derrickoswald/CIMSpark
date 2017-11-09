@@ -62,7 +62,7 @@ extends
         implicit val clz: String = BaseReading.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (BaseReading.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (BaseReading.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (BaseReading.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (BaseReading.fields (position), x))
         emitelem (0, reportedDateTime)
         emitelem (1, source)
         emitattr (2, timePeriod)
@@ -362,7 +362,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ComModule.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ComModule.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ComModule.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ComModule.fields (position), x))
         emitelem (0, amrSystem)
         emitelem (1, supportsAutonomousDst)
         emitelem (2, timeZoneOffset)
@@ -604,7 +604,7 @@ extends
         implicit val clz: String = DemandResponseProgram.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (DemandResponseProgram.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (DemandResponseProgram.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (DemandResponseProgram.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (DemandResponseProgram.fields (position), x))
         emitelem (0, `type`)
         emitattr (1, validityInterval)
         emitattrs (2, CustomerAgreements)
@@ -729,7 +729,7 @@ extends
         implicit val clz: String = EndDevice.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (EndDevice.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (EndDevice.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (EndDevice.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (EndDevice.fields (position), x))
         emitelem (0, amrSystem)
         emitelem (1, installCode)
         emitelem (2, isPan)
@@ -1177,7 +1177,7 @@ extends
         implicit val clz: String = EndDeviceControl.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (EndDeviceControl.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (EndDeviceControl.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (EndDeviceControl.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (EndDeviceControl.fields (position), x))
         emitelem (0, drProgramLevel)
         emitelem (1, drProgramMandatory)
         emitelem (2, issuerID)
@@ -1331,7 +1331,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = EndDeviceControlType.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (EndDeviceControlType.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (EndDeviceControlType.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (EndDeviceControlType.fields (position), x))
         emitelem (0, domain)
         emitelem (1, eventOrAction)
         emitelem (2, subDomain)
@@ -1442,7 +1442,7 @@ extends
         implicit val clz: String = EndDeviceEvent.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (EndDeviceEvent.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (EndDeviceEvent.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (EndDeviceEvent.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (EndDeviceEvent.fields (position), x))
         emitelem (0, issuerID)
         emitelem (1, issuerTrackingID)
         emitelem (2, userID)
@@ -1657,7 +1657,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = EndDeviceEventType.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (EndDeviceEventType.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (EndDeviceEventType.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (EndDeviceEventType.fields (position), x))
         emitelem (0, domain)
         emitelem (1, eventOrAction)
         emitelem (2, subDomain)
@@ -1757,7 +1757,7 @@ extends
         implicit val clz: String = EndDeviceFunction.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (EndDeviceFunction.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (EndDeviceFunction.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (EndDeviceFunction.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (EndDeviceFunction.fields (position), x))
         emitelem (0, enabled)
         emitattr (1, EndDevice)
         emitattrs (2, Registers)
@@ -1853,7 +1853,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = EndDeviceGroup.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (EndDeviceGroup.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (EndDeviceGroup.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (EndDeviceGroup.fields (position), x))
         emitelem (0, `type`)
         emitattrs (1, DemandResponsePrograms)
         emitattrs (2, EndDeviceControls)
@@ -1957,7 +1957,7 @@ extends
         implicit val clz: String = EndDeviceInfo.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (EndDeviceInfo.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (EndDeviceInfo.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (EndDeviceInfo.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (EndDeviceInfo.fields (position), x))
         emitattr (0, capability)
         emitelem (1, isSolidState)
         emitelem (2, phaseCount)
@@ -2159,7 +2159,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = IntervalBlock.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (IntervalBlock.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (IntervalBlock.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (IntervalBlock.fields (position), x))
         emitattrs (0, IntervalReadings)
         emitattr (1, MeterReading)
         emitattr (2, PendingCalculation)
@@ -2254,7 +2254,7 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = IntervalReading.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (IntervalReading.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (IntervalReading.fields (position), x))
         emitattrs (0, IntervalBlocks)
         s.toString
     }
@@ -2346,7 +2346,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Meter.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Meter.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Meter.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Meter.fields (position), x))
         emitelem (0, formNumber)
         emitattrs (1, MeterMultipliers)
         emitattrs (2, MeterReadings)
@@ -2555,7 +2555,7 @@ extends
         implicit val clz: String = MeterReading.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (MeterReading.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (MeterReading.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (MeterReading.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (MeterReading.fields (position), x))
         emitelem (0, isCoincidentTrigger)
         emitattr (1, valuesInterval)
         emitattr (2, CustomerAgreement)
@@ -2763,7 +2763,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MetrologyRequirement.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (MetrologyRequirement.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (MetrologyRequirement.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (MetrologyRequirement.fields (position), x))
         emitattr (0, reason)
         emitattrs (1, ReadingTypes)
         emitattrs (2, UsagePoints)
@@ -3100,7 +3100,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PanPricing.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PanPricing.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (PanPricing.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (PanPricing.fields (position), x))
         emitelem (0, providerID)
         emitattrs (1, PanPricingDetails)
         s.toString
@@ -3358,7 +3358,7 @@ extends
         implicit val clz: String = PendingCalculation.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PendingCalculation.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PendingCalculation.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (PendingCalculation.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (PendingCalculation.fields (position), x))
         emitelem (0, multiplyBeforeAdd)
         emitelem (1, offset)
         emitelem (2, scalarDenominator)
@@ -3550,7 +3550,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Reading.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Reading.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Reading.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Reading.fields (position), x))
         emitattr (0, reason)
         emitattrs (1, MeterReadings)
         emitattr (2, ReadingType)
@@ -3835,7 +3835,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ReadingQualityType.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ReadingQualityType.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ReadingQualityType.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ReadingQualityType.fields (position), x))
         emitelem (0, category)
         emitelem (1, subCategory)
         emitelem (2, systemId)
@@ -3977,7 +3977,7 @@ extends
         implicit val clz: String = ReadingType.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ReadingType.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ReadingType.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (ReadingType.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ReadingType.fields (position), x))
         emitelem (0, accumulation)
         emitelem (1, aggregate)
         emitattr (2, argument)
@@ -4157,7 +4157,7 @@ extends
         implicit val clz: String = Register.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Register.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Register.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (Register.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Register.fields (position), x))
         emitelem (0, isVirtual)
         emitelem (1, leftDigitCount)
         emitelem (2, rightDigitCount)
@@ -4505,7 +4505,7 @@ extends
         implicit val clz: String = UsagePoint.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (UsagePoint.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (UsagePoint.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (UsagePoint.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (UsagePoint.fields (position), x))
         emitattr (0, amiBillingReady)
         emitelem (1, checkBilling)
         emitattr (2, connectionState)
@@ -4740,7 +4740,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = UsagePointGroup.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (UsagePointGroup.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (UsagePointGroup.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (UsagePointGroup.fields (position), x))
         emitelem (0, `type`)
         emitattrs (1, DemandResponsePrograms)
         emitattrs (2, EndDeviceControls)
@@ -4841,7 +4841,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = UsagePointLocation.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (UsagePointLocation.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (UsagePointLocation.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (UsagePointLocation.fields (position), x))
         emitelem (0, accessMethod)
         emitelem (1, remark)
         emitelem (2, siteAccessProblem)

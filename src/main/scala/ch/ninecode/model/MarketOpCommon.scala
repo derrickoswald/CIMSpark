@@ -75,7 +75,7 @@ extends
         implicit val clz: String = MarketInvoice.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (MarketInvoice.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (MarketInvoice.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (MarketInvoice.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (MarketInvoice.fields (position), x))
         emitelem (0, amount)
         emitattr (1, billMediaKind)
         emitelem (2, dueDate)
@@ -220,7 +220,7 @@ extends
         implicit val clz: String = MarketInvoiceLineItem.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (MarketInvoiceLineItem.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (MarketInvoiceLineItem.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (MarketInvoiceLineItem.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (MarketInvoiceLineItem.fields (position), x))
         emitattr (0, billPeriod)
         emitelem (1, glAccount)
         emitelem (2, glDateTime)
@@ -351,7 +351,7 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MarketLedger.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (MarketLedger.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (MarketLedger.fields (position), x))
         emitattrs (0, MarketLedgerEntries)
         s.toString
     }
@@ -445,7 +445,7 @@ extends
         implicit val clz: String = MarketLedgerEntry.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (MarketLedgerEntry.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (MarketLedgerEntry.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (MarketLedgerEntry.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (MarketLedgerEntry.fields (position), x))
         emitelem (0, accountID)
         emitattr (1, accountKind)
         emitelem (2, amount)
@@ -552,7 +552,7 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MktActivityRecord.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (MktActivityRecord.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (MktActivityRecord.fields (position), x))
         emitattrs (0, MarketFactors)
         s.toString
     }
@@ -648,7 +648,7 @@ extends
         implicit val clz: String = MktConnectivityNode.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (MktConnectivityNode.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (MktConnectivityNode.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (MktConnectivityNode.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (MktConnectivityNode.fields (position), x))
         emitelem (0, endEffectiveDate)
         emitelem (1, startEffectiveDate)
         emitattrs (2, CnodeDistributionFactor)
@@ -767,7 +767,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MktEnergyConsumer.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (MktEnergyConsumer.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (MktEnergyConsumer.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (MktEnergyConsumer.fields (position), x))
         emitattrs (0, EnergyConsumerData)
         emitattr (1, RegisteredLoad)
         s.toString
@@ -853,7 +853,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MktGeneratingUnit.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (MktGeneratingUnit.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (MktGeneratingUnit.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (MktGeneratingUnit.fields (position), x))
         emitattrs (0, GeneratingUnitDynamicValues)
         emitattr (1, RegisteredGenerator)
         s.toString
@@ -939,7 +939,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MktLine.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (MktLine.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (MktLine.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (MktLine.fields (position), x))
         emitattrs (0, Flowgate)
         emitattr (1, TransmissionRightOfWay)
         s.toString
@@ -1024,7 +1024,7 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MktLoadArea.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (MktLoadArea.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (MktLoadArea.fields (position), x))
         emitattrs (0, AreaLoadCurve)
         emitattrs (1, RegisteredLoad)
         s.toString
@@ -1116,7 +1116,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MktMeasurement.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (MktMeasurement.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (MktMeasurement.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (MktMeasurement.fields (position), x))
         emitattr (0, ByTiePoint)
         emitattrs (1, DynamicSchedule)
         emitattr (2, ForTiePoint)
@@ -1244,7 +1244,7 @@ extends
         implicit val clz: String = MktOrganisation.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (MktOrganisation.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (MktOrganisation.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (MktOrganisation.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (MktOrganisation.fields (position), x))
         emitattr (0, creditFlag)
         emitelem (1, creditStartEffectiveDate)
         emitelem (2, endEffectiveDate)
@@ -1390,7 +1390,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MktPowerTransformer.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (MktPowerTransformer.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (MktPowerTransformer.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (MktPowerTransformer.fields (position), x))
         emitattr (0, EndAFlow)
         emitattr (1, EndBFlow)
         emitattrs (2, Flowgate)
@@ -1486,7 +1486,7 @@ extends
         implicit val clz: String = MktTerminal.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (MktTerminal.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (MktTerminal.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (MktTerminal.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (MktTerminal.fields (position), x))
         emitelem (0, endEffectiveDate)
         emitelem (1, startEffectiveDate)
         emitattr (2, Flowgate)
@@ -1587,7 +1587,7 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MktUserAttribute.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (MktUserAttribute.fields (position), x))
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (MktUserAttribute.fields (position), x))
         emitattrs (0, AttributeProperty)
         emitattrs (1, BillDeterminant)
         emitattrs (2, ChargeGroup)

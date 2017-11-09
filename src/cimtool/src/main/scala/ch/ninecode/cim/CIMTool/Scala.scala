@@ -307,7 +307,7 @@ case class Scala (parser: ModelParser, pkg: Package)
                 if (fields.exists (x ⇒ x.reference && !x.multiple))
                     s.append ("        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (%s.fields (position), value)\n".format (name))
                 if (fields.exists (_.multiple))
-                    s.append ("        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position)) value.foreach (x ⇒ emit_attribute (%s.fields (position), x))\n".format (name))
+                    s.append ("        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (%s.fields (position), x))\n".format (name))
                 s.append (fields.iterator.zipWithIndex.map (x ⇒ (if (x._1.multiple) "emitattrs" else if (x._1.reference) "emitattr" else "emitelem") + " (" + x._2 + ", " + x._1.variable + ")").mkString ("        ", "\n        ", "\n"))
                 s.append ("        s.toString\n")
             }
