@@ -69,10 +69,10 @@ trait CIMRDD
             case Some ((_: Int, rdd: RDD[_])) =>
                 rdd.asInstanceOf[RDD[T]]
             case Some (_) =>
-                log.warn ("%s not found in Spark context persistent RDDs map:\n%s".format (name, spark.sparkContext.getPersistentRDDs.map (_._2.name).mkString ("\n")))
+                log.warn (name + " not found in Spark context persistent RDDs map")
                 null
             case None =>
-                log.warn ("%s not found in Spark context persistent RDDs map:\n%s".format (name, spark.sparkContext.getPersistentRDDs.map (_._2.name).mkString ("\n")))
+                log.warn (name + " not found in Spark context persistent RDDs map")
                 null
         }
     }

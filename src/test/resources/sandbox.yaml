@@ -19,34 +19,32 @@ services:
   sandbox:
     container_name: spark_master
     image: derrickoswald/spark-docker
-#    image: derrickoswald/spark-docker:2.1.1
     command: start-spark master
     environment:
       HDFS_USER: ${USER} # use value of environment variable "USER" as Spark owner/operator
     hostname: sandbox
-    ports: # not sure how many of these are really needed:
-      - "4040:4040"
-      - "6066:6066"
-      - "7070:7070"
-      - "7077:7077" # Spark standalone port, as in master = spark://sandbox:7077
-      - "8020:8020" # hdfs port, as in: hdfs dfs -fs hdfs://sandbox:8020 -ls
-      - "8032:8032"
-      - "8042:8042"
-      - "8080:8080"
-      - "8081:8081"
-      - "8088:8088"
+    ports:
+      - "4040:4040" # Cluster Manager Web UI
+      - "6066:6066" # Standalone Master REST port (spark.master.rest.port)
+      - "7077:7077" # Driver to Standalone Master, as in master = spark://sandbox:7077
+      - "8020:8020" # DFS Namenode IPC, as in: hdfs dfs -fs hdfs://sandbox:8020 -ls
+      - "8080:8080" # Standalone Master Web UI
+      - "8081:8081" # Standalone Worker Web UI
       - "10000:10000" # Thriftserver JDBC port
       - "10001:10001" # Thriftserver HTTP protocol JDBC port
-      - "50010:50010"
-      - "50070:50070"
+      - "50010:50010" # DFS Datanode data transfer
+      - "50070:50070" # DFS Namenode Web UI
+      - "50075:50075" # DFS Datanode Web UI
+      - "7000:7000" # Cassandra storage_port
+      - "7001:7001" # Cassandra ssl_storage_port
+      - "9042:9042" # Cassandra native_transport_port
+      - "9160:9160" # Cassandra rpc_port
     volumes:
       - ./../../../data:/opt/data # map sample data file directory to /opt/data within the container
       - ./../../../private_data:/opt/private_data # map private sample data file directory to /opt/private_data within the container
       - ./../../../target:/opt/code # map compilation output directory to /opt/code within the container
-      - /opt/apache-tomee-plus-7.0.2:/opt/tomee
   worker:
     image: derrickoswald/spark-docker
-#    image: derrickoswald/spark-docker:2.1.1
     command: start-spark worker sandbox
     environment:
       HDFS_USER: ${USER} # use value of environment variable "USER" as Spark owner/operator 
@@ -59,4 +57,3 @@ services:
       - ./../../../data:/opt/data # map sample data file directory to /opt/data within the container
       - ./../../../private_data:/opt/private_data # map private sample data file directory to /opt/private_data within the container
       - ./../../../target:/opt/code # map compilation output directory to /opt/code within the container
-      - /opt/apache-tomee-plus-7.0.2:/opt/tomee
