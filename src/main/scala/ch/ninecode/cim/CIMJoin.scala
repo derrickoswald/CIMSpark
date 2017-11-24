@@ -194,6 +194,9 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
         val service_locations = get[ServiceLocation]
         val points = get[PositionPoint]
         val attributes = get[UserAttribute]
+        val work_loc = get[WorkLocation]
+        val locations = get[Location]
+        val idobj = get[IdentifiedObject]
 
         // get only the cim:Name objects pertaining to the ServiceLocation join
         val isusl = names.keyBy (_.name).join (service_locations.keyBy (_.id)).values
@@ -206,24 +209,27 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
         val temp_locations = service_locations.keyBy (_.id).leftOuterJoin (pairs.keyBy (_._2._1.id)).values.map (edit_service_location)
         // step 4, delete the NIS ServiceLocations that have a corresponding ISU ServiceLocation
         val updated_locations = temp_locations.keyBy (_.id).leftOuterJoin (pairs).values.filter (delete_service_location).map (_._1)
-        put (service_locations)
+        service_locations.name = "unjoined_ServiceLocation"
+        ServiceLocation.subsetter.save (session.sqlContext, updated_locations.asInstanceOf[ServiceLocation.subsetter.rddtype], storage)
 
         // step 2, change the Location attribute of affected PositionPoint
         val updated_points = points.keyBy (_.Location).leftOuterJoin (pairs).values.map (edit_position_point)
-        put (updated_points)
+        points.name = "unjoined_PositionPoint"
+        PositionPoint.subsetter.save (session.sqlContext, updated_points.asInstanceOf[PositionPoint.subsetter.rddtype], storage)
 
         // step 3, change the name attribute of affected UserAttribute
         val updated_attributes = attributes.keyBy (_.name).leftOuterJoin (pairs).values.map (edit_user_attribute)
-        put (updated_attributes)
+        attributes.name = "unjoined_UserAttribute"
+        UserAttribute.subsetter.save (session.sqlContext, updated_attributes.asInstanceOf[UserAttribute.subsetter.rddtype], storage)
 
         // step 5 and 6, delete the Name objects that are no longer needed
         val updated_names = names.keyBy (_.IdentifiedObject).leftOuterJoin (pairs).values.filter (delete_name).map (_._1)
-        put (updated_names)
+        names.name = "unjoined_Name"
+        Name.subsetter.save (session.sqlContext, updated_names.asInstanceOf[Name.subsetter.rddtype], storage)
 
         // replace service locations in WorkLocation
-        val old_work_loc = get[WorkLocation]
         val updated_worklocations_pairrdd = updated_locations.map (_.WorkLocation).keyBy (_.id)
-        val new_work_loc = old_work_loc.keyBy (_.id).leftOuterJoin (updated_worklocations_pairrdd).
+        val new_work_loc = work_loc.keyBy (_.id).leftOuterJoin (updated_worklocations_pairrdd).
             values.flatMap (
                 (arg: (WorkLocation, Option[WorkLocation])) =>
                     arg._2 match
@@ -232,11 +238,11 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
                         case None => List (arg._1)
                     }
                 )
-        put (new_work_loc)
+        work_loc.name = "unjoined_WorkLocation"
+        WorkLocation.subsetter.save (session.sqlContext, new_work_loc.asInstanceOf[WorkLocation.subsetter.rddtype], storage)
 
         // replace service locations in Location
-        val old_loc = get[Location]
-        val new_loc = old_loc.keyBy (_.id).leftOuterJoin (updated_locations.map (_.WorkLocation.Location).keyBy (_.id)).
+        val new_loc = locations.keyBy (_.id).leftOuterJoin (updated_locations.map (_.WorkLocation.Location).keyBy (_.id)).
             values.flatMap (
                 (arg: (Location, Option[Location])) =>
                     arg._2 match
@@ -245,14 +251,11 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
                         case None => List (arg._1)
                     }
                 )
-        put (new_loc)
-
-        // new RDD as IdentifiedObject
-        val idobj = old_loc.map (_.IdentifiedObject)
+        locations.name = "unjoined_Location"
+        Location.subsetter.save (session.sqlContext, new_loc.asInstanceOf[Location.subsetter.rddtype], storage)
 
         // replace identified objects in IdentifiedObject
-        val old_idobj = get[IdentifiedObject]
-        val new_idobj = old_idobj.keyBy (_.id).leftOuterJoin (idobj.keyBy (_.id)).
+        val new_idobj = idobj.keyBy (_.id).leftOuterJoin (locations.map (_.IdentifiedObject).keyBy (_.id)).
             values.flatMap (
                 (arg: (IdentifiedObject, Option[IdentifiedObject])) =>
                     arg._2 match
@@ -261,7 +264,8 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
                         case None => List (arg._1)
                     }
                 )
-        put (new_idobj)
+        idobj.name = "unjoined_IdentifiedObject"
+        IdentifiedObject.subsetter.save (session.sqlContext, new_idobj.asInstanceOf[IdentifiedObject.subsetter.rddtype], storage)
 
         // make a union of all new RDD as Element
         val newelem = updated_points.asInstanceOf[RDD[Element]].

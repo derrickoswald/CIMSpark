@@ -355,8 +355,9 @@ extends
     val runtime_class: Class[_] = classTag[A].runtimeClass
     val classname: String = runtime_class.getName
     val cls: String = classname.substring (classname.lastIndexOf (".") + 1)
+    val subsetter: CIMSubsetter[_ <: Product] = new CIMSubsetter[A]()
     def register: ClassInfo =
-        ClassInfo (cls, this.asInstanceOf[Parseable[Product]], new CIMSubsetter[A](), relations)
+        ClassInfo (cls, this.asInstanceOf[Parseable[Product]], subsetter, relations)
     def mask (field: Field, position: Int) (implicit bitfields: Array[Int]): String =
     {
         if (field._2)

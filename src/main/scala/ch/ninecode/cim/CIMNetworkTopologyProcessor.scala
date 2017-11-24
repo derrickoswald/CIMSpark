@@ -588,14 +588,7 @@ class CIMNetworkTopologyProcessor (spark: SparkSession, storage: StorageLevel = 
                 old_ti.unpersist (false)
                 old_ti.name = "old_TopologicalIsland"
             }
-            new_ti.name = "TopologicalIsland"
-            new_ti.persist (storage)
-            spark.sparkContext.getCheckpointDir match
-            {
-                case Some (_) => new_ti.checkpoint ()
-                case None =>
-            }
-            spark.createDataFrame (new_ti).createOrReplaceTempView ("TopologicalIsland")
+            TopologicalIsland.subsetter.save (session.sqlContext, new_ti.asInstanceOf[TopologicalIsland.subsetter.rddtype], storage)
 
             val nodes_with_islands = graph.vertices.values.keyBy (_.island).join (islands).values
             val nodes = nodes_with_islands.groupBy (_._1.node).map ((x) => (x._1, x._2.head._1, Some (x._2.head._2))).map (to_nodes)
@@ -618,14 +611,7 @@ class CIMNetworkTopologyProcessor (spark: SparkSession, storage: StorageLevel = 
             old_tn.unpersist (false)
             old_tn.name = "old_TopologicalNode"
         }
-        new_tn.name = "TopologicalNode"
-        new_tn.persist (storage)
-        spark.sparkContext.getCheckpointDir match
-        {
-            case Some (_) => new_tn.checkpoint ()
-            case None =>
-        }
-        spark.createDataFrame (new_tn).createOrReplaceTempView ("TopologicalNode")
+        TopologicalNode.subsetter.save (session.sqlContext, new_tn.asInstanceOf[TopologicalNode.subsetter.rddtype], storage)
 
         // but the other RDD (ConnectivityNode and Terminal also ACDCTerminal) need to be updated in IdentifiedObject and Element
 
@@ -635,14 +621,7 @@ class CIMNetworkTopologyProcessor (spark: SparkSession, storage: StorageLevel = 
 
         // swap the old ConnectivityNode RDD for the new one
         old_cn.name = "nontopological_ConnectivityNode"
-        new_cn.name = "ConnectivityNode"
-        new_cn.persist (storage)
-        spark.sparkContext.getCheckpointDir match
-        {
-            case Some (_) => new_cn.checkpoint ()
-            case None =>
-        }
-        spark.createDataFrame (new_cn).createOrReplaceTempView ("ConnectivityNode")
+        ConnectivityNode.subsetter.save (session.sqlContext, new_cn.asInstanceOf[ConnectivityNode.subsetter.rddtype], storage)
 
         // assign every Terminal with a connectivity node to a TopologicalNode
         // note: keep the original enclosed ACDCTerminal objects
@@ -654,14 +633,7 @@ class CIMNetworkTopologyProcessor (spark: SparkSession, storage: StorageLevel = 
 
         // swap the old Terminal RDD for the new one
         old_terminals.name = "nontopological_Terminal"
-        new_terminals.name = "Terminal"
-        new_terminals.persist (storage)
-        spark.sparkContext.getCheckpointDir match
-        {
-            case Some (_) => new_terminals.checkpoint ()
-            case None =>
-        }
-        spark.createDataFrame (new_terminals).createOrReplaceTempView ("Terminal")
+        Terminal.subsetter.save (session.sqlContext, new_terminals.asInstanceOf[Terminal.subsetter.rddtype], storage)
 
         // make a union of all old RDD as IdentifiedObject
         val oldobj =
@@ -683,14 +655,7 @@ class CIMNetworkTopologyProcessor (spark: SparkSession, storage: StorageLevel = 
 
         // swap the old IdentifiedObject RDD for the new one
         old_idobj.name = "nontopological_IdentifiedObject"
-        new_idobj.name = "IdentifiedObject"
-        new_idobj.persist (storage)
-        spark.sparkContext.getCheckpointDir match
-        {
-            case Some (_) => new_idobj.checkpoint ()
-            case None =>
-        }
-        spark.createDataFrame (new_idobj).createOrReplaceTempView ("IdentifiedObject")
+        IdentifiedObject.subsetter.save (session.sqlContext, new_idobj.asInstanceOf[IdentifiedObject.subsetter.rddtype], storage)
 
         // make a union of all old RDD as Element
         val oldelem =

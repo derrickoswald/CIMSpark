@@ -98,6 +98,8 @@ trait CIMRDD
     /**
      * Persist the typed RDD using the given name and create the SQL view for it.
      *
+     * Should only be used where a non-CIM case class needs to be added to the persistent RDD list and registered as a SQL view.
+     *
      * @param rdd The RDD to persist
      * @param name The name under which to persist it.
      * @param spark The Spark session.
@@ -126,6 +128,8 @@ trait CIMRDD
 
     /**
      * Persist the typed RDD using the class name and create the SQL view for it.
+     *
+     * Should only be used where a non-CIM case class needs to be added to the persistent RDD list and registered as a SQL view.
      *
      * @param rdd The RDD to persist
      * @param spark The Spark session.

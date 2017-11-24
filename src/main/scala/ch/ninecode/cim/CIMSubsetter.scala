@@ -33,37 +33,9 @@ class CIMSubsetter[A <: Product : ClassTag : TypeTag] () extends Serializable
 
     val cls: String = { classname.substring (classname.lastIndexOf (".") + 1) }
 
-    def subclass (x: Element): A =
-    {
-        var ret = x
-
-        while ((null != ret) && (ret.getClass != runtime_class))
-            ret = ret.sup
-
-        ret.asInstanceOf[A]
-    }
-
-    val pf:PartialFunction[Element, A] =
-    {
-        case x: Element if null != subclass (x) =>
-            subclass (x)
-    }
-
-    def subset (rdd: RDD[Element], storage: StorageLevel, context: SparkContext): rddtype =
-    {
-        val subrdd = rdd.collect[A] (pf)
-        subrdd.name = cls
-        subrdd.persist (storage)
-        context.getCheckpointDir match
-        {
-            case Some (_) => subrdd.checkpoint ()
-            case None =>
-        }
-        subrdd
-    }
-
     /**
      * Alter the schema so sup has the correct superclass name.
+     *
      * @param rtc The runtime class for Typeclass A.
      * @param schema The SQL schema for Typeclass A, e.g.
      *   org.apache.spark.sql.types.StructType = StructType(StructField(sup,StructType(StructField(sup,StructType(StructField(sup,...
@@ -85,16 +57,62 @@ class CIMSubsetter[A <: Product : ClassTag : TypeTag] () extends Serializable
 
     /**
      * Create the Dataframe for Typeclass A.
+     *
+     * @param context The SQL context for creating the views.
+     * @param rdd The raw Element RDD to subset.
+     * @param storage The storage level to persist the subset RDD with.
+     */
+    def save (context: SQLContext, rdd: rddtype, storage: StorageLevel): Unit =
+    {
+        rdd.name = cls
+        rdd.persist (storage)
+        context.sparkSession.sparkContext.getCheckpointDir match
+        {
+            case Some (_) => rdd.checkpoint ()
+            case None =>
+        }
+        val df = context.sparkSession.createDataFrame (rdd)(typeTag[A])
+        val altered_schema = modify_schema (runtime_class, df.schema)
+        val data_frame = context.sparkSession.createDataFrame (rdd.asInstanceOf[RDD[Row]], altered_schema)
+        data_frame.createOrReplaceTempView (cls)
+    }
+
+    /**
+     * Convert the generic element into an object of type A.
+     *
+     * Runs up the hierarchy of nested CIM classes to find this class - or not.
+     *
+     * @param element the generic element
+     * @return the object of this class, or <code>null</code> if the element is not derived from this class
+     */
+    def subclass (element: Element): A =
+    {
+        var ret = element
+
+        while ((null != ret) && (ret.getClass != runtime_class))
+            ret = ret.sup
+
+        ret.asInstanceOf[A]
+    }
+
+    /**
+     * Selector for elements of this class.
+     */
+    val pf:PartialFunction[Element, A] =
+    {
+        case element: Element if null != subclass (element) =>
+            subclass (element)
+    }
+
+    /**
+     * Create the Dataframe for Typeclass A.
      * @param context The SQL context for creating the views.
      * @param rdd The raw Element RDD to subset.
      * @param storage The storage level to persist the subset RDD with.
      */
     def make (context: SQLContext, rdd: RDD[Element], storage: StorageLevel): Unit =
     {
-        val sub = subset (rdd, storage, context.sparkSession.sparkContext)
-        val df = context.sparkSession.createDataFrame (sub)(typeTag[A])
-        val altered_schema = modify_schema (runtime_class, df.schema)
-        val data_frame = context.sparkSession.createDataFrame (sub.asInstanceOf[RDD[Row]], altered_schema)
-        data_frame.createOrReplaceTempView (cls)
+        val subrdd = rdd.collect[A] (pf)
+        save (context, subrdd, storage)
     }
 }
