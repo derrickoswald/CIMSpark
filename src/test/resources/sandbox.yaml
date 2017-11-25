@@ -47,8 +47,7 @@ services:
     image: derrickoswald/spark-docker
     command: start-spark worker sandbox
     environment:
-      HDFS_USER: ${USER} # use value of environment variable "USER" as Spark owner/operator 
-    environment:
+      HDFS_USER: ${USER} # use value of environment variable "USER" as Spark owner/operator
       SPARK_WORKER_CORES: 1
       SPARK_WORKER_MEMORY: 4g
     links:
