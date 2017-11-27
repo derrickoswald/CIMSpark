@@ -187,11 +187,11 @@ case class JavaScript (parser: ModelParser, pkg: Package)
 
             // output the export function
             s.append (
-                """            export (obj, exporters, full)
+                """            export (obj, full)
                   |            {
                   |""".stripMargin.format (name))
             if (null != cls._2.sup)
-                s.append ("""                var fields = exporters["%s"](obj, exporters, false);""".format (cls._2.sup.name))
+                s.append ("""                var fields = %s%s.prototype.export.call (this, obj, false);""".stripMargin.format (superclass_package, superclass))
             else
                 s.append ("""                var fields = [];""")
             s.append ("\n\n")
