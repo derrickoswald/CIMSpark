@@ -13,6 +13,6 @@ case class Class (
     xuid: String,
     name: String,
     note: String,
-    pkg: Package,
+    var pkg: Package,
     stereotype: String,
     var sup: Class = null)

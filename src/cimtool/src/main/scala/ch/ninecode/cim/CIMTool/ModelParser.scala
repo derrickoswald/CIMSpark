@@ -199,9 +199,9 @@ case class ModelParser (db: Database)
 object ModelParser
 {
     val VERSION = "16"
-    val SCALA = true
+    val SCALA = false
 
-    def main(args : Array[String])
+    def main (args : Array[String])
     {
         val file = VERSION match
         {
@@ -304,9 +304,8 @@ object ModelParser
         else
         {
             val files = scala.collection.mutable.SortedSet[String]()
-            for (pkg <- parser.packages)
+            def do_package (p: Package): Unit =
             {
-                val p = pkg._2
                 val js = JavaScript (parser, p)
                 val s = js.asText ()
                 if (s.trim != "")
@@ -315,6 +314,25 @@ object ModelParser
                     println ("target/model/" + p.name + ".js:")
                     Files.write (Paths.get ("target/model/" + p.name + ".js"), s.getBytes (StandardCharsets.UTF_8))
                 }
+            }
+            for (pkg <- parser.packages)
+            {
+                val p = pkg._2
+                // shenanigans to avoid the circular dependency between the Wires package and the LoadModel package
+                if ("LoadModel" == p.name)
+                {
+                    // put all classes that don't depend on Wires in LoadModel
+                    val p_no_wires = p.copy (name = "LoadModel2")
+                    parser.classes.foreach (
+                        cls ⇒
+                            if (cls._2.pkg == p && cls._2.sup.pkg.name == "Wires")
+                                cls._2.pkg = p_no_wires
+                    )
+                    do_package (p)
+                    do_package (p_no_wires)
+                }
+                else
+                    do_package (p)
             }
             val decl = """    ["model/base", """"  + files.map ("""model/""" + _).mkString ("""", """") + """"],"""
             val fn = """    function (base, """ + files.mkString (""", """) + """)"""
