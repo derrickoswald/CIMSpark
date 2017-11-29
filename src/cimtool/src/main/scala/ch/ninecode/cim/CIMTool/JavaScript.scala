@@ -224,9 +224,40 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                 |
                 |                return (fields);
                 |            }
-                |        }
-                |
                 |""".stripMargin.format (name))
+
+            // output the template function
+            s.append ("""
+                |
+                |            template ()
+                |            {
+                |                return (
+                |`
+                |<a data-toggle="collapse" href="#%s_collapse" aria-expanded="true" aria-controls="%s_collapse">%s</a>
+                |<div id="%s_collapse" class="collapse in" style="margin-left: 10px;">
+                |`
+                |      + %s%s.prototype.template.call (this) +
+                |`
+                |""".stripMargin.format (name, name, name, name, superclass_package, superclass))
+            for (attribute <- attributes)
+            {
+                s.append ("{{#%s}}<div><b>%s</b>: {{%s}}</div>{{/%s}}\n".format (attribute.name, attribute.name, attribute.name, attribute.name))
+            }
+            for (role <- roles)
+                if (role.upper == 1)
+                {
+                    s.append ("{{#%s}}<div><b>%s</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{%s}}&quot;);})'>{{%s}}</a></div>{{/%s}}\n".format (role.name, role.name, role.name, role.name, role.name))
+                }
+
+            s.append (
+                """</div>
+                |`
+                |                );
+                |           }""".stripMargin)
+            s.append (
+                """        }
+                |
+                |""".stripMargin)
 
             p.append (s)
         }

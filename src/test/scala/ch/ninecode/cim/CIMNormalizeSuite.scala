@@ -73,7 +73,7 @@ class CIMNormalizeSuite extends ch.ninecode.SparkSuite with BeforeAndAfter
             )
 
             val export = new CIMExport (spark)
-            export.exportAll (FILE_DEPOT + "BaseCase_BC.rdf", "MicroGridTestConfiguration")
+            export.exportAll (FILE_DEPOT + "MicroGrid.rdf", "MicroGridTestConfiguration")
     }
 
     test ("TopologicalNodes")
@@ -101,5 +101,8 @@ class CIMNormalizeSuite extends ch.ninecode.SparkSuite with BeforeAndAfter
                     assert (ref._2 != null, ref._1)
                 }
             )
+
+            val export = new CIMExport (spark)
+            export.exportAll (FILE_DEPOT + "RealGrid.rdf", "CGMES_v2.4.15_RealGridTestConfiguration")
     }
 }
