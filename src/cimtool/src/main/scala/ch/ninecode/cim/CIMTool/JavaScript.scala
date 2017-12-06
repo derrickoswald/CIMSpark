@@ -281,7 +281,8 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                     |            {
                     |                return (
                     |                    `
-                    |                    <a data-toggle="collapse" href="#%s_collapse" aria-expanded="true" aria-controls="%s_collapse">%s</a>
+                    |                    <fieldset>
+                    |                    <legend class='col-form-legend'><a data-toggle="collapse" href="#%s_collapse" aria-expanded="true" aria-controls="%s_collapse" style="margin-left: 10px;">%s</a></legend>
                     |                    <div id="%s_collapse" class="collapse in" style="margin-left: 10px;">
                     |                    `
                     |                    + %s%s.prototype.template.call (this) +
@@ -293,6 +294,8 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                     s.append ("                    {{#%s}}<div><b>%s</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{%s}}&quot;);})'>{{%s}}</a></div>{{/%s}}\n".format (role.name, role.name, role.name, role.name, role.name))
                 s.append (
                     """                    </div>
+                    |                    <fieldset>
+                    |
                     |                    `
                     |                );
                     |            }
@@ -322,6 +325,15 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                 s.append ("""
                             |            }
                             |""".stripMargin)
+//                <form>
+//                    <fieldset>
+//                        <legend>Personalia:</legend>
+//                        Name: <input type="text" size="30"><br>
+//                        Email: <input type="text" size="30"><br>
+//                            Date of birth: <input type="text" size="10">
+//                            </fieldset>
+//                        </form>
+//
 
                 // output the editing template function
                 s.append ("""
@@ -329,7 +341,8 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                             |            {
                             |                return (
                             |                    `
-                            |                    <a data-toggle="collapse" href="#%s_collapse" aria-expanded="true" aria-controls="%s_collapse">%s</a>
+                            |                    <fieldset>
+                            |                    <legend class='col-form-legend'><a data-toggle="collapse" href="#%s_collapse" aria-expanded="true" aria-controls="%s_collapse" style="margin-left: 10px;">%s</a></legend>
                             |                    <div id="%s_collapse" class="collapse in" style="margin-left: 10px;">
                             |                    `
                             |                    + %s%s.prototype.edit_template.call (this) +
@@ -358,6 +371,7 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                     s.append ("                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='%s'>%s: </label><div class='col-sm-8'><input id='%s' class='form-control' type='text'{{#%s}} value='{{%s}}'{{/%s}}></div></div>\n".format (role.name, role.name, role.name, role.name, role.name, role.name))
                 s.append (
                     """                    </div>
+                      |                    <fieldset>
                       |                    `
                       |                );
                       |           }
