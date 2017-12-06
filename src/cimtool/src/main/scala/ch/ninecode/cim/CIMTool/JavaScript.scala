@@ -340,22 +340,22 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                     if (enumerations.contains (attribute.typ))
                     {
                         // output a selection (needs condition(obj) to get the array of strings
-                        s.append ("                    <form class='form-inline'><div class='input-group'><label>%s: <select id='%s'>{{#%s}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/%s}}</select></label></div></form>\n".format (attribute.name, attribute.name, attribute.typ, attribute.typ))
+                        s.append ("                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='%s'>%s: </label><div class='col-sm-8'><select id='%s' class='form-control'>{{#%s}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/%s}}</select></div></div>\n".format (attribute.name, attribute.name, attribute.name, attribute.typ, attribute.typ))
 
                     }
                     else
                         attribute.typ match
                         {
                             case "Boolean" =>
-                                s.append ("                    <form class='form-inline'><div class='form-check'><label class='form-check-label'>%s: <input id='%s' class='form-check-input' type='checkbox'{{#%s}} checked{{/%s}}></label></div></form>\n".format (attribute.name, attribute.name, attribute.name, attribute.name))
+                                s.append ("                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='%s'>%s: </label><div class='col-sm-8'><input id='%s' class='form-check-input' type='checkbox'{{#%s}} checked{{/%s}}></div></div>\n".format (attribute.name, attribute.name, attribute.name, attribute.name, attribute.name))
     //                        case "DateTime" =>
     //                        case "Float" =>
                             case _ =>
-                                s.append ("                    <form class='form-inline'><div class='input-group'><label>%s: <input id='%s' type='text'{{#%s}} value='{{%s}}'{{/%s}}></label></div></form>\n".format (attribute.name, attribute.name, attribute.name, attribute.name, attribute.name))
+                                s.append ("                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='%s'>%s: </label><div class='col-sm-8'><input id='%s' class='form-control' type='text'{{#%s}} value='{{%s}}'{{/%s}}></div></div>\n".format (attribute.name, attribute.name, attribute.name, attribute.name, attribute.name, attribute.name))
                         }
                 }
                 for (role <- roles.filter (_.upper == 1))
-                    s.append ("                    <form class='form-inline'><div class='input-group'><label>%s: <input id='%s' type='text'{{#%s}} value='{{%s}}'{{/%s}}></label></div></form>\n".format (role.name, role.name, role.name, role.name, role.name))
+                    s.append ("                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='%s'>%s: </label><div class='col-sm-8'><input id='%s' class='form-control' type='text'{{#%s}} value='{{%s}}'{{/%s}}></div></div>\n".format (role.name, role.name, role.name, role.name, role.name, role.name))
                 s.append (
                     """                    </div>
                       |                    `
