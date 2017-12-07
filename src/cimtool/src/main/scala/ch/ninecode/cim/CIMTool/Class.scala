@@ -16,3 +16,6 @@ case class Class (
     var pkg: Package,
     stereotype: String,
     var sup: Class = null)
+{
+    override def toString: String = pkg.name + ":" + name + (if (null != stereotype) " (" + stereotype + ")" else "") + (if (null != sup) " subclass of " + sup.name else "")
+}

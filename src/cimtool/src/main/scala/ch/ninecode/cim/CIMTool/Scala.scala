@@ -4,16 +4,6 @@ import scala.collection.mutable
 
 case class Scala (parser: ModelParser, pkg: Package)
 {
-    val parses: Iterable[(String, String)] =
-    {
-        val ret = mutable.Set[(String, String)]()
-
-        for (cls <- parser.classes.filter (_._2.pkg == pkg))
-            ret.add (("cim:" + cls._2.name, "parse_" + cls._2.name.replace ("-", "_")))
-
-        ret
-    }
-
     def valid_class_name (s: String): String =
     {
         val name = s match
@@ -26,7 +16,6 @@ case class Scala (parser: ModelParser, pkg: Package)
             case "length" => "len"
             case "Boolean" => "`Boolean`"
             case "String" => "`String`"
-            case "" => "unknown" // ToDo: WTF?
             case _ =>
                 val identifier = (if (s.charAt (0).isDigit) "_" else "") +
                 s.replace (" ", "_").replace ("-", "_").replace ("""/""", """_""").replace (""".""", """_""").replace (""",""", """_""")
@@ -55,8 +44,7 @@ case class Scala (parser: ModelParser, pkg: Package)
             case "char" => "`char`"
             case "default" => "`default`"
             case "native" => "`native`"
-            case "" => "unknown" // ToDo: WTF?
-            case _ => 
+            case _ =>
                 val identifier = (if (s.charAt (0).isDigit) "_" else "") +
                 s.replace (" ", "_").replace ("-", "_").replace ("""/""", """_""").replace (""".""", """_""").replace (""",""", """_""").replace (""":""", """_""").replace ("""(""", """_""").replace (""")""", """_""")
                 if (identifier.endsWith ("_")) identifier + "1" else identifier
@@ -109,7 +97,7 @@ case class Scala (parser: ModelParser, pkg: Package)
         "_" + valid_class_name (pkg.name)
     }
 
-    def details (classes: mutable.Set[(String, Int)]) (attribute: Attribute): Member =
+    def details (classes: mutable.Set[Class]) (attribute: Attribute): Member =
     {
         val name = attribute.name
         val variable = valid_attribute_name (attribute)
@@ -150,10 +138,10 @@ case class Scala (parser: ModelParser, pkg: Package)
                             }
                 }
             case None =>
-                classes.find (_._1 == attribute.typ) match
+                classes.find (_.name == attribute.typ) match
                 {
-                    case Some (clz) ⇒
-                        Member (name, variable, false, comment, true, "0..1", "0..*", "String", "null", "", clz._1)
+                    case Some (clz: Class) ⇒
+                        Member (name, variable, false, comment, true, "0..1", "0..*", "String", "null", "", valid_class_name (clz.name))
                     case None ⇒
                         Member (name, variable, false, comment, true, "0..1", "", "String", "null", "", null)
                 }
@@ -174,29 +162,12 @@ case class Scala (parser: ModelParser, pkg: Package)
 
     def asText (): String =
     {
-        val classes = parser.classes.filter (x => x._2.pkg == pkg)
-
-        val case_classes = mutable.SortedSet[(String,Int)]()
-        for (cls <- classes)
-        {
-            // special handling for domains, datatypes, primitives and enumerations
-            if (((pkg.name != "Domain") && (pkg.name != "DomainProfile")) || (cls._2.stereotype == "Compound"))
-                if (
-                    (cls._2.stereotype != "enumeration") &&
-                    (cls._2.stereotype != "CIMDatatype") &&
-                    (cls._2.stereotype != "Primitive"))
-                {
-                    case_classes.add ((valid_class_name (cls._2.name), cls._1))
-                }
-        }
-
+        val case_classes = parser.classesFor (pkg)
         val p = new StringBuilder ()
-        for (c <- case_classes)
+        for (cls <- case_classes)
         {
-            val cls = classes (c._2)
             val name = valid_class_name (cls.name)
             val identified_object = name == "IdentifiedObject" // special handling for IdentifiedObject.mRID
-            def myattribute (attribute: Attribute): Boolean = attribute.name != "" // ToDo: why empty names?
             implicit val ordering: Ordering[Member] = new Ordering[Member]
             {
                 def compare (a: Member, b: Member): Int =
@@ -223,10 +194,9 @@ case class Scala (parser: ModelParser, pkg: Package)
             val sup = Member ("sup", "sup", true, "Reference to the superclass object.", false, "1", "", if (null != cls.sup) cls.sup.name else "BasicElement", "null", "", if (null == cls.sup) null else valid_class_name (cls.sup.name))
             val members: mutable.SortedSet[Member] =
                 mutable.SortedSet[Member](sup) ++
-                    parser.attributes.getOrElse (c._2, List[Attribute]()).filter (myattribute).map (details (case_classes)).toSet
-                        .union (parser.roles.filter (_.for_class (cls)).map (details))
+                    parser.attributesFor (cls).map (details (case_classes)).toSet
+                        .union (parser.rolesFor (cls).map (details).toSet)
             val fields: mutable.SortedSet[Member] = members.filter ("sup" != _.name)
-            val isLong: Boolean = fields.size > 32
             val s = new StringBuilder ()
             val n = if (null != pkg.notes) pkg.notes else ""
             s.append (JavaDoc (cls.note, 0, members, pkg.name, "Package " + pkg.name, n).asText)
@@ -271,7 +241,7 @@ case class Scala (parser: ModelParser, pkg: Package)
             |     * @groupname Hierarchy Class Hierarchy Related
             |     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
             |     */
-            |    def """.stripMargin.format (if (isLong) "Long" else "Int"))
+            |    def """.stripMargin)
             if (null != cls.sup)
             {
                 s.append (cls.sup.name)
@@ -408,13 +378,9 @@ case class Scala (parser: ModelParser, pkg: Package)
                 |{
                 |    def register: List[ClassInfo] =
                 |    {
-                |        List (
                 |""".stripMargin)
-            v.append ("""            """)
-            v.append (case_classes.map (_._1).mkString (""".register,
-                |            """.stripMargin))
-            v.append (""".register
-                |        )
+            v.append (case_classes.map (cls ⇒ valid_class_name (cls.name) + ".register").mkString ("        List (\n            ", ",\n            ", "\n        )"))
+            v.append ("""
                 |    }
                 |}""".stripMargin)
 

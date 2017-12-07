@@ -15,3 +15,6 @@ case class Package (
     global: Boolean,
     notes: String,
     var parent: Package = null)
+{
+    override def toString: String = (if (null != parent) parent.name + ":" else "") + name +  (if (global) " global" else "")
+}

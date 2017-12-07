@@ -185,6 +185,12 @@ case class ModelParser (db: Database)
             println (role)
     }
 
+    def showDomains (): Unit =
+    {
+        for (domain <- domains)
+            println (domain)
+    }
+
     def run (): Unit =
     {
         gatherPackageIDs ()
@@ -194,6 +200,37 @@ case class ModelParser (db: Database)
         extractAssociations ()
         extractDomains ()
     }
+
+    /**
+     * Create a list of classes in the package.
+     *
+     * Eliminates primitives, datatypes and enumerations.
+     *
+     * @param pkg the package to get the classes for
+     * @return a sorted list of classes in the package
+     */
+    def classesFor (pkg: Package): mutable.SortedSet[Class] =
+    {
+        implicit val ordering: Ordering[Class] = new Ordering[Class]
+        {
+            def compare (a: Class, b: Class): Int = a.name.compareTo (b.name)
+        }
+
+        val ret: mutable.SortedSet[Class] = mutable.SortedSet[Class]()
+
+        for (cls <- classes.filter (x => x._2.pkg == pkg))
+        {
+            var stereotype = cls._2.stereotype
+            if ((stereotype != "enumeration") && (stereotype != "CIMDatatype") && (stereotype != "Primitive"))
+                ret.add (cls._2)
+        }
+
+        ret
+    }
+
+    def objectIdFor (cls: Class): Int = { classes.find (_._2.xuid == cls.xuid) match { case Some (c: (Int, Class)) ⇒ c._1 case _ ⇒ 0 } }
+    def attributesFor (cls: Class): List[Attribute] = attributes.getOrElse (objectIdFor (cls), List[Attribute]())
+    def rolesFor (cls: Class): List[Role] = roles.filter (_.src == cls).toList
 }
 
 object ModelParser
@@ -215,14 +252,15 @@ object ModelParser
         val parser = ModelParser (DatabaseBuilder.open (new File ("private_data/" + file)))
         parser.run ()
 //        println ("Packages: " + parser.packages.size)
-//        parser.showPackages
+//        parser.showPackages ()
 //        println ("Classes: " + parser.classes.size)
-//        parser.showClasses
+//        parser.showClasses ()
 //        println ("Attributes: " + parser.attributes.map (_._2.size).sum)
-//        parser.showAttributes
+//        parser.showAttributes ()
 //        println ("Roles: " + parser.roles.size)
-//        parser.showRoles
-
+//        parser.showRoles ()
+//        println ("Domains: " + parser.domains.size)
+//        parser.showDomains ()
         val dir = new File ("target/model/")
         dir.mkdir
         if (SCALA)

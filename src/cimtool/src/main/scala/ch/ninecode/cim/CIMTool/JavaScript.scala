@@ -1,12 +1,12 @@
 package ch.ninecode.cim.CIMTool
 
-import scala.collection.mutable.Set
+import scala.collection.mutable
 
 case class JavaScript (parser: ModelParser, pkg: Package)
 {
     def parses (): Iterable[(String, String)] =
     {
-        val ret = Set[(String, String)]()
+        val ret = mutable.Set[(String, String)]()
 
         for (cls <- parser.classes.filter (_._2.pkg == pkg))
             ret.add (("cim:" + cls._2.name, "parse_" + cls._2.name.replace ("-", "_")))
@@ -16,9 +16,10 @@ case class JavaScript (parser: ModelParser, pkg: Package)
 
     def asText (): String =
     {
-        val requires = Set[Package]()
-        val provides = Set[String]()
-        val enumerations = Set[String]()
+        val requires = mutable.Set[Package]()
+        val provides = mutable.Set[String]()
+        val enumerations = mutable.Set[String]()
+
         // order the classes based on their superclass to avoid "ReferenceError: can't access lexical declaration `blah' before initialization"
         val classes: List[(Int, Class)] = parser.classes.filter (_._2.pkg == pkg).toList
         case class Joe (name: String, superclass: String, superclass_package: String, objectID: Int, cls: Class)
@@ -75,9 +76,10 @@ case class JavaScript (parser: ModelParser, pkg: Package)
         }
 
         val bunch2 = read (graph.children)
-        val classes2 = bunch2.map (x ⇒ (x.objectID, x.cls))
+        val classes2 = bunch2.map (x ⇒ x.cls)
 
         def valid_attribute_name (name: String): String = name.replace (" ", "_").replace (".", "_").replace (",", "_")
+        def valid_role_name (name: String): String = if (name == "") "unknown" else name.replace (" ", "_").replace (".", "_").replace (",", "_").replace ("""/""", """\/""")
 
         val p = new StringBuilder ()
 
@@ -87,17 +89,16 @@ case class JavaScript (parser: ModelParser, pkg: Package)
             val s = new StringBuilder ()
 
             // get name
-            val name = cls._2.name.replace ("-", "_")
-            val attributes = parser.attributes.getOrElse (cls._1, List[Attribute]())
-            val roles = parser.roles.filter(_.src == cls._2)
+            val name = cls.name.replace ("-", "_")
+            val attributes = parser.attributesFor (cls)
 
-            if (cls._2.stereotype == "enumeration")
+            if (cls.stereotype == "enumeration")
             {
                 enumerations.add (name)
 
                 // add javaDoc
-                if (null != cls._2.note)
-                    s.append (JavaDoc (cls._2.note, 8).asText)
+                if (null != cls.note)
+                    s.append (JavaDoc (cls.note, 8).asText)
 
                 // https://stijndewitt.com/2014/01/26/enums-in-javascript/
                 //            var SizeEnum = {
@@ -126,25 +127,25 @@ case class JavaScript (parser: ModelParser, pkg: Package)
             val s = new StringBuilder ()
 
             // get name
-            val name = cls._2.name.replace ("-", "_")
-            val attributes = parser.attributes.getOrElse (cls._1, List[Attribute]())
-            val roles = parser.roles.filter(_.src == cls._2)
+            val name = cls.name.replace ("-", "_")
+            val attributes = parser.attributesFor (cls)
+            val roles = parser.rolesFor (cls)
 
-            if (cls._2.stereotype != "enumeration")
+            if (cls.stereotype != "enumeration")
             {
                 provides.add (name)
 
                 // add javaDoc
-                if (null != cls._2.note)
-                    s.append (JavaDoc (cls._2.note, 8).asText)
+                if (null != cls.note)
+                    s.append (JavaDoc (cls.note, 8).asText)
 
                 // determine superclass and it's package (note package has a dot suffix)
                 val (superclass_package, superclass) =
-                    if (null != cls._2.sup)
+                    if (null != cls.sup)
                     {
-                        val sup_pkg = cls._2.sup.pkg
+                        val sup_pkg = cls.sup.pkg
                         val superclass_package = if (sup_pkg != pkg) { requires.add (sup_pkg); sup_pkg.name + "." } else ""
-                        val superclass = cls._2.sup.name
+                        val superclass = cls.sup.name
                         (superclass_package, superclass)
                     }
                     else
@@ -181,11 +182,11 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                     |
                     |                obj = %s%s.prototype.parse.call (this, context, sub);
                     |                obj.cls = "%s";
-                    |""".stripMargin.format (superclass_package, superclass, cls._2.name))
+                    |""".stripMargin.format (superclass_package, superclass, cls.name))
                 for (attribute <- attributes)
                 {
                     val n = attribute.name.replace ("""/""", """\/""")
-                    var fn = attribute.typ match
+                    val fn = attribute.typ match
                     {
                         case "Boolean" => "base.to_boolean"
                         case "DateTime" => "base.to_datetime"
@@ -195,23 +196,24 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                     if (enumerations.contains (attribute.typ))
                         s.append (
                             """                base.parse_attribute (/<cim:%s.%s\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "%s", sub, context);
-                              |""".stripMargin.format (cls._2.name, n, attribute.name))
+                              |""".stripMargin.format (cls.name, n, attribute.name))
                     else
                         s.append (
                             """                base.parse_element (/<cim:%s.%s>([\s\S]*?)<\/cim:%s.%s>/g, obj, "%s", %s, sub, context);
-                            |""".stripMargin.format (cls._2.name, n, cls._2.name, n, attribute.name, fn))
+                            |""".stripMargin.format (cls.name, n, cls.name, n, attribute.name, fn))
                 }
                 for (role <- roles)
-                    if (role.upper == 1)
-                    {
-                        val n = role.name.replace ("""/""", """\/""")
-                        s.append (
-                            """                base.parse_attribute (/<cim:%s.%s\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "%s", sub, context);
-                            |""".stripMargin.format (cls._2.name, n, role.name))
-                    }
+                {
+                    val n = valid_role_name (role.name)
+                    s.append (
+                        """                base.%s (/<cim:%s.%s\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "%s", sub, context);
+                        |""".stripMargin.format (if (role.upper == 1) "parse_attribute" else "parse_attributes", cls.name, n, role.name))
+                }
                 // special handling for mRID in IdentifiedObject
-                if (cls._2.name == "IdentifiedObject")
-                    s.append ("""                if (null == obj.mRID)
+                if (cls.name == "IdentifiedObject")
+                    s.append ("""
+                    |
+                    |                if (null == obj.mRID)
                     |                    obj.mRID = obj.id;
                     |                if ((null != obj.mRID) && (obj.id != obj.mRID))
                     |                {
@@ -222,8 +224,8 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                     |                    obj.id = obj.mRID;
                     |                }
                     |""".stripMargin)
-                s.append ("""
-                    |                var bucket = context.parsed.%s;
+                s.append (
+                    """                var bucket = context.parsed.%s;
                     |                if (null == bucket)
                     |                   context.parsed.%s = bucket = {};
                     |                bucket[obj.id] = obj;
@@ -238,7 +240,7 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                     """            export (obj, full)
                       |            {
                       |""".stripMargin.format (name))
-                if (null != cls._2.sup)
+                if (null != cls.sup)
                     s.append ("""                var fields = %s%s.prototype.export.call (this, obj, false);""".stripMargin.format (superclass_package, superclass))
                 else
                     s.append ("""                var fields = [];""")
@@ -246,26 +248,25 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                 for (attribute <- attributes)
                 {
                     val n = attribute.name.replace ("""/""", """\/""")
-                    var fn = attribute.typ match
+                    val fn = attribute.typ match
                     {
                         case "Boolean" => "base.from_boolean"
                         case "DateTime" => "base.from_datetime"
                         case "Float" => "base.from_float"
                         case _ => "base.from_string"
                     }
-                    if ((cls._2.name != "IdentifiedObject") || (n != "mRID"))
+                    if ((cls.name != "IdentifiedObject") || (n != "mRID"))
                         s.append (
                             """                base.export_element (obj, "%s", "%s", %s, fields);
-                            |""".stripMargin.format (cls._2.name, n, fn))
+                            |""".stripMargin.format (cls.name, n, fn))
                 }
                 for (role <- roles)
-                    if (role.upper == 1)
-                    {
-                        val n = role.name.replace ("""/""", """\/""")
-                        s.append (
-                            """                base.export_attribute (obj, "%s", "%s", fields);
-                              |""".stripMargin.format (cls._2.name, n, role.name))
-                    }
+                {
+                    val n = valid_role_name (role.name)
+                    s.append (
+                        """                base.export_attribute (obj, "%s", "%s", fields);
+                          |""".stripMargin.format (if (role.upper == 1) "export_attribute" else "export_attributes", cls.name, n, role.name))
+                }
                 s.append (
                     """                if (full)
                     |                    base.Element.prototype.export.call (this, obj, fields)
@@ -290,8 +291,11 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                     |""".stripMargin.format (name, name, name, name, superclass_package, superclass))
                 for (attribute <- attributes)
                     s.append ("                    {{#%s}}<div><b>%s</b>: {{%s}}</div>{{/%s}}\n".format (attribute.name, attribute.name, attribute.name, attribute.name))
-                for (role <- roles.filter (_.upper == 1))
-                    s.append ("                    {{#%s}}<div><b>%s</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{%s}}&quot;);})'>{{%s}}</a></div>{{/%s}}\n".format (role.name, role.name, role.name, role.name, role.name))
+                for (role <- roles)
+                    if (role.upper == 1)
+                        s.append ("                    {{#%s}}<div><b>%s</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{%s}}&quot;);})'>{{%s}}</a></div>{{/%s}}\n".format (role.name, role.name, role.name, role.name, role.name))
+                    else
+                        s.append ("                    {{#%s}}<div><b>%s</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/%s}}\n".format (role.name, role.name, role.name))
                 s.append (
                     """                    </div>
                     |                    <fieldset>
@@ -303,51 +307,49 @@ case class JavaScript (parser: ModelParser, pkg: Package)
 
                 // output the condition function
                 s.append ("""
-                            |            condition (obj)
-                            |            {
-                            |                super.condition (obj);""".stripMargin)
+                    |            condition (obj)
+                    |            {
+                    |                super.condition (obj);""".stripMargin)
                 for (attribute <- attributes.filter (x ⇒ enumerations.contains (x.typ)))
                 {
                     val name = attribute.name.replace ("""/""", """\/""")
                     s.append ("\n                obj.%s = []; if (!obj.%s) obj.%s.push ({ id: '', selected: true}); for (var property in %s) obj.%s.push ({ id: property, selected: obj.%s && obj.%s.endsWith ('.' + property)});".format (attribute.typ, name, attribute.typ, attribute.typ, attribute.typ, name, name))
                 }
+                for (role ← roles.filter (_.upper != 1))
+                {
+                    val n = valid_role_name (role.name)
+                    s.append ("\n                if (obj.%s) obj.%s_string = obj.%s.join ();".format (n, n, n))
+                }
                 s.append ("""
-                            |            }
-                            |""".stripMargin)
+                    |            }
+                    |""".stripMargin)
 
                 // output the uncondition function
                 s.append ("""
-                            |            uncondition (obj)
-                            |            {
-                            |                super.uncondition (obj);""".stripMargin)
+                    |            uncondition (obj)
+                    |            {
+                    |                super.uncondition (obj);""".stripMargin)
                 for (attribute <- attributes.filter (x ⇒ enumerations.contains (x.typ)))
                     s.append ("\n                delete obj.%s;".format (attribute.typ))
+                for (role ← roles.filter (_.upper != 1))
+                    s.append ("\n                delete obj.%s_string;".format (valid_role_name (role.name)))
                 s.append ("""
-                            |            }
-                            |""".stripMargin)
-//                <form>
-//                    <fieldset>
-//                        <legend>Personalia:</legend>
-//                        Name: <input type="text" size="30"><br>
-//                        Email: <input type="text" size="30"><br>
-//                            Date of birth: <input type="text" size="10">
-//                            </fieldset>
-//                        </form>
-//
+                    |            }
+                    |""".stripMargin)
 
                 // output the editing template function
                 s.append ("""
-                            |            edit_template ()
-                            |            {
-                            |                return (
-                            |                    `
-                            |                    <fieldset>
-                            |                    <legend class='col-form-legend'><a data-toggle="collapse" href="#%s_collapse" aria-expanded="true" aria-controls="%s_collapse" style="margin-left: 10px;">%s</a></legend>
-                            |                    <div id="%s_collapse" class="collapse in" style="margin-left: 10px;">
-                            |                    `
-                            |                    + %s%s.prototype.edit_template.call (this) +
-                            |                    `
-                            |""".stripMargin.format (name, name, name, name, superclass_package, superclass))
+                    |            edit_template ()
+                    |            {
+                    |                return (
+                    |                    `
+                    |                    <fieldset>
+                    |                    <legend class='col-form-legend'><a data-toggle="collapse" href="#%s_collapse" aria-expanded="true" aria-controls="%s_collapse" style="margin-left: 10px;">%s</a></legend>
+                    |                    <div id="%s_collapse" class="collapse in" style="margin-left: 10px;">
+                    |                    `
+                    |                    + %s%s.prototype.edit_template.call (this) +
+                    |                    `
+                    |""".stripMargin.format (name, name, name, name, superclass_package, superclass))
                 for (attribute <- attributes)
                 {
                     if (enumerations.contains (attribute.typ))
@@ -367,15 +369,38 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                                 s.append ("                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='%s'>%s: </label><div class='col-sm-8'><input id='%s' class='form-control' type='text'{{#%s}} value='{{%s}}'{{/%s}}></div></div>\n".format (attribute.name, attribute.name, attribute.name, attribute.name, attribute.name, attribute.name))
                         }
                 }
-                for (role <- roles.filter (_.upper == 1))
-                    s.append ("                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='%s'>%s: </label><div class='col-sm-8'><input id='%s' class='form-control' type='text'{{#%s}} value='{{%s}}'{{/%s}}></div></div>\n".format (role.name, role.name, role.name, role.name, role.name, role.name))
+                for (role <- roles)
+                    if (role.upper == 1)
+                        s.append ("                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='%s'>%s: </label><div class='col-sm-8'><input id='%s' class='form-control' type='text'{{#%s}} value='{{%s}}'{{/%s}}></div></div>\n".format (role.name, role.name, role.name, role.name, role.name, role.name))
+                    else
+                        if (role.many_to_many)
+                            s.append ("                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='%s'>%s: </label><div class='col-sm-8'><input id='%s' class='form-control' type='text'{{#%s}} value='{{%s}}_string'{{/%s}}></div></div>\n".format (role.name, role.name, role.name, role.name, role.name, role.name))
                 s.append (
                     """                    </div>
-                      |                    <fieldset>
-                      |                    `
-                      |                );
-                      |           }
-                      |""".stripMargin)
+                    |                    <fieldset>
+                    |                    `
+                    |                );
+                    |            }
+                    |""".stripMargin)
+
+                // output the relations
+                if (roles.nonEmpty)
+                {
+                    s.append ("""
+                        |            relations ()
+                        |            {
+                        |                return (
+                        |                    [
+                        |""".stripMargin)
+                    var array = roles.map (role ⇒ """["%s", "%s", "%s", "%s"]""".format (valid_role_name (role.name), valid_role_name (role.dst.name), role.card, role.mate.card))
+                    s.append (array.mkString ("                        ", ",\n                        ", "\n"))
+                    s.append (
+                        """                    ]
+                        |                );
+                        |            }
+                        |""".stripMargin)
+                }
+
                 s.append (
                     """        }
                     |

@@ -8,6 +8,7 @@ package ch.ninecode.cim.CIMTool
  * @param pkg Containing package.
  * @param cls Containing class.
  * @param notes Textual notes attached to the attribute.
+ * @param typ
  * @param classifier Domain Object class if any.
  * @param dflt The default value for the attribute.
  */
@@ -20,3 +21,6 @@ case class Attribute (
     typ: String,
     classifier: Class,
     dflt: String)
+{
+    override def toString: String = pkg.name + ":" + cls.name + "." + name + " " + typ + (if (null != classifier) " (" + classifier.name + ")" else "")
+}
