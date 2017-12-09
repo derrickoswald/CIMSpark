@@ -264,7 +264,7 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                 {
                     val n = valid_role_name (role.name)
                     s.append (
-                        """                base.%s (obj, "%s", "%s", fields);
+                        """                base.%s (obj, "%s", "%s", "%s", fields);
                           |""".stripMargin.format (if (role.upper == 1) "export_attribute" else "export_attributes", cls.name, role.name, n))
                 }
                 s.append (
