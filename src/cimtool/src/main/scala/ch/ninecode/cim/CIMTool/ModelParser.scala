@@ -230,7 +230,7 @@ case class ModelParser (db: Database)
 
     def objectIdFor (cls: Class): Int = { classes.find (_._2.xuid == cls.xuid) match { case Some (c: (Int, Class)) ⇒ c._1 case _ ⇒ 0 } }
     def attributesFor (cls: Class): List[Attribute] = attributes.getOrElse (objectIdFor (cls), List[Attribute]())
-    def rolesFor (cls: Class): List[Role] = roles.filter (_.src == cls).toList
+    def rolesFor (cls: Class): List[Role] = roles.filter (r ⇒ r.src == cls && r.name != "").toList
 }
 
 object ModelParser

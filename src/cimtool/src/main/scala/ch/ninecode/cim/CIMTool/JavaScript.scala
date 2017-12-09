@@ -257,15 +257,15 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                     }
                     if ((cls.name != "IdentifiedObject") || (n != "mRID"))
                         s.append (
-                            """                base.export_element (obj, "%s", "%s", %s, fields);
-                            |""".stripMargin.format (cls.name, n, fn))
+                            """                base.export_element (obj, "%s", "%s", "%s",  %s, fields);
+                            |""".stripMargin.format (cls.name, attribute.name, n, fn))
                 }
                 for (role <- roles)
                 {
                     val n = valid_role_name (role.name)
                     s.append (
-                        """                base.export_attribute (obj, "%s", "%s", fields);
-                          |""".stripMargin.format (if (role.upper == 1) "export_attribute" else "export_attributes", cls.name, n, role.name))
+                        """                base.%s (obj, "%s", "%s", fields);
+                          |""".stripMargin.format (if (role.upper == 1) "export_attribute" else "export_attributes", cls.name, role.name, n))
                 }
                 s.append (
                     """                if (full)
@@ -277,7 +277,6 @@ case class JavaScript (parser: ModelParser, pkg: Package)
 
                 // output the template function
                 s.append ("""
-                    |
                     |            template ()
                     |            {
                     |                return (
@@ -353,11 +352,8 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                 for (attribute <- attributes)
                 {
                     if (enumerations.contains (attribute.typ))
-                    {
                         // output a selection (needs condition(obj) to get the array of strings
                         s.append ("                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='%s'>%s: </label><div class='col-sm-8'><select id='%s' class='form-control'>{{#%s}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/%s}}</select></div></div>\n".format (attribute.name, attribute.name, attribute.name, attribute.typ, attribute.typ))
-
-                    }
                     else
                         attribute.typ match
                         {
@@ -380,6 +376,36 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                     |                    <fieldset>
                     |                    `
                     |                );
+                    |            }
+                    |""".stripMargin)
+
+                // output the editing form submit function
+                s.append ("""
+                    |            submit (obj)
+                    |            {
+                    |%s                var obj = obj || { cls: "%s" };
+                    |                super.submit (obj);
+                    |""".stripMargin.format (if (attributes.nonEmpty || roles.exists (r ⇒ r.upper == 1 || r.many_to_many)) "                var temp;\n\n" else "", cls.name))
+                for (attribute <- attributes)
+                    if (enumerations.contains (attribute.typ))
+                        s.append ("                temp = document.getElementById (\"%s\").value; if (\"\" != temp) { temp = %s[temp]; if (\"undefined\" != typeof (temp)) obj.%s = \"#http://iec.ch/TC57/2013/CIM-schema-cim16#%s.\" + temp; }\n".format (attribute.name, attribute.typ, attribute.name, attribute.typ))
+                    else
+                        attribute.typ match
+                        {
+                            case "Boolean" =>
+                                s.append ("                temp = document.getElementById (\"%s\").checked; if (temp) obj.%s = true;\n".format (attribute.name, attribute.name))
+                            case _ =>
+                                s.append ("                temp = document.getElementById (\"%s\").value; if (\"\" != temp) obj.%s = temp;\n".format (attribute.name, attribute.name))
+                        }
+                for (role <- roles)
+                    if (role.upper == 1)
+                        s.append ("                temp = document.getElementById (\"%s\").value; if (\"\" != temp) obj.%s = temp;\n".format (role.name, role.name))
+                    else
+                        if (role.many_to_many)
+                            s.append ("                temp = document.getElementById (\"%s\").value; if (\"\" != temp) obj.%s = temp.split (\",\");\n".format (role.name, role.name))
+
+                s.append ("""
+                    |                return (obj);
                     |            }
                     |""".stripMargin)
 
