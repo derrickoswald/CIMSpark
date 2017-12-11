@@ -159,17 +159,16 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                     |            constructor (template, cim_data)
                     |            {
                     |                super (template, cim_data);
-                    |                this._id = template.id;
                     |                var bucket = cim_data.%s;
                     |                if (null == bucket)
                     |                   cim_data.%s = bucket = {};
-                    |                bucket[this._id] = template;
+                    |                bucket[template.id] = template;
                     |            }
                     |
-                    |            remove (cim_data)
+                    |            remove (obj, cim_data)
                     |            {
-                    |               super.remove (cim_data);
-                    |               delete cim_data.%s[this._id];
+                    |               super.remove (obj, cim_data);
+                    |               delete cim_data.%s[obj.id];
                     |            }
                     |""".stripMargin.format (name, name, name))
 
