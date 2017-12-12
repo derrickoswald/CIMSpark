@@ -255,9 +255,14 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                         case _ => "base.from_string"
                     }
                     if ((cls.name != "IdentifiedObject") || (n != "mRID"))
-                        s.append (
-                            """                base.export_element (obj, "%s", "%s", "%s",  %s, fields);
-                            |""".stripMargin.format (cls.name, attribute.name, n, fn))
+                        if (enumerations.contains (attribute.typ))
+                            s.append (
+                                """                base.export_attribute (obj, "%s", "%s", "%s", fields);
+                                |""".stripMargin.format (cls.name, attribute.name, n))
+                        else
+                            s.append (
+                                """                base.export_element (obj, "%s", "%s", "%s",  %s, fields);
+                                |""".stripMargin.format (cls.name, attribute.name, n, fn))
                 }
                 for (role <- roles)
                 {
