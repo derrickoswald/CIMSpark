@@ -420,12 +420,14 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                         |            relations ()
                         |            {
                         |                return (
-                        |                    [
+                        |                    super.relations ().concat (
+                        |                        [
                         |""".stripMargin)
-                    var array = roles.map (role ⇒ """["%s", "%s", "%s", "%s"]""".format (valid_role_name (role.name), valid_role_name (role.dst.name), role.card, role.mate.card))
-                    s.append (array.mkString ("                        ", ",\n                        ", "\n"))
+                    var array = roles.map (role ⇒ """["%s", "%s", "%s", "%s", "%s"]""".format (valid_role_name (role.name), role.card, role.mate.card, valid_role_name (role.dst.name), role.mate.name))
+                    s.append (array.mkString ("                            ", ",\n                            ", "\n"))
                     s.append (
-                        """                    ]
+                        """                        ]
+                        |                    )
                         |                );
                         |            }
                         |""".stripMargin)
