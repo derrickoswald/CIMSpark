@@ -347,8 +347,8 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                     |                return (
                     |                    `
                     |                    <fieldset>
-                    |                    <legend class='col-form-legend'><a data-toggle="collapse" href="#%s_collapse" aria-expanded="true" aria-controls="%s_collapse" style="margin-left: 10px;">%s</a></legend>
-                    |                    <div id="%s_collapse" class="collapse in" style="margin-left: 10px;">
+                    |                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_%s_collapse" aria-expanded="true" aria-controls="{{id}}_%s_collapse" style="margin-left: 10px;">%s</a></legend>
+                    |                    <div id="{{id}}_%s_collapse" class="collapse in" style="margin-left: 10px;">
                     |                    `
                     |                    + %s%s.prototype.edit_template.call (this) +
                     |                    `
@@ -357,24 +357,24 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                 {
                     if (enumerations.contains (attribute.typ))
                         // output a selection (needs condition(obj) to get the array of strings
-                        s.append ("                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='%s'>%s: </label><div class='col-sm-8'><select id='%s' class='form-control'>{{#%s}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/%s}}</select></div></div>\n".format (attribute.name, attribute.name, attribute.name, attribute.typ, attribute.typ))
+                        s.append ("                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_%s'>%s: </label><div class='col-sm-8'><select id='{{id}}_%s' class='form-control'>{{#%s}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/%s}}</select></div></div>\n".format (attribute.name, attribute.name, attribute.name, attribute.typ, attribute.typ))
                     else
                         attribute.typ match
                         {
                             case "Boolean" =>
-                                s.append ("                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='%s'>%s: </label><div class='col-sm-8'><input id='%s' class='form-check-input' type='checkbox'{{#%s}} checked{{/%s}}></div></div>\n".format (attribute.name, attribute.name, attribute.name, attribute.name, attribute.name))
+                                s.append ("                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_%s'>%s: </label><div class='col-sm-8'><input id='{{id}}_%s' class='form-check-input' type='checkbox'{{#%s}} checked{{/%s}}></div></div>\n".format (attribute.name, attribute.name, attribute.name, attribute.name, attribute.name))
     //                        case "DateTime" =>
     //                        case "Float" =>
                             case _ =>
-                                s.append ("                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='%s'>%s: </label><div class='col-sm-8'><input id='%s' class='form-control' type='text'{{#%s}} value='{{%s}}'{{/%s}}></div></div>\n".format (attribute.name, attribute.name, attribute.name, attribute.name, attribute.name, attribute.name))
+                                s.append ("                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_%s'>%s: </label><div class='col-sm-8'><input id='{{id}}_%s' class='form-control' type='text'{{#%s}} value='{{%s}}'{{/%s}}></div></div>\n".format (attribute.name, attribute.name, attribute.name, attribute.name, attribute.name, attribute.name))
                         }
                 }
                 for (role <- roles)
                     if (role.upper == 1)
-                        s.append ("                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='%s'>%s: </label><div class='col-sm-8'><input id='%s' class='form-control' type='text'{{#%s}} value='{{%s}}'{{/%s}}></div></div>\n".format (role.name, role.name, role.name, role.name, role.name, role.name))
+                        s.append ("                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_%s'>%s: </label><div class='col-sm-8'><input id='{{id}}_%s' class='form-control' type='text'{{#%s}} value='{{%s}}'{{/%s}}></div></div>\n".format (role.name, role.name, role.name, role.name, role.name, role.name))
                     else
                         if (role.many_to_many)
-                            s.append ("                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='%s'>%s: </label><div class='col-sm-8'><input id='%s' class='form-control' type='text'{{#%s}} value='{{%s}}_string'{{/%s}}></div></div>\n".format (role.name, role.name, role.name, role.name, role.name, role.name))
+                            s.append ("                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_%s'>%s: </label><div class='col-sm-8'><input id='{{id}}_%s' class='form-control' type='text'{{#%s}} value='{{%s}}_string'{{/%s}}></div></div>\n".format (role.name, role.name, role.name, role.name, role.name, role.name))
                 s.append (
                     """                    </div>
                     |                    <fieldset>
@@ -385,28 +385,28 @@ case class JavaScript (parser: ModelParser, pkg: Package)
 
                 // output the editing form submit function
                 s.append ("""
-                    |            submit (obj)
+                    |            submit (id, obj)
                     |            {
-                    |%s                var obj = obj || { cls: "%s" };
-                    |                super.submit (obj);
+                    |%s                var obj = obj || { id: id, cls: "%s" };
+                    |                super.submit (id, obj);
                     |""".stripMargin.format (if (attributes.nonEmpty || roles.exists (r ⇒ r.upper == 1 || r.many_to_many)) "                var temp;\n\n" else "", cls.name))
                 for (attribute <- attributes)
                     if (enumerations.contains (attribute.typ))
-                        s.append ("                temp = document.getElementById (\"%s\").value; if (\"\" != temp) { temp = %s[temp]; if (\"undefined\" != typeof (temp)) obj.%s = \"#http://iec.ch/TC57/2013/CIM-schema-cim16#%s.\" + temp; }\n".format (attribute.name, attribute.typ, attribute.name, attribute.typ))
+                        s.append ("                temp = document.getElementById (id + \"_%s\").value; if (\"\" != temp) { temp = %s[temp]; if (\"undefined\" != typeof (temp)) obj.%s = \"#http://iec.ch/TC57/2013/CIM-schema-cim16#%s.\" + temp; }\n".format (attribute.name, attribute.typ, attribute.name, attribute.typ))
                     else
                         attribute.typ match
                         {
                             case "Boolean" =>
-                                s.append ("                temp = document.getElementById (\"%s\").checked; if (temp) obj.%s = true;\n".format (attribute.name, attribute.name))
+                                s.append ("                temp = document.getElementById (id + \"_%s\").checked; if (temp) obj.%s = true;\n".format (attribute.name, attribute.name))
                             case _ =>
-                                s.append ("                temp = document.getElementById (\"%s\").value; if (\"\" != temp) obj.%s = temp;\n".format (attribute.name, attribute.name))
+                                s.append ("                temp = document.getElementById (id + \"_%s\").value; if (\"\" != temp) obj.%s = temp;\n".format (attribute.name, attribute.name))
                         }
                 for (role <- roles)
                     if (role.upper == 1)
-                        s.append ("                temp = document.getElementById (\"%s\").value; if (\"\" != temp) obj.%s = temp;\n".format (role.name, role.name))
+                        s.append ("                temp = document.getElementById (id + \"_%s\").value; if (\"\" != temp) obj.%s = temp;\n".format (role.name, role.name))
                     else
                         if (role.many_to_many)
-                            s.append ("                temp = document.getElementById (\"%s\").value; if (\"\" != temp) obj.%s = temp.split (\",\");\n".format (role.name, role.name))
+                            s.append ("                temp = document.getElementById (id + \"_%s\").value; if (\"\" != temp) obj.%s = temp.split (\",\");\n".format (role.name, role.name))
 
                 s.append ("""
                     |                return (obj);
