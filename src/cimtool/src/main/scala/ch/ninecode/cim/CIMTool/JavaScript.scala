@@ -392,7 +392,7 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                     |""".stripMargin.format (if (attributes.nonEmpty || roles.exists (r ⇒ r.upper == 1 || r.many_to_many)) "                var temp;\n\n" else "", cls.name))
                 for (attribute <- attributes)
                     if (enumerations.contains (attribute.typ))
-                        s.append ("                temp = document.getElementById (id + \"_%s\").value; if (\"\" != temp) { temp = %s[temp]; if (\"undefined\" != typeof (temp)) obj.%s = \"#http://iec.ch/TC57/2013/CIM-schema-cim16#%s.\" + temp; }\n".format (attribute.name, attribute.typ, attribute.name, attribute.typ))
+                        s.append ("                temp = document.getElementById (id + \"_%s\").value; if (\"\" != temp) { temp = %s[temp]; if (\"undefined\" != typeof (temp)) obj.%s = \"http://iec.ch/TC57/2013/CIM-schema-cim16#%s.\" + temp; }\n".format (attribute.name, attribute.typ, attribute.name, attribute.typ))
                     else
                         attribute.typ match
                         {
