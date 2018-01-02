@@ -8,7 +8,10 @@ import org.apache.spark.graphx.Graph.graphToGraphOps
 import org.apache.spark.graphx.VertexId
 import org.apache.spark.rdd.RDD
 import org.apache.spark.rdd.RDD.rddToPairRDDFunctions
+import org.apache.spark.sql.Row
 import org.apache.spark.sql.SparkSession
+import org.apache.spark.sql.catalyst.ScalaReflection
+import org.apache.spark.sql.types.StructType
 import org.apache.spark.storage.StorageLevel
 import org.slf4j.LoggerFactory
 import org.slf4j.Logger
@@ -51,6 +54,14 @@ class CIMNetworkTopologyProcessor (spark: SparkSession, storage: StorageLevel = 
 {
     private implicit val session: SparkSession = spark
     private implicit val log: Logger = LoggerFactory.getLogger(getClass)
+
+    // just to get a schema
+    case class dummy
+    (
+        override val sup: Element = null
+    )
+    extends
+        Element
 
     // function to see if the nodes for an element are topologically connected
     def isSameNode (element: Element): Boolean =
@@ -199,10 +210,10 @@ class CIMNetworkTopologyProcessor (spark: SparkSession, storage: StorageLevel = 
 
         // map elements with their terminal 'pairs' to edges
         val edges: RDD[Edge[CIMEdgeData]] = get[Element]("Elements").keyBy (_.id).join (terms)
-            .flatMapValues (edge_operator).values.map (make_graph_edges)
+            .flatMapValues (edge_operator).values.map (make_graph_edges).persist (storage)
 
         // get the vertices
-        val vertices: RDD[(VertexId, CIMVertexData)] = get[ConnectivityNode].map (to_vertex)
+        val vertices: RDD[(VertexId, CIMVertexData)] = get[ConnectivityNode].map (to_vertex).persist (storage)
 
         if (debug)
         {
@@ -598,7 +609,6 @@ class CIMNetworkTopologyProcessor (spark: SparkSession, storage: StorageLevel = 
         }
         else
         {
-            log.info ("identifyNodes")
             val nodes = graph.vertices.values.groupBy (_.node).map ((x) => (x._1, x._2.head, None)).map (to_nodes)
             if (debug && log.isDebugEnabled)
                 log.debug (nodes.count + " nodes")
@@ -683,6 +693,9 @@ class CIMNetworkTopologyProcessor (spark: SparkSession, storage: StorageLevel = 
             case Some (_) => new_elements.checkpoint ()
             case None =>
         }
+        val schema = ScalaReflection.schemaFor[dummy].dataType.asInstanceOf[StructType]
+        val data_frame = spark.sqlContext.createDataFrame (new_elements.asInstanceOf[RDD[Row]], schema)
+        data_frame.createOrReplaceTempView ("Elements")
 
         new_elements
     }
