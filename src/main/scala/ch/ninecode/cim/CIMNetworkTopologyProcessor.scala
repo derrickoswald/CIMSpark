@@ -43,6 +43,10 @@ import ch.ninecode.model._
  *
  * @param spark The session with CIM RDD defined, for which the topology should be calculated
  * @param storage The storage level for new and replaced CIM RDD.
+ * @param force_retain_fuses Keep fuses as two topological node elements irregardless of the
+ *                           <code>retained</code> attribute, or the <code>open</code> and <code>normalOpen</code>
+ *                           attributes.
+ *                           This is used for fuse specificity calculation.
  * @param debug Adds additional tests during topology processing:
  *
  - unique VertexId for every ConnectivityNode mRID (checks the hash function)
@@ -50,7 +54,15 @@ import ch.ninecode.model._
  - no voltage transitions (checks that edges that are joined have the same BaseVoltage)
  *
  */
-class CIMNetworkTopologyProcessor (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMORY_AND_DISK_SER, debug: Boolean = false) extends CIMRDD with Serializable
+class CIMNetworkTopologyProcessor (
+    spark: SparkSession,
+    storage: StorageLevel = StorageLevel.MEMORY_AND_DISK_SER,
+    force_retain_fuses: Boolean = false,
+    debug: Boolean = false)
+extends
+    CIMRDD
+with
+    Serializable
 {
     private implicit val session: SparkSession = spark
     private implicit val log: Logger = LoggerFactory.getLogger(getClass)
@@ -63,87 +75,122 @@ class CIMNetworkTopologyProcessor (spark: SparkSession, storage: StorageLevel = 
     extends
         Element
 
-    // function to see if the nodes for an element are topologically connected
+    /**
+     * Index of normalOpen field in Switch bitmask.
+     */
+    val normalOpenMask: Int = Switch.fields.indexOf ("normalOpen")
+
+    /**
+     * Index of open field in Switch bitmask.
+     */
+    val openMask: Int = Switch.fields.indexOf ("open")
+
+    /**
+     * Index of retained field in Switch bitmask.
+     */
+    val retainedMask: Int = Switch.fields.indexOf ("retained")
+
+    /**
+     * Method to determine if a switch is closed (both terminals are the same topological node).
+     *
+     * If the switch has the <code>open</code> attribute set, use that.
+     * Otherwise if it has the <code>normalOpen</code> attribute set, use that.
+     * Otherwise assume it is closed.
+     *
+     * @param switch The switch object to test.
+     * @return <code>true</code> if the switch is closed, <code>false</code> otherwise.
+     */
+    def switchClosed (switch: Switch): Boolean =
+    {
+        if (0 != (switch.bitfields(openMask / 32) | (1 << (openMask % 32))))
+            !switch.open // open valid
+        else if (0 != (switch.bitfields(normalOpenMask / 32) | (1 << (normalOpenMask % 32))))
+            !switch.normalOpen
+        else
+            true
+    }
+
+    /**
+     * Method to determine if a switch should be retained in the topology.
+     *
+     * @param switch The switch object to test.
+     * @return <code>true</code> if the switch should be retained, <code>false</code> otherwise.
+     */
+    def retainSwitch (switch: Switch): Boolean =
+    {
+        if (0 != (switch.bitfields(retainedMask / 32) | (1 << (retainedMask % 32))))
+            switch.retained
+        else
+            false
+    }
+
+    /**
+     * Method to determine if a switch can be represented as a single topological node.
+     *
+     * @param switch The switch object to test.
+     * @return <code>true</code> if the switch is effectively one node, <code>false</code> otherwise.
+     */
+    def isSwitchOneNode (switch: Switch): Boolean =
+    {
+        !retainSwitch (switch) && switchClosed (switch)
+    }
+
+    /**
+     * Method to determine if the nodes for an element are the same topological node.
+     *
+     * @param element The element to test.
+     * @return <code>true</code> if the element is effectively one node, <code>false</code> otherwise.
+     */
     def isSameNode (element: Element): Boolean =
     {
-        val clazz = element.getClass.getName
-        val cls = clazz.substring (clazz.lastIndexOf (".") + 1)
-        cls match
+        element match
         {
-            case "Switch" =>
-                !element.asInstanceOf[Switch].normalOpen
-            case "Cut" =>
-                !element.asInstanceOf[Cut].Switch.normalOpen
-            case "Disconnector" =>
-                !element.asInstanceOf[Disconnector].Switch.normalOpen
-            case "Fuse" =>
-                !element.asInstanceOf[Fuse].Switch.normalOpen
-            case "GroundDisconnector" =>
-                !element.asInstanceOf[GroundDisconnector].Switch.normalOpen
-            case "Jumper" =>
-                !element.asInstanceOf[Jumper].Switch.normalOpen
-            case "ProtectedSwitch" =>
-                !element.asInstanceOf[ProtectedSwitch].Switch.normalOpen
-            case "Sectionaliser" =>
-                !element.asInstanceOf[Sectionaliser].Switch.normalOpen
-            case "Breaker" =>
-                !element.asInstanceOf[Breaker].ProtectedSwitch.Switch.normalOpen
-            case "LoadBreakSwitch" =>
-                !element.asInstanceOf[LoadBreakSwitch].ProtectedSwitch.Switch.normalOpen
-            case "Recloser" =>
-                !element.asInstanceOf[Recloser].ProtectedSwitch.Switch.normalOpen
-            case "PowerTransformer" =>
-                false
-            case "ACLineSegment" =>
-                val line = element.asInstanceOf[ACLineSegment]
-                val nonzero = (line.Conductor.len > 0.0) && ((line.r > 0.0) || (line.x > 0.0))
-                // log.debug ("ACLineSegment " + element.id + " " + line.Conductor.len + "m " + line.r + "+" + line.x + "jΩ/km " + !nonzero)
-                !nonzero
-            case "Conductor" =>
-                true
-            case _ =>
-                log.warn ("topological node processor encountered edge with unhandled class '" + cls +"', assumed zero impedance")
+            case switch: Switch ⇒ isSwitchOneNode (switch)
+            case cut: Cut ⇒ isSwitchOneNode (cut.Switch)
+            case disconnector: Disconnector ⇒ isSwitchOneNode (disconnector.Switch)
+            case fuse: Fuse ⇒ !force_retain_fuses && isSwitchOneNode (fuse.Switch)
+            case gd: GroundDisconnector ⇒ isSwitchOneNode (gd.Switch)
+            case jumper: Jumper ⇒ isSwitchOneNode (jumper.Switch)
+            case ps: ProtectedSwitch ⇒ isSwitchOneNode (ps.Switch)
+            case sectionaliser: Sectionaliser ⇒ isSwitchOneNode (sectionaliser.Switch)
+            case breaker: Breaker ⇒ isSwitchOneNode (breaker.ProtectedSwitch.Switch)
+            case lbs: LoadBreakSwitch ⇒ isSwitchOneNode (lbs.ProtectedSwitch.Switch)
+            case recloser: Recloser ⇒ isSwitchOneNode (recloser.ProtectedSwitch.Switch)
+            case _: PowerTransformer ⇒ false
+            case line: ACLineSegment ⇒ !(line.Conductor.len > 0.0) && ((line.r > 0.0) || (line.x > 0.0))
+            case _: Conductor ⇒ true
+            case _ ⇒
+                log.warn ("topological node processor encountered edge with unhandled class '" + element.getClass.getName +"', assumed zero impedance")
                 true
         }
     }
 
-    // function to see if the nodes for an element are topologically connected
+    /**
+     * Method to determine if the nodes for an element are in the same topological island.
+     *
+     * @param element The element to test.
+     * @return <code>true</code> if the element is effectively one node, <code>false</code> otherwise.
+     */
     def isSameIsland (element: Element): Boolean =
     {
-        val clazz = element.getClass.getName
-        val cls = clazz.substring (clazz.lastIndexOf (".") + 1)
-        cls match
+        element match
         {
-            case "Switch" =>
-                !element.asInstanceOf[Switch].normalOpen
-            case "Cut" =>
-                !element.asInstanceOf[Cut].Switch.normalOpen
-            case "Disconnector" =>
-                !element.asInstanceOf[Disconnector].Switch.normalOpen
-            case "Fuse" =>
-                !element.asInstanceOf[Fuse].Switch.normalOpen
-            case "GroundDisconnector" =>
-                !element.asInstanceOf[GroundDisconnector].Switch.normalOpen
-            case "Jumper" =>
-                !element.asInstanceOf[Jumper].Switch.normalOpen
-            case "ProtectedSwitch" =>
-                !element.asInstanceOf[ProtectedSwitch].Switch.normalOpen
-            case "Sectionaliser" =>
-                !element.asInstanceOf[Sectionaliser].Switch.normalOpen
-            case "Breaker" =>
-                !element.asInstanceOf[Breaker].ProtectedSwitch.Switch.normalOpen
-            case "LoadBreakSwitch" =>
-                !element.asInstanceOf[LoadBreakSwitch].ProtectedSwitch.Switch.normalOpen
-            case "Recloser" =>
-                !element.asInstanceOf[Recloser].ProtectedSwitch.Switch.normalOpen
-            case "PowerTransformer" =>
-                false
-            case "ACLineSegment" =>
-                true
-            case "Conductor" =>
-                true
-            case _ =>
-                log.warn ("topological island processor encountered edge with unhandled class '" + cls +"', assumed conducting")
+            case switch: Switch ⇒ isSwitchOneNode (switch)
+            case cut: Cut ⇒ isSwitchOneNode (cut.Switch)
+            case disconnector: Disconnector ⇒ isSwitchOneNode (disconnector.Switch)
+            case fuse: Fuse ⇒ !force_retain_fuses && isSwitchOneNode (fuse.Switch)
+            case gd: GroundDisconnector ⇒ isSwitchOneNode (gd.Switch)
+            case jumper: Jumper ⇒ isSwitchOneNode (jumper.Switch)
+            case ps: ProtectedSwitch ⇒ isSwitchOneNode (ps.Switch)
+            case sectionaliser: Sectionaliser ⇒ isSwitchOneNode (sectionaliser.Switch)
+            case breaker: Breaker ⇒ isSwitchOneNode (breaker.ProtectedSwitch.Switch)
+            case lbs: LoadBreakSwitch ⇒ isSwitchOneNode (lbs.ProtectedSwitch.Switch)
+            case recloser: Recloser ⇒ isSwitchOneNode (recloser.ProtectedSwitch.Switch)
+            case _: PowerTransformer ⇒ false
+            case _: ACLineSegment ⇒ true
+            case _: Conductor ⇒ true
+            case _ ⇒
+                log.warn ("topological island processor encountered edge with unhandled class '" + element.getClass.getName +"', assumed zero impedance")
                 true
         }
     }
