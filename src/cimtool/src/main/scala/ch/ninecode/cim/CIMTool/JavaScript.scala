@@ -287,7 +287,7 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                     |                    `
                     |                    <fieldset>
                     |                    <legend class='col-form-legend'><a data-toggle="collapse" href="#%s_collapse" aria-expanded="true" aria-controls="%s_collapse" style="margin-left: 10px;">%s</a></legend>
-                    |                    <div id="%s_collapse" class="collapse in" style="margin-left: 10px;">
+                    |                    <div id="%s_collapse" class="collapse in show" style="margin-left: 10px;">
                     |                    `
                     |                    + %s%s.prototype.template.call (this) +
                     |                    `
@@ -348,7 +348,7 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                     |                    `
                     |                    <fieldset>
                     |                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_%s_collapse" aria-expanded="true" aria-controls="{{id}}_%s_collapse" style="margin-left: 10px;">%s</a></legend>
-                    |                    <div id="{{id}}_%s_collapse" class="collapse in" style="margin-left: 10px;">
+                    |                    <div id="{{id}}_%s_collapse" class="collapse in show" style="margin-left: 10px;">
                     |                    `
                     |                    + %s%s.prototype.edit_template.call (this) +
                     |                    `
@@ -362,7 +362,7 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                         attribute.typ match
                         {
                             case "Boolean" =>
-                                s.append ("                    <div class='form-check row'><label class='form-check-label col-sm-4 col-form-label' for='{{id}}_%s'>%s: </label><div class='col-sm-8'><input id='{{id}}_%s' class='form-check-input' type='checkbox'{{#%s}} checked{{/%s}}></div></div>\n".format (attribute.name, attribute.name, attribute.name, attribute.name, attribute.name))
+                                s.append ("                    <div class='form-group row'><div class='col-sm-4' for='{{id}}_%s'>%s: </div><div class='col-sm-8'><div class='form-check'><input id='{{id}}_%s' class='form-check-input' type='checkbox'{{#%s}} checked{{/%s}}></div></div></div>\n".format (attribute.name, attribute.name, attribute.name, attribute.name, attribute.name))
     //                        case "DateTime" =>
     //                        case "Float" =>
                             case _ =>
