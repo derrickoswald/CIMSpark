@@ -157,7 +157,7 @@ with
             case lbs: LoadBreakSwitch ⇒ isSwitchOneNode (lbs.ProtectedSwitch.Switch)
             case recloser: Recloser ⇒ isSwitchOneNode (recloser.ProtectedSwitch.Switch)
             case _: PowerTransformer ⇒ false
-            case line: ACLineSegment ⇒ !(line.Conductor.len > 0.0) && ((line.r > 0.0) || (line.x > 0.0))
+            case line: ACLineSegment ⇒ !((line.Conductor.len > 0.0) && ((line.r > 0.0) || (line.x > 0.0)))
             case _: Conductor ⇒ true
             case _ ⇒
                 log.warn ("topological node processor encountered edge with unhandled class '" + element.getClass.getName +"', assumed zero impedance")
