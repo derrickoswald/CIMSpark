@@ -102,9 +102,9 @@ with
      */
     def switchClosed (switch: Switch): Boolean =
     {
-        if (0 != (switch.bitfields(openMask / 32) | (1 << (openMask % 32))))
+        if (0 != (switch.bitfields(openMask / 32) & (1 << (openMask % 32))))
             !switch.open // open valid
-        else if (0 != (switch.bitfields(normalOpenMask / 32) | (1 << (normalOpenMask % 32))))
+        else if (0 != (switch.bitfields(normalOpenMask / 32) & (1 << (normalOpenMask % 32))))
             !switch.normalOpen
         else
             true
@@ -118,7 +118,7 @@ with
      */
     def retainSwitch (switch: Switch): Boolean =
     {
-        if (0 != (switch.bitfields(retainedMask / 32) | (1 << (retainedMask % 32))))
+        if (0 != (switch.bitfields(retainedMask / 32) & (1 << (retainedMask % 32))))
             switch.retained
         else
             false
