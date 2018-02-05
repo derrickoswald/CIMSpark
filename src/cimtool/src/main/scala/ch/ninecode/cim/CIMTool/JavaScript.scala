@@ -286,7 +286,7 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                     |                return (
                     |                    `
                     |                    <fieldset>
-                    |                    <legend class='col-form-legend'><a data-toggle="collapse" href="#%s_collapse" aria-expanded="true" aria-controls="%s_collapse" style="margin-left: 10px;">%s</a></legend>
+                    |                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#%s_collapse" aria-expanded="true" aria-controls="%s_collapse" style="margin-left: 10px;">%s</a></legend>
                     |                    <div id="%s_collapse" class="collapse in show" style="margin-left: 10px;">
                     |                    `
                     |                    + %s%s.prototype.template.call (this) +
@@ -347,7 +347,7 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                     |                return (
                     |                    `
                     |                    <fieldset>
-                    |                    <legend class='col-form-legend'><a data-toggle="collapse" href="#{{id}}_%s_collapse" aria-expanded="true" aria-controls="{{id}}_%s_collapse" style="margin-left: 10px;">%s</a></legend>
+                    |                    <legend class='col-form-legend'><a class="collapse-link" data-toggle="collapse" href="#{{id}}_%s_collapse" aria-expanded="true" aria-controls="{{id}}_%s_collapse" style="margin-left: 10px;">%s</a></legend>
                     |                    <div id="{{id}}_%s_collapse" class="collapse in show" style="margin-left: 10px;">
                     |                    `
                     |                    + %s%s.prototype.edit_template.call (this) +
