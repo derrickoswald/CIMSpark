@@ -296,9 +296,9 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                     s.append ("                    {{#%s}}<div><b>%s</b>: {{%s}}</div>{{/%s}}\n".format (attribute.name, attribute.name, attribute.name, attribute.name))
                 for (role <- roles)
                     if (role.upper == 1)
-                        s.append ("                    {{#%s}}<div><b>%s</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{%s}}&quot;);})'>{{%s}}</a></div>{{/%s}}\n".format (role.name, role.name, role.name, role.name, role.name))
+                        s.append ("                    {{#%s}}<div><b>%s</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{%s}}&quot;);}); return false;'>{{%s}}</a></div>{{/%s}}\n".format (role.name, role.name, role.name, role.name, role.name))
                     else
-                        s.append ("                    {{#%s}}<div><b>%s</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);})'>{{.}}</a></div>{{/%s}}\n".format (role.name, role.name, role.name))
+                        s.append ("                    {{#%s}}<div><b>%s</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/%s}}\n".format (role.name, role.name, role.name))
                 s.append (
                     """                    </div>
                     |                    <fieldset>
