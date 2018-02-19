@@ -293,7 +293,16 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                     |                    `
                     |""".stripMargin.format (name, name, name, name, superclass_package, superclass))
                 for (attribute <- attributes)
-                    s.append ("                    {{#%s}}<div><b>%s</b>: {{%s}}</div>{{/%s}}\n".format (attribute.name, attribute.name, attribute.name, attribute.name))
+                {
+                    val ref = parser.classes.find (x ⇒ x._2.name == attribute.typ && x._2.pkg.name != "Domain" && x._2.stereotype != "enumeration" )
+                    ref match
+                    {
+                        case Some (x) ⇒
+                            s.append ("                    {{#%s}}<div><b>%s</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{%s}}&quot;);}); return false;'>{{%s}}</a></div>{{/%s}}\\n".format (attribute.name, attribute.name, attribute.name, attribute.name, attribute.name))
+                        case None ⇒
+                            s.append ("                    {{#%s}}<div><b>%s</b>: {{%s}}</div>{{/%s}}\n".format (attribute.name, attribute.name, attribute.name, attribute.name))
+                    }
+                }
                 for (role <- roles)
                     if (role.upper == 1)
                         s.append ("                    {{#%s}}<div><b>%s</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{%s}}&quot;);}); return false;'>{{%s}}</a></div>{{/%s}}\n".format (role.name, role.name, role.name, role.name, role.name))
@@ -357,7 +366,7 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                 {
                     if (enumerations.contains (attribute.typ))
                         // output a selection (needs condition(obj) to get the array of strings
-                        s.append ("                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_%s'>%s: </label><div class='col-sm-8'><select id='{{id}}_%s' class='form-control'>{{#%s}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/%s}}</select></div></div>\n".format (attribute.name, attribute.name, attribute.name, attribute.typ, attribute.typ))
+                        s.append ("                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_%s'>%s: </label><div class='col-sm-8'><select id='{{id}}_%s' class='form-control custom-select'>{{#%s}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/%s}}</select></div></div>\n".format (attribute.name, attribute.name, attribute.name, attribute.typ, attribute.typ))
                     else
                         attribute.typ match
                         {
@@ -374,7 +383,7 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                         s.append ("                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_%s'>%s: </label><div class='col-sm-8'><input id='{{id}}_%s' class='form-control' type='text'{{#%s}} value='{{%s}}'{{/%s}}></div></div>\n".format (role.name, role.name, role.name, role.name, role.name, role.name))
                     else
                         if (role.many_to_many)
-                            s.append ("                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_%s'>%s: </label><div class='col-sm-8'><input id='{{id}}_%s' class='form-control' type='text'{{#%s}} value='{{%s}}_string'{{/%s}}></div></div>\n".format (role.name, role.name, role.name, role.name, role.name, role.name))
+                            s.append ("                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_%s'>%s: </label><div class='col-sm-8'><input id='{{id}}_%s' class='form-control' type='text'{{#%s}} value='{{%s_string}}'{{/%s}}></div></div>\n".format (role.name, role.name, role.name, role.name, role.name, role.name))
                 s.append (
                     """                    </div>
                     |                    <fieldset>
