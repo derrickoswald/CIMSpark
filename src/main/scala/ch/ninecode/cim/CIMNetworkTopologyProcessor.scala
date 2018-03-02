@@ -43,7 +43,11 @@ import ch.ninecode.model._
  *
  * @param spark The session with CIM RDD defined, for which the topology should be calculated
  * @param storage The storage level for new and replaced CIM RDD.
- * @param force_retain_fuses Keep fuses as two topological node elements irregardless of the
+ * @param force_retain_switches Keep Switch and subclasses as two topological node elements irregardless of the
+ *                           <code>retained</code> attribute, or the <code>open</code> and <code>normalOpen</code>
+ *                           attributes. Fuse and ProtectiveSwitch classes are not included by this flag.
+ *                           This is used for alternative scenario calculations.
+ * @param force_retain_fuses Keep Fuse, ProtectedSwitch and subclasses as two topological node elements irregardless of the
  *                           <code>retained</code> attribute, or the <code>open</code> and <code>normalOpen</code>
  *                           attributes.
  *                           This is used for fuse specificity calculation.
@@ -57,6 +61,7 @@ import ch.ninecode.model._
 class CIMNetworkTopologyProcessor (
     spark: SparkSession,
     storage: StorageLevel = StorageLevel.MEMORY_AND_DISK_SER,
+    force_retain_switches: Boolean = false,
     force_retain_fuses: Boolean = false,
     debug: Boolean = false)
 extends
@@ -145,17 +150,18 @@ with
     {
         element match
         {
-            case switch: Switch ⇒ isSwitchOneNode (switch)
+            case switch: Switch ⇒ !force_retain_switches && isSwitchOneNode (switch)
+            case mktswitch: MktSwitch ⇒ !force_retain_switches && isSwitchOneNode (mktswitch.Switch)
             case cut: Cut ⇒ isSwitchOneNode (cut.Switch)
-            case disconnector: Disconnector ⇒ isSwitchOneNode (disconnector.Switch)
+            case disconnector: Disconnector ⇒ !force_retain_switches && isSwitchOneNode (disconnector.Switch)
             case fuse: Fuse ⇒ !force_retain_fuses && isSwitchOneNode (fuse.Switch)
             case gd: GroundDisconnector ⇒ isSwitchOneNode (gd.Switch)
             case jumper: Jumper ⇒ isSwitchOneNode (jumper.Switch)
-            case ps: ProtectedSwitch ⇒ isSwitchOneNode (ps.Switch)
-            case sectionaliser: Sectionaliser ⇒ isSwitchOneNode (sectionaliser.Switch)
-            case breaker: Breaker ⇒ isSwitchOneNode (breaker.ProtectedSwitch.Switch)
-            case lbs: LoadBreakSwitch ⇒ isSwitchOneNode (lbs.ProtectedSwitch.Switch)
-            case recloser: Recloser ⇒ isSwitchOneNode (recloser.ProtectedSwitch.Switch)
+            case ps: ProtectedSwitch ⇒ !force_retain_fuses && isSwitchOneNode (ps.Switch)
+            case sectionaliser: Sectionaliser ⇒ !force_retain_switches && isSwitchOneNode (sectionaliser.Switch)
+            case breaker: Breaker ⇒ !force_retain_fuses && isSwitchOneNode (breaker.ProtectedSwitch.Switch)
+            case lbs: LoadBreakSwitch ⇒ !force_retain_fuses && isSwitchOneNode (lbs.ProtectedSwitch.Switch)
+            case recloser: Recloser ⇒ !force_retain_fuses && isSwitchOneNode (recloser.ProtectedSwitch.Switch)
             case _: PowerTransformer ⇒ false
             case line: ACLineSegment ⇒ !((line.Conductor.len > 0.0) && ((line.r > 0.0) || (line.x > 0.0)))
             case _: Conductor ⇒ true
