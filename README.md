@@ -57,7 +57,7 @@ e.g. target/scala-2.11, and the name will not have upper/lowercase preserved, th
 
 ## Jar Naming Scheme
 
-The name of the jar file (e.g. CIMReader-2.11-2.0.2-2.0.1.jar) is comprised of a fixed name ("CIMReader") followed by three [semantic version numbers](http://semver.org/), each separated by a dash.
+The name of the jar file (e.g. CIMReader-2.11-2.3.0-2.8.0.jar) is comprised of a fixed name ("CIMReader") followed by three [semantic version numbers](http://semver.org/), each separated by a dash.
 
 The first version number is the Scala library version. This follows [Scala libray naming semantics](https://github.com/scalacenter/scaladex).
 
@@ -101,21 +101,21 @@ hdfs dfs -ls /data
 ```
 From within the interactive shell in the master container, to start the Spark shell with the CIMReader jar file on the classpath
 ```
-spark-shell --master spark://sandbox:7077 --executor-memory 4g --driver-memory 1g --packages ch.ninecode.cim:CIMReader:2.11-2.2.0-2.4.0
+spark-shell --master spark://sandbox:7077 --executor-memory 4g --driver-memory 1g --packages ch.ninecode.cim:CIMReader:2.11-2.3.0-2.8.0
 ```
 This should print out the Scala shell welcome screen with cool ASCII art:
 ```
 Ivy Default Cache set to: /root/.ivy2/cache
 The jars for the packages stored in: /root/.ivy2/jars
-:: loading settings :: url = jar:file:/usr/local/spark-2.2.0/jars/ivy-2.4.0.jar!/org/apache/ivy/core/settings/ivysettings.xml
+:: loading settings :: url = jar:file:/usr/local/spark-2.3.0/jars/ivy-2.4.0.jar!/org/apache/ivy/core/settings/ivysettings.xml
 ch.ninecode.cim#CIMReader added as a dependency
 :: resolving dependencies :: org.apache.spark#spark-submit-parent;1.0
 	confs: [default]
-	found ch.ninecode.cim#CIMReader;2.11-2.2.0-2.4.0 in central
+	found ch.ninecode.cim#CIMReader;2.11-2.3.0-2.8.0 in central
 	found com.github.scopt#scopt_2.11;3.6.0 in central
 :: resolution report :: resolve 245ms :: artifacts dl 6ms
 	:: modules in use:
-	ch.ninecode.cim#CIMReader;2.11-2.2.0-2.4.0 from central in [default]
+	ch.ninecode.cim#CIMReader;2.11-2.3.0-2.8.0 from central in [default]
 	com.github.scopt#scopt_2.11;3.6.0 from central in [default]
 	---------------------------------------------------------------------
 	|                  |            modules            ||   artifacts   |
@@ -127,17 +127,17 @@ ch.ninecode.cim#CIMReader added as a dependency
 	confs: [default]
 	0 artifacts copied, 2 already retrieved (0kB/10ms)
 17/11/02 08:40:09 WARN ObjectStore: Failed to get database global_temp, returning NoSuchObjectException
-Spark context Web UI available at http://172.18.0.2:4040
-Spark context available as 'sc' (master = spark://sandbox:7077, app id = app-20171102083959-0012).
+Spark context Web UI available at http://sandbox:4040
+Spark context available as 'sc' (master = spark://sandbox:7077, app id = app-20180309152126-0000).
 Spark session available as 'spark'.
 Welcome to
       ____              __
      / __/__  ___ _____/ /__
     _\ \/ _ \/ _ `/ __/  '_/
-   /___/ .__/\_,_/_/ /_/\_\   version 2.2.0
+   /___/ .__/\_,_/_/ /_/\_\   version 2.3.0
       /_/
          
-Using Scala version 2.11.8 (OpenJDK 64-Bit Server VM, Java 1.8.0_121)
+Using Scala version 2.11.8 (OpenJDK 64-Bit Server VM, Java 1.8.0_151)
 Type in expressions to have them evaluated.
 Type :help for more information.
 
@@ -247,7 +247,7 @@ there is a stand-alone application built in to the CIMReader called CIMServerJDB
 The program can be executed usng spark-submit with the name of the CIMServerJDBC jar file
 that includes all necessary dependencies and the CIM file:
 
-    spark-submit /opt/code/CIMServerJDBC-2.11-2.0.2-2.2.1-jar-with-dependencies.jar "hdfs://sandbox:8020/data/NIS_CIM_Export_sias_current_20160816_V7_bruegg.rdf"
+    spark-submit /opt/code/CIMServerJDBC-2.11-2.3.0-2.8.0-jar-with-dependencies.jar "hdfs://sandbox:8020/data/NIS_CIM_Export_sias_current_20160816_V7_bruegg.rdf"
     ...
     Press [Return] to exit...
 
@@ -260,14 +260,14 @@ for example on how to change the port number.
 
 There is a [sample Java JDBC program](https://github.com/derrickoswald/CIMReader/blob/master/src/test/java/ch/ninecode/CIMJava.java) provided in the src/main/java directory.
 
-The Java [Hive JDBC driver](https://mvnrepository.com/artifact/org.apache.hive/hive-jdbc/2.0.1)
+The Java [Hive JDBC driver](http://search.maven.org/#artifactdetails%7Corg.spark-project.hive%7Chive-jdbc%7C1.2.1.spark2%7Cjar)
 can be black-box included by adding this magic incantation in
 the maven pom:
 
     <dependency>
         <groupId>org.spark-project.hive</groupId>
         <artifactId>hive-jdbc</artifactId>
-        <version>1.2.1.spark</version>
+        <version>1.2.1.spark2</version>
     </dependency>
 
 Then most of the code found in the [Hive2 JDBC client](https://cwiki.apache.org/confluence/display/Hive/HiveServer2+Clients#HiveServer2Clients-JDBC) will work, except for "show tables name" (although "show tables" works).

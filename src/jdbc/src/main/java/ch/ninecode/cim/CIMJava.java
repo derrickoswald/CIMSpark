@@ -20,7 +20,7 @@ import java.sql.DriverManager;
  * docker-compose up&
  *
  * In another terminal session execute CIMServerJDBC:
- * /spark/spark-2.1.1-bin-hadoop2.7/bin/spark-submit --master spark://sandbox:7077 --driver-memory 1g --executor-memory 4g target/CIMServerJDBC-2.11-2.1.1-2.1.0-jar-with-dependencies.jar "hdfs://sandbox:8020/data/some_CIM_data.rdf"
+ * /spark/spark-2.3.0-bin-hadoop2.7/bin/spark-submit --master spark://sandbox:7077 --driver-memory 1g --executor-memory 4g target/CIMServerJDBC-2.11-2.3.0-2.8.0-jar-with-dependencies.jar "hdfs://sandbox:8020/data/some_CIM_data.rdf"
  *
  * In another terminal session build and execute the CIMJava jar:
  * cd src/jdbc
