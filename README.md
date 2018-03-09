@@ -278,52 +278,12 @@ Then most of the code found in the [Hive2 JDBC client](https://cwiki.apache.org/
 To be able to use the Spark cluster backend inside of RStudio or R running as a remote client:
 
 Download the Spark tarball file from the [Spark download page](http://spark.apache.org/downloads.html).
-Currently we are using Spark 1.6.0 on Hadoop 2.6 in the [sequenciq/spark Docker container](https://hub.docker.com/r/sequenceiq/spark/ "sequenceiq/spark"),
-so to match that, use Spark release 1.6.0 (Jan 04 2016), Pre-built for Hadoop 2.6 and later,
-hence the file is currently spark-1.6.0-bin-hadoop2.6.tgz.
+Currently we are using Spark 2.3.0 on Hadoop 2.7 in the [sequenciq/spark Docker container](https://hub.docker.com/r/derrickoswald/spark-docker "derrickoswald/spark-docker"),
+so to match that, use Spark release 2.3.0 (Feb 28 2018), Pre-built for Hadoop 2.7 and later,
+hence the file is currently spark-2.3.0-bin-hadoop2.7.tgz.
 
 Unpack the tarball into an appropriate directory on the remote client.
-This will have a directory listing like:
-
-    ~/spark-1.6.0-bin-hadoop2.6$ ll
-    total 1384
-    drwxr-xr-x 12 derrick derrick    4096 Dez 22 03:22 ./
-    drwxr-xr-x 93 derrick derrick    4096 Mär 21 13:35 ../
-    drwxr-xr-x  3 derrick derrick    4096 Mär 22 16:14 bin/
-    -rw-r--r--  1 derrick derrick 1312258 Dez 22 03:22 CHANGES.txt
-    drwxr-xr-x  3 derrick derrick    4096 Mär 22 16:13 conf/
-    drwxr-xr-x  3 derrick derrick    4096 Dez 22 03:22 data/
-    drwxr-xr-x  3 derrick derrick    4096 Dez 22 03:22 ec2/
-    drwxr-xr-x  3 derrick derrick    4096 Dez 22 03:22 examples/
-    drwxr-xr-x  2 derrick derrick    4096 Dez 22 03:22 lib/
-    -rw-r--r--  1 derrick derrick   17352 Dez 22 03:22 LICENSE
-    drwxr-xr-x  2 derrick derrick    4096 Dez 22 03:22 licenses/
-    -rw-r--r--  1 derrick derrick   23529 Dez 22 03:22 NOTICE
-    drwxr-xr-x  6 derrick derrick    4096 Dez 22 03:22 python/
-    drwxr-xr-x  3 derrick derrick    4096 Dez 22 03:22 R/
-    -rw-r--r--  1 derrick derrick    3359 Dez 22 03:22 README.md
-    -rw-r--r--  1 derrick derrick     120 Dez 22 03:22 RELEASE
-    drwxr-xr-x  2 derrick derrick    4096 Dez 22 03:22 sbin/
-
-From within the running container, copy these files from the /usr/local/spark-1.6.0-bin-hadoop2.6/yarn-remote-client directory to an appropriate directory on the remote client.
-
-    # ls -al /usr/local/spark-1.6.0-bin-hadoop2.6/yarn-remote-client
-    total 16
-    drwxr-xr-x  2 root root 4096 Jan  9 03:26 .
-    drwxr-xr-x 15  500  500 4096 Mar 22 11:10 ..
-    -rw-r--r--  1 root root  325 Jan  9 03:26 core-site.xml
-    -rw-r--r--  1 root root 1097 Jan  9 03:26 yarn-site.xml
-
-For this purpose I recommend the conf directory of the unpacked tarball (see above).
-Proceed in two steps, one inside the container and one on the remote client (your host).
-
-    # cp /usr/local/spark-1.6.0-bin-hadoop2.6/yarn-remote-client/* /opt/data
-    $ cp /home/derrick/code/CIMReader/data/*-site.xml ~/spark-1.6.0-bin-hadoop2.6/conf
-
-Set environment variables to tell RStudio or R where Spark and it's configuration are:
-
-    export SPARK_HOME=/home/derrick/spark-1.6.0-bin-hadoop2.6
-    export YARN_CONF_DIR=/home/derrick/spark-1.6.0-bin-hadoop2.6/conf
+The name of this directory will be used to set the SPARK_HOME environment variable (e.g. /home/derrick/spark/spark-2.3.0-bin-hadoop2.7 shown below).
 
 # R
 
@@ -331,23 +291,23 @@ Start RStudio or R.
 
 Install the SparkR package.
 
+    Sys.setenv (SPARK_HOME="/home/derrick/spark/spark-2.3.0-bin-hadoop2.7")
     install.packages (pkgs = file.path(Sys.getenv("SPARK_HOME"), "R", "lib", "SparkR"), repos = NULL)
 
 Follow the instructions in [Starting up from RStudio](https://spark.apache.org/docs/latest/sparkr.html#starting-up-from-rstudio), except do not specify a local master and include the CIMReader reader as a jar to be shipped to the worker nodes.
 
 ```
 # set up the Spark system
-Sys.setenv (YARN_CONF_DIR="/home/derrick/spark/spark-2.0.2-bin-hadoop2.7/conf")
-Sys.setenv (SPARK_HOME="/home/derrick/spark/spark-2.0.2-bin-hadoop2.7")
+Sys.setenv (SPARK_HOME="/home/derrick/spark/spark-2.3.0-bin-hadoop2.7")
 library (SparkR, lib.loc = c (file.path (Sys.getenv("SPARK_HOME"), "R", "lib")))
-sparkR.session ("spark://sandbox:7077", "Sample", sparkJars = c ("/home/derrick/code/CIMReader/target/CIMReader-2.11-2.0.2-2.0.1.jar"), sparkEnvir = list (spark.driver.memory="1g", spark.executor.memory="4g", spark.serializer="org.apache.spark.serializer.KryoSerializer"))
+sparkR.session ("spark://sandbox:7077", "Sample", sparkJars = c ("/home/derrick/code/CIMReader/target/CIMReader-2.11-2.3.0-2.8.0.jar"), sparkEnvir = list (spark.driver.memory="1g", spark.executor.memory="4g", spark.serializer="org.apache.spark.serializer.KryoSerializer"))
 ```
 
 If you have a data file in HDFS (it cannot be local, it must be on the cluster):
 
 ```
 # read the data file
-elements = sql ("create temporary view elements using ch.ninecode.cim options (path 'hdfs://sandbox:8020/data/NIS_CIM_Export_sias_current_20160816_Kiental_V10.rdf', StorageLevel 'MEMORY_AND_DISK_SER', ch.ninecode.cim.make_edges 'true', ch.ninecode.cim.do_topo 'false', ch.ninecode.cim.do_topo_islands 'false')")
+elements = sql ("create temporary view elements using ch.ninecode.cim options (path 'hdfs://sandbox:8020/data/bkw_cim_export_haelig.rdf', StorageLevel 'MEMORY_AND_DISK_SER', ch.ninecode.cim.make_edges 'true', ch.ninecode.cim.do_topo 'false', ch.ninecode.cim.do_topo_islands 'false')")
 head (sql ("select * from elements")) # triggers evaluation
 
 # read the edges RDD as an R data frame
@@ -359,7 +319,7 @@ terminals = sql ("select * from Terminal")
 rterminals = SparkR::collect (terminals, stringsAsFactors=FALSE)
 
 # example to read a three-way join of RDD
-switch = sql (("select s.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.mRID, s.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.aliasName, s.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.name, s.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.description, open, normalOpen, l.CoordinateSystem, p.xPosition, p.yPosition from Switch s, Location l, PositionPoint p where s.ConductingEquipment.Equipment.PowerSystemResource.Location = l.IdentifiedObject.mRID and s.ConductingEquipment.Equipment.PowerSystemResource.Location = p.Location and p.sequenceNumber = 0")
+switch = sql ("select s.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.mRID, s.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.aliasName, s.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.name, s.ConductingEquipment.Equipment.PowerSystemResource.IdentifiedObject.description, open, normalOpen, l.CoordinateSystem, p.xPosition, p.yPosition from Switch s, Location l, PositionPoint p where s.ConductingEquipment.Equipment.PowerSystemResource.Location = l.IdentifiedObject.mRID and s.ConductingEquipment.Equipment.PowerSystemResource.Location = p.Location and p.sequenceNumber = 0")
 rswitch = SparkR::collect (switch, stringsAsFactors=FALSE)
 ```
 
