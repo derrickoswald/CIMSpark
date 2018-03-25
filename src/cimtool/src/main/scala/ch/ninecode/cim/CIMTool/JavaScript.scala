@@ -314,7 +314,7 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                         s.append ("                    {{#%s}}<div><b>%s</b>: <a href='#' onclick='require([&quot;cimmap&quot;], function(cimmap) {cimmap.select (&quot;{{.}}&quot;);}); return false;'>{{.}}</a></div>{{/%s}}\n".format (role.name, role.name, role.name))
                 s.append (
                     """                    </div>
-                    |                    <fieldset>
+                    |                    </fieldset>
                     |
                     |                    `
                     |                );
@@ -390,7 +390,7 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                             s.append ("                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_%s'>%s: </label><div class='col-sm-8'><input id='{{id}}_%s' class='form-control' type='text'{{#%s}} value='{{%s_string}}'{{/%s}}></div></div>\n".format (role.name, role.name, role.name, role.name, role.name, role.name))
                 s.append (
                     """                    </div>
-                    |                    <fieldset>
+                    |                    </fieldset>
                     |                    `
                     |                );
                     |            }
