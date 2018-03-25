@@ -176,8 +176,7 @@ case class DifferenceModel
 (
     override val sup: Model,
     forwardDifferences: String,
-    reverseDifferences: String,
-    unknown: List[String]
+    reverseDifferences: String
 )
 extends
     Element
@@ -185,7 +184,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, List()) }
+    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -209,10 +208,8 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = DifferenceModel.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (DifferenceModel.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (DifferenceModel.fields (position), x))
         emitattr (0, forwardDifferences)
         emitattr (1, reverseDifferences)
-        emitattrs (2, unknown)
         s.toString
     }
     override def export: String =
@@ -227,17 +224,14 @@ extends
 {
     override val fields: Array[String] = Array[String] (
         "forwardDifferences",
-        "reverseDifferences",
-        ""
+        "reverseDifferences"
     )
     override val relations: List[Relationship] = List (
         Relationship ("forwardDifferences", "Statements", "0..1", ""),
-        Relationship ("reverseDifferences", "Statements", "0..1", ""),
-        Relationship ("unknown", "PowerSystemProject", "0..*", "0..1")
+        Relationship ("reverseDifferences", "Statements", "0..1", "")
     )
     val forwardDifferences: Fielder = parse_attribute (attribute (cls, fields(0)))
     val reverseDifferences: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val unknown: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
 
     def parse (context: Context): DifferenceModel =
     {
@@ -246,8 +240,7 @@ extends
         val ret = DifferenceModel (
             Model.parse (context),
             mask (forwardDifferences (), 0),
-            mask (reverseDifferences (), 1),
-            masks (unknown (), 2)
+            mask (reverseDifferences (), 1)
         )
         ret.bitfields = bitfields
         ret
@@ -584,8 +577,7 @@ extends
  */
 case class Statements
 (
-    override val sup: FullModelDocumentElement,
-    unknown: List[String]
+    override val sup: FullModelDocumentElement
 )
 extends
     Element
@@ -593,7 +585,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, List()) }
+    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -614,11 +606,7 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
-        implicit val clz: String = Statements.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Statements.fields (position), x))
-        emitattrs (0, unknown)
-        s.toString
+        sup.export_fields
     }
     override def export: String =
     {
@@ -630,23 +618,13 @@ object Statements
 extends
     Parseable[Statements]
 {
-    override val fields: Array[String] = Array[String] (
-        ""
-    )
-    override val relations: List[Relationship] = List (
-        Relationship ("unknown", "DifferenceModel", "", "0..1")
-    )
-    val unknown: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
     def parse (context: Context): Statements =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
         val ret = Statements (
-            FullModelDocumentElement.parse (context),
-            masks (unknown (), 0)
+            FullModelDocumentElement.parse (context)
         )
-        ret.bitfields = bitfields
         ret
     }
 }

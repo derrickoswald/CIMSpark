@@ -105,37 +105,48 @@ case class Scala (parser: ModelParser, pkg: Package)
         parser.domains.find (_.name == attribute.typ) match
         {
             case Some (dom) =>
-                dom.name match
+                dom.stereotype match
                 {
-                    case "Time" => Member (name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
-                    case "Integer" => Member (name, variable, false, comment, false, "0..1", "0..*", "Int", "0", "toInteger", null)
-                    case "Float" => Member (name, variable, false, comment, false, "0..1", "0..*", "Double", "0.0", "toDouble", null)
-                    case "Decimal" => Member (name, variable, false, comment, false, "0..1", "0..*", "Double", "0.0", "toDouble", null)
-                    case "Boolean" => Member (name, variable, false, comment, false, "0..1", "0..*", "Boolean", "false", "toBoolean", null)
-                    case "Date" => Member (name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
-                    case "Duration" => Member (name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
-                    case "String" => Member (name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
-                    case "DateTime" => Member (name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
-                    case "MonthDay" => Member (name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
-                    case _ =>
+                    case "Primitive" ⇒
+                        dom.name match
+                        {
+                            case "Time" =>
+                                Member (name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
+                            case "Integer" => Member (name, variable, false, comment, false, "0..1", "0..*", "Int", "0", "toInteger", null)
+                            case "Float" =>
+                                Member (name, variable, false, comment, false, "0..1", "0..*", "Double", "0.0", "toDouble", null)
+                            case "Decimal" => Member (name, variable, false, comment, false, "0..1", "0..*", "Double", "0.0", "toDouble", null)
+                            case "Boolean" => Member (name, variable, false, comment, false, "0..1", "0..*", "Boolean", "false", "toBoolean", null)
+                            case "Date" => Member (name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
+                            case "Duration" => Member (name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
+                            case "String" => Member (name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
+                            case "DateTime" => Member (name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
+                            case "MonthDay" => Member (name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
+                            case _ =>
+                                throw new Exception ("""unknown primitive type "%s"""".format (dom.name))
+                        }
+                    case "enumeration" ⇒
+                        Member (name, variable, false, comment, true, "0..1", "0..*", "String", "null", "", null)
+                    case "Compound" ⇒
+                        Member (name, variable, false, comment, true, "0..1", "0..*", "String", "null", "", null)
+                    case "CIMDatatype" ⇒
                         dom.value match
-                            {
-                                case "Time" => Member (name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
-                                case "Integer" => Member (name, variable, false, comment, false, "0..1", "0..*", "Int", "0", "toInteger", null)
-                                case "Float" => Member (name, variable, false, comment, false, "0..1", "0..*", "Double", "0.0", "toDouble", null)
-                                case "Decimal" => Member (name, variable, false, comment, false, "0..1", "0..*", "Double", "0.0", "toDouble", null)
-                                case "Boolean" => Member (name, variable, false, comment, false, "0..1", "0..*", "Boolean", "false", "toBoolean", null)
-                                case "Date" => Member (name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
-                                case "Duration" => Member (name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
-                                case "String" => Member (name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
-                                case "DateTime" => Member (name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
-                                case "MonthDay" => Member (name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
-                                case _ =>
-                                    if (dom.stereotype == "enumeration")
-                                        Member (name, variable, false, comment, true, "0..1", "0..*", "String", "null", "", null)
-                                    else
-                                        Member (name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
-                            }
+                        {
+                            case "Time" => Member (name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
+                            case "Integer" => Member (name, variable, false, comment, false, "0..1", "0..*", "Int", "0", "toInteger", null)
+                            case "Float" => Member (name, variable, false, comment, false, "0..1", "0..*", "Double", "0.0", "toDouble", null)
+                            case "Decimal" => Member (name, variable, false, comment, false, "0..1", "0..*", "Double", "0.0", "toDouble", null)
+                            case "Boolean" => Member (name, variable, false, comment, false, "0..1", "0..*", "Boolean", "false", "toBoolean", null)
+                            case "Date" => Member (name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
+                            case "Duration" => Member (name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
+                            case "String" => Member (name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
+                            case "DateTime" => Member (name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
+                            case "MonthDay" => Member (name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
+                            case _ =>
+                                Member (name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
+                        }
+                    case _ =>
+                        throw new Exception ("""unknown Domain stereotype "%s"""".format (dom.stereotype))
                 }
             case None =>
                 classes.find (_.name == attribute.typ) match

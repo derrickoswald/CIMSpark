@@ -7800,7 +7800,6 @@ extends
  *
  * @param sup [[ch.ninecode.model.MktOrganisation MktOrganisation]] Reference to the superclass object.
  * @param scid This is the short name or Scheduling Coordinator ID field.
- * @param unknown [[ch.ninecode.model.SchedulingCoordinatorUser SchedulingCoordinatorUser]] <em>undocumented</em>
  * @param Bid [[ch.ninecode.model.Bid Bid]] <em>undocumented</em>
  * @param FromSCTrade [[ch.ninecode.model.Trade Trade]] <em>undocumented</em>
  * @param LoadRatio [[ch.ninecode.model.LoadRatio LoadRatio]] <em>undocumented</em>
@@ -7817,7 +7816,6 @@ case class SchedulingCoordinator
 (
     override val sup: MktOrganisation,
     scid: String,
-    unknown: List[String],
     Bid: List[String],
     FromSCTrade: List[String],
     LoadRatio: String,
@@ -7833,7 +7831,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, List(), List(), List(), null, null, List(), List(), List(), List()) }
+    def this () = { this (null, null, List(), List(), null, null, List(), List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -7860,15 +7858,14 @@ extends
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (SchedulingCoordinator.fields (position), value)
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (SchedulingCoordinator.fields (position), x))
         emitelem (0, scid)
-        emitattrs (1, unknown)
-        emitattrs (2, Bid)
-        emitattrs (3, FromSCTrade)
-        emitattr (4, LoadRatio)
-        emitattr (5, MktOrgansation)
-        emitattrs (6, SubmitFromSCTrade)
-        emitattrs (7, SubmitToSCTrade)
-        emitattrs (8, ToSCTrade)
-        emitattrs (9, TransmissionContractRight)
+        emitattrs (1, Bid)
+        emitattrs (2, FromSCTrade)
+        emitattr (3, LoadRatio)
+        emitattr (4, MktOrgansation)
+        emitattrs (5, SubmitFromSCTrade)
+        emitattrs (6, SubmitToSCTrade)
+        emitattrs (7, ToSCTrade)
+        emitattrs (8, TransmissionContractRight)
         s.toString
     }
     override def export: String =
@@ -7883,7 +7880,6 @@ extends
 {
     override val fields: Array[String] = Array[String] (
         "scid",
-        "",
         "Bid",
         "FromSCTrade",
         "LoadRatio",
@@ -7894,7 +7890,6 @@ extends
         "TransmissionContractRight"
     )
     override val relations: List[Relationship] = List (
-        Relationship ("unknown", "SchedulingCoordinatorUser", "0..*", "1"),
         Relationship ("Bid", "Bid", "0..*", "0..1"),
         Relationship ("FromSCTrade", "Trade", "0..*", "1"),
         Relationship ("LoadRatio", "LoadRatio", "1", "0..1"),
@@ -7905,15 +7900,14 @@ extends
         Relationship ("TransmissionContractRight", "ContractRight", "0..*", "1")
     )
     val scid: Fielder = parse_element (element (cls, fields(0)))
-    val unknown: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
-    val Bid: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
-    val FromSCTrade: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
-    val LoadRatio: Fielder = parse_attribute (attribute (cls, fields(4)))
-    val MktOrgansation: Fielder = parse_attribute (attribute (cls, fields(5)))
-    val SubmitFromSCTrade: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
-    val SubmitToSCTrade: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
-    val ToSCTrade: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
-    val TransmissionContractRight: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
+    val Bid: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val FromSCTrade: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val LoadRatio: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val MktOrgansation: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val SubmitFromSCTrade: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
+    val SubmitToSCTrade: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
+    val ToSCTrade: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
+    val TransmissionContractRight: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
 
     def parse (context: Context): SchedulingCoordinator =
     {
@@ -7922,15 +7916,14 @@ extends
         val ret = SchedulingCoordinator (
             MktOrganisation.parse (context),
             mask (scid (), 0),
-            masks (unknown (), 1),
-            masks (Bid (), 2),
-            masks (FromSCTrade (), 3),
-            mask (LoadRatio (), 4),
-            mask (MktOrgansation (), 5),
-            masks (SubmitFromSCTrade (), 6),
-            masks (SubmitToSCTrade (), 7),
-            masks (ToSCTrade (), 8),
-            masks (TransmissionContractRight (), 9)
+            masks (Bid (), 1),
+            masks (FromSCTrade (), 2),
+            mask (LoadRatio (), 3),
+            mask (MktOrgansation (), 4),
+            masks (SubmitFromSCTrade (), 5),
+            masks (SubmitToSCTrade (), 6),
+            masks (ToSCTrade (), 7),
+            masks (TransmissionContractRight (), 8)
         )
         ret.bitfields = bitfields
         ret
@@ -7945,7 +7938,6 @@ extends
  * @param loginID Login ID
  * @param loginRole Assigned roles (these are roles with either Read or Read/Write privileges on different Market Systems)
  * @param startEffectiveDate Login ID Effective Date
- * @param unknown [[ch.ninecode.model.SchedulingCoordinator SchedulingCoordinator]] <em>undocumented</em>
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData
  * @groupdesc ReferenceData Market static reference data.
@@ -7956,8 +7948,7 @@ case class SchedulingCoordinatorUser
     endEffectiveDate: String,
     loginID: String,
     loginRole: String,
-    startEffectiveDate: String,
-    unknown: String
+    startEffectiveDate: String
 )
 extends
     Element
@@ -7965,7 +7956,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null, null) }
+    def this () = { this (null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -7989,12 +7980,10 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = SchedulingCoordinatorUser.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (SchedulingCoordinatorUser.fields (position), value)
-        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (SchedulingCoordinatorUser.fields (position), value)
         emitelem (0, endEffectiveDate)
         emitelem (1, loginID)
         emitelem (2, loginRole)
         emitelem (3, startEffectiveDate)
-        emitattr (4, unknown)
         s.toString
     }
     override def export: String =
@@ -8011,17 +8000,12 @@ extends
         "endEffectiveDate",
         "loginID",
         "loginRole",
-        "startEffectiveDate",
-        ""
-    )
-    override val relations: List[Relationship] = List (
-        Relationship ("unknown", "SchedulingCoordinator", "1", "0..*")
+        "startEffectiveDate"
     )
     val endEffectiveDate: Fielder = parse_element (element (cls, fields(0)))
     val loginID: Fielder = parse_element (element (cls, fields(1)))
     val loginRole: Fielder = parse_element (element (cls, fields(2)))
     val startEffectiveDate: Fielder = parse_element (element (cls, fields(3)))
-    val unknown: Fielder = parse_attribute (attribute (cls, fields(4)))
 
     def parse (context: Context): SchedulingCoordinatorUser =
     {
@@ -8032,8 +8016,7 @@ extends
             mask (endEffectiveDate (), 0),
             mask (loginID (), 1),
             mask (loginRole (), 2),
-            mask (startEffectiveDate (), 3),
-            mask (unknown (), 4)
+            mask (startEffectiveDate (), 3)
         )
         ret.bitfields = bitfields
         ret

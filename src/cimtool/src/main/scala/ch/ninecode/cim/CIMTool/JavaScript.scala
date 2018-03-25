@@ -80,7 +80,11 @@ case class JavaScript (parser: ModelParser, pkg: Package)
 
         def valid_attribute_name (name: String): String = name.replace (" ", "_").replace (".", "_").replace (",", "_")
         def valid_role_name (name: String): String = if (name == "") "unknown" else name.replace (" ", "_").replace (".", "_").replace (",", "_").replace ("""/""", """\/""")
-
+        def isPrimitive (typ: String): Boolean =
+        {
+            val domain = parser.domains.filter (_.name == typ)
+            domain.nonEmpty && ((domain.head.stereotype == "Primitive") || (domain.head.stereotype == "CIMDatatype"))
+        }
         val p = new StringBuilder ()
 
         // do the enumerations
@@ -192,7 +196,7 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                         case "Float" => "base.to_float"
                         case _ => "base.to_string"
                     }
-                    if (enumerations.contains (attribute.typ))
+                    if (enumerations.contains (attribute.typ) || !isPrimitive (attribute.typ))
                         s.append (
                             """                base.parse_attribute (/<cim:%s.%s\s+rdf:resource\s*?=\s*?("|')([\s\S]*?)\1\s*?\/>/g, obj, "%s", sub, context);
                               |""".stripMargin.format (cls.name, n, attribute.name))
@@ -255,7 +259,7 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                         case _ => "base.from_string"
                     }
                     if ((cls.name != "IdentifiedObject") || (n != "mRID"))
-                        if (enumerations.contains (attribute.typ))
+                        if (enumerations.contains (attribute.typ) || !isPrimitive (attribute.typ))
                             s.append (
                                 """                base.export_attribute (obj, "%s", "%s", "%s", fields);
                                 |""".stripMargin.format (cls.name, attribute.name, n))
@@ -322,7 +326,7 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                     |            condition (obj)
                     |            {
                     |                super.condition (obj);""".stripMargin)
-                for (attribute <- attributes.filter (x ⇒ enumerations.contains (x.typ)))
+                for (attribute <- attributes.filter (x ⇒ enumerations.contains (x.typ) || !isPrimitive (x.typ)))
                 {
                     val name = attribute.name.replace ("""/""", """\/""")
                     s.append ("\n                obj.%s = []; if (!obj.%s) obj.%s.push ({ id: '', selected: true}); for (var property in %s) obj.%s.push ({ id: property, selected: obj.%s && obj.%s.endsWith ('.' + property)});".format (attribute.typ, name, attribute.typ, attribute.typ, attribute.typ, name, name))
@@ -341,7 +345,7 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                     |            uncondition (obj)
                     |            {
                     |                super.uncondition (obj);""".stripMargin)
-                for (attribute <- attributes.filter (x ⇒ enumerations.contains (x.typ)))
+                for (attribute <- attributes.filter (x ⇒ enumerations.contains (x.typ) || !isPrimitive (x.typ)))
                     s.append ("\n                delete obj.%s;".format (attribute.typ))
                 for (role ← roles.filter (_.upper != 1))
                     s.append ("\n                delete obj.%s_string;".format (valid_role_name (role.name)))
@@ -364,7 +368,7 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                     |""".stripMargin.format (name, name, name, name, superclass_package, superclass))
                 for (attribute <- attributes)
                 {
-                    if (enumerations.contains (attribute.typ))
+                    if (enumerations.contains (attribute.typ) || !isPrimitive (attribute.typ))
                         // output a selection (needs condition(obj) to get the array of strings
                         s.append ("                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_%s'>%s: </label><div class='col-sm-8'><select id='{{id}}_%s' class='form-control custom-select'>{{#%s}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/%s}}</select></div></div>\n".format (attribute.name, attribute.name, attribute.name, attribute.typ, attribute.typ))
                     else
@@ -400,7 +404,7 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                     |                super.submit (id, obj);
                     |""".stripMargin.format (if (attributes.nonEmpty || roles.exists (r ⇒ r.upper == 1 || r.many_to_many)) "                var temp;\n\n" else "", cls.name))
                 for (attribute <- attributes)
-                    if (enumerations.contains (attribute.typ))
+                    if (enumerations.contains (attribute.typ) || !isPrimitive (attribute.typ))
                         s.append ("                temp = document.getElementById (id + \"_%s\").value; if (\"\" != temp) { temp = %s[temp]; if (\"undefined\" != typeof (temp)) obj.%s = \"http://iec.ch/TC57/2013/CIM-schema-cim16#%s.\" + temp; }\n".format (attribute.name, attribute.typ, attribute.name, attribute.typ))
                     else
                         attribute.typ match

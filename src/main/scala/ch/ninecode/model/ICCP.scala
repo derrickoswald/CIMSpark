@@ -14,8 +14,7 @@ import ch.ninecode.cim.Relationship
  */
 case class ICCPCommandPoint
 (
-    override val sup: ICCPControlPoint,
-    unknown: String
+    override val sup: ICCPControlPoint
 )
 extends
     Element
@@ -23,7 +22,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null) }
+    def this () = { this (null) }
     /**
      * Return the superclass object.
      *
@@ -44,11 +43,7 @@ extends
     override def length: Int = productArity
     override def export_fields: String =
     {
-        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
-        implicit val clz: String = ICCPCommandPoint.cls
-        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ICCPCommandPoint.fields (position), value)
-        emitattr (0, unknown)
-        s.toString
+        sup.export_fields
     }
     override def export: String =
     {
@@ -60,23 +55,13 @@ object ICCPCommandPoint
 extends
     Parseable[ICCPCommandPoint]
 {
-    override val fields: Array[String] = Array[String] (
-        ""
-    )
-    override val relations: List[Relationship] = List (
-        Relationship ("unknown", "Command", "1", "0..*")
-    )
-    val unknown: Fielder = parse_attribute (attribute (cls, fields(0)))
 
     def parse (context: Context): ICCPCommandPoint =
     {
         implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
         val ret = ICCPCommandPoint (
-            ICCPControlPoint.parse (context),
-            mask (unknown (), 0)
+            ICCPControlPoint.parse (context)
         )
-        ret.bitfields = bitfields
         ret
     }
 }
@@ -89,8 +74,7 @@ extends
 case class ICCPControlPoint
 (
     override val sup: ICCPPoint,
-    deviceClass: String,
-    unknown: String
+    deviceClass: String
 )
 extends
     Element
@@ -98,7 +82,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null) }
+    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -123,7 +107,6 @@ extends
         implicit val clz: String = ICCPControlPoint.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ICCPControlPoint.fields (position), value)
         emitattr (0, deviceClass)
-        emitattr (1, unknown)
         s.toString
     }
     override def export: String =
@@ -137,14 +120,9 @@ extends
     Parseable[ICCPControlPoint]
 {
     override val fields: Array[String] = Array[String] (
-        "deviceClass",
-        ""
-    )
-    override val relations: List[Relationship] = List (
-        Relationship ("unknown", "ICCPIndicationPoint", "0..1", "0..1")
+        "deviceClass"
     )
     val deviceClass: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val unknown: Fielder = parse_attribute (attribute (cls, fields(1)))
 
     def parse (context: Context): ICCPControlPoint =
     {
@@ -152,8 +130,7 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = ICCPControlPoint (
             ICCPPoint.parse (context),
-            mask (deviceClass (), 0),
-            mask (unknown (), 1)
+            mask (deviceClass (), 0)
         )
         ret.bitfields = bitfields
         ret
@@ -168,8 +145,7 @@ extends
 case class ICCPIndicationPoint
 (
     override val sup: ICCPPoint,
-    `type`: String,
-    unknown: String
+    `type`: String
 )
 extends
     Element
@@ -177,7 +153,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null) }
+    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -202,7 +178,6 @@ extends
         implicit val clz: String = ICCPIndicationPoint.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ICCPIndicationPoint.fields (position), value)
         emitattr (0, `type`)
-        emitattr (1, unknown)
         s.toString
     }
     override def export: String =
@@ -216,14 +191,9 @@ extends
     Parseable[ICCPIndicationPoint]
 {
     override val fields: Array[String] = Array[String] (
-        "type",
-        ""
-    )
-    override val relations: List[Relationship] = List (
-        Relationship ("unknown", "ICCPControlPoint", "0..1", "0..1")
+        "type"
     )
     val `type`: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val unknown: Fielder = parse_attribute (attribute (cls, fields(1)))
 
     def parse (context: Context): ICCPIndicationPoint =
     {
@@ -231,8 +201,7 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = ICCPIndicationPoint (
             ICCPPoint.parse (context),
-            mask (`type` (), 0),
-            mask (unknown (), 1)
+            mask (`type` (), 0)
         )
         ret.bitfields = bitfields
         ret
@@ -248,7 +217,6 @@ extends
  * @param localReference The Local Reference attribute specifies a value agreed upon between sender and receiver of the Information Message.
  *        It further identifies the Information Message.
  * @param scope <em>undocumented</em>
- * @param unknown [[ch.ninecode.model.TASE2BilateralTable TASE2BilateralTable]] <em>undocumented</em>
  * @group ICCP
  * @groupname ICCP Package ICCP
  */
@@ -256,8 +224,7 @@ case class ICCPInformationMessage
 (
     override val sup: IdentifiedObject,
     localReference: String,
-    scope: String,
-    unknown: List[String]
+    scope: String
 )
 extends
     Element
@@ -265,7 +232,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, List()) }
+    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -290,10 +257,8 @@ extends
         implicit val clz: String = ICCPInformationMessage.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ICCPInformationMessage.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ICCPInformationMessage.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ICCPInformationMessage.fields (position), x))
         emitelem (0, localReference)
         emitattr (1, scope)
-        emitattrs (2, unknown)
         s.toString
     }
     override def export: String =
@@ -308,15 +273,10 @@ extends
 {
     override val fields: Array[String] = Array[String] (
         "localReference",
-        "scope",
-        ""
-    )
-    override val relations: List[Relationship] = List (
-        Relationship ("unknown", "TASE2BilateralTable", "0..*", "0..*")
+        "scope"
     )
     val localReference: Fielder = parse_element (element (cls, fields(0)))
     val scope: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val unknown: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
 
     def parse (context: Context): ICCPInformationMessage =
     {
@@ -325,8 +285,7 @@ extends
         val ret = ICCPInformationMessage (
             IdentifiedObject.parse (context),
             mask (localReference (), 0),
-            mask (scope (), 1),
-            masks (unknown (), 2)
+            mask (scope (), 1)
         )
         ret.bitfields = bitfields
         ret
@@ -340,15 +299,13 @@ extends
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param scope <em>undocumented</em>
- * @param unknown [[ch.ninecode.model.TASE2BilateralTable TASE2BilateralTable]] <em>undocumented</em>
  * @group ICCP
  * @groupname ICCP Package ICCP
  */
 case class ICCPPoint
 (
     override val sup: IdentifiedObject,
-    scope: String,
-    unknown: String
+    scope: String
 )
 extends
     Element
@@ -356,7 +313,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null) }
+    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -381,7 +338,6 @@ extends
         implicit val clz: String = ICCPPoint.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ICCPPoint.fields (position), value)
         emitattr (0, scope)
-        emitattr (1, unknown)
         s.toString
     }
     override def export: String =
@@ -395,14 +351,9 @@ extends
     Parseable[ICCPPoint]
 {
     override val fields: Array[String] = Array[String] (
-        "scope",
-        ""
-    )
-    override val relations: List[Relationship] = List (
-        Relationship ("unknown", "TASE2BilateralTable", "1", "0..*")
+        "scope"
     )
     val scope: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val unknown: Fielder = parse_attribute (attribute (cls, fields(1)))
 
     def parse (context: Context): ICCPPoint =
     {
@@ -410,8 +361,7 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = ICCPPoint (
             IdentifiedObject.parse (context),
-            mask (scope (), 0),
-            mask (unknown (), 1)
+            mask (scope (), 0)
         )
         ret.bitfields = bitfields
         ret
@@ -426,8 +376,7 @@ extends
 case class ICCPSetPoint
 (
     override val sup: ICCPControlPoint,
-    `type`: String,
-    unknown: String
+    `type`: String
 )
 extends
     Element
@@ -435,7 +384,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null) }
+    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -460,7 +409,6 @@ extends
         implicit val clz: String = ICCPSetPoint.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ICCPSetPoint.fields (position), value)
         emitattr (0, `type`)
-        emitattr (1, unknown)
         s.toString
     }
     override def export: String =
@@ -474,14 +422,9 @@ extends
     Parseable[ICCPSetPoint]
 {
     override val fields: Array[String] = Array[String] (
-        "type",
-        ""
-    )
-    override val relations: List[Relationship] = List (
-        Relationship ("unknown", "AnalogControl", "1", "0..*")
+        "type"
     )
     val `type`: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val unknown: Fielder = parse_attribute (attribute (cls, fields(1)))
 
     def parse (context: Context): ICCPSetPoint =
     {
@@ -489,8 +432,7 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = ICCPSetPoint (
             ICCPControlPoint.parse (context),
-            mask (`type` (), 0),
-            mask (unknown (), 1)
+            mask (`type` (), 0)
         )
         ret.bitfields = bitfields
         ret
@@ -508,8 +450,7 @@ case class IPAccessPoint
     address: String,
     addressType: String,
     gateway: String,
-    subnet: String,
-    unknown: String
+    subnet: String
 )
 extends
     Element
@@ -517,7 +458,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null, null) }
+    def this () = { this (null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -546,7 +487,6 @@ extends
         emitattr (1, addressType)
         emitelem (2, gateway)
         emitelem (3, subnet)
-        emitattr (4, unknown)
         s.toString
     }
     override def export: String =
@@ -563,17 +503,12 @@ extends
         "address",
         "addressType",
         "gateway",
-        "subnet",
-        ""
-    )
-    override val relations: List[Relationship] = List (
-        Relationship ("unknown", "TASE2BilateralTable", "1", "0..*")
+        "subnet"
     )
     val address: Fielder = parse_element (element (cls, fields(0)))
     val addressType: Fielder = parse_attribute (attribute (cls, fields(1)))
     val gateway: Fielder = parse_element (element (cls, fields(2)))
     val subnet: Fielder = parse_element (element (cls, fields(3)))
-    val unknown: Fielder = parse_attribute (attribute (cls, fields(4)))
 
     def parse (context: Context): IPAccessPoint =
     {
@@ -584,8 +519,7 @@ extends
             mask (address (), 0),
             mask (addressType (), 1),
             mask (gateway (), 2),
-            mask (subnet (), 3),
-            mask (unknown (), 4)
+            mask (subnet (), 3)
         )
         ret.bitfields = bitfields
         ret
@@ -691,7 +625,6 @@ extends
  * @param nameOfICC Specifies the ICC scope name that the remote can use to access the information in the Bilateral Table if the information is not VCC scoped.
  *        This value may not be null.
  * @param tase2version Specifies the version of the TASE.2 that is needed to access the Bilateral Table information via TASE.2
- * @param unknown [[ch.ninecode.model.ICCPInformationMessage ICCPInformationMessage]] <em>undocumented</em>
  * @group ICCP
  * @groupname ICCP Package ICCP
  */
@@ -701,8 +634,7 @@ case class TASE2BilateralTable
     bilateralTableID: String,
     calling: Boolean,
     nameOfICC: String,
-    tase2version: String,
-    unknown: List[String]
+    tase2version: String
 )
 extends
     Element
@@ -710,7 +642,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, false, null, null, List()) }
+    def this () = { this (null, null, false, null, null) }
     /**
      * Return the superclass object.
      *
@@ -734,12 +666,10 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = TASE2BilateralTable.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TASE2BilateralTable.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (TASE2BilateralTable.fields (position), x))
         emitelem (0, bilateralTableID)
         emitelem (1, calling)
         emitelem (2, nameOfICC)
         emitelem (3, tase2version)
-        emitattrs (4, unknown)
         s.toString
     }
     override def export: String =
@@ -756,17 +686,12 @@ extends
         "bilateralTableID",
         "calling",
         "nameOfICC",
-        "tase2version",
-        ""
-    )
-    override val relations: List[Relationship] = List (
-        Relationship ("unknown", "ICCPInformationMessage", "0..*", "0..*")
+        "tase2version"
     )
     val bilateralTableID: Fielder = parse_element (element (cls, fields(0)))
     val calling: Fielder = parse_element (element (cls, fields(1)))
     val nameOfICC: Fielder = parse_element (element (cls, fields(2)))
     val tase2version: Fielder = parse_element (element (cls, fields(3)))
-    val unknown: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
 
     def parse (context: Context): TASE2BilateralTable =
     {
@@ -777,8 +702,7 @@ extends
             mask (bilateralTableID (), 0),
             toBoolean (mask (calling (), 1)),
             mask (nameOfICC (), 2),
-            mask (tase2version (), 3),
-            masks (unknown (), 4)
+            mask (tase2version (), 3)
         )
         ret.bitfields = bitfields
         ret

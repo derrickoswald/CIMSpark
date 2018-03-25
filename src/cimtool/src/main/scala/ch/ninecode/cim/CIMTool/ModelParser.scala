@@ -145,6 +145,14 @@ case class ModelParser (db: Database)
                                 val denominatorUnit = details.find (_.name == "denominatorUnit") match { case Some(attribute) => attribute.dflt case None => null }
                                 val denominatorMultiplier = details.find (_.name == "denominatorMultiplier") match { case Some(attribute) => attribute.dflt case None => null }
                                 Domain (xuid, name, note, stereotype, noenum, value, unit, multiplier, denominatorUnit, denominatorMultiplier)
+                            case "Compound" =>
+                                val details = attributes(cls_id)
+                                val value = details.find (_.name == "value") match { case Some(attribute) => attribute.typ case None => null }
+                                val unit = details.find (_.name == "unit") match { case Some(attribute) => attribute.dflt case None => null }
+                                val multiplier = details.find (_.name == "multiplier") match { case Some(attribute) => attribute.dflt case None => null }
+                                val denominatorUnit = details.find (_.name == "denominatorUnit") match { case Some(attribute) => attribute.dflt case None => null }
+                                val denominatorMultiplier = details.find (_.name == "denominatorMultiplier") match { case Some(attribute) => attribute.dflt case None => null }
+                                Domain (xuid, name, note, stereotype, noenum, value, unit, multiplier, denominatorUnit, denominatorMultiplier)
                             case "enumeration" =>
                                 val enumeration = attributes(cls_id).map (_.name).toSet
                                 Domain (xuid, name, note, stereotype, enumeration, "", "", "", "", "")
