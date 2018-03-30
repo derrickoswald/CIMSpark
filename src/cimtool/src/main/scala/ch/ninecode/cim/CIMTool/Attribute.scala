@@ -8,7 +8,7 @@ package ch.ninecode.cim.CIMTool
  * @param pkg Containing package.
  * @param cls Containing class.
  * @param notes Textual notes attached to the attribute.
- * @param typ
+ * @param typ The type of attribute.
  * @param classifier Domain Object class if any.
  * @param dflt The default value for the attribute.
  */

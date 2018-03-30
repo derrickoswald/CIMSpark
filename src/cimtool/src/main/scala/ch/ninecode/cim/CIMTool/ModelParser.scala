@@ -61,6 +61,12 @@ case class ModelParser (db: Database)
                 val cls = Class (row.getXUID, row.getName, row.getNote, pkg, stereotype)
                 classes.put (row.getObjectID, cls)
             }
+            else
+            {
+                val skip = Array ("Boundary", "Note", "Package", "Text", "Object")
+                if (!skip.contains (row.getObjectType))
+                    println ("pkg: " + row.getInt ("Package_ID") + " name: " + row.getName + " type: " + row.getObjectType)
+            }
         }
     }
 
@@ -118,53 +124,39 @@ case class ModelParser (db: Database)
 
     def extractDomains (): Unit =
     {
-        packages.find (p => p._2.name == "Domain" || p._2.name == "DomainProfile") match
+        val it = getObjectTable.iterator ()
+        while (it.hasNext)
         {
-            case Some (pkg) =>
-                val it = getObjectTable.iterator ()
-                while (it.hasNext)
+            val row = Row (it.next ())
+            if (row.getObjectType.equals ("Class"))
+            {
+                val cls_id = row.getObjectID
+                val xuid = row.getXUID
+                val name = row.getName
+                val note = row.getNote
+                val stereotype = if (row.hasStereotype) row.getStereotype else null
+                val noenum = scala.collection.immutable.Set[String]()
+                val domain = stereotype match
                 {
-                    val row = Row (it.next ())
-                    if (row.getObjectType.equals ("Class") && (row.getPackageID == pkg._1))
-                    {
-                        val cls_id = row.getObjectID
-                        val xuid = row.getXUID
-                        val name = row.getName
-                        val note = row.getNote
-                        val stereotype = if (row.hasStereotype) row.getStereotype else null
-                        val noenum = scala.collection.immutable.Set[String]()
-                        val domain = stereotype match
-                        {
-                            case "Primitive" =>
-                                Domain (xuid, name, note, stereotype, noenum, "", "", "", "", "")
-                            case "CIMDatatype" =>
-                                val details = attributes(cls_id)
-                                val value = details.find (_.name == "value") match { case Some(attribute) => attribute.typ case None => null }
-                                val unit = details.find (_.name == "unit") match { case Some(attribute) => attribute.dflt case None => null }
-                                val multiplier = details.find (_.name == "multiplier") match { case Some(attribute) => attribute.dflt case None => null }
-                                val denominatorUnit = details.find (_.name == "denominatorUnit") match { case Some(attribute) => attribute.dflt case None => null }
-                                val denominatorMultiplier = details.find (_.name == "denominatorMultiplier") match { case Some(attribute) => attribute.dflt case None => null }
-                                Domain (xuid, name, note, stereotype, noenum, value, unit, multiplier, denominatorUnit, denominatorMultiplier)
-                            case "Compound" =>
-                                val details = attributes(cls_id)
-                                val value = details.find (_.name == "value") match { case Some(attribute) => attribute.typ case None => null }
-                                val unit = details.find (_.name == "unit") match { case Some(attribute) => attribute.dflt case None => null }
-                                val multiplier = details.find (_.name == "multiplier") match { case Some(attribute) => attribute.dflt case None => null }
-                                val denominatorUnit = details.find (_.name == "denominatorUnit") match { case Some(attribute) => attribute.dflt case None => null }
-                                val denominatorMultiplier = details.find (_.name == "denominatorMultiplier") match { case Some(attribute) => attribute.dflt case None => null }
-                                Domain (xuid, name, note, stereotype, noenum, value, unit, multiplier, denominatorUnit, denominatorMultiplier)
-                            case "enumeration" =>
-                                val enumeration = attributes(cls_id).map (_.name).toSet
-                                Domain (xuid, name, note, stereotype, enumeration, "", "", "", "", "")
-                            case _ =>
-                                null
-                        }
-                        if (null != domain)
-                            domains.add (domain)
-                    }
+                    case "Primitive" =>
+                        Domain (xuid, name, note, stereotype, packages.getOrElse (row.getPackageID, null), noenum, "")
+                    case "CIMDatatype" =>
+                        val details = attributes(cls_id)
+                        val value = details.find (_.name == "value") match { case Some(attribute) => attribute.typ case None => null }
+                        Domain (xuid, name, note, stereotype, packages.getOrElse (row.getPackageID, null), noenum, value)
+                    case "Compound" =>
+                        val details = attributes(cls_id)
+                        val value = details.find (_.name == "value") match { case Some(attribute) => attribute.typ case None => null }
+                        Domain (xuid, name, note, stereotype, packages.getOrElse (row.getPackageID, null), noenum, value)
+                    case "enumeration" =>
+                        val enumeration = attributes(cls_id).map (_.name).toSet
+                        Domain (xuid, name, note, stereotype, packages.getOrElse (row.getPackageID, null), enumeration, "")
+                    case _ =>
+                        null
                 }
-            case None =>
-                System.out.println("Could not find the Domain package")
+                if (null != domain)
+                    domains.add (domain)
+            }
         }
     }
 
@@ -228,7 +220,7 @@ case class ModelParser (db: Database)
 
         for (cls <- classes.filter (x => x._2.pkg == pkg))
         {
-            var stereotype = cls._2.stereotype
+            val stereotype = cls._2.stereotype
             if ((stereotype != "enumeration") && (stereotype != "CIMDatatype") && (stereotype != "Primitive"))
                 ret.add (cls._2)
         }

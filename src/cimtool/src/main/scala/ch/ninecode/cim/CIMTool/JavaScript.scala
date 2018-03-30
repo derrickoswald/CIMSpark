@@ -17,9 +17,8 @@ case class JavaScript (parser: ModelParser, pkg: Package)
     def asText (): String =
     {
         val requires = mutable.Set[Package]()
-        val provides = mutable.Set[String]()
+        val provides = mutable.Set[(String,String)]()
         val enumerations = mutable.Set[String]()
-
         // order the classes based on their superclass to avoid "ReferenceError: can't access lexical declaration `blah' before initialization"
         val classes: List[(Int, Class)] = parser.classes.filter (_._2.pkg == pkg).toList
         case class Joe (name: String, superclass: String, superclass_package: String, objectID: Int, cls: Class)
@@ -78,7 +77,14 @@ case class JavaScript (parser: ModelParser, pkg: Package)
         val bunch2 = read (graph.children)
         val classes2 = bunch2.map (x ⇒ x.cls)
 
-        def valid_attribute_name (name: String): String = name.replace (" ", "_").replace (".", "_").replace (",", "_")
+        def valid_attribute_name (name: String): String =
+        {
+            val n = name.replace (" ", "_").replace (".", "_").replace (",", "_").replace ("/", "_").replace ("-", "_").replace ("%", "_")
+            if (n.charAt (0).isDigit)
+                "_" + n
+            else
+                n
+        }
         def valid_role_name (name: String): String = if (name == "") "unknown" else name.replace (" ", "_").replace (".", "_").replace (",", "_").replace ("""/""", """\/""")
         def isPrimitive (typ: String): Boolean =
         {
@@ -98,6 +104,7 @@ case class JavaScript (parser: ModelParser, pkg: Package)
 
             if (cls.stereotype == "enumeration")
             {
+                provides.add ((name, name))
                 enumerations.add (name)
 
                 // add javaDoc
@@ -132,12 +139,14 @@ case class JavaScript (parser: ModelParser, pkg: Package)
 
             // get name
             val name = cls.name.replace ("-", "_")
+            // MarketManagement has a class called Domain that conflicts with the Domain package
+            val internalname = if (name == "Domain") "Domain_" else name
             val attributes = parser.attributesFor (cls)
             val roles = parser.rolesFor (cls)
 
             if (cls.stereotype != "enumeration")
             {
-                provides.add (name)
+                provides.add ((name, internalname))
 
                 // add javaDoc
                 if (null != cls.note)
@@ -156,7 +165,7 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                         ("base.", "Element")
 
                 // output class declaration
-                s.append ("        class %s extends %s%s".format (name, superclass_package, superclass))
+                s.append ("        class %s extends %s%s".format (internalname, superclass_package, superclass))
                 // output constructor and store function
                 s.append ("""
                     |        {
@@ -328,8 +337,23 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                     |                super.condition (obj);""".stripMargin)
                 for (attribute <- attributes.filter (x ⇒ enumerations.contains (x.typ) || !isPrimitive (x.typ)))
                 {
-                    val name = attribute.name.replace ("""/""", """\/""")
-                    s.append ("\n                obj.%s = []; if (!obj.%s) obj.%s.push ({ id: '', selected: true}); for (var property in %s) obj.%s.push ({ id: property, selected: obj.%s && obj.%s.endsWith ('.' + property)});".format (attribute.typ, name, attribute.typ, attribute.typ, attribute.typ, name, name))
+                    val varname = attribute.name + attribute.typ
+                    val qualifiedname = if (enumerations.contains (attribute.typ))
+                        attribute.typ // local enumeration
+                    else
+                    {
+                        val domain = parser.domains.filter (_.name == attribute.typ).head // a domain
+                        if (domain.pkg == pkg)
+                            attribute.typ // local
+                        else
+                        {
+                            // add it to requires if necessary
+                            if (!requires.contains (domain.pkg))
+                                requires.add (domain.pkg)
+                            domain.pkg.name + "." + attribute.typ
+                        }
+                    }
+                    s.append ("\n                obj.%s = [{ id: '', selected: (!obj.%s)}]; for (var property in %s) obj.%s.push ({ id: property, selected: obj.%s && obj.%s.endsWith ('.' + property)});".format (varname, attribute.name, qualifiedname, varname, attribute.name, attribute.name))
                 }
                 for (role ← roles.filter (_.upper != 1))
                 {
@@ -346,7 +370,10 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                     |            {
                     |                super.uncondition (obj);""".stripMargin)
                 for (attribute <- attributes.filter (x ⇒ enumerations.contains (x.typ) || !isPrimitive (x.typ)))
-                    s.append ("\n                delete obj.%s;".format (attribute.typ))
+                {
+                    val varname = attribute.name.replace ("""/""", """\/""") + attribute.typ
+                    s.append ("\n                delete obj.%s;".format (varname))
+                }
                 for (role ← roles.filter (_.upper != 1))
                     s.append ("\n                delete obj.%s_string;".format (valid_role_name (role.name)))
                 s.append ("""
@@ -369,8 +396,11 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                 for (attribute <- attributes)
                 {
                     if (enumerations.contains (attribute.typ) || !isPrimitive (attribute.typ))
+                    {
+                        val varname = attribute.name.replace ("""/""", """\/""") + attribute.typ
                         // output a selection (needs condition(obj) to get the array of strings
-                        s.append ("                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_%s'>%s: </label><div class='col-sm-8'><select id='{{id}}_%s' class='form-control custom-select'>{{#%s}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/%s}}</select></div></div>\n".format (attribute.name, attribute.name, attribute.name, attribute.typ, attribute.typ))
+                        s.append ("                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_%s'>%s: </label><div class='col-sm-8'><select id='{{id}}_%s' class='form-control custom-select'>{{#%s}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/%s}}</select></div></div>\n".format (attribute.name, attribute.name, attribute.name, varname, varname))
+                    }
                     else
                         attribute.typ match
                         {
@@ -405,7 +435,24 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                     |""".stripMargin.format (if (attributes.nonEmpty || roles.exists (r ⇒ r.upper == 1 || r.many_to_many)) "                var temp;\n\n" else "", cls.name))
                 for (attribute <- attributes)
                     if (enumerations.contains (attribute.typ) || !isPrimitive (attribute.typ))
-                        s.append ("                temp = document.getElementById (id + \"_%s\").value; if (\"\" != temp) { temp = %s[temp]; if (\"undefined\" != typeof (temp)) obj.%s = \"http://iec.ch/TC57/2013/CIM-schema-cim16#%s.\" + temp; }\n".format (attribute.name, attribute.typ, attribute.name, attribute.typ))
+                    {
+                        val qualifiedname = if (enumerations.contains (attribute.typ))
+                            attribute.typ // local enumeration
+                        else
+                        {
+                            val domain = parser.domains.filter (_.name == attribute.typ).head // a domain
+                            if (domain.pkg == pkg)
+                                attribute.typ // local
+                            else
+                            {
+                                // add it to requires if necessary
+                                if (!requires.contains (domain.pkg))
+                                    requires.add (pkg)
+                                domain.pkg.name + "." + attribute.typ
+                            }
+                        }
+                        s.append ("                temp = %s[document.getElementById (id + \"_%s\").value]; if (temp) obj.%s = \"http://iec.ch/TC57/2013/CIM-schema-cim16#%s.\" + temp; else delete obj.%s;\n".format (qualifiedname, attribute.name, attribute.name, attribute.typ, attribute.name))
+                    }
                     else
                         attribute.typ match
                         {
@@ -484,7 +531,7 @@ case class JavaScript (parser: ModelParser, pkg: Package)
             v.append ("""        return (
                 |            {
                 |""".stripMargin)
-            val functions = provides.map ((p) => "                " + p + ": " + p).mkString (",\n")
+            val functions = provides.map ((p) => "                " + p._1 + ": " + p._2).mkString (",\n")
             v.append (functions)
             v.append ("""
                 |            }
