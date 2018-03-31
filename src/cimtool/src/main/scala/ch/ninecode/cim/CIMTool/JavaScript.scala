@@ -91,6 +91,11 @@ case class JavaScript (parser: ModelParser, pkg: Package)
             val domain = parser.domains.filter (_.name == typ)
             domain.nonEmpty && ((domain.head.stereotype == "Primitive") || (domain.head.stereotype == "CIMDatatype"))
         }
+        def isEnumeration (typ: String): Boolean =
+        {
+            val domain = parser.domains.filter (_.name == typ)
+            domain.nonEmpty && (domain.head.stereotype == "enumeration")
+        }
         val p = new StringBuilder ()
 
         // do the enumerations
@@ -335,7 +340,7 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                     |            condition (obj)
                     |            {
                     |                super.condition (obj);""".stripMargin)
-                for (attribute <- attributes.filter (x ⇒ enumerations.contains (x.typ) || !isPrimitive (x.typ)))
+                for (attribute <- attributes.filter (x ⇒ isEnumeration (x.typ)))
                 {
                     val varname = attribute.name + attribute.typ
                     val qualifiedname = if (enumerations.contains (attribute.typ))
@@ -369,7 +374,7 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                     |            uncondition (obj)
                     |            {
                     |                super.uncondition (obj);""".stripMargin)
-                for (attribute <- attributes.filter (x ⇒ enumerations.contains (x.typ) || !isPrimitive (x.typ)))
+                for (attribute <- attributes.filter (x ⇒ isEnumeration (x.typ)))
                 {
                     val varname = attribute.name.replace ("""/""", """\/""") + attribute.typ
                     s.append ("\n                delete obj.%s;".format (varname))
@@ -395,10 +400,10 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                     |""".stripMargin.format (name, name, name, name, superclass_package, superclass))
                 for (attribute <- attributes)
                 {
-                    if (enumerations.contains (attribute.typ) || !isPrimitive (attribute.typ))
+                    if (isEnumeration (attribute.typ))
                     {
-                        val varname = attribute.name.replace ("""/""", """\/""") + attribute.typ
-                        // output a selection (needs condition(obj) to get the array of strings
+                        val varname = attribute.name + attribute.typ
+                        // output a selection (needs condition(obj) to get the array of strings)
                         s.append ("                    <div class='form-group row'><label class='col-sm-4 col-form-label' for='{{id}}_%s'>%s: </label><div class='col-sm-8'><select id='{{id}}_%s' class='form-control custom-select'>{{#%s}}<option value='{{id}}'{{#selected}} selected{{/selected}}>{{id}}</option>{{/%s}}</select></div></div>\n".format (attribute.name, attribute.name, attribute.name, varname, varname))
                     }
                     else
@@ -434,7 +439,7 @@ case class JavaScript (parser: ModelParser, pkg: Package)
                     |                super.submit (id, obj);
                     |""".stripMargin.format (if (attributes.nonEmpty || roles.exists (r ⇒ r.upper == 1 || r.many_to_many)) "                var temp;\n\n" else "", cls.name))
                 for (attribute <- attributes)
-                    if (enumerations.contains (attribute.typ) || !isPrimitive (attribute.typ))
+                    if (isEnumeration (attribute.typ))
                     {
                         val qualifiedname = if (enumerations.contains (attribute.typ))
                             attribute.typ // local enumeration
