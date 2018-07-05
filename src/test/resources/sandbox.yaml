@@ -23,11 +23,13 @@ services:
     environment:
       HDFS_USER: ${USER} # use value of environment variable "USER" as Spark owner/operator
     hostname: sandbox
+    links:
+      - beach
     ports:
       - "4040:4040" # Cluster Manager Web UI
       - "6066:6066" # Standalone Master REST port (spark.master.rest.port)
       - "7077:7077" # Driver to Standalone Master, as in master = spark://sandbox:7077
-      - "8020:8020" # DFS Namenode IPC, as in: hdfs dfs -fs hdfs://sandbox:8020 -ls
+      - "8020:8020" # DFS Namenode IPC, e.g. hdfs dfs -fs hdfs://sandbox:8020 -ls
       - "8080:8080" # Standalone Master Web UI
       - "8081:8081" # Standalone Worker Web UI
       - "10000:10000" # Thriftserver JDBC port
@@ -35,10 +37,6 @@ services:
       - "50010:50010" # DFS Datanode data transfer
       - "50070:50070" # DFS Namenode Web UI
       - "50075:50075" # DFS Datanode Web UI
-      - "7000:7000" # Cassandra storage_port
-      - "7001:7001" # Cassandra ssl_storage_port
-      - "9042:9042" # Cassandra native_transport_port
-      - "9160:9160" # Cassandra rpc_port
     volumes:
       - ./../../../data:/opt/data # map sample data file directory to /opt/data within the container
       - ./../../../private_data:/opt/private_data # map private sample data file directory to /opt/private_data within the container
@@ -52,7 +50,27 @@ services:
       SPARK_WORKER_MEMORY: 4g
     links:
       - sandbox
+      - beach
     volumes:
       - ./../../../data:/opt/data # map sample data file directory to /opt/data within the container
       - ./../../../private_data:/opt/private_data # map private sample data file directory to /opt/private_data within the container
       - ./../../../target:/opt/code # map compilation output directory to /opt/code within the container
+  beach:
+    container_name: beach
+    image: derrickoswald/cassandra-docker
+    command: cassandra -f
+    hostname: beach
+    ports:
+      - "7000:7000" # intra-node communication
+      - "7001:7001" # TLS intra-node communication
+      - "7199:7199" # JMX
+      - "9042:9042" # CQL
+      - "9160:9160" # thrift service
+  beach_node:
+    image: derrickoswald/cassandra-docker
+    command: cassandra -f
+    environment:
+      CASSANDRA_SEEDS: beach # use value of environment variable "USER" as Spark owner/operator
+    links:
+      - beach
+
