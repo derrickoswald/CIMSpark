@@ -575,9 +575,9 @@ with
         // get the edges that have different topological nodes on each end
         val nodes = graph.vertices.values.keyBy (_.node).distinct // distinct topological nodes
         val pairs = graph.vertices.keyBy (_._2.node).join (nodes).map ( x => (x._2._1._1, x._2._2)) // get vertex-node pairs
-        val b1 = graph.edges.keyBy ((edge) => edge.dstId).join (pairs) // match edge end 1
-        val b2 = b1.values.keyBy ((edge) => edge._1.srcId).join (pairs) // match edge end 2
-        val b3 = b2.values.map ((edge) => (edge._1._1, edge._1._2, edge._2)) // simplify
+        val b1 = graph.edges.keyBy (edge => edge.dstId).join (pairs) // match edge end 1
+        val b2 = b1.values.keyBy (edge => edge._1.srcId).join (pairs) // match edge end 2
+        val b3 = b2.values.map (edge => (edge._1._1, edge._1._2, edge._2)) // simplify
         val boundaries = b3.filter (boundary) // keep edges with different nodes on each end
 
         // construct the topological graph from the edges
@@ -637,7 +637,7 @@ with
             val elements = get[Element]("Elements").keyBy (_.id)
             val terms = get[Terminal].keyBy (_.ConductingEquipment).join (elements).values
             // map each graph vertex to the terminals
-            val vertices = get[ConnectivityNode].map ((x) => (vertex_id (x.id), x))
+            val vertices = get[ConnectivityNode].map (x => (vertex_id (x.id), x))
             val td_plus = graph.vertices.join (vertices).values.filter (_._1.island != 0L).keyBy (_._2.id).leftOuterJoin (terms.keyBy (_._1.ConnectivityNode)).values
             val islands = td_plus.groupBy (_._1._1.island).values.map (to_islands)
 
@@ -655,14 +655,14 @@ with
             TopologicalIsland.subsetter.save (session.sqlContext, new_ti.asInstanceOf[TopologicalIsland.subsetter.rddtype], storage)
 
             val nodes_with_islands = graph.vertices.values.keyBy (_.island).join (islands).values
-            val nodes = nodes_with_islands.groupBy (_._1.node).map ((x) => (x._1, x._2.head._1, Some (x._2.head._2))).map (to_nodes)
+            val nodes = nodes_with_islands.groupBy (_._1.node).map (x => (x._1, x._2.head._1, Some (x._2.head._2))).map (to_nodes)
             if (debug && log.isDebugEnabled)
                 log.debug (nodes.count + " nodes")
             (nodes, new_ti)
         }
         else
         {
-            val nodes = graph.vertices.values.groupBy (_.node).map ((x) => (x._1, x._2.head, None)).map (to_nodes)
+            val nodes = graph.vertices.values.groupBy (_.node).map (x => (x._1, x._2.head, None)).map (to_nodes)
             if (debug && log.isDebugEnabled)
                 log.debug (nodes.count + " nodes")
             (nodes, spark.sparkContext.emptyRDD[TopologicalIsland])
