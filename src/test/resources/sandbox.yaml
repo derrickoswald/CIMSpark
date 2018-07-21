@@ -47,7 +47,7 @@ services:
     environment:
       HDFS_USER: ${USER} # use value of environment variable "USER" as Spark owner/operator
       SPARK_WORKER_CORES: 1
-      SPARK_WORKER_MEMORY: 4g
+      SPARK_WORKER_MEMORY: 1g
     links:
       - sandbox
       - beach
@@ -66,6 +66,9 @@ services:
       - "7199:7199" # JMX
       - "9042:9042" # CQL
       - "9160:9160" # thrift service
+    environment:
+      MAX_HEAP_SIZE: "1G"
+      HEAP_NEWSIZE: "24M"
   beach_node:
     image: derrickoswald/cassandra-docker
     command: cassandra -f
