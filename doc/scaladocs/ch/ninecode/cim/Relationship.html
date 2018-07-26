@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>Relationship - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.cim.Relationship</title>
-          <meta name="description" content="Relationship - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.cim.Relationship" />
-          <meta name="keywords" content="Relationship CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.cim.Relationship" />
+          <title>Relationship - CIMReader 2.11-2.3.1-2.9.0 API - ch.ninecode.cim.Relationship</title>
+          <meta name="description" content="Relationship - CIMReader 2.11 - 2.3.1 - 2.9.0 API - ch.ninecode.cim.Relationship" />
+          <meta name="keywords" content="Relationship CIMReader 2.11 2.3.1 2.9.0 API ch.ninecode.cim.Relationship" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -45,7 +45,7 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">Relationship</span><span class="params">(<span name="field">field: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="clazz">clazz: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="multiple">multiple: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">Relationship</span><span class="params">(<span name="field">field: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="clazz">clazz: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="this_cardinality">this_cardinality: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="mate_cardinality">mate_cardinality: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
@@ -89,7 +89,7 @@
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
               <ol><li name="ch.ninecode.cim.Relationship#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="&lt;init&gt;(field:String,clazz:String,multiple:Boolean):ch.ninecode.cim.Relationship"></a>
+      <a id="&lt;init&gt;(field:String,clazz:String,this_cardinality:String,mate_cardinality:String):ch.ninecode.cim.Relationship"></a>
       <a id="&lt;init&gt;:Relationship"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -97,10 +97,10 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">Relationship</span><span class="params">(<span name="field">field: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="clazz">clazz: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="multiple">multiple: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span>
+        <span class="name">Relationship</span><span class="params">(<span name="field">field: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="clazz">clazz: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="this_cardinality">this_cardinality: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="mate_cardinality">mate_cardinality: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.Relationship@&lt;init&gt;(field:String,clazz:String,multiple:Boolean):ch.ninecode.cim.Relationship" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.Relationship@&lt;init&gt;(field:String,clazz:String,this_cardinality:String,mate_cardinality:String):ch.ninecode.cim.Relationship" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -296,6 +296,23 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="ch.ninecode.cim.Relationship#heavyside" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="heavyside:Boolean"></a>
+      <a id="heavyside:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">heavyside</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.Relationship@heavyside:Boolean" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
     </li><li name="scala.Any#isInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="isInstanceOf[T0]:Boolean"></a>
       <a id="isInstanceOf[T0]:Boolean"></a>
@@ -313,13 +330,30 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="ch.ninecode.cim.Relationship#mate_cardinality" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="mate_cardinality:String"></a>
+      <a id="mate_cardinality:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">mate_cardinality</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.Relationship@mate_cardinality:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
     </li><li name="ch.ninecode.cim.Relationship#multiple" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="multiple:Boolean"></a>
       <a id="multiple:Boolean"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">val</span>
+        <span class="kind">def</span>
       </span>
       <span class="symbol">
         <span class="name">multiple</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
@@ -398,6 +432,23 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="ch.ninecode.cim.Relationship#this_cardinality" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="this_cardinality:String"></a>
+      <a id="this_cardinality:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">this_cardinality</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.Relationship@this_cardinality:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>

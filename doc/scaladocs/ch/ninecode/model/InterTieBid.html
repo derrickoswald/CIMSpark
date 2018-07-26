@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>InterTieBid - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.InterTieBid</title>
-          <meta name="description" content="InterTieBid - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.InterTieBid" />
-          <meta name="keywords" content="InterTieBid CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.InterTieBid" />
+          <title>InterTieBid - CIMReader 2.11-2.3.1-2.9.0 API - ch.ninecode.model.InterTieBid</title>
+          <meta name="description" content="InterTieBid - CIMReader 2.11 - 2.3.1 - 2.9.0 API - ch.ninecode.model.InterTieBid" />
+          <meta name="keywords" content="InterTieBid CIMReader 2.11 2.3.1 2.9.0 API ch.ninecode.model.InterTieBid" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,12 +47,12 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">InterTieBid</span><span class="params">(<span name="sup">sup: <a href="ResourceBid.html" class="extype" name="ch.ninecode.model.ResourceBid">ResourceBid</a></span>, <span name="minHourlyBlock_1">minHourlyBlock_1: <span class="extype" name="scala.Int">Int</span></span>, <span name="RegisteredInterTie">RegisteredInterTie: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">InterTieBid</span><span class="params">(<span name="sup">sup: <a href="ResourceBid.html" class="extype" name="ch.ninecode.model.ResourceBid">ResourceBid</a></span>, <span name="minHourlyBlock_1">minHourlyBlock_1: <span class="extype" name="scala.Int">Int</span></span>, <span name="RampRateCurve">RampRateCurve: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="RegisteredInterTie">RegisteredInterTie: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>This class represents the inter tie bid
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ResourceBid.html" class="extype" name="ch.ninecode.model.ResourceBid">ResourceBid</a> Reference to the superclass object.</p></dd><dt class="param">minHourlyBlock_1</dt><dd class="cmt"><p>The minimum hourly block for an Inter-Tie Resource supplied within the bid.</p></dd><dt class="param">RegisteredInterTie</dt><dd class="cmt"><p><a href="RegisteredInterTie.html" class="extype" name="ch.ninecode.model.RegisteredInterTie">RegisteredInterTie</a> <em>undocumented</em></p></dd></dl><div class="toggleContainer block">
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ResourceBid.html" class="extype" name="ch.ninecode.model.ResourceBid">ResourceBid</a> Reference to the superclass object.</p></dd><dt class="param">minHourlyBlock_1</dt><dd class="cmt"><p>The minimum hourly block for an Inter-Tie Resource supplied within the bid.</p></dd><dt class="param">RampRateCurve</dt><dd class="cmt"><p><a href="RampRateCurve.html" class="extype" name="ch.ninecode.model.RampRateCurve">RampRateCurve</a> <em>undocumented</em></p></dd><dt class="param">RegisteredInterTie</dt><dd class="cmt"><p><a href="RegisteredInterTie.html" class="extype" name="ch.ninecode.model.RegisteredInterTie">RegisteredInterTie</a> <em>undocumented</em></p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -109,7 +109,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.InterTieBid#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.ResourceBid,minHourlyBlock_1:Int,RegisteredInterTie:String):ch.ninecode.model.InterTieBid"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.ResourceBid,minHourlyBlock_1:Int,RampRateCurve:List[String],RegisteredInterTie:String):ch.ninecode.model.InterTieBid"></a>
       <a id="&lt;init&gt;:InterTieBid"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -117,14 +117,14 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">InterTieBid</span><span class="params">(<span name="sup">sup: <a href="ResourceBid.html" class="extype" name="ch.ninecode.model.ResourceBid">ResourceBid</a></span>, <span name="minHourlyBlock_1">minHourlyBlock_1: <span class="extype" name="scala.Int">Int</span></span>, <span name="RegisteredInterTie">RegisteredInterTie: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
+        <span class="name">InterTieBid</span><span class="params">(<span name="sup">sup: <a href="ResourceBid.html" class="extype" name="ch.ninecode.model.ResourceBid">ResourceBid</a></span>, <span name="minHourlyBlock_1">minHourlyBlock_1: <span class="extype" name="scala.Int">Int</span></span>, <span name="RampRateCurve">RampRateCurve: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="RegisteredInterTie">RegisteredInterTie: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.InterTieBid@&lt;init&gt;(sup:ch.ninecode.model.ResourceBid,minHourlyBlock_1:Int,RegisteredInterTie:String):ch.ninecode.model.InterTieBid" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.InterTieBid@&lt;init&gt;(sup:ch.ninecode.model.ResourceBid,minHourlyBlock_1:Int,RampRateCurve:List[String],RegisteredInterTie:String):ch.ninecode.model.InterTieBid" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ResourceBid.html" class="extype" name="ch.ninecode.model.ResourceBid">ResourceBid</a> Reference to the superclass object.</p></dd><dt class="param">minHourlyBlock_1</dt><dd class="cmt"><p>The minimum hourly block for an Inter-Tie Resource supplied within the bid.</p></dd><dt class="param">RegisteredInterTie</dt><dd class="cmt"><p><a href="RegisteredInterTie.html" class="extype" name="ch.ninecode.model.RegisteredInterTie">RegisteredInterTie</a> <em>undocumented</em></p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ResourceBid.html" class="extype" name="ch.ninecode.model.ResourceBid">ResourceBid</a> Reference to the superclass object.</p></dd><dt class="param">minHourlyBlock_1</dt><dd class="cmt"><p>The minimum hourly block for an Inter-Tie Resource supplied within the bid.</p></dd><dt class="param">RampRateCurve</dt><dd class="cmt"><p><a href="RampRateCurve.html" class="extype" name="ch.ninecode.model.RampRateCurve">RampRateCurve</a> <em>undocumented</em></p></dd><dt class="param">RegisteredInterTie</dt><dd class="cmt"><p><a href="RegisteredInterTie.html" class="extype" name="ch.ninecode.model.RegisteredInterTie">RegisteredInterTie</a> <em>undocumented</em></p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -185,6 +185,23 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="ch.ninecode.model.InterTieBid#RampRateCurve" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="RampRateCurve:List[String]"></a>
+      <a id="RampRateCurve:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">RampRateCurve</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.InterTieBid@RampRateCurve:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="RampRateCurve.html" class="extype" name="ch.ninecode.model.RampRateCurve">RampRateCurve</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="RampRateCurve.html" class="extype" name="ch.ninecode.model.RampRateCurve">RampRateCurve</a> <em>undocumented</em></p></div></div>
     </li><li name="ch.ninecode.model.InterTieBid#RegisteredInterTie" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="RegisteredInterTie:String"></a>
       <a id="RegisteredInterTie:String"></a>

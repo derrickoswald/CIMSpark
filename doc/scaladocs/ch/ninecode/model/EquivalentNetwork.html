@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>EquivalentNetwork - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.EquivalentNetwork</title>
-          <meta name="description" content="EquivalentNetwork - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.EquivalentNetwork" />
-          <meta name="keywords" content="EquivalentNetwork CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.EquivalentNetwork" />
+          <title>EquivalentNetwork - CIMReader 2.11-2.3.1-2.9.0 API - ch.ninecode.model.EquivalentNetwork</title>
+          <meta name="description" content="EquivalentNetwork - CIMReader 2.11 - 2.3.1 - 2.9.0 API - ch.ninecode.model.EquivalentNetwork" />
+          <meta name="keywords" content="EquivalentNetwork CIMReader 2.11 2.3.1 2.9.0 API ch.ninecode.model.EquivalentNetwork" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,12 +47,12 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">EquivalentNetwork</span><span class="params">(<span name="sup">sup: <a href="ConnectivityNodeContainer.html" class="extype" name="ch.ninecode.model.ConnectivityNodeContainer">ConnectivityNodeContainer</a></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">EquivalentNetwork</span><span class="params">(<span name="sup">sup: <a href="ConnectivityNodeContainer.html" class="extype" name="ch.ninecode.model.ConnectivityNodeContainer">ConnectivityNodeContainer</a></span>, <span name="EquivalentEquipments">EquivalentEquipments: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A class that represents an external meshed network that has been reduced to an electrically equivalent model.</p><p>The ConnectivityNodes contained in the equivalent are intended to reflect internal nodes of the equivalent. The boundary Connectivity nodes where the equivalent connects outside itself are NOT contained by the equivalent.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ConnectivityNodeContainer.html" class="extype" name="ch.ninecode.model.ConnectivityNodeContainer">ConnectivityNodeContainer</a> Reference to the superclass object.</p></dd></dl><div class="toggleContainer block">
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ConnectivityNodeContainer.html" class="extype" name="ch.ninecode.model.ConnectivityNodeContainer">ConnectivityNodeContainer</a> Reference to the superclass object.</p></dd><dt class="param">EquivalentEquipments</dt><dd class="cmt"><p><a href="EquivalentEquipment.html" class="extype" name="ch.ninecode.model.EquivalentEquipment">EquivalentEquipment</a> The associated reduced equivalents.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -109,7 +109,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.EquivalentNetwork#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.ConnectivityNodeContainer):ch.ninecode.model.EquivalentNetwork"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.ConnectivityNodeContainer,EquivalentEquipments:List[String]):ch.ninecode.model.EquivalentNetwork"></a>
       <a id="&lt;init&gt;:EquivalentNetwork"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -117,14 +117,14 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">EquivalentNetwork</span><span class="params">(<span name="sup">sup: <a href="ConnectivityNodeContainer.html" class="extype" name="ch.ninecode.model.ConnectivityNodeContainer">ConnectivityNodeContainer</a></span>)</span>
+        <span class="name">EquivalentNetwork</span><span class="params">(<span name="sup">sup: <a href="ConnectivityNodeContainer.html" class="extype" name="ch.ninecode.model.ConnectivityNodeContainer">ConnectivityNodeContainer</a></span>, <span name="EquivalentEquipments">EquivalentEquipments: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.EquivalentNetwork@&lt;init&gt;(sup:ch.ninecode.model.ConnectivityNodeContainer):ch.ninecode.model.EquivalentNetwork" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.EquivalentNetwork@&lt;init&gt;(sup:ch.ninecode.model.ConnectivityNodeContainer,EquivalentEquipments:List[String]):ch.ninecode.model.EquivalentNetwork" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ConnectivityNodeContainer.html" class="extype" name="ch.ninecode.model.ConnectivityNodeContainer">ConnectivityNodeContainer</a> Reference to the superclass object.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ConnectivityNodeContainer.html" class="extype" name="ch.ninecode.model.ConnectivityNodeContainer">ConnectivityNodeContainer</a> Reference to the superclass object.</p></dd><dt class="param">EquivalentEquipments</dt><dd class="cmt"><p><a href="EquivalentEquipment.html" class="extype" name="ch.ninecode.model.EquivalentEquipment">EquivalentEquipment</a> The associated reduced equivalents.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -203,6 +203,23 @@
     </span>
       <p class="shortcomment cmt">Return the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Return the superclass object.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The typed superclass nested object.</p></dd></dl></div>
+    </li><li name="ch.ninecode.model.EquivalentNetwork#EquivalentEquipments" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="EquivalentEquipments:List[String]"></a>
+      <a id="EquivalentEquipments:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">EquivalentEquipments</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.EquivalentNetwork@EquivalentEquipments:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="EquivalentEquipment.html" class="extype" name="ch.ninecode.model.EquivalentEquipment">EquivalentEquipment</a> The associated reduced equivalents.</p>
     </li><li name="ch.ninecode.model.Element#about" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="about:Boolean"></a>
       <a id="about:Boolean"></a>

@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>PnodeDistributionFactor - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.PnodeDistributionFactor</title>
-          <meta name="description" content="PnodeDistributionFactor - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.PnodeDistributionFactor" />
-          <meta name="keywords" content="PnodeDistributionFactor CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.PnodeDistributionFactor" />
+          <title>PnodeDistributionFactor - CIMReader 2.11-2.3.1-2.9.0 API - ch.ninecode.model.PnodeDistributionFactor</title>
+          <meta name="description" content="PnodeDistributionFactor - CIMReader 2.11 - 2.3.1 - 2.9.0 API - ch.ninecode.model.PnodeDistributionFactor" />
+          <meta name="keywords" content="PnodeDistributionFactor CIMReader 2.11 2.3.1 2.9.0 API ch.ninecode.model.PnodeDistributionFactor" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,13 +47,13 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">PnodeDistributionFactor</span><span class="params">(<span name="sup">sup: <a href="BasicElement.html" class="extype" name="ch.ninecode.model.BasicElement">BasicElement</a></span>, <span name="factor">factor: <span class="extype" name="scala.Double">Double</span></span>, <span name="offPeak">offPeak: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="onPeak">onPeak: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="podLossFactor">podLossFactor: <span class="extype" name="scala.Double">Double</span></span>, <span name="BidDistributionFactor">BidDistributionFactor: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="IndividualPnode">IndividualPnode: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">PnodeDistributionFactor</span><span class="params">(<span name="sup">sup: <a href="BasicElement.html" class="extype" name="ch.ninecode.model.BasicElement">BasicElement</a></span>, <span name="factor">factor: <span class="extype" name="scala.Double">Double</span></span>, <span name="offPeak">offPeak: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="onPeak">onPeak: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="podLossFactor">podLossFactor: <span class="extype" name="scala.Double">Double</span></span>, <span name="AggregatedPnode">AggregatedPnode: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="BidDistributionFactor">BidDistributionFactor: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="IndividualPnode">IndividualPnode: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>This class allows SC to input different distribution factors for pricing node
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">factor</dt><dd class="cmt"><p>Used to calculate &quot;participation&quot; of Pnode in an AggregatePnode.
-       For example, for regulation region this factor is 1 and total sum of all factors for a specific regulation region does not have to be 1. For pricing zone the total sum of all factors has to be 1.</p></dd><dt class="param">offPeak</dt><dd class="cmt"><p>Indication that this distribution factor is to apply during off peak.</p></dd><dt class="param">onPeak</dt><dd class="cmt"><p>Indication that this factor is to apply during Peak periods.</p></dd><dt class="param">podLossFactor</dt><dd class="cmt"><p>Point of delivery loss factor</p></dd><dt class="param">BidDistributionFactor</dt><dd class="cmt"><p><a href="BidDistributionFactor.html" class="extype" name="ch.ninecode.model.BidDistributionFactor">BidDistributionFactor</a> <em>undocumented</em></p></dd><dt class="param">IndividualPnode</dt><dd class="cmt"><p><a href="IndividualPnode.html" class="extype" name="ch.ninecode.model.IndividualPnode">IndividualPnode</a> <em>undocumented</em></p></dd></dl><div class="toggleContainer block">
+       For example, for regulation region this factor is 1 and total sum of all factors for a specific regulation region does not have to be 1. For pricing zone the total sum of all factors has to be 1.</p></dd><dt class="param">offPeak</dt><dd class="cmt"><p>Indication that this distribution factor is to apply during off peak.</p></dd><dt class="param">onPeak</dt><dd class="cmt"><p>Indication that this factor is to apply during Peak periods.</p></dd><dt class="param">podLossFactor</dt><dd class="cmt"><p>Point of delivery loss factor</p></dd><dt class="param">AggregatedPnode</dt><dd class="cmt"><p><a href="AggregatedPnode.html" class="extype" name="ch.ninecode.model.AggregatedPnode">AggregatedPnode</a> <em>undocumented</em></p></dd><dt class="param">BidDistributionFactor</dt><dd class="cmt"><p><a href="BidDistributionFactor.html" class="extype" name="ch.ninecode.model.BidDistributionFactor">BidDistributionFactor</a> <em>undocumented</em></p></dd><dt class="param">IndividualPnode</dt><dd class="cmt"><p><a href="IndividualPnode.html" class="extype" name="ch.ninecode.model.IndividualPnode">IndividualPnode</a> <em>undocumented</em></p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -110,7 +110,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.PnodeDistributionFactor#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.BasicElement,factor:Double,offPeak:String,onPeak:String,podLossFactor:Double,BidDistributionFactor:String,IndividualPnode:String):ch.ninecode.model.PnodeDistributionFactor"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.BasicElement,factor:Double,offPeak:String,onPeak:String,podLossFactor:Double,AggregatedPnode:List[String],BidDistributionFactor:String,IndividualPnode:String):ch.ninecode.model.PnodeDistributionFactor"></a>
       <a id="&lt;init&gt;:PnodeDistributionFactor"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -118,15 +118,15 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">PnodeDistributionFactor</span><span class="params">(<span name="sup">sup: <a href="BasicElement.html" class="extype" name="ch.ninecode.model.BasicElement">BasicElement</a></span>, <span name="factor">factor: <span class="extype" name="scala.Double">Double</span></span>, <span name="offPeak">offPeak: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="onPeak">onPeak: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="podLossFactor">podLossFactor: <span class="extype" name="scala.Double">Double</span></span>, <span name="BidDistributionFactor">BidDistributionFactor: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="IndividualPnode">IndividualPnode: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
+        <span class="name">PnodeDistributionFactor</span><span class="params">(<span name="sup">sup: <a href="BasicElement.html" class="extype" name="ch.ninecode.model.BasicElement">BasicElement</a></span>, <span name="factor">factor: <span class="extype" name="scala.Double">Double</span></span>, <span name="offPeak">offPeak: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="onPeak">onPeak: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="podLossFactor">podLossFactor: <span class="extype" name="scala.Double">Double</span></span>, <span name="AggregatedPnode">AggregatedPnode: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="BidDistributionFactor">BidDistributionFactor: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="IndividualPnode">IndividualPnode: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.PnodeDistributionFactor@&lt;init&gt;(sup:ch.ninecode.model.BasicElement,factor:Double,offPeak:String,onPeak:String,podLossFactor:Double,BidDistributionFactor:String,IndividualPnode:String):ch.ninecode.model.PnodeDistributionFactor" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.PnodeDistributionFactor@&lt;init&gt;(sup:ch.ninecode.model.BasicElement,factor:Double,offPeak:String,onPeak:String,podLossFactor:Double,AggregatedPnode:List[String],BidDistributionFactor:String,IndividualPnode:String):ch.ninecode.model.PnodeDistributionFactor" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">factor</dt><dd class="cmt"><p>Used to calculate &quot;participation&quot; of Pnode in an AggregatePnode.
-       For example, for regulation region this factor is 1 and total sum of all factors for a specific regulation region does not have to be 1. For pricing zone the total sum of all factors has to be 1.</p></dd><dt class="param">offPeak</dt><dd class="cmt"><p>Indication that this distribution factor is to apply during off peak.</p></dd><dt class="param">onPeak</dt><dd class="cmt"><p>Indication that this factor is to apply during Peak periods.</p></dd><dt class="param">podLossFactor</dt><dd class="cmt"><p>Point of delivery loss factor</p></dd><dt class="param">BidDistributionFactor</dt><dd class="cmt"><p><a href="BidDistributionFactor.html" class="extype" name="ch.ninecode.model.BidDistributionFactor">BidDistributionFactor</a> <em>undocumented</em></p></dd><dt class="param">IndividualPnode</dt><dd class="cmt"><p><a href="IndividualPnode.html" class="extype" name="ch.ninecode.model.IndividualPnode">IndividualPnode</a> <em>undocumented</em></p></dd></dl></div>
+       For example, for regulation region this factor is 1 and total sum of all factors for a specific regulation region does not have to be 1. For pricing zone the total sum of all factors has to be 1.</p></dd><dt class="param">offPeak</dt><dd class="cmt"><p>Indication that this distribution factor is to apply during off peak.</p></dd><dt class="param">onPeak</dt><dd class="cmt"><p>Indication that this factor is to apply during Peak periods.</p></dd><dt class="param">podLossFactor</dt><dd class="cmt"><p>Point of delivery loss factor</p></dd><dt class="param">AggregatedPnode</dt><dd class="cmt"><p><a href="AggregatedPnode.html" class="extype" name="ch.ninecode.model.AggregatedPnode">AggregatedPnode</a> <em>undocumented</em></p></dd><dt class="param">BidDistributionFactor</dt><dd class="cmt"><p><a href="BidDistributionFactor.html" class="extype" name="ch.ninecode.model.BidDistributionFactor">BidDistributionFactor</a> <em>undocumented</em></p></dd><dt class="param">IndividualPnode</dt><dd class="cmt"><p><a href="IndividualPnode.html" class="extype" name="ch.ninecode.model.IndividualPnode">IndividualPnode</a> <em>undocumented</em></p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -187,6 +187,23 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="ch.ninecode.model.PnodeDistributionFactor#AggregatedPnode" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="AggregatedPnode:List[String]"></a>
+      <a id="AggregatedPnode:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">AggregatedPnode</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.PnodeDistributionFactor@AggregatedPnode:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="AggregatedPnode.html" class="extype" name="ch.ninecode.model.AggregatedPnode">AggregatedPnode</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="AggregatedPnode.html" class="extype" name="ch.ninecode.model.AggregatedPnode">AggregatedPnode</a> <em>undocumented</em></p></div></div>
     </li><li name="ch.ninecode.model.PnodeDistributionFactor#BidDistributionFactor" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="BidDistributionFactor:String"></a>
       <a id="BidDistributionFactor:String"></a>

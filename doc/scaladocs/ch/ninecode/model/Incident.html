@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>Incident - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.Incident</title>
-          <meta name="description" content="Incident - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.Incident" />
-          <meta name="keywords" content="Incident CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.Incident" />
+          <title>Incident - CIMReader 2.11-2.3.1-2.9.0 API - ch.ninecode.model.Incident</title>
+          <meta name="description" content="Incident - CIMReader 2.11 - 2.3.1 - 2.9.0 API - ch.ninecode.model.Incident" />
+          <meta name="keywords" content="Incident CIMReader 2.11 2.3.1 2.9.0 API ch.ninecode.model.Incident" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,12 +47,12 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">Incident</span><span class="params">(<span name="sup">sup: <a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a></span>, <span name="cause">cause: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Outage">Outage: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Owner">Owner: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Works">Works: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">Incident</span><span class="params">(<span name="sup">sup: <a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a></span>, <span name="cause">cause: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="CustomerNotifications">CustomerNotifications: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Hazards">Hazards: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Outage">Outage: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Owner">Owner: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="TroubleTickets">TroubleTickets: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Works">Works: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Description of a problem in the field that may be reported in a trouble ticket or come from another source.</p><p>It may have to do with an outage.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a> Reference to the superclass object.</p></dd><dt class="param">cause</dt><dd class="cmt"><p>Cause of this incident.</p></dd><dt class="param">Outage</dt><dd class="cmt"><p><a href="Outage.html" class="extype" name="ch.ninecode.model.Outage">Outage</a> Outage for this incident.</p></dd><dt class="param">Owner</dt><dd class="cmt"><p><a href="Operator.html" class="extype" name="ch.ninecode.model.Operator">Operator</a> Operator who owns this incident.</p></dd><dt class="param">Works</dt><dd class="cmt"><p><a href="Work.html" class="extype" name="ch.ninecode.model.Work">Work</a> All works addressing this incident.</p></dd></dl><div class="toggleContainer block">
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a> Reference to the superclass object.</p></dd><dt class="param">cause</dt><dd class="cmt"><p>Cause of this incident.</p></dd><dt class="param">CustomerNotifications</dt><dd class="cmt"><p><a href="CustomerNotification.html" class="extype" name="ch.ninecode.model.CustomerNotification">CustomerNotification</a> All notifications for a customer related to the status change of this incident.</p></dd><dt class="param">Hazards</dt><dd class="cmt"><p><a href="IncidentHazard.html" class="extype" name="ch.ninecode.model.IncidentHazard">IncidentHazard</a> All hazards associated with this incident.</p></dd><dt class="param">Outage</dt><dd class="cmt"><p><a href="Outage.html" class="extype" name="ch.ninecode.model.Outage">Outage</a> Outage for this incident.</p></dd><dt class="param">Owner</dt><dd class="cmt"><p><a href="Operator.html" class="extype" name="ch.ninecode.model.Operator">Operator</a> Operator who owns this incident.</p></dd><dt class="param">TroubleTickets</dt><dd class="cmt"><p><a href="TroubleTicket.html" class="extype" name="ch.ninecode.model.TroubleTicket">TroubleTicket</a> All trouble tickets reporting this incident.</p></dd><dt class="param">Works</dt><dd class="cmt"><p><a href="Work.html" class="extype" name="ch.ninecode.model.Work">Work</a> All works addressing this incident.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -109,7 +109,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.Incident#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.Document,cause:String,Outage:String,Owner:String,Works:List[String]):ch.ninecode.model.Incident"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.Document,cause:String,CustomerNotifications:List[String],Hazards:List[String],Outage:String,Owner:String,TroubleTickets:List[String],Works:List[String]):ch.ninecode.model.Incident"></a>
       <a id="&lt;init&gt;:Incident"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -117,14 +117,14 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">Incident</span><span class="params">(<span name="sup">sup: <a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a></span>, <span name="cause">cause: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Outage">Outage: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Owner">Owner: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Works">Works: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
+        <span class="name">Incident</span><span class="params">(<span name="sup">sup: <a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a></span>, <span name="cause">cause: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="CustomerNotifications">CustomerNotifications: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Hazards">Hazards: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Outage">Outage: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Owner">Owner: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="TroubleTickets">TroubleTickets: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Works">Works: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.Incident@&lt;init&gt;(sup:ch.ninecode.model.Document,cause:String,Outage:String,Owner:String,Works:List[String]):ch.ninecode.model.Incident" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.Incident@&lt;init&gt;(sup:ch.ninecode.model.Document,cause:String,CustomerNotifications:List[String],Hazards:List[String],Outage:String,Owner:String,TroubleTickets:List[String],Works:List[String]):ch.ninecode.model.Incident" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a> Reference to the superclass object.</p></dd><dt class="param">cause</dt><dd class="cmt"><p>Cause of this incident.</p></dd><dt class="param">Outage</dt><dd class="cmt"><p><a href="Outage.html" class="extype" name="ch.ninecode.model.Outage">Outage</a> Outage for this incident.</p></dd><dt class="param">Owner</dt><dd class="cmt"><p><a href="Operator.html" class="extype" name="ch.ninecode.model.Operator">Operator</a> Operator who owns this incident.</p></dd><dt class="param">Works</dt><dd class="cmt"><p><a href="Work.html" class="extype" name="ch.ninecode.model.Work">Work</a> All works addressing this incident.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a> Reference to the superclass object.</p></dd><dt class="param">cause</dt><dd class="cmt"><p>Cause of this incident.</p></dd><dt class="param">CustomerNotifications</dt><dd class="cmt"><p><a href="CustomerNotification.html" class="extype" name="ch.ninecode.model.CustomerNotification">CustomerNotification</a> All notifications for a customer related to the status change of this incident.</p></dd><dt class="param">Hazards</dt><dd class="cmt"><p><a href="IncidentHazard.html" class="extype" name="ch.ninecode.model.IncidentHazard">IncidentHazard</a> All hazards associated with this incident.</p></dd><dt class="param">Outage</dt><dd class="cmt"><p><a href="Outage.html" class="extype" name="ch.ninecode.model.Outage">Outage</a> Outage for this incident.</p></dd><dt class="param">Owner</dt><dd class="cmt"><p><a href="Operator.html" class="extype" name="ch.ninecode.model.Operator">Operator</a> Operator who owns this incident.</p></dd><dt class="param">TroubleTickets</dt><dd class="cmt"><p><a href="TroubleTicket.html" class="extype" name="ch.ninecode.model.TroubleTicket">TroubleTicket</a> All trouble tickets reporting this incident.</p></dd><dt class="param">Works</dt><dd class="cmt"><p><a href="Work.html" class="extype" name="ch.ninecode.model.Work">Work</a> All works addressing this incident.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -185,6 +185,23 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="ch.ninecode.model.Incident#CustomerNotifications" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CustomerNotifications:List[String]"></a>
+      <a id="CustomerNotifications:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CustomerNotifications</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.Incident@CustomerNotifications:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="CustomerNotification.html" class="extype" name="ch.ninecode.model.CustomerNotification">CustomerNotification</a> All notifications for a customer related to the status change of this incident.</p>
     </li><li name="ch.ninecode.model.Incident#Document" visbl="pub" data-isabs="false" fullComment="yes" group="Hierarchy">
       <a id="Document:ch.ninecode.model.Document"></a>
       <a id="Document:Document"></a>
@@ -203,6 +220,23 @@
     </span>
       <p class="shortcomment cmt">Return the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Return the superclass object.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The typed superclass nested object.</p></dd></dl></div>
+    </li><li name="ch.ninecode.model.Incident#Hazards" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Hazards:List[String]"></a>
+      <a id="Hazards:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Hazards</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.Incident@Hazards:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="IncidentHazard.html" class="extype" name="ch.ninecode.model.IncidentHazard">IncidentHazard</a> All hazards associated with this incident.</p>
     </li><li name="ch.ninecode.model.Incident#Outage" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="Outage:String"></a>
       <a id="Outage:String"></a>
@@ -237,6 +271,23 @@
       </a>
     </span>
       <p class="shortcomment cmt"><a href="Operator.html" class="extype" name="ch.ninecode.model.Operator">Operator</a> Operator who owns this incident.</p>
+    </li><li name="ch.ninecode.model.Incident#TroubleTickets" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TroubleTickets:List[String]"></a>
+      <a id="TroubleTickets:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">TroubleTickets</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.Incident@TroubleTickets:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="TroubleTicket.html" class="extype" name="ch.ninecode.model.TroubleTicket">TroubleTicket</a> All trouble tickets reporting this incident.</p>
     </li><li name="ch.ninecode.model.Incident#Works" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="Works:List[String]"></a>
       <a id="Works:List[String]"></a>

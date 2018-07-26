@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>EndDeviceFunction - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.EndDeviceFunction</title>
-          <meta name="description" content="EndDeviceFunction - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.EndDeviceFunction" />
-          <meta name="keywords" content="EndDeviceFunction CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.EndDeviceFunction" />
+          <title>EndDeviceFunction - CIMReader 2.11-2.3.1-2.9.0 API - ch.ninecode.model.EndDeviceFunction</title>
+          <meta name="description" content="EndDeviceFunction - CIMReader 2.11 - 2.3.1 - 2.9.0 API - ch.ninecode.model.EndDeviceFunction" />
+          <meta name="keywords" content="EndDeviceFunction CIMReader 2.11 2.3.1 2.9.0 API ch.ninecode.model.EndDeviceFunction" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,12 +47,12 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">EndDeviceFunction</span><span class="params">(<span name="sup">sup: <a href="AssetFunction.html" class="extype" name="ch.ninecode.model.AssetFunction">AssetFunction</a></span>, <span name="enabled">enabled: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="EndDevice">EndDevice: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">EndDeviceFunction</span><span class="params">(<span name="sup">sup: <a href="AssetFunction.html" class="extype" name="ch.ninecode.model.AssetFunction">AssetFunction</a></span>, <span name="enabled">enabled: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="EndDevice">EndDevice: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Registers">Registers: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Function performed by an end device such as a meter, communication equipment, controllers, etc.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="AssetFunction.html" class="extype" name="ch.ninecode.model.AssetFunction">AssetFunction</a> Reference to the superclass object.</p></dd><dt class="param">enabled</dt><dd class="cmt"><p>True if the function is enabled.</p></dd><dt class="param">EndDevice</dt><dd class="cmt"><p><a href="EndDevice.html" class="extype" name="ch.ninecode.model.EndDevice">EndDevice</a> End device that performs this function.</p></dd></dl><div class="toggleContainer block">
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="AssetFunction.html" class="extype" name="ch.ninecode.model.AssetFunction">AssetFunction</a> Reference to the superclass object.</p></dd><dt class="param">enabled</dt><dd class="cmt"><p>True if the function is enabled.</p></dd><dt class="param">EndDevice</dt><dd class="cmt"><p><a href="EndDevice.html" class="extype" name="ch.ninecode.model.EndDevice">EndDevice</a> End device that performs this function.</p></dd><dt class="param">Registers</dt><dd class="cmt"><p><a href="Register.html" class="extype" name="ch.ninecode.model.Register">Register</a> All registers for quantities metered by this end device function.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -109,7 +109,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.EndDeviceFunction#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.AssetFunction,enabled:Boolean,EndDevice:String):ch.ninecode.model.EndDeviceFunction"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.AssetFunction,enabled:Boolean,EndDevice:String,Registers:List[String]):ch.ninecode.model.EndDeviceFunction"></a>
       <a id="&lt;init&gt;:EndDeviceFunction"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -117,14 +117,14 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">EndDeviceFunction</span><span class="params">(<span name="sup">sup: <a href="AssetFunction.html" class="extype" name="ch.ninecode.model.AssetFunction">AssetFunction</a></span>, <span name="enabled">enabled: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="EndDevice">EndDevice: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
+        <span class="name">EndDeviceFunction</span><span class="params">(<span name="sup">sup: <a href="AssetFunction.html" class="extype" name="ch.ninecode.model.AssetFunction">AssetFunction</a></span>, <span name="enabled">enabled: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="EndDevice">EndDevice: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Registers">Registers: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.EndDeviceFunction@&lt;init&gt;(sup:ch.ninecode.model.AssetFunction,enabled:Boolean,EndDevice:String):ch.ninecode.model.EndDeviceFunction" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.EndDeviceFunction@&lt;init&gt;(sup:ch.ninecode.model.AssetFunction,enabled:Boolean,EndDevice:String,Registers:List[String]):ch.ninecode.model.EndDeviceFunction" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="AssetFunction.html" class="extype" name="ch.ninecode.model.AssetFunction">AssetFunction</a> Reference to the superclass object.</p></dd><dt class="param">enabled</dt><dd class="cmt"><p>True if the function is enabled.</p></dd><dt class="param">EndDevice</dt><dd class="cmt"><p><a href="EndDevice.html" class="extype" name="ch.ninecode.model.EndDevice">EndDevice</a> End device that performs this function.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="AssetFunction.html" class="extype" name="ch.ninecode.model.AssetFunction">AssetFunction</a> Reference to the superclass object.</p></dd><dt class="param">enabled</dt><dd class="cmt"><p>True if the function is enabled.</p></dd><dt class="param">EndDevice</dt><dd class="cmt"><p><a href="EndDevice.html" class="extype" name="ch.ninecode.model.EndDevice">EndDevice</a> End device that performs this function.</p></dd><dt class="param">Registers</dt><dd class="cmt"><p><a href="Register.html" class="extype" name="ch.ninecode.model.Register">Register</a> All registers for quantities metered by this end device function.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -220,6 +220,23 @@
       </a>
     </span>
       <p class="shortcomment cmt"><a href="EndDevice.html" class="extype" name="ch.ninecode.model.EndDevice">EndDevice</a> End device that performs this function.</p>
+    </li><li name="ch.ninecode.model.EndDeviceFunction#Registers" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Registers:List[String]"></a>
+      <a id="Registers:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Registers</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.EndDeviceFunction@Registers:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="Register.html" class="extype" name="ch.ninecode.model.Register">Register</a> All registers for quantities metered by this end device function.</p>
     </li><li name="ch.ninecode.model.Element#about" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="about:Boolean"></a>
       <a id="about:Boolean"></a>

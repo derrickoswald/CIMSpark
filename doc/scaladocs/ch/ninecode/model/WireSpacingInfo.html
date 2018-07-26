@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>WireSpacingInfo - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.WireSpacingInfo</title>
-          <meta name="description" content="WireSpacingInfo - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.WireSpacingInfo" />
-          <meta name="keywords" content="WireSpacingInfo CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.WireSpacingInfo" />
+          <title>WireSpacingInfo - CIMReader 2.11-2.3.1-2.9.0 API - ch.ninecode.model.WireSpacingInfo</title>
+          <meta name="description" content="WireSpacingInfo - CIMReader 2.11 - 2.3.1 - 2.9.0 API - ch.ninecode.model.WireSpacingInfo" />
+          <meta name="keywords" content="WireSpacingInfo CIMReader 2.11 2.3.1 2.9.0 API ch.ninecode.model.WireSpacingInfo" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,12 +47,12 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">WireSpacingInfo</span><span class="params">(<span name="sup">sup: <a href="AssetInfo.html" class="extype" name="ch.ninecode.model.AssetInfo">AssetInfo</a></span>, <span name="isCable">isCable: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="phaseWireCount">phaseWireCount: <span class="extype" name="scala.Int">Int</span></span>, <span name="phaseWireSpacing">phaseWireSpacing: <span class="extype" name="scala.Double">Double</span></span>, <span name="usage">usage: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="DuctBank">DuctBank: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Structures">Structures: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">WireSpacingInfo</span><span class="params">(<span name="sup">sup: <a href="AssetInfo.html" class="extype" name="ch.ninecode.model.AssetInfo">AssetInfo</a></span>, <span name="isCable">isCable: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="phaseWireCount">phaseWireCount: <span class="extype" name="scala.Int">Int</span></span>, <span name="phaseWireSpacing">phaseWireSpacing: <span class="extype" name="scala.Double">Double</span></span>, <span name="usage">usage: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="DuctBank">DuctBank: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="PerLengthParameters">PerLengthParameters: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Structures">Structures: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="WirePositions">WirePositions: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Wire spacing data that associates multiple wire positions with the line segment, and allows to calculate line segment impedances.</p><p>Number of phases can be derived from the number of associated wire positions whose phase is not neutral.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="AssetInfo.html" class="extype" name="ch.ninecode.model.AssetInfo">AssetInfo</a> Reference to the superclass object.</p></dd><dt class="param">isCable</dt><dd class="cmt"><p>If true, this spacing data describes a cable.</p></dd><dt class="param">phaseWireCount</dt><dd class="cmt"><p>Number of wire sub-conductors in the symmetrical bundle (typically between 1 and 4).</p></dd><dt class="param">phaseWireSpacing</dt><dd class="cmt"><p>Distance between wire sub-conductors in a symmetrical bundle.</p></dd><dt class="param">usage</dt><dd class="cmt"><p>Usage of the associated wires.</p></dd><dt class="param">DuctBank</dt><dd class="cmt"><p><a href="DuctBank.html" class="extype" name="ch.ninecode.model.DuctBank">DuctBank</a> <em>undocumented</em></p></dd><dt class="param">Structures</dt><dd class="cmt"><p><a href="Structure.html" class="extype" name="ch.ninecode.model.Structure">Structure</a> <em>undocumented</em></p></dd></dl><div class="toggleContainer block">
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="AssetInfo.html" class="extype" name="ch.ninecode.model.AssetInfo">AssetInfo</a> Reference to the superclass object.</p></dd><dt class="param">isCable</dt><dd class="cmt"><p>If true, this spacing data describes a cable.</p></dd><dt class="param">phaseWireCount</dt><dd class="cmt"><p>Number of wire sub-conductors in the symmetrical bundle (typically between 1 and 4).</p></dd><dt class="param">phaseWireSpacing</dt><dd class="cmt"><p>Distance between wire sub-conductors in a symmetrical bundle.</p></dd><dt class="param">usage</dt><dd class="cmt"><p>Usage of the associated wires.</p></dd><dt class="param">DuctBank</dt><dd class="cmt"><p><a href="DuctBank.html" class="extype" name="ch.ninecode.model.DuctBank">DuctBank</a> <em>undocumented</em></p></dd><dt class="param">PerLengthParameters</dt><dd class="cmt"><p><a href="PerLengthLineParameter.html" class="extype" name="ch.ninecode.model.PerLengthLineParameter">PerLengthLineParameter</a> All per-length parameters calculated from this wire spacing datasheet.</p></dd><dt class="param">Structures</dt><dd class="cmt"><p><a href="Structure.html" class="extype" name="ch.ninecode.model.Structure">Structure</a> <em>undocumented</em></p></dd><dt class="param">WirePositions</dt><dd class="cmt"><p><a href="WirePosition.html" class="extype" name="ch.ninecode.model.WirePosition">WirePosition</a> All positions of single wires (phase or neutral) making the conductor.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -109,7 +109,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.WireSpacingInfo#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.AssetInfo,isCable:Boolean,phaseWireCount:Int,phaseWireSpacing:Double,usage:String,DuctBank:String,Structures:List[String]):ch.ninecode.model.WireSpacingInfo"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.AssetInfo,isCable:Boolean,phaseWireCount:Int,phaseWireSpacing:Double,usage:String,DuctBank:String,PerLengthParameters:List[String],Structures:List[String],WirePositions:List[String]):ch.ninecode.model.WireSpacingInfo"></a>
       <a id="&lt;init&gt;:WireSpacingInfo"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -117,14 +117,14 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">WireSpacingInfo</span><span class="params">(<span name="sup">sup: <a href="AssetInfo.html" class="extype" name="ch.ninecode.model.AssetInfo">AssetInfo</a></span>, <span name="isCable">isCable: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="phaseWireCount">phaseWireCount: <span class="extype" name="scala.Int">Int</span></span>, <span name="phaseWireSpacing">phaseWireSpacing: <span class="extype" name="scala.Double">Double</span></span>, <span name="usage">usage: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="DuctBank">DuctBank: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Structures">Structures: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
+        <span class="name">WireSpacingInfo</span><span class="params">(<span name="sup">sup: <a href="AssetInfo.html" class="extype" name="ch.ninecode.model.AssetInfo">AssetInfo</a></span>, <span name="isCable">isCable: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="phaseWireCount">phaseWireCount: <span class="extype" name="scala.Int">Int</span></span>, <span name="phaseWireSpacing">phaseWireSpacing: <span class="extype" name="scala.Double">Double</span></span>, <span name="usage">usage: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="DuctBank">DuctBank: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="PerLengthParameters">PerLengthParameters: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Structures">Structures: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="WirePositions">WirePositions: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.WireSpacingInfo@&lt;init&gt;(sup:ch.ninecode.model.AssetInfo,isCable:Boolean,phaseWireCount:Int,phaseWireSpacing:Double,usage:String,DuctBank:String,Structures:List[String]):ch.ninecode.model.WireSpacingInfo" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.WireSpacingInfo@&lt;init&gt;(sup:ch.ninecode.model.AssetInfo,isCable:Boolean,phaseWireCount:Int,phaseWireSpacing:Double,usage:String,DuctBank:String,PerLengthParameters:List[String],Structures:List[String],WirePositions:List[String]):ch.ninecode.model.WireSpacingInfo" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="AssetInfo.html" class="extype" name="ch.ninecode.model.AssetInfo">AssetInfo</a> Reference to the superclass object.</p></dd><dt class="param">isCable</dt><dd class="cmt"><p>If true, this spacing data describes a cable.</p></dd><dt class="param">phaseWireCount</dt><dd class="cmt"><p>Number of wire sub-conductors in the symmetrical bundle (typically between 1 and 4).</p></dd><dt class="param">phaseWireSpacing</dt><dd class="cmt"><p>Distance between wire sub-conductors in a symmetrical bundle.</p></dd><dt class="param">usage</dt><dd class="cmt"><p>Usage of the associated wires.</p></dd><dt class="param">DuctBank</dt><dd class="cmt"><p><a href="DuctBank.html" class="extype" name="ch.ninecode.model.DuctBank">DuctBank</a> <em>undocumented</em></p></dd><dt class="param">Structures</dt><dd class="cmt"><p><a href="Structure.html" class="extype" name="ch.ninecode.model.Structure">Structure</a> <em>undocumented</em></p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="AssetInfo.html" class="extype" name="ch.ninecode.model.AssetInfo">AssetInfo</a> Reference to the superclass object.</p></dd><dt class="param">isCable</dt><dd class="cmt"><p>If true, this spacing data describes a cable.</p></dd><dt class="param">phaseWireCount</dt><dd class="cmt"><p>Number of wire sub-conductors in the symmetrical bundle (typically between 1 and 4).</p></dd><dt class="param">phaseWireSpacing</dt><dd class="cmt"><p>Distance between wire sub-conductors in a symmetrical bundle.</p></dd><dt class="param">usage</dt><dd class="cmt"><p>Usage of the associated wires.</p></dd><dt class="param">DuctBank</dt><dd class="cmt"><p><a href="DuctBank.html" class="extype" name="ch.ninecode.model.DuctBank">DuctBank</a> <em>undocumented</em></p></dd><dt class="param">PerLengthParameters</dt><dd class="cmt"><p><a href="PerLengthLineParameter.html" class="extype" name="ch.ninecode.model.PerLengthLineParameter">PerLengthLineParameter</a> All per-length parameters calculated from this wire spacing datasheet.</p></dd><dt class="param">Structures</dt><dd class="cmt"><p><a href="Structure.html" class="extype" name="ch.ninecode.model.Structure">Structure</a> <em>undocumented</em></p></dd><dt class="param">WirePositions</dt><dd class="cmt"><p><a href="WirePosition.html" class="extype" name="ch.ninecode.model.WirePosition">WirePosition</a> All positions of single wires (phase or neutral) making the conductor.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -220,6 +220,23 @@
       </a>
     </span>
       <p class="shortcomment cmt"><a href="DuctBank.html" class="extype" name="ch.ninecode.model.DuctBank">DuctBank</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="DuctBank.html" class="extype" name="ch.ninecode.model.DuctBank">DuctBank</a> <em>undocumented</em></p></div></div>
+    </li><li name="ch.ninecode.model.WireSpacingInfo#PerLengthParameters" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="PerLengthParameters:List[String]"></a>
+      <a id="PerLengthParameters:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">PerLengthParameters</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.WireSpacingInfo@PerLengthParameters:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="PerLengthLineParameter.html" class="extype" name="ch.ninecode.model.PerLengthLineParameter">PerLengthLineParameter</a> All per-length parameters calculated from this wire spacing datasheet.</p>
     </li><li name="ch.ninecode.model.WireSpacingInfo#Structures" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="Structures:List[String]"></a>
       <a id="Structures:List[String]"></a>
@@ -237,6 +254,23 @@
       </a>
     </span>
       <p class="shortcomment cmt"><a href="Structure.html" class="extype" name="ch.ninecode.model.Structure">Structure</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="Structure.html" class="extype" name="ch.ninecode.model.Structure">Structure</a> <em>undocumented</em></p></div></div>
+    </li><li name="ch.ninecode.model.WireSpacingInfo#WirePositions" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="WirePositions:List[String]"></a>
+      <a id="WirePositions:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">WirePositions</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.WireSpacingInfo@WirePositions:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="WirePosition.html" class="extype" name="ch.ninecode.model.WirePosition">WirePosition</a> All positions of single wires (phase or neutral) making the conductor.</p>
     </li><li name="ch.ninecode.model.Element#about" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="about:Boolean"></a>
       <a id="about:Boolean"></a>

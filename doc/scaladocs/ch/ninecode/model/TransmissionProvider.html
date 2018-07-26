@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>TransmissionProvider - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.TransmissionProvider</title>
-          <meta name="description" content="TransmissionProvider - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.TransmissionProvider" />
-          <meta name="keywords" content="TransmissionProvider CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.TransmissionProvider" />
+          <title>TransmissionProvider - CIMReader 2.11-2.3.1-2.9.0 API - ch.ninecode.model.TransmissionProvider</title>
+          <meta name="description" content="TransmissionProvider - CIMReader 2.11 - 2.3.1 - 2.9.0 API - ch.ninecode.model.TransmissionProvider" />
+          <meta name="keywords" content="TransmissionProvider CIMReader 2.11 2.3.1 2.9.0 API ch.ninecode.model.TransmissionProvider" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,12 +47,13 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">TransmissionProvider</span><span class="params">(<span name="sup">sup: <a href="Organisation.html" class="extype" name="ch.ninecode.model.Organisation">Organisation</a></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">TransmissionProvider</span><span class="params">(<span name="sup">sup: <a href="Organisation.html" class="extype" name="ch.ninecode.model.Organisation">Organisation</a></span>, <span name="For">For: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="TransmissionProducts">TransmissionProducts: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Provider of  the transmission capacity (interconnecting wires between Generation and Consumption) required  to fulfill and Energy Transaction's energy exchange.</p><p>Posts information for transmission paths and AvailableTransmissionCapacities  on a reservation node.  Buys and sells its products and services on the same reservation node.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="Organisation.html" class="extype" name="ch.ninecode.model.Organisation">Organisation</a> Reference to the superclass object.</p></dd></dl><div class="toggleContainer block">
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="Organisation.html" class="extype" name="ch.ninecode.model.Organisation">Organisation</a> Reference to the superclass object.</p></dd><dt class="param">For</dt><dd class="cmt"><p><a href="LossProfile.html" class="extype" name="ch.ninecode.model.LossProfile">LossProfile</a> Part of the LossProfile for an EnergyTransaction may be a loss for a TransmissionProvider.
+       If so, the TransmissionProvider must be one of the participating entities in the EnergyTransaction.</p></dd><dt class="param">TransmissionProducts</dt><dd class="cmt"><p><a href="TransmissionProduct.html" class="extype" name="ch.ninecode.model.TransmissionProduct">TransmissionProduct</a> A TransmissionProvider offers a TransmissionProduct.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -109,7 +110,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.TransmissionProvider#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.Organisation):ch.ninecode.model.TransmissionProvider"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.Organisation,For:List[String],TransmissionProducts:List[String]):ch.ninecode.model.TransmissionProvider"></a>
       <a id="&lt;init&gt;:TransmissionProvider"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -117,14 +118,15 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">TransmissionProvider</span><span class="params">(<span name="sup">sup: <a href="Organisation.html" class="extype" name="ch.ninecode.model.Organisation">Organisation</a></span>)</span>
+        <span class="name">TransmissionProvider</span><span class="params">(<span name="sup">sup: <a href="Organisation.html" class="extype" name="ch.ninecode.model.Organisation">Organisation</a></span>, <span name="For">For: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="TransmissionProducts">TransmissionProducts: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.TransmissionProvider@&lt;init&gt;(sup:ch.ninecode.model.Organisation):ch.ninecode.model.TransmissionProvider" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.TransmissionProvider@&lt;init&gt;(sup:ch.ninecode.model.Organisation,For:List[String],TransmissionProducts:List[String]):ch.ninecode.model.TransmissionProvider" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="Organisation.html" class="extype" name="ch.ninecode.model.Organisation">Organisation</a> Reference to the superclass object.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="Organisation.html" class="extype" name="ch.ninecode.model.Organisation">Organisation</a> Reference to the superclass object.</p></dd><dt class="param">For</dt><dd class="cmt"><p><a href="LossProfile.html" class="extype" name="ch.ninecode.model.LossProfile">LossProfile</a> Part of the LossProfile for an EnergyTransaction may be a loss for a TransmissionProvider.
+       If so, the TransmissionProvider must be one of the participating entities in the EnergyTransaction.</p></dd><dt class="param">TransmissionProducts</dt><dd class="cmt"><p><a href="TransmissionProduct.html" class="extype" name="ch.ninecode.model.TransmissionProduct">TransmissionProduct</a> A TransmissionProvider offers a TransmissionProduct.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -185,6 +187,24 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="ch.ninecode.model.TransmissionProvider#For" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="For:List[String]"></a>
+      <a id="For:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">For</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.TransmissionProvider@For:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="LossProfile.html" class="extype" name="ch.ninecode.model.LossProfile">LossProfile</a> Part of the LossProfile for an EnergyTransaction may be a loss for a TransmissionProvider.</p><div class="fullcomment"><div class="comment cmt"><p><a href="LossProfile.html" class="extype" name="ch.ninecode.model.LossProfile">LossProfile</a> Part of the LossProfile for an EnergyTransaction may be a loss for a TransmissionProvider.
+       If so, the TransmissionProvider must be one of the participating entities in the EnergyTransaction.</p></div></div>
     </li><li name="ch.ninecode.model.TransmissionProvider#Organisation" visbl="pub" data-isabs="false" fullComment="yes" group="Hierarchy">
       <a id="Organisation:ch.ninecode.model.Organisation"></a>
       <a id="Organisation:Organisation"></a>
@@ -203,6 +223,23 @@
     </span>
       <p class="shortcomment cmt">Return the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Return the superclass object.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The typed superclass nested object.</p></dd></dl></div>
+    </li><li name="ch.ninecode.model.TransmissionProvider#TransmissionProducts" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TransmissionProducts:List[String]"></a>
+      <a id="TransmissionProducts:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">TransmissionProducts</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.TransmissionProvider@TransmissionProducts:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="TransmissionProduct.html" class="extype" name="ch.ninecode.model.TransmissionProduct">TransmissionProduct</a> A TransmissionProvider offers a TransmissionProduct.</p>
     </li><li name="ch.ninecode.model.Element#about" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="about:Boolean"></a>
       <a id="about:Boolean"></a>

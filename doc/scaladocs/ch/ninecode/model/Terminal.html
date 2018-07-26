@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>Terminal - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.Terminal</title>
-          <meta name="description" content="Terminal - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.Terminal" />
-          <meta name="keywords" content="Terminal CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.Terminal" />
+          <title>Terminal - CIMReader 2.11-2.3.1-2.9.0 API - ch.ninecode.model.Terminal</title>
+          <meta name="description" content="Terminal - CIMReader 2.11 - 2.3.1 - 2.9.0 API - ch.ninecode.model.Terminal" />
+          <meta name="keywords" content="Terminal CIMReader 2.11 2.3.1 2.9.0 API ch.ninecode.model.Terminal" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,15 +47,15 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">Terminal</span><span class="params">(<span name="sup">sup: <a href="ACDCTerminal.html" class="extype" name="ch.ninecode.model.ACDCTerminal">ACDCTerminal</a></span>, <span name="phases">phases: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Bushing">Bushing: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ConductingEquipment">ConductingEquipment: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ConnectivityNode">ConnectivityNode: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="SvPowerFlow">SvPowerFlow: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="TopologicalNode">TopologicalNode: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">Terminal</span><span class="params">(<span name="sup">sup: <a href="ACDCTerminal.html" class="extype" name="ch.ninecode.model.ACDCTerminal">ACDCTerminal</a></span>, <span name="phases">phases: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="AuxiliaryEquipment">AuxiliaryEquipment: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="BranchGroupTerminal">BranchGroupTerminal: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Bushing">Bushing: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ConductingEquipment">ConductingEquipment: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ConnectivityNode">ConnectivityNode: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ConverterDCSides">ConverterDCSides: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="EquipmentFaults">EquipmentFaults: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="HasFirstMutualCoupling">HasFirstMutualCoupling: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="HasSecondMutualCoupling">HasSecondMutualCoupling: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="PinTerminal">PinTerminal: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="RegulatingControl">RegulatingControl: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="RemoteInputSignal">RemoteInputSignal: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="SvPowerFlow">SvPowerFlow: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="TieFlow">TieFlow: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="TopologicalNode">TopologicalNode: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="TransformerEnd">TransformerEnd: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>An AC electrical connection point to a piece of conducting equipment.</p><p>Terminals are connected at physical connection points called connectivity nodes.
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ACDCTerminal.html" class="extype" name="ch.ninecode.model.ACDCTerminal">ACDCTerminal</a> Reference to the superclass object.</p></dd><dt class="param">phases</dt><dd class="cmt"><p>Represents the normal network phasing condition.
-       If the attribute is missing three phases (ABC or ABCN) shall be assumed.</p></dd><dt class="param">Bushing</dt><dd class="cmt"><p><a href="Bushing.html" class="extype" name="ch.ninecode.model.Bushing">Bushing</a> <em>undocumented</em></p></dd><dt class="param">ConductingEquipment</dt><dd class="cmt"><p><a href="ConductingEquipment.html" class="extype" name="ch.ninecode.model.ConductingEquipment">ConductingEquipment</a> The conducting equipment of the terminal.
-       Conducting equipment have  terminals that may be connected to other conducting equipment terminals via connectivity nodes or topological nodes.</p></dd><dt class="param">ConnectivityNode</dt><dd class="cmt"><p><a href="ConnectivityNode.html" class="extype" name="ch.ninecode.model.ConnectivityNode">ConnectivityNode</a> The connectivity node to which this terminal connects with zero impedance.</p></dd><dt class="param">SvPowerFlow</dt><dd class="cmt"><p><a href="SvPowerFlow.html" class="extype" name="ch.ninecode.model.SvPowerFlow">SvPowerFlow</a> The power flow state variable associated with the terminal.</p></dd><dt class="param">TopologicalNode</dt><dd class="cmt"><p><a href="TopologicalNode.html" class="extype" name="ch.ninecode.model.TopologicalNode">TopologicalNode</a> The topological node associated with the terminal.
-       This can be used as an alternative to the connectivity node path to topological node, thus making it unneccesary to model connectivity nodes in some cases.   Note that the if connectivity nodes are in the model, this association would probably not be used as an input specification.</p></dd></dl><div class="toggleContainer block">
+       If the attribute is missing three phases (ABC or ABCN) shall be assumed.</p></dd><dt class="param">AuxiliaryEquipment</dt><dd class="cmt"><p><a href="AuxiliaryEquipment.html" class="extype" name="ch.ninecode.model.AuxiliaryEquipment">AuxiliaryEquipment</a> The auxiliary equipment connected to the terminal.</p></dd><dt class="param">BranchGroupTerminal</dt><dd class="cmt"><p><a href="BranchGroupTerminal.html" class="extype" name="ch.ninecode.model.BranchGroupTerminal">BranchGroupTerminal</a> The directed branch group terminals for which this terminal is monitored.</p></dd><dt class="param">Bushing</dt><dd class="cmt"><p><a href="Bushing.html" class="extype" name="ch.ninecode.model.Bushing">Bushing</a> <em>undocumented</em></p></dd><dt class="param">ConductingEquipment</dt><dd class="cmt"><p><a href="ConductingEquipment.html" class="extype" name="ch.ninecode.model.ConductingEquipment">ConductingEquipment</a> The conducting equipment of the terminal.
+       Conducting equipment have  terminals that may be connected to other conducting equipment terminals via connectivity nodes or topological nodes.</p></dd><dt class="param">ConnectivityNode</dt><dd class="cmt"><p><a href="ConnectivityNode.html" class="extype" name="ch.ninecode.model.ConnectivityNode">ConnectivityNode</a> The connectivity node to which this terminal connects with zero impedance.</p></dd><dt class="param">ConverterDCSides</dt><dd class="cmt"><p><a href="ACDCConverter.html" class="extype" name="ch.ninecode.model.ACDCConverter">ACDCConverter</a> All converters' DC sides linked to this point of common coupling terminal.</p></dd><dt class="param">EquipmentFaults</dt><dd class="cmt"><p><a href="EquipmentFault.html" class="extype" name="ch.ninecode.model.EquipmentFault">EquipmentFault</a> The equipment faults at this terminal.</p></dd><dt class="param">HasFirstMutualCoupling</dt><dd class="cmt"><p><a href="MutualCoupling.html" class="extype" name="ch.ninecode.model.MutualCoupling">MutualCoupling</a> Mutual couplings associated with the branch as the first branch.</p></dd><dt class="param">HasSecondMutualCoupling</dt><dd class="cmt"><p><a href="MutualCoupling.html" class="extype" name="ch.ninecode.model.MutualCoupling">MutualCoupling</a> Mutual couplings with the branch associated as the first branch.</p></dd><dt class="param">PinTerminal</dt><dd class="cmt"><p><a href="PinTerminal.html" class="extype" name="ch.ninecode.model.PinTerminal">PinTerminal</a> <em>undocumented</em></p></dd><dt class="param">RegulatingControl</dt><dd class="cmt"><p><a href="RegulatingControl.html" class="extype" name="ch.ninecode.model.RegulatingControl">RegulatingControl</a> The controls regulating this terminal.</p></dd><dt class="param">RemoteInputSignal</dt><dd class="cmt"><p><a href="RemoteInputSignal.html" class="extype" name="ch.ninecode.model.RemoteInputSignal">RemoteInputSignal</a> Input signal coming from this terminal.</p></dd><dt class="param">SvPowerFlow</dt><dd class="cmt"><p><a href="SvPowerFlow.html" class="extype" name="ch.ninecode.model.SvPowerFlow">SvPowerFlow</a> The power flow state variable associated with the terminal.</p></dd><dt class="param">TieFlow</dt><dd class="cmt"><p><a href="TieFlow.html" class="extype" name="ch.ninecode.model.TieFlow">TieFlow</a> The control area tie flows to which this terminal associates.</p></dd><dt class="param">TopologicalNode</dt><dd class="cmt"><p><a href="TopologicalNode.html" class="extype" name="ch.ninecode.model.TopologicalNode">TopologicalNode</a> The topological node associated with the terminal.
+       This can be used as an alternative to the connectivity node path to topological node, thus making it unneccesary to model connectivity nodes in some cases.   Note that the if connectivity nodes are in the model, this association would probably not be used as an input specification.</p></dd><dt class="param">TransformerEnd</dt><dd class="cmt"><p><a href="TransformerEnd.html" class="extype" name="ch.ninecode.model.TransformerEnd">TransformerEnd</a> All transformer ends connected at this terminal.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -112,7 +112,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.Terminal#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.ACDCTerminal,phases:String,Bushing:String,ConductingEquipment:String,ConnectivityNode:String,SvPowerFlow:String,TopologicalNode:String):ch.ninecode.model.Terminal"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.ACDCTerminal,phases:String,AuxiliaryEquipment:List[String],BranchGroupTerminal:List[String],Bushing:String,ConductingEquipment:String,ConnectivityNode:String,ConverterDCSides:List[String],EquipmentFaults:List[String],HasFirstMutualCoupling:List[String],HasSecondMutualCoupling:List[String],PinTerminal:List[String],RegulatingControl:List[String],RemoteInputSignal:List[String],SvPowerFlow:String,TieFlow:List[String],TopologicalNode:String,TransformerEnd:List[String]):ch.ninecode.model.Terminal"></a>
       <a id="&lt;init&gt;:Terminal"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -120,17 +120,17 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">Terminal</span><span class="params">(<span name="sup">sup: <a href="ACDCTerminal.html" class="extype" name="ch.ninecode.model.ACDCTerminal">ACDCTerminal</a></span>, <span name="phases">phases: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Bushing">Bushing: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ConductingEquipment">ConductingEquipment: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ConnectivityNode">ConnectivityNode: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="SvPowerFlow">SvPowerFlow: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="TopologicalNode">TopologicalNode: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
+        <span class="name">Terminal</span><span class="params">(<span name="sup">sup: <a href="ACDCTerminal.html" class="extype" name="ch.ninecode.model.ACDCTerminal">ACDCTerminal</a></span>, <span name="phases">phases: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="AuxiliaryEquipment">AuxiliaryEquipment: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="BranchGroupTerminal">BranchGroupTerminal: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Bushing">Bushing: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ConductingEquipment">ConductingEquipment: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ConnectivityNode">ConnectivityNode: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ConverterDCSides">ConverterDCSides: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="EquipmentFaults">EquipmentFaults: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="HasFirstMutualCoupling">HasFirstMutualCoupling: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="HasSecondMutualCoupling">HasSecondMutualCoupling: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="PinTerminal">PinTerminal: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="RegulatingControl">RegulatingControl: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="RemoteInputSignal">RemoteInputSignal: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="SvPowerFlow">SvPowerFlow: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="TieFlow">TieFlow: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="TopologicalNode">TopologicalNode: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="TransformerEnd">TransformerEnd: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.Terminal@&lt;init&gt;(sup:ch.ninecode.model.ACDCTerminal,phases:String,Bushing:String,ConductingEquipment:String,ConnectivityNode:String,SvPowerFlow:String,TopologicalNode:String):ch.ninecode.model.Terminal" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.Terminal@&lt;init&gt;(sup:ch.ninecode.model.ACDCTerminal,phases:String,AuxiliaryEquipment:List[String],BranchGroupTerminal:List[String],Bushing:String,ConductingEquipment:String,ConnectivityNode:String,ConverterDCSides:List[String],EquipmentFaults:List[String],HasFirstMutualCoupling:List[String],HasSecondMutualCoupling:List[String],PinTerminal:List[String],RegulatingControl:List[String],RemoteInputSignal:List[String],SvPowerFlow:String,TieFlow:List[String],TopologicalNode:String,TransformerEnd:List[String]):ch.ninecode.model.Terminal" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="ACDCTerminal.html" class="extype" name="ch.ninecode.model.ACDCTerminal">ACDCTerminal</a> Reference to the superclass object.</p></dd><dt class="param">phases</dt><dd class="cmt"><p>Represents the normal network phasing condition.
-       If the attribute is missing three phases (ABC or ABCN) shall be assumed.</p></dd><dt class="param">Bushing</dt><dd class="cmt"><p><a href="Bushing.html" class="extype" name="ch.ninecode.model.Bushing">Bushing</a> <em>undocumented</em></p></dd><dt class="param">ConductingEquipment</dt><dd class="cmt"><p><a href="ConductingEquipment.html" class="extype" name="ch.ninecode.model.ConductingEquipment">ConductingEquipment</a> The conducting equipment of the terminal.
-       Conducting equipment have  terminals that may be connected to other conducting equipment terminals via connectivity nodes or topological nodes.</p></dd><dt class="param">ConnectivityNode</dt><dd class="cmt"><p><a href="ConnectivityNode.html" class="extype" name="ch.ninecode.model.ConnectivityNode">ConnectivityNode</a> The connectivity node to which this terminal connects with zero impedance.</p></dd><dt class="param">SvPowerFlow</dt><dd class="cmt"><p><a href="SvPowerFlow.html" class="extype" name="ch.ninecode.model.SvPowerFlow">SvPowerFlow</a> The power flow state variable associated with the terminal.</p></dd><dt class="param">TopologicalNode</dt><dd class="cmt"><p><a href="TopologicalNode.html" class="extype" name="ch.ninecode.model.TopologicalNode">TopologicalNode</a> The topological node associated with the terminal.
-       This can be used as an alternative to the connectivity node path to topological node, thus making it unneccesary to model connectivity nodes in some cases.   Note that the if connectivity nodes are in the model, this association would probably not be used as an input specification.</p></dd></dl></div>
+       If the attribute is missing three phases (ABC or ABCN) shall be assumed.</p></dd><dt class="param">AuxiliaryEquipment</dt><dd class="cmt"><p><a href="AuxiliaryEquipment.html" class="extype" name="ch.ninecode.model.AuxiliaryEquipment">AuxiliaryEquipment</a> The auxiliary equipment connected to the terminal.</p></dd><dt class="param">BranchGroupTerminal</dt><dd class="cmt"><p><a href="BranchGroupTerminal.html" class="extype" name="ch.ninecode.model.BranchGroupTerminal">BranchGroupTerminal</a> The directed branch group terminals for which this terminal is monitored.</p></dd><dt class="param">Bushing</dt><dd class="cmt"><p><a href="Bushing.html" class="extype" name="ch.ninecode.model.Bushing">Bushing</a> <em>undocumented</em></p></dd><dt class="param">ConductingEquipment</dt><dd class="cmt"><p><a href="ConductingEquipment.html" class="extype" name="ch.ninecode.model.ConductingEquipment">ConductingEquipment</a> The conducting equipment of the terminal.
+       Conducting equipment have  terminals that may be connected to other conducting equipment terminals via connectivity nodes or topological nodes.</p></dd><dt class="param">ConnectivityNode</dt><dd class="cmt"><p><a href="ConnectivityNode.html" class="extype" name="ch.ninecode.model.ConnectivityNode">ConnectivityNode</a> The connectivity node to which this terminal connects with zero impedance.</p></dd><dt class="param">ConverterDCSides</dt><dd class="cmt"><p><a href="ACDCConverter.html" class="extype" name="ch.ninecode.model.ACDCConverter">ACDCConverter</a> All converters' DC sides linked to this point of common coupling terminal.</p></dd><dt class="param">EquipmentFaults</dt><dd class="cmt"><p><a href="EquipmentFault.html" class="extype" name="ch.ninecode.model.EquipmentFault">EquipmentFault</a> The equipment faults at this terminal.</p></dd><dt class="param">HasFirstMutualCoupling</dt><dd class="cmt"><p><a href="MutualCoupling.html" class="extype" name="ch.ninecode.model.MutualCoupling">MutualCoupling</a> Mutual couplings associated with the branch as the first branch.</p></dd><dt class="param">HasSecondMutualCoupling</dt><dd class="cmt"><p><a href="MutualCoupling.html" class="extype" name="ch.ninecode.model.MutualCoupling">MutualCoupling</a> Mutual couplings with the branch associated as the first branch.</p></dd><dt class="param">PinTerminal</dt><dd class="cmt"><p><a href="PinTerminal.html" class="extype" name="ch.ninecode.model.PinTerminal">PinTerminal</a> <em>undocumented</em></p></dd><dt class="param">RegulatingControl</dt><dd class="cmt"><p><a href="RegulatingControl.html" class="extype" name="ch.ninecode.model.RegulatingControl">RegulatingControl</a> The controls regulating this terminal.</p></dd><dt class="param">RemoteInputSignal</dt><dd class="cmt"><p><a href="RemoteInputSignal.html" class="extype" name="ch.ninecode.model.RemoteInputSignal">RemoteInputSignal</a> Input signal coming from this terminal.</p></dd><dt class="param">SvPowerFlow</dt><dd class="cmt"><p><a href="SvPowerFlow.html" class="extype" name="ch.ninecode.model.SvPowerFlow">SvPowerFlow</a> The power flow state variable associated with the terminal.</p></dd><dt class="param">TieFlow</dt><dd class="cmt"><p><a href="TieFlow.html" class="extype" name="ch.ninecode.model.TieFlow">TieFlow</a> The control area tie flows to which this terminal associates.</p></dd><dt class="param">TopologicalNode</dt><dd class="cmt"><p><a href="TopologicalNode.html" class="extype" name="ch.ninecode.model.TopologicalNode">TopologicalNode</a> The topological node associated with the terminal.
+       This can be used as an alternative to the connectivity node path to topological node, thus making it unneccesary to model connectivity nodes in some cases.   Note that the if connectivity nodes are in the model, this association would probably not be used as an input specification.</p></dd><dt class="param">TransformerEnd</dt><dd class="cmt"><p><a href="TransformerEnd.html" class="extype" name="ch.ninecode.model.TransformerEnd">TransformerEnd</a> All transformer ends connected at this terminal.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -209,6 +209,40 @@
     </span>
       <p class="shortcomment cmt">Return the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Return the superclass object.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The typed superclass nested object.</p></dd></dl></div>
+    </li><li name="ch.ninecode.model.Terminal#AuxiliaryEquipment" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="AuxiliaryEquipment:List[String]"></a>
+      <a id="AuxiliaryEquipment:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">AuxiliaryEquipment</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.Terminal@AuxiliaryEquipment:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="AuxiliaryEquipment.html" class="extype" name="ch.ninecode.model.AuxiliaryEquipment">AuxiliaryEquipment</a> The auxiliary equipment connected to the terminal.</p>
+    </li><li name="ch.ninecode.model.Terminal#BranchGroupTerminal" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="BranchGroupTerminal:List[String]"></a>
+      <a id="BranchGroupTerminal:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">BranchGroupTerminal</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.Terminal@BranchGroupTerminal:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="BranchGroupTerminal.html" class="extype" name="ch.ninecode.model.BranchGroupTerminal">BranchGroupTerminal</a> The directed branch group terminals for which this terminal is monitored.</p>
     </li><li name="ch.ninecode.model.Terminal#Bushing" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="Bushing:String"></a>
       <a id="Bushing:String"></a>
@@ -261,6 +295,125 @@
       </a>
     </span>
       <p class="shortcomment cmt"><a href="ConnectivityNode.html" class="extype" name="ch.ninecode.model.ConnectivityNode">ConnectivityNode</a> The connectivity node to which this terminal connects with zero impedance.</p>
+    </li><li name="ch.ninecode.model.Terminal#ConverterDCSides" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ConverterDCSides:List[String]"></a>
+      <a id="ConverterDCSides:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ConverterDCSides</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.Terminal@ConverterDCSides:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="ACDCConverter.html" class="extype" name="ch.ninecode.model.ACDCConverter">ACDCConverter</a> All converters' DC sides linked to this point of common coupling terminal.</p>
+    </li><li name="ch.ninecode.model.Terminal#EquipmentFaults" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="EquipmentFaults:List[String]"></a>
+      <a id="EquipmentFaults:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">EquipmentFaults</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.Terminal@EquipmentFaults:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="EquipmentFault.html" class="extype" name="ch.ninecode.model.EquipmentFault">EquipmentFault</a> The equipment faults at this terminal.</p>
+    </li><li name="ch.ninecode.model.Terminal#HasFirstMutualCoupling" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="HasFirstMutualCoupling:List[String]"></a>
+      <a id="HasFirstMutualCoupling:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">HasFirstMutualCoupling</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.Terminal@HasFirstMutualCoupling:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="MutualCoupling.html" class="extype" name="ch.ninecode.model.MutualCoupling">MutualCoupling</a> Mutual couplings associated with the branch as the first branch.</p>
+    </li><li name="ch.ninecode.model.Terminal#HasSecondMutualCoupling" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="HasSecondMutualCoupling:List[String]"></a>
+      <a id="HasSecondMutualCoupling:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">HasSecondMutualCoupling</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.Terminal@HasSecondMutualCoupling:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="MutualCoupling.html" class="extype" name="ch.ninecode.model.MutualCoupling">MutualCoupling</a> Mutual couplings with the branch associated as the first branch.</p>
+    </li><li name="ch.ninecode.model.Terminal#PinTerminal" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="PinTerminal:List[String]"></a>
+      <a id="PinTerminal:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">PinTerminal</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.Terminal@PinTerminal:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="PinTerminal.html" class="extype" name="ch.ninecode.model.PinTerminal">PinTerminal</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="PinTerminal.html" class="extype" name="ch.ninecode.model.PinTerminal">PinTerminal</a> <em>undocumented</em></p></div></div>
+    </li><li name="ch.ninecode.model.Terminal#RegulatingControl" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="RegulatingControl:List[String]"></a>
+      <a id="RegulatingControl:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">RegulatingControl</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.Terminal@RegulatingControl:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="RegulatingControl.html" class="extype" name="ch.ninecode.model.RegulatingControl">RegulatingControl</a> The controls regulating this terminal.</p>
+    </li><li name="ch.ninecode.model.Terminal#RemoteInputSignal" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="RemoteInputSignal:List[String]"></a>
+      <a id="RemoteInputSignal:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">RemoteInputSignal</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.Terminal@RemoteInputSignal:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="RemoteInputSignal.html" class="extype" name="ch.ninecode.model.RemoteInputSignal">RemoteInputSignal</a> Input signal coming from this terminal.</p>
     </li><li name="ch.ninecode.model.Terminal#SvPowerFlow" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="SvPowerFlow:String"></a>
       <a id="SvPowerFlow:String"></a>
@@ -278,6 +431,23 @@
       </a>
     </span>
       <p class="shortcomment cmt"><a href="SvPowerFlow.html" class="extype" name="ch.ninecode.model.SvPowerFlow">SvPowerFlow</a> The power flow state variable associated with the terminal.</p>
+    </li><li name="ch.ninecode.model.Terminal#TieFlow" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TieFlow:List[String]"></a>
+      <a id="TieFlow:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">TieFlow</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.Terminal@TieFlow:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="TieFlow.html" class="extype" name="ch.ninecode.model.TieFlow">TieFlow</a> The control area tie flows to which this terminal associates.</p>
     </li><li name="ch.ninecode.model.Terminal#TopologicalNode" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="TopologicalNode:String"></a>
       <a id="TopologicalNode:String"></a>
@@ -296,6 +466,23 @@
     </span>
       <p class="shortcomment cmt"><a href="TopologicalNode.html" class="extype" name="ch.ninecode.model.TopologicalNode">TopologicalNode</a> The topological node associated with the terminal.</p><div class="fullcomment"><div class="comment cmt"><p><a href="TopologicalNode.html" class="extype" name="ch.ninecode.model.TopologicalNode">TopologicalNode</a> The topological node associated with the terminal.
        This can be used as an alternative to the connectivity node path to topological node, thus making it unneccesary to model connectivity nodes in some cases.   Note that the if connectivity nodes are in the model, this association would probably not be used as an input specification.</p></div></div>
+    </li><li name="ch.ninecode.model.Terminal#TransformerEnd" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TransformerEnd:List[String]"></a>
+      <a id="TransformerEnd:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">TransformerEnd</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.Terminal@TransformerEnd:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="TransformerEnd.html" class="extype" name="ch.ninecode.model.TransformerEnd">TransformerEnd</a> All transformer ends connected at this terminal.</p>
     </li><li name="ch.ninecode.model.Element#about" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="about:Boolean"></a>
       <a id="about:Boolean"></a>

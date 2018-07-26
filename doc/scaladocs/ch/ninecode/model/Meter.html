@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>Meter - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.Meter</title>
-          <meta name="description" content="Meter - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.Meter" />
-          <meta name="keywords" content="Meter CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.Meter" />
+          <title>Meter - CIMReader 2.11-2.3.1-2.9.0 API - ch.ninecode.model.Meter</title>
+          <meta name="description" content="Meter - CIMReader 2.11 - 2.3.1 - 2.9.0 API - ch.ninecode.model.Meter" />
+          <meta name="keywords" content="Meter CIMReader 2.11 2.3.1 2.9.0 API ch.ninecode.model.Meter" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,13 +47,13 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">Meter</span><span class="params">(<span name="sup">sup: <a href="EndDevice.html" class="extype" name="ch.ninecode.model.EndDevice">EndDevice</a></span>, <span name="formNumber">formNumber: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">Meter</span><span class="params">(<span name="sup">sup: <a href="EndDevice.html" class="extype" name="ch.ninecode.model.EndDevice">EndDevice</a></span>, <span name="formNumber">formNumber: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="MeterMultipliers">MeterMultipliers: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="MeterReadings">MeterReadings: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="MeterReplacementWorks">MeterReplacementWorks: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="MeterServiceWorks">MeterServiceWorks: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="VendingTransactions">VendingTransactions: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Physical asset that performs the metering role of the usage point.</p><p>Used for measuring consumption and detection of events.
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="EndDevice.html" class="extype" name="ch.ninecode.model.EndDevice">EndDevice</a> Reference to the superclass object.</p></dd><dt class="param">formNumber</dt><dd class="cmt"><p>Meter form designation per ANSI C12.10 or other applicable standard.
-       An alphanumeric designation denoting the circuit arrangement for which the meter is applicable and its specific terminal arrangement.</p></dd></dl><div class="toggleContainer block">
+       An alphanumeric designation denoting the circuit arrangement for which the meter is applicable and its specific terminal arrangement.</p></dd><dt class="param">MeterMultipliers</dt><dd class="cmt"><p><a href="MeterMultiplier.html" class="extype" name="ch.ninecode.model.MeterMultiplier">MeterMultiplier</a> All multipliers applied at this meter.</p></dd><dt class="param">MeterReadings</dt><dd class="cmt"><p><a href="MeterReading.html" class="extype" name="ch.ninecode.model.MeterReading">MeterReading</a> All meter readings provided by this meter.</p></dd><dt class="param">MeterReplacementWorks</dt><dd class="cmt"><p><a href="MeterServiceWork.html" class="extype" name="ch.ninecode.model.MeterServiceWork">MeterServiceWork</a> All works on replacement of this old meter.</p></dd><dt class="param">MeterServiceWorks</dt><dd class="cmt"><p><a href="MeterServiceWork.html" class="extype" name="ch.ninecode.model.MeterServiceWork">MeterServiceWork</a> All non-replacement works on this meter.</p></dd><dt class="param">VendingTransactions</dt><dd class="cmt"><p><a href="Transaction.html" class="extype" name="ch.ninecode.model.Transaction">Transaction</a> All vending transactions on this meter.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -110,7 +110,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.Meter#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.EndDevice,formNumber:String):ch.ninecode.model.Meter"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.EndDevice,formNumber:String,MeterMultipliers:List[String],MeterReadings:List[String],MeterReplacementWorks:List[String],MeterServiceWorks:List[String],VendingTransactions:List[String]):ch.ninecode.model.Meter"></a>
       <a id="&lt;init&gt;:Meter"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -118,15 +118,15 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">Meter</span><span class="params">(<span name="sup">sup: <a href="EndDevice.html" class="extype" name="ch.ninecode.model.EndDevice">EndDevice</a></span>, <span name="formNumber">formNumber: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
+        <span class="name">Meter</span><span class="params">(<span name="sup">sup: <a href="EndDevice.html" class="extype" name="ch.ninecode.model.EndDevice">EndDevice</a></span>, <span name="formNumber">formNumber: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="MeterMultipliers">MeterMultipliers: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="MeterReadings">MeterReadings: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="MeterReplacementWorks">MeterReplacementWorks: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="MeterServiceWorks">MeterServiceWorks: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="VendingTransactions">VendingTransactions: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.Meter@&lt;init&gt;(sup:ch.ninecode.model.EndDevice,formNumber:String):ch.ninecode.model.Meter" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.Meter@&lt;init&gt;(sup:ch.ninecode.model.EndDevice,formNumber:String,MeterMultipliers:List[String],MeterReadings:List[String],MeterReplacementWorks:List[String],MeterServiceWorks:List[String],VendingTransactions:List[String]):ch.ninecode.model.Meter" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="EndDevice.html" class="extype" name="ch.ninecode.model.EndDevice">EndDevice</a> Reference to the superclass object.</p></dd><dt class="param">formNumber</dt><dd class="cmt"><p>Meter form designation per ANSI C12.10 or other applicable standard.
-       An alphanumeric designation denoting the circuit arrangement for which the meter is applicable and its specific terminal arrangement.</p></dd></dl></div>
+       An alphanumeric designation denoting the circuit arrangement for which the meter is applicable and its specific terminal arrangement.</p></dd><dt class="param">MeterMultipliers</dt><dd class="cmt"><p><a href="MeterMultiplier.html" class="extype" name="ch.ninecode.model.MeterMultiplier">MeterMultiplier</a> All multipliers applied at this meter.</p></dd><dt class="param">MeterReadings</dt><dd class="cmt"><p><a href="MeterReading.html" class="extype" name="ch.ninecode.model.MeterReading">MeterReading</a> All meter readings provided by this meter.</p></dd><dt class="param">MeterReplacementWorks</dt><dd class="cmt"><p><a href="MeterServiceWork.html" class="extype" name="ch.ninecode.model.MeterServiceWork">MeterServiceWork</a> All works on replacement of this old meter.</p></dd><dt class="param">MeterServiceWorks</dt><dd class="cmt"><p><a href="MeterServiceWork.html" class="extype" name="ch.ninecode.model.MeterServiceWork">MeterServiceWork</a> All non-replacement works on this meter.</p></dd><dt class="param">VendingTransactions</dt><dd class="cmt"><p><a href="Transaction.html" class="extype" name="ch.ninecode.model.Transaction">Transaction</a> All vending transactions on this meter.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -205,6 +205,91 @@
     </span>
       <p class="shortcomment cmt">Return the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Return the superclass object.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The typed superclass nested object.</p></dd></dl></div>
+    </li><li name="ch.ninecode.model.Meter#MeterMultipliers" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="MeterMultipliers:List[String]"></a>
+      <a id="MeterMultipliers:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">MeterMultipliers</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.Meter@MeterMultipliers:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="MeterMultiplier.html" class="extype" name="ch.ninecode.model.MeterMultiplier">MeterMultiplier</a> All multipliers applied at this meter.</p>
+    </li><li name="ch.ninecode.model.Meter#MeterReadings" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="MeterReadings:List[String]"></a>
+      <a id="MeterReadings:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">MeterReadings</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.Meter@MeterReadings:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="MeterReading.html" class="extype" name="ch.ninecode.model.MeterReading">MeterReading</a> All meter readings provided by this meter.</p>
+    </li><li name="ch.ninecode.model.Meter#MeterReplacementWorks" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="MeterReplacementWorks:List[String]"></a>
+      <a id="MeterReplacementWorks:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">MeterReplacementWorks</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.Meter@MeterReplacementWorks:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="MeterServiceWork.html" class="extype" name="ch.ninecode.model.MeterServiceWork">MeterServiceWork</a> All works on replacement of this old meter.</p>
+    </li><li name="ch.ninecode.model.Meter#MeterServiceWorks" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="MeterServiceWorks:List[String]"></a>
+      <a id="MeterServiceWorks:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">MeterServiceWorks</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.Meter@MeterServiceWorks:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="MeterServiceWork.html" class="extype" name="ch.ninecode.model.MeterServiceWork">MeterServiceWork</a> All non-replacement works on this meter.</p>
+    </li><li name="ch.ninecode.model.Meter#VendingTransactions" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="VendingTransactions:List[String]"></a>
+      <a id="VendingTransactions:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">VendingTransactions</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.Meter@VendingTransactions:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="Transaction.html" class="extype" name="ch.ninecode.model.Transaction">Transaction</a> All vending transactions on this meter.</p>
     </li><li name="ch.ninecode.model.Element#about" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="about:Boolean"></a>
       <a id="about:Boolean"></a>

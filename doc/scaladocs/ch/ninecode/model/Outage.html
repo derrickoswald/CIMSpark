@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>Outage - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.Outage</title>
-          <meta name="description" content="Outage - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.Outage" />
-          <meta name="keywords" content="Outage CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.Outage" />
+          <title>Outage - CIMReader 2.11-2.3.1-2.9.0 API - ch.ninecode.model.Outage</title>
+          <meta name="description" content="Outage - CIMReader 2.11 - 2.3.1 - 2.9.0 API - ch.ninecode.model.Outage" />
+          <meta name="keywords" content="Outage CIMReader 2.11 2.3.1 2.9.0 API ch.ninecode.model.Outage" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,14 +47,17 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">Outage</span><span class="params">(<span name="sup">sup: <a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a></span>, <span name="actualPeriod">actualPeriod: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="cancelledDateTime">cancelledDateTime: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="cause">cause: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="estimatedPeriod">estimatedPeriod: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="isPlanned">isPlanned: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="summary">summary: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Equipments">Equipments: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Incident">Incident: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="OutageSchedule">OutageSchedule: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="UsagePoints">UsagePoints: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">Outage</span><span class="params">(<span name="sup">sup: <a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a></span>, <span name="actualPeriod">actualPeriod: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="cancelledDateTime">cancelledDateTime: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="cause">cause: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="estimatedPeriod">estimatedPeriod: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="isPlanned">isPlanned: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="summary">summary: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Equipments">Equipments: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Faults">Faults: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Incident">Incident: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="OpenedSwitches">OpenedSwitches: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="OutageSchedule">OutageSchedule: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="PlannedSwitchActions">PlannedSwitchActions: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="SwitchingPlans">SwitchingPlans: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="UpdatedRatings">UpdatedRatings: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="UsagePoints">UsagePoints: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Document describing details of an active or planned outage in a part of the electrical network.</p><p>A non-planned outage may be created upon:
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a> Reference to the superclass object.</p></dd><dt class="param">actualPeriod</dt><dd class="cmt"><p>Actual outage period; end of the period corresponds to the actual restoration time.</p></dd><dt class="param">cancelledDateTime</dt><dd class="cmt"><p>Date and time planned outage has been cancelled.</p></dd><dt class="param">cause</dt><dd class="cmt"><p>One or more causes of this outage.
        Note: At present, this is a free text; could be replaced with a separate associated class in case we have multiple causes (e.g. OutageCauseType, inheriting from IdentifiedObject).</p></dd><dt class="param">estimatedPeriod</dt><dd class="cmt"><p>Estimated outage period.
-       The start of the period makes sense in case of a planned outage only, whereas the end of the period corresponds to the estimated restoration time in general.</p></dd><dt class="param">isPlanned</dt><dd class="cmt"><p>True if planned, false otherwise (for example due to a breaker trip).</p></dd><dt class="param">summary</dt><dd class="cmt"><p><a href="ServicePointOutageSummary.html" class="extype" name="ch.ninecode.model.ServicePointOutageSummary">ServicePointOutageSummary</a> Summary counts of service points (customers) affected by this outage.</p></dd><dt class="param">Equipments</dt><dd class="cmt"><p><a href="Equipment.html" class="extype" name="ch.ninecode.model.Equipment">Equipment</a> All equipments associated with this outage.</p></dd><dt class="param">Incident</dt><dd class="cmt"><p><a href="Incident.html" class="extype" name="ch.ninecode.model.Incident">Incident</a> Incident reported in trouble call that results in this outage.</p></dd><dt class="param">OutageSchedule</dt><dd class="cmt"><p><a href="OutageSchedule.html" class="extype" name="ch.ninecode.model.OutageSchedule">OutageSchedule</a> Outage schedule whose execution will result in this outage.</p></dd><dt class="param">UsagePoints</dt><dd class="cmt"><p><a href="UsagePoint.html" class="extype" name="ch.ninecode.model.UsagePoint">UsagePoint</a> All usage points associated with this outage.</p></dd></dl><div class="toggleContainer block">
+       The start of the period makes sense in case of a planned outage only, whereas the end of the period corresponds to the estimated restoration time in general.</p></dd><dt class="param">isPlanned</dt><dd class="cmt"><p>True if planned, false otherwise (for example due to a breaker trip).</p></dd><dt class="param">summary</dt><dd class="cmt"><p><a href="ServicePointOutageSummary.html" class="extype" name="ch.ninecode.model.ServicePointOutageSummary">ServicePointOutageSummary</a> Summary counts of service points (customers) affected by this outage.</p></dd><dt class="param">Equipments</dt><dd class="cmt"><p><a href="Equipment.html" class="extype" name="ch.ninecode.model.Equipment">Equipment</a> All equipments associated with this outage.</p></dd><dt class="param">Faults</dt><dd class="cmt"><p><a href="Fault.html" class="extype" name="ch.ninecode.model.Fault">Fault</a> All faults involved in this outage.</p></dd><dt class="param">Incident</dt><dd class="cmt"><p><a href="Incident.html" class="extype" name="ch.ninecode.model.Incident">Incident</a> Incident reported in trouble call that results in this outage.</p></dd><dt class="param">OpenedSwitches</dt><dd class="cmt"><p><a href="Switch.html" class="extype" name="ch.ninecode.model.Switch">Switch</a> All potentially open switches causing this outage.
+       This realationship is meant to be used as &quot;indication&quot; for initiation of outage-related business processes, whereas for actual actions of switches, SwitchAction-Switch relationship should be used.</p></dd><dt class="param">OutageSchedule</dt><dd class="cmt"><p><a href="OutageSchedule.html" class="extype" name="ch.ninecode.model.OutageSchedule">OutageSchedule</a> Outage schedule whose execution will result in this outage.</p></dd><dt class="param">PlannedSwitchActions</dt><dd class="cmt"><p><a href="SwitchAction.html" class="extype" name="ch.ninecode.model.SwitchAction">SwitchAction</a> All switch actions to apply within the scope of this planned outage.
+       Each such action groups switches to which the action is to apply in order to produce the desired network state considered as outage.</p></dd><dt class="param">SwitchingPlans</dt><dd class="cmt"><p><a href="SwitchingPlan.html" class="extype" name="ch.ninecode.model.SwitchingPlan">SwitchingPlan</a> All switching plans that lead to supply restoration due to this outage.
+       Only one will be retained for execution.</p></dd><dt class="param">UpdatedRatings</dt><dd class="cmt"><p><a href="OperationalUpdatedRating.html" class="extype" name="ch.ninecode.model.OperationalUpdatedRating">OperationalUpdatedRating</a> All updated ratings for this planned equipment outage.</p></dd><dt class="param">UsagePoints</dt><dd class="cmt"><p><a href="UsagePoint.html" class="extype" name="ch.ninecode.model.UsagePoint">UsagePoint</a> All usage points associated with this outage.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -111,7 +114,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.Outage#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.Document,actualPeriod:String,cancelledDateTime:String,cause:String,estimatedPeriod:String,isPlanned:Boolean,summary:String,Equipments:List[String],Incident:String,OutageSchedule:String,UsagePoints:List[String]):ch.ninecode.model.Outage"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.Document,actualPeriod:String,cancelledDateTime:String,cause:String,estimatedPeriod:String,isPlanned:Boolean,summary:String,Equipments:List[String],Faults:List[String],Incident:String,OpenedSwitches:List[String],OutageSchedule:String,PlannedSwitchActions:List[String],SwitchingPlans:List[String],UpdatedRatings:List[String],UsagePoints:List[String]):ch.ninecode.model.Outage"></a>
       <a id="&lt;init&gt;:Outage"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -119,16 +122,19 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">Outage</span><span class="params">(<span name="sup">sup: <a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a></span>, <span name="actualPeriod">actualPeriod: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="cancelledDateTime">cancelledDateTime: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="cause">cause: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="estimatedPeriod">estimatedPeriod: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="isPlanned">isPlanned: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="summary">summary: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Equipments">Equipments: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Incident">Incident: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="OutageSchedule">OutageSchedule: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="UsagePoints">UsagePoints: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
+        <span class="name">Outage</span><span class="params">(<span name="sup">sup: <a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a></span>, <span name="actualPeriod">actualPeriod: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="cancelledDateTime">cancelledDateTime: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="cause">cause: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="estimatedPeriod">estimatedPeriod: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="isPlanned">isPlanned: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="summary">summary: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Equipments">Equipments: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Faults">Faults: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Incident">Incident: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="OpenedSwitches">OpenedSwitches: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="OutageSchedule">OutageSchedule: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="PlannedSwitchActions">PlannedSwitchActions: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="SwitchingPlans">SwitchingPlans: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="UpdatedRatings">UpdatedRatings: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="UsagePoints">UsagePoints: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.Outage@&lt;init&gt;(sup:ch.ninecode.model.Document,actualPeriod:String,cancelledDateTime:String,cause:String,estimatedPeriod:String,isPlanned:Boolean,summary:String,Equipments:List[String],Incident:String,OutageSchedule:String,UsagePoints:List[String]):ch.ninecode.model.Outage" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.Outage@&lt;init&gt;(sup:ch.ninecode.model.Document,actualPeriod:String,cancelledDateTime:String,cause:String,estimatedPeriod:String,isPlanned:Boolean,summary:String,Equipments:List[String],Faults:List[String],Incident:String,OpenedSwitches:List[String],OutageSchedule:String,PlannedSwitchActions:List[String],SwitchingPlans:List[String],UpdatedRatings:List[String],UsagePoints:List[String]):ch.ninecode.model.Outage" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a> Reference to the superclass object.</p></dd><dt class="param">actualPeriod</dt><dd class="cmt"><p>Actual outage period; end of the period corresponds to the actual restoration time.</p></dd><dt class="param">cancelledDateTime</dt><dd class="cmt"><p>Date and time planned outage has been cancelled.</p></dd><dt class="param">cause</dt><dd class="cmt"><p>One or more causes of this outage.
        Note: At present, this is a free text; could be replaced with a separate associated class in case we have multiple causes (e.g. OutageCauseType, inheriting from IdentifiedObject).</p></dd><dt class="param">estimatedPeriod</dt><dd class="cmt"><p>Estimated outage period.
-       The start of the period makes sense in case of a planned outage only, whereas the end of the period corresponds to the estimated restoration time in general.</p></dd><dt class="param">isPlanned</dt><dd class="cmt"><p>True if planned, false otherwise (for example due to a breaker trip).</p></dd><dt class="param">summary</dt><dd class="cmt"><p><a href="ServicePointOutageSummary.html" class="extype" name="ch.ninecode.model.ServicePointOutageSummary">ServicePointOutageSummary</a> Summary counts of service points (customers) affected by this outage.</p></dd><dt class="param">Equipments</dt><dd class="cmt"><p><a href="Equipment.html" class="extype" name="ch.ninecode.model.Equipment">Equipment</a> All equipments associated with this outage.</p></dd><dt class="param">Incident</dt><dd class="cmt"><p><a href="Incident.html" class="extype" name="ch.ninecode.model.Incident">Incident</a> Incident reported in trouble call that results in this outage.</p></dd><dt class="param">OutageSchedule</dt><dd class="cmt"><p><a href="OutageSchedule.html" class="extype" name="ch.ninecode.model.OutageSchedule">OutageSchedule</a> Outage schedule whose execution will result in this outage.</p></dd><dt class="param">UsagePoints</dt><dd class="cmt"><p><a href="UsagePoint.html" class="extype" name="ch.ninecode.model.UsagePoint">UsagePoint</a> All usage points associated with this outage.</p></dd></dl></div>
+       The start of the period makes sense in case of a planned outage only, whereas the end of the period corresponds to the estimated restoration time in general.</p></dd><dt class="param">isPlanned</dt><dd class="cmt"><p>True if planned, false otherwise (for example due to a breaker trip).</p></dd><dt class="param">summary</dt><dd class="cmt"><p><a href="ServicePointOutageSummary.html" class="extype" name="ch.ninecode.model.ServicePointOutageSummary">ServicePointOutageSummary</a> Summary counts of service points (customers) affected by this outage.</p></dd><dt class="param">Equipments</dt><dd class="cmt"><p><a href="Equipment.html" class="extype" name="ch.ninecode.model.Equipment">Equipment</a> All equipments associated with this outage.</p></dd><dt class="param">Faults</dt><dd class="cmt"><p><a href="Fault.html" class="extype" name="ch.ninecode.model.Fault">Fault</a> All faults involved in this outage.</p></dd><dt class="param">Incident</dt><dd class="cmt"><p><a href="Incident.html" class="extype" name="ch.ninecode.model.Incident">Incident</a> Incident reported in trouble call that results in this outage.</p></dd><dt class="param">OpenedSwitches</dt><dd class="cmt"><p><a href="Switch.html" class="extype" name="ch.ninecode.model.Switch">Switch</a> All potentially open switches causing this outage.
+       This realationship is meant to be used as &quot;indication&quot; for initiation of outage-related business processes, whereas for actual actions of switches, SwitchAction-Switch relationship should be used.</p></dd><dt class="param">OutageSchedule</dt><dd class="cmt"><p><a href="OutageSchedule.html" class="extype" name="ch.ninecode.model.OutageSchedule">OutageSchedule</a> Outage schedule whose execution will result in this outage.</p></dd><dt class="param">PlannedSwitchActions</dt><dd class="cmt"><p><a href="SwitchAction.html" class="extype" name="ch.ninecode.model.SwitchAction">SwitchAction</a> All switch actions to apply within the scope of this planned outage.
+       Each such action groups switches to which the action is to apply in order to produce the desired network state considered as outage.</p></dd><dt class="param">SwitchingPlans</dt><dd class="cmt"><p><a href="SwitchingPlan.html" class="extype" name="ch.ninecode.model.SwitchingPlan">SwitchingPlan</a> All switching plans that lead to supply restoration due to this outage.
+       Only one will be retained for execution.</p></dd><dt class="param">UpdatedRatings</dt><dd class="cmt"><p><a href="OperationalUpdatedRating.html" class="extype" name="ch.ninecode.model.OperationalUpdatedRating">OperationalUpdatedRating</a> All updated ratings for this planned equipment outage.</p></dd><dt class="param">UsagePoints</dt><dd class="cmt"><p><a href="UsagePoint.html" class="extype" name="ch.ninecode.model.UsagePoint">UsagePoint</a> All usage points associated with this outage.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -224,6 +230,23 @@
       </a>
     </span>
       <p class="shortcomment cmt"><a href="Equipment.html" class="extype" name="ch.ninecode.model.Equipment">Equipment</a> All equipments associated with this outage.</p>
+    </li><li name="ch.ninecode.model.Outage#Faults" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Faults:List[String]"></a>
+      <a id="Faults:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Faults</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.Outage@Faults:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="Fault.html" class="extype" name="ch.ninecode.model.Fault">Fault</a> All faults involved in this outage.</p>
     </li><li name="ch.ninecode.model.Outage#Incident" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="Incident:String"></a>
       <a id="Incident:String"></a>
@@ -241,6 +264,24 @@
       </a>
     </span>
       <p class="shortcomment cmt"><a href="Incident.html" class="extype" name="ch.ninecode.model.Incident">Incident</a> Incident reported in trouble call that results in this outage.</p>
+    </li><li name="ch.ninecode.model.Outage#OpenedSwitches" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="OpenedSwitches:List[String]"></a>
+      <a id="OpenedSwitches:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">OpenedSwitches</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.Outage@OpenedSwitches:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="Switch.html" class="extype" name="ch.ninecode.model.Switch">Switch</a> All potentially open switches causing this outage.</p><div class="fullcomment"><div class="comment cmt"><p><a href="Switch.html" class="extype" name="ch.ninecode.model.Switch">Switch</a> All potentially open switches causing this outage.
+       This realationship is meant to be used as &quot;indication&quot; for initiation of outage-related business processes, whereas for actual actions of switches, SwitchAction-Switch relationship should be used.</p></div></div>
     </li><li name="ch.ninecode.model.Outage#OutageSchedule" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="OutageSchedule:String"></a>
       <a id="OutageSchedule:String"></a>
@@ -258,6 +299,59 @@
       </a>
     </span>
       <p class="shortcomment cmt"><a href="OutageSchedule.html" class="extype" name="ch.ninecode.model.OutageSchedule">OutageSchedule</a> Outage schedule whose execution will result in this outage.</p>
+    </li><li name="ch.ninecode.model.Outage#PlannedSwitchActions" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="PlannedSwitchActions:List[String]"></a>
+      <a id="PlannedSwitchActions:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">PlannedSwitchActions</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.Outage@PlannedSwitchActions:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="SwitchAction.html" class="extype" name="ch.ninecode.model.SwitchAction">SwitchAction</a> All switch actions to apply within the scope of this planned outage.</p><div class="fullcomment"><div class="comment cmt"><p><a href="SwitchAction.html" class="extype" name="ch.ninecode.model.SwitchAction">SwitchAction</a> All switch actions to apply within the scope of this planned outage.
+       Each such action groups switches to which the action is to apply in order to produce the desired network state considered as outage.</p></div></div>
+    </li><li name="ch.ninecode.model.Outage#SwitchingPlans" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="SwitchingPlans:List[String]"></a>
+      <a id="SwitchingPlans:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">SwitchingPlans</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.Outage@SwitchingPlans:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="SwitchingPlan.html" class="extype" name="ch.ninecode.model.SwitchingPlan">SwitchingPlan</a> All switching plans that lead to supply restoration due to this outage.</p><div class="fullcomment"><div class="comment cmt"><p><a href="SwitchingPlan.html" class="extype" name="ch.ninecode.model.SwitchingPlan">SwitchingPlan</a> All switching plans that lead to supply restoration due to this outage.
+       Only one will be retained for execution.</p></div></div>
+    </li><li name="ch.ninecode.model.Outage#UpdatedRatings" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="UpdatedRatings:List[String]"></a>
+      <a id="UpdatedRatings:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">UpdatedRatings</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.Outage@UpdatedRatings:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="OperationalUpdatedRating.html" class="extype" name="ch.ninecode.model.OperationalUpdatedRating">OperationalUpdatedRating</a> All updated ratings for this planned equipment outage.</p>
     </li><li name="ch.ninecode.model.Outage#UsagePoints" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="UsagePoints:List[String]"></a>
       <a id="UsagePoints:List[String]"></a>

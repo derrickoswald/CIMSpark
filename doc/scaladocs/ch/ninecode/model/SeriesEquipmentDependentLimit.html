@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>SeriesEquipmentDependentLimit - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.SeriesEquipmentDependentLimit</title>
-          <meta name="description" content="SeriesEquipmentDependentLimit - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.SeriesEquipmentDependentLimit" />
-          <meta name="keywords" content="SeriesEquipmentDependentLimit CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.SeriesEquipmentDependentLimit" />
+          <title>SeriesEquipmentDependentLimit - CIMReader 2.11-2.3.1-2.9.0 API - ch.ninecode.model.SeriesEquipmentDependentLimit</title>
+          <meta name="description" content="SeriesEquipmentDependentLimit - CIMReader 2.11 - 2.3.1 - 2.9.0 API - ch.ninecode.model.SeriesEquipmentDependentLimit" />
+          <meta name="keywords" content="SeriesEquipmentDependentLimit CIMReader 2.11 2.3.1 2.9.0 API ch.ninecode.model.SeriesEquipmentDependentLimit" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,12 +47,12 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">SeriesEquipmentDependentLimit</span><span class="params">(<span name="sup">sup: <a href="LimitDependency.html" class="extype" name="ch.ninecode.model.LimitDependency">LimitDependency</a></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">SeriesEquipmentDependentLimit</span><span class="params">(<span name="sup">sup: <a href="LimitDependency.html" class="extype" name="ch.ninecode.model.LimitDependency">LimitDependency</a></span>, <span name="EquipmentLimitSeriesComponent">EquipmentLimitSeriesComponent: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Limit based on most restrictive series equipment limit.</p><p>A specification of  of equipment that determines the calculated operational limit values based upon other equipment and their ratings.  The most restrictive limit connected in series within the group is used.   The physical connection based on switch status for example may also impact which elements in the group are considered. Any equipment in the group that are presently connected in series with the equipment of the directly associated operational limit are used.   This provides a means to indicate which potentially series equipment limits are considered for a computed operational limit. The operational limit of the same operational limit type is assumed to be used from the grouped equipment.   It is also possible to make assumptions or calculations regarding how flow might split if the equipment is not simply in series.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="LimitDependency.html" class="extype" name="ch.ninecode.model.LimitDependency">LimitDependency</a> Reference to the superclass object.</p></dd></dl><div class="toggleContainer block">
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="LimitDependency.html" class="extype" name="ch.ninecode.model.LimitDependency">LimitDependency</a> Reference to the superclass object.</p></dd><dt class="param">EquipmentLimitSeriesComponent</dt><dd class="cmt"><p><a href="EquipmentLimitSeriesComponent.html" class="extype" name="ch.ninecode.model.EquipmentLimitSeriesComponent">EquipmentLimitSeriesComponent</a> Equipment linkages that participates in the limit calculation.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -109,7 +109,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.SeriesEquipmentDependentLimit#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.LimitDependency):ch.ninecode.model.SeriesEquipmentDependentLimit"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.LimitDependency,EquipmentLimitSeriesComponent:List[String]):ch.ninecode.model.SeriesEquipmentDependentLimit"></a>
       <a id="&lt;init&gt;:SeriesEquipmentDependentLimit"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -117,14 +117,14 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">SeriesEquipmentDependentLimit</span><span class="params">(<span name="sup">sup: <a href="LimitDependency.html" class="extype" name="ch.ninecode.model.LimitDependency">LimitDependency</a></span>)</span>
+        <span class="name">SeriesEquipmentDependentLimit</span><span class="params">(<span name="sup">sup: <a href="LimitDependency.html" class="extype" name="ch.ninecode.model.LimitDependency">LimitDependency</a></span>, <span name="EquipmentLimitSeriesComponent">EquipmentLimitSeriesComponent: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.SeriesEquipmentDependentLimit@&lt;init&gt;(sup:ch.ninecode.model.LimitDependency):ch.ninecode.model.SeriesEquipmentDependentLimit" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.SeriesEquipmentDependentLimit@&lt;init&gt;(sup:ch.ninecode.model.LimitDependency,EquipmentLimitSeriesComponent:List[String]):ch.ninecode.model.SeriesEquipmentDependentLimit" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="LimitDependency.html" class="extype" name="ch.ninecode.model.LimitDependency">LimitDependency</a> Reference to the superclass object.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="LimitDependency.html" class="extype" name="ch.ninecode.model.LimitDependency">LimitDependency</a> Reference to the superclass object.</p></dd><dt class="param">EquipmentLimitSeriesComponent</dt><dd class="cmt"><p><a href="EquipmentLimitSeriesComponent.html" class="extype" name="ch.ninecode.model.EquipmentLimitSeriesComponent">EquipmentLimitSeriesComponent</a> Equipment linkages that participates in the limit calculation.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -185,6 +185,23 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="ch.ninecode.model.SeriesEquipmentDependentLimit#EquipmentLimitSeriesComponent" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="EquipmentLimitSeriesComponent:List[String]"></a>
+      <a id="EquipmentLimitSeriesComponent:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">EquipmentLimitSeriesComponent</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.SeriesEquipmentDependentLimit@EquipmentLimitSeriesComponent:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="EquipmentLimitSeriesComponent.html" class="extype" name="ch.ninecode.model.EquipmentLimitSeriesComponent">EquipmentLimitSeriesComponent</a> Equipment linkages that participates in the limit calculation.</p>
     </li><li name="ch.ninecode.model.SeriesEquipmentDependentLimit#LimitDependency" visbl="pub" data-isabs="false" fullComment="yes" group="Hierarchy">
       <a id="LimitDependency:ch.ninecode.model.LimitDependency"></a>
       <a id="LimitDependency:LimitDependency"></a>

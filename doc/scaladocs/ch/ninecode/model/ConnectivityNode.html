@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>ConnectivityNode - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.ConnectivityNode</title>
-          <meta name="description" content="ConnectivityNode - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.ConnectivityNode" />
-          <meta name="keywords" content="ConnectivityNode CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.ConnectivityNode" />
+          <title>ConnectivityNode - CIMReader 2.11-2.3.1-2.9.0 API - ch.ninecode.model.ConnectivityNode</title>
+          <meta name="description" content="ConnectivityNode - CIMReader 2.11 - 2.3.1 - 2.9.0 API - ch.ninecode.model.ConnectivityNode" />
+          <meta name="keywords" content="ConnectivityNode CIMReader 2.11 2.3.1 2.9.0 API ch.ninecode.model.ConnectivityNode" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,12 +47,12 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">ConnectivityNode</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="ConnectivityNodeContainer">ConnectivityNodeContainer: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="TopologicalNode">TopologicalNode: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">ConnectivityNode</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="ConnectivityNodeContainer">ConnectivityNodeContainer: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Terminals">Terminals: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="TopologicalNode">TopologicalNode: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Connectivity nodes are points where terminals of AC conducting equipment are connected together with zero impedance.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">ConnectivityNodeContainer</dt><dd class="cmt"><p><a href="ConnectivityNodeContainer.html" class="extype" name="ch.ninecode.model.ConnectivityNodeContainer">ConnectivityNodeContainer</a> Container of this connectivity node.</p></dd><dt class="param">TopologicalNode</dt><dd class="cmt"><p><a href="TopologicalNode.html" class="extype" name="ch.ninecode.model.TopologicalNode">TopologicalNode</a> The topological node to which this connectivity node is assigned.
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">ConnectivityNodeContainer</dt><dd class="cmt"><p><a href="ConnectivityNodeContainer.html" class="extype" name="ch.ninecode.model.ConnectivityNodeContainer">ConnectivityNodeContainer</a> Container of this connectivity node.</p></dd><dt class="param">Terminals</dt><dd class="cmt"><p><a href="Terminal.html" class="extype" name="ch.ninecode.model.Terminal">Terminal</a> Terminals interconnected with zero impedance at a this connectivity node.</p></dd><dt class="param">TopologicalNode</dt><dd class="cmt"><p><a href="TopologicalNode.html" class="extype" name="ch.ninecode.model.TopologicalNode">TopologicalNode</a> The topological node to which this connectivity node is assigned.
        May depend on the current state of switches in the network.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
@@ -110,7 +110,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.ConnectivityNode#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,ConnectivityNodeContainer:String,TopologicalNode:String):ch.ninecode.model.ConnectivityNode"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,ConnectivityNodeContainer:String,Terminals:List[String],TopologicalNode:String):ch.ninecode.model.ConnectivityNode"></a>
       <a id="&lt;init&gt;:ConnectivityNode"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -118,14 +118,14 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">ConnectivityNode</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="ConnectivityNodeContainer">ConnectivityNodeContainer: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="TopologicalNode">TopologicalNode: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
+        <span class="name">ConnectivityNode</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="ConnectivityNodeContainer">ConnectivityNodeContainer: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Terminals">Terminals: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="TopologicalNode">TopologicalNode: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.ConnectivityNode@&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,ConnectivityNodeContainer:String,TopologicalNode:String):ch.ninecode.model.ConnectivityNode" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.ConnectivityNode@&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,ConnectivityNodeContainer:String,Terminals:List[String],TopologicalNode:String):ch.ninecode.model.ConnectivityNode" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">ConnectivityNodeContainer</dt><dd class="cmt"><p><a href="ConnectivityNodeContainer.html" class="extype" name="ch.ninecode.model.ConnectivityNodeContainer">ConnectivityNodeContainer</a> Container of this connectivity node.</p></dd><dt class="param">TopologicalNode</dt><dd class="cmt"><p><a href="TopologicalNode.html" class="extype" name="ch.ninecode.model.TopologicalNode">TopologicalNode</a> The topological node to which this connectivity node is assigned.
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">ConnectivityNodeContainer</dt><dd class="cmt"><p><a href="ConnectivityNodeContainer.html" class="extype" name="ch.ninecode.model.ConnectivityNodeContainer">ConnectivityNodeContainer</a> Container of this connectivity node.</p></dd><dt class="param">Terminals</dt><dd class="cmt"><p><a href="Terminal.html" class="extype" name="ch.ninecode.model.Terminal">Terminal</a> Terminals interconnected with zero impedance at a this connectivity node.</p></dd><dt class="param">TopologicalNode</dt><dd class="cmt"><p><a href="TopologicalNode.html" class="extype" name="ch.ninecode.model.TopologicalNode">TopologicalNode</a> The topological node to which this connectivity node is assigned.
        May depend on the current state of switches in the network.</p></dd></dl></div>
     </li></ol>
             </div>
@@ -222,6 +222,23 @@
     </span>
       <p class="shortcomment cmt">Return the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Return the superclass object.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The typed superclass nested object.</p></dd></dl></div>
+    </li><li name="ch.ninecode.model.ConnectivityNode#Terminals" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Terminals:List[String]"></a>
+      <a id="Terminals:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Terminals</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.ConnectivityNode@Terminals:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="Terminal.html" class="extype" name="ch.ninecode.model.Terminal">Terminal</a> Terminals interconnected with zero impedance at a this connectivity node.</p>
     </li><li name="ch.ninecode.model.ConnectivityNode#TopologicalNode" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="TopologicalNode:String"></a>
       <a id="TopologicalNode:String"></a>

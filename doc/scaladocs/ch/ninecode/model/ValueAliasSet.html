@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>ValueAliasSet - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.ValueAliasSet</title>
-          <meta name="description" content="ValueAliasSet - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.ValueAliasSet" />
-          <meta name="keywords" content="ValueAliasSet CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.ValueAliasSet" />
+          <title>ValueAliasSet - CIMReader 2.11-2.3.1-2.9.0 API - ch.ninecode.model.ValueAliasSet</title>
+          <meta name="description" content="ValueAliasSet - CIMReader 2.11 - 2.3.1 - 2.9.0 API - ch.ninecode.model.ValueAliasSet" />
+          <meta name="keywords" content="ValueAliasSet CIMReader 2.11 2.3.1 2.9.0 API ch.ninecode.model.ValueAliasSet" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,12 +47,12 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">ValueAliasSet</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">ValueAliasSet</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="Commands">Commands: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Discretes">Discretes: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="RaiseLowerCommands">RaiseLowerCommands: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Values">Values: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Describes the translation of a set of values into a name and is intendend to facilitate cusom translations.</p><p>Each ValueAliasSet has a name, description etc. A specific Measurement may represent a discrete state like Open, Closed, Intermediate etc. This requires a translation from the MeasurementValue.value number to a string, e.g. 0-&gt;&quot;Invalid&quot;, 1-&gt;&quot;Open&quot;, 2-&gt;&quot;Closed&quot;, 3-&gt;&quot;Intermediate&quot;. Each ValueToAlias member in ValueAliasSet.Value describe a mapping for one particular value to a name.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd></dl><div class="toggleContainer block">
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">Commands</dt><dd class="cmt"><p><a href="Command.html" class="extype" name="ch.ninecode.model.Command">Command</a> The Commands using the set for translation.</p></dd><dt class="param">Discretes</dt><dd class="cmt"><p><a href="Discrete.html" class="extype" name="ch.ninecode.model.Discrete">Discrete</a> The Measurements using the set for translation.</p></dd><dt class="param">RaiseLowerCommands</dt><dd class="cmt"><p><a href="RaiseLowerCommand.html" class="extype" name="ch.ninecode.model.RaiseLowerCommand">RaiseLowerCommand</a> The Commands using the set for translation.</p></dd><dt class="param">Values</dt><dd class="cmt"><p><a href="ValueToAlias.html" class="extype" name="ch.ninecode.model.ValueToAlias">ValueToAlias</a> The ValueToAlias mappings included in the set.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -109,7 +109,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.ValueAliasSet#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject):ch.ninecode.model.ValueAliasSet"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,Commands:List[String],Discretes:List[String],RaiseLowerCommands:List[String],Values:List[String]):ch.ninecode.model.ValueAliasSet"></a>
       <a id="&lt;init&gt;:ValueAliasSet"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -117,14 +117,14 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">ValueAliasSet</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>)</span>
+        <span class="name">ValueAliasSet</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="Commands">Commands: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Discretes">Discretes: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="RaiseLowerCommands">RaiseLowerCommands: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Values">Values: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.ValueAliasSet@&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject):ch.ninecode.model.ValueAliasSet" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.ValueAliasSet@&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,Commands:List[String],Discretes:List[String],RaiseLowerCommands:List[String],Values:List[String]):ch.ninecode.model.ValueAliasSet" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">Commands</dt><dd class="cmt"><p><a href="Command.html" class="extype" name="ch.ninecode.model.Command">Command</a> The Commands using the set for translation.</p></dd><dt class="param">Discretes</dt><dd class="cmt"><p><a href="Discrete.html" class="extype" name="ch.ninecode.model.Discrete">Discrete</a> The Measurements using the set for translation.</p></dd><dt class="param">RaiseLowerCommands</dt><dd class="cmt"><p><a href="RaiseLowerCommand.html" class="extype" name="ch.ninecode.model.RaiseLowerCommand">RaiseLowerCommand</a> The Commands using the set for translation.</p></dd><dt class="param">Values</dt><dd class="cmt"><p><a href="ValueToAlias.html" class="extype" name="ch.ninecode.model.ValueToAlias">ValueToAlias</a> The ValueToAlias mappings included in the set.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -185,6 +185,40 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="ch.ninecode.model.ValueAliasSet#Commands" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Commands:List[String]"></a>
+      <a id="Commands:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Commands</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.ValueAliasSet@Commands:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="Command.html" class="extype" name="ch.ninecode.model.Command">Command</a> The Commands using the set for translation.</p>
+    </li><li name="ch.ninecode.model.ValueAliasSet#Discretes" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Discretes:List[String]"></a>
+      <a id="Discretes:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Discretes</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.ValueAliasSet@Discretes:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="Discrete.html" class="extype" name="ch.ninecode.model.Discrete">Discrete</a> The Measurements using the set for translation.</p>
     </li><li name="ch.ninecode.model.ValueAliasSet#IdentifiedObject" visbl="pub" data-isabs="false" fullComment="yes" group="Hierarchy">
       <a id="IdentifiedObject:ch.ninecode.model.IdentifiedObject"></a>
       <a id="IdentifiedObject:IdentifiedObject"></a>
@@ -203,6 +237,40 @@
     </span>
       <p class="shortcomment cmt">Return the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Return the superclass object.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The typed superclass nested object.</p></dd></dl></div>
+    </li><li name="ch.ninecode.model.ValueAliasSet#RaiseLowerCommands" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="RaiseLowerCommands:List[String]"></a>
+      <a id="RaiseLowerCommands:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">RaiseLowerCommands</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.ValueAliasSet@RaiseLowerCommands:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="RaiseLowerCommand.html" class="extype" name="ch.ninecode.model.RaiseLowerCommand">RaiseLowerCommand</a> The Commands using the set for translation.</p>
+    </li><li name="ch.ninecode.model.ValueAliasSet#Values" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Values:List[String]"></a>
+      <a id="Values:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Values</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.ValueAliasSet@Values:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="ValueToAlias.html" class="extype" name="ch.ninecode.model.ValueToAlias">ValueToAlias</a> The ValueToAlias mappings included in the set.</p>
     </li><li name="ch.ninecode.model.Element#about" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="about:Boolean"></a>
       <a id="about:Boolean"></a>

@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>ServiceSupplier - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.ServiceSupplier</title>
-          <meta name="description" content="ServiceSupplier - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.ServiceSupplier" />
-          <meta name="keywords" content="ServiceSupplier CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.ServiceSupplier" />
+          <title>ServiceSupplier - CIMReader 2.11-2.3.1-2.9.0 API - ch.ninecode.model.ServiceSupplier</title>
+          <meta name="description" content="ServiceSupplier - CIMReader 2.11 - 2.3.1 - 2.9.0 API - ch.ninecode.model.ServiceSupplier" />
+          <meta name="keywords" content="ServiceSupplier CIMReader 2.11 2.3.1 2.9.0 API ch.ninecode.model.ServiceSupplier" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,12 +47,12 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">ServiceSupplier</span><span class="params">(<span name="sup">sup: <a href="OrganisationRole.html" class="extype" name="ch.ninecode.model.OrganisationRole">OrganisationRole</a></span>, <span name="issuerIdentificationNumber">issuerIdentificationNumber: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="kind">kind: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">ServiceSupplier</span><span class="params">(<span name="sup">sup: <a href="OrganisationRole.html" class="extype" name="ch.ninecode.model.OrganisationRole">OrganisationRole</a></span>, <span name="issuerIdentificationNumber">issuerIdentificationNumber: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="kind">kind: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="BankAccounts">BankAccounts: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="CustomerAgreements">CustomerAgreements: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="UsagePoints">UsagePoints: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Organisation that provides services to customers.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="OrganisationRole.html" class="extype" name="ch.ninecode.model.OrganisationRole">OrganisationRole</a> Reference to the superclass object.</p></dd><dt class="param">issuerIdentificationNumber</dt><dd class="cmt"><p>Unique transaction reference prefix number issued to an entity by the International Organization for Standardization for the purpose of tagging onto electronic financial transactions, as defined in ISO/IEC 7812-1 and ISO/IEC 7812-2.</p></dd><dt class="param">kind</dt><dd class="cmt"><p>Kind of supplier.</p></dd></dl><div class="toggleContainer block">
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="OrganisationRole.html" class="extype" name="ch.ninecode.model.OrganisationRole">OrganisationRole</a> Reference to the superclass object.</p></dd><dt class="param">issuerIdentificationNumber</dt><dd class="cmt"><p>Unique transaction reference prefix number issued to an entity by the International Organization for Standardization for the purpose of tagging onto electronic financial transactions, as defined in ISO/IEC 7812-1 and ISO/IEC 7812-2.</p></dd><dt class="param">kind</dt><dd class="cmt"><p>Kind of supplier.</p></dd><dt class="param">BankAccounts</dt><dd class="cmt"><p><a href="BankAccount.html" class="extype" name="ch.ninecode.model.BankAccount">BankAccount</a> All BackAccounts this ServiceSupplier owns.</p></dd><dt class="param">CustomerAgreements</dt><dd class="cmt"><p><a href="CustomerAgreement.html" class="extype" name="ch.ninecode.model.CustomerAgreement">CustomerAgreement</a> All customer agreements of this service supplier.</p></dd><dt class="param">UsagePoints</dt><dd class="cmt"><p><a href="UsagePoint.html" class="extype" name="ch.ninecode.model.UsagePoint">UsagePoint</a> All usage points this service supplier utilises to deliver a service.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -109,7 +109,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.ServiceSupplier#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.OrganisationRole,issuerIdentificationNumber:String,kind:String):ch.ninecode.model.ServiceSupplier"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.OrganisationRole,issuerIdentificationNumber:String,kind:String,BankAccounts:List[String],CustomerAgreements:List[String],UsagePoints:List[String]):ch.ninecode.model.ServiceSupplier"></a>
       <a id="&lt;init&gt;:ServiceSupplier"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -117,14 +117,14 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">ServiceSupplier</span><span class="params">(<span name="sup">sup: <a href="OrganisationRole.html" class="extype" name="ch.ninecode.model.OrganisationRole">OrganisationRole</a></span>, <span name="issuerIdentificationNumber">issuerIdentificationNumber: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="kind">kind: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
+        <span class="name">ServiceSupplier</span><span class="params">(<span name="sup">sup: <a href="OrganisationRole.html" class="extype" name="ch.ninecode.model.OrganisationRole">OrganisationRole</a></span>, <span name="issuerIdentificationNumber">issuerIdentificationNumber: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="kind">kind: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="BankAccounts">BankAccounts: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="CustomerAgreements">CustomerAgreements: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="UsagePoints">UsagePoints: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.ServiceSupplier@&lt;init&gt;(sup:ch.ninecode.model.OrganisationRole,issuerIdentificationNumber:String,kind:String):ch.ninecode.model.ServiceSupplier" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.ServiceSupplier@&lt;init&gt;(sup:ch.ninecode.model.OrganisationRole,issuerIdentificationNumber:String,kind:String,BankAccounts:List[String],CustomerAgreements:List[String],UsagePoints:List[String]):ch.ninecode.model.ServiceSupplier" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="OrganisationRole.html" class="extype" name="ch.ninecode.model.OrganisationRole">OrganisationRole</a> Reference to the superclass object.</p></dd><dt class="param">issuerIdentificationNumber</dt><dd class="cmt"><p>Unique transaction reference prefix number issued to an entity by the International Organization for Standardization for the purpose of tagging onto electronic financial transactions, as defined in ISO/IEC 7812-1 and ISO/IEC 7812-2.</p></dd><dt class="param">kind</dt><dd class="cmt"><p>Kind of supplier.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="OrganisationRole.html" class="extype" name="ch.ninecode.model.OrganisationRole">OrganisationRole</a> Reference to the superclass object.</p></dd><dt class="param">issuerIdentificationNumber</dt><dd class="cmt"><p>Unique transaction reference prefix number issued to an entity by the International Organization for Standardization for the purpose of tagging onto electronic financial transactions, as defined in ISO/IEC 7812-1 and ISO/IEC 7812-2.</p></dd><dt class="param">kind</dt><dd class="cmt"><p>Kind of supplier.</p></dd><dt class="param">BankAccounts</dt><dd class="cmt"><p><a href="BankAccount.html" class="extype" name="ch.ninecode.model.BankAccount">BankAccount</a> All BackAccounts this ServiceSupplier owns.</p></dd><dt class="param">CustomerAgreements</dt><dd class="cmt"><p><a href="CustomerAgreement.html" class="extype" name="ch.ninecode.model.CustomerAgreement">CustomerAgreement</a> All customer agreements of this service supplier.</p></dd><dt class="param">UsagePoints</dt><dd class="cmt"><p><a href="UsagePoint.html" class="extype" name="ch.ninecode.model.UsagePoint">UsagePoint</a> All usage points this service supplier utilises to deliver a service.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -185,6 +185,40 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="ch.ninecode.model.ServiceSupplier#BankAccounts" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="BankAccounts:List[String]"></a>
+      <a id="BankAccounts:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">BankAccounts</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.ServiceSupplier@BankAccounts:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="BankAccount.html" class="extype" name="ch.ninecode.model.BankAccount">BankAccount</a> All BackAccounts this ServiceSupplier owns.</p>
+    </li><li name="ch.ninecode.model.ServiceSupplier#CustomerAgreements" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CustomerAgreements:List[String]"></a>
+      <a id="CustomerAgreements:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CustomerAgreements</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.ServiceSupplier@CustomerAgreements:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="CustomerAgreement.html" class="extype" name="ch.ninecode.model.CustomerAgreement">CustomerAgreement</a> All customer agreements of this service supplier.</p>
     </li><li name="ch.ninecode.model.ServiceSupplier#OrganisationRole" visbl="pub" data-isabs="false" fullComment="yes" group="Hierarchy">
       <a id="OrganisationRole:ch.ninecode.model.OrganisationRole"></a>
       <a id="OrganisationRole:OrganisationRole"></a>
@@ -203,6 +237,23 @@
     </span>
       <p class="shortcomment cmt">Return the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Return the superclass object.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The typed superclass nested object.</p></dd></dl></div>
+    </li><li name="ch.ninecode.model.ServiceSupplier#UsagePoints" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="UsagePoints:List[String]"></a>
+      <a id="UsagePoints:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">UsagePoints</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.ServiceSupplier@UsagePoints:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="UsagePoint.html" class="extype" name="ch.ninecode.model.UsagePoint">UsagePoint</a> All usage points this service supplier utilises to deliver a service.</p>
     </li><li name="ch.ninecode.model.Element#about" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="about:Boolean"></a>
       <a id="about:Boolean"></a>

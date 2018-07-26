@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>ControlArea - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.ControlArea</title>
-          <meta name="description" content="ControlArea - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.ControlArea" />
-          <meta name="keywords" content="ControlArea CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.ControlArea" />
+          <title>ControlArea - CIMReader 2.11-2.3.1-2.9.0 API - ch.ninecode.model.ControlArea</title>
+          <meta name="description" content="ControlArea - CIMReader 2.11 - 2.3.1 - 2.9.0 API - ch.ninecode.model.ControlArea" />
+          <meta name="keywords" content="ControlArea CIMReader 2.11 2.3.1 2.9.0 API ch.ninecode.model.ControlArea" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,12 +47,12 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">ControlArea</span><span class="params">(<span name="sup">sup: <a href="PowerSystemResource.html" class="extype" name="ch.ninecode.model.PowerSystemResource">PowerSystemResource</a></span>, <span name="netInterchange">netInterchange: <span class="extype" name="scala.Double">Double</span></span>, <span name="pTolerance">pTolerance: <span class="extype" name="scala.Double">Double</span></span>, <span name="EnergyArea">EnergyArea: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="type">type: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">ControlArea</span><span class="params">(<span name="sup">sup: <a href="PowerSystemResource.html" class="extype" name="ch.ninecode.model.PowerSystemResource">PowerSystemResource</a></span>, <span name="netInterchange">netInterchange: <span class="extype" name="scala.Double">Double</span></span>, <span name="pTolerance">pTolerance: <span class="extype" name="scala.Double">Double</span></span>, <span name="type">type: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ControlAreaGeneratingUnit">ControlAreaGeneratingUnit: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="EnergyArea">EnergyArea: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="TieFlow">TieFlow: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A control area<b> </b>is a grouping of generating units and/or loads and a cutset of tie lines (as terminals) which may be used for a variety of purposes including automatic generation control, powerflow solution area interchange control specification, and input to load forecasting.</p><p>Note that any number of overlapping control area specifications can be superimposed on the physical model.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PowerSystemResource.html" class="extype" name="ch.ninecode.model.PowerSystemResource">PowerSystemResource</a> Reference to the superclass object.</p></dd><dt class="param">netInterchange</dt><dd class="cmt"><p>The specified positive net interchange into the control area, i.e. positive sign means flow in to the area.</p></dd><dt class="param">pTolerance</dt><dd class="cmt"><p>Active power net interchange tolerance</p></dd><dt class="param">EnergyArea</dt><dd class="cmt"><p><a href="EnergyArea.html" class="extype" name="ch.ninecode.model.EnergyArea">EnergyArea</a> The energy area that is forecast from this control area specification.</p></dd></dl><div class="toggleContainer block">
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PowerSystemResource.html" class="extype" name="ch.ninecode.model.PowerSystemResource">PowerSystemResource</a> Reference to the superclass object.</p></dd><dt class="param">netInterchange</dt><dd class="cmt"><p>The specified positive net interchange into the control area, i.e. positive sign means flow in to the area.</p></dd><dt class="param">pTolerance</dt><dd class="cmt"><p>Active power net interchange tolerance</p></dd><dt class="param">ControlAreaGeneratingUnit</dt><dd class="cmt"><p><a href="ControlAreaGeneratingUnit.html" class="extype" name="ch.ninecode.model.ControlAreaGeneratingUnit">ControlAreaGeneratingUnit</a> The generating unit specificaitons for the control area.</p></dd><dt class="param">EnergyArea</dt><dd class="cmt"><p><a href="EnergyArea.html" class="extype" name="ch.ninecode.model.EnergyArea">EnergyArea</a> The energy area that is forecast from this control area specification.</p></dd><dt class="param">TieFlow</dt><dd class="cmt"><p><a href="TieFlow.html" class="extype" name="ch.ninecode.model.TieFlow">TieFlow</a> The tie flows associated with the control area.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -109,7 +109,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.ControlArea#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.PowerSystemResource,netInterchange:Double,pTolerance:Double,EnergyArea:String,type:String):ch.ninecode.model.ControlArea"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.PowerSystemResource,netInterchange:Double,pTolerance:Double,type:String,ControlAreaGeneratingUnit:List[String],EnergyArea:String,TieFlow:List[String]):ch.ninecode.model.ControlArea"></a>
       <a id="&lt;init&gt;:ControlArea"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -117,14 +117,14 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">ControlArea</span><span class="params">(<span name="sup">sup: <a href="PowerSystemResource.html" class="extype" name="ch.ninecode.model.PowerSystemResource">PowerSystemResource</a></span>, <span name="netInterchange">netInterchange: <span class="extype" name="scala.Double">Double</span></span>, <span name="pTolerance">pTolerance: <span class="extype" name="scala.Double">Double</span></span>, <span name="EnergyArea">EnergyArea: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="type">type: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
+        <span class="name">ControlArea</span><span class="params">(<span name="sup">sup: <a href="PowerSystemResource.html" class="extype" name="ch.ninecode.model.PowerSystemResource">PowerSystemResource</a></span>, <span name="netInterchange">netInterchange: <span class="extype" name="scala.Double">Double</span></span>, <span name="pTolerance">pTolerance: <span class="extype" name="scala.Double">Double</span></span>, <span name="type">type: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ControlAreaGeneratingUnit">ControlAreaGeneratingUnit: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="EnergyArea">EnergyArea: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="TieFlow">TieFlow: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.ControlArea@&lt;init&gt;(sup:ch.ninecode.model.PowerSystemResource,netInterchange:Double,pTolerance:Double,EnergyArea:String,type:String):ch.ninecode.model.ControlArea" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.ControlArea@&lt;init&gt;(sup:ch.ninecode.model.PowerSystemResource,netInterchange:Double,pTolerance:Double,type:String,ControlAreaGeneratingUnit:List[String],EnergyArea:String,TieFlow:List[String]):ch.ninecode.model.ControlArea" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PowerSystemResource.html" class="extype" name="ch.ninecode.model.PowerSystemResource">PowerSystemResource</a> Reference to the superclass object.</p></dd><dt class="param">netInterchange</dt><dd class="cmt"><p>The specified positive net interchange into the control area, i.e. positive sign means flow in to the area.</p></dd><dt class="param">pTolerance</dt><dd class="cmt"><p>Active power net interchange tolerance</p></dd><dt class="param">EnergyArea</dt><dd class="cmt"><p><a href="EnergyArea.html" class="extype" name="ch.ninecode.model.EnergyArea">EnergyArea</a> The energy area that is forecast from this control area specification.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PowerSystemResource.html" class="extype" name="ch.ninecode.model.PowerSystemResource">PowerSystemResource</a> Reference to the superclass object.</p></dd><dt class="param">netInterchange</dt><dd class="cmt"><p>The specified positive net interchange into the control area, i.e. positive sign means flow in to the area.</p></dd><dt class="param">pTolerance</dt><dd class="cmt"><p>Active power net interchange tolerance</p></dd><dt class="param">ControlAreaGeneratingUnit</dt><dd class="cmt"><p><a href="ControlAreaGeneratingUnit.html" class="extype" name="ch.ninecode.model.ControlAreaGeneratingUnit">ControlAreaGeneratingUnit</a> The generating unit specificaitons for the control area.</p></dd><dt class="param">EnergyArea</dt><dd class="cmt"><p><a href="EnergyArea.html" class="extype" name="ch.ninecode.model.EnergyArea">EnergyArea</a> The energy area that is forecast from this control area specification.</p></dd><dt class="param">TieFlow</dt><dd class="cmt"><p><a href="TieFlow.html" class="extype" name="ch.ninecode.model.TieFlow">TieFlow</a> The tie flows associated with the control area.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -185,6 +185,23 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="ch.ninecode.model.ControlArea#ControlAreaGeneratingUnit" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ControlAreaGeneratingUnit:List[String]"></a>
+      <a id="ControlAreaGeneratingUnit:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ControlAreaGeneratingUnit</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.ControlArea@ControlAreaGeneratingUnit:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="ControlAreaGeneratingUnit.html" class="extype" name="ch.ninecode.model.ControlAreaGeneratingUnit">ControlAreaGeneratingUnit</a> The generating unit specificaitons for the control area.</p>
     </li><li name="ch.ninecode.model.ControlArea#EnergyArea" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="EnergyArea:String"></a>
       <a id="EnergyArea:String"></a>
@@ -220,6 +237,23 @@
     </span>
       <p class="shortcomment cmt">Return the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Return the superclass object.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The typed superclass nested object.</p></dd></dl></div>
+    </li><li name="ch.ninecode.model.ControlArea#TieFlow" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TieFlow:List[String]"></a>
+      <a id="TieFlow:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">TieFlow</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.ControlArea@TieFlow:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="TieFlow.html" class="extype" name="ch.ninecode.model.TieFlow">TieFlow</a> The tie flows associated with the control area.</p>
     </li><li name="ch.ninecode.model.Element#about" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="about:Boolean"></a>
       <a id="about:Boolean"></a>

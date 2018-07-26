@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>CombinedCycleConfiguration - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.CombinedCycleConfiguration</title>
-          <meta name="description" content="CombinedCycleConfiguration - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.CombinedCycleConfiguration" />
-          <meta name="keywords" content="CombinedCycleConfiguration CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.CombinedCycleConfiguration" />
+          <title>CombinedCycleConfiguration - CIMReader 2.11-2.3.1-2.9.0 API - ch.ninecode.model.CombinedCycleConfiguration</title>
+          <meta name="description" content="CombinedCycleConfiguration - CIMReader 2.11 - 2.3.1 - 2.9.0 API - ch.ninecode.model.CombinedCycleConfiguration" />
+          <meta name="keywords" content="CombinedCycleConfiguration CIMReader 2.11 2.3.1 2.9.0 API ch.ninecode.model.CombinedCycleConfiguration" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,12 +47,12 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">CombinedCycleConfiguration</span><span class="params">(<span name="sup">sup: <a href="RegisteredGenerator.html" class="extype" name="ch.ninecode.model.RegisteredGenerator">RegisteredGenerator</a></span>, <span name="primaryConfiguration">primaryConfiguration: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="CombinedCycleLogicalConfiguration">CombinedCycleLogicalConfiguration: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ShutdownFlag">ShutdownFlag: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="StartupFlag">StartupFlag: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">CombinedCycleConfiguration</span><span class="params">(<span name="sup">sup: <a href="RegisteredGenerator.html" class="extype" name="ch.ninecode.model.RegisteredGenerator">RegisteredGenerator</a></span>, <span name="primaryConfiguration">primaryConfiguration: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="CombinedCycleConfigurationMember">CombinedCycleConfigurationMember: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="CombinedCycleLogicalConfiguration">CombinedCycleLogicalConfiguration: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="FromTransitionState">FromTransitionState: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="ShutdownFlag">ShutdownFlag: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="StartupFlag">StartupFlag: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="ToTransitionState">ToTransitionState: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Configuration options for combined cycle units.</p><p>For example, a Combined Cycle with (CT1, CT2, ST1) will have (CT1, ST1) and (CT2, ST1) configurations as part of(1CT + 1STlogicalconfiguration).
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="RegisteredGenerator.html" class="extype" name="ch.ninecode.model.RegisteredGenerator">RegisteredGenerator</a> Reference to the superclass object.</p></dd><dt class="param">primaryConfiguration</dt><dd class="cmt"><p>Whether this CombinedCycleConfiguration is the primary configuration in the associated Logical configuration?</p></dd><dt class="param">CombinedCycleLogicalConfiguration</dt><dd class="cmt"><p><a href="CombinedCycleLogicalConfiguration.html" class="extype" name="ch.ninecode.model.CombinedCycleLogicalConfiguration">CombinedCycleLogicalConfiguration</a> <em>undocumented</em></p></dd><dt class="param">ShutdownFlag</dt><dd class="cmt"><p>Whether Combined Cycle Plant can be shut-down in this Configuration?</p></dd><dt class="param">StartupFlag</dt><dd class="cmt"><p>Whether Combined Cycle Plant can be started in this Logical Configuration?</p></dd></dl><div class="toggleContainer block">
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="RegisteredGenerator.html" class="extype" name="ch.ninecode.model.RegisteredGenerator">RegisteredGenerator</a> Reference to the superclass object.</p></dd><dt class="param">primaryConfiguration</dt><dd class="cmt"><p>Whether this CombinedCycleConfiguration is the primary configuration in the associated Logical configuration?</p></dd><dt class="param">CombinedCycleConfigurationMember</dt><dd class="cmt"><p><a href="CombinedCycleConfigurationMember.html" class="extype" name="ch.ninecode.model.CombinedCycleConfigurationMember">CombinedCycleConfigurationMember</a> <em>undocumented</em></p></dd><dt class="param">CombinedCycleLogicalConfiguration</dt><dd class="cmt"><p><a href="CombinedCycleLogicalConfiguration.html" class="extype" name="ch.ninecode.model.CombinedCycleLogicalConfiguration">CombinedCycleLogicalConfiguration</a> <em>undocumented</em></p></dd><dt class="param">FromTransitionState</dt><dd class="cmt"><p><a href="CombinedCycleTransitionState.html" class="extype" name="ch.ninecode.model.CombinedCycleTransitionState">CombinedCycleTransitionState</a> <em>undocumented</em></p></dd><dt class="param">ShutdownFlag</dt><dd class="cmt"><p>Whether Combined Cycle Plant can be shut-down in this Configuration?</p></dd><dt class="param">StartupFlag</dt><dd class="cmt"><p>Whether Combined Cycle Plant can be started in this Logical Configuration?</p></dd><dt class="param">ToTransitionState</dt><dd class="cmt"><p><a href="CombinedCycleTransitionState.html" class="extype" name="ch.ninecode.model.CombinedCycleTransitionState">CombinedCycleTransitionState</a> <em>undocumented</em></p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -109,7 +109,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.CombinedCycleConfiguration#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.RegisteredGenerator,primaryConfiguration:Boolean,CombinedCycleLogicalConfiguration:String,ShutdownFlag:Boolean,StartupFlag:Boolean):ch.ninecode.model.CombinedCycleConfiguration"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.RegisteredGenerator,primaryConfiguration:Boolean,CombinedCycleConfigurationMember:List[String],CombinedCycleLogicalConfiguration:String,FromTransitionState:List[String],ShutdownFlag:Boolean,StartupFlag:Boolean,ToTransitionState:List[String]):ch.ninecode.model.CombinedCycleConfiguration"></a>
       <a id="&lt;init&gt;:CombinedCycleConfiguration"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -117,14 +117,14 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">CombinedCycleConfiguration</span><span class="params">(<span name="sup">sup: <a href="RegisteredGenerator.html" class="extype" name="ch.ninecode.model.RegisteredGenerator">RegisteredGenerator</a></span>, <span name="primaryConfiguration">primaryConfiguration: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="CombinedCycleLogicalConfiguration">CombinedCycleLogicalConfiguration: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ShutdownFlag">ShutdownFlag: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="StartupFlag">StartupFlag: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span>
+        <span class="name">CombinedCycleConfiguration</span><span class="params">(<span name="sup">sup: <a href="RegisteredGenerator.html" class="extype" name="ch.ninecode.model.RegisteredGenerator">RegisteredGenerator</a></span>, <span name="primaryConfiguration">primaryConfiguration: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="CombinedCycleConfigurationMember">CombinedCycleConfigurationMember: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="CombinedCycleLogicalConfiguration">CombinedCycleLogicalConfiguration: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="FromTransitionState">FromTransitionState: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="ShutdownFlag">ShutdownFlag: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="StartupFlag">StartupFlag: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="ToTransitionState">ToTransitionState: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.CombinedCycleConfiguration@&lt;init&gt;(sup:ch.ninecode.model.RegisteredGenerator,primaryConfiguration:Boolean,CombinedCycleLogicalConfiguration:String,ShutdownFlag:Boolean,StartupFlag:Boolean):ch.ninecode.model.CombinedCycleConfiguration" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.CombinedCycleConfiguration@&lt;init&gt;(sup:ch.ninecode.model.RegisteredGenerator,primaryConfiguration:Boolean,CombinedCycleConfigurationMember:List[String],CombinedCycleLogicalConfiguration:String,FromTransitionState:List[String],ShutdownFlag:Boolean,StartupFlag:Boolean,ToTransitionState:List[String]):ch.ninecode.model.CombinedCycleConfiguration" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="RegisteredGenerator.html" class="extype" name="ch.ninecode.model.RegisteredGenerator">RegisteredGenerator</a> Reference to the superclass object.</p></dd><dt class="param">primaryConfiguration</dt><dd class="cmt"><p>Whether this CombinedCycleConfiguration is the primary configuration in the associated Logical configuration?</p></dd><dt class="param">CombinedCycleLogicalConfiguration</dt><dd class="cmt"><p><a href="CombinedCycleLogicalConfiguration.html" class="extype" name="ch.ninecode.model.CombinedCycleLogicalConfiguration">CombinedCycleLogicalConfiguration</a> <em>undocumented</em></p></dd><dt class="param">ShutdownFlag</dt><dd class="cmt"><p>Whether Combined Cycle Plant can be shut-down in this Configuration?</p></dd><dt class="param">StartupFlag</dt><dd class="cmt"><p>Whether Combined Cycle Plant can be started in this Logical Configuration?</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="RegisteredGenerator.html" class="extype" name="ch.ninecode.model.RegisteredGenerator">RegisteredGenerator</a> Reference to the superclass object.</p></dd><dt class="param">primaryConfiguration</dt><dd class="cmt"><p>Whether this CombinedCycleConfiguration is the primary configuration in the associated Logical configuration?</p></dd><dt class="param">CombinedCycleConfigurationMember</dt><dd class="cmt"><p><a href="CombinedCycleConfigurationMember.html" class="extype" name="ch.ninecode.model.CombinedCycleConfigurationMember">CombinedCycleConfigurationMember</a> <em>undocumented</em></p></dd><dt class="param">CombinedCycleLogicalConfiguration</dt><dd class="cmt"><p><a href="CombinedCycleLogicalConfiguration.html" class="extype" name="ch.ninecode.model.CombinedCycleLogicalConfiguration">CombinedCycleLogicalConfiguration</a> <em>undocumented</em></p></dd><dt class="param">FromTransitionState</dt><dd class="cmt"><p><a href="CombinedCycleTransitionState.html" class="extype" name="ch.ninecode.model.CombinedCycleTransitionState">CombinedCycleTransitionState</a> <em>undocumented</em></p></dd><dt class="param">ShutdownFlag</dt><dd class="cmt"><p>Whether Combined Cycle Plant can be shut-down in this Configuration?</p></dd><dt class="param">StartupFlag</dt><dd class="cmt"><p>Whether Combined Cycle Plant can be started in this Logical Configuration?</p></dd><dt class="param">ToTransitionState</dt><dd class="cmt"><p><a href="CombinedCycleTransitionState.html" class="extype" name="ch.ninecode.model.CombinedCycleTransitionState">CombinedCycleTransitionState</a> <em>undocumented</em></p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -185,6 +185,23 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="ch.ninecode.model.CombinedCycleConfiguration#CombinedCycleConfigurationMember" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="CombinedCycleConfigurationMember:List[String]"></a>
+      <a id="CombinedCycleConfigurationMember:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CombinedCycleConfigurationMember</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.CombinedCycleConfiguration@CombinedCycleConfigurationMember:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="CombinedCycleConfigurationMember.html" class="extype" name="ch.ninecode.model.CombinedCycleConfigurationMember">CombinedCycleConfigurationMember</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="CombinedCycleConfigurationMember.html" class="extype" name="ch.ninecode.model.CombinedCycleConfigurationMember">CombinedCycleConfigurationMember</a> <em>undocumented</em></p></div></div>
     </li><li name="ch.ninecode.model.CombinedCycleConfiguration#CombinedCycleLogicalConfiguration" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="CombinedCycleLogicalConfiguration:String"></a>
       <a id="CombinedCycleLogicalConfiguration:String"></a>
@@ -202,6 +219,23 @@
       </a>
     </span>
       <p class="shortcomment cmt"><a href="CombinedCycleLogicalConfiguration.html" class="extype" name="ch.ninecode.model.CombinedCycleLogicalConfiguration">CombinedCycleLogicalConfiguration</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="CombinedCycleLogicalConfiguration.html" class="extype" name="ch.ninecode.model.CombinedCycleLogicalConfiguration">CombinedCycleLogicalConfiguration</a> <em>undocumented</em></p></div></div>
+    </li><li name="ch.ninecode.model.CombinedCycleConfiguration#FromTransitionState" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="FromTransitionState:List[String]"></a>
+      <a id="FromTransitionState:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">FromTransitionState</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.CombinedCycleConfiguration@FromTransitionState:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="CombinedCycleTransitionState.html" class="extype" name="ch.ninecode.model.CombinedCycleTransitionState">CombinedCycleTransitionState</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="CombinedCycleTransitionState.html" class="extype" name="ch.ninecode.model.CombinedCycleTransitionState">CombinedCycleTransitionState</a> <em>undocumented</em></p></div></div>
     </li><li name="ch.ninecode.model.CombinedCycleConfiguration#RegisteredGenerator" visbl="pub" data-isabs="false" fullComment="yes" group="Hierarchy">
       <a id="RegisteredGenerator:ch.ninecode.model.RegisteredGenerator"></a>
       <a id="RegisteredGenerator:RegisteredGenerator"></a>
@@ -254,6 +288,23 @@
       </a>
     </span>
       <p class="shortcomment cmt">Whether Combined Cycle Plant can be started in this Logical Configuration?</p>
+    </li><li name="ch.ninecode.model.CombinedCycleConfiguration#ToTransitionState" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ToTransitionState:List[String]"></a>
+      <a id="ToTransitionState:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ToTransitionState</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.CombinedCycleConfiguration@ToTransitionState:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="CombinedCycleTransitionState.html" class="extype" name="ch.ninecode.model.CombinedCycleTransitionState">CombinedCycleTransitionState</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="CombinedCycleTransitionState.html" class="extype" name="ch.ninecode.model.CombinedCycleTransitionState">CombinedCycleTransitionState</a> <em>undocumented</em></p></div></div>
     </li><li name="ch.ninecode.model.Element#about" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="about:Boolean"></a>
       <a id="about:Boolean"></a>

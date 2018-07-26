@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>SwitchingStepGroup - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.SwitchingStepGroup</title>
-          <meta name="description" content="SwitchingStepGroup - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.SwitchingStepGroup" />
-          <meta name="keywords" content="SwitchingStepGroup CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.SwitchingStepGroup" />
+          <title>SwitchingStepGroup - CIMReader 2.11-2.3.1-2.9.0 API - ch.ninecode.model.SwitchingStepGroup</title>
+          <meta name="description" content="SwitchingStepGroup - CIMReader 2.11 - 2.3.1 - 2.9.0 API - ch.ninecode.model.SwitchingStepGroup" />
+          <meta name="keywords" content="SwitchingStepGroup CIMReader 2.11 2.3.1 2.9.0 API ch.ninecode.model.SwitchingStepGroup" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,12 +47,12 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">SwitchingStepGroup</span><span class="params">(<span name="sup">sup: <a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a></span>, <span name="isFreeSequence">isFreeSequence: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="sequenceNumber">sequenceNumber: <span class="extype" name="scala.Int">Int</span></span>, <span name="SwitchingPlan">SwitchingPlan: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">SwitchingStepGroup</span><span class="params">(<span name="sup">sup: <a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a></span>, <span name="isFreeSequence">isFreeSequence: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="sequenceNumber">sequenceNumber: <span class="extype" name="scala.Int">Int</span></span>, <span name="ClearanceActions">ClearanceActions: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="CutActions">CutActions: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="EnergySourceActions">EnergySourceActions: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="GenericActions">GenericActions: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="GroundActions">GroundActions: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="JumperActions">JumperActions: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="SwitchActions">SwitchActions: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="SwitchingPlan">SwitchingPlan: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="TagActions">TagActions: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A logical step, grouping atomic switching steps that are important to distinguish when they may change topology (e.g. placing a jumper between two cuts).
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a> Reference to the superclass object.</p></dd><dt class="param">isFreeSequence</dt><dd class="cmt"><p>If true, the sequence number serves for presentation purposes only, and the activity itself may be executed at any time.</p></dd><dt class="param">sequenceNumber</dt><dd class="cmt"><p>Order of this activity in the sequence of activities within the switching plan.</p></dd><dt class="param">SwitchingPlan</dt><dd class="cmt"><p><a href="SwitchingPlan.html" class="extype" name="ch.ninecode.model.SwitchingPlan">SwitchingPlan</a> Switching plan to which this group belongs.</p></dd></dl><div class="toggleContainer block">
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a> Reference to the superclass object.</p></dd><dt class="param">isFreeSequence</dt><dd class="cmt"><p>If true, the sequence number serves for presentation purposes only, and the activity itself may be executed at any time.</p></dd><dt class="param">sequenceNumber</dt><dd class="cmt"><p>Order of this activity in the sequence of activities within the switching plan.</p></dd><dt class="param">ClearanceActions</dt><dd class="cmt"><p><a href="ClearanceAction.html" class="extype" name="ch.ninecode.model.ClearanceAction">ClearanceAction</a> All clearance action steps in this group.</p></dd><dt class="param">CutActions</dt><dd class="cmt"><p><a href="CutAction.html" class="extype" name="ch.ninecode.model.CutAction">CutAction</a> All cut action steps in this group.</p></dd><dt class="param">EnergySourceActions</dt><dd class="cmt"><p><a href="EnergySourceAction.html" class="extype" name="ch.ninecode.model.EnergySourceAction">EnergySourceAction</a> All energy source action steps in this group.</p></dd><dt class="param">GenericActions</dt><dd class="cmt"><p><a href="GenericAction.html" class="extype" name="ch.ninecode.model.GenericAction">GenericAction</a> All generic action steps in this group.</p></dd><dt class="param">GroundActions</dt><dd class="cmt"><p><a href="GroundAction.html" class="extype" name="ch.ninecode.model.GroundAction">GroundAction</a> All ground action steps in this group.</p></dd><dt class="param">JumperActions</dt><dd class="cmt"><p><a href="JumperAction.html" class="extype" name="ch.ninecode.model.JumperAction">JumperAction</a> All jumper action steps in this group.</p></dd><dt class="param">SwitchActions</dt><dd class="cmt"><p><a href="SwitchAction.html" class="extype" name="ch.ninecode.model.SwitchAction">SwitchAction</a> All switch action steps in this group.</p></dd><dt class="param">SwitchingPlan</dt><dd class="cmt"><p><a href="SwitchingPlan.html" class="extype" name="ch.ninecode.model.SwitchingPlan">SwitchingPlan</a> Switching plan to which this group belongs.</p></dd><dt class="param">TagActions</dt><dd class="cmt"><p><a href="TagAction.html" class="extype" name="ch.ninecode.model.TagAction">TagAction</a> All tag action steps in this group.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -109,7 +109,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.SwitchingStepGroup#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.Document,isFreeSequence:Boolean,sequenceNumber:Int,SwitchingPlan:String):ch.ninecode.model.SwitchingStepGroup"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.Document,isFreeSequence:Boolean,sequenceNumber:Int,ClearanceActions:List[String],CutActions:List[String],EnergySourceActions:List[String],GenericActions:List[String],GroundActions:List[String],JumperActions:List[String],SwitchActions:List[String],SwitchingPlan:String,TagActions:List[String]):ch.ninecode.model.SwitchingStepGroup"></a>
       <a id="&lt;init&gt;:SwitchingStepGroup"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -117,14 +117,14 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">SwitchingStepGroup</span><span class="params">(<span name="sup">sup: <a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a></span>, <span name="isFreeSequence">isFreeSequence: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="sequenceNumber">sequenceNumber: <span class="extype" name="scala.Int">Int</span></span>, <span name="SwitchingPlan">SwitchingPlan: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
+        <span class="name">SwitchingStepGroup</span><span class="params">(<span name="sup">sup: <a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a></span>, <span name="isFreeSequence">isFreeSequence: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="sequenceNumber">sequenceNumber: <span class="extype" name="scala.Int">Int</span></span>, <span name="ClearanceActions">ClearanceActions: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="CutActions">CutActions: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="EnergySourceActions">EnergySourceActions: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="GenericActions">GenericActions: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="GroundActions">GroundActions: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="JumperActions">JumperActions: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="SwitchActions">SwitchActions: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="SwitchingPlan">SwitchingPlan: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="TagActions">TagActions: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.SwitchingStepGroup@&lt;init&gt;(sup:ch.ninecode.model.Document,isFreeSequence:Boolean,sequenceNumber:Int,SwitchingPlan:String):ch.ninecode.model.SwitchingStepGroup" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.SwitchingStepGroup@&lt;init&gt;(sup:ch.ninecode.model.Document,isFreeSequence:Boolean,sequenceNumber:Int,ClearanceActions:List[String],CutActions:List[String],EnergySourceActions:List[String],GenericActions:List[String],GroundActions:List[String],JumperActions:List[String],SwitchActions:List[String],SwitchingPlan:String,TagActions:List[String]):ch.ninecode.model.SwitchingStepGroup" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a> Reference to the superclass object.</p></dd><dt class="param">isFreeSequence</dt><dd class="cmt"><p>If true, the sequence number serves for presentation purposes only, and the activity itself may be executed at any time.</p></dd><dt class="param">sequenceNumber</dt><dd class="cmt"><p>Order of this activity in the sequence of activities within the switching plan.</p></dd><dt class="param">SwitchingPlan</dt><dd class="cmt"><p><a href="SwitchingPlan.html" class="extype" name="ch.ninecode.model.SwitchingPlan">SwitchingPlan</a> Switching plan to which this group belongs.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a> Reference to the superclass object.</p></dd><dt class="param">isFreeSequence</dt><dd class="cmt"><p>If true, the sequence number serves for presentation purposes only, and the activity itself may be executed at any time.</p></dd><dt class="param">sequenceNumber</dt><dd class="cmt"><p>Order of this activity in the sequence of activities within the switching plan.</p></dd><dt class="param">ClearanceActions</dt><dd class="cmt"><p><a href="ClearanceAction.html" class="extype" name="ch.ninecode.model.ClearanceAction">ClearanceAction</a> All clearance action steps in this group.</p></dd><dt class="param">CutActions</dt><dd class="cmt"><p><a href="CutAction.html" class="extype" name="ch.ninecode.model.CutAction">CutAction</a> All cut action steps in this group.</p></dd><dt class="param">EnergySourceActions</dt><dd class="cmt"><p><a href="EnergySourceAction.html" class="extype" name="ch.ninecode.model.EnergySourceAction">EnergySourceAction</a> All energy source action steps in this group.</p></dd><dt class="param">GenericActions</dt><dd class="cmt"><p><a href="GenericAction.html" class="extype" name="ch.ninecode.model.GenericAction">GenericAction</a> All generic action steps in this group.</p></dd><dt class="param">GroundActions</dt><dd class="cmt"><p><a href="GroundAction.html" class="extype" name="ch.ninecode.model.GroundAction">GroundAction</a> All ground action steps in this group.</p></dd><dt class="param">JumperActions</dt><dd class="cmt"><p><a href="JumperAction.html" class="extype" name="ch.ninecode.model.JumperAction">JumperAction</a> All jumper action steps in this group.</p></dd><dt class="param">SwitchActions</dt><dd class="cmt"><p><a href="SwitchAction.html" class="extype" name="ch.ninecode.model.SwitchAction">SwitchAction</a> All switch action steps in this group.</p></dd><dt class="param">SwitchingPlan</dt><dd class="cmt"><p><a href="SwitchingPlan.html" class="extype" name="ch.ninecode.model.SwitchingPlan">SwitchingPlan</a> Switching plan to which this group belongs.</p></dd><dt class="param">TagActions</dt><dd class="cmt"><p><a href="TagAction.html" class="extype" name="ch.ninecode.model.TagAction">TagAction</a> All tag action steps in this group.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -185,6 +185,40 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="ch.ninecode.model.SwitchingStepGroup#ClearanceActions" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ClearanceActions:List[String]"></a>
+      <a id="ClearanceActions:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ClearanceActions</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.SwitchingStepGroup@ClearanceActions:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="ClearanceAction.html" class="extype" name="ch.ninecode.model.ClearanceAction">ClearanceAction</a> All clearance action steps in this group.</p>
+    </li><li name="ch.ninecode.model.SwitchingStepGroup#CutActions" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CutActions:List[String]"></a>
+      <a id="CutActions:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CutActions</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.SwitchingStepGroup@CutActions:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="CutAction.html" class="extype" name="ch.ninecode.model.CutAction">CutAction</a> All cut action steps in this group.</p>
     </li><li name="ch.ninecode.model.SwitchingStepGroup#Document" visbl="pub" data-isabs="false" fullComment="yes" group="Hierarchy">
       <a id="Document:ch.ninecode.model.Document"></a>
       <a id="Document:Document"></a>
@@ -203,6 +237,91 @@
     </span>
       <p class="shortcomment cmt">Return the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Return the superclass object.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The typed superclass nested object.</p></dd></dl></div>
+    </li><li name="ch.ninecode.model.SwitchingStepGroup#EnergySourceActions" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="EnergySourceActions:List[String]"></a>
+      <a id="EnergySourceActions:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">EnergySourceActions</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.SwitchingStepGroup@EnergySourceActions:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="EnergySourceAction.html" class="extype" name="ch.ninecode.model.EnergySourceAction">EnergySourceAction</a> All energy source action steps in this group.</p>
+    </li><li name="ch.ninecode.model.SwitchingStepGroup#GenericActions" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="GenericActions:List[String]"></a>
+      <a id="GenericActions:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">GenericActions</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.SwitchingStepGroup@GenericActions:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="GenericAction.html" class="extype" name="ch.ninecode.model.GenericAction">GenericAction</a> All generic action steps in this group.</p>
+    </li><li name="ch.ninecode.model.SwitchingStepGroup#GroundActions" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="GroundActions:List[String]"></a>
+      <a id="GroundActions:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">GroundActions</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.SwitchingStepGroup@GroundActions:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="GroundAction.html" class="extype" name="ch.ninecode.model.GroundAction">GroundAction</a> All ground action steps in this group.</p>
+    </li><li name="ch.ninecode.model.SwitchingStepGroup#JumperActions" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="JumperActions:List[String]"></a>
+      <a id="JumperActions:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">JumperActions</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.SwitchingStepGroup@JumperActions:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="JumperAction.html" class="extype" name="ch.ninecode.model.JumperAction">JumperAction</a> All jumper action steps in this group.</p>
+    </li><li name="ch.ninecode.model.SwitchingStepGroup#SwitchActions" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="SwitchActions:List[String]"></a>
+      <a id="SwitchActions:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">SwitchActions</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.SwitchingStepGroup@SwitchActions:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="SwitchAction.html" class="extype" name="ch.ninecode.model.SwitchAction">SwitchAction</a> All switch action steps in this group.</p>
     </li><li name="ch.ninecode.model.SwitchingStepGroup#SwitchingPlan" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="SwitchingPlan:String"></a>
       <a id="SwitchingPlan:String"></a>
@@ -220,6 +339,23 @@
       </a>
     </span>
       <p class="shortcomment cmt"><a href="SwitchingPlan.html" class="extype" name="ch.ninecode.model.SwitchingPlan">SwitchingPlan</a> Switching plan to which this group belongs.</p>
+    </li><li name="ch.ninecode.model.SwitchingStepGroup#TagActions" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TagActions:List[String]"></a>
+      <a id="TagActions:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">TagActions</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.SwitchingStepGroup@TagActions:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="TagAction.html" class="extype" name="ch.ninecode.model.TagAction">TagAction</a> All tag action steps in this group.</p>
     </li><li name="ch.ninecode.model.Element#about" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="about:Boolean"></a>
       <a id="about:Boolean"></a>

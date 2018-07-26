@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>ReactiveCapabilityCurve - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.ReactiveCapabilityCurve</title>
-          <meta name="description" content="ReactiveCapabilityCurve - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.ReactiveCapabilityCurve" />
-          <meta name="keywords" content="ReactiveCapabilityCurve CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.ReactiveCapabilityCurve" />
+          <title>ReactiveCapabilityCurve - CIMReader 2.11-2.3.1-2.9.0 API - ch.ninecode.model.ReactiveCapabilityCurve</title>
+          <meta name="description" content="ReactiveCapabilityCurve - CIMReader 2.11 - 2.3.1 - 2.9.0 API - ch.ninecode.model.ReactiveCapabilityCurve" />
+          <meta name="keywords" content="ReactiveCapabilityCurve CIMReader 2.11 2.3.1 2.9.0 API ch.ninecode.model.ReactiveCapabilityCurve" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,12 +47,12 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">ReactiveCapabilityCurve</span><span class="params">(<span name="sup">sup: <a href="Curve.html" class="extype" name="ch.ninecode.model.Curve">Curve</a></span>, <span name="coolantTemperature">coolantTemperature: <span class="extype" name="scala.Double">Double</span></span>, <span name="hydrogenPressure">hydrogenPressure: <span class="extype" name="scala.Double">Double</span></span>, <span name="SynchronousMachines">SynchronousMachines: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">ReactiveCapabilityCurve</span><span class="params">(<span name="sup">sup: <a href="Curve.html" class="extype" name="ch.ninecode.model.Curve">Curve</a></span>, <span name="coolantTemperature">coolantTemperature: <span class="extype" name="scala.Double">Double</span></span>, <span name="hydrogenPressure">hydrogenPressure: <span class="extype" name="scala.Double">Double</span></span>, <span name="EquivalentInjection">EquivalentInjection: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="InitiallyUsedBySynchronousMachines">InitiallyUsedBySynchronousMachines: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="SynchronousMachines">SynchronousMachines: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Reactive power rating envelope versus the synchronous machine's active power, in both the generating and motoring modes.</p><p>For each active power value there is a corresponding high and low reactive power limit  value. Typically there will be a separate curve for each coolant condition, such as hydrogen pressure.  The Y1 axis values represent reactive minimum and the Y2 axis values represent reactive maximum.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="Curve.html" class="extype" name="ch.ninecode.model.Curve">Curve</a> Reference to the superclass object.</p></dd><dt class="param">coolantTemperature</dt><dd class="cmt"><p>The machine's coolant temperature (e.g., ambient air or stator circulating water).</p></dd><dt class="param">hydrogenPressure</dt><dd class="cmt"><p>The hydrogen coolant pressure</p></dd><dt class="param">SynchronousMachines</dt><dd class="cmt"><p><a href="SynchronousMachine.html" class="extype" name="ch.ninecode.model.SynchronousMachine">SynchronousMachine</a> Synchronous machines using this curve.</p></dd></dl><div class="toggleContainer block">
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="Curve.html" class="extype" name="ch.ninecode.model.Curve">Curve</a> Reference to the superclass object.</p></dd><dt class="param">coolantTemperature</dt><dd class="cmt"><p>The machine's coolant temperature (e.g., ambient air or stator circulating water).</p></dd><dt class="param">hydrogenPressure</dt><dd class="cmt"><p>The hydrogen coolant pressure</p></dd><dt class="param">EquivalentInjection</dt><dd class="cmt"><p><a href="EquivalentInjection.html" class="extype" name="ch.ninecode.model.EquivalentInjection">EquivalentInjection</a> The equivalent injection using this reactive capability curve.</p></dd><dt class="param">InitiallyUsedBySynchronousMachines</dt><dd class="cmt"><p><a href="SynchronousMachine.html" class="extype" name="ch.ninecode.model.SynchronousMachine">SynchronousMachine</a> Synchronous machines using this curve as default.</p></dd><dt class="param">SynchronousMachines</dt><dd class="cmt"><p><a href="SynchronousMachine.html" class="extype" name="ch.ninecode.model.SynchronousMachine">SynchronousMachine</a> Synchronous machines using this curve.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -109,7 +109,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.ReactiveCapabilityCurve#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.Curve,coolantTemperature:Double,hydrogenPressure:Double,SynchronousMachines:List[String]):ch.ninecode.model.ReactiveCapabilityCurve"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.Curve,coolantTemperature:Double,hydrogenPressure:Double,EquivalentInjection:List[String],InitiallyUsedBySynchronousMachines:List[String],SynchronousMachines:List[String]):ch.ninecode.model.ReactiveCapabilityCurve"></a>
       <a id="&lt;init&gt;:ReactiveCapabilityCurve"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -117,14 +117,14 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">ReactiveCapabilityCurve</span><span class="params">(<span name="sup">sup: <a href="Curve.html" class="extype" name="ch.ninecode.model.Curve">Curve</a></span>, <span name="coolantTemperature">coolantTemperature: <span class="extype" name="scala.Double">Double</span></span>, <span name="hydrogenPressure">hydrogenPressure: <span class="extype" name="scala.Double">Double</span></span>, <span name="SynchronousMachines">SynchronousMachines: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
+        <span class="name">ReactiveCapabilityCurve</span><span class="params">(<span name="sup">sup: <a href="Curve.html" class="extype" name="ch.ninecode.model.Curve">Curve</a></span>, <span name="coolantTemperature">coolantTemperature: <span class="extype" name="scala.Double">Double</span></span>, <span name="hydrogenPressure">hydrogenPressure: <span class="extype" name="scala.Double">Double</span></span>, <span name="EquivalentInjection">EquivalentInjection: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="InitiallyUsedBySynchronousMachines">InitiallyUsedBySynchronousMachines: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="SynchronousMachines">SynchronousMachines: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.ReactiveCapabilityCurve@&lt;init&gt;(sup:ch.ninecode.model.Curve,coolantTemperature:Double,hydrogenPressure:Double,SynchronousMachines:List[String]):ch.ninecode.model.ReactiveCapabilityCurve" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.ReactiveCapabilityCurve@&lt;init&gt;(sup:ch.ninecode.model.Curve,coolantTemperature:Double,hydrogenPressure:Double,EquivalentInjection:List[String],InitiallyUsedBySynchronousMachines:List[String],SynchronousMachines:List[String]):ch.ninecode.model.ReactiveCapabilityCurve" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="Curve.html" class="extype" name="ch.ninecode.model.Curve">Curve</a> Reference to the superclass object.</p></dd><dt class="param">coolantTemperature</dt><dd class="cmt"><p>The machine's coolant temperature (e.g., ambient air or stator circulating water).</p></dd><dt class="param">hydrogenPressure</dt><dd class="cmt"><p>The hydrogen coolant pressure</p></dd><dt class="param">SynchronousMachines</dt><dd class="cmt"><p><a href="SynchronousMachine.html" class="extype" name="ch.ninecode.model.SynchronousMachine">SynchronousMachine</a> Synchronous machines using this curve.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="Curve.html" class="extype" name="ch.ninecode.model.Curve">Curve</a> Reference to the superclass object.</p></dd><dt class="param">coolantTemperature</dt><dd class="cmt"><p>The machine's coolant temperature (e.g., ambient air or stator circulating water).</p></dd><dt class="param">hydrogenPressure</dt><dd class="cmt"><p>The hydrogen coolant pressure</p></dd><dt class="param">EquivalentInjection</dt><dd class="cmt"><p><a href="EquivalentInjection.html" class="extype" name="ch.ninecode.model.EquivalentInjection">EquivalentInjection</a> The equivalent injection using this reactive capability curve.</p></dd><dt class="param">InitiallyUsedBySynchronousMachines</dt><dd class="cmt"><p><a href="SynchronousMachine.html" class="extype" name="ch.ninecode.model.SynchronousMachine">SynchronousMachine</a> Synchronous machines using this curve as default.</p></dd><dt class="param">SynchronousMachines</dt><dd class="cmt"><p><a href="SynchronousMachine.html" class="extype" name="ch.ninecode.model.SynchronousMachine">SynchronousMachine</a> Synchronous machines using this curve.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -203,6 +203,40 @@
     </span>
       <p class="shortcomment cmt">Return the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Return the superclass object.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The typed superclass nested object.</p></dd></dl></div>
+    </li><li name="ch.ninecode.model.ReactiveCapabilityCurve#EquivalentInjection" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="EquivalentInjection:List[String]"></a>
+      <a id="EquivalentInjection:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">EquivalentInjection</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.ReactiveCapabilityCurve@EquivalentInjection:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="EquivalentInjection.html" class="extype" name="ch.ninecode.model.EquivalentInjection">EquivalentInjection</a> The equivalent injection using this reactive capability curve.</p>
+    </li><li name="ch.ninecode.model.ReactiveCapabilityCurve#InitiallyUsedBySynchronousMachines" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="InitiallyUsedBySynchronousMachines:List[String]"></a>
+      <a id="InitiallyUsedBySynchronousMachines:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">InitiallyUsedBySynchronousMachines</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.ReactiveCapabilityCurve@InitiallyUsedBySynchronousMachines:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="SynchronousMachine.html" class="extype" name="ch.ninecode.model.SynchronousMachine">SynchronousMachine</a> Synchronous machines using this curve as default.</p>
     </li><li name="ch.ninecode.model.ReactiveCapabilityCurve#SynchronousMachines" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="SynchronousMachines:List[String]"></a>
       <a id="SynchronousMachines:List[String]"></a>

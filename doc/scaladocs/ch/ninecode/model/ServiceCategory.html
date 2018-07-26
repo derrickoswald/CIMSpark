@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>ServiceCategory - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.ServiceCategory</title>
-          <meta name="description" content="ServiceCategory - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.ServiceCategory" />
-          <meta name="keywords" content="ServiceCategory CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.ServiceCategory" />
+          <title>ServiceCategory - CIMReader 2.11-2.3.1-2.9.0 API - ch.ninecode.model.ServiceCategory</title>
+          <meta name="description" content="ServiceCategory - CIMReader 2.11 - 2.3.1 - 2.9.0 API - ch.ninecode.model.ServiceCategory" />
+          <meta name="keywords" content="ServiceCategory CIMReader 2.11 2.3.1 2.9.0 API ch.ninecode.model.ServiceCategory" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,12 +47,12 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">ServiceCategory</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="kind">kind: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">ServiceCategory</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="kind">kind: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ConfigurationEvents">ConfigurationEvents: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="CustomerAgreements">CustomerAgreements: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="PricingStructures">PricingStructures: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="UsagePoints">UsagePoints: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Category of service provided to the customer.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">kind</dt><dd class="cmt"><p>Kind of service.</p></dd></dl><div class="toggleContainer block">
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">kind</dt><dd class="cmt"><p>Kind of service.</p></dd><dt class="param">ConfigurationEvents</dt><dd class="cmt"><p><a href="ConfigurationEvent.html" class="extype" name="ch.ninecode.model.ConfigurationEvent">ConfigurationEvent</a> All configuration events created for this service category.</p></dd><dt class="param">CustomerAgreements</dt><dd class="cmt"><p><a href="CustomerAgreement.html" class="extype" name="ch.ninecode.model.CustomerAgreement">CustomerAgreement</a> All customer agreements with this service category.</p></dd><dt class="param">PricingStructures</dt><dd class="cmt"><p><a href="PricingStructure.html" class="extype" name="ch.ninecode.model.PricingStructure">PricingStructure</a> All pricing structures applicable to this service category.</p></dd><dt class="param">UsagePoints</dt><dd class="cmt"><p><a href="UsagePoint.html" class="extype" name="ch.ninecode.model.UsagePoint">UsagePoint</a> All usage points that deliver this category of service.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -109,7 +109,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.ServiceCategory#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,kind:String):ch.ninecode.model.ServiceCategory"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,kind:String,ConfigurationEvents:List[String],CustomerAgreements:List[String],PricingStructures:List[String],UsagePoints:List[String]):ch.ninecode.model.ServiceCategory"></a>
       <a id="&lt;init&gt;:ServiceCategory"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -117,14 +117,14 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">ServiceCategory</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="kind">kind: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
+        <span class="name">ServiceCategory</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="kind">kind: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ConfigurationEvents">ConfigurationEvents: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="CustomerAgreements">CustomerAgreements: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="PricingStructures">PricingStructures: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="UsagePoints">UsagePoints: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.ServiceCategory@&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,kind:String):ch.ninecode.model.ServiceCategory" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.ServiceCategory@&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,kind:String,ConfigurationEvents:List[String],CustomerAgreements:List[String],PricingStructures:List[String],UsagePoints:List[String]):ch.ninecode.model.ServiceCategory" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">kind</dt><dd class="cmt"><p>Kind of service.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">kind</dt><dd class="cmt"><p>Kind of service.</p></dd><dt class="param">ConfigurationEvents</dt><dd class="cmt"><p><a href="ConfigurationEvent.html" class="extype" name="ch.ninecode.model.ConfigurationEvent">ConfigurationEvent</a> All configuration events created for this service category.</p></dd><dt class="param">CustomerAgreements</dt><dd class="cmt"><p><a href="CustomerAgreement.html" class="extype" name="ch.ninecode.model.CustomerAgreement">CustomerAgreement</a> All customer agreements with this service category.</p></dd><dt class="param">PricingStructures</dt><dd class="cmt"><p><a href="PricingStructure.html" class="extype" name="ch.ninecode.model.PricingStructure">PricingStructure</a> All pricing structures applicable to this service category.</p></dd><dt class="param">UsagePoints</dt><dd class="cmt"><p><a href="UsagePoint.html" class="extype" name="ch.ninecode.model.UsagePoint">UsagePoint</a> All usage points that deliver this category of service.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -185,6 +185,40 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="ch.ninecode.model.ServiceCategory#ConfigurationEvents" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ConfigurationEvents:List[String]"></a>
+      <a id="ConfigurationEvents:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ConfigurationEvents</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.ServiceCategory@ConfigurationEvents:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="ConfigurationEvent.html" class="extype" name="ch.ninecode.model.ConfigurationEvent">ConfigurationEvent</a> All configuration events created for this service category.</p>
+    </li><li name="ch.ninecode.model.ServiceCategory#CustomerAgreements" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CustomerAgreements:List[String]"></a>
+      <a id="CustomerAgreements:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CustomerAgreements</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.ServiceCategory@CustomerAgreements:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="CustomerAgreement.html" class="extype" name="ch.ninecode.model.CustomerAgreement">CustomerAgreement</a> All customer agreements with this service category.</p>
     </li><li name="ch.ninecode.model.ServiceCategory#IdentifiedObject" visbl="pub" data-isabs="false" fullComment="yes" group="Hierarchy">
       <a id="IdentifiedObject:ch.ninecode.model.IdentifiedObject"></a>
       <a id="IdentifiedObject:IdentifiedObject"></a>
@@ -203,6 +237,40 @@
     </span>
       <p class="shortcomment cmt">Return the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Return the superclass object.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The typed superclass nested object.</p></dd></dl></div>
+    </li><li name="ch.ninecode.model.ServiceCategory#PricingStructures" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="PricingStructures:List[String]"></a>
+      <a id="PricingStructures:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">PricingStructures</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.ServiceCategory@PricingStructures:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="PricingStructure.html" class="extype" name="ch.ninecode.model.PricingStructure">PricingStructure</a> All pricing structures applicable to this service category.</p>
+    </li><li name="ch.ninecode.model.ServiceCategory#UsagePoints" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="UsagePoints:List[String]"></a>
+      <a id="UsagePoints:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">UsagePoints</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.ServiceCategory@UsagePoints:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="UsagePoint.html" class="extype" name="ch.ninecode.model.UsagePoint">UsagePoint</a> All usage points that deliver this category of service.</p>
     </li><li name="ch.ninecode.model.Element#about" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="about:Boolean"></a>
       <a id="about:Boolean"></a>

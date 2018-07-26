@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>BusNameMarker - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.BusNameMarker</title>
-          <meta name="description" content="BusNameMarker - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.BusNameMarker" />
-          <meta name="keywords" content="BusNameMarker CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.BusNameMarker" />
+          <title>BusNameMarker - CIMReader 2.11-2.3.1-2.9.0 API - ch.ninecode.model.BusNameMarker</title>
+          <meta name="description" content="BusNameMarker - CIMReader 2.11 - 2.3.1 - 2.9.0 API - ch.ninecode.model.BusNameMarker" />
+          <meta name="keywords" content="BusNameMarker CIMReader 2.11 2.3.1 2.9.0 API ch.ninecode.model.BusNameMarker" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,13 +47,13 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">BusNameMarker</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="priority">priority: <span class="extype" name="scala.Int">Int</span></span>, <span name="ReportingGroup">ReportingGroup: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">BusNameMarker</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="priority">priority: <span class="extype" name="scala.Int">Int</span></span>, <span name="ReportingGroup">ReportingGroup: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Terminal">Terminal: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Used to apply user standard names to topology buses.</p><p>Typically used for &quot;bus/branch&quot; case generation. Associated with one or more terminals that are normally connected with the bus name.    The associated terminals are normally connected by non-retained switches. For a ring bus station configuration, all busbar terminals in the ring are typically associated.   For a breaker and a half scheme, both busbars would normally be associated.  For a ring bus, all busbars would normally be associated.  For a &quot;straight&quot; busbar configuration, normally only the main terminal at the busbar would be associated.
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">priority</dt><dd class="cmt"><p>Priority of bus name marker for use as topology bus name.
-       Use 0 for don t care.  Use 1 for highest priority.  Use 2 as priority is less than 1 and so on.</p></dd><dt class="param">ReportingGroup</dt><dd class="cmt"><p><a href="ReportingGroup.html" class="extype" name="ch.ninecode.model.ReportingGroup">ReportingGroup</a> The reporting group to which this bus name marker belongs.</p></dd></dl><div class="toggleContainer block">
+       Use 0 for don t care.  Use 1 for highest priority.  Use 2 as priority is less than 1 and so on.</p></dd><dt class="param">ReportingGroup</dt><dd class="cmt"><p><a href="ReportingGroup.html" class="extype" name="ch.ninecode.model.ReportingGroup">ReportingGroup</a> The reporting group to which this bus name marker belongs.</p></dd><dt class="param">Terminal</dt><dd class="cmt"><p><a href="ACDCTerminal.html" class="extype" name="ch.ninecode.model.ACDCTerminal">ACDCTerminal</a> The terminals associated with this bus name marker.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -110,7 +110,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.BusNameMarker#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,priority:Int,ReportingGroup:String):ch.ninecode.model.BusNameMarker"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,priority:Int,ReportingGroup:String,Terminal:List[String]):ch.ninecode.model.BusNameMarker"></a>
       <a id="&lt;init&gt;:BusNameMarker"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -118,15 +118,15 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">BusNameMarker</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="priority">priority: <span class="extype" name="scala.Int">Int</span></span>, <span name="ReportingGroup">ReportingGroup: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
+        <span class="name">BusNameMarker</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="priority">priority: <span class="extype" name="scala.Int">Int</span></span>, <span name="ReportingGroup">ReportingGroup: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Terminal">Terminal: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.BusNameMarker@&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,priority:Int,ReportingGroup:String):ch.ninecode.model.BusNameMarker" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.BusNameMarker@&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,priority:Int,ReportingGroup:String,Terminal:List[String]):ch.ninecode.model.BusNameMarker" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">priority</dt><dd class="cmt"><p>Priority of bus name marker for use as topology bus name.
-       Use 0 for don t care.  Use 1 for highest priority.  Use 2 as priority is less than 1 and so on.</p></dd><dt class="param">ReportingGroup</dt><dd class="cmt"><p><a href="ReportingGroup.html" class="extype" name="ch.ninecode.model.ReportingGroup">ReportingGroup</a> The reporting group to which this bus name marker belongs.</p></dd></dl></div>
+       Use 0 for don t care.  Use 1 for highest priority.  Use 2 as priority is less than 1 and so on.</p></dd><dt class="param">ReportingGroup</dt><dd class="cmt"><p><a href="ReportingGroup.html" class="extype" name="ch.ninecode.model.ReportingGroup">ReportingGroup</a> The reporting group to which this bus name marker belongs.</p></dd><dt class="param">Terminal</dt><dd class="cmt"><p><a href="ACDCTerminal.html" class="extype" name="ch.ninecode.model.ACDCTerminal">ACDCTerminal</a> The terminals associated with this bus name marker.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -222,6 +222,23 @@
       </a>
     </span>
       <p class="shortcomment cmt"><a href="ReportingGroup.html" class="extype" name="ch.ninecode.model.ReportingGroup">ReportingGroup</a> The reporting group to which this bus name marker belongs.</p>
+    </li><li name="ch.ninecode.model.BusNameMarker#Terminal" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Terminal:List[String]"></a>
+      <a id="Terminal:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Terminal</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.BusNameMarker@Terminal:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="ACDCTerminal.html" class="extype" name="ch.ninecode.model.ACDCTerminal">ACDCTerminal</a> The terminals associated with this bus name marker.</p>
     </li><li name="ch.ninecode.model.Element#about" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="about:Boolean"></a>
       <a id="about:Boolean"></a>

@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>AggregateNode - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.AggregateNode</title>
-          <meta name="description" content="AggregateNode - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.AggregateNode" />
-          <meta name="keywords" content="AggregateNode CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.AggregateNode" />
+          <title>AggregateNode - CIMReader 2.11-2.3.1-2.9.0 API - ch.ninecode.model.AggregateNode</title>
+          <meta name="description" content="AggregateNode - CIMReader 2.11 - 2.3.1 - 2.9.0 API - ch.ninecode.model.AggregateNode" />
+          <meta name="keywords" content="AggregateNode CIMReader 2.11 2.3.1 2.9.0 API ch.ninecode.model.AggregateNode" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,13 +47,13 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">AggregateNode</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="anodeType">anodeType: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="endEffectiveDate">endEffectiveDate: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="qualifASOrder">qualifASOrder: <span class="extype" name="scala.Int">Int</span></span>, <span name="startEffectiveDate">startEffectiveDate: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Pnode">Pnode: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="RTO">RTO: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="RegisteredResource">RegisteredResource: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="SubControlArea">SubControlArea: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">AggregateNode</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="anodeType">anodeType: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="endEffectiveDate">endEffectiveDate: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="qualifASOrder">qualifASOrder: <span class="extype" name="scala.Int">Int</span></span>, <span name="startEffectiveDate">startEffectiveDate: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="AreaLoadCurve">AreaLoadCurve: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="CnodeDistributionFactor">CnodeDistributionFactor: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Pnode">Pnode: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="RTO">RTO: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="RegisteredResource">RegisteredResource: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="SubControlArea">SubControlArea: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>An aggregated node can define a typed grouping further defined by the AnodeType enumeratuion.</p><p>Types range from System Zone/Regions to Market Energy Regions to Aggregated Loads and Aggregated Generators.
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">anodeType</dt><dd class="cmt"><p>Type of aggregated node</p></dd><dt class="param">endEffectiveDate</dt><dd class="cmt"><p>end effective date</p></dd><dt class="param">qualifASOrder</dt><dd class="cmt"><p>Processing Order for AS self-provisions for this region.
-       The priority of this attribute directs the awards of any resource that resides in overlapping regions. The regions are processed in priority manner.</p></dd><dt class="param">startEffectiveDate</dt><dd class="cmt"><p>start effective date</p></dd><dt class="param">Pnode</dt><dd class="cmt"><p><a href="Pnode.html" class="extype" name="ch.ninecode.model.Pnode">Pnode</a> <em>undocumented</em></p></dd><dt class="param">RTO</dt><dd class="cmt"><p><a href="RTO.html" class="extype" name="ch.ninecode.model.RTO">RTO</a> <em>undocumented</em></p></dd><dt class="param">RegisteredResource</dt><dd class="cmt"><p><a href="RegisteredResource.html" class="extype" name="ch.ninecode.model.RegisteredResource">RegisteredResource</a> <em>undocumented</em></p></dd><dt class="param">SubControlArea</dt><dd class="cmt"><p><a href="SubControlArea.html" class="extype" name="ch.ninecode.model.SubControlArea">SubControlArea</a> <em>undocumented</em></p></dd></dl><div class="toggleContainer block">
+       The priority of this attribute directs the awards of any resource that resides in overlapping regions. The regions are processed in priority manner.</p></dd><dt class="param">startEffectiveDate</dt><dd class="cmt"><p>start effective date</p></dd><dt class="param">AreaLoadCurve</dt><dd class="cmt"><p><a href="AreaLoadCurve.html" class="extype" name="ch.ninecode.model.AreaLoadCurve">AreaLoadCurve</a> <em>undocumented</em></p></dd><dt class="param">CnodeDistributionFactor</dt><dd class="cmt"><p><a href="CnodeDistributionFactor.html" class="extype" name="ch.ninecode.model.CnodeDistributionFactor">CnodeDistributionFactor</a> <em>undocumented</em></p></dd><dt class="param">Pnode</dt><dd class="cmt"><p><a href="Pnode.html" class="extype" name="ch.ninecode.model.Pnode">Pnode</a> <em>undocumented</em></p></dd><dt class="param">RTO</dt><dd class="cmt"><p><a href="RTO.html" class="extype" name="ch.ninecode.model.RTO">RTO</a> <em>undocumented</em></p></dd><dt class="param">RegisteredResource</dt><dd class="cmt"><p><a href="RegisteredResource.html" class="extype" name="ch.ninecode.model.RegisteredResource">RegisteredResource</a> <em>undocumented</em></p></dd><dt class="param">SubControlArea</dt><dd class="cmt"><p><a href="SubControlArea.html" class="extype" name="ch.ninecode.model.SubControlArea">SubControlArea</a> <em>undocumented</em></p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -110,7 +110,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.AggregateNode#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,anodeType:String,endEffectiveDate:String,qualifASOrder:Int,startEffectiveDate:String,Pnode:List[String],RTO:String,RegisteredResource:List[String],SubControlArea:List[String]):ch.ninecode.model.AggregateNode"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,anodeType:String,endEffectiveDate:String,qualifASOrder:Int,startEffectiveDate:String,AreaLoadCurve:List[String],CnodeDistributionFactor:List[String],Pnode:List[String],RTO:String,RegisteredResource:List[String],SubControlArea:List[String]):ch.ninecode.model.AggregateNode"></a>
       <a id="&lt;init&gt;:AggregateNode"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -118,15 +118,15 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">AggregateNode</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="anodeType">anodeType: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="endEffectiveDate">endEffectiveDate: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="qualifASOrder">qualifASOrder: <span class="extype" name="scala.Int">Int</span></span>, <span name="startEffectiveDate">startEffectiveDate: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Pnode">Pnode: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="RTO">RTO: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="RegisteredResource">RegisteredResource: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="SubControlArea">SubControlArea: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
+        <span class="name">AggregateNode</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="anodeType">anodeType: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="endEffectiveDate">endEffectiveDate: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="qualifASOrder">qualifASOrder: <span class="extype" name="scala.Int">Int</span></span>, <span name="startEffectiveDate">startEffectiveDate: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="AreaLoadCurve">AreaLoadCurve: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="CnodeDistributionFactor">CnodeDistributionFactor: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Pnode">Pnode: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="RTO">RTO: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="RegisteredResource">RegisteredResource: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="SubControlArea">SubControlArea: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.AggregateNode@&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,anodeType:String,endEffectiveDate:String,qualifASOrder:Int,startEffectiveDate:String,Pnode:List[String],RTO:String,RegisteredResource:List[String],SubControlArea:List[String]):ch.ninecode.model.AggregateNode" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.AggregateNode@&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,anodeType:String,endEffectiveDate:String,qualifASOrder:Int,startEffectiveDate:String,AreaLoadCurve:List[String],CnodeDistributionFactor:List[String],Pnode:List[String],RTO:String,RegisteredResource:List[String],SubControlArea:List[String]):ch.ninecode.model.AggregateNode" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">anodeType</dt><dd class="cmt"><p>Type of aggregated node</p></dd><dt class="param">endEffectiveDate</dt><dd class="cmt"><p>end effective date</p></dd><dt class="param">qualifASOrder</dt><dd class="cmt"><p>Processing Order for AS self-provisions for this region.
-       The priority of this attribute directs the awards of any resource that resides in overlapping regions. The regions are processed in priority manner.</p></dd><dt class="param">startEffectiveDate</dt><dd class="cmt"><p>start effective date</p></dd><dt class="param">Pnode</dt><dd class="cmt"><p><a href="Pnode.html" class="extype" name="ch.ninecode.model.Pnode">Pnode</a> <em>undocumented</em></p></dd><dt class="param">RTO</dt><dd class="cmt"><p><a href="RTO.html" class="extype" name="ch.ninecode.model.RTO">RTO</a> <em>undocumented</em></p></dd><dt class="param">RegisteredResource</dt><dd class="cmt"><p><a href="RegisteredResource.html" class="extype" name="ch.ninecode.model.RegisteredResource">RegisteredResource</a> <em>undocumented</em></p></dd><dt class="param">SubControlArea</dt><dd class="cmt"><p><a href="SubControlArea.html" class="extype" name="ch.ninecode.model.SubControlArea">SubControlArea</a> <em>undocumented</em></p></dd></dl></div>
+       The priority of this attribute directs the awards of any resource that resides in overlapping regions. The regions are processed in priority manner.</p></dd><dt class="param">startEffectiveDate</dt><dd class="cmt"><p>start effective date</p></dd><dt class="param">AreaLoadCurve</dt><dd class="cmt"><p><a href="AreaLoadCurve.html" class="extype" name="ch.ninecode.model.AreaLoadCurve">AreaLoadCurve</a> <em>undocumented</em></p></dd><dt class="param">CnodeDistributionFactor</dt><dd class="cmt"><p><a href="CnodeDistributionFactor.html" class="extype" name="ch.ninecode.model.CnodeDistributionFactor">CnodeDistributionFactor</a> <em>undocumented</em></p></dd><dt class="param">Pnode</dt><dd class="cmt"><p><a href="Pnode.html" class="extype" name="ch.ninecode.model.Pnode">Pnode</a> <em>undocumented</em></p></dd><dt class="param">RTO</dt><dd class="cmt"><p><a href="RTO.html" class="extype" name="ch.ninecode.model.RTO">RTO</a> <em>undocumented</em></p></dd><dt class="param">RegisteredResource</dt><dd class="cmt"><p><a href="RegisteredResource.html" class="extype" name="ch.ninecode.model.RegisteredResource">RegisteredResource</a> <em>undocumented</em></p></dd><dt class="param">SubControlArea</dt><dd class="cmt"><p><a href="SubControlArea.html" class="extype" name="ch.ninecode.model.SubControlArea">SubControlArea</a> <em>undocumented</em></p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -187,6 +187,40 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="ch.ninecode.model.AggregateNode#AreaLoadCurve" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="AreaLoadCurve:List[String]"></a>
+      <a id="AreaLoadCurve:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">AreaLoadCurve</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.AggregateNode@AreaLoadCurve:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="AreaLoadCurve.html" class="extype" name="ch.ninecode.model.AreaLoadCurve">AreaLoadCurve</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="AreaLoadCurve.html" class="extype" name="ch.ninecode.model.AreaLoadCurve">AreaLoadCurve</a> <em>undocumented</em></p></div></div>
+    </li><li name="ch.ninecode.model.AggregateNode#CnodeDistributionFactor" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="CnodeDistributionFactor:List[String]"></a>
+      <a id="CnodeDistributionFactor:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CnodeDistributionFactor</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.AggregateNode@CnodeDistributionFactor:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="CnodeDistributionFactor.html" class="extype" name="ch.ninecode.model.CnodeDistributionFactor">CnodeDistributionFactor</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="CnodeDistributionFactor.html" class="extype" name="ch.ninecode.model.CnodeDistributionFactor">CnodeDistributionFactor</a> <em>undocumented</em></p></div></div>
     </li><li name="ch.ninecode.model.AggregateNode#IdentifiedObject" visbl="pub" data-isabs="false" fullComment="yes" group="Hierarchy">
       <a id="IdentifiedObject:ch.ninecode.model.IdentifiedObject"></a>
       <a id="IdentifiedObject:IdentifiedObject"></a>

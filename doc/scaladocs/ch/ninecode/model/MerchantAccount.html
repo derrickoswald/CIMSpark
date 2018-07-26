@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>MerchantAccount - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.MerchantAccount</title>
-          <meta name="description" content="MerchantAccount - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.MerchantAccount" />
-          <meta name="keywords" content="MerchantAccount CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.MerchantAccount" />
+          <title>MerchantAccount - CIMReader 2.11-2.3.1-2.9.0 API - ch.ninecode.model.MerchantAccount</title>
+          <meta name="description" content="MerchantAccount - CIMReader 2.11 - 2.3.1 - 2.9.0 API - ch.ninecode.model.MerchantAccount" />
+          <meta name="keywords" content="MerchantAccount CIMReader 2.11 2.3.1 2.9.0 API ch.ninecode.model.MerchantAccount" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,12 +47,12 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">MerchantAccount</span><span class="params">(<span name="sup">sup: <a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a></span>, <span name="currentBalance">currentBalance: <span class="extype" name="scala.Double">Double</span></span>, <span name="provisionalBalance">provisionalBalance: <span class="extype" name="scala.Double">Double</span></span>, <span name="MerchantAgreement">MerchantAgreement: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Transactors">Transactors: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">MerchantAccount</span><span class="params">(<span name="sup">sup: <a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a></span>, <span name="currentBalance">currentBalance: <span class="extype" name="scala.Double">Double</span></span>, <span name="provisionalBalance">provisionalBalance: <span class="extype" name="scala.Double">Double</span></span>, <span name="MerchantAgreement">MerchantAgreement: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Transactors">Transactors: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="VendorShifts">VendorShifts: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>The operating account controlled by merchant agreement, against which the vendor may vend tokens or receipt payments.</p><p>Transactions via vendor shift debit the account and bank deposits via bank statement credit the account.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a> Reference to the superclass object.</p></dd><dt class="param">currentBalance</dt><dd class="cmt"><p>The current operating balance of this account.</p></dd><dt class="param">provisionalBalance</dt><dd class="cmt"><p>The balance of this account after taking into account any pending debits from VendorShift.merchantDebitAmount and pending credits from BankStatement.merchantCreditAmount or credits (see also BankStatement attributes and VendorShift attributes).</p></dd><dt class="param">MerchantAgreement</dt><dd class="cmt"><p><a href="MerchantAgreement.html" class="extype" name="ch.ninecode.model.MerchantAgreement">MerchantAgreement</a> Merchant agreement that instantiated this merchant account.</p></dd><dt class="param">Transactors</dt><dd class="cmt"><p><a href="Transactor.html" class="extype" name="ch.ninecode.model.Transactor">Transactor</a> All transactors this merchant account is registered with.</p></dd></dl><div class="toggleContainer block">
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a> Reference to the superclass object.</p></dd><dt class="param">currentBalance</dt><dd class="cmt"><p>The current operating balance of this account.</p></dd><dt class="param">provisionalBalance</dt><dd class="cmt"><p>The balance of this account after taking into account any pending debits from VendorShift.merchantDebitAmount and pending credits from BankStatement.merchantCreditAmount or credits (see also BankStatement attributes and VendorShift attributes).</p></dd><dt class="param">MerchantAgreement</dt><dd class="cmt"><p><a href="MerchantAgreement.html" class="extype" name="ch.ninecode.model.MerchantAgreement">MerchantAgreement</a> Merchant agreement that instantiated this merchant account.</p></dd><dt class="param">Transactors</dt><dd class="cmt"><p><a href="Transactor.html" class="extype" name="ch.ninecode.model.Transactor">Transactor</a> All transactors this merchant account is registered with.</p></dd><dt class="param">VendorShifts</dt><dd class="cmt"><p><a href="VendorShift.html" class="extype" name="ch.ninecode.model.VendorShift">VendorShift</a> All vendor shifts that operate on this merchant account.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -109,7 +109,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.MerchantAccount#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.Document,currentBalance:Double,provisionalBalance:Double,MerchantAgreement:String,Transactors:List[String]):ch.ninecode.model.MerchantAccount"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.Document,currentBalance:Double,provisionalBalance:Double,MerchantAgreement:String,Transactors:List[String],VendorShifts:List[String]):ch.ninecode.model.MerchantAccount"></a>
       <a id="&lt;init&gt;:MerchantAccount"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -117,14 +117,14 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">MerchantAccount</span><span class="params">(<span name="sup">sup: <a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a></span>, <span name="currentBalance">currentBalance: <span class="extype" name="scala.Double">Double</span></span>, <span name="provisionalBalance">provisionalBalance: <span class="extype" name="scala.Double">Double</span></span>, <span name="MerchantAgreement">MerchantAgreement: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Transactors">Transactors: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
+        <span class="name">MerchantAccount</span><span class="params">(<span name="sup">sup: <a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a></span>, <span name="currentBalance">currentBalance: <span class="extype" name="scala.Double">Double</span></span>, <span name="provisionalBalance">provisionalBalance: <span class="extype" name="scala.Double">Double</span></span>, <span name="MerchantAgreement">MerchantAgreement: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Transactors">Transactors: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="VendorShifts">VendorShifts: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.MerchantAccount@&lt;init&gt;(sup:ch.ninecode.model.Document,currentBalance:Double,provisionalBalance:Double,MerchantAgreement:String,Transactors:List[String]):ch.ninecode.model.MerchantAccount" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.MerchantAccount@&lt;init&gt;(sup:ch.ninecode.model.Document,currentBalance:Double,provisionalBalance:Double,MerchantAgreement:String,Transactors:List[String],VendorShifts:List[String]):ch.ninecode.model.MerchantAccount" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a> Reference to the superclass object.</p></dd><dt class="param">currentBalance</dt><dd class="cmt"><p>The current operating balance of this account.</p></dd><dt class="param">provisionalBalance</dt><dd class="cmt"><p>The balance of this account after taking into account any pending debits from VendorShift.merchantDebitAmount and pending credits from BankStatement.merchantCreditAmount or credits (see also BankStatement attributes and VendorShift attributes).</p></dd><dt class="param">MerchantAgreement</dt><dd class="cmt"><p><a href="MerchantAgreement.html" class="extype" name="ch.ninecode.model.MerchantAgreement">MerchantAgreement</a> Merchant agreement that instantiated this merchant account.</p></dd><dt class="param">Transactors</dt><dd class="cmt"><p><a href="Transactor.html" class="extype" name="ch.ninecode.model.Transactor">Transactor</a> All transactors this merchant account is registered with.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a> Reference to the superclass object.</p></dd><dt class="param">currentBalance</dt><dd class="cmt"><p>The current operating balance of this account.</p></dd><dt class="param">provisionalBalance</dt><dd class="cmt"><p>The balance of this account after taking into account any pending debits from VendorShift.merchantDebitAmount and pending credits from BankStatement.merchantCreditAmount or credits (see also BankStatement attributes and VendorShift attributes).</p></dd><dt class="param">MerchantAgreement</dt><dd class="cmt"><p><a href="MerchantAgreement.html" class="extype" name="ch.ninecode.model.MerchantAgreement">MerchantAgreement</a> Merchant agreement that instantiated this merchant account.</p></dd><dt class="param">Transactors</dt><dd class="cmt"><p><a href="Transactor.html" class="extype" name="ch.ninecode.model.Transactor">Transactor</a> All transactors this merchant account is registered with.</p></dd><dt class="param">VendorShifts</dt><dd class="cmt"><p><a href="VendorShift.html" class="extype" name="ch.ninecode.model.VendorShift">VendorShift</a> All vendor shifts that operate on this merchant account.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -237,6 +237,23 @@
       </a>
     </span>
       <p class="shortcomment cmt"><a href="Transactor.html" class="extype" name="ch.ninecode.model.Transactor">Transactor</a> All transactors this merchant account is registered with.</p>
+    </li><li name="ch.ninecode.model.MerchantAccount#VendorShifts" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="VendorShifts:List[String]"></a>
+      <a id="VendorShifts:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">VendorShifts</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.MerchantAccount@VendorShifts:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="VendorShift.html" class="extype" name="ch.ninecode.model.VendorShift">VendorShift</a> All vendor shifts that operate on this merchant account.</p>
     </li><li name="ch.ninecode.model.Element#about" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="about:Boolean"></a>
       <a id="about:Boolean"></a>

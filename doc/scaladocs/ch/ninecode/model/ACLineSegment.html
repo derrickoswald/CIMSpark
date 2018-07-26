@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>ACLineSegment - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.ACLineSegment</title>
-          <meta name="description" content="ACLineSegment - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.ACLineSegment" />
-          <meta name="keywords" content="ACLineSegment CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.ACLineSegment" />
+          <title>ACLineSegment - CIMReader 2.11-2.3.1-2.9.0 API - ch.ninecode.model.ACLineSegment</title>
+          <meta name="description" content="ACLineSegment - CIMReader 2.11 - 2.3.1 - 2.9.0 API - ch.ninecode.model.ACLineSegment" />
+          <meta name="keywords" content="ACLineSegment CIMReader 2.11 2.3.1 2.9.0 API ch.ninecode.model.ACLineSegment" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,14 +47,14 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">ACLineSegment</span><span class="params">(<span name="sup">sup: <a href="Conductor.html" class="extype" name="ch.ninecode.model.Conductor">Conductor</a></span>, <span name="b0ch">b0ch: <span class="extype" name="scala.Double">Double</span></span>, <span name="bch">bch: <span class="extype" name="scala.Double">Double</span></span>, <span name="g0ch">g0ch: <span class="extype" name="scala.Double">Double</span></span>, <span name="gch">gch: <span class="extype" name="scala.Double">Double</span></span>, <span name="r">r: <span class="extype" name="scala.Double">Double</span></span>, <span name="r0">r0: <span class="extype" name="scala.Double">Double</span></span>, <span name="shortCircuitEndTemperature">shortCircuitEndTemperature: <span class="extype" name="scala.Double">Double</span></span>, <span name="x">x: <span class="extype" name="scala.Double">Double</span></span>, <span name="x0">x0: <span class="extype" name="scala.Double">Double</span></span>, <span name="LineGroundingAction">LineGroundingAction: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="LineJumpingAction">LineJumpingAction: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="PerLengthImpedance">PerLengthImpedance: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">ACLineSegment</span><span class="params">(<span name="sup">sup: <a href="Conductor.html" class="extype" name="ch.ninecode.model.Conductor">Conductor</a></span>, <span name="b0ch">b0ch: <span class="extype" name="scala.Double">Double</span></span>, <span name="bch">bch: <span class="extype" name="scala.Double">Double</span></span>, <span name="g0ch">g0ch: <span class="extype" name="scala.Double">Double</span></span>, <span name="gch">gch: <span class="extype" name="scala.Double">Double</span></span>, <span name="r">r: <span class="extype" name="scala.Double">Double</span></span>, <span name="r0">r0: <span class="extype" name="scala.Double">Double</span></span>, <span name="shortCircuitEndTemperature">shortCircuitEndTemperature: <span class="extype" name="scala.Double">Double</span></span>, <span name="x">x: <span class="extype" name="scala.Double">Double</span></span>, <span name="x0">x0: <span class="extype" name="scala.Double">Double</span></span>, <span name="ACLineSegmentPhases">ACLineSegmentPhases: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Clamp">Clamp: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Cut">Cut: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="LineFaults">LineFaults: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="LineGroundingAction">LineGroundingAction: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="LineJumpingAction">LineJumpingAction: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="PerLengthImpedance">PerLengthImpedance: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A wire or combination of wires, with consistent electrical characteristics, building a single electrical system, used to carry alternating current between points in the power system.</p><p>For symmetrical, transposed 3ph lines, it is sufficient to use  attributes of the line segment, which describe impedances and admittances for the entire length of the segment.  Additionally impedances can be computed by using length and associated per length impedances.
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="Conductor.html" class="extype" name="ch.ninecode.model.Conductor">Conductor</a> Reference to the superclass object.</p></dd><dt class="param">b0ch</dt><dd class="cmt"><p>Zero sequence shunt (charging) susceptance, uniformly distributed, of the entire line section.</p></dd><dt class="param">bch</dt><dd class="cmt"><p>Positive sequence shunt (charging) susceptance, uniformly distributed, of the entire line section.
        This value represents the full charging over the full length of the line.</p></dd><dt class="param">g0ch</dt><dd class="cmt"><p>Zero sequence shunt (charging) conductance, uniformly distributed, of the entire line section.</p></dd><dt class="param">gch</dt><dd class="cmt"><p>Positive sequence shunt (charging) conductance, uniformly distributed, of the entire line section.</p></dd><dt class="param">r</dt><dd class="cmt"><p>Positive sequence series resistance of the entire line section.</p></dd><dt class="param">r0</dt><dd class="cmt"><p>Zero sequence series resistance of the entire line section.</p></dd><dt class="param">shortCircuitEndTemperature</dt><dd class="cmt"><p>Maximum permitted temperature at the end of SC for the calculation of minimum short-circuit currents.
-       Used for short circuit data exchange according to IEC 60909</p></dd><dt class="param">x</dt><dd class="cmt"><p>Positive sequence series reactance of the entire line section.</p></dd><dt class="param">x0</dt><dd class="cmt"><p>Zero sequence series reactance of the entire line section.</p></dd><dt class="param">LineGroundingAction</dt><dd class="cmt"><p><a href="GroundAction.html" class="extype" name="ch.ninecode.model.GroundAction">GroundAction</a> Ground action involving clamp usage (for the case when the ground is applied along the line segment instead of at its terminals).</p></dd><dt class="param">LineJumpingAction</dt><dd class="cmt"><p><a href="JumperAction.html" class="extype" name="ch.ninecode.model.JumperAction">JumperAction</a> Jumper action involving clamp usage (for the case when the jumper is applied along the line segment instead of at its terminals).</p></dd><dt class="param">PerLengthImpedance</dt><dd class="cmt"><p><a href="PerLengthImpedance.html" class="extype" name="ch.ninecode.model.PerLengthImpedance">PerLengthImpedance</a> Per-length impedance of this line segment.</p></dd></dl><div class="toggleContainer block">
+       Used for short circuit data exchange according to IEC 60909</p></dd><dt class="param">x</dt><dd class="cmt"><p>Positive sequence series reactance of the entire line section.</p></dd><dt class="param">x0</dt><dd class="cmt"><p>Zero sequence series reactance of the entire line section.</p></dd><dt class="param">ACLineSegmentPhases</dt><dd class="cmt"><p><a href="ACLineSegmentPhase.html" class="extype" name="ch.ninecode.model.ACLineSegmentPhase">ACLineSegmentPhase</a> The line segment phases which belong to the line segment.</p></dd><dt class="param">Clamp</dt><dd class="cmt"><p><a href="Clamp.html" class="extype" name="ch.ninecode.model.Clamp">Clamp</a> The clamps connected to the line segment.</p></dd><dt class="param">Cut</dt><dd class="cmt"><p><a href="Cut.html" class="extype" name="ch.ninecode.model.Cut">Cut</a> Cuts applied to the line segment.</p></dd><dt class="param">LineFaults</dt><dd class="cmt"><p><a href="LineFault.html" class="extype" name="ch.ninecode.model.LineFault">LineFault</a> The line faults of the line segment.</p></dd><dt class="param">LineGroundingAction</dt><dd class="cmt"><p><a href="GroundAction.html" class="extype" name="ch.ninecode.model.GroundAction">GroundAction</a> Ground action involving clamp usage (for the case when the ground is applied along the line segment instead of at its terminals).</p></dd><dt class="param">LineJumpingAction</dt><dd class="cmt"><p><a href="JumperAction.html" class="extype" name="ch.ninecode.model.JumperAction">JumperAction</a> Jumper action involving clamp usage (for the case when the jumper is applied along the line segment instead of at its terminals).</p></dd><dt class="param">PerLengthImpedance</dt><dd class="cmt"><p><a href="PerLengthImpedance.html" class="extype" name="ch.ninecode.model.PerLengthImpedance">PerLengthImpedance</a> Per-length impedance of this line segment.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -111,7 +111,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.ACLineSegment#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.Conductor,b0ch:Double,bch:Double,g0ch:Double,gch:Double,r:Double,r0:Double,shortCircuitEndTemperature:Double,x:Double,x0:Double,LineGroundingAction:String,LineJumpingAction:String,PerLengthImpedance:String):ch.ninecode.model.ACLineSegment"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.Conductor,b0ch:Double,bch:Double,g0ch:Double,gch:Double,r:Double,r0:Double,shortCircuitEndTemperature:Double,x:Double,x0:Double,ACLineSegmentPhases:List[String],Clamp:List[String],Cut:List[String],LineFaults:List[String],LineGroundingAction:String,LineJumpingAction:String,PerLengthImpedance:String):ch.ninecode.model.ACLineSegment"></a>
       <a id="&lt;init&gt;:ACLineSegment"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -119,16 +119,16 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">ACLineSegment</span><span class="params">(<span name="sup">sup: <a href="Conductor.html" class="extype" name="ch.ninecode.model.Conductor">Conductor</a></span>, <span name="b0ch">b0ch: <span class="extype" name="scala.Double">Double</span></span>, <span name="bch">bch: <span class="extype" name="scala.Double">Double</span></span>, <span name="g0ch">g0ch: <span class="extype" name="scala.Double">Double</span></span>, <span name="gch">gch: <span class="extype" name="scala.Double">Double</span></span>, <span name="r">r: <span class="extype" name="scala.Double">Double</span></span>, <span name="r0">r0: <span class="extype" name="scala.Double">Double</span></span>, <span name="shortCircuitEndTemperature">shortCircuitEndTemperature: <span class="extype" name="scala.Double">Double</span></span>, <span name="x">x: <span class="extype" name="scala.Double">Double</span></span>, <span name="x0">x0: <span class="extype" name="scala.Double">Double</span></span>, <span name="LineGroundingAction">LineGroundingAction: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="LineJumpingAction">LineJumpingAction: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="PerLengthImpedance">PerLengthImpedance: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
+        <span class="name">ACLineSegment</span><span class="params">(<span name="sup">sup: <a href="Conductor.html" class="extype" name="ch.ninecode.model.Conductor">Conductor</a></span>, <span name="b0ch">b0ch: <span class="extype" name="scala.Double">Double</span></span>, <span name="bch">bch: <span class="extype" name="scala.Double">Double</span></span>, <span name="g0ch">g0ch: <span class="extype" name="scala.Double">Double</span></span>, <span name="gch">gch: <span class="extype" name="scala.Double">Double</span></span>, <span name="r">r: <span class="extype" name="scala.Double">Double</span></span>, <span name="r0">r0: <span class="extype" name="scala.Double">Double</span></span>, <span name="shortCircuitEndTemperature">shortCircuitEndTemperature: <span class="extype" name="scala.Double">Double</span></span>, <span name="x">x: <span class="extype" name="scala.Double">Double</span></span>, <span name="x0">x0: <span class="extype" name="scala.Double">Double</span></span>, <span name="ACLineSegmentPhases">ACLineSegmentPhases: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Clamp">Clamp: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Cut">Cut: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="LineFaults">LineFaults: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="LineGroundingAction">LineGroundingAction: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="LineJumpingAction">LineJumpingAction: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="PerLengthImpedance">PerLengthImpedance: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.ACLineSegment@&lt;init&gt;(sup:ch.ninecode.model.Conductor,b0ch:Double,bch:Double,g0ch:Double,gch:Double,r:Double,r0:Double,shortCircuitEndTemperature:Double,x:Double,x0:Double,LineGroundingAction:String,LineJumpingAction:String,PerLengthImpedance:String):ch.ninecode.model.ACLineSegment" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.ACLineSegment@&lt;init&gt;(sup:ch.ninecode.model.Conductor,b0ch:Double,bch:Double,g0ch:Double,gch:Double,r:Double,r0:Double,shortCircuitEndTemperature:Double,x:Double,x0:Double,ACLineSegmentPhases:List[String],Clamp:List[String],Cut:List[String],LineFaults:List[String],LineGroundingAction:String,LineJumpingAction:String,PerLengthImpedance:String):ch.ninecode.model.ACLineSegment" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="Conductor.html" class="extype" name="ch.ninecode.model.Conductor">Conductor</a> Reference to the superclass object.</p></dd><dt class="param">b0ch</dt><dd class="cmt"><p>Zero sequence shunt (charging) susceptance, uniformly distributed, of the entire line section.</p></dd><dt class="param">bch</dt><dd class="cmt"><p>Positive sequence shunt (charging) susceptance, uniformly distributed, of the entire line section.
        This value represents the full charging over the full length of the line.</p></dd><dt class="param">g0ch</dt><dd class="cmt"><p>Zero sequence shunt (charging) conductance, uniformly distributed, of the entire line section.</p></dd><dt class="param">gch</dt><dd class="cmt"><p>Positive sequence shunt (charging) conductance, uniformly distributed, of the entire line section.</p></dd><dt class="param">r</dt><dd class="cmt"><p>Positive sequence series resistance of the entire line section.</p></dd><dt class="param">r0</dt><dd class="cmt"><p>Zero sequence series resistance of the entire line section.</p></dd><dt class="param">shortCircuitEndTemperature</dt><dd class="cmt"><p>Maximum permitted temperature at the end of SC for the calculation of minimum short-circuit currents.
-       Used for short circuit data exchange according to IEC 60909</p></dd><dt class="param">x</dt><dd class="cmt"><p>Positive sequence series reactance of the entire line section.</p></dd><dt class="param">x0</dt><dd class="cmt"><p>Zero sequence series reactance of the entire line section.</p></dd><dt class="param">LineGroundingAction</dt><dd class="cmt"><p><a href="GroundAction.html" class="extype" name="ch.ninecode.model.GroundAction">GroundAction</a> Ground action involving clamp usage (for the case when the ground is applied along the line segment instead of at its terminals).</p></dd><dt class="param">LineJumpingAction</dt><dd class="cmt"><p><a href="JumperAction.html" class="extype" name="ch.ninecode.model.JumperAction">JumperAction</a> Jumper action involving clamp usage (for the case when the jumper is applied along the line segment instead of at its terminals).</p></dd><dt class="param">PerLengthImpedance</dt><dd class="cmt"><p><a href="PerLengthImpedance.html" class="extype" name="ch.ninecode.model.PerLengthImpedance">PerLengthImpedance</a> Per-length impedance of this line segment.</p></dd></dl></div>
+       Used for short circuit data exchange according to IEC 60909</p></dd><dt class="param">x</dt><dd class="cmt"><p>Positive sequence series reactance of the entire line section.</p></dd><dt class="param">x0</dt><dd class="cmt"><p>Zero sequence series reactance of the entire line section.</p></dd><dt class="param">ACLineSegmentPhases</dt><dd class="cmt"><p><a href="ACLineSegmentPhase.html" class="extype" name="ch.ninecode.model.ACLineSegmentPhase">ACLineSegmentPhase</a> The line segment phases which belong to the line segment.</p></dd><dt class="param">Clamp</dt><dd class="cmt"><p><a href="Clamp.html" class="extype" name="ch.ninecode.model.Clamp">Clamp</a> The clamps connected to the line segment.</p></dd><dt class="param">Cut</dt><dd class="cmt"><p><a href="Cut.html" class="extype" name="ch.ninecode.model.Cut">Cut</a> Cuts applied to the line segment.</p></dd><dt class="param">LineFaults</dt><dd class="cmt"><p><a href="LineFault.html" class="extype" name="ch.ninecode.model.LineFault">LineFault</a> The line faults of the line segment.</p></dd><dt class="param">LineGroundingAction</dt><dd class="cmt"><p><a href="GroundAction.html" class="extype" name="ch.ninecode.model.GroundAction">GroundAction</a> Ground action involving clamp usage (for the case when the ground is applied along the line segment instead of at its terminals).</p></dd><dt class="param">LineJumpingAction</dt><dd class="cmt"><p><a href="JumperAction.html" class="extype" name="ch.ninecode.model.JumperAction">JumperAction</a> Jumper action involving clamp usage (for the case when the jumper is applied along the line segment instead of at its terminals).</p></dd><dt class="param">PerLengthImpedance</dt><dd class="cmt"><p><a href="PerLengthImpedance.html" class="extype" name="ch.ninecode.model.PerLengthImpedance">PerLengthImpedance</a> Per-length impedance of this line segment.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -189,6 +189,40 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="ch.ninecode.model.ACLineSegment#ACLineSegmentPhases" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ACLineSegmentPhases:List[String]"></a>
+      <a id="ACLineSegmentPhases:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ACLineSegmentPhases</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.ACLineSegment@ACLineSegmentPhases:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="ACLineSegmentPhase.html" class="extype" name="ch.ninecode.model.ACLineSegmentPhase">ACLineSegmentPhase</a> The line segment phases which belong to the line segment.</p>
+    </li><li name="ch.ninecode.model.ACLineSegment#Clamp" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Clamp:List[String]"></a>
+      <a id="Clamp:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Clamp</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.ACLineSegment@Clamp:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="Clamp.html" class="extype" name="ch.ninecode.model.Clamp">Clamp</a> The clamps connected to the line segment.</p>
     </li><li name="ch.ninecode.model.ACLineSegment#Conductor" visbl="pub" data-isabs="false" fullComment="yes" group="Hierarchy">
       <a id="Conductor:ch.ninecode.model.Conductor"></a>
       <a id="Conductor:Conductor"></a>
@@ -207,6 +241,40 @@
     </span>
       <p class="shortcomment cmt">Return the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Return the superclass object.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The typed superclass nested object.</p></dd></dl></div>
+    </li><li name="ch.ninecode.model.ACLineSegment#Cut" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Cut:List[String]"></a>
+      <a id="Cut:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Cut</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.ACLineSegment@Cut:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="Cut.html" class="extype" name="ch.ninecode.model.Cut">Cut</a> Cuts applied to the line segment.</p>
+    </li><li name="ch.ninecode.model.ACLineSegment#LineFaults" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="LineFaults:List[String]"></a>
+      <a id="LineFaults:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">LineFaults</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.ACLineSegment@LineFaults:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="LineFault.html" class="extype" name="ch.ninecode.model.LineFault">LineFault</a> The line faults of the line segment.</p>
     </li><li name="ch.ninecode.model.ACLineSegment#LineGroundingAction" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="LineGroundingAction:String"></a>
       <a id="LineGroundingAction:String"></a>

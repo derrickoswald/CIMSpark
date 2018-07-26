@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>Diagram - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.Diagram</title>
-          <meta name="description" content="Diagram - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.Diagram" />
-          <meta name="keywords" content="Diagram CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.Diagram" />
+          <title>Diagram - CIMReader 2.11-2.3.1-2.9.0 API - ch.ninecode.model.Diagram</title>
+          <meta name="description" content="Diagram - CIMReader 2.11 - 2.3.1 - 2.9.0 API - ch.ninecode.model.Diagram" />
+          <meta name="keywords" content="Diagram CIMReader 2.11 2.3.1 2.9.0 API ch.ninecode.model.Diagram" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,12 +47,12 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">Diagram</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="orientation">orientation: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="x1InitialView">x1InitialView: <span class="extype" name="scala.Double">Double</span></span>, <span name="x2InitialView">x2InitialView: <span class="extype" name="scala.Double">Double</span></span>, <span name="y1InitialView">y1InitialView: <span class="extype" name="scala.Double">Double</span></span>, <span name="y2InitialView">y2InitialView: <span class="extype" name="scala.Double">Double</span></span>, <span name="DiagramStyle">DiagramStyle: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">Diagram</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="orientation">orientation: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="x1InitialView">x1InitialView: <span class="extype" name="scala.Double">Double</span></span>, <span name="x2InitialView">x2InitialView: <span class="extype" name="scala.Double">Double</span></span>, <span name="y1InitialView">y1InitialView: <span class="extype" name="scala.Double">Double</span></span>, <span name="y2InitialView">y2InitialView: <span class="extype" name="scala.Double">Double</span></span>, <span name="DiagramElements">DiagramElements: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="DiagramStyle">DiagramStyle: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>The diagram being exchanged.</p><p>The coordinate system is a standard Cartesian coordinate system and the orientation attribute defines the orientation.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">orientation</dt><dd class="cmt"><p>Coordinate system orientation of the diagram.</p></dd><dt class="param">x1InitialView</dt><dd class="cmt"><p>X coordinate of the first corner of the initial view.</p></dd><dt class="param">x2InitialView</dt><dd class="cmt"><p>X coordinate of the second corner of the initial view.</p></dd><dt class="param">y1InitialView</dt><dd class="cmt"><p>Y coordinate of the first corner of the initial view.</p></dd><dt class="param">y2InitialView</dt><dd class="cmt"><p>Y coordinate of the second corner of the initial view.</p></dd><dt class="param">DiagramStyle</dt><dd class="cmt"><p><a href="DiagramStyle.html" class="extype" name="ch.ninecode.model.DiagramStyle">DiagramStyle</a> A Diagram may have a DiagramStyle.</p></dd></dl><div class="toggleContainer block">
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">orientation</dt><dd class="cmt"><p>Coordinate system orientation of the diagram.</p></dd><dt class="param">x1InitialView</dt><dd class="cmt"><p>X coordinate of the first corner of the initial view.</p></dd><dt class="param">x2InitialView</dt><dd class="cmt"><p>X coordinate of the second corner of the initial view.</p></dd><dt class="param">y1InitialView</dt><dd class="cmt"><p>Y coordinate of the first corner of the initial view.</p></dd><dt class="param">y2InitialView</dt><dd class="cmt"><p>Y coordinate of the second corner of the initial view.</p></dd><dt class="param">DiagramElements</dt><dd class="cmt"><p><a href="DiagramObject.html" class="extype" name="ch.ninecode.model.DiagramObject">DiagramObject</a> A diagram is made up of multiple diagram objects.</p></dd><dt class="param">DiagramStyle</dt><dd class="cmt"><p><a href="DiagramStyle.html" class="extype" name="ch.ninecode.model.DiagramStyle">DiagramStyle</a> A Diagram may have a DiagramStyle.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -109,7 +109,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.Diagram#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,orientation:String,x1InitialView:Double,x2InitialView:Double,y1InitialView:Double,y2InitialView:Double,DiagramStyle:String):ch.ninecode.model.Diagram"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,orientation:String,x1InitialView:Double,x2InitialView:Double,y1InitialView:Double,y2InitialView:Double,DiagramElements:List[String],DiagramStyle:String):ch.ninecode.model.Diagram"></a>
       <a id="&lt;init&gt;:Diagram"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -117,14 +117,14 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">Diagram</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="orientation">orientation: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="x1InitialView">x1InitialView: <span class="extype" name="scala.Double">Double</span></span>, <span name="x2InitialView">x2InitialView: <span class="extype" name="scala.Double">Double</span></span>, <span name="y1InitialView">y1InitialView: <span class="extype" name="scala.Double">Double</span></span>, <span name="y2InitialView">y2InitialView: <span class="extype" name="scala.Double">Double</span></span>, <span name="DiagramStyle">DiagramStyle: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
+        <span class="name">Diagram</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="orientation">orientation: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="x1InitialView">x1InitialView: <span class="extype" name="scala.Double">Double</span></span>, <span name="x2InitialView">x2InitialView: <span class="extype" name="scala.Double">Double</span></span>, <span name="y1InitialView">y1InitialView: <span class="extype" name="scala.Double">Double</span></span>, <span name="y2InitialView">y2InitialView: <span class="extype" name="scala.Double">Double</span></span>, <span name="DiagramElements">DiagramElements: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="DiagramStyle">DiagramStyle: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.Diagram@&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,orientation:String,x1InitialView:Double,x2InitialView:Double,y1InitialView:Double,y2InitialView:Double,DiagramStyle:String):ch.ninecode.model.Diagram" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.Diagram@&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,orientation:String,x1InitialView:Double,x2InitialView:Double,y1InitialView:Double,y2InitialView:Double,DiagramElements:List[String],DiagramStyle:String):ch.ninecode.model.Diagram" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">orientation</dt><dd class="cmt"><p>Coordinate system orientation of the diagram.</p></dd><dt class="param">x1InitialView</dt><dd class="cmt"><p>X coordinate of the first corner of the initial view.</p></dd><dt class="param">x2InitialView</dt><dd class="cmt"><p>X coordinate of the second corner of the initial view.</p></dd><dt class="param">y1InitialView</dt><dd class="cmt"><p>Y coordinate of the first corner of the initial view.</p></dd><dt class="param">y2InitialView</dt><dd class="cmt"><p>Y coordinate of the second corner of the initial view.</p></dd><dt class="param">DiagramStyle</dt><dd class="cmt"><p><a href="DiagramStyle.html" class="extype" name="ch.ninecode.model.DiagramStyle">DiagramStyle</a> A Diagram may have a DiagramStyle.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">orientation</dt><dd class="cmt"><p>Coordinate system orientation of the diagram.</p></dd><dt class="param">x1InitialView</dt><dd class="cmt"><p>X coordinate of the first corner of the initial view.</p></dd><dt class="param">x2InitialView</dt><dd class="cmt"><p>X coordinate of the second corner of the initial view.</p></dd><dt class="param">y1InitialView</dt><dd class="cmt"><p>Y coordinate of the first corner of the initial view.</p></dd><dt class="param">y2InitialView</dt><dd class="cmt"><p>Y coordinate of the second corner of the initial view.</p></dd><dt class="param">DiagramElements</dt><dd class="cmt"><p><a href="DiagramObject.html" class="extype" name="ch.ninecode.model.DiagramObject">DiagramObject</a> A diagram is made up of multiple diagram objects.</p></dd><dt class="param">DiagramStyle</dt><dd class="cmt"><p><a href="DiagramStyle.html" class="extype" name="ch.ninecode.model.DiagramStyle">DiagramStyle</a> A Diagram may have a DiagramStyle.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -185,6 +185,23 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="ch.ninecode.model.Diagram#DiagramElements" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="DiagramElements:List[String]"></a>
+      <a id="DiagramElements:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">DiagramElements</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.Diagram@DiagramElements:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="DiagramObject.html" class="extype" name="ch.ninecode.model.DiagramObject">DiagramObject</a> A diagram is made up of multiple diagram objects.</p>
     </li><li name="ch.ninecode.model.Diagram#DiagramStyle" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="DiagramStyle:String"></a>
       <a id="DiagramStyle:String"></a>

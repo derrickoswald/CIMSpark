@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>IdentifiedObject - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.IdentifiedObject</title>
-          <meta name="description" content="IdentifiedObject - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.IdentifiedObject" />
-          <meta name="keywords" content="IdentifiedObject CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.IdentifiedObject" />
+          <title>IdentifiedObject - CIMReader 2.11-2.3.1-2.9.0 API - ch.ninecode.model.IdentifiedObject</title>
+          <meta name="description" content="IdentifiedObject - CIMReader 2.11 - 2.3.1 - 2.9.0 API - ch.ninecode.model.IdentifiedObject" />
+          <meta name="keywords" content="IdentifiedObject CIMReader 2.11 2.3.1 2.9.0 API ch.ninecode.model.IdentifiedObject" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,7 +47,7 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">IdentifiedObject</span><span class="params">(<span name="sup">sup: <a href="BasicElement.html" class="extype" name="ch.ninecode.model.BasicElement">BasicElement</a></span>, <span name="aliasName">aliasName: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="description">description: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="mRID">mRID: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="name">name: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">IdentifiedObject</span><span class="params">(<span name="sup">sup: <a href="BasicElement.html" class="extype" name="ch.ninecode.model.BasicElement">BasicElement</a></span>, <span name="aliasName">aliasName: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="description">description: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="mRID">mRID: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="name">name: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="DiagramObjects">DiagramObjects: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Names">Names: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
@@ -55,7 +55,7 @@
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">aliasName</dt><dd class="cmt"><p>The aliasName is free text human readable name of the object alternative to IdentifiedObject.name.
        It may be non unique and may not correlate to a naming hierarchy.</p></dd><dt class="param">description</dt><dd class="cmt"><p>The description is a free human readable text describing or naming the object.
        It may be non unique and may not correlate to a naming hierarchy.</p></dd><dt class="param">mRID</dt><dd class="cmt"><p>Master resource identifier issued by a model authority.
-       The mRID is globally unique within an exchange context. Global uniqueness is easily achieved by using a UUID,  as specified in RFC 4122, for the mRID.  The use of UUID is strongly recommended.</p></dd><dt class="param">name</dt><dd class="cmt"><p>The name is any free human readable and possibly non unique text naming the object.</p></dd></dl><div class="toggleContainer block">
+       The mRID is globally unique within an exchange context. Global uniqueness is easily achieved by using a UUID,  as specified in RFC 4122, for the mRID.  The use of UUID is strongly recommended.</p></dd><dt class="param">name</dt><dd class="cmt"><p>The name is any free human readable and possibly non unique text naming the object.</p></dd><dt class="param">DiagramObjects</dt><dd class="cmt"><p><a href="DiagramObject.html" class="extype" name="ch.ninecode.model.DiagramObject">DiagramObject</a> The diagram objects that are associated with the domain object.</p></dd><dt class="param">Names</dt><dd class="cmt"><p><a href="Name.html" class="extype" name="ch.ninecode.model.Name">Name</a> All names of this identified object.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -112,7 +112,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.IdentifiedObject#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.BasicElement,aliasName:String,description:String,mRID:String,name:String):ch.ninecode.model.IdentifiedObject"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.BasicElement,aliasName:String,description:String,mRID:String,name:String,DiagramObjects:List[String],Names:List[String]):ch.ninecode.model.IdentifiedObject"></a>
       <a id="&lt;init&gt;:IdentifiedObject"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -120,17 +120,17 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">IdentifiedObject</span><span class="params">(<span name="sup">sup: <a href="BasicElement.html" class="extype" name="ch.ninecode.model.BasicElement">BasicElement</a></span>, <span name="aliasName">aliasName: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="description">description: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="mRID">mRID: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="name">name: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
+        <span class="name">IdentifiedObject</span><span class="params">(<span name="sup">sup: <a href="BasicElement.html" class="extype" name="ch.ninecode.model.BasicElement">BasicElement</a></span>, <span name="aliasName">aliasName: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="description">description: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="mRID">mRID: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="name">name: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="DiagramObjects">DiagramObjects: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Names">Names: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.IdentifiedObject@&lt;init&gt;(sup:ch.ninecode.model.BasicElement,aliasName:String,description:String,mRID:String,name:String):ch.ninecode.model.IdentifiedObject" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.IdentifiedObject@&lt;init&gt;(sup:ch.ninecode.model.BasicElement,aliasName:String,description:String,mRID:String,name:String,DiagramObjects:List[String],Names:List[String]):ch.ninecode.model.IdentifiedObject" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">aliasName</dt><dd class="cmt"><p>The aliasName is free text human readable name of the object alternative to IdentifiedObject.name.
        It may be non unique and may not correlate to a naming hierarchy.</p></dd><dt class="param">description</dt><dd class="cmt"><p>The description is a free human readable text describing or naming the object.
        It may be non unique and may not correlate to a naming hierarchy.</p></dd><dt class="param">mRID</dt><dd class="cmt"><p>Master resource identifier issued by a model authority.
-       The mRID is globally unique within an exchange context. Global uniqueness is easily achieved by using a UUID,  as specified in RFC 4122, for the mRID.  The use of UUID is strongly recommended.</p></dd><dt class="param">name</dt><dd class="cmt"><p>The name is any free human readable and possibly non unique text naming the object.</p></dd></dl></div>
+       The mRID is globally unique within an exchange context. Global uniqueness is easily achieved by using a UUID,  as specified in RFC 4122, for the mRID.  The use of UUID is strongly recommended.</p></dd><dt class="param">name</dt><dd class="cmt"><p>The name is any free human readable and possibly non unique text naming the object.</p></dd><dt class="param">DiagramObjects</dt><dd class="cmt"><p><a href="DiagramObject.html" class="extype" name="ch.ninecode.model.DiagramObject">DiagramObject</a> The diagram objects that are associated with the domain object.</p></dd><dt class="param">Names</dt><dd class="cmt"><p><a href="Name.html" class="extype" name="ch.ninecode.model.Name">Name</a> All names of this identified object.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -191,6 +191,23 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="ch.ninecode.model.IdentifiedObject#DiagramObjects" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="DiagramObjects:List[String]"></a>
+      <a id="DiagramObjects:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">DiagramObjects</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.IdentifiedObject@DiagramObjects:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="DiagramObject.html" class="extype" name="ch.ninecode.model.DiagramObject">DiagramObject</a> The diagram objects that are associated with the domain object.</p>
     </li><li name="ch.ninecode.model.IdentifiedObject#Element" visbl="pub" data-isabs="false" fullComment="yes" group="Hierarchy">
       <a id="Element:ch.ninecode.model.Element"></a>
       <a id="Element:Element"></a>
@@ -209,6 +226,23 @@
     </span>
       <p class="shortcomment cmt">Return the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Return the superclass object.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The typed superclass nested object.</p></dd></dl></div>
+    </li><li name="ch.ninecode.model.IdentifiedObject#Names" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Names:List[String]"></a>
+      <a id="Names:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Names</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.IdentifiedObject@Names:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="Name.html" class="extype" name="ch.ninecode.model.Name">Name</a> All names of this identified object.</p>
     </li><li name="ch.ninecode.model.Element#about" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="about:Boolean"></a>
       <a id="about:Boolean"></a>

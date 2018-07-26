@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>BranchGroup - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.BranchGroup</title>
-          <meta name="description" content="BranchGroup - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.BranchGroup" />
-          <meta name="keywords" content="BranchGroup CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.BranchGroup" />
+          <title>BranchGroup - CIMReader 2.11-2.3.1-2.9.0 API - ch.ninecode.model.BranchGroup</title>
+          <meta name="description" content="BranchGroup - CIMReader 2.11 - 2.3.1 - 2.9.0 API - ch.ninecode.model.BranchGroup" />
+          <meta name="keywords" content="BranchGroup CIMReader 2.11 2.3.1 2.9.0 API ch.ninecode.model.BranchGroup" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,12 +47,12 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">BranchGroup</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="maximumActivePower">maximumActivePower: <span class="extype" name="scala.Double">Double</span></span>, <span name="maximumReactivePower">maximumReactivePower: <span class="extype" name="scala.Double">Double</span></span>, <span name="minimumActivePower">minimumActivePower: <span class="extype" name="scala.Double">Double</span></span>, <span name="minimumReactivePower">minimumReactivePower: <span class="extype" name="scala.Double">Double</span></span>, <span name="monitorActivePower">monitorActivePower: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="monitorReactivePower">monitorReactivePower: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">BranchGroup</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="maximumActivePower">maximumActivePower: <span class="extype" name="scala.Double">Double</span></span>, <span name="maximumReactivePower">maximumReactivePower: <span class="extype" name="scala.Double">Double</span></span>, <span name="minimumActivePower">minimumActivePower: <span class="extype" name="scala.Double">Double</span></span>, <span name="minimumReactivePower">minimumReactivePower: <span class="extype" name="scala.Double">Double</span></span>, <span name="monitorActivePower">monitorActivePower: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="monitorReactivePower">monitorReactivePower: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="BranchGroupTerminal">BranchGroupTerminal: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="PinBranchGroup">PinBranchGroup: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A group of branch terminals whose directed flow summation is to be monitored.</p><p>A branch group need not form a cutset of the network.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">maximumActivePower</dt><dd class="cmt"><p>The maximum active power flow.</p></dd><dt class="param">maximumReactivePower</dt><dd class="cmt"><p>The maximum reactive power flow.</p></dd><dt class="param">minimumActivePower</dt><dd class="cmt"><p>The minimum active power flow.</p></dd><dt class="param">minimumReactivePower</dt><dd class="cmt"><p>The minimum reactive power flow.</p></dd><dt class="param">monitorActivePower</dt><dd class="cmt"><p>Monitor the active power flow.</p></dd><dt class="param">monitorReactivePower</dt><dd class="cmt"><p>Monitor the reactive power flow.</p></dd></dl><div class="toggleContainer block">
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">maximumActivePower</dt><dd class="cmt"><p>The maximum active power flow.</p></dd><dt class="param">maximumReactivePower</dt><dd class="cmt"><p>The maximum reactive power flow.</p></dd><dt class="param">minimumActivePower</dt><dd class="cmt"><p>The minimum active power flow.</p></dd><dt class="param">minimumReactivePower</dt><dd class="cmt"><p>The minimum reactive power flow.</p></dd><dt class="param">monitorActivePower</dt><dd class="cmt"><p>Monitor the active power flow.</p></dd><dt class="param">monitorReactivePower</dt><dd class="cmt"><p>Monitor the reactive power flow.</p></dd><dt class="param">BranchGroupTerminal</dt><dd class="cmt"><p><a href="BranchGroupTerminal.html" class="extype" name="ch.ninecode.model.BranchGroupTerminal">BranchGroupTerminal</a> The directed branch group terminals to be summed.</p></dd><dt class="param">PinBranchGroup</dt><dd class="cmt"><p><a href="PinBranchGroup.html" class="extype" name="ch.ninecode.model.PinBranchGroup">PinBranchGroup</a> <em>undocumented</em></p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -109,7 +109,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.BranchGroup#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,maximumActivePower:Double,maximumReactivePower:Double,minimumActivePower:Double,minimumReactivePower:Double,monitorActivePower:Boolean,monitorReactivePower:Boolean):ch.ninecode.model.BranchGroup"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,maximumActivePower:Double,maximumReactivePower:Double,minimumActivePower:Double,minimumReactivePower:Double,monitorActivePower:Boolean,monitorReactivePower:Boolean,BranchGroupTerminal:List[String],PinBranchGroup:List[String]):ch.ninecode.model.BranchGroup"></a>
       <a id="&lt;init&gt;:BranchGroup"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -117,14 +117,14 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">BranchGroup</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="maximumActivePower">maximumActivePower: <span class="extype" name="scala.Double">Double</span></span>, <span name="maximumReactivePower">maximumReactivePower: <span class="extype" name="scala.Double">Double</span></span>, <span name="minimumActivePower">minimumActivePower: <span class="extype" name="scala.Double">Double</span></span>, <span name="minimumReactivePower">minimumReactivePower: <span class="extype" name="scala.Double">Double</span></span>, <span name="monitorActivePower">monitorActivePower: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="monitorReactivePower">monitorReactivePower: <span class="extype" name="scala.Boolean">Boolean</span></span>)</span>
+        <span class="name">BranchGroup</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="maximumActivePower">maximumActivePower: <span class="extype" name="scala.Double">Double</span></span>, <span name="maximumReactivePower">maximumReactivePower: <span class="extype" name="scala.Double">Double</span></span>, <span name="minimumActivePower">minimumActivePower: <span class="extype" name="scala.Double">Double</span></span>, <span name="minimumReactivePower">minimumReactivePower: <span class="extype" name="scala.Double">Double</span></span>, <span name="monitorActivePower">monitorActivePower: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="monitorReactivePower">monitorReactivePower: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="BranchGroupTerminal">BranchGroupTerminal: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="PinBranchGroup">PinBranchGroup: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.BranchGroup@&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,maximumActivePower:Double,maximumReactivePower:Double,minimumActivePower:Double,minimumReactivePower:Double,monitorActivePower:Boolean,monitorReactivePower:Boolean):ch.ninecode.model.BranchGroup" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.BranchGroup@&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,maximumActivePower:Double,maximumReactivePower:Double,minimumActivePower:Double,minimumReactivePower:Double,monitorActivePower:Boolean,monitorReactivePower:Boolean,BranchGroupTerminal:List[String],PinBranchGroup:List[String]):ch.ninecode.model.BranchGroup" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">maximumActivePower</dt><dd class="cmt"><p>The maximum active power flow.</p></dd><dt class="param">maximumReactivePower</dt><dd class="cmt"><p>The maximum reactive power flow.</p></dd><dt class="param">minimumActivePower</dt><dd class="cmt"><p>The minimum active power flow.</p></dd><dt class="param">minimumReactivePower</dt><dd class="cmt"><p>The minimum reactive power flow.</p></dd><dt class="param">monitorActivePower</dt><dd class="cmt"><p>Monitor the active power flow.</p></dd><dt class="param">monitorReactivePower</dt><dd class="cmt"><p>Monitor the reactive power flow.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">maximumActivePower</dt><dd class="cmt"><p>The maximum active power flow.</p></dd><dt class="param">maximumReactivePower</dt><dd class="cmt"><p>The maximum reactive power flow.</p></dd><dt class="param">minimumActivePower</dt><dd class="cmt"><p>The minimum active power flow.</p></dd><dt class="param">minimumReactivePower</dt><dd class="cmt"><p>The minimum reactive power flow.</p></dd><dt class="param">monitorActivePower</dt><dd class="cmt"><p>Monitor the active power flow.</p></dd><dt class="param">monitorReactivePower</dt><dd class="cmt"><p>Monitor the reactive power flow.</p></dd><dt class="param">BranchGroupTerminal</dt><dd class="cmt"><p><a href="BranchGroupTerminal.html" class="extype" name="ch.ninecode.model.BranchGroupTerminal">BranchGroupTerminal</a> The directed branch group terminals to be summed.</p></dd><dt class="param">PinBranchGroup</dt><dd class="cmt"><p><a href="PinBranchGroup.html" class="extype" name="ch.ninecode.model.PinBranchGroup">PinBranchGroup</a> <em>undocumented</em></p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -185,6 +185,23 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="ch.ninecode.model.BranchGroup#BranchGroupTerminal" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="BranchGroupTerminal:List[String]"></a>
+      <a id="BranchGroupTerminal:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">BranchGroupTerminal</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.BranchGroup@BranchGroupTerminal:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="BranchGroupTerminal.html" class="extype" name="ch.ninecode.model.BranchGroupTerminal">BranchGroupTerminal</a> The directed branch group terminals to be summed.</p>
     </li><li name="ch.ninecode.model.BranchGroup#IdentifiedObject" visbl="pub" data-isabs="false" fullComment="yes" group="Hierarchy">
       <a id="IdentifiedObject:ch.ninecode.model.IdentifiedObject"></a>
       <a id="IdentifiedObject:IdentifiedObject"></a>
@@ -203,6 +220,23 @@
     </span>
       <p class="shortcomment cmt">Return the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Return the superclass object.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The typed superclass nested object.</p></dd></dl></div>
+    </li><li name="ch.ninecode.model.BranchGroup#PinBranchGroup" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="PinBranchGroup:List[String]"></a>
+      <a id="PinBranchGroup:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">PinBranchGroup</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.BranchGroup@PinBranchGroup:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="PinBranchGroup.html" class="extype" name="ch.ninecode.model.PinBranchGroup">PinBranchGroup</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="PinBranchGroup.html" class="extype" name="ch.ninecode.model.PinBranchGroup">PinBranchGroup</a> <em>undocumented</em></p></div></div>
     </li><li name="ch.ninecode.model.Element#about" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="about:Boolean"></a>
       <a id="about:Boolean"></a>

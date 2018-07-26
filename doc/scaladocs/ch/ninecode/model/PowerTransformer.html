@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>PowerTransformer - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.PowerTransformer</title>
-          <meta name="description" content="PowerTransformer - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.PowerTransformer" />
-          <meta name="keywords" content="PowerTransformer CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.PowerTransformer" />
+          <title>PowerTransformer - CIMReader 2.11-2.3.1-2.9.0 API - ch.ninecode.model.PowerTransformer</title>
+          <meta name="description" content="PowerTransformer - CIMReader 2.11 - 2.3.1 - 2.9.0 API - ch.ninecode.model.PowerTransformer" />
+          <meta name="keywords" content="PowerTransformer CIMReader 2.11 2.3.1 2.9.0 API ch.ninecode.model.PowerTransformer" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,7 +47,7 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">PowerTransformer</span><span class="params">(<span name="sup">sup: <a href="ConductingEquipment.html" class="extype" name="ch.ninecode.model.ConductingEquipment">ConductingEquipment</a></span>, <span name="beforeShCircuitHighestOperatingCurrent">beforeShCircuitHighestOperatingCurrent: <span class="extype" name="scala.Double">Double</span></span>, <span name="beforeShCircuitHighestOperatingVoltage">beforeShCircuitHighestOperatingVoltage: <span class="extype" name="scala.Double">Double</span></span>, <span name="beforeShortCircuitAnglePf">beforeShortCircuitAnglePf: <span class="extype" name="scala.Double">Double</span></span>, <span name="highSideMinOperatingU">highSideMinOperatingU: <span class="extype" name="scala.Double">Double</span></span>, <span name="isPartOfGeneratorUnit">isPartOfGeneratorUnit: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="operationalValuesConsidered">operationalValuesConsidered: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="vectorGroup">vectorGroup: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">PowerTransformer</span><span class="params">(<span name="sup">sup: <a href="ConductingEquipment.html" class="extype" name="ch.ninecode.model.ConductingEquipment">ConductingEquipment</a></span>, <span name="beforeShCircuitHighestOperatingCurrent">beforeShCircuitHighestOperatingCurrent: <span class="extype" name="scala.Double">Double</span></span>, <span name="beforeShCircuitHighestOperatingVoltage">beforeShCircuitHighestOperatingVoltage: <span class="extype" name="scala.Double">Double</span></span>, <span name="beforeShortCircuitAnglePf">beforeShortCircuitAnglePf: <span class="extype" name="scala.Double">Double</span></span>, <span name="highSideMinOperatingU">highSideMinOperatingU: <span class="extype" name="scala.Double">Double</span></span>, <span name="isPartOfGeneratorUnit">isPartOfGeneratorUnit: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="operationalValuesConsidered">operationalValuesConsidered: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="vectorGroup">vectorGroup: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="PowerTransformerEnd">PowerTransformerEnd: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="TransformerTanks">TransformerTanks: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
@@ -59,7 +59,7 @@
        A value well established from long-term operating experience of the system. It is used for calculation of the impedance correction factor KG defined in IEC 60909-0</p></dd><dt class="param">isPartOfGeneratorUnit</dt><dd class="cmt"><p>Indicates whether the machine is part of a power station unit.
        Used for short circuit data exchange according to IEC 60909</p></dd><dt class="param">operationalValuesConsidered</dt><dd class="cmt"><p>It is used to define if the data (other attributes related to short circuit data exchange) defines long term operational conditions or not.
        Used for short circuit data exchange according to IEC 60909.</p></dd><dt class="param">vectorGroup</dt><dd class="cmt"><p>Vector group of the transformer for protective relaying, e.g., Dyn1.
-       For unbalanced transformers, this may not be simply determined from the constituent winding connections and phase angle dispacements.</p></dd></dl><div class="toggleContainer block">
+       For unbalanced transformers, this may not be simply determined from the constituent winding connections and phase angle dispacements.</p></dd><dt class="param">PowerTransformerEnd</dt><dd class="cmt"><p><a href="PowerTransformerEnd.html" class="extype" name="ch.ninecode.model.PowerTransformerEnd">PowerTransformerEnd</a> The ends of this power transformer.</p></dd><dt class="param">TransformerTanks</dt><dd class="cmt"><p><a href="TransformerTank.html" class="extype" name="ch.ninecode.model.TransformerTank">TransformerTank</a> All transformers that belong to this bank.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -116,7 +116,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.PowerTransformer#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.ConductingEquipment,beforeShCircuitHighestOperatingCurrent:Double,beforeShCircuitHighestOperatingVoltage:Double,beforeShortCircuitAnglePf:Double,highSideMinOperatingU:Double,isPartOfGeneratorUnit:Boolean,operationalValuesConsidered:Boolean,vectorGroup:String):ch.ninecode.model.PowerTransformer"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.ConductingEquipment,beforeShCircuitHighestOperatingCurrent:Double,beforeShCircuitHighestOperatingVoltage:Double,beforeShortCircuitAnglePf:Double,highSideMinOperatingU:Double,isPartOfGeneratorUnit:Boolean,operationalValuesConsidered:Boolean,vectorGroup:String,PowerTransformerEnd:List[String],TransformerTanks:List[String]):ch.ninecode.model.PowerTransformer"></a>
       <a id="&lt;init&gt;:PowerTransformer"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -124,10 +124,10 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">PowerTransformer</span><span class="params">(<span name="sup">sup: <a href="ConductingEquipment.html" class="extype" name="ch.ninecode.model.ConductingEquipment">ConductingEquipment</a></span>, <span name="beforeShCircuitHighestOperatingCurrent">beforeShCircuitHighestOperatingCurrent: <span class="extype" name="scala.Double">Double</span></span>, <span name="beforeShCircuitHighestOperatingVoltage">beforeShCircuitHighestOperatingVoltage: <span class="extype" name="scala.Double">Double</span></span>, <span name="beforeShortCircuitAnglePf">beforeShortCircuitAnglePf: <span class="extype" name="scala.Double">Double</span></span>, <span name="highSideMinOperatingU">highSideMinOperatingU: <span class="extype" name="scala.Double">Double</span></span>, <span name="isPartOfGeneratorUnit">isPartOfGeneratorUnit: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="operationalValuesConsidered">operationalValuesConsidered: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="vectorGroup">vectorGroup: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
+        <span class="name">PowerTransformer</span><span class="params">(<span name="sup">sup: <a href="ConductingEquipment.html" class="extype" name="ch.ninecode.model.ConductingEquipment">ConductingEquipment</a></span>, <span name="beforeShCircuitHighestOperatingCurrent">beforeShCircuitHighestOperatingCurrent: <span class="extype" name="scala.Double">Double</span></span>, <span name="beforeShCircuitHighestOperatingVoltage">beforeShCircuitHighestOperatingVoltage: <span class="extype" name="scala.Double">Double</span></span>, <span name="beforeShortCircuitAnglePf">beforeShortCircuitAnglePf: <span class="extype" name="scala.Double">Double</span></span>, <span name="highSideMinOperatingU">highSideMinOperatingU: <span class="extype" name="scala.Double">Double</span></span>, <span name="isPartOfGeneratorUnit">isPartOfGeneratorUnit: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="operationalValuesConsidered">operationalValuesConsidered: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="vectorGroup">vectorGroup: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="PowerTransformerEnd">PowerTransformerEnd: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="TransformerTanks">TransformerTanks: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.PowerTransformer@&lt;init&gt;(sup:ch.ninecode.model.ConductingEquipment,beforeShCircuitHighestOperatingCurrent:Double,beforeShCircuitHighestOperatingVoltage:Double,beforeShortCircuitAnglePf:Double,highSideMinOperatingU:Double,isPartOfGeneratorUnit:Boolean,operationalValuesConsidered:Boolean,vectorGroup:String):ch.ninecode.model.PowerTransformer" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.PowerTransformer@&lt;init&gt;(sup:ch.ninecode.model.ConductingEquipment,beforeShCircuitHighestOperatingCurrent:Double,beforeShCircuitHighestOperatingVoltage:Double,beforeShortCircuitAnglePf:Double,highSideMinOperatingU:Double,isPartOfGeneratorUnit:Boolean,operationalValuesConsidered:Boolean,vectorGroup:String,PowerTransformerEnd:List[String],TransformerTanks:List[String]):ch.ninecode.model.PowerTransformer" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -138,7 +138,7 @@
        A value well established from long-term operating experience of the system. It is used for calculation of the impedance correction factor KG defined in IEC 60909-0</p></dd><dt class="param">isPartOfGeneratorUnit</dt><dd class="cmt"><p>Indicates whether the machine is part of a power station unit.
        Used for short circuit data exchange according to IEC 60909</p></dd><dt class="param">operationalValuesConsidered</dt><dd class="cmt"><p>It is used to define if the data (other attributes related to short circuit data exchange) defines long term operational conditions or not.
        Used for short circuit data exchange according to IEC 60909.</p></dd><dt class="param">vectorGroup</dt><dd class="cmt"><p>Vector group of the transformer for protective relaying, e.g., Dyn1.
-       For unbalanced transformers, this may not be simply determined from the constituent winding connections and phase angle dispacements.</p></dd></dl></div>
+       For unbalanced transformers, this may not be simply determined from the constituent winding connections and phase angle dispacements.</p></dd><dt class="param">PowerTransformerEnd</dt><dd class="cmt"><p><a href="PowerTransformerEnd.html" class="extype" name="ch.ninecode.model.PowerTransformerEnd">PowerTransformerEnd</a> The ends of this power transformer.</p></dd><dt class="param">TransformerTanks</dt><dd class="cmt"><p><a href="TransformerTank.html" class="extype" name="ch.ninecode.model.TransformerTank">TransformerTank</a> All transformers that belong to this bank.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -217,6 +217,40 @@
     </span>
       <p class="shortcomment cmt">Return the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Return the superclass object.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The typed superclass nested object.</p></dd></dl></div>
+    </li><li name="ch.ninecode.model.PowerTransformer#PowerTransformerEnd" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="PowerTransformerEnd:List[String]"></a>
+      <a id="PowerTransformerEnd:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">PowerTransformerEnd</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.PowerTransformer@PowerTransformerEnd:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="PowerTransformerEnd.html" class="extype" name="ch.ninecode.model.PowerTransformerEnd">PowerTransformerEnd</a> The ends of this power transformer.</p>
+    </li><li name="ch.ninecode.model.PowerTransformer#TransformerTanks" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TransformerTanks:List[String]"></a>
+      <a id="TransformerTanks:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">TransformerTanks</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.PowerTransformer@TransformerTanks:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="TransformerTank.html" class="extype" name="ch.ninecode.model.TransformerTank">TransformerTank</a> All transformers that belong to this bank.</p>
     </li><li name="ch.ninecode.model.Element#about" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="about:Boolean"></a>
       <a id="about:Boolean"></a>

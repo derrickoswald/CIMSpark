@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>SwitchingPlan - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.SwitchingPlan</title>
-          <meta name="description" content="SwitchingPlan - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.SwitchingPlan" />
-          <meta name="keywords" content="SwitchingPlan CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.SwitchingPlan" />
+          <title>SwitchingPlan - CIMReader 2.11-2.3.1-2.9.0 API - ch.ninecode.model.SwitchingPlan</title>
+          <meta name="description" content="SwitchingPlan - CIMReader 2.11 - 2.3.1 - 2.9.0 API - ch.ninecode.model.SwitchingPlan" />
+          <meta name="keywords" content="SwitchingPlan CIMReader 2.11 2.3.1 2.9.0 API ch.ninecode.model.SwitchingPlan" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,13 +47,13 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">SwitchingPlan</span><span class="params">(<span name="sup">sup: <a href="SwitchingStepGroup.html" class="extype" name="ch.ninecode.model.SwitchingStepGroup">SwitchingStepGroup</a></span>, <span name="purpose">purpose: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="rank">rank: <span class="extype" name="scala.Int">Int</span></span>, <span name="Outage">Outage: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">SwitchingPlan</span><span class="params">(<span name="sup">sup: <a href="SwitchingStepGroup.html" class="extype" name="ch.ninecode.model.SwitchingStepGroup">SwitchingStepGroup</a></span>, <span name="purpose">purpose: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="rank">rank: <span class="extype" name="scala.Int">Int</span></span>, <span name="Outage">Outage: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="SafetyDocuments">SafetyDocuments: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="SwitchingStepGroups">SwitchingStepGroups: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="WorkTasks">WorkTasks: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A sequence of grouped or atomic steps intended to:
 - de-energise equipment or part of the network for safe work, and/or</p><p>- bring back in service previously de-energised equipment or part of the network.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="SwitchingStepGroup.html" class="extype" name="ch.ninecode.model.SwitchingStepGroup">SwitchingStepGroup</a> Reference to the superclass object.</p></dd><dt class="param">purpose</dt><dd class="cmt"><p>Purpose of  this plan, such as whether it is to move the state from normal to some abnormal condition, or to restore the normal state after an abnormal condition, or to perform some kind of optimisation such as correction of overload, voltage control, etc.</p></dd><dt class="param">rank</dt><dd class="cmt"><p>Ranking in comparison to other switching plans.</p></dd><dt class="param">Outage</dt><dd class="cmt"><p><a href="Outage.html" class="extype" name="ch.ninecode.model.Outage">Outage</a> Outage that will be eliminated when this switching plan gets executed.</p></dd></dl><div class="toggleContainer block">
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="SwitchingStepGroup.html" class="extype" name="ch.ninecode.model.SwitchingStepGroup">SwitchingStepGroup</a> Reference to the superclass object.</p></dd><dt class="param">purpose</dt><dd class="cmt"><p>Purpose of  this plan, such as whether it is to move the state from normal to some abnormal condition, or to restore the normal state after an abnormal condition, or to perform some kind of optimisation such as correction of overload, voltage control, etc.</p></dd><dt class="param">rank</dt><dd class="cmt"><p>Ranking in comparison to other switching plans.</p></dd><dt class="param">Outage</dt><dd class="cmt"><p><a href="Outage.html" class="extype" name="ch.ninecode.model.Outage">Outage</a> Outage that will be eliminated when this switching plan gets executed.</p></dd><dt class="param">SafetyDocuments</dt><dd class="cmt"><p><a href="SafetyDocument.html" class="extype" name="ch.ninecode.model.SafetyDocument">SafetyDocument</a> All safety documents applicable to this swtiching plan.</p></dd><dt class="param">SwitchingStepGroups</dt><dd class="cmt"><p><a href="SwitchingStepGroup.html" class="extype" name="ch.ninecode.model.SwitchingStepGroup">SwitchingStepGroup</a> All groups of switching steps within this switching plan.</p></dd><dt class="param">WorkTasks</dt><dd class="cmt"><p><a href="WorkTask.html" class="extype" name="ch.ninecode.model.WorkTask">WorkTask</a> All work tasks to execute this switching plan.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -110,7 +110,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.SwitchingPlan#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.SwitchingStepGroup,purpose:String,rank:Int,Outage:String):ch.ninecode.model.SwitchingPlan"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.SwitchingStepGroup,purpose:String,rank:Int,Outage:String,SafetyDocuments:List[String],SwitchingStepGroups:List[String],WorkTasks:List[String]):ch.ninecode.model.SwitchingPlan"></a>
       <a id="&lt;init&gt;:SwitchingPlan"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -118,14 +118,14 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">SwitchingPlan</span><span class="params">(<span name="sup">sup: <a href="SwitchingStepGroup.html" class="extype" name="ch.ninecode.model.SwitchingStepGroup">SwitchingStepGroup</a></span>, <span name="purpose">purpose: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="rank">rank: <span class="extype" name="scala.Int">Int</span></span>, <span name="Outage">Outage: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
+        <span class="name">SwitchingPlan</span><span class="params">(<span name="sup">sup: <a href="SwitchingStepGroup.html" class="extype" name="ch.ninecode.model.SwitchingStepGroup">SwitchingStepGroup</a></span>, <span name="purpose">purpose: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="rank">rank: <span class="extype" name="scala.Int">Int</span></span>, <span name="Outage">Outage: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="SafetyDocuments">SafetyDocuments: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="SwitchingStepGroups">SwitchingStepGroups: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="WorkTasks">WorkTasks: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.SwitchingPlan@&lt;init&gt;(sup:ch.ninecode.model.SwitchingStepGroup,purpose:String,rank:Int,Outage:String):ch.ninecode.model.SwitchingPlan" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.SwitchingPlan@&lt;init&gt;(sup:ch.ninecode.model.SwitchingStepGroup,purpose:String,rank:Int,Outage:String,SafetyDocuments:List[String],SwitchingStepGroups:List[String],WorkTasks:List[String]):ch.ninecode.model.SwitchingPlan" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="SwitchingStepGroup.html" class="extype" name="ch.ninecode.model.SwitchingStepGroup">SwitchingStepGroup</a> Reference to the superclass object.</p></dd><dt class="param">purpose</dt><dd class="cmt"><p>Purpose of  this plan, such as whether it is to move the state from normal to some abnormal condition, or to restore the normal state after an abnormal condition, or to perform some kind of optimisation such as correction of overload, voltage control, etc.</p></dd><dt class="param">rank</dt><dd class="cmt"><p>Ranking in comparison to other switching plans.</p></dd><dt class="param">Outage</dt><dd class="cmt"><p><a href="Outage.html" class="extype" name="ch.ninecode.model.Outage">Outage</a> Outage that will be eliminated when this switching plan gets executed.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="SwitchingStepGroup.html" class="extype" name="ch.ninecode.model.SwitchingStepGroup">SwitchingStepGroup</a> Reference to the superclass object.</p></dd><dt class="param">purpose</dt><dd class="cmt"><p>Purpose of  this plan, such as whether it is to move the state from normal to some abnormal condition, or to restore the normal state after an abnormal condition, or to perform some kind of optimisation such as correction of overload, voltage control, etc.</p></dd><dt class="param">rank</dt><dd class="cmt"><p>Ranking in comparison to other switching plans.</p></dd><dt class="param">Outage</dt><dd class="cmt"><p><a href="Outage.html" class="extype" name="ch.ninecode.model.Outage">Outage</a> Outage that will be eliminated when this switching plan gets executed.</p></dd><dt class="param">SafetyDocuments</dt><dd class="cmt"><p><a href="SafetyDocument.html" class="extype" name="ch.ninecode.model.SafetyDocument">SafetyDocument</a> All safety documents applicable to this swtiching plan.</p></dd><dt class="param">SwitchingStepGroups</dt><dd class="cmt"><p><a href="SwitchingStepGroup.html" class="extype" name="ch.ninecode.model.SwitchingStepGroup">SwitchingStepGroup</a> All groups of switching steps within this switching plan.</p></dd><dt class="param">WorkTasks</dt><dd class="cmt"><p><a href="WorkTask.html" class="extype" name="ch.ninecode.model.WorkTask">WorkTask</a> All work tasks to execute this switching plan.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -203,6 +203,23 @@
       </a>
     </span>
       <p class="shortcomment cmt"><a href="Outage.html" class="extype" name="ch.ninecode.model.Outage">Outage</a> Outage that will be eliminated when this switching plan gets executed.</p>
+    </li><li name="ch.ninecode.model.SwitchingPlan#SafetyDocuments" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="SafetyDocuments:List[String]"></a>
+      <a id="SafetyDocuments:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">SafetyDocuments</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.SwitchingPlan@SafetyDocuments:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="SafetyDocument.html" class="extype" name="ch.ninecode.model.SafetyDocument">SafetyDocument</a> All safety documents applicable to this swtiching plan.</p>
     </li><li name="ch.ninecode.model.SwitchingPlan#SwitchingStepGroup" visbl="pub" data-isabs="false" fullComment="yes" group="Hierarchy">
       <a id="SwitchingStepGroup:ch.ninecode.model.SwitchingStepGroup"></a>
       <a id="SwitchingStepGroup:SwitchingStepGroup"></a>
@@ -221,6 +238,40 @@
     </span>
       <p class="shortcomment cmt">Return the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Return the superclass object.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The typed superclass nested object.</p></dd></dl></div>
+    </li><li name="ch.ninecode.model.SwitchingPlan#SwitchingStepGroups" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="SwitchingStepGroups:List[String]"></a>
+      <a id="SwitchingStepGroups:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">SwitchingStepGroups</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.SwitchingPlan@SwitchingStepGroups:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="SwitchingStepGroup.html" class="extype" name="ch.ninecode.model.SwitchingStepGroup">SwitchingStepGroup</a> All groups of switching steps within this switching plan.</p>
+    </li><li name="ch.ninecode.model.SwitchingPlan#WorkTasks" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="WorkTasks:List[String]"></a>
+      <a id="WorkTasks:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">WorkTasks</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.SwitchingPlan@WorkTasks:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="WorkTask.html" class="extype" name="ch.ninecode.model.WorkTask">WorkTask</a> All work tasks to execute this switching plan.</p>
     </li><li name="ch.ninecode.model.Element#about" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="about:Boolean"></a>
       <a id="about:Boolean"></a>

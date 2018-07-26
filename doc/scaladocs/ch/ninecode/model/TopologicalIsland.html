@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>TopologicalIsland - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.TopologicalIsland</title>
-          <meta name="description" content="TopologicalIsland - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.TopologicalIsland" />
-          <meta name="keywords" content="TopologicalIsland CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.TopologicalIsland" />
+          <title>TopologicalIsland - CIMReader 2.11-2.3.1-2.9.0 API - ch.ninecode.model.TopologicalIsland</title>
+          <meta name="description" content="TopologicalIsland - CIMReader 2.11 - 2.3.1 - 2.9.0 API - ch.ninecode.model.TopologicalIsland" />
+          <meta name="keywords" content="TopologicalIsland CIMReader 2.11 2.3.1 2.9.0 API ch.ninecode.model.TopologicalIsland" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,13 +47,13 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">TopologicalIsland</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="AngleRefTopologicalNode">AngleRefTopologicalNode: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">TopologicalIsland</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="AngleRefTopologicalNode">AngleRefTopologicalNode: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="TopologicalNodes">TopologicalNodes: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>An electrically connected subset of the network.</p><p>Topological islands can change as the current network state changes: e.g. due to
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">AngleRefTopologicalNode</dt><dd class="cmt"><p><a href="TopologicalNode.html" class="extype" name="ch.ninecode.model.TopologicalNode">TopologicalNode</a> The angle reference for the island.
-       Normally there is one TopologicalNode that is selected as the angle reference for each island.   Other reference schemes exist, so the association is typically optional.</p></dd></dl><div class="toggleContainer block">
+       Normally there is one TopologicalNode that is selected as the angle reference for each island.   Other reference schemes exist, so the association is typically optional.</p></dd><dt class="param">TopologicalNodes</dt><dd class="cmt"><p><a href="TopologicalNode.html" class="extype" name="ch.ninecode.model.TopologicalNode">TopologicalNode</a> A topological node belongs to a topological island.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -110,7 +110,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.TopologicalIsland#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,AngleRefTopologicalNode:String):ch.ninecode.model.TopologicalIsland"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,AngleRefTopologicalNode:String,TopologicalNodes:List[String]):ch.ninecode.model.TopologicalIsland"></a>
       <a id="&lt;init&gt;:TopologicalIsland"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -118,15 +118,15 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">TopologicalIsland</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="AngleRefTopologicalNode">AngleRefTopologicalNode: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
+        <span class="name">TopologicalIsland</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="AngleRefTopologicalNode">AngleRefTopologicalNode: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="TopologicalNodes">TopologicalNodes: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.TopologicalIsland@&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,AngleRefTopologicalNode:String):ch.ninecode.model.TopologicalIsland" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.TopologicalIsland@&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,AngleRefTopologicalNode:String,TopologicalNodes:List[String]):ch.ninecode.model.TopologicalIsland" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">AngleRefTopologicalNode</dt><dd class="cmt"><p><a href="TopologicalNode.html" class="extype" name="ch.ninecode.model.TopologicalNode">TopologicalNode</a> The angle reference for the island.
-       Normally there is one TopologicalNode that is selected as the angle reference for each island.   Other reference schemes exist, so the association is typically optional.</p></dd></dl></div>
+       Normally there is one TopologicalNode that is selected as the angle reference for each island.   Other reference schemes exist, so the association is typically optional.</p></dd><dt class="param">TopologicalNodes</dt><dd class="cmt"><p><a href="TopologicalNode.html" class="extype" name="ch.ninecode.model.TopologicalNode">TopologicalNode</a> A topological node belongs to a topological island.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -223,6 +223,23 @@
     </span>
       <p class="shortcomment cmt">Return the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Return the superclass object.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The typed superclass nested object.</p></dd></dl></div>
+    </li><li name="ch.ninecode.model.TopologicalIsland#TopologicalNodes" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TopologicalNodes:List[String]"></a>
+      <a id="TopologicalNodes:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">TopologicalNodes</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.TopologicalIsland@TopologicalNodes:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="TopologicalNode.html" class="extype" name="ch.ninecode.model.TopologicalNode">TopologicalNode</a> A topological node belongs to a topological island.</p>
     </li><li name="ch.ninecode.model.Element#about" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="about:Boolean"></a>
       <a id="about:Boolean"></a>

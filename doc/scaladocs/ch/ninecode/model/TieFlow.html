@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>TieFlow - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.TieFlow</title>
-          <meta name="description" content="TieFlow - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.TieFlow" />
-          <meta name="keywords" content="TieFlow CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.TieFlow" />
+          <title>TieFlow - CIMReader 2.11-2.3.1-2.9.0 API - ch.ninecode.model.TieFlow</title>
+          <meta name="description" content="TieFlow - CIMReader 2.11 - 2.3.1 - 2.9.0 API - ch.ninecode.model.TieFlow" />
+          <meta name="keywords" content="TieFlow CIMReader 2.11 2.3.1 2.9.0 API ch.ninecode.model.TieFlow" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,13 +47,13 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">TieFlow</span><span class="params">(<span name="sup">sup: <a href="BasicElement.html" class="extype" name="ch.ninecode.model.BasicElement">BasicElement</a></span>, <span name="positiveFlowIn">positiveFlowIn: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="ControlArea">ControlArea: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Terminal">Terminal: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">TieFlow</span><span class="params">(<span name="sup">sup: <a href="BasicElement.html" class="extype" name="ch.ninecode.model.BasicElement">BasicElement</a></span>, <span name="positiveFlowIn">positiveFlowIn: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="AltTieMeas">AltTieMeas: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="ControlArea">ControlArea: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Terminal">Terminal: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A flow specification in terms of location and direction for a control area.
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">positiveFlowIn</dt><dd class="cmt"><p>True if the flow into the terminal (load convention) is also flow into the control area.
-       For example, this attribute should be true if using the tie line terminal further away from the control area. For example to represent a tie to a shunt component (like a load or generator) in another area, this is the near end of a branch and this attribute would be specified as false.</p></dd><dt class="param">ControlArea</dt><dd class="cmt"><p><a href="ControlArea.html" class="extype" name="ch.ninecode.model.ControlArea">ControlArea</a> The control area of the tie flows.</p></dd><dt class="param">Terminal</dt><dd class="cmt"><p><a href="Terminal.html" class="extype" name="ch.ninecode.model.Terminal">Terminal</a> The terminal to which this tie flow belongs.</p></dd></dl><div class="toggleContainer block">
+       For example, this attribute should be true if using the tie line terminal further away from the control area. For example to represent a tie to a shunt component (like a load or generator) in another area, this is the near end of a branch and this attribute would be specified as false.</p></dd><dt class="param">AltTieMeas</dt><dd class="cmt"><p><a href="AltTieMeas.html" class="extype" name="ch.ninecode.model.AltTieMeas">AltTieMeas</a> The primary and alternate tie flow measurements associated with the tie flow.</p></dd><dt class="param">ControlArea</dt><dd class="cmt"><p><a href="ControlArea.html" class="extype" name="ch.ninecode.model.ControlArea">ControlArea</a> The control area of the tie flows.</p></dd><dt class="param">Terminal</dt><dd class="cmt"><p><a href="Terminal.html" class="extype" name="ch.ninecode.model.Terminal">Terminal</a> The terminal to which this tie flow belongs.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -110,7 +110,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.TieFlow#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.BasicElement,positiveFlowIn:Boolean,ControlArea:String,Terminal:String):ch.ninecode.model.TieFlow"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.BasicElement,positiveFlowIn:Boolean,AltTieMeas:List[String],ControlArea:String,Terminal:String):ch.ninecode.model.TieFlow"></a>
       <a id="&lt;init&gt;:TieFlow"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -118,15 +118,15 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">TieFlow</span><span class="params">(<span name="sup">sup: <a href="BasicElement.html" class="extype" name="ch.ninecode.model.BasicElement">BasicElement</a></span>, <span name="positiveFlowIn">positiveFlowIn: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="ControlArea">ControlArea: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Terminal">Terminal: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
+        <span class="name">TieFlow</span><span class="params">(<span name="sup">sup: <a href="BasicElement.html" class="extype" name="ch.ninecode.model.BasicElement">BasicElement</a></span>, <span name="positiveFlowIn">positiveFlowIn: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="AltTieMeas">AltTieMeas: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="ControlArea">ControlArea: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Terminal">Terminal: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.TieFlow@&lt;init&gt;(sup:ch.ninecode.model.BasicElement,positiveFlowIn:Boolean,ControlArea:String,Terminal:String):ch.ninecode.model.TieFlow" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.TieFlow@&lt;init&gt;(sup:ch.ninecode.model.BasicElement,positiveFlowIn:Boolean,AltTieMeas:List[String],ControlArea:String,Terminal:String):ch.ninecode.model.TieFlow" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">positiveFlowIn</dt><dd class="cmt"><p>True if the flow into the terminal (load convention) is also flow into the control area.
-       For example, this attribute should be true if using the tie line terminal further away from the control area. For example to represent a tie to a shunt component (like a load or generator) in another area, this is the near end of a branch and this attribute would be specified as false.</p></dd><dt class="param">ControlArea</dt><dd class="cmt"><p><a href="ControlArea.html" class="extype" name="ch.ninecode.model.ControlArea">ControlArea</a> The control area of the tie flows.</p></dd><dt class="param">Terminal</dt><dd class="cmt"><p><a href="Terminal.html" class="extype" name="ch.ninecode.model.Terminal">Terminal</a> The terminal to which this tie flow belongs.</p></dd></dl></div>
+       For example, this attribute should be true if using the tie line terminal further away from the control area. For example to represent a tie to a shunt component (like a load or generator) in another area, this is the near end of a branch and this attribute would be specified as false.</p></dd><dt class="param">AltTieMeas</dt><dd class="cmt"><p><a href="AltTieMeas.html" class="extype" name="ch.ninecode.model.AltTieMeas">AltTieMeas</a> The primary and alternate tie flow measurements associated with the tie flow.</p></dd><dt class="param">ControlArea</dt><dd class="cmt"><p><a href="ControlArea.html" class="extype" name="ch.ninecode.model.ControlArea">ControlArea</a> The control area of the tie flows.</p></dd><dt class="param">Terminal</dt><dd class="cmt"><p><a href="Terminal.html" class="extype" name="ch.ninecode.model.Terminal">Terminal</a> The terminal to which this tie flow belongs.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -187,6 +187,23 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="ch.ninecode.model.TieFlow#AltTieMeas" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="AltTieMeas:List[String]"></a>
+      <a id="AltTieMeas:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">AltTieMeas</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.TieFlow@AltTieMeas:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="AltTieMeas.html" class="extype" name="ch.ninecode.model.AltTieMeas">AltTieMeas</a> The primary and alternate tie flow measurements associated with the tie flow.</p>
     </li><li name="ch.ninecode.model.TieFlow#ControlArea" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="ControlArea:String"></a>
       <a id="ControlArea:String"></a>

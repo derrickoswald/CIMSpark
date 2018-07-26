@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>SchedulingCoordinator - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.SchedulingCoordinator</title>
-          <meta name="description" content="SchedulingCoordinator - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.SchedulingCoordinator" />
-          <meta name="keywords" content="SchedulingCoordinator CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.SchedulingCoordinator" />
+          <title>SchedulingCoordinator - CIMReader 2.11-2.3.1-2.9.0 API - ch.ninecode.model.SchedulingCoordinator</title>
+          <meta name="description" content="SchedulingCoordinator - CIMReader 2.11 - 2.3.1 - 2.9.0 API - ch.ninecode.model.SchedulingCoordinator" />
+          <meta name="keywords" content="SchedulingCoordinator CIMReader 2.11 2.3.1 2.9.0 API ch.ninecode.model.SchedulingCoordinator" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,12 +47,12 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">SchedulingCoordinator</span><span class="params">(<span name="sup">sup: <a href="MktOrganisation.html" class="extype" name="ch.ninecode.model.MktOrganisation">MktOrganisation</a></span>, <span name="scid">scid: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="LoadRatio">LoadRatio: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="MktOrgansation">MktOrgansation: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">SchedulingCoordinator</span><span class="params">(<span name="sup">sup: <a href="MktOrganisation.html" class="extype" name="ch.ninecode.model.MktOrganisation">MktOrganisation</a></span>, <span name="scid">scid: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Bid">Bid: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="FromSCTrade">FromSCTrade: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="LoadRatio">LoadRatio: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="MktOrgansation">MktOrgansation: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="SubmitFromSCTrade">SubmitFromSCTrade: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="SubmitToSCTrade">SubmitToSCTrade: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="ToSCTrade">ToSCTrade: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="TransmissionContractRight">TransmissionContractRight: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Market participants could be represented by Scheduling Coordinators (SCs) that are registered with the RTO/ISO.</p><p>One participant could register multiple SCs with the RTO/ISO. Many market participants can do business with the RTO/ISO using a single SC. One SC could schedule multiple generators. A load scheduling point could be used by multiple SCs. Each SC could schedule load at multiple scheduling points. An inter-tie scheduling point can be used by multiple SCs. Each SC can schedule interchange at multiple inter-tie scheduling points.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="MktOrganisation.html" class="extype" name="ch.ninecode.model.MktOrganisation">MktOrganisation</a> Reference to the superclass object.</p></dd><dt class="param">scid</dt><dd class="cmt"><p>This is the short name or Scheduling Coordinator ID field.</p></dd><dt class="param">LoadRatio</dt><dd class="cmt"><p><a href="LoadRatio.html" class="extype" name="ch.ninecode.model.LoadRatio">LoadRatio</a> <em>undocumented</em></p></dd><dt class="param">MktOrgansation</dt><dd class="cmt"><p><a href="MktOrganisation.html" class="extype" name="ch.ninecode.model.MktOrganisation">MktOrganisation</a> <em>undocumented</em></p></dd></dl><div class="toggleContainer block">
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="MktOrganisation.html" class="extype" name="ch.ninecode.model.MktOrganisation">MktOrganisation</a> Reference to the superclass object.</p></dd><dt class="param">scid</dt><dd class="cmt"><p>This is the short name or Scheduling Coordinator ID field.</p></dd><dt class="param">Bid</dt><dd class="cmt"><p><a href="Bid.html" class="extype" name="ch.ninecode.model.Bid">Bid</a> <em>undocumented</em></p></dd><dt class="param">FromSCTrade</dt><dd class="cmt"><p><a href="Trade.html" class="extype" name="ch.ninecode.model.Trade">Trade</a> <em>undocumented</em></p></dd><dt class="param">LoadRatio</dt><dd class="cmt"><p><a href="LoadRatio.html" class="extype" name="ch.ninecode.model.LoadRatio">LoadRatio</a> <em>undocumented</em></p></dd><dt class="param">MktOrgansation</dt><dd class="cmt"><p><a href="MktOrganisation.html" class="extype" name="ch.ninecode.model.MktOrganisation">MktOrganisation</a> <em>undocumented</em></p></dd><dt class="param">SubmitFromSCTrade</dt><dd class="cmt"><p><a href="Trade.html" class="extype" name="ch.ninecode.model.Trade">Trade</a> <em>undocumented</em></p></dd><dt class="param">SubmitToSCTrade</dt><dd class="cmt"><p><a href="Trade.html" class="extype" name="ch.ninecode.model.Trade">Trade</a> <em>undocumented</em></p></dd><dt class="param">ToSCTrade</dt><dd class="cmt"><p><a href="Trade.html" class="extype" name="ch.ninecode.model.Trade">Trade</a> <em>undocumented</em></p></dd><dt class="param">TransmissionContractRight</dt><dd class="cmt"><p><a href="ContractRight.html" class="extype" name="ch.ninecode.model.ContractRight">ContractRight</a> <em>undocumented</em></p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -109,7 +109,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.SchedulingCoordinator#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.MktOrganisation,scid:String,LoadRatio:String,MktOrgansation:String):ch.ninecode.model.SchedulingCoordinator"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.MktOrganisation,scid:String,Bid:List[String],FromSCTrade:List[String],LoadRatio:String,MktOrgansation:String,SubmitFromSCTrade:List[String],SubmitToSCTrade:List[String],ToSCTrade:List[String],TransmissionContractRight:List[String]):ch.ninecode.model.SchedulingCoordinator"></a>
       <a id="&lt;init&gt;:SchedulingCoordinator"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -117,14 +117,14 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">SchedulingCoordinator</span><span class="params">(<span name="sup">sup: <a href="MktOrganisation.html" class="extype" name="ch.ninecode.model.MktOrganisation">MktOrganisation</a></span>, <span name="scid">scid: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="LoadRatio">LoadRatio: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="MktOrgansation">MktOrgansation: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
+        <span class="name">SchedulingCoordinator</span><span class="params">(<span name="sup">sup: <a href="MktOrganisation.html" class="extype" name="ch.ninecode.model.MktOrganisation">MktOrganisation</a></span>, <span name="scid">scid: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Bid">Bid: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="FromSCTrade">FromSCTrade: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="LoadRatio">LoadRatio: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="MktOrgansation">MktOrgansation: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="SubmitFromSCTrade">SubmitFromSCTrade: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="SubmitToSCTrade">SubmitToSCTrade: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="ToSCTrade">ToSCTrade: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="TransmissionContractRight">TransmissionContractRight: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.SchedulingCoordinator@&lt;init&gt;(sup:ch.ninecode.model.MktOrganisation,scid:String,LoadRatio:String,MktOrgansation:String):ch.ninecode.model.SchedulingCoordinator" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.SchedulingCoordinator@&lt;init&gt;(sup:ch.ninecode.model.MktOrganisation,scid:String,Bid:List[String],FromSCTrade:List[String],LoadRatio:String,MktOrgansation:String,SubmitFromSCTrade:List[String],SubmitToSCTrade:List[String],ToSCTrade:List[String],TransmissionContractRight:List[String]):ch.ninecode.model.SchedulingCoordinator" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="MktOrganisation.html" class="extype" name="ch.ninecode.model.MktOrganisation">MktOrganisation</a> Reference to the superclass object.</p></dd><dt class="param">scid</dt><dd class="cmt"><p>This is the short name or Scheduling Coordinator ID field.</p></dd><dt class="param">LoadRatio</dt><dd class="cmt"><p><a href="LoadRatio.html" class="extype" name="ch.ninecode.model.LoadRatio">LoadRatio</a> <em>undocumented</em></p></dd><dt class="param">MktOrgansation</dt><dd class="cmt"><p><a href="MktOrganisation.html" class="extype" name="ch.ninecode.model.MktOrganisation">MktOrganisation</a> <em>undocumented</em></p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="MktOrganisation.html" class="extype" name="ch.ninecode.model.MktOrganisation">MktOrganisation</a> Reference to the superclass object.</p></dd><dt class="param">scid</dt><dd class="cmt"><p>This is the short name or Scheduling Coordinator ID field.</p></dd><dt class="param">Bid</dt><dd class="cmt"><p><a href="Bid.html" class="extype" name="ch.ninecode.model.Bid">Bid</a> <em>undocumented</em></p></dd><dt class="param">FromSCTrade</dt><dd class="cmt"><p><a href="Trade.html" class="extype" name="ch.ninecode.model.Trade">Trade</a> <em>undocumented</em></p></dd><dt class="param">LoadRatio</dt><dd class="cmt"><p><a href="LoadRatio.html" class="extype" name="ch.ninecode.model.LoadRatio">LoadRatio</a> <em>undocumented</em></p></dd><dt class="param">MktOrgansation</dt><dd class="cmt"><p><a href="MktOrganisation.html" class="extype" name="ch.ninecode.model.MktOrganisation">MktOrganisation</a> <em>undocumented</em></p></dd><dt class="param">SubmitFromSCTrade</dt><dd class="cmt"><p><a href="Trade.html" class="extype" name="ch.ninecode.model.Trade">Trade</a> <em>undocumented</em></p></dd><dt class="param">SubmitToSCTrade</dt><dd class="cmt"><p><a href="Trade.html" class="extype" name="ch.ninecode.model.Trade">Trade</a> <em>undocumented</em></p></dd><dt class="param">ToSCTrade</dt><dd class="cmt"><p><a href="Trade.html" class="extype" name="ch.ninecode.model.Trade">Trade</a> <em>undocumented</em></p></dd><dt class="param">TransmissionContractRight</dt><dd class="cmt"><p><a href="ContractRight.html" class="extype" name="ch.ninecode.model.ContractRight">ContractRight</a> <em>undocumented</em></p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -185,6 +185,40 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="ch.ninecode.model.SchedulingCoordinator#Bid" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="Bid:List[String]"></a>
+      <a id="Bid:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Bid</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.SchedulingCoordinator@Bid:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="Bid.html" class="extype" name="ch.ninecode.model.Bid">Bid</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="Bid.html" class="extype" name="ch.ninecode.model.Bid">Bid</a> <em>undocumented</em></p></div></div>
+    </li><li name="ch.ninecode.model.SchedulingCoordinator#FromSCTrade" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="FromSCTrade:List[String]"></a>
+      <a id="FromSCTrade:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">FromSCTrade</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.SchedulingCoordinator@FromSCTrade:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="Trade.html" class="extype" name="ch.ninecode.model.Trade">Trade</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="Trade.html" class="extype" name="ch.ninecode.model.Trade">Trade</a> <em>undocumented</em></p></div></div>
     </li><li name="ch.ninecode.model.SchedulingCoordinator#LoadRatio" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="LoadRatio:String"></a>
       <a id="LoadRatio:String"></a>
@@ -237,6 +271,74 @@
       </a>
     </span>
       <p class="shortcomment cmt"><a href="MktOrganisation.html" class="extype" name="ch.ninecode.model.MktOrganisation">MktOrganisation</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="MktOrganisation.html" class="extype" name="ch.ninecode.model.MktOrganisation">MktOrganisation</a> <em>undocumented</em></p></div></div>
+    </li><li name="ch.ninecode.model.SchedulingCoordinator#SubmitFromSCTrade" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="SubmitFromSCTrade:List[String]"></a>
+      <a id="SubmitFromSCTrade:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">SubmitFromSCTrade</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.SchedulingCoordinator@SubmitFromSCTrade:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="Trade.html" class="extype" name="ch.ninecode.model.Trade">Trade</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="Trade.html" class="extype" name="ch.ninecode.model.Trade">Trade</a> <em>undocumented</em></p></div></div>
+    </li><li name="ch.ninecode.model.SchedulingCoordinator#SubmitToSCTrade" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="SubmitToSCTrade:List[String]"></a>
+      <a id="SubmitToSCTrade:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">SubmitToSCTrade</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.SchedulingCoordinator@SubmitToSCTrade:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="Trade.html" class="extype" name="ch.ninecode.model.Trade">Trade</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="Trade.html" class="extype" name="ch.ninecode.model.Trade">Trade</a> <em>undocumented</em></p></div></div>
+    </li><li name="ch.ninecode.model.SchedulingCoordinator#ToSCTrade" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ToSCTrade:List[String]"></a>
+      <a id="ToSCTrade:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ToSCTrade</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.SchedulingCoordinator@ToSCTrade:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="Trade.html" class="extype" name="ch.ninecode.model.Trade">Trade</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="Trade.html" class="extype" name="ch.ninecode.model.Trade">Trade</a> <em>undocumented</em></p></div></div>
+    </li><li name="ch.ninecode.model.SchedulingCoordinator#TransmissionContractRight" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="TransmissionContractRight:List[String]"></a>
+      <a id="TransmissionContractRight:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">TransmissionContractRight</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.SchedulingCoordinator@TransmissionContractRight:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="ContractRight.html" class="extype" name="ch.ninecode.model.ContractRight">ContractRight</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="ContractRight.html" class="extype" name="ch.ninecode.model.ContractRight">ContractRight</a> <em>undocumented</em></p></div></div>
     </li><li name="ch.ninecode.model.Element#about" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="about:Boolean"></a>
       <a id="about:Boolean"></a>

@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>CostType - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.CostType</title>
-          <meta name="description" content="CostType - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.CostType" />
-          <meta name="keywords" content="CostType CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.CostType" />
+          <title>CostType - CIMReader 2.11-2.3.1-2.9.0 API - ch.ninecode.model.CostType</title>
+          <meta name="description" content="CostType - CIMReader 2.11 - 2.3.1 - 2.9.0 API - ch.ninecode.model.CostType" />
+          <meta name="keywords" content="CostType CIMReader 2.11 2.3.1 2.9.0 API ch.ninecode.model.CostType" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,12 +47,12 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">CostType</span><span class="params">(<span name="sup">sup: <a href="WorkIdentifiedObject.html" class="extype" name="ch.ninecode.model.WorkIdentifiedObject">WorkIdentifiedObject</a></span>, <span name="amountAssignable">amountAssignable: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="code">code: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="level">level: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="stage">stage: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="status">status: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ErpJournalEntries">ErpJournalEntries: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="ParentCostType">ParentCostType: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">CostType</span><span class="params">(<span name="sup">sup: <a href="WorkIdentifiedObject.html" class="extype" name="ch.ninecode.model.WorkIdentifiedObject">WorkIdentifiedObject</a></span>, <span name="amountAssignable">amountAssignable: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="code">code: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="level">level: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="stage">stage: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="status">status: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ChildCostTypes">ChildCostTypes: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="CompatibleUnits">CompatibleUnits: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="ErpJournalEntries">ErpJournalEntries: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="ParentCostType">ParentCostType: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="WorkCostDetails">WorkCostDetails: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A categorization for resources, often costs, in accounting transactions.</p><p>Examples include: material components, building in service, coal sales, overhead, etc.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="WorkIdentifiedObject.html" class="extype" name="ch.ninecode.model.WorkIdentifiedObject">WorkIdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">amountAssignable</dt><dd class="cmt"><p>True if an amount can be assigned to the resource element (e.g., building in service, transmission plant, software development capital); false otherwise (e.g., internal labor, material components).</p></dd><dt class="param">code</dt><dd class="cmt"><p>A codified representation of the resource element.</p></dd><dt class="param">level</dt><dd class="cmt"><p>The level of the resource element in the hierarchy of resource elements (recursive relationship).</p></dd><dt class="param">stage</dt><dd class="cmt"><p>The stage for which this costType applies: estimated design, estimated actual or actual actual.</p></dd><dt class="param">status</dt><dd class="cmt"><p><em>undocumented</em></p></dd><dt class="param">ErpJournalEntries</dt><dd class="cmt"><p><a href="ErpJournalEntry.html" class="extype" name="ch.ninecode.model.ErpJournalEntry">ErpJournalEntry</a> <em>undocumented</em></p></dd><dt class="param">ParentCostType</dt><dd class="cmt"><p><a href="" class="extype" name="ch.ninecode.model.CostType">CostType</a> <em>undocumented</em></p></dd></dl><div class="toggleContainer block">
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="WorkIdentifiedObject.html" class="extype" name="ch.ninecode.model.WorkIdentifiedObject">WorkIdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">amountAssignable</dt><dd class="cmt"><p>True if an amount can be assigned to the resource element (e.g., building in service, transmission plant, software development capital); false otherwise (e.g., internal labor, material components).</p></dd><dt class="param">code</dt><dd class="cmt"><p>A codified representation of the resource element.</p></dd><dt class="param">level</dt><dd class="cmt"><p>The level of the resource element in the hierarchy of resource elements (recursive relationship).</p></dd><dt class="param">stage</dt><dd class="cmt"><p>The stage for which this costType applies: estimated design, estimated actual or actual actual.</p></dd><dt class="param">status</dt><dd class="cmt"><p><em>undocumented</em></p></dd><dt class="param">ChildCostTypes</dt><dd class="cmt"><p><a href="" class="extype" name="ch.ninecode.model.CostType">CostType</a> <em>undocumented</em></p></dd><dt class="param">CompatibleUnits</dt><dd class="cmt"><p><a href="CompatibleUnit.html" class="extype" name="ch.ninecode.model.CompatibleUnit">CompatibleUnit</a> <em>undocumented</em></p></dd><dt class="param">ErpJournalEntries</dt><dd class="cmt"><p><a href="ErpJournalEntry.html" class="extype" name="ch.ninecode.model.ErpJournalEntry">ErpJournalEntry</a> <em>undocumented</em></p></dd><dt class="param">ParentCostType</dt><dd class="cmt"><p><a href="" class="extype" name="ch.ninecode.model.CostType">CostType</a> <em>undocumented</em></p></dd><dt class="param">WorkCostDetails</dt><dd class="cmt"><p><a href="WorkCostDetail.html" class="extype" name="ch.ninecode.model.WorkCostDetail">WorkCostDetail</a> <em>undocumented</em></p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -109,7 +109,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.CostType#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.WorkIdentifiedObject,amountAssignable:Boolean,code:String,level:String,stage:String,status:String,ErpJournalEntries:List[String],ParentCostType:String):ch.ninecode.model.CostType"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.WorkIdentifiedObject,amountAssignable:Boolean,code:String,level:String,stage:String,status:String,ChildCostTypes:List[String],CompatibleUnits:List[String],ErpJournalEntries:List[String],ParentCostType:String,WorkCostDetails:List[String]):ch.ninecode.model.CostType"></a>
       <a id="&lt;init&gt;:CostType"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -117,14 +117,14 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">CostType</span><span class="params">(<span name="sup">sup: <a href="WorkIdentifiedObject.html" class="extype" name="ch.ninecode.model.WorkIdentifiedObject">WorkIdentifiedObject</a></span>, <span name="amountAssignable">amountAssignable: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="code">code: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="level">level: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="stage">stage: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="status">status: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ErpJournalEntries">ErpJournalEntries: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="ParentCostType">ParentCostType: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
+        <span class="name">CostType</span><span class="params">(<span name="sup">sup: <a href="WorkIdentifiedObject.html" class="extype" name="ch.ninecode.model.WorkIdentifiedObject">WorkIdentifiedObject</a></span>, <span name="amountAssignable">amountAssignable: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="code">code: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="level">level: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="stage">stage: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="status">status: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ChildCostTypes">ChildCostTypes: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="CompatibleUnits">CompatibleUnits: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="ErpJournalEntries">ErpJournalEntries: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="ParentCostType">ParentCostType: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="WorkCostDetails">WorkCostDetails: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.CostType@&lt;init&gt;(sup:ch.ninecode.model.WorkIdentifiedObject,amountAssignable:Boolean,code:String,level:String,stage:String,status:String,ErpJournalEntries:List[String],ParentCostType:String):ch.ninecode.model.CostType" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.CostType@&lt;init&gt;(sup:ch.ninecode.model.WorkIdentifiedObject,amountAssignable:Boolean,code:String,level:String,stage:String,status:String,ChildCostTypes:List[String],CompatibleUnits:List[String],ErpJournalEntries:List[String],ParentCostType:String,WorkCostDetails:List[String]):ch.ninecode.model.CostType" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="WorkIdentifiedObject.html" class="extype" name="ch.ninecode.model.WorkIdentifiedObject">WorkIdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">amountAssignable</dt><dd class="cmt"><p>True if an amount can be assigned to the resource element (e.g., building in service, transmission plant, software development capital); false otherwise (e.g., internal labor, material components).</p></dd><dt class="param">code</dt><dd class="cmt"><p>A codified representation of the resource element.</p></dd><dt class="param">level</dt><dd class="cmt"><p>The level of the resource element in the hierarchy of resource elements (recursive relationship).</p></dd><dt class="param">stage</dt><dd class="cmt"><p>The stage for which this costType applies: estimated design, estimated actual or actual actual.</p></dd><dt class="param">status</dt><dd class="cmt"><p><em>undocumented</em></p></dd><dt class="param">ErpJournalEntries</dt><dd class="cmt"><p><a href="ErpJournalEntry.html" class="extype" name="ch.ninecode.model.ErpJournalEntry">ErpJournalEntry</a> <em>undocumented</em></p></dd><dt class="param">ParentCostType</dt><dd class="cmt"><p><a href="" class="extype" name="ch.ninecode.model.CostType">CostType</a> <em>undocumented</em></p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="WorkIdentifiedObject.html" class="extype" name="ch.ninecode.model.WorkIdentifiedObject">WorkIdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">amountAssignable</dt><dd class="cmt"><p>True if an amount can be assigned to the resource element (e.g., building in service, transmission plant, software development capital); false otherwise (e.g., internal labor, material components).</p></dd><dt class="param">code</dt><dd class="cmt"><p>A codified representation of the resource element.</p></dd><dt class="param">level</dt><dd class="cmt"><p>The level of the resource element in the hierarchy of resource elements (recursive relationship).</p></dd><dt class="param">stage</dt><dd class="cmt"><p>The stage for which this costType applies: estimated design, estimated actual or actual actual.</p></dd><dt class="param">status</dt><dd class="cmt"><p><em>undocumented</em></p></dd><dt class="param">ChildCostTypes</dt><dd class="cmt"><p><a href="" class="extype" name="ch.ninecode.model.CostType">CostType</a> <em>undocumented</em></p></dd><dt class="param">CompatibleUnits</dt><dd class="cmt"><p><a href="CompatibleUnit.html" class="extype" name="ch.ninecode.model.CompatibleUnit">CompatibleUnit</a> <em>undocumented</em></p></dd><dt class="param">ErpJournalEntries</dt><dd class="cmt"><p><a href="ErpJournalEntry.html" class="extype" name="ch.ninecode.model.ErpJournalEntry">ErpJournalEntry</a> <em>undocumented</em></p></dd><dt class="param">ParentCostType</dt><dd class="cmt"><p><a href="" class="extype" name="ch.ninecode.model.CostType">CostType</a> <em>undocumented</em></p></dd><dt class="param">WorkCostDetails</dt><dd class="cmt"><p><a href="WorkCostDetail.html" class="extype" name="ch.ninecode.model.WorkCostDetail">WorkCostDetail</a> <em>undocumented</em></p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -185,6 +185,40 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="ch.ninecode.model.CostType#ChildCostTypes" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ChildCostTypes:List[String]"></a>
+      <a id="ChildCostTypes:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ChildCostTypes</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.CostType@ChildCostTypes:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="" class="extype" name="ch.ninecode.model.CostType">CostType</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="" class="extype" name="ch.ninecode.model.CostType">CostType</a> <em>undocumented</em></p></div></div>
+    </li><li name="ch.ninecode.model.CostType#CompatibleUnits" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="CompatibleUnits:List[String]"></a>
+      <a id="CompatibleUnits:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CompatibleUnits</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.CostType@CompatibleUnits:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="CompatibleUnit.html" class="extype" name="ch.ninecode.model.CompatibleUnit">CompatibleUnit</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="CompatibleUnit.html" class="extype" name="ch.ninecode.model.CompatibleUnit">CompatibleUnit</a> <em>undocumented</em></p></div></div>
     </li><li name="ch.ninecode.model.CostType#ErpJournalEntries" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ErpJournalEntries:List[String]"></a>
       <a id="ErpJournalEntries:List[String]"></a>
@@ -219,6 +253,23 @@
       </a>
     </span>
       <p class="shortcomment cmt"><a href="" class="extype" name="ch.ninecode.model.CostType">CostType</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="" class="extype" name="ch.ninecode.model.CostType">CostType</a> <em>undocumented</em></p></div></div>
+    </li><li name="ch.ninecode.model.CostType#WorkCostDetails" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="WorkCostDetails:List[String]"></a>
+      <a id="WorkCostDetails:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">WorkCostDetails</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.CostType@WorkCostDetails:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="WorkCostDetail.html" class="extype" name="ch.ninecode.model.WorkCostDetail">WorkCostDetail</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="WorkCostDetail.html" class="extype" name="ch.ninecode.model.WorkCostDetail">WorkCostDetail</a> <em>undocumented</em></p></div></div>
     </li><li name="ch.ninecode.model.CostType#WorkIdentifiedObject" visbl="pub" data-isabs="false" fullComment="yes" group="Hierarchy">
       <a id="WorkIdentifiedObject:ch.ninecode.model.WorkIdentifiedObject"></a>
       <a id="WorkIdentifiedObject:WorkIdentifiedObject"></a>

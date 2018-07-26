@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>ServicePoint - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.ServicePoint</title>
-          <meta name="description" content="ServicePoint - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.ServicePoint" />
-          <meta name="keywords" content="ServicePoint CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.ServicePoint" />
+          <title>ServicePoint - CIMReader 2.11-2.3.1-2.9.0 API - ch.ninecode.model.ServicePoint</title>
+          <meta name="description" content="ServicePoint - CIMReader 2.11 - 2.3.1 - 2.9.0 API - ch.ninecode.model.ServicePoint" />
+          <meta name="keywords" content="ServicePoint CIMReader 2.11 2.3.1 2.9.0 API ch.ninecode.model.ServicePoint" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,12 +47,12 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">ServicePoint</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">ServicePoint</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="PODTransmissionPath">PODTransmissionPath: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="PORTransmissionPath">PORTransmissionPath: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="SinkReservation">SinkReservation: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="SourceReservation">SourceReservation: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>The defined termination points of a transmission path (down to distribution level or to a customer - generation or consumption or both).</p><p>Service points are defined from the viewpoint of the transmission service. Each service point is contained within (or on the boundary of) an interchange area. A service point is source or destination of a transaction.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd></dl><div class="toggleContainer block">
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">PODTransmissionPath</dt><dd class="cmt"><p><a href="TransmissionPath.html" class="extype" name="ch.ninecode.model.TransmissionPath">TransmissionPath</a> A transmission path has a &quot;point-of-delivery&quot; service point</p></dd><dt class="param">PORTransmissionPath</dt><dd class="cmt"><p><a href="TransmissionPath.html" class="extype" name="ch.ninecode.model.TransmissionPath">TransmissionPath</a> A transmission path has a &quot;point-of-receipt&quot; service point</p></dd><dt class="param">SinkReservation</dt><dd class="cmt"><p><a href="TransmissionReservation.html" class="extype" name="ch.ninecode.model.TransmissionReservation">TransmissionReservation</a> <em>undocumented</em></p></dd><dt class="param">SourceReservation</dt><dd class="cmt"><p><a href="TransmissionReservation.html" class="extype" name="ch.ninecode.model.TransmissionReservation">TransmissionReservation</a> <em>undocumented</em></p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -109,7 +109,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.ServicePoint#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject):ch.ninecode.model.ServicePoint"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,PODTransmissionPath:List[String],PORTransmissionPath:List[String],SinkReservation:List[String],SourceReservation:List[String]):ch.ninecode.model.ServicePoint"></a>
       <a id="&lt;init&gt;:ServicePoint"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -117,14 +117,14 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">ServicePoint</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>)</span>
+        <span class="name">ServicePoint</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="PODTransmissionPath">PODTransmissionPath: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="PORTransmissionPath">PORTransmissionPath: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="SinkReservation">SinkReservation: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="SourceReservation">SourceReservation: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.ServicePoint@&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject):ch.ninecode.model.ServicePoint" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.ServicePoint@&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,PODTransmissionPath:List[String],PORTransmissionPath:List[String],SinkReservation:List[String],SourceReservation:List[String]):ch.ninecode.model.ServicePoint" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">PODTransmissionPath</dt><dd class="cmt"><p><a href="TransmissionPath.html" class="extype" name="ch.ninecode.model.TransmissionPath">TransmissionPath</a> A transmission path has a &quot;point-of-delivery&quot; service point</p></dd><dt class="param">PORTransmissionPath</dt><dd class="cmt"><p><a href="TransmissionPath.html" class="extype" name="ch.ninecode.model.TransmissionPath">TransmissionPath</a> A transmission path has a &quot;point-of-receipt&quot; service point</p></dd><dt class="param">SinkReservation</dt><dd class="cmt"><p><a href="TransmissionReservation.html" class="extype" name="ch.ninecode.model.TransmissionReservation">TransmissionReservation</a> <em>undocumented</em></p></dd><dt class="param">SourceReservation</dt><dd class="cmt"><p><a href="TransmissionReservation.html" class="extype" name="ch.ninecode.model.TransmissionReservation">TransmissionReservation</a> <em>undocumented</em></p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -203,6 +203,74 @@
     </span>
       <p class="shortcomment cmt">Return the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Return the superclass object.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The typed superclass nested object.</p></dd></dl></div>
+    </li><li name="ch.ninecode.model.ServicePoint#PODTransmissionPath" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="PODTransmissionPath:List[String]"></a>
+      <a id="PODTransmissionPath:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">PODTransmissionPath</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.ServicePoint@PODTransmissionPath:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="TransmissionPath.html" class="extype" name="ch.ninecode.model.TransmissionPath">TransmissionPath</a> A transmission path has a &quot;point-of-delivery&quot; service point</p>
+    </li><li name="ch.ninecode.model.ServicePoint#PORTransmissionPath" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="PORTransmissionPath:List[String]"></a>
+      <a id="PORTransmissionPath:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">PORTransmissionPath</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.ServicePoint@PORTransmissionPath:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="TransmissionPath.html" class="extype" name="ch.ninecode.model.TransmissionPath">TransmissionPath</a> A transmission path has a &quot;point-of-receipt&quot; service point</p>
+    </li><li name="ch.ninecode.model.ServicePoint#SinkReservation" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="SinkReservation:List[String]"></a>
+      <a id="SinkReservation:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">SinkReservation</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.ServicePoint@SinkReservation:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="TransmissionReservation.html" class="extype" name="ch.ninecode.model.TransmissionReservation">TransmissionReservation</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="TransmissionReservation.html" class="extype" name="ch.ninecode.model.TransmissionReservation">TransmissionReservation</a> <em>undocumented</em></p></div></div>
+    </li><li name="ch.ninecode.model.ServicePoint#SourceReservation" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="SourceReservation:List[String]"></a>
+      <a id="SourceReservation:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">SourceReservation</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.ServicePoint@SourceReservation:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="TransmissionReservation.html" class="extype" name="ch.ninecode.model.TransmissionReservation">TransmissionReservation</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="TransmissionReservation.html" class="extype" name="ch.ninecode.model.TransmissionReservation">TransmissionReservation</a> <em>undocumented</em></p></div></div>
     </li><li name="ch.ninecode.model.Element#about" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="about:Boolean"></a>
       <a id="about:Boolean"></a>

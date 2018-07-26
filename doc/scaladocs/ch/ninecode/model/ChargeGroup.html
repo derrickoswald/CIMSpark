@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>ChargeGroup - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.ChargeGroup</title>
-          <meta name="description" content="ChargeGroup - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.ChargeGroup" />
-          <meta name="keywords" content="ChargeGroup CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.ChargeGroup" />
+          <title>ChargeGroup - CIMReader 2.11-2.3.1-2.9.0 API - ch.ninecode.model.ChargeGroup</title>
+          <meta name="description" content="ChargeGroup - CIMReader 2.11 - 2.3.1 - 2.9.0 API - ch.ninecode.model.ChargeGroup" />
+          <meta name="keywords" content="ChargeGroup CIMReader 2.11 2.3.1 2.9.0 API ch.ninecode.model.ChargeGroup" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,12 +47,12 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">ChargeGroup</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="effectiveDate">effectiveDate: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="marketCode">marketCode: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="terminationDate">terminationDate: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ChargeGroupParent">ChargeGroupParent: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ChargeType">ChargeType: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="MktUserAttribute">MktUserAttribute: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">ChargeGroup</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="effectiveDate">effectiveDate: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="marketCode">marketCode: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="terminationDate">terminationDate: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ChargeGroupChild">ChargeGroupChild: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="ChargeGroupParent">ChargeGroupParent: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ChargeType">ChargeType: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="MktUserAttribute">MktUserAttribute: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Charge Group is the grouping of Charge Types for settlement invoicing purpose.</p><p>Examples such as Ancillary Services, Interests, etc.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">effectiveDate</dt><dd class="cmt"><p><em>undocumented</em></p></dd><dt class="param">marketCode</dt><dd class="cmt"><p><em>undocumented</em></p></dd><dt class="param">terminationDate</dt><dd class="cmt"><p><em>undocumented</em></p></dd><dt class="param">ChargeGroupParent</dt><dd class="cmt"><p><a href="" class="extype" name="ch.ninecode.model.ChargeGroup">ChargeGroup</a> A ChargeGroup instance can have relationships with other ChargeGroup instances.</p></dd><dt class="param">ChargeType</dt><dd class="cmt"><p><a href="ChargeType.html" class="extype" name="ch.ninecode.model.ChargeType">ChargeType</a> A ChargeGroup can have 0-n ChargeType.
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">effectiveDate</dt><dd class="cmt"><p><em>undocumented</em></p></dd><dt class="param">marketCode</dt><dd class="cmt"><p><em>undocumented</em></p></dd><dt class="param">terminationDate</dt><dd class="cmt"><p><em>undocumented</em></p></dd><dt class="param">ChargeGroupChild</dt><dd class="cmt"><p><a href="" class="extype" name="ch.ninecode.model.ChargeGroup">ChargeGroup</a> A ChargeGroup instance can have relationships with other ChargeGroup instances.</p></dd><dt class="param">ChargeGroupParent</dt><dd class="cmt"><p><a href="" class="extype" name="ch.ninecode.model.ChargeGroup">ChargeGroup</a> A ChargeGroup instance can have relationships with other ChargeGroup instances.</p></dd><dt class="param">ChargeType</dt><dd class="cmt"><p><a href="ChargeType.html" class="extype" name="ch.ninecode.model.ChargeType">ChargeType</a> A ChargeGroup can have 0-n ChargeType.
        A ChargeType can associate to 0-n ChargeGroup.</p></dd><dt class="param">MktUserAttribute</dt><dd class="cmt"><p><a href="MktUserAttribute.html" class="extype" name="ch.ninecode.model.MktUserAttribute">MktUserAttribute</a> <em>undocumented</em></p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
@@ -110,7 +110,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.ChargeGroup#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,effectiveDate:String,marketCode:String,terminationDate:String,ChargeGroupParent:String,ChargeType:List[String],MktUserAttribute:List[String]):ch.ninecode.model.ChargeGroup"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,effectiveDate:String,marketCode:String,terminationDate:String,ChargeGroupChild:List[String],ChargeGroupParent:String,ChargeType:List[String],MktUserAttribute:List[String]):ch.ninecode.model.ChargeGroup"></a>
       <a id="&lt;init&gt;:ChargeGroup"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -118,14 +118,14 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">ChargeGroup</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="effectiveDate">effectiveDate: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="marketCode">marketCode: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="terminationDate">terminationDate: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ChargeGroupParent">ChargeGroupParent: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ChargeType">ChargeType: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="MktUserAttribute">MktUserAttribute: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
+        <span class="name">ChargeGroup</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="effectiveDate">effectiveDate: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="marketCode">marketCode: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="terminationDate">terminationDate: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ChargeGroupChild">ChargeGroupChild: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="ChargeGroupParent">ChargeGroupParent: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ChargeType">ChargeType: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="MktUserAttribute">MktUserAttribute: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.ChargeGroup@&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,effectiveDate:String,marketCode:String,terminationDate:String,ChargeGroupParent:String,ChargeType:List[String],MktUserAttribute:List[String]):ch.ninecode.model.ChargeGroup" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.ChargeGroup@&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,effectiveDate:String,marketCode:String,terminationDate:String,ChargeGroupChild:List[String],ChargeGroupParent:String,ChargeType:List[String],MktUserAttribute:List[String]):ch.ninecode.model.ChargeGroup" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">effectiveDate</dt><dd class="cmt"><p><em>undocumented</em></p></dd><dt class="param">marketCode</dt><dd class="cmt"><p><em>undocumented</em></p></dd><dt class="param">terminationDate</dt><dd class="cmt"><p><em>undocumented</em></p></dd><dt class="param">ChargeGroupParent</dt><dd class="cmt"><p><a href="" class="extype" name="ch.ninecode.model.ChargeGroup">ChargeGroup</a> A ChargeGroup instance can have relationships with other ChargeGroup instances.</p></dd><dt class="param">ChargeType</dt><dd class="cmt"><p><a href="ChargeType.html" class="extype" name="ch.ninecode.model.ChargeType">ChargeType</a> A ChargeGroup can have 0-n ChargeType.
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">effectiveDate</dt><dd class="cmt"><p><em>undocumented</em></p></dd><dt class="param">marketCode</dt><dd class="cmt"><p><em>undocumented</em></p></dd><dt class="param">terminationDate</dt><dd class="cmt"><p><em>undocumented</em></p></dd><dt class="param">ChargeGroupChild</dt><dd class="cmt"><p><a href="" class="extype" name="ch.ninecode.model.ChargeGroup">ChargeGroup</a> A ChargeGroup instance can have relationships with other ChargeGroup instances.</p></dd><dt class="param">ChargeGroupParent</dt><dd class="cmt"><p><a href="" class="extype" name="ch.ninecode.model.ChargeGroup">ChargeGroup</a> A ChargeGroup instance can have relationships with other ChargeGroup instances.</p></dd><dt class="param">ChargeType</dt><dd class="cmt"><p><a href="ChargeType.html" class="extype" name="ch.ninecode.model.ChargeType">ChargeType</a> A ChargeGroup can have 0-n ChargeType.
        A ChargeType can associate to 0-n ChargeGroup.</p></dd><dt class="param">MktUserAttribute</dt><dd class="cmt"><p><a href="MktUserAttribute.html" class="extype" name="ch.ninecode.model.MktUserAttribute">MktUserAttribute</a> <em>undocumented</em></p></dd></dl></div>
     </li></ol>
             </div>
@@ -187,6 +187,23 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="ch.ninecode.model.ChargeGroup#ChargeGroupChild" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ChargeGroupChild:List[String]"></a>
+      <a id="ChargeGroupChild:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ChargeGroupChild</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.ChargeGroup@ChargeGroupChild:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="" class="extype" name="ch.ninecode.model.ChargeGroup">ChargeGroup</a> A ChargeGroup instance can have relationships with other ChargeGroup instances.</p>
     </li><li name="ch.ninecode.model.ChargeGroup#ChargeGroupParent" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="ChargeGroupParent:String"></a>
       <a id="ChargeGroupParent:String"></a>

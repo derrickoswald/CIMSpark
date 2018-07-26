@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>WindGenType3bIEC - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.WindGenType3bIEC</title>
-          <meta name="description" content="WindGenType3bIEC - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.WindGenType3bIEC" />
-          <meta name="keywords" content="WindGenType3bIEC CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.WindGenType3bIEC" />
+          <title>WindGenType3bIEC - CIMReader 2.11-2.3.1-2.9.0 API - ch.ninecode.model.WindGenType3bIEC</title>
+          <meta name="description" content="WindGenType3bIEC - CIMReader 2.11 - 2.3.1 - 2.9.0 API - ch.ninecode.model.WindGenType3bIEC" />
+          <meta name="keywords" content="WindGenType3bIEC CIMReader 2.11 2.3.1 2.9.0 API ch.ninecode.model.WindGenType3bIEC" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,7 +47,7 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">WindGenType3bIEC</span><span class="params">(<span name="sup">sup: <a href="WindGenType3IEC.html" class="extype" name="ch.ninecode.model.WindGenType3IEC">WindGenType3IEC</a></span>, <span name="mwtcwp">mwtcwp: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="tg">tg: <span class="extype" name="scala.Double">Double</span></span>, <span name="two">two: <span class="extype" name="scala.Double">Double</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">WindGenType3bIEC</span><span class="params">(<span name="sup">sup: <a href="WindGenType3IEC.html" class="extype" name="ch.ninecode.model.WindGenType3IEC">WindGenType3IEC</a></span>, <span name="mwtcwp">mwtcwp: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="tg">tg: <span class="extype" name="scala.Double">Double</span></span>, <span name="two">two: <span class="extype" name="scala.Double">Double</span></span>, <span name="WindDynamicsLookupTable">WindDynamicsLookupTable: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
@@ -55,7 +55,7 @@
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="WindGenType3IEC.html" class="extype" name="ch.ninecode.model.WindGenType3IEC">WindGenType3IEC</a> Reference to the superclass object.</p></dd><dt class="param">mwtcwp</dt><dd class="cmt"><p>Crowbar control mode (<i>M</i><sub>WTcwp</sub>).</p><ul><li>true = 1 in the model</li><li>false = 0 in the model.
        The parameter is case dependent parameter.</li></ul></dd><dt class="param">tg</dt><dd class="cmt"><p>Current generation Time constant (<i>T</i><sub>g</sub>).
        It is type dependent parameter.</p></dd><dt class="param">two</dt><dd class="cmt"><p>Time constant for crowbar washout filter (<i>T</i><sub>wo</sub>).
-       It is case dependent parameter.</p></dd></dl><div class="toggleContainer block">
+       It is case dependent parameter.</p></dd><dt class="param">WindDynamicsLookupTable</dt><dd class="cmt"><p><a href="WindDynamicsLookupTable.html" class="extype" name="ch.ninecode.model.WindDynamicsLookupTable">WindDynamicsLookupTable</a> The wind dynamics lookup table associated with this generator type 3B model.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -112,7 +112,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.WindGenType3bIEC#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.WindGenType3IEC,mwtcwp:Boolean,tg:Double,two:Double):ch.ninecode.model.WindGenType3bIEC"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.WindGenType3IEC,mwtcwp:Boolean,tg:Double,two:Double,WindDynamicsLookupTable:List[String]):ch.ninecode.model.WindGenType3bIEC"></a>
       <a id="&lt;init&gt;:WindGenType3bIEC"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -120,17 +120,17 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">WindGenType3bIEC</span><span class="params">(<span name="sup">sup: <a href="WindGenType3IEC.html" class="extype" name="ch.ninecode.model.WindGenType3IEC">WindGenType3IEC</a></span>, <span name="mwtcwp">mwtcwp: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="tg">tg: <span class="extype" name="scala.Double">Double</span></span>, <span name="two">two: <span class="extype" name="scala.Double">Double</span></span>)</span>
+        <span class="name">WindGenType3bIEC</span><span class="params">(<span name="sup">sup: <a href="WindGenType3IEC.html" class="extype" name="ch.ninecode.model.WindGenType3IEC">WindGenType3IEC</a></span>, <span name="mwtcwp">mwtcwp: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="tg">tg: <span class="extype" name="scala.Double">Double</span></span>, <span name="two">two: <span class="extype" name="scala.Double">Double</span></span>, <span name="WindDynamicsLookupTable">WindDynamicsLookupTable: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.WindGenType3bIEC@&lt;init&gt;(sup:ch.ninecode.model.WindGenType3IEC,mwtcwp:Boolean,tg:Double,two:Double):ch.ninecode.model.WindGenType3bIEC" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.WindGenType3bIEC@&lt;init&gt;(sup:ch.ninecode.model.WindGenType3IEC,mwtcwp:Boolean,tg:Double,two:Double,WindDynamicsLookupTable:List[String]):ch.ninecode.model.WindGenType3bIEC" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="WindGenType3IEC.html" class="extype" name="ch.ninecode.model.WindGenType3IEC">WindGenType3IEC</a> Reference to the superclass object.</p></dd><dt class="param">mwtcwp</dt><dd class="cmt"><p>Crowbar control mode (<i>M</i><sub>WTcwp</sub>).</p><ul><li>true = 1 in the model</li><li>false = 0 in the model.
        The parameter is case dependent parameter.</li></ul></dd><dt class="param">tg</dt><dd class="cmt"><p>Current generation Time constant (<i>T</i><sub>g</sub>).
        It is type dependent parameter.</p></dd><dt class="param">two</dt><dd class="cmt"><p>Time constant for crowbar washout filter (<i>T</i><sub>wo</sub>).
-       It is case dependent parameter.</p></dd></dl></div>
+       It is case dependent parameter.</p></dd><dt class="param">WindDynamicsLookupTable</dt><dd class="cmt"><p><a href="WindDynamicsLookupTable.html" class="extype" name="ch.ninecode.model.WindDynamicsLookupTable">WindDynamicsLookupTable</a> The wind dynamics lookup table associated with this generator type 3B model.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -191,6 +191,23 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="ch.ninecode.model.WindGenType3bIEC#WindDynamicsLookupTable" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="WindDynamicsLookupTable:List[String]"></a>
+      <a id="WindDynamicsLookupTable:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">WindDynamicsLookupTable</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.WindGenType3bIEC@WindDynamicsLookupTable:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="WindDynamicsLookupTable.html" class="extype" name="ch.ninecode.model.WindDynamicsLookupTable">WindDynamicsLookupTable</a> The wind dynamics lookup table associated with this generator type 3B model.</p>
     </li><li name="ch.ninecode.model.WindGenType3bIEC#WindGenType3IEC" visbl="pub" data-isabs="false" fullComment="yes" group="Hierarchy">
       <a id="WindGenType3IEC:ch.ninecode.model.WindGenType3IEC"></a>
       <a id="WindGenType3IEC:WindGenType3IEC"></a>

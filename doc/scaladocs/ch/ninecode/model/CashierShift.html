@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>CashierShift - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.CashierShift</title>
-          <meta name="description" content="CashierShift - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.CashierShift" />
-          <meta name="keywords" content="CashierShift CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.CashierShift" />
+          <title>CashierShift - CIMReader 2.11-2.3.1-2.9.0 API - ch.ninecode.model.CashierShift</title>
+          <meta name="description" content="CashierShift - CIMReader 2.11 - 2.3.1 - 2.9.0 API - ch.ninecode.model.CashierShift" />
+          <meta name="keywords" content="CashierShift CIMReader 2.11 2.3.1 2.9.0 API ch.ninecode.model.CashierShift" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,12 +47,12 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">CashierShift</span><span class="params">(<span name="sup">sup: <a href="Shift.html" class="extype" name="ch.ninecode.model.Shift">Shift</a></span>, <span name="cashFloat">cashFloat: <span class="extype" name="scala.Double">Double</span></span>, <span name="Cashier">Cashier: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="PointOfSale">PointOfSale: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">CashierShift</span><span class="params">(<span name="sup">sup: <a href="Shift.html" class="extype" name="ch.ninecode.model.Shift">Shift</a></span>, <span name="cashFloat">cashFloat: <span class="extype" name="scala.Double">Double</span></span>, <span name="Cashier">Cashier: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="PointOfSale">PointOfSale: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Receipts">Receipts: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Transactions">Transactions: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>The operating shift for a cashier, during which the cashier may transact against the cashier shift, subject to vendor shift being open.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="Shift.html" class="extype" name="ch.ninecode.model.Shift">Shift</a> Reference to the superclass object.</p></dd><dt class="param">cashFloat</dt><dd class="cmt"><p>The amount of cash that the cashier brings to start the shift and that will be taken away at the end of the shift; i.e. the cash float does not get banked.</p></dd><dt class="param">Cashier</dt><dd class="cmt"><p><a href="Cashier.html" class="extype" name="ch.ninecode.model.Cashier">Cashier</a> Cashier operating this shift.</p></dd><dt class="param">PointOfSale</dt><dd class="cmt"><p><a href="PointOfSale.html" class="extype" name="ch.ninecode.model.PointOfSale">PointOfSale</a> Point of sale that is in operation during this shift.</p></dd></dl><div class="toggleContainer block">
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="Shift.html" class="extype" name="ch.ninecode.model.Shift">Shift</a> Reference to the superclass object.</p></dd><dt class="param">cashFloat</dt><dd class="cmt"><p>The amount of cash that the cashier brings to start the shift and that will be taken away at the end of the shift; i.e. the cash float does not get banked.</p></dd><dt class="param">Cashier</dt><dd class="cmt"><p><a href="Cashier.html" class="extype" name="ch.ninecode.model.Cashier">Cashier</a> Cashier operating this shift.</p></dd><dt class="param">PointOfSale</dt><dd class="cmt"><p><a href="PointOfSale.html" class="extype" name="ch.ninecode.model.PointOfSale">PointOfSale</a> Point of sale that is in operation during this shift.</p></dd><dt class="param">Receipts</dt><dd class="cmt"><p><a href="Receipt.html" class="extype" name="ch.ninecode.model.Receipt">Receipt</a> All Receipts recorded for this Shift.</p></dd><dt class="param">Transactions</dt><dd class="cmt"><p><a href="Transaction.html" class="extype" name="ch.ninecode.model.Transaction">Transaction</a> All transactions recorded during this cashier shift.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -109,7 +109,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.CashierShift#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.Shift,cashFloat:Double,Cashier:String,PointOfSale:String):ch.ninecode.model.CashierShift"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.Shift,cashFloat:Double,Cashier:String,PointOfSale:String,Receipts:List[String],Transactions:List[String]):ch.ninecode.model.CashierShift"></a>
       <a id="&lt;init&gt;:CashierShift"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -117,14 +117,14 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">CashierShift</span><span class="params">(<span name="sup">sup: <a href="Shift.html" class="extype" name="ch.ninecode.model.Shift">Shift</a></span>, <span name="cashFloat">cashFloat: <span class="extype" name="scala.Double">Double</span></span>, <span name="Cashier">Cashier: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="PointOfSale">PointOfSale: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
+        <span class="name">CashierShift</span><span class="params">(<span name="sup">sup: <a href="Shift.html" class="extype" name="ch.ninecode.model.Shift">Shift</a></span>, <span name="cashFloat">cashFloat: <span class="extype" name="scala.Double">Double</span></span>, <span name="Cashier">Cashier: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="PointOfSale">PointOfSale: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Receipts">Receipts: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Transactions">Transactions: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.CashierShift@&lt;init&gt;(sup:ch.ninecode.model.Shift,cashFloat:Double,Cashier:String,PointOfSale:String):ch.ninecode.model.CashierShift" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.CashierShift@&lt;init&gt;(sup:ch.ninecode.model.Shift,cashFloat:Double,Cashier:String,PointOfSale:String,Receipts:List[String],Transactions:List[String]):ch.ninecode.model.CashierShift" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="Shift.html" class="extype" name="ch.ninecode.model.Shift">Shift</a> Reference to the superclass object.</p></dd><dt class="param">cashFloat</dt><dd class="cmt"><p>The amount of cash that the cashier brings to start the shift and that will be taken away at the end of the shift; i.e. the cash float does not get banked.</p></dd><dt class="param">Cashier</dt><dd class="cmt"><p><a href="Cashier.html" class="extype" name="ch.ninecode.model.Cashier">Cashier</a> Cashier operating this shift.</p></dd><dt class="param">PointOfSale</dt><dd class="cmt"><p><a href="PointOfSale.html" class="extype" name="ch.ninecode.model.PointOfSale">PointOfSale</a> Point of sale that is in operation during this shift.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="Shift.html" class="extype" name="ch.ninecode.model.Shift">Shift</a> Reference to the superclass object.</p></dd><dt class="param">cashFloat</dt><dd class="cmt"><p>The amount of cash that the cashier brings to start the shift and that will be taken away at the end of the shift; i.e. the cash float does not get banked.</p></dd><dt class="param">Cashier</dt><dd class="cmt"><p><a href="Cashier.html" class="extype" name="ch.ninecode.model.Cashier">Cashier</a> Cashier operating this shift.</p></dd><dt class="param">PointOfSale</dt><dd class="cmt"><p><a href="PointOfSale.html" class="extype" name="ch.ninecode.model.PointOfSale">PointOfSale</a> Point of sale that is in operation during this shift.</p></dd><dt class="param">Receipts</dt><dd class="cmt"><p><a href="Receipt.html" class="extype" name="ch.ninecode.model.Receipt">Receipt</a> All Receipts recorded for this Shift.</p></dd><dt class="param">Transactions</dt><dd class="cmt"><p><a href="Transaction.html" class="extype" name="ch.ninecode.model.Transaction">Transaction</a> All transactions recorded during this cashier shift.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -219,6 +219,23 @@
       </a>
     </span>
       <p class="shortcomment cmt"><a href="PointOfSale.html" class="extype" name="ch.ninecode.model.PointOfSale">PointOfSale</a> Point of sale that is in operation during this shift.</p>
+    </li><li name="ch.ninecode.model.CashierShift#Receipts" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Receipts:List[String]"></a>
+      <a id="Receipts:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Receipts</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.CashierShift@Receipts:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="Receipt.html" class="extype" name="ch.ninecode.model.Receipt">Receipt</a> All Receipts recorded for this Shift.</p>
     </li><li name="ch.ninecode.model.CashierShift#Shift" visbl="pub" data-isabs="false" fullComment="yes" group="Hierarchy">
       <a id="Shift:ch.ninecode.model.Shift"></a>
       <a id="Shift:Shift"></a>
@@ -237,6 +254,23 @@
     </span>
       <p class="shortcomment cmt">Return the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Return the superclass object.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The typed superclass nested object.</p></dd></dl></div>
+    </li><li name="ch.ninecode.model.CashierShift#Transactions" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Transactions:List[String]"></a>
+      <a id="Transactions:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Transactions</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.CashierShift@Transactions:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="Transaction.html" class="extype" name="ch.ninecode.model.Transaction">Transaction</a> All transactions recorded during this cashier shift.</p>
     </li><li name="ch.ninecode.model.Element#about" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="about:Boolean"></a>
       <a id="about:Boolean"></a>

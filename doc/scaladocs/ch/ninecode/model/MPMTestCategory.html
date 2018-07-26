@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>MPMTestCategory - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.MPMTestCategory</title>
-          <meta name="description" content="MPMTestCategory - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.MPMTestCategory" />
-          <meta name="keywords" content="MPMTestCategory CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.MPMTestCategory" />
+          <title>MPMTestCategory - CIMReader 2.11-2.3.1-2.9.0 API - ch.ninecode.model.MPMTestCategory</title>
+          <meta name="description" content="MPMTestCategory - CIMReader 2.11 - 2.3.1 - 2.9.0 API - ch.ninecode.model.MPMTestCategory" />
+          <meta name="keywords" content="MPMTestCategory CIMReader 2.11 2.3.1 2.9.0 API ch.ninecode.model.MPMTestCategory" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,7 +47,7 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">MPMTestCategory</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="purposeFlag">purposeFlag: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="testIdentifier">testIdentifier: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="testMethod">testMethod: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">MPMTestCategory</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="purposeFlag">purposeFlag: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="testIdentifier">testIdentifier: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="testMethod">testMethod: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="MPMResourceStatus">MPMResourceStatus: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="MPMTestResults">MPMTestResults: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="MPMTestThreshold">MPMTestThreshold: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
@@ -60,7 +60,7 @@
        4 - Local Price Test
        5 - Local Conduct Test
        6 - Local Impact Test</p></dd><dt class="param">testMethod</dt><dd class="cmt"><p>The method of performing the market power monitoring.
-       Examples are Normal (default) thresholds or Alternate thresholds.</p></dd></dl><div class="toggleContainer block">
+       Examples are Normal (default) thresholds or Alternate thresholds.</p></dd><dt class="param">MPMResourceStatus</dt><dd class="cmt"><p><a href="MPMResourceStatus.html" class="extype" name="ch.ninecode.model.MPMResourceStatus">MPMResourceStatus</a> <em>undocumented</em></p></dd><dt class="param">MPMTestResults</dt><dd class="cmt"><p><a href="MPMTestResults.html" class="extype" name="ch.ninecode.model.MPMTestResults">MPMTestResults</a> <em>undocumented</em></p></dd><dt class="param">MPMTestThreshold</dt><dd class="cmt"><p><a href="MPMTestThreshold.html" class="extype" name="ch.ninecode.model.MPMTestThreshold">MPMTestThreshold</a> <em>undocumented</em></p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -117,7 +117,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.MPMTestCategory#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,purposeFlag:String,testIdentifier:String,testMethod:String):ch.ninecode.model.MPMTestCategory"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,purposeFlag:String,testIdentifier:String,testMethod:String,MPMResourceStatus:List[String],MPMTestResults:List[String],MPMTestThreshold:List[String]):ch.ninecode.model.MPMTestCategory"></a>
       <a id="&lt;init&gt;:MPMTestCategory"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -125,10 +125,10 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">MPMTestCategory</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="purposeFlag">purposeFlag: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="testIdentifier">testIdentifier: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="testMethod">testMethod: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
+        <span class="name">MPMTestCategory</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="purposeFlag">purposeFlag: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="testIdentifier">testIdentifier: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="testMethod">testMethod: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="MPMResourceStatus">MPMResourceStatus: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="MPMTestResults">MPMTestResults: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="MPMTestThreshold">MPMTestThreshold: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.MPMTestCategory@&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,purposeFlag:String,testIdentifier:String,testMethod:String):ch.ninecode.model.MPMTestCategory" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.MPMTestCategory@&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,purposeFlag:String,testIdentifier:String,testMethod:String,MPMResourceStatus:List[String],MPMTestResults:List[String],MPMTestThreshold:List[String]):ch.ninecode.model.MPMTestCategory" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -140,7 +140,7 @@
        4 - Local Price Test
        5 - Local Conduct Test
        6 - Local Impact Test</p></dd><dt class="param">testMethod</dt><dd class="cmt"><p>The method of performing the market power monitoring.
-       Examples are Normal (default) thresholds or Alternate thresholds.</p></dd></dl></div>
+       Examples are Normal (default) thresholds or Alternate thresholds.</p></dd><dt class="param">MPMResourceStatus</dt><dd class="cmt"><p><a href="MPMResourceStatus.html" class="extype" name="ch.ninecode.model.MPMResourceStatus">MPMResourceStatus</a> <em>undocumented</em></p></dd><dt class="param">MPMTestResults</dt><dd class="cmt"><p><a href="MPMTestResults.html" class="extype" name="ch.ninecode.model.MPMTestResults">MPMTestResults</a> <em>undocumented</em></p></dd><dt class="param">MPMTestThreshold</dt><dd class="cmt"><p><a href="MPMTestThreshold.html" class="extype" name="ch.ninecode.model.MPMTestThreshold">MPMTestThreshold</a> <em>undocumented</em></p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -219,6 +219,57 @@
     </span>
       <p class="shortcomment cmt">Return the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Return the superclass object.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The typed superclass nested object.</p></dd></dl></div>
+    </li><li name="ch.ninecode.model.MPMTestCategory#MPMResourceStatus" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="MPMResourceStatus:List[String]"></a>
+      <a id="MPMResourceStatus:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">MPMResourceStatus</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.MPMTestCategory@MPMResourceStatus:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="MPMResourceStatus.html" class="extype" name="ch.ninecode.model.MPMResourceStatus">MPMResourceStatus</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="MPMResourceStatus.html" class="extype" name="ch.ninecode.model.MPMResourceStatus">MPMResourceStatus</a> <em>undocumented</em></p></div></div>
+    </li><li name="ch.ninecode.model.MPMTestCategory#MPMTestResults" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="MPMTestResults:List[String]"></a>
+      <a id="MPMTestResults:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">MPMTestResults</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.MPMTestCategory@MPMTestResults:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="MPMTestResults.html" class="extype" name="ch.ninecode.model.MPMTestResults">MPMTestResults</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="MPMTestResults.html" class="extype" name="ch.ninecode.model.MPMTestResults">MPMTestResults</a> <em>undocumented</em></p></div></div>
+    </li><li name="ch.ninecode.model.MPMTestCategory#MPMTestThreshold" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="MPMTestThreshold:List[String]"></a>
+      <a id="MPMTestThreshold:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">MPMTestThreshold</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.MPMTestCategory@MPMTestThreshold:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="MPMTestThreshold.html" class="extype" name="ch.ninecode.model.MPMTestThreshold">MPMTestThreshold</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="MPMTestThreshold.html" class="extype" name="ch.ninecode.model.MPMTestThreshold">MPMTestThreshold</a> <em>undocumented</em></p></div></div>
     </li><li name="ch.ninecode.model.Element#about" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="about:Boolean"></a>
       <a id="about:Boolean"></a>

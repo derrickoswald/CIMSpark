@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>WindProtectionIEC - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.WindProtectionIEC</title>
-          <meta name="description" content="WindProtectionIEC - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.WindProtectionIEC" />
-          <meta name="keywords" content="WindProtectionIEC CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.WindProtectionIEC" />
+          <title>WindProtectionIEC - CIMReader 2.11-2.3.1-2.9.0 API - ch.ninecode.model.WindProtectionIEC</title>
+          <meta name="description" content="WindProtectionIEC - CIMReader 2.11 - 2.3.1 - 2.9.0 API - ch.ninecode.model.WindProtectionIEC" />
+          <meta name="keywords" content="WindProtectionIEC CIMReader 2.11 2.3.1 2.9.0 API ch.ninecode.model.WindProtectionIEC" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,7 +47,7 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">WindProtectionIEC</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="dfimax">dfimax: <span class="extype" name="scala.Double">Double</span></span>, <span name="fover">fover: <span class="extype" name="scala.Double">Double</span></span>, <span name="funder">funder: <span class="extype" name="scala.Double">Double</span></span>, <span name="mzc">mzc: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="tfma">tfma: <span class="extype" name="scala.Double">Double</span></span>, <span name="uover">uover: <span class="extype" name="scala.Double">Double</span></span>, <span name="uunder">uunder: <span class="extype" name="scala.Double">Double</span></span>, <span name="WindTurbineType1or2IEC">WindTurbineType1or2IEC: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="WindTurbineType3or4IEC">WindTurbineType3or4IEC: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">WindProtectionIEC</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="dfimax">dfimax: <span class="extype" name="scala.Double">Double</span></span>, <span name="fover">fover: <span class="extype" name="scala.Double">Double</span></span>, <span name="funder">funder: <span class="extype" name="scala.Double">Double</span></span>, <span name="mzc">mzc: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="tfma">tfma: <span class="extype" name="scala.Double">Double</span></span>, <span name="uover">uover: <span class="extype" name="scala.Double">Double</span></span>, <span name="uunder">uunder: <span class="extype" name="scala.Double">Double</span></span>, <span name="WindDynamicsLookupTable">WindDynamicsLookupTable: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="WindTurbineType1or2IEC">WindTurbineType1or2IEC: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="WindTurbineType3or4IEC">WindTurbineType3or4IEC: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
@@ -59,7 +59,7 @@
        True = 1 if the WT protection system uses zero crossings to detect frequency � otherwise false = 0. It is type dependent parameter.</p></dd><dt class="param">tfma</dt><dd class="cmt"><p>Time interval of moving average window (<i>TfMA</i>).
        It is type dependent parameter.</p></dd><dt class="param">uover</dt><dd class="cmt"><p>Wind turbine over voltage protection activation threshold (<i>u</i><i><sub>over</sub></i>).
        It is project dependent parameter.</p></dd><dt class="param">uunder</dt><dd class="cmt"><p>Wind turbine under voltage protection activation threshold (<i>u</i><i><sub>under</sub></i>).
-       It is project dependent parameter.</p></dd><dt class="param">WindTurbineType1or2IEC</dt><dd class="cmt"><p><a href="WindTurbineType1or2IEC.html" class="extype" name="ch.ninecode.model.WindTurbineType1or2IEC">WindTurbineType1or2IEC</a> Wind generator type 1 or 2 model with which this wind turbine protection model is associated.</p></dd><dt class="param">WindTurbineType3or4IEC</dt><dd class="cmt"><p><a href="WindTurbineType3or4IEC.html" class="extype" name="ch.ninecode.model.WindTurbineType3or4IEC">WindTurbineType3or4IEC</a> Wind generator type 3 or 4 model with which this wind turbine protection model is associated.</p></dd></dl><div class="toggleContainer block">
+       It is project dependent parameter.</p></dd><dt class="param">WindDynamicsLookupTable</dt><dd class="cmt"><p><a href="WindDynamicsLookupTable.html" class="extype" name="ch.ninecode.model.WindDynamicsLookupTable">WindDynamicsLookupTable</a> The wind dynamics lookup table associated with this grid protection model.</p></dd><dt class="param">WindTurbineType1or2IEC</dt><dd class="cmt"><p><a href="WindTurbineType1or2IEC.html" class="extype" name="ch.ninecode.model.WindTurbineType1or2IEC">WindTurbineType1or2IEC</a> Wind generator type 1 or 2 model with which this wind turbine protection model is associated.</p></dd><dt class="param">WindTurbineType3or4IEC</dt><dd class="cmt"><p><a href="WindTurbineType3or4IEC.html" class="extype" name="ch.ninecode.model.WindTurbineType3or4IEC">WindTurbineType3or4IEC</a> Wind generator type 3 or 4 model with which this wind turbine protection model is associated.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -116,7 +116,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.WindProtectionIEC#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,dfimax:Double,fover:Double,funder:Double,mzc:Boolean,tfma:Double,uover:Double,uunder:Double,WindTurbineType1or2IEC:String,WindTurbineType3or4IEC:String):ch.ninecode.model.WindProtectionIEC"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,dfimax:Double,fover:Double,funder:Double,mzc:Boolean,tfma:Double,uover:Double,uunder:Double,WindDynamicsLookupTable:List[String],WindTurbineType1or2IEC:String,WindTurbineType3or4IEC:String):ch.ninecode.model.WindProtectionIEC"></a>
       <a id="&lt;init&gt;:WindProtectionIEC"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -124,10 +124,10 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">WindProtectionIEC</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="dfimax">dfimax: <span class="extype" name="scala.Double">Double</span></span>, <span name="fover">fover: <span class="extype" name="scala.Double">Double</span></span>, <span name="funder">funder: <span class="extype" name="scala.Double">Double</span></span>, <span name="mzc">mzc: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="tfma">tfma: <span class="extype" name="scala.Double">Double</span></span>, <span name="uover">uover: <span class="extype" name="scala.Double">Double</span></span>, <span name="uunder">uunder: <span class="extype" name="scala.Double">Double</span></span>, <span name="WindTurbineType1or2IEC">WindTurbineType1or2IEC: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="WindTurbineType3or4IEC">WindTurbineType3or4IEC: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
+        <span class="name">WindProtectionIEC</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="dfimax">dfimax: <span class="extype" name="scala.Double">Double</span></span>, <span name="fover">fover: <span class="extype" name="scala.Double">Double</span></span>, <span name="funder">funder: <span class="extype" name="scala.Double">Double</span></span>, <span name="mzc">mzc: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="tfma">tfma: <span class="extype" name="scala.Double">Double</span></span>, <span name="uover">uover: <span class="extype" name="scala.Double">Double</span></span>, <span name="uunder">uunder: <span class="extype" name="scala.Double">Double</span></span>, <span name="WindDynamicsLookupTable">WindDynamicsLookupTable: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="WindTurbineType1or2IEC">WindTurbineType1or2IEC: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="WindTurbineType3or4IEC">WindTurbineType3or4IEC: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.WindProtectionIEC@&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,dfimax:Double,fover:Double,funder:Double,mzc:Boolean,tfma:Double,uover:Double,uunder:Double,WindTurbineType1or2IEC:String,WindTurbineType3or4IEC:String):ch.ninecode.model.WindProtectionIEC" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.WindProtectionIEC@&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,dfimax:Double,fover:Double,funder:Double,mzc:Boolean,tfma:Double,uover:Double,uunder:Double,WindDynamicsLookupTable:List[String],WindTurbineType1or2IEC:String,WindTurbineType3or4IEC:String):ch.ninecode.model.WindProtectionIEC" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -138,7 +138,7 @@
        True = 1 if the WT protection system uses zero crossings to detect frequency � otherwise false = 0. It is type dependent parameter.</p></dd><dt class="param">tfma</dt><dd class="cmt"><p>Time interval of moving average window (<i>TfMA</i>).
        It is type dependent parameter.</p></dd><dt class="param">uover</dt><dd class="cmt"><p>Wind turbine over voltage protection activation threshold (<i>u</i><i><sub>over</sub></i>).
        It is project dependent parameter.</p></dd><dt class="param">uunder</dt><dd class="cmt"><p>Wind turbine under voltage protection activation threshold (<i>u</i><i><sub>under</sub></i>).
-       It is project dependent parameter.</p></dd><dt class="param">WindTurbineType1or2IEC</dt><dd class="cmt"><p><a href="WindTurbineType1or2IEC.html" class="extype" name="ch.ninecode.model.WindTurbineType1or2IEC">WindTurbineType1or2IEC</a> Wind generator type 1 or 2 model with which this wind turbine protection model is associated.</p></dd><dt class="param">WindTurbineType3or4IEC</dt><dd class="cmt"><p><a href="WindTurbineType3or4IEC.html" class="extype" name="ch.ninecode.model.WindTurbineType3or4IEC">WindTurbineType3or4IEC</a> Wind generator type 3 or 4 model with which this wind turbine protection model is associated.</p></dd></dl></div>
+       It is project dependent parameter.</p></dd><dt class="param">WindDynamicsLookupTable</dt><dd class="cmt"><p><a href="WindDynamicsLookupTable.html" class="extype" name="ch.ninecode.model.WindDynamicsLookupTable">WindDynamicsLookupTable</a> The wind dynamics lookup table associated with this grid protection model.</p></dd><dt class="param">WindTurbineType1or2IEC</dt><dd class="cmt"><p><a href="WindTurbineType1or2IEC.html" class="extype" name="ch.ninecode.model.WindTurbineType1or2IEC">WindTurbineType1or2IEC</a> Wind generator type 1 or 2 model with which this wind turbine protection model is associated.</p></dd><dt class="param">WindTurbineType3or4IEC</dt><dd class="cmt"><p><a href="WindTurbineType3or4IEC.html" class="extype" name="ch.ninecode.model.WindTurbineType3or4IEC">WindTurbineType3or4IEC</a> Wind generator type 3 or 4 model with which this wind turbine protection model is associated.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -217,6 +217,23 @@
     </span>
       <p class="shortcomment cmt">Return the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Return the superclass object.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The typed superclass nested object.</p></dd></dl></div>
+    </li><li name="ch.ninecode.model.WindProtectionIEC#WindDynamicsLookupTable" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="WindDynamicsLookupTable:List[String]"></a>
+      <a id="WindDynamicsLookupTable:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">WindDynamicsLookupTable</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.WindProtectionIEC@WindDynamicsLookupTable:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="WindDynamicsLookupTable.html" class="extype" name="ch.ninecode.model.WindDynamicsLookupTable">WindDynamicsLookupTable</a> The wind dynamics lookup table associated with this grid protection model.</p>
     </li><li name="ch.ninecode.model.WindProtectionIEC#WindTurbineType1or2IEC" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="WindTurbineType1or2IEC:String"></a>
       <a id="WindTurbineType1or2IEC:String"></a>

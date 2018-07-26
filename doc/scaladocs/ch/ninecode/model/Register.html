@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>Register - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.Register</title>
-          <meta name="description" content="Register - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.Register" />
-          <meta name="keywords" content="Register CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.Register" />
+          <title>Register - CIMReader 2.11-2.3.1-2.9.0 API - ch.ninecode.model.Register</title>
+          <meta name="description" content="Register - CIMReader 2.11 - 2.3.1 - 2.9.0 API - ch.ninecode.model.Register" />
+          <meta name="keywords" content="Register CIMReader 2.11 2.3.1 2.9.0 API ch.ninecode.model.Register" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,14 +47,14 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">Register</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="isVirtual">isVirtual: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="leftDigitCount">leftDigitCount: <span class="extype" name="scala.Int">Int</span></span>, <span name="rightDigitCount">rightDigitCount: <span class="extype" name="scala.Int">Int</span></span>, <span name="touTier">touTier: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="touTierName">touTierName: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="EndDeviceFunction">EndDeviceFunction: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">Register</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="isVirtual">isVirtual: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="leftDigitCount">leftDigitCount: <span class="extype" name="scala.Int">Int</span></span>, <span name="rightDigitCount">rightDigitCount: <span class="extype" name="scala.Int">Int</span></span>, <span name="touTier">touTier: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="touTierName">touTierName: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Channels">Channels: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="EndDeviceFunction">EndDeviceFunction: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A device that indicates or records units of the commodity or other quantity measured.
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">isVirtual</dt><dd class="cmt"><p>If true, the data it produces is  calculated or measured by a device other than a physical end device/meter.
        Otherwise, any data streams it produces are measured by the hardware of the end device/meter itself.</p></dd><dt class="param">leftDigitCount</dt><dd class="cmt"><p>Number of digits (dials on a mechanical meter) to the left of the decimal place; default is normally 5.</p></dd><dt class="param">rightDigitCount</dt><dd class="cmt"><p>Number of digits (dials on a mechanical meter) to the right of the decimal place.</p></dd><dt class="param">touTier</dt><dd class="cmt"><p>Clock time interval for register to beging/cease accumulating time of usage (e.g., start at 8:00 am, stop at 5:00 pm).</p></dd><dt class="param">touTierName</dt><dd class="cmt"><p>Name used for the time of use tier (also known as bin or bucket).
-       For example, &quot;peak&quot;, &quot;off-peak&quot;, &quot;TOU Category A&quot;, etc.</p></dd><dt class="param">EndDeviceFunction</dt><dd class="cmt"><p><a href="EndDeviceFunction.html" class="extype" name="ch.ninecode.model.EndDeviceFunction">EndDeviceFunction</a> End device function metering quantities displayed by this register.</p></dd></dl><div class="toggleContainer block">
+       For example, &quot;peak&quot;, &quot;off-peak&quot;, &quot;TOU Category A&quot;, etc.</p></dd><dt class="param">Channels</dt><dd class="cmt"><p><a href="Channel.html" class="extype" name="ch.ninecode.model.Channel">Channel</a> All channels that collect/report values from this register.</p></dd><dt class="param">EndDeviceFunction</dt><dd class="cmt"><p><a href="EndDeviceFunction.html" class="extype" name="ch.ninecode.model.EndDeviceFunction">EndDeviceFunction</a> End device function metering quantities displayed by this register.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -111,7 +111,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.Register#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,isVirtual:Boolean,leftDigitCount:Int,rightDigitCount:Int,touTier:String,touTierName:String,EndDeviceFunction:String):ch.ninecode.model.Register"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,isVirtual:Boolean,leftDigitCount:Int,rightDigitCount:Int,touTier:String,touTierName:String,Channels:List[String],EndDeviceFunction:String):ch.ninecode.model.Register"></a>
       <a id="&lt;init&gt;:Register"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -119,16 +119,16 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">Register</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="isVirtual">isVirtual: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="leftDigitCount">leftDigitCount: <span class="extype" name="scala.Int">Int</span></span>, <span name="rightDigitCount">rightDigitCount: <span class="extype" name="scala.Int">Int</span></span>, <span name="touTier">touTier: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="touTierName">touTierName: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="EndDeviceFunction">EndDeviceFunction: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
+        <span class="name">Register</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="isVirtual">isVirtual: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="leftDigitCount">leftDigitCount: <span class="extype" name="scala.Int">Int</span></span>, <span name="rightDigitCount">rightDigitCount: <span class="extype" name="scala.Int">Int</span></span>, <span name="touTier">touTier: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="touTierName">touTierName: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Channels">Channels: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="EndDeviceFunction">EndDeviceFunction: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.Register@&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,isVirtual:Boolean,leftDigitCount:Int,rightDigitCount:Int,touTier:String,touTierName:String,EndDeviceFunction:String):ch.ninecode.model.Register" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.Register@&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,isVirtual:Boolean,leftDigitCount:Int,rightDigitCount:Int,touTier:String,touTierName:String,Channels:List[String],EndDeviceFunction:String):ch.ninecode.model.Register" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">isVirtual</dt><dd class="cmt"><p>If true, the data it produces is  calculated or measured by a device other than a physical end device/meter.
        Otherwise, any data streams it produces are measured by the hardware of the end device/meter itself.</p></dd><dt class="param">leftDigitCount</dt><dd class="cmt"><p>Number of digits (dials on a mechanical meter) to the left of the decimal place; default is normally 5.</p></dd><dt class="param">rightDigitCount</dt><dd class="cmt"><p>Number of digits (dials on a mechanical meter) to the right of the decimal place.</p></dd><dt class="param">touTier</dt><dd class="cmt"><p>Clock time interval for register to beging/cease accumulating time of usage (e.g., start at 8:00 am, stop at 5:00 pm).</p></dd><dt class="param">touTierName</dt><dd class="cmt"><p>Name used for the time of use tier (also known as bin or bucket).
-       For example, &quot;peak&quot;, &quot;off-peak&quot;, &quot;TOU Category A&quot;, etc.</p></dd><dt class="param">EndDeviceFunction</dt><dd class="cmt"><p><a href="EndDeviceFunction.html" class="extype" name="ch.ninecode.model.EndDeviceFunction">EndDeviceFunction</a> End device function metering quantities displayed by this register.</p></dd></dl></div>
+       For example, &quot;peak&quot;, &quot;off-peak&quot;, &quot;TOU Category A&quot;, etc.</p></dd><dt class="param">Channels</dt><dd class="cmt"><p><a href="Channel.html" class="extype" name="ch.ninecode.model.Channel">Channel</a> All channels that collect/report values from this register.</p></dd><dt class="param">EndDeviceFunction</dt><dd class="cmt"><p><a href="EndDeviceFunction.html" class="extype" name="ch.ninecode.model.EndDeviceFunction">EndDeviceFunction</a> End device function metering quantities displayed by this register.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -189,6 +189,23 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="ch.ninecode.model.Register#Channels" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Channels:List[String]"></a>
+      <a id="Channels:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Channels</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.Register@Channels:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="Channel.html" class="extype" name="ch.ninecode.model.Channel">Channel</a> All channels that collect/report values from this register.</p>
     </li><li name="ch.ninecode.model.Register#EndDeviceFunction" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="EndDeviceFunction:String"></a>
       <a id="EndDeviceFunction:String"></a>

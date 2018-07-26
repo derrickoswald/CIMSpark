@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>CustomerAccount - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.CustomerAccount</title>
-          <meta name="description" content="CustomerAccount - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.CustomerAccount" />
-          <meta name="keywords" content="CustomerAccount CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.CustomerAccount" />
+          <title>CustomerAccount - CIMReader 2.11-2.3.1-2.9.0 API - ch.ninecode.model.CustomerAccount</title>
+          <meta name="description" content="CustomerAccount - CIMReader 2.11 - 2.3.1 - 2.9.0 API - ch.ninecode.model.CustomerAccount" />
+          <meta name="keywords" content="CustomerAccount CIMReader 2.11 2.3.1 2.9.0 API ch.ninecode.model.CustomerAccount" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,12 +47,12 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">CustomerAccount</span><span class="params">(<span name="sup">sup: <a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a></span>, <span name="billingCycle">billingCycle: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="budgetBill">budgetBill: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Customer">Customer: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">CustomerAccount</span><span class="params">(<span name="sup">sup: <a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a></span>, <span name="billingCycle">billingCycle: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="budgetBill">budgetBill: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Customer">Customer: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="CustomerAgreements">CustomerAgreements: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="CustomerBillingInfos">CustomerBillingInfos: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="ErpInvoicees">ErpInvoicees: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="PaymentTransactions">PaymentTransactions: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="WorkBillingInfos">WorkBillingInfos: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Assignment of a group of products and services purchased by the customer through a customer agreement, used as a mechanism for customer billing and payment.</p><p>It contains common information from the various types of customer agreements to create billings (invoices) for a customer and receive payment.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a> Reference to the superclass object.</p></dd><dt class="param">billingCycle</dt><dd class="cmt"><p>Cycle day on which the associated customer account will normally be billed, used to determine when to produce the billing.</p></dd><dt class="param">budgetBill</dt><dd class="cmt"><p>Budget bill code.</p></dd><dt class="param">Customer</dt><dd class="cmt"><p><a href="Customer.html" class="extype" name="ch.ninecode.model.Customer">Customer</a> Customer owning this account.</p></dd></dl><div class="toggleContainer block">
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a> Reference to the superclass object.</p></dd><dt class="param">billingCycle</dt><dd class="cmt"><p>Cycle day on which the associated customer account will normally be billed, used to determine when to produce the billing.</p></dd><dt class="param">budgetBill</dt><dd class="cmt"><p>Budget bill code.</p></dd><dt class="param">Customer</dt><dd class="cmt"><p><a href="Customer.html" class="extype" name="ch.ninecode.model.Customer">Customer</a> Customer owning this account.</p></dd><dt class="param">CustomerAgreements</dt><dd class="cmt"><p><a href="CustomerAgreement.html" class="extype" name="ch.ninecode.model.CustomerAgreement">CustomerAgreement</a> All agreements for this customer account.</p></dd><dt class="param">CustomerBillingInfos</dt><dd class="cmt"><p><a href="CustomerBillingInfo.html" class="extype" name="ch.ninecode.model.CustomerBillingInfo">CustomerBillingInfo</a> <em>undocumented</em></p></dd><dt class="param">ErpInvoicees</dt><dd class="cmt"><p><a href="ErpInvoice.html" class="extype" name="ch.ninecode.model.ErpInvoice">ErpInvoice</a> <em>undocumented</em></p></dd><dt class="param">PaymentTransactions</dt><dd class="cmt"><p><a href="Transaction.html" class="extype" name="ch.ninecode.model.Transaction">Transaction</a> All payment transactions for this customer account.</p></dd><dt class="param">WorkBillingInfos</dt><dd class="cmt"><p><a href="WorkBillingInfo.html" class="extype" name="ch.ninecode.model.WorkBillingInfo">WorkBillingInfo</a> <em>undocumented</em></p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -109,7 +109,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.CustomerAccount#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.Document,billingCycle:String,budgetBill:String,Customer:String):ch.ninecode.model.CustomerAccount"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.Document,billingCycle:String,budgetBill:String,Customer:String,CustomerAgreements:List[String],CustomerBillingInfos:List[String],ErpInvoicees:List[String],PaymentTransactions:List[String],WorkBillingInfos:List[String]):ch.ninecode.model.CustomerAccount"></a>
       <a id="&lt;init&gt;:CustomerAccount"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -117,14 +117,14 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">CustomerAccount</span><span class="params">(<span name="sup">sup: <a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a></span>, <span name="billingCycle">billingCycle: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="budgetBill">budgetBill: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Customer">Customer: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
+        <span class="name">CustomerAccount</span><span class="params">(<span name="sup">sup: <a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a></span>, <span name="billingCycle">billingCycle: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="budgetBill">budgetBill: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Customer">Customer: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="CustomerAgreements">CustomerAgreements: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="CustomerBillingInfos">CustomerBillingInfos: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="ErpInvoicees">ErpInvoicees: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="PaymentTransactions">PaymentTransactions: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="WorkBillingInfos">WorkBillingInfos: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.CustomerAccount@&lt;init&gt;(sup:ch.ninecode.model.Document,billingCycle:String,budgetBill:String,Customer:String):ch.ninecode.model.CustomerAccount" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.CustomerAccount@&lt;init&gt;(sup:ch.ninecode.model.Document,billingCycle:String,budgetBill:String,Customer:String,CustomerAgreements:List[String],CustomerBillingInfos:List[String],ErpInvoicees:List[String],PaymentTransactions:List[String],WorkBillingInfos:List[String]):ch.ninecode.model.CustomerAccount" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a> Reference to the superclass object.</p></dd><dt class="param">billingCycle</dt><dd class="cmt"><p>Cycle day on which the associated customer account will normally be billed, used to determine when to produce the billing.</p></dd><dt class="param">budgetBill</dt><dd class="cmt"><p>Budget bill code.</p></dd><dt class="param">Customer</dt><dd class="cmt"><p><a href="Customer.html" class="extype" name="ch.ninecode.model.Customer">Customer</a> Customer owning this account.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="Document.html" class="extype" name="ch.ninecode.model.Document">Document</a> Reference to the superclass object.</p></dd><dt class="param">billingCycle</dt><dd class="cmt"><p>Cycle day on which the associated customer account will normally be billed, used to determine when to produce the billing.</p></dd><dt class="param">budgetBill</dt><dd class="cmt"><p>Budget bill code.</p></dd><dt class="param">Customer</dt><dd class="cmt"><p><a href="Customer.html" class="extype" name="ch.ninecode.model.Customer">Customer</a> Customer owning this account.</p></dd><dt class="param">CustomerAgreements</dt><dd class="cmt"><p><a href="CustomerAgreement.html" class="extype" name="ch.ninecode.model.CustomerAgreement">CustomerAgreement</a> All agreements for this customer account.</p></dd><dt class="param">CustomerBillingInfos</dt><dd class="cmt"><p><a href="CustomerBillingInfo.html" class="extype" name="ch.ninecode.model.CustomerBillingInfo">CustomerBillingInfo</a> <em>undocumented</em></p></dd><dt class="param">ErpInvoicees</dt><dd class="cmt"><p><a href="ErpInvoice.html" class="extype" name="ch.ninecode.model.ErpInvoice">ErpInvoice</a> <em>undocumented</em></p></dd><dt class="param">PaymentTransactions</dt><dd class="cmt"><p><a href="Transaction.html" class="extype" name="ch.ninecode.model.Transaction">Transaction</a> All payment transactions for this customer account.</p></dd><dt class="param">WorkBillingInfos</dt><dd class="cmt"><p><a href="WorkBillingInfo.html" class="extype" name="ch.ninecode.model.WorkBillingInfo">WorkBillingInfo</a> <em>undocumented</em></p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -202,6 +202,40 @@
       </a>
     </span>
       <p class="shortcomment cmt"><a href="Customer.html" class="extype" name="ch.ninecode.model.Customer">Customer</a> Customer owning this account.</p>
+    </li><li name="ch.ninecode.model.CustomerAccount#CustomerAgreements" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="CustomerAgreements:List[String]"></a>
+      <a id="CustomerAgreements:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CustomerAgreements</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.CustomerAccount@CustomerAgreements:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="CustomerAgreement.html" class="extype" name="ch.ninecode.model.CustomerAgreement">CustomerAgreement</a> All agreements for this customer account.</p>
+    </li><li name="ch.ninecode.model.CustomerAccount#CustomerBillingInfos" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="CustomerBillingInfos:List[String]"></a>
+      <a id="CustomerBillingInfos:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">CustomerBillingInfos</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.CustomerAccount@CustomerBillingInfos:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="CustomerBillingInfo.html" class="extype" name="ch.ninecode.model.CustomerBillingInfo">CustomerBillingInfo</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="CustomerBillingInfo.html" class="extype" name="ch.ninecode.model.CustomerBillingInfo">CustomerBillingInfo</a> <em>undocumented</em></p></div></div>
     </li><li name="ch.ninecode.model.CustomerAccount#Document" visbl="pub" data-isabs="false" fullComment="yes" group="Hierarchy">
       <a id="Document:ch.ninecode.model.Document"></a>
       <a id="Document:Document"></a>
@@ -220,6 +254,57 @@
     </span>
       <p class="shortcomment cmt">Return the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Return the superclass object.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The typed superclass nested object.</p></dd></dl></div>
+    </li><li name="ch.ninecode.model.CustomerAccount#ErpInvoicees" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ErpInvoicees:List[String]"></a>
+      <a id="ErpInvoicees:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ErpInvoicees</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.CustomerAccount@ErpInvoicees:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="ErpInvoice.html" class="extype" name="ch.ninecode.model.ErpInvoice">ErpInvoice</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="ErpInvoice.html" class="extype" name="ch.ninecode.model.ErpInvoice">ErpInvoice</a> <em>undocumented</em></p></div></div>
+    </li><li name="ch.ninecode.model.CustomerAccount#PaymentTransactions" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="PaymentTransactions:List[String]"></a>
+      <a id="PaymentTransactions:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">PaymentTransactions</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.CustomerAccount@PaymentTransactions:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="Transaction.html" class="extype" name="ch.ninecode.model.Transaction">Transaction</a> All payment transactions for this customer account.</p>
+    </li><li name="ch.ninecode.model.CustomerAccount#WorkBillingInfos" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="WorkBillingInfos:List[String]"></a>
+      <a id="WorkBillingInfos:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">WorkBillingInfos</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.CustomerAccount@WorkBillingInfos:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="WorkBillingInfo.html" class="extype" name="ch.ninecode.model.WorkBillingInfo">WorkBillingInfo</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="WorkBillingInfo.html" class="extype" name="ch.ninecode.model.WorkBillingInfo">WorkBillingInfo</a> <em>undocumented</em></p></div></div>
     </li><li name="ch.ninecode.model.Element#about" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="about:Boolean"></a>
       <a id="about:Boolean"></a>

@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>BaseVoltage - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.BaseVoltage</title>
-          <meta name="description" content="BaseVoltage - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.BaseVoltage" />
-          <meta name="keywords" content="BaseVoltage CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.BaseVoltage" />
+          <title>BaseVoltage - CIMReader 2.11-2.3.1-2.9.0 API - ch.ninecode.model.BaseVoltage</title>
+          <meta name="description" content="BaseVoltage - CIMReader 2.11 - 2.3.1 - 2.9.0 API - ch.ninecode.model.BaseVoltage" />
+          <meta name="keywords" content="BaseVoltage CIMReader 2.11 2.3.1 2.9.0 API ch.ninecode.model.BaseVoltage" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,12 +47,14 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">BaseVoltage</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="nominalVoltage">nominalVoltage: <span class="extype" name="scala.Double">Double</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">BaseVoltage</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="nominalVoltage">nominalVoltage: <span class="extype" name="scala.Double">Double</span></span>, <span name="ConductingEquipment">ConductingEquipment: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="TopologicalNode">TopologicalNode: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="TransformerEnds">TransformerEnds: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="VoltageLevel">VoltageLevel: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Defines a system base voltage which is referenced.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">nominalVoltage</dt><dd class="cmt"><p>The power system resource's base voltage.</p></dd></dl><div class="toggleContainer block">
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">nominalVoltage</dt><dd class="cmt"><p>The power system resource's base voltage.</p></dd><dt class="param">ConductingEquipment</dt><dd class="cmt"><p><a href="ConductingEquipment.html" class="extype" name="ch.ninecode.model.ConductingEquipment">ConductingEquipment</a> All conducting equipment with this base voltage.
+       Use only when there is no voltage level container used and only one base voltage applies.  For example, not used for transformers.</p></dd><dt class="param">TopologicalNode</dt><dd class="cmt"><p><a href="TopologicalNode.html" class="extype" name="ch.ninecode.model.TopologicalNode">TopologicalNode</a> The topological nodes at the base voltage.</p></dd><dt class="param">TransformerEnds</dt><dd class="cmt"><p><a href="TransformerEnd.html" class="extype" name="ch.ninecode.model.TransformerEnd">TransformerEnd</a> Transformer ends at the base voltage.
+       This is essential for PU calculation.</p></dd><dt class="param">VoltageLevel</dt><dd class="cmt"><p><a href="VoltageLevel.html" class="extype" name="ch.ninecode.model.VoltageLevel">VoltageLevel</a> The voltage levels having this base voltage.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -109,7 +111,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.BaseVoltage#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,nominalVoltage:Double):ch.ninecode.model.BaseVoltage"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,nominalVoltage:Double,ConductingEquipment:List[String],TopologicalNode:List[String],TransformerEnds:List[String],VoltageLevel:List[String]):ch.ninecode.model.BaseVoltage"></a>
       <a id="&lt;init&gt;:BaseVoltage"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -117,14 +119,16 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">BaseVoltage</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="nominalVoltage">nominalVoltage: <span class="extype" name="scala.Double">Double</span></span>)</span>
+        <span class="name">BaseVoltage</span><span class="params">(<span name="sup">sup: <a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a></span>, <span name="nominalVoltage">nominalVoltage: <span class="extype" name="scala.Double">Double</span></span>, <span name="ConductingEquipment">ConductingEquipment: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="TopologicalNode">TopologicalNode: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="TransformerEnds">TransformerEnds: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="VoltageLevel">VoltageLevel: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.BaseVoltage@&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,nominalVoltage:Double):ch.ninecode.model.BaseVoltage" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.BaseVoltage@&lt;init&gt;(sup:ch.ninecode.model.IdentifiedObject,nominalVoltage:Double,ConductingEquipment:List[String],TopologicalNode:List[String],TransformerEnds:List[String],VoltageLevel:List[String]):ch.ninecode.model.BaseVoltage" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">nominalVoltage</dt><dd class="cmt"><p>The power system resource's base voltage.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">nominalVoltage</dt><dd class="cmt"><p>The power system resource's base voltage.</p></dd><dt class="param">ConductingEquipment</dt><dd class="cmt"><p><a href="ConductingEquipment.html" class="extype" name="ch.ninecode.model.ConductingEquipment">ConductingEquipment</a> All conducting equipment with this base voltage.
+       Use only when there is no voltage level container used and only one base voltage applies.  For example, not used for transformers.</p></dd><dt class="param">TopologicalNode</dt><dd class="cmt"><p><a href="TopologicalNode.html" class="extype" name="ch.ninecode.model.TopologicalNode">TopologicalNode</a> The topological nodes at the base voltage.</p></dd><dt class="param">TransformerEnds</dt><dd class="cmt"><p><a href="TransformerEnd.html" class="extype" name="ch.ninecode.model.TransformerEnd">TransformerEnd</a> Transformer ends at the base voltage.
+       This is essential for PU calculation.</p></dd><dt class="param">VoltageLevel</dt><dd class="cmt"><p><a href="VoltageLevel.html" class="extype" name="ch.ninecode.model.VoltageLevel">VoltageLevel</a> The voltage levels having this base voltage.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -185,6 +189,24 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="ch.ninecode.model.BaseVoltage#ConductingEquipment" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ConductingEquipment:List[String]"></a>
+      <a id="ConductingEquipment:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ConductingEquipment</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.BaseVoltage@ConductingEquipment:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="ConductingEquipment.html" class="extype" name="ch.ninecode.model.ConductingEquipment">ConductingEquipment</a> All conducting equipment with this base voltage.</p><div class="fullcomment"><div class="comment cmt"><p><a href="ConductingEquipment.html" class="extype" name="ch.ninecode.model.ConductingEquipment">ConductingEquipment</a> All conducting equipment with this base voltage.
+       Use only when there is no voltage level container used and only one base voltage applies.  For example, not used for transformers.</p></div></div>
     </li><li name="ch.ninecode.model.BaseVoltage#IdentifiedObject" visbl="pub" data-isabs="false" fullComment="yes" group="Hierarchy">
       <a id="IdentifiedObject:ch.ninecode.model.IdentifiedObject"></a>
       <a id="IdentifiedObject:IdentifiedObject"></a>
@@ -203,6 +225,58 @@
     </span>
       <p class="shortcomment cmt">Return the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Return the superclass object.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The typed superclass nested object.</p></dd></dl></div>
+    </li><li name="ch.ninecode.model.BaseVoltage#TopologicalNode" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TopologicalNode:List[String]"></a>
+      <a id="TopologicalNode:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">TopologicalNode</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.BaseVoltage@TopologicalNode:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="TopologicalNode.html" class="extype" name="ch.ninecode.model.TopologicalNode">TopologicalNode</a> The topological nodes at the base voltage.</p>
+    </li><li name="ch.ninecode.model.BaseVoltage#TransformerEnds" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="TransformerEnds:List[String]"></a>
+      <a id="TransformerEnds:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">TransformerEnds</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.BaseVoltage@TransformerEnds:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="TransformerEnd.html" class="extype" name="ch.ninecode.model.TransformerEnd">TransformerEnd</a> Transformer ends at the base voltage.</p><div class="fullcomment"><div class="comment cmt"><p><a href="TransformerEnd.html" class="extype" name="ch.ninecode.model.TransformerEnd">TransformerEnd</a> Transformer ends at the base voltage.
+       This is essential for PU calculation.</p></div></div>
+    </li><li name="ch.ninecode.model.BaseVoltage#VoltageLevel" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="VoltageLevel:List[String]"></a>
+      <a id="VoltageLevel:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">VoltageLevel</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.BaseVoltage@VoltageLevel:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="VoltageLevel.html" class="extype" name="ch.ninecode.model.VoltageLevel">VoltageLevel</a> The voltage levels having this base voltage.</p>
     </li><li name="ch.ninecode.model.Element#about" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="about:Boolean"></a>
       <a id="about:Boolean"></a>

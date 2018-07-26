@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>CustomerNotification - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.CustomerNotification</title>
-          <meta name="description" content="CustomerNotification - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.CustomerNotification" />
-          <meta name="keywords" content="CustomerNotification CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.CustomerNotification" />
+          <title>CustomerNotification - CIMReader 2.11-2.3.1-2.9.0 API - ch.ninecode.model.CustomerNotification</title>
+          <meta name="description" content="CustomerNotification - CIMReader 2.11 - 2.3.1 - 2.9.0 API - ch.ninecode.model.CustomerNotification" />
+          <meta name="keywords" content="CustomerNotification CIMReader 2.11 2.3.1 2.9.0 API ch.ninecode.model.CustomerNotification" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,12 +47,12 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">CustomerNotification</span><span class="params">(<span name="sup">sup: <a href="BasicElement.html" class="extype" name="ch.ninecode.model.BasicElement">BasicElement</a></span>, <span name="contactType">contactType: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="contactValue">contactValue: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="earliestDateTimeToCall">earliestDateTimeToCall: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="latestDateTimeToCall">latestDateTimeToCall: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="trigger">trigger: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Customer">Customer: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Incident">Incident: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">CustomerNotification</span><span class="params">(<span name="sup">sup: <a href="BasicElement.html" class="extype" name="ch.ninecode.model.BasicElement">BasicElement</a></span>, <span name="contactType">contactType: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="contactValue">contactValue: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="earliestDateTimeToCall">earliestDateTimeToCall: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="latestDateTimeToCall">latestDateTimeToCall: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="trigger">trigger: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Customer">Customer: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Incident">Incident: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="TroubleTickets">TroubleTickets: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Conditions for notifying the customer about the changes in the status of their service (e.g., outage restore, estimated restoration time, tariff or service level change, etc.)
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">contactType</dt><dd class="cmt"><p>Type of contact (e.g., phone, email, etc.).</p></dd><dt class="param">contactValue</dt><dd class="cmt"><p>Value of contact type (e.g., phone number, email address, etc.).</p></dd><dt class="param">earliestDateTimeToCall</dt><dd class="cmt"><p>Earliest date time to call the customer.</p></dd><dt class="param">latestDateTimeToCall</dt><dd class="cmt"><p>Latest date time to call the customer.</p></dd><dt class="param">trigger</dt><dd class="cmt"><p>Trigger for this notification.</p></dd><dt class="param">Customer</dt><dd class="cmt"><p><a href="Customer.html" class="extype" name="ch.ninecode.model.Customer">Customer</a> Customer requiring this notification.</p></dd><dt class="param">Incident</dt><dd class="cmt"><p><a href="Incident.html" class="extype" name="ch.ninecode.model.Incident">Incident</a> Incident as a subject of this customer notification.</p></dd></dl><div class="toggleContainer block">
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">contactType</dt><dd class="cmt"><p>Type of contact (e.g., phone, email, etc.).</p></dd><dt class="param">contactValue</dt><dd class="cmt"><p>Value of contact type (e.g., phone number, email address, etc.).</p></dd><dt class="param">earliestDateTimeToCall</dt><dd class="cmt"><p>Earliest date time to call the customer.</p></dd><dt class="param">latestDateTimeToCall</dt><dd class="cmt"><p>Latest date time to call the customer.</p></dd><dt class="param">trigger</dt><dd class="cmt"><p>Trigger for this notification.</p></dd><dt class="param">Customer</dt><dd class="cmt"><p><a href="Customer.html" class="extype" name="ch.ninecode.model.Customer">Customer</a> Customer requiring this notification.</p></dd><dt class="param">Incident</dt><dd class="cmt"><p><a href="Incident.html" class="extype" name="ch.ninecode.model.Incident">Incident</a> Incident as a subject of this customer notification.</p></dd><dt class="param">TroubleTickets</dt><dd class="cmt"><p><a href="TroubleTicket.html" class="extype" name="ch.ninecode.model.TroubleTicket">TroubleTicket</a> All trouble tickets with this notification.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -109,7 +109,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.CustomerNotification#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.BasicElement,contactType:String,contactValue:String,earliestDateTimeToCall:String,latestDateTimeToCall:String,trigger:String,Customer:String,Incident:String):ch.ninecode.model.CustomerNotification"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.BasicElement,contactType:String,contactValue:String,earliestDateTimeToCall:String,latestDateTimeToCall:String,trigger:String,Customer:String,Incident:String,TroubleTickets:List[String]):ch.ninecode.model.CustomerNotification"></a>
       <a id="&lt;init&gt;:CustomerNotification"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -117,14 +117,14 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">CustomerNotification</span><span class="params">(<span name="sup">sup: <a href="BasicElement.html" class="extype" name="ch.ninecode.model.BasicElement">BasicElement</a></span>, <span name="contactType">contactType: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="contactValue">contactValue: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="earliestDateTimeToCall">earliestDateTimeToCall: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="latestDateTimeToCall">latestDateTimeToCall: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="trigger">trigger: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Customer">Customer: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Incident">Incident: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
+        <span class="name">CustomerNotification</span><span class="params">(<span name="sup">sup: <a href="BasicElement.html" class="extype" name="ch.ninecode.model.BasicElement">BasicElement</a></span>, <span name="contactType">contactType: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="contactValue">contactValue: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="earliestDateTimeToCall">earliestDateTimeToCall: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="latestDateTimeToCall">latestDateTimeToCall: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="trigger">trigger: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Customer">Customer: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Incident">Incident: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="TroubleTickets">TroubleTickets: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.CustomerNotification@&lt;init&gt;(sup:ch.ninecode.model.BasicElement,contactType:String,contactValue:String,earliestDateTimeToCall:String,latestDateTimeToCall:String,trigger:String,Customer:String,Incident:String):ch.ninecode.model.CustomerNotification" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.CustomerNotification@&lt;init&gt;(sup:ch.ninecode.model.BasicElement,contactType:String,contactValue:String,earliestDateTimeToCall:String,latestDateTimeToCall:String,trigger:String,Customer:String,Incident:String,TroubleTickets:List[String]):ch.ninecode.model.CustomerNotification" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">contactType</dt><dd class="cmt"><p>Type of contact (e.g., phone, email, etc.).</p></dd><dt class="param">contactValue</dt><dd class="cmt"><p>Value of contact type (e.g., phone number, email address, etc.).</p></dd><dt class="param">earliestDateTimeToCall</dt><dd class="cmt"><p>Earliest date time to call the customer.</p></dd><dt class="param">latestDateTimeToCall</dt><dd class="cmt"><p>Latest date time to call the customer.</p></dd><dt class="param">trigger</dt><dd class="cmt"><p>Trigger for this notification.</p></dd><dt class="param">Customer</dt><dd class="cmt"><p><a href="Customer.html" class="extype" name="ch.ninecode.model.Customer">Customer</a> Customer requiring this notification.</p></dd><dt class="param">Incident</dt><dd class="cmt"><p><a href="Incident.html" class="extype" name="ch.ninecode.model.Incident">Incident</a> Incident as a subject of this customer notification.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">contactType</dt><dd class="cmt"><p>Type of contact (e.g., phone, email, etc.).</p></dd><dt class="param">contactValue</dt><dd class="cmt"><p>Value of contact type (e.g., phone number, email address, etc.).</p></dd><dt class="param">earliestDateTimeToCall</dt><dd class="cmt"><p>Earliest date time to call the customer.</p></dd><dt class="param">latestDateTimeToCall</dt><dd class="cmt"><p>Latest date time to call the customer.</p></dd><dt class="param">trigger</dt><dd class="cmt"><p>Trigger for this notification.</p></dd><dt class="param">Customer</dt><dd class="cmt"><p><a href="Customer.html" class="extype" name="ch.ninecode.model.Customer">Customer</a> Customer requiring this notification.</p></dd><dt class="param">Incident</dt><dd class="cmt"><p><a href="Incident.html" class="extype" name="ch.ninecode.model.Incident">Incident</a> Incident as a subject of this customer notification.</p></dd><dt class="param">TroubleTickets</dt><dd class="cmt"><p><a href="TroubleTicket.html" class="extype" name="ch.ninecode.model.TroubleTicket">TroubleTicket</a> All trouble tickets with this notification.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -237,6 +237,23 @@
       </a>
     </span>
       <p class="shortcomment cmt"><a href="Incident.html" class="extype" name="ch.ninecode.model.Incident">Incident</a> Incident as a subject of this customer notification.</p>
+    </li><li name="ch.ninecode.model.CustomerNotification#TroubleTickets" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TroubleTickets:List[String]"></a>
+      <a id="TroubleTickets:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">TroubleTickets</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.CustomerNotification@TroubleTickets:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="TroubleTicket.html" class="extype" name="ch.ninecode.model.TroubleTicket">TroubleTicket</a> All trouble tickets with this notification.</p>
     </li><li name="ch.ninecode.model.Element#about" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="about:Boolean"></a>
       <a id="about:Boolean"></a>

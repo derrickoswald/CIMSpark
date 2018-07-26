@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>HydroGeneratingUnit - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.HydroGeneratingUnit</title>
-          <meta name="description" content="HydroGeneratingUnit - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.HydroGeneratingUnit" />
-          <meta name="keywords" content="HydroGeneratingUnit CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.HydroGeneratingUnit" />
+          <title>HydroGeneratingUnit - CIMReader 2.11-2.3.1-2.9.0 API - ch.ninecode.model.HydroGeneratingUnit</title>
+          <meta name="description" content="HydroGeneratingUnit - CIMReader 2.11 - 2.3.1 - 2.9.0 API - ch.ninecode.model.HydroGeneratingUnit" />
+          <meta name="keywords" content="HydroGeneratingUnit CIMReader 2.11 2.3.1 2.9.0 API ch.ninecode.model.HydroGeneratingUnit" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,12 +47,12 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">HydroGeneratingUnit</span><span class="params">(<span name="sup">sup: <a href="GeneratingUnit.html" class="extype" name="ch.ninecode.model.GeneratingUnit">GeneratingUnit</a></span>, <span name="energyConversionCapability">energyConversionCapability: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="hydroUnitWaterCost">hydroUnitWaterCost: <span class="extype" name="scala.Double">Double</span></span>, <span name="HydroPowerPlant">HydroPowerPlant: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="PenstockLossCurve">PenstockLossCurve: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">HydroGeneratingUnit</span><span class="params">(<span name="sup">sup: <a href="GeneratingUnit.html" class="extype" name="ch.ninecode.model.GeneratingUnit">GeneratingUnit</a></span>, <span name="energyConversionCapability">energyConversionCapability: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="hydroUnitWaterCost">hydroUnitWaterCost: <span class="extype" name="scala.Double">Double</span></span>, <span name="HydroGeneratingEfficiencyCurves">HydroGeneratingEfficiencyCurves: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="HydroPowerPlant">HydroPowerPlant: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="PenstockLossCurve">PenstockLossCurve: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="TailbayLossCurve">TailbayLossCurve: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A generating unit whose prime mover is a hydraulic turbine (e.g., Francis, Pelton, Kaplan).
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="GeneratingUnit.html" class="extype" name="ch.ninecode.model.GeneratingUnit">GeneratingUnit</a> Reference to the superclass object.</p></dd><dt class="param">energyConversionCapability</dt><dd class="cmt"><p>Energy conversion capability for generating.</p></dd><dt class="param">hydroUnitWaterCost</dt><dd class="cmt"><p>The equivalent cost of water that drives the hydro turbine.</p></dd><dt class="param">HydroPowerPlant</dt><dd class="cmt"><p><a href="HydroPowerPlant.html" class="extype" name="ch.ninecode.model.HydroPowerPlant">HydroPowerPlant</a> The hydro generating unit belongs to a hydro power plant.</p></dd><dt class="param">PenstockLossCurve</dt><dd class="cmt"><p><a href="PenstockLossCurve.html" class="extype" name="ch.ninecode.model.PenstockLossCurve">PenstockLossCurve</a> A hydro generating unit has a penstock loss curve.</p></dd></dl><div class="toggleContainer block">
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="GeneratingUnit.html" class="extype" name="ch.ninecode.model.GeneratingUnit">GeneratingUnit</a> Reference to the superclass object.</p></dd><dt class="param">energyConversionCapability</dt><dd class="cmt"><p>Energy conversion capability for generating.</p></dd><dt class="param">hydroUnitWaterCost</dt><dd class="cmt"><p>The equivalent cost of water that drives the hydro turbine.</p></dd><dt class="param">HydroGeneratingEfficiencyCurves</dt><dd class="cmt"><p><a href="HydroGeneratingEfficiencyCurve.html" class="extype" name="ch.ninecode.model.HydroGeneratingEfficiencyCurve">HydroGeneratingEfficiencyCurve</a> A hydro generating unit has an efficiency curve.</p></dd><dt class="param">HydroPowerPlant</dt><dd class="cmt"><p><a href="HydroPowerPlant.html" class="extype" name="ch.ninecode.model.HydroPowerPlant">HydroPowerPlant</a> The hydro generating unit belongs to a hydro power plant.</p></dd><dt class="param">PenstockLossCurve</dt><dd class="cmt"><p><a href="PenstockLossCurve.html" class="extype" name="ch.ninecode.model.PenstockLossCurve">PenstockLossCurve</a> A hydro generating unit has a penstock loss curve.</p></dd><dt class="param">TailbayLossCurve</dt><dd class="cmt"><p><a href="TailbayLossCurve.html" class="extype" name="ch.ninecode.model.TailbayLossCurve">TailbayLossCurve</a> A hydro generating unit has a tailbay loss curve.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -109,7 +109,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.HydroGeneratingUnit#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.GeneratingUnit,energyConversionCapability:String,hydroUnitWaterCost:Double,HydroPowerPlant:String,PenstockLossCurve:String):ch.ninecode.model.HydroGeneratingUnit"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.GeneratingUnit,energyConversionCapability:String,hydroUnitWaterCost:Double,HydroGeneratingEfficiencyCurves:List[String],HydroPowerPlant:String,PenstockLossCurve:String,TailbayLossCurve:List[String]):ch.ninecode.model.HydroGeneratingUnit"></a>
       <a id="&lt;init&gt;:HydroGeneratingUnit"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -117,14 +117,14 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">HydroGeneratingUnit</span><span class="params">(<span name="sup">sup: <a href="GeneratingUnit.html" class="extype" name="ch.ninecode.model.GeneratingUnit">GeneratingUnit</a></span>, <span name="energyConversionCapability">energyConversionCapability: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="hydroUnitWaterCost">hydroUnitWaterCost: <span class="extype" name="scala.Double">Double</span></span>, <span name="HydroPowerPlant">HydroPowerPlant: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="PenstockLossCurve">PenstockLossCurve: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
+        <span class="name">HydroGeneratingUnit</span><span class="params">(<span name="sup">sup: <a href="GeneratingUnit.html" class="extype" name="ch.ninecode.model.GeneratingUnit">GeneratingUnit</a></span>, <span name="energyConversionCapability">energyConversionCapability: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="hydroUnitWaterCost">hydroUnitWaterCost: <span class="extype" name="scala.Double">Double</span></span>, <span name="HydroGeneratingEfficiencyCurves">HydroGeneratingEfficiencyCurves: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="HydroPowerPlant">HydroPowerPlant: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="PenstockLossCurve">PenstockLossCurve: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="TailbayLossCurve">TailbayLossCurve: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.HydroGeneratingUnit@&lt;init&gt;(sup:ch.ninecode.model.GeneratingUnit,energyConversionCapability:String,hydroUnitWaterCost:Double,HydroPowerPlant:String,PenstockLossCurve:String):ch.ninecode.model.HydroGeneratingUnit" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.HydroGeneratingUnit@&lt;init&gt;(sup:ch.ninecode.model.GeneratingUnit,energyConversionCapability:String,hydroUnitWaterCost:Double,HydroGeneratingEfficiencyCurves:List[String],HydroPowerPlant:String,PenstockLossCurve:String,TailbayLossCurve:List[String]):ch.ninecode.model.HydroGeneratingUnit" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="GeneratingUnit.html" class="extype" name="ch.ninecode.model.GeneratingUnit">GeneratingUnit</a> Reference to the superclass object.</p></dd><dt class="param">energyConversionCapability</dt><dd class="cmt"><p>Energy conversion capability for generating.</p></dd><dt class="param">hydroUnitWaterCost</dt><dd class="cmt"><p>The equivalent cost of water that drives the hydro turbine.</p></dd><dt class="param">HydroPowerPlant</dt><dd class="cmt"><p><a href="HydroPowerPlant.html" class="extype" name="ch.ninecode.model.HydroPowerPlant">HydroPowerPlant</a> The hydro generating unit belongs to a hydro power plant.</p></dd><dt class="param">PenstockLossCurve</dt><dd class="cmt"><p><a href="PenstockLossCurve.html" class="extype" name="ch.ninecode.model.PenstockLossCurve">PenstockLossCurve</a> A hydro generating unit has a penstock loss curve.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="GeneratingUnit.html" class="extype" name="ch.ninecode.model.GeneratingUnit">GeneratingUnit</a> Reference to the superclass object.</p></dd><dt class="param">energyConversionCapability</dt><dd class="cmt"><p>Energy conversion capability for generating.</p></dd><dt class="param">hydroUnitWaterCost</dt><dd class="cmt"><p>The equivalent cost of water that drives the hydro turbine.</p></dd><dt class="param">HydroGeneratingEfficiencyCurves</dt><dd class="cmt"><p><a href="HydroGeneratingEfficiencyCurve.html" class="extype" name="ch.ninecode.model.HydroGeneratingEfficiencyCurve">HydroGeneratingEfficiencyCurve</a> A hydro generating unit has an efficiency curve.</p></dd><dt class="param">HydroPowerPlant</dt><dd class="cmt"><p><a href="HydroPowerPlant.html" class="extype" name="ch.ninecode.model.HydroPowerPlant">HydroPowerPlant</a> The hydro generating unit belongs to a hydro power plant.</p></dd><dt class="param">PenstockLossCurve</dt><dd class="cmt"><p><a href="PenstockLossCurve.html" class="extype" name="ch.ninecode.model.PenstockLossCurve">PenstockLossCurve</a> A hydro generating unit has a penstock loss curve.</p></dd><dt class="param">TailbayLossCurve</dt><dd class="cmt"><p><a href="TailbayLossCurve.html" class="extype" name="ch.ninecode.model.TailbayLossCurve">TailbayLossCurve</a> A hydro generating unit has a tailbay loss curve.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -203,6 +203,23 @@
     </span>
       <p class="shortcomment cmt">Return the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Return the superclass object.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The typed superclass nested object.</p></dd></dl></div>
+    </li><li name="ch.ninecode.model.HydroGeneratingUnit#HydroGeneratingEfficiencyCurves" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="HydroGeneratingEfficiencyCurves:List[String]"></a>
+      <a id="HydroGeneratingEfficiencyCurves:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">HydroGeneratingEfficiencyCurves</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.HydroGeneratingUnit@HydroGeneratingEfficiencyCurves:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="HydroGeneratingEfficiencyCurve.html" class="extype" name="ch.ninecode.model.HydroGeneratingEfficiencyCurve">HydroGeneratingEfficiencyCurve</a> A hydro generating unit has an efficiency curve.</p>
     </li><li name="ch.ninecode.model.HydroGeneratingUnit#HydroPowerPlant" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="HydroPowerPlant:String"></a>
       <a id="HydroPowerPlant:String"></a>
@@ -237,6 +254,23 @@
       </a>
     </span>
       <p class="shortcomment cmt"><a href="PenstockLossCurve.html" class="extype" name="ch.ninecode.model.PenstockLossCurve">PenstockLossCurve</a> A hydro generating unit has a penstock loss curve.</p>
+    </li><li name="ch.ninecode.model.HydroGeneratingUnit#TailbayLossCurve" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TailbayLossCurve:List[String]"></a>
+      <a id="TailbayLossCurve:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">TailbayLossCurve</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.HydroGeneratingUnit@TailbayLossCurve:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="TailbayLossCurve.html" class="extype" name="ch.ninecode.model.TailbayLossCurve">TailbayLossCurve</a> A hydro generating unit has a tailbay loss curve.</p>
     </li><li name="ch.ninecode.model.Element#about" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="about:Boolean"></a>
       <a id="about:Boolean"></a>

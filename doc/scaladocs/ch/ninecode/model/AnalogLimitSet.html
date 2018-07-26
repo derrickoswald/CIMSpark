@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>AnalogLimitSet - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.AnalogLimitSet</title>
-          <meta name="description" content="AnalogLimitSet - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.AnalogLimitSet" />
-          <meta name="keywords" content="AnalogLimitSet CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.AnalogLimitSet" />
+          <title>AnalogLimitSet - CIMReader 2.11-2.3.1-2.9.0 API - ch.ninecode.model.AnalogLimitSet</title>
+          <meta name="description" content="AnalogLimitSet - CIMReader 2.11 - 2.3.1 - 2.9.0 API - ch.ninecode.model.AnalogLimitSet" />
+          <meta name="keywords" content="AnalogLimitSet CIMReader 2.11 2.3.1 2.9.0 API ch.ninecode.model.AnalogLimitSet" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,12 +47,12 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">AnalogLimitSet</span><span class="params">(<span name="sup">sup: <a href="LimitSet.html" class="extype" name="ch.ninecode.model.LimitSet">LimitSet</a></span>, <span name="Measurements">Measurements: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">AnalogLimitSet</span><span class="params">(<span name="sup">sup: <a href="LimitSet.html" class="extype" name="ch.ninecode.model.LimitSet">LimitSet</a></span>, <span name="Limits">Limits: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Measurements">Measurements: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>An AnalogLimitSet specifies a set of Limits that are associated with an Analog measurement.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="LimitSet.html" class="extype" name="ch.ninecode.model.LimitSet">LimitSet</a> Reference to the superclass object.</p></dd><dt class="param">Measurements</dt><dd class="cmt"><p><a href="Analog.html" class="extype" name="ch.ninecode.model.Analog">Analog</a> The Measurements using the LimitSet.</p></dd></dl><div class="toggleContainer block">
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="LimitSet.html" class="extype" name="ch.ninecode.model.LimitSet">LimitSet</a> Reference to the superclass object.</p></dd><dt class="param">Limits</dt><dd class="cmt"><p><a href="AnalogLimit.html" class="extype" name="ch.ninecode.model.AnalogLimit">AnalogLimit</a> The limit values used for supervision of Measurements.</p></dd><dt class="param">Measurements</dt><dd class="cmt"><p><a href="Analog.html" class="extype" name="ch.ninecode.model.Analog">Analog</a> The Measurements using the LimitSet.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -109,7 +109,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.AnalogLimitSet#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.LimitSet,Measurements:List[String]):ch.ninecode.model.AnalogLimitSet"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.LimitSet,Limits:List[String],Measurements:List[String]):ch.ninecode.model.AnalogLimitSet"></a>
       <a id="&lt;init&gt;:AnalogLimitSet"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -117,14 +117,14 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">AnalogLimitSet</span><span class="params">(<span name="sup">sup: <a href="LimitSet.html" class="extype" name="ch.ninecode.model.LimitSet">LimitSet</a></span>, <span name="Measurements">Measurements: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
+        <span class="name">AnalogLimitSet</span><span class="params">(<span name="sup">sup: <a href="LimitSet.html" class="extype" name="ch.ninecode.model.LimitSet">LimitSet</a></span>, <span name="Limits">Limits: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Measurements">Measurements: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.AnalogLimitSet@&lt;init&gt;(sup:ch.ninecode.model.LimitSet,Measurements:List[String]):ch.ninecode.model.AnalogLimitSet" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.AnalogLimitSet@&lt;init&gt;(sup:ch.ninecode.model.LimitSet,Limits:List[String],Measurements:List[String]):ch.ninecode.model.AnalogLimitSet" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="LimitSet.html" class="extype" name="ch.ninecode.model.LimitSet">LimitSet</a> Reference to the superclass object.</p></dd><dt class="param">Measurements</dt><dd class="cmt"><p><a href="Analog.html" class="extype" name="ch.ninecode.model.Analog">Analog</a> The Measurements using the LimitSet.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="LimitSet.html" class="extype" name="ch.ninecode.model.LimitSet">LimitSet</a> Reference to the superclass object.</p></dd><dt class="param">Limits</dt><dd class="cmt"><p><a href="AnalogLimit.html" class="extype" name="ch.ninecode.model.AnalogLimit">AnalogLimit</a> The limit values used for supervision of Measurements.</p></dd><dt class="param">Measurements</dt><dd class="cmt"><p><a href="Analog.html" class="extype" name="ch.ninecode.model.Analog">Analog</a> The Measurements using the LimitSet.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -203,6 +203,23 @@
     </span>
       <p class="shortcomment cmt">Return the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Return the superclass object.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The typed superclass nested object.</p></dd></dl></div>
+    </li><li name="ch.ninecode.model.AnalogLimitSet#Limits" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Limits:List[String]"></a>
+      <a id="Limits:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Limits</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.AnalogLimitSet@Limits:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="AnalogLimit.html" class="extype" name="ch.ninecode.model.AnalogLimit">AnalogLimit</a> The limit values used for supervision of Measurements.</p>
     </li><li name="ch.ninecode.model.AnalogLimitSet#Measurements" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="Measurements:List[String]"></a>
       <a id="Measurements:List[String]"></a>

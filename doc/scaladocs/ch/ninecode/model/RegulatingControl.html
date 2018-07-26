@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>RegulatingControl - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.RegulatingControl</title>
-          <meta name="description" content="RegulatingControl - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.RegulatingControl" />
-          <meta name="keywords" content="RegulatingControl CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.RegulatingControl" />
+          <title>RegulatingControl - CIMReader 2.11-2.3.1-2.9.0 API - ch.ninecode.model.RegulatingControl</title>
+          <meta name="description" content="RegulatingControl - CIMReader 2.11 - 2.3.1 - 2.9.0 API - ch.ninecode.model.RegulatingControl" />
+          <meta name="keywords" content="RegulatingControl CIMReader 2.11 2.3.1 2.9.0 API ch.ninecode.model.RegulatingControl" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,7 +47,7 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">RegulatingControl</span><span class="params">(<span name="sup">sup: <a href="PowerSystemResource.html" class="extype" name="ch.ninecode.model.PowerSystemResource">PowerSystemResource</a></span>, <span name="discrete">discrete: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="enabled">enabled: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="mode">mode: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="monitoredPhase">monitoredPhase: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="targetDeadband">targetDeadband: <span class="extype" name="scala.Double">Double</span></span>, <span name="targetValue">targetValue: <span class="extype" name="scala.Double">Double</span></span>, <span name="targetValueUnitMultiplier">targetValueUnitMultiplier: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Terminal">Terminal: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">RegulatingControl</span><span class="params">(<span name="sup">sup: <a href="PowerSystemResource.html" class="extype" name="ch.ninecode.model.PowerSystemResource">PowerSystemResource</a></span>, <span name="discrete">discrete: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="enabled">enabled: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="mode">mode: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="monitoredPhase">monitoredPhase: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="targetDeadband">targetDeadband: <span class="extype" name="scala.Double">Double</span></span>, <span name="targetValue">targetValue: <span class="extype" name="scala.Double">Double</span></span>, <span name="targetValueUnitMultiplier">targetValueUnitMultiplier: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ProtectiveActionRegulation">ProtectiveActionRegulation: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="RegulatingCondEq">RegulatingCondEq: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="RegulationSchedule">RegulationSchedule: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Terminal">Terminal: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
@@ -56,7 +56,7 @@
        This applies to equipment with discrete controls, e.g. tap changers and shunt compensators.</p></dd><dt class="param">enabled</dt><dd class="cmt"><p>The flag tells if regulation is enabled.</p></dd><dt class="param">mode</dt><dd class="cmt"><p>The regulating control mode presently available.
        This specification allows for determining the kind of regulation without need for obtaining the units from a schedule.</p></dd><dt class="param">monitoredPhase</dt><dd class="cmt"><p>Phase voltage controlling this regulator, measured at regulator location.</p></dd><dt class="param">targetDeadband</dt><dd class="cmt"><p>This is a deadband used with discrete control to avoid excessive update of controls like tap changers and shunt compensator banks while regulating.
        The units of those appropriate for the mode.</p></dd><dt class="param">targetValue</dt><dd class="cmt"><p>The target value specified for case input.
-       This value can be used for the target value without the use of schedules. The value has the units appropriate to the mode attribute.</p></dd><dt class="param">targetValueUnitMultiplier</dt><dd class="cmt"><p>Specify the multiplier for used for the targetValue.</p></dd><dt class="param">Terminal</dt><dd class="cmt"><p><a href="Terminal.html" class="extype" name="ch.ninecode.model.Terminal">Terminal</a> The terminal associated with this regulating control.
+       This value can be used for the target value without the use of schedules. The value has the units appropriate to the mode attribute.</p></dd><dt class="param">targetValueUnitMultiplier</dt><dd class="cmt"><p>Specify the multiplier for used for the targetValue.</p></dd><dt class="param">ProtectiveActionRegulation</dt><dd class="cmt"><p><a href="ProtectiveActionRegulation.html" class="extype" name="ch.ninecode.model.ProtectiveActionRegulation">ProtectiveActionRegulation</a> <em>undocumented</em></p></dd><dt class="param">RegulatingCondEq</dt><dd class="cmt"><p><a href="RegulatingCondEq.html" class="extype" name="ch.ninecode.model.RegulatingCondEq">RegulatingCondEq</a> The equipment that participates in this regulating control scheme.</p></dd><dt class="param">RegulationSchedule</dt><dd class="cmt"><p><a href="RegulationSchedule.html" class="extype" name="ch.ninecode.model.RegulationSchedule">RegulationSchedule</a> Schedule for this Regulating regulating control.</p></dd><dt class="param">Terminal</dt><dd class="cmt"><p><a href="Terminal.html" class="extype" name="ch.ninecode.model.Terminal">Terminal</a> The terminal associated with this regulating control.
        The terminal is associated instead of a node, since the terminal could connect into either a topological node (bus in bus-branch model) or a connectivity node (detailed switch model).  Sometimes it is useful to model regulation at a terminal of a bus bar object since the bus bar can be present in both a bus-branch model or a model with switch detail.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
@@ -114,7 +114,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.RegulatingControl#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.PowerSystemResource,discrete:Boolean,enabled:Boolean,mode:String,monitoredPhase:String,targetDeadband:Double,targetValue:Double,targetValueUnitMultiplier:String,Terminal:String):ch.ninecode.model.RegulatingControl"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.PowerSystemResource,discrete:Boolean,enabled:Boolean,mode:String,monitoredPhase:String,targetDeadband:Double,targetValue:Double,targetValueUnitMultiplier:String,ProtectiveActionRegulation:List[String],RegulatingCondEq:List[String],RegulationSchedule:List[String],Terminal:String):ch.ninecode.model.RegulatingControl"></a>
       <a id="&lt;init&gt;:RegulatingControl"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -122,10 +122,10 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">RegulatingControl</span><span class="params">(<span name="sup">sup: <a href="PowerSystemResource.html" class="extype" name="ch.ninecode.model.PowerSystemResource">PowerSystemResource</a></span>, <span name="discrete">discrete: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="enabled">enabled: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="mode">mode: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="monitoredPhase">monitoredPhase: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="targetDeadband">targetDeadband: <span class="extype" name="scala.Double">Double</span></span>, <span name="targetValue">targetValue: <span class="extype" name="scala.Double">Double</span></span>, <span name="targetValueUnitMultiplier">targetValueUnitMultiplier: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Terminal">Terminal: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
+        <span class="name">RegulatingControl</span><span class="params">(<span name="sup">sup: <a href="PowerSystemResource.html" class="extype" name="ch.ninecode.model.PowerSystemResource">PowerSystemResource</a></span>, <span name="discrete">discrete: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="enabled">enabled: <span class="extype" name="scala.Boolean">Boolean</span></span>, <span name="mode">mode: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="monitoredPhase">monitoredPhase: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="targetDeadband">targetDeadband: <span class="extype" name="scala.Double">Double</span></span>, <span name="targetValue">targetValue: <span class="extype" name="scala.Double">Double</span></span>, <span name="targetValueUnitMultiplier">targetValueUnitMultiplier: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="ProtectiveActionRegulation">ProtectiveActionRegulation: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="RegulatingCondEq">RegulatingCondEq: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="RegulationSchedule">RegulationSchedule: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Terminal">Terminal: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.RegulatingControl@&lt;init&gt;(sup:ch.ninecode.model.PowerSystemResource,discrete:Boolean,enabled:Boolean,mode:String,monitoredPhase:String,targetDeadband:Double,targetValue:Double,targetValueUnitMultiplier:String,Terminal:String):ch.ninecode.model.RegulatingControl" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.RegulatingControl@&lt;init&gt;(sup:ch.ninecode.model.PowerSystemResource,discrete:Boolean,enabled:Boolean,mode:String,monitoredPhase:String,targetDeadband:Double,targetValue:Double,targetValueUnitMultiplier:String,ProtectiveActionRegulation:List[String],RegulatingCondEq:List[String],RegulationSchedule:List[String],Terminal:String):ch.ninecode.model.RegulatingControl" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -133,7 +133,7 @@
        This applies to equipment with discrete controls, e.g. tap changers and shunt compensators.</p></dd><dt class="param">enabled</dt><dd class="cmt"><p>The flag tells if regulation is enabled.</p></dd><dt class="param">mode</dt><dd class="cmt"><p>The regulating control mode presently available.
        This specification allows for determining the kind of regulation without need for obtaining the units from a schedule.</p></dd><dt class="param">monitoredPhase</dt><dd class="cmt"><p>Phase voltage controlling this regulator, measured at regulator location.</p></dd><dt class="param">targetDeadband</dt><dd class="cmt"><p>This is a deadband used with discrete control to avoid excessive update of controls like tap changers and shunt compensator banks while regulating.
        The units of those appropriate for the mode.</p></dd><dt class="param">targetValue</dt><dd class="cmt"><p>The target value specified for case input.
-       This value can be used for the target value without the use of schedules. The value has the units appropriate to the mode attribute.</p></dd><dt class="param">targetValueUnitMultiplier</dt><dd class="cmt"><p>Specify the multiplier for used for the targetValue.</p></dd><dt class="param">Terminal</dt><dd class="cmt"><p><a href="Terminal.html" class="extype" name="ch.ninecode.model.Terminal">Terminal</a> The terminal associated with this regulating control.
+       This value can be used for the target value without the use of schedules. The value has the units appropriate to the mode attribute.</p></dd><dt class="param">targetValueUnitMultiplier</dt><dd class="cmt"><p>Specify the multiplier for used for the targetValue.</p></dd><dt class="param">ProtectiveActionRegulation</dt><dd class="cmt"><p><a href="ProtectiveActionRegulation.html" class="extype" name="ch.ninecode.model.ProtectiveActionRegulation">ProtectiveActionRegulation</a> <em>undocumented</em></p></dd><dt class="param">RegulatingCondEq</dt><dd class="cmt"><p><a href="RegulatingCondEq.html" class="extype" name="ch.ninecode.model.RegulatingCondEq">RegulatingCondEq</a> The equipment that participates in this regulating control scheme.</p></dd><dt class="param">RegulationSchedule</dt><dd class="cmt"><p><a href="RegulationSchedule.html" class="extype" name="ch.ninecode.model.RegulationSchedule">RegulationSchedule</a> Schedule for this Regulating regulating control.</p></dd><dt class="param">Terminal</dt><dd class="cmt"><p><a href="Terminal.html" class="extype" name="ch.ninecode.model.Terminal">Terminal</a> The terminal associated with this regulating control.
        The terminal is associated instead of a node, since the terminal could connect into either a topological node (bus in bus-branch model) or a connectivity node (detailed switch model).  Sometimes it is useful to model regulation at a terminal of a bus bar object since the bus bar can be present in both a bus-branch model or a model with switch detail.</p></dd></dl></div>
     </li></ol>
             </div>
@@ -213,6 +213,57 @@
     </span>
       <p class="shortcomment cmt">Return the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Return the superclass object.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The typed superclass nested object.</p></dd></dl></div>
+    </li><li name="ch.ninecode.model.RegulatingControl#ProtectiveActionRegulation" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ProtectiveActionRegulation:List[String]"></a>
+      <a id="ProtectiveActionRegulation:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ProtectiveActionRegulation</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.RegulatingControl@ProtectiveActionRegulation:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="ProtectiveActionRegulation.html" class="extype" name="ch.ninecode.model.ProtectiveActionRegulation">ProtectiveActionRegulation</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="ProtectiveActionRegulation.html" class="extype" name="ch.ninecode.model.ProtectiveActionRegulation">ProtectiveActionRegulation</a> <em>undocumented</em></p></div></div>
+    </li><li name="ch.ninecode.model.RegulatingControl#RegulatingCondEq" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="RegulatingCondEq:List[String]"></a>
+      <a id="RegulatingCondEq:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">RegulatingCondEq</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.RegulatingControl@RegulatingCondEq:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="RegulatingCondEq.html" class="extype" name="ch.ninecode.model.RegulatingCondEq">RegulatingCondEq</a> The equipment that participates in this regulating control scheme.</p>
+    </li><li name="ch.ninecode.model.RegulatingControl#RegulationSchedule" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="RegulationSchedule:List[String]"></a>
+      <a id="RegulationSchedule:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">RegulationSchedule</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.RegulatingControl@RegulationSchedule:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="RegulationSchedule.html" class="extype" name="ch.ninecode.model.RegulationSchedule">RegulationSchedule</a> Schedule for this Regulating regulating control.</p>
     </li><li name="ch.ninecode.model.RegulatingControl#Terminal" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="Terminal:String"></a>
       <a id="Terminal:String"></a>

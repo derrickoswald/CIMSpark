@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>CIMSubsetter - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.cim.CIMSubsetter</title>
-          <meta name="description" content="CIMSubsetter - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.cim.CIMSubsetter" />
-          <meta name="keywords" content="CIMSubsetter CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.cim.CIMSubsetter" />
+          <title>CIMSubsetter - CIMReader 2.11-2.3.1-2.9.0 API - ch.ninecode.cim.CIMSubsetter</title>
+          <meta name="description" content="CIMSubsetter - CIMReader 2.11 - 2.3.1 - 2.9.0 API - ch.ninecode.cim.CIMSubsetter" />
+          <meta name="keywords" content="CIMSubsetter CIMReader 2.11 2.3.1 2.9.0 API ch.ninecode.cim.CIMSubsetter" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -421,7 +421,8 @@ for the CIM case classes.
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Alter the schema so sup has the correct superclass name.</p><div class="fullcomment"><div class="comment cmt"><p>Alter the schema so sup has the correct superclass name.</p></div><dl class="paramcmts block"><dt class="param">rtc</dt><dd class="cmt"><p>The runtime class for Typeclass A.</p></dd><dt class="param">schema</dt><dd class="cmt"><p>The SQL schema for Typeclass A, e.g.
+      <p class="shortcomment cmt">Alter the schema so sup has the correct superclass name.</p><div class="fullcomment"><div class="comment cmt"><p>Alter the schema so sup has the correct superclass name.
+</p></div><dl class="paramcmts block"><dt class="param">rtc</dt><dd class="cmt"><p>The runtime class for Typeclass A.</p></dd><dt class="param">schema</dt><dd class="cmt"><p>The SQL schema for Typeclass A, e.g.
   org.apache.spark.sql.types.StructType = StructType(StructField(sup,StructType(StructField(sup,StructType(StructField(sup,...</p></dd></dl></div>
     </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a>
@@ -490,7 +491,7 @@ for the CIM case classes.
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
+      <p class="shortcomment cmt">Selector for elements of this class.</p>
     </li><li name="ch.ninecode.cim.CIMSubsetter#runtime_class" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="runtime_class:Class[_]"></a>
       <a id="runtime_class:Class[_]"></a>
@@ -508,8 +509,26 @@ for the CIM case classes.
       </a>
     </span>
       
-    </li><li name="ch.ninecode.cim.CIMSubsetter#subclass" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="subclass(x:ch.ninecode.model.Element):A"></a>
+    </li><li name="ch.ninecode.cim.CIMSubsetter#save" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="save(context:org.apache.spark.sql.SQLContext,rdd:CIMSubsetter.this.rddtype,storage:org.apache.spark.storage.StorageLevel):Unit"></a>
+      <a id="save(SQLContext,rddtype,StorageLevel):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">save</span><span class="params">(<span name="context">context: <span class="extype" name="org.apache.spark.sql.SQLContext">SQLContext</span></span>, <span name="rdd">rdd: <a href="#rddtype=org.apache.spark.rdd.RDD[A]" class="extmbr" name="ch.ninecode.cim.CIMSubsetter.rddtype">rddtype</a></span>, <span name="storage">storage: <span class="extype" name="org.apache.spark.storage.StorageLevel">StorageLevel</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.CIMSubsetter@save(context:org.apache.spark.sql.SQLContext,rdd:CIMSubsetter.this.rddtype,storage:org.apache.spark.storage.StorageLevel):Unit" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Create the Dataframe for Typeclass A.</p><div class="fullcomment"><div class="comment cmt"><p>Create the Dataframe for Typeclass A.
+</p></div><dl class="paramcmts block"><dt class="param">context</dt><dd class="cmt"><p>The SQL context for creating the views.</p></dd><dt class="param">rdd</dt><dd class="cmt"><p>The raw Element RDD to subset.</p></dd><dt class="param">storage</dt><dd class="cmt"><p>The storage level to persist the subset RDD with.</p></dd></dl></div>
+    </li><li name="ch.ninecode.cim.CIMSubsetter#subclass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="subclass(element:ch.ninecode.model.Element):A"></a>
       <a id="subclass(Element):A"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -517,31 +536,15 @@ for the CIM case classes.
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">subclass</span><span class="params">(<span name="x">x: <a href="../model/Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></span>)</span><span class="result">: <span class="extype" name="ch.ninecode.cim.CIMSubsetter.A">A</span></span>
+        <span class="name">subclass</span><span class="params">(<span name="element">element: <a href="../model/Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></span>)</span><span class="result">: <span class="extype" name="ch.ninecode.cim.CIMSubsetter.A">A</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.CIMSubsetter@subclass(x:ch.ninecode.model.Element):A" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.CIMSubsetter@subclass(element:ch.ninecode.model.Element):A" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
-    </li><li name="ch.ninecode.cim.CIMSubsetter#subset" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="subset(rdd:org.apache.spark.rdd.RDD[ch.ninecode.model.Element],storage:org.apache.spark.storage.StorageLevel,context:org.apache.spark.SparkContext):CIMSubsetter.this.rddtype"></a>
-      <a id="subset(RDD[Element],StorageLevel,SparkContext):rddtype"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">def</span>
-      </span>
-      <span class="symbol">
-        <span class="name">subset</span><span class="params">(<span name="rdd">rdd: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<a href="../model/Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>]</span>, <span name="storage">storage: <span class="extype" name="org.apache.spark.storage.StorageLevel">StorageLevel</span></span>, <span name="context">context: <span class="extype" name="org.apache.spark.SparkContext">SparkContext</span></span>)</span><span class="result">: <a href="#rddtype=org.apache.spark.rdd.RDD[A]" class="extmbr" name="ch.ninecode.cim.CIMSubsetter.rddtype">rddtype</a></span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.CIMSubsetter@subset(rdd:org.apache.spark.rdd.RDD[ch.ninecode.model.Element],storage:org.apache.spark.storage.StorageLevel,context:org.apache.spark.SparkContext):CIMSubsetter.this.rddtype" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      
+      <p class="shortcomment cmt">Convert the generic element into an object of type A.</p><div class="fullcomment"><div class="comment cmt"><p>Convert the generic element into an object of type A.</p><p>Runs up the hierarchy of nested CIM classes to find this class - or not.
+</p></div><dl class="paramcmts block"><dt class="param">element</dt><dd class="cmt"><p>the generic element</p></dd><dt>returns</dt><dd class="cmt"><p>the object of this class, or <code>null</code> if the element is not derived from this class</p></dd></dl></div>
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>

@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>VoltageLevel - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.VoltageLevel</title>
-          <meta name="description" content="VoltageLevel - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.VoltageLevel" />
-          <meta name="keywords" content="VoltageLevel CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.VoltageLevel" />
+          <title>VoltageLevel - CIMReader 2.11-2.3.1-2.9.0 API - ch.ninecode.model.VoltageLevel</title>
+          <meta name="description" content="VoltageLevel - CIMReader 2.11 - 2.3.1 - 2.9.0 API - ch.ninecode.model.VoltageLevel" />
+          <meta name="keywords" content="VoltageLevel CIMReader 2.11 2.3.1 2.9.0 API ch.ninecode.model.VoltageLevel" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,12 +47,12 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">VoltageLevel</span><span class="params">(<span name="sup">sup: <a href="EquipmentContainer.html" class="extype" name="ch.ninecode.model.EquipmentContainer">EquipmentContainer</a></span>, <span name="highVoltageLimit">highVoltageLimit: <span class="extype" name="scala.Double">Double</span></span>, <span name="lowVoltageLimit">lowVoltageLimit: <span class="extype" name="scala.Double">Double</span></span>, <span name="BaseVoltage">BaseVoltage: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Substation">Substation: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">VoltageLevel</span><span class="params">(<span name="sup">sup: <a href="EquipmentContainer.html" class="extype" name="ch.ninecode.model.EquipmentContainer">EquipmentContainer</a></span>, <span name="highVoltageLimit">highVoltageLimit: <span class="extype" name="scala.Double">Double</span></span>, <span name="lowVoltageLimit">lowVoltageLimit: <span class="extype" name="scala.Double">Double</span></span>, <span name="BaseVoltage">BaseVoltage: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Bays">Bays: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Substation">Substation: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A collection of equipment at one common system voltage forming a switchgear.</p><p>The equipment typically consist of breakers, busbars, instrumentation, control, regulation and protection devices as well as assemblies of all these.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="EquipmentContainer.html" class="extype" name="ch.ninecode.model.EquipmentContainer">EquipmentContainer</a> Reference to the superclass object.</p></dd><dt class="param">highVoltageLimit</dt><dd class="cmt"><p>The bus bar's high voltage limit</p></dd><dt class="param">lowVoltageLimit</dt><dd class="cmt"><p>The bus bar's low voltage limit</p></dd><dt class="param">BaseVoltage</dt><dd class="cmt"><p><a href="BaseVoltage.html" class="extype" name="ch.ninecode.model.BaseVoltage">BaseVoltage</a> The base voltage used for all equipment within the voltage level.</p></dd><dt class="param">Substation</dt><dd class="cmt"><p><a href="Substation.html" class="extype" name="ch.ninecode.model.Substation">Substation</a> The substation of the voltage level.</p></dd></dl><div class="toggleContainer block">
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="EquipmentContainer.html" class="extype" name="ch.ninecode.model.EquipmentContainer">EquipmentContainer</a> Reference to the superclass object.</p></dd><dt class="param">highVoltageLimit</dt><dd class="cmt"><p>The bus bar's high voltage limit</p></dd><dt class="param">lowVoltageLimit</dt><dd class="cmt"><p>The bus bar's low voltage limit</p></dd><dt class="param">BaseVoltage</dt><dd class="cmt"><p><a href="BaseVoltage.html" class="extype" name="ch.ninecode.model.BaseVoltage">BaseVoltage</a> The base voltage used for all equipment within the voltage level.</p></dd><dt class="param">Bays</dt><dd class="cmt"><p><a href="Bay.html" class="extype" name="ch.ninecode.model.Bay">Bay</a> The bays within this voltage level.</p></dd><dt class="param">Substation</dt><dd class="cmt"><p><a href="Substation.html" class="extype" name="ch.ninecode.model.Substation">Substation</a> The substation of the voltage level.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -109,7 +109,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.VoltageLevel#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.EquipmentContainer,highVoltageLimit:Double,lowVoltageLimit:Double,BaseVoltage:String,Substation:String):ch.ninecode.model.VoltageLevel"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.EquipmentContainer,highVoltageLimit:Double,lowVoltageLimit:Double,BaseVoltage:String,Bays:List[String],Substation:String):ch.ninecode.model.VoltageLevel"></a>
       <a id="&lt;init&gt;:VoltageLevel"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -117,14 +117,14 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">VoltageLevel</span><span class="params">(<span name="sup">sup: <a href="EquipmentContainer.html" class="extype" name="ch.ninecode.model.EquipmentContainer">EquipmentContainer</a></span>, <span name="highVoltageLimit">highVoltageLimit: <span class="extype" name="scala.Double">Double</span></span>, <span name="lowVoltageLimit">lowVoltageLimit: <span class="extype" name="scala.Double">Double</span></span>, <span name="BaseVoltage">BaseVoltage: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Substation">Substation: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
+        <span class="name">VoltageLevel</span><span class="params">(<span name="sup">sup: <a href="EquipmentContainer.html" class="extype" name="ch.ninecode.model.EquipmentContainer">EquipmentContainer</a></span>, <span name="highVoltageLimit">highVoltageLimit: <span class="extype" name="scala.Double">Double</span></span>, <span name="lowVoltageLimit">lowVoltageLimit: <span class="extype" name="scala.Double">Double</span></span>, <span name="BaseVoltage">BaseVoltage: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="Bays">Bays: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="Substation">Substation: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.VoltageLevel@&lt;init&gt;(sup:ch.ninecode.model.EquipmentContainer,highVoltageLimit:Double,lowVoltageLimit:Double,BaseVoltage:String,Substation:String):ch.ninecode.model.VoltageLevel" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.VoltageLevel@&lt;init&gt;(sup:ch.ninecode.model.EquipmentContainer,highVoltageLimit:Double,lowVoltageLimit:Double,BaseVoltage:String,Bays:List[String],Substation:String):ch.ninecode.model.VoltageLevel" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="EquipmentContainer.html" class="extype" name="ch.ninecode.model.EquipmentContainer">EquipmentContainer</a> Reference to the superclass object.</p></dd><dt class="param">highVoltageLimit</dt><dd class="cmt"><p>The bus bar's high voltage limit</p></dd><dt class="param">lowVoltageLimit</dt><dd class="cmt"><p>The bus bar's low voltage limit</p></dd><dt class="param">BaseVoltage</dt><dd class="cmt"><p><a href="BaseVoltage.html" class="extype" name="ch.ninecode.model.BaseVoltage">BaseVoltage</a> The base voltage used for all equipment within the voltage level.</p></dd><dt class="param">Substation</dt><dd class="cmt"><p><a href="Substation.html" class="extype" name="ch.ninecode.model.Substation">Substation</a> The substation of the voltage level.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="EquipmentContainer.html" class="extype" name="ch.ninecode.model.EquipmentContainer">EquipmentContainer</a> Reference to the superclass object.</p></dd><dt class="param">highVoltageLimit</dt><dd class="cmt"><p>The bus bar's high voltage limit</p></dd><dt class="param">lowVoltageLimit</dt><dd class="cmt"><p>The bus bar's low voltage limit</p></dd><dt class="param">BaseVoltage</dt><dd class="cmt"><p><a href="BaseVoltage.html" class="extype" name="ch.ninecode.model.BaseVoltage">BaseVoltage</a> The base voltage used for all equipment within the voltage level.</p></dd><dt class="param">Bays</dt><dd class="cmt"><p><a href="Bay.html" class="extype" name="ch.ninecode.model.Bay">Bay</a> The bays within this voltage level.</p></dd><dt class="param">Substation</dt><dd class="cmt"><p><a href="Substation.html" class="extype" name="ch.ninecode.model.Substation">Substation</a> The substation of the voltage level.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -202,6 +202,23 @@
       </a>
     </span>
       <p class="shortcomment cmt"><a href="BaseVoltage.html" class="extype" name="ch.ninecode.model.BaseVoltage">BaseVoltage</a> The base voltage used for all equipment within the voltage level.</p>
+    </li><li name="ch.ninecode.model.VoltageLevel#Bays" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Bays:List[String]"></a>
+      <a id="Bays:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Bays</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.VoltageLevel@Bays:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="Bay.html" class="extype" name="ch.ninecode.model.Bay">Bay</a> The bays within this voltage level.</p>
     </li><li name="ch.ninecode.model.VoltageLevel#EquipmentContainer" visbl="pub" data-isabs="false" fullComment="yes" group="Hierarchy">
       <a id="EquipmentContainer:ch.ninecode.model.EquipmentContainer"></a>
       <a id="EquipmentContainer:EquipmentContainer"></a>

@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>CIMServerJDBC - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.cim.CIMServerJDBC</title>
-          <meta name="description" content="CIMServerJDBC - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.cim.CIMServerJDBC" />
-          <meta name="keywords" content="CIMServerJDBC CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.cim.CIMServerJDBC" />
+          <title>CIMServerJDBC - CIMReader 2.11-2.3.1-2.9.0 API - ch.ninecode.cim.CIMServerJDBC</title>
+          <meta name="description" content="CIMServerJDBC - CIMReader 2.11 - 2.3.1 - 2.9.0 API - ch.ninecode.cim.CIMServerJDBC" />
+          <meta name="keywords" content="CIMServerJDBC CIMReader 2.11 2.3.1 2.9.0 API ch.ninecode.cim.CIMServerJDBC" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -50,7 +50,7 @@
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Application to expose CIM files as a Hive database.</p><p>This program reads in one or more CIM files and
-runs a Hive/Thrift server to expose the RDD as JDBC tables.</p><p>The program is usually run on the master node with a command like:</p><pre>$ spark-submit --master spark:<span class="cmt">//sandbox:7077 --driver-memory 1g --executor-memory 4g /opt/code/CIMServerJDBC-2.11-2.0.2-2.1.0-jar-with-dependencies.jar --host sandbox --port 10004 "hdfs://sandbox:8020/data/cim_data_file.rdf"</span></pre><p>It will read the rdf file and create a Spark RDD for each CIM class,
+runs a Hive/Thrift server to expose the RDD as JDBC tables.</p><p>The program is usually run on the master node with a command like:</p><pre>$ spark-submit --master spark:<span class="cmt">//sandbox:7077 --driver-memory 1g --executor-memory 4g /opt/code/CIMServerJDBC-2.11-2.2.0-2.5.0-jar-with-dependencies.jar --host sandbox --port 10004 "hdfs://sandbox:8020/data/cim_data_file.rdf"</span></pre><p>It will read the rdf file and create a Spark RDD for each CIM class,
 a description of which can be found in [Model.md](https://github.com/derrickoswald/CIMReader/blob/master/Model.md).</p><p>It then sets up a Hive/Thrift server on port 10004 (or what was specified on the command line)
 to serve these RDD as JDBC tables.</p><p>The program then waits for a Return to signal that it should exit.</p><p>A java client program can get a JDBC connection to the Hive/Thrift server
 using the [Hive JDBC driver](https://mvnrepository.com/artifact/org.apache.hive/hive-jdbc/2.0.1)

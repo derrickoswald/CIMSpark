@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>ConnectivityNodeContainer - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.ConnectivityNodeContainer</title>
-          <meta name="description" content="ConnectivityNodeContainer - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.ConnectivityNodeContainer" />
-          <meta name="keywords" content="ConnectivityNodeContainer CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.ConnectivityNodeContainer" />
+          <title>ConnectivityNodeContainer - CIMReader 2.11-2.3.1-2.9.0 API - ch.ninecode.model.ConnectivityNodeContainer</title>
+          <meta name="description" content="ConnectivityNodeContainer - CIMReader 2.11 - 2.3.1 - 2.9.0 API - ch.ninecode.model.ConnectivityNodeContainer" />
+          <meta name="keywords" content="ConnectivityNodeContainer CIMReader 2.11 2.3.1 2.9.0 API ch.ninecode.model.ConnectivityNodeContainer" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,12 +47,12 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">ConnectivityNodeContainer</span><span class="params">(<span name="sup">sup: <a href="PowerSystemResource.html" class="extype" name="ch.ninecode.model.PowerSystemResource">PowerSystemResource</a></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">ConnectivityNodeContainer</span><span class="params">(<span name="sup">sup: <a href="PowerSystemResource.html" class="extype" name="ch.ninecode.model.PowerSystemResource">PowerSystemResource</a></span>, <span name="ConnectivityNodes">ConnectivityNodes: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="TopologicalNode">TopologicalNode: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A base class for all objects that may contain connectivity nodes or topological nodes.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PowerSystemResource.html" class="extype" name="ch.ninecode.model.PowerSystemResource">PowerSystemResource</a> Reference to the superclass object.</p></dd></dl><div class="toggleContainer block">
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PowerSystemResource.html" class="extype" name="ch.ninecode.model.PowerSystemResource">PowerSystemResource</a> Reference to the superclass object.</p></dd><dt class="param">ConnectivityNodes</dt><dd class="cmt"><p><a href="ConnectivityNode.html" class="extype" name="ch.ninecode.model.ConnectivityNode">ConnectivityNode</a> Connectivity nodes which belong to this connectivity node container.</p></dd><dt class="param">TopologicalNode</dt><dd class="cmt"><p><a href="TopologicalNode.html" class="extype" name="ch.ninecode.model.TopologicalNode">TopologicalNode</a> The topological nodes which belong to this connectivity node container.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -109,7 +109,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.ConnectivityNodeContainer#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.PowerSystemResource):ch.ninecode.model.ConnectivityNodeContainer"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.PowerSystemResource,ConnectivityNodes:List[String],TopologicalNode:List[String]):ch.ninecode.model.ConnectivityNodeContainer"></a>
       <a id="&lt;init&gt;:ConnectivityNodeContainer"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -117,14 +117,14 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">ConnectivityNodeContainer</span><span class="params">(<span name="sup">sup: <a href="PowerSystemResource.html" class="extype" name="ch.ninecode.model.PowerSystemResource">PowerSystemResource</a></span>)</span>
+        <span class="name">ConnectivityNodeContainer</span><span class="params">(<span name="sup">sup: <a href="PowerSystemResource.html" class="extype" name="ch.ninecode.model.PowerSystemResource">PowerSystemResource</a></span>, <span name="ConnectivityNodes">ConnectivityNodes: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>, <span name="TopologicalNode">TopologicalNode: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.ConnectivityNodeContainer@&lt;init&gt;(sup:ch.ninecode.model.PowerSystemResource):ch.ninecode.model.ConnectivityNodeContainer" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.ConnectivityNodeContainer@&lt;init&gt;(sup:ch.ninecode.model.PowerSystemResource,ConnectivityNodes:List[String],TopologicalNode:List[String]):ch.ninecode.model.ConnectivityNodeContainer" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PowerSystemResource.html" class="extype" name="ch.ninecode.model.PowerSystemResource">PowerSystemResource</a> Reference to the superclass object.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PowerSystemResource.html" class="extype" name="ch.ninecode.model.PowerSystemResource">PowerSystemResource</a> Reference to the superclass object.</p></dd><dt class="param">ConnectivityNodes</dt><dd class="cmt"><p><a href="ConnectivityNode.html" class="extype" name="ch.ninecode.model.ConnectivityNode">ConnectivityNode</a> Connectivity nodes which belong to this connectivity node container.</p></dd><dt class="param">TopologicalNode</dt><dd class="cmt"><p><a href="TopologicalNode.html" class="extype" name="ch.ninecode.model.TopologicalNode">TopologicalNode</a> The topological nodes which belong to this connectivity node container.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -185,6 +185,23 @@
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="ch.ninecode.model.ConnectivityNodeContainer#ConnectivityNodes" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="ConnectivityNodes:List[String]"></a>
+      <a id="ConnectivityNodes:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">ConnectivityNodes</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.ConnectivityNodeContainer@ConnectivityNodes:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="ConnectivityNode.html" class="extype" name="ch.ninecode.model.ConnectivityNode">ConnectivityNode</a> Connectivity nodes which belong to this connectivity node container.</p>
     </li><li name="ch.ninecode.model.ConnectivityNodeContainer#PowerSystemResource" visbl="pub" data-isabs="false" fullComment="yes" group="Hierarchy">
       <a id="PowerSystemResource:ch.ninecode.model.PowerSystemResource"></a>
       <a id="PowerSystemResource:PowerSystemResource"></a>
@@ -203,6 +220,23 @@
     </span>
       <p class="shortcomment cmt">Return the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Return the superclass object.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The typed superclass nested object.</p></dd></dl></div>
+    </li><li name="ch.ninecode.model.ConnectivityNodeContainer#TopologicalNode" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="TopologicalNode:List[String]"></a>
+      <a id="TopologicalNode:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">TopologicalNode</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.ConnectivityNodeContainer@TopologicalNode:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="TopologicalNode.html" class="extype" name="ch.ninecode.model.TopologicalNode">TopologicalNode</a> The topological nodes which belong to this connectivity node container.</p>
     </li><li name="ch.ninecode.model.Element#about" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="about:Boolean"></a>
       <a id="about:Boolean"></a>

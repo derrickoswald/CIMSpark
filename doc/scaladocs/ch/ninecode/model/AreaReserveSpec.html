@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>AreaReserveSpec - CIMReader 2.11-2.2.0-2.5.0 API - ch.ninecode.model.AreaReserveSpec</title>
-          <meta name="description" content="AreaReserveSpec - CIMReader 2.11 - 2.2.0 - 2.5.0 API - ch.ninecode.model.AreaReserveSpec" />
-          <meta name="keywords" content="AreaReserveSpec CIMReader 2.11 2.2.0 2.5.0 API ch.ninecode.model.AreaReserveSpec" />
+          <title>AreaReserveSpec - CIMReader 2.11-2.3.1-2.9.0 API - ch.ninecode.model.AreaReserveSpec</title>
+          <meta name="description" content="AreaReserveSpec - CIMReader 2.11 - 2.3.1 - 2.9.0 API - ch.ninecode.model.AreaReserveSpec" />
+          <meta name="keywords" content="AreaReserveSpec CIMReader 2.11 2.3.1 2.9.0 API ch.ninecode.model.AreaReserveSpec" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -47,14 +47,14 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">AreaReserveSpec</span><span class="params">(<span name="sup">sup: <a href="BasicElement.html" class="extype" name="ch.ninecode.model.BasicElement">BasicElement</a></span>, <span name="lowerRegMarginReqt">lowerRegMarginReqt: <span class="extype" name="scala.Double">Double</span></span>, <span name="opReserveReqt">opReserveReqt: <span class="extype" name="scala.Double">Double</span></span>, <span name="primaryReserveReqt">primaryReserveReqt: <span class="extype" name="scala.Double">Double</span></span>, <span name="raiseRegMarginReqt">raiseRegMarginReqt: <span class="extype" name="scala.Double">Double</span></span>, <span name="spinningReserveReqt">spinningReserveReqt: <span class="extype" name="scala.Double">Double</span></span>, <span name="Description">Description: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">AreaReserveSpec</span><span class="params">(<span name="sup">sup: <a href="BasicElement.html" class="extype" name="ch.ninecode.model.BasicElement">BasicElement</a></span>, <span name="lowerRegMarginReqt">lowerRegMarginReqt: <span class="extype" name="scala.Double">Double</span></span>, <span name="opReserveReqt">opReserveReqt: <span class="extype" name="scala.Double">Double</span></span>, <span name="primaryReserveReqt">primaryReserveReqt: <span class="extype" name="scala.Double">Double</span></span>, <span name="raiseRegMarginReqt">raiseRegMarginReqt: <span class="extype" name="scala.Double">Double</span></span>, <span name="spinningReserveReqt">spinningReserveReqt: <span class="extype" name="scala.Double">Double</span></span>, <span name="Description">Description: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="SubControlArea">SubControlArea: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span><span class="result"> extends <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>The control area's reserve specification.
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">lowerRegMarginReqt</dt><dd class="cmt"><p>Lower regulating margin requirement in MW, the amount of generation that can be dropped by control in 10 minutes</p></dd><dt class="param">opReserveReqt</dt><dd class="cmt"><p>Operating reserve requirement in MW, where operating reserve is the generating capability that is fully available within 30 minutes.
        Operating reserve is composed of primary reserve (t less than 10 min) and secondary reserve (10 less than t less than 30 min).</p></dd><dt class="param">primaryReserveReqt</dt><dd class="cmt"><p>Primary reserve requirement in MW, where primary reserve is generating capability that is fully available within 10 minutes.
-       Primary reserve is composed of spinning reserve and quick-start reserve.</p></dd><dt class="param">raiseRegMarginReqt</dt><dd class="cmt"><p>Raise regulating margin requirement in MW, the amount of generation that can be picked up by control in 10 minutes</p></dd><dt class="param">spinningReserveReqt</dt><dd class="cmt"><p>Spinning reserve requirement in MW, spinning reserve is generating capability that is presently synchronized to the network and is fully available within 10 minutes</p></dd><dt class="param">Description</dt><dd class="cmt"><p>Description of the object or instance.</p></dd></dl><div class="toggleContainer block">
+       Primary reserve is composed of spinning reserve and quick-start reserve.</p></dd><dt class="param">raiseRegMarginReqt</dt><dd class="cmt"><p>Raise regulating margin requirement in MW, the amount of generation that can be picked up by control in 10 minutes</p></dd><dt class="param">spinningReserveReqt</dt><dd class="cmt"><p>Spinning reserve requirement in MW, spinning reserve is generating capability that is presently synchronized to the network and is fully available within 10 minutes</p></dd><dt class="param">Description</dt><dd class="cmt"><p>Description of the object or instance.</p></dd><dt class="param">SubControlArea</dt><dd class="cmt"><p><a href="SubControlArea.html" class="extype" name="ch.ninecode.model.SubControlArea">SubControlArea</a> <em>undocumented</em></p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -111,7 +111,7 @@
     </span>
       <p class="shortcomment cmt">Zero args constructor.</p>
     </li><li name="ch.ninecode.model.AreaReserveSpec#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(sup:ch.ninecode.model.BasicElement,lowerRegMarginReqt:Double,opReserveReqt:Double,primaryReserveReqt:Double,raiseRegMarginReqt:Double,spinningReserveReqt:Double,Description:String):ch.ninecode.model.AreaReserveSpec"></a>
+      <a id="&lt;init&gt;(sup:ch.ninecode.model.BasicElement,lowerRegMarginReqt:Double,opReserveReqt:Double,primaryReserveReqt:Double,raiseRegMarginReqt:Double,spinningReserveReqt:Double,Description:String,SubControlArea:List[String]):ch.ninecode.model.AreaReserveSpec"></a>
       <a id="&lt;init&gt;:AreaReserveSpec"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -119,16 +119,16 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">AreaReserveSpec</span><span class="params">(<span name="sup">sup: <a href="BasicElement.html" class="extype" name="ch.ninecode.model.BasicElement">BasicElement</a></span>, <span name="lowerRegMarginReqt">lowerRegMarginReqt: <span class="extype" name="scala.Double">Double</span></span>, <span name="opReserveReqt">opReserveReqt: <span class="extype" name="scala.Double">Double</span></span>, <span name="primaryReserveReqt">primaryReserveReqt: <span class="extype" name="scala.Double">Double</span></span>, <span name="raiseRegMarginReqt">raiseRegMarginReqt: <span class="extype" name="scala.Double">Double</span></span>, <span name="spinningReserveReqt">spinningReserveReqt: <span class="extype" name="scala.Double">Double</span></span>, <span name="Description">Description: <span class="extype" name="scala.Predef.String">String</span></span>)</span>
+        <span class="name">AreaReserveSpec</span><span class="params">(<span name="sup">sup: <a href="BasicElement.html" class="extype" name="ch.ninecode.model.BasicElement">BasicElement</a></span>, <span name="lowerRegMarginReqt">lowerRegMarginReqt: <span class="extype" name="scala.Double">Double</span></span>, <span name="opReserveReqt">opReserveReqt: <span class="extype" name="scala.Double">Double</span></span>, <span name="primaryReserveReqt">primaryReserveReqt: <span class="extype" name="scala.Double">Double</span></span>, <span name="raiseRegMarginReqt">raiseRegMarginReqt: <span class="extype" name="scala.Double">Double</span></span>, <span name="spinningReserveReqt">spinningReserveReqt: <span class="extype" name="scala.Double">Double</span></span>, <span name="Description">Description: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="SubControlArea">SubControlArea: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.model.AreaReserveSpec@&lt;init&gt;(sup:ch.ninecode.model.BasicElement,lowerRegMarginReqt:Double,opReserveReqt:Double,primaryReserveReqt:Double,raiseRegMarginReqt:Double,spinningReserveReqt:Double,Description:String):ch.ninecode.model.AreaReserveSpec" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.model.AreaReserveSpec@&lt;init&gt;(sup:ch.ninecode.model.BasicElement,lowerRegMarginReqt:Double,opReserveReqt:Double,primaryReserveReqt:Double,raiseRegMarginReqt:Double,spinningReserveReqt:Double,Description:String,SubControlArea:List[String]):ch.ninecode.model.AreaReserveSpec" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">lowerRegMarginReqt</dt><dd class="cmt"><p>Lower regulating margin requirement in MW, the amount of generation that can be dropped by control in 10 minutes</p></dd><dt class="param">opReserveReqt</dt><dd class="cmt"><p>Operating reserve requirement in MW, where operating reserve is the generating capability that is fully available within 30 minutes.
        Operating reserve is composed of primary reserve (t less than 10 min) and secondary reserve (10 less than t less than 30 min).</p></dd><dt class="param">primaryReserveReqt</dt><dd class="cmt"><p>Primary reserve requirement in MW, where primary reserve is generating capability that is fully available within 10 minutes.
-       Primary reserve is composed of spinning reserve and quick-start reserve.</p></dd><dt class="param">raiseRegMarginReqt</dt><dd class="cmt"><p>Raise regulating margin requirement in MW, the amount of generation that can be picked up by control in 10 minutes</p></dd><dt class="param">spinningReserveReqt</dt><dd class="cmt"><p>Spinning reserve requirement in MW, spinning reserve is generating capability that is presently synchronized to the network and is fully available within 10 minutes</p></dd><dt class="param">Description</dt><dd class="cmt"><p>Description of the object or instance.</p></dd></dl></div>
+       Primary reserve is composed of spinning reserve and quick-start reserve.</p></dd><dt class="param">raiseRegMarginReqt</dt><dd class="cmt"><p>Raise regulating margin requirement in MW, the amount of generation that can be picked up by control in 10 minutes</p></dd><dt class="param">spinningReserveReqt</dt><dd class="cmt"><p>Spinning reserve requirement in MW, spinning reserve is generating capability that is presently synchronized to the network and is fully available within 10 minutes</p></dd><dt class="param">Description</dt><dd class="cmt"><p>Description of the object or instance.</p></dd><dt class="param">SubControlArea</dt><dd class="cmt"><p><a href="SubControlArea.html" class="extype" name="ch.ninecode.model.SubControlArea">SubControlArea</a> <em>undocumented</em></p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -224,6 +224,23 @@
     </span>
       <p class="shortcomment cmt">Return the superclass object.</p><div class="fullcomment"><div class="comment cmt"><p>Return the superclass object.
 </p></div><dl class="paramcmts block"><dt>returns</dt><dd class="cmt"><p>The typed superclass nested object.</p></dd></dl></div>
+    </li><li name="ch.ninecode.model.AreaReserveSpec#SubControlArea" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="SubControlArea:List[String]"></a>
+      <a id="SubControlArea:List[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">SubControlArea</span><span class="result">: <span class="extype" name="scala.List">List</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.model.AreaReserveSpec@SubControlArea:List[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><a href="SubControlArea.html" class="extype" name="ch.ninecode.model.SubControlArea">SubControlArea</a> <em>undocumented</em></em></p><div class="fullcomment"><div class="comment cmt"><p><a href="SubControlArea.html" class="extype" name="ch.ninecode.model.SubControlArea">SubControlArea</a> <em>undocumented</em></p></div></div>
     </li><li name="ch.ninecode.model.Element#about" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="about:Boolean"></a>
       <a id="about:Boolean"></a>
