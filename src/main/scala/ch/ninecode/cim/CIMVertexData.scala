@@ -11,7 +11,7 @@ import org.apache.spark.graphx.VertexId
  * @param node_label a user friendly label for the node
  * @param voltage the nominal voltage of the node
  */
-case class CIMVertexData (var island: VertexId = Long.MaxValue, var island_label: String = "", var node: VertexId = Long.MaxValue, var node_label: String = "", var voltage: String = null) extends Serializable
+case class CIMVertexData (island: VertexId = Long.MaxValue, island_label: String = "", node: VertexId = Long.MaxValue, node_label: String = "", voltage: String = null) extends Serializable
 {
     /**
      * Generate an appropriate name for the topological node based on the node label.

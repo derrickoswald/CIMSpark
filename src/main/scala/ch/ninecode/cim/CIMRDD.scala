@@ -68,12 +68,30 @@ trait CIMRDD
         {
             case Some ((_: Int, rdd: RDD[_])) =>
                 rdd.asInstanceOf[RDD[T]]
-            case Some (_) =>
-                log.warn (name + " not found in Spark context persistent RDDs map")
+            case Some (_) | None =>
+                log.warn ("""%s not found in Spark context persistent RDDs map""".format (name))
                 null
-            case None =>
-                log.warn (name + " not found in Spark context persistent RDDs map")
-                null
+        }
+    }
+
+    /**
+     * Get the named RDD or else an empty RDD of the requested type.
+     *
+     * @param name The name of the RDD, usually the same as the CIM class.
+     * @param spark The Spark session which persisted the named RDD.
+     * @param log A logger for error messages.
+     * @tparam T The type of objects contained in the named RDD.
+     * @return The typed RDD, e.g. <code>RDD[T]</code>, as either the persisted RDD or an empty one if none was found.
+     *
+     */
+    def getOrElse[T : ClassTag](name: String)(implicit spark: SparkSession, log: Logger): RDD[T] =
+    {
+        spark.sparkContext.getPersistentRDDs.find (_._2.name == name) match
+        {
+            case Some ((_: Int, rdd: RDD[_])) =>
+                rdd.asInstanceOf[RDD[T]]
+            case Some (_) | None =>
+                spark.sparkContext.emptyRDD[T]
         }
     }
 
@@ -93,6 +111,24 @@ trait CIMRDD
         val classname = classTag[T].runtimeClass.getName
         val name = classname.substring (classname.lastIndexOf (".") + 1)
         get (name)
+    }
+
+    /**
+     * Get the typed RDD or an empty RDD if none was registered.
+     *
+     * Convenience method where the name of the RDD is the same as the contained
+     * class type (the usual case).
+     *
+     * @param spark The Spark session which persisted the typed RDD.
+     * @param log A logger for error messages.
+     * @tparam T The type of the RDD, e.g. <code>RDD[T]</code>.
+     * @return The RDD with the given type of objects, e.g. <code>RDD[ACLineSegment]</code>, or an empty RDD of the requested type.
+     */
+    def getOrElse[T : ClassTag](implicit spark: SparkSession, log: Logger): RDD[T] =
+    {
+        val classname = classTag[T].runtimeClass.getName
+        val name = classname.substring (classname.lastIndexOf (".") + 1)
+        getOrElse (name)
     }
 
     /**

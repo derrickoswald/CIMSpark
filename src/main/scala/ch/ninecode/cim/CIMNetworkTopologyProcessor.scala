@@ -290,14 +290,14 @@ with
     {
         def vertex_program (id: VertexId, data: CIMVertexData, message: CIMVertexData): CIMVertexData =
         {
-            if (null != message) // not initialization call?
+            val ret = if (null != message) // not initialization call?
                 if (data.node > message.node)
-                {
-                    data.node = message.node
-                    data.node_label = message.node_label
-                    data.voltage = message.voltage
-                }
-            data
+                    message.copy () // the island and island_label fields are not populated here yet
+                else
+                    data
+            else
+                data
+            ret
         }
 
         def send_message (triplet: EdgeTriplet[CIMVertexData, CIMEdgeData]): Iterator[(VertexId, CIMVertexData)] =
@@ -510,20 +510,16 @@ with
     {
         def vertex_program (id: VertexId, attr: CIMVertexData, msg: CIMVertexData): CIMVertexData =
         {
-            if (null == msg)
-            {
+            var ret = if (null == msg)
                 // initially assign each node to it's own island
-                attr.island = attr.node
-                attr.island_label = attr.node_label
-            }
+                attr.copy (island = attr.node, island_label = attr.node_label)
             else
                 if (attr.island > msg.island)
-                {
-                    attr.island = msg.island
-                    attr.island_label = msg.island_label
-                }
+                    attr.copy (island = msg.island, island_label = msg.island_label)
+                else
+                    attr
 
-            attr
+            ret
         }
 
         def send_message (triplet: EdgeTriplet[CIMVertexData, CIMEdgeData]): Iterator[(VertexId, CIMVertexData)] =
@@ -551,13 +547,11 @@ with
             island match
             {
                 case Some (data: CIMVertexData) =>
-                    vertex.island = data.island
-                    vertex.island_label = data.island_label
+                    vertex.copy (island = data.island, island_label = data.island_label)
                 case None => // should never happen
                     log.warn ("update vertices skipping vertex with no associated island")
+                    vertex
             }
-
-            vertex
         }
 
         def mapper (d: (VertexId, ((VertexId, CIMVertexData), Option[CIMVertexData]))): (VertexId, CIMVertexData) =
@@ -621,10 +615,8 @@ with
         var graph = identifyNodes (initial)
 
         // get the original island and node RDD
-        val _old_ti = get[TopologicalIsland]
-        val _old_tn = get[TopologicalNode]
-        val old_ti = if (null == _old_ti) spark.sparkContext.emptyRDD[TopologicalIsland] else _old_ti
-        val old_tn = if (null == _old_tn) spark.sparkContext.emptyRDD[TopologicalNode] else _old_tn
+        val old_ti = getOrElse[TopologicalIsland]
+        val old_tn = getOrElse[TopologicalNode]
 
         // create a new TopologicalNode RDD
         val (new_tn, new_ti) = if (identify_islands)
@@ -647,7 +639,7 @@ with
                 log.debug (new_ti.count + " islands identified")
 
             // swap the old TopologicalIsland RDD for the new one
-            if (null != _old_ti)
+            if (!old_ti.isEmpty)
             {
                 old_ti.unpersist (false)
                 old_ti.name = "old_TopologicalIsland"
@@ -669,7 +661,7 @@ with
         }
 
         // swap the old TopologicalNode RDD for the new one
-        if (null != _old_tn)
+        if (!old_tn.isEmpty)
         {
             old_tn.unpersist (false)
             old_tn.name = "old_TopologicalNode"
@@ -764,13 +756,13 @@ with
      */
     def processIfNeeded (identify_islands: Boolean): RDD[Element] =
     {
-        val nodes = get[TopologicalNode]
-        if ((null == nodes) || nodes.isEmpty ())
+        val nodes = getOrElse[TopologicalNode]
+        if (nodes.isEmpty)
             process (identify_islands)
         else
         {
-            val islands = get[TopologicalIsland]
-            if (identify_islands && ((null == islands) || islands.isEmpty ()))
+            val islands = getOrElse[TopologicalIsland]
+            if (identify_islands && islands.isEmpty)
                 process (identify_islands)
             else
                 get [Element]("Elements")
