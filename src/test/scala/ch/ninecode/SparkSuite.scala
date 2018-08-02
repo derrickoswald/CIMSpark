@@ -88,6 +88,19 @@ class SparkSuite extends fixture.FunSuite
     }
 
     /**
+     * Delete files and directories recursively.
+     *
+     * @param path The starting path.
+     */
+    def deleteRecursive (path: File): Unit =
+    {
+        if (path.isDirectory)
+            for (subpath <- path.list)
+                deleteRecursive (new File (path, subpath))
+        path.delete
+    }
+
+    /**
      * Add to the process environment.
      *
      * @see https://stackoverflow.com/questions/318239/how-do-i-set-environment-variables-from-java

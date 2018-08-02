@@ -5,13 +5,12 @@ import java.util.HashMap
 import java.util.Map
 
 import org.apache.spark.sql.SparkSession
+
 import ch.ninecode.model._
 
 class CIMExportSuite
 extends
     ch.ninecode.SparkSuite
-with
-    org.scalatest.BeforeAndAfter
 {
     val FILE_DEPOT = "data/"
 
@@ -39,20 +38,22 @@ with
         FILE_DEPOT + "RealGrid/CGMES_v2.4.15_RealGridTestConfiguration_TP_v2.xml"
     )
 
-    before
+    override def run (testName: Option[String], args: org.scalatest.Args): org.scalatest.Status =
     {
         // unpack the zip file
-        if (!new File (FILE_DEPOT + "MicroGrid/BaseCase_BC/MicroGridTestConfiguration_BC_Assembled_DL_V2.xml").exists)
-        {
-            new Unzip ().unzip (FILE_DEPOT + "CGMES_v2.4.15_TestConfigurations_v4.0.3.zip", FILE_DEPOT)
-            new Unzip ().unzip (FILE_DEPOT + "MicroGrid/BaseCase_BC/CGMES_v2.4.15_MicroGridTestConfiguration_BC_Assembled_v2.zip", FILE_DEPOT + "MicroGrid/BaseCase_BC/")
-        }
-        // unpack the zip file
-        if (!new File (FILE_DEPOT + "RealGrid/CGMES_v2.4.15_RealGridTestConfiguration_EQ_v2.xml").exists)
-        {
-            new Unzip ().unzip (FILE_DEPOT + "CGMES_v2.4.15_TestConfigurations_v4.0.3.zip", FILE_DEPOT)
-            new Unzip ().unzip (FILE_DEPOT + "RealGrid/CGMES_v2.4.15_RealGridTestConfiguration_v2.zip", FILE_DEPOT + "RealGrid/")
-        }
+        new Unzip ().unzip (FILE_DEPOT + "CGMES_v2.4.15_TestConfigurations_v4.0.3.zip", FILE_DEPOT)
+        new Unzip ().unzip (FILE_DEPOT + "MicroGrid/BaseCase_BC/CGMES_v2.4.15_MicroGridTestConfiguration_BC_Assembled_v2.zip", FILE_DEPOT + "MicroGrid/BaseCase_BC/")
+        new Unzip ().unzip (FILE_DEPOT + "CGMES_v2.4.15_TestConfigurations_v4.0.3.zip", FILE_DEPOT)
+        new Unzip ().unzip (FILE_DEPOT + "RealGrid/CGMES_v2.4.15_RealGridTestConfiguration_v2.zip", FILE_DEPOT + "RealGrid/")
+        // run the tests
+        val ret  = super.run (testName, args)
+        // erase the unpacked files
+        deleteRecursive (new File (FILE_DEPOT + "MicroGrid/"))
+        deleteRecursive (new File (FILE_DEPOT + "MicroGrid_Error/"))
+        deleteRecursive (new File (FILE_DEPOT + "MiniGrid/"))
+        deleteRecursive (new File (FILE_DEPOT + "SmallGrid/"))
+        deleteRecursive (new File (FILE_DEPOT + "RealGrid/"))
+        ret
     }
 
     test ("Basic")
@@ -194,4 +195,5 @@ voltage +
         export.exportAllIslands (FILE_DEPOT)
         assert (new File (FILE_DEPOT +"_97e00e77-7a51-4997-8456-4ca94774324d" + ".rdf").exists, "island _97e00e77-7a51-4997-8456-4ca94774324d")
     }
+
 }
