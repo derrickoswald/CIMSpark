@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>ControlArea - CIMReader 2.11-2.3.1-2.9.0 API - ch.ninecode.model.ControlArea</title>
-          <meta name="description" content="ControlArea - CIMReader 2.11 - 2.3.1 - 2.9.0 API - ch.ninecode.model.ControlArea" />
-          <meta name="keywords" content="ControlArea CIMReader 2.11 2.3.1 2.9.0 API ch.ninecode.model.ControlArea" />
+          <title>ControlArea - CIMReader 2.11-2.3.1-3.0.0 API - ch.ninecode.model.ControlArea</title>
+          <meta name="description" content="ControlArea - CIMReader 2.11 - 2.3.1 - 3.0.0 API - ch.ninecode.model.ControlArea" />
+          <meta name="keywords" content="ControlArea CIMReader 2.11 2.3.1 3.0.0 API ch.ninecode.model.ControlArea" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -52,7 +52,8 @@
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>A control area<b> </b>is a grouping of generating units and/or loads and a cutset of tie lines (as terminals) which may be used for a variety of purposes including automatic generation control, powerflow solution area interchange control specification, and input to load forecasting.</p><p>Note that any number of overlapping control area specifications can be superimposed on the physical model.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PowerSystemResource.html" class="extype" name="ch.ninecode.model.PowerSystemResource">PowerSystemResource</a> Reference to the superclass object.</p></dd><dt class="param">netInterchange</dt><dd class="cmt"><p>The specified positive net interchange into the control area, i.e. positive sign means flow in to the area.</p></dd><dt class="param">pTolerance</dt><dd class="cmt"><p>Active power net interchange tolerance</p></dd><dt class="param">ControlAreaGeneratingUnit</dt><dd class="cmt"><p><a href="ControlAreaGeneratingUnit.html" class="extype" name="ch.ninecode.model.ControlAreaGeneratingUnit">ControlAreaGeneratingUnit</a> The generating unit specificaitons for the control area.</p></dd><dt class="param">EnergyArea</dt><dd class="cmt"><p><a href="EnergyArea.html" class="extype" name="ch.ninecode.model.EnergyArea">EnergyArea</a> The energy area that is forecast from this control area specification.</p></dd><dt class="param">TieFlow</dt><dd class="cmt"><p><a href="TieFlow.html" class="extype" name="ch.ninecode.model.TieFlow">TieFlow</a> The tie flows associated with the control area.</p></dd></dl><div class="toggleContainer block">
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PowerSystemResource.html" class="extype" name="ch.ninecode.model.PowerSystemResource">PowerSystemResource</a> Reference to the superclass object.</p></dd><dt class="param">netInterchange</dt><dd class="cmt"><p>The specified positive net interchange into the control area, i.e. positive sign means flow in to the area.</p></dd><dt class="param">pTolerance</dt><dd class="cmt"><p>Active power net interchange tolerance</p></dd><dt class="param">type</dt><dd class="cmt"><p>The primary type of control area definition used to determine if this is used for automatic generation control, for planning interchange control, or other purposes.
+       A control area specified with primary type of automatic generation control could still be forecast and used as an interchange area in power flow analysis.</p></dd><dt class="param">ControlAreaGeneratingUnit</dt><dd class="cmt"><p><a href="ControlAreaGeneratingUnit.html" class="extype" name="ch.ninecode.model.ControlAreaGeneratingUnit">ControlAreaGeneratingUnit</a> The generating unit specificaitons for the control area.</p></dd><dt class="param">EnergyArea</dt><dd class="cmt"><p><a href="EnergyArea.html" class="extype" name="ch.ninecode.model.EnergyArea">EnergyArea</a> The energy area that is forecast from this control area specification.</p></dd><dt class="param">TieFlow</dt><dd class="cmt"><p><a href="TieFlow.html" class="extype" name="ch.ninecode.model.TieFlow">TieFlow</a> The tie flows associated with the control area.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -124,7 +125,8 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PowerSystemResource.html" class="extype" name="ch.ninecode.model.PowerSystemResource">PowerSystemResource</a> Reference to the superclass object.</p></dd><dt class="param">netInterchange</dt><dd class="cmt"><p>The specified positive net interchange into the control area, i.e. positive sign means flow in to the area.</p></dd><dt class="param">pTolerance</dt><dd class="cmt"><p>Active power net interchange tolerance</p></dd><dt class="param">ControlAreaGeneratingUnit</dt><dd class="cmt"><p><a href="ControlAreaGeneratingUnit.html" class="extype" name="ch.ninecode.model.ControlAreaGeneratingUnit">ControlAreaGeneratingUnit</a> The generating unit specificaitons for the control area.</p></dd><dt class="param">EnergyArea</dt><dd class="cmt"><p><a href="EnergyArea.html" class="extype" name="ch.ninecode.model.EnergyArea">EnergyArea</a> The energy area that is forecast from this control area specification.</p></dd><dt class="param">TieFlow</dt><dd class="cmt"><p><a href="TieFlow.html" class="extype" name="ch.ninecode.model.TieFlow">TieFlow</a> The tie flows associated with the control area.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="PowerSystemResource.html" class="extype" name="ch.ninecode.model.PowerSystemResource">PowerSystemResource</a> Reference to the superclass object.</p></dd><dt class="param">netInterchange</dt><dd class="cmt"><p>The specified positive net interchange into the control area, i.e. positive sign means flow in to the area.</p></dd><dt class="param">pTolerance</dt><dd class="cmt"><p>Active power net interchange tolerance</p></dd><dt class="param">type</dt><dd class="cmt"><p>The primary type of control area definition used to determine if this is used for automatic generation control, for planning interchange control, or other purposes.
+       A control area specified with primary type of automatic generation control could still be forecast and used as an interchange area in power flow analysis.</p></dd><dt class="param">ControlAreaGeneratingUnit</dt><dd class="cmt"><p><a href="ControlAreaGeneratingUnit.html" class="extype" name="ch.ninecode.model.ControlAreaGeneratingUnit">ControlAreaGeneratingUnit</a> The generating unit specificaitons for the control area.</p></dd><dt class="param">EnergyArea</dt><dd class="cmt"><p><a href="EnergyArea.html" class="extype" name="ch.ninecode.model.EnergyArea">EnergyArea</a> The energy area that is forecast from this control area specification.</p></dd><dt class="param">TieFlow</dt><dd class="cmt"><p><a href="TieFlow.html" class="extype" name="ch.ninecode.model.TieFlow">TieFlow</a> The tie flows associated with the control area.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -1235,7 +1237,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row → AnyRef → Any</dd></dl></div>
-    </li><li name="ch.ninecode.model.ControlArea#type" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="ch.ninecode.model.ControlArea#type" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="type:String"></a>
       <a id="type:String"></a>
       <h4 class="signature">
@@ -1251,7 +1253,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
+      <p class="shortcomment cmt">The primary type of control area definition used to determine if this is used for automatic generation control, for planning interchange control, or other purposes.</p><div class="fullcomment"><div class="comment cmt"><p>The primary type of control area definition used to determine if this is used for automatic generation control, for planning interchange control, or other purposes.
+       A control area specified with primary type of automatic generation control could still be forecast and used as an interchange area in power flow analysis.</p></div></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>

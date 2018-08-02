@@ -122,13 +122,20 @@ case class Scala (parser: ModelParser, pkg: Package)
                             case "String" => Member (name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
                             case "DateTime" => Member (name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
                             case "MonthDay" => Member (name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
+                            case "URI" => Member (name, variable, false, comment, false, "0..1", "0..*", "String", "null", "", null)
                             case _ =>
                                 throw new Exception ("""unknown primitive type "%s"""".format (dom.name))
                         }
                     case "enumeration" ⇒
                         Member (name, variable, false, comment, true, "0..1", "0..*", "String", "null", "", null)
                     case "Compound" ⇒
-                        Member (name, variable, false, comment, true, "0..1", "0..*", "String", "null", "", null)
+                        Member (name, variable, false, comment, true, "0..1", "0..*", "String", "null", "",
+                            classes.find (_.name == attribute.typ) match
+                            {
+                                case Some (clz: Class) ⇒ valid_class_name (clz.name)
+                                case None ⇒ null
+                            }
+                        )
                     case "CIMDatatype" ⇒
                         dom.value match
                         {

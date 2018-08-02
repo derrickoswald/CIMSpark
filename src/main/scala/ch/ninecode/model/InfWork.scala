@@ -1226,7 +1226,7 @@ extends
  * @param sup [[ch.ninecode.model.WorkIdentifiedObject WorkIdentifiedObject]] Reference to the superclass object.
  * @param performanceFactor Capability performance factor.
  * @param status <em>undocumented</em>
- * @param `type` Classification by utility's work management standards and practices.
+ * @param type Classification by utility's work management standards and practices.
  * @param validityInterval Date and time interval for which this capability is valid (when it became effective and when it expires).
  * @param Crafts [[ch.ninecode.model.Craft Craft]] <em>undocumented</em>
  * @param Crew [[ch.ninecode.model.OldCrew OldCrew]] <em>undocumented</em>

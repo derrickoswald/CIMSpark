@@ -512,7 +512,7 @@ extends
 case class EmissionCurve
 (
     override val sup: Curve,
-    emissionContent: String,
+    emissionContent: Double,
     emissionType: String,
     isNetGrossP: Boolean,
     ThermalGeneratingUnit: String
@@ -523,7 +523,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, false, null) }
+    def this () = { this (null, 0.0, null, false, null) }
     /**
      * Return the superclass object.
      *
@@ -548,7 +548,7 @@ extends
         implicit val clz: String = EmissionCurve.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (EmissionCurve.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (EmissionCurve.fields (position), value)
-        emitattr (0, emissionContent)
+        emitelem (0, emissionContent)
         emitattr (1, emissionType)
         emitelem (2, isNetGrossP)
         emitattr (3, ThermalGeneratingUnit)
@@ -573,7 +573,7 @@ extends
     override val relations: List[Relationship] = List (
         Relationship ("ThermalGeneratingUnit", "ThermalGeneratingUnit", "1", "0..*")
     )
-    val emissionContent: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val emissionContent: Fielder = parse_element (element (cls, fields(0)))
     val emissionType: Fielder = parse_attribute (attribute (cls, fields(1)))
     val isNetGrossP: Fielder = parse_element (element (cls, fields(2)))
     val ThermalGeneratingUnit: Fielder = parse_attribute (attribute (cls, fields(3)))
@@ -584,7 +584,7 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = EmissionCurve (
             Curve.parse (context),
-            mask (emissionContent (), 0),
+            toDouble (mask (emissionContent (), 0)),
             mask (emissionType (), 1),
             toBoolean (mask (isNetGrossP (), 2)),
             mask (ThermalGeneratingUnit (), 3)
@@ -622,10 +622,10 @@ case class FossilFuel
 (
     override val sup: IdentifiedObject,
     fossilFuelType: String,
-    fuelCost: String,
-    fuelDispatchCost: String,
+    fuelCost: Double,
+    fuelDispatchCost: Double,
     fuelEffFactor: Double,
-    fuelHandlingCost: String,
+    fuelHandlingCost: Double,
     fuelHeatContent: Double,
     fuelMixture: Double,
     fuelSulfur: Double,
@@ -640,7 +640,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0.0, List(), null) }
+    def this () = { this (null, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -667,10 +667,10 @@ extends
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (FossilFuel.fields (position), value)
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (FossilFuel.fields (position), x))
         emitattr (0, fossilFuelType)
-        emitattr (1, fuelCost)
-        emitattr (2, fuelDispatchCost)
+        emitelem (1, fuelCost)
+        emitelem (2, fuelDispatchCost)
         emitelem (3, fuelEffFactor)
-        emitattr (4, fuelHandlingCost)
+        emitelem (4, fuelHandlingCost)
         emitelem (5, fuelHeatContent)
         emitelem (6, fuelMixture)
         emitelem (7, fuelSulfur)
@@ -709,10 +709,10 @@ extends
         Relationship ("ThermalGeneratingUnit", "ThermalGeneratingUnit", "1", "0..*")
     )
     val fossilFuelType: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val fuelCost: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val fuelDispatchCost: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val fuelCost: Fielder = parse_element (element (cls, fields(1)))
+    val fuelDispatchCost: Fielder = parse_element (element (cls, fields(2)))
     val fuelEffFactor: Fielder = parse_element (element (cls, fields(3)))
-    val fuelHandlingCost: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val fuelHandlingCost: Fielder = parse_element (element (cls, fields(4)))
     val fuelHeatContent: Fielder = parse_element (element (cls, fields(5)))
     val fuelMixture: Fielder = parse_element (element (cls, fields(6)))
     val fuelSulfur: Fielder = parse_element (element (cls, fields(7)))
@@ -728,10 +728,10 @@ extends
         val ret = FossilFuel (
             IdentifiedObject.parse (context),
             mask (fossilFuelType (), 0),
-            mask (fuelCost (), 1),
-            mask (fuelDispatchCost (), 2),
+            toDouble (mask (fuelCost (), 1)),
+            toDouble (mask (fuelDispatchCost (), 2)),
             toDouble (mask (fuelEffFactor (), 3)),
-            mask (fuelHandlingCost (), 4),
+            toDouble (mask (fuelHandlingCost (), 4)),
             toDouble (mask (fuelHeatContent (), 5)),
             toDouble (mask (fuelMixture (), 6)),
             toDouble (mask (fuelSulfur (), 7)),
@@ -1112,7 +1112,7 @@ case class GeneratingUnit
     minEconomicP: Double,
     minOperatingP: Double,
     minimumOffTime: Double,
-    modelDetail: String,
+    modelDetail: Int,
     nominalP: Double,
     normalPF: Double,
     penaltyFactor: Double,
@@ -1138,7 +1138,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, List(), List(), null, List(), List()) }
+    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, List(), List(), null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1187,7 +1187,7 @@ extends
         emitelem (20, minEconomicP)
         emitelem (21, minOperatingP)
         emitelem (22, minimumOffTime)
-        emitattr (23, modelDetail)
+        emitelem (23, modelDetail)
         emitelem (24, nominalP)
         emitelem (25, normalPF)
         emitelem (26, penaltyFactor)
@@ -1292,7 +1292,7 @@ extends
     val minEconomicP: Fielder = parse_element (element (cls, fields(20)))
     val minOperatingP: Fielder = parse_element (element (cls, fields(21)))
     val minimumOffTime: Fielder = parse_element (element (cls, fields(22)))
-    val modelDetail: Fielder = parse_attribute (attribute (cls, fields(23)))
+    val modelDetail: Fielder = parse_element (element (cls, fields(23)))
     val nominalP: Fielder = parse_element (element (cls, fields(24)))
     val normalPF: Fielder = parse_element (element (cls, fields(25)))
     val penaltyFactor: Fielder = parse_element (element (cls, fields(26)))
@@ -1341,7 +1341,7 @@ extends
             toDouble (mask (minEconomicP (), 20)),
             toDouble (mask (minOperatingP (), 21)),
             toDouble (mask (minimumOffTime (), 22)),
-            mask (modelDetail (), 23),
+            toInteger (mask (modelDetail (), 23)),
             toDouble (mask (nominalP (), 24)),
             toDouble (mask (normalPF (), 25)),
             toDouble (mask (penaltyFactor (), 26)),
@@ -1468,7 +1468,7 @@ case class HeatInputCurve
     auxPowerMult: Double,
     auxPowerOffset: Double,
     heatInputEff: Double,
-    heatInputOffset: String,
+    heatInputOffset: Double,
     isNetGrossP: Boolean,
     ThermalGeneratingUnit: String
 )
@@ -1478,7 +1478,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, 0.0, null, false, null) }
+    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, false, null) }
     /**
      * Return the superclass object.
      *
@@ -1506,7 +1506,7 @@ extends
         emitelem (0, auxPowerMult)
         emitelem (1, auxPowerOffset)
         emitelem (2, heatInputEff)
-        emitattr (3, heatInputOffset)
+        emitelem (3, heatInputOffset)
         emitelem (4, isNetGrossP)
         emitattr (5, ThermalGeneratingUnit)
         s.toString
@@ -1535,7 +1535,7 @@ extends
     val auxPowerMult: Fielder = parse_element (element (cls, fields(0)))
     val auxPowerOffset: Fielder = parse_element (element (cls, fields(1)))
     val heatInputEff: Fielder = parse_element (element (cls, fields(2)))
-    val heatInputOffset: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val heatInputOffset: Fielder = parse_element (element (cls, fields(3)))
     val isNetGrossP: Fielder = parse_element (element (cls, fields(4)))
     val ThermalGeneratingUnit: Fielder = parse_attribute (attribute (cls, fields(5)))
 
@@ -1548,7 +1548,7 @@ extends
             toDouble (mask (auxPowerMult (), 0)),
             toDouble (mask (auxPowerOffset (), 1)),
             toDouble (mask (heatInputEff (), 2)),
-            mask (heatInputOffset (), 3),
+            toDouble (mask (heatInputOffset (), 3)),
             toBoolean (mask (isNetGrossP (), 4)),
             mask (ThermalGeneratingUnit (), 5)
         )
@@ -3206,7 +3206,7 @@ case class StartupModel
 (
     override val sup: IdentifiedObject,
     fixedMaintCost: Double,
-    hotStandbyHeat: String,
+    hotStandbyHeat: Double,
     incrementalMaintCost: Double,
     minimumDownTime: Double,
     minimumRunTime: Double,
@@ -3226,7 +3226,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0, 0.0, null, null, null, null) }
+    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0, 0.0, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -3252,7 +3252,7 @@ extends
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (StartupModel.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (StartupModel.fields (position), value)
         emitelem (0, fixedMaintCost)
-        emitattr (1, hotStandbyHeat)
+        emitelem (1, hotStandbyHeat)
         emitelem (2, incrementalMaintCost)
         emitelem (3, minimumDownTime)
         emitelem (4, minimumRunTime)
@@ -3300,7 +3300,7 @@ extends
         Relationship ("ThermalGeneratingUnit", "ThermalGeneratingUnit", "1", "0..1")
     )
     val fixedMaintCost: Fielder = parse_element (element (cls, fields(0)))
-    val hotStandbyHeat: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val hotStandbyHeat: Fielder = parse_element (element (cls, fields(1)))
     val incrementalMaintCost: Fielder = parse_element (element (cls, fields(2)))
     val minimumDownTime: Fielder = parse_element (element (cls, fields(3)))
     val minimumRunTime: Fielder = parse_element (element (cls, fields(4)))
@@ -3321,7 +3321,7 @@ extends
         val ret = StartupModel (
             IdentifiedObject.parse (context),
             toDouble (mask (fixedMaintCost (), 0)),
-            mask (hotStandbyHeat (), 1),
+            toDouble (mask (hotStandbyHeat (), 1)),
             toDouble (mask (incrementalMaintCost (), 2)),
             toDouble (mask (minimumDownTime (), 3)),
             toDouble (mask (minimumRunTime (), 4)),
@@ -3615,7 +3615,7 @@ extends
 case class ThermalGeneratingUnit
 (
     override val sup: GeneratingUnit,
-    oMCost: String,
+    oMCost: Double,
     CAESPlant: String,
     CogenerationPlant: String,
     CombinedCyclePlant: String,
@@ -3635,7 +3635,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null, List(), List(), List(), List(), null, null, null, null, null) }
+    def this () = { this (null, 0.0, null, null, null, List(), List(), List(), List(), null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -3658,9 +3658,10 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ThermalGeneratingUnit.cls
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ThermalGeneratingUnit.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ThermalGeneratingUnit.fields (position), value)
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ThermalGeneratingUnit.fields (position), x))
-        emitattr (0, oMCost)
+        emitelem (0, oMCost)
         emitattr (1, CAESPlant)
         emitattr (2, CogenerationPlant)
         emitattr (3, CombinedCyclePlant)
@@ -3714,7 +3715,7 @@ extends
         Relationship ("ShutdownCurve", "ShutdownCurve", "0..1", "1"),
         Relationship ("StartupModel", "StartupModel", "0..1", "1")
     )
-    val oMCost: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val oMCost: Fielder = parse_element (element (cls, fields(0)))
     val CAESPlant: Fielder = parse_attribute (attribute (cls, fields(1)))
     val CogenerationPlant: Fielder = parse_attribute (attribute (cls, fields(2)))
     val CombinedCyclePlant: Fielder = parse_attribute (attribute (cls, fields(3)))
@@ -3734,7 +3735,7 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = ThermalGeneratingUnit (
             GeneratingUnit.parse (context),
-            mask (oMCost (), 0),
+            toDouble (mask (oMCost (), 0)),
             mask (CAESPlant (), 1),
             mask (CogenerationPlant (), 2),
             mask (CombinedCyclePlant (), 3),

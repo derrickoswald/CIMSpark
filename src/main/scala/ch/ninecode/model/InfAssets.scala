@@ -1644,7 +1644,7 @@ extends
  * @param construction The framing structure mounted on the pole.
  * @param diameter Diameter of the pole.
  * @param jpaReference Joint pole agreement reference number.
- * @param len Length of the pole (inclusive of any section of the pole that may be underground post-installation).
+ * @param length Length of the pole (inclusive of any section of the pole that may be underground post-installation).
  * @param preservativeKind Kind of preservative for this pole.
  * @param speciesType Pole species.
  *        Aluminum, Aluminum Davit, Concrete, Fiberglass, Galvanized Davit, Galvanized, Steel Davit Primed, Steel Davit, Steel Standard Primed, Steel, Truncated, Wood-Treated, Wood-Hard, Wood-Salt Treated, Wood-Soft, Wood, Other, Unknown.
@@ -2445,8 +2445,8 @@ extends
  * @param anchorRodLength (if anchor) Length of rod used.
  * @param direction Direction of this support structure.
  * @param kind Kind of structure support.
- * @param len Length of this support structure.
- * @param size1 Size of this support structure.
+ * @param length Length of this support structure.
+ * @param size Size of this support structure.
  * @param SecuredStructure [[ch.ninecode.model.Structure Structure]] <em>undocumented</em>
  * @group InfAssets
  * @groupname InfAssets Package InfAssets

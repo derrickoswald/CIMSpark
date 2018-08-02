@@ -1618,7 +1618,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
  * @param status <em>undocumented</em>
- * @param ErpLedBudLineItem_attr [[ch.ninecode.model.ErpLedgerEntry ErpLedgerEntry]] <em>undocumented</em>
+ * @param ErpLedBudLineItem [[ch.ninecode.model.ErpLedgerEntry ErpLedgerEntry]] <em>undocumented</em>
  * @param ErpLedgerBudget [[ch.ninecode.model.ErpLedgerBudget ErpLedgerBudget]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
@@ -1891,7 +1891,7 @@ extends
  * @param transactionDateTime Date and time journal entry was recorded.
  * @param ErpJounalEntry [[ch.ninecode.model.ErpJournalEntry ErpJournalEntry]] <em>undocumented</em>
  * @param ErpLedger [[ch.ninecode.model.ErpLedger ErpLedger]] <em>undocumented</em>
- * @param ErpLedgerEntry_attr [[ch.ninecode.model.ErpLedBudLineItem ErpLedBudLineItem]] <em>undocumented</em>
+ * @param ErpLedgerEntry [[ch.ninecode.model.ErpLedBudLineItem ErpLedBudLineItem]] <em>undocumented</em>
  * @param UserAttributes [[ch.ninecode.model.UserAttribute UserAttribute]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport

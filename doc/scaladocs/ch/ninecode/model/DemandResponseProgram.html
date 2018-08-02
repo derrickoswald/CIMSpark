@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>DemandResponseProgram - CIMReader 2.11-2.3.1-2.9.0 API - ch.ninecode.model.DemandResponseProgram</title>
-          <meta name="description" content="DemandResponseProgram - CIMReader 2.11 - 2.3.1 - 2.9.0 API - ch.ninecode.model.DemandResponseProgram" />
-          <meta name="keywords" content="DemandResponseProgram CIMReader 2.11 2.3.1 2.9.0 API ch.ninecode.model.DemandResponseProgram" />
+          <title>DemandResponseProgram - CIMReader 2.11-2.3.1-3.0.0 API - ch.ninecode.model.DemandResponseProgram</title>
+          <meta name="description" content="DemandResponseProgram - CIMReader 2.11 - 2.3.1 - 3.0.0 API - ch.ninecode.model.DemandResponseProgram" />
+          <meta name="keywords" content="DemandResponseProgram CIMReader 2.11 2.3.1 3.0.0 API ch.ninecode.model.DemandResponseProgram" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -52,7 +52,8 @@
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Demand response program.
-</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">validityInterval</dt><dd class="cmt"><p>Interval within which the program is valid.</p></dd><dt class="param">CustomerAgreements</dt><dd class="cmt"><p><a href="CustomerAgreement.html" class="extype" name="ch.ninecode.model.CustomerAgreement">CustomerAgreement</a> All customer agreements through which the customer is enrolled in this demand response program.</p></dd><dt class="param">EndDeviceGroups</dt><dd class="cmt"><p><a href="EndDeviceGroup.html" class="extype" name="ch.ninecode.model.EndDeviceGroup">EndDeviceGroup</a> All groups of end devices enrolled in this demand response program.</p></dd><dt class="param">UsagePointGroups</dt><dd class="cmt"><p><a href="UsagePointGroup.html" class="extype" name="ch.ninecode.model.UsagePointGroup">UsagePointGroup</a> All usage point groups enrolled in this demand response program.</p></dd></dl><div class="toggleContainer block">
+</p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">type</dt><dd class="cmt"><p>Type of demand response program; examples are CPP (critical-peak pricing), RTP (real-time pricing), DLC (direct load control), DBP (demand bidding program), BIP (base interruptible program).
+       Note that possible types change a lot and it would be impossible to enumerate them all.</p></dd><dt class="param">validityInterval</dt><dd class="cmt"><p>Interval within which the program is valid.</p></dd><dt class="param">CustomerAgreements</dt><dd class="cmt"><p><a href="CustomerAgreement.html" class="extype" name="ch.ninecode.model.CustomerAgreement">CustomerAgreement</a> All customer agreements through which the customer is enrolled in this demand response program.</p></dd><dt class="param">EndDeviceGroups</dt><dd class="cmt"><p><a href="EndDeviceGroup.html" class="extype" name="ch.ninecode.model.EndDeviceGroup">EndDeviceGroup</a> All groups of end devices enrolled in this demand response program.</p></dd><dt class="param">UsagePointGroups</dt><dd class="cmt"><p><a href="UsagePointGroup.html" class="extype" name="ch.ninecode.model.UsagePointGroup">UsagePointGroup</a> All usage point groups enrolled in this demand response program.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -124,7 +125,8 @@
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">validityInterval</dt><dd class="cmt"><p>Interval within which the program is valid.</p></dd><dt class="param">CustomerAgreements</dt><dd class="cmt"><p><a href="CustomerAgreement.html" class="extype" name="ch.ninecode.model.CustomerAgreement">CustomerAgreement</a> All customer agreements through which the customer is enrolled in this demand response program.</p></dd><dt class="param">EndDeviceGroups</dt><dd class="cmt"><p><a href="EndDeviceGroup.html" class="extype" name="ch.ninecode.model.EndDeviceGroup">EndDeviceGroup</a> All groups of end devices enrolled in this demand response program.</p></dd><dt class="param">UsagePointGroups</dt><dd class="cmt"><p><a href="UsagePointGroup.html" class="extype" name="ch.ninecode.model.UsagePointGroup">UsagePointGroup</a> All usage point groups enrolled in this demand response program.</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">type</dt><dd class="cmt"><p>Type of demand response program; examples are CPP (critical-peak pricing), RTP (real-time pricing), DLC (direct load control), DBP (demand bidding program), BIP (base interruptible program).
+       Note that possible types change a lot and it would be impossible to enumerate them all.</p></dd><dt class="param">validityInterval</dt><dd class="cmt"><p>Interval within which the program is valid.</p></dd><dt class="param">CustomerAgreements</dt><dd class="cmt"><p><a href="CustomerAgreement.html" class="extype" name="ch.ninecode.model.CustomerAgreement">CustomerAgreement</a> All customer agreements through which the customer is enrolled in this demand response program.</p></dd><dt class="param">EndDeviceGroups</dt><dd class="cmt"><p><a href="EndDeviceGroup.html" class="extype" name="ch.ninecode.model.EndDeviceGroup">EndDeviceGroup</a> All groups of end devices enrolled in this demand response program.</p></dd><dt class="param">UsagePointGroups</dt><dd class="cmt"><p><a href="UsagePointGroup.html" class="extype" name="ch.ninecode.model.UsagePointGroup">UsagePointGroup</a> All usage point groups enrolled in this demand response program.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -1201,7 +1203,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row → AnyRef → Any</dd></dl></div>
-    </li><li name="ch.ninecode.model.DemandResponseProgram#type" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="ch.ninecode.model.DemandResponseProgram#type" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="type:String"></a>
       <a id="type:String"></a>
       <h4 class="signature">
@@ -1217,7 +1219,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
+      <p class="shortcomment cmt">Type of demand response program; examples are CPP (critical-peak pricing), RTP (real-time pricing), DLC (direct load control), DBP (demand bidding program), BIP (base interruptible program).</p><div class="fullcomment"><div class="comment cmt"><p>Type of demand response program; examples are CPP (critical-peak pricing), RTP (real-time pricing), DLC (direct load control), DBP (demand bidding program), BIP (base interruptible program).
+       Note that possible types change a lot and it would be impossible to enumerate them all.</p></div></div>
     </li><li name="ch.ninecode.model.DemandResponseProgram#validityInterval" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="validityInterval:String"></a>
       <a id="validityInterval:String"></a>

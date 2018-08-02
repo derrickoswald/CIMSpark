@@ -14,7 +14,7 @@ import ch.ninecode.cim.Relationship
  * @param dateTime Date and time the asset was last tested using the 'type' of test and yielding the current status in 'success' attribute.
  * @param success True if asset has passed acceptance test and may be placed in or is in service.
  *        It is set to false if asset is removed from service and is required to be tested again before being placed back in service, possibly in a new location. Since asset may go through multiple tests during its lifecycle, the date of each acceptance test may be recorded in 'Asset.ActivityRecord.status.dateTime'.
- * @param `type` Type of test or group of tests that was conducted on 'dateTime'.
+ * @param type Type of test or group of tests that was conducted on 'dateTime'.
  * @group Assets
  * @groupname Assets Package Assets
  * @groupdesc Assets This package contains the core information classes that support asset management applications that deal with the physical and lifecycle aspects of various network resources (as opposed to power system resource models defined in IEC61970::Wires package, which support network applications).
@@ -113,7 +113,7 @@ extends
  * @param purchasePrice Purchase price of asset.
  * @param serialNumber Serial number of this asset.
  * @param status Status of this asset.
- * @param `type` Utility-specific classification of Asset and its subtypes, according to their corporate standards, practices, and existing IT systems (e.g., for management of assets, maintenance, work, outage, customers, etc.).
+ * @param type Utility-specific classification of Asset and its subtypes, according to their corporate standards, practices, and existing IT systems (e.g., for management of assets, maintenance, work, outage, customers, etc.).
  * @param utcNumber Uniquely tracked commodity (UTC) number.
  * @param ActivityRecords [[ch.ninecode.model.ActivityRecord ActivityRecord]] All activity records created for this asset.
  * @param AssetContainer [[ch.ninecode.model.AssetContainer AssetContainer]] Container of this asset.

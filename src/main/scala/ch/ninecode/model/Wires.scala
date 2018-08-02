@@ -821,7 +821,7 @@ extends
  * Combination of conducting material with consistent electrical characteristics, building a single electrical system, used to carry current between points in the power system.
  *
  * @param sup [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] Reference to the superclass object.
- * @param len Segment length for calculating line section capabilities
+ * @param length Segment length for calculating line section capabilities
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -6638,7 +6638,7 @@ extends
  * @param satDirectTransX Saturated Direct-axis transient reactance.
  *        The attribute is primarily used for short circuit calculations according to ANSI.
  * @param shortCircuitRotorType Type of rotor, used by short circuit applications, only for single fed short circuit according to IEC 60909.
- * @param `type` Modes that this synchronous machine can operate in.
+ * @param type Modes that this synchronous machine can operate in.
  * @param voltageRegulationRange Range of generator voltage regulation (PG in the IEC 60909-0) used for calculation of the impedance correction factor KG defined in IEC 60909-0
  *        This attribute is used to describe the operating voltage of the generating unit.
  * @param x0 Zero sequence reactance of the synchronous machine.

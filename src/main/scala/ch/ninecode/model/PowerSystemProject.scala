@@ -16,7 +16,7 @@ import ch.ninecode.cim.Relationship
  * @param priority Priority between competing projects.
  *        Use 0 for don t care.  Use 1 for highest priority.  Use 2 as priority is less than 1 and so on.
  * @param state Describes the state the project realisation are from starting planning until it is commissioned if not cancelled.
- * @param `type` Type of project.
+ * @param type Type of project.
  * @param version Version of the project.
  *        Changes to a project is not modeled. So the project with the highest version are the valid/latest project. Only positive numbers equal or higher than 1 are allowed.
  * @param Collection [[ch.ninecode.model.PowerSystemSubProject PowerSystemSubProject]] <em>undocumented</em>

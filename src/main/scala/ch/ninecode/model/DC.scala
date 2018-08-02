@@ -1229,7 +1229,7 @@ extends
  *        Significant for cables only.
  * @param inductance Inductance of the DC line segment.
  *        Neglectable compared with DCSeriesDevice used for smoothing.
- * @param len Segment length for calculating line section capabilities.
+ * @param length Segment length for calculating line section capabilities.
  * @param resistance Resistance of the DC line segment.
  * @param PerLengthParameter [[ch.ninecode.model.PerLengthDCLineParameter PerLengthDCLineParameter]] Set of per-length parameters for this line segment.
  * @group DC

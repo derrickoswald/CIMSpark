@@ -777,7 +777,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.Profile Profile]] Reference to the superclass object.
  * @param EnergyTransaction [[ch.ninecode.model.EnergyTransaction EnergyTransaction]] An EnergyTransaction may have a LossProfile.
- * @param HasLoss_1 [[ch.ninecode.model.TransmissionProvider TransmissionProvider]] Part of the LossProfile for an EnergyTransaction may be a loss for a TransmissionProvider.
+ * @param HasLoss_ [[ch.ninecode.model.TransmissionProvider TransmissionProvider]] Part of the LossProfile for an EnergyTransaction may be a loss for a TransmissionProvider.
  *        If so, the TransmissionProvider must be one of the participating entities in the EnergyTransaction.
  * @group InfEnergyScheduling
  * @groupname InfEnergyScheduling Package InfEnergyScheduling

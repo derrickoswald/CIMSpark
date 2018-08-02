@@ -114,7 +114,7 @@ extends
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param roleType Defined using an enumerated list of types of market roles for use when a finite list of types are desired.
  * @param status Status of the market role.
- * @param `type` The kind of market roles that can be played by parties for given domains within the electricity market.
+ * @param type The kind of market roles that can be played by parties for given domains within the electricity market.
  *        Types are flexible using dataType of string for free-entry of role types.
  * @param MarketParticipant [[ch.ninecode.model.MarketParticipant MarketParticipant]] <em>undocumented</em>
  * @group MarketCommon
@@ -225,7 +225,7 @@ extends
  * @param isAggregatedRes a flag to indicate if a resource is an aggregated resource
  * @param lastModified Indication of the last time this item was modified/versioned.
  * @param marketParticipationFlag Market Participation flag: indicates whether the resource participate in the market (Y/N)
- * @param maxBaseSelfSchedQty_1 maximum base self schedule quantity
+ * @param maxBaseSelfSchedQty  maximum base self schedule quantity
  * @param maxOnTime maximum on time after start up
  * @param minDispatchTime minimum number of consecutive hours a resource shall be dispatched if bid is accepted
  * @param minOffTime minimum off time after shut  down

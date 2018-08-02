@@ -145,7 +145,7 @@ extends
  * @param Diagram [[ch.ninecode.model.Diagram Diagram]] A diagram object is part of a diagram.
  * @param DiagramObjectPoints [[ch.ninecode.model.DiagramObjectPoint DiagramObjectPoint]] A diagram object can have 0 or more points to reflect its layout position, routing (for polylines) or boundary (for polygons).
  * @param DiagramObjectStyle [[ch.ninecode.model.DiagramObjectStyle DiagramObjectStyle]] A diagram object has a style associated that provides a reference for the style used in the originating system.
- * @param IdentifiedObject_attr [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] The domain object to which this diagram object is associated.
+ * @param IdentifiedObject [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] The domain object to which this diagram object is associated.
  * @param VisibilityLayers [[ch.ninecode.model.VisibilityLayer VisibilityLayer]] A diagram object can be part of multiple visibility layers.
  * @group DiagramLayout
  * @groupname DiagramLayout Package DiagramLayout

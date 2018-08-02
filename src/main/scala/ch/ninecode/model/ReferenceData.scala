@@ -12,7 +12,7 @@ import ch.ninecode.cim.Relationship
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param endEffectiveDate end effective date
- * @param lossPercentage_1 Loss percentage
+ * @param lossPercentage  Loss percentage
  * @param startEffectiveDate start effective date
  * @param BidSelfSched [[ch.ninecode.model.BidSelfSched BidSelfSched]] <em>undocumented</em>
  * @param HostControlArea [[ch.ninecode.model.HostControlArea HostControlArea]] <em>undocumented</em>
@@ -1530,7 +1530,7 @@ extends
  *
  * @param sup Reference to the superclass object.
  * @param attained Attained.
- * @param `native` Native.
+ * @param native Native.
  * @param RegisteredResource [[ch.ninecode.model.RegisteredResource RegisteredResource]] <em>undocumented</em>
  * @param SubControlArea [[ch.ninecode.model.SubControlArea SubControlArea]] <em>undocumented</em>
  * @group ReferenceData
@@ -5129,7 +5129,7 @@ extends
  * @param endEffectiveDate End effective date of the period in which the price node definition is valid.
  * @param isPublic If true, this Pnode is public (prices are published for DA/RT and FTR markets), otherwise it is private (location is not usable by market for bidding/FTRs/transactions).
  * @param startEffectiveDate Start effective date of the period in which the price node definition is valid.
- * @param `type` Pnode type
+ * @param type Pnode type
  * @param usage Price node usage:
  *        'Control Area'
  *        'Regulation Region'
@@ -6246,7 +6246,7 @@ case class RegisteredGenerator
     maximumAllowableSpinningReserve: Double,
     maximumOperatingMW: Double,
     minLoadCost: Double,
-    minimumLoadFuelCost: String,
+    minimumLoadFuelCost: Double,
     minimumOperatingMW: Double,
     mustOfferRA: String,
     nameplateCapacity: Double,
@@ -6304,7 +6304,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, null, null, null, null, null, null, 0.0, 0.0, 0.0, 0.0, 0.0, null, null, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0, 0.0, 0, 0.0, 0.0, 0.0, null, 0.0, null, 0.0, 0.0, null, null, 0.0, 0.0, 0.0, 0, 0.0, 0.0, null, null, 0.0, 0.0, null, null, 0, 0.0, null, null, 0.0, null, null, null, List(), null, null, null, List(), null, List(), null, null, null, null, null, null, null, null, null, null, null, List(), null, null, null, List(), List()) }
+    def this () = { this (null, 0.0, 0.0, null, null, null, null, null, null, 0.0, 0.0, 0.0, 0.0, 0.0, null, null, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0, 0.0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, 0.0, null, null, 0.0, 0.0, 0.0, 0, 0.0, 0.0, null, null, 0.0, 0.0, null, null, 0, 0.0, null, null, 0.0, null, null, null, List(), null, null, null, List(), null, List(), null, null, null, null, null, null, null, null, null, null, null, List(), null, null, null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -6360,7 +6360,7 @@ extends
         emitelem (27, maximumAllowableSpinningReserve)
         emitelem (28, maximumOperatingMW)
         emitelem (29, minLoadCost)
-        emitattr (30, minimumLoadFuelCost)
+        emitelem (30, minimumLoadFuelCost)
         emitelem (31, minimumOperatingMW)
         emitattr (32, mustOfferRA)
         emitelem (33, nameplateCapacity)
@@ -6558,7 +6558,7 @@ extends
     val maximumAllowableSpinningReserve: Fielder = parse_element (element (cls, fields(27)))
     val maximumOperatingMW: Fielder = parse_element (element (cls, fields(28)))
     val minLoadCost: Fielder = parse_element (element (cls, fields(29)))
-    val minimumLoadFuelCost: Fielder = parse_attribute (attribute (cls, fields(30)))
+    val minimumLoadFuelCost: Fielder = parse_element (element (cls, fields(30)))
     val minimumOperatingMW: Fielder = parse_element (element (cls, fields(31)))
     val mustOfferRA: Fielder = parse_attribute (attribute (cls, fields(32)))
     val nameplateCapacity: Fielder = parse_element (element (cls, fields(33)))
@@ -6646,7 +6646,7 @@ extends
             toDouble (mask (maximumAllowableSpinningReserve (), 27)),
             toDouble (mask (maximumOperatingMW (), 28)),
             toDouble (mask (minLoadCost (), 29)),
-            mask (minimumLoadFuelCost (), 30),
+            toDouble (mask (minimumLoadFuelCost (), 30)),
             toDouble (mask (minimumOperatingMW (), 31)),
             mask (mustOfferRA (), 32),
             toDouble (mask (nameplateCapacity (), 33)),
@@ -7176,7 +7176,7 @@ extends
  * @param market market type
  * @param qualificationFlag Status of the qualification ('Y' = Active, 'N' = Inactive)
  * @param startEffectiveDate Ancillary Service Qualification effective from date
- * @param `type` Type of service based on ResourceAncillaryServiceType enumeration
+ * @param type Type of service based on ResourceAncillaryServiceType enumeration
  * @param RegisteredResource [[ch.ninecode.model.RegisteredResource RegisteredResource]] RegisteredResources are qualified for resource ancillary service types (which include market product types as well as other types such as BlackStart) by the association to the class ResourceAncillaryServiceQualification.
  * @group ReferenceData
  * @groupname ReferenceData Package ReferenceData

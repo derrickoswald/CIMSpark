@@ -2709,7 +2709,7 @@ extends
  *        Typical Value = -5.
  * @param k Steady state gain (K).
  *        Typical Value = 300.
- * @param `switch` Supplementary signal routing selector (switch).
+ * @param switch Supplementary signal routing selector (switch).
  *        true = Vs connected to 3rd summing point
  *        false =  Vs connected to 1st summing point (see diagram).
  *        Typical Value = true.

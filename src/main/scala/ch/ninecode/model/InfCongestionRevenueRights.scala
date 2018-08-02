@@ -13,7 +13,7 @@ import ch.ninecode.cim.Relationship
  * @param sup [[ch.ninecode.model.Agreement Agreement]] Reference to the superclass object.
  * @param action Buy, Sell
  * @param baseEnergy Quantity, typically MWs - Seller owns all rights being offered, MWs over time on same Point of Receipt, Point of Delivery, or Resource.
- * @param `class` Peak, Off-peak, 24-hour
+ * @param class Peak, Off-peak, 24-hour
  * @param ftrType Type of rights being offered (product) allowed to be auctioned (option, obligation).
  * @param optimized Fixed (covers re-configuration, grandfathering) or Optimized (up for sale/purchase
  * @param EnergyPriceCurve [[ch.ninecode.model.EnergyPriceCurve EnergyPriceCurve]] <em>undocumented</em>

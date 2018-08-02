@@ -20,12 +20,12 @@ case class Member (
     def edit (s: String): String =
     {
         // turn Fortran squared syntax into HTML
-        val l1 = s.replace ("^2", "<sup>2</sup>")
+        val l1 = s.replace ("""^2""", """<sup>2</sup>""")
         // escape dollar signs that are interpreted as macros
-        val l2 = l1.replace ("$", "\\$")
+        val l2 = l1.replace ("""$""", """\$""")
         // remove leading equals signs to avoid looking like a heading
         val l3 = l2.split ('\n')
-        val l4 = l3.map ((l) => if (l.startsWith ("=")) "&equals;" + l.substring (1) else l)
+        val l4 = l3.map (l => if (l.startsWith ("""=""")) """&equals;""" + l.substring (1) else l)
         l4.mkString ("\n")
     }
 
@@ -37,16 +37,19 @@ case class Member (
     def javaDoc (): String =
     {
         val jd = JavaDoc (comment, 0)
-        " * @param " + variable +
-        (if (null == referenced_class) " " else " [[ch.ninecode.model." + referenced_class + " " + referenced_class + "]] ") +
-        (if (jd.summary == "")
-            "<em>undocumented</em>"
+        val ref = if (null == referenced_class)
+            """"""
         else
-            asterisks (edit (jd.summary)) +
-            (if (jd.body == "")
-                ""
-            else
-                "\n *        " +
-                asterisks (edit (jd.body))))
+            """ [[ch.ninecode.model.%s %s]]""".format (referenced_class, referenced_class)
+        val summary = if ("" == jd.summary)
+            """<em>undocumented</em>"""
+        else
+            asterisks (edit (jd.summary))
+        val body = if ("" == jd.body)
+            """"""
+        else
+            """
+                | *        %s""".stripMargin.format (asterisks (edit (jd.body)))
+        """ * @param %s%s %s%s""".format (name, ref, summary, body)
     }
 }

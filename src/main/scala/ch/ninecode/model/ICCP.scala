@@ -482,9 +482,8 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = IPAccessPoint.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (IPAccessPoint.fields (position), value)
-        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (IPAccessPoint.fields (position), value)
         emitelem (0, address)
-        emitattr (1, addressType)
+        emitelem (1, addressType)
         emitelem (2, gateway)
         emitelem (3, subnet)
         s.toString
@@ -506,7 +505,7 @@ extends
         "subnet"
     )
     val address: Fielder = parse_element (element (cls, fields(0)))
-    val addressType: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val addressType: Fielder = parse_element (element (cls, fields(1)))
     val gateway: Fielder = parse_element (element (cls, fields(2)))
     val subnet: Fielder = parse_element (element (cls, fields(3)))
 
@@ -569,8 +568,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ISOUpperLayer.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ISOUpperLayer.fields (position), value)
-        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ISOUpperLayer.fields (position), value)
-        emitattr (0, ap)
+        emitelem (0, ap)
         emitelem (1, osiPsel)
         emitelem (2, osiSsel)
         emitelem (3, osiTsel)
@@ -592,7 +590,7 @@ extends
         "osiSsel",
         "osiTsel"
     )
-    val ap: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val ap: Fielder = parse_element (element (cls, fields(0)))
     val osiPsel: Fielder = parse_element (element (cls, fields(1)))
     val osiSsel: Fielder = parse_element (element (cls, fields(2)))
     val osiTsel: Fielder = parse_element (element (cls, fields(3)))

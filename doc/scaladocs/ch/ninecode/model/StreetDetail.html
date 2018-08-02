@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>StreetDetail - CIMReader 2.11-2.3.1-2.9.0 API - ch.ninecode.model.StreetDetail</title>
-          <meta name="description" content="StreetDetail - CIMReader 2.11 - 2.3.1 - 2.9.0 API - ch.ninecode.model.StreetDetail" />
-          <meta name="keywords" content="StreetDetail CIMReader 2.11 2.3.1 2.9.0 API ch.ninecode.model.StreetDetail" />
+          <title>StreetDetail - CIMReader 2.11-2.3.1-3.0.0 API - ch.ninecode.model.StreetDetail</title>
+          <meta name="description" content="StreetDetail - CIMReader 2.11 - 2.3.1 - 3.0.0 API - ch.ninecode.model.StreetDetail" />
+          <meta name="keywords" content="StreetDetail CIMReader 2.11 2.3.1 3.0.0 API ch.ninecode.model.StreetDetail" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -54,7 +54,8 @@
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Street details, in the context of address.
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">addressGeneral</dt><dd class="cmt"><p>Additional address information, for example a mailstop.</p></dd><dt class="param">buildingName</dt><dd class="cmt"><p>(if applicable) In certain cases the physical location of the place of interest does not have a direct point of entry from the street, but may be located inside a larger structure such as a building, complex, office block, apartment, etc.</p></dd><dt class="param">code</dt><dd class="cmt"><p>(if applicable) Utilities often make use of external reference systems, such as those of the town-planner's department or surveyor general's mapping system, that allocate global reference codes to streets.</p></dd><dt class="param">name</dt><dd class="cmt"><p>Name of the street.</p></dd><dt class="param">number</dt><dd class="cmt"><p>Designator of the specific location on the street.</p></dd><dt class="param">prefix</dt><dd class="cmt"><p>Prefix to the street name.
        For example: North, South, East, West.</p></dd><dt class="param">suffix</dt><dd class="cmt"><p>Suffix to the street name.
-       For example: North, South, East, West.</p></dd><dt class="param">suiteNumber</dt><dd class="cmt"><p>Number of the apartment or suite.</p></dd><dt class="param">withinTownLimits</dt><dd class="cmt"><p>True if this street is within the legal geographical boundaries of the specified town (default).</p></dd></dl><div class="toggleContainer block">
+       For example: North, South, East, West.</p></dd><dt class="param">suiteNumber</dt><dd class="cmt"><p>Number of the apartment or suite.</p></dd><dt class="param">type</dt><dd class="cmt"><p>Type of street.
+       Examples include: street, circle, boulevard, avenue, road, drive, etc.</p></dd><dt class="param">withinTownLimits</dt><dd class="cmt"><p>True if this street is within the legal geographical boundaries of the specified town (default).</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -128,7 +129,8 @@
     </span>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">addressGeneral</dt><dd class="cmt"><p>Additional address information, for example a mailstop.</p></dd><dt class="param">buildingName</dt><dd class="cmt"><p>(if applicable) In certain cases the physical location of the place of interest does not have a direct point of entry from the street, but may be located inside a larger structure such as a building, complex, office block, apartment, etc.</p></dd><dt class="param">code</dt><dd class="cmt"><p>(if applicable) Utilities often make use of external reference systems, such as those of the town-planner's department or surveyor general's mapping system, that allocate global reference codes to streets.</p></dd><dt class="param">name</dt><dd class="cmt"><p>Name of the street.</p></dd><dt class="param">number</dt><dd class="cmt"><p>Designator of the specific location on the street.</p></dd><dt class="param">prefix</dt><dd class="cmt"><p>Prefix to the street name.
        For example: North, South, East, West.</p></dd><dt class="param">suffix</dt><dd class="cmt"><p>Suffix to the street name.
-       For example: North, South, East, West.</p></dd><dt class="param">suiteNumber</dt><dd class="cmt"><p>Number of the apartment or suite.</p></dd><dt class="param">withinTownLimits</dt><dd class="cmt"><p>True if this street is within the legal geographical boundaries of the specified town (default).</p></dd></dl></div>
+       For example: North, South, East, West.</p></dd><dt class="param">suiteNumber</dt><dd class="cmt"><p>Number of the apartment or suite.</p></dd><dt class="param">type</dt><dd class="cmt"><p>Type of street.
+       Examples include: street, circle, boulevard, avenue, road, drive, etc.</p></dd><dt class="param">withinTownLimits</dt><dd class="cmt"><p>True if this street is within the legal geographical boundaries of the specified town (default).</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -1292,7 +1294,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row → AnyRef → Any</dd></dl></div>
-    </li><li name="ch.ninecode.model.StreetDetail#type" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="ch.ninecode.model.StreetDetail#type" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="type:String"></a>
       <a id="type:String"></a>
       <h4 class="signature">
@@ -1308,7 +1310,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
+      <p class="shortcomment cmt">Type of street.</p><div class="fullcomment"><div class="comment cmt"><p>Type of street.
+       Examples include: street, circle, boulevard, avenue, road, drive, etc.</p></div></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>

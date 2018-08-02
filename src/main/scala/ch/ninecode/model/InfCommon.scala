@@ -261,7 +261,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.OrganisationRole OrganisationRole]] Reference to the superclass object.
  * @param status <em>undocumented</em>
- * @param `type` Classification by utility's corporate standards and practices.
+ * @param type Classification by utility's corporate standards and practices.
  * @group InfCommon
  * @groupname InfCommon Package InfCommon
  * @groupdesc InfCommon This package contains functions common for distribution management.
@@ -345,7 +345,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param status <em>undocumented</em>
- * @param `type` Classification by utility's work mangement standards and practices.
+ * @param type Classification by utility's work mangement standards and practices.
  * @param Capabilities [[ch.ninecode.model.Capability Capability]] <em>undocumented</em>
  * @param ErpPersons [[ch.ninecode.model.OldPerson OldPerson]] <em>undocumented</em>
  * @param Skills [[ch.ninecode.model.Skill Skill]] <em>undocumented</em>
@@ -512,7 +512,7 @@ extends
  * A crew is a group of people with specific skills, tools, and vehicles.
  *
  * @param sup [[ch.ninecode.model.Crew Crew]] Reference to the superclass object.
- * @param `type` Classification by utility's work management standards and practices.
+ * @param type Classification by utility's work management standards and practices.
  * @param Assignments [[ch.ninecode.model.Assignment Assignment]] All Assignments for this Crew.
  * @param Capabilities [[ch.ninecode.model.Capability Capability]] <em>undocumented</em>
  * @param Locations [[ch.ninecode.model.Location Location]] <em>undocumented</em>
@@ -634,7 +634,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.Person Person]] Reference to the superclass object.
  * @param status <em>undocumented</em>
- * @param `type` Utility-specific classification for this person, according to the utility's corporate standards and practices.
+ * @param type Utility-specific classification for this person, according to the utility's corporate standards and practices.
  *        Examples include employee, contractor, agent, not affiliated, etc.
  * @param Crafts [[ch.ninecode.model.Craft Craft]] <em>undocumented</em>
  * @param CustomerData [[ch.ninecode.model.Customer Customer]] <em>undocumented</em>
@@ -1276,7 +1276,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param status <em>undocumented</em>
- * @param `type` Type of role.
+ * @param type Type of role.
  * @group InfCommon
  * @groupname InfCommon Package InfCommon
  * @groupdesc InfCommon This package contains functions common for distribution management.

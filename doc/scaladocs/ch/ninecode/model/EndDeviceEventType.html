@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>EndDeviceEventType - CIMReader 2.11-2.3.1-2.9.0 API - ch.ninecode.model.EndDeviceEventType</title>
-          <meta name="description" content="EndDeviceEventType - CIMReader 2.11 - 2.3.1 - 2.9.0 API - ch.ninecode.model.EndDeviceEventType" />
-          <meta name="keywords" content="EndDeviceEventType CIMReader 2.11 2.3.1 2.9.0 API ch.ninecode.model.EndDeviceEventType" />
+          <title>EndDeviceEventType - CIMReader 2.11-2.3.1-3.0.0 API - ch.ninecode.model.EndDeviceEventType</title>
+          <meta name="description" content="EndDeviceEventType - CIMReader 2.11 - 2.3.1 - 3.0.0 API - ch.ninecode.model.EndDeviceEventType" />
+          <meta name="keywords" content="EndDeviceEventType CIMReader 2.11 2.3.1 3.0.0 API ch.ninecode.model.EndDeviceEventType" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -54,7 +54,8 @@
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Detailed description for an event produced by an end device.</p><p>Values in attributes allow for creation of recommended codes to be used for identifying end device events as follows: &lt;type&gt;.&lt;domain&gt;.&lt;subDomain&gt;.&lt;eventOrAction&gt;.
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">domain</dt><dd class="cmt"><p>High-level nature of the event.
        By properly classifying events by a small set of domain codes, a system can more easily run reports based on the types of events that have occurred or been received.</p></dd><dt class="param">eventOrAction</dt><dd class="cmt"><p>The most specific part of this event type.
-       It is mainly in the form of a verb that gives action to the event that just occurred.</p></dd><dt class="param">subDomain</dt><dd class="cmt"><p>More specific nature of the event, as a further sub-categorisation of 'domain'.</p></dd><dt class="param">EndDeviceEvents</dt><dd class="cmt"><p><a href="EndDeviceEvent.html" class="extype" name="ch.ninecode.model.EndDeviceEvent">EndDeviceEvent</a> All end device events of this type.</p></dd></dl><div class="toggleContainer block">
+       It is mainly in the form of a verb that gives action to the event that just occurred.</p></dd><dt class="param">subDomain</dt><dd class="cmt"><p>More specific nature of the event, as a further sub-categorisation of 'domain'.</p></dd><dt class="param">type</dt><dd class="cmt"><p>Type of physical device from which the event was created.
+       A value of zero (0) can be used when the source is unknown.</p></dd><dt class="param">EndDeviceEvents</dt><dd class="cmt"><p><a href="EndDeviceEvent.html" class="extype" name="ch.ninecode.model.EndDeviceEvent">EndDeviceEvent</a> All end device events of this type.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -128,7 +129,8 @@
     </span>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p><a href="IdentifiedObject.html" class="extype" name="ch.ninecode.model.IdentifiedObject">IdentifiedObject</a> Reference to the superclass object.</p></dd><dt class="param">domain</dt><dd class="cmt"><p>High-level nature of the event.
        By properly classifying events by a small set of domain codes, a system can more easily run reports based on the types of events that have occurred or been received.</p></dd><dt class="param">eventOrAction</dt><dd class="cmt"><p>The most specific part of this event type.
-       It is mainly in the form of a verb that gives action to the event that just occurred.</p></dd><dt class="param">subDomain</dt><dd class="cmt"><p>More specific nature of the event, as a further sub-categorisation of 'domain'.</p></dd><dt class="param">EndDeviceEvents</dt><dd class="cmt"><p><a href="EndDeviceEvent.html" class="extype" name="ch.ninecode.model.EndDeviceEvent">EndDeviceEvent</a> All end device events of this type.</p></dd></dl></div>
+       It is mainly in the form of a verb that gives action to the event that just occurred.</p></dd><dt class="param">subDomain</dt><dd class="cmt"><p>More specific nature of the event, as a further sub-categorisation of 'domain'.</p></dd><dt class="param">type</dt><dd class="cmt"><p>Type of physical device from which the event was created.
+       A value of zero (0) can be used when the source is unknown.</p></dd><dt class="param">EndDeviceEvents</dt><dd class="cmt"><p><a href="EndDeviceEvent.html" class="extype" name="ch.ninecode.model.EndDeviceEvent">EndDeviceEvent</a> All end device events of this type.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -1224,7 +1226,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Row → AnyRef → Any</dd></dl></div>
-    </li><li name="ch.ninecode.model.EndDeviceEventType#type" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="ch.ninecode.model.EndDeviceEventType#type" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="type:String"></a>
       <a id="type:String"></a>
       <h4 class="signature">
@@ -1240,7 +1242,8 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
+      <p class="shortcomment cmt">Type of physical device from which the event was created.</p><div class="fullcomment"><div class="comment cmt"><p>Type of physical device from which the event was created.
+       A value of zero (0) can be used when the source is unknown.</p></div></div>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>

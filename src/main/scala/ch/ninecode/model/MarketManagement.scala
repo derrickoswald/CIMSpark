@@ -11,7 +11,7 @@ import ch.ninecode.cim.Relationship
  * The Area Control Error tariff type that is applied or used.
  *
  * @param sup Reference to the superclass object.
- * @param `type` The coded type of an ACE tariff.
+ * @param type The coded type of an ACE tariff.
  * @param MarketDocument [[ch.ninecode.model.MarketDocument MarketDocument]] <em>undocumented</em>
  * @param Point [[ch.ninecode.model.Point Point]] <em>undocumented</em>
  * @param Unit [[ch.ninecode.model.Unit_ Unit_]] <em>undocumented</em>
@@ -219,7 +219,7 @@ extends
  * @param category The product category of an auction.
  * @param paymentTerms The terms which dictate the determination of the bid payment price.
  * @param rights The rights of use the transmission capacity acquired in an auction.
- * @param `type` The kind of the Auction (e.g. implicit, explicit ...).
+ * @param type The kind of the Auction (e.g. implicit, explicit ...).
  * @param TimeSeries [[ch.ninecode.model.TimeSeries TimeSeries]] <em>undocumented</em>
  * @group MarketManagement
  * @groupname MarketManagement Package MarketManagement
@@ -762,7 +762,7 @@ extends
  * @param AceTariffType [[ch.ninecode.model.AceTariffType AceTariffType]] <em>undocumented</em>
  * @param AttributeInstanceComponent [[ch.ninecode.model.AttributeInstanceComponent AttributeInstanceComponent]] <em>undocumented</em>
  * @param Domain [[ch.ninecode.model.Domain Domain]] <em>undocumented</em>
- * @param MarketDocument_attr [[ch.ninecode.model.MarketDocument MarketDocument]] <em>undocumented</em>
+ * @param MarketDocument [[ch.ninecode.model.MarketDocument MarketDocument]] <em>undocumented</em>
  * @param MarketParticipant [[ch.ninecode.model.MarketParticipant MarketParticipant]] <em>undocumented</em>
  * @param Period [[ch.ninecode.model.Period Period]] <em>undocumented</em>
  * @param Process [[ch.ninecode.model.Process Process]] <em>undocumented</em>

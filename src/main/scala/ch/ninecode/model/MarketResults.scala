@@ -302,7 +302,7 @@ extends
  * @param sup [[ch.ninecode.model.Profile Profile]] Reference to the superclass object.
  * @param frequency The calculation frequency, daily or monthly.
  * @param numberInterval The number of intervals in the profile data.
- * @param `type` The type of profile.
+ * @param type The type of profile.
  *        It could be amount, price, or quantity.
  * @param unitOfMeasure The unit of measure applied to the value attribute of the profile data.
  * @param Bid [[ch.ninecode.model.Bid Bid]] <em>undocumented</em>

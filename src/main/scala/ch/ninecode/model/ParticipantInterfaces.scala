@@ -1283,7 +1283,7 @@ extends
  * @param roundOff <em>undocumented</em>
  * @param sum <em>undocumented</em>
  * @param terminationDate <em>undocumented</em>
- * @param `type` <em>undocumented</em>
+ * @param type <em>undocumented</em>
  * @param BillDeterminants [[ch.ninecode.model.BillDeterminant BillDeterminant]] A BillDeterminant can have 0-n ChargeComponent and a ChargeComponent can associate to 0-n BillDeterminant.
  * @param ChargeTypes [[ch.ninecode.model.ChargeType ChargeType]] A ChargeType can have 0-n ChargeComponent and a ChargeComponent can associate to 0-n ChargeType
  * @group ParticipantInterfaces
@@ -2209,7 +2209,7 @@ extends
  * This class represents the inter tie bid
  *
  * @param sup [[ch.ninecode.model.ResourceBid ResourceBid]] Reference to the superclass object.
- * @param minHourlyBlock_1 The minimum hourly block for an Inter-Tie Resource supplied within the bid.
+ * @param minHourlyBlock  The minimum hourly block for an Inter-Tie Resource supplied within the bid.
  * @param RampRateCurve [[ch.ninecode.model.RampRateCurve RampRateCurve]] <em>undocumented</em>
  * @param RegisteredInterTie [[ch.ninecode.model.RegisteredInterTie RegisteredInterTie]] <em>undocumented</em>
  * @group ParticipantInterfaces
@@ -4036,7 +4036,7 @@ extends
  * @param submitFromUser Userid of the submit From Scheduling Coordinator trade
  * @param submitToSchedulingCoordinator [[ch.ninecode.model.SchedulingCoordinator SchedulingCoordinator]] <em>undocumented</em>
  * @param submitToTimeStamp Timestamp of submittal of submit To Scheduling Coordinator Trade to Market Participant Bid Submittal
- * @param submitToUser_1 Userid of the submit To Scheduling Coordinator trade
+ * @param submitToUser  Userid of the submit To Scheduling Coordinator trade
  * @param tradeQuantity tradeQuantity:
  *        If tradeType = IST, The amount of an Energy Trade.
  *        If tradeType = AST, The amount of an Ancillary Service Obligation Trade.

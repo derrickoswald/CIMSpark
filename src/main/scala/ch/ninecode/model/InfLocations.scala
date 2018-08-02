@@ -410,7 +410,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param status <em>undocumented</em>
- * @param `type` Classification by utility's work management standards and practices.
+ * @param type Classification by utility's work management standards and practices.
  * @param Crews [[ch.ninecode.model.OldCrew OldCrew]] <em>undocumented</em>
  * @param Locations [[ch.ninecode.model.Location Location]] <em>undocumented</em>
  * @group InfLocations

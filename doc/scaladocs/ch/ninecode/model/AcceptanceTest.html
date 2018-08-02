@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>AcceptanceTest - CIMReader 2.11-2.3.1-2.9.0 API - ch.ninecode.model.AcceptanceTest</title>
-          <meta name="description" content="AcceptanceTest - CIMReader 2.11 - 2.3.1 - 2.9.0 API - ch.ninecode.model.AcceptanceTest" />
-          <meta name="keywords" content="AcceptanceTest CIMReader 2.11 2.3.1 2.9.0 API ch.ninecode.model.AcceptanceTest" />
+          <title>AcceptanceTest - CIMReader 2.11-2.3.1-3.0.0 API - ch.ninecode.model.AcceptanceTest</title>
+          <meta name="description" content="AcceptanceTest - CIMReader 2.11 - 2.3.1 - 3.0.0 API - ch.ninecode.model.AcceptanceTest" />
+          <meta name="keywords" content="AcceptanceTest CIMReader 2.11 2.3.1 3.0.0 API ch.ninecode.model.AcceptanceTest" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -53,7 +53,7 @@
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Acceptance test for assets.
 </p></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">dateTime</dt><dd class="cmt"><p>Date and time the asset was last tested using the 'type' of test and yielding the current status in 'success' attribute.</p></dd><dt class="param">success</dt><dd class="cmt"><p>True if asset has passed acceptance test and may be placed in or is in service.
-       It is set to false if asset is removed from service and is required to be tested again before being placed back in service, possibly in a new location. Since asset may go through multiple tests during its lifecycle, the date of each acceptance test may be recorded in 'Asset.ActivityRecord.status.dateTime'.</p></dd></dl><div class="toggleContainer block">
+       It is set to false if asset is removed from service and is required to be tested again before being placed back in service, possibly in a new location. Since asset may go through multiple tests during its lifecycle, the date of each acceptance test may be recorded in 'Asset.ActivityRecord.status.dateTime'.</p></dd><dt class="param">type</dt><dd class="cmt"><p>Type of test or group of tests that was conducted on 'dateTime'.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>, <span class="extype" name="scala.Cloneable">Cloneable</span>, <span class="extype" name="java.lang.Cloneable">Cloneable</span>, <span class="extype" name="org.apache.spark.sql.Row">Row</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -126,7 +126,7 @@
       </a>
     </span>
       <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">sup</dt><dd class="cmt"><p>Reference to the superclass object.</p></dd><dt class="param">dateTime</dt><dd class="cmt"><p>Date and time the asset was last tested using the 'type' of test and yielding the current status in 'success' attribute.</p></dd><dt class="param">success</dt><dd class="cmt"><p>True if asset has passed acceptance test and may be placed in or is in service.
-       It is set to false if asset is removed from service and is required to be tested again before being placed back in service, possibly in a new location. Since asset may go through multiple tests during its lifecycle, the date of each acceptance test may be recorded in 'Asset.ActivityRecord.status.dateTime'.</p></dd></dl></div>
+       It is set to false if asset is removed from service and is required to be tested again before being placed back in service, possibly in a new location. Since asset may go through multiple tests during its lifecycle, the date of each acceptance test may be recorded in 'Asset.ActivityRecord.status.dateTime'.</p></dd><dt class="param">type</dt><dd class="cmt"><p>Type of test or group of tests that was conducted on 'dateTime'.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -1203,7 +1203,7 @@ ToDo: this won't work for classes with more than 96 fields (so far none).
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      
+      <p class="shortcomment cmt">Type of test or group of tests that was conducted on 'dateTime'.</p>
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>

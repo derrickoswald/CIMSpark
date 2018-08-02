@@ -29,7 +29,7 @@ import ch.ninecode.cim.Relationship
  *        Typical Value = 1.25.
  * @param tw5 DEC washout time constant (<i>T</i><i><sub>W</sub></i><sub>5</sub>).
  *        Typical Value = 5.
- * @param `val` Regulator voltage reference (<i>V</i><i><sub>AL</sub></i>).
+ * @param val Regulator voltage reference (<i>V</i><i><sub>AL</sub></i>).
  *        Typical Value = 5.5.
  * @param vanmax Limiter for Van (<i>V</i><i><sub>ANMAX</sub></i>).
  * @param vomax Limiter (<i>V</i><i><sub>OMAX</sub></i>).

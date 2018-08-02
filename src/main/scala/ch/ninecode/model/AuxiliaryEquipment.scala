@@ -323,7 +323,7 @@ extends
  * @param accuracyClass PT accuracy classification.
  * @param nominalRatio Nominal ratio between the primary and secondary voltage.
  * @param ptClass Potential transformer (PT) classification covering burden.
- * @param `type` Potential transformer construction type.
+ * @param type Potential transformer construction type.
  * @group AuxiliaryEquipment
  * @groupname AuxiliaryEquipment Package AuxiliaryEquipment
  * @groupdesc AuxiliaryEquipment Contains equipment which is not normal conducting equipment such as sensors, fault locators, and surge protectors.  These devices do not define power carrying topological connections as conducting equipment, but are associated to terminals of other conducting equipment.

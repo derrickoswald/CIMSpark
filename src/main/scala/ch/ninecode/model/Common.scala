@@ -15,7 +15,7 @@ import ch.ninecode.cim.Relationship
  * @param reason Reason for event resulting in this activity record, typically supplied when user initiated.
  * @param severity Severity level of event resulting in this activity record.
  * @param status [[ch.ninecode.model.Status Status]] Information on consequence of event resulting in this activity record.
- * @param `type` Type of event resulting in this activity record.
+ * @param type Type of event resulting in this activity record.
  * @param Assets [[ch.ninecode.model.Asset Asset]] All assets for which this activity record has been created.
  * @param Organisations [[ch.ninecode.model.Organisation Organisation]] <em>undocumented</em>
  * @group Common
@@ -825,7 +825,7 @@ extends
  *        For status of the document itself, use 'docStatus' attribute.
  * @param subject Document subject.
  * @param title Document title.
- * @param `type` Utility-specific classification of this document, according to its corporate standards, practices, and existing IT systems (e.g., for management of assets, maintenance, work, outage, customers, etc.).
+ * @param type Utility-specific classification of this document, according to its corporate standards, practices, and existing IT systems (e.g., for management of assets, maintenance, work, outage, customers, etc.).
  * @param ConfigurationEvents [[ch.ninecode.model.ConfigurationEvent ConfigurationEvent]] All configuration events created for this document.
  * @group Common
  * @groupname Common Package Common
@@ -1082,7 +1082,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param status [[ch.ninecode.model.Status Status]] Status of this hazard.
- * @param `type` Type of this hazard.
+ * @param type Type of this hazard.
  * @group Common
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
@@ -1178,7 +1178,7 @@ extends
  * @param secondaryAddress [[ch.ninecode.model.StreetAddress StreetAddress]] Secondary address of the location.
  *        For example, PO Box address may have different ZIP code than that in the 'mainAddress'.
  * @param status [[ch.ninecode.model.Status Status]] Status of this location.
- * @param `type` Classification by utility's corporate standards and practices, relative to the location itself (e.g., geographical, functional accounting, etc., not a given property that happens to exist at that location).
+ * @param type Classification by utility's corporate standards and practices, relative to the location itself (e.g., geographical, functional accounting, etc., not a given property that happens to exist at that location).
  * @param Assets [[ch.ninecode.model.Asset Asset]] All assets at this location.
  * @param ConfigurationEvents [[ch.ninecode.model.ConfigurationEvent ConfigurationEvent]] All configuration events created for this location.
  * @param CoordinateSystem [[ch.ninecode.model.CoordinateSystem CoordinateSystem]] Coordinate system used to describe position points of this location.
@@ -2257,7 +2257,7 @@ extends
  * @param sup Reference to the superclass object.
  * @param justification Justification for 'rank'.
  * @param rank Priority level; usually, lower number means high priority, but the details are provided in 'type'.
- * @param `type` Type describing 'rank'; e.g., high, emergency, etc.
+ * @param type Type describing 'rank'; e.g., high, emergency, etc.
  * @group Common
  * @groupname Common Package Common
  * @groupdesc Common This package contains the information classes that support distribution management in general.
@@ -2344,7 +2344,7 @@ extends
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param duration Duration of the scheduled event, for example, the time to ramp between values.
  * @param status [[ch.ninecode.model.Status Status]] <em>undocumented</em>
- * @param `type` Type of scheduled event.
+ * @param type Type of scheduled event.
  * @param Assets [[ch.ninecode.model.Asset Asset]] <em>undocumented</em>
  * @param ScheduledEventData [[ch.ninecode.model.ScheduledEventData ScheduledEventData]] Specification for this scheduled event.
  * @group Common
@@ -2748,7 +2748,7 @@ extends
  * @param suffix Suffix to the street name.
  *        For example: North, South, East, West.
  * @param suiteNumber Number of the apartment or suite.
- * @param `type` Type of street.
+ * @param type Type of street.
  *        Examples include: street, circle, boulevard, avenue, road, drive, etc.
  * @param withinTownLimits True if this street is within the legal geographical boundaries of the specified town (default).
  * @group Common

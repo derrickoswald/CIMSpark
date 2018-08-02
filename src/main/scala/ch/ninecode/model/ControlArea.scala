@@ -201,7 +201,7 @@ extends
  * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @param netInterchange The specified positive net interchange into the control area, i.e. positive sign means flow in to the area.
  * @param pTolerance Active power net interchange tolerance
- * @param `type` The primary type of control area definition used to determine if this is used for automatic generation control, for planning interchange control, or other purposes.
+ * @param type The primary type of control area definition used to determine if this is used for automatic generation control, for planning interchange control, or other purposes.
  *        A control area specified with primary type of automatic generation control could still be forecast and used as an interchange area in power flow analysis.
  * @param ControlAreaGeneratingUnit [[ch.ninecode.model.ControlAreaGeneratingUnit ControlAreaGeneratingUnit]] The generating unit specificaitons for the control area.
  * @param EnergyArea [[ch.ninecode.model.EnergyArea EnergyArea]] The energy area that is forecast from this control area specification.

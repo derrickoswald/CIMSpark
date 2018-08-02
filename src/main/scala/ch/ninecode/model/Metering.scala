@@ -554,7 +554,7 @@ extends
  * Demand response program.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param `type` Type of demand response program; examples are CPP (critical-peak pricing), RTP (real-time pricing), DLC (direct load control), DBP (demand bidding program), BIP (base interruptible program).
+ * @param type Type of demand response program; examples are CPP (critical-peak pricing), RTP (real-time pricing), DLC (direct load control), DBP (demand bidding program), BIP (base interruptible program).
  *        Note that possible types change a lot and it would be impossible to enumerate them all.
  * @param validityInterval Interval within which the program is valid.
  * @param CustomerAgreements [[ch.ninecode.model.CustomerAgreement CustomerAgreement]] All customer agreements through which the customer is enrolled in this demand response program.
@@ -1285,7 +1285,7 @@ extends
  * @param eventOrAction The most specific part of this control type.
  *        It is mainly in the form of a verb that gives action to the control that just occurred.
  * @param subDomain More specific nature of the control, as a further sub-categorisation of 'domain'.
- * @param `type` Type of physical device from which the control was created.
+ * @param type Type of physical device from which the control was created.
  *        A value of zero (0) can be used when the source is unknown.
  * @param EndDeviceControls [[ch.ninecode.model.EndDeviceControl EndDeviceControl]] All end device controls of this type.
  * @group Metering
@@ -1611,7 +1611,7 @@ extends
  * @param eventOrAction The most specific part of this event type.
  *        It is mainly in the form of a verb that gives action to the event that just occurred.
  * @param subDomain More specific nature of the event, as a further sub-categorisation of 'domain'.
- * @param `type` Type of physical device from which the event was created.
+ * @param type Type of physical device from which the event was created.
  *        A value of zero (0) can be used when the source is unknown.
  * @param EndDeviceEvents [[ch.ninecode.model.EndDeviceEvent EndDeviceEvent]] All end device events of this type.
  * @group Metering
@@ -1807,7 +1807,7 @@ extends
  * Commands can be issued to all of the end devices that belong to the group using a defined group address and the underlying AMR communication infrastructure.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param `type` Type of this group.
+ * @param type Type of this group.
  * @param DemandResponsePrograms [[ch.ninecode.model.DemandResponseProgram DemandResponseProgram]] All demand response programs this group of end devices is enrolled in.
  * @param EndDeviceControls [[ch.ninecode.model.EndDeviceControl EndDeviceControl]] All end device controls sending commands to this end device group.
  * @param EndDevices [[ch.ninecode.model.EndDevice EndDevice]] All end devices this end device group refers to.
@@ -4694,7 +4694,7 @@ extends
  * Commands can be issued to all of the usage points that belong to a usage point group using a defined group address and the underlying AMR communication infrastructure.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param `type` Type of this group.
+ * @param type Type of this group.
  * @param DemandResponsePrograms [[ch.ninecode.model.DemandResponseProgram DemandResponseProgram]] All demand response programs this usage point group is enrolled in.
  * @param EndDeviceControls [[ch.ninecode.model.EndDeviceControl EndDeviceControl]] All end device controls sending commands to this usage point group.
  * @param UsagePoints [[ch.ninecode.model.UsagePoint UsagePoint]] All usage points in this group.
