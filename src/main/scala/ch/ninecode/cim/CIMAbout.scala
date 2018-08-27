@@ -87,7 +87,7 @@ with
     def do_about (): RDD[Element] =
     {
         // get the elements RDD
-        val elements = get[Element]("Elements")
+        val elements = getOrElse[Element]("Elements")
 
         // get the elements flagged as "rdf:about"
         val about_elements = elements.filter (_.about).groupBy (_.id)

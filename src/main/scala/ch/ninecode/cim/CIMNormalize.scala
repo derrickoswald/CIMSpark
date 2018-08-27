@@ -166,7 +166,7 @@ with
     def do_normalization (): RDD[Element] =
     {
         // get the elements RDD keyed by id
-        val old_elements = get[Element]("Elements")
+        val old_elements = getOrElse[Element]("Elements")
         val elements = old_elements.keyBy (_.id)
         val all = elements.count
 

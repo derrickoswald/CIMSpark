@@ -100,7 +100,7 @@ class CIMIntegrityChecker (spark: SparkSession) extends CIMRDD with Serializable
 
     def check (classes: List[ClassInfo], info: ClassInfo) (relation: Relationship): String =
     {
-        // val equipment: RDD[Equipment] = get[Equipment]
+        // val equipment: RDD[Equipment] = getOrElse[Equipment]
         // val equipment: RDD[Equipment] = spark.sparkContext.getPersistentRDDs.filter (_._2.name == "Equipment").head._2.asInstanceOf[RDD[Equipment]]
 
         type child = info.subsetter.basetype

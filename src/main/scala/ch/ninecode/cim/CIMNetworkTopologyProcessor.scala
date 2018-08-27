@@ -259,14 +259,14 @@ with
     def make_graph (): Graph[CIMVertexData, CIMEdgeData] =
     {
         // get the terminals keyed by equipment
-        val terms = get[Terminal].groupBy (_.ConductingEquipment)
+        val terms = getOrElse[Terminal].groupBy (_.ConductingEquipment)
 
         // map elements with their terminal 'pairs' to edges
-        val edges: RDD[Edge[CIMEdgeData]] = get[Element]("Elements").keyBy (_.id).join (terms)
+        val edges: RDD[Edge[CIMEdgeData]] = getOrElse[Element]("Elements").keyBy (_.id).join (terms)
             .flatMapValues (edge_operator).values.map (make_graph_edges).persist (storage)
 
         // get the vertices
-        val vertices: RDD[(VertexId, CIMVertexData)] = get[ConnectivityNode].map (to_vertex).persist (storage)
+        val vertices: RDD[(VertexId, CIMVertexData)] = getOrElse[ConnectivityNode].map (to_vertex).persist (storage)
 
         if (debug)
         {
@@ -626,10 +626,10 @@ with
             graph = identifyIslands (graph)
 
             // get the terminals keyed by equipment with equipment
-            val elements = get[Element]("Elements").keyBy (_.id)
-            val terms = get[Terminal].keyBy (_.ConductingEquipment).join (elements).values
+            val elements = getOrElse[Element]("Elements").keyBy (_.id)
+            val terms = getOrElse[Terminal].keyBy (_.ConductingEquipment).join (elements).values
             // map each graph vertex to the terminals
-            val vertices = get[ConnectivityNode].map (x => (vertex_id (x.id), x))
+            val vertices = getOrElse[ConnectivityNode].map (x => (vertex_id (x.id), x))
             val td_plus = graph.vertices.join (vertices).values.filter (_._1.island != 0L).keyBy (_._2.id).leftOuterJoin (terms.keyBy (_._1.ConnectivityNode)).values
             val islands = td_plus.groupBy (_._1._1.island).values.map (to_islands)
 
@@ -671,7 +671,7 @@ with
         // but the other RDD (ConnectivityNode and Terminal also ACDCTerminal) need to be updated in IdentifiedObject and Element
 
         // assign every ConnectivtyNode to a TopologicalNode
-        val old_cn = get[ConnectivityNode]
+        val old_cn = getOrElse[ConnectivityNode]
         val new_cn = old_cn.keyBy (a => vertex_id (a.id)).leftOuterJoin (graph.vertices).values.map (update_cn)
 
         // swap the old ConnectivityNode RDD for the new one
@@ -680,7 +680,7 @@ with
 
         // assign every Terminal with a connectivity node to a TopologicalNode
         // note: keep the original enclosed ACDCTerminal objects
-        val old_terminals = get[Terminal]
+        val old_terminals = getOrElse[Terminal]
         val t_with = old_terminals.filter (null != _.ConnectivityNode)
         val t_without = old_terminals.filter (null == _.ConnectivityNode)
         val new_terminals = t_with.keyBy (a => vertex_id (a.ConnectivityNode)).leftOuterJoin (graph.vertices).values.map (update_terminals)
@@ -705,7 +705,7 @@ with
             union (new_terminals.map (_.ACDCTerminal.IdentifiedObject))
 
         // replace identified objects in IdentifiedObject
-        val old_idobj = get[IdentifiedObject]
+        val old_idobj = getOrElse[IdentifiedObject]
         val new_idobj = old_idobj.keyBy (_.id).subtract (oldobj.keyBy (_.id)).values.union (newobj)
 
         // swap the old IdentifiedObject RDD for the new one
@@ -726,7 +726,7 @@ with
             union (new_terminals.asInstanceOf[RDD[Element]])
 
         // replace elements in Elements
-        val old_elements = get[Element]("Elements")
+        val old_elements = getOrElse[Element]("Elements")
         val new_elements = old_elements.keyBy (_.id).subtract (oldelem.keyBy (_.id)).values.union (newelem)
 
         // swap the old Elements RDD for the new one

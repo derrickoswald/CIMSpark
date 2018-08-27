@@ -95,7 +95,7 @@ class CIMDeDup (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMORY
         log.info ("eliminating duplicates")
 
         // get the elements RDD
-        val elements = get[Element]("Elements")
+        val elements = getOrElse[Element]("Elements")
 
         // deduplicate
         val new_elements = elements.keyBy (_.id).groupByKey ().values.map (deduplicate)

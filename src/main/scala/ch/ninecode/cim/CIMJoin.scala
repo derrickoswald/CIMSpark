@@ -190,13 +190,13 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
     {
         log.info ("joining ISU and NIS")
 
-        val names = get[Name]
-        val service_locations = get[ServiceLocation]
-        val points = get[PositionPoint]
-        val attributes = get[UserAttribute]
-        val work_loc = get[WorkLocation]
-        val locations = get[Location]
-        val idobj = get[IdentifiedObject]
+        val names = getOrElse[Name]
+        val service_locations = getOrElse[ServiceLocation]
+        val points = getOrElse[PositionPoint]
+        val attributes = getOrElse[UserAttribute]
+        val work_loc = getOrElse[WorkLocation]
+        val locations = getOrElse[Location]
+        val idobj = getOrElse[IdentifiedObject]
 
         // get only the cim:Name objects pertaining to the ServiceLocation join
         val isusl = names.keyBy (_.name).join (service_locations.keyBy (_.id)).values
@@ -274,7 +274,7 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
             union (updated_locations.asInstanceOf[RDD[Element]])
 
         // replace elements in Elements
-        val old_elements = get[Element]("Elements")
+        val old_elements = getOrElse[Element]("Elements")
         val new_elements = old_elements.keyBy (_.id).leftOuterJoin (newelem.keyBy (_.id)).
             values.flatMap (
                 (arg: (Element, Option[Element])) =>
