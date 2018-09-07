@@ -148,7 +148,7 @@ public class CIMJava
                 // sup struct<sup:element,aliasName:string,description:string,mRID:string,name:string>
                 // direction   string
                 // geoInfoReference    string
-                // typ string
+                // type string
                 // CoordinateSystem    string
                 // electronicAddress   string
                 // mainAddress string
@@ -156,7 +156,7 @@ public class CIMJava
                 // phone2  string
                 // secondaryAddress    string
                 // status  string
-                sql = "select IdentifiedObject.aliasName, IdentifiedObject.description, IdentifiedObject.mRID, IdentifiedObject.name, direction, geoInfoReference, typ, CoordinateSystem, electronicAddress, mainAddress, phone1, phone2, secondaryAddress, status from Location limit 5";
+                sql = "select IdentifiedObject.aliasName, IdentifiedObject.description, IdentifiedObject.mRID, IdentifiedObject.name, direction, geoInfoReference, type, CoordinateSystem, electronicAddress, mainAddress, phone1, phone2, secondaryAddress, status from Location limit 5";
                 System.out.println ("Running: " + sql);
                 res = stmt.executeQuery (sql);
                 while (res.next ())

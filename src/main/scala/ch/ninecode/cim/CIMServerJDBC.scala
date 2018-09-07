@@ -22,7 +22,7 @@ import scopt.OptionParser
  *
  * The program is usually run on the master node with a command like:
  * {{{
- * $ spark-submit --master spark://sandbox:7077 --driver-memory 1g --executor-memory 4g /opt/code/CIMServerJDBC-2.11-2.2.0-2.5.0-jar-with-dependencies.jar --host sandbox --port 10004 "hdfs://sandbox:8020/data/cim_data_file.rdf"
+ * $ spark-submit --master spark://sandbox:7077 --driver-memory 1g --executor-memory 4g /opt/code/CIMServerJDBC-2.11-2.3.1-3.0.1-jar-with-dependencies.jar --host sandbox --port 10004 "hdfs://sandbox:8020/data/cim_data_file.rdf"
  * }}}
  *
  * It will read the rdf file and create a Spark RDD for each CIM class,
@@ -82,7 +82,7 @@ object CIMServerJDBC
     implicit val LogLevelsRead: scopt.Read[LogLevels.Value] = scopt.Read.reads (LogLevels.withName)
 
     implicit val mapRead: scopt.Read[Map[String,String]] = scopt.Read.reads (
-    (s) =>
+        s =>
         {
             var ret = Map[String, String] ()
             val ss = s.split (",")
@@ -111,39 +111,50 @@ object CIMServerJDBC
     {
         head (APPLICATION_NAME, APPLICATION_VERSION)
 
-        opt[Unit]('q', "quiet").
-            action ((_, c) => c.copy (quiet = true)).
-            text ("supress informational messages")
-
-        opt[String]('m', "master").valueName ("MASTER_URL").
-            action ((x, c) => c.copy (master = x)).
-            text ("spark://host:port, mesos://host:port, yarn, or local[*]")
-
-        opt[Map[String,String]]('o', "opts").valueName ("k1=v1,k2=v2").
-            action ((x, c) => c.copy (opts = x)).
-            text ("other Spark options")
-
-        opt[String]('s', "storage_level").
-            action ((x, c) => c.copy (storage = x)).
-            text ("storage level for RDD serialization (default: MEMORY_AND_DISK_SER)")
-
-        opt[Unit]('u', "deduplicate").
-            action ((_, c) => c.copy (dedup = true)).
-            text ("de-duplicate input (striped) files")
-
-        opt[LogLevels.Value]('l', "logging").
-            action ((x, c) => c.copy (log_level = x)).
-            text ("log level, one of " + LogLevels.values.iterator.mkString (","))
-
-        opt[String]('h', "host").valueName ("host name or IP address").
-            action ((x, c) => c.copy (host = x)).
-            text ("Hive Thriftserver host interface to bind to")
-
-        opt[Int]('p', "port").valueName ("integer").
-            action ((x, c) => c.copy (port = x)).
-            text ("Hive Thriftserver port")
+        note ("Serves CIM files as a Hive JDBC database.\n")
 
         help ("help").text ("prints this usage text")
+
+        version ("version").text ("Scala: %s, Spark: %s, %s: %s".format (
+            APPLICATION_VERSION.split ("-")(0),
+            APPLICATION_VERSION.split ("-")(1),
+            APPLICATION_NAME,
+            APPLICATION_VERSION.split ("-")(2)
+        ))
+
+        val default = new Arguments
+
+        opt[Unit]("quiet").
+            action ((_, c) => c.copy (quiet = true)).
+            text ("suppress informational messages [%s]".format (default.quiet))
+
+        opt[String]("master").valueName ("MASTER_URL").
+            action ((x, c) => c.copy (master = x)).
+            text ("local[*], spark://host:port, mesos://host:port, yarn [%s]".format (default.master))
+
+        opt[Map[String,String]]("opts").valueName ("k1=v1,k2=v2").
+            action ((x, c) => c.copy (opts = x)).
+            text ("other Spark options [%s]".format (default.opts.map (x ⇒ x._1 + "=" + x._2).mkString (",")))
+
+        opt[String]("storage_level").
+            action ((x, c) => c.copy (storage = x)).
+            text ("storage level for RDD serialization [%s]".format (default.storage))
+
+        opt[Unit]("deduplicate").
+            action ((_, c) => c.copy (dedup = true)).
+            text ("de-duplicate input (striped) files [%s]".format (default.dedup))
+
+        opt[LogLevels.Value]("logging").
+            action ((x, c) => c.copy (log_level = x)).
+            text ("log level, one of %s [%s]".format (LogLevels.values.iterator.mkString (","), default.log_level))
+
+        opt[String]("host").valueName ("name or IP").
+            action ((x, c) => c.copy (host = x)).
+            text ("Hive Thriftserver host interface to bind to [%s]".format (default.host))
+
+        opt[Int]("port").valueName ("integer").
+            action ((x, c) => c.copy (port = x)).
+            text ("Hive Thriftserver port [%s]".format (default.port))
 
         arg[String]("<CIM> <CIM> ...").unbounded ().
             action ((x, c) => c.copy (files = c.files :+ x)).
@@ -175,6 +186,11 @@ object CIMServerJDBC
         ret
     }
 
+    /**
+     * Main entry point for the JDBC example server
+     *
+     * @param args command line arguments
+     */
     def main (args:Array[String])
     {
         parser.parse (args, Arguments ()) match
@@ -221,13 +237,13 @@ object CIMServerJDBC
                 try
                 {
                     // read the file
-                    log.info ("reading CIM files")
                     val reader_options = new scala.collection.mutable.HashMap[String, String] ()
                     reader_options.put ("path", arguments.files.mkString (","))
                     reader_options.put ("ch.ninecode.cim.make_edges", "false")
                     reader_options.put ("ch.ninecode.cim.do_join", "false")
                     reader_options.put ("ch.ninecode.cim.do_topo", "false")
                     reader_options.put ("ch.ninecode.cim.do_topo_islands", "false")
+                    log.info ("reading CIM files %s".format (arguments.files.mkString (",")))
                     val elements = session.read.format ("ch.ninecode.cim").options (reader_options).load (arguments.files:_*)
                     if (-1 != session.sparkContext.master.indexOf ("sandbox")) // are we in development
                         elements.explain

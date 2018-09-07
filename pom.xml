@@ -82,7 +82,7 @@
         <version.dependency.spark>2.3.1</version.dependency.spark>
 
         <!-- test versions -->
-        <version.dependency.scopt>3.6.0</version.dependency.scopt>
+        <version.dependency.scopt>3.7.0</version.dependency.scopt>
         <version.dependency.junit>4.12</version.dependency.junit>
         <version.dependency.scalatest>3.0.3</version.dependency.scalatest>
     </properties>
