@@ -51,7 +51,7 @@ This should produce a jar file in the target/ directory.
 **NOTE: If you use sbt, the jar file will be in a subdirectory of target/ based on the version of the Scala library used,
 e.g. target/scala-2.11, and the name will not have upper/lowercase preserved, that is, the name will be cimscala_2.11-??.** 
 
-**NOTE: The unit tests can be skipped if you add the magic incantation `mvn -DskipTests package`***
+**NOTE: The unit tests can be skipped if you add the magic incantation `mvn -DskipTests package`**
 
 **NOTE: The artifact can also be installed into the local Maven repository if you skip the gpg signing step: `mvn -DskipTests -Dgpg.skip install`**
 

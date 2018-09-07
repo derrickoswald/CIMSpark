@@ -250,10 +250,10 @@ with
 
     def make_graph_edges (e: CIMEdgeData): Edge[CIMEdgeData] = Edge (vertex_id (e.id_cn_1), vertex_id (e.id_cn_2), e)
 
-    def to_vertex (n: ConnectivityNode): (VertexId, CIMVertexData) =
+    def to_vertex (arg: (ConnectivityNode, String)): (VertexId, CIMVertexData) =
     {
-        val v = vertex_id (n.id)
-        (v, CIMVertexData (0.asInstanceOf[VertexId], "", v, n.id, null))
+        val v = vertex_id (arg._1.id)
+        (v, CIMVertexData (0.asInstanceOf[VertexId], "", v, arg._1.id, arg._2, arg._1.ConnectivityNodeContainer))
     }
 
     def make_graph (): Graph[CIMVertexData, CIMEdgeData] =
@@ -265,8 +265,10 @@ with
         val edges: RDD[Edge[CIMEdgeData]] = getOrElse[Element]("Elements").keyBy (_.id).join (terms)
             .flatMapValues (edge_operator).values.map (make_graph_edges).persist (storage)
 
+        val e = edges.flatMap (x ⇒ if (x.attr.id_cn_2 == null) List ((x.attr.id_cn_1, x.attr.voltage)) else List ((x.attr.id_cn_1, x.attr.voltage), (x.attr.id_cn_2, x.attr.voltage)))
+
         // get the vertices
-        val vertices: RDD[(VertexId, CIMVertexData)] = getOrElse[ConnectivityNode].map (to_vertex).persist (storage)
+        val vertices: RDD[(VertexId, CIMVertexData)] = getOrElse[ConnectivityNode].keyBy (_.id).join (e).values.map (to_vertex).persist (storage)
 
         if (debug)
         {
@@ -314,13 +316,21 @@ with
                 {
                     if (debug && log.isDebugEnabled)
                         log.debug ("%s: from src:%d to dst:%d %s ---> %s".format (triplet.attr.id_equ, triplet.srcId, triplet.dstId, triplet.srcAttr.toString, triplet.dstAttr.toString))
-                    Iterator ((triplet.dstId, triplet.srcAttr.copy (voltage = triplet.attr.voltage)))
+                    val voltage = if (null != triplet.attr.voltage) triplet.attr.voltage else if (null != triplet.srcAttr.voltage) triplet.srcAttr.voltage else triplet.dstAttr.voltage
+                    if ((null != voltage) && (null == triplet.dstAttr.voltage))
+                        Iterator ((triplet.dstId, triplet.srcAttr.copy (voltage = voltage)), (triplet.srcId, triplet.srcAttr.copy (voltage = voltage)))
+                    else
+                        Iterator ((triplet.dstId, triplet.srcAttr.copy (voltage = voltage)))
                 }
                 else if (triplet.srcAttr.node > triplet.dstAttr.node)
                 {
                     if (debug && log.isDebugEnabled)
                         log.debug ("%s: from dst:%d to src:%d %s ---> %s".format (triplet.attr.id_equ, triplet.dstId, triplet.srcId,  triplet.dstAttr.toString, triplet.srcAttr.toString))
-                    Iterator ((triplet.srcId, triplet.dstAttr.copy (voltage = triplet.attr.voltage)))
+                    val voltage = if (null != triplet.attr.voltage) triplet.attr.voltage else if (null != triplet.dstAttr.voltage) triplet.dstAttr.voltage else triplet.srcAttr.voltage
+                    if ((null != voltage) && (null == triplet.srcAttr.voltage))
+                        Iterator ((triplet.srcId, triplet.dstAttr.copy (voltage = voltage)), (triplet.dstId, triplet.dstAttr.copy (voltage = voltage)))
+                    else
+                        Iterator ((triplet.srcId, triplet.dstAttr.copy (voltage = voltage)))
                 }
                 else
                     Iterator.empty
@@ -384,28 +394,31 @@ with
                     cn.id
             }
         val name = base + "_island"
-        val island = nodes.head._1._1.island
+        val basic = BasicElement (
+            null,
+            mRID = name
+        )
+        basic.bitfields = Array (Integer.parseInt ("1", 2))
+        val obj = IdentifiedObject (
+            basic,
+            aliasName = cn.IdentifiedObject.aliasName,
+            description = cn.IdentifiedObject.description,
+            mRID = name,
+            name = cn.id,
+            DiagramObjects = List (),
+            Names = List ()
+        )
+        obj.bitfields = Array (Integer.parseInt ("1111", 2))
+        val island = TopologicalIsland (
+            obj,
+            AngleRefTopologicalNode = null,
+            TopologicalNodes = List()
+        )
+        island.bitfields = Array (0)
+
         (
-            island,
-            TopologicalIsland
-            (
-                IdentifiedObject
-                (
-                    BasicElement
-                    (
-                        null,
-                        name
-                    ),
-                    aliasName = cn.IdentifiedObject.aliasName,
-                    description = cn.IdentifiedObject.description,
-                    mRID = name,
-                    name = cn.id,
-                    DiagramObjects = List (),
-                    Names = List ()
-                ),
-                AngleRefTopologicalNode = null,
-                TopologicalNodes = List()
-            )
+            nodes.head._1._1.island,
+            island
         )
     }
 
@@ -419,26 +432,28 @@ with
             case _ =>
                 ""
         }
-        TopologicalNode (
-            IdentifiedObject
-            (
-                BasicElement
-                (
-                    null,
-                    name
-                ),
-                aliasName = arg._1.toString,
-                description = null,
-                mRID = name,
-                name = null,
-                DiagramObjects = List (),
-                Names = List ()
-            ),
+        val element = BasicElement (
+            null,
+            mRID = name
+        )
+        element.bitfields = Array (Integer.parseInt ("1", 2))
+        val obj = IdentifiedObject (
+            element,
+            aliasName = arg._1.toString,
+            description = null,
+            mRID = name,
+            name = null,
+            DiagramObjects = List (),
+            Names = List ()
+        )
+        obj.bitfields = Array (Integer.parseInt ("101", 2))
+        val node = TopologicalNode (
+            obj,
             pInjection = 0.0,
             qInjection = 0.0,
             AngleRefTopologicalIsland = null,
-            BaseVoltage = null,
-            ConnectivityNodeContainer = null,
+            BaseVoltage = arg._2.voltage,
+            ConnectivityNodeContainer = arg._2.container,
             ConnectivityNodes = List (),
             ReportingGroup = null,
             SvInjection = null,
@@ -446,6 +461,8 @@ with
             Terminal = List (),
             TopologicalIsland = island
         )
+        node.bitfields = Array (Integer.parseInt ("10000011000", 2))
+        node
     }
 
     def update_cn (arg: (ConnectivityNode,Option[CIMVertexData])): ConnectivityNode =
@@ -510,7 +527,7 @@ with
     {
         def vertex_program (id: VertexId, attr: CIMVertexData, msg: CIMVertexData): CIMVertexData =
         {
-            var ret = if (null == msg)
+            val ret = if (null == msg)
                 // initially assign each node to it's own island
                 attr.copy (island = attr.node, island_label = attr.node_label)
             else
