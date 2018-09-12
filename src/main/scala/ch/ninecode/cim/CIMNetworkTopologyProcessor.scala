@@ -292,14 +292,14 @@ with
     {
         def vertex_program (id: VertexId, data: CIMVertexData, message: CIMVertexData): CIMVertexData =
         {
-            val ret = if (null != message) // not initialization call?
+            if (null != message) // not initialization call?
                 if (data.node > message.node)
-                    message.copy () // the island and island_label fields are not populated here yet
-                else
-                    data
-            else
-                data
-            ret
+                {
+                    data.node = message.node
+                    data.node_label = message.node_label
+                    data.voltage = message.voltage
+                }
+            data
         }
 
         def send_message (triplet: EdgeTriplet[CIMVertexData, CIMEdgeData]): Iterator[(VertexId, CIMVertexData)] =
@@ -527,16 +527,20 @@ with
     {
         def vertex_program (id: VertexId, attr: CIMVertexData, msg: CIMVertexData): CIMVertexData =
         {
-            val ret = if (null == msg)
+            if (null == msg)
+            {
                 // initially assign each node to it's own island
-                attr.copy (island = attr.node, island_label = attr.node_label)
+                attr.island = attr.node
+                attr.island_label = attr.node_label
+            }
             else
                 if (attr.island > msg.island)
-                    attr.copy (island = msg.island, island_label = msg.island_label)
-                else
-                    attr
+                {
+                    attr.island = msg.island
+                    attr.island_label = msg.island_label
+                }
 
-            ret
+            attr
         }
 
         def send_message (triplet: EdgeTriplet[CIMVertexData, CIMEdgeData]): Iterator[(VertexId, CIMVertexData)] =
@@ -564,11 +568,13 @@ with
             island match
             {
                 case Some (data: CIMVertexData) =>
-                    vertex.copy (island = data.island, island_label = data.island_label)
+                    vertex.island = data.island
+                    vertex.island_label = data.island_label
                 case None => // should never happen
                     log.warn ("update vertices skipping vertex with no associated island")
-                    vertex
             }
+
+            vertex
         }
 
         def mapper (d: (VertexId, ((VertexId, CIMVertexData), Option[CIMVertexData]))): (VertexId, CIMVertexData) =
