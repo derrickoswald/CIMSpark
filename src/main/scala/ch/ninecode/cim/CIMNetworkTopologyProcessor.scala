@@ -523,16 +523,40 @@ with
         }
     }
 
+    /**
+     * Use GraphX to identify nodes that are connected electrically
+     * @see isSameIsland(Element)
+     * @param graph The results from the topological node processing step.
+     * @return A new graph with vertices having island information.
+     */
     def identifyIslands (graph: Graph[CIMVertexData, CIMEdgeData]): Graph[CIMVertexData, CIMEdgeData] =
     {
-        def vertex_program (id: VertexId, attr: CIMVertexData, msg: CIMVertexData): CIMVertexData =
+        def to_topo_edge (triplet: EdgeTriplet[CIMVertexData, CIMEdgeData]): CIMEdgeData =
+        {
+            val edge = triplet.attr
+            CIMEdgeData (edge.id_seq_1, triplet.srcAttr.node_label, edge.id_seq_2, triplet.dstAttr.node_label, edge.id_equ, edge.voltage, edge.isZero, edge.isConnected)
+        }
+
+        def to_island_vertices (edge: CIMEdgeData): Iterable[CIMIslandData] =
+        {
+            if (edge.id_cn_2 == null)
+                List (CIMIslandData (vertex_id (edge.id_cn_1), edge.id_cn_1))
+            else
+                List (CIMIslandData (vertex_id (edge.id_cn_1), edge.id_cn_1), CIMIslandData (vertex_id (edge.id_cn_2), edge.id_cn_2))
+        }
+
+        def mapper (d: ((VertexId, CIMVertexData), CIMIslandData)): (VertexId, CIMVertexData) =
+        {
+            d._1._2.island = d._2.island
+            d._1._2.island_label = d._2.island_label
+            d._1
+        }
+
+        def vertex_program (id: VertexId, attr: CIMIslandData, msg: CIMIslandData): CIMIslandData =
         {
             if (null == msg)
-            {
-                // initially assign each node to it's own island
+            // initially assign each node to it's own island
                 attr.island = attr.node
-                attr.island_label = attr.node_label
-            }
             else
                 if (attr.island > msg.island)
                 {
@@ -543,7 +567,7 @@ with
             attr
         }
 
-        def send_message (triplet: EdgeTriplet[CIMVertexData, CIMEdgeData]): Iterator[(VertexId, CIMVertexData)] =
+        def send_message (triplet: EdgeTriplet[CIMIslandData, CIMEdgeData]): Iterator[(VertexId, CIMIslandData)] =
         {
             if (!triplet.attr.isConnected)
                 Iterator.empty // send no message across a topological boundary
@@ -556,59 +580,27 @@ with
                     Iterator.empty
         }
 
-        def merge_message (a: CIMVertexData, b: CIMVertexData): CIMVertexData = if (a.island < b.island) a else b
+        def merge_message (a: CIMIslandData, b: CIMIslandData): CIMIslandData = if (a.island < b.island) a else b
 
-        def boundary (edge: (Edge[CIMEdgeData], CIMVertexData, CIMVertexData)): Boolean = edge._2.node != edge._3.node
+        // make new edges with TopologicalNode VertexId for edges with feet in different nodes
+        val e: RDD[CIMEdgeData] = graph.triplets
+            .filter (edge ⇒ edge.srcAttr.node != edge.dstAttr.node)
+            .map (to_topo_edge)
 
-        def make_graph_edges (edge: (Edge[CIMEdgeData], CIMVertexData, CIMVertexData)): Edge[CIMEdgeData] =
-            Edge (edge._2.node, edge._3.node, edge._1.attr)
+        val nodes: RDD[(VertexId, CIMIslandData)] = e.flatMap (to_island_vertices).keyBy (_.node)
 
-        def update_vertices (id: VertexId, vertex: CIMVertexData, island: Option[CIMVertexData]): CIMVertexData =
-        {
-            island match
-            {
-                case Some (data: CIMVertexData) =>
-                    vertex.island = data.island
-                    vertex.island_label = data.island_label
-                case None => // should never happen
-                    log.warn ("update vertices skipping vertex with no associated island")
-            }
+        val edges: RDD[Edge[CIMEdgeData]] = e.map (x ⇒ Edge (vertex_id (x.id_cn_1), vertex_id (x.id_cn_2), x))
 
-            vertex
-        }
-
-        def mapper (d: (VertexId, ((VertexId, CIMVertexData), Option[CIMVertexData]))): (VertexId, CIMVertexData) =
-        {
-            val td = d._2._2 match
-            {
-                case Some (data: CIMVertexData) =>
-                    data
-                case None => // this will happen if no edges are connected to a node, use the "no-island" default
-                    d._2._1._2
-            }
-            ( d._2._1._1, td)
-        }
-
-        // get the edges that have different topological nodes on each end
-        val nodes = graph.vertices.values.keyBy (_.node).distinct // distinct topological nodes
-        val pairs = graph.vertices.keyBy (_._2.node).join (nodes).map ( x => (x._2._1._1, x._2._2)) // get vertex-node pairs
-        val b1 = graph.edges.keyBy (edge => edge.dstId).join (pairs) // match edge end 1
-        val b2 = b1.values.keyBy (edge => edge._1.srcId).join (pairs) // match edge end 2
-        val b3 = b2.values.map (edge => (edge._1._1, edge._1._2, edge._2)) // simplify
-        val boundaries = b3.filter (boundary) // keep edges with different nodes on each end
-
-        // construct the topological graph from the edges
-        val edges = boundaries.map (make_graph_edges)
-        val vertices = boundaries.map (_._2).union (boundaries.map (_._3)).distinct.keyBy (_.node)
-        val topo_graph = Graph.apply[CIMVertexData, CIMEdgeData](vertices, edges, CIMVertexData (), storage, storage)
+        val topo_graph: Graph[CIMIslandData, CIMEdgeData] = Graph.apply (nodes, edges, CIMIslandData (0, ""), storage, storage)
 
         // run the Pregel algorithm over the reduced topological graph
-        val g = topo_graph.pregel[CIMVertexData] (null, 10000, EdgeDirection.Either) (vertex_program, send_message, merge_message)
+        val g = topo_graph.pregel[CIMIslandData] (null, 10000, EdgeDirection.Either) (vertex_program, send_message, merge_message)
 
         // update the original graph with the islands
-        val v = graph.vertices.keyBy (_._2.node).leftOuterJoin (g.vertices.values.keyBy (_.node)).map (mapper)
+        val v: RDD[(VertexId, CIMVertexData)] = graph.vertices.keyBy (_._2.node).join (g.vertices.values.keyBy (_.node)).values.map (mapper)
 
-        val ret = graph.outerJoinVertices (v) (update_vertices)
+        // make a new graph with the updated vertices
+        val ret: Graph[CIMVertexData, CIMEdgeData] = Graph.apply (v, graph.edges, CIMVertexData (), storage, storage)
 
         // persist the RDD to avoid recomputation
         ret.vertices.persist (storage)
@@ -635,7 +627,7 @@ with
 
         // get the topological nodes
         log.info ("identifyNodes")
-        var graph = identifyNodes (initial)
+        var graph: Graph[CIMVertexData, CIMEdgeData] = identifyNodes (initial)
 
         // get the original island and node RDD
         val old_ti = getOrElse[TopologicalIsland]
