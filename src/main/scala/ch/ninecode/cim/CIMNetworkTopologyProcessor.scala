@@ -250,10 +250,10 @@ with
 
     def make_graph_edges (e: CIMEdgeData): Edge[CIMEdgeData] = Edge (vertex_id (e.id_cn_1), vertex_id (e.id_cn_2), e)
 
-    def to_vertex (arg: (ConnectivityNode, String)): (VertexId, CIMVertexData) =
+    def to_vertex (arg: (ConnectivityNode, String)): CIMVertexData =
     {
         val v = vertex_id (arg._1.id)
-        (v, CIMVertexData (0.asInstanceOf[VertexId], "", v, arg._1.id, arg._2, arg._1.ConnectivityNodeContainer))
+        CIMVertexData (0.asInstanceOf[VertexId], "", v, arg._1.id, arg._2, arg._1.ConnectivityNodeContainer)
     }
 
     def make_graph (): Graph[CIMVertexData, CIMEdgeData] =
@@ -265,10 +265,12 @@ with
         val edges: RDD[Edge[CIMEdgeData]] = getOrElse[Element]("Elements").keyBy (_.id).join (terms)
             .flatMapValues (edge_operator).values.map (make_graph_edges).persist (storage)
 
+        // get the voltage attribute from the edge for each vertex
         val e = edges.flatMap (x ⇒ if (x.attr.id_cn_2 == null) List ((x.attr.id_cn_1, x.attr.voltage)) else List ((x.attr.id_cn_1, x.attr.voltage), (x.attr.id_cn_2, x.attr.voltage)))
+            .groupBy (_._1).map (x ⇒ x._2.head) // just take the first voltage - they should all be the same - right?
 
         // get the vertices
-        val vertices: RDD[(VertexId, CIMVertexData)] = getOrElse[ConnectivityNode].keyBy (_.id).join (e).values.map (to_vertex).persist (storage)
+        val vertices = getOrElse[ConnectivityNode].keyBy (_.id).join (e).values.map (to_vertex).keyBy (_.node).persist (storage)
 
         if (debug)
         {

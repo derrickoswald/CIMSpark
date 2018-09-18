@@ -39,7 +39,7 @@ class CIMNetworkTopologyProcessorSuite extends ch.ninecode.SparkSuite
             val read = System.nanoTime ()
 
             // set up for execution
-            val topo = new CIMNetworkTopologyProcessor (session, StorageLevel.MEMORY_AND_DISK_SER, true, true)
+            val topo = new CIMNetworkTopologyProcessor (session, StorageLevel.MEMORY_AND_DISK_SER, true, true, true)
             val new_elements = topo.process (false)
 
             val process = System.nanoTime ()
@@ -65,7 +65,7 @@ class CIMNetworkTopologyProcessorSuite extends ch.ninecode.SparkSuite
             val read = System.nanoTime ()
 
             // set up for execution
-            val topo = new CIMNetworkTopologyProcessor (session, StorageLevel.MEMORY_AND_DISK_SER, true, true)
+            val topo = new CIMNetworkTopologyProcessor (session, StorageLevel.MEMORY_AND_DISK_SER, true, true, true)
             val new_elements = topo.process (true)
 
             val process = System.nanoTime ()
