@@ -34,7 +34,7 @@ class CIMNetworkTopologyProcessorSuite extends ch.ninecode.SparkSuite
 
             val filename = FILE_DEPOT + "DemoData.rdf"
             val elements = readFile (filename)
-            assert (1740 == elements.count, "# elements before")
+            assert (elements.count == 1740, "# elements before")
 
             val read = System.nanoTime ()
 
@@ -44,10 +44,10 @@ class CIMNetworkTopologyProcessorSuite extends ch.ninecode.SparkSuite
 
             val process = System.nanoTime ()
 
-            assert (1891 == new_elements.count, "# elements after")
+            assert (new_elements.count == 1891, "# elements after")
             val nodes = get[TopologicalNode]
-            assert (null != nodes, "no TopologicalNode RDD")
-            assert (151 == nodes.count, "# nodes")
+            assert (nodes != null, "no TopologicalNode RDD")
+            assert (nodes.count == 151, "# nodes")
 
             info ("read: %s seconds, process: %s seconds".format ((read - start) / 1e9, (process - read) / 1e9))
     }
@@ -60,7 +60,7 @@ class CIMNetworkTopologyProcessorSuite extends ch.ninecode.SparkSuite
 
             val filename = FILE_DEPOT + "DemoData.rdf"
             val elements = readFile (filename)
-            assert (1740 == elements.count, "# elements before")
+            assert (elements.count == 1740, "# elements before")
 
             val read = System.nanoTime ()
 
@@ -70,13 +70,13 @@ class CIMNetworkTopologyProcessorSuite extends ch.ninecode.SparkSuite
 
             val process = System.nanoTime ()
 
-            assert (1993 == new_elements.count, "# elements after")
+            assert (new_elements.count == 1993, "# elements after")
             val islands = get[TopologicalIsland]
-            assert (null != islands, "no TopologicalIsland RDD")
-            assert (102 == islands.count, "# islands")
+            assert (islands != null, "no TopologicalIsland RDD")
+            assert (islands.count == 102, "# islands")
             val nodes = get[TopologicalNode]
-            assert (null != nodes, "no TopologicalNode RDD")
-            assert (151 == nodes.count, "# nodes")
+            assert (nodes != null, "no TopologicalNode RDD")
+            assert (nodes.count == 151, "# nodes")
 
             info ("read: %s seconds, process: %s seconds".format ((read - start) / 1e9, (process - read) / 1e9))
     }
@@ -95,17 +95,17 @@ class CIMNetworkTopologyProcessorSuite extends ch.ninecode.SparkSuite
             val start = System.nanoTime ()
 
             val filename = FILE_DEPOT + "DemoData.rdf"
-            val elements = readFileAuto (session.sqlContext, filename)
-            assert (1813 == elements.count, "# elements")
+            val elements= readFileAuto (session.sqlContext, filename)
+            assert (elements.count == 1813, "# elements")
 
             val read = System.nanoTime ()
 
             val islands = get[TopologicalIsland]
             assert (null != islands, "no TopologicalIsland RDD")
-            assert (13 == islands.count, "# islands")
+            assert (islands.count == 13, "# islands")
             val nodes = get[TopologicalNode]
             assert (null != nodes, "no TopologicalNode RDD")
-            assert (60 == nodes.count, "# nodes")
+            assert (nodes.count == 60, "# nodes")
 
             info ("read and process: %s seconds".format ((read - start) / 1e9))
         }

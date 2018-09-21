@@ -18,7 +18,7 @@ case class CIMVertexData (
     var node: VertexId = Long.MaxValue,
     var node_label: String = "",
     var voltage: String = null,
-    var container: String = null) extends Serializable
+    var container: String = null)
 {
     /**
      * Generate an appropriate name for the topological node based on the node label.

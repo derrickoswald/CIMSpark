@@ -42,43 +42,40 @@ import ch.ninecode.model._
  - create EquivalentEquipment (branch, injection, shunt) for an EquivalentNetwork
  *
  * @param spark The session with CIM RDD defined, for which the topology should be calculated
- * @param storage The storage level for new and replaced CIM RDD.
- * @param force_retain_switches Keep Switch and subclasses as two topological node elements irregardless of the
- *                           <code>retained</code> attribute, or the <code>open</code> and <code>normalOpen</code>
- *                           attributes. Fuse and ProtectiveSwitch classes are not included by this flag.
- *                           This is used for alternative scenario calculations.
- * @param force_retain_fuses Keep Fuse, ProtectedSwitch and subclasses as two topological node elements irregardless of the
- *                           <code>retained</code> attribute, or the <code>open</code> and <code>normalOpen</code>
- *                           attributes.
- *                           This is used for fuse specificity calculation.
- * @param debug Adds additional tests during topology processing:
- *
- - unique VertexId for every ConnectivityNode mRID (checks the hash function)
- - all edges reference existing ConnectivityNode elements (checks for completeness)
- - no voltage transitions (checks that edges that are joined have the same BaseVoltage)
- *
  */
-class CIMNetworkTopologyProcessor (
-    spark: SparkSession,
-    storage: StorageLevel = StorageLevel.MEMORY_AND_DISK_SER,
-    force_retain_switches: Boolean = false,
-    force_retain_fuses: Boolean = false,
-    debug: Boolean = false)
-extends
-    CIMRDD
-with
-    Serializable
+case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
 {
+    /**
+     * The old constructor for CIMNetworkTopologyProcessor.
+     *
+     * @deprecated ("Use the constructor taking a CIMTopologyOptions object", "3.0.3")
+     * or pass a CIMTopologyOptions object to process(CIMTopologyOptions) or processIfNeeded(CIMTopologyOptions)
+     */
+    def this (
+                 spark: SparkSession,
+                 storage: StorageLevel = StorageLevel.MEMORY_AND_DISK_SER,
+                 _force_retain_switches: Boolean = false,
+                 _force_retain_fuses: Boolean = false,
+                 _debug: Boolean = false) =
+    {
+        this (spark)
+        options = CIMTopologyOptions (
+            identify_islands = false,
+            force_retain_switches = if (_force_retain_switches) ForceTrue else Unforced,
+            force_retain_fuses = if (_force_retain_fuses) ForceTrue else Unforced,
+            default_switch_open_state = false,
+            debug = _debug,
+            storage = storage
+        )
+    }
+
     private implicit val session: SparkSession = spark
     private implicit val log: Logger = LoggerFactory.getLogger(getClass)
 
-    // just to get a schema
-    case class dummy
-    (
-        override val sup: Element = null
-    )
-    extends
-        Element
+    /**
+     * Options in effect for the process operation.
+     */
+    var options: CIMTopologyOptions = CIMTopologyOptions ()
 
     /**
      * Index of normalOpen field in Switch bitmask.
@@ -95,12 +92,16 @@ with
      */
     val retainedMask: Int = Switch.fields.indexOf ("retained")
 
+    // just to get a schema
+    case class dummy (override val sup: Element = null) extends Element
+
     /**
      * Method to determine if a switch is closed (both terminals are the same topological node).
      *
      * If the switch has the <code>open</code> attribute set, use that.
      * Otherwise if it has the <code>normalOpen</code> attribute set, use that.
-     * Otherwise assume it is closed.
+     * Otherwise assume it is the default state set by
+     * CIMTopologyOptions.default_switch_open_state which means not closed unless explicitly set.
      *
      * @param switch The switch object to test.
      * @return <code>true</code> if the switch is closed, <code>false</code> otherwise.
@@ -112,7 +113,7 @@ with
         else if (0 != (switch.bitfields(normalOpenMask / 32) & (1 << (normalOpenMask % 32))))
             !switch.normalOpen
         else
-            true
+            !options.default_switch_open_state
     }
 
     /**
@@ -148,6 +149,8 @@ with
      */
     def isSameNode (element: Element): Boolean =
     {
+        val force_retain_switches = options.force_retain_switches match { case ForceTrue ⇒ true case ForceFalse ⇒ false case Unforced ⇒ false }
+        val force_retain_fuses = options.force_retain_fuses match { case ForceTrue ⇒ true case ForceFalse ⇒ false case Unforced ⇒ false }
         element match
         {
             case switch: Switch ⇒ !force_retain_switches && isSwitchOneNode (switch)
@@ -179,6 +182,7 @@ with
      */
     def isSameIsland (element: Element): Boolean =
     {
+        val force_retain_fuses = options.force_retain_fuses match { case ForceTrue ⇒ true case ForceFalse ⇒ false case Unforced ⇒ false }
         element match
         {
             case switch: Switch ⇒ isSwitchOneNode (switch)
@@ -222,19 +226,17 @@ with
                     // check if this edge has its nodes in the same island
                     val connected = isSameIsland (arg._1)
                     ret = ret :+ CIMEdgeData (
-                            terminals(0).ACDCTerminal.IdentifiedObject.mRID,
-                            terminals(0).ConnectivityNode,
-                            terminals(i).ACDCTerminal.IdentifiedObject.mRID,
-                            terminals(i).ConnectivityNode,
-                            equipment.id, // terminals(n).ConductingEquipment,
-                            equipment.asInstanceOf[ConductingEquipment].BaseVoltage,
-                            identical,
-                            connected)
+                        terminals(0).ConnectivityNode,
+                        terminals(i).ConnectivityNode,
+                        equipment.id, // terminals(n).ConductingEquipment,
+                        equipment.asInstanceOf[ConductingEquipment].BaseVoltage,
+                        identical,
+                        connected)
                 }
         }
         //else // shouldn't happen, terminals always reference ConductingEquipment, right?
-            // throw new Exception ("element " + e.id + " is not derived from ConductingEquipment")
-            // ProtectionEquipment and CurrentRelay are emitted with terminals even though they shouldn't be
+        // throw new Exception ("element " + e.id + " is not derived from ConductingEquipment")
+        // ProtectionEquipment and CurrentRelay are emitted with terminals even though they shouldn't be
 
 
         ret
@@ -262,17 +264,17 @@ with
         val terms = getOrElse[Terminal].groupBy (_.ConductingEquipment)
 
         // map elements with their terminal 'pairs' to edges
-        val edges: RDD[Edge[CIMEdgeData]] = getOrElse[Element]("Elements").keyBy (_.id).join (terms)
-            .flatMapValues (edge_operator).values.map (make_graph_edges).persist (storage)
+        val edges = getOrElse[Element]("Elements").keyBy (_.id).join (terms)
+            .values.flatMap (edge_operator).map (make_graph_edges).persist (options.storage)
 
         // get the voltage attribute from the edge for each vertex
         val e = edges.flatMap (x ⇒ if (x.attr.id_cn_2 == null) List ((x.attr.id_cn_1, x.attr.voltage)) else List ((x.attr.id_cn_1, x.attr.voltage), (x.attr.id_cn_2, x.attr.voltage)))
             .groupBy (_._1).map (x ⇒ x._2.head) // just take the first voltage - they should all be the same - right?
 
         // get the vertices
-        val vertices = getOrElse[ConnectivityNode].keyBy (_.id).join (e).values.map (to_vertex).keyBy (_.node).persist (storage)
+        val vertices = getOrElse[ConnectivityNode].keyBy (_.id).join (e).values.map (to_vertex).keyBy (_.node).persist (options.storage)
 
-        if (debug)
+        if (options.debug)
         {
             // check for uniqueness of VertexId
             val duplicates: RDD[(VertexId, Iterable[CIMVertexData])] = vertices.groupByKey.filter (_._2.size > 1)
@@ -287,12 +289,12 @@ with
         }
 
         // construct the initial graph from the edges
-        Graph.apply (vertices, edges, CIMVertexData (), storage, storage).cache
+        Graph.apply (vertices, edges, CIMVertexData (), options.storage, options.storage).cache
     }
 
     def identifyNodes (graph: Graph[CIMVertexData, CIMEdgeData]): Graph[CIMVertexData, CIMEdgeData] =
     {
-        def vertex_program (id: VertexId, data: CIMVertexData, message: CIMVertexData): CIMVertexData =
+        def vertex_program (id: VertexId, data: CIMVD, message: CIMVD): CIMVD =
         {
             if (null != message) // not initialization call?
                 if (data.node > message.node)
@@ -304,19 +306,19 @@ with
             data
         }
 
-        def send_message (triplet: EdgeTriplet[CIMVertexData, CIMEdgeData]): Iterator[(VertexId, CIMVertexData)] =
+        def send_message (triplet: EdgeTriplet[CIMVD, CIMEdgeData]): Iterator[(VertexId, CIMVD)] =
         {
             if (!triplet.attr.isZero)
                 Iterator.empty // send no message across a topological boundary
             else
             {
-                if (debug)
+                if (options.debug)
                     if ((null != triplet.srcAttr.voltage) && (null != triplet.dstAttr.voltage))
                         if (triplet.srcAttr.voltage != triplet.dstAttr.voltage)
                             log.error ("conflicting node voltages across edge %s, %s:%s, %s:%s".format (triplet.attr.id_equ, triplet.srcAttr.node_label, triplet.srcAttr.voltage, triplet.dstAttr.node_label, triplet.dstAttr.voltage))
                 if (triplet.srcAttr.node < triplet.dstAttr.node)
                 {
-                    if (debug && log.isDebugEnabled)
+                    if (options.debug && log.isDebugEnabled)
                         log.debug ("%s: from src:%d to dst:%d %s ---> %s".format (triplet.attr.id_equ, triplet.srcId, triplet.dstId, triplet.srcAttr.toString, triplet.dstAttr.toString))
                     val voltage = if (null != triplet.attr.voltage) triplet.attr.voltage else if (null != triplet.srcAttr.voltage) triplet.srcAttr.voltage else triplet.dstAttr.voltage
                     if ((null != voltage) && (null == triplet.dstAttr.voltage))
@@ -326,7 +328,7 @@ with
                 }
                 else if (triplet.srcAttr.node > triplet.dstAttr.node)
                 {
-                    if (debug && log.isDebugEnabled)
+                    if (options.debug && log.isDebugEnabled)
                         log.debug ("%s: from dst:%d to src:%d %s ---> %s".format (triplet.attr.id_equ, triplet.dstId, triplet.srcId,  triplet.dstAttr.toString, triplet.srcAttr.toString))
                     val voltage = if (null != triplet.attr.voltage) triplet.attr.voltage else if (null != triplet.dstAttr.voltage) triplet.dstAttr.voltage else triplet.srcAttr.voltage
                     if ((null != voltage) && (null == triplet.srcAttr.voltage))
@@ -339,19 +341,28 @@ with
             }
         }
 
-        def merge_message (a: CIMVertexData, b: CIMVertexData): CIMVertexData =
+        def merge_message (a: CIMVD, b: CIMVD): CIMVD =
         {
-            if (debug)
+            if (options.debug)
                 if ((null != a.voltage) && (null != b.voltage))
                     if (a.voltage != b.voltage)
                         log.error ("conflicting node voltages, merging: %s into %s".format (if (a.node <= b.node) b.node_label + ":" + b.voltage else a.node_label + ":" + a.voltage, if (a.node <= b.node) a.node_label + ":" + a.voltage else b.node_label + ":" + b.voltage))
             if (a.node <= b.node) a else b
         }
 
+        // convert to smaller objects
+        val g = graph.mapVertices ((id, v) ⇒ CIMVD (v.node, v.node_label, v.voltage))
+
         // traverse the graph with the Pregel algorithm
         // assigns the minimum VertexId of all electrically identical nodes (node)
         // Note: on the first pass through the Pregel algorithm all nodes get a null message
-        graph.pregel[CIMVertexData] (null, 10000, EdgeDirection.Either) (vertex_program, send_message, merge_message).cache
+        val ng = g.pregel[CIMVD] (null, 10000, EdgeDirection.Either) (vertex_program, send_message, merge_message).cache
+
+        // transfer the labels back to the full vertices
+        val nv = ng.vertices.join (graph.vertices).map (x ⇒ { val v = x._2._2; v.node = x._2._1.node; v.node_label = x._2._1.node_label; (x._1, v) })
+
+        // rebuild the graph
+        Graph.apply (nv, graph.edges, CIMVertexData (), options.storage, options.storage).cache
     }
 
     def to_islands (nodes: Iterable[((CIMVertexData,ConnectivityNode),Option[(Terminal, Element)])]): (VertexId, TopologicalIsland) =
@@ -536,7 +547,7 @@ with
         def to_topo_edge (triplet: EdgeTriplet[CIMVertexData, CIMEdgeData]): CIMEdgeData =
         {
             val edge = triplet.attr
-            CIMEdgeData (edge.id_seq_1, triplet.srcAttr.node_label, edge.id_seq_2, triplet.dstAttr.node_label, edge.id_equ, edge.voltage, edge.isZero, edge.isConnected)
+            CIMEdgeData (triplet.srcAttr.node_label, triplet.dstAttr.node_label, edge.id_equ, edge.voltage, edge.isZero, edge.isConnected)
         }
 
         def to_island_vertices (edge: CIMEdgeData): Iterable[CIMIslandData] =
@@ -593,23 +604,31 @@ with
 
         val edges: RDD[Edge[CIMEdgeData]] = e.map (x ⇒ Edge (vertex_id (x.id_cn_1), vertex_id (x.id_cn_2), x))
 
-        val topo_graph: Graph[CIMIslandData, CIMEdgeData] = Graph.apply (nodes, edges, CIMIslandData (0, ""), storage, storage)
+        val topo_graph: Graph[CIMIslandData, CIMEdgeData] = Graph.apply (nodes, edges, CIMIslandData (0, ""), options.storage, options.storage)
 
         // run the Pregel algorithm over the reduced topological graph
         val g = topo_graph.pregel[CIMIslandData] (null, 10000, EdgeDirection.Either) (vertex_program, send_message, merge_message)
 
         // update the original graph with the islands
-        val v: RDD[(VertexId, CIMVertexData)] = graph.vertices.keyBy (_._2.node).join (g.vertices.values.keyBy (_.node)).values.map (mapper)
+        val v = graph.vertices.keyBy (_._2.node).join (g.vertices.values.keyBy (_.node)).values.map (mapper)
 
         // make a new graph with the updated vertices
-        val ret: Graph[CIMVertexData, CIMEdgeData] = Graph.apply (v, graph.edges, CIMVertexData (), storage, storage)
+        val ret: Graph[CIMVertexData, CIMEdgeData] = Graph.apply (v, graph.edges, CIMVertexData (), options.storage, options.storage)
 
         // persist the RDD to avoid recomputation
-        ret.vertices.persist (storage)
-        ret.edges.persist (storage)
+        ret.vertices.persist (options.storage)
+        ret.edges.persist (options.storage)
 
         ret
     }
+
+    /**
+     * Old process() method.
+     * @deprecated ("Use the method taking a CIMTopologyOptions", "3.0.3")
+     * @param identify_islands pass <code>true</code> if the TopologicalIsland RDD should be populated.
+     */
+    def process (identify_islands: Boolean): RDD[Element] =
+        process (options.copy (identify_islands = identify_islands))
 
     /**
      * Create new TopologicalNode and optionally TopologicalIsland RDD based on connectivity.
@@ -617,12 +636,12 @@ with
      * Any existing RDDs with these names will be unpersisted and renamed "old_XXX".
      * Hierarchical nested case class RDDs will also be updated.
      *
-     * @param identify_islands pass <code>true</code> if the TopologicalIsland RDD should be populated.
      * @return The new Elements RDD - with TopologicalNode and TopologicalIsland objects included.
      */
-    def process (identify_islands: Boolean): RDD[Element] =
+    def process (_options: CIMTopologyOptions): RDD[Element] =
     {
         log.info ("performing Network Topology Processing")
+        options = _options
 
         // get the initial graph based on edges
         val initial = make_graph ()
@@ -636,7 +655,7 @@ with
         val old_tn = getOrElse[TopologicalNode]
 
         // create a new TopologicalNode RDD
-        val (new_tn, new_ti) = if (identify_islands)
+        val (new_tn, new_ti) = if (options.identify_islands)
         {
             // get the topological islands
             log.info ("identifyIslands")
@@ -652,7 +671,7 @@ with
 
             // create a new TopologicalIsland RDD
             val new_ti = islands.values
-            if (debug && log.isDebugEnabled)
+            if (options.debug && log.isDebugEnabled)
                 log.debug (new_ti.count + " islands identified")
 
             // swap the old TopologicalIsland RDD for the new one
@@ -661,18 +680,18 @@ with
                 old_ti.unpersist (false)
                 old_ti.name = "old_TopologicalIsland"
             }
-            TopologicalIsland.subsetter.save (session.sqlContext, new_ti.asInstanceOf[TopologicalIsland.subsetter.rddtype], storage)
+            TopologicalIsland.subsetter.save (session.sqlContext, new_ti.asInstanceOf[TopologicalIsland.subsetter.rddtype], options.storage)
 
             val nodes_with_islands = graph.vertices.values.keyBy (_.island).join (islands).values
             val nodes = nodes_with_islands.groupBy (_._1.node).map (x => (x._1, x._2.head._1, Some (x._2.head._2))).map (to_nodes)
-            if (debug && log.isDebugEnabled)
+            if (options.debug && log.isDebugEnabled)
                 log.debug (nodes.count + " nodes")
             (nodes, new_ti)
         }
         else
         {
             val nodes = graph.vertices.values.groupBy (_.node).map (x => (x._1, x._2.head, None)).map (to_nodes)
-            if (debug && log.isDebugEnabled)
+            if (options.debug && log.isDebugEnabled)
                 log.debug (nodes.count + " nodes")
             (nodes, spark.sparkContext.emptyRDD[TopologicalIsland])
         }
@@ -683,7 +702,7 @@ with
             old_tn.unpersist (false)
             old_tn.name = "old_TopologicalNode"
         }
-        TopologicalNode.subsetter.save (session.sqlContext, new_tn.asInstanceOf[TopologicalNode.subsetter.rddtype], storage)
+        TopologicalNode.subsetter.save (session.sqlContext, new_tn.asInstanceOf[TopologicalNode.subsetter.rddtype], options.storage)
 
         // but the other RDD (ConnectivityNode and Terminal also ACDCTerminal) need to be updated in IdentifiedObject and Element
 
@@ -693,7 +712,7 @@ with
 
         // swap the old ConnectivityNode RDD for the new one
         old_cn.name = "nontopological_ConnectivityNode"
-        ConnectivityNode.subsetter.save (session.sqlContext, new_cn.asInstanceOf[ConnectivityNode.subsetter.rddtype], storage)
+        ConnectivityNode.subsetter.save (session.sqlContext, new_cn.asInstanceOf[ConnectivityNode.subsetter.rddtype], options.storage)
 
         // assign every Terminal with a connectivity node to a TopologicalNode
         // note: keep the original enclosed ACDCTerminal objects
@@ -705,21 +724,21 @@ with
 
         // swap the old Terminal RDD for the new one
         old_terminals.name = "nontopological_Terminal"
-        Terminal.subsetter.save (session.sqlContext, new_terminals.asInstanceOf[Terminal.subsetter.rddtype], storage)
+        Terminal.subsetter.save (session.sqlContext, new_terminals.asInstanceOf[Terminal.subsetter.rddtype], options.storage)
 
         // make a union of all old RDD as IdentifiedObject
         val oldobj =
-                   old_ti.map (_.IdentifiedObject).
-            union (old_tn.map (_.IdentifiedObject)).
-            union (old_cn.map (_.IdentifiedObject)).
-            union (old_terminals.map (_.ACDCTerminal.IdentifiedObject))
+            old_ti.map (_.IdentifiedObject).
+                union (old_tn.map (_.IdentifiedObject)).
+                union (old_cn.map (_.IdentifiedObject)).
+                union (old_terminals.map (_.ACDCTerminal.IdentifiedObject))
 
         // make a union of all new RDD as IdentifiedObject
         val newobj =
-                   new_ti.map (_.IdentifiedObject).
-            union (new_tn.map (_.IdentifiedObject)).
-            union (new_cn.map (_.IdentifiedObject)).
-            union (new_terminals.map (_.ACDCTerminal.IdentifiedObject))
+            new_ti.map (_.IdentifiedObject).
+                union (new_tn.map (_.IdentifiedObject)).
+                union (new_cn.map (_.IdentifiedObject)).
+                union (new_terminals.map (_.ACDCTerminal.IdentifiedObject))
 
         // replace identified objects in IdentifiedObject
         val old_idobj = getOrElse[IdentifiedObject]
@@ -727,14 +746,14 @@ with
 
         // swap the old IdentifiedObject RDD for the new one
         old_idobj.name = "nontopological_IdentifiedObject"
-        IdentifiedObject.subsetter.save (session.sqlContext, new_idobj.asInstanceOf[IdentifiedObject.subsetter.rddtype], storage)
+        IdentifiedObject.subsetter.save (session.sqlContext, new_idobj.asInstanceOf[IdentifiedObject.subsetter.rddtype], options.storage)
 
         // make a union of all old RDD as Element
         val oldelem =
-                   old_ti.asInstanceOf[RDD[Element]].
-            union (old_tn.asInstanceOf[RDD[Element]]).
-            union (old_cn.asInstanceOf[RDD[Element]]).
-            union (old_terminals.asInstanceOf[RDD[Element]])
+            old_ti.asInstanceOf[RDD[Element]].
+                union (old_tn.asInstanceOf[RDD[Element]]).
+                union (old_cn.asInstanceOf[RDD[Element]]).
+                union (old_terminals.asInstanceOf[RDD[Element]])
 
         // make a union of all new RDD as Element
         val newelem = new_ti.asInstanceOf[RDD[Element]].
@@ -749,7 +768,7 @@ with
         // swap the old Elements RDD for the new one
         old_elements.name = "nontopological_Elements"
         new_elements.name = "Elements"
-        new_elements.persist (storage)
+        new_elements.persist (options.storage)
         spark.sparkContext.getCheckpointDir match
         {
             case Some (_) => new_elements.checkpoint ()
@@ -763,24 +782,30 @@ with
     }
 
     /**
+     * Old processIfNeeded() method.
+     * @deprecated ("Use the method taking a CIMTopologyOptions", "3.0.3")
+     * @param identify_islands pass <code>true</code> if the TopologicalIsland RDD should be populated.
+     */
+    def processIfNeeded (identify_islands: Boolean): RDD[Element] = processIfNeeded (options.copy (identify_islands = identify_islands))
+
+    /**
      * Conditionally create new TopologicalNode and optionally TopologicalIsland RDD based on connectivity.
      *
      * Note, if these RDD exist and are already populated, this method does nothing.
-     * Otherwise it calls the [[process]] method.
+     * Otherwise it calls the [[process(_options:ch\.ninecode\.cim\.CIMTopologyOptions)* process]] method.
      *
-     * @param identify_islands pass <code>true</code> if the TopologicalIsland RDD should be populated.
      * @return Either the old Elements RDD or a new Elements RDD - with TopologicalNode and TopologicalIsland objects included.
      */
-    def processIfNeeded (identify_islands: Boolean): RDD[Element] =
+    def processIfNeeded (_options: CIMTopologyOptions): RDD[Element] =
     {
         val nodes = getOrElse[TopologicalNode]
         if (nodes.isEmpty)
-            process (identify_islands)
+            process (_options)
         else
         {
             val islands = getOrElse[TopologicalIsland]
-            if (identify_islands && islands.isEmpty)
-                process (identify_islands)
+            if (_options.identify_islands && islands.isEmpty)
+                process (_options)
             else
                 get [Element]("Elements")
         }

@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>CIMVertexData - CIMReader 2.11-2.3.1-3.0.0 API - ch.ninecode.cim.CIMVertexData</title>
-          <meta name="description" content="CIMVertexData - CIMReader 2.11 - 2.3.1 - 3.0.0 API - ch.ninecode.cim.CIMVertexData" />
-          <meta name="keywords" content="CIMVertexData CIMReader 2.11 2.3.1 3.0.0 API ch.ninecode.cim.CIMVertexData" />
+          <title>CIMVertexData - CIMReader 2.11-2.3.1-3.0.4 API - ch.ninecode.cim.CIMVertexData</title>
+          <meta name="description" content="CIMVertexData - CIMReader 2.11 - 2.3.1 - 3.0.4 API - ch.ninecode.cim.CIMVertexData" />
+          <meta name="keywords" content="CIMVertexData CIMReader 2.11 2.3.1 3.0.4 API ch.ninecode.cim.CIMVertexData" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -45,14 +45,14 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">CIMVertexData</span><span class="params">(<span name="island">island: <span class="extype" name="org.apache.spark.graphx.VertexId">VertexId</span> = <span class="symbol">Long.MaxValue</span></span>, <span name="island_label">island_label: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;&quot;</span></span>, <span name="node">node: <span class="extype" name="org.apache.spark.graphx.VertexId">VertexId</span> = <span class="symbol">Long.MaxValue</span></span>, <span name="node_label">node_label: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;&quot;</span></span>, <span name="voltage">voltage: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">null</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Serializable">Serializable</span> with <span class="extype" name="scala.Product">Product</span></span>
+        <span class="name">CIMVertexData</span><span class="params">(<span name="island">island: <span class="extype" name="org.apache.spark.graphx.VertexId">VertexId</span> = <span class="symbol">Long.MaxValue</span></span>, <span name="island_label">island_label: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;&quot;</span></span>, <span name="node">node: <span class="extype" name="org.apache.spark.graphx.VertexId">VertexId</span> = <span class="symbol">Long.MaxValue</span></span>, <span name="node_label">node_label: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;&quot;</span></span>, <span name="voltage">voltage: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">null</span></span>, <span name="container">container: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">null</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="comment cmt"><p>Vertex data for topological processing.
-</p></div><dl class="paramcmts block"><dt class="param">island</dt><dd class="cmt"><p>the minimum (hash code) of all connected ConnectivityNode (single topological island)</p></dd><dt class="param">island_label</dt><dd class="cmt"><p>a user friendly label for the island</p></dd><dt class="param">node</dt><dd class="cmt"><p>the minimum (hash code) of equivalent ConnectivityNode (a single topological node)</p></dd><dt class="param">node_label</dt><dd class="cmt"><p>a user friendly label for the node</p></dd><dt class="param">voltage</dt><dd class="cmt"><p>the nominal voltage of the node</p></dd></dl><div class="toggleContainer block">
+</p></div><dl class="paramcmts block"><dt class="param">island</dt><dd class="cmt"><p>the minimum (hash code) of all connected ConnectivityNode (single topological island)</p></dd><dt class="param">island_label</dt><dd class="cmt"><p>a user friendly label for the island</p></dd><dt class="param">node</dt><dd class="cmt"><p>the minimum (hash code) of equivalent ConnectivityNode (a single topological node)</p></dd><dt class="param">node_label</dt><dd class="cmt"><p>a user friendly label for the node</p></dd><dt class="param">voltage</dt><dd class="cmt"><p>the nominal voltage of the node</p></dd><dt class="param">container</dt><dd class="cmt"><p>the node container</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -70,7 +70,7 @@
                 <span class="filtertype">Inherited<br />
                 </span>
                 <ol id="linearization">
-                  <li class="in" name="ch.ninecode.cim.CIMVertexData"><span>CIMVertexData</span></li><li class="in" name="scala.Product"><span>Product</span></li><li class="in" name="scala.Equals"><span>Equals</span></li><li class="in" name="scala.Serializable"><span>Serializable</span></li><li class="in" name="java.io.Serializable"><span>Serializable</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  <li class="in" name="ch.ninecode.cim.CIMVertexData"><span>CIMVertexData</span></li><li class="in" name="scala.Serializable"><span>Serializable</span></li><li class="in" name="java.io.Serializable"><span>Serializable</span></li><li class="in" name="scala.Product"><span>Product</span></li><li class="in" name="scala.Equals"><span>Equals</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                 </ol>
               </div><div id="ancestors">
             <span class="filtertype"></span>
@@ -90,7 +90,7 @@
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
               <ol><li name="ch.ninecode.cim.CIMVertexData#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(island:org.apache.spark.graphx.VertexId,island_label:String,node:org.apache.spark.graphx.VertexId,node_label:String,voltage:String):ch.ninecode.cim.CIMVertexData"></a>
+      <a id="&lt;init&gt;(island:org.apache.spark.graphx.VertexId,island_label:String,node:org.apache.spark.graphx.VertexId,node_label:String,voltage:String,container:String):ch.ninecode.cim.CIMVertexData"></a>
       <a id="&lt;init&gt;:CIMVertexData"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -98,14 +98,14 @@
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">CIMVertexData</span><span class="params">(<span name="island">island: <span class="extype" name="org.apache.spark.graphx.VertexId">VertexId</span> = <span class="symbol">Long.MaxValue</span></span>, <span name="island_label">island_label: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;&quot;</span></span>, <span name="node">node: <span class="extype" name="org.apache.spark.graphx.VertexId">VertexId</span> = <span class="symbol">Long.MaxValue</span></span>, <span name="node_label">node_label: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;&quot;</span></span>, <span name="voltage">voltage: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">null</span></span>)</span>
+        <span class="name">CIMVertexData</span><span class="params">(<span name="island">island: <span class="extype" name="org.apache.spark.graphx.VertexId">VertexId</span> = <span class="symbol">Long.MaxValue</span></span>, <span name="island_label">island_label: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;&quot;</span></span>, <span name="node">node: <span class="extype" name="org.apache.spark.graphx.VertexId">VertexId</span> = <span class="symbol">Long.MaxValue</span></span>, <span name="node_label">node_label: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;&quot;</span></span>, <span name="voltage">voltage: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">null</span></span>, <span name="container">container: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">null</span></span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.CIMVertexData@&lt;init&gt;(island:org.apache.spark.graphx.VertexId,island_label:String,node:org.apache.spark.graphx.VertexId,node_label:String,voltage:String):ch.ninecode.cim.CIMVertexData" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.CIMVertexData@&lt;init&gt;(island:org.apache.spark.graphx.VertexId,island_label:String,node:org.apache.spark.graphx.VertexId,node_label:String,voltage:String,container:String):ch.ninecode.cim.CIMVertexData" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">island</dt><dd class="cmt"><p>the minimum (hash code) of all connected ConnectivityNode (single topological island)</p></dd><dt class="param">island_label</dt><dd class="cmt"><p>a user friendly label for the island</p></dd><dt class="param">node</dt><dd class="cmt"><p>the minimum (hash code) of equivalent ConnectivityNode (a single topological node)</p></dd><dt class="param">node_label</dt><dd class="cmt"><p>a user friendly label for the node</p></dd><dt class="param">voltage</dt><dd class="cmt"><p>the nominal voltage of the node</p></dd></dl></div>
+      <p class="shortcomment cmt"></p><div class="fullcomment"><div class="comment cmt"></div><dl class="paramcmts block"><dt class="param">island</dt><dd class="cmt"><p>the minimum (hash code) of all connected ConnectivityNode (single topological island)</p></dd><dt class="param">island_label</dt><dd class="cmt"><p>a user friendly label for the island</p></dd><dt class="param">node</dt><dd class="cmt"><p>the minimum (hash code) of equivalent ConnectivityNode (a single topological node)</p></dd><dt class="param">node_label</dt><dd class="cmt"><p>a user friendly label for the node</p></dd><dt class="param">voltage</dt><dd class="cmt"><p>the nominal voltage of the node</p></dd><dt class="param">container</dt><dd class="cmt"><p>the node container</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -206,6 +206,23 @@
     </span>)</span>
               
         </dd></dl></div>
+    </li><li name="ch.ninecode.cim.CIMVertexData#container" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="container:String"></a>
+      <a id="container:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">var</span>
+      </span>
+      <span class="symbol">
+        <span class="name">container</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.CIMVertexData@container:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">the node container</p>
     </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a>
       <a id="eq(AnyRef):Boolean"></a>
@@ -286,7 +303,7 @@
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">val</span>
+        <span class="kind">var</span>
       </span>
       <span class="symbol">
         <span class="name">island</span><span class="result">: <span class="extype" name="org.apache.spark.graphx.VertexId">VertexId</span></span>
@@ -303,7 +320,7 @@
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">val</span>
+        <span class="kind">var</span>
       </span>
       <span class="symbol">
         <span class="name">island_label</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
@@ -355,7 +372,7 @@
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">val</span>
+        <span class="kind">var</span>
       </span>
       <span class="symbol">
         <span class="name">node</span><span class="result">: <span class="extype" name="org.apache.spark.graphx.VertexId">VertexId</span></span>
@@ -372,7 +389,7 @@
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">val</span>
+        <span class="kind">var</span>
       </span>
       <span class="symbol">
         <span class="name">node_label</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
@@ -440,7 +457,7 @@
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
-        <span class="kind">val</span>
+        <span class="kind">var</span>
       </span>
       <span class="symbol">
         <span class="name">voltage</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
@@ -529,14 +546,14 @@
         </div>
 
         <div id="inheritedMembers">
-        <div class="parent" name="scala.Product">
-              <h3>Inherited from <span class="extype" name="scala.Product">Product</span></h3>
-            </div><div class="parent" name="scala.Equals">
-              <h3>Inherited from <span class="extype" name="scala.Equals">Equals</span></h3>
-            </div><div class="parent" name="scala.Serializable">
+        <div class="parent" name="scala.Serializable">
               <h3>Inherited from <span class="extype" name="scala.Serializable">Serializable</span></h3>
             </div><div class="parent" name="java.io.Serializable">
               <h3>Inherited from <span class="extype" name="java.io.Serializable">Serializable</span></h3>
+            </div><div class="parent" name="scala.Product">
+              <h3>Inherited from <span class="extype" name="scala.Product">Product</span></h3>
+            </div><div class="parent" name="scala.Equals">
+              <h3>Inherited from <span class="extype" name="scala.Equals">Equals</span></h3>
             </div><div class="parent" name="scala.AnyRef">
               <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
             </div><div class="parent" name="scala.Any">
