@@ -56,6 +56,9 @@
             <roles>
                 <role>developer</role>
             </roles>
+            <properties>
+                <picUrl>https://rawgit.com/derrickoswald/CIMReader/master/img/Markus.jpg</picUrl>
+            </properties>
         </developer>
     </developers>
     <distributionManagement>
@@ -168,6 +171,10 @@
                 <configuration>
                     <scalaCompatVersion>${version.dependency.scala}</scalaCompatVersion>
                     <scalaVersion>${version.dependency.scalalibrary}</scalaVersion>
+                    <args>
+                        <arg>-deprecation</arg>
+                        <arg>-feature</arg>
+                    </args>
                     <jvmArgs>
                         <jvmArg>-Xss4m</jvmArg>
                     </jvmArgs>

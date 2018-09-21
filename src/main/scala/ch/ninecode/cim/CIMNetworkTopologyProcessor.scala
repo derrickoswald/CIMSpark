@@ -54,17 +54,17 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
     def this (
                  spark: SparkSession,
                  storage: StorageLevel = StorageLevel.MEMORY_AND_DISK_SER,
-                 _force_retain_switches: Boolean = false,
-                 _force_retain_fuses: Boolean = false,
-                 _debug: Boolean = false) =
+                 force_retain_switches: Boolean = false,
+                 force_retain_fuses: Boolean = false,
+                 debug: Boolean = false) =
     {
         this (spark)
         options = CIMTopologyOptions (
             identify_islands = false,
-            force_retain_switches = if (_force_retain_switches) ForceTrue else Unforced,
-            force_retain_fuses = if (_force_retain_fuses) ForceTrue else Unforced,
+            force_retain_switches = if (force_retain_switches) ForceTrue else Unforced,
+            force_retain_fuses = if (force_retain_fuses) ForceTrue else Unforced,
             default_switch_open_state = false,
-            debug = _debug,
+            debug = debug,
             storage = storage
         )
     }
