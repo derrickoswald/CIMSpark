@@ -1,9 +1,11 @@
 lazy val root = (project in file(".")).
   settings(
     name := "CIMReader",
-    version := "2.3.1-3.0.1",
+    version := "2.3.1-3.0.4",
     scalaVersion := "2.11.8",
-    javaOptions += "-Xss4m"
+    licenses += ("MIT", url("http://opensource.org/licenses/MIT")),
+    javaOptions += "-Xss4m",
+    bintrayPackageLabels := Seq("CIM", "9code")
   )
 
 libraryDependencies += "org.apache.spark" % "spark-core_2.11" % "2.3.1"
