@@ -1,7 +1,7 @@
 lazy val root = (project in file(".")).
   settings(
     name := "CIMReader",
-    version := "2.3.1-3.0.4",
+    version := "2.3.1-3.1.0",
     scalaVersion := "2.11.8",
     licenses += ("MIT", url("http://opensource.org/licenses/MIT")),
     javaOptions += "-Xss4m",
