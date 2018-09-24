@@ -1,5 +1,6 @@
-lazy val root = (project in file(".")).
+lazy val cimreader = (project in file(".")).
   settings(
+    organization := "ch.ninecode.cim",
     name := "CIMReader",
     version := "2.3.1-3.1.0",
     scalaVersion := "2.11.8",
