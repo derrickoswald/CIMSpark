@@ -179,8 +179,10 @@ with
             s.append (clz)
             s.append (".")
             s.append (field)
-            s.append (" rdf:resource=\"#")
-            s.append (value.toString)
+            s.append (" rdf:resource=\"")
+            val v = value.toString
+            if (!v.startsWith ("http://")) s.append ("#") // relative
+            s.append (v)
             s.append ("\"/>\n")
         }
     }

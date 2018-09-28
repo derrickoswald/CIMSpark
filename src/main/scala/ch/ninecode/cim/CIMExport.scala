@@ -98,20 +98,21 @@ class CIMExport (spark: SparkSession) extends CIMRDD with Serializable
      * @param elements The elements to export.
      * @param filename The name of the file to write.
      * @param about The about string for the CIM file header.
+     * @param temp The temporary directory to build the text file in.
      */
     def export (elements: RDD[Element], filename: String, about: String = "", temp: String = "/tmp/export.rdf"):Unit =
     {
         val ldt = LocalDateTime.now.toString
-
+        // ToDo: Model.scenarioTime and Model.version
         val header =
 """<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <rdf:RDF xmlns:cim="http://iec.ch/TC57/2013/CIM-schema-cim16#" xmlns:md="http://iec.ch/TC57/61970-552/ModelDescription/1#" xmlns:dm="http://iec.ch/2002/schema/CIM_difference_model#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-	<md:FullModel rdf:about="""" + about + """">
-		<md:Model.created>""" + ldt + """</md:Model.created>
+	<md:FullModel rdf:about="%s">
+		<md:Model.created>%s</md:Model.created>
 		<md:Model.description>CIMExport</md:Model.description>
 		<md:Model.modelingAuthoritySet>http://9code.ch/</md:Model.modelingAuthoritySet>
 		<md:Model.profile>https://github.com/derrickoswald/CIMReader</md:Model.profile>
-	</md:FullModel>"""
+	</md:FullModel>""".format (about, ldt)
         val tailer = """</rdf:RDF>"""
 
         // setup
