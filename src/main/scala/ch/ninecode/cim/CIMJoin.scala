@@ -289,11 +289,7 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
         old_elements.name = "unjoined_Elements"
         new_elements.name = "Elements"
         new_elements.persist (storage)
-        spark.sparkContext.getCheckpointDir match
-        {
-            case Some (_) => new_elements.checkpoint ()
-            case None =>
-        }
+        if (spark.sparkContext.getCheckpointDir.isDefined) new_elements.checkpoint ()
 
         new_elements
     }

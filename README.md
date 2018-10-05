@@ -173,6 +173,24 @@ You can get a named RDD using the class name:
 val lines = sc.getPersistentRDDs.filter(_._2.name == "ACLineSegment").head._2.asInstanceOf[RDD[ACLineSegment]]
 ```
 
+# Serialization
+
+The recommended serialization is Kryo. Since this must be specified before the Spark context is
+created, the only option if you would like to get the maximum memory and speed,
+is to shut down the context and restart after registering the CIM classes with Kryo:
+
+```
+import org.apache.spark.{SparkContext, SparkConf}
+import ch.ninecode.cim._
+
+val conf = spark.sparkContext.getConf
+sc.stop()
+conf.registerKryoClasses (CIMClasses.list)
+val sc = new SparkContext (conf)
+val spark = org.apache.spark.sql.SparkSession.builder ().getOrCreate ()
+
+```
+
 # Logging
 
 To quiet down the tremendously verbose logging for Spark to just the minimum,

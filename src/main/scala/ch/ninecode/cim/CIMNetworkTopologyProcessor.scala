@@ -769,11 +769,7 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
         old_elements.name = "nontopological_Elements"
         new_elements.name = "Elements"
         new_elements.persist (options.storage)
-        spark.sparkContext.getCheckpointDir match
-        {
-            case Some (_) => new_elements.checkpoint ()
-            case None =>
-        }
+        if (spark.sparkContext.getCheckpointDir.isDefined) new_elements.checkpoint ()
         val schema = ScalaReflection.schemaFor[dummy].dataType.asInstanceOf[StructType]
         val data_frame = spark.sqlContext.createDataFrame (new_elements.asInstanceOf[RDD[Row]], schema)
         data_frame.createOrReplaceTempView ("Elements")

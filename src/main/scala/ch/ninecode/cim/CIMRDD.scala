@@ -154,11 +154,7 @@ trait CIMRDD
         }
         rdd.name = name
         rdd.persist (storage)
-        spark.sparkContext.getCheckpointDir match
-        {
-            case Some (_) => rdd.checkpoint ()
-            case None =>
-        }
+        if (spark.sparkContext.getCheckpointDir.isDefined) rdd.checkpoint ()
         spark.createDataFrame (rdd).createOrReplaceTempView (name)
     }
 

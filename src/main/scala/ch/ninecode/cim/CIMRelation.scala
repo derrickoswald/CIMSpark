@@ -114,11 +114,7 @@ with
         ret = rdd.asInstanceOf[RDD[Row]]
         ret.setName ("Elements")
         ret.persist (_StorageLevel)
-        spark.sparkContext.getCheckpointDir match
-        {
-            case Some (_) => ret.checkpoint ()
-            case None =>
-        }
+        if (spark.sparkContext.getCheckpointDir.isDefined) ret.checkpoint ()
 
         // about processing if requested
         if (_About)

@@ -66,11 +66,7 @@ class CIMSubsetter[A <: Product : ClassTag : TypeTag] () extends Serializable
     {
         rdd.name = cls
         rdd.persist (storage)
-        context.sparkSession.sparkContext.getCheckpointDir match
-        {
-            case Some (_) => rdd.checkpoint ()
-            case None =>
-        }
+        if (context.sparkSession.sparkContext.getCheckpointDir.isDefined) rdd.checkpoint ()
         val df = context.sparkSession.createDataFrame (rdd)(typeTag[A])
         val altered_schema = modify_schema (runtime_class, df.schema)
         val data_frame = context.sparkSession.createDataFrame (rdd.asInstanceOf[RDD[Row]], altered_schema)
