@@ -20,7 +20,7 @@ case object Unforced extends State
  * <code>retained</code> attribute, or the <code>open</code> and <code>normalOpen</code>
  * attributes. Fuse and ProtectiveSwitch classes are not included by this flag.
  * This is used for alternative scenario calculations.
- * It allows the user to override of the behaviour when the processor encounters a Switch
+ * It allows the user to override the behaviour when the processor encounters a Switch
  * or a Switch derived class (e.g. Breaker) except for Fuse. The default behaviour of <code>Unforced</code>
  * will use the value of the <code>retained</code> attribute to identify a node or island boundary
  * only if the attribute is present in the CIM file and the value is <code>true</code>.

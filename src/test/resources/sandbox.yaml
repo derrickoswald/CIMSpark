@@ -47,7 +47,7 @@ services:
     environment:
       HDFS_USER: ${USER} # use value of environment variable "USER" as Spark owner/operator
       SPARK_WORKER_CORES: 1
-      SPARK_WORKER_MEMORY: 1g
+      SPARK_WORKER_MEMORY: 2g
     links:
       - sandbox
       - beach

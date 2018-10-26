@@ -182,20 +182,22 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
      */
     def isSameIsland (element: Element): Boolean =
     {
+        val force_retain_switches = options.force_retain_switches match { case ForceTrue ⇒ true case ForceFalse ⇒ false case Unforced ⇒ false }
         val force_retain_fuses = options.force_retain_fuses match { case ForceTrue ⇒ true case ForceFalse ⇒ false case Unforced ⇒ false }
         element match
         {
-            case switch: Switch ⇒ isSwitchOneNode (switch)
+            case switch: Switch ⇒ !force_retain_switches && isSwitchOneNode (switch)
+            case mktswitch: MktSwitch ⇒ !force_retain_switches && isSwitchOneNode (mktswitch.Switch)
             case cut: Cut ⇒ isSwitchOneNode (cut.Switch)
-            case disconnector: Disconnector ⇒ isSwitchOneNode (disconnector.Switch)
+            case disconnector: Disconnector ⇒ !force_retain_switches && isSwitchOneNode (disconnector.Switch)
             case fuse: Fuse ⇒ !force_retain_fuses && isSwitchOneNode (fuse.Switch)
             case gd: GroundDisconnector ⇒ isSwitchOneNode (gd.Switch)
             case jumper: Jumper ⇒ isSwitchOneNode (jumper.Switch)
-            case ps: ProtectedSwitch ⇒ isSwitchOneNode (ps.Switch)
-            case sectionaliser: Sectionaliser ⇒ isSwitchOneNode (sectionaliser.Switch)
-            case breaker: Breaker ⇒ isSwitchOneNode (breaker.ProtectedSwitch.Switch)
-            case lbs: LoadBreakSwitch ⇒ isSwitchOneNode (lbs.ProtectedSwitch.Switch)
-            case recloser: Recloser ⇒ isSwitchOneNode (recloser.ProtectedSwitch.Switch)
+            case ps: ProtectedSwitch ⇒ !force_retain_fuses && isSwitchOneNode (ps.Switch)
+            case sectionaliser: Sectionaliser ⇒ !force_retain_switches && isSwitchOneNode (sectionaliser.Switch)
+            case breaker: Breaker ⇒ !force_retain_fuses && isSwitchOneNode (breaker.ProtectedSwitch.Switch)
+            case lbs: LoadBreakSwitch ⇒ !force_retain_fuses && isSwitchOneNode (lbs.ProtectedSwitch.Switch)
+            case recloser: Recloser ⇒ !force_retain_fuses && isSwitchOneNode (recloser.ProtectedSwitch.Switch)
             case _: PowerTransformer ⇒ false
             case _: ACLineSegment ⇒ true
             case _: Conductor ⇒ true

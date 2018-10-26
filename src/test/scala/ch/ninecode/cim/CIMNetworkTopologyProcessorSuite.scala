@@ -70,10 +70,10 @@ class CIMNetworkTopologyProcessorSuite extends ch.ninecode.SparkSuite
 
             val process = System.nanoTime ()
 
-            assert (new_elements.count == 1993, "# elements after")
+            assert (new_elements.count == 1995, "# elements after")
             val islands = get[TopologicalIsland]
             assert (islands != null, "no TopologicalIsland RDD")
-            assert (islands.count == 102, "# islands")
+            assert (islands.count == 104, "# islands")
             val nodes = get[TopologicalNode]
             assert (nodes != null, "no TopologicalNode RDD")
             assert (nodes.count == 151, "# nodes")
