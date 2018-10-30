@@ -63,6 +63,8 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
             identify_islands = false,
             force_retain_switches = if (force_retain_switches) ForceTrue else Unforced,
             force_retain_fuses = if (force_retain_fuses) ForceTrue else Unforced,
+            force_switch_separate_islands = Unforced,
+            force_fuse_separate_islands = Unforced,
             default_switch_open_state = false,
             debug = debug,
             storage = storage
@@ -138,7 +140,28 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
      */
     def isSwitchOneNode (switch: Switch): Boolean =
     {
-        !retainSwitch (switch) && switchClosed (switch)
+        options.force_retain_switches match
+        {
+            case ForceTrue ⇒ false
+            case ForceFalse ⇒ true
+            case Unforced ⇒ !retainSwitch (switch) && switchClosed (switch)
+        }
+    }
+
+    /**
+     * Method to determine if a fuse can be represented as a single topological node.
+     *
+     * @param switch The fuse object to test.
+     * @return <code>true</code> if the fuse is effectively one node, <code>false</code> otherwise.
+     */
+    def isFuseOneNode (switch: Switch): Boolean =
+    {
+        options.force_retain_fuses match
+        {
+            case ForceTrue ⇒ false
+            case ForceFalse ⇒ true
+            case Unforced ⇒ !retainSwitch (switch) && switchClosed (switch)
+        }
     }
 
     /**
@@ -149,28 +172,58 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
      */
     def isSameNode (element: Element): Boolean =
     {
-        val force_retain_switches = options.force_retain_switches match { case ForceTrue ⇒ true case ForceFalse ⇒ false case Unforced ⇒ false }
-        val force_retain_fuses = options.force_retain_fuses match { case ForceTrue ⇒ true case ForceFalse ⇒ false case Unforced ⇒ false }
         element match
         {
-            case switch: Switch ⇒ !force_retain_switches && isSwitchOneNode (switch)
-            case mktswitch: MktSwitch ⇒ !force_retain_switches && isSwitchOneNode (mktswitch.Switch)
-            case cut: Cut ⇒ isSwitchOneNode (cut.Switch)
-            case disconnector: Disconnector ⇒ !force_retain_switches && isSwitchOneNode (disconnector.Switch)
-            case fuse: Fuse ⇒ !force_retain_fuses && isSwitchOneNode (fuse.Switch)
-            case gd: GroundDisconnector ⇒ isSwitchOneNode (gd.Switch)
-            case jumper: Jumper ⇒ isSwitchOneNode (jumper.Switch)
-            case ps: ProtectedSwitch ⇒ !force_retain_fuses && isSwitchOneNode (ps.Switch)
-            case sectionaliser: Sectionaliser ⇒ !force_retain_switches && isSwitchOneNode (sectionaliser.Switch)
-            case breaker: Breaker ⇒ !force_retain_fuses && isSwitchOneNode (breaker.ProtectedSwitch.Switch)
-            case lbs: LoadBreakSwitch ⇒ !force_retain_fuses && isSwitchOneNode (lbs.ProtectedSwitch.Switch)
-            case recloser: Recloser ⇒ !force_retain_fuses && isSwitchOneNode (recloser.ProtectedSwitch.Switch)
-            case _: PowerTransformer ⇒ false
-            case line: ACLineSegment ⇒ !((line.Conductor.len > 0.0) && ((line.r > 0.0) || (line.x > 0.0)))
-            case _: Conductor ⇒ true
+            case switch:             Switch ⇒             isSwitchOneNode (switch)
+            case mktswitch:          MktSwitch ⇒          isSwitchOneNode (mktswitch.Switch)
+            case cut:                Cut ⇒                isSwitchOneNode (cut.Switch)
+            case disconnector:       Disconnector ⇒       isSwitchOneNode (disconnector.Switch)
+            case fuse:               Fuse ⇒               isFuseOneNode   (fuse.Switch)
+            case grounddisconnector: GroundDisconnector ⇒ isSwitchOneNode (grounddisconnector.Switch)
+            case jumper:             Jumper ⇒             isSwitchOneNode (jumper.Switch)
+            case protectedswitch:    ProtectedSwitch ⇒    isFuseOneNode   (protectedswitch.Switch)
+            case sectionaliser:      Sectionaliser ⇒      isSwitchOneNode (sectionaliser.Switch)
+            case breaker:            Breaker ⇒            isFuseOneNode   (breaker.ProtectedSwitch.Switch)
+            case loadbreakswitch:    LoadBreakSwitch ⇒    isFuseOneNode   (loadbreakswitch.ProtectedSwitch.Switch)
+            case recloser:           Recloser ⇒           isFuseOneNode   (recloser.ProtectedSwitch.Switch)
+            case _:                  PowerTransformer ⇒   false
+            case line:               ACLineSegment ⇒      !((line.Conductor.len > 0.0) && ((line.r > 0.0) || (line.x > 0.0)))
+            case _:                  Conductor ⇒          true
             case _ ⇒
                 log.warn ("topological node processor encountered edge with unhandled class '" + element.getClass.getName +"', assumed zero impedance")
                 true
+        }
+    }
+
+    /**
+     * Method to determine if a switch can be represented as a single topological island.
+     *
+     * @param switch The switch object to test.
+     * @return <code>true</code> if the switch is effectively one island, <code>false</code> otherwise.
+     */
+    def isSwitchOneIsland (switch: Switch): Boolean =
+    {
+        options.force_switch_separate_islands match
+        {
+            case ForceTrue ⇒ false
+            case ForceFalse ⇒ true
+            case Unforced ⇒ switchClosed (switch)
+        }
+    }
+
+    /**
+     * Method to determine if a fuse can be represented as a single topological island.
+     *
+     * @param switch The fuse object to test.
+     * @return <code>true</code> if the fuse is effectively one island, <code>false</code> otherwise.
+     */
+    def isFuseOneIsland (switch: Switch): Boolean =
+    {
+        options.force_fuse_separate_islands match
+        {
+            case ForceTrue ⇒ false
+            case ForceFalse ⇒ true
+            case Unforced ⇒ switchClosed (switch)
         }
     }
 
@@ -182,25 +235,23 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
      */
     def isSameIsland (element: Element): Boolean =
     {
-        val force_retain_switches = options.force_retain_switches match { case ForceTrue ⇒ true case ForceFalse ⇒ false case Unforced ⇒ false }
-        val force_retain_fuses = options.force_retain_fuses match { case ForceTrue ⇒ true case ForceFalse ⇒ false case Unforced ⇒ false }
         element match
         {
-            case switch: Switch ⇒ !force_retain_switches && isSwitchOneNode (switch)
-            case mktswitch: MktSwitch ⇒ !force_retain_switches && isSwitchOneNode (mktswitch.Switch)
-            case cut: Cut ⇒ isSwitchOneNode (cut.Switch)
-            case disconnector: Disconnector ⇒ !force_retain_switches && isSwitchOneNode (disconnector.Switch)
-            case fuse: Fuse ⇒ !force_retain_fuses && isSwitchOneNode (fuse.Switch)
-            case gd: GroundDisconnector ⇒ isSwitchOneNode (gd.Switch)
-            case jumper: Jumper ⇒ isSwitchOneNode (jumper.Switch)
-            case ps: ProtectedSwitch ⇒ !force_retain_fuses && isSwitchOneNode (ps.Switch)
-            case sectionaliser: Sectionaliser ⇒ !force_retain_switches && isSwitchOneNode (sectionaliser.Switch)
-            case breaker: Breaker ⇒ !force_retain_fuses && isSwitchOneNode (breaker.ProtectedSwitch.Switch)
-            case lbs: LoadBreakSwitch ⇒ !force_retain_fuses && isSwitchOneNode (lbs.ProtectedSwitch.Switch)
-            case recloser: Recloser ⇒ !force_retain_fuses && isSwitchOneNode (recloser.ProtectedSwitch.Switch)
-            case _: PowerTransformer ⇒ false
-            case _: ACLineSegment ⇒ true
-            case _: Conductor ⇒ true
+            case switch:             Switch ⇒             isSwitchOneIsland (switch)
+            case mktswitch:          MktSwitch ⇒          isSwitchOneIsland (mktswitch.Switch)
+            case cut:                Cut ⇒                isSwitchOneIsland (cut.Switch)
+            case disconnector:       Disconnector ⇒       isSwitchOneIsland (disconnector.Switch)
+            case fuse:               Fuse ⇒               isFuseOneIsland   (fuse.Switch)
+            case grounddisconnector: GroundDisconnector ⇒ isSwitchOneIsland (grounddisconnector.Switch)
+            case jumper:             Jumper ⇒             isSwitchOneIsland (jumper.Switch)
+            case protectedswitch:    ProtectedSwitch ⇒    isFuseOneIsland   (protectedswitch.Switch)
+            case sectionaliser:      Sectionaliser ⇒      isSwitchOneIsland (sectionaliser.Switch)
+            case breaker:            Breaker ⇒            isFuseOneIsland   (breaker.ProtectedSwitch.Switch)
+            case loadbreakswitch:    LoadBreakSwitch ⇒    isFuseOneIsland   (loadbreakswitch.ProtectedSwitch.Switch)
+            case recloser:           Recloser ⇒           isFuseOneIsland   (recloser.ProtectedSwitch.Switch)
+            case _:                  PowerTransformer ⇒   false
+            case _:                  ACLineSegment ⇒      true
+            case _:                  Conductor ⇒          true
             case _ ⇒
                 log.warn ("topological island processor encountered edge with unhandled class '" + element.getClass.getName +"', assumed zero impedance")
                 true
