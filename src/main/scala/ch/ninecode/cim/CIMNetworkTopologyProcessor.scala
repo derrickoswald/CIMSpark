@@ -730,7 +730,7 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
             // swap the old TopologicalIsland RDD for the new one
             if (!old_ti.isEmpty)
             {
-                old_ti.unpersist (false)
+                old_ti.unpersist (true)
                 old_ti.name = "old_TopologicalIsland"
             }
             TopologicalIsland.subsetter.save (session.sqlContext, new_ti.asInstanceOf[TopologicalIsland.subsetter.rddtype], options.storage)
@@ -752,7 +752,7 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
         // swap the old TopologicalNode RDD for the new one
         if (!old_tn.isEmpty)
         {
-            old_tn.unpersist (false)
+            old_tn.unpersist (true)
             old_tn.name = "old_TopologicalNode"
         }
         TopologicalNode.subsetter.save (session.sqlContext, new_tn.asInstanceOf[TopologicalNode.subsetter.rddtype], options.storage)
