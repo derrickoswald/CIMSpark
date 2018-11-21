@@ -320,9 +320,20 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
         val edges = getOrElse[Element]("Elements").keyBy (_.id).join (terms)
             .values.flatMap (edge_operator).map (make_graph_edges).persist (options.storage)
 
-        // get the voltage attribute from the edge for each vertex
-        val e = edges.flatMap (x ⇒ if (x.attr.id_cn_2 == null) List ((x.attr.id_cn_1, x.attr.voltage)) else List ((x.attr.id_cn_1, x.attr.voltage), (x.attr.id_cn_2, x.attr.voltage)))
-            .groupBy (_._1).map (x ⇒ x._2.head) // just take the first voltage - they should all be the same - right?
+        // get the voltage for each ConnectivityNode by joining through Terminal
+        val e = getOrElse[Terminal].map (x ⇒ (x.ConductingEquipment, x.ConnectivityNode)).groupByKey
+            .join (getOrElse[ConductingEquipment].map (x ⇒ (x.id, x.BaseVoltage))).values
+            .flatMap (x ⇒ x._1.map (y ⇒ (y, x._2)))
+            .groupByKey.map (
+            x ⇒
+            {
+                val voltages = x._2.filter (_ != null)
+                val voltage = voltages.headOption.getOrElse ("")
+                if (options.debug)
+                    if (!voltages.forall (_ == voltage))
+                        log.error ("conflicting edge voltages on node %s (%s)".format (x._1, voltages.mkString (",")))
+                (x._1, voltage)
+            })
 
         // get the vertices
         val vertices = getOrElse[ConnectivityNode].keyBy (_.id).join (e).values.map (to_vertex).keyBy (_.node).persist (options.storage)
@@ -330,12 +341,12 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
         if (options.debug)
         {
             // check for uniqueness of VertexId
-            val duplicates: RDD[(VertexId, Iterable[CIMVertexData])] = vertices.groupByKey.filter (_._2.size > 1)
+            val duplicates = vertices.groupByKey.filter (_._2.size > 1)
             if (!duplicates.isEmpty ())
                 duplicates.collect.map (x ⇒ { log.error ("VertexId clash (%d) for %s and %s".format (x._1, x._2.head.node_label, x._2.tail.head.node_label)); 1 })
 
             // check for missing vertices
-            val cn: RDD[(String, String)] = edges.flatMap (x ⇒ List ((x.attr.id_cn_1, x.attr.id_equ), (x.attr.id_cn_2, x.attr.id_equ)))
+            val cn = edges.flatMap (x ⇒ List ((x.attr.id_cn_1, x.attr.id_equ), (x.attr.id_cn_2, x.attr.id_equ)))
             val missing = cn.leftOuterJoin (vertices.keyBy (_._2.node_label)).filter (_._2._2 match { case None ⇒ true case _ ⇒ false } ).map (x ⇒ (x._2._1, x._1))
             if (!missing.isEmpty)
                 missing.collect. map (x ⇒ { log.error ("%s missing ConnectivityNode %s".format (x._1, x._2)); 1 })
@@ -611,11 +622,19 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
                 List (CIMIslandData (vertex_id (edge.id_cn_1), edge.id_cn_1), CIMIslandData (vertex_id (edge.id_cn_2), edge.id_cn_2))
         }
 
-        def mapper (d: ((VertexId, CIMVertexData), CIMIslandData)): (VertexId, CIMVertexData) =
+        def mapper (d: ((VertexId, CIMVertexData), Option[CIMIslandData])): (VertexId, CIMVertexData) =
         {
-            d._1._2.island = d._2.island
-            d._1._2.island_label = d._2.island_label
-            d._1
+            d._2 match
+            {
+                case Some(data) ⇒
+                    d._1._2.island = data.island
+                    d._1._2.island_label = data.island_label
+                    d._1
+                case _ ⇒
+                    d._1._2.island = vertex_id (d._1._2.node_label)
+                    d._1._2.island_label = d._1._2.node_label
+                    d._1
+            }
         }
 
         def vertex_program (id: VertexId, attr: CIMIslandData, msg: CIMIslandData): CIMIslandData =
@@ -663,7 +682,7 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
         val g = topo_graph.pregel[CIMIslandData] (null, 10000, EdgeDirection.Either) (vertex_program, send_message, merge_message)
 
         // update the original graph with the islands
-        val v = graph.vertices.keyBy (_._2.node).join (g.vertices.values.keyBy (_.node)).values.map (mapper)
+        val v = graph.vertices.keyBy (_._2.node).leftOuterJoin (g.vertices.values.keyBy (_.node)).values.map (mapper)
 
         // make a new graph with the updated vertices
         val ret: Graph[CIMVertexData, CIMEdgeData] = Graph.apply (v, graph.edges, CIMVertexData (), options.storage, options.storage)
@@ -759,7 +778,7 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
 
         // but the other RDD (ConnectivityNode and Terminal also ACDCTerminal) need to be updated in IdentifiedObject and Element
 
-        // assign every ConnectivtyNode to a TopologicalNode
+        // assign every ConnectivityNode to a TopologicalNode
         val old_cn = getOrElse[ConnectivityNode]
         val new_cn = old_cn.keyBy (a => vertex_id (a.id)).leftOuterJoin (graph.vertices).values.map (update_cn)
 
