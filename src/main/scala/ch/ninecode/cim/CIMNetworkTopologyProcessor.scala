@@ -322,8 +322,8 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
 
         // get the voltage for each ConnectivityNode by joining through Terminal
         val e = getOrElse[Terminal].map (x ⇒ (x.ConductingEquipment, x.ConnectivityNode)).groupByKey
-            .join (getOrElse[ConductingEquipment].map (x ⇒ (x.id, x.BaseVoltage))).values
-            .flatMap (x ⇒ x._1.map (y ⇒ (y, x._2)))
+            .join (getOrElse[ConductingEquipment].map (x ⇒ (x.id, x.BaseVoltage))).values // ([ConnectivityNode], voltage)
+            .flatMap (x ⇒ x._1.filter (_ != null).map (y ⇒ (y, x._2)))
             .groupByKey.map (
             x ⇒
             {
@@ -331,7 +331,7 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
                 val voltage = voltages.headOption.getOrElse ("")
                 if (options.debug)
                     if (!voltages.forall (_ == voltage))
-                        log.error ("conflicting edge voltages on node %s (%s)".format (x._1, voltages.mkString (",")))
+                        log.error ("conflicting edge voltages on node %s (%s)".format (x._1, voltages.take(10).mkString (",")))
                 (x._1, voltage)
             })
 

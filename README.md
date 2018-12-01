@@ -213,20 +213,30 @@ val element = spark.read.format ("ch.ninecode.cim").options (opts).load (file1, 
 
 where:
 * file1..n is a list of files to read, (note that load can take a variable number of arguments)
-* opts is pairs of named options in a Map[String,String], where values are "true" or "false",
+* opts is pairs of named options in a Map[String,String], where values are usually "true" or "false",
+but for some topology options "ForceTrue", "ForceFalse" or "Unforced".
 CIM reader specific option names and their meaning are:
   * ch.ninecode.cim.do_about - merge rdf:about elements into rdf:ID elements with the same mRID
   * ch.ninecode.cim.do_normalize - normalize 1:N relations which are denormalized
-  * ch.ninecode.cim.do_deduplication - eliminate duplicates based on CIM mRID or not
-  * ch.ninecode.cim.make_edges - generate the Edges RDD and table or not
-  * ch.ninecode.cim.do_join - merge CIM files (by UserAttribute) or not
+  * ch.ninecode.cim.do_deduplication - eliminate duplicates based on CIM mRID
+  * ch.ninecode.cim.make_edges - generate the Edges RDD and table
+  * ch.ninecode.cim.do_join - merge CIM files (by UserAttribute)
   * ch.ninecode.cim.do_topo - generate TopologicalNode elements
-  * ch.ninecode.cim.do_topo_islands - generate topological islands (forces ch.ninecode.cim.do_topo true also)
-  * ch.ninecode.cim.split_maxsize - sets the size of FileInputFormat splits (default 64M)
+  * ch.ninecode.cim.do_topo_islands - generate TopologicalIsland elements (forces ch.ninecode.cim.do_topo true also)
+  * ch.ninecode.cim.force_retain_switches - force switches to have two TopologicalNode irregardless of the retain value
+  * ch.ninecode.cim.force_retain_fuses - force fuses to have two TopologicalNode irregardless of the retain value
+  * ch.ninecode.cim.force_switch_separate_islands - force switches to have two TopologicalIsland irregardless of the retain value
+  * ch.ninecode.cim.force_fuse_separate_islands - force fuses to have two TopologicalIsland irregardless of the retain value
+  * ch.ninecode.cim.default_switch_open_state - default open value when normalOpen and open aren both not specified
+  * ch.ninecode.cim.debug - add additional checks and messages for debugging purposes
   
-One further option is the [StorageLevel](https://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.storage.StorageLevel$)
+Other Spark specific options are the
+[StorageLevel](https://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.storage.StorageLevel$)
+(default MEMORY_AND_DISK_SER) to set the RDD caching strategy and 
+[ch.ninecode.cim.split_maxsize](https://hadoop.apache.org/docs/current/api/org/apache/hadoop/mapreduce/lib/input/FileInputFormat.html#SPLIT_MAXSIZE)
+to set the size of FileInputFormat splits (default 64M) which establishes the number of partitions for a large file.
 
-For example, to enable edge creation, topological island formation and add disk serialization, use:
+For example, to enable edge creation and topological island formation, use:
 
 ```scala
 import scala.collection.mutable.HashMap
@@ -236,7 +246,6 @@ import ch.ninecode.model._
 val opts = new HashMap[String,String]()
 opts.put("ch.ninecode.cim.make_edges", "true")
 opts.put("ch.ninecode.cim.do_topo_islands", "true")
-opts.put("StorageLevel", "MEMORY_AND_DISK_SER")
 val element = spark.read.format ("ch.ninecode.cim").options (opts).load ("hdfs://sandbox:8020/data/NIS_CIM_Export_NS_INITIAL_FILL_Oberiberg.rdf")
 element.count
 val edges = sc.getPersistentRDDs.filter(_._2.name == "Edges").head._2.asInstanceOf[RDD[TopoEdge]]

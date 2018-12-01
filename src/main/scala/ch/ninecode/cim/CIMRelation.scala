@@ -42,8 +42,16 @@ with
 {
     implicit val log: Logger = LoggerFactory.getLogger (getClass)
 
+    def parseState (text: String): State =
+        text match
+        {
+            case "ForceTrue" ⇒ ForceTrue
+            case "ForceFalse" ⇒ ForceFalse
+            case _ ⇒ Unforced
+        }
+
     // check for a storage level option
-    implicit val _StorageLevel: StorageLevel = StorageLevel.fromString (parameters.getOrElse ("StorageLevel", "MEMORY_ONLY"))
+    implicit val _StorageLevel: StorageLevel = StorageLevel.fromString (parameters.getOrElse ("StorageLevel", "MEMORY_AND_DISK_SER"))
     // check for rdf:about option
     val _About: Boolean = parameters.getOrElse ("ch.ninecode.cim.do_about", "false").toBoolean
     // check for normalization option
@@ -58,8 +66,31 @@ with
     val _Islands: Boolean = parameters.getOrElse ("ch.ninecode.cim.do_topo_islands", "false").toBoolean
     // check for NTP option, islands requires topological nodes
     val _Topo: Boolean = if (_Islands) true else parameters.getOrElse ("ch.ninecode.cim.do_topo", "false").toBoolean
+    // check for NTP force switches option
+    val _Force_Retain_Switches: State = parseState (parameters.getOrElse ("ch.ninecode.cim.force_retain_switches", "Unforced"))
+    // check for NTP force fuses option
+    val _Force_Retain_Fuses: State = parseState (parameters.getOrElse ("ch.ninecode.cim.force_retain_fuses", "Unforced"))
+    // check for NTP force switches to separate islands option
+    val _Force_Switch_Separate_Islands: State = parseState (parameters.getOrElse ("ch.ninecode.cim.force_switch_separate_islands", "Unforced"))
+    // check for NTP force fuses to separate islands option
+    val _Force_Fuse_Separate_Islands: State = parseState (parameters.getOrElse ("ch.ninecode.cim.force_fuse_separate_islands", "Unforced"))
+    // check for NTP default switch state option
+    val _Default_Switch_Open_State: Boolean = parameters.getOrElse ("ch.ninecode.cim.default_switch_open_state", "false").toBoolean
+    // check for NTP debug option
+    val _Debug: Boolean = parameters.getOrElse ("ch.ninecode.cim.debug", "false").toBoolean
     // check for split size option, default is 64MB
     val _SplitSize: Long = parameters.getOrElse ("ch.ninecode.cim.split_maxsize", "67108864").toLong
+
+    val _TopologyOptions = CIMTopologyOptions (
+        identify_islands = _Islands,
+        force_retain_switches = _Force_Retain_Switches,
+        force_retain_fuses = _Force_Retain_Fuses,
+        force_switch_separate_islands = _Force_Switch_Separate_Islands,
+        force_fuse_separate_islands = _Force_Fuse_Separate_Islands,
+        default_switch_open_state = _Default_Switch_Open_State,
+        debug = _Debug,
+        storage = _StorageLevel
+    )
 
     log.info ("parameters: " + parameters.toString)
     log.info ("storage: " + _StorageLevel.description)
@@ -188,7 +219,7 @@ with
         if (_Topo)
         {
             val ntp = new CIMNetworkTopologyProcessor (spark, _StorageLevel)
-            ret = ntp.process (_Islands).asInstanceOf[RDD[Row]]
+            ret = ntp.process (_TopologyOptions).asInstanceOf[RDD[Row]]
         }
 
         // set up edge graph if requested
