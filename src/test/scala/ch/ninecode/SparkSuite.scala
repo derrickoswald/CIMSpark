@@ -179,7 +179,7 @@ class SparkSuite extends fixture.FunSuite
         configuration.setAppName ("CIMSparkSuite")
         configuration.setMaster ("local[2]")
         configuration.set ("spark.driver.memory", "1g")
-        configuration.set ("spark.executor.memory", "4g")
+        configuration.set ("spark.executor.memory", "1g")
         configuration.set ("spark.ui.port", "4041")
         configuration.set ("spark.ui.showConsoleProgress", "false")
         configuration.registerKryoClasses (CIMClasses.list)

@@ -229,6 +229,7 @@ CIM reader specific option names and their meaning are:
   * ch.ninecode.cim.force_fuse_separate_islands - force fuses to have two TopologicalIsland irregardless of the retain value
   * ch.ninecode.cim.default_switch_open_state - default open value when normalOpen and open aren both not specified
   * ch.ninecode.cim.debug - add additional checks and messages for debugging purposes
+  * ch.ninecode.cim.cache - save resulting RDD as an object file using this name, for subsequent reads use this as a cache
   
 Other Spark specific options are the
 [StorageLevel](https://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.storage.StorageLevel$)

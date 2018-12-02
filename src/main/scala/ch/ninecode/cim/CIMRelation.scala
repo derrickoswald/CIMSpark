@@ -1,6 +1,7 @@
 package ch.ninecode.cim
 
 import org.apache.hadoop.conf.Configuration
+import org.apache.hadoop.fs.Path
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat
 import org.apache.spark.rdd.RDD
 import org.apache.spark.rdd.RDD.rddToPairRDDFunctions
@@ -23,23 +24,20 @@ class CIMRelation (
     partitionSchema: StructType,
     dataSchema: StructType,
     fileFormat: FileFormat,
-    parameters: Map[String, String])
-                                    (spark: SparkSession)
-
-// Derrick: if it inherits from HadoopFSRelation, DataSource uses the CIMFileFormat which doesn't allow subsetting, etc.
-//extends
-//    HadoopFsRelation (
-//        location,
-//        partitionSchema,
-//        dataSchema,
-//        None, // org.apache.spark.sql.execution.datasources.BucketSpec is private
-//        fileFormat,
-//        parameters)                    (spark)
-extends
-    BaseRelation
-with
-    TableScan
+    parameters: Map[String, String]) (spark: SparkSession) extends BaseRelation with TableScan
 {
+
+    // We use BaseRelation because if it inherits from HadoopFSRelation,
+    // DataSource uses the CIMFileFormat which doesn't allow subsetting, etc. :
+    //extends
+    //    HadoopFsRelation (
+    //        location,
+    //        partitionSchema,
+    //        dataSchema,
+    //        None, // org.apache.spark.sql.execution.datasources.BucketSpec is private
+    //        fileFormat,
+    //        parameters) (spark)
+
     implicit val log: Logger = LoggerFactory.getLogger (getClass)
 
     def parseState (text: String): State =
@@ -49,6 +47,8 @@ with
             case "ForceFalse" ⇒ ForceFalse
             case _ ⇒ Unforced
         }
+
+    val paths: Array[String] = location.inputFiles
 
     // check for a storage level option
     implicit val _StorageLevel: StorageLevel = StorageLevel.fromString (parameters.getOrElse ("StorageLevel", "MEMORY_AND_DISK_SER"))
@@ -80,6 +80,8 @@ with
     val _Debug: Boolean = parameters.getOrElse ("ch.ninecode.cim.debug", "false").toBoolean
     // check for split size option, default is 64MB
     val _SplitSize: Long = parameters.getOrElse ("ch.ninecode.cim.split_maxsize", "67108864").toLong
+    // check for cache option
+    val _Cache: String = parameters.getOrElse ("ch.ninecode.cim.cache", "")
 
     val _TopologyOptions = CIMTopologyOptions (
         identify_islands = _Islands,
@@ -119,60 +121,8 @@ with
         ScalaReflection.schemaFor[dummy].dataType.asInstanceOf[StructType]
     }
 
-    // For a non-partitioned relation, this method builds an RDD[Row] containing all rows within this relation.
-    override def buildScan (): RDD[Row] =
+    def make_tables (rdd: RDD[Element]): Unit =
     {
-        log.info ("buildScan")
-
-        // register the ElementUDT
-        ElementRegistration.register ()
-
-        var ret: RDD[Row] = null
-
-        val path = parameters.getOrElse ("path", sys.error ("'path' must be specified for CIM data."))
-
-        // make a config
-        val configuration = new Configuration (spark.sparkContext.hadoopConfiguration)
-        configuration.set (FileInputFormat.INPUT_DIR, path)
-        configuration.setLong (FileInputFormat.SPLIT_MAXSIZE, _SplitSize)
-
-        var rdd = spark.sparkContext.newAPIHadoopRDD (
-            configuration,
-            classOf[CIMInputFormat],
-            classOf[String],
-            classOf[Element]).values
-
-        ret = rdd.asInstanceOf[RDD[Row]]
-        ret.setName ("Elements")
-        ret.persist (_StorageLevel)
-        if (spark.sparkContext.getCheckpointDir.isDefined) ret.checkpoint ()
-
-        // about processing if requested
-        if (_About)
-        {
-            val about = new CIMAbout (spark, _StorageLevel)
-            rdd = about.do_about ()
-            ret = rdd.asInstanceOf[RDD[Row]]
-        }
-
-        // normalize if requested
-        if (_Normalize)
-        {
-            val normalize = new CIMNormalize (spark, _StorageLevel)
-            rdd = normalize.do_normalization ()
-            ret = rdd.asInstanceOf[RDD[Row]]
-        }
-
-        // dedup if requested
-        if (_DeDup)
-        {
-            val dedup = new CIMDeDup (spark, _StorageLevel)
-            rdd = dedup.do_deduplicate ()
-            ret = rdd.asInstanceOf[RDD[Row]]
-        }
-
-        // as a side effect, define all the other temporary tables
-        log.info ("creating temporary tables")
         val names = rdd.flatMap (
             (x: Element) => // hierarchy: List[String]
             {
@@ -207,26 +157,106 @@ with
                 }
             }
         )
+    }
 
-        // merge ISU and NIS ServiceLocations if requested
-        if (_Join)
+    // For a non-partitioned relation, this method builds an RDD[Row] containing all rows within this relation.
+    override def buildScan (): RDD[Row] =
+    {
+        log.info ("buildScan")
+
+        // register the ElementUDT
+        ElementRegistration.register ()
+
+        var ret: RDD[Row] = null
+
+        if (_Cache != "")
         {
-            val join = new CIMJoin (spark, _StorageLevel)
-            ret = join.do_join ().asInstanceOf[RDD[Row]]
+            val path = new Path (_Cache)
+            val configuration = new Configuration (spark.sparkContext.hadoopConfiguration)
+            val fs = path.getFileSystem (configuration)
+            if (fs.exists (path))
+            {
+                val rdd: RDD[Element] = spark.sparkContext.objectFile (_Cache)
+                ret = rdd.asInstanceOf[RDD[Row]]
+                make_tables (rdd)
+            }
         }
 
-        // perform topological processing if requested
-        if (_Topo)
+        if (null == ret)
         {
-            val ntp = new CIMNetworkTopologyProcessor (spark, _StorageLevel)
-            ret = ntp.process (_TopologyOptions).asInstanceOf[RDD[Row]]
-        }
+            val path = if (parameters.contains ("path"))
+                parameters("path")
+            else
+                paths.mkString (",")
 
-        // set up edge graph if requested
-        if (_Edges)
-        {
-            val cimedges = new CIMEdges (spark, _StorageLevel)
-            ret = cimedges.make_edges (_Topo).asInstanceOf[RDD[Row]]
+            // make a config
+            val configuration = new Configuration (spark.sparkContext.hadoopConfiguration)
+            configuration.set (FileInputFormat.INPUT_DIR, path)
+            configuration.setLong (FileInputFormat.SPLIT_MAXSIZE, _SplitSize)
+
+            var rdd = spark.sparkContext.newAPIHadoopRDD (
+                configuration,
+                classOf[CIMInputFormat],
+                classOf[String],
+                classOf[Element]).values
+
+            ret = rdd.asInstanceOf[RDD[Row]]
+            ret.setName ("Elements")
+            ret.persist (_StorageLevel)
+            if (spark.sparkContext.getCheckpointDir.isDefined) ret.checkpoint ()
+
+            // about processing if requested
+            if (_About)
+            {
+                val about = new CIMAbout (spark, _StorageLevel)
+                rdd = about.do_about ()
+                ret = rdd.asInstanceOf[RDD[Row]]
+            }
+
+            // normalize if requested
+            if (_Normalize)
+            {
+                val normalize = new CIMNormalize (spark, _StorageLevel)
+                rdd = normalize.do_normalization ()
+                ret = rdd.asInstanceOf[RDD[Row]]
+            }
+
+            // dedup if requested
+            if (_DeDup)
+            {
+                val dedup = new CIMDeDup (spark, _StorageLevel)
+                rdd = dedup.do_deduplicate ()
+                ret = rdd.asInstanceOf[RDD[Row]]
+            }
+
+            // as a side effect, define all the other temporary tables
+            log.info ("creating temporary tables")
+            make_tables (rdd)
+
+            // merge ISU and NIS ServiceLocations if requested
+            if (_Join)
+            {
+                val join = new CIMJoin (spark, _StorageLevel)
+                ret = join.do_join ().asInstanceOf[RDD[Row]]
+            }
+
+            // perform topological processing if requested
+            if (_Topo)
+            {
+                val ntp = new CIMNetworkTopologyProcessor (spark, _StorageLevel)
+                ret = ntp.process (_TopologyOptions).asInstanceOf[RDD[Row]]
+            }
+
+            // set up edge graph if requested
+            if (_Edges)
+            {
+                val cimedges = new CIMEdges (spark, _StorageLevel)
+                ret = cimedges.make_edges (_Topo).asInstanceOf[RDD[Row]]
+            }
+
+            // cache elements if requested
+            if (_Cache != "")
+                ret.saveAsObjectFile (_Cache)
         }
 
         ret
