@@ -178,6 +178,9 @@ class CIMRelation (
             {
                 val rdd: RDD[Element] = spark.sparkContext.objectFile (_Cache)
                 ret = rdd.asInstanceOf[RDD[Row]]
+                ret.setName ("Elements")
+                ret.persist (_StorageLevel)
+                if (spark.sparkContext.getCheckpointDir.isDefined) ret.checkpoint ()
                 make_tables (rdd)
             }
         }
