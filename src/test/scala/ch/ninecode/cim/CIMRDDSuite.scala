@@ -6,13 +6,10 @@ import scala.util.Random
 import org.scalatest.BeforeAndAfter
 
 import org.apache.hadoop.conf.Configuration
-import org.apache.hadoop.fs.Path
-import org.apache.hadoop.mapreduce.lib.input.FileSplit
-import org.apache.hadoop.mapreduce.{Counter, TaskAttemptContext}
-import org.apache.hadoop.io.RawComparator
 import org.apache.spark.rdd.RDD
 import org.apache.spark.rdd.RDD.rddToPairRDDFunctions
-import org.apache.spark.sql.{Row, SparkSession}
+import org.apache.spark.sql.Row
+import org.apache.spark.sql.SparkSession
 
 import ch.ninecode.model.Element
 import ch.ninecode.model.Unknown
@@ -20,13 +17,11 @@ import ch.ninecode.model.Unknown
 class CIMRDDSuite extends ch.ninecode.SparkSuite with BeforeAndAfter
 {
     val FILE_DEPOT = "data/"
-    val PRIVATE_FILE_DEPOT = "private_data/"
 
     // test file names
     val FILENAME1: String = FILE_DEPOT + "NIS_CIM_Export_NS_INITIAL_FILL_Oberiberg.rdf"
     val FILENAME2: String = FILE_DEPOT + "NIS_CIM_Export_NS_INITIAL_FILL_Stoos.rdf"
     val FILENAME3: String = FILE_DEPOT + "NIS_CIM_Export_NS_INITIAL_FILL.rdf"
-    val FILENAME4: String = PRIVATE_FILE_DEPOT + "bkw_cim_export_defaultall.rdf"
 
     before
     {
@@ -50,11 +45,6 @@ class CIMRDDSuite extends ch.ninecode.SparkSuite with BeforeAndAfter
     // tail --bytes=+3145728 NIS_CIM_Export_NS_INITIAL_FILL_Oberiberg.rdf | head --bytes=1048576 | grep -P "^[\t]<cim" | wc
     val OFFSET = 3145728
     val PARTIAL_MAP_SIZE = 2546
-
-    // tail --bytes=+5905580032 bkw_cim_export_defaultall.rdf | head --bytes=67108864 | grep -P "^[\t]<cim" | wc
-    val SIZE4 = 64L * 1024L * 1024L // 67108864
-    val OFFSET4 = 88L * SIZE4 // 5905580032
-    val PARTIAL4 = 150674
 
     def rddFile (filename: String, offset: Long = 0, length: Long = 0)(implicit session: SparkSession): RDD[Row] =
     {
@@ -183,83 +173,5 @@ class CIMRDDSuite extends ch.ninecode.SparkSuite with BeforeAndAfter
         assert (rdd1.count () === ELEMENTS3)
         assert (rdd2.count () === ELEMENTS3)
     }
-
-    case class MyInputSplit (file: String, start: Long, end: Long) extends FileSplit
-    {
-        override def getStart: Long = start
-        override def getPath: Path = new Path (file)
-        override def getLength: Long = end - start
-        override def getLocations: Array[String] = Array (file)
-    }
-
-    case class MyTaskAttemptContext () extends TaskAttemptContext
-    {
-        val task = new org.apache.hadoop.mapred.TaskID ("test case", 1, org.apache.hadoop.mapreduce.TaskType.JOB_SETUP, 1)
-        override def getTaskAttemptID = new org.apache.hadoop.mapred.TaskAttemptID (task, 1)
-
-        // Members declared in org.apache.hadoop.mapreduce.JobContext
-        def getArchiveClassPaths: Array[org.apache.hadoop.fs.Path] = ???
-        def getArchiveTimestamps: Array[String] = ???
-        def getCacheArchives: Array[java.net.URI] = ???
-        def getCacheFiles: Array[java.net.URI] = ???
-        def getCombinerClass: Class[_ <: org.apache.hadoop.mapreduce.Reducer[_, _, _, _]] = ???
-        def getConfiguration: org.apache.hadoop.conf.Configuration = new org.apache.hadoop.conf.Configuration ()
-        def getCredentials: org.apache.hadoop.security.Credentials = ???
-        def getFileClassPaths: Array[org.apache.hadoop.fs.Path] = ???
-        def getFileTimestamps: Array[String] = ???
-        def getGroupingComparator: org.apache.hadoop.io.RawComparator[_] = ???
-        def getInputFormatClass: Class[_ <: org.apache.hadoop.mapreduce.InputFormat[_, _]] = ???
-        def getJar: String = ???
-        def getJobID: org.apache.hadoop.mapreduce.JobID = ???
-        def getJobName: String = ???
-        def getJobSetupCleanupNeeded: Boolean = ???
-        def getLocalCacheArchives: Array[org.apache.hadoop.fs.Path] = ???
-        def getLocalCacheFiles: Array[org.apache.hadoop.fs.Path] = ???
-        def getMapOutputKeyClass: Class[_] = ???
-        def getMapOutputValueClass: Class[_] = ???
-        def getMapperClass: Class[_ <: org.apache.hadoop.mapreduce.Mapper[_, _, _, _]] = ???
-        def getMaxMapAttempts: Int = ???
-        def getMaxReduceAttempts: Int = ???
-        def getNumReduceTasks: Int = ???
-        def getOutputFormatClass: Class[_ <: org.apache.hadoop.mapreduce.OutputFormat[_, _]] = ???
-        def getOutputKeyClass: Class[_] = ???
-        def getOutputValueClass: Class[_] = ???
-        def getPartitionerClass: Class[_ <: org.apache.hadoop.mapreduce.Partitioner[_, _]] = ???
-        def getProfileEnabled: Boolean = ???
-        def getProfileParams: String = ???
-        def getProfileTaskRange(x$1: Boolean): org.apache.hadoop.conf.Configuration.IntegerRanges = ???
-        def getReducerClass: Class[_ <: org.apache.hadoop.mapreduce.Reducer[_, _, _, _]] = ???
-        def getSortComparator: org.apache.hadoop.io.RawComparator[_] = ???
-        def getSymlink: Boolean = ???
-        def getTaskCleanupNeeded: Boolean = ???
-        def getUser: String = ???
-        def getWorkingDirectory: org.apache.hadoop.fs.Path = ???
-
-        // Members declared in org.apache.hadoop.util.Progressable
-        def progress(): Unit = ???
-
-        // Members declared in org.apache.hadoop.mapreduce.TaskAttemptContext
-        def getCounter(x$1: String,x$2: String): org.apache.hadoop.mapreduce.Counter = ???
-        def getCounter (counterName: Enum[_]): Counter = ???
-        def getProgress: Float = ???
-        def getStatus: String = ???
-        def setStatus(x$1: String): Unit = ???
-        def getCombinerKeyGroupingComparator: RawComparator[_] = ???
-    }
-
-    test ("Read beyond 2GB")
-    {
-        implicit session: SparkSession ⇒
-
-        val reader = new CIMRecordReader ()
-        val split = MyInputSplit (FILENAME4, OFFSET4, OFFSET4 + SIZE4)
-        val context = MyTaskAttemptContext ()
-        reader.initialize (split, context)
-        var count = 0
-        while (reader.nextKeyValue ())
-            count += 1
-        reader.close ()
-        assert (count === PARTIAL4)
-
-    }
 }
+
