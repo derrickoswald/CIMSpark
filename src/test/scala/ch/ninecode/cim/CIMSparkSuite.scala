@@ -18,6 +18,11 @@ class CIMSparkSuite extends ch.ninecode.SparkSuite with org.scalatest.BeforeAndA
             new Unzip ().unzip (FILE_DEPOT + "NIS_CIM_Export_NS_INITIAL_FILL_Oberiberg.zip", FILE_DEPOT)
     }
 
+    after
+    {
+        deleteRecursive (new File (FILENAME))
+    }
+
     test ("Basic")
     {
         implicit session: SparkSession ⇒
