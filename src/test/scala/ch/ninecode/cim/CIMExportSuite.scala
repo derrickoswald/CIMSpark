@@ -155,8 +155,8 @@ voltage +
         val elements = readFile (filenames_micro.mkString (","), options)
         println (elements.count + " elements")
         val export = new CIMExport (spark)
-        export.exportAll (FILE_DEPOT + "BaseCase_BC.rdf")
-        assert (new File (FILE_DEPOT +"BaseCase_BC.rdf").exists, "export all BaseCase_BC")
+        export.exportAll ("target/BaseCase_BC.rdf")
+        assert (new File ("target/BaseCase_BC.rdf").exists, "export all BaseCase_BC")
     }
 
     test ("ExportIsland")
@@ -168,8 +168,8 @@ voltage +
         val elements = readFile (filenames_real.mkString (","), options)
         println (elements.count + " elements")
         val export = new CIMExport (spark)
-        export.exportIsland ("_TI-1", FILE_DEPOT + "_TI-1_island" + ".rdf")
-        assert (new File (FILE_DEPOT +"_TI-1" + "_island.rdf").exists, "island _TI-1")
+        export.exportIsland ("_TI-1", "target/_TI-1_island" + ".rdf")
+        assert (new File ("target/_TI-1" + "_island.rdf").exists, "island _TI-1")
         // ToDo:
         // The exported island has no elements because the TopologicalIsland references TopologicalNode, e.g.
         // <cim:TopologicalIsland rdf:ID="_TI-1">
@@ -192,8 +192,8 @@ voltage +
         val elements = readFile (filenames_micro.mkString (","), options)
         println (elements.count + " elements")
         val export = new CIMExport (spark)
-        export.exportAllIslands (FILE_DEPOT)
-        assert (new File (FILE_DEPOT +"_97e00e77-7a51-4997-8456-4ca94774324d" + ".rdf").exists, "island _97e00e77-7a51-4997-8456-4ca94774324d")
+        export.exportAllIslands ("target/")
+        assert (new File ("target/_97e00e77-7a51-4997-8456-4ca94774324d" + ".rdf").exists, "island _97e00e77-7a51-4997-8456-4ca94774324d")
     }
 
 }

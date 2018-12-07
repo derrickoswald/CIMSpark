@@ -34,6 +34,13 @@ class CIMRDDSuite extends ch.ninecode.SparkSuite with BeforeAndAfter
             new Unzip ().unzip (FILE_DEPOT + "NIS_CIM_Export_NS_INITIAL_FILL.zip", FILE_DEPOT)
     }
 
+    after
+    {
+        deleteRecursive (new File (FILENAME1))
+        deleteRecursive (new File (FILENAME2))
+        deleteRecursive (new File (FILENAME3))
+    }
+
     // number of elements in the file
     // get number of lines at the top level with:
     // grep -P "^[\t]<cim" NIS_CIM_Export_NS_INITIAL_FILL_Oberiberg.rdf | wc

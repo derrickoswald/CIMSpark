@@ -80,7 +80,7 @@ extends
             )
 
             val export = new CIMExport (spark)
-            export.exportAll (FILE_DEPOT + "MicroGrid.rdf", "MicroGridTestConfiguration")
+            export.exportAll ("target/MicroGrid.rdf", "MicroGridTestConfiguration")
     }
 
     test ("TopologicalNodes")
@@ -110,6 +110,6 @@ extends
             )
 
             val export = new CIMExport (spark)
-            export.exportAll (FILE_DEPOT + "RealGrid.rdf", "CGMES_v2.4.15_RealGridTestConfiguration")
+            export.exportAll ("target/RealGrid.rdf", "CGMES_v2.4.15_RealGridTestConfiguration")
     }
 }
