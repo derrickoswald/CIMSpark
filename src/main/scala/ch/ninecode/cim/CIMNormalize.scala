@@ -85,7 +85,7 @@ with
     /**
      * Create a new Element with the (possibly child) class's field set to value.
      *
-     * Recursively hunts for <code>child</code> class in the heirarchical <code>element</code>
+     * Recursively hunts for <code>child</code> class in the hierarchical <code>element</code>
      * and sets its <code>field</code> to <code>value</code>.
      *
      * @param element the element to copy with the changed field
@@ -171,25 +171,25 @@ with
         val all = elements.count
 
         // get the objects that are denormalized, i.e. contain N references in a 1:N relationship
-        val relations: RDD[Relation] = elements.flatMap (get_denormalized).cache ()
+        val relations: RDD[Relation] = elements.flatMap (get_denormalized).persist (storage)
         val bad = relations.count
         log.info ("normalizing %d of %d elements".format (bad, all))
 
         // get the broken objects and the relations that need deleting
-        val broken: RDD[(String, Iterable[Relation])] = relations.groupBy (_.parent).cache ()
+        val broken: RDD[(String, Iterable[Relation])] = relations.groupBy (_.parent).persist (storage)
 
         // get the fixed objects
-        val fixed: RDD[(String, Element)] = elements.join (broken).map (remove).cache ()
+        val fixed: RDD[(String, Element)] = elements.join (broken).map (remove).persist (storage)
 
         // get a cleaned elements RDD, after this the denormalization is only held in the relations RDD
-        // slightly slower: elements.leftOuterJoin (fixed).map (replace).cache ()
-        val cleaned = elements.subtractByKey (fixed).union (fixed).cache ()
+        // slightly slower: elements.leftOuterJoin (fixed).map (replace).persist (storage)
+        val cleaned = elements.subtractByKey (fixed).union (fixed).persist (storage)
 
         // invert the relation
-        val fixme: RDD[(String, Iterable[Relation])] = relations.flatMap (relation ⇒ relation.referred.map (id ⇒ (id, relation))).groupByKey.cache ()
+        val fixme: RDD[(String, Iterable[Relation])] = relations.flatMap (relation ⇒ relation.referred.map (id ⇒ (id, relation))).groupByKey.persist (storage)
 
         // get the fixed objects
-        val fixed2: RDD[(String, Element)] = cleaned.join (fixme).map (add).cache ()
+        val fixed2: RDD[(String, Element)] = cleaned.join (fixme).map (add).persist (storage)
 
         // construct the new elements RDD
         // slightly slower: cleaned.leftOuterJoin (fixed2).map (replace).values
