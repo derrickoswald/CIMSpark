@@ -9,8 +9,10 @@ import org.apache.spark.sql.Row
 import org.apache.spark.sql.types.StructType
 import org.apache.spark.storage.StorageLevel
 import org.apache.spark.sql.types._
-
 import ch.ninecode.model.Element
+
+import scala.reflect.runtime.universe
+import scala.reflect.runtime.universe
 
 /**
  * Subclass extractor.
@@ -26,7 +28,7 @@ class CIMSubsetter[A <: Product : ClassTag : TypeTag] () extends Serializable
 {
     type basetype = A
     type rddtype = RDD[A]
-
+    val tag: universe.TypeTag[A] = typeTag[A]
     val runtime_class: Class[_] = classTag[A].runtimeClass
 
     val classname: String = runtime_class.getName
@@ -67,7 +69,7 @@ class CIMSubsetter[A <: Product : ClassTag : TypeTag] () extends Serializable
         rdd.name = cls
         rdd.persist (storage)
         if (context.sparkSession.sparkContext.getCheckpointDir.isDefined) rdd.checkpoint ()
-        val df = context.sparkSession.createDataFrame (rdd)(typeTag[A])
+        val df = context.sparkSession.createDataFrame (rdd)(tag)
         val altered_schema = modify_schema (runtime_class, df.schema)
         val data_frame = context.sparkSession.createDataFrame (rdd.asInstanceOf[RDD[Row]], altered_schema)
         data_frame.createOrReplaceTempView (cls)
