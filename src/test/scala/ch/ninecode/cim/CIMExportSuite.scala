@@ -9,8 +9,8 @@ import org.apache.spark.sql.SparkSession
 import ch.ninecode.model._
 
 class CIMExportSuite
-extends
-    ch.ninecode.SparkSuite
+    extends
+        ch.ninecode.SparkSuite
 {
     val FILE_DEPOT = "data/"
 
@@ -46,7 +46,7 @@ extends
         new Unzip ().unzip (FILE_DEPOT + "CGMES_v2.4.15_TestConfigurations_v4.0.3.zip", FILE_DEPOT)
         new Unzip ().unzip (FILE_DEPOT + "RealGrid/CGMES_v2.4.15_RealGridTestConfiguration_v2.zip", FILE_DEPOT + "RealGrid/")
         // run the tests
-        val ret  = super.run (testName, args)
+        val ret = super.run (testName, args)
         // erase the unpacked files
         deleteRecursive (new File (FILE_DEPOT + "MicroGrid/"))
         deleteRecursive (new File (FILE_DEPOT + "MicroGrid_Error/"))
@@ -56,120 +56,135 @@ extends
         ret
     }
 
+    def cleanString (s: String): String =
+    {
+        s.replaceAll ("\n", "").replaceAll ("\\s", "")
+    }
+
     test ("Basic")
     {
         _: SparkSession ⇒
-        val psr =
-"""	<cim:PSRType rdf:ID="PSRType_Substation">
-		<cim:IdentifiedObject.name>Substation</cim:IdentifiedObject.name>
-	</cim:PSRType>"""
-        val xml =
-            """yadda yadda""" +
-            psr +
-            """foo bar"""
-        val parser = new CHIM (xml)
-        val result = CHIM.parse (parser)
-        assert (result._1.size === 1)
-        assert (result._2.length === 0)
-        assert (result._1.getOrElse ("PSRType_Substation", null).export == psr)
+            val psr =
+                """<cim:PSRType rdf:ID="PSRType_Substation">
+                  |	<cim:IdentifiedObject.name>Substation</cim:IdentifiedObject.name>
+                  |</cim:PSRType>""".stripMargin
+            val xml =
+                """yadda yadda""" +
+                    psr +
+                    """foo bar"""
+            val parser = new CHIM (xml)
+            val result = CHIM.parse (parser)
+            assert (result._1.size === 1)
+            assert (result._2.length === 0)
+
+            val s1 = cleanString (result._1.getOrElse ("PSRType_Substation", null).export)
+            val s2 = cleanString (psr)
+            assert (s1 == s2)
     }
 
     test ("Attribute")
     {
         _: SparkSession ⇒
-        val loc =
-"""	<cim:Location rdf:ID="_location_1623670528_427088716_224817700">
-		<cim:Location.type>geographic</cim:Location.type>
-		<cim:Location.CoordinateSystem rdf:resource="#pseudo_wgs84"/>
-	</cim:Location>"""
-        val xml =
-            """yadda yadda""" +
-                loc +
-                """foo bar"""
-        val parser = new CHIM (xml)
-        val result = CHIM.parse (parser)
-        assert (result._1.size === 1)
-        assert (result._2.length === 0)
-        assert (result._1.getOrElse ("_location_1623670528_427088716_224817700", null).export == loc)
+            val loc =
+                """<cim:Location rdf:ID="_location_1623670528_427088716_224817700">
+                  |	<cim:Location.type>geographic</cim:Location.type>
+                  |	<cim:Location.CoordinateSystem rdf:resource="#pseudo_wgs84"/>
+                  |</cim:Location>""".stripMargin
+            val xml =
+                """yadda yadda""" +
+                    loc +
+                    """foo bar"""
+            val parser = new CHIM (xml)
+            val result = CHIM.parse (parser)
+            assert (result._1.size === 1)
+            assert (result._2.length === 0)
+
+            val s1 = cleanString (result._1.getOrElse ("_location_1623670528_427088716_224817700", null).export)
+            val s2 = cleanString (loc)
+            assert (s1 == s2)
     }
 
     test ("Double")
     {
         _: SparkSession ⇒
-        val voltage =
-"""	<cim:BaseVoltage rdf:ID="BaseVoltage_0.400000000000">
-		<cim:IdentifiedObject.name>400.000 V</cim:IdentifiedObject.name>
-		<cim:BaseVoltage.nominalVoltage>0.4</cim:BaseVoltage.nominalVoltage>
-	</cim:BaseVoltage>"""
-        val xml =
-"""<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<rdf:RDF xmlns:cim="http://iec.ch/TC57/2013/CIM-schema-cim16#" xmlns:md="http://iec.ch/TC57/61970-552/ModelDescription/1#" xmlns:dm="http://iec.ch/2002/schema/CIM_difference_model#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-	<md:FullModel rdf:about="sias_current">
-		<md:Model.description>NIS Strom (http://nis.ch/produkte#nisStrom) export</md:Model.description>
-		<md:Model.modelingAuthoritySet>http://9code.ch/</md:Model.modelingAuthoritySet>
-		<md:Model.profile>https://github.com/derrickoswald/CIMScala</md:Model.profile>
-	</md:FullModel>""" +
-voltage +
-"""</rdf:RDF>"""
-        val parser = new CHIM (xml)
-        val result = CHIM.parse (parser)
-        assert (result._1.size === 1)
-        assert (result._2.length === 0)
-        assert (result._1.getOrElse ("BaseVoltage_0.400000000000", null).export == voltage)
+            val voltage =
+                """<cim:BaseVoltage rdf:ID="BaseVoltage_0.400000000000">
+                  |	<cim:IdentifiedObject.name>400.000 V</cim:IdentifiedObject.name>
+                  |	<cim:BaseVoltage.nominalVoltage>0.4</cim:BaseVoltage.nominalVoltage>
+                  |</cim:BaseVoltage>""".stripMargin
+
+            val xml =
+                """<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+                  |<rdf:RDF xmlns:cim="http://iec.ch/TC57/2013/CIM-schema-cim16#" xmlns:md="http://iec.ch/TC57/61970-552/ModelDescription/1#" xmlns:dm="http://iec.ch/2002/schema/CIM_difference_model#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+                  |	<md:FullModel rdf:about="sias_current">
+                  | <md:Model.description>NIS Strom (http://nis.ch/produkte#nisStrom) export</md:Model.description>
+                  |	<md:Model.modelingAuthoritySet>http://9code.ch/</md:Model.modelingAuthoritySet>
+                  |	<md:Model.profile>https://github.com/derrickoswald/CIMScala</md:Model.profile>
+                  |</md:FullModel>""".stripMargin +
+                    voltage +
+                    """</rdf:RDF>"""
+            val parser = new CHIM (xml)
+            val result = CHIM.parse (parser)
+            assert (result._1.size === 1)
+            assert (result._2.length === 0)
+
+            val s1 = cleanString (result._1.getOrElse ("BaseVoltage_0.400000000000", null).export)
+            val s2 = cleanString (voltage)
+            assert (s1 == s2)
     }
 
     test ("Multiple")
     {
         _: SparkSession ⇒
-        val xml =
-"""	<cim:Facility rdf:ID="STA196_asset">
-		<cim:IdentifiedObject.aliasName>187674625:nis_el_station</cim:IdentifiedObject.aliasName>
-		<cim:IdentifiedObject.description>Transformer Station</cim:IdentifiedObject.description>
-		<cim:IdentifiedObject.name>Kiental</cim:IdentifiedObject.name>
-		<cim:Asset.critical>false</cim:Asset.critical>
-		<cim:Asset.initialLossOfLife>0.0</cim:Asset.initialLossOfLife>
-		<cim:Asset.lifecycle rdf:resource="#STA196_lifecycle"/>
-		<cim:Asset.purchasePrice>0.0</cim:Asset.purchasePrice>
-		<cim:Asset.type>Ortsbeton (TS Gebäude eingebaut)</cim:Asset.type>
-		<cim:Asset.Location rdf:resource="#_location_1745492_973692419_187674644"/>
-		<cim:Asset.PowerSystemResources rdf:resource="#STA196"/>
-		<cim:Asset.PowerSystemResources rdf:resource="#STA197"/>
-	</cim:Facility>"""
+            val xml =
+                """<cim:Facility rdf:ID="STA196_asset">
+                  |		<cim:IdentifiedObject.aliasName>187674625:nis_el_station</cim:IdentifiedObject.aliasName>
+                  |		<cim:IdentifiedObject.description>Transformer Station</cim:IdentifiedObject.description>
+                  |		<cim:IdentifiedObject.name>Kiental</cim:IdentifiedObject.name>
+                  |		<cim:Asset.critical>false</cim:Asset.critical>
+                  |		<cim:Asset.initialLossOfLife>0.0</cim:Asset.initialLossOfLife>
+                  |		<cim:Asset.lifecycle rdf:resource="#STA196_lifecycle"/>
+                  |		<cim:Asset.purchasePrice>0.0</cim:Asset.purchasePrice>
+                  |		<cim:Asset.type>Ortsbeton (TS Gebäude eingebaut)</cim:Asset.type>
+                  |		<cim:Asset.Location rdf:resource="#_location_1745492_973692419_187674644"/>
+                  |		<cim:Asset.PowerSystemResources rdf:resource="#STA196"/>
+                  |		<cim:Asset.PowerSystemResources rdf:resource="#STA197"/>
+                  |	</cim:Facility>""".stripMargin
 
-        val parser = new CHIM (xml)
-        val result = CHIM.parse (parser)
-        assert (result._1.size === 1)
-        assert (result._2.length === 0)
-        val facility = result._1 ("STA196_asset").asInstanceOf[Facility]
-        val asset = facility.AssetContainer.Asset
-        assert (2 == asset.PowerSystemResources.length)
-        assert (facility.export == xml)
+            val parser = new CHIM (xml)
+            val result = CHIM.parse (parser)
+            assert (result._1.size === 1)
+            assert (result._2.length === 0)
+            val facility = result._1 ("STA196_asset").asInstanceOf [Facility]
+            val asset = facility.AssetContainer.Asset
+            assert (2 == asset.PowerSystemResources.length)
+            assert (cleanString(facility.export) == cleanString(xml))
     }
 
     test ("Export")
     {
         implicit spark: SparkSession ⇒
 
-        val options = new HashMap[String, String] ().asInstanceOf[Map[String,String]]
-        options.put ("ch.ninecode.cim.do_about", "true")
-        val elements = readFile (filenames_micro.mkString (","), options)
-        println (elements.count + " elements")
-        val export = new CIMExport (spark)
-        export.exportAll ("target/BaseCase_BC.rdf")
-        assert (new File ("target/BaseCase_BC.rdf").exists, "export all BaseCase_BC")
+            val options = new HashMap[String, String]().asInstanceOf [Map[String, String]]
+            options.put ("ch.ninecode.cim.do_about", "true")
+            val elements = readFile (filenames_micro.mkString (","), options)
+            println (elements.count + " elements")
+            val export = new CIMExport (spark)
+            export.exportAll ("target/BaseCase_BC.rdf")
+            assert (new File ("target/BaseCase_BC.rdf").exists, "export all BaseCase_BC")
     }
 
     test ("ExportIsland")
     {
         implicit spark: SparkSession ⇒
 
-        val options = new HashMap[String, String] ().asInstanceOf[Map[String,String]]
-        options.put ("ch.ninecode.cim.do_about", "true")
-        val elements = readFile (filenames_real.mkString (","), options)
-        println (elements.count + " elements")
-        val export = new CIMExport (spark)
-        export.exportIsland ("_TI-1", "target/_TI-1_island" + ".rdf")
-        assert (new File ("target/_TI-1" + "_island.rdf").exists, "island _TI-1")
+            val options = new HashMap[String, String]().asInstanceOf [Map[String, String]]
+            options.put ("ch.ninecode.cim.do_about", "true")
+            val elements = readFile (filenames_real.mkString (","), options)
+            println (elements.count + " elements")
+            val export = new CIMExport (spark)
+            export.exportIsland ("_TI-1", "target/_TI-1_island" + ".rdf")
+            assert (new File ("target/_TI-1" + "_island.rdf").exists, "island _TI-1")
         // ToDo:
         // The exported island has no elements because the TopologicalIsland references TopologicalNode, e.g.
         // <cim:TopologicalIsland rdf:ID="_TI-1">
@@ -187,13 +202,13 @@ voltage +
     {
         implicit spark: SparkSession ⇒
 
-        val options = new HashMap[String, String] ().asInstanceOf[Map[String,String]]
-        options.put ("ch.ninecode.cim.do_about", "true")
-        val elements = readFile (filenames_micro.mkString (","), options)
-        println (elements.count + " elements")
-        val export = new CIMExport (spark)
-        export.exportAllIslands ("target/")
-        assert (new File ("target/_97e00e77-7a51-4997-8456-4ca94774324d" + ".rdf").exists, "island _97e00e77-7a51-4997-8456-4ca94774324d")
+            val options = new HashMap[String, String]().asInstanceOf [Map[String, String]]
+            options.put ("ch.ninecode.cim.do_about", "true")
+            val elements = readFile (filenames_micro.mkString (","), options)
+            println (elements.count + " elements")
+            val export = new CIMExport (spark)
+            export.exportAllIslands ("target/")
+            assert (new File ("target/_97e00e77-7a51-4997-8456-4ca94774324d" + ".rdf").exists, "island _97e00e77-7a51-4997-8456-4ca94774324d")
     }
 
 }
