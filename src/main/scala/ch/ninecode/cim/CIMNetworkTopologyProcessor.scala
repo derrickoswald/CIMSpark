@@ -8,10 +8,9 @@ import org.apache.spark.graphx.Graph.graphToGraphOps
 import org.apache.spark.graphx.VertexId
 import org.apache.spark.rdd.RDD
 import org.apache.spark.rdd.RDD.rddToPairRDDFunctions
+import org.apache.spark.sql.Encoders
 import org.apache.spark.sql.Row
 import org.apache.spark.sql.SparkSession
-import org.apache.spark.sql.catalyst.ScalaReflection
-import org.apache.spark.sql.types.StructType
 import org.apache.spark.storage.StorageLevel
 import org.slf4j.LoggerFactory
 import org.slf4j.Logger
@@ -842,7 +841,7 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
         new_elements.name = "Elements"
         new_elements.persist (options.storage)
         if (spark.sparkContext.getCheckpointDir.isDefined) new_elements.checkpoint ()
-        val schema = ScalaReflection.schemaFor[dummy].dataType.asInstanceOf[StructType]
+        val schema = Encoders.product[dummy].schema
         val data_frame = spark.sqlContext.createDataFrame (new_elements.asInstanceOf[RDD[Row]], schema)
         data_frame.createOrReplaceTempView ("Elements")
 

@@ -4,10 +4,9 @@ import org.apache.hadoop.conf.Configuration
 import org.apache.hadoop.fs.FileStatus
 import org.apache.hadoop.fs.Path
 import org.apache.hadoop.mapreduce.Job
-import org.apache.spark.sql.SQLContext
+import org.apache.spark.sql.Encoders
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.catalyst.InternalRow
-import org.apache.spark.sql.catalyst.ScalaReflection
 import org.apache.spark.sql.execution.datasources.FileFormat
 import org.apache.spark.sql.execution.datasources.OutputWriterFactory
 import org.apache.spark.sql.execution.datasources.PartitionedFile
@@ -48,7 +47,7 @@ extends
         options: Map[String, String],
         files: Seq[FileStatus]): Option[StructType] =
     {
-        Some (ScalaReflection.schemaFor[dummy].dataType.asInstanceOf[StructType])
+        Some (Encoders.product[dummy].schema)
     }
 
     /**

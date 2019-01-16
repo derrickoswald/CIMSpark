@@ -5,10 +5,10 @@ import org.apache.hadoop.fs.Path
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat
 import org.apache.spark.rdd.RDD
 import org.apache.spark.rdd.RDD.rddToPairRDDFunctions
+import org.apache.spark.sql.Encoders
 import org.apache.spark.sql.Row
 import org.apache.spark.sql.SQLContext
 import org.apache.spark.sql.SparkSession
-import org.apache.spark.sql.catalyst.ScalaReflection
 import org.apache.spark.sql.execution.datasources.FileIndex
 import org.apache.spark.sql.execution.datasources.FileFormat
 import org.apache.spark.sql.sources.BaseRelation
@@ -17,6 +17,7 @@ import org.apache.spark.sql.types.StructType
 import org.apache.spark.sql.types.ElementRegistration
 import org.apache.spark.storage.StorageLevel
 import org.slf4j.{Logger, LoggerFactory}
+
 import ch.ninecode.model.Element
 
 class CIMRelation (
@@ -118,7 +119,7 @@ class CIMRelation (
         // we cheat here: the elements in the elements rdd are full Scala hierarchical objects,
         // but we say here they only have one field of type Element because for some that is all they have
         // (lowest common denominator)
-        ScalaReflection.schemaFor[dummy].dataType.asInstanceOf[StructType]
+        Encoders.product[dummy].schema
     }
 
     def make_tables (rdd: RDD[Element]): Unit =
