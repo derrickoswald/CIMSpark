@@ -69,3 +69,14 @@ case class CIMTopologyOptions
     debug: Boolean = false,
     storage: StorageLevel = StorageLevel.MEMORY_AND_DISK_SER
 )
+
+object CIMTopologyOptions
+{
+    def parseState (text: String): State =
+        text match
+        {
+            case "ForceTrue" ⇒ ForceTrue
+            case "ForceFalse" ⇒ ForceFalse
+            case _ ⇒ Unforced
+        }
+}
