@@ -39,7 +39,6 @@ services:
       - "50075:50075" # DFS Datanode Web UI
     volumes:
       - ./../../../data:/opt/data # map sample data file directory to /opt/data within the container
-      - ./../../../private_data:/opt/private_data # map private sample data file directory to /opt/private_data within the container
       - ./../../../target:/opt/code # map compilation output directory to /opt/code within the container
   worker:
     image: derrickoswald/spark-docker
@@ -53,7 +52,6 @@ services:
       - beach
     volumes:
       - ./../../../data:/opt/data # map sample data file directory to /opt/data within the container
-      - ./../../../private_data:/opt/private_data # map private sample data file directory to /opt/private_data within the container
       - ./../../../target:/opt/code # map compilation output directory to /opt/code within the container
   beach:
     container_name: beach
@@ -73,7 +71,7 @@ services:
     image: derrickoswald/cassandra-docker
     command: cassandra -f
     environment:
-      CASSANDRA_SEEDS: beach # use value of environment variable "USER" as Spark owner/operator
+      CASSANDRA_SEEDS: beach
     links:
       - beach
 
