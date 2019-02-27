@@ -180,22 +180,12 @@ class CIMExportSuite
 
             val options = new HashMap[String, String]().asInstanceOf [Map[String, String]]
             options.put ("ch.ninecode.cim.do_about", "true")
+            options.put ("ch.ninecode.cim.do_normalize", "true")
             val elements = readFile (filenames_real.mkString (","), options)
             println (elements.count + " elements")
             val export = new CIMExport (spark)
             export.exportIsland ("_TI-1", "target/_TI-1_island" + ".rdf")
             assert (new File ("target/_TI-1" + "_island.rdf").exists, "island _TI-1")
-        // ToDo:
-        // The exported island has no elements because the TopologicalIsland references TopologicalNode, e.g.
-        // <cim:TopologicalIsland rdf:ID="_TI-1">
-        //     <cim:TopologicalIsland.TopologicalNodes rdf:resource="#_1841689480_VL_TN2"/>
-        //     <cim:TopologicalIsland.TopologicalNodes rdf:resource="#_1113529077_VL_TN1"/>
-        //     ...
-        // rather than the normalized way (TopologicalNode references TopologicalIsland).
-        // Also, Location references PowerSystemResource (in MicroGrid and SmallGrid samples),
-        // which is also denormalized, so potentially all the relation following logic will need
-        // to be duplicated to follow non-normal relationships.
-        // Fixing this will involve much thought.
     }
 
     test ("ExportAllIslands")
@@ -204,9 +194,11 @@ class CIMExportSuite
 
             val options = new HashMap[String, String]().asInstanceOf [Map[String, String]]
             options.put ("ch.ninecode.cim.do_about", "true")
+            options.put ("ch.ninecode.cim.do_normalize", "true")
             val elements = readFile (filenames_micro.mkString (","), options)
             println (elements.count + " elements")
             val export = new CIMExport (spark)
+            //export.exportAll ("target/" + "MicroGrid_All.rdf", "after about and normalization processing")
             export.exportAllIslands ("target/")
             assert (new File ("target/_97e00e77-7a51-4997-8456-4ca94774324d" + ".rdf").exists, "island _97e00e77-7a51-4997-8456-4ca94774324d")
     }

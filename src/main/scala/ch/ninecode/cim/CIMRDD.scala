@@ -49,6 +49,26 @@ import org.slf4j.Logger
 trait CIMRDD
 {
     /**
+     * Check for the named RDD.
+     *
+     * @param name The name of the RDD, usually the same as the CIM class.
+     * @param spark The Spark session which persisted the named RDD.
+     * @param log A logger for error messages.
+     * @tparam T The type of objects contained in the named RDD.
+     * @return <code>true</code> if the named RDD exists, <code>false</code> otherwise.
+     */
+    def test[T : ClassTag](name: String)(implicit spark: SparkSession, log: Logger): Boolean =
+    {
+        spark.sparkContext.getPersistentRDDs.find (_._2.name == name) match
+        {
+            case Some ((_: Int, rdd: RDD[_])) =>
+                true
+            case Some (_) | None =>
+                false
+        }
+    }
+
+    /**
       * Get the named RDD.
       *
       * @param name The name of the RDD, usually the same as the CIM class.
@@ -96,21 +116,39 @@ trait CIMRDD
     }
 
     /**
-      * Get the typed RDD.
-      *
-      * Convenience method where the name of the RDD is the same as the contained
-      * class type (the usual case).
-      *
-      * @param spark The Spark session which persisted the typed RDD.
-      * @param log A logger for error messages.
-      * @tparam T The type of the RDD, e.g. <code>RDD[T]</code>.
-      * @return The RDD with the given type of objects, e.g. <code>RDD[ACLineSegment]</code>.
-      */
+     * Check for the typed RDD.
+     *
+     * Convenience method where the name of the RDD is the same as the contained
+     * class type (the usual case).
+     *
+     * @param spark The Spark session which persisted the typed RDD.
+     * @param log A logger for error messages.
+     * @tparam T The type of the RDD, e.g. <code>RDD[T]</code>.
+     * @return <code>true</code> if the named RDD exists, <code>false</code> otherwise.
+     */
+    def test[T : ClassTag](implicit spark: SparkSession, log: Logger): Boolean =
+    {
+        val classname = classTag[T].runtimeClass.getName
+        val name = classname.substring (classname.lastIndexOf (".") + 1)
+        test[T] (name)
+    }
+
+    /**
+     * Get the typed RDD.
+     *
+     * Convenience method where the name of the RDD is the same as the contained
+     * class type (the usual case).
+     *
+     * @param spark The Spark session which persisted the typed RDD.
+     * @param log A logger for error messages.
+     * @tparam T The type of the RDD, e.g. <code>RDD[T]</code>.
+     * @return The RDD with the given type of objects, e.g. <code>RDD[ACLineSegment]</code>.
+     */
     def get[T : ClassTag](implicit spark: SparkSession, log: Logger): RDD[T] =
     {
         val classname = classTag[T].runtimeClass.getName
         val name = classname.substring (classname.lastIndexOf (".") + 1)
-        get (name)
+        get[T] (name)
     }
 
     /**

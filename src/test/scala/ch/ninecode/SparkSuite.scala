@@ -163,6 +163,7 @@ class SparkSuite extends fixture.FunSuite
                         val newenv = new java.util.HashMap[String, String] ()
                         newenv.put ("SPARK_LOCAL_IP", ip.getHostAddress)
                         setEnv (newenv)
+                        return
                     }
                 }
             }

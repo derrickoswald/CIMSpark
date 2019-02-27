@@ -3,6 +3,8 @@ package ch.ninecode.cim
 import java.net.URI
 import java.time.LocalDateTime
 
+import scala.reflect.ClassTag
+
 import org.apache.hadoop.conf.Configuration
 import org.apache.hadoop.fs.FileSystem
 import org.apache.hadoop.fs.FileUtil
@@ -10,7 +12,9 @@ import org.apache.hadoop.fs.Path
 import org.apache.spark.rdd.RDD
 import org.apache.spark.rdd.RDD.rddToPairRDDFunctions
 import org.apache.spark.sql.SparkSession
-import org.slf4j.{Logger, LoggerFactory}
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
+
 import ch.ninecode.model._
 
 /**
@@ -139,56 +143,99 @@ class CIMExport (spark: SparkSession) extends CIMRDD with Serializable
     }
 
     /**
+     * Make a pair RDD to access PairRDDFunctions.
+     * @param s the string to duplicate
+     * @return the Tuple2 pair
+     */
+    def pair (s: String): (String, String) = (s, s)
+
+    def keyed[T <: Element] (key: T ⇒ String = (x: T) ⇒ x.id) (implicit kt: ClassTag[T]): RDD[(String, T)] = getOrElse[T].keyBy (key)
+
+    def foreign[T] (fn: T ⇒ String) (x: T): (String, String) = pair (fn (x))
+
+    def narrow[T] (rdd: RDD[(String, (T, String))]) (implicit kt: ClassTag[T]): RDD[(String, T)] = rdd.map (x ⇒ (x._1, x._2._1))
+
+    def asIDs (rdd: RDD[(String, (String, String))]): RDD[(String, String)] = rdd.map (x ⇒ (x._1, x._2._1))
+
+    def distinct[T] (rdd: RDD[(String, T)]) (implicit kt: ClassTag[T]): RDD[(String, T)] = rdd.reduceByKey ((x, y) => x)
+
+    /**
      * Export elements associated to the given topological island.
      * @param island The name of the topological island to export.
      * @param filename The name of the file to write.
      */
     def exportIsland (island: String, filename: String): Unit =
     {
-        val allislands = getOrElse[TopologicalIsland]
-        val someislands = allislands.filter (_.id == island)
-        if (someislands.isEmpty())
-            log.error (island + " not found")
-        else
+        val some_islands = getOrElse[TopologicalIsland].filter (_.id == island)
+        if (!some_islands.isEmpty)
         {
             // get the topological elements
             val some_topos = getOrElse[TopologicalNode].filter (_.TopologicalIsland == island)
-            val some_nodes = if (null != getOrElse[ConnectivityNode]) getOrElse[ConnectivityNode].keyBy (_.TopologicalNode).join (some_topos.keyBy (_.id)).map (_._2._1) else spark.sparkContext.emptyRDD[ConnectivityNode]
-            val some_terminals = getOrElse[Terminal].keyBy (_.TopologicalNode).join (some_topos.keyBy (_.id)).map (_._2._1)
-            val equipment = getOrElse[ConductingEquipment].keyBy (_.id).join (some_terminals.keyBy (_.ConductingEquipment)).map (_._2._1).distinct
-            val terminals = getOrElse[Terminal].keyBy (_.ConductingEquipment).join (equipment.keyBy (_.id)).map (_._2._1)
-            val (nodes, topos) = if (null != getOrElse[ConnectivityNode])
-            {
-                val n = getOrElse[ConnectivityNode].keyBy (_.id).join (terminals.keyBy (_.ConnectivityNode)).map (_._2._1).distinct
-                val t = getOrElse[TopologicalNode].keyBy (_.id).join (n.keyBy (_.TopologicalNode)).map (_._2._1).distinct
-                (n, t)
-            }
-            else
-                (some_nodes, some_topos)
-            val islands = getOrElse[TopologicalIsland].keyBy (_.id).join (topos.keyBy (_.TopologicalIsland)).map (_._2._1).distinct
-            val ends = getOrElse[PowerTransformerEnd].keyBy (_.PowerTransformer).join (equipment.keyBy (_.id)).map (_._2._1)
-            val status = if (null != getOrElse[SvStatus]) getOrElse[SvStatus].keyBy (_.id).join (equipment.keyBy (_.SvStatus)).map (_._2._1).distinct else spark.sparkContext.emptyRDD[SvStatus]
+            val some_equipment = keyed[Terminal] (_.TopologicalNode).join (some_topos.keyBy (_.id)).map (x ⇒ pair (x._2._1.ConductingEquipment))
+
+            val keyed_equipment = distinct (narrow (keyed[ConductingEquipment] ().join (some_equipment)))
+            val equipment_ids = keyed_equipment.map (x ⇒ (x._1, x._1))
+            val equipment = keyed_equipment.map (_._2)
+
+            val keyed_terminals = keyed[Terminal] (_.ConductingEquipment).join (equipment_ids).map (x ⇒ (x._2._1.id, x._2._1))
+            val terminal_ids = keyed_terminals.map (x ⇒ (x._1, x._1))
+            val terminals = keyed_terminals.map (_._2)
+
+            val keyed_nodes = distinct (narrow (keyed[ConnectivityNode] ().join (terminals.map (foreign (_.ConnectivityNode)))))
+            val node_ids = keyed_nodes.map (x ⇒ (x._1, x._1))
+            val nodes = keyed_nodes.map (_._2)
+
+            val some_t = some_topos.map (x ⇒ (x.id, (x, null.asInstanceOf[String])))
+            val keyed_topos = distinct (narrow (some_t.union (keyed[TopologicalNode] ().join (nodes.map (foreign (_.TopologicalNode))))))
+            val topo_ids = keyed_topos.map (x ⇒ (x._1, x._1))
+            val topos = keyed_topos.map (_._2)
+
+            val keyed_islands = distinct (narrow (keyed[TopologicalIsland] ().join (topos.map (foreign (_.TopologicalIsland)))))
+            val island_ids = keyed_islands.map (x ⇒ (x._1, x._1))
+
+            val keyed_ends = keyed[PowerTransformerEnd] (_.PowerTransformer).join (equipment_ids).map (x ⇒ (x._2._1.id, x._2._1))
+            val end_ids = keyed_ends.map (x ⇒ (x._1, x._1))
+            val ends = keyed_ends.map (_._2)
+
+            val status_ids = distinct (equipment.map (foreign (_.SvStatus)))
 
             // get other elements related to the equipment
-            val voltages = getOrElse[BaseVoltage].keyBy (_.id).join (equipment.keyBy (_.BaseVoltage)).map (_._2._1)
-                .union (getOrElse[BaseVoltage].keyBy (_.id).join (ends.keyBy (_.TransformerEnd.BaseVoltage)).map (_._2._1)).distinct
-            val containers = getOrElse[EquipmentContainer].keyBy (_.id).join (equipment.keyBy (_.Equipment.EquipmentContainer)).map (_._2._1).distinct
-            val infos = if (null != getOrElse[AssetInfo]) getOrElse[AssetInfo].keyBy (_.id).join (equipment.keyBy (_.Equipment.PowerSystemResource.AssetDatasheet)).map (_._2._1).distinct else spark.sparkContext.emptyRDD[AssetInfo]
-            val locations = if (null != getOrElse[Location]) getOrElse[Location].keyBy (_.id).join (equipment.keyBy (_.Equipment.PowerSystemResource.Location)).map (_._2._1)
-                .union ( getOrElse[Location].keyBy (_.id).join (containers.keyBy (_.ConnectivityNodeContainer.PowerSystemResource.Location)).map (_._2._1)).distinct else spark.sparkContext.emptyRDD[Location]
-            val coordinates = if (null != getOrElse[CoordinateSystem]) getOrElse[CoordinateSystem].keyBy (_.id).join (locations.keyBy (_.CoordinateSystem)).map (_._2._1).distinct else spark.sparkContext.emptyRDD[CoordinateSystem]
-            val points = if (null != getOrElse[PositionPoint]) getOrElse[PositionPoint].keyBy (_.Location).join (locations.keyBy (_.id)).map (_._2._1) else spark.sparkContext.emptyRDD[PositionPoint]
-            val psrtypes = if (null != getOrElse[PSRType]) getOrElse[PSRType].keyBy (_.id).join (equipment.keyBy (_.Equipment.PowerSystemResource.PSRType)).map (_._2._1)
-                .union (getOrElse[PSRType].keyBy (_.id).join (containers.keyBy (_.ConnectivityNodeContainer.PowerSystemResource.PSRType)).map (_._2._1)).distinct else spark.sparkContext.emptyRDD[PSRType]
-            val streets = if (null != getOrElse[StreetAddress]) getOrElse[StreetAddress].keyBy (_.id).join (locations.keyBy (_.mainAddress)).map (_._2._1).distinct else spark.sparkContext.emptyRDD[StreetAddress]
-            val towns = if (null != getOrElse[TownDetail]) getOrElse[TownDetail].keyBy (_.id).join (streets.keyBy (_.townDetail)).map (_._2._1).distinct else spark.sparkContext.emptyRDD[TownDetail]
-            val attributes = if (null != getOrElse[UserAttribute]) getOrElse[UserAttribute].keyBy (_.name).join (equipment.keyBy (_.id)).map (_._2._1) else spark.sparkContext.emptyRDD[UserAttribute]
-            val strings = if (null != getOrElse[StringQuantity]) getOrElse[StringQuantity].keyBy (_.id).join (attributes.keyBy (_.value)).map (_._2._1) else spark.sparkContext.emptyRDD[StringQuantity]
+
+            val voltage_ids = distinct (equipment.map (_.BaseVoltage).union (ends.map (_.TransformerEnd.BaseVoltage)).map (pair))
+            val info_ids = distinct (equipment.map (_.Equipment.PowerSystemResource.AssetDatasheet).map (pair))
+
+            val keyed_containers = distinct (narrow (keyed[EquipmentContainer] ().join (equipment.map (foreign (_.Equipment.EquipmentContainer)))))
+            val container_ids = keyed_containers.map (x ⇒ (x._1, x._1))
+            val containers = keyed_containers.map (_._2)
+
+            val keyed_locations = distinct (narrow (keyed[Location] ().join (equipment.map (foreign (_.Equipment.PowerSystemResource.Location))
+                .union (containers.map (foreign (_.ConnectivityNodeContainer.PowerSystemResource.Location))))))
+            val location_ids = keyed_locations.map (x ⇒ (x._1, x._1))
+            val locations = keyed_locations.map (_._2)
+
+            val coordinatesys_ids = distinct (locations.map (foreign (_.CoordinateSystem)))
+
+            val point_ids = distinct (location_ids.join (keyed[PositionPoint] (_.Location)).map (x ⇒ pair (x._2._2.id)))
+
+            val psrtype_ids = distinct (equipment.map (foreign (_.Equipment.PowerSystemResource.PSRType))
+                .union (containers.map (foreign (_.ConnectivityNodeContainer.PowerSystemResource.PSRType))))
+
+            val keyed_streets = distinct (narrow (keyed[StreetAddress] ().join (locations.map (foreign (_.mainAddress)))))
+            val street_ids = keyed_streets.map (x ⇒ (x._1, x._1))
+            val streets = keyed_streets.map (_._2)
+
+            val town_ids = distinct (streets.map (foreign (_.townDetail)))
+
+            val keyed_attributes = distinct (narrow (keyed[UserAttribute] (_.name).join (equipment.map (x ⇒ (x.id, x.id)))))
+            val attribute_ids = keyed_attributes.map (x ⇒ (x._1, x._1))
+            val attributes = keyed_attributes.map (_._2)
+
+            val string_ids = distinct (attributes.map (x ⇒ pair (x.value)))
 
             // get implementation specific related elements
 
             // ServiceLocations
-            val specific = if (null != getOrElse[UserAttribute])
+            val specific = if (test[ServiceLocation])
             {
                 val mst_has_s = getOrElse[StringQuantity].keyBy (_.value).join (equipment.keyBy (_.id)).map (_._2._1)
                 val mst_has = getOrElse[UserAttribute].keyBy (_.value).join (mst_has_s.keyBy (_.id)).map (_._2._1)
@@ -262,30 +309,32 @@ class CIMExport (spark: SparkSession) extends CIMRDD with Serializable
 
             // create an RDD of mRID
             val ids =
-                islands.map (x => (x.id, x.id))
-                .union (topos.map (x => (x.id, x.id)))
-                .union (nodes.map (x => (x.id, x.id)))
-                .union (equipment.map (x => (x.id, x.id)))
-                .union (terminals.map (x => (x.id, x.id)))
-                .union (ends.map (x => (x.id, x.id)))
-                .union (status.map (x => (x.id, x.id)))
-                .union (voltages.map (x => (x.id, x.id)))
-                .union (containers.map (x => (x.id, x.id)))
-                .union (infos.map (x => (x.id, x.id)))
-                .union (locations.map (x => (x.id, x.id)))
-                .union (coordinates.map (x => (x.id, x.id)))
-                .union (points.map (x => (x.id, x.id)))
-                .union (psrtypes.map (x => (x.id, x.id)))
-                .union (streets.map (x => (x.id, x.id)))
-                .union (towns.map (x => (x.id, x.id)))
-                .union (attributes.map (x => (x.id, x.id)))
-                .union (strings.map (x => (x.id, x.id)))
+                island_ids
+                .union (topo_ids)
+                .union (node_ids)
+                .union (equipment_ids)
+                .union (terminal_ids)
+                .union (end_ids)
+                .union (status_ids)
+                .union (voltage_ids)
+                .union (container_ids)
+                .union (info_ids)
+                .union (location_ids)
+                .union (coordinatesys_ids)
+                .union (point_ids)
+                .union (psrtype_ids)
+                .union (street_ids)
+                .union (town_ids)
+                .union (attribute_ids)
+                .union (string_ids)
                 .union (specific)
 
             // get the elements
             val elements = getOrElse[Element]("Elements").keyBy (_.id).join (ids).map (_._2._1)
             export (elements, filename, island, "/tmp/" + island + ".rdf")
         }
+        else
+            log.error ("island '%s' not found".format (island))
     }
 
     /**
@@ -313,6 +362,8 @@ class CIMExport (spark: SparkSession) extends CIMRDD with Serializable
         val dir = if (directory.endsWith ("/")) directory else directory + "/"
         val allislands = getOrElse[TopologicalIsland].map (_.id).collect
         val islands = allislands.map (island ⇒ { exportIsland (island, dir + island + ".rdf"); 1})
-        islands.sum
+        val total = islands.sum
+        log.info ("exported %s island%s".format (total, if (total == 1) "" else "s"))
+        total
     }
 }

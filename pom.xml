@@ -79,7 +79,7 @@
 
         <!-- Scala versions -->
         <version.dependency.scala>2.11</version.dependency.scala>
-        <version.dependency.scalalibrary>2.11.8</version.dependency.scalalibrary>
+        <version.dependency.scalalibrary>2.11.12</version.dependency.scalalibrary>
 
         <!-- Spark version -->
         <version.dependency.spark>2.3.2</version.dependency.spark>
