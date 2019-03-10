@@ -89,6 +89,7 @@ class Worker[C <: Product, P <: Product] (relation: Relationship, child: String,
         missing.map (message (child, relation.field, parent)).collect.mkString ("\n")
     }
 }
+
 /**
  * Check relationships in CIM data.
  *

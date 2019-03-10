@@ -138,7 +138,7 @@ class CIMRelation (
 
                 ret.map (x => x.substring (x.lastIndexOf (".") + 1))
             }
-        ).distinct.collect
+        ).map (s ⇒ (s, s)).reduceByKey ((x, _) => x).map (_._1).collect
         CHIM.apply_to_all_classes (
             (subsetter: CIMSubsetter[_]) =>
             {

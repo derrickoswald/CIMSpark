@@ -12,7 +12,6 @@ import org.apache.spark.sql.types._
 import ch.ninecode.model.Element
 
 import scala.reflect.runtime.universe
-import scala.reflect.runtime.universe
 
 /**
  * Subclass extractor.

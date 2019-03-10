@@ -348,9 +348,7 @@ case class ClassInfo (
  * 
  * @tparam A The CIM class type.
  */
-abstract class Parseable[+A <: Product : ClassTag : TypeTag]
-extends
-    Parser
+abstract class Parseable[+A <: Product : ClassTag : TypeTag] extends Parser
 {
     val runtime_class: Class[_] = classTag[A].runtimeClass
     val classname: String = runtime_class.getName
