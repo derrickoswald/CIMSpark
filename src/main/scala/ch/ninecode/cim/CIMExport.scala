@@ -4,6 +4,7 @@ import java.net.URI
 import java.time.LocalDateTime
 
 import scala.reflect.ClassTag
+import scala.collection.immutable
 
 import org.apache.hadoop.conf.Configuration
 import org.apache.hadoop.fs.FileSystem
@@ -157,7 +158,7 @@ class CIMExport (spark: SparkSession) extends CIMRDD with Serializable
 
     def asIDs (rdd: RDD[(String, (String, String))]): RDD[(String, String)] = rdd.map (x ⇒ (x._1, x._2._1))
 
-    def distinct[T] (rdd: RDD[(String, T)]) (implicit kt: ClassTag[T]): RDD[(String, T)] = rdd.reduceByKey ((x, y) => x)
+    def distinct[T] (rdd: RDD[(String, T)]) (implicit kt: ClassTag[T]): RDD[(String, T)] = rdd.reduceByKey ((x, _) => x)
 
     /**
      * Export elements associated to the given topological island.
@@ -174,43 +175,43 @@ class CIMExport (spark: SparkSession) extends CIMRDD with Serializable
             val some_equipment = keyed[Terminal] (_.TopologicalNode).join (some_topos.keyBy (_.id)).map (x ⇒ pair (x._2._1.ConductingEquipment))
 
             val keyed_equipment = distinct (narrow (keyed[ConductingEquipment] ().join (some_equipment)))
-            val equipment_ids = keyed_equipment.map (x ⇒ (x._1, x._1))
+            val equipment_ids = keyed_equipment.map (x ⇒ pair (x._1))
             val equipment = keyed_equipment.map (_._2)
 
             val keyed_terminals = keyed[Terminal] (_.ConductingEquipment).join (equipment_ids).map (x ⇒ (x._2._1.id, x._2._1))
-            val terminal_ids = keyed_terminals.map (x ⇒ (x._1, x._1))
+            val terminal_ids = keyed_terminals.map (x ⇒ pair (x._1))
             val terminals = keyed_terminals.map (_._2)
 
             val keyed_nodes = distinct (narrow (keyed[ConnectivityNode] ().join (terminals.map (foreign (_.ConnectivityNode)))))
-            val node_ids = keyed_nodes.map (x ⇒ (x._1, x._1))
+            val node_ids = keyed_nodes.map (x ⇒ pair (x._1))
             val nodes = keyed_nodes.map (_._2)
 
             val some_t = some_topos.map (x ⇒ (x.id, (x, null.asInstanceOf[String])))
             val keyed_topos = distinct (narrow (some_t.union (keyed[TopologicalNode] ().join (nodes.map (foreign (_.TopologicalNode))))))
-            val topo_ids = keyed_topos.map (x ⇒ (x._1, x._1))
+            val topo_ids = keyed_topos.map (x ⇒ pair (x._1))
             val topos = keyed_topos.map (_._2)
 
             val keyed_islands = distinct (narrow (keyed[TopologicalIsland] ().join (topos.map (foreign (_.TopologicalIsland)))))
-            val island_ids = keyed_islands.map (x ⇒ (x._1, x._1))
+            val island_ids = keyed_islands.map (x ⇒ pair (x._1))
 
             val keyed_ends = keyed[PowerTransformerEnd] (_.PowerTransformer).join (equipment_ids).map (x ⇒ (x._2._1.id, x._2._1))
-            val end_ids = keyed_ends.map (x ⇒ (x._1, x._1))
+            val end_ids = keyed_ends.map (x ⇒ pair (x._1))
             val ends = keyed_ends.map (_._2)
 
             val status_ids = distinct (equipment.map (foreign (_.SvStatus)))
 
             // get other elements related to the equipment
 
-            val voltage_ids = distinct (equipment.map (_.BaseVoltage).union (ends.map (_.TransformerEnd.BaseVoltage)).map (pair))
-            val info_ids = distinct (equipment.map (_.Equipment.PowerSystemResource.AssetDatasheet).map (pair))
+            val voltage_ids = distinct (equipment.map (foreign (_.BaseVoltage)).union (ends.map (foreign (_.TransformerEnd.BaseVoltage))))
+            val info_ids = distinct (equipment.map (foreign (_.Equipment.PowerSystemResource.AssetDatasheet)))
 
             val keyed_containers = distinct (narrow (keyed[EquipmentContainer] ().join (equipment.map (foreign (_.Equipment.EquipmentContainer)))))
-            val container_ids = keyed_containers.map (x ⇒ (x._1, x._1))
+            val container_ids = keyed_containers.map (x ⇒ pair (x._1))
             val containers = keyed_containers.map (_._2)
 
             val keyed_locations = distinct (narrow (keyed[Location] ().join (equipment.map (foreign (_.Equipment.PowerSystemResource.Location))
                 .union (containers.map (foreign (_.ConnectivityNodeContainer.PowerSystemResource.Location))))))
-            val location_ids = keyed_locations.map (x ⇒ (x._1, x._1))
+            val location_ids = keyed_locations.map (x ⇒ pair (x._1))
             val locations = keyed_locations.map (_._2)
 
             val coordinatesys_ids = distinct (locations.map (foreign (_.CoordinateSystem)))
@@ -221,13 +222,13 @@ class CIMExport (spark: SparkSession) extends CIMRDD with Serializable
                 .union (containers.map (foreign (_.ConnectivityNodeContainer.PowerSystemResource.PSRType))))
 
             val keyed_streets = distinct (narrow (keyed[StreetAddress] ().join (locations.map (foreign (_.mainAddress)))))
-            val street_ids = keyed_streets.map (x ⇒ (x._1, x._1))
+            val street_ids = keyed_streets.map (x ⇒ pair (x._1))
             val streets = keyed_streets.map (_._2)
 
             val town_ids = distinct (streets.map (foreign (_.townDetail)))
 
             val keyed_attributes = distinct (narrow (keyed[UserAttribute] (_.name).join (equipment.map (x ⇒ (x.id, x.id)))))
-            val attribute_ids = keyed_attributes.map (x ⇒ (x._1, x._1))
+            val attribute_ids = keyed_attributes.map (x ⇒ pair (x._1))
             val attributes = keyed_attributes.map (_._2)
 
             val string_ids = distinct (attributes.map (x ⇒ pair (x.value)))
@@ -363,6 +364,95 @@ class CIMExport (spark: SparkSession) extends CIMRDD with Serializable
         val allislands = getOrElse[TopologicalIsland].map (_.id).collect
         val islands = allislands.map (island ⇒ { exportIsland (island, dir + island + ".rdf"); 1})
         val total = islands.sum
+        log.info ("exported %s island%s".format (total, if (total == 1) "" else "s"))
+        total
+    }
+
+    type Island = String
+    type mRID = String
+    type Item = (mRID, Island)
+    type Clazz = String
+
+    def dependents (relations: Map[String, List[Relationship]]) (element: Element): List[(mRID, mRID)] =
+    {
+        var e = element
+        var list = List[(mRID, mRID)] ()
+        while (classOf[BasicElement] != e.getClass)
+        {
+            val cls = e.getClass
+            val raw = cls.getName
+            val clazz = raw.substring (raw.lastIndexOf (".") + 1)
+            val related = relations (clazz)
+            val l = related.flatMap (
+                relation ⇒
+                {
+                    val method = cls.getDeclaredMethod (relation.field)
+                    method.setAccessible (true)
+                    val ref = method.invoke (e)
+                    if (null != ref)
+                    {
+                        val mrid = ref.toString
+                        if ("" != mrid)
+                            if (relation.field == "BaseVoltage")
+                                Some ((e.id, mrid))
+                            else if (relation.field == "PerLengthParameters")
+                                Some ((e.id, ref.asInstanceOf[List[String]].head))
+                            else if (!relation.multiple)
+                                List ((e.id, mrid), (mrid, e.id))
+                            else
+                                None
+                        else
+                            None
+                    }
+                    else
+                        None
+                }
+            )
+            list = list ++ l
+            e = e.sup
+        }
+        list
+    }
+
+    def exportAllIslands2 (directory: String = "simulation/"): Int =
+    {
+        val dir = if (directory.endsWith ("/")) directory else directory + "/"
+        val classes = new CHIM ("").classes
+
+        // make a mapping of mRID to mRID
+        // "if you include me, you have to include him" and vice-versa for some relations
+        val relationmap = classes.map (x ⇒ (x.name, x.relations)).toMap
+        val ying_yang = getOrElse[Element]("Elements").flatMap (dependents (relationmap))
+
+        // the done list is a PairRDD, the keys are the mrid and the values are the islands they belong to
+        var done: RDD[(mRID, Island)] = spark.sparkContext.emptyRDD[Item]
+
+        // the to do list is a PairRDD, the keys are mrid to check,
+        // and the values are the island we're concerned about
+        // start with the islands themselves
+        var todo: RDD[(mRID, Island)] = getOrElse[TopologicalIsland].map (x ⇒ (x.id, x.id))
+
+        do
+        {
+            val keep: RDD[(mRID, (Island, Option[mRID]))] = todo.leftOuterJoin (ying_yang)
+            done = done.union (keep.map (x ⇒ (x._1, x._2._1)))
+            todo = keep.flatMap (x ⇒ if (x._2._2.isDefined) List ((x._2._2.get, x._2._1)) else List ()).subtractByKey (done)
+        }
+        while (!todo.isEmpty)
+        done = done.distinct.persist ()
+
+        val islands = done.map (_._2).distinct.collect
+        for (island ← islands)
+        {
+            log.info ("exporting %s".format (island))
+            // get the elements
+            val ids = done.filter (_._2 == island).map (x ⇒ pair (x._1))
+            val elements = getOrElse[Element]("Elements").keyBy (_.id).join (ids).map (_._2._1)
+            // save to a file
+            val filename = dir + island + ".rdf"
+            export (elements, filename, island, "/tmp/" + island + ".rdf")
+        }
+        val total = islands.length
         log.info ("exported %s island%s".format (total, if (total == 1) "" else "s"))
         total
     }

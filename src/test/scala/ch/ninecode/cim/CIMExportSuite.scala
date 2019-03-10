@@ -38,6 +38,8 @@ class CIMExportSuite
         FILE_DEPOT + "RealGrid/CGMES_v2.4.15_RealGridTestConfiguration_TP_v2.xml"
     )
 
+    val demo_data = FILE_DEPOT + "DemoData.rdf"
+
     override def run (testName: Option[String], args: org.scalatest.Args): org.scalatest.Status =
     {
         // unpack the zip file
@@ -45,6 +47,7 @@ class CIMExportSuite
         new Unzip ().unzip (FILE_DEPOT + "MicroGrid/BaseCase_BC/CGMES_v2.4.15_MicroGridTestConfiguration_BC_Assembled_v2.zip", FILE_DEPOT + "MicroGrid/BaseCase_BC/")
         new Unzip ().unzip (FILE_DEPOT + "CGMES_v2.4.15_TestConfigurations_v4.0.3.zip", FILE_DEPOT)
         new Unzip ().unzip (FILE_DEPOT + "RealGrid/CGMES_v2.4.15_RealGridTestConfiguration_v2.zip", FILE_DEPOT + "RealGrid/")
+        new Unzip ().unzip (FILE_DEPOT + "DemoData.zip", FILE_DEPOT)
         // run the tests
         val ret = super.run (testName, args)
         // erase the unpacked files
@@ -53,6 +56,7 @@ class CIMExportSuite
         deleteRecursive (new File (FILE_DEPOT + "MiniGrid/"))
         deleteRecursive (new File (FILE_DEPOT + "SmallGrid/"))
         deleteRecursive (new File (FILE_DEPOT + "RealGrid/"))
+        new File (demo_data).delete
         ret
     }
 
@@ -203,4 +207,26 @@ class CIMExportSuite
             assert (new File ("target/_97e00e77-7a51-4997-8456-4ca94774324d" + ".rdf").exists, "island _97e00e77-7a51-4997-8456-4ca94774324d")
     }
 
+    test ("New Export All Islands")
+    {
+        implicit spark: SparkSession ⇒
+
+            val options = new HashMap[String, String]().asInstanceOf [Map[String, String]]
+            options.put ("ch.ninecode.cim.do_topo_islands", "true")
+            val elements = readFile (demo_data, options)
+            println (elements.count + " elements")
+            val export = new CIMExport (spark)
+            export.exportAllIslands2 ("target/")
+            assert (new File ("target/TX0002_terminal_2_island" + ".rdf").exists, "island TX0002")
+
+            // remove all RDD to start from scratch
+            spark.sparkContext.getPersistentRDDs.foreach (x ⇒ { x._2.unpersist(true); x._2.name = null })
+
+            val elements2 = readFile ("target/TX0002_terminal_2_island" + ".rdf")
+            println (elements2.count + " elements")
+            val checker = new CIMIntegrityChecker (spark)
+            val errors = checker.checkAll
+            println (if (errors.isDefined) errors.get else "no errors")
+            assert (errors.isEmpty, "reference errors")
+    }
 }
