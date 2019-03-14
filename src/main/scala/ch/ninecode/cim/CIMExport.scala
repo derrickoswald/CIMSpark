@@ -3,15 +3,14 @@ package ch.ninecode.cim
 import java.io.UnsupportedEncodingException
 import java.net.URI
 import java.net.URLDecoder
+import java.nio.charset.StandardCharsets
 import java.time.LocalDateTime
 import java.util.Properties
 
 import scala.reflect.ClassTag
-
 import scala.tools.nsc.io.Jar
 import scala.util.Random
 import scopt.OptionParser
-
 import org.apache.hadoop.conf.Configuration
 import org.apache.hadoop.fs.FileSystem
 import org.apache.hadoop.fs.FileUtil
@@ -23,7 +22,6 @@ import org.apache.spark.sql.SparkSession
 import org.apache.spark.storage.StorageLevel
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-
 import ch.ninecode.model._
 
 /**
@@ -189,9 +187,9 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
 
         // write the file
         val out = hdfs.create (file, true)
-        out.writeUTF (header)
-        elements.map (_.export).foreach ((s: String) ⇒ { out.writeBytes (s); out.writeByte ('\n') })
-        out.writeUTF (tailer)
+        out.write (header.getBytes (StandardCharsets.UTF_8))
+        elements.map (_.export).foreach ((s: String) ⇒ { out.write (s.getBytes (StandardCharsets.UTF_8)); out.writeByte ('\n') })
+        out.write (tailer.getBytes (StandardCharsets.UTF_8))
         out.close ()
 
         // delete the stupid .crc file
