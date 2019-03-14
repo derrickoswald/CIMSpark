@@ -107,7 +107,7 @@ with
             val index = field_names.indexOf (field)
             if (-1 != index)
             {
-                log.info ("%s:%s.%s = %s".format (child, element.id, field, if (null == value) "null" else value.toString))
+                log.debug ("%s:%s.%s = %s".format (child, element.id, field, if (null == value) "null" else value.toString))
                 fields(index + 1) = value
                 bitfields(index / 32) = if (setbit)
                     bitfields(index / 32) | (1 << (index % 32))

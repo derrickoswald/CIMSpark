@@ -188,7 +188,7 @@ class CIMExportSuite
             val elements = readFile (filenames_real.mkString (","), options)
             println (elements.count + " elements")
             val export = new CIMExport (spark)
-            export.exportIsland ("_TI-1", "target/_TI-1_island" + ".rdf")
+            export.exportIsland ("_TI-1", "_TI-1_island" + ".rdf", "target/")
             assert (new File ("target/_TI-1" + "_island.rdf").exists, "island _TI-1")
     }
 
@@ -197,27 +197,14 @@ class CIMExportSuite
         implicit spark: SparkSession ⇒
 
             val options = new HashMap[String, String]().asInstanceOf [Map[String, String]]
-            options.put ("ch.ninecode.cim.do_about", "true")
-            options.put ("ch.ninecode.cim.do_normalize", "true")
-            val elements = readFile (filenames_micro.mkString (","), options)
-            println (elements.count + " elements")
-            val export = new CIMExport (spark)
-            //export.exportAll ("target/" + "MicroGrid_All.rdf", "after about and normalization processing")
-            export.exportAllIslands ("target/")
-            assert (new File ("target/_97e00e77-7a51-4997-8456-4ca94774324d" + ".rdf").exists, "island _97e00e77-7a51-4997-8456-4ca94774324d")
-    }
-
-    test ("New Export All Islands")
-    {
-        implicit spark: SparkSession ⇒
-
-            val options = new HashMap[String, String]().asInstanceOf [Map[String, String]]
             options.put ("ch.ninecode.cim.do_topo_islands", "true")
             val elements = readFile (demo_data, options)
             println (elements.count + " elements")
+            val start = System.nanoTime
             val export = new CIMExport (spark)
-            export.exportAllIslands2 ("target/")
-            assert (new File ("target/TX0002_terminal_2_island" + ".rdf").exists, "island TX0002")
+            export.exportAllIslands ("target/")
+            println ("process: %s seconds".format ((System.nanoTime - start) / 1e9))
+            assert (new File ("target/TX0002_terminal_2_island" + ".rdf").exists, "island TX0002_terminal_2_island")
 
             // remove all RDD to start from scratch
             spark.sparkContext.getPersistentRDDs.foreach (x ⇒ { x._2.unpersist(true); x._2.name = null })
