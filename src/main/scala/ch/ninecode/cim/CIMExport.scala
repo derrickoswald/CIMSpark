@@ -1,14 +1,22 @@
 package ch.ninecode.cim
 
+import java.io.UnsupportedEncodingException
 import java.net.URI
+import java.net.URLDecoder
 import java.time.LocalDateTime
+import java.util.Properties
 
 import scala.reflect.ClassTag
+
+import scala.tools.nsc.io.Jar
+import scala.util.Random
+import scopt.OptionParser
 
 import org.apache.hadoop.conf.Configuration
 import org.apache.hadoop.fs.FileSystem
 import org.apache.hadoop.fs.FileUtil
 import org.apache.hadoop.fs.Path
+import org.apache.spark.SparkConf
 import org.apache.spark.rdd.RDD
 import org.apache.spark.rdd.RDD.rddToPairRDDFunctions
 import org.apache.spark.sql.SparkSession
@@ -156,7 +164,7 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
      * @param filename The name of the file to write.
      * @param about The about string for the CIM file header.
      */
-    def export_iterable (elements: Iterable[Element], filename: String, about: String = ""):Unit =
+    def export_iterable (elements: Iterable[Element], filename: String, about: String = ""): Unit =
     {
         val ldt = LocalDateTime.now.toString
         // ToDo: Model.scenarioTime and Model.version
@@ -168,8 +176,11 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
 		<md:Model.description>CIMExport</md:Model.description>
 		<md:Model.modelingAuthoritySet>http://9code.ch/</md:Model.modelingAuthoritySet>
 		<md:Model.profile>https://github.com/derrickoswald/CIMReader</md:Model.profile>
-	</md:FullModel>""".format (about, ldt)
-        val tailer = """</rdf:RDF>"""
+	</md:FullModel>
+""".format (about, ldt)
+        val tailer =
+            """
+</rdf:RDF>"""
 
         // setup
         val configuration: Configuration = new Configuration ()
@@ -246,16 +257,18 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
                     {
                         val mrid = ref.toString
                         if ("" != mrid)
-                            if (relation.field == "BaseVoltage")
-                                Some ((e.id, mrid))
-                            else if (relation.field == "NameType")
-                                Some ((e.id, mrid))
-                            else if (relation.field == "NameTypeAuthority")
-                                Some ((e.id, mrid))
+                            if (relation.field == "TopologicalIsland")
+                                List ((e.id, mrid), (mrid, e.id))
+                            else if (relation.field == "TopologicalNode")
+                                List ((e.id, mrid), (mrid, e.id))
+                            else if (relation.field == "ConnectivityNode")
+                                List ((e.id, mrid), (mrid, e.id))
+                            else if (relation.field == "Location")
+                                List ((e.id, mrid), (mrid, e.id))
                             else if (relation.field == "PerLengthParameters")
                                 Some ((e.id, ref.asInstanceOf[List[String]].head))
                             else if (!relation.multiple)
-                                List ((e.id, mrid), (mrid, e.id))
+                                Some ((e.id, mrid))
                             else
                                 None
                         else
@@ -356,5 +369,247 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
         ).sum.toInt
         log.info ("exported %s island%s".format (total, if (total == 1) "" else "s"))
         total
+    }
+
+    /**
+     * Export every transformer service area.
+     * @param directory The name of the directory to write the CIM files.
+     * @return the number of transformers processed
+     */
+    def exportAllTransformers (directory: String = "simulation/"): Int =
+    {
+        val dir = if (directory.endsWith ("/")) directory else directory + "/"
+        // get transformer low voltage pins
+        val transformers: RDD[Item] = getOrElse [PowerTransformerEnd]
+            .filter (_.TransformerEnd.endNumber != 1)
+            .map (x ⇒ (x.TransformerEnd.Terminal, x.PowerTransformer))
+            .join (getOrElse [Terminal].map (x ⇒ (x.id, x.TopologicalNode))).values
+            .map (_.swap)
+            .join (getOrElse [TopologicalNode].map (x ⇒ (x.id, x.TopologicalIsland))).values
+            .map (_.swap)
+            .groupByKey
+            .mapValues (_.toArray.sortWith (_ < _).mkString ("_"))
+            .persist (storage)
+        val count = transformers.count
+        log.info ("exporting %s transformer%s".format (count, if (count == 1) "" else "s"))
+
+        val labeled = labelRelated (transformers)
+        val total = labeled.groupByKey.map (
+            group ⇒
+            {
+                val transformer = group._1
+                val elements = group._2
+                val filename = dir + transformer + ".rdf"
+                log.info ("exporting %s".format (filename))
+                export_iterable (elements, filename, transformer)
+                1
+            }
+        ).sum.toInt
+        log.info ("exported %s transformer%s".format (total, if (total == 1) "" else "s"))
+        total
+    }
+}
+
+/**
+ * Application to export (subset by island) CIM files.
+ *
+ * This program reads in one or more CIM files and exports topological islands
+ * as subset CIM files.
+ *
+ */
+object CIMExportMain
+{
+    val properties: Properties =
+    {
+        val in = this.getClass.getResourceAsStream ("/app.properties")
+        val p = new Properties ()
+        p.load (in)
+        in.close ()
+        p
+    }
+    val APPLICATION_NAME: String = getClass.getName.substring (getClass.getName.lastIndexOf (".") + 1, getClass.getName.length - 1)
+    val APPLICATION_VERSION: String = properties.getProperty ("version")
+    val SPARK: String = properties.getProperty ("spark")
+
+    private val log = LoggerFactory.getLogger (APPLICATION_NAME)
+
+    object LogLevels extends Enumeration
+    {
+        type LogLevels = Value
+        val ALL, DEBUG, ERROR, FATAL, INFO, OFF, TRACE, WARN = Value
+    }
+    implicit val LogLevelsRead: scopt.Read[LogLevels.Value] = scopt.Read.reads (LogLevels.withName)
+
+    implicit val mapRead: scopt.Read[Map[String,String]] = scopt.Read.reads (
+        s =>
+        {
+            var ret = Map[String, String] ()
+            val ss = s.split (",")
+            for (p <- ss)
+            {
+                val kv = p.split ("=")
+                ret = ret + ((kv(0), kv(1)))
+            }
+            ret
+        }
+    )
+
+    case class Arguments (
+         quiet: Boolean = false,
+         log_level: LogLevels.Value = LogLevels.OFF,
+         // see https://spark.apache.org/docs/latest/configuration.html
+         sparkopts: Map[String,String] = Map (
+             "spark.graphx.pregel.checkpointInterval" → "8",
+             "spark.serializer" → "org.apache.spark.serializer.KryoSerializer",
+             "spark.ui.showConsoleProgress" → "false"),
+         cimopts: Map[String,String] = Map (
+             "ch.ninecode.cim.do_topo_islands" → "true"
+         ),
+         all: Boolean = false,
+         islands: Boolean = false,
+         transformers: Boolean = false,
+         output: String = "simulation",
+         files: Seq[String] = Seq()
+     )
+
+    val parser: OptionParser[Arguments] = new scopt.OptionParser[Arguments](APPLICATION_NAME)
+    {
+        head (APPLICATION_NAME, APPLICATION_VERSION)
+
+        note ("Extracts subsets of CIM files based on topology.\n")
+
+        help ("help").text ("prints this usage text")
+
+        version ("version").text ("Scala: %s, Spark: %s, %s: %s".format (
+            APPLICATION_VERSION.split ("-")(0),
+            APPLICATION_VERSION.split ("-")(1),
+            APPLICATION_NAME,
+            APPLICATION_VERSION.split ("-")(2)
+        ))
+
+        val default = new Arguments
+
+        opt[Unit]("quiet").
+            action ((_, c) => c.copy (quiet = true)).
+            text ("suppress informational messages [%s]".format (default.quiet))
+
+        opt[LogLevels.Value]("logging").
+            action ((x, c) => c.copy (log_level = x)).
+            text ("log level, one of %s [%s]".format (LogLevels.values.iterator.mkString (","), default.log_level))
+
+        opt[Map[String,String]]("sparkopts").valueName ("k1=v1,k2=v2").
+            action ((x, c) => c.copy (sparkopts = x)).
+            text ("Spark options [%s]".format (default.sparkopts.map (x ⇒ x._1 + "=" + x._2).mkString (",")))
+
+        opt[Map[String,String]]("cimopts").valueName ("k1=v1,k2=v2").
+            action ((x, c) => c.copy (cimopts = x)).
+            text ("CIMReader options [%s]".format (default.cimopts.map (x ⇒ x._1 + "=" + x._2).mkString (",")))
+
+        opt[Unit]("all").
+            action ((_, c) => c.copy (all = true)).
+            text ("export entire processed file [%s]".format (default.all))
+
+        opt[Unit]("islands").
+            action ((_, c) => c.copy (islands = true)).
+            text ("export topological islands [%s]".format (default.islands))
+
+        opt[Unit]("transformers").
+            action ((_, c) => c.copy (transformers = true)).
+            text ("export transformer service areas [%s]".format (default.transformers))
+
+        opt[String]("output").valueName ("<file> or <dir>").
+            action ((x, c) => c.copy (output = x)).
+            text ("output file or directory name [%s]".format (default.output))
+
+        arg[String]("<CIM> <CIM> ...").unbounded ().
+            action ((x, c) => c.copy (files = c.files :+ x)).
+            text ("CIM rdf files to process")
+    }
+
+    def jarForObject (obj: Object): String =
+    {
+        // see https://stackoverflow.com/questions/320542/how-to-get-the-path-of-a-running-jar-file
+        var ret = obj.getClass.getProtectionDomain.getCodeSource.getLocation.getPath
+        try
+        {
+            ret = URLDecoder.decode (ret, "UTF-8")
+        }
+        catch
+        {
+            case e: UnsupportedEncodingException => e.printStackTrace ()
+        }
+        if (!ret.toLowerCase ().endsWith (".jar"))
+        {
+            // as an aid to debugging, make jar in tmp and pass that name
+            val name = "/tmp/" + Random.nextInt (99999999) + ".jar"
+            val writer = new Jar (new scala.reflect.io.File (new java.io.File (name))).jarWriter ()
+            writer.addDirectory (new scala.reflect.io.Directory (new java.io.File (ret + "ch/")), "ch/")
+            writer.close ()
+            ret = name
+        }
+
+        ret
+    }
+
+    /**
+     * Main entry point for the Export program.
+     *
+     * @param args command line arguments
+     */
+    def main (args:Array[String])
+    {
+        parser.parse (args, Arguments ()) match
+        {
+            case Some (arguments) =>
+                if (!arguments.quiet)
+                    org.apache.log4j.LogManager.getLogger (APPLICATION_NAME).setLevel (org.apache.log4j.Level.INFO)
+                if (!arguments.quiet)
+                    org.apache.log4j.LogManager.getLogger ("ch.ninecode.cim.CIMExport").setLevel (org.apache.log4j.Level.INFO)
+                if (!arguments.quiet)
+                    org.apache.log4j.LogManager.getLogger ("ch.ninecode.cim.CIMNetworkTopologyProcessor").setLevel (org.apache.log4j.Level.INFO)
+                val log = LoggerFactory.getLogger (APPLICATION_NAME)
+
+                val configuration = new SparkConf ()
+                configuration.setAppName (APPLICATION_NAME)
+                if (arguments.sparkopts.nonEmpty)
+                    arguments.sparkopts.map ((pair: (String, String)) => configuration.set (pair._1, pair._2))
+                // get the necessary jar files to send to the cluster
+                configuration.setJars (Array (jarForObject (new DefaultSource ())))
+                // register for Kryo serialization
+                configuration.registerKryoClasses (CIMClasses.list)
+
+                val session_builder = SparkSession.builder ()
+                val session = session_builder.config (configuration).getOrCreate ()
+                val version = session.version
+                log.info (s"Spark $version session established")
+                if (version.take (SPARK.length) != SPARK.take (version.length))
+                    log.warn (s"Spark version ($version) does not match the version ($SPARK) used to build $APPLICATION_NAME")
+
+                try
+                {
+                    // read the file
+                    val reader_options = scala.collection.mutable.HashMap[String, String] ()
+                    arguments.cimopts.map ((pair: (String, String)) => reader_options.put (pair._1, pair._2))
+                    reader_options.put ("path", arguments.files.mkString (","))
+                    log.info ("reading CIM files %s".format (arguments.files.mkString (",")))
+                    val elements = session.read.format ("ch.ninecode.cim").options (reader_options).load (arguments.files:_*)
+                    log.info ("" + elements.count + " elements")
+
+                    val export = new CIMExport (session)
+                    if (arguments.all)
+                        export.exportAll (arguments.output)
+                    else if (arguments.islands)
+                        export.exportAllIslands (arguments.output)
+                    else if (arguments.transformers)
+                        export.exportAllTransformers (arguments.output)
+                }
+                finally
+                {
+                    session.stop ()
+                }
+                sys.exit (0)
+            case None =>
+                sys.exit (1)
+        }
     }
 }
