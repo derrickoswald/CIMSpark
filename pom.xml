@@ -99,6 +99,7 @@
     <modules>
         <module>CIMTool</module>
         <module>CIMReader</module>
+        <module>CIMJDBC</module>
     </modules>
 
 </project>

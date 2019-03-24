@@ -1,0 +1,125 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>ch.ninecode.cim</groupId>
+        <artifactId>CIMJDBC</artifactId>
+        <relativePath>../pom.xml</relativePath>
+        <version>2.11-2.3.2-3.4.0</version>
+    </parent>
+    <artifactId>CIMServerJDBC</artifactId>
+    <name>${project.artifactId}</name>
+    <description>Serve CIM model data as a JDBC database</description>
+    <inceptionYear>2017</inceptionYear>
+    <url>https://github.com/derrickoswald/CIMSpark/tree/master/CIMJDBC/CIMServerJDBC</url>
+
+    <properties>
+        <version.dependency.jackcess>2.1.10</version.dependency.jackcess>
+        <version.dependency.jena>3.4.0</version.dependency.jena>
+        <version.dependency.commons-logging>1.2</version.dependency.commons-logging>
+        <version.dependency.commons-lang>2.6</version.dependency.commons-lang>
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>com.github.scopt</groupId>
+            <artifactId>scopt_2.11</artifactId>
+            <version>${version.dependency.scopt}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>ch.ninecode.cim</groupId>
+            <artifactId>CIMReader</artifactId>
+            <version>${project.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-library</artifactId>
+            <version>${version.dependency.scalalibrary}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-hive-thriftserver_${version.dependency.scala}</artifactId>
+            <version>${version.dependency.spark}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.scalatest</groupId>
+            <artifactId>scalatest_${version.dependency.scala}</artifactId>
+            <version>${version.dependency.scalatest}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${version.dependency.junit}</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <sourceDirectory>src/main/scala</sourceDirectory>
+        <plugins>
+            <plugin>
+                <!-- see http://davidb.github.com/scala-maven-plugin -->
+                <groupId>net.alchim31.maven</groupId>
+                <artifactId>scala-maven-plugin</artifactId>
+                <version>3.2.1</version>
+                <configuration>
+                    <scalaCompatVersion>${version.dependency.scala}</scalaCompatVersion>
+                    <scalaVersion>${version.dependency.scalalibrary}</scalaVersion>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compile</goal>
+                            <goal>testCompile</goal>
+                        </goals>
+                        <configuration>
+                            <args>
+                                <arg>-deprecation</arg>
+                                <arg>-dependencyfile</arg>
+                                <arg>${project.build.directory}/.scala_dependencies</arg>
+                            </args>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- assembly for stand-alone program -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <id>make-CIMServerJDBC-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <finalName>CIMServerJDBC-${project.version}</finalName>
+                            <descriptorRefs>
+                                <descriptorRef>jar-with-dependencies</descriptorRef>
+                            </descriptorRefs>
+                            <archive>
+                                <manifest>
+                                    <mainClass>ch.ninecode.cim.CIMServerJDBC</mainClass>
+                                </manifest>
+                            </archive>
+                            <attach>false</attach>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

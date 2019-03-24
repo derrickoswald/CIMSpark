@@ -20,12 +20,12 @@ import java.sql.DriverManager;
  * docker-compose up&
  *
  * In another terminal session execute CIMServerJDBC:
- * /spark/spark-2.1.1-bin-hadoop2.7/bin/spark-submit --master spark://sandbox:7077 --driver-memory 1g --executor-memory 4g target/CIMServerJDBC-2.11-2.1.1-2.1.0-jar-with-dependencies.jar "hdfs://sandbox:8020/data/some_CIM_data.rdf"
+ * /spark/spark-2.1.1-bin-hadoop2.7/bin/spark-submit --master spark://sandbox:7077 --driver-memory 1g --executor-memory 4g target/CIMServerJDBC-[version]-jar-with-dependencies.jar "hdfs://sandbox:8020/data/some_CIM_data.rdf"
  *
- * In another terminal session build and execute the CIMJava jar:
+ * In another terminal session build and execute the CIMClientJDBC jar:
  * cd src/jdbc
  * mvn package
- * java -jar target/CIMJava-0.0.1-SNAPSHOT-jar-with-dependencies.jar
+ * java -jar target/CIMClientJDBCClientJDBC-[version]-jar-with-dependencies.jar
  *
  * @implNote The above instructions run the CIMServerJDBC externally from the cluster,
  * I didn't have any success running the CIMServerJDBC on the spark master.
@@ -34,7 +34,7 @@ import java.sql.DriverManager;
  * Connection succeeds for user derrick, but then executing a "select" query yields:
  * Exception “Caused by: org.apache.hadoop.ipc.RemoteException(org.apache.hadoop.security.authorize.AuthorizationException): User: derrick is not allowed to impersonate derrick”
  */
-public class CIMJava
+public class CIMClientJDBC
 {
     private static String driverName = "org.apache.hive.jdbc.HiveDriver";
     private static String port = "10004";

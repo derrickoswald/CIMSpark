@@ -1,11 +1,16 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>ch.ninecode.cim</groupId>
-    <artifactId>CIMJava</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <parent>
+        <groupId>ch.ninecode.cim</groupId>
+        <artifactId>CIMJDBC</artifactId>
+        <relativePath>../pom.xml</relativePath>
+        <version>2.11-2.3.2-3.4.0</version>
+    </parent>
+    <artifactId>CIMClientJDBC</artifactId>
     <name>${project.artifactId}</name>
     <description>Sample JDBC access to CIMServerJDBC</description>
     <inceptionYear>2017</inceptionYear>
+    <url>https://github.com/derrickoswald/CIMSpark/tree/master/CIMJDBC/CIMServerJDBC</url>
 
     <properties>
         <encoding>UTF-8</encoding>
@@ -18,7 +23,7 @@
         <dependency>
             <groupId>org.apache.hive</groupId>
             <artifactId>hive-jdbc</artifactId>
-            <version>3.1.1</version>
+            <version>2.1.0</version>
         </dependency>
 
     </dependencies>
@@ -32,13 +37,13 @@
                 <artifactId>maven-assembly-plugin</artifactId>
                 <version>3.0.0</version>
                 <configuration>
-                    <finalName>CIMJava-${project.version}</finalName>
+                    <finalName>CIMClientJDBC-${project.version}</finalName>
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>ch.ninecode.cim.CIMJava</mainClass>
+                            <mainClass>ch.ninecode.cim.CIMClientJDBC</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

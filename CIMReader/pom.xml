@@ -108,13 +108,6 @@
 
         <dependency>
             <groupId>org.apache.spark</groupId>
-            <artifactId>spark-hive-thriftserver_${version.dependency.scala}</artifactId>
-            <version>${version.dependency.spark}</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.spark</groupId>
             <artifactId>spark-graphx_${version.dependency.scala}</artifactId>
             <version>${version.dependency.spark}</version>
             <scope>provided</scope>
@@ -241,25 +234,6 @@
                 <artifactId>maven-assembly-plugin</artifactId>
                 <version>3.0.0</version>
                 <executions>
-                    <execution>
-                        <id>make-CIMServerJDBC-assembly</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                        <configuration>
-                            <finalName>CIMServerJDBC-${project.version}</finalName>
-                            <descriptorRefs>
-                                <descriptorRef>jar-with-dependencies</descriptorRef>
-                            </descriptorRefs>
-                            <archive>
-                                <manifest>
-                                    <mainClass>ch.ninecode.cim.CIMServerJDBC</mainClass>
-                                </manifest>
-                            </archive>
-                            <attach>false</attach>
-                        </configuration>
-                    </execution>
                     <execution>
                         <id>make-CIMExport-assembly</id>
                         <phase>package</phase>

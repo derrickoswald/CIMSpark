@@ -1,0 +1,21 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>ch.ninecode.cim</groupId>
+        <artifactId>CIMSpark</artifactId>
+        <relativePath>../pom.xml</relativePath>
+        <version>2.11-2.3.2-3.4.0</version>
+    </parent>
+    <artifactId>CIMJDBC</artifactId>
+    <name>${project.artifactId}</name>
+    <packaging>pom</packaging>
+    <description>Serve CIM model data as a JDBC database and access as a JDBC client</description>
+    <inceptionYear>2017</inceptionYear>
+    <url>https://github.com/derrickoswald/CIMSpark/tree/master/CIMJDBC</url>
+
+    <modules>
+        <module>CIMServerJDBC</module>
+        <module>CIMClientJDBC</module>
+    </modules>
+
+</project>
