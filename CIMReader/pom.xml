@@ -12,7 +12,7 @@
 
     <description>Expose CIM data files as Spark RDD</description>
     <inceptionYear>2015</inceptionYear>
-    <url>https://github.com/derrickoswald/CIMSpark</url>
+    <url>https://github.com/derrickoswald/CIMSpark/tree/master/CIMReader</url>
     <organization>
         <name>9code GmbH</name>
         <url>http://9code.ch</url>
@@ -75,24 +75,7 @@
             <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
     </distributionManagement>
-    <properties>
 
-        <encoding>UTF-8</encoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-
-        <!-- Scala versions -->
-        <version.dependency.scala>2.11</version.dependency.scala>
-        <version.dependency.scalalibrary>2.11.12</version.dependency.scalalibrary>
-
-        <!-- Spark version -->
-        <version.dependency.spark>2.3.2</version.dependency.spark>
-
-        <!-- test versions -->
-        <version.dependency.scopt>3.7.0</version.dependency.scopt>
-        <version.dependency.junit>4.12</version.dependency.junit>
-        <version.dependency.scalatest>3.0.3</version.dependency.scalatest>
-    </properties>
     <dependencies>
 
         <dependency>

@@ -97,6 +97,7 @@
     </build>
 
     <modules>
+        <module>CIMTool</module>
         <module>CIMReader</module>
     </modules>
 
