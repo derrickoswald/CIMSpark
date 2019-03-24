@@ -8,24 +8,24 @@
     <name>${project.artifactId}</name>
     <description>Expose CIM data files as Spark RDD</description>
     <inceptionYear>2015</inceptionYear>
-    <url>https://github.com/derrickoswald/CIMReader</url>
+    <url>https://github.com/derrickoswald/CIMSpark</url>
     <organization>
         <name>9code GmbH</name>
         <url>http://9code.ch</url>
     </organization>
     <scm>
-        <url>git@github.com:derrickoswald/CIMReader.git</url>
-        <connection>scm:git:git@github.com:derrickoswald/CIMReader.git</connection>
-        <developerConnection>scm:git:git@github.com:derrickoswald/CIMReader.git</developerConnection>
+        <url>git@github.com:derrickoswald/CIMSpark.git</url>
+        <connection>scm:git:git@github.com:derrickoswald/CIMSpark.git</connection>
+        <developerConnection>scm:git:git@github.com:derrickoswald/CIMSpark.git</developerConnection>
     </scm>
     <issueManagement>
-        <url>https://github.com/derrickoswald/CIMReader/issues</url>
+        <url>https://github.com/derrickoswald/CIMSpark/issues</url>
     </issueManagement>
     <licenses>
         <license>
             <name>MIT License</name>
             <url>https://opensource.org/licenses/MIT</url>
-            <comments>see https://github.com/derrickoswald/CIMReader/blob/master/LICENSE.md</comments>
+            <comments>see https://github.com/derrickoswald/CIMSpark/blob/master/LICENSE.md</comments>
             <distribution>repo</distribution>
         </license>
     </licenses>
@@ -57,7 +57,7 @@
                 <role>developer</role>
             </roles>
             <properties>
-                <picUrl>https://rawgit.com/derrickoswald/CIMReader/master/img/Markus.jpg</picUrl>
+                <picUrl>https://rawgit.com/derrickoswald/CIMSpark/master/img/Markus.jpg</picUrl>
             </properties>
         </developer>
     </developers>

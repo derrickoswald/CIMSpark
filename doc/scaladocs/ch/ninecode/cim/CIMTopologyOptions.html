@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>CIMTopologyOptions - CIMReader 2.11-2.3.1-3.0.4 API - ch.ninecode.cim.CIMTopologyOptions</title>
-          <meta name="description" content="CIMTopologyOptions - CIMReader 2.11 - 2.3.1 - 3.0.4 API - ch.ninecode.cim.CIMTopologyOptions" />
-          <meta name="keywords" content="CIMTopologyOptions CIMReader 2.11 2.3.1 3.0.4 API ch.ninecode.cim.CIMTopologyOptions" />
+          <title>CIMTopologyOptions - CIMReader 2.11-2.3.2-3.4.0 API - ch.ninecode.cim.CIMTopologyOptions</title>
+          <meta name="description" content="CIMTopologyOptions - CIMReader 2.11 - 2.3.2 - 3.4.0 API - ch.ninecode.cim.CIMTopologyOptions" />
+          <meta name="keywords" content="CIMTopologyOptions CIMReader 2.11 2.3.2 3.4.0 API ch.ninecode.cim.CIMTopologyOptions" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -28,10 +28,12 @@
         </head>
         <body class="type">
       <div id="definition">
-        <img alt="Class" src="../../../lib/class_big.png" />
+        <a href="CIMTopologyOptions$.html" title="See companion object"><img alt="Class/Object" src="../../../lib/class_to_object_big.png" /></a>
         <p id="owner"><a href="../../package.html" class="extype" name="ch">ch</a>.<a href="../package.html" class="extype" name="ch.ninecode">ninecode</a>.<a href="package.html" class="extype" name="ch.ninecode.cim">cim</a></p>
-        <h1>CIMTopologyOptions</h1><h3><span class="morelinks"><div>Related Doc:
-            <a href="package.html" class="extype" name="ch.ninecode.cim">package cim</a>
+        <h1><a href="CIMTopologyOptions$.html" title="See companion object">CIMTopologyOptions</a></h1><h3><span class="morelinks"><div>
+            Related Docs:
+            <a href="CIMTopologyOptions$.html" title="See companion object">object CIMTopologyOptions</a>
+            | <a href="package.html" class="extype" name="ch.ninecode.cim">package cim</a>
           </div></span></h3><span class="permalink">
       <a href="../../../index.html#ch.ninecode.cim.CIMTopologyOptions" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
@@ -45,7 +47,7 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">CIMTopologyOptions</span><span class="params">(<span name="identify_islands">identify_islands: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>, <span name="force_retain_switches">force_retain_switches: <a href="State.html" class="extype" name="ch.ninecode.cim.State">State</a> = <span class="symbol"><span class="name"><a href="Unforced$.html">Unforced</a></span></span></span>, <span name="force_retain_fuses">force_retain_fuses: <a href="State.html" class="extype" name="ch.ninecode.cim.State">State</a> = <span class="symbol"><span class="name"><a href="Unforced$.html">Unforced</a></span></span></span>, <span name="default_switch_open_state">default_switch_open_state: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>, <span name="debug">debug: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>, <span name="storage">storage: <span class="extype" name="org.apache.spark.storage.StorageLevel">StorageLevel</span> = <span class="symbol"><span class="name"><a href="../../../org/package.html">StorageLevel.MEMORY_AND_DISK_SER</a></span></span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">CIMTopologyOptions</span><span class="params">(<span name="identify_islands">identify_islands: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>, <span name="force_retain_switches">force_retain_switches: <a href="State.html" class="extype" name="ch.ninecode.cim.State">State</a> = <span class="symbol"><span class="name"><a href="Unforced$.html">Unforced</a></span></span></span>, <span name="force_retain_fuses">force_retain_fuses: <a href="State.html" class="extype" name="ch.ninecode.cim.State">State</a> = <span class="symbol"><span class="name"><a href="Unforced$.html">Unforced</a></span></span></span>, <span name="force_switch_separate_islands">force_switch_separate_islands: <a href="State.html" class="extype" name="ch.ninecode.cim.State">State</a> = <span class="symbol"><span class="name"><a href="Unforced$.html">Unforced</a></span></span></span>, <span name="force_fuse_separate_islands">force_fuse_separate_islands: <a href="State.html" class="extype" name="ch.ninecode.cim.State">State</a> = <span class="symbol"><span class="name"><a href="Unforced$.html">Unforced</a></span></span></span>, <span name="default_switch_open_state">default_switch_open_state: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>, <span name="debug">debug: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>, <span name="storage">storage: <span class="extype" name="org.apache.spark.storage.StorageLevel">StorageLevel</span> = <span class="symbol"><span class="name"><a href="../../../org/package.html">StorageLevel.MEMORY_AND_DISK_SER</a></span></span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
@@ -54,16 +56,18 @@
 topological nodes. That is, <code>TopologicalNode</code> objects generated by the processor will have a valid
 <code>TopologicalIsland</code> attributes that reference generated <code>TopologicalIsland</code> objects.</p></dd><dt class="param">force_retain_switches</dt><dd class="cmt"><p>Keep Switch and subclasses as two topological node elements irregardless of the
 <code>retained</code> attribute, or the <code>open</code> and <code>normalOpen</code>
-attributes. Fuse and ProtectiveSwitch classes are not included by this flag.
+attributes.
 This is used for alternative scenario calculations.
-It allows the user to override of the behaviour when the processor encounters a Switch
-or a Switch derived class (e.g. Breaker) except for Fuse. The default behaviour of <code>Unforced</code>
-will use the value of the <code>retained</code> attribute to identify a node or island boundary
+It allows the user to override the behaviour when the processor encounters a Switch
+or a Switch derived class (e.g. Disconnector),
+except Fuse and ProtectiveSwitch classes are not included by this flag.
+The default behaviour of <code>Unforced</code>
+will use the value of the <code>retained</code> attribute to identify a node boundary
 only if the attribute is present in the CIM file and the value is <code>true</code>.
-When set to <code>ForceTrue</code> the behaviour is equivalent to having a <code>retained</code>
-attribute with value <code>true</code> for every Switch instance except for Fuse.
-When set to <code>ForecFalse</code> the behaviour is equivalent to having a <code>retained</code>
-attribute with value <code>false</code> for every instance.</p></dd><dt class="param">force_retain_fuses</dt><dd class="cmt"><p>Keep Fuse, ProtectedSwitch and subclasses as two topological node elements irregardless of the
+When set to <code>ForceTrue</code> the behaviour is equivalent to each Switch having a <code>retained</code>
+attribute with value <code>true</code>.
+When set to <code>ForceFalse</code> the behaviour is equivalent to each Switch having a <code>retained</code>
+attribute with value <code>false</code>.</p></dd><dt class="param">force_retain_fuses</dt><dd class="cmt"><p>Keep Fuse, ProtectedSwitch and subclasses as two topological node elements irregardless of the
 <code>retained</code> attribute, or the <code>open</code> and <code>normalOpen</code>
 attributes.
 This is used for fuse specificity calculation.
@@ -71,10 +75,16 @@ It allows the user to override the normal behaviour when a Fuse is encountered, 
 terminals as two topological nodes only if the <code>retained</code> attribute is present and true
 or the <code>open</code> attribute is present and has a value <code>true</code>
 or if <code>open</code> attribute is not present and the <code>normalOpen</code> attribute has a value <code>true</code>.
-This has the same effect as for Switch objects using <code>force_retain_switches</code> but for Fuse objects.</p></dd><dt class="param">default_switch_open_state</dt><dd class="cmt"><p>Allows changing the behaviour when the processor encounters a Switch
+This has the same effect for Fuse objects as <code>force_retain_switches</code> does for Switch objects.</p></dd><dt class="param">force_switch_separate_islands</dt><dd class="cmt"><p>Extends the retain attribute to <code>TopologicalIsland</code> processing
+for <code>Switch</code> derived objects, except for <code>Fuse</code> and <code>ProtectedSwitch</code> objects.
+The default of <code>Unforced</code> uses the open or normalOpen attributes, if present, or the
+<code>default_switch_open_state</code> setting otherwise, to determine if a switch separates two islands.
+<code>ForceTrue</code> keeps the switch in two islands, irregardless of the switch state, while
+<code>ForceFalse</code> ensures the switch is in only one island.</p></dd><dt class="param">force_fuse_separate_islands</dt><dd class="cmt"><p>Similar functionality as force_switch_separate_islands,
+but for <code>Fuse</code> objects.</p></dd><dt class="param">default_switch_open_state</dt><dd class="cmt"><p>Allows changing the behaviour when the processor encounters a Switch
 that has neither an <code>open</code> attribute, nor  <code>normalOpen</code> attribute.
-The default behaviour of <code>ForceFalse<code> is the same as if <code>open</code> and <code>normalOpen</code>
-both specify <code>true</code>.</p></dd><dt class="param">debug</dt><dd class="cmt"><p>If <code>true</code> additional tests are performed during topology processing:</p><ul><li>unique VertexId for every ConnectivityNode mRID (checks the hash function)</li><li>all edges reference existing ConnectivityNode elements (checks for completeness)</li><li>no voltage transitions (checks that edges that are joined have the same BaseVoltage)</li></ul></dd><dt class="param">storage</dt><dd class="cmt"><p>The storage level for new and replaced CIM RDD.</p></dd></dl><div class="toggleContainer block">
+The default behaviour of <code>false<code> is the same as if <code>open</code> and <code>normalOpen</code>
+both specify <code>false</code>.</p></dd><dt class="param">debug</dt><dd class="cmt"><p>If <code>true</code> additional tests are performed during topology processing:</p><ul><li>unique VertexId for every ConnectivityNode mRID (checks the hash function)</li><li>all edges reference existing ConnectivityNode elements (checks for completeness)</li><li>no voltage transitions (checks that edges that are joined have the same BaseVoltage)</li></ul></dd><dt class="param">storage</dt><dd class="cmt"><p>The storage level for new and replaced CIM RDD.</p></dd></dl><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
           <div class="superTypes hiddenContent"><span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
@@ -114,7 +124,7 @@ both specify <code>true</code>.</p></dd><dt class="param">debug</dt><dd class="c
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
               <ol><li name="ch.ninecode.cim.CIMTopologyOptions#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="&lt;init&gt;(identify_islands:Boolean,force_retain_switches:ch.ninecode.cim.State,force_retain_fuses:ch.ninecode.cim.State,default_switch_open_state:Boolean,debug:Boolean,storage:org.apache.spark.storage.StorageLevel):ch.ninecode.cim.CIMTopologyOptions"></a>
+      <a id="&lt;init&gt;(identify_islands:Boolean,force_retain_switches:ch.ninecode.cim.State,force_retain_fuses:ch.ninecode.cim.State,force_switch_separate_islands:ch.ninecode.cim.State,force_fuse_separate_islands:ch.ninecode.cim.State,default_switch_open_state:Boolean,debug:Boolean,storage:org.apache.spark.storage.StorageLevel):ch.ninecode.cim.CIMTopologyOptions"></a>
       <a id="&lt;init&gt;:CIMTopologyOptions"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -122,10 +132,10 @@ both specify <code>true</code>.</p></dd><dt class="param">debug</dt><dd class="c
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">CIMTopologyOptions</span><span class="params">(<span name="identify_islands">identify_islands: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>, <span name="force_retain_switches">force_retain_switches: <a href="State.html" class="extype" name="ch.ninecode.cim.State">State</a> = <span class="symbol"><span class="name"><a href="Unforced$.html">Unforced</a></span></span></span>, <span name="force_retain_fuses">force_retain_fuses: <a href="State.html" class="extype" name="ch.ninecode.cim.State">State</a> = <span class="symbol"><span class="name"><a href="Unforced$.html">Unforced</a></span></span></span>, <span name="default_switch_open_state">default_switch_open_state: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>, <span name="debug">debug: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>, <span name="storage">storage: <span class="extype" name="org.apache.spark.storage.StorageLevel">StorageLevel</span> = <span class="symbol"><span class="name"><a href="../../../org/package.html">StorageLevel.MEMORY_AND_DISK_SER</a></span></span></span>)</span>
+        <span class="name">CIMTopologyOptions</span><span class="params">(<span name="identify_islands">identify_islands: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>, <span name="force_retain_switches">force_retain_switches: <a href="State.html" class="extype" name="ch.ninecode.cim.State">State</a> = <span class="symbol"><span class="name"><a href="Unforced$.html">Unforced</a></span></span></span>, <span name="force_retain_fuses">force_retain_fuses: <a href="State.html" class="extype" name="ch.ninecode.cim.State">State</a> = <span class="symbol"><span class="name"><a href="Unforced$.html">Unforced</a></span></span></span>, <span name="force_switch_separate_islands">force_switch_separate_islands: <a href="State.html" class="extype" name="ch.ninecode.cim.State">State</a> = <span class="symbol"><span class="name"><a href="Unforced$.html">Unforced</a></span></span></span>, <span name="force_fuse_separate_islands">force_fuse_separate_islands: <a href="State.html" class="extype" name="ch.ninecode.cim.State">State</a> = <span class="symbol"><span class="name"><a href="Unforced$.html">Unforced</a></span></span></span>, <span name="default_switch_open_state">default_switch_open_state: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>, <span name="debug">debug: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>, <span name="storage">storage: <span class="extype" name="org.apache.spark.storage.StorageLevel">StorageLevel</span> = <span class="symbol"><span class="name"><a href="../../../org/package.html">StorageLevel.MEMORY_AND_DISK_SER</a></span></span></span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.CIMTopologyOptions@&lt;init&gt;(identify_islands:Boolean,force_retain_switches:ch.ninecode.cim.State,force_retain_fuses:ch.ninecode.cim.State,default_switch_open_state:Boolean,debug:Boolean,storage:org.apache.spark.storage.StorageLevel):ch.ninecode.cim.CIMTopologyOptions" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.CIMTopologyOptions@&lt;init&gt;(identify_islands:Boolean,force_retain_switches:ch.ninecode.cim.State,force_retain_fuses:ch.ninecode.cim.State,force_switch_separate_islands:ch.ninecode.cim.State,force_fuse_separate_islands:ch.ninecode.cim.State,default_switch_open_state:Boolean,debug:Boolean,storage:org.apache.spark.storage.StorageLevel):ch.ninecode.cim.CIMTopologyOptions" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -133,16 +143,18 @@ both specify <code>true</code>.</p></dd><dt class="param">debug</dt><dd class="c
 topological nodes. That is, <code>TopologicalNode</code> objects generated by the processor will have a valid
 <code>TopologicalIsland</code> attributes that reference generated <code>TopologicalIsland</code> objects.</p></dd><dt class="param">force_retain_switches</dt><dd class="cmt"><p>Keep Switch and subclasses as two topological node elements irregardless of the
 <code>retained</code> attribute, or the <code>open</code> and <code>normalOpen</code>
-attributes. Fuse and ProtectiveSwitch classes are not included by this flag.
+attributes.
 This is used for alternative scenario calculations.
-It allows the user to override of the behaviour when the processor encounters a Switch
-or a Switch derived class (e.g. Breaker) except for Fuse. The default behaviour of <code>Unforced</code>
-will use the value of the <code>retained</code> attribute to identify a node or island boundary
+It allows the user to override the behaviour when the processor encounters a Switch
+or a Switch derived class (e.g. Disconnector),
+except Fuse and ProtectiveSwitch classes are not included by this flag.
+The default behaviour of <code>Unforced</code>
+will use the value of the <code>retained</code> attribute to identify a node boundary
 only if the attribute is present in the CIM file and the value is <code>true</code>.
-When set to <code>ForceTrue</code> the behaviour is equivalent to having a <code>retained</code>
-attribute with value <code>true</code> for every Switch instance except for Fuse.
-When set to <code>ForecFalse</code> the behaviour is equivalent to having a <code>retained</code>
-attribute with value <code>false</code> for every instance.</p></dd><dt class="param">force_retain_fuses</dt><dd class="cmt"><p>Keep Fuse, ProtectedSwitch and subclasses as two topological node elements irregardless of the
+When set to <code>ForceTrue</code> the behaviour is equivalent to each Switch having a <code>retained</code>
+attribute with value <code>true</code>.
+When set to <code>ForceFalse</code> the behaviour is equivalent to each Switch having a <code>retained</code>
+attribute with value <code>false</code>.</p></dd><dt class="param">force_retain_fuses</dt><dd class="cmt"><p>Keep Fuse, ProtectedSwitch and subclasses as two topological node elements irregardless of the
 <code>retained</code> attribute, or the <code>open</code> and <code>normalOpen</code>
 attributes.
 This is used for fuse specificity calculation.
@@ -150,10 +162,16 @@ It allows the user to override the normal behaviour when a Fuse is encountered, 
 terminals as two topological nodes only if the <code>retained</code> attribute is present and true
 or the <code>open</code> attribute is present and has a value <code>true</code>
 or if <code>open</code> attribute is not present and the <code>normalOpen</code> attribute has a value <code>true</code>.
-This has the same effect as for Switch objects using <code>force_retain_switches</code> but for Fuse objects.</p></dd><dt class="param">default_switch_open_state</dt><dd class="cmt"><p>Allows changing the behaviour when the processor encounters a Switch
+This has the same effect for Fuse objects as <code>force_retain_switches</code> does for Switch objects.</p></dd><dt class="param">force_switch_separate_islands</dt><dd class="cmt"><p>Extends the retain attribute to <code>TopologicalIsland</code> processing
+for <code>Switch</code> derived objects, except for <code>Fuse</code> and <code>ProtectedSwitch</code> objects.
+The default of <code>Unforced</code> uses the open or normalOpen attributes, if present, or the
+<code>default_switch_open_state</code> setting otherwise, to determine if a switch separates two islands.
+<code>ForceTrue</code> keeps the switch in two islands, irregardless of the switch state, while
+<code>ForceFalse</code> ensures the switch is in only one island.</p></dd><dt class="param">force_fuse_separate_islands</dt><dd class="cmt"><p>Similar functionality as force_switch_separate_islands,
+but for <code>Fuse</code> objects.</p></dd><dt class="param">default_switch_open_state</dt><dd class="cmt"><p>Allows changing the behaviour when the processor encounters a Switch
 that has neither an <code>open</code> attribute, nor  <code>normalOpen</code> attribute.
-The default behaviour of <code>ForceFalse<code> is the same as if <code>open</code> and <code>normalOpen</code>
-both specify <code>true</code>.</p></dd><dt class="param">debug</dt><dd class="cmt"><p>If <code>true</code> additional tests are performed during topology processing:</p><ul><li>unique VertexId for every ConnectivityNode mRID (checks the hash function)</li><li>all edges reference existing ConnectivityNode elements (checks for completeness)</li><li>no voltage transitions (checks that edges that are joined have the same BaseVoltage)</li></ul></dd><dt class="param">storage</dt><dd class="cmt"><p>The storage level for new and replaced CIM RDD.</p></dd></dl></div>
+The default behaviour of <code>false<code> is the same as if <code>open</code> and <code>normalOpen</code>
+both specify <code>false</code>.</p></dd><dt class="param">debug</dt><dd class="cmt"><p>If <code>true</code> additional tests are performed during topology processing:</p><ul><li>unique VertexId for every ConnectivityNode mRID (checks the hash function)</li><li>all edges reference existing ConnectivityNode elements (checks for completeness)</li><li>no voltage transitions (checks that edges that are joined have the same BaseVoltage)</li></ul></dd><dt class="param">storage</dt><dd class="cmt"><p>The storage level for new and replaced CIM RDD.</p></dd></dl></div>
     </li></ol>
             </div>
 
@@ -290,8 +308,8 @@ both specify <code>true</code>.</p></dd><dt class="param">debug</dt><dd class="c
       <p class="shortcomment cmt">Allows changing the behaviour when the processor encounters a Switch
 that has neither an <code>open</code> attribute, nor  <code>normalOpen</code> attribute.</code></code></p><div class="fullcomment"><div class="comment cmt"><p>Allows changing the behaviour when the processor encounters a Switch
 that has neither an <code>open</code> attribute, nor  <code>normalOpen</code> attribute.
-The default behaviour of <code>ForceFalse<code> is the same as if <code>open</code> and <code>normalOpen</code>
-both specify <code>true</code>.</p></div></div>
+The default behaviour of <code>false<code> is the same as if <code>open</code> and <code>normalOpen</code>
+both specify <code>false</code>.</p></div></div>
     </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a>
       <a id="eq(AnyRef):Boolean"></a>
@@ -332,6 +350,25 @@ both specify <code>true</code>.</p></div></div>
     </span>)</span>
               
         </dd></dl></div>
+    </li><li name="ch.ninecode.cim.CIMTopologyOptions#force_fuse_separate_islands" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="force_fuse_separate_islands:ch.ninecode.cim.State"></a>
+      <a id="force_fuse_separate_islands:State"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">force_fuse_separate_islands</span><span class="result">: <a href="State.html" class="extype" name="ch.ninecode.cim.State">State</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.CIMTopologyOptions@force_fuse_separate_islands:ch.ninecode.cim.State" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Similar functionality as force_switch_separate_islands,
+but for <code>Fuse</code> objects.</code></p><div class="fullcomment"><div class="comment cmt"><p>Similar functionality as force_switch_separate_islands,
+but for <code>Fuse</code> objects.</p></div></div>
     </li><li name="ch.ninecode.cim.CIMTopologyOptions#force_retain_fuses" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="force_retain_fuses:ch.ninecode.cim.State"></a>
       <a id="force_retain_fuses:State"></a>
@@ -358,7 +395,7 @@ It allows the user to override the normal behaviour when a Fuse is encountered, 
 terminals as two topological nodes only if the <code>retained</code> attribute is present and true
 or the <code>open</code> attribute is present and has a value <code>true</code>
 or if <code>open</code> attribute is not present and the <code>normalOpen</code> attribute has a value <code>true</code>.
-This has the same effect as for Switch objects using <code>force_retain_switches</code> but for Fuse objects.</p></div></div>
+This has the same effect for Fuse objects as <code>force_retain_switches</code> does for Switch objects.</p></div></div>
     </li><li name="ch.ninecode.cim.CIMTopologyOptions#force_retain_switches" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="force_retain_switches:ch.ninecode.cim.State"></a>
       <a id="force_retain_switches:State"></a>
@@ -379,16 +416,41 @@ This has the same effect as for Switch objects using <code>force_retain_switches
 <code>retained</code> attribute, or the <code>open</code> and <code>normalOpen</code>
 attributes.</code></code></code></p><div class="fullcomment"><div class="comment cmt"><p>Keep Switch and subclasses as two topological node elements irregardless of the
 <code>retained</code> attribute, or the <code>open</code> and <code>normalOpen</code>
-attributes. Fuse and ProtectiveSwitch classes are not included by this flag.
+attributes.
 This is used for alternative scenario calculations.
-It allows the user to override of the behaviour when the processor encounters a Switch
-or a Switch derived class (e.g. Breaker) except for Fuse. The default behaviour of <code>Unforced</code>
-will use the value of the <code>retained</code> attribute to identify a node or island boundary
+It allows the user to override the behaviour when the processor encounters a Switch
+or a Switch derived class (e.g. Disconnector),
+except Fuse and ProtectiveSwitch classes are not included by this flag.
+The default behaviour of <code>Unforced</code>
+will use the value of the <code>retained</code> attribute to identify a node boundary
 only if the attribute is present in the CIM file and the value is <code>true</code>.
-When set to <code>ForceTrue</code> the behaviour is equivalent to having a <code>retained</code>
-attribute with value <code>true</code> for every Switch instance except for Fuse.
-When set to <code>ForecFalse</code> the behaviour is equivalent to having a <code>retained</code>
-attribute with value <code>false</code> for every instance.</p></div></div>
+When set to <code>ForceTrue</code> the behaviour is equivalent to each Switch having a <code>retained</code>
+attribute with value <code>true</code>.
+When set to <code>ForceFalse</code> the behaviour is equivalent to each Switch having a <code>retained</code>
+attribute with value <code>false</code>.</p></div></div>
+    </li><li name="ch.ninecode.cim.CIMTopologyOptions#force_switch_separate_islands" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="force_switch_separate_islands:ch.ninecode.cim.State"></a>
+      <a id="force_switch_separate_islands:State"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">force_switch_separate_islands</span><span class="result">: <a href="State.html" class="extype" name="ch.ninecode.cim.State">State</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.CIMTopologyOptions@force_switch_separate_islands:ch.ninecode.cim.State" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Extends the retain attribute to <code>TopologicalIsland</code> processing
+for <code>Switch</code> derived objects, except for <code>Fuse</code> and <code>ProtectedSwitch</code> objects.</code></code></code></code></p><div class="fullcomment"><div class="comment cmt"><p>Extends the retain attribute to <code>TopologicalIsland</code> processing
+for <code>Switch</code> derived objects, except for <code>Fuse</code> and <code>ProtectedSwitch</code> objects.
+The default of <code>Unforced</code> uses the open or normalOpen attributes, if present, or the
+<code>default_switch_open_state</code> setting otherwise, to determine if a switch separates two islands.
+<code>ForceTrue</code> keeps the switch in two islands, irregardless of the switch state, while
+<code>ForceFalse</code> ensures the switch is in only one island.</p></div></div>
     </li><li name="scala.AnyRef#getClass" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="getClass():Class[_]"></a>
       <a id="getClass():Class[_]"></a>

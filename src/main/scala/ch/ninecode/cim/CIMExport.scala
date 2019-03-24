@@ -335,7 +335,7 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
         // start with the island
         val todo = getOrElse[TopologicalIsland].filter (_.id == island).map (x ⇒ (x.id, filename)).persist (storage)
         val labeled = labelRelated (todo)
-        export (labeled.map (_._2), filename, dir)
+        export (labeled.map (_._2), dir + filename)
         log.info ("exported island %s".format (dir + filename))
     }
 

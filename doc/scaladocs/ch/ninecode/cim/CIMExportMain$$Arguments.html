@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>Unforced - CIMReader 2.11-2.3.1-3.0.0 API - ch.ninecode.cim.Unforced</title>
-          <meta name="description" content="Unforced - CIMReader 2.11 - 2.3.1 - 3.0.0 API - ch.ninecode.cim.Unforced" />
-          <meta name="keywords" content="Unforced CIMReader 2.11 2.3.1 3.0.0 API ch.ninecode.cim.Unforced" />
+          <title>Arguments - CIMReader 2.11-2.3.2-3.4.0 API - ch.ninecode.cim.CIMExportMain.Arguments</title>
+          <meta name="description" content="Arguments - CIMReader 2.11 - 2.3.2 - 3.4.0 API - ch.ninecode.cim.CIMExportMain.Arguments" />
+          <meta name="keywords" content="Arguments CIMReader 2.11 2.3.2 3.4.0 API ch.ninecode.cim.CIMExportMain.Arguments" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -16,7 +16,7 @@
       <script type="text/javascript">
          if(top === self) {
             var url = '../../../index.html';
-            var hash = 'ch.ninecode.cim.Unforced';
+            var hash = 'ch.ninecode.cim.CIMExportMain$$Arguments';
             var anchor = window.location.hash;
             var anchor_opt = '';
             if (anchor.length >= 1)
@@ -29,11 +29,11 @@
         <body class="type">
       <div id="definition">
         <img alt="Class" src="../../../lib/class_big.png" />
-        <p id="owner"><a href="../../package.html" class="extype" name="ch">ch</a>.<a href="../package.html" class="extype" name="ch.ninecode">ninecode</a>.<a href="package.html" class="extype" name="ch.ninecode.cim">cim</a></p>
-        <h1>Unforced</h1><h3><span class="morelinks"><div>Related Doc:
-            <a href="package.html" class="extype" name="ch.ninecode.cim">package cim</a>
+        <p id="owner"><a href="../../package.html" class="extype" name="ch">ch</a>.<a href="../package.html" class="extype" name="ch.ninecode">ninecode</a>.<a href="package.html" class="extype" name="ch.ninecode.cim">cim</a>.<a href="CIMExportMain$.html" class="extype" name="ch.ninecode.cim.CIMExportMain">CIMExportMain</a></p>
+        <h1>Arguments</h1><h3><span class="morelinks"><div>Related Doc:
+            <a href="CIMExportMain$.html" class="extype" name="ch.ninecode.cim.CIMExportMain">package CIMExportMain</a>
           </div></span></h3><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.Unforced" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.CIMExportMain$$Arguments" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -45,13 +45,13 @@
         <span class="kind">case class</span>
       </span>
       <span class="symbol">
-        <span class="name">Unforced</span><span class="params">()</span><span class="result"> extends <a href="State.html" class="extype" name="ch.ninecode.cim.State">State</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+        <span class="name">Arguments</span><span class="params">(<span name="quiet">quiet: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>, <span name="log_level">log_level: <a href="CIMExportMain$$LogLevels$.html#ValueextendsOrdered[Enumeration.this.Value]withSerializable" class="extmbr" name="ch.ninecode.cim.CIMExportMain.LogLevels.Value">LogLevels.Value</a> = <span class="symbol"><span class="name"><a href="CIMExportMain$$LogLevels$.html">LogLevels.OFF</a></span></span></span>, <span name="sparkopts">sparkopts: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Predef.String">String</span>] = <span class="defval" name="Map (<br/>             &quot;spark.graphx.pregel.checkpointInterval&quot; → &quot;8&quot;,<br/>             &quot;spark.serializer&quot; → &quot;org.apache.spark.serializer.KryoSerializer&quot;,<br/>             &quot;spark.ui.showConsoleProgress&quot; → &quot;false&quot;)">...</span></span>, <span name="cimopts">cimopts: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Predef.String">String</span>] = <span class="defval" name="Map (<br/>             &quot;ch.ninecode.cim.do_topo_islands&quot; → &quot;true&quot;<br/>         )">...</span></span>, <span name="all">all: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>, <span name="islands">islands: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>, <span name="transformers">transformers: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>, <span name="output">output: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;simulation&quot;</span></span>, <span name="files">files: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Predef.String">String</span>] = <span class="symbol">Seq()</span></span>)</span><span class="result"> extends <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
       </span>
       </h4>
       
           <div id="comment" class="fullcommenttop"><div class="toggleContainer block">
           <span class="toggle">Linear Supertypes</span>
-          <div class="superTypes hiddenContent"><span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <a href="State.html" class="extype" name="ch.ninecode.cim.State">State</a>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
+          <div class="superTypes hiddenContent"><span class="extype" name="scala.Serializable">Serializable</span>, <span class="extype" name="java.io.Serializable">Serializable</span>, <span class="extype" name="scala.Product">Product</span>, <span class="extype" name="scala.Equals">Equals</span>, <span class="extype" name="scala.AnyRef">AnyRef</span>, <span class="extype" name="scala.Any">Any</span></div>
         </div></div>
         
 
@@ -69,7 +69,7 @@
                 <span class="filtertype">Inherited<br />
                 </span>
                 <ol id="linearization">
-                  <li class="in" name="ch.ninecode.cim.Unforced"><span>Unforced</span></li><li class="in" name="scala.Serializable"><span>Serializable</span></li><li class="in" name="java.io.Serializable"><span>Serializable</span></li><li class="in" name="scala.Product"><span>Product</span></li><li class="in" name="scala.Equals"><span>Equals</span></li><li class="in" name="ch.ninecode.cim.State"><span>State</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
+                  <li class="in" name="ch.ninecode.cim.CIMExportMain.Arguments"><span>Arguments</span></li><li class="in" name="scala.Serializable"><span>Serializable</span></li><li class="in" name="java.io.Serializable"><span>Serializable</span></li><li class="in" name="scala.Product"><span>Product</span></li><li class="in" name="scala.Equals"><span>Equals</span></li><li class="in" name="scala.AnyRef"><span>AnyRef</span></li><li class="in" name="scala.Any"><span>Any</span></li>
                 </ol>
               </div><div id="ancestors">
             <span class="filtertype"></span>
@@ -88,19 +88,19 @@
         <div id="allMembers">
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
-              <ol><li name="ch.ninecode.cim.Unforced#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="&lt;init&gt;():ch.ninecode.cim.Unforced"></a>
-      <a id="&lt;init&gt;:Unforced"></a>
+              <ol><li name="ch.ninecode.cim.CIMExportMain.Arguments#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="&lt;init&gt;(quiet:Boolean,log_level:ch.ninecode.cim.CIMExportMain.LogLevels.Value,sparkopts:Map[String,String],cimopts:Map[String,String],all:Boolean,islands:Boolean,transformers:Boolean,output:String,files:Seq[String]):ch.ninecode.cim.CIMExportMain.Arguments"></a>
+      <a id="&lt;init&gt;:Arguments"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">Unforced</span><span class="params">()</span>
+        <span class="name">Arguments</span><span class="params">(<span name="quiet">quiet: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>, <span name="log_level">log_level: <a href="CIMExportMain$$LogLevels$.html#ValueextendsOrdered[Enumeration.this.Value]withSerializable" class="extmbr" name="ch.ninecode.cim.CIMExportMain.LogLevels.Value">LogLevels.Value</a> = <span class="symbol"><span class="name"><a href="CIMExportMain$$LogLevels$.html">LogLevels.OFF</a></span></span></span>, <span name="sparkopts">sparkopts: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Predef.String">String</span>] = <span class="defval" name="Map (<br/>             &quot;spark.graphx.pregel.checkpointInterval&quot; → &quot;8&quot;,<br/>             &quot;spark.serializer&quot; → &quot;org.apache.spark.serializer.KryoSerializer&quot;,<br/>             &quot;spark.ui.showConsoleProgress&quot; → &quot;false&quot;)">...</span></span>, <span name="cimopts">cimopts: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Predef.String">String</span>] = <span class="defval" name="Map (<br/>             &quot;ch.ninecode.cim.do_topo_islands&quot; → &quot;true&quot;<br/>         )">...</span></span>, <span name="all">all: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>, <span name="islands">islands: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>, <span name="transformers">transformers: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">false</span></span>, <span name="output">output: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;simulation&quot;</span></span>, <span name="files">files: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Predef.String">String</span>] = <span class="symbol">Seq()</span></span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.Unforced@&lt;init&gt;():ch.ninecode.cim.Unforced" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.CIMExportMain$$Arguments@&lt;init&gt;(quiet:Boolean,log_level:ch.ninecode.cim.CIMExportMain.LogLevels.Value,sparkopts:Map[String,String],cimopts:Map[String,String],all:Boolean,islands:Boolean,transformers:Boolean,output:String,files:Seq[String]):ch.ninecode.cim.CIMExportMain.Arguments" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -126,7 +126,7 @@
         <span title="gt4s: $bang$eq" class="name">!=</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.Unforced@!=(x$1:Any):Boolean" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.CIMExportMain$$Arguments@!=(x$1:Any):Boolean" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -143,7 +143,7 @@
         <span title="gt4s: $hash$hash" class="name">##</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.Unforced@##():Int" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.CIMExportMain$$Arguments@##():Int" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -160,11 +160,28 @@
         <span title="gt4s: $eq$eq" class="name">==</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Any">Any</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.Unforced@==(x$1:Any):Boolean" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.CIMExportMain$$Arguments@==(x$1:Any):Boolean" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="ch.ninecode.cim.CIMExportMain.Arguments#all" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="all:Boolean"></a>
+      <a id="all:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">all</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.CIMExportMain$$Arguments@all:Boolean" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
     </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="asInstanceOf[T0]:T0"></a>
       <a id="asInstanceOf[T0]:T0"></a>
@@ -177,11 +194,28 @@
         <span class="name">asInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Any.asInstanceOf.T0">T0</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.Unforced@asInstanceOf[T0]:T0" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.CIMExportMain$$Arguments@asInstanceOf[T0]:T0" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="ch.ninecode.cim.CIMExportMain.Arguments#cimopts" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="cimopts:Map[String,String]"></a>
+      <a id="cimopts:Map[String,String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">cimopts</span><span class="result">: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.CIMExportMain$$Arguments@cimopts:Map[String,String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
     </li><li name="scala.AnyRef#clone" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="clone():Object"></a>
       <a id="clone():AnyRef"></a>
@@ -194,7 +228,7 @@
         <span class="name">clone</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.AnyRef">AnyRef</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.Unforced@clone():Object" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.CIMExportMain$$Arguments@clone():Object" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -217,11 +251,28 @@
         <span class="name">eq</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.Unforced@eq(x$1:AnyRef):Boolean" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.CIMExportMain$$Arguments@eq(x$1:AnyRef):Boolean" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="ch.ninecode.cim.CIMExportMain.Arguments#files" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="files:Seq[String]"></a>
+      <a id="files:Seq[String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">files</span><span class="result">: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.CIMExportMain$$Arguments@files:Seq[String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
     </li><li name="scala.AnyRef#finalize" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="finalize():Unit"></a>
       <a id="finalize():Unit"></a>
@@ -234,7 +285,7 @@
         <span class="name">finalize</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.Unforced@finalize():Unit" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.CIMExportMain$$Arguments@finalize():Unit" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -257,7 +308,7 @@
         <span class="name">getClass</span><span class="params">()</span><span class="result">: <span class="extype" name="java.lang.Class">Class</span>[_]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.Unforced@getClass():Class[_]" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.CIMExportMain$$Arguments@getClass():Class[_]" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -274,11 +325,45 @@
         <span class="name">isInstanceOf</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.Unforced@isInstanceOf[T0]:Boolean" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.CIMExportMain$$Arguments@isInstanceOf[T0]:Boolean" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="ch.ninecode.cim.CIMExportMain.Arguments#islands" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="islands:Boolean"></a>
+      <a id="islands:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">islands</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.CIMExportMain$$Arguments@islands:Boolean" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.cim.CIMExportMain.Arguments#log_level" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="log_level:ch.ninecode.cim.CIMExportMain.LogLevels.Value"></a>
+      <a id="log_level:LogLevels.Value"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">log_level</span><span class="result">: <a href="CIMExportMain$$LogLevels$.html#ValueextendsOrdered[Enumeration.this.Value]withSerializable" class="extmbr" name="ch.ninecode.cim.CIMExportMain.LogLevels.Value">LogLevels.Value</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.CIMExportMain$$Arguments@log_level:ch.ninecode.cim.CIMExportMain.LogLevels.Value" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
     </li><li name="scala.AnyRef#ne" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="ne(x$1:AnyRef):Boolean"></a>
       <a id="ne(AnyRef):Boolean"></a>
@@ -291,7 +376,7 @@
         <span class="name">ne</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.AnyRef">AnyRef</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.Unforced@ne(x$1:AnyRef):Boolean" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.CIMExportMain$$Arguments@ne(x$1:AnyRef):Boolean" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -308,7 +393,7 @@
         <span class="name">notify</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.Unforced@notify():Unit" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.CIMExportMain$$Arguments@notify():Unit" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -325,11 +410,62 @@
         <span class="name">notifyAll</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.Unforced@notifyAll():Unit" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.CIMExportMain$$Arguments@notifyAll():Unit" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="ch.ninecode.cim.CIMExportMain.Arguments#output" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="output:String"></a>
+      <a id="output:String"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">output</span><span class="result">: <span class="extype" name="scala.Predef.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.CIMExportMain$$Arguments@output:String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.cim.CIMExportMain.Arguments#quiet" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="quiet:Boolean"></a>
+      <a id="quiet:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">quiet</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.CIMExportMain$$Arguments@quiet:Boolean" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.cim.CIMExportMain.Arguments#sparkopts" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="sparkopts:Map[String,String]"></a>
+      <a id="sparkopts:Map[String,String]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">sparkopts</span><span class="result">: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Predef.String">String</span>]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.CIMExportMain$$Arguments@sparkopts:Map[String,String]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
     </li><li name="scala.AnyRef#synchronized" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="synchronized[T0](x$1:=&gt;T0):T0"></a>
       <a id="synchronized[T0](⇒T0):T0"></a>
@@ -342,11 +478,28 @@
         <span class="name">synchronized</span><span class="tparams">[<span name="T0">T0</span>]</span><span class="params">(<span name="arg0">arg0: ⇒ <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>)</span><span class="result">: <span class="extype" name="java.lang.AnyRef.synchronized.T0">T0</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.Unforced@synchronized[T0](x$1:=&gt;T0):T0" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.CIMExportMain$$Arguments@synchronized[T0](x$1:=&gt;T0):T0" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="ch.ninecode.cim.CIMExportMain.Arguments#transformers" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="transformers:Boolean"></a>
+      <a id="transformers:Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">val</span>
+      </span>
+      <span class="symbol">
+        <span class="name">transformers</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.CIMExportMain$$Arguments@transformers:Boolean" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
     </li><li name="scala.AnyRef#wait" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="wait():Unit"></a>
       <a id="wait():Unit"></a>
@@ -359,7 +512,7 @@
         <span class="name">wait</span><span class="params">()</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.Unforced@wait():Unit" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.CIMExportMain$$Arguments@wait():Unit" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -382,7 +535,7 @@
         <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>, <span name="arg1">arg1: <span class="extype" name="scala.Int">Int</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.Unforced@wait(x$1:Long,x$2:Int):Unit" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.CIMExportMain$$Arguments@wait(x$1:Long,x$2:Int):Unit" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -405,7 +558,7 @@
         <span class="name">wait</span><span class="params">(<span name="arg0">arg0: <span class="extype" name="scala.Long">Long</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.Unforced@wait(x$1:Long):Unit" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.CIMExportMain$$Arguments@wait(x$1:Long):Unit" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -433,8 +586,6 @@
               <h3>Inherited from <span class="extype" name="scala.Product">Product</span></h3>
             </div><div class="parent" name="scala.Equals">
               <h3>Inherited from <span class="extype" name="scala.Equals">Equals</span></h3>
-            </div><div class="parent" name="ch.ninecode.cim.State">
-              <h3>Inherited from <a href="State.html" class="extype" name="ch.ninecode.cim.State">State</a></h3>
             </div><div class="parent" name="scala.AnyRef">
               <h3>Inherited from <span class="extype" name="scala.AnyRef">AnyRef</span></h3>
             </div><div class="parent" name="scala.Any">

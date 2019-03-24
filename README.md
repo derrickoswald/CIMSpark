@@ -13,7 +13,7 @@ standard interchange format based on IEC standards 61968 & 61970
 (see [CIM users group](http://cimug.ucaiug.org/default.aspx) for additional details)
 and produces a Spark Resilient Distributed Dataset (RDD) for each CIM class.
 
-![CIMReader Overview](https://rawgit.com/derrickoswald/CIMReader/master/img/Overview.svg "Overview diagram")
+![CIMReader Overview](https://rawgit.com/derrickoswald/CIMSpark/master/img/Overview.svg "Overview diagram")
 
 These RDDs can be manipulated by native Spark programs written in
 [Scala, Java or Python](http://spark.apache.org/docs/latest/programming-guide.html),
@@ -22,13 +22,13 @@ or can be accessed via [SparkR](http://spark.apache.org/docs/latest/sparkr.html)
 The RDDs are also exposed as Hive2 tables using Thrift for legacy JDBC access.
 
 The CIM model as implemented in CIMReader is described in [CIM Model](Model.md)
-and is described in detail in the [ScalaDoc](https://derrickoswald.github.io/CIMReader).
+and is described in detail in the [ScalaDoc](https://derrickoswald.github.io/CIMSpark).
 
 # Architecture
 
 The architecture follows the sample code from [Databricks](https://databricks.com/blog/2015/01/09/spark-sql-data-sources-api-unified-data-access-for-the-spark-platform.html).
 
-![CIMReader Architecture](https://rawgit.com/derrickoswald/CIMReader/master/img/Architecture.svg "High level architecture diagram")
+![CIMReader Architecture](https://rawgit.com/derrickoswald/CIMSpark/master/img/Architecture.svg "High level architecture diagram")
 
 # Building
 
@@ -287,7 +287,7 @@ But it disappears when the program terminates.
 There is a small amount of command line help if you specify --help instead of the CIM file name,
 for example on how to change the port number.
 
-There is a [sample Java JDBC program](https://github.com/derrickoswald/CIMReader/blob/master/src/test/java/ch/ninecode/CIMJava.java) provided in the src/main/java directory.
+There is a [sample Java JDBC program](https://github.com/derrickoswald/CIMSpark/blob/master/src/test/java/ch/ninecode/CIMJava.java) provided in the src/main/java directory.
 
 The Java [Hive JDBC driver](https://mvnrepository.com/artifact/org.apache.hive/hive-jdbc/2.0.1)
 can be black-box included by adding this magic incantation in
@@ -329,7 +329,7 @@ Follow the instructions in [Starting up from RStudio](https://spark.apache.org/d
 # set up the Spark system
 Sys.setenv (SPARK_HOME="/home/derrick/spark/spark-2.3.0-bin-hadoop2.7")
 library (SparkR, lib.loc = c (file.path (Sys.getenv("SPARK_HOME"), "R", "lib")))
-sparkR.session ("spark://sandbox:7077", "Sample", sparkJars = c ("/home/derrick/code/CIMReader/target/CIMReader-2.11-2.3.0-2.8.0.jar"), sparkEnvir = list (spark.driver.memory="1g", spark.executor.memory="4g", spark.serializer="org.apache.spark.serializer.KryoSerializer"))
+sparkR.session ("spark://sandbox:7077", "Sample", sparkJars = c ("/home/derrick/code/CIMSpark/target/CIMReader-2.11-2.3.0-2.8.0.jar"), sparkEnvir = list (spark.driver.memory="1g", spark.executor.memory="4g", spark.serializer="org.apache.spark.serializer.KryoSerializer"))
 ```
 
 If you have a data file in HDFS (it cannot be local, it must be on the cluster):

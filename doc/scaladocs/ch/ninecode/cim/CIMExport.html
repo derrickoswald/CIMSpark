@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>CIMExport - CIMReader 2.11-2.3.1-3.0.4 API - ch.ninecode.cim.CIMExport</title>
-          <meta name="description" content="CIMExport - CIMReader 2.11 - 2.3.1 - 3.0.4 API - ch.ninecode.cim.CIMExport" />
-          <meta name="keywords" content="CIMExport CIMReader 2.11 2.3.1 3.0.4 API ch.ninecode.cim.CIMExport" />
+          <title>CIMExport - CIMReader 2.11-2.3.2-3.4.0 API - ch.ninecode.cim.CIMExport</title>
+          <meta name="description" content="CIMExport - CIMReader 2.11 - 2.3.2 - 3.4.0 API - ch.ninecode.cim.CIMExport" />
+          <meta name="keywords" content="CIMExport CIMReader 2.11 2.3.2 3.4.0 API ch.ninecode.cim.CIMExport" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -137,7 +137,7 @@ export.exportAll (<span class="lit">"bkw_cim_export_equipment.rdf"</span>)</pre>
         <div id="constructors" class="members">
               <h3>Instance Constructors</h3>
               <ol><li name="ch.ninecode.cim.CIMExport#&lt;init&gt;" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
-      <a id="&lt;init&gt;(spark:org.apache.spark.sql.SparkSession):ch.ninecode.cim.CIMExport"></a>
+      <a id="&lt;init&gt;(spark:org.apache.spark.sql.SparkSession,storage:org.apache.spark.storage.StorageLevel):ch.ninecode.cim.CIMExport"></a>
       <a id="&lt;init&gt;:CIMExport"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -145,10 +145,10 @@ export.exportAll (<span class="lit">"bkw_cim_export_equipment.rdf"</span>)</pre>
         <span class="kind">new</span>
       </span>
       <span class="symbol">
-        <span class="name">CIMExport</span><span class="params">(<span name="spark">spark: <span class="extype" name="org.apache.spark.sql.SparkSession">SparkSession</span></span>)</span>
+        <span class="name">CIMExport</span><span class="params">(<span name="spark">spark: <span class="extype" name="org.apache.spark.sql.SparkSession">SparkSession</span></span>, <span name="storage">storage: <span class="extype" name="org.apache.spark.storage.StorageLevel">StorageLevel</span> = <span class="symbol"><span class="name"><a href="../../../org/package.html">StorageLevel.MEMORY_AND_DISK_SER</a></span></span></span>)</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.CIMExport@&lt;init&gt;(spark:org.apache.spark.sql.SparkSession):ch.ninecode.cim.CIMExport" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.CIMExport@&lt;init&gt;(spark:org.apache.spark.sql.SparkSession,storage:org.apache.spark.storage.StorageLevel):ch.ninecode.cim.CIMExport" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -156,7 +156,78 @@ export.exportAll (<span class="lit">"bkw_cim_export_equipment.rdf"</span>)</pre>
     </li></ol>
             </div>
 
-        
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="ch.ninecode.cim.CIMExport.Clazz" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Clazz=String"></a>
+      <a id="Clazz:Clazz"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Clazz</span><span class="result"> = <span class="extype" name="java.lang.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.CIMExport@Clazz=String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.cim.CIMExport.Island" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Island=String"></a>
+      <a id="Island:Island"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Island</span><span class="result"> = <span class="extype" name="java.lang.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.CIMExport@Island=String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.cim.CIMExport.Item" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Item=(CIMExport.this.mRID,CIMExport.this.Island)"></a>
+      <a id="Item:Item"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Item</span><span class="result"> = (<a href="#mRID=String" class="extmbr" name="ch.ninecode.cim.CIMExport.mRID">mRID</a>, <a href="#Island=String" class="extmbr" name="ch.ninecode.cim.CIMExport.Island">Island</a>)</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.CIMExport@Item=(CIMExport.this.mRID,CIMExport.this.Island)" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.cim.CIMExport.mRID" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="mRID=String"></a>
+      <a id="mRID:mRID"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">type</span>
+      </span>
+      <span class="symbol">
+        <span class="name">mRID</span><span class="result"> = <span class="extype" name="java.lang.String">String</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.CIMExport@mRID=String" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li></ol>
+            </div>
 
         
 
@@ -213,6 +284,23 @@ export.exportAll (<span class="lit">"bkw_cim_export_equipment.rdf"</span>)</pre>
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
+    </li><li name="ch.ninecode.cim.CIMExport#asIDs" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="asIDs(rdd:org.apache.spark.rdd.RDD[(String,(String,String))]):org.apache.spark.rdd.RDD[(String,String)]"></a>
+      <a id="asIDs(RDD[(String,(String,String))]):RDD[(String,String)]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">asIDs</span><span class="params">(<span name="rdd">rdd: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[(<span class="extype" name="scala.Predef.String">String</span>, (<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Predef.String">String</span>))]</span>)</span><span class="result">: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[(<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Predef.String">String</span>)]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.CIMExport@asIDs(rdd:org.apache.spark.rdd.RDD[(String,(String,String))]):org.apache.spark.rdd.RDD[(String,String)]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
     </li><li name="scala.Any#asInstanceOf" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="asInstanceOf[T0]:T0"></a>
       <a id="asInstanceOf[T0]:T0"></a>
@@ -253,6 +341,40 @@ export.exportAll (<span class="lit">"bkw_cim_export_equipment.rdf"</span>)</pre>
     </span>)</span>
               
         </dd></dl></div>
+    </li><li name="ch.ninecode.cim.CIMExport#dependents" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="dependents(relations:Map[String,List[ch.ninecode.cim.Relationship]])(element:ch.ninecode.model.Element):List[(CIMExport.this.mRID,CIMExport.this.mRID)]"></a>
+      <a id="dependents(Map[String,List[Relationship]])(Element):List[(mRID,mRID)]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">dependents</span><span class="params">(<span name="relations">relations: <span class="extype" name="scala.Predef.Map">Map</span>[<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.List">List</span>[<a href="Relationship.html" class="extype" name="ch.ninecode.cim.Relationship">Relationship</a>]]</span>)</span><span class="params">(<span name="element">element: <a href="../model/Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></span>)</span><span class="result">: <span class="extype" name="scala.List">List</span>[(<a href="#mRID=String" class="extmbr" name="ch.ninecode.cim.CIMExport.mRID">mRID</a>, <a href="#mRID=String" class="extmbr" name="ch.ninecode.cim.CIMExport.mRID">mRID</a>)]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.CIMExport@dependents(relations:Map[String,List[ch.ninecode.cim.Relationship]])(element:ch.ninecode.model.Element):List[(CIMExport.this.mRID,CIMExport.this.mRID)]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.cim.CIMExport#distinct" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="distinct[T](rdd:org.apache.spark.rdd.RDD[(String,T)])(implicitkt:scala.reflect.ClassTag[T]):org.apache.spark.rdd.RDD[(String,T)]"></a>
+      <a id="distinct[T](RDD[(String,T)])(ClassTag[T]):RDD[(String,T)]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">distinct</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="rdd">rdd: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[(<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="ch.ninecode.cim.CIMExport.distinct.T">T</span>)]</span>)</span><span class="params">(<span class="implicit">implicit </span><span name="kt">kt: <span class="extype" name="scala.reflect.ClassTag">ClassTag</span>[<span class="extype" name="ch.ninecode.cim.CIMExport.distinct.T">T</span>]</span>)</span><span class="result">: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[(<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="ch.ninecode.cim.CIMExport.distinct.T">T</span>)]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.CIMExport@distinct[T](rdd:org.apache.spark.rdd.RDD[(String,T)])(implicitkt:scala.reflect.ClassTag[T]):org.apache.spark.rdd.RDD[(String,T)]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
     </li><li name="scala.AnyRef#eq" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="eq(x$1:AnyRef):Boolean"></a>
       <a id="eq(AnyRef):Boolean"></a>
@@ -304,7 +426,7 @@ export.exportAll (<span class="lit">"bkw_cim_export_equipment.rdf"</span>)</pre>
       </a>
     </span>
       <p class="shortcomment cmt">Export elements.</p><div class="fullcomment"><div class="comment cmt"><p>Export elements.
-</p></div><dl class="paramcmts block"><dt class="param">elements</dt><dd class="cmt"><p>The elements to export.</p></dd><dt class="param">filename</dt><dd class="cmt"><p>The name of the file to write.</p></dd><dt class="param">about</dt><dd class="cmt"><p>The about string for the CIM file header.</p></dd></dl></div>
+</p></div><dl class="paramcmts block"><dt class="param">elements</dt><dd class="cmt"><p>The elements to export.</p></dd><dt class="param">filename</dt><dd class="cmt"><p>The name of the file to write.</p></dd><dt class="param">about</dt><dd class="cmt"><p>The about string for the CIM file header.</p></dd><dt class="param">temp</dt><dd class="cmt"><p>The temporary directory to build the text file in.</p></dd></dl></div>
     </li><li name="ch.ninecode.cim.CIMExport#exportAll" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="exportAll(filename:String,about:String):Unit"></a>
       <a id="exportAll(String,String):Unit"></a>
@@ -341,23 +463,58 @@ to avoid having to redo that processing again.
       </a>
     </span>
       <p class="shortcomment cmt">Export every topological island.</p><div class="fullcomment"><div class="comment cmt"><p>Export every topological island.</p></div><dl class="paramcmts block"><dt class="param">directory</dt><dd class="cmt"><p>The name of the directory to write the CIM files.</p></dd><dt>returns</dt><dd class="cmt"><p>the number of islands processed</p></dd></dl></div>
-    </li><li name="ch.ninecode.cim.CIMExport#exportIsland" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="exportIsland(island:String,filename:String):Unit"></a>
-      <a id="exportIsland(String,String):Unit"></a>
+    </li><li name="ch.ninecode.cim.CIMExport#exportAllTransformers" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="exportAllTransformers(directory:String):Int"></a>
+      <a id="exportAllTransformers(String):Int"></a>
       <h4 class="signature">
       <span class="modifier_kind">
         <span class="modifier"></span>
         <span class="kind">def</span>
       </span>
       <span class="symbol">
-        <span class="name">exportIsland</span><span class="params">(<span name="island">island: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="filename">filename: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+        <span class="name">exportAllTransformers</span><span class="params">(<span name="directory">directory: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;simulation/&quot;</span></span>)</span><span class="result">: <span class="extype" name="scala.Int">Int</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.CIMExport@exportIsland(island:String,filename:String):Unit" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.CIMExport@exportAllTransformers(directory:String):Int" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
-      <p class="shortcomment cmt">Export elements associated to the given topological island.</p><div class="fullcomment"><div class="comment cmt"><p>Export elements associated to the given topological island.</p></div><dl class="paramcmts block"><dt class="param">island</dt><dd class="cmt"><p>The name of the topological island to export.</p></dd><dt class="param">filename</dt><dd class="cmt"><p>The name of the file to write.</p></dd></dl></div>
+      <p class="shortcomment cmt">Export every transformer service area.</p><div class="fullcomment"><div class="comment cmt"><p>Export every transformer service area.</p></div><dl class="paramcmts block"><dt class="param">directory</dt><dd class="cmt"><p>The name of the directory to write the CIM files.</p></dd><dt>returns</dt><dd class="cmt"><p>the number of transformers processed</p></dd></dl></div>
+    </li><li name="ch.ninecode.cim.CIMExport#exportIsland" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="exportIsland(island:String,filename:String,directory:String):Unit"></a>
+      <a id="exportIsland(String,String,String):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">exportIsland</span><span class="params">(<span name="island">island: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="filename">filename: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="directory">directory: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;simulation/&quot;</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.CIMExport@exportIsland(island:String,filename:String,directory:String):Unit" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Export elements associated to the given topological island.</p><div class="fullcomment"><div class="comment cmt"><p>Export elements associated to the given topological island.</p></div><dl class="paramcmts block"><dt class="param">island</dt><dd class="cmt"><p>The name of the topological island to export.</p></dd><dt class="param">filename</dt><dd class="cmt"><p>The name of the file to write.</p></dd><dt class="param">directory</dt><dd class="cmt"><p>The name of the directory to write the CIM file.</p></dd></dl></div>
+    </li><li name="ch.ninecode.cim.CIMExport#export_iterable" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="export_iterable(elements:Iterable[ch.ninecode.model.Element],filename:String,about:String):Unit"></a>
+      <a id="export_iterable(Iterable[Element],String,String):Unit"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">export_iterable</span><span class="params">(<span name="elements">elements: <span class="extype" name="scala.Iterable">Iterable</span>[<a href="../model/Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>]</span>, <span name="filename">filename: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="about">about: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;&quot;</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.CIMExport@export_iterable(elements:Iterable[ch.ninecode.model.Element],filename:String,about:String):Unit" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Export elements.</p><div class="fullcomment"><div class="comment cmt"><p>Export elements.
+</p></div><dl class="paramcmts block"><dt class="param">elements</dt><dd class="cmt"><p>The elements to export.</p></dd><dt class="param">filename</dt><dd class="cmt"><p>The name of the file to write.</p></dd><dt class="param">about</dt><dd class="cmt"><p>The about string for the CIM file header.</p></dd></dl></div>
     </li><li name="scala.AnyRef#finalize" visbl="prt" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="finalize():Unit"></a>
       <a id="finalize():Unit"></a>
@@ -381,8 +538,25 @@ to avoid having to redo that processing again.
     </span>)</span>
               
         </dd></dl></div>
+    </li><li name="ch.ninecode.cim.CIMExport#foreign" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="foreign[T](fn:T=&gt;String)(x:T):(String,String)"></a>
+      <a id="foreign[T]((T)⇒String)(T):(String,String)"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">foreign</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="fn">fn: (<span class="extype" name="ch.ninecode.cim.CIMExport.foreign.T">T</span>) ⇒ <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="params">(<span name="x">x: <span class="extype" name="ch.ninecode.cim.CIMExport.foreign.T">T</span></span>)</span><span class="result">: (<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Predef.String">String</span>)</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.CIMExport@foreign[T](fn:T=&gt;String)(x:T):(String,String)" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
     </li><li name="ch.ninecode.cim.CIMRDD#get" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="get[T](implicitevidence$3:scala.reflect.ClassTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitlog:org.slf4j.Logger):org.apache.spark.rdd.RDD[T]"></a>
+      <a id="get[T](implicitevidence$5:scala.reflect.ClassTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitlog:org.slf4j.Logger):org.apache.spark.rdd.RDD[T]"></a>
       <a id="get[T](ClassTag[T],SparkSession,Logger):RDD[T]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -393,7 +567,7 @@ to avoid having to redo that processing again.
         <span class="name">get</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <span class="extype" name="scala.reflect.ClassTag">ClassTag</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.get.T">T</span>]</span>, <span name="spark">spark: <span class="extype" name="org.apache.spark.sql.SparkSession">SparkSession</span></span>, <span name="log">log: <span class="extype" name="org.slf4j.Logger">Logger</span></span>)</span><span class="result">: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.get.T">T</span>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.CIMExport@get[T](implicitevidence$3:scala.reflect.ClassTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitlog:org.slf4j.Logger):org.apache.spark.rdd.RDD[T]" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.CIMExport@get[T](implicitevidence$5:scala.reflect.ClassTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitlog:org.slf4j.Logger):org.apache.spark.rdd.RDD[T]" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -401,7 +575,7 @@ to avoid having to redo that processing again.
 class type (the usual case).
 </p></div><dl class="paramcmts block"><dt class="tparam">T</dt><dd class="cmt"><p>The type of the RDD, e.g. <code>RDD[T]</code>.</p></dd><dt class="param">spark</dt><dd class="cmt"><p>The Spark session which persisted the typed RDD.</p></dd><dt class="param">log</dt><dd class="cmt"><p>A logger for error messages.</p></dd><dt>returns</dt><dd class="cmt"><p>The RDD with the given type of objects, e.g. <code>RDD[ACLineSegment]</code>.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="CIMRDD.html" class="extype" name="ch.ninecode.cim.CIMRDD">CIMRDD</a></dd></dl></div>
     </li><li name="ch.ninecode.cim.CIMRDD#get" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="get[T](name:String)(implicitevidence$1:scala.reflect.ClassTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitlog:org.slf4j.Logger):org.apache.spark.rdd.RDD[T]"></a>
+      <a id="get[T](name:String)(implicitevidence$2:scala.reflect.ClassTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitlog:org.slf4j.Logger):org.apache.spark.rdd.RDD[T]"></a>
       <a id="get[T](String)(ClassTag[T],SparkSession,Logger):RDD[T]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -412,7 +586,7 @@ class type (the usual case).
         <span class="name">get</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="name">name: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <span class="extype" name="scala.reflect.ClassTag">ClassTag</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.get.T">T</span>]</span>, <span name="spark">spark: <span class="extype" name="org.apache.spark.sql.SparkSession">SparkSession</span></span>, <span name="log">log: <span class="extype" name="org.slf4j.Logger">Logger</span></span>)</span><span class="result">: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.get.T">T</span>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.CIMExport@get[T](name:String)(implicitevidence$1:scala.reflect.ClassTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitlog:org.slf4j.Logger):org.apache.spark.rdd.RDD[T]" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.CIMExport@get[T](name:String)(implicitevidence$2:scala.reflect.ClassTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitlog:org.slf4j.Logger):org.apache.spark.rdd.RDD[T]" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -439,7 +613,7 @@ currently it is named Elements (plural), so this method must be used:</p><pre><s
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef → Any</dd></dl></div>
     </li><li name="ch.ninecode.cim.CIMRDD#getOrElse" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="getOrElse[T](implicitevidence$4:scala.reflect.ClassTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitlog:org.slf4j.Logger):org.apache.spark.rdd.RDD[T]"></a>
+      <a id="getOrElse[T](implicitevidence$6:scala.reflect.ClassTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitlog:org.slf4j.Logger):org.apache.spark.rdd.RDD[T]"></a>
       <a id="getOrElse[T](ClassTag[T],SparkSession,Logger):RDD[T]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -450,7 +624,7 @@ currently it is named Elements (plural), so this method must be used:</p><pre><s
         <span class="name">getOrElse</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <span class="extype" name="scala.reflect.ClassTag">ClassTag</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.getOrElse.T">T</span>]</span>, <span name="spark">spark: <span class="extype" name="org.apache.spark.sql.SparkSession">SparkSession</span></span>, <span name="log">log: <span class="extype" name="org.slf4j.Logger">Logger</span></span>)</span><span class="result">: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.getOrElse.T">T</span>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.CIMExport@getOrElse[T](implicitevidence$4:scala.reflect.ClassTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitlog:org.slf4j.Logger):org.apache.spark.rdd.RDD[T]" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.CIMExport@getOrElse[T](implicitevidence$6:scala.reflect.ClassTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitlog:org.slf4j.Logger):org.apache.spark.rdd.RDD[T]" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -458,7 +632,7 @@ currently it is named Elements (plural), so this method must be used:</p><pre><s
 class type (the usual case).
 </p></div><dl class="paramcmts block"><dt class="tparam">T</dt><dd class="cmt"><p>The type of the RDD, e.g. <code>RDD[T]</code>.</p></dd><dt class="param">spark</dt><dd class="cmt"><p>The Spark session which persisted the typed RDD.</p></dd><dt class="param">log</dt><dd class="cmt"><p>A logger for error messages.</p></dd><dt>returns</dt><dd class="cmt"><p>The RDD with the given type of objects, e.g. <code>RDD[ACLineSegment]</code>, or an empty RDD of the requested type.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="CIMRDD.html" class="extype" name="ch.ninecode.cim.CIMRDD">CIMRDD</a></dd></dl></div>
     </li><li name="ch.ninecode.cim.CIMRDD#getOrElse" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="getOrElse[T](name:String)(implicitevidence$2:scala.reflect.ClassTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitlog:org.slf4j.Logger):org.apache.spark.rdd.RDD[T]"></a>
+      <a id="getOrElse[T](name:String)(implicitevidence$3:scala.reflect.ClassTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitlog:org.slf4j.Logger):org.apache.spark.rdd.RDD[T]"></a>
       <a id="getOrElse[T](String)(ClassTag[T],SparkSession,Logger):RDD[T]"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -469,7 +643,7 @@ class type (the usual case).
         <span class="name">getOrElse</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="name">name: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <span class="extype" name="scala.reflect.ClassTag">ClassTag</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.getOrElse.T">T</span>]</span>, <span name="spark">spark: <span class="extype" name="org.apache.spark.sql.SparkSession">SparkSession</span></span>, <span name="log">log: <span class="extype" name="org.slf4j.Logger">Logger</span></span>)</span><span class="result">: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.getOrElse.T">T</span>]</span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.CIMExport@getOrElse[T](name:String)(implicitevidence$2:scala.reflect.ClassTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitlog:org.slf4j.Logger):org.apache.spark.rdd.RDD[T]" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.CIMExport@getOrElse[T](name:String)(implicitevidence$3:scala.reflect.ClassTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitlog:org.slf4j.Logger):org.apache.spark.rdd.RDD[T]" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -509,6 +683,41 @@ class type (the usual case).
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>Any</dd></dl></div>
+    </li><li name="ch.ninecode.cim.CIMExport#keyed" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="keyed[T&lt;:ch.ninecode.model.Element](key:T=&gt;String)(implicitkt:scala.reflect.ClassTag[T]):org.apache.spark.rdd.RDD[(String,T)]"></a>
+      <a id="keyed[T&lt;:Element]((T)⇒String)(ClassTag[T]):RDD[(String,T)]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">keyed</span><span class="tparams">[<span name="T">T &lt;: <a href="../model/Element.html" class="extype" name="ch.ninecode.model.Element">Element</a></span>]</span><span class="params">(<span name="key">key: (<span class="extype" name="ch.ninecode.cim.CIMExport.keyed.T">T</span>) ⇒ <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol"><span class="name"><a href="../model/Element.html#id:String">(x: T) ⇒ x.id</a></span></span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="kt">kt: <span class="extype" name="scala.reflect.ClassTag">ClassTag</span>[<span class="extype" name="ch.ninecode.cim.CIMExport.keyed.T">T</span>]</span>)</span><span class="result">: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[(<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="ch.ninecode.cim.CIMExport.keyed.T">T</span>)]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.CIMExport@keyed[T&lt;:ch.ninecode.model.Element](key:T=&gt;String)(implicitkt:scala.reflect.ClassTag[T]):org.apache.spark.rdd.RDD[(String,T)]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      
+    </li><li name="ch.ninecode.cim.CIMExport#labelRelated" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="labelRelated(what:org.apache.spark.rdd.RDD[CIMExport.this.Item]):org.apache.spark.rdd.RDD[(CIMExport.this.Island,ch.ninecode.model.Element)]"></a>
+      <a id="labelRelated(RDD[Item]):RDD[(Island,Element)]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">labelRelated</span><span class="params">(<span name="what">what: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<a href="#Item=(CIMExport.this.mRID,CIMExport.this.Island)" class="extmbr" name="ch.ninecode.cim.CIMExport.Item">Item</a>]</span>)</span><span class="result">: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[(<a href="#Island=String" class="extmbr" name="ch.ninecode.cim.CIMExport.Island">Island</a>, <a href="../model/Element.html" class="extype" name="ch.ninecode.model.Element">Element</a>)]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.CIMExport@labelRelated(what:org.apache.spark.rdd.RDD[CIMExport.this.Item]):org.apache.spark.rdd.RDD[(CIMExport.this.Island,ch.ninecode.model.Element)]" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Export related.</p><div class="fullcomment"><div class="comment cmt"><p>Export related.
+</p></div><dl class="paramcmts block"><dt class="param">what</dt><dd class="cmt"><p>a PairRDD, the keys are mrid to check, and the values are the name we will save to</p></dd><dt>returns</dt><dd class="cmt"><p>the number of related groups processed</p></dd></dl></div>
     </li><li name="ch.ninecode.cim.CIMExport#log" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="log:org.slf4j.Logger"></a>
       <a id="log:Logger"></a>
@@ -526,7 +735,7 @@ class type (the usual case).
       </a>
     </span>
       
-    </li><li name="ch.ninecode.cim.CIMExport#merge" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+    </li><li name="ch.ninecode.cim.CIMExport#merge" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="merge(source:String,destination:String):Unit"></a>
       <a id="merge(String,String):Unit"></a>
       <h4 class="signature">
@@ -539,6 +748,24 @@ class type (the usual case).
       </span>
       </h4><span class="permalink">
       <a href="../../../index.html#ch.ninecode.cim.CIMExport@merge(source:String,destination:String):Unit" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Merge source into destination and clean up source.</p><div class="fullcomment"><div class="comment cmt"><p>Merge source into destination and clean up source.
+</p></div><dl class="paramcmts block"><dt class="param">source</dt><dd class="cmt"><p>existing directory to be copied from</p></dd><dt class="param">destination</dt><dd class="cmt"><p>target file</p></dd></dl></div>
+    </li><li name="ch.ninecode.cim.CIMExport#narrow" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="narrow[T](rdd:org.apache.spark.rdd.RDD[(String,(T,String))])(implicitkt:scala.reflect.ClassTag[T]):org.apache.spark.rdd.RDD[(String,T)]"></a>
+      <a id="narrow[T](RDD[(String,(T,String))])(ClassTag[T]):RDD[(String,T)]"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">narrow</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="rdd">rdd: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[(<span class="extype" name="scala.Predef.String">String</span>, (<span class="extype" name="ch.ninecode.cim.CIMExport.narrow.T">T</span>, <span class="extype" name="scala.Predef.String">String</span>))]</span>)</span><span class="params">(<span class="implicit">implicit </span><span name="kt">kt: <span class="extype" name="scala.reflect.ClassTag">ClassTag</span>[<span class="extype" name="ch.ninecode.cim.CIMExport.narrow.T">T</span>]</span>)</span><span class="result">: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[(<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="ch.ninecode.cim.CIMExport.narrow.T">T</span>)]</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.CIMExport@narrow[T](rdd:org.apache.spark.rdd.RDD[(String,(T,String))])(implicitkt:scala.reflect.ClassTag[T]):org.apache.spark.rdd.RDD[(String,T)]" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -594,8 +821,25 @@ class type (the usual case).
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="ch.ninecode.cim.CIMExport#pair" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="pair(s:String):(String,String)"></a>
+      <a id="pair(String):(String,String)"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">pair</span><span class="params">(<span name="s">s: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result">: (<span class="extype" name="scala.Predef.String">String</span>, <span class="extype" name="scala.Predef.String">String</span>)</span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.CIMExport@pair(s:String):(String,String)" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Make a pair RDD to access PairRDDFunctions.</p><div class="fullcomment"><div class="comment cmt"><p>Make a pair RDD to access PairRDDFunctions.</p></div><dl class="paramcmts block"><dt class="param">s</dt><dd class="cmt"><p>the string to duplicate</p></dd><dt>returns</dt><dd class="cmt"><p>the Tuple2 pair</p></dd></dl></div>
     </li><li name="ch.ninecode.cim.CIMRDD#put" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="put[T&lt;:Product](rdd:org.apache.spark.rdd.RDD[T])(implicitevidence$7:scala.reflect.ClassTag[T],implicitevidence$8:reflect.runtime.universe.TypeTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitstorage:org.apache.spark.storage.StorageLevel):Unit"></a>
+      <a id="put[T&lt;:Product](rdd:org.apache.spark.rdd.RDD[T])(implicitevidence$9:scala.reflect.ClassTag[T],implicitevidence$10:reflect.runtime.universe.TypeTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitstorage:org.apache.spark.storage.StorageLevel):Unit"></a>
       <a id="put[T&lt;:Product](RDD[T])(ClassTag[T],scala.reflect.api.JavaUniverse.TypeTag[T],SparkSession,StorageLevel):Unit"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -606,14 +850,14 @@ class type (the usual case).
         <span class="name">put</span><span class="tparams">[<span name="T">T &lt;: <span class="extype" name="scala.Product">Product</span></span>]</span><span class="params">(<span name="rdd">rdd: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.put.T">T</span>]</span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <span class="extype" name="scala.reflect.ClassTag">ClassTag</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.put.T">T</span>]</span>, <span name="arg1">arg1: <span class="extype" name="scala.reflect.api.TypeTags.TypeTag">scala.reflect.api.JavaUniverse.TypeTag</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.put.T">T</span>]</span>, <span name="spark">spark: <span class="extype" name="org.apache.spark.sql.SparkSession">SparkSession</span></span>, <span name="storage">storage: <span class="extype" name="org.apache.spark.storage.StorageLevel">StorageLevel</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.CIMExport@put[T&lt;:Product](rdd:org.apache.spark.rdd.RDD[T])(implicitevidence$7:scala.reflect.ClassTag[T],implicitevidence$8:reflect.runtime.universe.TypeTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitstorage:org.apache.spark.storage.StorageLevel):Unit" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.CIMExport@put[T&lt;:Product](rdd:org.apache.spark.rdd.RDD[T])(implicitevidence$9:scala.reflect.ClassTag[T],implicitevidence$10:reflect.runtime.universe.TypeTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitstorage:org.apache.spark.storage.StorageLevel):Unit" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
       <p class="shortcomment cmt">Persist the typed RDD using the class name and create the SQL view for it.</p><div class="fullcomment"><div class="comment cmt"><p>Persist the typed RDD using the class name and create the SQL view for it.</p><p>Should only be used where a non-CIM case class needs to be added to the persistent RDD list and registered as a SQL view.
 </p></div><dl class="paramcmts block"><dt class="tparam">T</dt><dd class="cmt"><p>The type of RDD.</p></dd><dt class="param">rdd</dt><dd class="cmt"><p>The RDD to persist</p></dd><dt class="param">spark</dt><dd class="cmt"><p>The Spark session.</p></dd><dt class="param">storage</dt><dd class="cmt"><p>The storage level for persistence.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="CIMRDD.html" class="extype" name="ch.ninecode.cim.CIMRDD">CIMRDD</a></dd></dl></div>
     </li><li name="ch.ninecode.cim.CIMRDD#put" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="put[T&lt;:Product](rdd:org.apache.spark.rdd.RDD[T],name:String)(implicitevidence$5:scala.reflect.ClassTag[T],implicitevidence$6:reflect.runtime.universe.TypeTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitstorage:org.apache.spark.storage.StorageLevel):Unit"></a>
+      <a id="put[T&lt;:Product](rdd:org.apache.spark.rdd.RDD[T],name:String)(implicitevidence$7:scala.reflect.ClassTag[T],implicitevidence$8:reflect.runtime.universe.TypeTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitstorage:org.apache.spark.storage.StorageLevel):Unit"></a>
       <a id="put[T&lt;:Product](RDD[T],String)(ClassTag[T],scala.reflect.api.JavaUniverse.TypeTag[T],SparkSession,StorageLevel):Unit"></a>
       <h4 class="signature">
       <span class="modifier_kind">
@@ -624,7 +868,7 @@ class type (the usual case).
         <span class="name">put</span><span class="tparams">[<span name="T">T &lt;: <span class="extype" name="scala.Product">Product</span></span>]</span><span class="params">(<span name="rdd">rdd: <span class="extype" name="org.apache.spark.rdd.RDD">RDD</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.put.T">T</span>]</span>, <span name="name">name: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <span class="extype" name="scala.reflect.ClassTag">ClassTag</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.put.T">T</span>]</span>, <span name="arg1">arg1: <span class="extype" name="scala.reflect.api.TypeTags.TypeTag">scala.reflect.api.JavaUniverse.TypeTag</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.put.T">T</span>]</span>, <span name="spark">spark: <span class="extype" name="org.apache.spark.sql.SparkSession">SparkSession</span></span>, <span name="storage">storage: <span class="extype" name="org.apache.spark.storage.StorageLevel">StorageLevel</span></span>)</span><span class="result">: <span class="extype" name="scala.Unit">Unit</span></span>
       </span>
       </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.CIMExport@put[T&lt;:Product](rdd:org.apache.spark.rdd.RDD[T],name:String)(implicitevidence$5:scala.reflect.ClassTag[T],implicitevidence$6:reflect.runtime.universe.TypeTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitstorage:org.apache.spark.storage.StorageLevel):Unit" title="Permalink" target="_top">
+      <a href="../../../index.html#ch.ninecode.cim.CIMExport@put[T&lt;:Product](rdd:org.apache.spark.rdd.RDD[T],name:String)(implicitevidence$7:scala.reflect.ClassTag[T],implicitevidence$8:reflect.runtime.universe.TypeTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitstorage:org.apache.spark.storage.StorageLevel):Unit" title="Permalink" target="_top">
         <img src="../../../lib/permalink.png" alt="Permalink" />
       </a>
     </span>
@@ -664,6 +908,43 @@ class type (the usual case).
       </a>
     </span>
       <div class="fullcomment"><dl class="attributes block"> <dt>Definition Classes</dt><dd>AnyRef</dd></dl></div>
+    </li><li name="ch.ninecode.cim.CIMRDD#test" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="test[T](implicitevidence$4:scala.reflect.ClassTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitlog:org.slf4j.Logger):Boolean"></a>
+      <a id="test[T](ClassTag[T],SparkSession,Logger):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">test</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <span class="extype" name="scala.reflect.ClassTag">ClassTag</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.test.T">T</span>]</span>, <span name="spark">spark: <span class="extype" name="org.apache.spark.sql.SparkSession">SparkSession</span></span>, <span name="log">log: <span class="extype" name="org.slf4j.Logger">Logger</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.CIMExport@test[T](implicitevidence$4:scala.reflect.ClassTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitlog:org.slf4j.Logger):Boolean" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Check for the typed RDD.</p><div class="fullcomment"><div class="comment cmt"><p>Check for the typed RDD.</p><p>Convenience method where the name of the RDD is the same as the contained
+class type (the usual case).
+</p></div><dl class="paramcmts block"><dt class="tparam">T</dt><dd class="cmt"><p>The type of the RDD, e.g. <code>RDD[T]</code>.</p></dd><dt class="param">spark</dt><dd class="cmt"><p>The Spark session which persisted the typed RDD.</p></dd><dt class="param">log</dt><dd class="cmt"><p>A logger for error messages.</p></dd><dt>returns</dt><dd class="cmt"><p><code>true</code> if the named RDD exists, <code>false</code> otherwise.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="CIMRDD.html" class="extype" name="ch.ninecode.cim.CIMRDD">CIMRDD</a></dd></dl></div>
+    </li><li name="ch.ninecode.cim.CIMRDD#test" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="test[T](name:String)(implicitevidence$1:scala.reflect.ClassTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitlog:org.slf4j.Logger):Boolean"></a>
+      <a id="test[T](String)(ClassTag[T],SparkSession,Logger):Boolean"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">def</span>
+      </span>
+      <span class="symbol">
+        <span class="name">test</span><span class="tparams">[<span name="T">T</span>]</span><span class="params">(<span name="name">name: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="params">(<span class="implicit">implicit </span><span name="arg0">arg0: <span class="extype" name="scala.reflect.ClassTag">ClassTag</span>[<span class="extype" name="ch.ninecode.cim.CIMRDD.test.T">T</span>]</span>, <span name="spark">spark: <span class="extype" name="org.apache.spark.sql.SparkSession">SparkSession</span></span>, <span name="log">log: <span class="extype" name="org.slf4j.Logger">Logger</span></span>)</span><span class="result">: <span class="extype" name="scala.Boolean">Boolean</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../index.html#ch.ninecode.cim.CIMExport@test[T](name:String)(implicitevidence$1:scala.reflect.ClassTag[T],implicitspark:org.apache.spark.sql.SparkSession,implicitlog:org.slf4j.Logger):Boolean" title="Permalink" target="_top">
+        <img src="../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Check for the named RDD.</p><div class="fullcomment"><div class="comment cmt"><p>Check for the named RDD.
+</p></div><dl class="paramcmts block"><dt class="tparam">T</dt><dd class="cmt"><p>The type of objects contained in the named RDD.</p></dd><dt class="param">name</dt><dd class="cmt"><p>The name of the RDD, usually the same as the CIM class.</p></dd><dt class="param">spark</dt><dd class="cmt"><p>The Spark session which persisted the named RDD.</p></dd><dt class="param">log</dt><dd class="cmt"><p>A logger for error messages.</p></dd><dt>returns</dt><dd class="cmt"><p><code>true</code> if the named RDD exists, <code>false</code> otherwise.</p></dd></dl><dl class="attributes block"> <dt>Definition Classes</dt><dd><a href="CIMRDD.html" class="extype" name="ch.ninecode.cim.CIMRDD">CIMRDD</a></dd></dl></div>
     </li><li name="scala.AnyRef#toString" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
       <a id="toString():String"></a>
       <a id="toString():String"></a>

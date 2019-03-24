@@ -18,7 +18,7 @@ The installation and use instructions are quite good. You may need to use the sl
 
 When you've successfully created a project, you should see something similar to that shown below:
 
-![CIMTool](https://rawgit.com/derrickoswald/CIMReader/master/img/CIMTool.png "CIMTool Screen Capture")
+![CIMTool](https://rawgit.com/derrickoswald/CIMSpark/master/img/CIMTool.png "CIMTool Screen Capture")
 
 Scala Code
 -----
@@ -34,7 +34,7 @@ Attributes of the class are of four flavors:
 
 Subclasses and the superclass have open arrow icons.
 
-Comparing the image with the [ACLineSegment class in Wires.scala](https://github.com/derrickoswald/CIMReader/blob/master/src/main/scala/ch/ninecode/model/Wires.scala) you will see a high degree of similarity. Where possible, the names of attributes in the Scala code are the same as the names in the UML diagram. Discrepancies occur where Scala reserved words and other software related issues arise (e.g. attribute length must be changed to len in the Scala code due to a superclass member method).
+Comparing the image with the [ACLineSegment class in Wires.scala](https://github.com/derrickoswald/CIMSpark/blob/master/src/main/scala/ch/ninecode/model/Wires.scala) you will see a high degree of similarity. Where possible, the names of attributes in the Scala code are the same as the names in the UML diagram. Discrepancies occur where Scala reserved words and other software related issues arise (e.g. attribute length must be changed to len in the Scala code due to a superclass member method).
 
 ```Scala
 /**
@@ -201,7 +201,7 @@ At the bottom of the screen shot you can see that the superclass of ACLineSegmen
 
 In CIMReader, the root class of all CIM model classes is Element, which has only two members, the id and a sup member which is null. 
 
-![Hierarchical Class Nesting](https://rawgit.com/derrickoswald/CIMReader/master/img/Hierarchical.svg "Hierarchical Nesting Diagram")
+![Hierarchical Class Nesting](https://rawgit.com/derrickoswald/CIMSpark/master/img/Hierarchical.svg "Hierarchical Nesting Diagram")
 
 The sup member of each higher level class is aliased with a method of the correct name, so given an ACLineSegment object obj in Scala, the base class is accessible via obj.sup or obj.Conductor. The latter is preferred because the code reads better. This feature is not available in SQL queries, where sup must be used.
 

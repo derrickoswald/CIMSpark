@@ -39,7 +39,7 @@ class CIMNetworkTopologyProcessorSuite extends ch.ninecode.SparkSuite
 
             val filename = FILE_DEPOT + "DemoData.rdf"
             val elements = readFile (filename)
-            assert (elements.count == 1740, "# elements before")
+            assert (elements.count == 1738, "# elements before")
 
             val read = System.nanoTime ()
 
@@ -55,7 +55,7 @@ class CIMNetworkTopologyProcessorSuite extends ch.ninecode.SparkSuite
 
             val process = System.nanoTime ()
 
-            assert (new_elements.count == 1895, "# elements after")
+            assert (new_elements.count == 1893, "# elements after")
             val nodes = get[TopologicalNode]
             assert (nodes != null, "no TopologicalNode RDD")
             assert (nodes.count == 151, "# nodes")
@@ -104,7 +104,7 @@ class CIMNetworkTopologyProcessorSuite extends ch.ninecode.SparkSuite
 
             val filename = FILE_DEPOT + "DemoData.rdf"
             val elements = readFile (filename)
-            assert (elements.count == 1740, "# elements before")
+            assert (elements.count == 1738, "# elements before")
 
             val read = System.nanoTime ()
 
@@ -120,7 +120,7 @@ class CIMNetworkTopologyProcessorSuite extends ch.ninecode.SparkSuite
 
             val process = System.nanoTime ()
 
-            assert (new_elements.count == 1895, "# elements after")
+            assert (new_elements.count == 1893, "# elements after")
             val islands = get[TopologicalIsland]
             assert (islands != null, "no TopologicalIsland RDD")
             assert (islands.count == 4, "# islands")
@@ -181,7 +181,7 @@ class CIMNetworkTopologyProcessorSuite extends ch.ninecode.SparkSuite
 
             val filename = FILE_DEPOT + "DemoData.rdf"
             val elements= readFileAuto (session.sqlContext, filename)
-            assert (elements.count == 1804, "# elements")
+            assert (elements.count == 1802, "# elements")
 
             val read = System.nanoTime ()
             val islands = get[TopologicalIsland]
