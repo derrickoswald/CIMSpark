@@ -1,0 +1,355 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>ch.ninecode.cim</groupId>
+        <artifactId>CIMSpark</artifactId>
+        <relativePath>../pom.xml</relativePath>
+        <version>2.11-2.3.2-3.4.0</version>
+    </parent>
+    <artifactId>CIMReader</artifactId>
+    <name>${project.artifactId}</name>
+
+    <description>Expose CIM data files as Spark RDD</description>
+    <inceptionYear>2015</inceptionYear>
+    <url>https://github.com/derrickoswald/CIMSpark</url>
+    <organization>
+        <name>9code GmbH</name>
+        <url>http://9code.ch</url>
+    </organization>
+    <scm>
+        <url>git@github.com:derrickoswald/CIMSpark.git</url>
+        <connection>scm:git:git@github.com:derrickoswald/CIMSpark.git</connection>
+        <developerConnection>scm:git:git@github.com:derrickoswald/CIMSpark.git</developerConnection>
+    </scm>
+    <issueManagement>
+        <url>https://github.com/derrickoswald/CIMSpark/issues</url>
+    </issueManagement>
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>https://opensource.org/licenses/MIT</url>
+            <comments>see https://github.com/derrickoswald/CIMSpark/blob/master/LICENSE.md</comments>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <name>Derrick Oswald</name>
+            <email>derrick.oswald@9code.ch</email>
+            <id>derrickoswald</id>
+            <organization>9code GmbH</organization>
+            <organizationUrl>http://9code.ch/</organizationUrl>
+            <timezone>1</timezone>
+            <roles>
+                <role>architect</role>
+                <role>developer</role>
+            </roles>
+            <properties>
+                <keybase>https://keybase.io/derrickoswald</keybase>
+                <picUrl>https://secure.gravatar.com/avatar/d659afe3730a534914c5555640d326b3</picUrl>
+            </properties>
+        </developer>
+        <developer>
+            <name>Markus Jung</name>
+            <email>markus.jung@nis.ch</email>
+            <id>mastermaeg</id>
+            <organization>NIS AG</organization>
+            <organizationUrl>http://www.nis.ch/</organizationUrl>
+            <timezone>1</timezone>
+            <roles>
+                <role>developer</role>
+            </roles>
+            <properties>
+                <picUrl>https://cdn.jsdelivr.net/gh/derrickoswald/CIMSpark@master/img/Markus.jpg</picUrl>
+            </properties>
+        </developer>
+    </developers>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+    <properties>
+
+        <encoding>UTF-8</encoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+
+        <!-- Scala versions -->
+        <version.dependency.scala>2.11</version.dependency.scala>
+        <version.dependency.scalalibrary>2.11.12</version.dependency.scalalibrary>
+
+        <!-- Spark version -->
+        <version.dependency.spark>2.3.2</version.dependency.spark>
+
+        <!-- test versions -->
+        <version.dependency.scopt>3.7.0</version.dependency.scopt>
+        <version.dependency.junit>4.12</version.dependency.junit>
+        <version.dependency.scalatest>3.0.3</version.dependency.scalatest>
+    </properties>
+    <dependencies>
+
+        <dependency>
+            <groupId>com.github.scopt</groupId>
+            <artifactId>scopt_2.11</artifactId>
+            <version>${version.dependency.scopt}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-library</artifactId>
+            <version>${version.dependency.scalalibrary}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-core_${version.dependency.scala}</artifactId>
+            <version>${version.dependency.spark}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-sql_${version.dependency.scala}</artifactId>
+            <version>${version.dependency.spark}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-hive-thriftserver_${version.dependency.scala}</artifactId>
+            <version>${version.dependency.spark}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-graphx_${version.dependency.scala}</artifactId>
+            <version>${version.dependency.spark}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.scalatest</groupId>
+            <artifactId>scalatest_${version.dependency.scala}</artifactId>
+            <version>${version.dependency.scalatest}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${version.dependency.junit}</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+    <build>
+        <sourceDirectory>src/main/scala</sourceDirectory>
+        <resources>
+            <resource>
+                <directory>${basedir}/src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <!-- NOTE: in order to get maven and scala to work together in Eclipse
+                     I needed to install the maven-scala plugin
+                     see:
+                     http://alchim31.free.fr/m2e-scala/update-site/
+                     https://github.com/davidB/scala-maven-plugin
+                     http://davidb.github.com/scala-maven-plugin
+                     https://mvnrepository.com/artifact/net.alchim31.maven/scala-maven-plugin -->
+                <groupId>net.alchim31.maven</groupId>
+                <artifactId>scala-maven-plugin</artifactId>
+                <version>3.2.2</version>
+                <configuration>
+                    <scalaCompatVersion>${version.dependency.scala}</scalaCompatVersion>
+                    <scalaVersion>${version.dependency.scalalibrary}</scalaVersion>
+                    <args>
+                        <arg>-deprecation</arg>
+                        <arg>-feature</arg>
+                    </args>
+                    <jvmArgs>
+                        <jvmArg>-Xss4m</jvmArg>
+                    </jvmArgs>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compile</goal>
+                            <goal>testCompile</goal>
+                        </goals>
+                        <configuration>
+                            <args>
+                                <arg>-deprecation</arg>
+                                <arg>-feature</arg>
+                                <arg>-dependencyfile</arg>
+                                <arg>${project.build.directory}/.scala_dependencies</arg>
+                            </args>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>default-cli</id>
+                        <configuration>
+                            <goals>
+                                <goal>doc</goal>
+                            </goals>
+                            <reportOutputDirectory>${project.basedir}/doc</reportOutputDirectory>
+                            <args>
+                                <arg>-groups</arg>
+                            </args>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>doc-jar</goal>
+                        </goals>
+                        <configuration>
+                            <args>
+                                <arg>-groups</arg>
+                            </args>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- disable surefire -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.18.1</version>
+                <configuration>
+                    <skipTests>true</skipTests>
+                </configuration>
+            </plugin>
+            <!-- enable scalatest -->
+            <plugin>
+                <groupId>org.scalatest</groupId>
+                <artifactId>scalatest-maven-plugin</artifactId>
+                <version>1.0</version>
+                <configuration>
+                    <reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
+                    <junitxml>.</junitxml>
+                    <filereports>TestSuite.txt</filereports>
+                    <suites>ch.ninecode.cim.TestSuite</suites>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>test</id>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- assembly for stand-alone program -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <id>make-CIMServerJDBC-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <finalName>CIMServerJDBC-${project.version}</finalName>
+                            <descriptorRefs>
+                                <descriptorRef>jar-with-dependencies</descriptorRef>
+                            </descriptorRefs>
+                            <archive>
+                                <manifest>
+                                    <mainClass>ch.ninecode.cim.CIMServerJDBC</mainClass>
+                                </manifest>
+                            </archive>
+                            <attach>false</attach>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>make-CIMExport-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <finalName>CIMExport-${project.version}</finalName>
+                            <descriptorRefs>
+                                <descriptorRef>jar-with-dependencies</descriptorRef>
+                            </descriptorRefs>
+                            <archive>
+                                <manifest>
+                                    <mainClass>ch.ninecode.cim.CIMExportMain</mainClass>
+                                </manifest>
+                            </archive>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- source jar -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.0.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- signing artifacts -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                        <configuration>
+                            <keyname>${gpg.keyname}</keyname>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- deploy artifacts -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.8.2</version>
+            </plugin>
+            <!-- site generation -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.6</version>
+                <configuration>
+                    <locales>en,de,fr</locales>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>2.9</version>
+            </plugin>
+        </plugins>
+    </build>
+</project>

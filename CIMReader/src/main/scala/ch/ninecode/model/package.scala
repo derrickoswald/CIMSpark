@@ -7,7 +7,7 @@ package ch.ninecode
  *
  * Some examples are shown in the following image:
  *
- * <img src="https://rawgit.com/derrickoswald/CIMSparkPresentation/master/img/information.svg" width="700">
+ * <img src="https://cdn.jsdelivr.net/gh/derrickoswald/CIMSparkPresentation@master/img/information.svg" width="700">
  *
  * These classes are the types of, and objects contained in, the RDD that are created by the CIMReader,
  * e.g. RDD[Switch].
@@ -21,7 +21,7 @@ package ch.ninecode
  * RDD[Switch] and all RDD for which the relation 'a Switch "Is A" <em>X</em>' holds,
  * e.g. RDD[ConductingEquipment]:
  *
- * <img src="https://rawgit.com/derrickoswald/CIMSparkPresentation/master/img/nested.svg" width="700">
+ * <img src="https://cdn.jsdelivr.net/gh/derrickoswald/CIMSparkPresentation@master/img/nested.svg" width="700">
  *
  * The packages and their descriptions are itemized below.
  *
