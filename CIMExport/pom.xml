@@ -7,12 +7,12 @@
         <relativePath>../pom.xml</relativePath>
         <version>2.11-2.3.2-3.4.0</version>
     </parent>
-    <artifactId>CIMReader</artifactId>
+    <artifactId>CIMExport</artifactId>
     <name>${project.artifactId}</name>
 
-    <description>Expose CIM data files as Spark RDD</description>
-    <inceptionYear>2015</inceptionYear>
-    <url>https://github.com/derrickoswald/CIMSpark/tree/master/CIMReader</url>
+    <description>Export Spark RDD as CIM files</description>
+    <inceptionYear>2019</inceptionYear>
+    <url>https://github.com/derrickoswald/CIMSpark/tree/master/CIMExport</url>
     <organization>
         <name>9code GmbH</name>
         <url>http://9code.ch</url>
@@ -50,31 +50,7 @@
                 <picUrl>https://secure.gravatar.com/avatar/d659afe3730a534914c5555640d326b3</picUrl>
             </properties>
         </developer>
-        <developer>
-            <name>Markus Jung</name>
-            <email>markus.jung@nis.ch</email>
-            <id>mastermaeg</id>
-            <organization>NIS AG</organization>
-            <organizationUrl>http://www.nis.ch/</organizationUrl>
-            <timezone>1</timezone>
-            <roles>
-                <role>developer</role>
-            </roles>
-            <properties>
-                <picUrl>https://cdn.jsdelivr.net/gh/derrickoswald/CIMSpark@master/img/Markus.jpg</picUrl>
-            </properties>
-        </developer>
     </developers>
-    <distributionManagement>
-        <snapshotRepository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-        <repository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
-    </distributionManagement>
 
     <dependencies>
 
@@ -82,6 +58,13 @@
             <groupId>com.github.scopt</groupId>
             <artifactId>scopt_2.11</artifactId>
             <version>${version.dependency.scopt}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>ch.ninecode.cim</groupId>
+            <artifactId>CIMReader</artifactId>
+            <version>${project.version}</version>
             <scope>compile</scope>
         </dependency>
 
@@ -216,8 +199,8 @@
                 <configuration>
                     <reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
                     <junitxml>.</junitxml>
-                    <filereports>TestSuite.txt</filereports>
-                    <suites>ch.ninecode.cim.TestSuite</suites>
+                    <filereports>CIMExportSuite.txt</filereports>
+                    <suites>ch.ninecode.cim.CIMExportSuite</suites>
                 </configuration>
                 <executions>
                     <execution>
@@ -228,58 +211,31 @@
                     </execution>
                 </executions>
             </plugin>
-            <!-- source jar -->
+            <!-- assembly for stand-alone program -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>3.0.1</version>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.0.0</version>
                 <executions>
                     <execution>
-                        <id>attach-sources</id>
-                        <phase>verify</phase>
+                        <id>make-CIMExport-assembly</id>
+                        <phase>package</phase>
                         <goals>
-                            <goal>jar-no-fork</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <!-- signing artifacts -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-gpg-plugin</artifactId>
-                <version>1.6</version>
-                <executions>
-                    <execution>
-                        <id>sign-artifacts</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>sign</goal>
+                            <goal>single</goal>
                         </goals>
                         <configuration>
-                            <keyname>${gpg.keyname}</keyname>
+                            <finalName>CIMExport-${project.version}</finalName>
+                            <descriptorRefs>
+                                <descriptorRef>jar-with-dependencies</descriptorRef>
+                            </descriptorRefs>
+                            <archive>
+                                <manifest>
+                                    <mainClass>ch.ninecode.cim.CIMExportMain</mainClass>
+                                </manifest>
+                            </archive>
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
-            <!-- deploy artifacts -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-deploy-plugin</artifactId>
-                <version>2.8.2</version>
-            </plugin>
-            <!-- site generation -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-site-plugin</artifactId>
-                <version>3.6</version>
-                <configuration>
-                    <locales>en,de,fr</locales>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-project-info-reports-plugin</artifactId>
-                <version>2.9</version>
             </plugin>
         </plugins>
     </build>
