@@ -29,7 +29,7 @@ Assuming the Scala Build Tool [sbt](http://www.scala-sbt.org/) or Maven [mvn](ht
 
 * Change to the top level CIMReader directory:
 ```
-cd CIMReader
+cd CIMSpark/CIMReader
 ```
 * Invoke the package command:
 ```
