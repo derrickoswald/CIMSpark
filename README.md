@@ -27,7 +27,7 @@ This project has four components covering the following topics:
 - __CIMTool__ to generate Scala and Javascript classes from the *Enterprise Architect* UML files
 - __CIMReader__ the main component that reads CIM files into Apache Spark RDD data structures
 - __CIMExport__ to generate RDF files from Apache Spark RDD data structures
-- __CIMJDBC__ example server and client JDBC access to CIM files loade into Apache Spark RDD data structures
+- __CIMJDBC__ example server and client JDBC access to CIM files loaded into Apache Spark RDD data structures
 
 Each of these is described more fully in its module README.
 

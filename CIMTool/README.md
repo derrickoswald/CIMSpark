@@ -3,7 +3,7 @@ CIMTool
 
 This package reads and extracts the packages, classes, attributes and relations from the
 CIM model distribution format (Enterprise Architect) .eap files.
-It generates Scla and Javascript class definitions used in parsing, manipulation and export.
+It generates Scala and Javascript class definitions used in parsing, manipulation and export.
 
 # Getting CIM Distribution UML Models
 
