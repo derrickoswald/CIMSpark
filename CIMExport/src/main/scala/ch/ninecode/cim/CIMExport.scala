@@ -1,26 +1,23 @@
 package ch.ninecode.cim
 
-import java.io.UnsupportedEncodingException
+import java.io.ByteArrayOutputStream
 import java.net.URI
-import java.net.URLDecoder
 import java.nio.charset.StandardCharsets
 import java.time.LocalDateTime
-import java.util.Properties
+import java.util.zip.ZipEntry
+import java.util.zip.ZipOutputStream
 
 import scala.reflect.ClassTag
-import scala.tools.nsc.io.Jar
-import scala.util.Random
-import scopt.OptionParser
 
 import org.apache.hadoop.conf.Configuration
 import org.apache.hadoop.fs.FileSystem
 import org.apache.hadoop.fs.FileUtil
 import org.apache.hadoop.fs.Path
-import org.apache.spark.SparkConf
 import org.apache.spark.rdd.RDD
 import org.apache.spark.rdd.RDD.rddToPairRDDFunctions
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.storage.StorageLevel
+import com.datastax.spark.connector._
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
@@ -164,7 +161,7 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
      * @param filename The name of the file to write.
      * @param about The about string for the CIM file header.
      */
-    def export_iterable (elements: Iterable[Element], filename: String, about: String = ""): Unit =
+    def export_iterable_file (elements: Iterable[Element], filename: String, about: String = ""): Unit =
     {
         val ldt = LocalDateTime.now.toString
         // ToDo: Model.scenarioTime and Model.version
@@ -198,6 +195,48 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
         val index = filename.lastIndexOf ("/")
         val crc = if (-1 != index) filename.substring (0, index + 1) + "." + filename.substring (index + 1) + ".crc" else "." + filename + ".crc"
         hdfs.delete (new Path (crc), false)
+    }
+
+    /**
+     * Export elements.
+     *
+     * @param elements The elements to export.
+     * @param transformer The name of the transformer service area.
+     * @param about The about string for the CIM file header.
+     */
+    def export_iterable_blob (elements: Iterable[Element], transformer: String, about: String = ""): Array[Byte] =
+    {
+        val ldt = LocalDateTime.now.toString
+        // ToDo: Model.scenarioTime and Model.version
+        val header =
+            """<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<rdf:RDF xmlns:cim="http://iec.ch/TC57/2013/CIM-schema-cim16#" xmlns:md="http://iec.ch/TC57/61970-552/ModelDescription/1#" xmlns:dm="http://iec.ch/2002/schema/CIM_difference_model#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+	<md:FullModel rdf:about="%s">
+		<md:Model.created>%s</md:Model.created>
+		<md:Model.description>CIMExport</md:Model.description>
+		<md:Model.modelingAuthoritySet>http://9code.ch/</md:Model.modelingAuthoritySet>
+		<md:Model.profile>https://github.com/derrickoswald/CIMReader</md:Model.profile>
+	</md:FullModel>
+""".format (about, ldt)
+        val tailer =
+            """</rdf:RDF>"""
+
+        // create the text
+        val sb = new scala.collection.mutable.StringBuilder (32768, header)
+        elements.map (_.export).foreach ((s: String) ⇒ { sb.append (s); sb.append ('\n') })
+        sb.append (tailer)
+        val data = sb.toString.getBytes (StandardCharsets.UTF_8)
+
+        // zip it
+        val bos = new ByteArrayOutputStream ()
+        val zos = new ZipOutputStream (bos)
+        zos.setLevel (9)
+        val name = "%s.rdf".format (transformer)
+        zos.putNextEntry (new ZipEntry (name))
+        zos.write (data, 0, data.length)
+        zos.finish ()
+        zos.close ()
+        bos.toByteArray
     }
 
     /**
@@ -363,7 +402,7 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
                 val elements = group._2
                 val filename = dir + island + ".rdf"
                 log.info ("exporting %s".format (filename))
-                export_iterable (elements, filename, island)
+                export_iterable_file (elements, filename, island)
                 1
             }
         ).sum.toInt
@@ -374,9 +413,11 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
     /**
      * Export every transformer service area.
      * @param directory The name of the directory to write the CIM files.
+     * @param cassandra If <code>true</code> output metadata to Cassandra.
+     * @param keyspace If <b>cassandra</b> is true, use this keyspace in Cassandra.
      * @return the number of transformers processed
      */
-    def exportAllTransformers (directory: String = "simulation/"): Int =
+    def exportAllTransformers (directory: String = "simulation/", cassandra: Boolean = false, keyspace: String = "cimexport"): Int =
     {
         val dir = if (directory.endsWith ("/")) directory else directory + "/"
         // get transformer low voltage pins
@@ -395,108 +436,130 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
 
         val labeled = labelRelated (transformers)
         val trafokreise = labeled.groupByKey
-        val total = trafokreise.map (
-            group ⇒
-            {
-                val transformer = group._1
-                val elements = group._2
-                val filename = dir + transformer + ".rdf"
-                log.info ("exporting %s".format (filename))
-                export_iterable (elements, filename, transformer)
-                1
-            }
-        ).sum.toInt
-        log.info ("exported %s transformer%s".format (total, if (total == 1) "" else "s"))
+        var total = 0
 
-        /*
-        // create a convex hull for each transformer service area
-        type Key = String
-        type Value = String
-        type KeyValue = (Key, Value)
-        type KeyValueList = Iterable[KeyValue]
-        val json: RDD[(String, (String, List[List[List[Double]]]), KeyValueList)] = trafokreise.map (
-            group ⇒
-            {
-                val transformer = group._1
-                val elements = group._2
-                val points = for
-                    {
-                        e <- elements
-                        cls = e.getClass
-                        raw = cls.getName
-                        clazz = raw.substring (raw.lastIndexOf (".") + 1)
-                        if clazz == "PositionPoint"
-                    }
-                    yield e.asInstanceOf[PositionPoint]
-                val list = points.map (p ⇒ (p.xPosition.toDouble, p.yPosition.toDouble)).toList
-                val hull = Hull.scan (list).map (p ⇒ List (p._1, p._2))
-                val coordinates: List[List[List[Double]]] = List (hull)
-                val geometry = ("Polygon", coordinates)
-                val properties: KeyValueList = List (("mrid", transformer))
-                ("Feature", geometry, properties)
-            }
-        )
-        val contents = json.collect.mkString (",")
-
-        /**
-         * Index of normalOpen field in Switch bitmask.
-         */
-        val normalOpenMask: Int = Switch.fields.indexOf ("normalOpen")
-
-        /**
-         * Index of open field in Switch bitmask.
-         */
-        val openMask: Int = Switch.fields.indexOf ("open")
-
-        /**
-         * Method to determine if a switch is closed (both terminals are the same topological node).
-         *
-         * If the switch has the <code>open</code> attribute set, use that.
-         * Otherwise if it has the <code>normalOpen</code> attribute set, use that.
-         * Otherwise assume it is the default state set by
-         * CIMTopologyOptions.default_switch_open_state which means not closed unless explicitly set.
-         *
-         * @param switch The switch object to test.
-         * @return <code>true</code> if the switch is closed, <code>false</code> otherwise.
-         */
-        def switchClosed (switch: Switch): Boolean =
+        if (cassandra)
         {
-            if (0 != (switch.bitfields(openMask / 32) & (1 << (openMask % 32))))
-                !switch.open // open valid
-            else if (0 != (switch.bitfields(normalOpenMask / 32) & (1 << (normalOpenMask % 32))))
-                !switch.normalOpen
-            else
-                true
-        }
+            type Key = String
+            type Value = String
+            type KeyValue = (Key, Value)
+            type KeyValueList = Iterable[KeyValue]
+            val id = java.util.UUID.randomUUID.toString
 
-        // get the list of open switches straddling island boundaries
-        def switchp (item: (Island, Element)): Option[(mRID, Island)] =
-        {
-            val island = item._1
-            val e = item._2
-            val switch = e match
+            var trafos = trafokreise.map (
+                group ⇒
+                {
+                    val transformer = group._1
+                    val elements = group._2
+                    log.info ("exporting %s".format (transformer))
+                    (id, transformer, export_iterable_blob (elements, transformer))
+                }
+            )
+            trafos.saveToCassandra (keyspace, "transformers", SomeColumns ("id", "name", "cim"))
+            total = trafos.count.toInt
+            log.info ("exported %s transformer%s".format (total, if (total == 1) "" else "s"))
+
+            // create a convex hull for each transformer service area
+            val json: RDD[(String, String, String, (String, List[List[List[Double]]]), Iterable[(String, String)])] = trafokreise.map (
+                group ⇒
+                {
+                    val transformer = group._1
+                    val elements = group._2
+                    val points = for
+                        {
+                            e <- elements
+                            cls = e.getClass
+                            raw = cls.getName
+                            clazz = raw.substring (raw.lastIndexOf (".") + 1)
+                            if clazz == "PositionPoint"
+                        }
+                        yield e.asInstanceOf[PositionPoint]
+                    val list = points.map (p ⇒ (p.xPosition.toDouble, p.yPosition.toDouble)).toList
+                    val hull = Hull.scan (list).map (p ⇒ List (p._1, p._2))
+                    val coordinates: List[List[List[Double]]] = List (hull)
+                    val geometry = ("Polygon", coordinates)
+                    val properties: KeyValueList = List (("name", transformer))
+                    (id, transformer, "Feature", geometry, properties)
+                }
+            )
+            json.saveToCassandra (keyspace, "transformer_service_area", SomeColumns ("id", "name", "type", "geometry", "properties"))
+
+            /**
+             * Index of normalOpen field in Switch bitmask.
+             */
+            val normalOpenMask: Int = Switch.fields.indexOf ("normalOpen")
+
+            /**
+             * Index of open field in Switch bitmask.
+             */
+            val openMask: Int = Switch.fields.indexOf ("open")
+
+            /**
+             * Method to determine if a switch is closed (both terminals are the same topological node).
+             *
+             * If the switch has the <code>open</code> attribute set, use that.
+             * Otherwise if it has the <code>normalOpen</code> attribute set, use that.
+             * Otherwise assume it is the default state set by
+             * CIMTopologyOptions.default_switch_open_state which means not closed unless explicitly set.
+             *
+             * @param switch The switch object to test.
+             * @return <code>true</code> if the switch is closed, <code>false</code> otherwise.
+             */
+            def switchClosed (switch: Switch): Boolean =
             {
-                case s: Switch ⇒ s.asInstanceOf [Switch]
-                case c: Cut ⇒ c.asInstanceOf [Cut].Switch
-                case d: Disconnector ⇒ d.asInstanceOf [Disconnector].Switch
-                case f: Fuse ⇒ f.asInstanceOf [Fuse].Switch
-                case g: GroundDisconnector ⇒ g.asInstanceOf [GroundDisconnector].Switch
-                case j: Jumper ⇒ j.asInstanceOf [Jumper].Switch
-                case m: MktSwitch ⇒ m.asInstanceOf [MktSwitch].Switch
-                case p: ProtectedSwitch ⇒ p.asInstanceOf [ProtectedSwitch].Switch
-                case b: Breaker ⇒ b.asInstanceOf [Breaker].ProtectedSwitch.Switch
-                case l: LoadBreakSwitch ⇒ l.asInstanceOf [LoadBreakSwitch].ProtectedSwitch.Switch
-                case r: Recloser ⇒ r.asInstanceOf [Recloser].ProtectedSwitch.Switch
-                case s: Sectionaliser ⇒ s.asInstanceOf [Sectionaliser].Switch
-                case _ ⇒ null
+                if (0 != (switch.bitfields(openMask / 32) & (1 << (openMask % 32))))
+                    !switch.open // open valid
+                else if (0 != (switch.bitfields(normalOpenMask / 32) & (1 << (normalOpenMask % 32))))
+                    !switch.normalOpen
+                else
+                    true
             }
-            if (null != switch && !switchClosed (switch))
-                Some ((switch.id, island))
-            else
-                None
+
+            // get the list of open switches straddling island boundaries
+            def switchp (item: (Island, Element)): Option[(mRID, Island)] =
+            {
+                val island = item._1
+                val e = item._2
+                val switch = e match
+                {
+                    case s: Switch ⇒ s.asInstanceOf [Switch]
+                    case c: Cut ⇒ c.asInstanceOf [Cut].Switch
+                    case d: Disconnector ⇒ d.asInstanceOf [Disconnector].Switch
+                    case f: Fuse ⇒ f.asInstanceOf [Fuse].Switch
+                    case g: GroundDisconnector ⇒ g.asInstanceOf [GroundDisconnector].Switch
+                    case j: Jumper ⇒ j.asInstanceOf [Jumper].Switch
+                    case m: MktSwitch ⇒ m.asInstanceOf [MktSwitch].Switch
+                    case p: ProtectedSwitch ⇒ p.asInstanceOf [ProtectedSwitch].Switch
+                    case b: Breaker ⇒ b.asInstanceOf [Breaker].ProtectedSwitch.Switch
+                    case l: LoadBreakSwitch ⇒ l.asInstanceOf [LoadBreakSwitch].ProtectedSwitch.Switch
+                    case r: Recloser ⇒ r.asInstanceOf [Recloser].ProtectedSwitch.Switch
+                    case s: Sectionaliser ⇒ s.asInstanceOf [Sectionaliser].Switch
+                    case _ ⇒ null
+                }
+                if (null != switch && !switchClosed (switch))
+                    Some ((switch.id, island))
+                else
+                    None
+            }
+            val switches = labeled.flatMap (switchp).groupByKey.filter (_._2.size > 1)
+                    .map (x ⇒ (id, x._1, x._2.head, x._2.tail.head))
+            switches.saveToCassandra (keyspace, "boundary_switches", SomeColumns ("id", "mrid", "island1", "island2"))
         }
-        val switches: RDD[(mRID, Iterable[Island])] = labeled.flatMap (switchp).groupByKey.filter (_._2.size > 1)
-        */
+        else
+        {
+            total = trafokreise.map (
+                group ⇒
+                {
+                    val transformer = group._1
+                    val elements = group._2
+                    val filename = dir + transformer + ".rdf"
+                    log.info ("exporting %s".format (filename))
+                    export_iterable_file (elements, filename, transformer)
+                    1
+                }
+            ).sum.toInt
+            log.info ("exported %s transformer%s".format (total, if (total == 1) "" else "s"))
+        }
 
         total
     }

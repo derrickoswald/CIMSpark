@@ -65,7 +65,7 @@ class CIMExportSuite
         s.replaceAll ("\n", "").replaceAll ("\\s", "")
     }
 
-    test ("Basic")
+    ignore ("Basic")
     {
         _: SparkSession ⇒
             val psr =
@@ -86,7 +86,7 @@ class CIMExportSuite
             assert (s1 == s2)
     }
 
-    test ("Attribute")
+    ignore ("Attribute")
     {
         _: SparkSession ⇒
             val loc =
@@ -108,7 +108,7 @@ class CIMExportSuite
             assert (s1 == s2)
     }
 
-    test ("Double")
+    ignore ("Double")
     {
         _: SparkSession ⇒
             val voltage =
@@ -137,7 +137,7 @@ class CIMExportSuite
             assert (s1 == s2)
     }
 
-    test ("Multiple")
+    ignore ("Multiple")
     {
         _: SparkSession ⇒
             val xml =
@@ -165,7 +165,7 @@ class CIMExportSuite
             assert (cleanString(facility.export) == cleanString(xml))
     }
 
-    test ("Export")
+    ignore ("Export")
     {
         implicit spark: SparkSession ⇒
 
@@ -178,7 +178,7 @@ class CIMExportSuite
             assert (new File ("target/BaseCase_BC.rdf").exists, "export all BaseCase_BC")
     }
 
-    test ("ExportIsland")
+    ignore ("ExportIsland")
     {
         implicit spark: SparkSession ⇒
 
@@ -192,7 +192,7 @@ class CIMExportSuite
             assert (new File ("target/_TI-1" + "_island.rdf").exists, "island _TI-1")
     }
 
-    test ("ExportAllIslands")
+    ignore ("ExportAllIslands")
     {
         implicit spark: SparkSession ⇒
 
@@ -227,7 +227,7 @@ class CIMExportSuite
             println (elements.count + " elements")
             val start = System.nanoTime
             val export = new CIMExport (spark)
-            export.exportAllTransformers ("target/")
+            export.exportAllTransformers ("target/", true)
             println ("process: %s seconds".format ((System.nanoTime - start) / 1e9))
             assert (new File ("target/TX0002" + ".rdf").exists, "transformer TX0002")
 

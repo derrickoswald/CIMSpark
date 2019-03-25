@@ -10,7 +10,6 @@ import scopt.OptionParser
 
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.SparkSession
-import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
 /**
@@ -71,7 +70,11 @@ object CIMExportMain
         all: Boolean = false,
         islands: Boolean = false,
         transformers: Boolean = false,
-        output: String = "simulation",
+        outputfile: String = "export.rdf",
+        outputdir: String = "simulation/",
+        cassandra: Boolean = false,
+        host: String = "localhost",
+        keyspace: String = "cimexport",
         files: Seq[String] = Seq()
     )
 
@@ -120,9 +123,21 @@ object CIMExportMain
             action ((_, c) => c.copy (transformers = true)).
             text ("export transformer service areas [%s]".format (default.transformers))
 
-        opt[String]("output").valueName ("<file> or <dir>").
-            action ((x, c) => c.copy (output = x)).
-            text ("output file or directory name [%s]".format (default.output))
+        opt[String]("outputfile").valueName ("<file>").
+            action ((x, c) => c.copy (outputfile = x)).
+            text ("output file name [%s]".format (default.outputfile))
+
+        opt[String]("outputdir").valueName ("<dir>").
+            action ((x, c) => c.copy (outputdir = x)).
+            text ("output directory name [%s]".format (default.outputdir))
+
+        opt[Unit]("cassandra").
+            action ((_, c) => c.copy (cassandra = true)).
+            text ("output transformer metadata to cassandra [%s]".format (default.cassandra))
+
+        opt [String]("host").valueName ("<cassandra>").
+            action ((x, c) ⇒ c.copy (host = x)).
+            text ("Cassandra connection host (listen_address or seed in cassandra.yaml) [%s]".format (default.host))
 
         arg[String]("<CIM> <CIM> ...").unbounded ().
             action ((x, c) => c.copy (files = c.files :+ x)).
@@ -180,6 +195,8 @@ object CIMExportMain
                 configuration.setJars (Array (jarForObject (new DefaultSource ())))
                 // register for Kryo serialization
                 configuration.registerKryoClasses (CIMClasses.list)
+                // choose which Cassandra
+                configuration.set ("spark.cassandra.connection.host", arguments.host)
 
                 val session_builder = SparkSession.builder ()
                 val session = session_builder.config (configuration).getOrCreate ()
@@ -200,11 +217,11 @@ object CIMExportMain
 
                     val export = new CIMExport (session)
                     if (arguments.all)
-                        export.exportAll (arguments.output)
+                        export.exportAll (arguments.outputfile)
                     if (arguments.islands)
-                        export.exportAllIslands (arguments.output)
+                        export.exportAllIslands (arguments.outputdir)
                     else if (arguments.transformers)
-                        export.exportAllTransformers (arguments.output)
+                        export.exportAllTransformers (arguments.outputdir, arguments.cassandra, arguments.keyspace)
                 }
                 finally
                 {
