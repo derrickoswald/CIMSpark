@@ -23,7 +23,6 @@ class TestSuite extends Suites (
     new CIMRDDSuite,
     new CIMSparkSuite,
     new CIMNetworkTopologyProcessorSuite,
-    new CIMExportSuite,
     new CIMIntegrityCheckSuite,
     new CIMAboutSuite,
     new CIMNormalizeSuite,
