@@ -4,11 +4,11 @@ import java.io.ByteArrayOutputStream
 import java.net.URI
 import java.nio.charset.StandardCharsets
 import java.time.LocalDateTime
+import java.util.Date
 import java.util.zip.ZipEntry
 import java.util.zip.ZipOutputStream
 
 import scala.reflect.ClassTag
-
 import org.apache.hadoop.conf.Configuration
 import org.apache.hadoop.fs.FileSystem
 import org.apache.hadoop.fs.FileUtil
@@ -20,8 +20,8 @@ import org.apache.spark.storage.StorageLevel
 import com.datastax.spark.connector._
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-
 import ch.ninecode.model._
+import org.apache.hadoop.fs.FileStatus
 
 /**
  * Export (a subset of) CIM data.
@@ -412,12 +412,13 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
 
     /**
      * Export every transformer service area.
+     * @param source The source file names as a comma delimited list.
      * @param directory The name of the directory to write the CIM files.
      * @param cassandra If <code>true</code> output metadata to Cassandra.
      * @param keyspace If <b>cassandra</b> is true, use this keyspace in Cassandra.
      * @return the number of transformers processed
      */
-    def exportAllTransformers (directory: String = "simulation/", cassandra: Boolean = false, keyspace: String = "cimexport"): Int =
+    def exportAllTransformers (source: String, directory: String = "simulation/", cassandra: Boolean = false, keyspace: String = "cimexport"): Int =
     {
         val dir = if (directory.endsWith ("/")) directory else directory + "/"
         // get transformer low voltage pins
@@ -444,9 +445,18 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
             type Value = String
             type KeyValue = (Key, Value)
             type KeyValueList = Iterable[KeyValue]
-            val id = java.util.UUID.randomUUID.toString
 
-            var trafos = trafokreise.map (
+            val id = java.util.UUID.randomUUID.toString
+            val time = new Date ().getTime
+            val fs = FileSystem.get (spark.sparkContext.hadoopConfiguration)
+            val path = new Path (source)
+            val file = fs.getFileStatus (path)
+            val filetime = file.getModificationTime
+            val filesize = file.getLen
+            val export = spark.sparkContext.parallelize (Seq ((id, time, source, filetime, filesize)))
+            export.saveToCassandra (keyspace, "export", SomeColumns ("id", "runtime", "filename", "filetime", "filesize"))
+
+            val trafos = trafokreise.map (
                 group ⇒
                 {
                     val transformer = group._1
@@ -494,7 +504,7 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
              */
             val openMask: Int = Switch.fields.indexOf ("open")
 
-            /**
+            /*
              * Method to determine if a switch is closed (both terminals are the same topological node).
              *
              * If the switch has the <code>open</code> attribute set, use that.

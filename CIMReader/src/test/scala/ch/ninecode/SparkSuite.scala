@@ -56,11 +56,16 @@ class SparkSuite extends fixture.FunSuite
             while (null != entry)
             {
                 val path = directory + entry.getName
+                val time = entry.getLastModifiedTime
                 if (!entry.isDirectory)
+                {
                     // if the entry is a file, extracts it
                     extractFile (zip, path)
+                    if (null != time)
+                        new File (path).setLastModified (time.toMillis)
+                }
                 else
-                    // if the entry is a directory, make the directory
+                // if the entry is a directory, make the directory
                     new File (path).mkdir
                 zip.closeEntry ()
                 entry = zip.getNextEntry

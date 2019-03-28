@@ -210,8 +210,9 @@ object CIMExportMain
                     // read the file
                     val reader_options = scala.collection.mutable.HashMap[String, String] ()
                     arguments.cimopts.map ((pair: (String, String)) => reader_options.put (pair._1, pair._2))
-                    reader_options.put ("path", arguments.files.mkString (","))
-                    log.info ("reading CIM files %s".format (arguments.files.mkString (",")))
+                    val filelist = arguments.files.mkString (",")
+                    reader_options.put ("path", filelist)
+                    log.info ("reading CIM files %s".format (filelist))
                     val elements = session.read.format ("ch.ninecode.cim").options (reader_options).load (arguments.files:_*)
                     log.info ("" + elements.count + " elements")
 
@@ -221,7 +222,7 @@ object CIMExportMain
                     if (arguments.islands)
                         export.exportAllIslands (arguments.outputdir)
                     else if (arguments.transformers)
-                        export.exportAllTransformers (arguments.outputdir, arguments.cassandra, arguments.keyspace)
+                        export.exportAllTransformers (filelist, arguments.outputdir, arguments.cassandra, arguments.keyspace)
                 }
                 finally
                 {

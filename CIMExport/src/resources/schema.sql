@@ -2,6 +2,22 @@ create keyspace if not exists cimexport with replication = {'class': 'SimpleStra
 
 create type if not exists cimexport.polygon_data (type text, coordinates list<frozen <list<frozen <list<double>>>>>);
 
+create table if not exists cimexport.export (
+    id text,
+    runtime timestamp,
+    filename text,
+    filetime timestamp,
+    filesize bigint,
+    primary key (id)
+) with comment = '
+Export metadata.
+    id        - the export run identifier, UUID
+    runtime   - the execution time of the export
+    filename  - the origin CIM RDF file name
+    filetime  - the timestamp of the source file
+    filesize  - the size of the source file
+';
+
 create table if not exists cimexport.transformers (
     id text,
     name text,
@@ -14,7 +30,6 @@ These are descriptions of exported transformer service areas.
     name       - the unique name for the transformer, for unganged transformers the mRID of the transformer
     cim        - the zipped CIM elements
 ';
-
 
 create table if not exists cimexport.transformer_service_area (
     id text,
