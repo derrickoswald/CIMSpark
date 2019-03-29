@@ -57,6 +57,7 @@ object CIMExportMain
     )
 
     case class Arguments (
+        unittest: Boolean = false,
         quiet: Boolean = false,
         log_level: LogLevels.Value = LogLevels.OFF,
         // see https://spark.apache.org/docs/latest/configuration.html
@@ -78,9 +79,21 @@ object CIMExportMain
         files: Seq[String] = Seq()
     )
 
+    var do_exit = true
+
     val parser: OptionParser[Arguments] = new scopt.OptionParser[Arguments](APPLICATION_NAME)
     {
         head (APPLICATION_NAME, APPLICATION_VERSION)
+
+        val default = new Arguments
+
+        override def terminate (exitState: Either[String, Unit]): Unit =
+            if (do_exit)
+                exitState match
+                {
+                    case Left (_) => sys.exit (1)
+                    case Right (_) => sys.exit (0)
+                }
 
         note ("Extracts subsets of CIM files based on topology.\n")
 
@@ -93,7 +106,10 @@ object CIMExportMain
             APPLICATION_VERSION.split ("-")(2)
         ))
 
-        val default = new Arguments
+        opt [Unit]("unittest").
+            hidden ().
+            action ((_, c) ⇒ c.copy (unittest = true)).
+            text ("unit testing - don't call sys.exit() [%s]".format (default.unittest))
 
         opt[Unit]("quiet").
             action ((_, c) => c.copy (quiet = true)).
@@ -139,6 +155,10 @@ object CIMExportMain
             action ((x, c) ⇒ c.copy (host = x)).
             text ("Cassandra connection host (listen_address or seed in cassandra.yaml) [%s]".format (default.host))
 
+        opt [String]("keyspace").valueName ("<name>").
+            action ((x, c) ⇒ c.copy (keyspace = x)).
+            text ("keyspace to use if cassandra specified [%s]".format (default.keyspace))
+
         arg[String]("<CIM> <CIM> ...").unbounded ().
             action ((x, c) => c.copy (files = c.files :+ x)).
             text ("CIM rdf files to process")
@@ -176,6 +196,8 @@ object CIMExportMain
      */
     def main (args:Array[String])
     {
+        do_exit = !args.contains ("--unittest")
+
         parser.parse (args, Arguments ()) match
         {
             case Some (arguments) =>
@@ -228,9 +250,12 @@ object CIMExportMain
                 {
                     session.stop ()
                 }
-                sys.exit (0)
+                if (do_exit)
+                    sys.exit (0)
+
             case None =>
-                sys.exit (1)
+                if (do_exit)
+                    sys.exit (1)
         }
     }
 }

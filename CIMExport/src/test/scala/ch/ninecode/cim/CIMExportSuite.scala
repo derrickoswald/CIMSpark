@@ -252,7 +252,20 @@ class CIMExportSuite
             println (elements.count + " elements")
             val start = System.nanoTime
             val export = new CIMExport (spark)
-            export.exportAllTransformers (demo_data, "target/", true)
+            export.exportAllTransformers (source = demo_data, cassandra = true, keyspace = "test")
             println ("process: %s seconds".format ((System.nanoTime - start) / 1e9))
+    }
+
+    test ("Main")
+    {
+        implicit spark: SparkSession ⇒
+            CIMExportMain.main (
+                Array (
+                    "--unittest",
+                    "--logging", "INFO",
+                    "--transformers",
+                    "--cassandra",
+                    "--keyspace", "test",
+                    demo_data))
     }
 }
