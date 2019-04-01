@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+set -x
+until [ "`docker inspect -f {{.State.Running}} spark_master`"=="true" ]; do
+    sleep 0.5;
+done;
+sandbox=$(docker inspect --format='{{.NetworkSettings.Networks.spark_default.IPAddress}}' spark_master)
+beach=$(docker inspect --format='{{.NetworkSettings.Networks.spark_default.IPAddress}}' beach)
+sudo sed -i '/sandbox/c\'"$sandbox"' sandbox' /etc/hosts
+sudo sed -i '/beach/c\'"$beach"' beach' /etc/hosts
