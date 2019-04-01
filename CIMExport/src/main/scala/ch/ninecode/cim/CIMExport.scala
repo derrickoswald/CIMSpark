@@ -307,6 +307,8 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
                                 List ((e.id, mrid), (mrid, e.id))
                             else if (relation.field == "PerLengthParameters")
                                 Some ((e.id, ref.asInstanceOf[List[String]].head))
+                            else if (relation.field == "PowerTransformer")
+                                List ((e.id, mrid), (mrid, e.id))
                             else if (!relation.multiple)
                                 Some ((e.id, mrid))
                             else
