@@ -468,10 +468,10 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
                         val elements = group._2
                         log.info ("exporting %s".format (transformer))
                         val (filesize, zipdata) = export_iterable_blob (elements, transformer)
-                        (id, transformer, filesize, zipdata.length, zipdata)
+                        (id, transformer, elements.map (_.id).toList, filesize, zipdata.length, zipdata)
                     }
                 )
-                trafos.saveToCassandra (keyspace, "transformers", SomeColumns ("id", "name", "filesize", "zipsize", "cim"))
+                trafos.saveToCassandra (keyspace, "transformers", SomeColumns ("id", "name", "elements", "filesize", "zipsize", "cim"))
                 total = trafos.count.toInt
                 log.info ("exported %s transformer%s".format (total, if (total == 1) "" else "s"))
 
