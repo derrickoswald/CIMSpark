@@ -16,7 +16,7 @@ case class Schema (session: SparkSession, keyspace: String, verbose: Boolean)
         org.apache.log4j.LogManager.getLogger (getClass.getName).setLevel (org.apache.log4j.Level.INFO)
     implicit val log: Logger = LoggerFactory.getLogger (getClass)
 
-    val resource = """/schema.sql"""
+    val resource = """/export_schema.sql"""
     val default_keyspace = """cimexport"""
 
     def toKeySpace (lines: String): String =
@@ -28,7 +28,7 @@ case class Schema (session: SparkSession, keyspace: String, verbose: Boolean)
     }
 
     /**
-     * Create the schema according to the schema.sql file.
+     * Create the schema according to the export_schema.sql file.
      *
      * The file is in a special form:
      *   - DDL statements are separated by a blank line
