@@ -1,0 +1,44 @@
+# Spark local cluster using Docker
+#
+# Note: from CIMReader/src/test/resources/ directory run with:
+#       docker-compose up&
+# stop with:
+#       docker-compose down
+#
+# Note: for more worker nodes use:
+#       docker-compose up --scale worker=2&
+#
+# Note: to start a shell on the cluster use:
+#       docker exec --interactive --tty spark_master bash
+# or    docker exec --interactive --tty spark_worker_1 bash
+#
+
+version: "2" # Docker Engine (version > 1.10.0) and Docker Compose (version >= 1.6.0)
+
+services:
+  beach:
+    container_name: beach
+    image: derrickoswald/cassandra-docker
+    command: cassandra -f
+    hostname: beach
+    ports:
+      - "7000:7000" # intra-node communication
+      - "7001:7001" # TLS intra-node communication
+      - "7199:7199" # JMX
+      - "9042:9042" # CQL
+      - "9160:9160" # thrift service
+    environment:
+      MAX_HEAP_SIZE: "1G"
+      HEAP_NEWSIZE: "24M"
+    volumes:
+      - ./../../../../CIMApplication:/mnt/cimapplication
+  beach_node:
+    image: derrickoswald/cassandra-docker
+    command: cassandra -f
+    environment:
+      CASSANDRA_SEEDS: beach
+    links:
+      - beach
+    volumes:
+      - ./../../../../CIMApplication:/mnt/cimapplication
+
