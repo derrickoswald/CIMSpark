@@ -143,8 +143,8 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
         val head = spark.sparkContext.makeRDD (List[String] (header))
         val tail = spark.sparkContext.makeRDD (List[String] (tailer))
         val guts = elements.map (_.export)
-        val ss = head.union (guts).union (tail)
-        ss.saveAsTextFile (txt)
+        val all = head.union (guts).union (tail)
+        all.saveAsTextFile (txt)
         merge (txt, file.toUri.toString)
         // clean up temporary directory
         hdfs.delete (directory, true)
@@ -413,6 +413,12 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
         total
     }
 
+    def class_name (e: Element): String =
+    {
+        val classname = e.getClass.getName
+        classname.substring (classname.lastIndexOf (".") + 1)
+    }
+
     /**
      * Export every transformer service area.
      * @param source The source file names as a comma delimited list.
@@ -468,7 +474,7 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
                         val elements = group._2
                         log.info ("exporting %s".format (transformer))
                         val (filesize, zipdata) = export_iterable_blob (elements, transformer)
-                        (id, transformer, elements.map (_.id).toList, filesize, zipdata.length, zipdata)
+                        (id, transformer, elements.map (x ⇒ (x.id, class_name (x))).toMap, filesize, zipdata.length, zipdata)
                     }
                 )
                 trafos.saveToCassandra (keyspace, "transformers", SomeColumns ("id", "name", "elements", "filesize", "zipsize", "cim"))

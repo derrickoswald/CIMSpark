@@ -182,29 +182,6 @@
                             </args>
                         </configuration>
                     </execution>
-                    <execution>
-                        <id>default-cli</id>
-                        <configuration>
-                            <goals>
-                                <goal>doc</goal>
-                            </goals>
-                            <reportOutputDirectory>${project.build.directory}/doc</reportOutputDirectory>
-                            <args>
-                                <arg>-groups</arg>
-                            </args>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>attach-javadocs</id>
-                        <goals>
-                            <goal>doc-jar</goal>
-                        </goals>
-                        <configuration>
-                            <args>
-                                <arg>-groups</arg>
-                            </args>
-                        </configuration>
-                    </execution>
                 </executions>
             </plugin>
             <!-- disable surefire -->

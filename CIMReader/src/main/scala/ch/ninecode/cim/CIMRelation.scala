@@ -124,6 +124,23 @@ class CIMRelation (
 
     def make_tables (rdd: RDD[Element]): Unit =
     {
+        // ToDo: See if this is faster
+//        // aggregate the set of class names
+//        val names = rdd.aggregate (Set[String]()) (
+//            (set: Set[String], x: Element) ⇒
+//            {
+//                var ret = List[String]()
+//                var clz = x
+//
+//                while (null != clz)
+//                {
+//                    ret = ret :+ clz.getClass.getName
+//                    clz = clz.sup
+//                }
+//                ret.map (x => x.substring (x.lastIndexOf (".") + 1)).toSet.union (set)
+//            },
+//            (set1: Set[String], set2: Set[String]) ⇒ set1.union (set2)
+//        )
         val names = rdd.flatMap (
             (x: Element) => // hierarchy: List[String]
             {

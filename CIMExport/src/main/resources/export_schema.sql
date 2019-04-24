@@ -21,7 +21,7 @@ Export metadata.
 create table if not exists cimexport.transformers (
     id text,
     name text,
-    elements frozen <list<text>>,
+    elements frozen <map<text,text>>,
     filesize bigint,
     zipsize bigint,
     cim blob,
@@ -31,7 +31,7 @@ Export transformer service area.
 These are descriptions of exported transformer service areas.
     id         - the export run identifier, UUID
     name       - the unique name for the transformer, for unganged transformers the mRID of the transformer
-    elements   - the mRIDs of the contained elements
+    elements   - the map of mRIDs of the contained elements and their class
     filesize   - the size of the file before zip compression
     zipsize    - the size of the zip blob after compression
     cim        - the zipped CIM elements

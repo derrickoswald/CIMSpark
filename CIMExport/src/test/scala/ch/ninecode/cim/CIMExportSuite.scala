@@ -38,7 +38,7 @@ class CIMExportSuite
         FILE_DEPOT + "RealGrid/CGMES_v2.4.15_RealGridTestConfiguration_TP_v2.xml"
     )
 
-    val demo_data = FILE_DEPOT + "DemoData.rdf"
+    val DEMO_DATA = FILE_DEPOT + "DemoData.rdf"
 
     override def run (testName: Option[String], args: org.scalatest.Args): org.scalatest.Status =
     {
@@ -56,7 +56,7 @@ class CIMExportSuite
         deleteRecursive (new File (FILE_DEPOT + "MiniGrid/"))
         deleteRecursive (new File (FILE_DEPOT + "SmallGrid/"))
         deleteRecursive (new File (FILE_DEPOT + "RealGrid/"))
-        new File (demo_data).delete
+        new File (DEMO_DATA).delete
         ret
     }
 
@@ -198,7 +198,7 @@ class CIMExportSuite
 
             val options = new HashMap[String, String]().asInstanceOf [Map[String, String]]
             options.put ("ch.ninecode.cim.do_topo_islands", "true")
-            val elements = readFile (demo_data, options)
+            val elements = readFile (DEMO_DATA, options)
             println (elements.count + " elements")
             val start = System.nanoTime
             val export = new CIMExport (spark)
@@ -223,11 +223,11 @@ class CIMExportSuite
 
             val options = new HashMap[String, String]().asInstanceOf [Map[String, String]]
             options.put ("ch.ninecode.cim.do_topo_islands", "true")
-            val elements = readFile (demo_data, options)
+            val elements = readFile (DEMO_DATA, options)
             println (elements.count + " elements")
             val start = System.nanoTime
             val export = new CIMExport (spark)
-            export.exportAllTransformers (demo_data, "target/")
+            export.exportAllTransformers (DEMO_DATA, "target/")
             println ("process: %s seconds".format ((System.nanoTime - start) / 1e9))
             assert (new File ("target/TX0002" + ".rdf").exists, "transformer TX0002")
 
@@ -248,11 +248,11 @@ class CIMExportSuite
 
             val options = new HashMap[String, String]().asInstanceOf [Map[String, String]]
             options.put ("ch.ninecode.cim.do_topo_islands", "true")
-            val elements = readFile (demo_data, options)
+            val elements = readFile (DEMO_DATA, options)
             println (elements.count + " elements")
             val start = System.nanoTime
             val export = new CIMExport (spark)
-            export.exportAllTransformers (source = demo_data, cassandra = true, keyspace = "test")
+            export.exportAllTransformers (source = DEMO_DATA, cassandra = true, keyspace = "test")
             println ("process: %s seconds".format ((System.nanoTime - start) / 1e9))
     }
 
@@ -266,6 +266,6 @@ class CIMExportSuite
                     "--transformers",
                     "--cassandra",
                     "--keyspace", "test",
-                    demo_data))
+                    DEMO_DATA))
     }
 }
