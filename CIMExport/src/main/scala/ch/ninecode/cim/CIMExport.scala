@@ -309,6 +309,10 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
                                 Some ((e.id, ref.asInstanceOf[List[String]].head))
                             else if (relation.field == "PowerTransformer")
                                 List ((e.id, mrid), (mrid, e.id))
+                            else if (relation.field == "IdentifiedObject_attr") // DiagramObject has a special name for IdentifiedObject
+                                List ((e.id, mrid), (mrid, e.id))
+                            else if (relation.field == "DiagramObject")
+                                List ((e.id, mrid), (mrid, e.id))
                             else if (!relation.multiple)
                                 Some ((e.id, mrid))
                             else

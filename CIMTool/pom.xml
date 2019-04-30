@@ -114,6 +114,7 @@
                 <configuration>
                     <reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
                     <junitxml>.</junitxml>
+                    <skipTests>true</skipTests>
                     <filereports>StackSuite.txt</filereports>
                     <suites>samples.StackSuite</suites>
                 </configuration>
