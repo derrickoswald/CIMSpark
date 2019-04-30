@@ -319,20 +319,41 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
         val edges = getOrElse[Element]("Elements").keyBy (_.id).join (terms)
             .values.flatMap (edge_operator).map (make_graph_edges).persist (options.storage)
 
-        // get the voltage for each ConnectivityNode by joining through Terminal
-        val e = getOrElse[Terminal].map (x ⇒ (x.ConductingEquipment, x.ConnectivityNode)).groupByKey
-            .join (getOrElse[ConductingEquipment].map (x ⇒ (x.id, x.BaseVoltage))).values // ([ConnectivityNode], voltage)
-            .flatMap (x ⇒ x._1.filter (_ != null).map (y ⇒ (y, x._2)))
-            .groupByKey.map (
+        val end_voltages = getOrElse[PowerTransformerEnd].map (x ⇒ (x.PowerTransformer, (x.TransformerEnd.endNumber, x.TransformerEnd.BaseVoltage))).groupByKey
+        val equipment_voltages = getOrElse[ConductingEquipment].flatMap (
             x ⇒
-            {
-                val voltages = x._2.filter (_ != null)
-                val voltage = voltages.headOption.getOrElse ("")
-                if (options.debug)
-                    if (!voltages.forall (_ == voltage))
-                        log.error ("conflicting edge voltages on node %s (%s)".format (x._1, voltages.take(10).mkString (",")))
-                (x._1, voltage)
-            })
+                if ((null == x.BaseVoltage) || ("" == x.BaseVoltage))
+                    None
+                else
+                    Some((x.id, Iterable ((1, x.BaseVoltage), (2, x.BaseVoltage))))) // same voltage for both terminals
+
+        // get the voltage for each ConnectivityNode by joining through Terminal
+        val e = getOrElse[Terminal]
+            .filter (x ⇒ (null != x.ConductingEquipment) && (null != x.ConnectivityNode))
+            .map (x ⇒ (x.ConductingEquipment, (x.ACDCTerminal.sequenceNumber, x.ConnectivityNode))).groupByKey
+            .join (equipment_voltages.union (end_voltages)).values // ([(term#, ConnectivityNode)], [(end#, voltage)])
+            .flatMap (
+                x ⇒
+                    x._1.flatMap (
+                    y ⇒
+                        x._2.find (_._1 == y._1) match
+                        {
+                            case Some (voltage) ⇒ Some ((y._2, voltage._2))
+                            case None ⇒ None
+                        }
+                    )
+                )
+            .groupByKey.map (
+                x ⇒
+                {
+                    val voltages = x._2.filter (_ != null)
+                    val voltage = voltages.headOption.getOrElse ("Unknown")
+                    if (options.debug)
+                        if (!voltages.forall (_ == voltage))
+                            log.error ("conflicting edge voltages on node %s (%s)".format (x._1, voltages.take(10).mkString (",")))
+                    (x._1, voltage)
+                }
+            )
 
         // get the vertices
         val vertices = getOrElse[ConnectivityNode].keyBy (_.id).join (e).values.map (to_vertex).keyBy (_.node).persist (options.storage)
