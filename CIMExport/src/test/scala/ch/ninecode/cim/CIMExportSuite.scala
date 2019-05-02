@@ -4,6 +4,7 @@ import java.io.File
 import java.util.HashMap
 import java.util.Map
 
+import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.SparkSession
 
 import ch.ninecode.model._
@@ -200,21 +201,29 @@ class CIMExportSuite
             options.put ("ch.ninecode.cim.do_topo_islands", "true")
             val elements = readFile (DEMO_DATA, options)
             println (elements.count + " elements")
+            val islands = spark.sparkContext.getPersistentRDDs.find (_._2.name == "TopologicalIsland").get._2.asInstanceOf[RDD[TopologicalIsland]].map (_.id).collect
+
             val start = System.nanoTime
             val export = new CIMExport (spark)
             export.exportAllIslands ("target/")
             println ("process: %s seconds".format ((System.nanoTime - start) / 1e9))
-            assert (new File ("target/TX0002_terminal_2_island" + ".rdf").exists, "island TX0002_terminal_2_island")
 
-            // remove all RDD to start from scratch
-            spark.sparkContext.getPersistentRDDs.foreach (x ⇒ { x._2.unpersist(true); x._2.name = null })
+            islands.foreach (
+                island ⇒
+                {
+                    // remove all RDD to start from scratch
+                    spark.sparkContext.getPersistentRDDs.foreach (x ⇒ { x._2.unpersist(true); x._2.name = null })
+                    val file = "target/%s.rdf".format (island)
+                    assert (new File (file).exists, "island %s".format (island))
 
-            val elements2 = readFile ("target/TX0002_terminal_2_island" + ".rdf")
-            println (elements2.count + " elements")
-            val checker = new CIMIntegrityChecker (spark)
-            val errors = checker.checkAll
-            println (if (errors.isDefined) errors.get else "no errors")
-            assert (errors.isEmpty, "reference errors")
+                    val elements2 = readFile (file)
+                    println ("island %s has %s elements".format (island, elements2.count))
+                    val checker = new CIMIntegrityChecker (spark)
+                    val errors = checker.checkAll
+                    println (if (errors.isDefined) errors.get else "no errors")
+                    assert (errors.isEmpty, "reference errors")
+                }
+            )
     }
 
     test ("ExportAllTransformersFile")
@@ -225,21 +234,29 @@ class CIMExportSuite
             options.put ("ch.ninecode.cim.do_topo_islands", "true")
             val elements = readFile (DEMO_DATA, options)
             println (elements.count + " elements")
+            val transformers = spark.sparkContext.getPersistentRDDs.find (_._2.name == "PowerTransformer").get._2.asInstanceOf[RDD[PowerTransformer]].map (_.id).collect
+
             val start = System.nanoTime
             val export = new CIMExport (spark)
             export.exportAllTransformers (DEMO_DATA, "target/")
             println ("process: %s seconds".format ((System.nanoTime - start) / 1e9))
-            assert (new File ("target/TX0002" + ".rdf").exists, "transformer TX0002")
 
-            // remove all RDD to start from scratch
-            spark.sparkContext.getPersistentRDDs.foreach (x ⇒ { x._2.unpersist(true); x._2.name = null })
+            transformers.foreach (
+                transformer ⇒
+                {
+                    // remove all RDD to start from scratch
+                    spark.sparkContext.getPersistentRDDs.foreach (x ⇒ { x._2.unpersist(true); x._2.name = null })
+                    val file = "target/%s.rdf".format (transformer)
+                    assert (new File (file).exists, "transformer %s".format (transformer))
 
-            val elements2 = readFile ("target/TX0002" + ".rdf")
-            println (elements2.count + " elements")
-            val checker = new CIMIntegrityChecker (spark)
-            val errors = checker.checkAll
-            println (if (errors.isDefined) errors.get else "no errors")
-            assert (errors.isEmpty, "reference errors")
+                    val elements2 = readFile (file)
+                    println ("transformer %s has %s elements".format (transformer, elements2.count))
+                    val checker = new CIMIntegrityChecker (spark)
+                    val errors = checker.checkAll
+                    println (if (errors.isDefined) errors.get else "no errors")
+                    assert (errors.isEmpty, "reference errors")
+                }
+            )
     }
 
     test ("ExportAllTransformersCassandra")

@@ -9,6 +9,7 @@ import java.util.zip.ZipEntry
 import java.util.zip.ZipOutputStream
 
 import scala.reflect.ClassTag
+
 import org.apache.hadoop.conf.Configuration
 import org.apache.hadoop.fs.FileSystem
 import org.apache.hadoop.fs.FileUtil
@@ -20,8 +21,8 @@ import org.apache.spark.storage.StorageLevel
 import com.datastax.spark.connector._
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+
 import ch.ninecode.model._
-import org.apache.hadoop.fs.FileStatus
 
 /**
  * Export (a subset of) CIM data.
@@ -275,6 +276,8 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
     type Island = String
     type mRID = String
     type Item = (mRID, Island)
+    type Key = String
+    type KeyedItem = (Key, Item)
     type Clazz = String
 
     def dependents (relations: Map[String, List[Relationship]]) (element: Element): List[(mRID, mRID)] =
@@ -340,7 +343,7 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
     {
         // the to do list is a PairRDD, the keys are mrid to check,
         // and the values are the name to label the related items
-        var todo = what
+        var todo = what.keyBy (x ⇒ x._1 + x._2)
 
         val classes = new CHIM ("").classes
 
@@ -349,23 +352,33 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
         val relationships = classes.map (x ⇒ (x.name, x.relations)).toMap
         val ying_yang = getOrElse[Element]("Elements").flatMap (dependents (relationships)).persist (storage)
 
-        // the done list is a list of PairRDD, the keys are the mRID and the values are the Island it belongs to
-        var done: List[RDD[Item]] = List ()
+        // done is a list of keyed PairRDD, the keys are mRID_Island and each pair is an mRID and the Island it belongs to
+        var done: List[RDD[KeyedItem]] = List ()
 
         do
         {
-            val next: RDD[(mRID, (Island, mRID))] = todo.join (ying_yang).persist (storage)
+            val next: RDD[(mRID, (Island, mRID))] = todo.values.join (ying_yang).persist (storage)
             done = done ++ Seq (todo)
-            var new_todo: RDD[Item] = next.values.map (_.swap)
+            var new_todo: RDD[KeyedItem] = next.values.map (_.swap).keyBy (x ⇒ x._1 + x._2)
             done.foreach (d ⇒ new_todo = new_todo.subtractByKey (d))
             new_todo.persist (storage)
             next.unpersist (false)
             todo = new_todo
         }
         while (!todo.isEmpty)
-        val all_done = session.sparkContext.union (done).distinct.persist (storage)
+        // reduce to n executors
+        val n = session.sparkContext.getExecutorMemoryStatus.size
+        val done_minimized = done.map (_.values.map (x ⇒ (x._1, Set[Island](x._2)))
+            .reduceByKey (
+                (x, y) ⇒ x.union (y), n))
+        val all_done: RDD[Item] = session.sparkContext.union (done_minimized)
+            .reduceByKey (
+                (x, y) ⇒ x.union (y), n)
+            .flatMap (p ⇒ p._2.map (q ⇒ (p._1, q)))
+            .persist (storage)
 
         val ret = getOrElse[Element]("Elements").keyBy (_.id).join (all_done).values.map (_.swap).persist (storage)
+        log.info ("%s elements".format (ret.count))
         done.foreach (_.unpersist (false))
         ying_yang.unpersist (false)
         ret
@@ -437,9 +450,9 @@ class CIMExport (spark: SparkSession, storage: StorageLevel = StorageLevel.MEMOR
         val transformers: RDD[Item] = getOrElse [PowerTransformerEnd]
             .filter (_.TransformerEnd.endNumber != 1)
             .map (x ⇒ (x.TransformerEnd.Terminal, x.PowerTransformer))
-            .join (getOrElse [Terminal].map (x ⇒ (x.id, x.TopologicalNode))).values
+            .join (getOrElse [Terminal].map (y ⇒ (y.id, y.TopologicalNode))).values
             .map (_.swap)
-            .join (getOrElse [TopologicalNode].map (x ⇒ (x.id, x.TopologicalIsland))).values
+            .join (getOrElse [TopologicalNode].map (z ⇒ (z.id, z.TopologicalIsland))).values
             .map (_.swap)
             .groupByKey
             .mapValues (_.toArray.sortWith (_ < _).mkString ("_"))
