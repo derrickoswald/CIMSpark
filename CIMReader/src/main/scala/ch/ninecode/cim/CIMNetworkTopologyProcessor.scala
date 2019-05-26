@@ -503,7 +503,10 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
             mRID = name,
             name = cn.id,
             DiagramObjects = List (),
-            Names = List ()
+            InstanceSet = null,
+            Names = List (),
+            PropertiesCIMDataObject = null,
+            TargetingCIMDataObject = List()
         )
         obj.bitfields = Array (Integer.parseInt ("1111", 2))
         val island = TopologicalIsland (
@@ -541,7 +544,10 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
             mRID = name,
             name = null,
             DiagramObjects = List (),
-            Names = List ()
+            InstanceSet = null,
+            Names = List (),
+            PropertiesCIMDataObject = null,
+            TargetingCIMDataObject = List()
         )
         obj.bitfields = Array (Integer.parseInt ("101", 2))
         val node = TopologicalNode (
@@ -550,11 +556,12 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
             qInjection = 0.0,
             AngleRefTopologicalIsland = null,
             BaseVoltage = arg._2.voltage,
+            BusNameMarker = List (),
             ConnectivityNodeContainer = arg._2.container,
             ConnectivityNodes = List (),
             ReportingGroup = null,
-            SvInjection = null,
-            SvVoltage = null,
+            SvInjection = List (),
+            SvVoltage = List (),
             Terminal = List (),
             TopologicalIsland = island
         )
@@ -597,12 +604,14 @@ case class CIMNetworkTopologyProcessor (spark: SparkSession) extends CIMRDD
                     AuxiliaryEquipment = t.AuxiliaryEquipment,
                     BranchGroupTerminal = t.BranchGroupTerminal,
                     Bushing = t.Bushing,
+                    Circuit = t.Circuit,
                     ConductingEquipment = t.ConductingEquipment,
                     ConnectivityNode = t.ConnectivityNode,
                     ConverterDCSides = t.ConverterDCSides,
                     EquipmentFaults = t.EquipmentFaults,
                     HasFirstMutualCoupling = t.HasFirstMutualCoupling,
                     HasSecondMutualCoupling = t.HasSecondMutualCoupling,
+                    NormalHeadFeeder = t.NormalHeadFeeder,
                     PinTerminal = t.PinTerminal,
                     RegulatingControl = t.RegulatingControl,
                     RemoteInputSignal = t.RemoteInputSignal,

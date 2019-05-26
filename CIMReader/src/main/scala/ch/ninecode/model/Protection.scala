@@ -121,7 +121,7 @@ extends
 /**
  * An electrical device designed to respond to input conditions in a prescribed manner and after specified conditions are met to cause contact operation or similar abrupt change in associated electric control circuits, or simply to display the detected condition.
  *
- * Protection equipment are associated with conducting equipment and usually operate circuit breakers.
+ * Protection equipment is associated with conducting equipment and usually operate circuit breakers.
  *
  * @param sup [[ch.ninecode.model.Equipment Equipment]] Reference to the superclass object.
  * @param highLimit The maximum allowable value.
@@ -132,7 +132,8 @@ extends
  * @param unitSymbol The unit of measure of the value.
  * @param ConductingEquipments [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] Protection equipment may be used to protect specific conducting equipment.
  * @param ProtectedSwitches [[ch.ninecode.model.ProtectedSwitch ProtectedSwitch]] Protected switches operated by this ProtectionEquipment.
- * @param ProtectiveAction [[ch.ninecode.model.ProtectiveAction ProtectiveAction]] <em>undocumented</em>
+ * @param ProtectiveAction [[ch.ninecode.model.ProtectiveAction ProtectiveAction]] Protective action can emulate the action done by one or more protection equipment.
+ *        In a node breaker model were protective equipment is model this association will be used.
  * @group Protection
  * @groupname Protection Package Protection
  * @groupdesc Protection An extension to the Core and Wires packages that models information for protection equipment such as relays. These entities are used within training simulators and distribution network fault location applications.

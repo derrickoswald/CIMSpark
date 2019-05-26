@@ -89,6 +89,132 @@ extends
 }
 
 /**
+ * Bushing datasheet information.
+ *
+ * @param sup [[ch.ninecode.model.AssetInfo AssetInfo]] Reference to the superclass object.
+ * @param c1Capacitance Factory measured capacitance, measured between the power factor tap and the bushing conductor.
+ * @param c1PowerFactor Factory measured insulation power factor, measured between the power factor tap and the bushing conductor.
+ * @param c2Capacitance Factory measured capacitance measured between the power factor tap and ground.
+ * @param c2PowerFactor Factory measured insulation power factor, measured between the power factor tap and ground.
+ * @param insulationKind Kind of insulation.
+ * @param ratedCurrent Rated current for bushing as installed.
+ * @param ratedImpulseWithstandVoltage Rated impulse withstand voltage, also known as BIL (Basic Impulse Level).
+ * @param ratedLineToGroundVoltage Rated line-to-ground voltage.
+ *        Also referred to as Uy on bushing nameplate.
+ * @param ratedVoltage Rated voltage.
+ *        Can be referred to as Um, system voltage or class on bushing nameplate.
+ * @group AssetInfo
+ * @groupname AssetInfo Package AssetInfo
+ * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
+ */
+case class BushingInfo
+(
+    override val sup: AssetInfo,
+    c1Capacitance: Double,
+    c1PowerFactor: Double,
+    c2Capacitance: Double,
+    c2PowerFactor: Double,
+    insulationKind: String,
+    ratedCurrent: Double,
+    ratedImpulseWithstandVoltage: Double,
+    ratedLineToGroundVoltage: Double,
+    ratedVoltage: Double
+)
+extends
+    Element
+{
+    /**
+     * Zero args constructor.
+     */
+    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def AssetInfo: AssetInfo = sup.asInstanceOf[AssetInfo]
+    override def copy (): Row = { clone ().asInstanceOf[BushingInfo] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = BushingInfo.cls
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (BushingInfo.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (BushingInfo.fields (position), value)
+        emitelem (0, c1Capacitance)
+        emitelem (1, c1PowerFactor)
+        emitelem (2, c2Capacitance)
+        emitelem (3, c2PowerFactor)
+        emitattr (4, insulationKind)
+        emitelem (5, ratedCurrent)
+        emitelem (6, ratedImpulseWithstandVoltage)
+        emitelem (7, ratedLineToGroundVoltage)
+        emitelem (8, ratedVoltage)
+        s.toString
+    }
+    override def export: String =
+    {
+        "\t<cim:BushingInfo rdf:ID=\"%s\">\n%s\t</cim:BushingInfo>".format (id, export_fields)
+    }
+}
+
+object BushingInfo
+extends
+    Parseable[BushingInfo]
+{
+    override val fields: Array[String] = Array[String] (
+        "c1Capacitance",
+        "c1PowerFactor",
+        "c2Capacitance",
+        "c2PowerFactor",
+        "insulationKind",
+        "ratedCurrent",
+        "ratedImpulseWithstandVoltage",
+        "ratedLineToGroundVoltage",
+        "ratedVoltage"
+    )
+    val c1Capacitance: Fielder = parse_element (element (cls, fields(0)))
+    val c1PowerFactor: Fielder = parse_element (element (cls, fields(1)))
+    val c2Capacitance: Fielder = parse_element (element (cls, fields(2)))
+    val c2PowerFactor: Fielder = parse_element (element (cls, fields(3)))
+    val insulationKind: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val ratedCurrent: Fielder = parse_element (element (cls, fields(5)))
+    val ratedImpulseWithstandVoltage: Fielder = parse_element (element (cls, fields(6)))
+    val ratedLineToGroundVoltage: Fielder = parse_element (element (cls, fields(7)))
+    val ratedVoltage: Fielder = parse_element (element (cls, fields(8)))
+
+    def parse (context: Context): BushingInfo =
+    {
+        implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
+        val ret = BushingInfo (
+            AssetInfo.parse (context),
+            toDouble (mask (c1Capacitance (), 0)),
+            toDouble (mask (c1PowerFactor (), 1)),
+            toDouble (mask (c2Capacitance (), 2)),
+            toDouble (mask (c2PowerFactor (), 3)),
+            mask (insulationKind (), 4),
+            toDouble (mask (ratedCurrent (), 5)),
+            toDouble (mask (ratedImpulseWithstandVoltage (), 6)),
+            toDouble (mask (ratedLineToGroundVoltage (), 7)),
+            toDouble (mask (ratedVoltage (), 8))
+        )
+        ret.bitfields = bitfields
+        ret
+    }
+}
+
+/**
  * Cable data.
  *
  * @param sup [[ch.ninecode.model.WireInfo WireInfo]] Reference to the superclass object.
@@ -311,6 +437,81 @@ extends
             toDouble (mask (neutralStrandGmr (), 2)),
             toDouble (mask (neutralStrandRDC20 (), 3)),
             toDouble (mask (neutralStrandRadius (), 4))
+        )
+        ret.bitfields = bitfields
+        ret
+    }
+}
+
+/**
+ * Interrupter datasheet information.
+ *
+ * @param sup [[ch.ninecode.model.AssetInfo AssetInfo]] Reference to the superclass object.
+ * @param interruptingMedium Interrupting medium.
+ * @group AssetInfo
+ * @groupname AssetInfo Package AssetInfo
+ * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
+ */
+case class InterrupterUnitInfo
+(
+    override val sup: AssetInfo,
+    interruptingMedium: String
+)
+extends
+    Element
+{
+    /**
+     * Zero args constructor.
+     */
+    def this () = { this (null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def AssetInfo: AssetInfo = sup.asInstanceOf[AssetInfo]
+    override def copy (): Row = { clone ().asInstanceOf[InterrupterUnitInfo] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = InterrupterUnitInfo.cls
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (InterrupterUnitInfo.fields (position), value)
+        emitattr (0, interruptingMedium)
+        s.toString
+    }
+    override def export: String =
+    {
+        "\t<cim:InterrupterUnitInfo rdf:ID=\"%s\">\n%s\t</cim:InterrupterUnitInfo>".format (id, export_fields)
+    }
+}
+
+object InterrupterUnitInfo
+extends
+    Parseable[InterrupterUnitInfo]
+{
+    override val fields: Array[String] = Array[String] (
+        "interruptingMedium"
+    )
+    val interruptingMedium: Fielder = parse_attribute (attribute (cls, fields(0)))
+
+    def parse (context: Context): InterrupterUnitInfo =
+    {
+        implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
+        val ret = InterrupterUnitInfo (
+            AssetInfo.parse (context),
+            mask (interruptingMedium (), 0)
         )
         ret.bitfields = bitfields
         ret
@@ -547,6 +748,124 @@ extends
 }
 
 /**
+ * Breaker operating mechanism datasheet information.
+ *
+ * @param sup [[ch.ninecode.model.AssetInfo AssetInfo]] Reference to the superclass object.
+ * @param closeAmps Close current (nominal).
+ * @param closeVoltage Close voltage in volts DC.
+ * @param mechanismKind Kind of breaker operating mechanism.
+ * @param motorRunCurrent Rated motor run current in amps.
+ * @param motorStartCurrent Rated motor start current in amps.
+ * @param motorVoltage Nominal motor voltage in volts DC.
+ * @param tripAmps Trip current (nominal).
+ * @param tripVoltage Trip voltage in volts DC.
+ * @group AssetInfo
+ * @groupname AssetInfo Package AssetInfo
+ * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
+ */
+case class OperatingMechanismInfo
+(
+    override val sup: AssetInfo,
+    closeAmps: Double,
+    closeVoltage: Double,
+    mechanismKind: String,
+    motorRunCurrent: Double,
+    motorStartCurrent: Double,
+    motorVoltage: Double,
+    tripAmps: Double,
+    tripVoltage: Double
+)
+extends
+    Element
+{
+    /**
+     * Zero args constructor.
+     */
+    def this () = { this (null, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def AssetInfo: AssetInfo = sup.asInstanceOf[AssetInfo]
+    override def copy (): Row = { clone ().asInstanceOf[OperatingMechanismInfo] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = OperatingMechanismInfo.cls
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (OperatingMechanismInfo.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (OperatingMechanismInfo.fields (position), value)
+        emitelem (0, closeAmps)
+        emitelem (1, closeVoltage)
+        emitattr (2, mechanismKind)
+        emitelem (3, motorRunCurrent)
+        emitelem (4, motorStartCurrent)
+        emitelem (5, motorVoltage)
+        emitelem (6, tripAmps)
+        emitelem (7, tripVoltage)
+        s.toString
+    }
+    override def export: String =
+    {
+        "\t<cim:OperatingMechanismInfo rdf:ID=\"%s\">\n%s\t</cim:OperatingMechanismInfo>".format (id, export_fields)
+    }
+}
+
+object OperatingMechanismInfo
+extends
+    Parseable[OperatingMechanismInfo]
+{
+    override val fields: Array[String] = Array[String] (
+        "closeAmps",
+        "closeVoltage",
+        "mechanismKind",
+        "motorRunCurrent",
+        "motorStartCurrent",
+        "motorVoltage",
+        "tripAmps",
+        "tripVoltage"
+    )
+    val closeAmps: Fielder = parse_element (element (cls, fields(0)))
+    val closeVoltage: Fielder = parse_element (element (cls, fields(1)))
+    val mechanismKind: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val motorRunCurrent: Fielder = parse_element (element (cls, fields(3)))
+    val motorStartCurrent: Fielder = parse_element (element (cls, fields(4)))
+    val motorVoltage: Fielder = parse_element (element (cls, fields(5)))
+    val tripAmps: Fielder = parse_element (element (cls, fields(6)))
+    val tripVoltage: Fielder = parse_element (element (cls, fields(7)))
+
+    def parse (context: Context): OperatingMechanismInfo =
+    {
+        implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
+        val ret = OperatingMechanismInfo (
+            AssetInfo.parse (context),
+            toDouble (mask (closeAmps (), 0)),
+            toDouble (mask (closeVoltage (), 1)),
+            mask (mechanismKind (), 2),
+            toDouble (mask (motorRunCurrent (), 3)),
+            toDouble (mask (motorStartCurrent (), 4)),
+            toDouble (mask (motorVoltage (), 5)),
+            toDouble (mask (tripAmps (), 6)),
+            toDouble (mask (tripVoltage (), 7))
+        )
+        ret.bitfields = bitfields
+        ret
+    }
+}
+
+/**
  * Overhead wire data.
  *
  * @param sup [[ch.ninecode.model.WireInfo WireInfo]] Reference to the superclass object.
@@ -692,12 +1011,15 @@ extends
  * They include load losses and leakage impedances. For three-phase windings, the excitation can be a positive sequence (the default) or a zero sequence. There shall be at least one grounded winding.
  *
  * @param sup [[ch.ninecode.model.TransformerTest TransformerTest]] Reference to the superclass object.
+ * @param current Short circuit current..
  * @param energisedEndStep Tap step number for the energised end of the test pair.
  * @param groundedEndStep Tap step number for the grounded end of the test pair.
  * @param leakageImpedance Leakage impedance measured from a positive-sequence or single-phase short-circuit test.
  * @param leakageImpedanceZero Leakage impedance measured from a zero-sequence short-circuit test.
  * @param loss Load losses from a positive-sequence or single-phase short-circuit test.
  * @param lossZero Load losses from a zero-sequence short-circuit test.
+ * @param power Short circuit apparent power.
+ * @param voltage Short circuit voltage..
  * @param EnergisedEnd [[ch.ninecode.model.TransformerEndInfo TransformerEndInfo]] Transformer end that voltage is applied to in this short-circuit test.
  *        The test voltage is chosen to induce rated current in the energised end.
  * @param GroundedEnds [[ch.ninecode.model.TransformerEndInfo TransformerEndInfo]] All ends short-circuited in this short-circuit test.
@@ -708,12 +1030,15 @@ extends
 case class ShortCircuitTest
 (
     override val sup: TransformerTest,
+    current: Double,
     energisedEndStep: Int,
     groundedEndStep: Int,
     leakageImpedance: Double,
     leakageImpedanceZero: Double,
     loss: Double,
     lossZero: Double,
+    power: Double,
+    voltage: Double,
     EnergisedEnd: String,
     GroundedEnds: List[String]
 )
@@ -723,7 +1048,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0, 0, 0.0, 0.0, 0.0, 0.0, null, List()) }
+    def this () = { this (null, 0.0, 0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -749,14 +1074,17 @@ extends
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ShortCircuitTest.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ShortCircuitTest.fields (position), value)
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ShortCircuitTest.fields (position), x))
-        emitelem (0, energisedEndStep)
-        emitelem (1, groundedEndStep)
-        emitelem (2, leakageImpedance)
-        emitelem (3, leakageImpedanceZero)
-        emitelem (4, loss)
-        emitelem (5, lossZero)
-        emitattr (6, EnergisedEnd)
-        emitattrs (7, GroundedEnds)
+        emitelem (0, current)
+        emitelem (1, energisedEndStep)
+        emitelem (2, groundedEndStep)
+        emitelem (3, leakageImpedance)
+        emitelem (4, leakageImpedanceZero)
+        emitelem (5, loss)
+        emitelem (6, lossZero)
+        emitelem (7, power)
+        emitelem (8, voltage)
+        emitattr (9, EnergisedEnd)
+        emitattrs (10, GroundedEnds)
         s.toString
     }
     override def export: String =
@@ -770,12 +1098,15 @@ extends
     Parseable[ShortCircuitTest]
 {
     override val fields: Array[String] = Array[String] (
+        "current",
         "energisedEndStep",
         "groundedEndStep",
         "leakageImpedance",
         "leakageImpedanceZero",
         "loss",
         "lossZero",
+        "power",
+        "voltage",
         "EnergisedEnd",
         "GroundedEnds"
     )
@@ -783,14 +1114,17 @@ extends
         Relationship ("EnergisedEnd", "TransformerEndInfo", "1", "0..*"),
         Relationship ("GroundedEnds", "TransformerEndInfo", "1..*", "0..*")
     )
-    val energisedEndStep: Fielder = parse_element (element (cls, fields(0)))
-    val groundedEndStep: Fielder = parse_element (element (cls, fields(1)))
-    val leakageImpedance: Fielder = parse_element (element (cls, fields(2)))
-    val leakageImpedanceZero: Fielder = parse_element (element (cls, fields(3)))
-    val loss: Fielder = parse_element (element (cls, fields(4)))
-    val lossZero: Fielder = parse_element (element (cls, fields(5)))
-    val EnergisedEnd: Fielder = parse_attribute (attribute (cls, fields(6)))
-    val GroundedEnds: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
+    val current: Fielder = parse_element (element (cls, fields(0)))
+    val energisedEndStep: Fielder = parse_element (element (cls, fields(1)))
+    val groundedEndStep: Fielder = parse_element (element (cls, fields(2)))
+    val leakageImpedance: Fielder = parse_element (element (cls, fields(3)))
+    val leakageImpedanceZero: Fielder = parse_element (element (cls, fields(4)))
+    val loss: Fielder = parse_element (element (cls, fields(5)))
+    val lossZero: Fielder = parse_element (element (cls, fields(6)))
+    val power: Fielder = parse_element (element (cls, fields(7)))
+    val voltage: Fielder = parse_element (element (cls, fields(8)))
+    val EnergisedEnd: Fielder = parse_attribute (attribute (cls, fields(9)))
+    val GroundedEnds: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
 
     def parse (context: Context): ShortCircuitTest =
     {
@@ -798,14 +1132,17 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = ShortCircuitTest (
             TransformerTest.parse (context),
-            toInteger (mask (energisedEndStep (), 0)),
-            toInteger (mask (groundedEndStep (), 1)),
-            toDouble (mask (leakageImpedance (), 2)),
-            toDouble (mask (leakageImpedanceZero (), 3)),
-            toDouble (mask (loss (), 4)),
-            toDouble (mask (lossZero (), 5)),
-            mask (EnergisedEnd (), 6),
-            masks (GroundedEnds (), 7)
+            toDouble (mask (current (), 0)),
+            toInteger (mask (energisedEndStep (), 1)),
+            toInteger (mask (groundedEndStep (), 2)),
+            toDouble (mask (leakageImpedance (), 3)),
+            toDouble (mask (leakageImpedanceZero (), 4)),
+            toDouble (mask (loss (), 5)),
+            toDouble (mask (lossZero (), 6)),
+            toDouble (mask (power (), 7)),
+            toDouble (mask (voltage (), 8)),
+            mask (EnergisedEnd (), 9),
+            masks (GroundedEnds (), 10)
         )
         ret.bitfields = bitfields
         ret
@@ -916,13 +1253,22 @@ extends
 }
 
 /**
- * Switch data.
+ * <was Switch data.>
+ *
+ * Switch datasheet information.
  *
  * @param sup [[ch.ninecode.model.AssetInfo AssetInfo]] Reference to the superclass object.
  * @param breakingCapacity The maximum fault current a breaking device can break safely under prescribed conditions of use.
+ * @param gasWeightPerTank Weight of gas in each tank of SF6 dead tank breaker.
  * @param isSinglePhase If true, it is a single phase switch.
  * @param isUnganged If true, the switch is not ganged (i.e., a switch phase may be operated separately from other phases).
+ * @param lowPressureAlarm Gas or air pressure at or below which a low pressure alarm is generated.
+ * @param lowPressureLockOut Gas or air pressure below which the breaker will not open.
+ * @param oilVolumePerTank Volume of oil in each tank of bulk oil breaker.
  * @param ratedCurrent Rated current.
+ * @param ratedFrequency Frequency for which switch is rated.
+ * @param ratedImpulseWithstandVoltage Rated impulse withstand voltage, also known as BIL (Basic Impulse Level).
+ * @param ratedInterruptingTime Switch rated interrupting time in seconds.
  * @param ratedVoltage Rated voltage.
  * @group AssetInfo
  * @groupname AssetInfo Package AssetInfo
@@ -932,9 +1278,16 @@ case class SwitchInfo
 (
     override val sup: AssetInfo,
     breakingCapacity: Double,
+    gasWeightPerTank: Double,
     isSinglePhase: Boolean,
     isUnganged: Boolean,
+    lowPressureAlarm: Double,
+    lowPressureLockOut: Double,
+    oilVolumePerTank: Double,
     ratedCurrent: Double,
+    ratedFrequency: Double,
+    ratedImpulseWithstandVoltage: Double,
+    ratedInterruptingTime: Double,
     ratedVoltage: Double
 )
 extends
@@ -943,7 +1296,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, false, false, 0.0, 0.0) }
+    def this () = { this (null, 0.0, 0.0, false, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -968,10 +1321,17 @@ extends
         implicit val clz: String = SwitchInfo.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (SwitchInfo.fields (position), value)
         emitelem (0, breakingCapacity)
-        emitelem (1, isSinglePhase)
-        emitelem (2, isUnganged)
-        emitelem (3, ratedCurrent)
-        emitelem (4, ratedVoltage)
+        emitelem (1, gasWeightPerTank)
+        emitelem (2, isSinglePhase)
+        emitelem (3, isUnganged)
+        emitelem (4, lowPressureAlarm)
+        emitelem (5, lowPressureLockOut)
+        emitelem (6, oilVolumePerTank)
+        emitelem (7, ratedCurrent)
+        emitelem (8, ratedFrequency)
+        emitelem (9, ratedImpulseWithstandVoltage)
+        emitelem (10, ratedInterruptingTime)
+        emitelem (11, ratedVoltage)
         s.toString
     }
     override def export: String =
@@ -986,16 +1346,30 @@ extends
 {
     override val fields: Array[String] = Array[String] (
         "breakingCapacity",
+        "gasWeightPerTank",
         "isSinglePhase",
         "isUnganged",
+        "lowPressureAlarm",
+        "lowPressureLockOut",
+        "oilVolumePerTank",
         "ratedCurrent",
+        "ratedFrequency",
+        "ratedImpulseWithstandVoltage",
+        "ratedInterruptingTime",
         "ratedVoltage"
     )
     val breakingCapacity: Fielder = parse_element (element (cls, fields(0)))
-    val isSinglePhase: Fielder = parse_element (element (cls, fields(1)))
-    val isUnganged: Fielder = parse_element (element (cls, fields(2)))
-    val ratedCurrent: Fielder = parse_element (element (cls, fields(3)))
-    val ratedVoltage: Fielder = parse_element (element (cls, fields(4)))
+    val gasWeightPerTank: Fielder = parse_element (element (cls, fields(1)))
+    val isSinglePhase: Fielder = parse_element (element (cls, fields(2)))
+    val isUnganged: Fielder = parse_element (element (cls, fields(3)))
+    val lowPressureAlarm: Fielder = parse_element (element (cls, fields(4)))
+    val lowPressureLockOut: Fielder = parse_element (element (cls, fields(5)))
+    val oilVolumePerTank: Fielder = parse_element (element (cls, fields(6)))
+    val ratedCurrent: Fielder = parse_element (element (cls, fields(7)))
+    val ratedFrequency: Fielder = parse_element (element (cls, fields(8)))
+    val ratedImpulseWithstandVoltage: Fielder = parse_element (element (cls, fields(9)))
+    val ratedInterruptingTime: Fielder = parse_element (element (cls, fields(10)))
+    val ratedVoltage: Fielder = parse_element (element (cls, fields(11)))
 
     def parse (context: Context): SwitchInfo =
     {
@@ -1004,10 +1378,17 @@ extends
         val ret = SwitchInfo (
             AssetInfo.parse (context),
             toDouble (mask (breakingCapacity (), 0)),
-            toBoolean (mask (isSinglePhase (), 1)),
-            toBoolean (mask (isUnganged (), 2)),
-            toDouble (mask (ratedCurrent (), 3)),
-            toDouble (mask (ratedVoltage (), 4))
+            toDouble (mask (gasWeightPerTank (), 1)),
+            toBoolean (mask (isSinglePhase (), 2)),
+            toBoolean (mask (isUnganged (), 3)),
+            toDouble (mask (lowPressureAlarm (), 4)),
+            toDouble (mask (lowPressureLockOut (), 5)),
+            toDouble (mask (oilVolumePerTank (), 6)),
+            toDouble (mask (ratedCurrent (), 7)),
+            toDouble (mask (ratedFrequency (), 8)),
+            toDouble (mask (ratedImpulseWithstandVoltage (), 9)),
+            toDouble (mask (ratedInterruptingTime (), 10)),
+            toDouble (mask (ratedVoltage (), 11))
         )
         ret.bitfields = bitfields
         ret
@@ -1623,6 +2004,91 @@ extends
 }
 
 /**
+ * Describes the construction of a multi-conductor wire.<-NOTE: period missing.
+ *
+ * @param sup [[ch.ninecode.model.AssetInfo AssetInfo]] Reference to the superclass object.
+ * @param PerLengthLineParameter [[ch.ninecode.model.PerLengthLineParameter PerLengthLineParameter]] Per length line parameter associated with this wire assembly.
+ * @param WirePhaseInfo [[ch.ninecode.model.WirePhaseInfo WirePhaseInfo]] Wire phase information associated with this wire assembly.
+ * @group AssetInfo
+ * @groupname AssetInfo Package AssetInfo
+ * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
+ */
+case class WireAssemblyInfo
+(
+    override val sup: AssetInfo,
+    PerLengthLineParameter: List[String],
+    WirePhaseInfo: List[String]
+)
+extends
+    Element
+{
+    /**
+     * Zero args constructor.
+     */
+    def this () = { this (null, List(), List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def AssetInfo: AssetInfo = sup.asInstanceOf[AssetInfo]
+    override def copy (): Row = { clone ().asInstanceOf[WireAssemblyInfo] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = WireAssemblyInfo.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (WireAssemblyInfo.fields (position), x))
+        emitattrs (0, PerLengthLineParameter)
+        emitattrs (1, WirePhaseInfo)
+        s.toString
+    }
+    override def export: String =
+    {
+        "\t<cim:WireAssemblyInfo rdf:ID=\"%s\">\n%s\t</cim:WireAssemblyInfo>".format (id, export_fields)
+    }
+}
+
+object WireAssemblyInfo
+extends
+    Parseable[WireAssemblyInfo]
+{
+    override val fields: Array[String] = Array[String] (
+        "PerLengthLineParameter",
+        "WirePhaseInfo"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("PerLengthLineParameter", "PerLengthLineParameter", "0..*", "0..1"),
+        Relationship ("WirePhaseInfo", "WirePhaseInfo", "0..*", "1")
+    )
+    val PerLengthLineParameter: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val WirePhaseInfo: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+
+    def parse (context: Context): WireAssemblyInfo =
+    {
+        implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
+        val ret = WireAssemblyInfo (
+            AssetInfo.parse (context),
+            masks (PerLengthLineParameter (), 0),
+            masks (WirePhaseInfo (), 1)
+        )
+        ret.bitfields = bitfields
+        ret
+    }
+}
+
+/**
  * Wire data that can be specified per line segment phase, or for the line segment as a whole in case its phases all have the same wire characteristics.
  *
  * @param sup [[ch.ninecode.model.AssetInfo AssetInfo]] Reference to the superclass object.
@@ -1642,7 +2108,7 @@ extends
  * @param ratedCurrent Current carrying capacity of the wire under stated thermal conditions.
  * @param sizeDescription Describes the wire gauge or cross section (e.g., 4/0, #2, 336.5).
  * @param strandCount Number of strands in the conductor.
- * @param PerLengthParameters [[ch.ninecode.model.PerLengthLineParameter PerLengthLineParameter]] All per-length parameters calculated from this wire datasheet.
+ * @param WirePhaseInfo [[ch.ninecode.model.WirePhaseInfo WirePhaseInfo]] Wire phase information associated with this wire information.
  * @group AssetInfo
  * @groupname AssetInfo Package AssetInfo
  * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
@@ -1665,7 +2131,7 @@ case class WireInfo
     ratedCurrent: Double,
     sizeDescription: String,
     strandCount: Int,
-    PerLengthParameters: List[String]
+    WirePhaseInfo: List[String]
 )
 extends
     Element
@@ -1714,7 +2180,7 @@ extends
         emitelem (12, ratedCurrent)
         emitelem (13, sizeDescription)
         emitelem (14, strandCount)
-        emitattrs (15, PerLengthParameters)
+        emitattrs (15, WirePhaseInfo)
         s.toString
     }
     override def export: String =
@@ -1743,10 +2209,10 @@ extends
         "ratedCurrent",
         "sizeDescription",
         "strandCount",
-        "PerLengthParameters"
+        "WirePhaseInfo"
     )
     override val relations: List[Relationship] = List (
-        Relationship ("PerLengthParameters", "PerLengthLineParameter", "0..*", "0..*")
+        Relationship ("WirePhaseInfo", "WirePhaseInfo", "0..*", "0..1")
     )
     val coreRadius: Fielder = parse_element (element (cls, fields(0)))
     val coreStrandCount: Fielder = parse_element (element (cls, fields(1)))
@@ -1763,7 +2229,7 @@ extends
     val ratedCurrent: Fielder = parse_element (element (cls, fields(12)))
     val sizeDescription: Fielder = parse_element (element (cls, fields(13)))
     val strandCount: Fielder = parse_element (element (cls, fields(14)))
-    val PerLengthParameters: FielderMultiple = parse_attributes (attribute (cls, fields(15)))
+    val WirePhaseInfo: FielderMultiple = parse_attributes (attribute (cls, fields(15)))
 
     def parse (context: Context): WireInfo =
     {
@@ -1786,7 +2252,105 @@ extends
             toDouble (mask (ratedCurrent (), 12)),
             mask (sizeDescription (), 13),
             toInteger (mask (strandCount (), 14)),
-            masks (PerLengthParameters (), 15)
+            masks (WirePhaseInfo (), 15)
+        )
+        ret.bitfields = bitfields
+        ret
+    }
+}
+
+/**
+ * Information on a wire carrying a single phase.
+ *
+ * @param sup Reference to the superclass object.
+ * @param phaseInfo Phase information.
+ * @param WireAssemblyInfo [[ch.ninecode.model.WireAssemblyInfo WireAssemblyInfo]] Wire assembly information using this wire phase information.
+ * @param WireInfo [[ch.ninecode.model.WireInfo WireInfo]] Wire information contributing to this wire phase information.
+ * @param WirePosition [[ch.ninecode.model.WirePosition WirePosition]] Wire position with this wire phase information.
+ * @group AssetInfo
+ * @groupname AssetInfo Package AssetInfo
+ * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
+ */
+case class WirePhaseInfo
+(
+    override val sup: BasicElement,
+    phaseInfo: String,
+    WireAssemblyInfo: String,
+    WireInfo: String,
+    WirePosition: String
+)
+extends
+    Element
+{
+    /**
+     * Zero args constructor.
+     */
+    def this () = { this (null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
+    override def copy (): Row = { clone ().asInstanceOf[WirePhaseInfo] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = WirePhaseInfo.cls
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WirePhaseInfo.fields (position), value)
+        emitattr (0, phaseInfo)
+        emitattr (1, WireAssemblyInfo)
+        emitattr (2, WireInfo)
+        emitattr (3, WirePosition)
+        s.toString
+    }
+    override def export: String =
+    {
+        "\t<cim:WirePhaseInfo rdf:ID=\"%s\">\n%s\t</cim:WirePhaseInfo>".format (id, export_fields)
+    }
+}
+
+object WirePhaseInfo
+extends
+    Parseable[WirePhaseInfo]
+{
+    override val fields: Array[String] = Array[String] (
+        "phaseInfo",
+        "WireAssemblyInfo",
+        "WireInfo",
+        "WirePosition"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("WireAssemblyInfo", "WireAssemblyInfo", "1", "0..*"),
+        Relationship ("WireInfo", "WireInfo", "0..1", "0..*"),
+        Relationship ("WirePosition", "WirePosition", "0..1", "0..*")
+    )
+    val phaseInfo: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val WireAssemblyInfo: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val WireInfo: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val WirePosition: Fielder = parse_attribute (attribute (cls, fields(3)))
+
+    def parse (context: Context): WirePhaseInfo =
+    {
+        implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
+        val ret = WirePhaseInfo (
+            BasicElement.parse (context),
+            mask (phaseInfo (), 0),
+            mask (WireAssemblyInfo (), 1),
+            mask (WireInfo (), 2),
+            mask (WirePosition (), 3)
         )
         ret.bitfields = bitfields
         ret
@@ -1797,10 +2361,10 @@ extends
  * Identification, spacing and configuration of the wires of a conductor with respect to a structure.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param phase Single phase or neutral designation for the wire with this position.
  * @param xCoord Signed horizontal distance from the wire at this position to a common reference point.
  * @param yCoord Signed vertical distance from the wire at this position: above ground (positive value) or burial depth below ground (negative value).
- * @param WireSpacingInfo [[ch.ninecode.model.WireSpacingInfo WireSpacingInfo]] Wire spacing data this wire position belongs to.
+ * @param WirePhaseInfo [[ch.ninecode.model.WirePhaseInfo WirePhaseInfo]] Wire phase information for this wire position.
+ * @param WireSpacingInfo [[ch.ninecode.model.WireSpacing WireSpacing]] Wire spacing data this wire position belongs to.
  * @group AssetInfo
  * @groupname AssetInfo Package AssetInfo
  * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
@@ -1808,9 +2372,9 @@ extends
 case class WirePosition
 (
     override val sup: IdentifiedObject,
-    phase: String,
     xCoord: Double,
     yCoord: Double,
+    WirePhaseInfo: List[String],
     WireSpacingInfo: String
 )
 extends
@@ -1819,7 +2383,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, 0.0, 0.0, null) }
+    def this () = { this (null, 0.0, 0.0, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -1844,9 +2408,10 @@ extends
         implicit val clz: String = WirePosition.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WirePosition.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WirePosition.fields (position), value)
-        emitattr (0, phase)
-        emitelem (1, xCoord)
-        emitelem (2, yCoord)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (WirePosition.fields (position), x))
+        emitelem (0, xCoord)
+        emitelem (1, yCoord)
+        emitattrs (2, WirePhaseInfo)
         emitattr (3, WireSpacingInfo)
         s.toString
     }
@@ -1861,17 +2426,18 @@ extends
     Parseable[WirePosition]
 {
     override val fields: Array[String] = Array[String] (
-        "phase",
         "xCoord",
         "yCoord",
+        "WirePhaseInfo",
         "WireSpacingInfo"
     )
     override val relations: List[Relationship] = List (
-        Relationship ("WireSpacingInfo", "WireSpacingInfo", "0..1", "1..*")
+        Relationship ("WirePhaseInfo", "WirePhaseInfo", "0..*", "0..1"),
+        Relationship ("WireSpacingInfo", "WireSpacing", "0..1", "1..*")
     )
-    val phase: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val xCoord: Fielder = parse_element (element (cls, fields(1)))
-    val yCoord: Fielder = parse_element (element (cls, fields(2)))
+    val xCoord: Fielder = parse_element (element (cls, fields(0)))
+    val yCoord: Fielder = parse_element (element (cls, fields(1)))
+    val WirePhaseInfo: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
     val WireSpacingInfo: Fielder = parse_attribute (attribute (cls, fields(3)))
 
     def parse (context: Context): WirePosition =
@@ -1880,9 +2446,9 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = WirePosition (
             IdentifiedObject.parse (context),
-            mask (phase (), 0),
-            toDouble (mask (xCoord (), 1)),
-            toDouble (mask (yCoord (), 2)),
+            toDouble (mask (xCoord (), 0)),
+            toDouble (mask (yCoord (), 1)),
+            masks (WirePhaseInfo (), 2),
             mask (WireSpacingInfo (), 3)
         )
         ret.bitfields = bitfields
@@ -1895,28 +2461,26 @@ extends
  *
  * Number of phases can be derived from the number of associated wire positions whose phase is not neutral.
  *
- * @param sup [[ch.ninecode.model.AssetInfo AssetInfo]] Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param isCable If true, this spacing data describes a cable.
  * @param phaseWireCount Number of wire sub-conductors in the symmetrical bundle (typically between 1 and 4).
  * @param phaseWireSpacing Distance between wire sub-conductors in a symmetrical bundle.
  * @param usage Usage of the associated wires.
  * @param DuctBank [[ch.ninecode.model.DuctBank DuctBank]] <em>undocumented</em>
- * @param PerLengthParameters [[ch.ninecode.model.PerLengthLineParameter PerLengthLineParameter]] All per-length parameters calculated from this wire spacing datasheet.
  * @param Structures [[ch.ninecode.model.Structure Structure]] <em>undocumented</em>
  * @param WirePositions [[ch.ninecode.model.WirePosition WirePosition]] All positions of single wires (phase or neutral) making the conductor.
  * @group AssetInfo
  * @groupname AssetInfo Package AssetInfo
  * @groupdesc AssetInfo This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses. They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
  */
-case class WireSpacingInfo
+case class WireSpacing
 (
-    override val sup: AssetInfo,
+    override val sup: IdentifiedObject,
     isCable: Boolean,
     phaseWireCount: Int,
     phaseWireSpacing: Double,
     usage: String,
     DuctBank: String,
-    PerLengthParameters: List[String],
     Structures: List[String],
     WirePositions: List[String]
 )
@@ -1926,7 +2490,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, false, 0, 0.0, null, null, List(), List(), List()) }
+    def this () = { this (null, false, 0, 0.0, null, null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1935,8 +2499,8 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def AssetInfo: AssetInfo = sup.asInstanceOf[AssetInfo]
-    override def copy (): Row = { clone ().asInstanceOf[WireSpacingInfo] }
+    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
+    override def copy (): Row = { clone ().asInstanceOf[WireSpacing] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -1948,29 +2512,28 @@ extends
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
-        implicit val clz: String = WireSpacingInfo.cls
-        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WireSpacingInfo.fields (position), value)
-        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WireSpacingInfo.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (WireSpacingInfo.fields (position), x))
+        implicit val clz: String = WireSpacing.cls
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WireSpacing.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WireSpacing.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (WireSpacing.fields (position), x))
         emitelem (0, isCable)
         emitelem (1, phaseWireCount)
         emitelem (2, phaseWireSpacing)
         emitattr (3, usage)
         emitattr (4, DuctBank)
-        emitattrs (5, PerLengthParameters)
-        emitattrs (6, Structures)
-        emitattrs (7, WirePositions)
+        emitattrs (5, Structures)
+        emitattrs (6, WirePositions)
         s.toString
     }
     override def export: String =
     {
-        "\t<cim:WireSpacingInfo rdf:ID=\"%s\">\n%s\t</cim:WireSpacingInfo>".format (id, export_fields)
+        "\t<cim:WireSpacing rdf:ID=\"%s\">\n%s\t</cim:WireSpacing>".format (id, export_fields)
     }
 }
 
-object WireSpacingInfo
+object WireSpacing
 extends
-    Parseable[WireSpacingInfo]
+    Parseable[WireSpacing]
 {
     override val fields: Array[String] = Array[String] (
         "isCable",
@@ -1978,13 +2541,11 @@ extends
         "phaseWireSpacing",
         "usage",
         "DuctBank",
-        "PerLengthParameters",
         "Structures",
         "WirePositions"
     )
     override val relations: List[Relationship] = List (
         Relationship ("DuctBank", "DuctBank", "0..1", "0..*"),
-        Relationship ("PerLengthParameters", "PerLengthLineParameter", "0..*", "0..1"),
         Relationship ("Structures", "Structure", "0..*", "0..*"),
         Relationship ("WirePositions", "WirePosition", "1..*", "0..1")
     )
@@ -1993,24 +2554,22 @@ extends
     val phaseWireSpacing: Fielder = parse_element (element (cls, fields(2)))
     val usage: Fielder = parse_attribute (attribute (cls, fields(3)))
     val DuctBank: Fielder = parse_attribute (attribute (cls, fields(4)))
-    val PerLengthParameters: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
-    val Structures: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
-    val WirePositions: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
+    val Structures: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
+    val WirePositions: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
 
-    def parse (context: Context): WireSpacingInfo =
+    def parse (context: Context): WireSpacing =
     {
         implicit val ctx: Context = context
         implicit var bitfields: Array[Int] = Array(0)
-        val ret = WireSpacingInfo (
-            AssetInfo.parse (context),
+        val ret = WireSpacing (
+            IdentifiedObject.parse (context),
             toBoolean (mask (isCable (), 0)),
             toInteger (mask (phaseWireCount (), 1)),
             toDouble (mask (phaseWireSpacing (), 2)),
             mask (usage (), 3),
             mask (DuctBank (), 4),
-            masks (PerLengthParameters (), 5),
-            masks (Structures (), 6),
-            masks (WirePositions (), 7)
+            masks (Structures (), 5),
+            masks (WirePositions (), 6)
         )
         ret.bitfields = bitfields
         ret
@@ -2023,10 +2582,13 @@ private[ninecode] object _AssetInfo
     {
         List (
             BusbarSectionInfo.register,
+            BushingInfo.register,
             CableInfo.register,
             ConcentricNeutralCableInfo.register,
+            InterrupterUnitInfo.register,
             NoLoadTest.register,
             OpenCircuitTest.register,
+            OperatingMechanismInfo.register,
             OverheadWireInfo.register,
             PowerTransformerInfo.register,
             ShortCircuitTest.register,
@@ -2037,9 +2599,11 @@ private[ninecode] object _AssetInfo
             TransformerEndInfo.register,
             TransformerTankInfo.register,
             TransformerTest.register,
+            WireAssemblyInfo.register,
             WireInfo.register,
+            WirePhaseInfo.register,
             WirePosition.register,
-            WireSpacingInfo.register
+            WireSpacing.register
         )
     }
 }

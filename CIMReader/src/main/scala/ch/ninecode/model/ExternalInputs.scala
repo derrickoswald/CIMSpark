@@ -99,7 +99,6 @@ extends
  *
  * @param sup [[ch.ninecode.model.MeasurementValueQuality MeasurementValueQuality]] Reference to the superclass object.
  * @param scadaQualityCode The quality code for the given Analog Value.
- * @param MktAnalogValue [[ch.ninecode.model.MktAnalogValue MktAnalogValue]] <em>undocumented</em>
  * @group ExternalInputs
  * @groupname ExternalInputs Package ExternalInputs
  * @groupdesc ExternalInputs Inputs to the market system from external sources.
@@ -107,8 +106,7 @@ extends
 case class AnalogMeasurementValueQuality
 (
     override val sup: MeasurementValueQuality,
-    scadaQualityCode: String,
-    MktAnalogValue: String
+    scadaQualityCode: String
 )
 extends
     Element
@@ -116,7 +114,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null) }
+    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -140,9 +138,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = AnalogMeasurementValueQuality.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (AnalogMeasurementValueQuality.fields (position), value)
-        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (AnalogMeasurementValueQuality.fields (position), value)
         emitelem (0, scadaQualityCode)
-        emitattr (1, MktAnalogValue)
         s.toString
     }
     override def export: String =
@@ -156,14 +152,9 @@ extends
     Parseable[AnalogMeasurementValueQuality]
 {
     override val fields: Array[String] = Array[String] (
-        "scadaQualityCode",
-        "MktAnalogValue"
-    )
-    override val relations: List[Relationship] = List (
-        Relationship ("MktAnalogValue", "MktAnalogValue", "1", "0..*")
+        "scadaQualityCode"
     )
     val scadaQualityCode: Fielder = parse_element (element (cls, fields(0)))
-    val MktAnalogValue: Fielder = parse_attribute (attribute (cls, fields(1)))
 
     def parse (context: Context): AnalogMeasurementValueQuality =
     {
@@ -171,8 +162,7 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = AnalogMeasurementValueQuality (
             MeasurementValueQuality.parse (context),
-            mask (scadaQualityCode (), 0),
-            mask (MktAnalogValue (), 1)
+            mask (scadaQualityCode (), 0)
         )
         ret.bitfields = bitfields
         ret
@@ -185,7 +175,6 @@ extends
  * @param sup [[ch.ninecode.model.RegularIntervalSchedule RegularIntervalSchedule]] Reference to the superclass object.
  * @param forecastType Load forecast area type.
  * @param AggregateNode [[ch.ninecode.model.AggregateNode AggregateNode]] <em>undocumented</em>
- * @param MktLoadArea [[ch.ninecode.model.MktLoadArea MktLoadArea]] <em>undocumented</em>
  * @param TACArea [[ch.ninecode.model.TACArea TACArea]] <em>undocumented</em>
  * @group ExternalInputs
  * @groupname ExternalInputs Package ExternalInputs
@@ -196,7 +185,6 @@ case class AreaLoadCurve
     override val sup: RegularIntervalSchedule,
     forecastType: String,
     AggregateNode: String,
-    MktLoadArea: String,
     TACArea: String
 )
 extends
@@ -205,7 +193,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null) }
+    def this () = { this (null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -231,8 +219,7 @@ extends
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (AreaLoadCurve.fields (position), value)
         emitattr (0, forecastType)
         emitattr (1, AggregateNode)
-        emitattr (2, MktLoadArea)
-        emitattr (3, TACArea)
+        emitattr (2, TACArea)
         s.toString
     }
     override def export: String =
@@ -248,18 +235,15 @@ extends
     override val fields: Array[String] = Array[String] (
         "forecastType",
         "AggregateNode",
-        "MktLoadArea",
         "TACArea"
     )
     override val relations: List[Relationship] = List (
         Relationship ("AggregateNode", "AggregateNode", "0..1", "0..*"),
-        Relationship ("MktLoadArea", "MktLoadArea", "0..1", "0..*"),
         Relationship ("TACArea", "TACArea", "0..1", "0..*")
     )
     val forecastType: Fielder = parse_attribute (attribute (cls, fields(0)))
     val AggregateNode: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val MktLoadArea: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val TACArea: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val TACArea: Fielder = parse_attribute (attribute (cls, fields(2)))
 
     def parse (context: Context): AreaLoadCurve =
     {
@@ -269,8 +253,7 @@ extends
             RegularIntervalSchedule.parse (context),
             mask (forecastType (), 0),
             mask (AggregateNode (), 1),
-            mask (MktLoadArea (), 2),
-            mask (TACArea (), 3)
+            mask (TACArea (), 2)
         )
         ret.bitfields = bitfields
         ret
@@ -695,7 +678,7 @@ extends
 }
 
 /**
- * State Estimator Solution Pool Interchange and Losses
+ * State Estimator Solution Pool Interchange and Losses.
  *
  * @param sup Reference to the superclass object.
  * @param solvedInterchange Pool MW Interchange
@@ -897,7 +880,7 @@ extends
 }
 
 /**
- * Default bid curve for default energy bid curve and default startup curves (cost and time)
+ * Default bid curve for default energy bid curve and default startup curves (cost and time).
  *
  * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param curveType To indicate a type used for a default energy bid curve, such as LMP, cost or consultative based.
@@ -1150,7 +1133,6 @@ extends
  *        Flag indicating that the switch is manual replace.
  * @param removeFromOperationIndicator Removed From Operation Indicator.
  *        Flag indicating that the switch is removed from operation.
- * @param MktDiscreteValue [[ch.ninecode.model.MktDiscreteValue MktDiscreteValue]] <em>undocumented</em>
  * @group ExternalInputs
  * @groupname ExternalInputs Package ExternalInputs
  * @groupdesc ExternalInputs Inputs to the market system from external sources.
@@ -1159,8 +1141,7 @@ case class DiscreteMeasurementValueQuality
 (
     override val sup: MeasurementValueQuality,
     manualReplaceIndicator: Boolean,
-    removeFromOperationIndicator: Boolean,
-    MktDiscreteValue: String
+    removeFromOperationIndicator: Boolean
 )
 extends
     Element
@@ -1168,7 +1149,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, false, false, null) }
+    def this () = { this (null, false, false) }
     /**
      * Return the superclass object.
      *
@@ -1192,10 +1173,8 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = DiscreteMeasurementValueQuality.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (DiscreteMeasurementValueQuality.fields (position), value)
-        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (DiscreteMeasurementValueQuality.fields (position), value)
         emitelem (0, manualReplaceIndicator)
         emitelem (1, removeFromOperationIndicator)
-        emitattr (2, MktDiscreteValue)
         s.toString
     }
     override def export: String =
@@ -1210,15 +1189,10 @@ extends
 {
     override val fields: Array[String] = Array[String] (
         "manualReplaceIndicator",
-        "removeFromOperationIndicator",
-        "MktDiscreteValue"
-    )
-    override val relations: List[Relationship] = List (
-        Relationship ("MktDiscreteValue", "MktDiscreteValue", "1", "0..*")
+        "removeFromOperationIndicator"
     )
     val manualReplaceIndicator: Fielder = parse_element (element (cls, fields(0)))
     val removeFromOperationIndicator: Fielder = parse_element (element (cls, fields(1)))
-    val MktDiscreteValue: Fielder = parse_attribute (attribute (cls, fields(2)))
 
     def parse (context: Context): DiscreteMeasurementValueQuality =
     {
@@ -1227,8 +1201,7 @@ extends
         val ret = DiscreteMeasurementValueQuality (
             MeasurementValueQuality.parse (context),
             toBoolean (mask (manualReplaceIndicator (), 0)),
-            toBoolean (mask (removeFromOperationIndicator (), 1)),
-            mask (MktDiscreteValue (), 2)
+            toBoolean (mask (removeFromOperationIndicator (), 1))
         )
         ret.bitfields = bitfields
         ret
@@ -1243,7 +1216,7 @@ extends
  * @param sup Reference to the superclass object.
  * @param intervalEndTime The end of the time interval for which requirement is defined.
  * @param intervalStartTime The start of the time interval for which requirement is defined.
- * @param marketType <em>undocumented</em>
+ * @param marketType Market type.
  * @param GenDistributionFactor [[ch.ninecode.model.GenDistributionFactor GenDistributionFactor]] <em>undocumented</em>
  * @param LoadDistributionFactor [[ch.ninecode.model.LoadDistributionFactor LoadDistributionFactor]] <em>undocumented</em>
  * @param SysLoadDistribuFactor [[ch.ninecode.model.SysLoadDistributionFactor SysLoadDistributionFactor]] <em>undocumented</em>
@@ -1350,110 +1323,15 @@ extends
 }
 
 /**
- * Optimal Power Flow or State Estimator Load Data for OTS.
- *
- * This is used for RealTime, Study and Maintenance Users
- *
- * @param sup Reference to the superclass object.
- * @param loadMVAR The MVAR load
- *        Attribute Usage: The reactive power consumption of the load in MW
- * @param loadMW The active power consumption of the load in MW
- * @param MktEnergyConsumer [[ch.ninecode.model.MktEnergyConsumer MktEnergyConsumer]] <em>undocumented</em>
- * @group ExternalInputs
- * @groupname ExternalInputs Package ExternalInputs
- * @groupdesc ExternalInputs Inputs to the market system from external sources.
- */
-case class EnergyConsumerData
-(
-    override val sup: BasicElement,
-    loadMVAR: Double,
-    loadMW: Double,
-    MktEnergyConsumer: String
-)
-extends
-    Element
-{
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0, 0.0, null) }
-    /**
-     * Return the superclass object.
-     *
-     * @return The typed superclass nested object.
-     * @group Hierarchy
-     * @groupname Hierarchy Class Hierarchy Related
-     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
-     */
-    def  Element: Element = sup.asInstanceOf[Element]
-    override def copy (): Row = { clone ().asInstanceOf[EnergyConsumerData] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
-        implicit val clz: String = EnergyConsumerData.cls
-        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (EnergyConsumerData.fields (position), value)
-        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (EnergyConsumerData.fields (position), value)
-        emitelem (0, loadMVAR)
-        emitelem (1, loadMW)
-        emitattr (2, MktEnergyConsumer)
-        s.toString
-    }
-    override def export: String =
-    {
-        "\t<cim:EnergyConsumerData rdf:ID=\"%s\">\n%s\t</cim:EnergyConsumerData>".format (id, export_fields)
-    }
-}
-
-object EnergyConsumerData
-extends
-    Parseable[EnergyConsumerData]
-{
-    override val fields: Array[String] = Array[String] (
-        "loadMVAR",
-        "loadMW",
-        "MktEnergyConsumer"
-    )
-    override val relations: List[Relationship] = List (
-        Relationship ("MktEnergyConsumer", "MktEnergyConsumer", "1", "0..*")
-    )
-    val loadMVAR: Fielder = parse_element (element (cls, fields(0)))
-    val loadMW: Fielder = parse_element (element (cls, fields(1)))
-    val MktEnergyConsumer: Fielder = parse_attribute (attribute (cls, fields(2)))
-
-    def parse (context: Context): EnergyConsumerData =
-    {
-        implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
-        val ret = EnergyConsumerData (
-            BasicElement.parse (context),
-            toDouble (mask (loadMVAR (), 0)),
-            toDouble (mask (loadMW (), 1)),
-            mask (MktEnergyConsumer (), 2)
-        )
-        ret.bitfields = bitfields
-        ret
-    }
-}
-
-/**
  * An Energy Price Index for each Resource is valid for a period (e.g. daily) that is identified by a Valid Period Start Time and a Valid Period End Time.
  *
  * An Energy Price Index is in \$/MWh.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param endEffectiveDate End effective date
  * @param energyPriceIndex Energy price index
  * @param energyPriceIndexType EPI type such as wholesale or retail
  * @param lastModified Time updated
- * @param startEffectiveDate Start effective date
+ * @param validPeriod Valid period for which the energy price index is valid.
  * @param RegisteredGenerator [[ch.ninecode.model.RegisteredGenerator RegisteredGenerator]] <em>undocumented</em>
  * @group ExternalInputs
  * @groupname ExternalInputs Package ExternalInputs
@@ -1462,11 +1340,10 @@ extends
 case class EnergyPriceIndex
 (
     override val sup: IdentifiedObject,
-    endEffectiveDate: String,
     energyPriceIndex: Double,
     energyPriceIndexType: String,
     lastModified: String,
-    startEffectiveDate: String,
+    validPeriod: String,
     RegisteredGenerator: String
 )
 extends
@@ -1475,7 +1352,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, 0.0, null, null, null, null) }
+    def this () = { this (null, 0.0, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -1500,12 +1377,11 @@ extends
         implicit val clz: String = EnergyPriceIndex.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (EnergyPriceIndex.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (EnergyPriceIndex.fields (position), value)
-        emitelem (0, endEffectiveDate)
-        emitelem (1, energyPriceIndex)
-        emitattr (2, energyPriceIndexType)
-        emitelem (3, lastModified)
-        emitelem (4, startEffectiveDate)
-        emitattr (5, RegisteredGenerator)
+        emitelem (0, energyPriceIndex)
+        emitattr (1, energyPriceIndexType)
+        emitelem (2, lastModified)
+        emitattr (3, validPeriod)
+        emitattr (4, RegisteredGenerator)
         s.toString
     }
     override def export: String =
@@ -1519,22 +1395,20 @@ extends
     Parseable[EnergyPriceIndex]
 {
     override val fields: Array[String] = Array[String] (
-        "endEffectiveDate",
         "energyPriceIndex",
         "energyPriceIndexType",
         "lastModified",
-        "startEffectiveDate",
+        "validPeriod",
         "RegisteredGenerator"
     )
     override val relations: List[Relationship] = List (
         Relationship ("RegisteredGenerator", "RegisteredGenerator", "1", "1")
     )
-    val endEffectiveDate: Fielder = parse_element (element (cls, fields(0)))
-    val energyPriceIndex: Fielder = parse_element (element (cls, fields(1)))
-    val energyPriceIndexType: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val lastModified: Fielder = parse_element (element (cls, fields(3)))
-    val startEffectiveDate: Fielder = parse_element (element (cls, fields(4)))
-    val RegisteredGenerator: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val energyPriceIndex: Fielder = parse_element (element (cls, fields(0)))
+    val energyPriceIndexType: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val lastModified: Fielder = parse_element (element (cls, fields(2)))
+    val validPeriod: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val RegisteredGenerator: Fielder = parse_attribute (attribute (cls, fields(4)))
 
     def parse (context: Context): EnergyPriceIndex =
     {
@@ -1542,12 +1416,11 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = EnergyPriceIndex (
             IdentifiedObject.parse (context),
-            mask (endEffectiveDate (), 0),
-            toDouble (mask (energyPriceIndex (), 1)),
-            mask (energyPriceIndexType (), 2),
-            mask (lastModified (), 3),
-            mask (startEffectiveDate (), 4),
-            mask (RegisteredGenerator (), 5)
+            toDouble (mask (energyPriceIndex (), 0)),
+            mask (energyPriceIndexType (), 1),
+            mask (lastModified (), 2),
+            mask (validPeriod (), 3),
+            mask (RegisteredGenerator (), 4)
         )
         ret.bitfields = bitfields
         ret
@@ -1834,7 +1707,7 @@ extends
 /**
  * This class models the generation distribution factors.
  *
- * This class needs to be used along with the AggregatedPnode and the IndividualPnode to show the distriubtion of each individual party.
+ * This class needs to be used along with the AggregatedPnode and the IndividualPnode to show the distribution of each individual party.
  *
  * @param sup Reference to the superclass object.
  * @param factor Used to calculate generation "participation" of an individual pnond in an AggregatePnode.
@@ -1936,7 +1809,7 @@ extends
 /**
  * Optimal Power Flow or State Estimator Unit Data for Operator Training Simulator.
  *
- * This is used for RealTime, Study and Maintenance Users
+ * This is used for RealTime, Study and Maintenance Users.
  *
  * @param sup Reference to the superclass object.
  * @param lossFactor Loss Factor
@@ -2171,7 +2044,7 @@ extends
 }
 
 /**
- * Existing Transmission Contract data for an interchange schedule
+ * Existing Transmission Contract data for an interchange schedule.
  *
  * @param sup Reference to the superclass object.
  * @param contractNumber Existing transmission contract number
@@ -2410,7 +2283,7 @@ extends
 }
 
 /**
- * Indicates whether unit is eligible for treatment as a intermittent variable renewable resource
+ * Indicates whether unit is eligible for treatment as a intermittent variable renewable resource.
  *
  * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
  * @param eligibilityStatus Indicates whether a resource is eligible for PIRP program for a given hour
@@ -2689,7 +2562,7 @@ extends
 }
 
 /**
- * Maximum MW and optionally Minimum MW (Y1 and Y2, respectively)
+ * Maximum MW and optionally Minimum MW (Y1 and Y2, respectively).
  *
  * @param sup Reference to the superclass object.
  * @param SecurityConstraintLimit [[ch.ninecode.model.ContingencyConstraintLimit ContingencyConstraintLimit]] <em>undocumented</em>
@@ -2767,7 +2640,7 @@ extends
 }
 
 /**
- * Subclass of IEC61970:Wires:ACLineSegment
+ * Subclass of IEC 61970:Wires:ACLineSegment.
  *
  * @param sup [[ch.ninecode.model.ACLineSegment ACLineSegment]] Reference to the superclass object.
  * @param EndAFlow [[ch.ninecode.model.BranchEndFlow BranchEndFlow]] <em>undocumented</em>
@@ -2852,7 +2725,7 @@ extends
 }
 
 /**
- * Subclass of IEC61970:Meas:AnalogLimit
+ * Subclass of IEC 61970:Meas:AnalogLimit.
  *
  * @param sup [[ch.ninecode.model.AnalogLimit AnalogLimit]] Reference to the superclass object.
  * @param exceededLimit true if limit exceeded
@@ -2941,7 +2814,7 @@ extends
 }
 
 /**
- * Subclass of IEC61970:Meas:AnalogLimitSet
+ * Subclass of IEC 61970:Meas:AnalogLimitSet.
  *
  * @param sup [[ch.ninecode.model.AnalogLimitSet AnalogLimitSet]] Reference to the superclass object.
  * @param ratingSet Rating set numbers
@@ -3016,85 +2889,7 @@ extends
 }
 
 /**
- * Subclass of IEC61970:Meas:AnalogValue
- *
- * @param sup [[ch.ninecode.model.AnalogValue AnalogValue]] Reference to the superclass object.
- * @param AnalogMeasurementValueQuality [[ch.ninecode.model.AnalogMeasurementValueQuality AnalogMeasurementValueQuality]] <em>undocumented</em>
- * @group ExternalInputs
- * @groupname ExternalInputs Package ExternalInputs
- * @groupdesc ExternalInputs Inputs to the market system from external sources.
- */
-case class MktAnalogValue
-(
-    override val sup: AnalogValue,
-    AnalogMeasurementValueQuality: List[String]
-)
-extends
-    Element
-{
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
-    /**
-     * Return the superclass object.
-     *
-     * @return The typed superclass nested object.
-     * @group Hierarchy
-     * @groupname Hierarchy Class Hierarchy Related
-     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
-     */
-    def AnalogValue: AnalogValue = sup.asInstanceOf[AnalogValue]
-    override def copy (): Row = { clone ().asInstanceOf[MktAnalogValue] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
-        implicit val clz: String = MktAnalogValue.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (MktAnalogValue.fields (position), x))
-        emitattrs (0, AnalogMeasurementValueQuality)
-        s.toString
-    }
-    override def export: String =
-    {
-        "\t<cim:MktAnalogValue rdf:ID=\"%s\">\n%s\t</cim:MktAnalogValue>".format (id, export_fields)
-    }
-}
-
-object MktAnalogValue
-extends
-    Parseable[MktAnalogValue]
-{
-    override val fields: Array[String] = Array[String] (
-        "AnalogMeasurementValueQuality"
-    )
-    override val relations: List[Relationship] = List (
-        Relationship ("AnalogMeasurementValueQuality", "AnalogMeasurementValueQuality", "0..*", "1")
-    )
-    val AnalogMeasurementValueQuality: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
-
-    def parse (context: Context): MktAnalogValue =
-    {
-        implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
-        val ret = MktAnalogValue (
-            AnalogValue.parse (context),
-            masks (AnalogMeasurementValueQuality (), 0)
-        )
-        ret.bitfields = bitfields
-        ret
-    }
-}
-
-/**
- * Market subclass of IEC61970:ControlArea
+ * Market subclass of IEC 61970:ControlArea.
  *
  * @param sup [[ch.ninecode.model.ControlArea ControlArea]] Reference to the superclass object.
  * @param ControlAreaSolutionData [[ch.ninecode.model.ControlAreaSolutionData ControlAreaSolutionData]] <em>undocumented</em>
@@ -3172,85 +2967,7 @@ extends
 }
 
 /**
- * Subclass of IEC61970:Meas:DiscreteValue
- *
- * @param sup [[ch.ninecode.model.DiscreteValue DiscreteValue]] Reference to the superclass object.
- * @param DiscreteMeasurementValueQuality [[ch.ninecode.model.DiscreteMeasurementValueQuality DiscreteMeasurementValueQuality]] <em>undocumented</em>
- * @group ExternalInputs
- * @groupname ExternalInputs Package ExternalInputs
- * @groupdesc ExternalInputs Inputs to the market system from external sources.
- */
-case class MktDiscreteValue
-(
-    override val sup: DiscreteValue,
-    DiscreteMeasurementValueQuality: List[String]
-)
-extends
-    Element
-{
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List()) }
-    /**
-     * Return the superclass object.
-     *
-     * @return The typed superclass nested object.
-     * @group Hierarchy
-     * @groupname Hierarchy Class Hierarchy Related
-     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
-     */
-    def DiscreteValue: DiscreteValue = sup.asInstanceOf[DiscreteValue]
-    override def copy (): Row = { clone ().asInstanceOf[MktDiscreteValue] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
-        implicit val clz: String = MktDiscreteValue.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (MktDiscreteValue.fields (position), x))
-        emitattrs (0, DiscreteMeasurementValueQuality)
-        s.toString
-    }
-    override def export: String =
-    {
-        "\t<cim:MktDiscreteValue rdf:ID=\"%s\">\n%s\t</cim:MktDiscreteValue>".format (id, export_fields)
-    }
-}
-
-object MktDiscreteValue
-extends
-    Parseable[MktDiscreteValue]
-{
-    override val fields: Array[String] = Array[String] (
-        "DiscreteMeasurementValueQuality"
-    )
-    override val relations: List[Relationship] = List (
-        Relationship ("DiscreteMeasurementValueQuality", "DiscreteMeasurementValueQuality", "0..*", "1")
-    )
-    val DiscreteMeasurementValueQuality: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
-
-    def parse (context: Context): MktDiscreteValue =
-    {
-        implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
-        val ret = MktDiscreteValue (
-            DiscreteValue.parse (context),
-            masks (DiscreteMeasurementValueQuality (), 0)
-        )
-        ret.bitfields = bitfields
-        ret
-    }
-}
-
-/**
- * Subclass of IEC61970:Wires:SeriesCompensator
+ * Subclass of IEC 61970:Wires:SeriesCompensator.
  *
  * @param sup [[ch.ninecode.model.SeriesCompensator SeriesCompensator]] Reference to the superclass object.
  * @param EndAFlow [[ch.ninecode.model.BranchEndFlow BranchEndFlow]] <em>undocumented</em>
@@ -3335,7 +3052,7 @@ extends
 }
 
 /**
- * Subclass of IEC61970:Wires:ShuntCompensator
+ * Subclass of IEC 61970:Wires:ShuntCompensator.
  *
  * @param sup [[ch.ninecode.model.ShuntCompensator ShuntCompensator]] Reference to the superclass object.
  * @param ShuntCompensatorDynamicData [[ch.ninecode.model.ShuntCompensatorDynamicData ShuntCompensatorDynamicData]] <em>undocumented</em>
@@ -3413,7 +3130,7 @@ extends
 }
 
 /**
- * Subclass of IEC61970:Wires:Switch
+ * Subclass of IEC 61970:Wires:Switch.
  *
  * @param sup [[ch.ninecode.model.Switch Switch]] Reference to the superclass object.
  * @param SwitchStatus [[ch.ninecode.model.SwitchStatus SwitchStatus]] <em>undocumented</em>
@@ -3491,7 +3208,7 @@ extends
 }
 
 /**
- * Subclass of IEC61970:Wires:TapChanger
+ * Subclass of IEC 61970:Wires:TapChanger.
  *
  * @param sup [[ch.ninecode.model.TapChanger TapChanger]] Reference to the superclass object.
  * @param TapChangerDynamicData [[ch.ninecode.model.TapChangerDynamicData TapChangerDynamicData]] <em>undocumented</em>
@@ -3949,7 +3666,7 @@ extends
 }
 
 /**
- * Contains information about the update from SCADA
+ * Contains information about the update from SCADA.
  *
  * @param sup Reference to the superclass object.
  * @param timeStamp time of the update from SCADA
@@ -4026,7 +3743,7 @@ extends
 /**
  * Typically provided by RTO systems, constraints identified in both base case and critical contingency cases have to be transferred.
  *
- * A constraint has N (&gt;=1) constraint terms. A term is represented by an
+ * A constraint has N (&gt;=1) constraint terms. A term is represented by an instance of TerminalConstraintTerm.
  *
  * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
  * @param BaseCaseConstraintLimit [[ch.ninecode.model.BaseCaseConstraintLimit BaseCaseConstraintLimit]] <em>undocumented</em>
@@ -4244,7 +3961,7 @@ extends
 }
 
 /**
- * The defined termination points of a transmission path (down to distribution level or to a customer - generation or consumption or both).
+ * The defined termination points of a transmission path.
  *
  * Service points are defined from the viewpoint of the transmission service. Each service point is contained within (or on the boundary of) an interchange area. A service point is source or destination of a transaction.
  *
@@ -4347,7 +4064,7 @@ extends
 /**
  * Optimal Power Flow or State Estimator Filter Bank Data for OTS.
  *
- * This is used for RealTime, Study and Maintenance Users
+ * This is used for RealTime, Study and Maintenance Users.
  *
  * @param sup Reference to the superclass object.
  * @param connectionStatus The current status for the Voltage Control Capacitor 1= Connected 0 = Disconnected
@@ -4737,7 +4454,7 @@ extends
 /**
  * Optimal Power Flow or State Estimator Phase Shifter Data.
  *
- * This is used for RealTime, Study and Maintenance Users. SE Solution Phase Shifter Measurements from the last run of SE
+ * This is used for RealTime, Study and Maintenance Users. SE Solution Phase Shifter Measurements from the last run of SE.
  *
  * @param sup Reference to the superclass object.
  * @param angleRegulationStatus True means the phase shifter is regulating.
@@ -5029,7 +4746,7 @@ extends
 }
 
 /**
- * TNA Interface Definitions from OPF for VSA
+ * TNA Interface Definitions from OPF for VSA.
  *
  * @param sup Reference to the superclass object.
  * @param interfaceMargin The margin for the interface
@@ -5142,7 +4859,7 @@ extends
 }
 
 /**
- * This class models the transmission (either a transmission interface or a POR/POD pair) capacity including Total Transfer Capacity (TTC), Operating Transfer Capacity (OTC), and Capacity Benefit Margin (CBM)
+ * This class models the transmission (either a transmission interface or a POR/POD pair) capacity including Total Transfer Capacity (TTC), Operating Transfer Capacity (OTC), and Capacity Benefit Margin (CBM).
  *
  * @param sup Reference to the superclass object.
  * @param capacityBenefitMargin Capacity Benefit Margin (CBM) is used by Markets to calculate the transmission interface limits.
@@ -5280,7 +4997,7 @@ extends
 /**
  * This is formally called the branch group ETC/TOR entitlement with the inclusion of CVR as ETC.
  *
- * Is used to represent the entitlements. This could be also used to represent the TR entitlement on a POR/POD.
+ * This could be also used to represent the TR entitlement on a POR/POD.
  *
  * @param sup Reference to the superclass object.
  * @param entitlement the entitlement
@@ -5779,7 +5496,6 @@ private[ninecode] object _ExternalInputs
             DefaultConstraintLimit.register,
             DiscreteMeasurementValueQuality.register,
             DistributionFactorSet.register,
-            EnergyConsumerData.register,
             EnergyPriceIndex.register,
             EnergyProfile.register,
             EnergyTransaction.register,
@@ -5795,9 +5511,7 @@ private[ninecode] object _ExternalInputs
             MktACLineSegment.register,
             MktAnalogLimit.register,
             MktAnalogLimitSet.register,
-            MktAnalogValue.register,
             MktControlArea.register,
-            MktDiscreteValue.register,
             MktSeriesCompensator.register,
             MktShuntCompensator.register,
             MktSwitch.register,

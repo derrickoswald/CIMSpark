@@ -8,41 +8,41 @@ import ch.ninecode.cim.Parseable
 import ch.ninecode.cim.Relationship
 
 /**
- * Turbine Load Controller model developed in the WECC.
+ * Turbine load controller model developed by WECC.
  *
  * This model represents a supervisory turbine load controller that acts to maintain turbine power at a set value by continuous adjustment of the turbine governor speed-load reference. This model is intended to represent slow reset 'outer loop' controllers managing the action of the turbine governor.
  *
  * @param sup [[ch.ninecode.model.TurbineLoadControllerDynamics TurbineLoadControllerDynamics]] Reference to the superclass object.
- * @param db Controller dead band (db).
- *        Typical Value = 0.
- * @param emax Maximum control error (Emax) (note 4).
- *        Typical Value = 0.02.
- * @param fb Frequency bias gain (Fb).
- *        Typical Value = 0.
- * @param fbf Frequency bias flag (Fbf).
+ * @param db Controller deadband (<i>db</i>).
+ *        Typical value = 0.
+ * @param emax Maximum control error (<i>Emax</i>) (see parameter detail 4).
+ *        Typical value = 0,02.
+ * @param fb Frequency bias gain (<i>Fb</i>).
+ *        Typical value = 0.
+ * @param fbf Frequency bias flag (<i>Fbf</i>).
  *        true = enable frequency bias
  *        false = disable frequency bias.
- *        Typical Value = false.
- * @param irmax Maximum turbine speed/load reference bias (Irmax) (note 3).
- *        Typical Value = 0.
- * @param ki Integral gain (Ki).
- *        Typical Value = 0.
- * @param kp Proportional gain (Kp).
- *        Typical Value = 0.
- * @param mwbase Base for power values (MWbase) (&gt;0).
+ *        Typical value = false.
+ * @param irmax Maximum turbine speed/load reference bias (<i>Irmax</i>) (see parameter detail 3).
+ *        Typical value = 0.
+ * @param ki Integral gain (<i>Ki</i>).
+ *        Typical value = 0.
+ * @param kp Proportional gain (<i>Kp</i>).
+ *        Typical value = 0.
+ * @param mwbase Base for power values (<i>MWbase</i>) (&gt; 0).
  *        Unit = MW.
- * @param pbf Power controller flag (Pbf).
+ * @param pbf Power controller flag (<i>Pbf</i>).
  *        true = enable load controller
  *        false = disable load controller.
- *        Typical Value = false.
- * @param pmwset Power controller setpoint (Pmwset) (note 1).
- *        Unit = MW. Typical Value = 0.
- * @param speedReferenceGovernor Type of turbine governor reference (Type).
+ *        Typical value = false.
+ * @param pmwset Power controller setpoint (<i>Pmwset</i>) (see parameter detail 1).
+ *        Unit = MW. Typical value = 0.
+ * @param speedReferenceGovernor Type of turbine governor reference (<i>Type</i>).
  *        true = speed reference governor
  *        false = load reference governor.
- *        Typical Value = true.
- * @param tpelec Power transducer time constant (Tpelec).
- *        Typical Value = 0.
+ *        Typical value = true.
+ * @param tpelec Power transducer time constant (<i>Tpelec</i>) (&gt;= 0).
+ *        Typical value = 0.
  * @group TurbineLoadControllerDynamics
  * @groupname TurbineLoadControllerDynamics Package TurbineLoadControllerDynamics
  * @groupdesc TurbineLoadControllerDynamics A turbine load controller acts to maintain turbine power at a set value by continuous adjustment of the turbine governor speed-load reference.
@@ -169,7 +169,7 @@ extends
 }
 
 /**
- * Turbine load controller function block whose behavior is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
+ * Turbine load controller function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  *
  * @param sup [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
  * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Turbine-governor controlled by this turbine load controller.

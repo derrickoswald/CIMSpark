@@ -12,7 +12,7 @@ import ch.ninecode.cim.Relationship
  *
  * It defines both the Real and Reactive power properties (modelled at the PSR level as a GeneratingUnit + SynchronousMachine).
  *
- * @param sup [[ch.ninecode.model.GenericAssetModelOrMaterial GenericAssetModelOrMaterial]] Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.CatalogAssetType CatalogAssetType]] Reference to the superclass object.
  * @param maxP Maximum real power limit.
  * @param maxQ Maximum reactive power limit.
  * @param minP Minimum real power generated.
@@ -34,7 +34,7 @@ import ch.ninecode.cim.Relationship
  */
 case class GeneratorTypeAsset
 (
-    override val sup: GenericAssetModelOrMaterial,
+    override val sup: CatalogAssetType,
     maxP: Double,
     maxQ: Double,
     minP: Double,
@@ -67,7 +67,7 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def GenericAssetModelOrMaterial: GenericAssetModelOrMaterial = sup.asInstanceOf[GenericAssetModelOrMaterial]
+    def CatalogAssetType: CatalogAssetType = sup.asInstanceOf[CatalogAssetType]
     override def copy (): Row = { clone ().asInstanceOf[GeneratorTypeAsset] }
     override def get (i: Int): Object =
     {
@@ -150,7 +150,7 @@ extends
         implicit val ctx: Context = context
         implicit var bitfields: Array[Int] = Array(0)
         val ret = GeneratorTypeAsset (
-            GenericAssetModelOrMaterial.parse (context),
+            CatalogAssetType.parse (context),
             toDouble (mask (maxP (), 0)),
             toDouble (mask (maxQ (), 1)),
             toDouble (mask (minP (), 2)),
@@ -180,7 +180,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param status <em>undocumented</em>
- * @param TypeAssets [[ch.ninecode.model.GenericAssetModelOrMaterial GenericAssetModelOrMaterial]] <em>undocumented</em>
+ * @param TypeAssets [[ch.ninecode.model.CatalogAssetType CatalogAssetType]] <em>undocumented</em>
  * @group InfTypeAsset
  * @groupname InfTypeAsset Package InfTypeAsset
  */
@@ -240,7 +240,7 @@ extends
         "TypeAssets"
     )
     override val relations: List[Relationship] = List (
-        Relationship ("TypeAssets", "GenericAssetModelOrMaterial", "0..*", "0..1")
+        Relationship ("TypeAssets", "CatalogAssetType", "0..*", "0..1")
     )
     val status: Fielder = parse_attribute (attribute (cls, fields(0)))
     val TypeAssets: FielderMultiple = parse_attributes (attribute (cls, fields(1)))

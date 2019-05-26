@@ -516,7 +516,6 @@ extends
  * @param Assignments [[ch.ninecode.model.Assignment Assignment]] All Assignments for this Crew.
  * @param Capabilities [[ch.ninecode.model.Capability Capability]] <em>undocumented</em>
  * @param Locations [[ch.ninecode.model.Location Location]] <em>undocumented</em>
- * @param Organisations [[ch.ninecode.model.Organisation Organisation]] <em>undocumented</em>
  * @param Route [[ch.ninecode.model.Route Route]] <em>undocumented</em>
  * @param ShiftPatterns [[ch.ninecode.model.ShiftPattern ShiftPattern]] <em>undocumented</em>
  * @group InfCommon
@@ -530,7 +529,6 @@ case class OldCrew
     Assignments: List[String],
     Capabilities: List[String],
     Locations: List[String],
-    Organisations: List[String],
     Route: String,
     ShiftPatterns: List[String]
 )
@@ -540,7 +538,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, List(), List(), List(), List(), null, List()) }
+    def this () = { this (null, null, List(), List(), List(), null, List()) }
     /**
      * Return the superclass object.
      *
@@ -570,9 +568,8 @@ extends
         emitattrs (1, Assignments)
         emitattrs (2, Capabilities)
         emitattrs (3, Locations)
-        emitattrs (4, Organisations)
-        emitattr (5, Route)
-        emitattrs (6, ShiftPatterns)
+        emitattr (4, Route)
+        emitattrs (5, ShiftPatterns)
         s.toString
     }
     override def export: String =
@@ -590,7 +587,6 @@ extends
         "Assignments",
         "Capabilities",
         "Locations",
-        "Organisations",
         "Route",
         "ShiftPatterns"
     )
@@ -598,7 +594,6 @@ extends
         Relationship ("Assignments", "Assignment", "0..*", "0..*"),
         Relationship ("Capabilities", "Capability", "0..*", "0..1"),
         Relationship ("Locations", "Location", "0..*", "0..*"),
-        Relationship ("Organisations", "Organisation", "1..*", "0..*"),
         Relationship ("Route", "Route", "0..1", "0..*"),
         Relationship ("ShiftPatterns", "ShiftPattern", "0..*", "0..*")
     )
@@ -606,9 +601,8 @@ extends
     val Assignments: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
     val Capabilities: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
     val Locations: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
-    val Organisations: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
-    val Route: Fielder = parse_attribute (attribute (cls, fields(5)))
-    val ShiftPatterns: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
+    val Route: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val ShiftPatterns: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
 
     def parse (context: Context): OldCrew =
     {
@@ -620,9 +614,8 @@ extends
             masks (Assignments (), 1),
             masks (Capabilities (), 2),
             masks (Locations (), 3),
-            masks (Organisations (), 4),
-            mask (Route (), 5),
-            masks (ShiftPatterns (), 6)
+            mask (Route (), 4),
+            masks (ShiftPatterns (), 5)
         )
         ret.bitfields = bitfields
         ret
@@ -638,7 +631,6 @@ extends
  *        Examples include employee, contractor, agent, not affiliated, etc.
  * @param Crafts [[ch.ninecode.model.Craft Craft]] <em>undocumented</em>
  * @param CustomerData [[ch.ninecode.model.Customer Customer]] <em>undocumented</em>
- * @param DocumentRoles [[ch.ninecode.model.PersonDocumentRole PersonDocumentRole]] <em>undocumented</em>
  * @param ErpCompetency [[ch.ninecode.model.ErpCompetency ErpCompetency]] <em>undocumented</em>
  * @param ErpPersonnel [[ch.ninecode.model.ErpPersonnel ErpPersonnel]] <em>undocumented</em>
  * @param LaborItems [[ch.ninecode.model.LaborItem LaborItem]] <em>undocumented</em>
@@ -657,7 +649,6 @@ case class OldPerson
     `type`: String,
     Crafts: List[String],
     CustomerData: String,
-    DocumentRoles: List[String],
     ErpCompetency: String,
     ErpPersonnel: String,
     LaborItems: List[String],
@@ -672,7 +663,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, List(), null, List(), null, null, List(), List(), List(), List(), List()) }
+    def this () = { this (null, null, null, List(), null, null, null, List(), List(), List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -702,14 +693,13 @@ extends
         emitelem (1, `type`)
         emitattrs (2, Crafts)
         emitattr (3, CustomerData)
-        emitattrs (4, DocumentRoles)
-        emitattr (5, ErpCompetency)
-        emitattr (6, ErpPersonnel)
-        emitattrs (7, LaborItems)
-        emitattrs (8, LandPropertyRoles)
-        emitattrs (9, MeasurementValues)
-        emitattrs (10, OrganisationRoles)
-        emitattrs (11, Skills)
+        emitattr (4, ErpCompetency)
+        emitattr (5, ErpPersonnel)
+        emitattrs (6, LaborItems)
+        emitattrs (7, LandPropertyRoles)
+        emitattrs (8, MeasurementValues)
+        emitattrs (9, OrganisationRoles)
+        emitattrs (10, Skills)
         s.toString
     }
     override def export: String =
@@ -727,7 +717,6 @@ extends
         "type",
         "Crafts",
         "CustomerData",
-        "DocumentRoles",
         "ErpCompetency",
         "ErpPersonnel",
         "LaborItems",
@@ -739,7 +728,6 @@ extends
     override val relations: List[Relationship] = List (
         Relationship ("Crafts", "Craft", "0..*", "0..*"),
         Relationship ("CustomerData", "Customer", "0..1", "0..*"),
-        Relationship ("DocumentRoles", "PersonDocumentRole", "0..*", "1"),
         Relationship ("ErpCompetency", "ErpCompetency", "0..1", "0..*"),
         Relationship ("ErpPersonnel", "ErpPersonnel", "0..1", "0..*"),
         Relationship ("LaborItems", "LaborItem", "0..*", "0..*"),
@@ -752,14 +740,13 @@ extends
     val `type`: Fielder = parse_element (element (cls, fields(1)))
     val Crafts: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
     val CustomerData: Fielder = parse_attribute (attribute (cls, fields(3)))
-    val DocumentRoles: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
-    val ErpCompetency: Fielder = parse_attribute (attribute (cls, fields(5)))
-    val ErpPersonnel: Fielder = parse_attribute (attribute (cls, fields(6)))
-    val LaborItems: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
-    val LandPropertyRoles: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
-    val MeasurementValues: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
-    val OrganisationRoles: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
-    val Skills: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
+    val ErpCompetency: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val ErpPersonnel: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val LaborItems: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
+    val LandPropertyRoles: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
+    val MeasurementValues: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
+    val OrganisationRoles: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
+    val Skills: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
 
     def parse (context: Context): OldPerson =
     {
@@ -771,14 +758,13 @@ extends
             mask (`type` (), 1),
             masks (Crafts (), 2),
             mask (CustomerData (), 3),
-            masks (DocumentRoles (), 4),
-            mask (ErpCompetency (), 5),
-            mask (ErpPersonnel (), 6),
-            masks (LaborItems (), 7),
-            masks (LandPropertyRoles (), 8),
-            masks (MeasurementValues (), 9),
-            masks (OrganisationRoles (), 10),
-            masks (Skills (), 11)
+            mask (ErpCompetency (), 4),
+            mask (ErpPersonnel (), 5),
+            masks (LaborItems (), 6),
+            masks (LandPropertyRoles (), 7),
+            masks (MeasurementValues (), 8),
+            masks (OrganisationRoles (), 9),
+            masks (Skills (), 10)
         )
         ret.bitfields = bitfields
         ret
@@ -856,84 +842,6 @@ extends
         val ret = OrgOrgRole (
             OrganisationRole.parse (context),
             mask (clientID (), 0)
-        )
-        ret.bitfields = bitfields
-        ret
-    }
-}
-
-/**
- * Roles played between Persons and Documents.
- *
- * @param sup [[ch.ninecode.model.Role Role]] Reference to the superclass object.
- * @param Person [[ch.ninecode.model.OldPerson OldPerson]] <em>undocumented</em>
- * @group InfCommon
- * @groupname InfCommon Package InfCommon
- * @groupdesc InfCommon This package contains functions common for distribution management.
- */
-case class PersonDocumentRole
-(
-    override val sup: Role,
-    Person: String
-)
-extends
-    Element
-{
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null) }
-    /**
-     * Return the superclass object.
-     *
-     * @return The typed superclass nested object.
-     * @group Hierarchy
-     * @groupname Hierarchy Class Hierarchy Related
-     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
-     */
-    def Role: Role = sup.asInstanceOf[Role]
-    override def copy (): Row = { clone ().asInstanceOf[PersonDocumentRole] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
-        implicit val clz: String = PersonDocumentRole.cls
-        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PersonDocumentRole.fields (position), value)
-        emitattr (0, Person)
-        s.toString
-    }
-    override def export: String =
-    {
-        "\t<cim:PersonDocumentRole rdf:ID=\"%s\">\n%s\t</cim:PersonDocumentRole>".format (id, export_fields)
-    }
-}
-
-object PersonDocumentRole
-extends
-    Parseable[PersonDocumentRole]
-{
-    override val fields: Array[String] = Array[String] (
-        "Person"
-    )
-    override val relations: List[Relationship] = List (
-        Relationship ("Person", "OldPerson", "1", "0..*")
-    )
-    val Person: Fielder = parse_attribute (attribute (cls, fields(0)))
-
-    def parse (context: Context): PersonDocumentRole =
-    {
-        implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
-        val ret = PersonDocumentRole (
-            Role.parse (context),
-            mask (Person (), 0)
         )
         ret.bitfields = bitfields
         ret
@@ -1479,7 +1387,6 @@ private[ninecode] object _InfCommon
             OldCrew.register,
             OldPerson.register,
             OrgOrgRole.register,
-            PersonDocumentRole.register,
             PersonOrganisationRole.register,
             PersonPropertyRole.register,
             PropertyOrganisationRole.register,

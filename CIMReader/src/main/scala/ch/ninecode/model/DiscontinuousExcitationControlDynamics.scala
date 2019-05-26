@@ -8,51 +8,50 @@ import ch.ninecode.cim.Parseable
 import ch.ninecode.cim.Relationship
 
 /**
- * The class represents IEEE Type DEC1A discontinuous excitation control model that boosts generator excitation to a level higher than that demanded by the voltage regulator and stabilizer immediately following a system fault.
+ * IEEE type DEC1A discontinuous excitation control model that boosts generator excitation to a level higher than that demanded by the voltage regulator and stabilizer immediately following a system fault.
  *
- * Reference: IEEE Standard 421.5-2005 Section 12.2.
+ * Reference: IEEE 421.5-2005, 12.2.
  *
  * @param sup [[ch.ninecode.model.DiscontinuousExcitationControlDynamics DiscontinuousExcitationControlDynamics]] Reference to the superclass object.
  * @param esc Speed change reference (<i>E</i><i><sub>SC</sub></i>).
- *        Typical Value = 0.0015.
+ *        Typical value = 0,0015.
  * @param kan Discontinuous controller gain (<i>K</i><i><sub>AN</sub></i>).
- *        Typical Value = 400.
+ *        Typical value = 400.
  * @param ketl Terminal voltage limiter gain (<i>K</i><i><sub>ETL</sub></i>).
- *        Typical Value = 47.
- * @param tan Discontinuous controller time constant (<i>T</i><i><sub>AN</sub></i>).
- *        Typical Value = 0.08.
- * @param td Time constant (<i>T</i><i><sub>D</sub></i>).
- *        Typical Value = 0.03.
- * @param tl1 Time constant (<i>T</i><i><sub>L</sub></i><sub>1</sub>).
- *        Typical Value = 0.025.
- * @param tl2 Time constant (<i>T</i><i><sub>L</sub></i><sub>2</sub>).
- *        Typical Value = 1.25.
- * @param tw5 DEC washout time constant (<i>T</i><i><sub>W</sub></i><sub>5</sub>).
- *        Typical Value = 5.
+ *        Typical value = 47.
+ * @param tan Discontinuous controller time constant (<i>T</i><i><sub>AN</sub></i>) (&gt;= 0).
+ *        Typical value = 0,08.
+ * @param td Time constant (<i>T</i><i><sub>D</sub></i>) (&gt;= 0).
+ *        Typical value = 0,03.
+ * @param tl1 Time constant (<i>T</i><i><sub>L</sub></i><sub>1</sub>) (&gt;= 0).
+ *        Typical value = 0,025.
+ * @param tl2 Time constant (<i>T</i><i><sub>L</sub></i><sub>2</sub>) (&gt;= 0).
+ *        Typical value = 1,25.
+ * @param tw5 DEC washout time constant (<i>T</i><i><sub>W</sub></i><sub>5</sub>) (&gt;= 0).
+ *        Typical value = 5.
  * @param val Regulator voltage reference (<i>V</i><i><sub>AL</sub></i>).
- *        Typical Value = 5.5.
+ *        Typical value = 5,5.
  * @param vanmax Limiter for Van (<i>V</i><i><sub>ANMAX</sub></i>).
- * @param vomax Limiter (<i>V</i><i><sub>OMAX</sub></i>).
- *        Typical Value = 0.3.
- * @param vomin Limiter (<i>V</i><i><sub>OMIN</sub></i>).
- *        Typical Value = 0.1.
- * @param vsmax Limiter (<i>V</i><i><sub>SMAX</sub></i>).
- *        Typical Value = 0.2.
- * @param vsmin Limiter (<i>V</i><i><sub>SMIN</sub></i>).
- *        Typical Value = -0.066.
+ * @param vomax Limiter (<i>V</i><i><sub>OMAX</sub></i>) (&gt; DiscExcContIEEEDEC1A.vomin).
+ *        Typical value = 0,3.
+ * @param vomin Limiter (<i>V</i><i><sub>OMIN</sub></i>) (&lt; DiscExcContIEEEDEC1A.vomax).
+ *        Typical value = 0,1.
+ * @param vsmax Limiter (<i>V</i><i><sub>SMAX</sub></i>)(&gt; DiscExcContIEEEDEC1A.vsmin).
+ *        Typical value = 0,2.
+ * @param vsmin Limiter (<i>V</i><i><sub>SMIN</sub></i>) (&lt; DiscExcContIEEEDEC1A.vsmax).
+ *        Typical value = -0,066.
  * @param vtc Terminal voltage level reference (<i>V</i><i><sub>TC</sub></i>).
- *        Typical Value = 0.95.
+ *        Typical value = 0,95.
  * @param vtlmt Voltage reference (<i>V</i><i><sub>TLMT</sub></i>).
- *        Typical Value = 1.1.
+ *        Typical value = 1,1.
  * @param vtm Voltage limits (<i>V</i><i><sub>TM</sub></i>).
- *        Typical Value = 1.13.
+ *        Typical value = 1,13.
  * @param vtn Voltage limits (<i>V</i><i><sub>TN</sub></i>).
- *        Typical Value = 1.12.
+ *        Typical value = 1,12.
  * @group DiscontinuousExcitationControlDynamics
  * @groupname DiscontinuousExcitationControlDynamics Package DiscontinuousExcitationControlDynamics
- * @groupdesc DiscontinuousExcitationControlDynamics <font colour="#0f0f0f">In some particular system configurations, continuous excitation control with terminal voltage and power system stabilizing regulator input signals does not ensure that the potential of the excitation system for improving system stability is fully exploited. For these situations, discontinuous excitation control signals may be employed to enhance stability following large transient disturbances.</font>
-<font color="#0f0f0f">
-</font><font color="#0f0f0f">For additional information please refer to IEEE Standard 421.5-2005, Section 12.</font>
+ * @groupdesc DiscontinuousExcitationControlDynamics In certain system configurations, continuous excitation control with terminal voltage and power system stabilizing regulator input signals does not ensure that the potential of the excitation system for improving system stability is fully exploited. For these situations, discontinuous excitation control signals can be employed to enhance stability following large transient disturbances.
+<font color="#0f0f0f">For additional information please refer to IEEE 421.5-2005, 12.</font>
  */
 case class DiscExcContIEEEDEC1A
 (
@@ -206,21 +205,20 @@ extends
 }
 
 /**
- * The class represents IEEE Type DEC2A model for the discontinuous excitation control.
+ * IEEE type DEC2A model for discontinuous excitation control.
  *
  * This system provides transient excitation boosting via an open-loop control as initiated by a trigger signal generated remotely.
  *
  * @param sup [[ch.ninecode.model.DiscontinuousExcitationControlDynamics DiscontinuousExcitationControlDynamics]] Reference to the superclass object.
- * @param td1 Discontinuous controller time constant (<i>T</i><i><sub>D1</sub></i>).
- * @param td2 Discontinuous controller washout time constant (<i>T</i><i><sub>D2</sub></i>).
- * @param vdmax Limiter (<i>V</i><i><sub>DMAX</sub></i>).
- * @param vdmin Limiter (<i>V</i><i><sub>DMIN</sub></i>).
+ * @param td1 Discontinuous controller time constant (<i>T</i><i><sub>D1</sub></i>) (&gt;= 0).
+ * @param td2 Discontinuous controller washout time constant (<i>T</i><i><sub>D2</sub></i>) (&gt;= 0).
+ * @param vdmax Limiter (<i>V</i><i><sub>DMAX</sub></i>) (&gt; DiscExcContIEEEDEC2A.vdmin).
+ * @param vdmin Limiter (<i>V</i><i><sub>DMIN</sub></i>) (&lt; DiscExcContIEEEDEC2A.vdmax).
  * @param vk Discontinuous controller input reference (<i>V</i><i><sub>K</sub></i>).
  * @group DiscontinuousExcitationControlDynamics
  * @groupname DiscontinuousExcitationControlDynamics Package DiscontinuousExcitationControlDynamics
- * @groupdesc DiscontinuousExcitationControlDynamics <font colour="#0f0f0f">In some particular system configurations, continuous excitation control with terminal voltage and power system stabilizing regulator input signals does not ensure that the potential of the excitation system for improving system stability is fully exploited. For these situations, discontinuous excitation control signals may be employed to enhance stability following large transient disturbances.</font>
-<font color="#0f0f0f">
-</font><font color="#0f0f0f">For additional information please refer to IEEE Standard 421.5-2005, Section 12.</font>
+ * @groupdesc DiscontinuousExcitationControlDynamics In certain system configurations, continuous excitation control with terminal voltage and power system stabilizing regulator input signals does not ensure that the potential of the excitation system for improving system stability is fully exploited. For these situations, discontinuous excitation control signals can be employed to enhance stability following large transient disturbances.
+<font color="#0f0f0f">For additional information please refer to IEEE 421.5-2005, 12.</font>
  */
 case class DiscExcContIEEEDEC2A
 (
@@ -309,18 +307,17 @@ extends
 }
 
 /**
- * The class represents IEEE Type DEC3A model.
+ * IEEE type DEC3A model.
  *
  * In some systems, the stabilizer output is disconnected from the regulator immediately following a severe fault to prevent the stabilizer from competing with action of voltage regulator during the first swing.
  *
  * @param sup [[ch.ninecode.model.DiscontinuousExcitationControlDynamics DiscontinuousExcitationControlDynamics]] Reference to the superclass object.
- * @param tdr Reset time delay (<i>T</i><i><sub>DR</sub></i>).
+ * @param tdr Reset time delay (<i>T</i><i><sub>DR</sub></i>) (&gt;= 0).
  * @param vtmin Terminal undervoltage comparison level (<i>V</i><i><sub>TMIN</sub></i>).
  * @group DiscontinuousExcitationControlDynamics
  * @groupname DiscontinuousExcitationControlDynamics Package DiscontinuousExcitationControlDynamics
- * @groupdesc DiscontinuousExcitationControlDynamics <font colour="#0f0f0f">In some particular system configurations, continuous excitation control with terminal voltage and power system stabilizing regulator input signals does not ensure that the potential of the excitation system for improving system stability is fully exploited. For these situations, discontinuous excitation control signals may be employed to enhance stability following large transient disturbances.</font>
-<font color="#0f0f0f">
-</font><font color="#0f0f0f">For additional information please refer to IEEE Standard 421.5-2005, Section 12.</font>
+ * @groupdesc DiscontinuousExcitationControlDynamics In certain system configurations, continuous excitation control with terminal voltage and power system stabilizing regulator input signals does not ensure that the potential of the excitation system for improving system stability is fully exploited. For these situations, discontinuous excitation control signals can be employed to enhance stability following large transient disturbances.
+<font color="#0f0f0f">For additional information please refer to IEEE 421.5-2005, 12.</font>
  */
 case class DiscExcContIEEEDEC3A
 (
@@ -401,9 +398,8 @@ extends
  * @param RemoteInputSignal [[ch.ninecode.model.RemoteInputSignal RemoteInputSignal]] Remote input signal used by this discontinuous excitation control system model.
  * @group DiscontinuousExcitationControlDynamics
  * @groupname DiscontinuousExcitationControlDynamics Package DiscontinuousExcitationControlDynamics
- * @groupdesc DiscontinuousExcitationControlDynamics <font colour="#0f0f0f">In some particular system configurations, continuous excitation control with terminal voltage and power system stabilizing regulator input signals does not ensure that the potential of the excitation system for improving system stability is fully exploited. For these situations, discontinuous excitation control signals may be employed to enhance stability following large transient disturbances.</font>
-<font color="#0f0f0f">
-</font><font color="#0f0f0f">For additional information please refer to IEEE Standard 421.5-2005, Section 12.</font>
+ * @groupdesc DiscontinuousExcitationControlDynamics In certain system configurations, continuous excitation control with terminal voltage and power system stabilizing regulator input signals does not ensure that the potential of the excitation system for improving system stability is fully exploited. For these situations, discontinuous excitation control signals can be employed to enhance stability following large transient disturbances.
+<font color="#0f0f0f">For additional information please refer to IEEE 421.5-2005, 12.</font>
  */
 case class DiscontinuousExcitationControlDynamics
 (

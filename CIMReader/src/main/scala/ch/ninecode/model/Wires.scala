@@ -10,7 +10,7 @@ import ch.ninecode.cim.Relationship
 /**
  * A wire or combination of wires, with consistent electrical characteristics, building a single electrical system, used to carry alternating current between points in the power system.
  *
- * For symmetrical, transposed 3ph lines, it is sufficient to use  attributes of the line segment, which describe impedances and admittances for the entire length of the segment.  Additionally impedances can be computed by using length and associated per length impedances.
+ * For symmetrical, transposed three phase lines, it is sufficient to use attributes of the line segment, which describe impedances and admittances for the entire length of the segment.  Additionally impedances can be computed by using length and associated per length impedances.
  *
  * @param sup [[ch.ninecode.model.Conductor Conductor]] Reference to the superclass object.
  * @param b0ch Zero sequence shunt (charging) susceptance, uniformly distributed, of the entire line section.
@@ -21,7 +21,7 @@ import ch.ninecode.cim.Relationship
  * @param r Positive sequence series resistance of the entire line section.
  * @param r0 Zero sequence series resistance of the entire line section.
  * @param shortCircuitEndTemperature Maximum permitted temperature at the end of SC for the calculation of minimum short-circuit currents.
- *        Used for short circuit data exchange according to IEC 60909
+ *        Used for short circuit data exchange according to IEC 60909.
  * @param x Positive sequence series reactance of the entire line section.
  * @param x0 Zero sequence series reactance of the entire line section.
  * @param ACLineSegmentPhases [[ch.ninecode.model.ACLineSegmentPhase ACLineSegmentPhase]] The line segment phases which belong to the line segment.
@@ -192,6 +192,8 @@ extends
  *
  * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @param phase The phase connection of the wire at both ends.
+ * @param sequenceNumber Number designation for this line segment phase.
+ *        Each line segment phase within a line segment should have a unique sequence number. This is useful for unbalanced modelling to bind the mathematical model (PhaseImpedanceData of PerLengthPhaseImpedance) with the connectivity model (this class) and the physical model (WirePosition) without tight coupling.
  * @param ACLineSegment [[ch.ninecode.model.ACLineSegment ACLineSegment]] The line segment to which the phase belongs.
  * @group Wires
  * @groupname Wires Package Wires
@@ -201,6 +203,7 @@ case class ACLineSegmentPhase
 (
     override val sup: PowerSystemResource,
     phase: String,
+    sequenceNumber: Int,
     ACLineSegment: String
 )
 extends
@@ -209,7 +212,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null) }
+    def this () = { this (null, null, 0, null) }
     /**
      * Return the superclass object.
      *
@@ -232,9 +235,11 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ACLineSegmentPhase.cls
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ACLineSegmentPhase.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ACLineSegmentPhase.fields (position), value)
         emitattr (0, phase)
-        emitattr (1, ACLineSegment)
+        emitelem (1, sequenceNumber)
+        emitattr (2, ACLineSegment)
         s.toString
     }
     override def export: String =
@@ -249,13 +254,15 @@ extends
 {
     override val fields: Array[String] = Array[String] (
         "phase",
+        "sequenceNumber",
         "ACLineSegment"
     )
     override val relations: List[Relationship] = List (
         Relationship ("ACLineSegment", "ACLineSegment", "1", "0..*")
     )
     val phase: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val ACLineSegment: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val sequenceNumber: Fielder = parse_element (element (cls, fields(1)))
+    val ACLineSegment: Fielder = parse_attribute (attribute (cls, fields(2)))
 
     def parse (context: Context): ACLineSegmentPhase =
     {
@@ -264,7 +271,8 @@ extends
         val ret = ACLineSegmentPhase (
             PowerSystemResource.parse (context),
             mask (phase (), 0),
-            mask (ACLineSegment (), 1)
+            toInteger (mask (sequenceNumber (), 1)),
+            mask (ACLineSegment (), 2)
         )
         ret.bitfields = bitfields
         ret
@@ -274,38 +282,38 @@ extends
 /**
  * A rotating machine whose shaft rotates asynchronously with the electrical field.
  *
- * Also known as an induction machine with no external connection to the rotor windings, e.g squirrel-cage induction machine.
+ * Also known as an induction machine with no external connection to the rotor windings, e.g. squirrel-cage induction machine.
  *
  * @param sup [[ch.ninecode.model.RotatingMachine RotatingMachine]] Reference to the superclass object.
  * @param asynchronousMachineType Indicates the type of Asynchronous Machine (motor or generator).
  * @param converterFedDrive Indicates whether the machine is a converter fed drive.
- *        Used for short circuit data exchange according to IEC 60909
- * @param efficiency Efficiency of the asynchronous machine at nominal operation in percent.
- *        Indicator for converter drive motors. Used for short circuit data exchange according to IEC 60909
+ *        Used for short circuit data exchange according to IEC 60909.
+ * @param efficiency Efficiency of the asynchronous machine at nominal operation as a percentage.
+ *        Indicator for converter drive motors. Used for short circuit data exchange according to IEC 60909.
  * @param iaIrRatio Ratio of locked-rotor current to the rated current of the motor (Ia/Ir).
- *        Used for short circuit data exchange according to IEC 60909
- * @param nominalFrequency Nameplate data indicates if the machine is 50 or 60 Hz.
+ *        Used for short circuit data exchange according to IEC 60909.
+ * @param nominalFrequency Nameplate data indicates if the machine is 50 Hz or 60 Hz.
  * @param nominalSpeed Nameplate data.
  *        Depends on the slip and number of pole pairs.
  * @param polePairNumber Number of pole pairs of stator.
- *        Used for short circuit data exchange according to IEC 60909
- * @param ratedMechanicalPower Rated mechanical power (Pr in the IEC 60909-0).
+ *        Used for short circuit data exchange according to IEC 60909.
+ * @param ratedMechanicalPower Rated mechanical power (Pr in IEC 60909-0).
  *        Used for short circuit data exchange according to IEC 60909.
  * @param reversible Indicates for converter drive motors if the power can be reversible.
- *        Used for short circuit data exchange according to IEC 60909
+ *        Used for short circuit data exchange according to IEC 60909.
  * @param rr1 Damper 1 winding resistance.
  * @param rr2 Damper 2 winding resistance.
  * @param rxLockedRotorRatio Locked rotor ratio (R/X).
- *        Used for short circuit data exchange according to IEC 60909
+ *        Used for short circuit data exchange according to IEC 60909.
  * @param tpo Transient rotor time constant (greater than tppo).
  * @param tppo Sub-transient rotor time constant (greater than 0).
  * @param xlr1 Damper 1 winding leakage reactance.
  * @param xlr2 Damper 2 winding leakage reactance.
  * @param xm Magnetizing reactance.
  * @param xp Transient reactance (unsaturated) (greater than or equal to xpp).
- * @param xpp Sub-transient reactance (unsaturated) (greather than Xl).
- * @param xs Synchronous reactance (greather than xp).
- * @param AsynchronousMachineDynamics [[ch.ninecode.model.AsynchronousMachineDynamics AsynchronousMachineDynamics]] Asynchronous machine dynamics model used to describe dynamic behavior of this asynchronous machine.
+ * @param xpp Sub-transient reactance (unsaturated).
+ * @param xs Synchronous reactance (greater than xp).
+ * @param AsynchronousMachineDynamics [[ch.ninecode.model.AsynchronousMachineDynamics AsynchronousMachineDynamics]] Asynchronous machine dynamics model used to describe dynamic behaviour of this asynchronous machine.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -558,11 +566,11 @@ extends
 /**
  * A conductor, or group of conductors, with negligible impedance, that serve to connect other conducting equipment within a single substation.
  *
- * Voltage measurements are typically obtained from VoltageTransformers that are connected to busbar sections. A bus bar section may have many physical terminals but for analysis is modelled with exactly one logical terminal.
+ * Voltage measurements are typically obtained from voltage transformers that are connected to busbar sections. A bus bar section may have many physical terminals but for analysis is modelled with exactly one logical terminal.
  *
  * @param sup [[ch.ninecode.model.Connector Connector]] Reference to the superclass object.
- * @param ipMax Maximum allowable peak short-circuit current of busbar (Ipmax in the IEC 60909-0).
- *        Mechanical limit of the busbar in the substation itself. Used for short circuit data exchange according to IEC 60909
+ * @param ipMax Maximum allowable peak short-circuit current of busbar (Ipmax in IEC 60909-0).
+ *        Mechanical limit of the busbar in the substation itself. Used for short circuit data exchange according to IEC 60909.
  * @param VoltageControlZone [[ch.ninecode.model.VoltageControlZone VoltageControlZone]] A VoltageControlZone is controlled by a designated BusbarSection.
  * @group Wires
  * @groupname Wires Package Wires
@@ -821,7 +829,7 @@ extends
  * Combination of conducting material with consistent electrical characteristics, building a single electrical system, used to carry current between points in the power system.
  *
  * @param sup [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] Reference to the superclass object.
- * @param length Segment length for calculating line section capabilities
+ * @param length Segment length for calculating line section capabilities.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -1113,9 +1121,9 @@ extends
 }
 
 /**
- * A conducting equipment used to represent a connection to ground which is typically used to compensate earth faults..
+ * A conducting equipment used to represent a connection to ground which is typically used to compensate earth faults.
  *
- * An earth fault compensator device modeled with a single terminal implies a second terminal solidly connected to ground.  If two terminals are modeled, the ground is not assumed and normal connection rules apply.
+ * An earth fault compensator device modelled with a single terminal implies a second terminal solidly connected to ground.  If two terminals are modelled, the ground is not assumed and normal connection rules apply.
  *
  * @param sup [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] Reference to the superclass object.
  * @param r Nominal resistance of device.
@@ -1190,9 +1198,71 @@ extends
 }
 
 /**
- * Generic user of energy - a  point of consumption on the power system model.
+ * A connection of energy generation or consumption on the power system model.
  *
  * @param sup [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] Reference to the superclass object.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
+ */
+case class EnergyConnection
+(
+    override val sup: ConductingEquipment
+)
+extends
+    Element
+{
+    /**
+     * Zero args constructor.
+     */
+    def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def ConductingEquipment: ConductingEquipment = sup.asInstanceOf[ConductingEquipment]
+    override def copy (): Row = { clone ().asInstanceOf[EnergyConnection] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        sup.export_fields
+    }
+    override def export: String =
+    {
+        "\t<cim:EnergyConnection rdf:ID=\"%s\">\n%s\t</cim:EnergyConnection>".format (id, export_fields)
+    }
+}
+
+object EnergyConnection
+extends
+    Parseable[EnergyConnection]
+{
+
+    def parse (context: Context): EnergyConnection =
+    {
+        implicit val ctx: Context = context
+        val ret = EnergyConnection (
+            ConductingEquipment.parse (context)
+        )
+        ret
+    }
+}
+
+/**
+ * Generic user of energy - a  point of consumption on the power system model.
+ *
+ * @param sup [[ch.ninecode.model.EnergyConnection EnergyConnection]] Reference to the superclass object.
  * @param customerCount Number of individual customers represented by this demand.
  * @param grounded Used for Yn and Zn connections.
  *        True if the neutral is solidly grounded.
@@ -1200,17 +1270,17 @@ extends
  *        Load sign convention is used, i.e. positive sign means flow out from a node.
  * @param pfixed Active power of the load that is a fixed quantity.
  *        Load sign convention is used, i.e. positive sign means flow out from a node.
- * @param pfixedPct Fixed active power as per cent of load group fixed active power.
- *        Load sign convention is used, i.e. positive sign means flow out from a node.
+ * @param pfixedPct Fixed active power as a percentage of load group fixed active power.
+ *        Used to represent the time-varying components.  Load sign convention is used, i.e. positive sign means flow out from a node.
  * @param phaseConnection The type of phase connection, such as wye or delta.
  * @param q Reactive power of the load.
  *        Load sign convention is used, i.e. positive sign means flow out from a node.
  * @param qfixed Reactive power of the load that is a fixed quantity.
  *        Load sign convention is used, i.e. positive sign means flow out from a node.
- * @param qfixedPct Fixed reactive power as per cent of load group fixed reactive power.
- *        Load sign convention is used, i.e. positive sign means flow out from a node.
+ * @param qfixedPct Fixed reactive power as a percentage of load group fixed reactive power.
+ *        Used to represent the time-varying components.  Load sign convention is used, i.e. positive sign means flow out from a node.
  * @param EnergyConsumerPhase [[ch.ninecode.model.EnergyConsumerPhase EnergyConsumerPhase]] The individual phase models for this energy consumer.
- * @param LoadDynamics [[ch.ninecode.model.LoadDynamics LoadDynamics]] Load dynamics model used to describe dynamic behavior of this energy consumer.
+ * @param LoadDynamics [[ch.ninecode.model.LoadDynamics LoadDynamics]] Load dynamics model used to describe dynamic behaviour of this energy consumer.
  * @param LoadResponse [[ch.ninecode.model.LoadResponseCharacteristic LoadResponseCharacteristic]] The load response characteristic of this load.
  *        If missing, this load is assumed to be constant power.
  * @param PowerCutZone [[ch.ninecode.model.PowerCutZone PowerCutZone]] The  energy consumer is assigned to this power cut zone.
@@ -1220,7 +1290,7 @@ extends
  */
 case class EnergyConsumer
 (
-    override val sup: ConductingEquipment,
+    override val sup: EnergyConnection,
     customerCount: Int,
     grounded: Boolean,
     p: Double,
@@ -1250,7 +1320,7 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ConductingEquipment: ConductingEquipment = sup.asInstanceOf[ConductingEquipment]
+    def EnergyConnection: EnergyConnection = sup.asInstanceOf[EnergyConnection]
     override def copy (): Row = { clone ().asInstanceOf[EnergyConsumer] }
     override def get (i: Int): Object =
     {
@@ -1332,7 +1402,7 @@ extends
         implicit val ctx: Context = context
         implicit var bitfields: Array[Int] = Array(0)
         val ret = EnergyConsumer (
-            ConductingEquipment.parse (context),
+            EnergyConnection.parse (context),
             toInteger (mask (customerCount (), 0)),
             toBoolean (mask (grounded (), 1)),
             toDouble (mask (p (), 2)),
@@ -1356,12 +1426,16 @@ extends
  * A single phase of an energy consumer.
  *
  * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
+ * @param p Active power of the load.
+ *        Load sign convention is used, i.e. positive sign means flow out from a node.
  * @param pfixed Active power of the load that is a fixed quantity.
  *        Load sign convention is used, i.e. positive sign means flow out from a node.
  * @param pfixedPct Fixed active power as per cent of load group fixed active power.
  *        Load sign convention is used, i.e. positive sign means flow out from a node.
  * @param phase Phase of this energy consumer component.
  *        If the energy consumer is wye connected, the connection is from the indicated phase to the central ground or neutral point.  If the energy consumer is delta connected, the phase indicates an energy consumer connected from the indicated phase to the next logical non-neutral phase.
+ * @param q Reactive power of the load.
+ *        Load sign convention is used, i.e. positive sign means flow out from a node.
  * @param qfixed Reactive power of the load that is a fixed quantity.
  *        Load sign convention is used, i.e. positive sign means flow out from a node.
  * @param qfixedPct Fixed reactive power as per cent of load group fixed reactive power.
@@ -1374,9 +1448,11 @@ extends
 case class EnergyConsumerPhase
 (
     override val sup: PowerSystemResource,
+    p: Double,
     pfixed: Double,
     pfixedPct: Double,
     phase: String,
+    q: Double,
     qfixed: Double,
     qfixedPct: Double,
     EnergyConsumer: String
@@ -1387,7 +1463,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, null, 0.0, 0.0, null) }
+    def this () = { this (null, 0.0, 0.0, 0.0, null, 0.0, 0.0, 0.0, null) }
     /**
      * Return the superclass object.
      *
@@ -1412,12 +1488,14 @@ extends
         implicit val clz: String = EnergyConsumerPhase.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (EnergyConsumerPhase.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (EnergyConsumerPhase.fields (position), value)
-        emitelem (0, pfixed)
-        emitelem (1, pfixedPct)
-        emitattr (2, phase)
-        emitelem (3, qfixed)
-        emitelem (4, qfixedPct)
-        emitattr (5, EnergyConsumer)
+        emitelem (0, p)
+        emitelem (1, pfixed)
+        emitelem (2, pfixedPct)
+        emitattr (3, phase)
+        emitelem (4, q)
+        emitelem (5, qfixed)
+        emitelem (6, qfixedPct)
+        emitattr (7, EnergyConsumer)
         s.toString
     }
     override def export: String =
@@ -1431,9 +1509,11 @@ extends
     Parseable[EnergyConsumerPhase]
 {
     override val fields: Array[String] = Array[String] (
+        "p",
         "pfixed",
         "pfixedPct",
         "phase",
+        "q",
         "qfixed",
         "qfixedPct",
         "EnergyConsumer"
@@ -1441,12 +1521,14 @@ extends
     override val relations: List[Relationship] = List (
         Relationship ("EnergyConsumer", "EnergyConsumer", "1", "0..*")
     )
-    val pfixed: Fielder = parse_element (element (cls, fields(0)))
-    val pfixedPct: Fielder = parse_element (element (cls, fields(1)))
-    val phase: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val qfixed: Fielder = parse_element (element (cls, fields(3)))
-    val qfixedPct: Fielder = parse_element (element (cls, fields(4)))
-    val EnergyConsumer: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val p: Fielder = parse_element (element (cls, fields(0)))
+    val pfixed: Fielder = parse_element (element (cls, fields(1)))
+    val pfixedPct: Fielder = parse_element (element (cls, fields(2)))
+    val phase: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val q: Fielder = parse_element (element (cls, fields(4)))
+    val qfixed: Fielder = parse_element (element (cls, fields(5)))
+    val qfixedPct: Fielder = parse_element (element (cls, fields(6)))
+    val EnergyConsumer: Fielder = parse_attribute (attribute (cls, fields(7)))
 
     def parse (context: Context): EnergyConsumerPhase =
     {
@@ -1454,12 +1536,92 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = EnergyConsumerPhase (
             PowerSystemResource.parse (context),
-            toDouble (mask (pfixed (), 0)),
-            toDouble (mask (pfixedPct (), 1)),
-            mask (phase (), 2),
-            toDouble (mask (qfixed (), 3)),
-            toDouble (mask (qfixedPct (), 4)),
-            mask (EnergyConsumer (), 5)
+            toDouble (mask (p (), 0)),
+            toDouble (mask (pfixed (), 1)),
+            toDouble (mask (pfixedPct (), 2)),
+            mask (phase (), 3),
+            toDouble (mask (q (), 4)),
+            toDouble (mask (qfixed (), 5)),
+            toDouble (mask (qfixedPct (), 6)),
+            mask (EnergyConsumer (), 7)
+        )
+        ret.bitfields = bitfields
+        ret
+    }
+}
+
+/**
+ * Used to define the type of generation for scheduling purposes.
+ *
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param EnergySource [[ch.ninecode.model.EnergySource EnergySource]] Energy Source of a particular Energy Scheduling Type.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
+ */
+case class EnergySchedulingType
+(
+    override val sup: IdentifiedObject,
+    EnergySource: List[String]
+)
+extends
+    Element
+{
+    /**
+     * Zero args constructor.
+     */
+    def this () = { this (null, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
+    override def copy (): Row = { clone ().asInstanceOf[EnergySchedulingType] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = EnergySchedulingType.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (EnergySchedulingType.fields (position), x))
+        emitattrs (0, EnergySource)
+        s.toString
+    }
+    override def export: String =
+    {
+        "\t<cim:EnergySchedulingType rdf:ID=\"%s\">\n%s\t</cim:EnergySchedulingType>".format (id, export_fields)
+    }
+}
+
+object EnergySchedulingType
+extends
+    Parseable[EnergySchedulingType]
+{
+    override val fields: Array[String] = Array[String] (
+        "EnergySource"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("EnergySource", "EnergySource", "0..*", "0..1")
+    )
+    val EnergySource: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+
+    def parse (context: Context): EnergySchedulingType =
+    {
+        implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
+        val ret = EnergySchedulingType (
+            IdentifiedObject.parse (context),
+            masks (EnergySource (), 0)
         )
         ret.bitfields = bitfields
         ret
@@ -1469,32 +1631,38 @@ extends
 /**
  * A generic equivalent for an energy supplier on a transmission or distribution voltage level.
  *
- * @param sup [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.EnergyConnection EnergyConnection]] Reference to the superclass object.
  * @param activePower High voltage source active injection.
  *        Load sign convention is used, i.e. positive sign means flow out from a node.
  * @param nominalVoltage Phase-to-phase nominal voltage.
+ * @param pMax This is the maximum active power that can be produced by the source.
+ *        Load sign convention is used, i.e. positive sign means flow out from a TopologicalNode (bus) into the conducting equipment.
+ * @param pMin This is the minimum active power that can be produced by the source.
+ *        Load sign convention is used, i.e. positive sign means flow out from a TopologicalNode (bus) into the conducting equipment.
  * @param r Positive sequence Thevenin resistance.
  * @param r0 Zero sequence Thevenin resistance.
  * @param reactivePower High voltage source reactive injection.
  *        Load sign convention is used, i.e. positive sign means flow out from a node.
  * @param rn Negative sequence Thevenin resistance.
- * @param voltageAngle Phase angle of a-phase open circuit.
- * @param voltageMagnitude Phase-to-phase open circuit voltage magnitude.
+ * @param voltageAngle Phase angle of a-phase open circuit used when voltage characteristics need to be imposed at the node associated with the terminal of the energy source, such as when voltages and angles from the transmission level are used as input to the distribution network.
+ * @param voltageMagnitude Phase-to-phase open circuit voltage magnitude used when voltage characteristics need to be imposed at the node associated with the terminal of the energy source, such as when voltages and angles from the transmission level are used as input to the distribution network.
  * @param x Positive sequence Thevenin reactance.
  * @param x0 Zero sequence Thevenin reactance.
  * @param xn Negative sequence Thevenin reactance.
- * @param EnergySchedulingType [[ch.ninecode.model.EnergySchedulingType EnergySchedulingType]] Energy Scheduling Type of an Energy Source
+ * @param EnergySchedulingType [[ch.ninecode.model.EnergySchedulingType EnergySchedulingType]] Energy Scheduling Type of an Energy Source.
  * @param EnergySourceAction [[ch.ninecode.model.EnergySourceAction EnergySourceAction]] Action taken with this energy source.
- * @param WindTurbineType3or4Dynamics [[ch.ninecode.model.WindTurbineType3or4Dynamics WindTurbineType3or4Dynamics]] Wind generator Type 3 or 4 dynamics model associated with this energy source.
+ * @param EnergySourcePhase [[ch.ninecode.model.EnergySourcePhase EnergySourcePhase]] The individual phase information of the energy source.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
  */
 case class EnergySource
 (
-    override val sup: ConductingEquipment,
+    override val sup: EnergyConnection,
     activePower: Double,
     nominalVoltage: Double,
+    pMax: Double,
+    pMin: Double,
     r: Double,
     r0: Double,
     reactivePower: Double,
@@ -1506,7 +1674,7 @@ case class EnergySource
     xn: Double,
     EnergySchedulingType: String,
     EnergySourceAction: String,
-    WindTurbineType3or4Dynamics: String
+    EnergySourcePhase: List[String]
 )
 extends
     Element
@@ -1514,7 +1682,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, null, null) }
+    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -1523,7 +1691,7 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ConductingEquipment: ConductingEquipment = sup.asInstanceOf[ConductingEquipment]
+    def EnergyConnection: EnergyConnection = sup.asInstanceOf[EnergyConnection]
     override def copy (): Row = { clone ().asInstanceOf[EnergySource] }
     override def get (i: Int): Object =
     {
@@ -1539,20 +1707,23 @@ extends
         implicit val clz: String = EnergySource.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (EnergySource.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (EnergySource.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (EnergySource.fields (position), x))
         emitelem (0, activePower)
         emitelem (1, nominalVoltage)
-        emitelem (2, r)
-        emitelem (3, r0)
-        emitelem (4, reactivePower)
-        emitelem (5, rn)
-        emitelem (6, voltageAngle)
-        emitelem (7, voltageMagnitude)
-        emitelem (8, x)
-        emitelem (9, x0)
-        emitelem (10, xn)
-        emitattr (11, EnergySchedulingType)
-        emitattr (12, EnergySourceAction)
-        emitattr (13, WindTurbineType3or4Dynamics)
+        emitelem (2, pMax)
+        emitelem (3, pMin)
+        emitelem (4, r)
+        emitelem (5, r0)
+        emitelem (6, reactivePower)
+        emitelem (7, rn)
+        emitelem (8, voltageAngle)
+        emitelem (9, voltageMagnitude)
+        emitelem (10, x)
+        emitelem (11, x0)
+        emitelem (12, xn)
+        emitattr (13, EnergySchedulingType)
+        emitattr (14, EnergySourceAction)
+        emitattrs (15, EnergySourcePhase)
         s.toString
     }
     override def export: String =
@@ -1568,6 +1739,8 @@ extends
     override val fields: Array[String] = Array[String] (
         "activePower",
         "nominalVoltage",
+        "pMax",
+        "pMin",
         "r",
         "r0",
         "reactivePower",
@@ -1579,48 +1752,52 @@ extends
         "xn",
         "EnergySchedulingType",
         "EnergySourceAction",
-        "WindTurbineType3or4Dynamics"
+        "EnergySourcePhase"
     )
     override val relations: List[Relationship] = List (
         Relationship ("EnergySchedulingType", "EnergySchedulingType", "0..1", "0..*"),
         Relationship ("EnergySourceAction", "EnergySourceAction", "0..1", "0..1"),
-        Relationship ("WindTurbineType3or4Dynamics", "WindTurbineType3or4Dynamics", "0..1", "1")
+        Relationship ("EnergySourcePhase", "EnergySourcePhase", "0..*", "1")
     )
     val activePower: Fielder = parse_element (element (cls, fields(0)))
     val nominalVoltage: Fielder = parse_element (element (cls, fields(1)))
-    val r: Fielder = parse_element (element (cls, fields(2)))
-    val r0: Fielder = parse_element (element (cls, fields(3)))
-    val reactivePower: Fielder = parse_element (element (cls, fields(4)))
-    val rn: Fielder = parse_element (element (cls, fields(5)))
-    val voltageAngle: Fielder = parse_element (element (cls, fields(6)))
-    val voltageMagnitude: Fielder = parse_element (element (cls, fields(7)))
-    val x: Fielder = parse_element (element (cls, fields(8)))
-    val x0: Fielder = parse_element (element (cls, fields(9)))
-    val xn: Fielder = parse_element (element (cls, fields(10)))
-    val EnergySchedulingType: Fielder = parse_attribute (attribute (cls, fields(11)))
-    val EnergySourceAction: Fielder = parse_attribute (attribute (cls, fields(12)))
-    val WindTurbineType3or4Dynamics: Fielder = parse_attribute (attribute (cls, fields(13)))
+    val pMax: Fielder = parse_element (element (cls, fields(2)))
+    val pMin: Fielder = parse_element (element (cls, fields(3)))
+    val r: Fielder = parse_element (element (cls, fields(4)))
+    val r0: Fielder = parse_element (element (cls, fields(5)))
+    val reactivePower: Fielder = parse_element (element (cls, fields(6)))
+    val rn: Fielder = parse_element (element (cls, fields(7)))
+    val voltageAngle: Fielder = parse_element (element (cls, fields(8)))
+    val voltageMagnitude: Fielder = parse_element (element (cls, fields(9)))
+    val x: Fielder = parse_element (element (cls, fields(10)))
+    val x0: Fielder = parse_element (element (cls, fields(11)))
+    val xn: Fielder = parse_element (element (cls, fields(12)))
+    val EnergySchedulingType: Fielder = parse_attribute (attribute (cls, fields(13)))
+    val EnergySourceAction: Fielder = parse_attribute (attribute (cls, fields(14)))
+    val EnergySourcePhase: FielderMultiple = parse_attributes (attribute (cls, fields(15)))
 
     def parse (context: Context): EnergySource =
     {
         implicit val ctx: Context = context
         implicit var bitfields: Array[Int] = Array(0)
         val ret = EnergySource (
-            ConductingEquipment.parse (context),
+            EnergyConnection.parse (context),
             toDouble (mask (activePower (), 0)),
             toDouble (mask (nominalVoltage (), 1)),
-            toDouble (mask (r (), 2)),
-            toDouble (mask (r0 (), 3)),
-            toDouble (mask (reactivePower (), 4)),
-            toDouble (mask (rn (), 5)),
-            toDouble (mask (voltageAngle (), 6)),
-            toDouble (mask (voltageMagnitude (), 7)),
-            toDouble (mask (x (), 8)),
-            toDouble (mask (x0 (), 9)),
-            toDouble (mask (xn (), 10)),
-            mask (EnergySchedulingType (), 11),
-            mask (EnergySourceAction (), 12),
-            mask (WindTurbineType3or4Dynamics (), 13)
+            toDouble (mask (pMax (), 2)),
+            toDouble (mask (pMin (), 3)),
+            toDouble (mask (r (), 4)),
+            toDouble (mask (r0 (), 5)),
+            toDouble (mask (reactivePower (), 6)),
+            toDouble (mask (rn (), 7)),
+            toDouble (mask (voltageAngle (), 8)),
+            toDouble (mask (voltageMagnitude (), 9)),
+            toDouble (mask (x (), 10)),
+            toDouble (mask (x0 (), 11)),
+            toDouble (mask (xn (), 12)),
+            mask (EnergySchedulingType (), 13),
+            mask (EnergySourceAction (), 14),
+            masks (EnergySourcePhase (), 15)
         )
         ret.bitfields = bitfields
         ret
@@ -1628,40 +1805,127 @@ extends
 }
 
 /**
- * This class represents external network and it is used for IEC 60909 calculations.
+ * Represents the single phase information of an unbalanced energy source.
+ *
+ * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
+ * @param phase Phase of this energy source component.
+ *        If the energy source wye connected, the connection is from the indicated phase to the central ground or neutral point.  If the energy source is delta connected, the phase indicates an energy source connected from the indicated phase to the next logical non-neutral phase.
+ * @param EnergySource [[ch.ninecode.model.EnergySource EnergySource]] The energy sourceto which the phase belongs.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
+ */
+case class EnergySourcePhase
+(
+    override val sup: PowerSystemResource,
+    phase: String,
+    EnergySource: String
+)
+extends
+    Element
+{
+    /**
+     * Zero args constructor.
+     */
+    def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def PowerSystemResource: PowerSystemResource = sup.asInstanceOf[PowerSystemResource]
+    override def copy (): Row = { clone ().asInstanceOf[EnergySourcePhase] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = EnergySourcePhase.cls
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (EnergySourcePhase.fields (position), value)
+        emitattr (0, phase)
+        emitattr (1, EnergySource)
+        s.toString
+    }
+    override def export: String =
+    {
+        "\t<cim:EnergySourcePhase rdf:ID=\"%s\">\n%s\t</cim:EnergySourcePhase>".format (id, export_fields)
+    }
+}
+
+object EnergySourcePhase
+extends
+    Parseable[EnergySourcePhase]
+{
+    override val fields: Array[String] = Array[String] (
+        "phase",
+        "EnergySource"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("EnergySource", "EnergySource", "1", "0..*")
+    )
+    val phase: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val EnergySource: Fielder = parse_attribute (attribute (cls, fields(1)))
+
+    def parse (context: Context): EnergySourcePhase =
+    {
+        implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
+        val ret = EnergySourcePhase (
+            PowerSystemResource.parse (context),
+            mask (phase (), 0),
+            mask (EnergySource (), 1)
+        )
+        ret.bitfields = bitfields
+        ret
+    }
+}
+
+/**
+ * This class represents the external network and it is used for IEC 60909 calculations.
  *
  * @param sup [[ch.ninecode.model.RegulatingCondEq RegulatingCondEq]] Reference to the superclass object.
  * @param governorSCD Power Frequency Bias.
  *        This is the change in power injection divided by the change in frequency and negated.  A positive value of the power frequency bias provides additional power injection upon a drop in frequency.
  * @param ikSecond Indicates whether initial symmetrical short-circuit current and power have been calculated according to IEC (Ik").
+ *        Used only if short circuit calculations are done according to superposition method.
  * @param maxInitialSymShCCurrent Maximum initial symmetrical short-circuit currents (Ik" max) in A (Ik" = Sk"/(SQRT(3) Un)).
- *        Used for short circuit data exchange according to IEC 60909
+ *        Used for short circuit data exchange according to IEC 60909.
  * @param maxP Maximum active power of the injection.
  * @param maxQ Not for short circuit modelling; It is used for modelling of infeed for load flow exchange.
- *        If maxQ and minQ are not used ReactiveCapabilityCurve can be used
+ *        If maxQ and minQ are not used ReactiveCapabilityCurve can be used.
  * @param maxR0ToX0Ratio Maximum ratio of zero sequence resistance of Network Feeder to its zero sequence reactance (R(0)/X(0) max).
- *        Used for short circuit data exchange according to IEC 60909
+ *        Used for short circuit data exchange according to IEC 60909.
  * @param maxR1ToX1Ratio Maximum ratio of positive sequence resistance of Network Feeder to its positive sequence reactance (R(1)/X(1) max).
- *        Used for short circuit data exchange according to IEC 60909
+ *        Used for short circuit data exchange according to IEC 60909.
  * @param maxZ0ToZ1Ratio Maximum ratio of zero sequence impedance to its positive sequence impedance (Z(0)/Z(1) max).
- *        Used for short circuit data exchange according to IEC 60909
+ *        Used for short circuit data exchange according to IEC 60909.
  * @param minInitialSymShCCurrent Minimum initial symmetrical short-circuit currents (Ik" min) in A (Ik" = Sk"/(SQRT(3) Un)).
- *        Used for short circuit data exchange according to IEC 60909
+ *        Used for short circuit data exchange according to IEC 60909.
  * @param minP Minimum active power of the injection.
  * @param minQ Not for short circuit modelling; It is used for modelling of infeed for load flow exchange.
- *        If maxQ and minQ are not used ReactiveCapabilityCurve can be used
+ *        If maxQ and minQ are not used ReactiveCapabilityCurve can be used.
  * @param minR0ToX0Ratio Indicates whether initial symmetrical short-circuit current and power have been calculated according to IEC (Ik").
- *        Used for short circuit data exchange according to IEC 6090
+ *        Used for short circuit data exchange according to IEC 6090.
  * @param minR1ToX1Ratio Minimum ratio of positive sequence resistance of Network Feeder to its positive sequence reactance (R(1)/X(1) min).
- *        Used for short circuit data exchange according to IEC 60909
+ *        Used for short circuit data exchange according to IEC 60909.
  * @param minZ0ToZ1Ratio Minimum ratio of zero sequence impedance to its positive sequence impedance (Z(0)/Z(1) min).
- *        Used for short circuit data exchange according to IEC 60909
+ *        Used for short circuit data exchange according to IEC 60909.
  * @param p Active power injection.
  *        Load sign convention is used, i.e. positive sign means flow out from a node.
  * @param q Reactive power injection.
  *        Load sign convention is used, i.e. positive sign means flow out from a node.
  * @param referencePriority Priority of unit for use as powerflow voltage phase angle reference bus selection. 0 = don t care (default) 1 = highest priority. 2 is less than 1 and so on.
  * @param voltageFactor Voltage factor in pu, which was used to calculate short-circuit current Ik" and power Sk".
+ *        Used only if short circuit calculations are done according to superposition method.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -1824,9 +2088,9 @@ extends
  *
  * @param sup [[ch.ninecode.model.RegulatingCondEq RegulatingCondEq]] Reference to the superclass object.
  * @param frequency Frequency on the AC side.
- * @param maxP The maximum active power on the DC side at which the frequence converter should operate.
+ * @param maxP The maximum active power on the DC side at which the frequency converter should operate.
  * @param maxU The maximum voltage on the DC side at which the frequency converter should operate.
- * @param minP The minimum active power on the DC side at which the frequence converter should operate.
+ * @param minP The minimum active power on the DC side at which the frequency converter should operate.
  * @param minU The minimum voltage on the DC side at which the frequency converter should operate.
  * @group Wires
  * @groupname Wires Package Wires
@@ -2202,7 +2466,7 @@ extends
 /**
  * A short section of conductor with negligible impedance which can be manually removed and replaced if the circuit is de-energized.
  *
- * Note that zero-impedance branches can potentially be modeled by other equipment types.
+ * Note that zero-impedance branches can potentially be modelled by other equipment types.
  *
  * @param sup [[ch.ninecode.model.Switch Switch]] Reference to the superclass object.
  * @param JumperAction [[ch.ninecode.model.JumperAction JumperAction]] Action taken with this jumper.
@@ -2423,10 +2687,10 @@ extends
  * A linear shunt compensator has banks or sections with equal admittance values.
  *
  * @param sup [[ch.ninecode.model.ShuntCompensator ShuntCompensator]] Reference to the superclass object.
- * @param b0PerSection Zero sequence shunt (charging) susceptance per section
- * @param bPerSection Positive sequence shunt (charging) susceptance per section
- * @param g0PerSection Zero sequence shunt (charging) conductance per section
- * @param gPerSection Positive sequence shunt (charging) conductance per section
+ * @param b0PerSection Zero sequence shunt (charging) susceptance per section.
+ * @param bPerSection Positive sequence shunt (charging) susceptance per section.
+ * @param g0PerSection Zero sequence shunt (charging) conductance per section.
+ * @param gPerSection Positive sequence shunt (charging) conductance per section.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -2793,7 +3057,7 @@ extends
 }
 
 /**
- * A non linear shunt compensator has bank or section admittance values that differs.
+ * A non linear shunt compensator has bank or section admittance values that differ.
  *
  * @param sup [[ch.ninecode.model.ShuntCompensator ShuntCompensator]] Reference to the superclass object.
  * @param NonlinearShuntCompensatorPoints [[ch.ninecode.model.NonlinearShuntCompensatorPoint NonlinearShuntCompensatorPoint]] All points of the non-linear shunt compensator.
@@ -2871,7 +3135,7 @@ extends
 }
 
 /**
- * A per phase non linear shunt compensator has bank or section admittance values that differs.
+ * A per phase non linear shunt compensator has bank or section admittance values that differ.
  *
  * @param sup [[ch.ninecode.model.ShuntCompensatorPhase ShuntCompensatorPhase]] Reference to the superclass object.
  * @param NonlinearShuntCompensatorPhasePoints [[ch.ninecode.model.NonlinearShuntCompensatorPhasePoint NonlinearShuntCompensatorPhasePoint]] All points of the non-linear shunt compensator phase.
@@ -2952,8 +3216,8 @@ extends
  * A per phase non linear shunt compensator bank or section admittance value.
  *
  * @param sup Reference to the superclass object.
- * @param b Positive sequence shunt (charging) susceptance per section
- * @param g Positive sequence shunt (charging) conductance per section
+ * @param b Positive sequence shunt (charging) susceptance per section.
+ * @param g Positive sequence shunt (charging) conductance per section.
  * @param sectionNumber The number of the section.
  * @param NonlinearShuntCompensatorPhase [[ch.ninecode.model.NonlinearShuntCompensatorPhase NonlinearShuntCompensatorPhase]] Non-linear shunt compensator phase owning this point.
  * @group Wires
@@ -3049,10 +3313,10 @@ extends
  * A non linear shunt compensator bank or section admittance value.
  *
  * @param sup Reference to the superclass object.
- * @param b Positive sequence shunt (charging) susceptance per section
- * @param b0 Zero sequence shunt (charging) susceptance per section
- * @param g Positive sequence shunt (charging) conductance per section
- * @param g0 Zero sequence shunt (charging) conductance per section
+ * @param b Positive sequence shunt (charging) susceptance per section.
+ * @param b0 Zero sequence shunt (charging) susceptance per section.
+ * @param g Positive sequence shunt (charging) conductance per section.
+ * @param g0 Zero sequence shunt (charging) conductance per section.
  * @param sectionNumber The number of the section.
  * @param NonlinearShuntCompensator [[ch.ninecode.model.NonlinearShuntCompensator NonlinearShuntCompensator]] Non-linear shunt compensator owning this point.
  * @group Wires
@@ -3236,8 +3500,7 @@ extends
  * Common type for per-length electrical catalogues describing line parameters.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param WireInfos [[ch.ninecode.model.WireInfo WireInfo]] All wire datasheets used to calculate this per-length parameter.
- * @param WireSpacingInfo [[ch.ninecode.model.WireSpacingInfo WireSpacingInfo]] Wire spacing datasheet used to calculate this per-length parameter.
+ * @param WireAssemblyInfo [[ch.ninecode.model.WireAssemblyInfo WireAssemblyInfo]] <em>undocumented</em>
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -3245,8 +3508,7 @@ extends
 case class PerLengthLineParameter
 (
     override val sup: IdentifiedObject,
-    WireInfos: List[String],
-    WireSpacingInfo: String
+    WireAssemblyInfo: String
 )
 extends
     Element
@@ -3254,7 +3516,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, List(), null) }
+    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -3278,9 +3540,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PerLengthLineParameter.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PerLengthLineParameter.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (PerLengthLineParameter.fields (position), x))
-        emitattrs (0, WireInfos)
-        emitattr (1, WireSpacingInfo)
+        emitattr (0, WireAssemblyInfo)
         s.toString
     }
     override def export: String =
@@ -3294,15 +3554,12 @@ extends
     Parseable[PerLengthLineParameter]
 {
     override val fields: Array[String] = Array[String] (
-        "WireInfos",
-        "WireSpacingInfo"
+        "WireAssemblyInfo"
     )
     override val relations: List[Relationship] = List (
-        Relationship ("WireInfos", "WireInfo", "0..*", "0..*"),
-        Relationship ("WireSpacingInfo", "WireSpacingInfo", "0..1", "0..*")
+        Relationship ("WireAssemblyInfo", "WireAssemblyInfo", "0..1", "0..*")
     )
-    val WireInfos: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
-    val WireSpacingInfo: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val WireAssemblyInfo: Fielder = parse_attribute (attribute (cls, fields(0)))
 
     def parse (context: Context): PerLengthLineParameter =
     {
@@ -3310,8 +3567,7 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = PerLengthLineParameter (
             IdentifiedObject.parse (context),
-            masks (WireInfos (), 0),
-            mask (WireSpacingInfo (), 1)
+            mask (WireAssemblyInfo (), 0)
         )
         ret.bitfields = bitfields
         ret
@@ -3524,15 +3780,15 @@ extends
 }
 
 /**
- * A tunable impedance device normally used to offset line charging during single line faults in an ungrounded section of network.
+ * A variable impedance device normally used to offset line charging during single line faults in an ungrounded section of network.
  *
  * @param sup [[ch.ninecode.model.EarthFaultCompensator EarthFaultCompensator]] Reference to the superclass object.
  * @param mode The mode of operation of the Petersen coil.
  * @param nominalU The nominal voltage for which the coil is designed.
  * @param offsetCurrent The offset current that the Petersen coil controller is operating from the resonant point.
- *        This is normally a fixed amount for which the controller is configured and could be positive or negative.  Typically 0 to 60 Amperes depending on voltage and resonance conditions.
+ *        This is normally a fixed amount for which the controller is configured and could be positive or negative.  Typically 0 to 60 A depending on voltage and resonance conditions.
  * @param positionCurrent The control current used to control the Petersen coil also known as the position current.
- *        Typically in the range of 20-200mA.
+ *        Typically in the range of 20 mA to 200 mA.
  * @param xGroundMax The maximum reactance.
  * @param xGroundMin The minimum reactance.
  * @param xGroundNominal The nominal reactance.
@@ -3639,13 +3895,20 @@ extends
 }
 
 /**
- * Triplet of resistance, reactance, and susceptance matrix element values.
+ * Impedance and conductance matrix element values.
+ *
+ * The diagonal elements are described by the elements having the same toPhase and fromPhase value and the off diagonal elements have different toPhase and fromPhase values.  The matrix can also be stored in symmetric lower triangular format using the row and column attributes, which map to ACLineSegmentPhase.sequenceNumber.
  *
  * @param sup Reference to the superclass object.
  * @param b Susceptance matrix element value, per length of unit.
+ * @param column The matrix element�s column number, in the range row to PerLengthPhaseImpedance.conductorCount.
+ *        Only the lower triangle needs to be stored. This column number matches ACLineSegmentPhase.sequenceNumber.
+ * @param fromPhase Refer to the class description.
+ * @param g Conductance matrix element value, per length of unit.
  * @param r Resistance matrix element value, per length of unit.
- * @param sequenceNumber Column-wise element index, assuming a symmetrical matrix.
- *        Ranges from 1 to N + N*(N-1)/2.
+ * @param row The matrix element�s row number, in the range 1 to PerLengthPhaseImpedance.conductorCount.
+ *        Only the lower triangle needs to be stored. This row number matches ACLineSegmentPhase.sequenceNumber.
+ * @param toPhase Refer to the class description.
  * @param x Reactance matrix element value, per length of unit.
  * @param PhaseImpedance [[ch.ninecode.model.PerLengthPhaseImpedance PerLengthPhaseImpedance]] Conductor phase impedance to which this data belongs.
  * @group Wires
@@ -3656,8 +3919,12 @@ case class PhaseImpedanceData
 (
     override val sup: BasicElement,
     b: Double,
+    column: Int,
+    fromPhase: String,
+    g: Double,
     r: Double,
-    sequenceNumber: Int,
+    row: Int,
+    toPhase: String,
     x: Double,
     PhaseImpedance: String
 )
@@ -3667,7 +3934,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, 0, 0.0, null) }
+    def this () = { this (null, 0.0, 0, null, 0.0, 0.0, 0, null, 0.0, null) }
     /**
      * Return the superclass object.
      *
@@ -3693,10 +3960,14 @@ extends
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PhaseImpedanceData.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PhaseImpedanceData.fields (position), value)
         emitelem (0, b)
-        emitelem (1, r)
-        emitelem (2, sequenceNumber)
-        emitelem (3, x)
-        emitattr (4, PhaseImpedance)
+        emitelem (1, column)
+        emitattr (2, fromPhase)
+        emitelem (3, g)
+        emitelem (4, r)
+        emitelem (5, row)
+        emitattr (6, toPhase)
+        emitelem (7, x)
+        emitattr (8, PhaseImpedance)
         s.toString
     }
     override def export: String =
@@ -3711,8 +3982,12 @@ extends
 {
     override val fields: Array[String] = Array[String] (
         "b",
+        "column",
+        "fromPhase",
+        "g",
         "r",
-        "sequenceNumber",
+        "row",
+        "toPhase",
         "x",
         "PhaseImpedance"
     )
@@ -3720,10 +3995,14 @@ extends
         Relationship ("PhaseImpedance", "PerLengthPhaseImpedance", "1", "1..*")
     )
     val b: Fielder = parse_element (element (cls, fields(0)))
-    val r: Fielder = parse_element (element (cls, fields(1)))
-    val sequenceNumber: Fielder = parse_element (element (cls, fields(2)))
-    val x: Fielder = parse_element (element (cls, fields(3)))
-    val PhaseImpedance: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val column: Fielder = parse_element (element (cls, fields(1)))
+    val fromPhase: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val g: Fielder = parse_element (element (cls, fields(3)))
+    val r: Fielder = parse_element (element (cls, fields(4)))
+    val row: Fielder = parse_element (element (cls, fields(5)))
+    val toPhase: Fielder = parse_attribute (attribute (cls, fields(6)))
+    val x: Fielder = parse_element (element (cls, fields(7)))
+    val PhaseImpedance: Fielder = parse_attribute (attribute (cls, fields(8)))
 
     def parse (context: Context): PhaseImpedanceData =
     {
@@ -3732,10 +4011,14 @@ extends
         val ret = PhaseImpedanceData (
             BasicElement.parse (context),
             toDouble (mask (b (), 0)),
-            toDouble (mask (r (), 1)),
-            toInteger (mask (sequenceNumber (), 2)),
-            toDouble (mask (x (), 3)),
-            mask (PhaseImpedance (), 4)
+            toInteger (mask (column (), 1)),
+            mask (fromPhase (), 2),
+            toDouble (mask (g (), 3)),
+            toDouble (mask (r (), 4)),
+            toInteger (mask (row (), 5)),
+            mask (toPhase (), 6),
+            toDouble (mask (x (), 7)),
+            mask (PhaseImpedance (), 8)
         )
         ret.bitfields = bitfields
         ret
@@ -3829,7 +4112,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.PhaseTapChangerNonLinear PhaseTapChangerNonLinear]] Reference to the superclass object.
  * @param windingConnectionAngle The phase angle between the in-phase winding and the out-of -phase winding used for creating phase shift.
- *        The out-of-phase winding produces what is known as the difference voltage.  Setting this angle to 90 degrees is not the same as a symmemtrical transformer.
+ *        The out-of-phase winding produces what is known as the difference voltage.  Setting this angle to 90 degrees is not the same as a symmetrical transformer.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -3908,10 +4191,10 @@ extends
  * @param sup [[ch.ninecode.model.PhaseTapChanger PhaseTapChanger]] Reference to the superclass object.
  * @param stepPhaseShiftIncrement Phase shift per step position.
  *        A positive value indicates a positive phase shift from the winding where the tap is located to the other winding (for a two-winding transformer).
- * @param xMax The reactance depend on the tap position according to a "u" shaped curve.
- *        The maximum reactance (xMax) appear at the low and high tap positions.
- * @param xMin The reactance depend on the tap position according to a "u" shaped curve.
- *        The minimum reactance (xMin) appear at the mid tap position.
+ * @param xMax The reactance depends on the tap position according to a "u" shaped curve.
+ *        The maximum reactance (xMax) appears at the low and high tap positions.
+ * @param xMin The reactance depends on the tap position according to a "u" shaped curve.
+ *        The minimum reactance (xMin) appears at the mid tap position.  PowerTransformerEnd.x shall be consistent with PhaseTapChangerLinear.xMin and PhaseTapChangerNonLinear.xMin. In case of inconsistency, PowerTransformerEnd.x shall be used.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -3993,16 +4276,17 @@ extends
 }
 
 /**
- * The non-linear phase tap changer describes the non-linear behavior of a phase tap changer.
+ * The non-linear phase tap changer describes the non-linear behaviour of a phase tap changer.
  *
- * This is a base class for the symmetrical and asymmetrical phase tap changer models. The details of these models can be found in the IEC 61970-301 document.
+ * This is a base class for the symmetrical and asymmetrical phase tap changer models. The details of these models can be found in IEC 61970-301.
  *
  * @param sup [[ch.ninecode.model.PhaseTapChanger PhaseTapChanger]] Reference to the superclass object.
- * @param voltageStepIncrement The voltage step increment on the out of phase winding specified in percent of nominal voltage of the transformer end.
+ * @param voltageStepIncrement The voltage step increment on the out of phase winding specified in percent of rated voltage of the power transformer end.
+ *        When the increment is negative, the voltage decreases when the tap step increases.
  * @param xMax The reactance depend on the tap position according to a "u" shaped curve.
  *        The maximum reactance (xMax) appear at the low and high tap positions.
  * @param xMin The reactance depend on the tap position according to a "u" shaped curve.
- *        The minimum reactance (xMin) appear at the mid tap position.
+ *        The minimum reactance (xMin) appear at the mid tap position.   PowerTransformerEnd.x shall be consistent with PhaseTapChangerLinear.xMin and PhaseTapChangerNonLinear.xMin. In case of inconsistency, PowerTransformerEnd.x shall be used.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -4237,6 +4521,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.TapChangerTablePoint TapChangerTablePoint]] Reference to the superclass object.
  * @param angle The angle difference in degrees.
+ *        A positive value indicates a positive phase shift from the winding where the tap is located to the other winding (for a two-winding transformer).
  * @param PhaseTapChangerTable [[ch.ninecode.model.PhaseTapChangerTable PhaseTapChangerTable]] The table of this point.
  * @group Wires
  * @groupname Wires Package Wires
@@ -4318,7 +4603,10 @@ extends
 }
 
 /**
-
+ * Describes a tap changer with a table defining the relation between the tap step and the phase angle difference across the transformer.
+ *
+ * @param sup [[ch.ninecode.model.PhaseTapChanger PhaseTapChanger]] Reference to the superclass object.
+ * @param PhaseTapChangerTable [[ch.ninecode.model.PhaseTapChangerTable PhaseTapChangerTable]] The phase tap changer table for this phase tap changer.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -4455,25 +4743,304 @@ extends
 }
 
 /**
+ * A connection to the AC network for energy production or consumption that uses power electronics rather than rotating machines.
+ *
+ * @param sup [[ch.ninecode.model.RegulatingCondEq RegulatingCondEq]] Reference to the superclass object.
+ * @param maxIFault Maximum fault current this device will contribute, in per-unit of rated current, before the converter protection will trip or bypass.
+ * @param maxQ Maximum reactive power limit.
+ *        This is the maximum (nameplate) limit for the unit.
+ * @param minQ Minimum reactive power limit for the unit.
+ *        This is the minimum (nameplate) limit for the unit.
+ * @param p Active power injection.
+ *        Load sign convention is used, i.e. positive sign means flow out from a node.
+ * @param q Reactive power injection.
+ *        Load sign convention is used, i.e. positive sign means flow out from a node.
+ * @param r Equivalent resistance (RG) of generator.
+ *        RG is considered for the calculation of all currents, except for the calculation of the peak current ip. Used for short circuit data exchange according to IEC 60909.
+ * @param r0 Zero sequence resistance of the synchronous machine.
+ * @param ratedS Nameplate apparent power rating for the unit.
+ *        The attribute shall have a positive value.
+ * @param ratedU Rated voltage (nameplate data, Ur in IEC 60909-0).
+ *        It is primarily used for short circuit data exchange according to IEC 60909.
+ * @param rn Negative sequence Thevenin resistance.
+ * @param x Positive sequence Thevenin reactance.
+ * @param x0 Zero sequence Thevenin reactance.
+ * @param xn Negative sequence Thevenin reactance.
+ * @param PowerElectronicsConnectionPhase [[ch.ninecode.model.PowerElectronicsConnectionPhase PowerElectronicsConnectionPhase]] The individual phases models for the power electronics connection.
+ * @param PowerElectronicsUnit [[ch.ninecode.model.PowerElectronicsUnit PowerElectronicsUnit]] An AC network connection may have several power electronics units connecting through it.
+ * @param WindTurbineType3or4Dynamics [[ch.ninecode.model.WindTurbineType3or4Dynamics WindTurbineType3or4Dynamics]] The wind turbine type 3 or type 4 dynamics model associated with this power electronics connection.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
+ */
+case class PowerElectronicsConnection
+(
+    override val sup: RegulatingCondEq,
+    maxIFault: Double,
+    maxQ: Double,
+    minQ: Double,
+    p: Double,
+    q: Double,
+    r: Double,
+    r0: Double,
+    ratedS: Double,
+    ratedU: Double,
+    rn: Double,
+    x: Double,
+    x0: Double,
+    xn: Double,
+    PowerElectronicsConnectionPhase: List[String],
+    PowerElectronicsUnit: List[String],
+    WindTurbineType3or4Dynamics: String
+)
+extends
+    Element
+{
+    /**
+     * Zero args constructor.
+     */
+    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, List(), List(), null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def RegulatingCondEq: RegulatingCondEq = sup.asInstanceOf[RegulatingCondEq]
+    override def copy (): Row = { clone ().asInstanceOf[PowerElectronicsConnection] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = PowerElectronicsConnection.cls
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PowerElectronicsConnection.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PowerElectronicsConnection.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (PowerElectronicsConnection.fields (position), x))
+        emitelem (0, maxIFault)
+        emitelem (1, maxQ)
+        emitelem (2, minQ)
+        emitelem (3, p)
+        emitelem (4, q)
+        emitelem (5, r)
+        emitelem (6, r0)
+        emitelem (7, ratedS)
+        emitelem (8, ratedU)
+        emitelem (9, rn)
+        emitelem (10, x)
+        emitelem (11, x0)
+        emitelem (12, xn)
+        emitattrs (13, PowerElectronicsConnectionPhase)
+        emitattrs (14, PowerElectronicsUnit)
+        emitattr (15, WindTurbineType3or4Dynamics)
+        s.toString
+    }
+    override def export: String =
+    {
+        "\t<cim:PowerElectronicsConnection rdf:ID=\"%s\">\n%s\t</cim:PowerElectronicsConnection>".format (id, export_fields)
+    }
+}
+
+object PowerElectronicsConnection
+extends
+    Parseable[PowerElectronicsConnection]
+{
+    override val fields: Array[String] = Array[String] (
+        "maxIFault",
+        "maxQ",
+        "minQ",
+        "p",
+        "q",
+        "r",
+        "r0",
+        "ratedS",
+        "ratedU",
+        "rn",
+        "x",
+        "x0",
+        "xn",
+        "PowerElectronicsConnectionPhase",
+        "PowerElectronicsUnit",
+        "WindTurbineType3or4Dynamics"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("PowerElectronicsConnectionPhase", "PowerElectronicsConnectionPhase", "0..*", "1"),
+        Relationship ("PowerElectronicsUnit", "PowerElectronicsUnit", "0..*", "1"),
+        Relationship ("WindTurbineType3or4Dynamics", "WindTurbineType3or4Dynamics", "0..1", "1")
+    )
+    val maxIFault: Fielder = parse_element (element (cls, fields(0)))
+    val maxQ: Fielder = parse_element (element (cls, fields(1)))
+    val minQ: Fielder = parse_element (element (cls, fields(2)))
+    val p: Fielder = parse_element (element (cls, fields(3)))
+    val q: Fielder = parse_element (element (cls, fields(4)))
+    val r: Fielder = parse_element (element (cls, fields(5)))
+    val r0: Fielder = parse_element (element (cls, fields(6)))
+    val ratedS: Fielder = parse_element (element (cls, fields(7)))
+    val ratedU: Fielder = parse_element (element (cls, fields(8)))
+    val rn: Fielder = parse_element (element (cls, fields(9)))
+    val x: Fielder = parse_element (element (cls, fields(10)))
+    val x0: Fielder = parse_element (element (cls, fields(11)))
+    val xn: Fielder = parse_element (element (cls, fields(12)))
+    val PowerElectronicsConnectionPhase: FielderMultiple = parse_attributes (attribute (cls, fields(13)))
+    val PowerElectronicsUnit: FielderMultiple = parse_attributes (attribute (cls, fields(14)))
+    val WindTurbineType3or4Dynamics: Fielder = parse_attribute (attribute (cls, fields(15)))
+
+    def parse (context: Context): PowerElectronicsConnection =
+    {
+        implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
+        val ret = PowerElectronicsConnection (
+            RegulatingCondEq.parse (context),
+            toDouble (mask (maxIFault (), 0)),
+            toDouble (mask (maxQ (), 1)),
+            toDouble (mask (minQ (), 2)),
+            toDouble (mask (p (), 3)),
+            toDouble (mask (q (), 4)),
+            toDouble (mask (r (), 5)),
+            toDouble (mask (r0 (), 6)),
+            toDouble (mask (ratedS (), 7)),
+            toDouble (mask (ratedU (), 8)),
+            toDouble (mask (rn (), 9)),
+            toDouble (mask (x (), 10)),
+            toDouble (mask (x0 (), 11)),
+            toDouble (mask (xn (), 12)),
+            masks (PowerElectronicsConnectionPhase (), 13),
+            masks (PowerElectronicsUnit (), 14),
+            mask (WindTurbineType3or4Dynamics (), 15)
+        )
+        ret.bitfields = bitfields
+        ret
+    }
+}
+
+/**
+ * A single phase of a power electronics connection.
+ *
+ * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
+ * @param p Active power injection.
+ *        Load sign convention is used, i.e. positive sign means flow into the equipment from the network.
+ * @param phase Phase of this energy producer component.
+ *        If the energy producer is wye connected, the connection is from the indicated phase to the central ground or neutral point.  If the energy producer is delta connected, the phase indicates an energy producer connected from the indicated phase to the next logical non-neutral phase.
+ * @param q Reactive power injection.
+ *        Load sign convention is used, i.e. positive sign means flow into the equipment from the network.
+ * @param PowerElectronicsConnection [[ch.ninecode.model.PowerElectronicsConnection PowerElectronicsConnection]] Power electronics connection of this power electronics connection phase.
+ * @group Wires
+ * @groupname Wires Package Wires
+ * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
+ */
+case class PowerElectronicsConnectionPhase
+(
+    override val sup: PowerSystemResource,
+    p: Double,
+    phase: String,
+    q: Double,
+    PowerElectronicsConnection: String
+)
+extends
+    Element
+{
+    /**
+     * Zero args constructor.
+     */
+    def this () = { this (null, 0.0, null, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def PowerSystemResource: PowerSystemResource = sup.asInstanceOf[PowerSystemResource]
+    override def copy (): Row = { clone ().asInstanceOf[PowerElectronicsConnectionPhase] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = PowerElectronicsConnectionPhase.cls
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PowerElectronicsConnectionPhase.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PowerElectronicsConnectionPhase.fields (position), value)
+        emitelem (0, p)
+        emitattr (1, phase)
+        emitelem (2, q)
+        emitattr (3, PowerElectronicsConnection)
+        s.toString
+    }
+    override def export: String =
+    {
+        "\t<cim:PowerElectronicsConnectionPhase rdf:ID=\"%s\">\n%s\t</cim:PowerElectronicsConnectionPhase>".format (id, export_fields)
+    }
+}
+
+object PowerElectronicsConnectionPhase
+extends
+    Parseable[PowerElectronicsConnectionPhase]
+{
+    override val fields: Array[String] = Array[String] (
+        "p",
+        "phase",
+        "q",
+        "PowerElectronicsConnection"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("PowerElectronicsConnection", "PowerElectronicsConnection", "1", "0..*")
+    )
+    val p: Fielder = parse_element (element (cls, fields(0)))
+    val phase: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val q: Fielder = parse_element (element (cls, fields(2)))
+    val PowerElectronicsConnection: Fielder = parse_attribute (attribute (cls, fields(3)))
+
+    def parse (context: Context): PowerElectronicsConnectionPhase =
+    {
+        implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
+        val ret = PowerElectronicsConnectionPhase (
+            PowerSystemResource.parse (context),
+            toDouble (mask (p (), 0)),
+            mask (phase (), 1),
+            toDouble (mask (q (), 2)),
+            mask (PowerElectronicsConnection (), 3)
+        )
+        ret.bitfields = bitfields
+        ret
+    }
+}
+
+/**
  * An electrical device consisting of  two or more coupled windings, with or without a magnetic core, for introducing mutual coupling between electric circuits.
  *
  * Transformers can be used to control voltage and phase shift (active power flow).
  *
  * @param sup [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] Reference to the superclass object.
- * @param beforeShCircuitHighestOperatingCurrent The highest operating current (Ib in the IEC 60909-0) before short circuit (depends on network configuration and relevant reliability philosophy).
+ * @param beforeShCircuitHighestOperatingCurrent The highest operating current (Ib in IEC 60909-0) before short circuit (depends on network configuration and relevant reliability philosophy).
  *        It is used for calculation of the impedance correction factor KT defined in IEC 60909-0.
- * @param beforeShCircuitHighestOperatingVoltage The highest operating voltage (Ub in the IEC 60909-0) before short circuit.
- *        It is used for calculation of the impedance correction factor KT defined in IEC 60909-0. This is worst case voltage on the low side winding (Section 3.7.1 in the standard). Used to define operating conditions.
- * @param beforeShortCircuitAnglePf The angle of power factor before short circuit (phib in the IEC 60909-0).
+ * @param beforeShCircuitHighestOperatingVoltage The highest operating voltage (Ub in IEC 60909-0) before short circuit.
+ *        It is used for calculation of the impedance correction factor KT defined in IEC 60909-0. This is worst case voltage on the low side winding (3.7.1 of IEC 60909:2001). Used to define operating conditions.
+ * @param beforeShortCircuitAnglePf The angle of power factor before short circuit (phib in IEC 60909-0).
  *        It is used for calculation of the impedance correction factor KT defined in IEC 60909-0. This is the worst case power factor. Used to define operating conditions.
- * @param highSideMinOperatingU The minimum operating voltage (uQmin in the IEC 60909-0) at the high voltage side (Q side) of the unit transformer of the power station unit.
- *        A value well established from long-term operating experience of the system. It is used for calculation of the impedance correction factor KG defined in IEC 60909-0
+ * @param highSideMinOperatingU The minimum operating voltage (uQmin in IEC 60909-0) at the high voltage side (Q side) of the unit transformer of the power station unit.
+ *        A value well established from long-term operating experience of the system. It is used for calculation of the impedance correction factor KG defined in IEC 60909-0.
  * @param isPartOfGeneratorUnit Indicates whether the machine is part of a power station unit.
- *        Used for short circuit data exchange according to IEC 60909
+ *        Used for short circuit data exchange according to IEC 60909.  It has an impact on how the correction factors are calculated for transformers, since the transformer is not necessarily part of a synchronous machine and generating unit. It is not always possible to derive this information from the model. This is why the attribute is necessary.
  * @param operationalValuesConsidered It is used to define if the data (other attributes related to short circuit data exchange) defines long term operational conditions or not.
  *        Used for short circuit data exchange according to IEC 60909.
  * @param vectorGroup Vector group of the transformer for protective relaying, e.g., Dyn1.
- *        For unbalanced transformers, this may not be simply determined from the constituent winding connections and phase angle dispacements.
+ *        For unbalanced transformers, this may not be simply determined from the constituent winding connections and phase angle displacements.
  * @param PowerTransformerEnd [[ch.ninecode.model.PowerTransformerEnd PowerTransformerEnd]] The ends of this power transformer.
  * @param TransformerTanks [[ch.ninecode.model.TransformerTank TransformerTank]] All transformers that belong to this bank.
  * @group Wires
@@ -4594,7 +5161,7 @@ extends
 /**
  * A PowerTransformerEnd is associated with each Terminal of a PowerTransformer.
  *
- * The impedance values r, r0, x, and x0 of a PowerTransformerEnd represents a star equivalent as follows
+ * The impedance values r, r0, x, and x0 of a PowerTransformerEnd represents a star equivalent as follows.
  *
  * @param sup [[ch.ninecode.model.TransformerEnd TransformerEnd]] Reference to the superclass object.
  * @param b Magnetizing branch susceptance (B mag).
@@ -4606,12 +5173,12 @@ extends
  * @param phaseAngleClock Terminal voltage phase angle displacement where 360 degrees are represented with clock hours.
  *        The valid values are 0 to 11. For example, for the secondary side end of a transformer with vector group code of 'Dyn11', specify the connection kind as wye with neutral and specify the phase angle of the clock as 11.  The clock value of the transformer end number specified as 1, is assumed to be zero.  Note the transformer end number is not assumed to be the same as the terminal sequence number.
  * @param r Resistance (star-model) of the transformer end.
- *        The attribute shall be equal or greater than zero for non-equivalent transformers.
+ *        The attribute shall be equal to or greater than zero for non-equivalent transformers.
  * @param r0 Zero sequence series resistance (star-model) of the transformer end.
  * @param ratedS Normal apparent power rating.
  *        The attribute shall be a positive value. For a two-winding transformer the values for the high and low voltage sides shall be identical.
  * @param ratedU Rated voltage: phase-phase for three-phase windings, and either phase-phase or phase-neutral for single-phase windings.
- *        A high voltage side, as given by TransformerEnd.endNumber, shall have a ratedU that is greater or equal than ratedU for the lower voltage sides.
+ *        A high voltage side, as given by TransformerEnd.endNumber, shall have a ratedU that is greater than or equal to ratedU for the lower voltage sides.
  * @param x Positive sequence series reactance (star-model) of the transformer end.
  * @param x0 Zero sequence series reactance of the transformer end.
  * @param PowerTransformer [[ch.ninecode.model.PowerTransformer PowerTransformer]] The power transformer of this power transformer end.
@@ -4844,8 +5411,11 @@ extends
 /**
  * A tap changer that changes the voltage ratio impacting the voltage magnitude but not the phase angle across the transformer.
  *
+ * Angle sign convention (general): Positive value indicates a positive phase shift from the winding where the tap is located to the other winding (for a two-winding transformer).
+ *
  * @param sup [[ch.ninecode.model.TapChanger TapChanger]] Reference to the superclass object.
- * @param stepVoltageIncrement Tap step increment, in per cent of nominal voltage, per step position.
+ * @param stepVoltageIncrement Tap step increment, in per cent of rated voltage of the power transformer end, per step position.
+ *        When the increment is negative, the voltage decreases when the tap step increases.
  * @param tculControlMode Specifies the regulation control mode (voltage or reactive) of the RatioTapChanger.
  * @param RatioTapChangerTable [[ch.ninecode.model.RatioTapChangerTable RatioTapChangerTable]] The tap ratio table for this ratio  tap changer.
  * @param TransformerEnd [[ch.ninecode.model.TransformerEnd TransformerEnd]] Transformer end to which this ratio tap changer belongs.
@@ -5109,7 +5679,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param coolantTemperature The machine's coolant temperature (e.g., ambient air or stator circulating water).
- * @param hydrogenPressure The hydrogen coolant pressure
+ * @param hydrogenPressure The hydrogen coolant pressure.
  * @param EquivalentInjection [[ch.ninecode.model.EquivalentInjection EquivalentInjection]] The equivalent injection using this reactive capability curve.
  * @param InitiallyUsedBySynchronousMachines [[ch.ninecode.model.SynchronousMachine SynchronousMachine]] Synchronous machines using this curve as default.
  * @param SynchronousMachines [[ch.ninecode.model.SynchronousMachine SynchronousMachine]] Synchronous machines using this curve.
@@ -5274,7 +5844,7 @@ extends
 /**
  * A type of conducting equipment that can regulate a quantity (i.e. voltage or flow) at a specific point in the network.
  *
- * @param sup [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.EnergyConnection EnergyConnection]] Reference to the superclass object.
  * @param controlEnabled Specifies the regulation status of the equipment.
  *        True is regulating, false is not regulating.
  * @param RegulatingControl [[ch.ninecode.model.RegulatingControl RegulatingControl]] The regulating control scheme in which this equipment participates.
@@ -5284,7 +5854,7 @@ extends
  */
 case class RegulatingCondEq
 (
-    override val sup: ConductingEquipment,
+    override val sup: EnergyConnection,
     controlEnabled: Boolean,
     RegulatingControl: String
 )
@@ -5303,7 +5873,7 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def ConductingEquipment: ConductingEquipment = sup.asInstanceOf[ConductingEquipment]
+    def EnergyConnection: EnergyConnection = sup.asInstanceOf[EnergyConnection]
     override def copy (): Row = { clone ().asInstanceOf[RegulatingCondEq] }
     override def get (i: Int): Object =
     {
@@ -5348,7 +5918,7 @@ extends
         implicit val ctx: Context = context
         implicit var bitfields: Array[Int] = Array(0)
         val ret = RegulatingCondEq (
-            ConductingEquipment.parse (context),
+            EnergyConnection.parse (context),
             toBoolean (mask (controlEnabled (), 0)),
             mask (RegulatingControl (), 1)
         )
@@ -5370,15 +5940,15 @@ extends
  *        This specification allows for determining the kind of regulation without need for obtaining the units from a schedule.
  * @param monitoredPhase Phase voltage controlling this regulator, measured at regulator location.
  * @param targetDeadband This is a deadband used with discrete control to avoid excessive update of controls like tap changers and shunt compensator banks while regulating.
- *        The units of those appropriate for the mode.
+ *        The units of those appropriate for the mode.  It is primarily used if the RegulatingControl.discrete is set to "true". Tools should handle cases in which RegulatingControl.targetDeadband has a value if RegulatingControl.discrete is set to "false" or cases in which RegulatingControl.targetDeadband equals zero.
  * @param targetValue The target value specified for case input.
  *        This value can be used for the target value without the use of schedules. The value has the units appropriate to the mode attribute.
  * @param targetValueUnitMultiplier Specify the multiplier for used for the targetValue.
- * @param ProtectiveActionRegulation [[ch.ninecode.model.ProtectiveActionRegulation ProtectiveActionRegulation]] <em>undocumented</em>
+ * @param ProtectiveActionRegulation [[ch.ninecode.model.ProtectiveActionRegulation ProtectiveActionRegulation]] Enable/disable a regulating control or set new target value.
  * @param RegulatingCondEq [[ch.ninecode.model.RegulatingCondEq RegulatingCondEq]] The equipment that participates in this regulating control scheme.
- * @param RegulationSchedule [[ch.ninecode.model.RegulationSchedule RegulationSchedule]] Schedule for this Regulating regulating control.
+ * @param RegulationSchedule [[ch.ninecode.model.RegulationSchedule RegulationSchedule]] Schedule for this regulating control.
  * @param Terminal [[ch.ninecode.model.Terminal Terminal]] The terminal associated with this regulating control.
- *        The terminal is associated instead of a node, since the terminal could connect into either a topological node (bus in bus-branch model) or a connectivity node (detailed switch model).  Sometimes it is useful to model regulation at a terminal of a bus bar object since the bus bar can be present in both a bus-branch model or a model with switch detail.
+ *        The terminal is associated instead of a node, since the terminal could connect into either a topological node or a connectivity node.  Sometimes it is useful to model regulation at a terminal of a bus bar object.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -5511,7 +6081,7 @@ extends
  * A pre-established pattern over time for a controlled variable, e.g., busbar voltage.
  *
  * @param sup [[ch.ninecode.model.SeasonDayTypeSchedule SeasonDayTypeSchedule]] Reference to the superclass object.
- * @param RegulatingControl [[ch.ninecode.model.RegulatingControl RegulatingControl]] Regulating controls that have this Schedule.
+ * @param RegulatingControl [[ch.ninecode.model.RegulatingControl RegulatingControl]] Regulating controls that have this schedule.
  * @param VoltageControlZones [[ch.ninecode.model.VoltageControlZone VoltageControlZone]] A VoltageControlZone may have a  voltage regulation schedule.
  * @group Wires
  * @groupname Wires Package Wires
@@ -5685,7 +6255,7 @@ extends
         "HydroPump"
     )
     override val relations: List[Relationship] = List (
-        Relationship ("GeneratingUnit", "GeneratingUnit", "0..1", "1..*"),
+        Relationship ("GeneratingUnit", "GeneratingUnit", "0..1", "0..*"),
         Relationship ("HydroPump", "HydroPump", "0..1", "1")
     )
     val p: Fielder = parse_element (element (cls, fields(0)))
@@ -5789,7 +6359,7 @@ extends
  * @param r0 Zero sequence resistance.
  * @param varistorPresent Describe if a metal oxide varistor (mov) for over voltage protection is configured at the series compensator.
  * @param varistorRatedCurrent The maximum current the varistor is designed to handle at specified duration.
- * @param varistorVoltageThreshold The dc voltage at which the varistor start conducting.
+ * @param varistorVoltageThreshold The dc voltage at which the varistor starts conducting.
  * @param x Positive sequence reactance.
  * @param x0 Zero sequence reactance.
  * @group Wires
@@ -5931,7 +6501,7 @@ case class ShuntCompensator
     switchOnDate: String,
     voltageSensitivity: Double,
     ShuntCompensatorPhase: List[String],
-    SvShuntCompensatorSections: String
+    SvShuntCompensatorSections: List[String]
 )
 extends
     Element
@@ -5939,7 +6509,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, false, 0, 0.0, 0, null, 0.0, 0, null, 0.0, List(), null) }
+    def this () = { this (null, 0.0, false, 0, 0.0, 0, null, 0.0, 0, null, 0.0, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -5976,7 +6546,7 @@ extends
         emitelem (8, switchOnDate)
         emitelem (9, voltageSensitivity)
         emitattrs (10, ShuntCompensatorPhase)
-        emitattr (11, SvShuntCompensatorSections)
+        emitattrs (11, SvShuntCompensatorSections)
         s.toString
     }
     override def export: String =
@@ -6005,7 +6575,7 @@ extends
     )
     override val relations: List[Relationship] = List (
         Relationship ("ShuntCompensatorPhase", "ShuntCompensatorPhase", "0..*", "1"),
-        Relationship ("SvShuntCompensatorSections", "SvShuntCompensatorSections", "0..1", "1")
+        Relationship ("SvShuntCompensatorSections", "SvShuntCompensatorSections", "0..*", "1")
     )
     val aVRDelay: Fielder = parse_element (element (cls, fields(0)))
     val grounded: Fielder = parse_element (element (cls, fields(1)))
@@ -6018,7 +6588,7 @@ extends
     val switchOnDate: Fielder = parse_element (element (cls, fields(8)))
     val voltageSensitivity: Fielder = parse_element (element (cls, fields(9)))
     val ShuntCompensatorPhase: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
-    val SvShuntCompensatorSections: Fielder = parse_attribute (attribute (cls, fields(11)))
+    val SvShuntCompensatorSections: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
 
     def parse (context: Context): ShuntCompensator =
     {
@@ -6037,7 +6607,7 @@ extends
             mask (switchOnDate (), 8),
             toDouble (mask (voltageSensitivity (), 9)),
             masks (ShuntCompensatorPhase (), 10),
-            mask (SvShuntCompensatorSections (), 11)
+            masks (SvShuntCompensatorSections (), 11)
         )
         ret.bitfields = bitfields
         ret
@@ -6148,14 +6718,17 @@ extends
  * The SVC typically consists of a stepdown transformer, filter, thyristor-controlled reactor, and thyristor-switched capacitor arms.
  *
  * @param sup [[ch.ninecode.model.RegulatingCondEq RegulatingCondEq]] Reference to the superclass object.
- * @param capacitiveRating Maximum available capacitive reactance.
- * @param inductiveRating Maximum available inductive reactance.
+ * @param capacitiveRating Capacitive reactance at maximum capacitive reactive power.
+ *        Shall always be positive.
+ * @param inductiveRating Inductive reactance at maximum inductive reactive power.
+ *        Shall always be negative.
  * @param q Reactive power injection.
  *        Load sign convention is used, i.e. positive sign means flow out from a node.
  * @param sVCControlMode SVC control mode.
  * @param slope The characteristics slope of an SVC defines how the reactive power output changes in proportion to the difference between the regulated bus voltage and the voltage setpoint.
  * @param voltageSetPoint The reactive power output of the SVC is proportional to the difference between the voltage at the regulated bus and the voltage setpoint.
  *        When the regulated bus voltage is equal to the voltage setpoint, the reactive power output is zero.
+ * @param StaticVarCompensatorDynamics [[ch.ninecode.model.StaticVarCompensatorDynamics StaticVarCompensatorDynamics]] Static Var Compensator dynamics model used to describe dynamic behaviour of this Static Var Compensator.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -6168,7 +6741,8 @@ case class StaticVarCompensator
     q: Double,
     sVCControlMode: String,
     slope: Double,
-    voltageSetPoint: Double
+    voltageSetPoint: Double,
+    StaticVarCompensatorDynamics: String
 )
 extends
     Element
@@ -6176,7 +6750,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, 0.0, null, 0.0, 0.0) }
+    def this () = { this (null, 0.0, 0.0, 0.0, null, 0.0, 0.0, null) }
     /**
      * Return the superclass object.
      *
@@ -6207,6 +6781,7 @@ extends
         emitattr (3, sVCControlMode)
         emitelem (4, slope)
         emitelem (5, voltageSetPoint)
+        emitattr (6, StaticVarCompensatorDynamics)
         s.toString
     }
     override def export: String =
@@ -6225,7 +6800,11 @@ extends
         "q",
         "sVCControlMode",
         "slope",
-        "voltageSetPoint"
+        "voltageSetPoint",
+        "StaticVarCompensatorDynamics"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("StaticVarCompensatorDynamics", "StaticVarCompensatorDynamics", "0..1", "1")
     )
     val capacitiveRating: Fielder = parse_element (element (cls, fields(0)))
     val inductiveRating: Fielder = parse_element (element (cls, fields(1)))
@@ -6233,6 +6812,7 @@ extends
     val sVCControlMode: Fielder = parse_attribute (attribute (cls, fields(3)))
     val slope: Fielder = parse_element (element (cls, fields(4)))
     val voltageSetPoint: Fielder = parse_element (element (cls, fields(5)))
+    val StaticVarCompensatorDynamics: Fielder = parse_attribute (attribute (cls, fields(6)))
 
     def parse (context: Context): StaticVarCompensator =
     {
@@ -6245,7 +6825,8 @@ extends
             toDouble (mask (q (), 2)),
             mask (sVCControlMode (), 3),
             toDouble (mask (slope (), 4)),
-            toDouble (mask (voltageSetPoint (), 5))
+            toDouble (mask (voltageSetPoint (), 5)),
+            mask (StaticVarCompensatorDynamics (), 6)
         )
         ret.bitfields = bitfields
         ret
@@ -6262,13 +6843,14 @@ extends
  *        If the Switch has a status measurement the Discrete.normalValue is expected to match with the Switch.normalOpen.
  * @param open The attribute tells if the switch is considered open when used as input to topology processing.
  * @param ratedCurrent The maximum continuous current carrying capacity in amps governed by the device material and construction.
- * @param retained Branch is retained in a bus branch model.
+ * @param retained Branch is retained in the topological solution.
  *        The flow through retained switches will normally be calculated in power flow.
  * @param switchOnCount The switch on count since the switch was last reset or initialized.
  * @param switchOnDate The date and time when the switch was last switched on.
  * @param CompositeSwitch [[ch.ninecode.model.CompositeSwitch CompositeSwitch]] Composite switch to which this Switch belongs.
  * @param ConnectDisconnectFunctions [[ch.ninecode.model.ConnectDisconnectFunction ConnectDisconnectFunction]] <em>undocumented</em>
  * @param Outage [[ch.ninecode.model.Outage Outage]] Current outage of this protective device.
+ * @param SvSwitch [[ch.ninecode.model.SvSwitch SvSwitch]] The switch state associated with the switch.
  * @param SwitchAction [[ch.ninecode.model.SwitchAction SwitchAction]] Action changing status of this switch.
  * @param SwitchPhase [[ch.ninecode.model.SwitchPhase SwitchPhase]] The individual switch phases for the switch.
  * @param SwitchSchedules [[ch.ninecode.model.SwitchSchedule SwitchSchedule]] A Switch can be associated with SwitchSchedules.
@@ -6288,6 +6870,7 @@ case class Switch
     CompositeSwitch: String,
     ConnectDisconnectFunctions: List[String],
     Outage: String,
+    SvSwitch: List[String],
     SwitchAction: String,
     SwitchPhase: List[String],
     SwitchSchedules: List[String]
@@ -6298,7 +6881,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, false, false, 0.0, false, 0, null, null, List(), null, null, List(), List()) }
+    def this () = { this (null, false, false, 0.0, false, 0, null, null, List(), null, List(), null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -6333,9 +6916,10 @@ extends
         emitattr (6, CompositeSwitch)
         emitattrs (7, ConnectDisconnectFunctions)
         emitattr (8, Outage)
-        emitattr (9, SwitchAction)
-        emitattrs (10, SwitchPhase)
-        emitattrs (11, SwitchSchedules)
+        emitattrs (9, SvSwitch)
+        emitattr (10, SwitchAction)
+        emitattrs (11, SwitchPhase)
+        emitattrs (12, SwitchSchedules)
         s.toString
     }
     override def export: String =
@@ -6358,6 +6942,7 @@ extends
         "CompositeSwitch",
         "ConnectDisconnectFunctions",
         "Outage",
+        "SvSwitch",
         "SwitchAction",
         "SwitchPhase",
         "SwitchSchedules"
@@ -6366,6 +6951,7 @@ extends
         Relationship ("CompositeSwitch", "CompositeSwitch", "0..1", "0..*"),
         Relationship ("ConnectDisconnectFunctions", "ConnectDisconnectFunction", "0..*", "0..*"),
         Relationship ("Outage", "Outage", "0..1", "0..*"),
+        Relationship ("SvSwitch", "SvSwitch", "0..*", "1"),
         Relationship ("SwitchAction", "SwitchAction", "0..1", "0..1"),
         Relationship ("SwitchPhase", "SwitchPhase", "0..*", "1"),
         Relationship ("SwitchSchedules", "SwitchSchedule", "0..*", "1")
@@ -6379,9 +6965,10 @@ extends
     val CompositeSwitch: Fielder = parse_attribute (attribute (cls, fields(6)))
     val ConnectDisconnectFunctions: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
     val Outage: Fielder = parse_attribute (attribute (cls, fields(8)))
-    val SwitchAction: Fielder = parse_attribute (attribute (cls, fields(9)))
-    val SwitchPhase: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
-    val SwitchSchedules: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
+    val SvSwitch: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
+    val SwitchAction: Fielder = parse_attribute (attribute (cls, fields(10)))
+    val SwitchPhase: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
+    val SwitchSchedules: FielderMultiple = parse_attributes (attribute (cls, fields(12)))
 
     def parse (context: Context): Switch =
     {
@@ -6398,9 +6985,10 @@ extends
             mask (CompositeSwitch (), 6),
             masks (ConnectDisconnectFunctions (), 7),
             mask (Outage (), 8),
-            mask (SwitchAction (), 9),
-            masks (SwitchPhase (), 10),
-            masks (SwitchSchedules (), 11)
+            masks (SvSwitch (), 9),
+            mask (SwitchAction (), 10),
+            masks (SwitchPhase (), 11),
+            masks (SwitchSchedules (), 12)
         )
         ret.bitfields = bitfields
         ret
@@ -6414,10 +7002,11 @@ extends
  * @param closed The attribute tells if the switch is considered closed when used as input to topology processing.
  * @param normalOpen Used in cases when no Measurement for the status value is present.
  *        If the SwitchPhase has a status measurement the Discrete.normalValue is expected to match with this value.
- * @param phaseSide1 Phase of this SwitchPhase on the side with terminal sequence number equal 1.
- *        Should be a phase contained in that terminal&rsquo;s phases attribute.
- * @param phaseSide2 Phase of this SwitchPhase on the side with terminal sequence number equal 2.
- *        Should be a phase contained in that terminal&rsquo;s Terminal.phases attribute.
+ * @param phaseSide1 Phase of this SwitchPhase on the side with terminal sequence number equal to 1.
+ *        Should be a phase contained in that terminal�s phases attribute.
+ * @param phaseSide2 Phase of this SwitchPhase on the side with terminal sequence number equal to 2.
+ *        Should be a phase contained in that terminal�s Terminal.phases attribute.
+ * @param ratedCurrent The maximum continuous current carrying capacity in amps governed by the device material and construction.
  * @param Switch [[ch.ninecode.model.Switch Switch]] The switch of the switch phase.
  * @group Wires
  * @groupname Wires Package Wires
@@ -6430,6 +7019,7 @@ case class SwitchPhase
     normalOpen: Boolean,
     phaseSide1: String,
     phaseSide2: String,
+    ratedCurrent: Double,
     Switch: String
 )
 extends
@@ -6438,7 +7028,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, false, false, null, null, null) }
+    def this () = { this (null, false, false, null, null, 0.0, null) }
     /**
      * Return the superclass object.
      *
@@ -6467,7 +7057,8 @@ extends
         emitelem (1, normalOpen)
         emitattr (2, phaseSide1)
         emitattr (3, phaseSide2)
-        emitattr (4, Switch)
+        emitelem (4, ratedCurrent)
+        emitattr (5, Switch)
         s.toString
     }
     override def export: String =
@@ -6485,6 +7076,7 @@ extends
         "normalOpen",
         "phaseSide1",
         "phaseSide2",
+        "ratedCurrent",
         "Switch"
     )
     override val relations: List[Relationship] = List (
@@ -6494,7 +7086,8 @@ extends
     val normalOpen: Fielder = parse_element (element (cls, fields(1)))
     val phaseSide1: Fielder = parse_attribute (attribute (cls, fields(2)))
     val phaseSide2: Fielder = parse_attribute (attribute (cls, fields(3)))
-    val Switch: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val ratedCurrent: Fielder = parse_element (element (cls, fields(4)))
+    val Switch: Fielder = parse_attribute (attribute (cls, fields(5)))
 
     def parse (context: Context): SwitchPhase =
     {
@@ -6506,7 +7099,8 @@ extends
             toBoolean (mask (normalOpen (), 1)),
             mask (phaseSide1 (), 2),
             mask (phaseSide2 (), 3),
-            mask (Switch (), 4)
+            toDouble (mask (ratedCurrent (), 4)),
+            mask (Switch (), 5)
         )
         ret.bitfields = bitfields
         ret
@@ -6604,49 +7198,50 @@ extends
  * @param baseQ Default base reactive power value.
  *        This value represents the initial reactive power that can be used by any application function.
  * @param condenserP Active power consumed when in condenser mode operation.
- * @param coolantCondition Temperature or pressure of coolant medium
+ * @param coolantCondition Temperature or pressure of coolant medium.
  * @param coolantType Method of cooling the machine.
  * @param earthing Indicates whether or not the generator is earthed.
- *        Used for short circuit data exchange according to IEC 60909
+ *        Used for short circuit data exchange according to IEC 60909.
  * @param earthingStarPointR Generator star point earthing resistance (Re).
- *        Used for short circuit data exchange according to IEC 60909
+ *        Used for short circuit data exchange according to IEC 60909.
  * @param earthingStarPointX Generator star point earthing reactance (Xe).
- *        Used for short circuit data exchange according to IEC 60909
+ *        Used for short circuit data exchange according to IEC 60909.
  * @param ikk Steady-state short-circuit current (in A for the profile) of generator with compound excitation during 3-phase short circuit.
  *        - Ikk=0: Generator with no compound excitation.
- *        - Ikk?0: Generator with compound excitation.
- *        Ikk is used to calculate the minimum steady-state short-circuit current for generators with compound excitation
+ *        - Ikk&lt;&gt;0: Generator with compound excitation.
+ *        Ikk is used to calculate the minimum steady-state short-circuit current for generators with compound excitation.
  * @param manualToAVR Time delay required when switching from Manual to Automatic Voltage Regulation.
- *        This value is used in the accelerating power reference frame for powerflow solutions
+ *        This value is used in the accelerating power reference frame for powerflow solutions.
  * @param maxQ Maximum reactive power limit.
  *        This is the maximum (nameplate) limit for the unit.
  * @param maxU Maximum voltage limit for the unit.
  * @param minQ Minimum reactive power limit for the unit.
  * @param minU Minimum voltage  limit for the unit.
- * @param mu Factor to calculate the breaking current (Section 4.5.2.1 in the IEC 60909-0).
- *        Used only for single fed short circuit on a generator (Section 4.3.4.2. in the IEC 60909-0).
+ * @param mu Factor to calculate the breaking current (Section 4.5.2.1 in IEC 60909-0).
+ *        Used only for single fed short circuit on a generator (Section 4.3.4.2. in IEC 60909-0).
  * @param operatingMode Current mode of operation.
- * @param qPercent Percent of the coordinated reactive control that comes from this machine.
+ * @param qPercent Part of the coordinated reactive control that comes from this machine.
+ *        The attribute is used as a participation factor not necessarily summing up to 100% for the participating devices in the control.
  * @param r Equivalent resistance (RG) of generator.
- *        RG is considered for the calculation of all currents, except for the calculation of the peak current ip. Used for short circuit data exchange according to IEC 60909
+ *        RG is considered for the calculation of all currents, except for the calculation of the peak current ip. Used for short circuit data exchange according to IEC 60909.
  * @param r0 Zero sequence resistance of the synchronous machine.
  * @param r2 Negative sequence resistance.
  * @param referencePriority Priority of unit for use as powerflow voltage phase angle reference bus selection. 0 = don t care (default) 1 = highest priority. 2 is less than 1 and so on.
  * @param satDirectSubtransX Direct-axis subtransient reactance saturated, also known as Xd"sat.
  * @param satDirectSyncX Direct-axes saturated synchronous reactance (xdsat); reciprocal of short-circuit ration.
- *        Used for short circuit data exchange, only for single fed short circuit on a generator. (Section 4.3.4.2. in the IEC 60909-0).
+ *        Used for short circuit data exchange, only for single fed short circuit on a generator. (4.3.4.2. in IEC 60909-0:2001).
  * @param satDirectTransX Saturated Direct-axis transient reactance.
  *        The attribute is primarily used for short circuit calculations according to ANSI.
  * @param shortCircuitRotorType Type of rotor, used by short circuit applications, only for single fed short circuit according to IEC 60909.
  * @param type Modes that this synchronous machine can operate in.
- * @param voltageRegulationRange Range of generator voltage regulation (PG in the IEC 60909-0) used for calculation of the impedance correction factor KG defined in IEC 60909-0
+ * @param voltageRegulationRange Range of generator voltage regulation (PG in IEC 60909-0) used for calculation of the impedance correction factor KG defined in IEC 60909-0.
  *        This attribute is used to describe the operating voltage of the generating unit.
  * @param x0 Zero sequence reactance of the synchronous machine.
  * @param x2 Negative sequence reactance.
  * @param InitialReactiveCapabilityCurve [[ch.ninecode.model.ReactiveCapabilityCurve ReactiveCapabilityCurve]] The default reactive capability curve for use by a synchronous machine.
  * @param PrimeMovers [[ch.ninecode.model.PrimeMover PrimeMover]] Prime movers that drive this SynchronousMachine.
  * @param ReactiveCapabilityCurves [[ch.ninecode.model.ReactiveCapabilityCurve ReactiveCapabilityCurve]] All available reactive capability curves for this synchronous machine.
- * @param SynchronousMachineDynamics [[ch.ninecode.model.SynchronousMachineDynamics SynchronousMachineDynamics]] Synchronous machine dynamics model used to describe dynamic behavior of this synchronous machine.
+ * @param SynchronousMachineDynamics [[ch.ninecode.model.SynchronousMachineDynamics SynchronousMachineDynamics]] Synchronous machine dynamics model used to describe dynamic behaviour of this synchronous machine.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -6898,17 +7493,18 @@ extends
  *        True is regulating, false is not regulating.
  * @param highStep Highest possible tap step position, advance from neutral.
  *        The attribute shall be greater than lowStep.
- * @param initialDelay For an LTC, the delay for initial tap changer operation (first step change)
- * @param lowStep Lowest possible tap step position, retard from neutral
+ * @param initialDelay For an LTC, the delay for initial tap changer operation (first step change).
+ * @param lowStep Lowest possible tap step position, retard from neutral.
  * @param ltcFlag Specifies whether or not a TapChanger has load tap changing capabilities.
  * @param neutralStep The neutral tap step position for this winding.
- *        The attribute shall be equal or greater than lowStep and equal or less than highStep.
+ *        The attribute shall be equal to or greater than lowStep and equal or less than highStep.
  * @param neutralU Voltage at which the winding operates at the neutral tap setting.
+ *        It is the voltage at the terminal of the PowerTransformerEnd associated with the tap changer when all tap changers on the transformer are at their neutralStep position.  Normally neutralU of the tap changer is the same as ratedU of the PowerTransformerEnd, but it can differ in special cases such as when the tapping mechanism is separate from the winding more common on lower voltage transformers.
  * @param normalStep The tap step position used in "normal" network operation for this winding.
  *        For a "Fixed" tap changer indicates the current physical tap setting.
  * @param step Tap changer position.
- *        Starting step for a steady state solution. Non integer values are allowed to support continuous tap variables. The reasons for continuous value are to support study cases where no discrete tap changers has yet been designed, a solutions where a narrow voltage band force the tap step to oscillate or accommodate for a continuous solution as input.
- * @param subsequentDelay For an LTC, the delay for subsequent tap changer operation (second and later step changes)
+ *        Starting step for a steady state solution. Non integer values are allowed to support continuous tap variables. The reasons for continuous value are to support study cases where no discrete tap changer has yet been designed, a solution where a narrow voltage band forces the tap step to oscillate or to accommodate for a continuous solution as input.
+ * @param subsequentDelay For an LTC, the delay for subsequent tap changer operation (second and later step changes).
  * @param SvTapStep [[ch.ninecode.model.SvTapStep SvTapStep]] The tap step state associated with the tap changer.
  * @param TapChangerControl [[ch.ninecode.model.TapChangerControl TapChangerControl]] The regulating control scheme in which this tap changer participates.
  * @param TapSchedules [[ch.ninecode.model.TapSchedule TapSchedule]] A TapChanger can have TapSchedules.
@@ -7050,7 +7646,7 @@ extends
 }
 
 /**
- * Describes behavior specific to tap changers, e.g. how the voltage at the end of a line varies with the load level and compensation of the voltage drop by tap adjustment.
+ * Describes behaviour specific to tap changers, e.g. how the voltage at the end of a line varies with the load level and compensation of the voltage drop by tap adjustment.
  *
  * @param sup [[ch.ninecode.model.RegulatingControl RegulatingControl]] Reference to the superclass object.
  * @param limitVoltage Maximum allowed regulated voltage on the PT secondary, regardless of line drop compensation.
@@ -7166,7 +7762,20 @@ extends
 }
 
 /**
-
+ * Describes each tap step in the tabular curve.
+ *
+ * @param sup Reference to the superclass object.
+ * @param b The magnetizing branch susceptance deviation as a percentage of nominal value.
+ *        The actual susceptance is calculated as follows:
+ * @param g The magnetizing branch conductance deviation as a percentage of nominal value.
+ *        The actual conductance is calculated as follows:
+ * @param r The resistance deviation as a percentage of nominal value.
+ *        The actual reactance is calculated as follows:
+ * @param ratio The voltage at the tap step divided by rated voltage of the transformer end having the tap changer.
+ *        Hence this is a value close to one.
+ * @param step The tap step.
+ * @param x The series reactance deviation as a percentage of nominal value.
+ *        The actual reactance is calculated as follows:
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -7464,7 +8073,7 @@ extends
  * @param endNumber Number for this transformer end, corresponding to the end's order in the power transformer vector group or phase angle clock number.
  *        Highest voltage winding should be 1.  Each end within a power transformer should have a unique subsequent end number.   Note the transformer end number need not match the terminal sequence number.
  * @param grounded (for Yn and Zn connections) True if the neutral is solidly grounded.
- * @param magBaseU The reference voltage at which the magnetizing saturation measurements were made
+ * @param magBaseU The reference voltage at which the magnetizing saturation measurements were made.
  * @param magSatFlux Core magnetizing saturation curve knee flux level.
  * @param rground (for Yn and Zn connections) Resistance part of neutral impedance where 'grounded' is true.
  * @param xground (for Yn and Zn connections) Reactive part of neutral impedance where 'grounded' is true.
@@ -7648,7 +8257,7 @@ extends
 /**
  * Transformer mesh impedance (Delta-model) between transformer ends.
  *
- * The typical case is that this class describes the impedance between two transformer ends pair-wise, i.e. the cardinalities at both tranformer end associations are 1. But in cases where two or more transformer ends are modeled the cardinalities are larger than 1.
+ * The typical case is that this class describes the impedance between two transformer ends pair-wise, i.e. the cardinalities at both transformer end associations are 1. However, in cases where two or more transformer ends are modelled the cardinalities are larger than 1.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param r Resistance between the 'from' and the 'to' end, seen from the 'from' end.
@@ -7777,7 +8386,7 @@ extends
 /**
  * Transformer star impedance (Pi-model) that accurately reflects impedance for transformers with 2 or 3 windings.
  *
- * For transformers with 4 or more windings, you must use TransformerMeshImpedance class.
+ * For transformers with 4 or more windings, TransformerMeshImpedance class shall be used.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param r Resistance of the transformer end.
@@ -7890,7 +8499,7 @@ extends
 /**
  * An assembly of two or more coupled windings that transform electrical power between voltage levels.
  *
- * These windings are bound on a common core and place in the same tank. Transformer tank can be used to model both single-phase and 3-phase transformers.
+ * These windings are bound on a common core and placed in the same tank. Transformer tank can be used to model both single-phase and 3-phase transformers.
  *
  * @param sup [[ch.ninecode.model.Equipment Equipment]] Reference to the superclass object.
  * @param PowerTransformer [[ch.ninecode.model.PowerTransformer PowerTransformer]] Bank this transformer belongs to.
@@ -8170,9 +8779,12 @@ private[ninecode] object _Wires
             Cut.register,
             Disconnector.register,
             EarthFaultCompensator.register,
+            EnergyConnection.register,
             EnergyConsumer.register,
             EnergyConsumerPhase.register,
+            EnergySchedulingType.register,
             EnergySource.register,
+            EnergySourcePhase.register,
             ExternalNetworkInjection.register,
             FrequencyConverter.register,
             Fuse.register,
@@ -8205,6 +8817,8 @@ private[ninecode] object _Wires
             PhaseTapChangerTablePoint.register,
             PhaseTapChangerTabular.register,
             Plant.register,
+            PowerElectronicsConnection.register,
+            PowerElectronicsConnectionPhase.register,
             PowerTransformer.register,
             PowerTransformerEnd.register,
             ProtectedSwitch.register,

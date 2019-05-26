@@ -12,9 +12,9 @@ import ch.ninecode.cim.Relationship
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param kind The logical operation of the gate.
- * @param GateInputPin [[ch.ninecode.model.GateInputPin GateInputPin]] <em>undocumented</em>
+ * @param GateInputPin [[ch.ninecode.model.GateInputPin GateInputPin]] Input to the gate.
  * @param PinGate [[ch.ninecode.model.PinGate PinGate]] <em>undocumented</em>
- * @param ProtectiveActionCom [[ch.ninecode.model.ProtectiveAction ProtectiveAction]] <em>undocumented</em>
+ * @param ProtectiveActionCom [[ch.ninecode.model.ProtectiveAction ProtectiveAction]] For the ProtectiveAction to be activated the condition for communication needs to be met (true).
  * @param ProtectiveActionEnabled [[ch.ninecode.model.ProtectiveAction ProtectiveAction]] <em>undocumented</em>
  * @param RemedialActionScheme [[ch.ninecode.model.RemedialActionScheme RemedialActionScheme]] <em>undocumented</em>
  * @param StageTrigger [[ch.ninecode.model.StageTrigger StageTrigger]] <em>undocumented</em>
@@ -23,7 +23,7 @@ import ch.ninecode.cim.Relationship
  * @param TriggerCondition [[ch.ninecode.model.TriggerCondition TriggerCondition]] <em>undocumented</em>
  * @group InfSIPS
  * @groupname InfSIPS Package InfSIPS
- * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS)
+ * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS).
  */
 case class Gate
 (
@@ -164,7 +164,7 @@ extends
  * @param Gate [[ch.ninecode.model.Gate Gate]] <em>undocumented</em>
  * @group InfSIPS
  * @groupname InfSIPS Package InfSIPS
- * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS)
+ * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS).
  */
 case class GateInputPin
 (
@@ -271,11 +271,11 @@ extends
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param kind Calculation operation executed on the operants.
- * @param MeasurementCalculatorInput [[ch.ninecode.model.MeasurementCalculatorInput MeasurementCalculatorInput]] <em>undocumented</em>
+ * @param MeasurementCalculatorInput [[ch.ninecode.model.MeasurementCalculatorInput MeasurementCalculatorInput]] Used in the calculation.
  * @param PinMeasurement [[ch.ninecode.model.PinMeasurement PinMeasurement]] <em>undocumented</em>
  * @group InfSIPS
  * @groupname InfSIPS Package InfSIPS
- * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS)
+ * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS).
  */
 case class MeasurementCalculator
 (
@@ -367,11 +367,11 @@ extends
  * @param absoluteValue If true, use the absolute value for the calculation.
  * @param order Positive number that defines the order of the operant in the calculation. 0 = default.
  *        The order is not relevant (e.g. summation).
- * @param Measurement [[ch.ninecode.model.Measurement Measurement]] <em>undocumented</em>
+ * @param Measurement [[ch.ninecode.model.Measurement Measurement]] Measurement used as input to a calculation.
  * @param MeasurementCalculator [[ch.ninecode.model.MeasurementCalculator MeasurementCalculator]] <em>undocumented</em>
  * @group InfSIPS
  * @groupname InfSIPS Package InfSIPS
- * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS)
+ * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS).
  */
 case class MeasurementCalculatorInput
 (
@@ -464,10 +464,10 @@ extends
  *
  * @param sup [[ch.ninecode.model.GateInputPin GateInputPin]] Reference to the superclass object.
  * @param kind The compare operation done on the branch group.
- * @param BranchGroup [[ch.ninecode.model.BranchGroup BranchGroup]] <em>undocumented</em>
+ * @param BranchGroup [[ch.ninecode.model.BranchGroup BranchGroup]] The branch group that should be used in compare.
  * @group InfSIPS
  * @groupname InfSIPS Package InfSIPS
- * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS)
+ * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS).
  */
 case class PinBranchGroup
 (
@@ -548,10 +548,10 @@ extends
  *
  * @param sup [[ch.ninecode.model.GateInputPin GateInputPin]] Reference to the superclass object.
  * @param kind The compare operation done on the equipment.
- * @param Equipment [[ch.ninecode.model.Equipment Equipment]] <em>undocumented</em>
+ * @param Equipment [[ch.ninecode.model.Equipment Equipment]] The Equipment that should be used in compare.
  * @group InfSIPS
  * @groupname InfSIPS Package InfSIPS
- * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS)
+ * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS).
  */
 case class PinEquipment
 (
@@ -634,7 +634,7 @@ extends
  * @param GateOutput [[ch.ninecode.model.Gate Gate]] <em>undocumented</em>
  * @group InfSIPS
  * @groupname InfSIPS Package InfSIPS
- * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS)
+ * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS).
  */
 case class PinGate
 (
@@ -709,11 +709,11 @@ extends
  * Gate input pin that is associated with a Measurement or a calculation of Measurement.
  *
  * @param sup [[ch.ninecode.model.GateInputPin GateInputPin]] Reference to the superclass object.
- * @param Measurement [[ch.ninecode.model.Measurement Measurement]] <em>undocumented</em>
- * @param MeasurementCalculator [[ch.ninecode.model.MeasurementCalculator MeasurementCalculator]] <em>undocumented</em>
+ * @param Measurement [[ch.ninecode.model.Measurement Measurement]] The Measurement that should be used in compare.
+ * @param MeasurementCalculator [[ch.ninecode.model.MeasurementCalculator MeasurementCalculator]] Result of the calculation used as input to a gate.
  * @group InfSIPS
  * @groupname InfSIPS Package InfSIPS
- * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS)
+ * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS).
  */
 case class PinMeasurement
 (
@@ -795,10 +795,10 @@ extends
  *
  * @param sup [[ch.ninecode.model.GateInputPin GateInputPin]] Reference to the superclass object.
  * @param kind The compare operation done on the terminal.
- * @param Terminal [[ch.ninecode.model.Terminal Terminal]] <em>undocumented</em>
+ * @param Terminal [[ch.ninecode.model.Terminal Terminal]] The Terminal that should be used in compare.
  * @group InfSIPS
  * @groupname InfSIPS Package InfSIPS
- * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS)
+ * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS).
  */
 case class PinTerminal
 (
@@ -882,12 +882,12 @@ extends
  *        Optional field that will override other status fields.
  * @param normalEnabled The default/normal value used when other active signal/values are missing.
  * @param GateComCondition [[ch.ninecode.model.Gate Gate]] <em>undocumented</em>
- * @param GateEnabledCondition [[ch.ninecode.model.Gate Gate]] <em>undocumented</em>
+ * @param GateEnabledCondition [[ch.ninecode.model.Gate Gate]] Association to a Gate that through a gate logic and input pin defines enabling of the ProtectiveAction.
  * @param ProtectionEquipment [[ch.ninecode.model.ProtectionEquipment ProtectionEquipment]] <em>undocumented</em>
  * @param ProtectiveActionCollection [[ch.ninecode.model.ProtectiveActionCollection ProtectiveActionCollection]] <em>undocumented</em>
  * @group InfSIPS
  * @groupname InfSIPS Package InfSIPS
- * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS)
+ * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS).
  */
 case class ProtectiveAction
 (
@@ -1000,12 +1000,12 @@ extends
  * @param reduce If true, the adjusted value is an reduction.
  *        Other wise it is an increase in the value.
  * @param setValue The adjustment is given by a new active value.
- * @param ConductingEquipment [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] <em>undocumented</em>
- * @param DCConductingEquipment [[ch.ninecode.model.DCConductingEquipment DCConductingEquipment]] <em>undocumented</em>
- * @param Measurement [[ch.ninecode.model.Measurement Measurement]] <em>undocumented</em>
+ * @param ConductingEquipment [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] ConductingEquipment whose operating condition is changed when this protective action adjustment gets activated.
+ * @param DCConductingEquipment [[ch.ninecode.model.DCConductingEquipment DCConductingEquipment]] The operating condition to the Conducting Equipment is changed when protective action adjustment is activated.
+ * @param Measurement [[ch.ninecode.model.Measurement Measurement]] The measurement is used to control the operation of an equipment.
  * @group InfSIPS
  * @groupname InfSIPS Package InfSIPS
- * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS)
+ * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS).
  */
 case class ProtectiveActionAdjustment
 (
@@ -1118,11 +1118,11 @@ extends
  * A collection of protective actions to protect the integrity of the power system.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param ProtectiveAction [[ch.ninecode.model.ProtectiveAction ProtectiveAction]] <em>undocumented</em>
- * @param StageTrigger [[ch.ninecode.model.StageTrigger StageTrigger]] <em>undocumented</em>
+ * @param ProtectiveAction [[ch.ninecode.model.ProtectiveAction ProtectiveAction]] Set of ProtectiveAction belonging to a ProtectiveActionCollection.
+ * @param StageTrigger [[ch.ninecode.model.StageTrigger StageTrigger]] When condition to the StageTrigger is met, the actions in the ProtectiveActionCollection are activated/triggered.
  * @group InfSIPS
  * @groupname InfSIPS Package InfSIPS
- * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS)
+ * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS).
  */
 case class ProtectiveActionCollection
 (
@@ -1207,7 +1207,7 @@ extends
  * @param Equipment [[ch.ninecode.model.Equipment Equipment]] <em>undocumented</em>
  * @group InfSIPS
  * @groupname InfSIPS Package InfSIPS
- * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS)
+ * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS).
  */
 case class ProtectiveActionEquipment
 (
@@ -1294,7 +1294,7 @@ extends
  * @param RegulatingControl [[ch.ninecode.model.RegulatingControl RegulatingControl]] <em>undocumented</em>
  * @group InfSIPS
  * @groupname InfSIPS Package InfSIPS
- * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS)
+ * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS).
  */
 case class ProtectiveActionRegulation
 (
@@ -1382,14 +1382,14 @@ extends
  * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @param armed The status of the class set by operation or by signal.
  *        Optional field that will override other status fields.
- * @param kind Kind of Remedial Action Scheme (RAS)
+ * @param kind Kind of Remedial Action Scheme (RAS).
  * @param normalArmed The default/normal value used when other active signal/values are missing.
- * @param GateArmed [[ch.ninecode.model.Gate Gate]] <em>undocumented</em>
- * @param Stage [[ch.ninecode.model.Stage Stage]] <em>undocumented</em>
- * @param TriggerCondition [[ch.ninecode.model.TriggerCondition TriggerCondition]] <em>undocumented</em>
+ * @param GateArmed [[ch.ninecode.model.Gate Gate]] Gate that through a gate logic and input pin defines arming of the Remedial Action Schemes (RAS).
+ * @param Stage [[ch.ninecode.model.Stage Stage]] A Remedial Action Scheme (RAS) consist of one or more stage that are trigger and execute protection action.
+ * @param TriggerCondition [[ch.ninecode.model.TriggerCondition TriggerCondition]] Triggering of the Remedial Action Schemes (RAS).
  * @group InfSIPS
  * @groupname InfSIPS Package InfSIPS
- * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS)
+ * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS).
  */
 case class RemedialActionScheme
 (
@@ -1496,10 +1496,10 @@ extends
  * @param priority The priority of the stage.   0 = don t care (default) 1 = highest priority. 2 is less than 1 and so on.
  *        A stage with higher priority needs be activated before a lower stage can be activated.
  * @param RemedialActionScheme [[ch.ninecode.model.RemedialActionScheme RemedialActionScheme]] <em>undocumented</em>
- * @param StageTrigger [[ch.ninecode.model.StageTrigger StageTrigger]] <em>undocumented</em>
+ * @param StageTrigger [[ch.ninecode.model.StageTrigger StageTrigger]] A Stage consist of one or more StageTrigger.
  * @group InfSIPS
  * @groupname InfSIPS Package InfSIPS
- * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS)
+ * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS).
  */
 case class Stage
 (
@@ -1592,14 +1592,14 @@ extends
  * @param normalArmed The default/normal value used when other active signal/values are missing.
  * @param priority Priority of trigger. 0 = don t care (default) 1 = highest priority. 2 is less than 1 and so on.
  *        A trigger with the highest priority will trigger first.
- * @param GateArmed [[ch.ninecode.model.Gate Gate]] <em>undocumented</em>
- * @param GateComCondition [[ch.ninecode.model.Gate Gate]] <em>undocumented</em>
- * @param GateTrigger [[ch.ninecode.model.Gate Gate]] <em>undocumented</em>
+ * @param GateArmed [[ch.ninecode.model.Gate Gate]] Association to a Gate that through a gate logic and input pin defines arming of the StageTrigger.
+ * @param GateComCondition [[ch.ninecode.model.Gate Gate]] For the StageTrigger to active the set of protective actions the condition for communication needs to be met (true).
+ * @param GateTrigger [[ch.ninecode.model.Gate Gate]] The Gate result that trigger the StageTrigger and thereby executing the a set of protective actions.
  * @param ProtectiveActionCollection [[ch.ninecode.model.ProtectiveActionCollection ProtectiveActionCollection]] <em>undocumented</em>
  * @param Stage [[ch.ninecode.model.Stage Stage]] <em>undocumented</em>
  * @group InfSIPS
  * @groupname InfSIPS Package InfSIPS
- * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS)
+ * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS).
  */
 case class StageTrigger
 (
@@ -1714,11 +1714,11 @@ extends
  * A conditions that can trigger remedial actions.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param GateTrigger [[ch.ninecode.model.Gate Gate]] <em>undocumented</em>
+ * @param GateTrigger [[ch.ninecode.model.Gate Gate]] The resulting Gate that is the condition for the Trigger.
  * @param RemedialActionScheme [[ch.ninecode.model.RemedialActionScheme RemedialActionScheme]] <em>undocumented</em>
  * @group InfSIPS
  * @groupname InfSIPS Package InfSIPS
- * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS)
+ * @groupdesc InfSIPS System Integrity Protection Schemes (SIPS) (IEC terminology). Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS).
  */
 case class TriggerCondition
 (

@@ -11,8 +11,8 @@ import ch.ninecode.cim.Relationship
  * IEC 61968 version number assigned to this UML model.
  *
  * @param sup Reference to the superclass object.
- * @param date Form is YYYY-MM-DD for example for January 5, 2009 it is 2009-01-05.
- * @param version Form is IEC61968CIMXXvYY where XX is the major CIM package version and the YY is the minor version.
+ * @param date (const=2016-10-31) Form is YYYY-MM-DD for example for January 5, 2009 it is 2009-01-05.
+ * @param version (const=IEC61968CIM13v09) Form is IEC61968CIMXXvYY where XX is the major CIM package version and the YY is the minor version.
  *        For example IEC61968CIM10v17.
  * @group IEC61968
  * @groupname IEC61968 Package IEC61968

@@ -29,20 +29,26 @@ package ch.ninecode
  * The classes can be ordered by package (Grouped) or alphabetically.
  * The classes are alos listed in the panel on the left for easy reference.
  *
+ * ===AlternateModels===
+
+ *
  * ===AssetInfo===
  * This package is an extension of Assets package and contains the core information classes that support asset management and different network and work planning applications with specialized AssetInfo subclasses.
  *
  * They hold attributes that can be referenced by not only Asset-s or AssetModel-s but also by ConductingEquipment-s.
  *
  *
+ * ===AssetMeas===
+
+ *
  * ===Assets===
  * This package contains the core information classes that support asset management applications that deal with the physical and lifecycle aspects of various network resources (as opposed to power system resource models defined in IEC61970::Wires package, which support network applications).
  *
  *
  * ===AsynchronousMachineDynamics===
- * An asynchronous machine model represents a (induction) generator or motor with no external connection to the rotor windings, e.g., squirrel-cage induction machine.
+ * An asynchronous machine model represents a (induction) generator or motor with no external connection to the rotor windings, e.g. a squirrel-cage induction machine.
  *
- * The interconnection with the electrical network equations may differ among simulation tools.  The program only needs to know the terminal to which this asynchronous machine is connected in order to establish the correct interconnection.  The interconnection with motor�s equipment could also differ due to input and output signals required by standard models.
+ * The interconnection with the electrical network equations can differ among simulation tools.  The program only needs to know the terminal to which this asynchronous machine is connected in order to establish the correct interconnection.  The interconnection with the motor�s equipment could also differ due to input and output signals required by standard models.
  *
  *
  * ===AuxiliaryEquipment===
@@ -50,6 +56,9 @@ package ch.ninecode
  *
  * These devices do not define power carrying topological connections as conducting equipment, but are associated to terminals of other conducting equipment.
  *
+ *
+ * ===CSC===
+
  *
  * ===Common===
  * This package contains the information classes that support distribution management in general.
@@ -85,32 +94,44 @@ package ch.ninecode
  * This package contains model for direct current equipment and controls.
  *
  *
+ * ===DER===
+
+ *
  * ===DiagramLayout===
  * This package describes diagram layout.
  *
- * This describes how objects are arranged in a coordianate system rather than how they are rendered.
+ * This describes how objects are arranged in a coordinate system rather than how they are rendered.
  *
  *
  * ===DiscontinuousExcitationControlDynamics===
- * <font colour="#0f0f0f">In some particular system configurations, continuous excitation control with terminal voltage and power system stabilizing regulator input signals does not ensure that the potential of the excitation system for improving system stability is fully exploited.
+ * In certain system configurations, continuous excitation control with terminal voltage and power system stabilizing regulator input signals does not ensure that the potential of the excitation system for improving system stability is fully exploited.
  *
- * For these situations, discontinuous excitation control signals may be employed to enhance stability following large transient disturbances.</font>
+ * For these situations, discontinuous excitation control signals can be employed to enhance stability following large transient disturbances.
  *
  *
  * ===Domain===
- * The domain package define primitive datatypes that are used by classes in other packages.
+ * The domain package defines primitive datatypes that are used by classes in other packages.
  *
  * Stereotypes are used to describe the datatypes. The following stereotypes are defined:
  *
+ *
+ * ===EnergyArea===
+
+ *
+ * ===EnvDomain===
+
+ *
+ * ===Environmental===
+
  *
  * ===Equivalents===
  * The equivalents package models equivalent networks.
  *
  *
  * ===ExcitationSystemDynamics===
- * The excitation system model provides the field voltage (Efd) for a synchronous machine model.
+ * The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.
  *
- * It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
+ * It is linked to a specific generator (synchronous machine).
  *
  *
  * ===ExternalInputs===
@@ -118,15 +139,27 @@ package ch.ninecode
  *
  *
  * ===Faults===
- * The package describe faults that may happen to conducting equipment, e.g. tree falling on a power line.
+ * The package describes faults that may happen to conducting equipment, e.g. tree falling on a power line.
  *
+ *
+ * ===Feeder===
+
  *
  * ===GenerationTrainingSimulation===
- * The Generation Dynamics package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
+ * The GenerationTrainingSimululation package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
  *
  *
- * ===ICCP===
-
+ * ===GenericDataSet===
+ * Contains classes used for generic dataset modelling.
+ *
+ *
+ * ===HVDCDynamics===
+ * High voltage direct current (HVDC) models.
+ *
+ *
+ * ===ICCPConfiguration===
+ * This package models configuration of ICCP required for bilateral exchanges.
+ *
  *
  * ===IEC61968===
  * The IEC 61968 subpackages of the CIM are developed, standardized and maintained by IEC TC57 Working Group 14: interfaces for distribution management (WG14).
@@ -139,7 +172,7 @@ package ch.ninecode
  *
  *
  * ===IEC62325===
- * The IEC 62325 subpackages of the CIM are developed, standardized and maintained by IEC TC57 Working Group 16.
+ * The IEC 62325 subpackages of the CIM are developed, standardized and maintained by the IEC TC57.
  *
  *
  * ===InfAssetInfo===
@@ -149,6 +182,10 @@ package ch.ninecode
  * The package is used to define asset-level models for objects.
  *
  * Assets may be comprised of other assets and may have relationships to other assets. Assets also have owners and values. Assets may also have a relationship to a PowerSystemResource in the Wires model.
+ *
+ *
+ * ===InfAvailabilityPlans===
+ * Contains the planned schedules for equipment availability, primarily intended for future studies.
  *
  *
  * ===InfCommon===
@@ -162,6 +199,9 @@ package ch.ninecode
  * The package is used to define detailed customer models.
  *
  *
+ * ===InfDomain===
+
+ *
  * ===InfERPSupport===
  * The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG).
  *
@@ -174,9 +214,6 @@ package ch.ninecode
  * It includes transations for megawatts which are generated, consumed, lost, passed through, sold and purchased. These classes are used by Accounting and Billing for Energy, Generation Capacity, Transmission, and Ancillary Services.
  *
  *
- * ===InfEnergySource===
-
- *
  * ===InfExternalInputs===
 
  *
@@ -186,16 +223,19 @@ package ch.ninecode
  * These classes represent the legal entities who participate in formal or informal agreements.
  *
  *
+ * ===InfHVDCDynamics===
+
+ *
  * ===InfLocations===
+
+ *
+ * ===InfMarketOpCommon===
 
  *
  * ===InfMarketOperations===
 
  *
  * ===InfMarketResults===
-
- *
- * ===InfNewAssets===
 
  *
  * ===InfOperationalLimits===
@@ -207,13 +247,16 @@ package ch.ninecode
  * ===InfParticipantInterfaces===
 
  *
+ * ===InfReferenceData===
+
+ *
  * ===InfReservation===
 
  *
  * ===InfSIPS===
  * System Integrity Protection Schemes (SIPS) (IEC terminology).
  *
- * Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS)
+ * Other names used are: Remedial Action Schemes (RAS) or System Protection Schemes (SPS).
  *
  *
  * ===InfTypeAsset===
@@ -241,13 +284,13 @@ package ch.ninecode
  *
  *
  * ===LoadModel===
- * This package is responsible for modeling the energy consumers and the system load as curves and associated curve data.
+ * This package is responsible for modelling the energy consumers and the system load as curves and associated curve data.
  *
- * Special circumstances that may affect the load, such as seasons and daytypes, are also included here.
+ * Special circumstances that may affect the load, such as seasons and day types, are also included here.
  *
  *
  * ===MarketCommon===
- * This package contains the common objects shared by both MarketManagement and MarketOperations packages.
+ * This package contains the common objects shared by MarketManagement, MarketOperations and Environmental packages.
  *
  *
  * ===MarketManagement===
@@ -286,12 +329,14 @@ package ch.ninecode
  * These classes are generally associated with the point where a service is delivered to the customer.
  *
  *
- * ===ModelAuthority===
- * The package describes meta data for partitioning  power system models into non overlapping subsets of objects managed by a model authority.
+ * ===ModelOperations===
+
  *
+ * ===NetworkModelFrames===
+
  *
- * ===ModelDescription===
- * The package describes meta data for the exchange of power system model data.
+ * ===NetworkModelProjects===
+ * Defining meta-data for a change set in the functional Power System model.
  *
  *
  * ===OperationalLimits===
@@ -309,15 +354,14 @@ package ch.ninecode
  *
  *
  * ===PFVArControllerType1Dynamics===
- * <font color="#0f0f0f">Excitation systems for synchronous machines are sometimes supplied with an optional means of automatically adjusting generator output reactive power (VAr) or power factor (PF) to a user-specified value This can be accomplished with either a reactive power or power factor controller or regulator.
+ * <font color="#0f0f0f">Excitation systems for synchronous machines are sometimes supplied with an optional means of automatically adjusting generator output reactive power (VAr) or power factor (PF) to a user-specified value.
  *
- * A reactive power or power factor controller is defined as a PF/VAr controller in IEEE Std 421.1 as �A control function that acts through the reference adjuster to modify the voltage regulator set point to maintain the synchronous machine steady-state power factor or reactive power at a predetermined value.� </font>
+ * This can be accomplished with either a reactive power or power factor controller or regulator.  A reactive power or power factor controller is defined as a PF/VAr controller in IEEE 421.1 as �a control function that acts through the reference adjuster to modify the voltage regulator set point to maintain the synchronous machine steady-state power factor or reactive power at a predetermined value.� </font>
  *
  *
  * ===PFVArControllerType2Dynamics===
- * <font color="#0f0f0f">A var/pf regulator is defined as �A synchronous machine regulator that functions to maintain the power factor or reactive component of power at a predetermined value.�  </font>
- * <font color="#0f0f0f">
- * </font><font color="#0f0f0f">For additional information please refer to IEEE Standard 421.5-2005, Section 11.</font>
+ * <font color="#0f0f0f">A var/pf regulator is defined as �a synchronous machine regulator that functions to maintain the power factor or reactive component of power at a predetermined value.�  </font>
+ * <font color="#0f0f0f">For additional information please refer to IEEE 421.5-2005, 11.</font>
  * <font color="#0f0f0f">
  *
  * </font>
@@ -337,14 +381,10 @@ package ch.ninecode
  * These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
  *
  *
- * ===PowerSystemProject===
- * The package describes how power system model data is managed and evolve over time in projects.
- *
- *
  * ===PowerSystemStabilizerDynamics===
- * The power system stabilizer (PSS) model provides an input (Vs) to the excitation system model to improve damping of system oscillations.
+ * The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.
  *
- * A variety of input signals may be used depending on the particular design.
+ * A variety of input signals can be used depending on the particular design.
  *
  *
  * ===Production===
@@ -370,13 +410,13 @@ package ch.ninecode
  *
  *
  * ===StandardInterconnections===
- * This section describes the standard interconnections for various types of equipment.
+ * This subclause describes the standard interconnections for various types of equipment.
  *
  * These interconnections are understood by the application programs and can be identified based on the presence of one of the key classes with a relationship to the static power flow model: SynchronousMachineDynamics, AsynchronousMachineDynamics, EnergyConsumerDynamics or WindTurbineType3or4Dynamics.
  *
  *
  * ===StandardModels===
- * This section contains standard dynamic model specifications grouped into packages by standard function block (type of equipment being modelled).
+ * This subclause contains standard dynamic model specifications grouped into packages by standard function block (type of equipment being modelled).
  *
  * In the CIM, standard dynamic models are expressed by means of a class named with the standard model name and attributes reflecting each of the parameters necessary to describe the behaviour of an instance of the standard model.
  *
@@ -385,22 +425,26 @@ package ch.ninecode
  * State variables for analysis solutions such as powerflow.
  *
  *
+ * ===StaticVarCompensatorDynamics===
+ * Static var compensator (SVC) models.
+ *
+ *
  * ===SynchronousMachineDynamics===
  * For conventional power generating units (e.g., thermal, hydro, combustion turbine), a synchronous machine model represents the electrical characteristics of the generator and the mechanical characteristics of the turbine-generator rotational inertia.
  *
- * Large industrial motors or groups of similar motors may be represented by individual motor models which are represented as <b>generators with negative active power</b> in the static (power flow) data.
+ * Large industrial motors or groups of similar motors can be represented by individual motor models which are represented as generators with negative active power in the static (power flow) data.
  *
  *
  * ===Topology===
- * An extension to the Core Package that in association with the Terminal class models Connectivity, that is the physical definition of how equipment is connected together.
+ * An extension to the Core Package that, in association with the Terminal class, models Connectivity, that is the physical definition of how equipment is connected together.
  *
  * In addition it models Topology, that is the logical definition of how equipment is connected via closed switches. The Topology definition is independent of the other electrical characteristics.
  *
  *
  * ===TurbineGovernorDynamics===
- * The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.
+ * The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.
  *
- * Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
+ * Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
  *
  *
  * ===TurbineLoadControllerDynamics===
@@ -414,17 +458,19 @@ package ch.ninecode
  *
  *
  * ===UserDefinedModels===
- * This section contains user-defined dynamic model classes to support the exchange of both proprietary and explicitly defined user-defined models.
- * <u>
- * </u><u>Proprietary models</u> represent behaviour which, while not defined by a standard model class, is mutually understood by the sending and receiving applications based on the name passed in the .name attribute of the appropriate xxxUserDefined class.
+ * This subclause contains user-defined dynamic model classes to support the exchange of both proprietary and explicitly defined user-defined models.
+ * <u>Proprietary models</u> represent behaviour which, while not defined by a standard model class, is mutually understood by the sending and receiving applications based on the name passed in the .name attribute of the appropriate xxxUserDefined class.
  *
  * Proprietary model parameters are passed as general attributes using as many instances of the ProprietaryParameterDynamics class as there are parameters.
  *
  *
+ * ===VSC===
+
+ *
  * ===VoltageAdjusterDynamics===
  * <font color="#0f0f0f">A voltage adjuster is a reference adjuster that uses inputs from a reactive power or power factor controller to modify the voltage regulator set point to maintain the synchronous machine steady-state power factor or reactive power at a predetermined value. </font>
  *
- * <font color="#0f0f0f">For additional information please refer to IEEE Standard 421.5-2005, Section 11.</font>
+ * <font color="#0f0f0f">For additional information please refer to IEEE 421.5-2005, 11.</font>
  *
  *
  * ===VoltageCompensatorDynamics===
@@ -434,9 +480,9 @@ package ch.ninecode
  *
  *
  * ===WindDynamics===
- * Wind turbines are generally divided into 4 types, which are currently significant in power systems.
+ * Wind turbines are generally divided into four types, which are currently significant in power systems.
  *
- * The 4 types have the following characteristics:
+ * The four types have the following characteristics:
  *
  *
  * ===Wires===
@@ -448,6 +494,9 @@ package ch.ninecode
  * ===Work===
  * This package contains the core information classes that support work management and network extension planning applications.
  *
+ *
+ * ===unused===
+
  */
 package object model
 {

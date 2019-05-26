@@ -8,27 +8,26 @@ import ch.ninecode.cim.Parseable
 import ch.ninecode.cim.Relationship
 
 /**
- * The class represents IEEE Voltage Adjuster which is used to represent the voltage adjuster in either a power factor or var control system.
+ * IEEE voltage adjuster which is used to represent the voltage adjuster in either a power factor or VAr control system.
  *
- * Reference: IEEE Standard 421.5-2005 Section 11.1.
+ * Reference: IEEE 421.5-2005, 11.1.
  *
  * @param sup [[ch.ninecode.model.VoltageAdjusterDynamics VoltageAdjusterDynamics]] Reference to the superclass object.
  * @param adjslew Rate at which output of adjuster changes (<i>ADJ_SLEW</i>).
- *        Unit = sec./PU.  Typical Value = 300.
- * @param taoff Time that adjuster pulses are off (<i>T</i><i><sub>AOFF</sub></i>).
- *        Typical Value = 0.5.
- * @param taon Time that adjuster pulses are on (<i>T</i><i><sub>AON</sub></i>).
- *        Typical Value = 0.1.
+ *        Unit = s / PU.  Typical value = 300.
+ * @param taoff Time that adjuster pulses are off (<i>T</i><i><sub>AOFF</sub></i>) (&gt;= 0).
+ *        Typical value = 0,5.
+ * @param taon Time that adjuster pulses are on (<i>T</i><i><sub>AON</sub></i>) (&gt;= 0).
+ *        Typical value = 0,1.
  * @param vadjf Set high to provide a continuous raise or lower (<i>V</i><i><sub>ADJF</sub></i>).
- * @param vadjmax Maximum output of the adjuster (<i>V</i><i><sub>ADJMAX</sub></i>).
- *        Typical Value = 1.1.
- * @param vadjmin Minimum output of the adjuster (<i>V</i><i><sub>ADJMIN</sub></i>).
- *        Typical Value = 0.9.
+ * @param vadjmax Maximum output of the adjuster (<i>V</i><i><sub>ADJMAX</sub></i>) (&gt; VAdjIEEE.vadjmin).
+ *        Typical value = 1,1.
+ * @param vadjmin Minimum output of the adjuster (<i>V</i><i><sub>ADJMIN</sub></i>) (&lt; VAdjIEEE.vadjmax).
+ *        Typical value = 0,9.
  * @group VoltageAdjusterDynamics
  * @groupname VoltageAdjusterDynamics Package VoltageAdjusterDynamics
  * @groupdesc VoltageAdjusterDynamics <font color="#0f0f0f">A voltage adjuster is a reference adjuster that uses inputs from a reactive power or power factor controller to modify the voltage regulator set point to maintain the synchronous machine steady-state power factor or reactive power at a predetermined value. </font>
-
-<font color="#0f0f0f">For additional information please refer to IEEE Standard 421.5-2005, Section 11.</font>
+<font color="#0f0f0f">For additional information please refer to IEEE 421.5-2005, 11.</font>
  */
 case class VAdjIEEE
 (
@@ -125,12 +124,11 @@ extends
  * Voltage adjuster function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  *
  * @param sup [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
- * @param PFVArControllerType1Dynamics [[ch.ninecode.model.PFVArControllerType1Dynamics PFVArControllerType1Dynamics]] Power Factor or VAr controller Type I model with which this voltage adjuster is associated.
+ * @param PFVArControllerType1Dynamics [[ch.ninecode.model.PFVArControllerType1Dynamics PFVArControllerType1Dynamics]] Power factor or VAr controller type 1 model with which this voltage adjuster is associated.
  * @group VoltageAdjusterDynamics
  * @groupname VoltageAdjusterDynamics Package VoltageAdjusterDynamics
  * @groupdesc VoltageAdjusterDynamics <font color="#0f0f0f">A voltage adjuster is a reference adjuster that uses inputs from a reactive power or power factor controller to modify the voltage regulator set point to maintain the synchronous machine steady-state power factor or reactive power at a predetermined value. </font>
-
-<font color="#0f0f0f">For additional information please refer to IEEE Standard 421.5-2005, Section 11.</font>
+<font color="#0f0f0f">For additional information please refer to IEEE 421.5-2005, 11.</font>
  */
 case class VoltageAdjusterDynamics
 (

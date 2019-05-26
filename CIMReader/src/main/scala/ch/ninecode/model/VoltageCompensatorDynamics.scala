@@ -8,22 +8,19 @@ import ch.ninecode.cim.Parseable
 import ch.ninecode.cim.Relationship
 
 /**
- * This class provides the resistive and reactive components of compensation for the generator associated with the IEEE Type 2 voltage compensator for current flow out of one of the other generators in the interconnection.
+ * Resistive and reactive components of compensation for generator associated with IEEE type 2 voltage compensator for current flow out of another generator in the interconnection.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param rcij <font color="#0f0f0f">Resistive component of compensation of generator associated with this IEEE Type 2 voltage compensator for current flow out of another generator (Rcij).</font>
- * @param xcij <font color="#0f0f0f">Reactive component of compensation of generator associated with this IEEE Type 2 voltage compensator for current flow out of another generator (Xcij).</font>
+ * @param rcij <font color="#0f0f0f">Resistive component of compensation of generator associated with this IEEE type 2 voltage compensator for current flow out of another generator (<i>Rcij</i>).</font>
+ * @param xcij <font color="#0f0f0f">Reactive component of compensation of generator associated with this IEEE type 2 voltage compensator for current flow out of another generator (<i>Xcij</i>).</font>
  * @param SynchronousMachineDynamics [[ch.ninecode.model.SynchronousMachineDynamics SynchronousMachineDynamics]] Standard synchronous machine out of which current flow is being compensated for.
- * @param VcompIEEEType2 [[ch.ninecode.model.VCompIEEEType2 VCompIEEEType2]] The standard IEEE Type 2 voltage compensator of this compensation.
+ * @param VcompIEEEType2 [[ch.ninecode.model.VCompIEEEType2 VCompIEEEType2]] The standard IEEE type 2 voltage compensator of this compensation.
  * @group VoltageCompensatorDynamics
  * @groupname VoltageCompensatorDynamics Package VoltageCompensatorDynamics
  * @groupdesc VoltageCompensatorDynamics <font color="#0f0f0f">Synchronous machine terminal voltage transducer and current compensator models</font> adjust the terminal voltage feedback to the excitation system by adding a quantity that is proportional to the terminal current of the generator.  It is linked to a specific generator (synchronous machine).
-
-<font color="#0f0f0f">Several types of compensation are available on most excitation systems. Synchronous machine active and reactive current compensation are the most common. Either reactive droop compensation and/or line-drop compensation may be used, simulating an impedance drop and effectively regulating at some point other than the terminals of the machine. The impedance or range of adjustment and type of compensation should be specified for different types. </font>
-
-<font color="#0f0f0f">Care must be taken to ensure that a consistent pu system is utilized for the compensator parameters and the synchronous machine current base.</font>
-
-<font color="#0f0f0f">For further information see IEEE Standard 421.5-2005, Section 4.</font>
+<font color="#0f0f0f">Several types of compensation are available on most excitation systems. Synchronous machine active and reactive current compensation are the most common. Either reactive droop compensation and/or line-drop compensation can be used, simulating an impedance drop and effectively regulating at some point other than the terminals of the machine. The impedance or range of adjustment and type of compensation should be specified for different types. </font>
+<font color="#0f0f0f">Care shall be taken to ensure that a consistent PU system is utilized for the compensator parameters and the synchronous machine current base.</font>
+<font color="#0f0f0f">For further information see IEEE 421.5-2005, 4.</font>
 
 
 <font color="#0f0f0f">
@@ -116,23 +113,20 @@ extends
 }
 
 /**
- * <font color="#0f0f0f">The class represents the terminal voltage transducer and the load compensator as defined in the IEEE Std 421.5-2005, Section 4.
+ * <font color="#0f0f0f">Terminal voltage transducer and load compensator as defined in IEEE 421.5-2005, 4.
  *
  * This model is common to all excitation system models described in the IEEE Standard. </font>
  *
  * @param sup [[ch.ninecode.model.VoltageCompensatorDynamics VoltageCompensatorDynamics]] Reference to the superclass object.
- * @param rc <font color="#0f0f0f">Resistive component of compensation of a generator (Rc).</font>
- * @param tr <font color="#0f0f0f">Time constant which is used for the combined voltage sensing and compensation signal (Tr).</font>
- * @param xc <font color="#0f0f0f">Reactive component of compensation of a generator (Xc).</font>
+ * @param rc <font color="#0f0f0f">Resistive component of compensation of a generator (<i>Rc</i>) (&gt;= 0).</font>
+ * @param tr <font color="#0f0f0f">Time constant which is used for the combined voltage sensing and compensation signal (<i>Tr</i>) (&gt;= 0).</font>
+ * @param xc <font color="#0f0f0f">Reactive component of compensation of a generator (<i>Xc</i>) (&gt;= 0).</font>
  * @group VoltageCompensatorDynamics
  * @groupname VoltageCompensatorDynamics Package VoltageCompensatorDynamics
  * @groupdesc VoltageCompensatorDynamics <font color="#0f0f0f">Synchronous machine terminal voltage transducer and current compensator models</font> adjust the terminal voltage feedback to the excitation system by adding a quantity that is proportional to the terminal current of the generator.  It is linked to a specific generator (synchronous machine).
-
-<font color="#0f0f0f">Several types of compensation are available on most excitation systems. Synchronous machine active and reactive current compensation are the most common. Either reactive droop compensation and/or line-drop compensation may be used, simulating an impedance drop and effectively regulating at some point other than the terminals of the machine. The impedance or range of adjustment and type of compensation should be specified for different types. </font>
-
-<font color="#0f0f0f">Care must be taken to ensure that a consistent pu system is utilized for the compensator parameters and the synchronous machine current base.</font>
-
-<font color="#0f0f0f">For further information see IEEE Standard 421.5-2005, Section 4.</font>
+<font color="#0f0f0f">Several types of compensation are available on most excitation systems. Synchronous machine active and reactive current compensation are the most common. Either reactive droop compensation and/or line-drop compensation can be used, simulating an impedance drop and effectively regulating at some point other than the terminals of the machine. The impedance or range of adjustment and type of compensation should be specified for different types. </font>
+<font color="#0f0f0f">Care shall be taken to ensure that a consistent PU system is utilized for the compensator parameters and the synchronous machine current base.</font>
+<font color="#0f0f0f">For further information see IEEE 421.5-2005, 4.</font>
 
 
 <font color="#0f0f0f">
@@ -215,22 +209,19 @@ extends
 }
 
 /**
- * <font color="#0f0f0f">The class represents the terminal voltage transducer and the load compensator as defined in the IEEE Std 421.5-2005, Section 4.
+ * <font color="#0f0f0f">Terminal voltage transducer and load compensator as defined in IEEE 421.5-2005, 4.
  *
  * This model is designed to cover the following types of compensation: </font>
  *
  * @param sup [[ch.ninecode.model.VoltageCompensatorDynamics VoltageCompensatorDynamics]] Reference to the superclass object.
- * @param tr <font color="#0f0f0f">Time constant which is used for the combined voltage sensing and compensation signal (Tr).</font>
+ * @param tr <font color="#0f0f0f">Time constant which is used for the combined voltage sensing and compensation signal (<i>Tr</i>) (&gt;= 0).</font>
  * @param GenICompensationForGenJ [[ch.ninecode.model.GenICompensationForGenJ GenICompensationForGenJ]] Compensation of this voltage compensator's generator for current flow out of another generator.
  * @group VoltageCompensatorDynamics
  * @groupname VoltageCompensatorDynamics Package VoltageCompensatorDynamics
  * @groupdesc VoltageCompensatorDynamics <font color="#0f0f0f">Synchronous machine terminal voltage transducer and current compensator models</font> adjust the terminal voltage feedback to the excitation system by adding a quantity that is proportional to the terminal current of the generator.  It is linked to a specific generator (synchronous machine).
-
-<font color="#0f0f0f">Several types of compensation are available on most excitation systems. Synchronous machine active and reactive current compensation are the most common. Either reactive droop compensation and/or line-drop compensation may be used, simulating an impedance drop and effectively regulating at some point other than the terminals of the machine. The impedance or range of adjustment and type of compensation should be specified for different types. </font>
-
-<font color="#0f0f0f">Care must be taken to ensure that a consistent pu system is utilized for the compensator parameters and the synchronous machine current base.</font>
-
-<font color="#0f0f0f">For further information see IEEE Standard 421.5-2005, Section 4.</font>
+<font color="#0f0f0f">Several types of compensation are available on most excitation systems. Synchronous machine active and reactive current compensation are the most common. Either reactive droop compensation and/or line-drop compensation can be used, simulating an impedance drop and effectively regulating at some point other than the terminals of the machine. The impedance or range of adjustment and type of compensation should be specified for different types. </font>
+<font color="#0f0f0f">Care shall be taken to ensure that a consistent PU system is utilized for the compensator parameters and the synchronous machine current base.</font>
+<font color="#0f0f0f">For further information see IEEE 421.5-2005, 4.</font>
 
 
 <font color="#0f0f0f">
@@ -320,12 +311,9 @@ extends
  * @group VoltageCompensatorDynamics
  * @groupname VoltageCompensatorDynamics Package VoltageCompensatorDynamics
  * @groupdesc VoltageCompensatorDynamics <font color="#0f0f0f">Synchronous machine terminal voltage transducer and current compensator models</font> adjust the terminal voltage feedback to the excitation system by adding a quantity that is proportional to the terminal current of the generator.  It is linked to a specific generator (synchronous machine).
-
-<font color="#0f0f0f">Several types of compensation are available on most excitation systems. Synchronous machine active and reactive current compensation are the most common. Either reactive droop compensation and/or line-drop compensation may be used, simulating an impedance drop and effectively regulating at some point other than the terminals of the machine. The impedance or range of adjustment and type of compensation should be specified for different types. </font>
-
-<font color="#0f0f0f">Care must be taken to ensure that a consistent pu system is utilized for the compensator parameters and the synchronous machine current base.</font>
-
-<font color="#0f0f0f">For further information see IEEE Standard 421.5-2005, Section 4.</font>
+<font color="#0f0f0f">Several types of compensation are available on most excitation systems. Synchronous machine active and reactive current compensation are the most common. Either reactive droop compensation and/or line-drop compensation can be used, simulating an impedance drop and effectively regulating at some point other than the terminals of the machine. The impedance or range of adjustment and type of compensation should be specified for different types. </font>
+<font color="#0f0f0f">Care shall be taken to ensure that a consistent PU system is utilized for the compensator parameters and the synchronous machine current base.</font>
+<font color="#0f0f0f">For further information see IEEE 421.5-2005, 4.</font>
 
 
 <font color="#0f0f0f">
@@ -386,7 +374,7 @@ extends
         "RemoteInputSignal"
     )
     override val relations: List[Relationship] = List (
-        Relationship ("ExcitationSystemDynamics", "ExcitationSystemDynamics", "1", "0..1"),
+        Relationship ("ExcitationSystemDynamics", "ExcitationSystemDynamics", "1", "1"),
         Relationship ("RemoteInputSignal", "RemoteInputSignal", "0..1", "0..1")
     )
     val ExcitationSystemDynamics: Fielder = parse_attribute (attribute (cls, fields(0)))

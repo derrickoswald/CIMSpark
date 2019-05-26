@@ -11,6 +11,7 @@ import ch.ninecode.cim.Relationship
  * Limit on active power flow.
  *
  * @param sup [[ch.ninecode.model.OperationalLimit OperationalLimit]] Reference to the superclass object.
+ * @param normalValue The normal value of active power limit.
  * @param value Value of active power limit.
  * @group OperationalLimits
  * @groupname OperationalLimits Package OperationalLimits
@@ -19,6 +20,7 @@ import ch.ninecode.cim.Relationship
 case class ActivePowerLimit
 (
     override val sup: OperationalLimit,
+    normalValue: Double,
     value: Double
 )
 extends
@@ -27,7 +29,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0) }
+    def this () = { this (null, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -51,7 +53,8 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ActivePowerLimit.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ActivePowerLimit.fields (position), value)
-        emitelem (0, value)
+        emitelem (0, normalValue)
+        emitelem (1, value)
         s.toString
     }
     override def export: String =
@@ -65,9 +68,11 @@ extends
     Parseable[ActivePowerLimit]
 {
     override val fields: Array[String] = Array[String] (
+        "normalValue",
         "value"
     )
-    val value: Fielder = parse_element (element (cls, fields(0)))
+    val normalValue: Fielder = parse_element (element (cls, fields(0)))
+    val value: Fielder = parse_element (element (cls, fields(1)))
 
     def parse (context: Context): ActivePowerLimit =
     {
@@ -75,7 +80,8 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = ActivePowerLimit (
             OperationalLimit.parse (context),
-            toDouble (mask (value (), 0))
+            toDouble (mask (normalValue (), 0)),
+            toDouble (mask (value (), 1))
         )
         ret.bitfields = bitfields
         ret
@@ -86,6 +92,7 @@ extends
  * Apparent power limit.
  *
  * @param sup [[ch.ninecode.model.OperationalLimit OperationalLimit]] Reference to the superclass object.
+ * @param normalValue The normal apparent power limit.
  * @param value The apparent power limit.
  * @group OperationalLimits
  * @groupname OperationalLimits Package OperationalLimits
@@ -94,6 +101,7 @@ extends
 case class ApparentPowerLimit
 (
     override val sup: OperationalLimit,
+    normalValue: Double,
     value: Double
 )
 extends
@@ -102,7 +110,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0) }
+    def this () = { this (null, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -126,7 +134,8 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ApparentPowerLimit.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ApparentPowerLimit.fields (position), value)
-        emitelem (0, value)
+        emitelem (0, normalValue)
+        emitelem (1, value)
         s.toString
     }
     override def export: String =
@@ -140,9 +149,11 @@ extends
     Parseable[ApparentPowerLimit]
 {
     override val fields: Array[String] = Array[String] (
+        "normalValue",
         "value"
     )
-    val value: Fielder = parse_element (element (cls, fields(0)))
+    val normalValue: Fielder = parse_element (element (cls, fields(0)))
+    val value: Fielder = parse_element (element (cls, fields(1)))
 
     def parse (context: Context): ApparentPowerLimit =
     {
@@ -150,7 +161,8 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = ApparentPowerLimit (
             OperationalLimit.parse (context),
-            toDouble (mask (value (), 0))
+            toDouble (mask (normalValue (), 0)),
+            toDouble (mask (value (), 1))
         )
         ret.bitfields = bitfields
         ret
@@ -286,7 +298,7 @@ extends
  *
  * @param sup Reference to the superclass object.
  * @param positiveFlowIn The flow into the terminal is summed if set true.
- *        The flow out of the terminanl is summed if set false.
+ *        The flow out of the terminal is summed if set false.
  * @param BranchGroup [[ch.ninecode.model.BranchGroup BranchGroup]] The branch group to which the directed branch group terminals belong.
  * @param Terminal [[ch.ninecode.model.Terminal Terminal]] The terminal to be summed.
  * @group OperationalLimits
@@ -378,6 +390,7 @@ extends
  * Operational limit on current.
  *
  * @param sup [[ch.ninecode.model.OperationalLimit OperationalLimit]] Reference to the superclass object.
+ * @param normalValue The normal value for limit on current flow.
  * @param value Limit on current flow.
  * @group OperationalLimits
  * @groupname OperationalLimits Package OperationalLimits
@@ -386,6 +399,7 @@ extends
 case class CurrentLimit
 (
     override val sup: OperationalLimit,
+    normalValue: Double,
     value: Double
 )
 extends
@@ -394,7 +408,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0) }
+    def this () = { this (null, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -418,7 +432,8 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = CurrentLimit.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (CurrentLimit.fields (position), value)
-        emitelem (0, value)
+        emitelem (0, normalValue)
+        emitelem (1, value)
         s.toString
     }
     override def export: String =
@@ -432,9 +447,11 @@ extends
     Parseable[CurrentLimit]
 {
     override val fields: Array[String] = Array[String] (
+        "normalValue",
         "value"
     )
-    val value: Fielder = parse_element (element (cls, fields(0)))
+    val normalValue: Fielder = parse_element (element (cls, fields(0)))
+    val value: Fielder = parse_element (element (cls, fields(1)))
 
     def parse (context: Context): CurrentLimit =
     {
@@ -442,7 +459,8 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = CurrentLimit (
             OperationalLimit.parse (context),
-            toDouble (mask (value (), 0))
+            toDouble (mask (normalValue (), 0)),
+            toDouble (mask (value (), 1))
         )
         ret.bitfields = bitfields
         ret
@@ -560,7 +578,7 @@ extends
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param Equipment [[ch.ninecode.model.Equipment Equipment]] The equipment to which the limit set applies.
  * @param OperationalLimitValue [[ch.ninecode.model.OperationalLimit OperationalLimit]] Values of equipment limits.
- * @param Terminal [[ch.ninecode.model.ACDCTerminal ACDCTerminal]] <em>undocumented</em>
+ * @param Terminal [[ch.ninecode.model.ACDCTerminal ACDCTerminal]] The terminal where the operational limit set apply.
  * @group OperationalLimits
  * @groupname OperationalLimits Package OperationalLimits
  * @groupdesc OperationalLimits This package models a specification of limits associated with equipment and other operational entities.
@@ -652,7 +670,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param acceptableDuration The nominal acceptable duration of the limit.
- *        Limits are commonly expressed in terms of the a time limit for which the limit is normally acceptable.   The actual acceptable duration of a specific limit may depend on other local factors such as temperature or wind speed.
+ *        Limits are commonly expressed in terms of the time limit for which the limit is normally acceptable. The actual acceptable duration of a specific limit may depend on other local factors such as temperature or wind speed.
  * @param direction The direction of the limit.
  * @param OperationalLimit [[ch.ninecode.model.OperationalLimit OperationalLimit]] The operational limits associated with this type of limit.
  * @param SourceOperationalLimitTypeScaling [[ch.ninecode.model.OperatonalLimitTypeScaling OperatonalLimitTypeScaling]] <em>undocumented</em>
@@ -758,6 +776,8 @@ extends
  * Operational limit applied to voltage.
  *
  * @param sup [[ch.ninecode.model.OperationalLimit OperationalLimit]] Reference to the superclass object.
+ * @param normalValue The normal limit on voltage.
+ *        High or low limit nature of the limit depends upon the properties of the operational limit type.
  * @param value Limit on voltage.
  *        High or low limit nature of the limit depends upon the properties of the operational limit type.
  * @group OperationalLimits
@@ -767,6 +787,7 @@ extends
 case class VoltageLimit
 (
     override val sup: OperationalLimit,
+    normalValue: Double,
     value: Double
 )
 extends
@@ -775,7 +796,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0) }
+    def this () = { this (null, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -799,7 +820,8 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = VoltageLimit.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (VoltageLimit.fields (position), value)
-        emitelem (0, value)
+        emitelem (0, normalValue)
+        emitelem (1, value)
         s.toString
     }
     override def export: String =
@@ -813,9 +835,11 @@ extends
     Parseable[VoltageLimit]
 {
     override val fields: Array[String] = Array[String] (
+        "normalValue",
         "value"
     )
-    val value: Fielder = parse_element (element (cls, fields(0)))
+    val normalValue: Fielder = parse_element (element (cls, fields(0)))
+    val value: Fielder = parse_element (element (cls, fields(1)))
 
     def parse (context: Context): VoltageLimit =
     {
@@ -823,7 +847,8 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = VoltageLimit (
             OperationalLimit.parse (context),
-            toDouble (mask (value (), 0))
+            toDouble (mask (normalValue (), 0)),
+            toDouble (mask (value (), 1))
         )
         ret.bitfields = bitfields
         ret

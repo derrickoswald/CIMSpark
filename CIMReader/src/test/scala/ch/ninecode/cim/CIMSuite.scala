@@ -156,7 +156,7 @@ yadda yadda"""
 		<cim:Asset.Location rdf:resource="#_location_1745492_973692419_187674644"/>
 		<cim:Asset.PowerSystemResources rdf:resource="#STA196"/>
 		<cim:Asset.PowerSystemResources rdf:resource="#STA197"/>
-		<cim:Asset.lifecycle rdf:resource="#STA196_lifecycle"/>
+		<cim:Asset.lifecycleDate rdf:resource="#STA196_lifecycle"/>
 	</cim:Facility>"""
 
         val parser = new CHIM (xml)

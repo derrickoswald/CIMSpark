@@ -8,7 +8,7 @@ import ch.ninecode.cim.Parseable
 import ch.ninecode.cim.Relationship
 
 /**
- * Model of results of market clearing with respect to  Ancillary Service products
+ * Model of results of market clearing with respect to  Ancillary Service products.
  *
  * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
  * @param MarketCaseClearing [[ch.ninecode.model.MarketCaseClearing MarketCaseClearing]] <em>undocumented</em>
@@ -94,7 +94,7 @@ extends
 }
 
 /**
- * Model various charges to support billing and settlement of
+ * Models various charges to support billing and settlement.
  *
  * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param calculationLevel Level in charge calculation order.
@@ -104,7 +104,7 @@ extends
  * @param exception <em>undocumented</em>
  * @param factor <em>undocumented</em>
  * @param frequency <em>undocumented</em>
- * @param numberInterval Number of intervals of bill determiant in trade day, eg 300 for five minute intervals.
+ * @param numberInterval Number of intervals of bill determiant in trade day, e.g. 300 for five minute intervals.
  * @param offset <em>undocumented</em>
  * @param precisionLevel The level of precision in the current value.
  * @param primaryYN <em>undocumented</em>
@@ -297,7 +297,7 @@ extends
 }
 
 /**
- * A type of profile for financial charges
+ * A type of profile for financial charges.
  *
  * @param sup [[ch.ninecode.model.Profile Profile]] Reference to the superclass object.
  * @param frequency The calculation frequency, daily or monthly.
@@ -423,7 +423,7 @@ extends
 }
 
 /**
- * Model of various charges associated with an energy profile to support billing and settlement
+ * Model of various charges associated with an energy profile to support billing and settlement.
  *
  * @param sup Reference to the superclass object.
  * @param sequence The sequence number of the profile.
@@ -750,6 +750,113 @@ extends
             mask (updateUser (), 9),
             masks (CommitmentClearing (), 10),
             mask (RegisteredResource (), 11)
+        )
+        ret.bitfields = bitfields
+        ret
+    }
+}
+
+/**
+ * The CommodityPrice class is used to define the price of a commodity during a given time interval.
+ *
+ * The interval may be long, e.g. a year, or very short, e.g. 5 minutes.  There will be many instances of the CommodityPrice class for each instance of the CommodityDefinition to which it is associated.  Note that there may be more than once price associated with a given interval and these variances are described by the association (or associations) with the PriceDescriptor class.
+ *
+ * @param sup Reference to the superclass object.
+ * @param timeIntervalPeriod The time interval over which the CommodityPrice is valid, using the standard conventions associated with the DateTimeInterval class.
+ * @param value The price of the Commodity, expressed as a floating point value with the currency and unit of measure defined in the associated CommodityDefinition class.
+ * @param CommodityDefinition [[ch.ninecode.model.CommodityDefinition CommodityDefinition]] <em>undocumented</em>
+ * @param PnodeClearing [[ch.ninecode.model.PnodeClearing PnodeClearing]] <em>undocumented</em>
+ * @param PriceDescriptor [[ch.ninecode.model.PriceDescriptor PriceDescriptor]] <em>undocumented</em>
+ * @group MarketResults
+ * @groupname MarketResults Package MarketResults
+ * @groupdesc MarketResults Results from the execution of a market.
+ */
+case class CommodityPrice
+(
+    override val sup: BasicElement,
+    timeIntervalPeriod: String,
+    value: Double,
+    CommodityDefinition: String,
+    PnodeClearing: String,
+    PriceDescriptor: String
+)
+extends
+    Element
+{
+    /**
+     * Zero args constructor.
+     */
+    def this () = { this (null, null, 0.0, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
+    override def copy (): Row = { clone ().asInstanceOf[CommodityPrice] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = CommodityPrice.cls
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (CommodityPrice.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (CommodityPrice.fields (position), value)
+        emitattr (0, timeIntervalPeriod)
+        emitelem (1, value)
+        emitattr (2, CommodityDefinition)
+        emitattr (3, PnodeClearing)
+        emitattr (4, PriceDescriptor)
+        s.toString
+    }
+    override def export: String =
+    {
+        "\t<cim:CommodityPrice rdf:ID=\"%s\">\n%s\t</cim:CommodityPrice>".format (id, export_fields)
+    }
+}
+
+object CommodityPrice
+extends
+    Parseable[CommodityPrice]
+{
+    override val fields: Array[String] = Array[String] (
+        "timeIntervalPeriod",
+        "value",
+        "CommodityDefinition",
+        "PnodeClearing",
+        "PriceDescriptor"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("CommodityDefinition", "CommodityDefinition", "1", "1..*"),
+        Relationship ("PnodeClearing", "PnodeClearing", "0..1", "0..*"),
+        Relationship ("PriceDescriptor", "PriceDescriptor", "1", "1..*")
+    )
+    val timeIntervalPeriod: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val value: Fielder = parse_element (element (cls, fields(1)))
+    val CommodityDefinition: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val PnodeClearing: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val PriceDescriptor: Fielder = parse_attribute (attribute (cls, fields(4)))
+
+    def parse (context: Context): CommodityPrice =
+    {
+        implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
+        val ret = CommodityPrice (
+            BasicElement.parse (context),
+            mask (timeIntervalPeriod (), 0),
+            toDouble (mask (value (), 1)),
+            mask (CommodityDefinition (), 2),
+            mask (PnodeClearing (), 3),
+            mask (PriceDescriptor (), 4)
         )
         ret.bitfields = bitfields
         ret
@@ -1551,7 +1658,7 @@ extends
 }
 
 /**
- * Model of ex-post calculation of cleared MW on a regional basis
+ * Model of ex-post calculation of cleared MW on a regional basis.
  *
  * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
  * @param ExPostMarketRegionResults [[ch.ninecode.model.ExPostMarketRegionResults ExPostMarketRegionResults]] <em>undocumented</em>
@@ -1631,7 +1738,7 @@ extends
 /**
  * Model of expost calculation of cleared MW on a region basis.
  *
- * Includes cleared price
+ * Includes cleared price.
  *
  * @param sup Reference to the superclass object.
  * @param exPostClearedPrice <em>undocumented</em>
@@ -1723,7 +1830,7 @@ extends
 }
 
 /**
- * Model of ex-post pricing of nodes
+ * Model of ex-post pricing of nodes.
  *
  * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
  * @param energyPrice market energy price
@@ -2140,7 +2247,7 @@ extends
 /**
  * Model of clearing result of the market run at the market level.
  *
- * Identifies interval
+ * Identifies interval.
  *
  * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
  * @param GeneralClearingResults [[ch.ninecode.model.GeneralClearingResults GeneralClearingResults]] <em>undocumented</em>
@@ -2326,10 +2433,13 @@ extends
 /**
  * Model of market clearing, relating to commitment instructions.
  *
- * Identifies interval
+ * Identifies interval.
  *
  * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
+ * @param ActualDemandResponseEvent [[ch.ninecode.model.DistributedResourceActualEvent DistributedResourceActualEvent]] ActualDemandResponseEvents may exist that are not part of a cordinated MarketActualEvent associated to a Market.
+ *        These ActualDemandResponseEvents can have many InstructionClearing Instructions for specified RegisteredResources or Distributed Energy Resource type of AggregateNodes.
  * @param Instructions [[ch.ninecode.model.Instructions Instructions]] <em>undocumented</em>
+ * @param ResourceDeploymentStatus [[ch.ninecode.model.ResourceDeploymentStatus ResourceDeploymentStatus]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
  * @groupdesc MarketResults Results from the execution of a market.
@@ -2337,7 +2447,9 @@ extends
 case class InstructionClearing
 (
     override val sup: MarketFactors,
-    Instructions: List[String]
+    ActualDemandResponseEvent: String,
+    Instructions: List[String],
+    ResourceDeploymentStatus: List[String]
 )
 extends
     Element
@@ -2345,7 +2457,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, List()) }
+    def this () = { this (null, null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -2368,8 +2480,11 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = InstructionClearing.cls
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (InstructionClearing.fields (position), value)
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (InstructionClearing.fields (position), x))
-        emitattrs (0, Instructions)
+        emitattr (0, ActualDemandResponseEvent)
+        emitattrs (1, Instructions)
+        emitattrs (2, ResourceDeploymentStatus)
         s.toString
     }
     override def export: String =
@@ -2383,12 +2498,18 @@ extends
     Parseable[InstructionClearing]
 {
     override val fields: Array[String] = Array[String] (
-        "Instructions"
+        "ActualDemandResponseEvent",
+        "Instructions",
+        "ResourceDeploymentStatus"
     )
     override val relations: List[Relationship] = List (
-        Relationship ("Instructions", "Instructions", "1..*", "1..*")
+        Relationship ("ActualDemandResponseEvent", "DistributedResourceActualEvent", "0..1", "0..*"),
+        Relationship ("Instructions", "Instructions", "1..*", "1..*"),
+        Relationship ("ResourceDeploymentStatus", "ResourceDeploymentStatus", "0..*", "0..1")
     )
-    val Instructions: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val ActualDemandResponseEvent: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val Instructions: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val ResourceDeploymentStatus: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
 
     def parse (context: Context): InstructionClearing =
     {
@@ -2396,7 +2517,9 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = InstructionClearing (
             MarketFactors.parse (context),
-            masks (Instructions (), 0)
+            mask (ActualDemandResponseEvent (), 0),
+            masks (Instructions (), 1),
+            masks (ResourceDeploymentStatus (), 2)
         )
         ret.bitfields = bitfields
         ret
@@ -2406,7 +2529,7 @@ extends
 /**
  * Model of market clearing, related to Dispatch Operating Point.
  *
- * Identifies interval
+ * Identifies interval.
  *
  * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
  * @param DopInstruction [[ch.ninecode.model.DopInstruction DopInstruction]] <em>undocumented</em>
@@ -2486,11 +2609,12 @@ extends
 /**
  * Model of market clearing, related to Dispatch Operating Target (model of anticipatory dispatch).
  *
- * Identifies interval
+ * Identifies interval.
  *
  * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
  * @param contingencyActive Indication that the system is currently operating in a contingency mode.
  * @param dispatchMode <em>undocumented</em>
+ * @param DemandResponseActualEvent [[ch.ninecode.model.DistributedResourceActualEvent DistributedResourceActualEvent]] <em>undocumented</em>
  * @param DotInstruction [[ch.ninecode.model.DotInstruction DotInstruction]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
@@ -2501,6 +2625,7 @@ case class InstructionClearingDOT
     override val sup: MarketFactors,
     contingencyActive: String,
     dispatchMode: String,
+    DemandResponseActualEvent: String,
     DotInstruction: List[String]
 )
 extends
@@ -2509,7 +2634,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, List()) }
+    def this () = { this (null, null, null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -2536,7 +2661,8 @@ extends
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (InstructionClearingDOT.fields (position), x))
         emitattr (0, contingencyActive)
         emitattr (1, dispatchMode)
-        emitattrs (2, DotInstruction)
+        emitattr (2, DemandResponseActualEvent)
+        emitattrs (3, DotInstruction)
         s.toString
     }
     override def export: String =
@@ -2552,14 +2678,17 @@ extends
     override val fields: Array[String] = Array[String] (
         "contingencyActive",
         "dispatchMode",
+        "DemandResponseActualEvent",
         "DotInstruction"
     )
     override val relations: List[Relationship] = List (
+        Relationship ("DemandResponseActualEvent", "DistributedResourceActualEvent", "0..1", "0..*"),
         Relationship ("DotInstruction", "DotInstruction", "1..*", "1..*")
     )
     val contingencyActive: Fielder = parse_attribute (attribute (cls, fields(0)))
     val dispatchMode: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val DotInstruction: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val DemandResponseActualEvent: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val DotInstruction: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
 
     def parse (context: Context): InstructionClearingDOT =
     {
@@ -2569,7 +2698,8 @@ extends
             MarketFactors.parse (context),
             mask (contingencyActive (), 0),
             mask (dispatchMode (), 1),
-            masks (DotInstruction (), 2)
+            mask (DemandResponseActualEvent (), 2),
+            masks (DotInstruction (), 3)
         )
         ret.bitfields = bitfields
         ret
@@ -2582,6 +2712,8 @@ extends
  * This information is relevant to the DA Market (RUC only) as well as the RT Market (HASP, Pre-dispatch, and Interval).
  *
  * @param sup Reference to the superclass object.
+ * @param bindingDOD Binding dispatch operating delta provides a relative delta to be applied.
+ *        Typically used in demand response instructions. The binding<font color="#0f0f0f">DOD instructions are cumulative; in other words a second DOD instruction does not replace the previous DOD, instead the second DOD adds to the previous DODs.</font>
  * @param bindingDOT <em>undocumented</em>
  * @param bindingInstruction <em>undocumented</em>
  * @param instructionCost Total cost associated with changing the status of the resource.
@@ -2596,6 +2728,7 @@ extends
  * @param updateTimeStamp <em>undocumented</em>
  * @param updateType <em>undocumented</em>
  * @param updateUser <em>undocumented</em>
+ * @param AggregateNode [[ch.ninecode.model.AggregateNode AggregateNode]] <em>undocumented</em>
  * @param InstructionClearing [[ch.ninecode.model.InstructionClearing InstructionClearing]] <em>undocumented</em>
  * @param RegisteredResource [[ch.ninecode.model.RegisteredResource RegisteredResource]] <em>undocumented</em>
  * @group MarketResults
@@ -2605,6 +2738,7 @@ extends
 case class Instructions
 (
     override val sup: BasicElement,
+    bindingDOD: Double,
     bindingDOT: Double,
     bindingInstruction: String,
     instructionCost: Double,
@@ -2616,6 +2750,7 @@ case class Instructions
     updateTimeStamp: String,
     updateType: String,
     updateUser: String,
+    AggregateNode: String,
     InstructionClearing: List[String],
     RegisteredResource: String
 )
@@ -2625,7 +2760,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, null, 0.0, null, null, null, null, 0, null, null, null, List(), null) }
+    def this () = { this (null, 0.0, 0.0, null, 0.0, null, null, null, null, 0, null, null, null, null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -2651,19 +2786,21 @@ extends
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Instructions.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Instructions.fields (position), value)
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Instructions.fields (position), x))
-        emitelem (0, bindingDOT)
-        emitattr (1, bindingInstruction)
-        emitelem (2, instructionCost)
-        emitattr (3, instructionSource)
-        emitelem (4, instructionStartTime)
-        emitattr (5, instructionType)
-        emitattr (6, manuallyBlocked)
-        emitelem (7, minStatusChangeTime)
-        emitelem (8, updateTimeStamp)
-        emitattr (9, updateType)
-        emitelem (10, updateUser)
-        emitattrs (11, InstructionClearing)
-        emitattr (12, RegisteredResource)
+        emitelem (0, bindingDOD)
+        emitelem (1, bindingDOT)
+        emitattr (2, bindingInstruction)
+        emitelem (3, instructionCost)
+        emitattr (4, instructionSource)
+        emitelem (5, instructionStartTime)
+        emitattr (6, instructionType)
+        emitattr (7, manuallyBlocked)
+        emitelem (8, minStatusChangeTime)
+        emitelem (9, updateTimeStamp)
+        emitattr (10, updateType)
+        emitelem (11, updateUser)
+        emitattr (12, AggregateNode)
+        emitattrs (13, InstructionClearing)
+        emitattr (14, RegisteredResource)
         s.toString
     }
     override def export: String =
@@ -2677,6 +2814,7 @@ extends
     Parseable[Instructions]
 {
     override val fields: Array[String] = Array[String] (
+        "bindingDOD",
         "bindingDOT",
         "bindingInstruction",
         "instructionCost",
@@ -2688,26 +2826,30 @@ extends
         "updateTimeStamp",
         "updateType",
         "updateUser",
+        "AggregateNode",
         "InstructionClearing",
         "RegisteredResource"
     )
     override val relations: List[Relationship] = List (
+        Relationship ("AggregateNode", "AggregateNode", "0..1", "0..*"),
         Relationship ("InstructionClearing", "InstructionClearing", "1..*", "1..*"),
         Relationship ("RegisteredResource", "RegisteredResource", "1", "0..*")
     )
-    val bindingDOT: Fielder = parse_element (element (cls, fields(0)))
-    val bindingInstruction: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val instructionCost: Fielder = parse_element (element (cls, fields(2)))
-    val instructionSource: Fielder = parse_attribute (attribute (cls, fields(3)))
-    val instructionStartTime: Fielder = parse_element (element (cls, fields(4)))
-    val instructionType: Fielder = parse_attribute (attribute (cls, fields(5)))
-    val manuallyBlocked: Fielder = parse_attribute (attribute (cls, fields(6)))
-    val minStatusChangeTime: Fielder = parse_element (element (cls, fields(7)))
-    val updateTimeStamp: Fielder = parse_element (element (cls, fields(8)))
-    val updateType: Fielder = parse_attribute (attribute (cls, fields(9)))
-    val updateUser: Fielder = parse_element (element (cls, fields(10)))
-    val InstructionClearing: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
-    val RegisteredResource: Fielder = parse_attribute (attribute (cls, fields(12)))
+    val bindingDOD: Fielder = parse_element (element (cls, fields(0)))
+    val bindingDOT: Fielder = parse_element (element (cls, fields(1)))
+    val bindingInstruction: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val instructionCost: Fielder = parse_element (element (cls, fields(3)))
+    val instructionSource: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val instructionStartTime: Fielder = parse_element (element (cls, fields(5)))
+    val instructionType: Fielder = parse_attribute (attribute (cls, fields(6)))
+    val manuallyBlocked: Fielder = parse_attribute (attribute (cls, fields(7)))
+    val minStatusChangeTime: Fielder = parse_element (element (cls, fields(8)))
+    val updateTimeStamp: Fielder = parse_element (element (cls, fields(9)))
+    val updateType: Fielder = parse_attribute (attribute (cls, fields(10)))
+    val updateUser: Fielder = parse_element (element (cls, fields(11)))
+    val AggregateNode: Fielder = parse_attribute (attribute (cls, fields(12)))
+    val InstructionClearing: FielderMultiple = parse_attributes (attribute (cls, fields(13)))
+    val RegisteredResource: Fielder = parse_attribute (attribute (cls, fields(14)))
 
     def parse (context: Context): Instructions =
     {
@@ -2715,19 +2857,21 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = Instructions (
             BasicElement.parse (context),
-            toDouble (mask (bindingDOT (), 0)),
-            mask (bindingInstruction (), 1),
-            toDouble (mask (instructionCost (), 2)),
-            mask (instructionSource (), 3),
-            mask (instructionStartTime (), 4),
-            mask (instructionType (), 5),
-            mask (manuallyBlocked (), 6),
-            toInteger (mask (minStatusChangeTime (), 7)),
-            mask (updateTimeStamp (), 8),
-            mask (updateType (), 9),
-            mask (updateUser (), 10),
-            masks (InstructionClearing (), 11),
-            mask (RegisteredResource (), 12)
+            toDouble (mask (bindingDOD (), 0)),
+            toDouble (mask (bindingDOT (), 1)),
+            mask (bindingInstruction (), 2),
+            toDouble (mask (instructionCost (), 3)),
+            mask (instructionSource (), 4),
+            mask (instructionStartTime (), 5),
+            mask (instructionType (), 6),
+            mask (manuallyBlocked (), 7),
+            toInteger (mask (minStatusChangeTime (), 8)),
+            mask (updateTimeStamp (), 9),
+            mask (updateType (), 10),
+            mask (updateUser (), 11),
+            mask (AggregateNode (), 12),
+            masks (InstructionClearing (), 13),
+            mask (RegisteredResource (), 14)
         )
         ret.bitfields = bitfields
         ret
@@ -2737,7 +2881,7 @@ extends
 /**
  * Model of load following capabilities that are entered by operators on a temporary basis.
  *
- * Related to Registered Resources in Metered Subsystems
+ * Related to Registered Resources in Metered Subsystems.
  *
  * @param sup Reference to the superclass object.
  * @param dataEntryTimeStamp Time the data entry was performed
@@ -3038,7 +3182,7 @@ extends
 /**
  * Model of results of Market Power tests, and possible mitigation.
  *
- * Interval based
+ * Interval based.
  *
  * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
  * @param mitigationOccuredFlag <em>undocumented</em>
@@ -3135,7 +3279,7 @@ extends
 }
 
 /**
- * Model of results of Market Power tests, gives status of resource for the associated interval
+ * Model of results of Market Power tests, gives status of resource for the associated interval.
  *
  * @param sup Reference to the superclass object.
  * @param resourceStatus Interval Test Status
@@ -3527,7 +3671,7 @@ extends
 /**
  * This class holds elements that are single values for the entire market time horizon.
  *
- * That is, for the Day Ahead market, there is 1 value for each element, not hourly based.  Is a summary of the market run
+ * That is, for the Day Ahead market, there is 1 value for each element, not hourly based.  Is a summary of the market run.
  *
  * @param sup Reference to the superclass object.
  * @param ancillarySvcCost Total  AS Cost (i.e., payment) (\$) over the time horizon
@@ -3650,7 +3794,7 @@ extends
 /**
  * A statement is a roll up of statement line items.
  *
- * Each statement along with its line items provide the details of specific charges at any given time.  Used by Billing and Settlement
+ * Each statement along with its line items provide the details of specific charges at any given time.  Used by Billing and Settlement.
  *
  * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param end The end of a bill period.
@@ -3759,7 +3903,7 @@ extends
 }
 
 /**
- * An individual line item on a statement.
+ * An individual line item on an ISO settlement statement.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param currentAmount Current settlement amount.
@@ -3777,8 +3921,8 @@ extends
  * @param previousAmount Previous settlement amount.
  * @param previousISOAmount Previous ISO settlement amount.
  * @param previousISOQuantity Previous ISO settlement quantity.
+ * @param previousPrice Previous settlement price.
  * @param previousQuantity Previous settlement quantity, subject to the UOM.
- * @param previsouPrice Previous settlement price.
  * @param quantityUOM The unit of measure for the quantity element of the line item.
  * @param ComponentMarketStatementLineItem [[ch.ninecode.model.MarketStatementLineItem MarketStatementLineItem]] <em>undocumented</em>
  * @param ContainerMarketStatementLineItem [[ch.ninecode.model.MarketStatementLineItem MarketStatementLineItem]] <em>undocumented</em>
@@ -3807,8 +3951,8 @@ case class MarketStatementLineItem
     previousAmount: Double,
     previousISOAmount: Double,
     previousISOQuantity: Double,
+    previousPrice: Double,
     previousQuantity: Double,
-    previsouPrice: Double,
     quantityUOM: String,
     ComponentMarketStatementLineItem: List[String],
     ContainerMarketStatementLineItem: String,
@@ -3863,8 +4007,8 @@ extends
         emitelem (12, previousAmount)
         emitelem (13, previousISOAmount)
         emitelem (14, previousISOQuantity)
-        emitelem (15, previousQuantity)
-        emitelem (16, previsouPrice)
+        emitelem (15, previousPrice)
+        emitelem (16, previousQuantity)
         emitelem (17, quantityUOM)
         emitattrs (18, ComponentMarketStatementLineItem)
         emitattr (19, ContainerMarketStatementLineItem)
@@ -3899,8 +4043,8 @@ extends
         "previousAmount",
         "previousISOAmount",
         "previousISOQuantity",
+        "previousPrice",
         "previousQuantity",
-        "previsouPrice",
         "quantityUOM",
         "ComponentMarketStatementLineItem",
         "ContainerMarketStatementLineItem",
@@ -3930,8 +4074,8 @@ extends
     val previousAmount: Fielder = parse_element (element (cls, fields(12)))
     val previousISOAmount: Fielder = parse_element (element (cls, fields(13)))
     val previousISOQuantity: Fielder = parse_element (element (cls, fields(14)))
-    val previousQuantity: Fielder = parse_element (element (cls, fields(15)))
-    val previsouPrice: Fielder = parse_element (element (cls, fields(16)))
+    val previousPrice: Fielder = parse_element (element (cls, fields(15)))
+    val previousQuantity: Fielder = parse_element (element (cls, fields(16)))
     val quantityUOM: Fielder = parse_element (element (cls, fields(17)))
     val ComponentMarketStatementLineItem: FielderMultiple = parse_attributes (attribute (cls, fields(18)))
     val ContainerMarketStatementLineItem: Fielder = parse_attribute (attribute (cls, fields(19)))
@@ -3960,8 +4104,8 @@ extends
             toDouble (mask (previousAmount (), 12)),
             toDouble (mask (previousISOAmount (), 13)),
             toDouble (mask (previousISOQuantity (), 14)),
-            toDouble (mask (previousQuantity (), 15)),
-            toDouble (mask (previsouPrice (), 16)),
+            toDouble (mask (previousPrice (), 15)),
+            toDouble (mask (previousQuantity (), 16)),
             mask (quantityUOM (), 17),
             masks (ComponentMarketStatementLineItem (), 18),
             mask (ContainerMarketStatementLineItem (), 19),
@@ -4157,7 +4301,7 @@ extends
 /**
  * Model of mitigated bid.
  *
- * Indicates segment of piece-wise linear bid, that has been mitigated
+ * Indicates segment of piece-wise linear bid, that has been mitigated.
  *
  * @param sup Reference to the superclass object.
  * @param intervalStartTime <em>undocumented</em>
@@ -4261,7 +4405,7 @@ extends
 
 /**
  * Pass Through Bill is used for:
- * 1)Two sided charge transactions with or without ISO involvement (hence the ?pass thru?)
+ * 1)Two sided charge transactions with or without ISO involvement
  * 2) Specific direct charges or payments that are calculated outside or provided directly to settlements
  *
  * 3) Specific charge bill determinants that are externally supplied and used in charge calculations
@@ -4506,6 +4650,7 @@ extends
  * Pricing node clearing results posted for a given settlement period.
  *
  * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
+ * @param CommodityPrice [[ch.ninecode.model.CommodityPrice CommodityPrice]] <em>undocumented</em>
  * @param PnodeResults [[ch.ninecode.model.PnodeResults PnodeResults]] <em>undocumented</em>
  * @group MarketResults
  * @groupname MarketResults Package MarketResults
@@ -4514,6 +4659,7 @@ extends
 case class PnodeClearing
 (
     override val sup: MarketFactors,
+    CommodityPrice: List[String],
     PnodeResults: List[String]
 )
 extends
@@ -4522,7 +4668,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, List()) }
+    def this () = { this (null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -4546,7 +4692,8 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PnodeClearing.cls
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (PnodeClearing.fields (position), x))
-        emitattrs (0, PnodeResults)
+        emitattrs (0, CommodityPrice)
+        emitattrs (1, PnodeResults)
         s.toString
     }
     override def export: String =
@@ -4560,12 +4707,15 @@ extends
     Parseable[PnodeClearing]
 {
     override val fields: Array[String] = Array[String] (
+        "CommodityPrice",
         "PnodeResults"
     )
     override val relations: List[Relationship] = List (
+        Relationship ("CommodityPrice", "CommodityPrice", "0..*", "0..1"),
         Relationship ("PnodeResults", "PnodeResults", "1..*", "0..1")
     )
-    val PnodeResults: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val CommodityPrice: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val PnodeResults: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): PnodeClearing =
     {
@@ -4573,7 +4723,8 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = PnodeClearing (
             MarketFactors.parse (context),
-            masks (PnodeResults (), 0)
+            masks (CommodityPrice (), 0),
+            masks (PnodeResults (), 1)
         )
         ret.bitfields = bitfields
         ret
@@ -4710,6 +4861,100 @@ extends
             mask (updateUser (), 7),
             mask (Pnode (), 8),
             mask (PnodeClearing (), 9)
+        )
+        ret.bitfields = bitfields
+        ret
+    }
+}
+
+/**
+ * The price of a Commodity during a given time interval may change over time.
+ *
+ * For example, a price may be forecasted a year ahead, a month ahead, a day ahead, an hour ahead, and in real time; this is defined using the MarketType. Additionally a price may have one or more components. For example, a locational marginal energy price may be the arithmetic sum of the system price, the congestion price, and the loss price.  The priceType enumeration is used determine if the price is the complete price (priceType="total") or one of potentially many constituent components.
+ *
+ * @param sup Reference to the superclass object.
+ * @param marketType The time frame for the price, using the standard conventions associated with the MarketType enumeration.
+ * @param priceType The "kind" of price being described.
+ *        In general, the priceType will either be "total" to signify that the price is the price paid to buy or sell the commodity, sometimes referred to as an "all-in" price, or one of potentially many components.
+ * @param CommodityPrice [[ch.ninecode.model.CommodityPrice CommodityPrice]] <em>undocumented</em>
+ * @group MarketResults
+ * @groupname MarketResults Package MarketResults
+ * @groupdesc MarketResults Results from the execution of a market.
+ */
+case class PriceDescriptor
+(
+    override val sup: BasicElement,
+    marketType: String,
+    priceType: String,
+    CommodityPrice: List[String]
+)
+extends
+    Element
+{
+    /**
+     * Zero args constructor.
+     */
+    def this () = { this (null, null, null, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
+    override def copy (): Row = { clone ().asInstanceOf[PriceDescriptor] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = PriceDescriptor.cls
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PriceDescriptor.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (PriceDescriptor.fields (position), x))
+        emitattr (0, marketType)
+        emitattr (1, priceType)
+        emitattrs (2, CommodityPrice)
+        s.toString
+    }
+    override def export: String =
+    {
+        "\t<cim:PriceDescriptor rdf:ID=\"%s\">\n%s\t</cim:PriceDescriptor>".format (id, export_fields)
+    }
+}
+
+object PriceDescriptor
+extends
+    Parseable[PriceDescriptor]
+{
+    override val fields: Array[String] = Array[String] (
+        "marketType",
+        "priceType",
+        "CommodityPrice"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("CommodityPrice", "CommodityPrice", "1..*", "1")
+    )
+    val marketType: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val priceType: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val CommodityPrice: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+
+    def parse (context: Context): PriceDescriptor =
+    {
+        implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
+        val ret = PriceDescriptor (
+            BasicElement.parse (context),
+            mask (marketType (), 0),
+            mask (priceType (), 1),
+            masks (CommodityPrice (), 2)
         )
         ret.bitfields = bitfields
         ret
@@ -4906,7 +5151,7 @@ extends
 }
 
 /**
- * This class models the information about the RUC awards
+ * This class models the information about the RUC awards.
  *
  * @param sup Reference to the superclass object.
  * @param clearedPrice Marginal Price (\$/MW) for the commodity (Regulation Up, Regulation Down, Spinning Reserve, or Non-spinning reserve) for pricing run.
@@ -5052,7 +5297,7 @@ extends
 /**
  * Models details of bid and offer market clearing.
  *
- * Class indicates whether a contingency is active and whether the automatic dispatching system is active for this interval of the market solution
+ * Class indicates whether a contingency is active and whether the automatic dispatching system is active for this interval of the market solution.
  *
  * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
  * @param contingencyActive Indication that the system is currently operating in a contingency mode.
@@ -5152,7 +5397,7 @@ extends
 /**
  * Model of market results, instruction for resource.
  *
- * Contains details of award as attributes
+ * Contains details of award as attributes.
  *
  * @param sup Reference to the superclass object.
  * @param awardMW For DA Energy: Not Applicable;
@@ -5524,6 +5769,97 @@ extends
 }
 
 /**
+
+ * @group MarketResults
+ * @groupname MarketResults Package MarketResults
+ * @groupdesc MarketResults Results from the execution of a market.
+ */
+case class ResourceDeploymentStatus
+(
+    override val sup: BasicElement,
+    acceptComments: String,
+    acceptStatus: String,
+    resourceResponseMW: Double,
+    InstructionClearing: String
+)
+extends
+    Element
+{
+    /**
+     * Zero args constructor.
+     */
+    def this () = { this (null, null, null, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
+    override def copy (): Row = { clone ().asInstanceOf[ResourceDeploymentStatus] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ResourceDeploymentStatus.cls
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ResourceDeploymentStatus.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ResourceDeploymentStatus.fields (position), value)
+        emitelem (0, acceptComments)
+        emitelem (1, acceptStatus)
+        emitelem (2, resourceResponseMW)
+        emitattr (3, InstructionClearing)
+        s.toString
+    }
+    override def export: String =
+    {
+        "\t<cim:ResourceDeploymentStatus rdf:ID=\"%s\">\n%s\t</cim:ResourceDeploymentStatus>".format (id, export_fields)
+    }
+}
+
+object ResourceDeploymentStatus
+extends
+    Parseable[ResourceDeploymentStatus]
+{
+    override val fields: Array[String] = Array[String] (
+        "acceptComments",
+        "acceptStatus",
+        "resourceResponseMW",
+        "InstructionClearing"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("InstructionClearing", "InstructionClearing", "0..1", "0..*")
+    )
+    val acceptComments: Fielder = parse_element (element (cls, fields(0)))
+    val acceptStatus: Fielder = parse_element (element (cls, fields(1)))
+    val resourceResponseMW: Fielder = parse_element (element (cls, fields(2)))
+    val InstructionClearing: Fielder = parse_attribute (attribute (cls, fields(3)))
+
+    def parse (context: Context): ResourceDeploymentStatus =
+    {
+        implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
+        val ret = ResourceDeploymentStatus (
+            BasicElement.parse (context),
+            mask (acceptComments (), 0),
+            mask (acceptStatus (), 1),
+            toDouble (mask (resourceResponseMW (), 2)),
+            mask (InstructionClearing (), 3)
+        )
+        ret.bitfields = bitfields
+        ret
+    }
+}
+
+/**
  * The ResourceDispatchResults class provides market results that can be provided to a SC.
  *
  * The specific data provided consists of several indicators such as contingency flags, blocked start up, and RMR dispatch. It also provides the projected overall and the regulating status of the resource.
@@ -5715,7 +6051,7 @@ extends
 }
 
 /**
- * Model of market clearing results for resources that bid to follow load
+ * Model of market clearing results for resources that bid to follow load.
  *
  * @param sup Reference to the superclass object.
  * @param calcLoadFollowingMW weighted average for RTPD and RTCD and same for RTID
@@ -5825,6 +6161,432 @@ extends
             mask (intervalStartTime (), 4),
             mask (RegisteredResource (), 5),
             mask (ResourceClearing (), 6)
+        )
+        ret.bitfields = bitfields
+        ret
+    }
+}
+
+/**
+ * Represents an the performance evaluation of a resource deployment.
+ *
+ * Every resource deployment may have many performance evaluations, using different evaluation metrics or algorithms, or produced by different evaluation authorities.
+ *
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param effectiveEndTime <em>undocumented</em>
+ * @param effectiveStartTime <em>undocumented</em>
+ * @param evaluationDescription Description of the performance evaluation, e.g. the rating classification used (any is allowed), why the evaluation was performed, anything that describes the demand response performance evaluation.
+ * @param evaluationValue The value of the performance. as a String, any rating scheme is supported (e.g. "1","2","3" or "low", "medium", "high").
+ *        The rating scheme is described in the performanceValueDescription attribute.
+ * @param DemandResponseActualEvent [[ch.ninecode.model.DistributedResourceActualEvent DistributedResourceActualEvent]] <em>undocumented</em>
+ * @param ResorcePerformanceGlobalFactor [[ch.ninecode.model.ResourcePerformanceGlobalFactor ResourcePerformanceGlobalFactor]] <em>undocumented</em>
+ * @param ResourcePerformanceTimeSeriesFactors [[ch.ninecode.model.ResourcePerformanceTimeSeriesFactor ResourcePerformanceTimeSeriesFactor]] <em>undocumented</em>
+ * @group MarketResults
+ * @groupname MarketResults Package MarketResults
+ * @groupdesc MarketResults Results from the execution of a market.
+ */
+case class ResourcePerformanceEvaluation
+(
+    override val sup: IdentifiedObject,
+    effectiveEndTime: String,
+    effectiveStartTime: String,
+    evaluationDescription: String,
+    evaluationValue: String,
+    DemandResponseActualEvent: String,
+    ResorcePerformanceGlobalFactor: List[String],
+    ResourcePerformanceTimeSeriesFactors: List[String]
+)
+extends
+    Element
+{
+    /**
+     * Zero args constructor.
+     */
+    def this () = { this (null, null, null, null, null, null, List(), List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
+    override def copy (): Row = { clone ().asInstanceOf[ResourcePerformanceEvaluation] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ResourcePerformanceEvaluation.cls
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ResourcePerformanceEvaluation.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ResourcePerformanceEvaluation.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ResourcePerformanceEvaluation.fields (position), x))
+        emitelem (0, effectiveEndTime)
+        emitelem (1, effectiveStartTime)
+        emitelem (2, evaluationDescription)
+        emitelem (3, evaluationValue)
+        emitattr (4, DemandResponseActualEvent)
+        emitattrs (5, ResorcePerformanceGlobalFactor)
+        emitattrs (6, ResourcePerformanceTimeSeriesFactors)
+        s.toString
+    }
+    override def export: String =
+    {
+        "\t<cim:ResourcePerformanceEvaluation rdf:ID=\"%s\">\n%s\t</cim:ResourcePerformanceEvaluation>".format (id, export_fields)
+    }
+}
+
+object ResourcePerformanceEvaluation
+extends
+    Parseable[ResourcePerformanceEvaluation]
+{
+    override val fields: Array[String] = Array[String] (
+        "effectiveEndTime",
+        "effectiveStartTime",
+        "evaluationDescription",
+        "evaluationValue",
+        "DemandResponseActualEvent",
+        "ResorcePerformanceGlobalFactor",
+        "ResourcePerformanceTimeSeriesFactors"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("DemandResponseActualEvent", "DistributedResourceActualEvent", "1", "0..*"),
+        Relationship ("ResorcePerformanceGlobalFactor", "ResourcePerformanceGlobalFactor", "0..*", "0..*"),
+        Relationship ("ResourcePerformanceTimeSeriesFactors", "ResourcePerformanceTimeSeriesFactor", "0..*", "1")
+    )
+    val effectiveEndTime: Fielder = parse_element (element (cls, fields(0)))
+    val effectiveStartTime: Fielder = parse_element (element (cls, fields(1)))
+    val evaluationDescription: Fielder = parse_element (element (cls, fields(2)))
+    val evaluationValue: Fielder = parse_element (element (cls, fields(3)))
+    val DemandResponseActualEvent: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val ResorcePerformanceGlobalFactor: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
+    val ResourcePerformanceTimeSeriesFactors: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
+
+    def parse (context: Context): ResourcePerformanceEvaluation =
+    {
+        implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
+        val ret = ResourcePerformanceEvaluation (
+            IdentifiedObject.parse (context),
+            mask (effectiveEndTime (), 0),
+            mask (effectiveStartTime (), 1),
+            mask (evaluationDescription (), 2),
+            mask (evaluationValue (), 3),
+            mask (DemandResponseActualEvent (), 4),
+            masks (ResorcePerformanceGlobalFactor (), 5),
+            masks (ResourcePerformanceTimeSeriesFactors (), 6)
+        )
+        ret.bitfields = bitfields
+        ret
+    }
+}
+
+/**
+ * Global factors are property/value pairs that are used to adjust resource performance values.
+ *
+ * Example include scale factors (e.g. scale a baseline up or down), adders (positive or negative), etc.
+ *
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param factorDescription Description (name) of the property (factor).
+ * @param factorValue Value of the property (factor).
+ * @param ResourcePerformanceEvaluation [[ch.ninecode.model.ResourcePerformanceEvaluation ResourcePerformanceEvaluation]] <em>undocumented</em>
+ * @group MarketResults
+ * @groupname MarketResults Package MarketResults
+ * @groupdesc MarketResults Results from the execution of a market.
+ */
+case class ResourcePerformanceGlobalFactor
+(
+    override val sup: IdentifiedObject,
+    factorDescription: String,
+    factorValue: String,
+    ResourcePerformanceEvaluation: List[String]
+)
+extends
+    Element
+{
+    /**
+     * Zero args constructor.
+     */
+    def this () = { this (null, null, null, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
+    override def copy (): Row = { clone ().asInstanceOf[ResourcePerformanceGlobalFactor] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ResourcePerformanceGlobalFactor.cls
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ResourcePerformanceGlobalFactor.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ResourcePerformanceGlobalFactor.fields (position), x))
+        emitelem (0, factorDescription)
+        emitelem (1, factorValue)
+        emitattrs (2, ResourcePerformanceEvaluation)
+        s.toString
+    }
+    override def export: String =
+    {
+        "\t<cim:ResourcePerformanceGlobalFactor rdf:ID=\"%s\">\n%s\t</cim:ResourcePerformanceGlobalFactor>".format (id, export_fields)
+    }
+}
+
+object ResourcePerformanceGlobalFactor
+extends
+    Parseable[ResourcePerformanceGlobalFactor]
+{
+    override val fields: Array[String] = Array[String] (
+        "factorDescription",
+        "factorValue",
+        "ResourcePerformanceEvaluation"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ResourcePerformanceEvaluation", "ResourcePerformanceEvaluation", "0..*", "0..*")
+    )
+    val factorDescription: Fielder = parse_element (element (cls, fields(0)))
+    val factorValue: Fielder = parse_element (element (cls, fields(1)))
+    val ResourcePerformanceEvaluation: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+
+    def parse (context: Context): ResourcePerformanceGlobalFactor =
+    {
+        implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
+        val ret = ResourcePerformanceGlobalFactor (
+            IdentifiedObject.parse (context),
+            mask (factorDescription (), 0),
+            mask (factorValue (), 1),
+            masks (ResourcePerformanceEvaluation (), 2)
+        )
+        ret.bitfields = bitfields
+        ret
+    }
+}
+
+/**
+ * Rating of a resource for its demand response performance. e.g. given a set on monthly resource demand response performance evaluations, the resource may be rated with excellent, average, or poor performance for the sample set.
+ *
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param effectiveEndTime starting date time that the rating is valid for
+ * @param effectiveStartTime ending date time that the rating is valid for
+ * @param ratingDescription the resource's demand response rating description
+ * @param ratingType the type of performance rating, e.g. which market or product the rating is for
+ * @param ratingValue the resource's demand response rating
+ * @param RegisteredResource [[ch.ninecode.model.RegisteredDistributedResource RegisteredDistributedResource]] <em>undocumented</em>
+ * @group MarketResults
+ * @groupname MarketResults Package MarketResults
+ * @groupdesc MarketResults Results from the execution of a market.
+ */
+case class ResourcePerformanceRating
+(
+    override val sup: IdentifiedObject,
+    effectiveEndTime: String,
+    effectiveStartTime: String,
+    ratingDescription: String,
+    ratingType: String,
+    ratingValue: String,
+    RegisteredResource: String
+)
+extends
+    Element
+{
+    /**
+     * Zero args constructor.
+     */
+    def this () = { this (null, null, null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
+    override def copy (): Row = { clone ().asInstanceOf[ResourcePerformanceRating] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ResourcePerformanceRating.cls
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ResourcePerformanceRating.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ResourcePerformanceRating.fields (position), value)
+        emitelem (0, effectiveEndTime)
+        emitelem (1, effectiveStartTime)
+        emitelem (2, ratingDescription)
+        emitelem (3, ratingType)
+        emitelem (4, ratingValue)
+        emitattr (5, RegisteredResource)
+        s.toString
+    }
+    override def export: String =
+    {
+        "\t<cim:ResourcePerformanceRating rdf:ID=\"%s\">\n%s\t</cim:ResourcePerformanceRating>".format (id, export_fields)
+    }
+}
+
+object ResourcePerformanceRating
+extends
+    Parseable[ResourcePerformanceRating]
+{
+    override val fields: Array[String] = Array[String] (
+        "effectiveEndTime",
+        "effectiveStartTime",
+        "ratingDescription",
+        "ratingType",
+        "ratingValue",
+        "RegisteredResource"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("RegisteredResource", "RegisteredDistributedResource", "1", "0..*")
+    )
+    val effectiveEndTime: Fielder = parse_element (element (cls, fields(0)))
+    val effectiveStartTime: Fielder = parse_element (element (cls, fields(1)))
+    val ratingDescription: Fielder = parse_element (element (cls, fields(2)))
+    val ratingType: Fielder = parse_element (element (cls, fields(3)))
+    val ratingValue: Fielder = parse_element (element (cls, fields(4)))
+    val RegisteredResource: Fielder = parse_attribute (attribute (cls, fields(5)))
+
+    def parse (context: Context): ResourcePerformanceRating =
+    {
+        implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
+        val ret = ResourcePerformanceRating (
+            IdentifiedObject.parse (context),
+            mask (effectiveEndTime (), 0),
+            mask (effectiveStartTime (), 1),
+            mask (ratingDescription (), 2),
+            mask (ratingType (), 3),
+            mask (ratingValue (), 4),
+            mask (RegisteredResource (), 5)
+        )
+        ret.bitfields = bitfields
+        ret
+    }
+}
+
+/**
+ * Represents the performance of a resource as time series data for a specified time period, time interval, and evaluation criteria.
+ *
+ * @param sup [[ch.ninecode.model.RegularIntervalSchedule RegularIntervalSchedule]] Reference to the superclass object.
+ * @param timeSeriesDataType Type of the time series data, e.g. baseline data, meter read data, computed performance data.
+ * @param timeSeriesDescription Optional description of the time series data, e.g. baseline data, meter read data, computed performance data.
+ * @param value1Description Description for the value1 contained within the TimeSeriesFactor.
+ * @param value2Description Description for the value2 contained within the TimeSeriesFactor.
+ * @param ResourcePerformanceEvaluation [[ch.ninecode.model.ResourcePerformanceEvaluation ResourcePerformanceEvaluation]] <em>undocumented</em>
+ * @group MarketResults
+ * @groupname MarketResults Package MarketResults
+ * @groupdesc MarketResults Results from the execution of a market.
+ */
+case class ResourcePerformanceTimeSeriesFactor
+(
+    override val sup: RegularIntervalSchedule,
+    timeSeriesDataType: String,
+    timeSeriesDescription: String,
+    value1Description: String,
+    value2Description: String,
+    ResourcePerformanceEvaluation: String
+)
+extends
+    Element
+{
+    /**
+     * Zero args constructor.
+     */
+    def this () = { this (null, null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def RegularIntervalSchedule: RegularIntervalSchedule = sup.asInstanceOf[RegularIntervalSchedule]
+    override def copy (): Row = { clone ().asInstanceOf[ResourcePerformanceTimeSeriesFactor] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ResourcePerformanceTimeSeriesFactor.cls
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ResourcePerformanceTimeSeriesFactor.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ResourcePerformanceTimeSeriesFactor.fields (position), value)
+        emitelem (0, timeSeriesDataType)
+        emitelem (1, timeSeriesDescription)
+        emitelem (2, value1Description)
+        emitelem (3, value2Description)
+        emitattr (4, ResourcePerformanceEvaluation)
+        s.toString
+    }
+    override def export: String =
+    {
+        "\t<cim:ResourcePerformanceTimeSeriesFactor rdf:ID=\"%s\">\n%s\t</cim:ResourcePerformanceTimeSeriesFactor>".format (id, export_fields)
+    }
+}
+
+object ResourcePerformanceTimeSeriesFactor
+extends
+    Parseable[ResourcePerformanceTimeSeriesFactor]
+{
+    override val fields: Array[String] = Array[String] (
+        "timeSeriesDataType",
+        "timeSeriesDescription",
+        "value1Description",
+        "value2Description",
+        "ResourcePerformanceEvaluation"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("ResourcePerformanceEvaluation", "ResourcePerformanceEvaluation", "1", "0..*")
+    )
+    val timeSeriesDataType: Fielder = parse_element (element (cls, fields(0)))
+    val timeSeriesDescription: Fielder = parse_element (element (cls, fields(1)))
+    val value1Description: Fielder = parse_element (element (cls, fields(2)))
+    val value2Description: Fielder = parse_element (element (cls, fields(3)))
+    val ResourcePerformanceEvaluation: Fielder = parse_attribute (attribute (cls, fields(4)))
+
+    def parse (context: Context): ResourcePerformanceTimeSeriesFactor =
+    {
+        implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
+        val ret = ResourcePerformanceTimeSeriesFactor (
+            RegularIntervalSchedule.parse (context),
+            mask (timeSeriesDataType (), 0),
+            mask (timeSeriesDescription (), 1),
+            mask (value1Description (), 2),
+            mask (value2Description (), 3),
+            mask (ResourcePerformanceEvaluation (), 4)
         )
         ret.bitfields = bitfields
         ret
@@ -6220,6 +6982,7 @@ private[ninecode] object _MarketResults
             ChargeProfileData.register,
             CommitmentClearing.register,
             Commitments.register,
+            CommodityPrice.register,
             ConstraintClearing.register,
             ConstraintResults.register,
             DopInstruction.register,
@@ -6254,14 +7017,20 @@ private[ninecode] object _MarketResults
             PassThroughBill.register,
             PnodeClearing.register,
             PnodeResults.register,
+            PriceDescriptor.register,
             RMRDetermination.register,
             RMROperatorInput.register,
             RUCAwardInstruction.register,
             ResourceAwardClearing.register,
             ResourceAwardInstruction.register,
             ResourceClearing.register,
+            ResourceDeploymentStatus.register,
             ResourceDispatchResults.register,
             ResourceLoadFollowingInst.register,
+            ResourcePerformanceEvaluation.register,
+            ResourcePerformanceGlobalFactor.register,
+            ResourcePerformanceRating.register,
+            ResourcePerformanceTimeSeriesFactor.register,
             SelfScheduleBreakdown.register,
             Settlement.register,
             TransactionBidClearing.register,

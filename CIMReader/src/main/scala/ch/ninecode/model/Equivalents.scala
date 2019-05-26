@@ -12,35 +12,35 @@ import ch.ninecode.cim.Relationship
  *
  * @param sup [[ch.ninecode.model.EquivalentEquipment EquivalentEquipment]] Reference to the superclass object.
  * @param negativeR12 Negative sequence series resistance from terminal sequence  1 to terminal sequence 2.
- *        Used for short circuit data exchange according to IEC 60909
+ *        Used for short circuit data exchange according to IEC 60909.
  * @param negativeR21 Negative sequence series resistance from terminal sequence 2 to terminal sequence 1.
- *        Used for short circuit data exchange according to IEC 60909
+ *        Used for short circuit data exchange according to IEC 60909.
  * @param negativeX12 Negative sequence series reactance from terminal sequence  1 to terminal sequence 2.
- *        Used for short circuit data exchange according to IEC 60909
+ *        Used for short circuit data exchange according to IEC 60909.
  * @param negativeX21 Negative sequence series reactance from terminal sequence 2 to terminal sequence 1.
  *        Used for short circuit data exchange according to IEC 60909.
  * @param positiveR12 Positive sequence series resistance from terminal sequence  1 to terminal sequence 2 .
  *        Used for short circuit data exchange according to IEC 60909.
  * @param positiveR21 Positive sequence series resistance from terminal sequence 2 to terminal sequence 1.
- *        Used for short circuit data exchange according to IEC 60909
+ *        Used for short circuit data exchange according to IEC 60909.
  * @param positiveX12 Positive sequence series reactance from terminal sequence  1 to terminal sequence 2.
- *        Used for short circuit data exchange according to IEC 60909
+ *        Used for short circuit data exchange according to IEC 60909.
  * @param positiveX21 Positive sequence series reactance from terminal sequence 2 to terminal sequence 1.
- *        Used for short circuit data exchange according to IEC 60909
+ *        Used for short circuit data exchange according to IEC 60909.
  * @param r Positive sequence series resistance of the reduced branch.
  * @param r21 Resistance from terminal sequence 2 to terminal sequence 1 .
  *        Used for steady state power flow. This attribute is optional and represent unbalanced network such as off-nominal phase shifter. If only EquivalentBranch.r is given, then EquivalentBranch.r21 is assumed equal to EquivalentBranch.r.
  * @param x Positive sequence series reactance of the reduced branch.
- * @param x21 Reactance from terminal sequence 2 to terminal sequence 1 .
- *        Used for steady state power flow. This attribute is optional and represent unbalanced network such as off-nominal phase shifter. If only EquivalentBranch.x is given, then EquivalentBranch.x21 is assumed equal to EquivalentBranch.x.
+ * @param x21 Reactance from terminal sequence 2 to terminal sequence 1.
+ *        Used for steady state power flow. This attribute is optional and represents an unbalanced network such as off-nominal phase shifter. If only EquivalentBranch.x is given, then EquivalentBranch.x21 is assumed equal to EquivalentBranch.x.
  * @param zeroR12 Zero sequence series resistance from terminal sequence  1 to terminal sequence 2.
- *        Used for short circuit data exchange according to IEC 60909
+ *        Used for short circuit data exchange according to IEC 60909.
  * @param zeroR21 Zero sequence series resistance from terminal sequence  2 to terminal sequence 1.
- *        Used for short circuit data exchange according to IEC 60909
+ *        Used for short circuit data exchange according to IEC 60909.
  * @param zeroX12 Zero sequence series reactance from terminal sequence  1 to terminal sequence 2.
- *        Used for short circuit data exchange according to IEC 60909
+ *        Used for short circuit data exchange according to IEC 60909.
  * @param zeroX21 Zero sequence series reactance from terminal sequence 2 to terminal sequence 1.
- *        Used for short circuit data exchange according to IEC 60909
+ *        Used for short circuit data exchange according to IEC 60909.
  * @group Equivalents
  * @groupname Equivalents Package Equivalents
  * @groupdesc Equivalents The equivalents package models equivalent networks.
@@ -273,11 +273,11 @@ extends
  *
  * @param sup [[ch.ninecode.model.EquivalentEquipment EquivalentEquipment]] Reference to the superclass object.
  * @param maxP Maximum active power of the injection.
- * @param maxQ Used for modeling of infeed for load flow exchange.
- *        Not used for short circuit modeling.  If maxQ and minQ are not used ReactiveCapabilityCurve can be used.
+ * @param maxQ Maximum reactive power of the injection.
+ *        Used for modelling of infeed for load flow exchange. Not used for short circuit modelling.  If maxQ and minQ are not used ReactiveCapabilityCurve can be used.
  * @param minP Minimum active power of the injection.
- * @param minQ Used for modeling of infeed for load flow exchange.
- *        Not used for short circuit modeling.  If maxQ and minQ are not used ReactiveCapabilityCurve can be used.
+ * @param minQ Minimum reactive power of the injection.
+ *        Used for modelling of infeed for load flow exchange. Not used for short circuit modelling.  If maxQ and minQ are not used ReactiveCapabilityCurve can be used.
  * @param p Equivalent active power injection.
  *        Load sign convention is used, i.e. positive sign means flow out from a node.
  * @param q Equivalent reactive power injection.

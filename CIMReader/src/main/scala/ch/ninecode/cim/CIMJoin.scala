@@ -46,7 +46,10 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
                     element.mRID,                            // mRID
                     nis.WorkLocation.Location.IdentifiedObject.name,       // name, e.g. MST###
                     nis.WorkLocation.Location.IdentifiedObject.DiagramObjects,
-                    nis.WorkLocation.Location.IdentifiedObject.Names
+                    nis.WorkLocation.Location.IdentifiedObject.InstanceSet,
+                    nis.WorkLocation.Location.IdentifiedObject.Names,
+                    nis.WorkLocation.Location.IdentifiedObject.PropertiesCIMDataObject,
+                    nis.WorkLocation.Location.IdentifiedObject.TargetingCIMDataObject
                 )
                 val location = Location (
                     sup = id,
@@ -62,13 +65,21 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
                     Assets = isu.WorkLocation.Location.Assets,
                     ConfigurationEvents = isu.WorkLocation.Location.ConfigurationEvents,
                     CoordinateSystem = nis.WorkLocation.Location.CoordinateSystem,  // e.g. wgs_84
+                    Crew = isu.WorkLocation.Location.Crew,
                     Crews = isu.WorkLocation.Location.Crews,
+                    EnvironmentalLocationKind = isu.WorkLocation.Location.EnvironmentalLocationKind,
+                    EnvironmentalMonitoringStation = isu.WorkLocation.Location.EnvironmentalMonitoringStation,
+                    Fault = isu.WorkLocation.Location.Fault,
                     Hazards = isu.WorkLocation.Location.Hazards,
+                    Incident = isu.WorkLocation.Location.Incident,
                     LandProperties = isu.WorkLocation.Location.LandProperties,
                     Measurements = isu.WorkLocation.Location.Measurements,
+                    OutageOrder = isu.WorkLocation.Location.OutageOrder,
                     PositionPoints = nis.WorkLocation.Location.PositionPoints,
                     PowerSystemResources = nis.WorkLocation.Location.PowerSystemResources,
-                    Routes = isu.WorkLocation.Location.Routes
+                    Routes = isu.WorkLocation.Location.Routes,
+                    SwitchingOrder = isu.WorkLocation.Location.SwitchingOrder,
+                    TroubleOrder = isu.WorkLocation.Location.TroubleOrder
                 )
                 val worklocation = WorkLocation (
                     location,
@@ -83,6 +94,7 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
                     siteAccessProblem = isu.siteAccessProblem,
                     CustomerAgreements = isu.CustomerAgreements,
                     EndDevices = isu.EndDevices,
+                    TroubleTicket = isu.TroubleTicket,
                     UsagePoints = isu.UsagePoints
                 )
             case (None) ⇒
@@ -110,6 +122,7 @@ class CIMJoin (spark: SparkSession, storage: StorageLevel) extends CIMRDD with S
             case (Some (x)) ⇒
                 PositionPoint (
                     BasicElement (null, a._1.id),
+                    a._1.groupNumber,
                     a._1.sequenceNumber,
                     a._1.xPosition,
                     a._1.yPosition,

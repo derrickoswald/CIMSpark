@@ -18,7 +18,7 @@ import ch.ninecode.cim.Relationship
  *        Converter configuration data used in power flow.
  * @param maxUdc The maximum voltage on the DC side at which the converter should operate.
  *        Converter configuration data used in power flow.
- * @param minUdc Min allowed converter DC voltage.
+ * @param minUdc Minimum allowed converter DC voltage.
  *        Converter configuration data used in power flow.
  * @param numberOfValves Number of valves in the converter.
  *        Used in loss calculations.
@@ -39,16 +39,18 @@ import ch.ninecode.cim.Relationship
  * @param switchingLoss Switching losses, relative to the base apparent power 'baseS'.
  *        Refer to poleLossP.
  * @param targetPpcc Real power injection target in AC grid, at point of common coupling.
+ *        Load sign convention is used, i.e. positive sign means flow out from a node.
  * @param targetUdc Target value for DC voltage magnitude.
  * @param uc Line-to-line converter voltage, the voltage at the AC side of the valve.
  *        Converter state variable, result from power flow.
  * @param udc Converter voltage at the DC side, also called Ud.
  *        Converter state variable, result from power flow.
  * @param valveU0 Valve threshold voltage, also called Uvalve.
- *        Forward voltage drop when the valve is conducting. Used in loss calculations, i.e. the switchLoss depends on numberOfValves * valveU0.
- * @param DCTerminals [[ch.ninecode.model.ACDCConverterDCTerminal ACDCConverterDCTerminal]] <em>undocumented</em>
+ *        Forward voltage drop when the valve is conducting. Used in loss calculations, i.e. the switchLoss depend on numberOfValves * valveU0.
+ * @param DCTerminals [[ch.ninecode.model.ACDCConverterDCTerminal ACDCConverterDCTerminal]] A DC converter have DC converter terminals.
+ *        A converter has two DC converter terminals.
  * @param PccTerminal [[ch.ninecode.model.Terminal Terminal]] Point of common coupling terminal for this converter DC side.
- *        It is typically the terminal on the power transformer (or switch) closest to the AC network. The power flow measurement must be the sum of all flows into the transformer.
+ *        It is typically the terminal on the power transformer (or switch) closest to the AC network. The power flow measurement shall be the sum of all flows into the transformer.
  * @group DC
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
@@ -222,7 +224,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.DCBaseTerminal DCBaseTerminal]] Reference to the superclass object.
  * @param polarity Represents the normal network polarity condition.
- * @param DCConductingEquipment [[ch.ninecode.model.ACDCConverter ACDCConverter]] <em>undocumented</em>
+ * @param DCConductingEquipment [[ch.ninecode.model.ACDCConverter ACDCConverter]] A DC converter terminal belong to an DC converter.
  * @group DC
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
@@ -305,7 +307,7 @@ extends
  * DC side of the current source converter (CSC).
  *
  * @param sup [[ch.ninecode.model.ACDCConverter ACDCConverter]] Reference to the superclass object.
- * @param alpha Firing angle, typical value between 10 and 18 degrees for a rectifier.
+ * @param alpha Firing angle, typical value between 10 degrees and 18 degrees for a rectifier.
  *        CSC state variable, result from power flow.
  * @param gamma Extinction angle.
  *        CSC state variable, result from power flow.
@@ -323,7 +325,7 @@ extends
  *        CSC configuration data used in power flow.
  * @param operatingMode Indicates whether the DC pole is operating as an inverter or as a rectifier.
  *        CSC control variable used in power flow.
- * @param pPccControl <em>undocumented</em>
+ * @param pPccControl Kind of active power control.
  * @param ratedIdc Rated converter DC current, also called IdN.
  *        Converter configuration data used in power flow.
  * @param targetAlpha Target firing angle.
@@ -332,6 +334,7 @@ extends
  *        CSC  control variable used in power flow.
  * @param targetIdc DC current target value.
  *        CSC control variable used in power flow.
+ * @param CSCDynamics [[ch.ninecode.model.CSCDynamics CSCDynamics]] Current source converter dynamics model used to describe dynamic behaviour of this converter.
  * @group DC
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
@@ -352,7 +355,8 @@ case class CsConverter
     ratedIdc: Double,
     targetAlpha: Double,
     targetGamma: Double,
-    targetIdc: Double
+    targetIdc: Double,
+    CSCDynamics: String
 )
 extends
     Element
@@ -360,7 +364,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, null, 0.0, 0.0, 0.0, 0.0) }
+    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, null, 0.0, 0.0, 0.0, 0.0, null) }
     /**
      * Return the superclass object.
      *
@@ -399,6 +403,7 @@ extends
         emitelem (11, targetAlpha)
         emitelem (12, targetGamma)
         emitelem (13, targetIdc)
+        emitattr (14, CSCDynamics)
         s.toString
     }
     override def export: String =
@@ -425,7 +430,11 @@ extends
         "ratedIdc",
         "targetAlpha",
         "targetGamma",
-        "targetIdc"
+        "targetIdc",
+        "CSCDynamics"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("CSCDynamics", "CSCDynamics", "0..1", "1")
     )
     val alpha: Fielder = parse_element (element (cls, fields(0)))
     val gamma: Fielder = parse_element (element (cls, fields(1)))
@@ -441,6 +450,7 @@ extends
     val targetAlpha: Fielder = parse_element (element (cls, fields(11)))
     val targetGamma: Fielder = parse_element (element (cls, fields(12)))
     val targetIdc: Fielder = parse_element (element (cls, fields(13)))
+    val CSCDynamics: Fielder = parse_attribute (attribute (cls, fields(14)))
 
     def parse (context: Context): CsConverter =
     {
@@ -461,7 +471,8 @@ extends
             toDouble (mask (ratedIdc (), 10)),
             toDouble (mask (targetAlpha (), 11)),
             toDouble (mask (targetGamma (), 12)),
-            toDouble (mask (targetIdc (), 13))
+            toDouble (mask (targetIdc (), 13)),
+            mask (CSCDynamics (), 14)
         )
         ret.bitfields = bitfields
         ret
@@ -471,10 +482,10 @@ extends
 /**
  * An electrical connection point at a piece of DC conducting equipment.
  *
- * DC terminals are connected at one physical DC node that may have multiple DC terminals connected. A DC node is similar to an AC connectivity node. The model enforces that DC connections are distinct from AC connections.
+ * DC terminals are connected at one physical DC node that may have multiple DC terminals connected. A DC node is similar to an AC connectivity node. The model requires that DC connections are distinct from AC connections.
  *
  * @param sup [[ch.ninecode.model.ACDCTerminal ACDCTerminal]] Reference to the superclass object.
- * @param DCNode [[ch.ninecode.model.DCNode DCNode]] <em>undocumented</em>
+ * @param DCNode [[ch.ninecode.model.DCNode DCNode]] The DC connectivity node to which this DC base terminal connects with zero impedance.
  * @param DCTopologicalNode [[ch.ninecode.model.DCTopologicalNode DCTopologicalNode]] See association end Terminal.
  *        TopologicalNode.
  * @group DC
@@ -748,7 +759,9 @@ extends
  * The parts of the DC power system that are designed to carry current or that are conductively connected through DC terminals.
  *
  * @param sup [[ch.ninecode.model.Equipment Equipment]] Reference to the superclass object.
- * @param DCTerminals [[ch.ninecode.model.DCTerminal DCTerminal]] <em>undocumented</em>
+ * @param ratedUdc Rated DC device voltage.
+ *        Converter configuration data used in power flow.
+ * @param DCTerminals [[ch.ninecode.model.DCTerminal DCTerminal]] A DC conducting equipment has DC terminals.
  * @param ProtectiveActionAdjustment [[ch.ninecode.model.ProtectiveActionAdjustment ProtectiveActionAdjustment]] <em>undocumented</em>
  * @group DC
  * @groupname DC Package DC
@@ -757,6 +770,7 @@ extends
 case class DCConductingEquipment
 (
     override val sup: Equipment,
+    ratedUdc: Double,
     DCTerminals: List[String],
     ProtectiveActionAdjustment: List[String]
 )
@@ -766,7 +780,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, List(), List()) }
+    def this () = { this (null, 0.0, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -789,9 +803,11 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = DCConductingEquipment.cls
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (DCConductingEquipment.fields (position), value)
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (DCConductingEquipment.fields (position), x))
-        emitattrs (0, DCTerminals)
-        emitattrs (1, ProtectiveActionAdjustment)
+        emitelem (0, ratedUdc)
+        emitattrs (1, DCTerminals)
+        emitattrs (2, ProtectiveActionAdjustment)
         s.toString
     }
     override def export: String =
@@ -805,6 +821,7 @@ extends
     Parseable[DCConductingEquipment]
 {
     override val fields: Array[String] = Array[String] (
+        "ratedUdc",
         "DCTerminals",
         "ProtectiveActionAdjustment"
     )
@@ -812,8 +829,9 @@ extends
         Relationship ("DCTerminals", "DCTerminal", "0..*", "1"),
         Relationship ("ProtectiveActionAdjustment", "ProtectiveActionAdjustment", "0..*", "1")
     )
-    val DCTerminals: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
-    val ProtectiveActionAdjustment: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val ratedUdc: Fielder = parse_element (element (cls, fields(0)))
+    val DCTerminals: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val ProtectiveActionAdjustment: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
 
     def parse (context: Context): DCConductingEquipment =
     {
@@ -821,8 +839,9 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = DCConductingEquipment (
             Equipment.parse (context),
-            masks (DCTerminals (), 0),
-            masks (ProtectiveActionAdjustment (), 1)
+            toDouble (mask (ratedUdc (), 0)),
+            masks (DCTerminals (), 1),
+            masks (ProtectiveActionAdjustment (), 2)
         )
         ret.bitfields = bitfields
         ret
@@ -833,8 +852,8 @@ extends
  * Indivisible operative unit comprising all equipment between the point of common coupling on the AC side and the point of common coupling � DC side, essentially one or more converters, together with one or more converter transformers, converter control equipment, essential protective and switching devices and auxiliaries, if any, used for conversion.
  *
  * @param sup [[ch.ninecode.model.DCEquipmentContainer DCEquipmentContainer]] Reference to the superclass object.
- * @param operationMode <em>undocumented</em>
- * @param Substation [[ch.ninecode.model.Substation Substation]] <em>undocumented</em>
+ * @param operationMode The operating mode of an HVDC bipole (bipolar, monopolar metallic return, etc).
+ * @param Substation [[ch.ninecode.model.Substation Substation]] The containing substation of the DC converter unit.
  * @group DC
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
@@ -976,13 +995,13 @@ extends
 }
 
 /**
- * A modeling construct to provide a root class for containment of DC as well as AC equipment.
+ * A modelling construct to provide a root class for containment of DC as well as AC equipment.
  *
  * The class differ from the EquipmentContaner for AC in that it may also contain DCNodes. Hence it can contain both AC and DC equipment.
  *
  * @param sup [[ch.ninecode.model.EquipmentContainer EquipmentContainer]] Reference to the superclass object.
- * @param DCNodes [[ch.ninecode.model.DCNode DCNode]] <em>undocumented</em>
- * @param DCTopologicalNode [[ch.ninecode.model.DCTopologicalNode DCTopologicalNode]] <em>undocumented</em>
+ * @param DCNodes [[ch.ninecode.model.DCNode DCNode]] The DC nodes contained in the DC equipment container.
+ * @param DCTopologicalNode [[ch.ninecode.model.DCTopologicalNode DCTopologicalNode]] The topological nodes which belong to this connectivity node container.
  * @group DC
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
@@ -1147,7 +1166,7 @@ extends
  * Overhead lines and/or cables connecting two or more HVDC substations.
  *
  * @param sup [[ch.ninecode.model.DCEquipmentContainer DCEquipmentContainer]] Reference to the superclass object.
- * @param Region [[ch.ninecode.model.SubGeographicalRegion SubGeographicalRegion]] <em>undocumented</em>
+ * @param Region [[ch.ninecode.model.SubGeographicalRegion SubGeographicalRegion]] The SubGeographicalRegion containing the DC line.
  * @group DC
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
@@ -1228,7 +1247,7 @@ extends
  * @param capacitance Capacitance of the DC line segment.
  *        Significant for cables only.
  * @param inductance Inductance of the DC line segment.
- *        Neglectable compared with DCSeriesDevice used for smoothing.
+ *        Negligible compared with DCSeriesDevice used for smoothing.
  * @param length Segment length for calculating line section capabilities.
  * @param resistance Resistance of the DC line segment.
  * @param PerLengthParameter [[ch.ninecode.model.PerLengthDCLineParameter PerLengthDCLineParameter]] Set of per-length parameters for this line segment.
@@ -1330,10 +1349,10 @@ extends
  * DC nodes are points where terminals of DC conducting equipment are connected together with zero impedance.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param DCEquipmentContainer [[ch.ninecode.model.DCEquipmentContainer DCEquipmentContainer]] <em>undocumented</em>
- * @param DCTerminals [[ch.ninecode.model.DCBaseTerminal DCBaseTerminal]] <em>undocumented</em>
- * @param DCTopologicalNode [[ch.ninecode.model.DCTopologicalNode DCTopologicalNode]] See association end ConnectivityNode.
- *        TopologicalNode.
+ * @param DCEquipmentContainer [[ch.ninecode.model.DCEquipmentContainer DCEquipmentContainer]] The DC container for the DC nodes.
+ * @param DCTerminals [[ch.ninecode.model.DCBaseTerminal DCBaseTerminal]] DC base terminals interconnected with zero impedance at a this DC connectivity node.
+ * @param DCTopologicalNode [[ch.ninecode.model.DCTopologicalNode DCTopologicalNode]] The DC topological node to which this DC connectivity node is assigned.
+ *        May depend on the current state of switches in the network.
  * @group DC
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
@@ -1427,8 +1446,6 @@ extends
  *
  * @param sup [[ch.ninecode.model.DCConductingEquipment DCConductingEquipment]] Reference to the superclass object.
  * @param inductance Inductance of the device.
- * @param ratedUdc Rated DC device voltage.
- *        Converter configuration data used in power flow.
  * @param resistance Resistance of the DC device.
  * @group DC
  * @groupname DC Package DC
@@ -1438,7 +1455,6 @@ case class DCSeriesDevice
 (
     override val sup: DCConductingEquipment,
     inductance: Double,
-    ratedUdc: Double,
     resistance: Double
 )
 extends
@@ -1447,7 +1463,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, 0.0) }
+    def this () = { this (null, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -1472,8 +1488,7 @@ extends
         implicit val clz: String = DCSeriesDevice.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (DCSeriesDevice.fields (position), value)
         emitelem (0, inductance)
-        emitelem (1, ratedUdc)
-        emitelem (2, resistance)
+        emitelem (1, resistance)
         s.toString
     }
     override def export: String =
@@ -1488,12 +1503,10 @@ extends
 {
     override val fields: Array[String] = Array[String] (
         "inductance",
-        "ratedUdc",
         "resistance"
     )
     val inductance: Fielder = parse_element (element (cls, fields(0)))
-    val ratedUdc: Fielder = parse_element (element (cls, fields(1)))
-    val resistance: Fielder = parse_element (element (cls, fields(2)))
+    val resistance: Fielder = parse_element (element (cls, fields(1)))
 
     def parse (context: Context): DCSeriesDevice =
     {
@@ -1502,8 +1515,7 @@ extends
         val ret = DCSeriesDevice (
             DCConductingEquipment.parse (context),
             toDouble (mask (inductance (), 0)),
-            toDouble (mask (ratedUdc (), 1)),
-            toDouble (mask (resistance (), 2))
+            toDouble (mask (resistance (), 1))
         )
         ret.bitfields = bitfields
         ret
@@ -1517,8 +1529,6 @@ extends
  *
  * @param sup [[ch.ninecode.model.DCConductingEquipment DCConductingEquipment]] Reference to the superclass object.
  * @param capacitance Capacitance of the DC shunt.
- * @param ratedUdc Rated DC device voltage.
- *        Converter configuration data used in power flow.
  * @param resistance Resistance of the DC device.
  * @group DC
  * @groupname DC Package DC
@@ -1528,7 +1538,6 @@ case class DCShunt
 (
     override val sup: DCConductingEquipment,
     capacitance: Double,
-    ratedUdc: Double,
     resistance: Double
 )
 extends
@@ -1537,7 +1546,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, 0.0) }
+    def this () = { this (null, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -1562,8 +1571,7 @@ extends
         implicit val clz: String = DCShunt.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (DCShunt.fields (position), value)
         emitelem (0, capacitance)
-        emitelem (1, ratedUdc)
-        emitelem (2, resistance)
+        emitelem (1, resistance)
         s.toString
     }
     override def export: String =
@@ -1578,12 +1586,10 @@ extends
 {
     override val fields: Array[String] = Array[String] (
         "capacitance",
-        "ratedUdc",
         "resistance"
     )
     val capacitance: Fielder = parse_element (element (cls, fields(0)))
-    val ratedUdc: Fielder = parse_element (element (cls, fields(1)))
-    val resistance: Fielder = parse_element (element (cls, fields(2)))
+    val resistance: Fielder = parse_element (element (cls, fields(1)))
 
     def parse (context: Context): DCShunt =
     {
@@ -1592,8 +1598,7 @@ extends
         val ret = DCShunt (
             DCConductingEquipment.parse (context),
             toDouble (mask (capacitance (), 0)),
-            toDouble (mask (ratedUdc (), 1)),
-            toDouble (mask (resistance (), 2))
+            toDouble (mask (resistance (), 1))
         )
         ret.bitfields = bitfields
         ret
@@ -1666,7 +1671,7 @@ extends
  * An electrical connection point to generic DC conducting equipment.
  *
  * @param sup [[ch.ninecode.model.DCBaseTerminal DCBaseTerminal]] Reference to the superclass object.
- * @param DCConductingEquipment [[ch.ninecode.model.DCConductingEquipment DCConductingEquipment]] <em>undocumented</em>
+ * @param DCConductingEquipment [[ch.ninecode.model.DCConductingEquipment DCConductingEquipment]] An DC  terminal belong to a DC conducting equipment.
  * @group DC
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
@@ -1746,7 +1751,7 @@ extends
  * DC topological islands can change as the current network state changes: e.g. due to
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param DCTopologicalNodes [[ch.ninecode.model.DCTopologicalNode DCTopologicalNode]] <em>undocumented</em>
+ * @param DCTopologicalNodes [[ch.ninecode.model.DCTopologicalNode DCTopologicalNode]] The DC topological nodes in a DC topological island.
  * @group DC
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
@@ -1821,7 +1826,115 @@ extends
 }
 
 /**
+ * DC bus.
+ *
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param DCEquipmentContainer [[ch.ninecode.model.DCEquipmentContainer DCEquipmentContainer]] The connectivity node container to which the topological node belongs.
+ * @param DCNodes [[ch.ninecode.model.DCNode DCNode]] The DC connectivity nodes combined together to form this DC topological node.
+ *        May depend on the current state of switches in the network.
+ * @param DCTerminals [[ch.ninecode.model.DCBaseTerminal DCBaseTerminal]] See association end TopologicalNode.
+ *        Terminal.
+ * @param DCTopologicalIsland [[ch.ninecode.model.DCTopologicalIsland DCTopologicalIsland]] A DC topological node belongs to a DC topological island.
+ * @group DC
+ * @groupname DC Package DC
+ * @groupdesc DC This package contains model for direct current equipment and controls.
+ */
+case class DCTopologicalNode
+(
+    override val sup: IdentifiedObject,
+    DCEquipmentContainer: String,
+    DCNodes: List[String],
+    DCTerminals: List[String],
+    DCTopologicalIsland: String
+)
+extends
+    Element
+{
+    /**
+     * Zero args constructor.
+     */
+    def this () = { this (null, null, List(), List(), null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
+    override def copy (): Row = { clone ().asInstanceOf[DCTopologicalNode] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = DCTopologicalNode.cls
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (DCTopologicalNode.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (DCTopologicalNode.fields (position), x))
+        emitattr (0, DCEquipmentContainer)
+        emitattrs (1, DCNodes)
+        emitattrs (2, DCTerminals)
+        emitattr (3, DCTopologicalIsland)
+        s.toString
+    }
+    override def export: String =
+    {
+        "\t<cim:DCTopologicalNode rdf:ID=\"%s\">\n%s\t</cim:DCTopologicalNode>".format (id, export_fields)
+    }
+}
 
+object DCTopologicalNode
+extends
+    Parseable[DCTopologicalNode]
+{
+    override val fields: Array[String] = Array[String] (
+        "DCEquipmentContainer",
+        "DCNodes",
+        "DCTerminals",
+        "DCTopologicalIsland"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("DCEquipmentContainer", "DCEquipmentContainer", "0..1", "0..*"),
+        Relationship ("DCNodes", "DCNode", "0..*", "0..1"),
+        Relationship ("DCTerminals", "DCBaseTerminal", "0..*", "0..1"),
+        Relationship ("DCTopologicalIsland", "DCTopologicalIsland", "0..1", "1..*")
+    )
+    val DCEquipmentContainer: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val DCNodes: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val DCTerminals: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val DCTopologicalIsland: Fielder = parse_attribute (attribute (cls, fields(3)))
+
+    def parse (context: Context): DCTopologicalNode =
+    {
+        implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
+        val ret = DCTopologicalNode (
+            IdentifiedObject.parse (context),
+            mask (DCEquipmentContainer (), 0),
+            masks (DCNodes (), 1),
+            masks (DCTerminals (), 2),
+            mask (DCTopologicalIsland (), 3)
+        )
+        ret.bitfields = bitfields
+        ret
+    }
+}
+
+/**
+ * Common type for per-length electrical catalogues describing DC line parameters.
+ *
+ * @param sup [[ch.ninecode.model.PerLengthLineParameter PerLengthLineParameter]] Reference to the superclass object.
+ * @param capacitance Capacitance per unit of length of the DC line segment; significant for cables only.
+ * @param inductance Inductance per unit of length of the DC line segment.
+ * @param resistance Resistance per length of the DC line segment.
+ * @param DCLineSegments [[ch.ninecode.model.DCLineSegment DCLineSegment]] All line segments described by this set of per-length parameters.
  * @group DC
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
@@ -1912,7 +2025,7 @@ extends
 }
 
 /**
- * The P-Q capability curve for a voltage source converter, with P on x-axis and Qmin and Qmax on y1-axis and y2-axis.
+ * The P-Q capability curve for a voltage source converter, with P on X-axis and Qmin and Qmax on Y1-axis and Y2-axis.
  *
  * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param VsConverterDCSides [[ch.ninecode.model.VsConverter VsConverter]] All converters with this capability curve.
@@ -1998,18 +2111,20 @@ extends
  * @param droop Droop constant; pu value is obtained as D [kV/MW] x Sb / Ubdc.
  * @param droopCompensation Compensation constant.
  *        Used to compensate for voltage drop when controlling voltage at a distant bus.
- * @param maxModulationIndex The max quotient between the AC converter voltage (Uc) and DC voltage (Ud).
+ * @param maxModulationIndex The maximum quotient between the AC converter voltage (Uc) and DC voltage (Ud).
  *        A factor typically less than 1. VSC configuration data used in power flow.
  * @param maxValveCurrent The maximum current through a valve.
  *        This current limit is the basis for calculating the capability diagram. VSC  configuration data.
  * @param pPccControl Kind of control of real power and/or DC voltage.
- * @param qPccControl <em>undocumented</em>
+ * @param qPccControl Kind of reactive power control.
  * @param qShare Reactive power sharing factor among parallel converters on Uac control.
  * @param targetQpcc Reactive power injection target in AC grid, at point of common coupling.
+ *        Load sign convention is used, i.e. positive sign means flow out from a node.
  * @param targetUpcc Voltage target in AC grid, at point of common coupling.
- * @param uf Line-to-line voltage on the valve side of the converter transformer.
+ * @param uv Line-to-line voltage on the valve side of the converter transformer.
  *        Converter state variable, result from power flow.
  * @param CapabilityCurve [[ch.ninecode.model.VsCapabilityCurve VsCapabilityCurve]] Capability curve of this converter.
+ * @param VSCDynamics [[ch.ninecode.model.VSCDynamics VSCDynamics]] Voltage source converter dynamics model used to describe dynamic behaviour of this converter.
  * @group DC
  * @groupname DC Package DC
  * @groupdesc DC This package contains model for direct current equipment and controls.
@@ -2027,8 +2142,9 @@ case class VsConverter
     qShare: Double,
     targetQpcc: Double,
     targetUpcc: Double,
-    uf: Double,
-    CapabilityCurve: String
+    uv: Double,
+    CapabilityCurve: String,
+    VSCDynamics: String
 )
 extends
     Element
@@ -2036,7 +2152,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, null, null, 0.0, 0.0, 0.0, 0.0, null) }
+    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, null, null, 0.0, 0.0, 0.0, 0.0, null, null) }
     /**
      * Return the superclass object.
      *
@@ -2071,8 +2187,9 @@ extends
         emitelem (7, qShare)
         emitelem (8, targetQpcc)
         emitelem (9, targetUpcc)
-        emitelem (10, uf)
+        emitelem (10, uv)
         emitattr (11, CapabilityCurve)
+        emitattr (12, VSCDynamics)
         s.toString
     }
     override def export: String =
@@ -2096,11 +2213,13 @@ extends
         "qShare",
         "targetQpcc",
         "targetUpcc",
-        "uf",
-        "CapabilityCurve"
+        "uv",
+        "CapabilityCurve",
+        "VSCDynamics"
     )
     override val relations: List[Relationship] = List (
-        Relationship ("CapabilityCurve", "VsCapabilityCurve", "0..1", "0..*")
+        Relationship ("CapabilityCurve", "VsCapabilityCurve", "0..1", "0..*"),
+        Relationship ("VSCDynamics", "VSCDynamics", "0..1", "1")
     )
     val delta: Fielder = parse_element (element (cls, fields(0)))
     val droop: Fielder = parse_element (element (cls, fields(1)))
@@ -2112,8 +2231,9 @@ extends
     val qShare: Fielder = parse_element (element (cls, fields(7)))
     val targetQpcc: Fielder = parse_element (element (cls, fields(8)))
     val targetUpcc: Fielder = parse_element (element (cls, fields(9)))
-    val uf: Fielder = parse_element (element (cls, fields(10)))
+    val uv: Fielder = parse_element (element (cls, fields(10)))
     val CapabilityCurve: Fielder = parse_attribute (attribute (cls, fields(11)))
+    val VSCDynamics: Fielder = parse_attribute (attribute (cls, fields(12)))
 
     def parse (context: Context): VsConverter =
     {
@@ -2131,8 +2251,9 @@ extends
             toDouble (mask (qShare (), 7)),
             toDouble (mask (targetQpcc (), 8)),
             toDouble (mask (targetUpcc (), 9)),
-            toDouble (mask (uf (), 10)),
-            mask (CapabilityCurve (), 11)
+            toDouble (mask (uv (), 10)),
+            mask (CapabilityCurve (), 11),
+            mask (VSCDynamics (), 12)
         )
         ret.bitfields = bitfields
         ret
@@ -2164,6 +2285,7 @@ private[ninecode] object _DC
             DCSwitch.register,
             DCTerminal.register,
             DCTopologicalIsland.register,
+            DCTopologicalNode.register,
             PerLengthDCLineParameter.register,
             VsCapabilityCurve.register,
             VsConverter.register

@@ -8,9 +8,9 @@ import ch.ninecode.cim.Parseable
 import ch.ninecode.cim.Relationship
 
 /**
- * Standard aggregate load model comprised of static and/or dynamic components.
+ * Aggregate loads are used to represent all or part of the real and reactive load from one or more loads in the static (power flow) data.
  *
- * A static load model represents the sensitivity of the real and reactive power consumed by the load to the amplitude and frequency of the bus voltage. A dynamic load model can used to represent the aggregate response of the motor components of the load.
+ * This load is usually the aggregation of many individual load devices and the load model is an approximate representation of the aggregate response of the load devices to system disturbances.
  *
  * @param sup [[ch.ninecode.model.LoadDynamics LoadDynamics]] Reference to the superclass object.
  * @param LoadMotor [[ch.ninecode.model.LoadMotor LoadMotor]] Aggregate motor (dynamic) load associated with this aggregate load.
@@ -18,11 +18,8 @@ import ch.ninecode.cim.Relationship
  * @group LoadDynamics
  * @groupname LoadDynamics Package LoadDynamics
  * @groupdesc LoadDynamics Dynamic load models are used to represent the dynamic real and reactive load behaviour of a load from the static power flow model.  
-
 Dynamic load models can be defined as applying either to a single load (energy consumer) or to a group of energy consumers.  
-
-Large industrial motors or groups of similar motors may be represented by individual motor models (synchronous or asynchronous) which are usually represented as generators with negative Pgen in the static (power flow) data.  
-In the CIM, such individual modelling is handled by child classes of either the SynchronousMachineDynamics or AsynchronousMachineDynamics classes.
+Large industrial motors or groups of similar motors can be represented by a synchronous machine model (SynchronousMachineDynamics) or an asynchronous machine model (AsynchronousMachineDynamics), which are usually represented as generators with negative active power output in the static (power flow) data.
  */
 case class LoadAggregate
 (
@@ -100,41 +97,38 @@ extends
 }
 
 /**
- * This model combines static load and induction motor load effects.
+ * Combined static load and induction motor load effects.
  *
  * The dynamics of the motor are simplified by linearizing the induction machine equations.
  *
  * @param sup [[ch.ninecode.model.LoadDynamics LoadDynamics]] Reference to the superclass object.
- * @param epfd Active load-frequency dependence index (dynamic) (Epfd).
- *        Typical Value = 1.5.
- * @param epfs Active load-frequency dependence index (static) (Epfs).
- *        Typical Value = 1.5.
- * @param epvd Active load-voltage dependence index (dynamic) (Epvd).
- *        Typical Value = 0.7.
- * @param epvs Active load-voltage dependence index (static) (Epvs).
- *        Typical Value = 0.7.
- * @param eqfd Reactive load-frequency dependence index (dynamic) (Eqfd).
- *        Typical Value = 0.
- * @param eqfs Reactive load-frequency dependence index (static) (Eqfs).
- *        Typical Value = 0.
- * @param eqvd Reactive load-voltage dependence index (dynamic) (Eqvd).
- *        Typical Value = 2.
- * @param eqvs Reactive load-voltage dependence index (static) (Eqvs).
- *        Typical Value = 2.
- * @param h Inertia constant (H).
- *        Typical Value = 2.5.
- * @param lfrac Loading factor � ratio of initial P to motor MVA base (Lfrac).
- *        Typical Value = 0.8.
- * @param pfrac Fraction of constant-power load to be represented by this motor model (Pfrac) (&gt;=0.0 and &lt;=1.0).
- *        Typical Value = 0.5.
+ * @param epfd Active load-frequency dependence index (dynamic) (<i>Epfd</i>).
+ *        Typical value = 1,5.
+ * @param epfs Active load-frequency dependence index (static) (<i>Epfs</i>).
+ *        Typical value = 1,5.
+ * @param epvd Active load-voltage dependence index (dynamic) (<i>Epvd</i>).
+ *        Typical value = 0,7.
+ * @param epvs Active load-voltage dependence index (static) (<i>Epvs</i>).
+ *        Typical value = 0,7.
+ * @param eqfd Reactive load-frequency dependence index (dynamic) (<i>Eqfd</i>).
+ *        Typical value = 0.
+ * @param eqfs Reactive load-frequency dependence index (static) (<i>Eqfs</i>).
+ *        Typical value = 0.
+ * @param eqvd Reactive load-voltage dependence index (dynamic) (<i>Eqvd</i>).
+ *        Typical value = 2.
+ * @param eqvs Reactive load-voltage dependence index (static) (<i>Eqvs</i>).
+ *        Typical value = 2.
+ * @param h Inertia constant (<i>H</i>) (&gt;= 0).
+ *        Typical value = 2,5.
+ * @param lfac Loading factor (<i>L</i><i><sub>fac</sub></i>).
+ *        The ratio of initial <i>P</i> to motor MVA base.  Typical value = 0,8.
+ * @param pfrac Fraction of constant-power load to be represented by this motor model (<i>P</i><i><sub>FRAC</sub></i>) (&gt;= 0,0 and &lt;= 1,0).
+ *        Typical value = 0,5.
  * @group LoadDynamics
  * @groupname LoadDynamics Package LoadDynamics
  * @groupdesc LoadDynamics Dynamic load models are used to represent the dynamic real and reactive load behaviour of a load from the static power flow model.  
-
 Dynamic load models can be defined as applying either to a single load (energy consumer) or to a group of energy consumers.  
-
-Large industrial motors or groups of similar motors may be represented by individual motor models (synchronous or asynchronous) which are usually represented as generators with negative Pgen in the static (power flow) data.  
-In the CIM, such individual modelling is handled by child classes of either the SynchronousMachineDynamics or AsynchronousMachineDynamics classes.
+Large industrial motors or groups of similar motors can be represented by a synchronous machine model (SynchronousMachineDynamics) or an asynchronous machine model (AsynchronousMachineDynamics), which are usually represented as generators with negative active power output in the static (power flow) data.
  */
 case class LoadComposite
 (
@@ -148,7 +142,7 @@ case class LoadComposite
     eqvd: Double,
     eqvs: Double,
     h: Double,
-    lfrac: Double,
+    lfac: Double,
     pfrac: Double
 )
 extends
@@ -190,7 +184,7 @@ extends
         emitelem (6, eqvd)
         emitelem (7, eqvs)
         emitelem (8, h)
-        emitelem (9, lfrac)
+        emitelem (9, lfac)
         emitelem (10, pfrac)
         s.toString
     }
@@ -214,7 +208,7 @@ extends
         "eqvd",
         "eqvs",
         "h",
-        "lfrac",
+        "lfac",
         "pfrac"
     )
     val epfd: Fielder = parse_element (element (cls, fields(0)))
@@ -226,7 +220,7 @@ extends
     val eqvd: Fielder = parse_element (element (cls, fields(6)))
     val eqvs: Fielder = parse_element (element (cls, fields(7)))
     val h: Fielder = parse_element (element (cls, fields(8)))
-    val lfrac: Fielder = parse_element (element (cls, fields(9)))
+    val lfac: Fielder = parse_element (element (cls, fields(9)))
     val pfrac: Fielder = parse_element (element (cls, fields(10)))
 
     def parse (context: Context): LoadComposite =
@@ -244,7 +238,7 @@ extends
             toDouble (mask (eqvd (), 6)),
             toDouble (mask (eqvs (), 7)),
             toDouble (mask (h (), 8)),
-            toDouble (mask (lfrac (), 9)),
+            toDouble (mask (lfac (), 9)),
             toDouble (mask (pfrac (), 10))
         )
         ret.bitfields = bitfields
@@ -254,21 +248,17 @@ extends
 
 /**
  * Load whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
- * 
- * A standard feature of dynamic load behaviour modelling is the ability to associate the same behaviour to multiple energy consumers by means of a single aggregate load definition.
+ * A standard feature of dynamic load behaviour modelling is the ability to associate the same behaviour to multiple energy consumers by means of a single load definition.
  *
- * Aggregate loads are used to represent all or part of the real and reactive load from one or more loads in the static (power flow) data. This load is usually the aggregation of many individual load devices and the load model is approximate representation of the aggregate response of the load devices to system disturbances. The load model is always applied to individual bus loads (energy consumers) but a single set of load model parameters can used for all loads in the grouping.
+ * The load model is always applied to individual bus loads (energy consumers).
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param EnergyConsumer [[ch.ninecode.model.EnergyConsumer EnergyConsumer]] Energy consumer to which this dynamics load model applies.
  * @group LoadDynamics
  * @groupname LoadDynamics Package LoadDynamics
  * @groupdesc LoadDynamics Dynamic load models are used to represent the dynamic real and reactive load behaviour of a load from the static power flow model.  
-
 Dynamic load models can be defined as applying either to a single load (energy consumer) or to a group of energy consumers.  
-
-Large industrial motors or groups of similar motors may be represented by individual motor models (synchronous or asynchronous) which are usually represented as generators with negative Pgen in the static (power flow) data.  
-In the CIM, such individual modelling is handled by child classes of either the SynchronousMachineDynamics or AsynchronousMachineDynamics classes.
+Large industrial motors or groups of similar motors can be represented by a synchronous machine model (SynchronousMachineDynamics) or an asynchronous machine model (AsynchronousMachineDynamics), which are usually represented as generators with negative active power output in the static (power flow) data.
  */
 case class LoadDynamics
 (
@@ -340,26 +330,23 @@ extends
 }
 
 /**
- * These load models (known also as generic non-linear dynamic (GNLD) load models) can be used in mid-term and long-term voltage stability simulations (i.e., to study voltage collapse), as they can replace a more detailed representation of aggregate load, including induction motors, thermostatically controlled and static loads.
+ * Generic non-linear dynamic (GNLD) load.
+ *
+ * This model can be used in mid-term and long-term voltage stability simulations (i.e., to study voltage collapse), as it can replace a more detailed representation of aggregate load, including induction motors, thermostatically controlled and static loads.
  *
  * @param sup [[ch.ninecode.model.LoadDynamics LoadDynamics]] Reference to the superclass object.
- * @param bs Steady state voltage index for reactive power (BS).
- * @param bt Transient voltage index for reactive power (BT).
+ * @param bs Steady state voltage index for reactive power (<i>BS</i>).
+ * @param bt Transient voltage index for reactive power (<i>BT</i>).
  * @param genericNonLinearLoadModelType Type of generic non-linear load model.
- * @param ls Steady state voltage index for active power (LS).
- * @param lt Transient voltage index for active power (LT).
- * @param pt Dynamic portion of active load (P<sub>T</sub>).
- * @param qt Dynamic portion of reactive load (Q<sub>T</sub>).
- * @param tp Time constant of lag function of active power (T<sub>P</sub>).
- * @param tq Time constant of lag function of reactive power (T<sub>Q</sub>).
+ * @param ls Steady state voltage index for active power (<i>LS</i>).
+ * @param lt Transient voltage index for active power (<i>LT</i>).
+ * @param tp Time constant of lag function of active power (<i>T</i><i><sub>P</sub></i>) (&gt; 0).
+ * @param tq Time constant of lag function of reactive power (<i>T</i><i><sub>Q</sub></i>) (&gt; 0).
  * @group LoadDynamics
  * @groupname LoadDynamics Package LoadDynamics
  * @groupdesc LoadDynamics Dynamic load models are used to represent the dynamic real and reactive load behaviour of a load from the static power flow model.  
-
 Dynamic load models can be defined as applying either to a single load (energy consumer) or to a group of energy consumers.  
-
-Large industrial motors or groups of similar motors may be represented by individual motor models (synchronous or asynchronous) which are usually represented as generators with negative Pgen in the static (power flow) data.  
-In the CIM, such individual modelling is handled by child classes of either the SynchronousMachineDynamics or AsynchronousMachineDynamics classes.
+Large industrial motors or groups of similar motors can be represented by a synchronous machine model (SynchronousMachineDynamics) or an asynchronous machine model (AsynchronousMachineDynamics), which are usually represented as generators with negative active power output in the static (power flow) data.
  */
 case class LoadGenericNonLinear
 (
@@ -369,8 +356,6 @@ case class LoadGenericNonLinear
     genericNonLinearLoadModelType: String,
     ls: Double,
     lt: Double,
-    pt: Double,
-    qt: Double,
     tp: Double,
     tq: Double
 )
@@ -380,7 +365,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    def this () = { this (null, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -410,10 +395,8 @@ extends
         emitattr (2, genericNonLinearLoadModelType)
         emitelem (3, ls)
         emitelem (4, lt)
-        emitelem (5, pt)
-        emitelem (6, qt)
-        emitelem (7, tp)
-        emitelem (8, tq)
+        emitelem (5, tp)
+        emitelem (6, tq)
         s.toString
     }
     override def export: String =
@@ -432,8 +415,6 @@ extends
         "genericNonLinearLoadModelType",
         "ls",
         "lt",
-        "pt",
-        "qt",
         "tp",
         "tq"
     )
@@ -442,10 +423,8 @@ extends
     val genericNonLinearLoadModelType: Fielder = parse_attribute (attribute (cls, fields(2)))
     val ls: Fielder = parse_element (element (cls, fields(3)))
     val lt: Fielder = parse_element (element (cls, fields(4)))
-    val pt: Fielder = parse_element (element (cls, fields(5)))
-    val qt: Fielder = parse_element (element (cls, fields(6)))
-    val tp: Fielder = parse_element (element (cls, fields(7)))
-    val tq: Fielder = parse_element (element (cls, fields(8)))
+    val tp: Fielder = parse_element (element (cls, fields(5)))
+    val tq: Fielder = parse_element (element (cls, fields(6)))
 
     def parse (context: Context): LoadGenericNonLinear =
     {
@@ -458,10 +437,8 @@ extends
             mask (genericNonLinearLoadModelType (), 2),
             toDouble (mask (ls (), 3)),
             toDouble (mask (lt (), 4)),
-            toDouble (mask (pt (), 5)),
-            toDouble (mask (qt (), 6)),
-            toDouble (mask (tp (), 7)),
-            toDouble (mask (tq (), 8))
+            toDouble (mask (tp (), 5)),
+            toDouble (mask (tq (), 6))
         )
         ret.bitfields = bitfields
         ret
@@ -471,44 +448,41 @@ extends
 /**
  * Aggregate induction motor load.
  *
- * This model  is used to represent a fraction of an ordinary load as "induction motor load".  It allows load that is treated as ordinary constant power in power flow analysis to be represented by an induction motor in dynamic simulation.  If <b>Lpp</b> = 0. or <b>Lpp</b> = <b>Lp</b>, or <b>Tppo</b> = 0.,  only one cage is represented. Magnetic saturation is not modelled. Either a "one-cage" or "two-cage" model of the induction machine can be modelled. Magnetic saturation is not modelled.
+ * This model is used to represent a fraction of an ordinary load as "induction motor load".  It allows a load that is treated as an ordinary constant power in power flow analysis to be represented by an induction motor in dynamic simulation. This model is intended for representation of aggregations of many motors dispersed through a load represented at a high voltage bus but where there is no information on the characteristics of individual motors.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param d Damping factor (D).
- *        Unit = delta P/delta speed.  Typical Value = 2.
- * @param h Inertia constant (H) (not=0).
- *        Typical Value = 0.4.
- * @param lfac Loading factor � ratio of initial P to motor MVA base (Lfac).
- *        Typical Value = 0.8.
- * @param lp Transient reactance (Lp).
- *        Typical Value = 0.15.
- * @param lpp Subtransient reactance (Lpp).
- *        Typical Value = 0.15.
- * @param ls Synchronous reactance (Ls).
- *        Typical Value = 3.2.
- * @param pfrac Fraction of constant-power load to be represented by this motor model (Pfrac) (&gt;=0.0 and &lt;=1.0).
- *        Typical Value = 0.3.
- * @param ra Stator resistance (Ra).
- *        Typical Value = 0.
- * @param tbkr Circuit breaker operating time (Tbkr).
- *        Typical Value = 0.08.
- * @param tpo Transient rotor time constant (Tpo) (not=0).
- *        Typical Value = 1.
- * @param tppo Subtransient rotor time constant (Tppo).
- *        Typical Value = 0.02.
- * @param tv Voltage trip pickup time (Tv).
- *        Typical Value = 0.1.
- * @param vt Voltage threshold for tripping (Vt).
- *        Typical Value = 0.7.
+ * @param d Damping factor (<i>D</i>).
+ *        Unit = delta <i>P</i>/delta speed.  Typical value = 2.
+ * @param h Inertia constant (<i>H</i>) (&gt;= 0).
+ *        Typical value = 0,4.
+ * @param lfac Loading factor (<i>Lfac</i>).
+ *        The ratio of initial <i>P</i> to motor MVA base.  Typical value = 0,8.
+ * @param lp Transient reactance (<i>Lp</i>).
+ *        Typical value = 0,15.
+ * @param lpp Subtransient reactance (<i>Lpp</i>).
+ *        Typical value = 0,15.
+ * @param ls Synchronous reactance (<i>Ls</i>).
+ *        Typical value = 3,2.
+ * @param pfrac Fraction of constant-power load to be represented by this motor model (<i>Pfrac</i>) (&gt;= 0,0 and &lt;= 1,0).
+ *        Typical value = 0,3.
+ * @param ra Stator resistance (<i>Ra</i>).
+ *        Typical value = 0.
+ * @param tbkr Circuit breaker operating time (<i>Tbkr</i>) (&gt;= 0).
+ *        Typical value = 0,08.
+ * @param tpo Transient rotor time constant (<i>Tpo</i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param tppo Subtransient rotor time constant (<i>Tppo</i>) (&gt;= 0).
+ *        Typical value = 0,02.
+ * @param tv Voltage trip pickup time (<i>Tv</i>) (&gt;= 0).
+ *        Typical value = 0,1.
+ * @param vt Voltage threshold for tripping (<i>Vt</i>).
+ *        Typical value = 0,7.
  * @param LoadAggregate [[ch.ninecode.model.LoadAggregate LoadAggregate]] Aggregate load to which this aggregate motor (dynamic) load belongs.
  * @group LoadDynamics
  * @groupname LoadDynamics Package LoadDynamics
  * @groupdesc LoadDynamics Dynamic load models are used to represent the dynamic real and reactive load behaviour of a load from the static power flow model.  
-
 Dynamic load models can be defined as applying either to a single load (energy consumer) or to a group of energy consumers.  
-
-Large industrial motors or groups of similar motors may be represented by individual motor models (synchronous or asynchronous) which are usually represented as generators with negative Pgen in the static (power flow) data.  
-In the CIM, such individual modelling is handled by child classes of either the SynchronousMachineDynamics or AsynchronousMachineDynamics classes.
+Large industrial motors or groups of similar motors can be represented by a synchronous machine model (SynchronousMachineDynamics) or an asynchronous machine model (AsynchronousMachineDynamics), which are usually represented as generators with negative active power output in the static (power flow) data.
  */
 case class LoadMotor
 (
@@ -646,52 +620,51 @@ extends
 }
 
 /**
- * General static load model representing the sensitivity of the real and reactive power consumed by the load to the amplitude and frequency of the bus voltage.
+ * General static load.
+ *
+ * This model represents the sensitivity of the real and reactive power consumed by the load to the amplitude and frequency of the bus voltage.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param ep1 First term voltage exponent for active power (Ep1).
+ * @param ep1 First term voltage exponent for active power (<i>Ep1</i>).
  *        Used only when .staticLoadModelType = exponential.
- * @param ep2 Second term voltage exponent for active power (Ep2).
+ * @param ep2 Second term voltage exponent for active power (<i>Ep2</i>).
  *        Used only when .staticLoadModelType = exponential.
- * @param ep3 Third term voltage exponent for active power (Ep3).
+ * @param ep3 Third term voltage exponent for active power (<i>Ep3</i>).
  *        Used only when .staticLoadModelType = exponential.
- * @param eq1 First term voltage exponent for reactive power (Eq1).
+ * @param eq1 First term voltage exponent for reactive power (<i>Eq1</i>).
  *        Used only when .staticLoadModelType = exponential.
- * @param eq2 Second term voltage exponent for reactive power (Eq2).
+ * @param eq2 Second term voltage exponent for reactive power (<i>Eq2</i>).
  *        Used only when .staticLoadModelType = exponential.
- * @param eq3 Third term voltage exponent for reactive power (Eq3).
+ * @param eq3 Third term voltage exponent for reactive power (<i>Eq3</i>).
  *        Used only when .staticLoadModelType = exponential.
- * @param kp1 First term voltage coefficient for active power (Kp1).
+ * @param kp1 First term voltage coefficient for active power (<i>K</i><i><sub>p1</sub></i>).
  *        Not used when .staticLoadModelType = constantZ.
- * @param kp2 Second term voltage coefficient for active power (Kp2).
+ * @param kp2 Second term voltage coefficient for active power (<i>K</i><i><sub>p2</sub></i>).
  *        Not used when .staticLoadModelType = constantZ.
- * @param kp3 Third term voltage coefficient for active power (Kp3).
+ * @param kp3 Third term voltage coefficient for active power (<i>K</i><i><sub>p3</sub></i>).
  *        Not used when .staticLoadModelType = constantZ.
- * @param kp4 Frequency coefficient for active power (Kp4).
- *        Must be non-zero when .staticLoadModelType = ZIP2.  Not used for all other values of .staticLoadModelType.
- * @param kpf Frequency deviation coefficient for active power (Kpf).
+ * @param kp4 Frequency coefficient for active power (<i>K</i><i><sub>p4</sub></i>)  (not = 0 if .staticLoadModelType = zIP2).
+ *        Used only when .staticLoadModelType = zIP2.
+ * @param kpf Frequency deviation coefficient for active power (<i>K</i><i><sub>pf</sub></i>).
  *        Not used when .staticLoadModelType = constantZ.
- * @param kq1 First term voltage coefficient for reactive power (Kq1).
+ * @param kq1 First term voltage coefficient for reactive power (<i>K</i><i><sub>q1</sub></i>).
  *        Not used when .staticLoadModelType = constantZ.
- * @param kq2 Second term voltage coefficient for reactive power (Kq2).
+ * @param kq2 Second term voltage coefficient for reactive power (<i>K</i><i><sub>q2</sub></i>).
  *        Not used when .staticLoadModelType = constantZ.
- * @param kq3 Third term voltage coefficient for reactive power (Kq3).
+ * @param kq3 Third term voltage coefficient for reactive power (<i>K</i><i><sub>q3</sub></i>).
  *        Not used when .staticLoadModelType = constantZ.
- * @param kq4 Frequency coefficient for reactive power (Kq4).
- *        Must be non-zero when .staticLoadModelType = ZIP2.  Not used for all other values of .staticLoadModelType.
- * @param kqf Frequency deviation coefficient for reactive power (Kqf).
+ * @param kq4 Frequency coefficient for reactive power (<i>K</i><i><sub>q4</sub></i>)  (not = 0 when .staticLoadModelType = zIP2).
+ *        Used only when .staticLoadModelType - zIP2.
+ * @param kqf Frequency deviation coefficient for reactive power (<i>K</i><i><sub>qf</sub></i>).
  *        Not used when .staticLoadModelType = constantZ.
  * @param staticLoadModelType Type of static load model.
- *        Typical Value = constantZ.
+ *        Typical value = constantZ.
  * @param LoadAggregate [[ch.ninecode.model.LoadAggregate LoadAggregate]] Aggregate load to which this aggregate static load belongs.
  * @group LoadDynamics
  * @groupname LoadDynamics Package LoadDynamics
  * @groupdesc LoadDynamics Dynamic load models are used to represent the dynamic real and reactive load behaviour of a load from the static power flow model.  
-
 Dynamic load models can be defined as applying either to a single load (energy consumer) or to a group of energy consumers.  
-
-Large industrial motors or groups of similar motors may be represented by individual motor models (synchronous or asynchronous) which are usually represented as generators with negative Pgen in the static (power flow) data.  
-In the CIM, such individual modelling is handled by child classes of either the SynchronousMachineDynamics or AsynchronousMachineDynamics classes.
+Large industrial motors or groups of similar motors can be represented by a synchronous machine model (SynchronousMachineDynamics) or an asynchronous machine model (AsynchronousMachineDynamics), which are usually represented as generators with negative active power output in the static (power flow) data.
  */
 case class LoadStatic
 (

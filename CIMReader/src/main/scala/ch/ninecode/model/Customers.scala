@@ -8,6 +8,109 @@ import ch.ninecode.cim.Parseable
 import ch.ninecode.cim.Relationship
 
 /**
+ * Notifications for move-in, move-out, delinquencies, etc.
+ *
+ * @param sup Reference to the superclass object.
+ * @param customerNotificationType <em>undocumented</em>
+ * @param methodType <em>undocumented</em>
+ * @param note <em>undocumented</em>
+ * @param time <em>undocumented</em>
+ * @param CustomerAccount [[ch.ninecode.model.CustomerAccount CustomerAccount]] <em>undocumented</em>
+ * @group Customers
+ * @groupname Customers Package Customers
+ * @groupdesc Customers This package contains the core information classes that support customer billing applications.
+ */
+case class AccountNotification
+(
+    override val sup: BasicElement,
+    customerNotificationType: String,
+    methodType: String,
+    note: String,
+    time: String,
+    CustomerAccount: String
+)
+extends
+    Element
+{
+    /**
+     * Zero args constructor.
+     */
+    def this () = { this (null, null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
+    override def copy (): Row = { clone ().asInstanceOf[AccountNotification] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = AccountNotification.cls
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (AccountNotification.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (AccountNotification.fields (position), value)
+        emitelem (0, customerNotificationType)
+        emitelem (1, methodType)
+        emitelem (2, note)
+        emitelem (3, time)
+        emitattr (4, CustomerAccount)
+        s.toString
+    }
+    override def export: String =
+    {
+        "\t<cim:AccountNotification rdf:ID=\"%s\">\n%s\t</cim:AccountNotification>".format (id, export_fields)
+    }
+}
+
+object AccountNotification
+extends
+    Parseable[AccountNotification]
+{
+    override val fields: Array[String] = Array[String] (
+        "customerNotificationType",
+        "methodType",
+        "note",
+        "time",
+        "CustomerAccount"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("CustomerAccount", "CustomerAccount", "1", "0..*")
+    )
+    val customerNotificationType: Fielder = parse_element (element (cls, fields(0)))
+    val methodType: Fielder = parse_element (element (cls, fields(1)))
+    val note: Fielder = parse_element (element (cls, fields(2)))
+    val time: Fielder = parse_element (element (cls, fields(3)))
+    val CustomerAccount: Fielder = parse_attribute (attribute (cls, fields(4)))
+
+    def parse (context: Context): AccountNotification =
+    {
+        implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
+        val ret = AccountNotification (
+            BasicElement.parse (context),
+            mask (customerNotificationType (), 0),
+            mask (methodType (), 1),
+            mask (note (), 2),
+            mask (time (), 3),
+            mask (CustomerAccount (), 4)
+        )
+        ret.bitfields = bitfields
+        ret
+    }
+}
+
+/**
  * Organisation receiving services from service supplier.
  *
  * @param sup [[ch.ninecode.model.OrganisationRole OrganisationRole]] Reference to the superclass object.
@@ -17,13 +120,15 @@ import ch.ninecode.cim.Relationship
  * @param pucNumber (if applicable) Public utilities commission (PUC) identification number.
  * @param specialNeed True if customer organisation has special service needs such as life support, hospitals, etc.
  * @param status Status of this customer.
- * @param vip (use 'priority' instead) True if this is an important customer.
+ * @param vip (deprecated) (use 'priority' instead) True if this is an important customer.
  *        Importance is for matters different than those in 'specialNeed' attribute.
  * @param CustomerAccounts [[ch.ninecode.model.CustomerAccount CustomerAccount]] All accounts of this customer.
  * @param CustomerAgreements [[ch.ninecode.model.CustomerAgreement CustomerAgreement]] All agreements of this customer.
+ * @param CustomerNotifications [[ch.ninecode.model.CustomerNotification CustomerNotification]] All notifications required by this customer.
+ * @param Customer [[ch.ninecode.model.Customer Customer]] <em>undocumented</em>
  * @param EndDevices [[ch.ninecode.model.EndDevice EndDevice]] All end devices of this customer.
  * @param ErpPersons [[ch.ninecode.model.OldPerson OldPerson]] <em>undocumented</em>
- * @param Notifications [[ch.ninecode.model.CustomerNotification CustomerNotification]] All notifications required by this customer.
+ * @param OutagePlan [[ch.ninecode.model.OutagePlan OutagePlan]] The outage plan that identifies the customers that are affected.
  * @param TroubleTickets [[ch.ninecode.model.TroubleTicket TroubleTicket]] All trouble tickets for this customer.
  * @param Works [[ch.ninecode.model.Work Work]] All the works performed for this customer.
  * @group Customers
@@ -42,9 +147,11 @@ case class Customer
     vip: Boolean,
     CustomerAccounts: List[String],
     CustomerAgreements: List[String],
+    CustomerNotifications: List[String],
+    Customer_attr: List[String],
     EndDevices: List[String],
     ErpPersons: List[String],
-    Notifications: List[String],
+    OutagePlan: String,
     TroubleTickets: List[String],
     Works: List[String]
 )
@@ -54,7 +161,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null, null, null, false, List(), List(), List(), List(), List(), List(), List()) }
+    def this () = { this (null, null, null, null, null, null, null, false, List(), List(), List(), List(), List(), List(), null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -89,11 +196,13 @@ extends
         emitelem (6, vip)
         emitattrs (7, CustomerAccounts)
         emitattrs (8, CustomerAgreements)
-        emitattrs (9, EndDevices)
-        emitattrs (10, ErpPersons)
-        emitattrs (11, Notifications)
-        emitattrs (12, TroubleTickets)
-        emitattrs (13, Works)
+        emitattrs (9, CustomerNotifications)
+        emitattrs (10, Customer_attr)
+        emitattrs (11, EndDevices)
+        emitattrs (12, ErpPersons)
+        emitattr (13, OutagePlan)
+        emitattrs (14, TroubleTickets)
+        emitattrs (15, Works)
         s.toString
     }
     override def export: String =
@@ -116,18 +225,22 @@ extends
         "vip",
         "CustomerAccounts",
         "CustomerAgreements",
+        "CustomerNotifications",
+        "Customer",
         "EndDevices",
         "ErpPersons",
-        "Notifications",
+        "OutagePlan",
         "TroubleTickets",
         "Works"
     )
     override val relations: List[Relationship] = List (
         Relationship ("CustomerAccounts", "CustomerAccount", "0..*", "1"),
         Relationship ("CustomerAgreements", "CustomerAgreement", "0..*", "1"),
+        Relationship ("CustomerNotifications", "CustomerNotification", "0..*", "0..1"),
+        Relationship ("Customer_attr", "Customer", "0..*", ""),
         Relationship ("EndDevices", "EndDevice", "0..*", "0..1"),
         Relationship ("ErpPersons", "OldPerson", "0..*", "0..1"),
-        Relationship ("Notifications", "CustomerNotification", "0..*", "0..1"),
+        Relationship ("OutagePlan", "OutagePlan", "0..1", "0..*"),
         Relationship ("TroubleTickets", "TroubleTicket", "0..*", "0..1"),
         Relationship ("Works", "Work", "0..*", "0..*")
     )
@@ -140,11 +253,13 @@ extends
     val vip: Fielder = parse_element (element (cls, fields(6)))
     val CustomerAccounts: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
     val CustomerAgreements: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
-    val EndDevices: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
-    val ErpPersons: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
-    val Notifications: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
-    val TroubleTickets: FielderMultiple = parse_attributes (attribute (cls, fields(12)))
-    val Works: FielderMultiple = parse_attributes (attribute (cls, fields(13)))
+    val CustomerNotifications: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
+    val Customer_attr: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
+    val EndDevices: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
+    val ErpPersons: FielderMultiple = parse_attributes (attribute (cls, fields(12)))
+    val OutagePlan: Fielder = parse_attribute (attribute (cls, fields(13)))
+    val TroubleTickets: FielderMultiple = parse_attributes (attribute (cls, fields(14)))
+    val Works: FielderMultiple = parse_attributes (attribute (cls, fields(15)))
 
     def parse (context: Context): Customer =
     {
@@ -161,11 +276,13 @@ extends
             toBoolean (mask (vip (), 6)),
             masks (CustomerAccounts (), 7),
             masks (CustomerAgreements (), 8),
-            masks (EndDevices (), 9),
-            masks (ErpPersons (), 10),
-            masks (Notifications (), 11),
-            masks (TroubleTickets (), 12),
-            masks (Works (), 13)
+            masks (CustomerNotifications (), 9),
+            masks (Customer_attr (), 10),
+            masks (EndDevices (), 11),
+            masks (ErpPersons (), 12),
+            mask (OutagePlan (), 13),
+            masks (TroubleTickets (), 14),
+            masks (Works (), 15)
         )
         ret.bitfields = bitfields
         ret
@@ -180,6 +297,8 @@ extends
  * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param billingCycle Cycle day on which the associated customer account will normally be billed, used to determine when to produce the billing.
  * @param budgetBill Budget bill code.
+ * @param lastBillAmount The last amount that will be billed to the customer prior to shut off of the account.
+ * @param AccountNotification [[ch.ninecode.model.AccountNotification AccountNotification]] <em>undocumented</em>
  * @param Customer [[ch.ninecode.model.Customer Customer]] Customer owning this account.
  * @param CustomerAgreements [[ch.ninecode.model.CustomerAgreement CustomerAgreement]] All agreements for this customer account.
  * @param CustomerBillingInfos [[ch.ninecode.model.CustomerBillingInfo CustomerBillingInfo]] <em>undocumented</em>
@@ -195,6 +314,8 @@ case class CustomerAccount
     override val sup: Document,
     billingCycle: String,
     budgetBill: String,
+    lastBillAmount: Double,
+    AccountNotification: List[String],
     Customer: String,
     CustomerAgreements: List[String],
     CustomerBillingInfos: List[String],
@@ -208,7 +329,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, List(), List(), List(), List(), List()) }
+    def this () = { this (null, null, null, 0.0, List(), null, List(), List(), List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -236,12 +357,14 @@ extends
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (CustomerAccount.fields (position), x))
         emitelem (0, billingCycle)
         emitelem (1, budgetBill)
-        emitattr (2, Customer)
-        emitattrs (3, CustomerAgreements)
-        emitattrs (4, CustomerBillingInfos)
-        emitattrs (5, ErpInvoicees)
-        emitattrs (6, PaymentTransactions)
-        emitattrs (7, WorkBillingInfos)
+        emitelem (2, lastBillAmount)
+        emitattrs (3, AccountNotification)
+        emitattr (4, Customer)
+        emitattrs (5, CustomerAgreements)
+        emitattrs (6, CustomerBillingInfos)
+        emitattrs (7, ErpInvoicees)
+        emitattrs (8, PaymentTransactions)
+        emitattrs (9, WorkBillingInfos)
         s.toString
     }
     override def export: String =
@@ -257,6 +380,8 @@ extends
     override val fields: Array[String] = Array[String] (
         "billingCycle",
         "budgetBill",
+        "lastBillAmount",
+        "AccountNotification",
         "Customer",
         "CustomerAgreements",
         "CustomerBillingInfos",
@@ -265,6 +390,7 @@ extends
         "WorkBillingInfos"
     )
     override val relations: List[Relationship] = List (
+        Relationship ("AccountNotification", "AccountNotification", "0..*", "1"),
         Relationship ("Customer", "Customer", "1", "0..*"),
         Relationship ("CustomerAgreements", "CustomerAgreement", "0..*", "1"),
         Relationship ("CustomerBillingInfos", "CustomerBillingInfo", "0..*", "0..1"),
@@ -274,12 +400,14 @@ extends
     )
     val billingCycle: Fielder = parse_element (element (cls, fields(0)))
     val budgetBill: Fielder = parse_element (element (cls, fields(1)))
-    val Customer: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val CustomerAgreements: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
-    val CustomerBillingInfos: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
-    val ErpInvoicees: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
-    val PaymentTransactions: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
-    val WorkBillingInfos: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
+    val lastBillAmount: Fielder = parse_element (element (cls, fields(2)))
+    val AccountNotification: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val Customer: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val CustomerAgreements: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
+    val CustomerBillingInfos: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
+    val ErpInvoicees: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
+    val PaymentTransactions: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
+    val WorkBillingInfos: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
 
     def parse (context: Context): CustomerAccount =
     {
@@ -289,12 +417,14 @@ extends
             Document.parse (context),
             mask (billingCycle (), 0),
             mask (budgetBill (), 1),
-            mask (Customer (), 2),
-            masks (CustomerAgreements (), 3),
-            masks (CustomerBillingInfos (), 4),
-            masks (ErpInvoicees (), 5),
-            masks (PaymentTransactions (), 6),
-            masks (WorkBillingInfos (), 7)
+            toDouble (mask (lastBillAmount (), 2)),
+            masks (AccountNotification (), 3),
+            mask (Customer (), 4),
+            masks (CustomerAgreements (), 5),
+            masks (CustomerBillingInfos (), 6),
+            masks (ErpInvoicees (), 7),
+            masks (PaymentTransactions (), 8),
+            masks (WorkBillingInfos (), 9)
         )
         ret.bitfields = bitfields
         ret
@@ -307,7 +437,9 @@ extends
  * It records certain billing information about the type of service provided at the service location and is used during charge creation to determine the type of service.
  *
  * @param sup [[ch.ninecode.model.Agreement Agreement]] Reference to the superclass object.
+ * @param isPrePay If true, the customer is a pre-pay customer for the specified service.
  * @param loadMgmt Load management code.
+ * @param shutOffDateTime Final date and time the service will be billed to the previous customer.
  * @param AuxiliaryAgreements [[ch.ninecode.model.AuxiliaryAgreement AuxiliaryAgreement]] All (non-service related) auxiliary agreements that refer to this customer agreement.
  * @param Customer [[ch.ninecode.model.Customer Customer]] Customer for this agreement.
  * @param CustomerAccount [[ch.ninecode.model.CustomerAccount CustomerAccount]] Customer account owning this agreement.
@@ -326,7 +458,9 @@ extends
 case class CustomerAgreement
 (
     override val sup: Agreement,
+    isPrePay: Boolean,
     loadMgmt: String,
+    shutOffDateTime: String,
     AuxiliaryAgreements: List[String],
     Customer: String,
     CustomerAccount: String,
@@ -345,7 +479,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, List(), null, null, List(), List(), List(), null, List(), null, null, List()) }
+    def this () = { this (null, false, null, null, List(), null, null, List(), List(), List(), null, List(), null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -371,18 +505,20 @@ extends
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (CustomerAgreement.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (CustomerAgreement.fields (position), value)
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (CustomerAgreement.fields (position), x))
-        emitelem (0, loadMgmt)
-        emitattrs (1, AuxiliaryAgreements)
-        emitattr (2, Customer)
-        emitattr (3, CustomerAccount)
-        emitattrs (4, DemandResponsePrograms)
-        emitattrs (5, MeterReadings)
-        emitattrs (6, PricingStructures)
-        emitattr (7, ServiceCategory)
-        emitattrs (8, ServiceLocations)
-        emitattr (9, ServiceSupplier)
-        emitattr (10, StandardIndustryCode)
-        emitattrs (11, UsagePoints)
+        emitelem (0, isPrePay)
+        emitelem (1, loadMgmt)
+        emitelem (2, shutOffDateTime)
+        emitattrs (3, AuxiliaryAgreements)
+        emitattr (4, Customer)
+        emitattr (5, CustomerAccount)
+        emitattrs (6, DemandResponsePrograms)
+        emitattrs (7, MeterReadings)
+        emitattrs (8, PricingStructures)
+        emitattr (9, ServiceCategory)
+        emitattrs (10, ServiceLocations)
+        emitattr (11, ServiceSupplier)
+        emitattr (12, StandardIndustryCode)
+        emitattrs (13, UsagePoints)
         s.toString
     }
     override def export: String =
@@ -396,7 +532,9 @@ extends
     Parseable[CustomerAgreement]
 {
     override val fields: Array[String] = Array[String] (
+        "isPrePay",
         "loadMgmt",
+        "shutOffDateTime",
         "AuxiliaryAgreements",
         "Customer",
         "CustomerAccount",
@@ -422,18 +560,20 @@ extends
         Relationship ("StandardIndustryCode", "StandardIndustryCode", "0..1", "0..*"),
         Relationship ("UsagePoints", "UsagePoint", "0..*", "0..1")
     )
-    val loadMgmt: Fielder = parse_element (element (cls, fields(0)))
-    val AuxiliaryAgreements: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
-    val Customer: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val CustomerAccount: Fielder = parse_attribute (attribute (cls, fields(3)))
-    val DemandResponsePrograms: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
-    val MeterReadings: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
-    val PricingStructures: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
-    val ServiceCategory: Fielder = parse_attribute (attribute (cls, fields(7)))
-    val ServiceLocations: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
-    val ServiceSupplier: Fielder = parse_attribute (attribute (cls, fields(9)))
-    val StandardIndustryCode: Fielder = parse_attribute (attribute (cls, fields(10)))
-    val UsagePoints: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
+    val isPrePay: Fielder = parse_element (element (cls, fields(0)))
+    val loadMgmt: Fielder = parse_element (element (cls, fields(1)))
+    val shutOffDateTime: Fielder = parse_element (element (cls, fields(2)))
+    val AuxiliaryAgreements: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val Customer: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val CustomerAccount: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val DemandResponsePrograms: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
+    val MeterReadings: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
+    val PricingStructures: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
+    val ServiceCategory: Fielder = parse_attribute (attribute (cls, fields(9)))
+    val ServiceLocations: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
+    val ServiceSupplier: Fielder = parse_attribute (attribute (cls, fields(11)))
+    val StandardIndustryCode: Fielder = parse_attribute (attribute (cls, fields(12)))
+    val UsagePoints: FielderMultiple = parse_attributes (attribute (cls, fields(13)))
 
     def parse (context: Context): CustomerAgreement =
     {
@@ -441,18 +581,20 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = CustomerAgreement (
             Agreement.parse (context),
-            mask (loadMgmt (), 0),
-            masks (AuxiliaryAgreements (), 1),
-            mask (Customer (), 2),
-            mask (CustomerAccount (), 3),
-            masks (DemandResponsePrograms (), 4),
-            masks (MeterReadings (), 5),
-            masks (PricingStructures (), 6),
-            mask (ServiceCategory (), 7),
-            masks (ServiceLocations (), 8),
-            mask (ServiceSupplier (), 9),
-            mask (StandardIndustryCode (), 10),
-            masks (UsagePoints (), 11)
+            toBoolean (mask (isPrePay (), 0)),
+            mask (loadMgmt (), 1),
+            mask (shutOffDateTime (), 2),
+            masks (AuxiliaryAgreements (), 3),
+            mask (Customer (), 4),
+            mask (CustomerAccount (), 5),
+            masks (DemandResponsePrograms (), 6),
+            masks (MeterReadings (), 7),
+            masks (PricingStructures (), 8),
+            mask (ServiceCategory (), 9),
+            masks (ServiceLocations (), 10),
+            mask (ServiceSupplier (), 11),
+            mask (StandardIndustryCode (), 12),
+            masks (UsagePoints (), 13)
         )
         ret.bitfields = bitfields
         ret
@@ -935,6 +1077,7 @@ extends
  *        Examples include: bad dog, violent customer, verbally abusive occupant, obstructions, safety hazards, etc.
  * @param CustomerAgreements [[ch.ninecode.model.CustomerAgreement CustomerAgreement]] All customer agreements regulating this service location.
  * @param EndDevices [[ch.ninecode.model.EndDevice EndDevice]] All end devices that measure the service delivered to this service location.
+ * @param TroubleTicket [[ch.ninecode.model.TroubleTicket TroubleTicket]] <em>undocumented</em>
  * @param UsagePoints [[ch.ninecode.model.UsagePoint UsagePoint]] All usage points delivering service (of the same type) to this service location.
  * @group Customers
  * @groupname Customers Package Customers
@@ -948,6 +1091,7 @@ case class ServiceLocation
     siteAccessProblem: String,
     CustomerAgreements: List[String],
     EndDevices: List[String],
+    TroubleTicket: List[String],
     UsagePoints: List[String]
 )
 extends
@@ -956,7 +1100,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, false, null, List(), List(), List()) }
+    def this () = { this (null, null, false, null, List(), List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -986,7 +1130,8 @@ extends
         emitelem (2, siteAccessProblem)
         emitattrs (3, CustomerAgreements)
         emitattrs (4, EndDevices)
-        emitattrs (5, UsagePoints)
+        emitattrs (5, TroubleTicket)
+        emitattrs (6, UsagePoints)
         s.toString
     }
     override def export: String =
@@ -1005,11 +1150,13 @@ extends
         "siteAccessProblem",
         "CustomerAgreements",
         "EndDevices",
+        "TroubleTicket",
         "UsagePoints"
     )
     override val relations: List[Relationship] = List (
         Relationship ("CustomerAgreements", "CustomerAgreement", "0..*", "0..*"),
         Relationship ("EndDevices", "EndDevice", "0..*", "0..1"),
+        Relationship ("TroubleTicket", "TroubleTicket", "0..*", "1"),
         Relationship ("UsagePoints", "UsagePoint", "0..*", "0..1")
     )
     val accessMethod: Fielder = parse_element (element (cls, fields(0)))
@@ -1017,7 +1164,8 @@ extends
     val siteAccessProblem: Fielder = parse_element (element (cls, fields(2)))
     val CustomerAgreements: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
     val EndDevices: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
-    val UsagePoints: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
+    val TroubleTicket: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
+    val UsagePoints: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
 
     def parse (context: Context): ServiceLocation =
     {
@@ -1030,7 +1178,8 @@ extends
             mask (siteAccessProblem (), 2),
             masks (CustomerAgreements (), 3),
             masks (EndDevices (), 4),
-            masks (UsagePoints (), 5)
+            masks (TroubleTicket (), 5),
+            masks (UsagePoints (), 6)
         )
         ret.bitfields = bitfields
         ret
@@ -1146,15 +1295,19 @@ extends
 case class TroubleTicket
 (
     override val sup: Document,
+    comment: String,
     dateTimeOfReport: String,
-    firstResponder: String,
+    firstResponderStatus: String,
+    multiplePremises: Boolean,
     reportingKind: String,
     resolvedDateTime: String,
     troubleCode: String,
     Customer: String,
-    Hazards: List[String],
     Incident: String,
-    Notification: String
+    IncidentHazard: List[String],
+    Notification: String,
+    ServiceLocation: String,
+    UnplannedOutage: String
 )
 extends
     Element
@@ -1162,7 +1315,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null, null, null, List(), null, null) }
+    def this () = { this (null, null, null, null, false, null, null, null, null, null, List(), null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -1188,15 +1341,19 @@ extends
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (TroubleTicket.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TroubleTicket.fields (position), value)
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (TroubleTicket.fields (position), x))
-        emitelem (0, dateTimeOfReport)
-        emitelem (1, firstResponder)
-        emitattr (2, reportingKind)
-        emitelem (3, resolvedDateTime)
-        emitelem (4, troubleCode)
-        emitattr (5, Customer)
-        emitattrs (6, Hazards)
-        emitattr (7, Incident)
-        emitattr (8, Notification)
+        emitelem (0, comment)
+        emitelem (1, dateTimeOfReport)
+        emitelem (2, firstResponderStatus)
+        emitelem (3, multiplePremises)
+        emitattr (4, reportingKind)
+        emitelem (5, resolvedDateTime)
+        emitelem (6, troubleCode)
+        emitattr (7, Customer)
+        emitattr (8, Incident)
+        emitattrs (9, IncidentHazard)
+        emitattr (10, Notification)
+        emitattr (11, ServiceLocation)
+        emitattr (12, UnplannedOutage)
         s.toString
     }
     override def export: String =
@@ -1210,31 +1367,41 @@ extends
     Parseable[TroubleTicket]
 {
     override val fields: Array[String] = Array[String] (
+        "comment",
         "dateTimeOfReport",
-        "firstResponder",
+        "firstResponderStatus",
+        "multiplePremises",
         "reportingKind",
         "resolvedDateTime",
         "troubleCode",
         "Customer",
-        "Hazards",
         "Incident",
-        "Notification"
+        "IncidentHazard",
+        "Notification",
+        "ServiceLocation",
+        "UnplannedOutage"
     )
     override val relations: List[Relationship] = List (
         Relationship ("Customer", "Customer", "0..1", "0..*"),
-        Relationship ("Hazards", "IncidentHazard", "0..*", "0..1"),
         Relationship ("Incident", "Incident", "0..1", "0..*"),
-        Relationship ("Notification", "CustomerNotification", "0..1", "0..*")
+        Relationship ("IncidentHazard", "IncidentHazard", "0..*", "0..1"),
+        Relationship ("Notification", "CustomerNotification", "0..1", "0..*"),
+        Relationship ("ServiceLocation", "ServiceLocation", "1", "0..*"),
+        Relationship ("UnplannedOutage", "UnplannedOutage", "0..1", "0..*")
     )
-    val dateTimeOfReport: Fielder = parse_element (element (cls, fields(0)))
-    val firstResponder: Fielder = parse_element (element (cls, fields(1)))
-    val reportingKind: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val resolvedDateTime: Fielder = parse_element (element (cls, fields(3)))
-    val troubleCode: Fielder = parse_element (element (cls, fields(4)))
-    val Customer: Fielder = parse_attribute (attribute (cls, fields(5)))
-    val Hazards: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
-    val Incident: Fielder = parse_attribute (attribute (cls, fields(7)))
-    val Notification: Fielder = parse_attribute (attribute (cls, fields(8)))
+    val comment: Fielder = parse_element (element (cls, fields(0)))
+    val dateTimeOfReport: Fielder = parse_element (element (cls, fields(1)))
+    val firstResponderStatus: Fielder = parse_element (element (cls, fields(2)))
+    val multiplePremises: Fielder = parse_element (element (cls, fields(3)))
+    val reportingKind: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val resolvedDateTime: Fielder = parse_element (element (cls, fields(5)))
+    val troubleCode: Fielder = parse_element (element (cls, fields(6)))
+    val Customer: Fielder = parse_attribute (attribute (cls, fields(7)))
+    val Incident: Fielder = parse_attribute (attribute (cls, fields(8)))
+    val IncidentHazard: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
+    val Notification: Fielder = parse_attribute (attribute (cls, fields(10)))
+    val ServiceLocation: Fielder = parse_attribute (attribute (cls, fields(11)))
+    val UnplannedOutage: Fielder = parse_attribute (attribute (cls, fields(12)))
 
     def parse (context: Context): TroubleTicket =
     {
@@ -1242,15 +1409,19 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = TroubleTicket (
             Document.parse (context),
-            mask (dateTimeOfReport (), 0),
-            mask (firstResponder (), 1),
-            mask (reportingKind (), 2),
-            mask (resolvedDateTime (), 3),
-            mask (troubleCode (), 4),
-            mask (Customer (), 5),
-            masks (Hazards (), 6),
-            mask (Incident (), 7),
-            mask (Notification (), 8)
+            mask (comment (), 0),
+            mask (dateTimeOfReport (), 1),
+            mask (firstResponderStatus (), 2),
+            toBoolean (mask (multiplePremises (), 3)),
+            mask (reportingKind (), 4),
+            mask (resolvedDateTime (), 5),
+            mask (troubleCode (), 6),
+            mask (Customer (), 7),
+            mask (Incident (), 8),
+            masks (IncidentHazard (), 9),
+            mask (Notification (), 10),
+            mask (ServiceLocation (), 11),
+            mask (UnplannedOutage (), 12)
         )
         ret.bitfields = bitfields
         ret
@@ -1262,6 +1433,7 @@ private[ninecode] object _Customers
     def register: List[ClassInfo] =
     {
         List (
+            AccountNotification.register,
             Customer.register,
             CustomerAccount.register,
             CustomerAgreement.register,

@@ -149,7 +149,7 @@ case class ModelParser (db: Database)
                         val value = details.find (_.name == "value") match { case Some(attribute) => attribute.typ case None => null }
                         Domain (xuid, name, note, stereotype, packages.getOrElse (row.getPackageID, null), noenum, value)
                     case "enumeration" =>
-                        val enumeration = attributes(cls_id).map (_.name).toSet
+                        val enumeration = if (attributes.contains (cls_id)) attributes(cls_id).map (_.name).toSet else Set[String]()
                         Domain (xuid, name, note, stereotype, packages.getOrElse (row.getPackageID, null), enumeration, "")
                     case _ =>
                         null
@@ -235,7 +235,7 @@ case class ModelParser (db: Database)
 
 object ModelParser
 {
-    val VERSION = "16"
+    val VERSION = "17"
     val SCALA = true
 
     def main (args : Array[String])
@@ -246,7 +246,7 @@ object ModelParser
             case "15" => "iec61970cim15v33_iec61968cim11v13_iec62325cim01v07.eap"
             case "16" => "iec61970cim16v29a_iec61968cim12v08_iec62325cim03v01a.eap"
             case "ENTSOE" => "ENTSOE_CGMES_v2.4.15_7Aug2014.eap"
-            case "17" => "iec61970cim17v22_iec61968cim13v11_iec62325cim03v14.eap"
+            case "17" => "iec61970cim17v34_iec61968cim13v12_iec62325cim03v17a.eap"
         }
 
         val parser = ModelParser (DatabaseBuilder.open (new File ("private_data/" + file)))

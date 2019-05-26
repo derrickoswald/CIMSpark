@@ -8,25 +8,25 @@ import ch.ninecode.cim.Parseable
 import ch.ninecode.cim.Relationship
 
 /**
- * This model can be derived from UnderexcLimIEEE2.
+ * Simplified type UEL2 underexcitation limiter.
  *
- * The limit characteristic (look �up table) is a single straight-line, the same as UnderexcLimIEEE2 (see Figure 10.4 (p 32), IEEE 421.5-2005 Section 10.2).
+ * This model can be derived from UnderexcLimIEEE2.  The limit characteristic (look �up table) is a single straight-line, the same as UnderexcLimIEEE2 (see Figure 10.4 (p 32), IEEE 421.5-2005 Section 10.2).
  *
  * @param sup [[ch.ninecode.model.UnderexcitationLimiterDynamics UnderexcitationLimiterDynamics]] Reference to the superclass object.
- * @param kui Gain Under excitation limiter (Kui).
- *        Typical Value = 0.1.
- * @param p0 Segment P initial point (P0).
- *        Typical Value = 0.
- * @param p1 Segment P end point (P1).
- *        Typical Value = 1.
- * @param q0 Segment Q initial point (Q0).
- *        Typical Value = -0.31.
- * @param q1 Segment Q end point (Q1).
- *        Typical Value = -0.1.
- * @param vuimax Maximum error signal (V<sub>UImax</sub>).
- *        Typical Value = 1.
- * @param vuimin Minimum error signal (V<sub>UImin</sub>).
- *        Typical Value = 0.
+ * @param kui Gain Under excitation limiter (<i>K</i><i><sub>UI</sub></i>).
+ *        Typical value = 0,1.
+ * @param p0 Segment P initial point (<i>P</i><i><sub>0</sub></i>).
+ *        Typical value = 0.
+ * @param p1 Segment P end point (<i>P</i><i><sub>1</sub></i>).
+ *        Typical value = 1.
+ * @param q0 Segment Q initial point (<i>Q</i><i><sub>0</sub></i>).
+ *        Typical value = -0,31.
+ * @param q1 Segment Q end point (<i>Q</i><i><sub>1</sub></i>).
+ *        Typical value = -0,1.
+ * @param vuimax Maximum error signal (<i>V</i><i><sub>UIMAX</sub></i>) (&gt; UnderexcLim2Simplified.vuimin).
+ *        Typical value = 1.
+ * @param vuimin Minimum error signal (<i>V</i><i><sub>UIMIN</sub></i>) (&lt; UnderexcLim2Simplified.vuimax).
+ *        Typical value = 0.
  * @group UnderexcitationLimiterDynamics
  * @groupname UnderexcitationLimiterDynamics Package UnderexcitationLimiterDynamics
  * @groupdesc UnderexcitationLimiterDynamics Underexcitation limiters (UELs) act to boost excitation. The UEL typically senses either a combination of voltage and current of the synchronous machine or a combination of real and reactive power. Some UELs utilize a temperature or pressure recalibration feature, in which the UEL characteristic is shifted depending upon the generator cooling gas temperature or pressure.
@@ -128,39 +128,39 @@ extends
 }
 
 /**
- * The class represents the Type UEL1 model which has a circular limit boundary when plotted in terms of machine reactive power vs. real power output.
+ * Type UEL1 model which has a circular limit boundary when plotted in terms of machine reactive power vs. real power output.
  *
- * Reference: IEEE UEL1 421.5-2005 Section 10.1.
+ * Reference: IEEE UEL1 421.5-2005, 10.1.
  *
  * @param sup [[ch.ninecode.model.UnderexcitationLimiterDynamics UnderexcitationLimiterDynamics]] Reference to the superclass object.
- * @param kuc UEL center setting (K<sub>UC</sub>).
- *        Typical Value = 1.38.
- * @param kuf UEL excitation system stabilizer gain (K<sub>UF</sub>).
- *        Typical Value = 3.3.
- * @param kui UEL integral gain (K<sub>UI</sub>).
- *        Typical Value = 0.
- * @param kul UEL proportional gain (K<sub>UL</sub>).
- *        Typical Value = 100.
- * @param kur UEL radius setting (K<sub>UR</sub>).
- *        Typical Value = 1.95.
- * @param tu1 UEL lead time constant (T<sub>U1</sub>).
- *        Typical Value = 0.
- * @param tu2 UEL lag time constant (T<sub>U2</sub>).
- *        Typical Value = 0.05.
- * @param tu3 UEL lead time constant (T<sub>U3</sub>).
- *        Typical Value = 0.
- * @param tu4 UEL lag time constant (T<sub>U4</sub>).
- *        Typical Value = 0.
- * @param vucmax UEL maximum limit for operating point phasor magnitude (V<sub>UCMAX</sub>).
- *        Typical Value = 5.8.
- * @param vuimax UEL integrator output maximum limit (V<sub>UIMAX</sub>).
- * @param vuimin UEL integrator output minimum limit (V<sub>UIMIN</sub>).
- * @param vulmax UEL output maximum limit (V<sub>ULMAX</sub>).
- *        Typical Value = 18.
- * @param vulmin UEL output minimum limit (V<sub>ULMIN</sub>).
- *        Typical Value = -18.
- * @param vurmax UEL maximum limit for radius phasor magnitude (V<sub>URMAX</sub>).
- *        Typical Value = 5.8.
+ * @param kuc UEL centre setting (<i>K</i><i><sub>UC</sub></i>).
+ *        Typical value = 1,38.
+ * @param kuf UEL excitation system stabilizer gain (<i>K</i><i><sub>UF</sub></i>).
+ *        Typical value = 3,3.
+ * @param kui UEL integral gain (<i>K</i><i><sub>UI</sub></i>).
+ *        Typical value = 0.
+ * @param kul UEL proportional gain (<i>K</i><i><sub>UL</sub></i>).
+ *        Typical value = 100.
+ * @param kur UEL radius setting (<i>K</i><i><sub>UR</sub></i>).
+ *        Typical value = 1,95.
+ * @param tu1 UEL lead time constant (<i>T</i><i><sub>U1</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tu2 UEL lag time constant (<i>T</i><i><sub>U2</sub></i>) (&gt;= 0).
+ *        Typical value = 0,05.
+ * @param tu3 UEL lead time constant (<i>T</i><i><sub>U3</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tu4 UEL lag time constant (<i>T</i><i><sub>U4</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param vucmax UEL maximum limit for operating point phasor magnitude (<i>V</i><i><sub>UCMAX</sub></i>).
+ *        Typical value = 5,8.
+ * @param vuimax UEL integrator output maximum limit (<i>V</i><i><sub>UIMAX</sub></i>) (&gt; UnderexcLimIEEE1.vuimin).
+ * @param vuimin UEL integrator output minimum limit (<i>V</i><i><sub>UIMIN</sub></i>) (&lt; UnderexcLimIEEE1.vuimax).
+ * @param vulmax UEL output maximum limit (<i>V</i><i><sub>ULMAX</sub></i>) (&gt; UnderexcLimIEEE1.vulmin).
+ *        Typical value = 18.
+ * @param vulmin UEL output minimum limit (<i>V</i><i><sub>ULMIN</sub></i>) (&lt; UnderexcLimIEEE1.vulmax).
+ *        Typical value = -18.
+ * @param vurmax UEL maximum limit for radius phasor magnitude (<i>V</i><i><sub>URMAX</sub></i>).
+ *        Typical value = 5,8.
  * @group UnderexcitationLimiterDynamics
  * @groupname UnderexcitationLimiterDynamics Package UnderexcitationLimiterDynamics
  * @groupdesc UnderexcitationLimiterDynamics Underexcitation limiters (UELs) act to boost excitation. The UEL typically senses either a combination of voltage and current of the synchronous machine or a combination of real and reactive power. Some UELs utilize a temperature or pressure recalibration feature, in which the UEL characteristic is shifted depending upon the generator cooling gas temperature or pressure.
@@ -302,79 +302,79 @@ extends
 }
 
 /**
- * The class represents the Type UEL2 which has either a straight-line or multi-segment characteristic when plotted in terms of machine reactive power output vs. real power output.
+ * Type UEL2 underexcitation limiter which has either a straight-line or multi-segment characteristic when plotted in terms of machine reactive power output vs. real power output.
  *
- * Reference: IEEE UEL2 421.5-2005 Section 10.2.  (Limit characteristic lookup table shown in Figure 10.4 (p 32) of the standard).
+ * Reference: IEEE UEL2 421.5-2005, 10.2  (limit characteristic lookup table shown in Figure 10.4 (p 32)).
  *
  * @param sup [[ch.ninecode.model.UnderexcitationLimiterDynamics UnderexcitationLimiterDynamics]] Reference to the superclass object.
- * @param k1 UEL terminal voltage exponent applied to real power input to UEL limit look-up table (k1).
- *        Typical Value = 2.
- * @param k2 UEL terminal voltage exponent applied to reactive power output from UEL limit look-up table (k2).
- *        Typical Value = 2.
- * @param kfb Gain associated with optional integrator feedback input signal to UEL (K<sub>FB</sub>).
- *        Typical Value = 0.
- * @param kuf UEL excitation system stabilizer gain (K<sub>UF</sub>).
- *        Typical Value = 0.
- * @param kui UEL integral gain (K<sub>UI</sub>).
- *        Typical Value = 0.5.
- * @param kul UEL proportional gain (K<sub>UL</sub>).
- *        Typical Value = 0.8.
- * @param p0 Real power values for endpoints (P<sub>0</sub>).
- *        Typical Value = 0.
- * @param p1 Real power values for endpoints (P<sub>1</sub>).
- *        Typical Value = 0.3.
- * @param p10 Real power values for endpoints (P<sub>10</sub>).
- * @param p2 Real power values for endpoints (P<sub>2</sub>).
- *        Typical Value = 0.6.
- * @param p3 Real power values for endpoints (P<sub>3</sub>).
- *        Typical Value = 0.9.
- * @param p4 Real power values for endpoints (P<sub>4</sub>).
- *        Typical Value = 1.02.
- * @param p5 Real power values for endpoints (P<sub>5</sub>).
- * @param p6 Real power values for endpoints (P<sub>6</sub>).
- * @param p7 Real power values for endpoints (P<sub>7</sub>).
- * @param p8 Real power values for endpoints (P<sub>8</sub>).
- * @param p9 Real power values for endpoints (P<sub>9</sub>).
- * @param q0 Reactive power values for endpoints (Q<sub>0</sub>).
- *        Typical Value = -0.31.
- * @param q1 Reactive power values for endpoints (Q<sub>1</sub>).
- *        Typical Value = -0.31.
- * @param q10 Reactive power values for endpoints (Q<sub>10</sub>).
- * @param q2 Reactive power values for endpoints (Q<sub>2</sub>).
- *        Typical Value = -0.28.
- * @param q3 Reactive power values for endpoints (Q<sub>3</sub>).
- *        Typical Value = -0.21.
- * @param q4 Reactive power values for endpoints (Q<sub>4</sub>).
- *        Typical Value = 0.
- * @param q5 Reactive power values for endpoints (Q<sub>5</sub>).
- * @param q6 Reactive power values for endpoints (Q<sub>6</sub>).
- * @param q7 Reactive power values for endpoints (Q<sub>7</sub>).
- * @param q8 Reactive power values for endpoints (Q<sub>8</sub>).
- * @param q9 Reactive power values for endpoints (Q<sub>9</sub>).
- * @param tu1 UEL lead time constant (T<sub>U1</sub>).
- *        Typical Value = 0.
- * @param tu2 UEL lag time constant (T<sub>U2</sub>).
- *        Typical Value = 0.
- * @param tu3 UEL lead time constant (T<sub>U3</sub>).
- *        Typical Value = 0.
- * @param tu4 UEL lag time constant (T<sub>U4</sub>).
- *        Typical Value = 0.
- * @param tul Time constant associated with optional integrator feedback input signal to UEL (T<sub>UL</sub>).
- *        Typical Value = 0.
- * @param tup Real power filter time constant (T<sub>UP</sub>).
- *        Typical Value = 5.
- * @param tuq Reactive power filter time constant (T<sub>UQ</sub>).
- *        Typical Value = 0.
- * @param tuv Voltage filter time constant (T<sub>UV</sub>).
- *        Typical Value = 5.
- * @param vuimax UEL integrator output maximum limit (V<sub>UIMAX</sub>).
- *        Typical Value = 0.25.
- * @param vuimin UEL integrator output minimum limit (V<sub>UIMIN</sub>).
- *        Typical Value = 0.
- * @param vulmax UEL output maximum limit (V<sub>ULMAX</sub>).
- *        Typical Value = 0.25.
- * @param vulmin UEL output minimum limit (V<sub>ULMIN</sub>).
- *        Typical Value = 0.
+ * @param k1 UEL terminal voltage exponent applied to real power input to UEL limit look-up table (<i>k1</i>).
+ *        Typical value = 2.
+ * @param k2 UEL terminal voltage exponent applied to reactive power output from UEL limit look-up table (<i>k2</i>).
+ *        Typical value = 2.
+ * @param kfb Gain associated with optional integrator feedback input signal to UEL (<i>K</i><i><sub>FB</sub></i>).
+ *        Typical value = 0.
+ * @param kuf UEL excitation system stabilizer gain (<i>K</i><i><sub>UF</sub></i>).
+ *        Typical value = 0.
+ * @param kui UEL integral gain (<i>K</i><i><sub>UI</sub></i>).
+ *        Typical value = 0,5.
+ * @param kul UEL proportional gain (<i>K</i><i><sub>UL</sub></i>).
+ *        Typical value = 0,8.
+ * @param p0 Real power values for endpoints (<i>P</i><i><sub>0</sub></i>).
+ *        Typical value = 0.
+ * @param p1 Real power values for endpoints (<i>P</i><i><sub>1</sub></i>).
+ *        Typical value = 0,3.
+ * @param p10 Real power values for endpoints (<i>P</i><i><sub>10</sub></i>).
+ * @param p2 Real power values for endpoints (<i>P</i><i><sub>2</sub></i>).
+ *        Typical value = 0,6.
+ * @param p3 Real power values for endpoints (<i>P</i><i><sub>3</sub></i>).
+ *        Typical value = 0,9.
+ * @param p4 Real power values for endpoints (<i>P</i><i><sub>4</sub></i>).
+ *        Typical value = 1,02.
+ * @param p5 Real power values for endpoints (<i>P</i><i><sub>5</sub></i>).
+ * @param p6 Real power values for endpoints (<i>P</i><i><sub>6</sub></i>).
+ * @param p7 Real power values for endpoints (<i>P</i><i><sub>7</sub></i>).
+ * @param p8 Real power values for endpoints (<i>P</i><i><sub>8</sub></i>).
+ * @param p9 Real power values for endpoints (<i>P</i><i><sub>9</sub></i>).
+ * @param q0 Reactive power values for endpoints (<i>Q</i><i><sub>0</sub></i>).
+ *        Typical value = -0,31.
+ * @param q1 Reactive power values for endpoints (<i>Q</i><i><sub>1</sub></i>).
+ *        Typical value = -0,31.
+ * @param q10 Reactive power values for endpoints (<i>Q</i><i><sub>10</sub></i>).
+ * @param q2 Reactive power values for endpoints (<i>Q</i><i><sub>2</sub></i>).
+ *        Typical value = -0,28.
+ * @param q3 Reactive power values for endpoints (<i>Q</i><i><sub>3</sub></i>).
+ *        Typical value = -0,21.
+ * @param q4 Reactive power values for endpoints (<i>Q</i><i><sub>4</sub></i>).
+ *        Typical value = 0.
+ * @param q5 Reactive power values for endpoints (<i>Q</i><i><sub>5</sub></i>).
+ * @param q6 Reactive power values for endpoints (<i>Q</i><i><sub>6</sub></i>).
+ * @param q7 Reactive power values for endpoints (<i>Q</i><i><sub>7</sub></i>).
+ * @param q8 Reactive power values for endpoints (<i>Q</i><i><sub>8</sub></i>).
+ * @param q9 Reactive power values for endpoints (<i>Q</i><i><sub>9</sub></i>).
+ * @param tu1 UEL lead time constant (<i>T</i><i><sub>U1</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tu2 UEL lag time constant (<i>T</i><i><sub>U2</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tu3 UEL lead time constant (<i>T</i><i><sub>U3</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tu4 UEL lag time constant (<i>T</i><i><sub>U4</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tul Time constant associated with optional integrator feedback input signal to UEL (<i>T</i><i><sub>UL</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tup Real power filter time constant (<i>T</i><i><sub>UP</sub></i>) (&gt;= 0).
+ *        Typical value = 5.
+ * @param tuq Reactive power filter time constant (<i>T</i><i><sub>UQ</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tuv Voltage filter time constant (<i>T</i><i><sub>UV</sub></i>) (&gt;= 0).
+ *        Typical value = 5.
+ * @param vuimax UEL integrator output maximum limit (<i>V</i><i><sub>UIMAX</sub></i>) (&gt; UnderexcLimIEEE2.vuimin).
+ *        Typical value = 0,25.
+ * @param vuimin UEL integrator output minimum limit (<i>V</i><i><sub>UIMIN</sub></i>) (&lt; UnderexcLimIEEE2.vuimax).
+ *        Typical value = 0.
+ * @param vulmax UEL output maximum limit (<i>V</i><i><sub>ULMAX</sub></i>) (&gt; UnderexcLimIEEE2.vulmin).
+ *        Typical value = 0,25.
+ * @param vulmin UEL output minimum limit (<i>V</i><i><sub>ULMIN</sub></i>) (&lt; UnderexcLimIEEE2.vulmax).
+ *        Typical value = 0.
  * @group UnderexcitationLimiterDynamics
  * @groupname UnderexcitationLimiterDynamics Package UnderexcitationLimiterDynamics
  * @groupdesc UnderexcitationLimiterDynamics Underexcitation limiters (UELs) act to boost excitation. The UEL typically senses either a combination of voltage and current of the synchronous machine or a combination of real and reactive power. Some UELs utilize a temperature or pressure recalibration feature, in which the UEL characteristic is shifted depending upon the generator cooling gas temperature or pressure.
@@ -644,12 +644,12 @@ extends
  * <font color="#0f0f0f">Allis-Chalmers minimum excitation limiter.</font>
  *
  * @param sup [[ch.ninecode.model.UnderexcitationLimiterDynamics UnderexcitationLimiterDynamics]] Reference to the superclass object.
- * @param k Minimum excitation limit slope (K) (&gt;0).
- * @param kf2 Differential gain (Kf2).
- * @param km Minimum excitation limit gain (Km).
- * @param melmax Minimum excitation limit value (MELMAX).
- * @param tf2 Differential time constant (Tf2) (&gt;0).
- * @param tm Minimum excitation limit time constant (Tm).
+ * @param k Minimum excitation limit slope (<i>K</i>) (&gt; 0).
+ * @param kf2 Differential gain (<i>K</i><i><sub>F2</sub></i>).
+ * @param km Minimum excitation limit gain (<i>K</i><i><sub>M</sub></i>).
+ * @param melmax Minimum excitation limit value (<i>MELMAX</i>).
+ * @param tf2 Differential time constant (<i>T</i><i><sub>F2</sub></i>) (&gt;= 0).
+ * @param tm Minimum excitation limit time constant (<i>T</i><i><sub>M</sub></i>) (&gt;= 0).
  * @group UnderexcitationLimiterDynamics
  * @groupname UnderexcitationLimiterDynamics Package UnderexcitationLimiterDynamics
  * @groupdesc UnderexcitationLimiterDynamics Underexcitation limiters (UELs) act to boost excitation. The UEL typically senses either a combination of voltage and current of the synchronous machine or a combination of real and reactive power. Some UELs utilize a temperature or pressure recalibration feature, in which the UEL characteristic is shifted depending upon the generator cooling gas temperature or pressure.
@@ -749,13 +749,13 @@ extends
  * <font color="#0f0f0f">Westinghouse minimum excitation limiter.</font>
  *
  * @param sup [[ch.ninecode.model.UnderexcitationLimiterDynamics UnderexcitationLimiterDynamics]] Reference to the superclass object.
- * @param kf2 Differential gain (Kf2).
- * @param km Minimum excitation limit gain (Km).
- * @param melmax Minimum excitation limit value (MELMAX).
- * @param qo Excitation center setting (Qo).
- * @param r Excitation radius (R).
- * @param tf2 Differential time constant (Tf2) (&gt;0).
- * @param tm Minimum excitation limit time constant (Tm).
+ * @param kf2 Differential gain (<i>K</i><i><sub>F2</sub></i>).
+ * @param km Minimum excitation limit gain (<i>K</i><i><sub>M</sub></i>).
+ * @param melmax Minimum excitation limit value (<i>MELMAX</i>).
+ * @param qo Excitation centre setting (<i>Q</i><i><sub>O</sub></i>).
+ * @param r Excitation radius (<i>R</i>).
+ * @param tf2 Differential time constant (<i>T</i><i><sub>F2</sub></i>) (&gt;= 0).
+ * @param tm Minimum excitation limit time constant (<i>T</i><i><sub>M</sub></i>) (&gt;= 0).
  * @group UnderexcitationLimiterDynamics
  * @groupname UnderexcitationLimiterDynamics Package UnderexcitationLimiterDynamics
  * @groupdesc UnderexcitationLimiterDynamics Underexcitation limiters (UELs) act to boost excitation. The UEL typically senses either a combination of voltage and current of the synchronous machine or a combination of real and reactive power. Some UELs utilize a temperature or pressure recalibration feature, in which the UEL characteristic is shifted depending upon the generator cooling gas temperature or pressure.

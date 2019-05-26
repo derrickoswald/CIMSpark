@@ -8,19 +8,19 @@ import ch.ninecode.cim.Parseable
 import ch.ninecode.cim.Relationship
 
 /**
- * Different from LimIEEEOEL, LimOEL2 has a fixed pickup threshold and reduces the excitation set-point by mean of non-windup integral regulator.
+ * Different from LimIEEEOEL, LimOEL2 has a fixed pickup threshold and reduces the excitation set-point by means of a non-windup integral regulator.
  *
- * Irated is the rated machine excitation current (calculated from nameplate conditions: V<sub>nom</sub>, P<sub>nom</sub>, CosPhi<sub>nom</sub>).
+ * <i>Irated</i> is the rated machine excitation current (calculated from nameplate conditions: <i>V</i><i><sub>nom</sub></i>, <i>P</i><i><sub>nom</sub></i>, <i>CosPhi</i><i><sub>nom</sub></i>).
  *
  * @param sup [[ch.ninecode.model.OverexcitationLimiterDynamics OverexcitationLimiterDynamics]] Reference to the superclass object.
- * @param ifdlim Limit value of rated field current (I<sub>FDLIM</sub>).
- *        Typical Value = 1.05.
- * @param koi Gain Over excitation limiter (K<sub>OI</sub>).
- *        Typical Value = 0.1.
- * @param voimax Maximum error signal (V<sub>OIMAX</sub>).
- *        Typical Value = 0.
- * @param voimin Minimum error signal (V<sub>OIMIN</sub>).
- *        Typical Value = -9999.
+ * @param ifdlim Limit value of rated field current (<i>I</i><i><sub>FDLIM</sub></i>).
+ *        Typical value = 1,05.
+ * @param koi Gain Over excitation limiter (<i>K</i><i><sub>OI</sub></i>).
+ *        Typical value = 0,1.
+ * @param voimax Maximum error signal (<i>V</i><i><sub>OIMAX</sub></i>) (&gt; OverexcLim2.voimin).
+ *        Typical value = 0.
+ * @param voimin Minimum error signal (<i>V</i><i><sub>OIMIN</sub></i>) (&lt; OverexcLim2.voimax).
+ *        Typical value = -9999.
  * @group OverexcitationLimiterDynamics
  * @groupname OverexcitationLimiterDynamics Package OverexcitationLimiterDynamics
  * @groupdesc OverexcitationLimiterDynamics Overexcitation limiters (OELs) are also referred to as <i>maximum excitation limiters </i>and <i>field current limiters. </i>The possibility of voltage collapse in stressed power systems increases the importance of modelling these limiters in studies of system conditions that cause machines to operate at high levels of excitation for a sustained period, such as voltage collapse or system-islanding. Such events typically occur over a long time frame compared with transient or small-signal stability simulations.
@@ -112,18 +112,18 @@ extends
  * It is the result of a pragmatic approach to obtain a model that can be widely applied with attainable data from generator owners. An attempt to include all variations in the functionality of OELs and duplicate how they interact with the rest of the excitation systems would likely result in a level of application insufficient for the studies for which they are intended.
  *
  * @param sup [[ch.ninecode.model.OverexcitationLimiterDynamics OverexcitationLimiterDynamics]] Reference to the superclass object.
- * @param hyst OEL pickup/drop-out hysteresis (HYST).
- *        Typical Value = 0.03.
- * @param ifdlim OEL timed field current limit (I<sub>FDLIM</sub>).
- *        Typical Value = 1.05.
- * @param ifdmax OEL instantaneous field current limit (I<sub>FDMAX</sub>).
- *        Typical Value = 1.5.
- * @param itfpu OEL timed field current limiter pickup level (I<sub>TFPU</sub>).
- *        Typical Value = 1.05.
- * @param kcd OEL cooldown gain (K<sub>CD</sub>).
- *        Typical Value = 1.
- * @param kramp OEL ramped limit rate (K<sub>RAMP</sub>).
- *        Unit = PU/sec.  Typical Value = 10.
+ * @param hyst OEL pickup/drop-out hysteresis (<i>HYST</i>).
+ *        Typical value = 0,03.
+ * @param ifdlim OEL timed field current limit (<i>I</i><i><sub>FDLIM</sub></i>).
+ *        Typical value = 1,05.
+ * @param ifdmax OEL instantaneous field current limit (<i>I</i><i><sub>FDMAX</sub></i>).
+ *        Typical value = 1,5.
+ * @param itfpu OEL timed field current limiter pickup level (<i>I</i><i><sub>TFPU</sub></i>).
+ *        Typical value = 1,05.
+ * @param kcd OEL cooldown gain (<i>K</i><i><sub>CD</sub></i>).
+ *        Typical value = 1.
+ * @param kramp OEL ramped limit rate (<i>K</i><i><sub>RAMP</sub></i>).
+ *        Unit = PU / s.  Typical value = 10.
  * @group OverexcitationLimiterDynamics
  * @groupname OverexcitationLimiterDynamics Package OverexcitationLimiterDynamics
  * @groupdesc OverexcitationLimiterDynamics Overexcitation limiters (OELs) are also referred to as <i>maximum excitation limiters </i>and <i>field current limiters. </i>The possibility of voltage collapse in stressed power systems increases the importance of modelling these limiters in studies of system conditions that cause machines to operate at high levels of excitation for a sustained period, such as voltage collapse or system-islanding. Such events typically occur over a long time frame compared with transient or small-signal stability simulations.
@@ -223,25 +223,25 @@ extends
  * Field voltage over excitation limiter.
  *
  * @param sup [[ch.ninecode.model.OverexcitationLimiterDynamics OverexcitationLimiterDynamics]] Reference to the superclass object.
- * @param efd1 Low voltage point on the inverse time characteristic (EFD<sub>1</sub>).
- *        Typical Value = 1.1.
- * @param efd2 Mid voltage point on the inverse time characteristic (EFD<sub>2</sub>).
- *        Typical Value = 1.2.
- * @param efd3 High voltage point on the inverse time characteristic (EFD<sub>3</sub>).
- *        Typical Value = 1.5.
- * @param efddes Desired field voltage (EFD<sub>DES</sub>).
- *        Typical Value = 0.9.
- * @param efdrated Rated field voltage (EFD<sub>RATED</sub>).
- *        Typical Value = 1.05.
- * @param kmx Gain (K<sub>MX</sub>).
- *        Typical Value = 0.01.
- * @param t1 Time to trip the exciter at the low voltage point on the inverse time characteristic (TIME<sub>1</sub>).
- *        Typical Value = 120.
- * @param t2 Time to trip the exciter at the mid voltage point on the inverse time characteristic (TIME<sub>2</sub>).
- *        Typical Value = 40.
- * @param t3 Time to trip the exciter at the high voltage point on the inverse time characteristic (TIME<sub>3</sub>).
- *        Typical Value = 15.
- * @param vlow Low voltage limit (V<sub>LOW</sub>) (&gt;0).
+ * @param efd1 Low voltage point on the inverse time characteristic (<i>EFD</i><i><sub>1</sub></i>).
+ *        Typical value = 1,1.
+ * @param efd2 Mid voltage point on the inverse time characteristic (<i>EFD</i><i><sub>2</sub></i>).
+ *        Typical value = 1,2.
+ * @param efd3 High voltage point on the inverse time characteristic (<i>EFD</i><i><sub>3</sub></i>).
+ *        Typical value = 1,5.
+ * @param efddes Desired field voltage (<i>EFD</i><i><sub>DES</sub></i>).
+ *        Typical value = 0,9.
+ * @param efdrated Rated field voltage (<i>EFD</i><i><sub>RATED</sub></i>).
+ *        Typical value = 1,05.
+ * @param kmx Gain (<i>K</i><i><sub>MX</sub></i>).
+ *        Typical value = 0,01.
+ * @param t1 Time to trip the exciter at the low voltage point on the inverse time characteristic (<i>TIME</i><i><sub>1</sub></i>) (&gt;= 0).
+ *        Typical value = 120.
+ * @param t2 Time to trip the exciter at the mid voltage point on the inverse time characteristic (<i>TIME</i><i><sub>2</sub></i>) (&gt;= 0).
+ *        Typical value = 40.
+ * @param t3 Time to trip the exciter at the high voltage point on the inverse time characteristic (<i>TIME</i><i><sub>3</sub></i>) (&gt;= 0).
+ *        Typical value = 15.
+ * @param vlow Low voltage limit (<i>V</i><i><sub>LOW</sub></i>) (&gt; 0).
  * @group OverexcitationLimiterDynamics
  * @groupname OverexcitationLimiterDynamics Package OverexcitationLimiterDynamics
  * @groupdesc OverexcitationLimiterDynamics Overexcitation limiters (OELs) are also referred to as <i>maximum excitation limiters </i>and <i>field current limiters. </i>The possibility of voltage collapse in stressed power systems increases the importance of modelling these limiters in studies of system conditions that cause machines to operate at high levels of excitation for a sustained period, such as voltage collapse or system-islanding. Such events typically occur over a long time frame compared with transient or small-signal stability simulations.
@@ -358,31 +358,31 @@ extends
 }
 
 /**
- * Field Voltage or Current overexcitation limiter designed to protect the generator field of an AC machine with automatic excitation control from overheating due to prolonged overexcitation.
+ * Field voltage or current overexcitation limiter designed to protect the generator field of an AC machine with automatic excitation control from overheating due to prolonged overexcitation.
  *
  * @param sup [[ch.ninecode.model.OverexcitationLimiterDynamics OverexcitationLimiterDynamics]] Reference to the superclass object.
- * @param efd1 Low voltage or current point on the inverse time characteristic (EFD<sub>1</sub>).
- *        Typical Value = 1.1.
- * @param efd2 Mid voltage or current point on the inverse time characteristic (EFD<sub>2</sub>).
- *        Typical Value = 1.2.
- * @param efd3 High voltage or current point on the inverse time characteristic (EFD<sub>3</sub>).
- *        Typical Value = 1.5.
- * @param efddes Desired field voltage if m=F or field current if m=T (EFD<sub>DES</sub>).
- *        Typical Value = 1.
- * @param efdrated Rated field voltage if m=F or field current if m=T (EFD<sub>RATED</sub>).
- *        Typical Value = 1.05.
- * @param kmx Gain (K<sub>MX</sub>).
- *        Typical Value = 0.002.
- * @param m (m).
+ * @param efd1 Low voltage or current point on the inverse time characteristic (<i>EFD</i><i><sub>1</sub></i>).
+ *        Typical value = 1,1.
+ * @param efd2 Mid voltage or current point on the inverse time characteristic (<i>EFD</i><i><sub>2</sub></i>).
+ *        Typical value = 1,2.
+ * @param efd3 High voltage or current point on the inverse time characteristic (<i>EFD</i><i><sub>3</sub></i>).
+ *        Typical value = 1,5.
+ * @param efddes Desired field voltage if <i>m</i> = false or desired field current if <i>m </i>= true (<i>EFD</i><i><sub>DES</sub></i>).
+ *        Typical value = 1.
+ * @param efdrated Rated field voltage if m = false or rated field current if m = true (<i>EFD</i><i><sub>RATED</sub></i>).
+ *        Typical value = 1,05.
+ * @param kmx Gain (<i>K</i><i><sub>MX</sub></i>).
+ *        Typical value = 0,002.
+ * @param m (<i>m</i>).
  *        true = IFD limiting
  *        false = EFD limiting.
- * @param t1 Time to trip the exciter at the low voltage or current point on the inverse time characteristic (TIME<sub>1</sub>).
- *        Typical Value = 120.
- * @param t2 Time to trip the exciter at the mid voltage or current point on the inverse time characteristic (TIME<sub>2</sub>).
- *        Typical Value = 40.
- * @param t3 Time to trip the exciter at the high voltage or current point on the inverse time characteristic (TIME<sub>3</sub>).
- *        Typical Value = 15.
- * @param vlow Low voltage limit (V<sub>LOW</sub>) (&gt;0).
+ * @param t1 Time to trip the exciter at the low voltage or current point on the inverse time characteristic (<i>TIME</i><i><sub>1</sub></i>) (&gt;= 0).
+ *        Typical value = 120.
+ * @param t2 Time to trip the exciter at the mid voltage or current point on the inverse time characteristic (<i>TIME</i><i><sub>2</sub></i>) (&gt;= 0).
+ *        Typical value = 40.
+ * @param t3 Time to trip the exciter at the high voltage or current point on the inverse time characteristic (<i>TIME</i><i><sub>3</sub></i>) (&gt;= 0).
+ *        Typical value = 15.
+ * @param vlow Low voltage limit (<i>V</i><i><sub>LOW</sub></i>) (&gt; 0).
  * @group OverexcitationLimiterDynamics
  * @groupname OverexcitationLimiterDynamics Package OverexcitationLimiterDynamics
  * @groupdesc OverexcitationLimiterDynamics Overexcitation limiters (OELs) are also referred to as <i>maximum excitation limiters </i>and <i>field current limiters. </i>The possibility of voltage collapse in stressed power systems increases the importance of modelling these limiters in studies of system conditions that cause machines to operate at high levels of excitation for a sustained period, such as voltage collapse or system-islanding. Such events typically occur over a long time frame compared with transient or small-signal stability simulations.
@@ -504,7 +504,7 @@ extends
 }
 
 /**
- * <font color="#0f0f0f">O</font>Overexcitation limiter function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
+ * Overexcitation limiter function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  *
  * @param sup [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Excitation system model with which this overexcitation limiter model is associated.

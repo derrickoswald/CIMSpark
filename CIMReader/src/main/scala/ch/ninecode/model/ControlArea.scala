@@ -8,20 +8,20 @@ import ch.ninecode.cim.Parseable
 import ch.ninecode.cim.Relationship
 
 /**
- * A prioritized measurement to be used for the generating unit in the control area specificaiton.
+ * A prioritized measurement to be used for the generating unit in the control area specification.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param priority Priority of a measurement usage.
  *        Lower numbers have first priority.
  * @param AnalogValue [[ch.ninecode.model.AnalogValue AnalogValue]] The specific analog value used as a source.
- * @param ControlAreaGeneratingUnit [[ch.ninecode.model.ControlAreaGeneratingUnit ControlAreaGeneratingUnit]] The control aread generating unit to which the prioritized measurement assignment is applied.
+ * @param ControlAreaGeneratingUnit [[ch.ninecode.model.ControlAreaGeneratingUnit ControlAreaGeneratingUnit]] The control area generating unit to which the prioritized measurement assignment is applied.
  * @group ControlArea
  * @groupname ControlArea Package ControlArea
  * @groupdesc ControlArea The ControlArea package models area specifications which can be used for a variety of purposes.  The package as a whole models potentially overlapping control area specifications for the purpose of actual generation control, load forecast area load capture, or powerflow based analysis.
  */
 case class AltGeneratingUnitMeas
 (
-    override val sup: BasicElement,
+    override val sup: IdentifiedObject,
     priority: Int,
     AnalogValue: String,
     ControlAreaGeneratingUnit: String
@@ -41,7 +41,7 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[AltGeneratingUnitMeas] }
     override def get (i: Int): Object =
     {
@@ -90,7 +90,7 @@ extends
         implicit val ctx: Context = context
         implicit var bitfields: Array[Int] = Array(0)
         val ret = AltGeneratingUnitMeas (
-            BasicElement.parse (context),
+            IdentifiedObject.parse (context),
             toInteger (mask (priority (), 0)),
             mask (AnalogValue (), 1),
             mask (ControlAreaGeneratingUnit (), 2)
@@ -103,7 +103,7 @@ extends
 /**
  * A prioritized measurement to be used for the tie flow as part of the control area specification.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param priority Priority of a measurement usage.
  *        Lower numbers have first priority.
  * @param AnalogValue [[ch.ninecode.model.AnalogValue AnalogValue]] The specific analog value used as a source.
@@ -114,7 +114,7 @@ extends
  */
 case class AltTieMeas
 (
-    override val sup: BasicElement,
+    override val sup: IdentifiedObject,
     priority: Int,
     AnalogValue: String,
     TieFlow: String
@@ -134,7 +134,7 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[AltTieMeas] }
     override def get (i: Int): Object =
     {
@@ -183,7 +183,7 @@ extends
         implicit val ctx: Context = context
         implicit var bitfields: Array[Int] = Array(0)
         val ret = AltTieMeas (
-            BasicElement.parse (context),
+            IdentifiedObject.parse (context),
             toInteger (mask (priority (), 0)),
             mask (AnalogValue (), 1),
             mask (TieFlow (), 2)
@@ -194,16 +194,16 @@ extends
 }
 
 /**
- * A control area<b> </b>is a grouping of generating units and/or loads and a cutset of tie lines (as terminals) which may be used for a variety of purposes including automatic generation control, powerflow solution area interchange control specification, and input to load forecasting.
+ * A control area is a grouping of generating units and/or loads and a cutset of tie lines (as terminals) which may be used for a variety of purposes including automatic generation control, powerflow solution area interchange control specification, and input to load forecasting.
  *
- * Note that any number of overlapping control area specifications can be superimposed on the physical model.
+ * All generation and load within the area defined by the terminals on the border are considered in the area interchange control.  Note that any number of overlapping control area specifications can be superimposed on the physical model.
  *
  * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @param netInterchange The specified positive net interchange into the control area, i.e. positive sign means flow in to the area.
- * @param pTolerance Active power net interchange tolerance
+ * @param pTolerance Active power net interchange tolerance.
  * @param type The primary type of control area definition used to determine if this is used for automatic generation control, for planning interchange control, or other purposes.
  *        A control area specified with primary type of automatic generation control could still be forecast and used as an interchange area in power flow analysis.
- * @param ControlAreaGeneratingUnit [[ch.ninecode.model.ControlAreaGeneratingUnit ControlAreaGeneratingUnit]] The generating unit specificaitons for the control area.
+ * @param ControlAreaGeneratingUnit [[ch.ninecode.model.ControlAreaGeneratingUnit ControlAreaGeneratingUnit]] The generating unit specifications for the control area.
  * @param EnergyArea [[ch.ninecode.model.EnergyArea EnergyArea]] The energy area that is forecast from this control area specification.
  * @param TieFlow [[ch.ninecode.model.TieFlow TieFlow]] The tie flows associated with the control area.
  * @group ControlArea
@@ -311,7 +311,7 @@ extends
 /**
  * A control area generating unit.
  *
- * This class is needed so that alternate control area definitions may include the same generating unit.   Note only one instance within a control area should reference a specific generating unit.
+ * This class is needed so that alternate control area definitions may include the same generating unit.   It should be noted that only one instance within a control area should reference a specific generating unit.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param AltGeneratingUnitMeas [[ch.ninecode.model.AltGeneratingUnitMeas AltGeneratingUnitMeas]] The link to prioritized measurements for this GeneratingUnit.
@@ -407,7 +407,7 @@ extends
 /**
  * A flow specification in terms of location and direction for a control area.
  *
- * @param sup Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param positiveFlowIn True if the flow into the terminal (load convention) is also flow into the control area.
  *        For example, this attribute should be true if using the tie line terminal further away from the control area. For example to represent a tie to a shunt component (like a load or generator) in another area, this is the near end of a branch and this attribute would be specified as false.
  * @param AltTieMeas [[ch.ninecode.model.AltTieMeas AltTieMeas]] The primary and alternate tie flow measurements associated with the tie flow.
@@ -419,7 +419,7 @@ extends
  */
 case class TieFlow
 (
-    override val sup: BasicElement,
+    override val sup: IdentifiedObject,
     positiveFlowIn: Boolean,
     AltTieMeas: List[String],
     ControlArea: String,
@@ -440,7 +440,7 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def  Element: Element = sup.asInstanceOf[Element]
+    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
     override def copy (): Row = { clone ().asInstanceOf[TieFlow] }
     override def get (i: Int): Object =
     {
@@ -494,7 +494,7 @@ extends
         implicit val ctx: Context = context
         implicit var bitfields: Array[Int] = Array(0)
         val ret = TieFlow (
-            BasicElement.parse (context),
+            IdentifiedObject.parse (context),
             toBoolean (mask (positiveFlowIn (), 0)),
             masks (AltTieMeas (), 1),
             mask (ControlArea (), 2),
