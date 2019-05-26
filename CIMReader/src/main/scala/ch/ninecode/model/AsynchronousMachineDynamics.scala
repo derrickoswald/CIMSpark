@@ -9,25 +9,22 @@ import ch.ninecode.cim.Relationship
 
 /**
  * Asynchronous machine whose behaviour is described by reference to a standard model expressed in either time constant reactance form or equivalent circuit form <font color="#0f0f0f">or by definition of a user-defined model.</font>
- * 
- * <b>Parameter Notes:</b>
+ * Parameter details:
  * <ol>
- * <li>Asynchronous machine parameters such as <b>Xl, Xs</b> etc. are actually used as inductances (L) in the model, but are commonly referred to as reactances since, at nominal frequency, the per unit values are the same.
+ * <li>Asynchronous machine parameters such as <i>Xl, Xs,</i> etc. are actually used as inductances in the model, but are commonly referred to as reactances since, at nominal frequency, the PU values are the same.
  *
- * However, some references use the symbol L instead of X. </li>
+ * However, some references use the symbol <i>L</i> instead of <i>X</i>.</li>
  *
  * @param sup [[ch.ninecode.model.RotatingMachineDynamics RotatingMachineDynamics]] Reference to the superclass object.
  * @param AsynchronousMachine [[ch.ninecode.model.AsynchronousMachine AsynchronousMachine]] Asynchronous machine to which this asynchronous machine dynamics model applies.
  * @param MechanicalLoadDynamics [[ch.ninecode.model.MechanicalLoadDynamics MechanicalLoadDynamics]] Mechanical load model associated with this asynchronous machine model.
  * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Turbine-governor model associated with this asynchronous machine model.
- * @param WindTurbineType1or2Dynamics [[ch.ninecode.model.WindTurbineType1or2Dynamics WindTurbineType1or2Dynamics]] Wind generator type 1 or 2 model associated with this asynchronous machine model.
+ * @param WindTurbineType1or2Dynamics [[ch.ninecode.model.WindTurbineType1or2Dynamics WindTurbineType1or2Dynamics]] Wind generator type 1 or type 2 model associated with this asynchronous machine model.
  * @group AsynchronousMachineDynamics
  * @groupname AsynchronousMachineDynamics Package AsynchronousMachineDynamics
- * @groupdesc AsynchronousMachineDynamics An asynchronous machine model represents a (induction) generator or motor with no external connection to the rotor windings, e.g., squirrel-cage induction machine. 
-
-The interconnection with the electrical network equations may differ among simulation tools.  The program only needs to know the terminal to which this asynchronous machine is connected in order to establish the correct interconnection.  The interconnection with motor�s equipment could also differ due to input and output signals required by standard models.
-
-The asynchronous machine model is used to model wind generators Type 1 and Type 2.  For these, normal practice is to include the rotor flux transients and neglect the stator flux transients.
+ * @groupdesc AsynchronousMachineDynamics An asynchronous machine model represents a (induction) generator or motor with no external connection to the rotor windings, e.g. a squirrel-cage induction machine. 
+The interconnection with the electrical network equations can differ among simulation tools.  The program only needs to know the terminal to which this asynchronous machine is connected in order to establish the correct interconnection.  The interconnection with the motor�s equipment could also differ due to input and output signals required by standard models.
+The asynchronous machine model is used to model wind generators type 1 and type 2.  For these, normal practice is to include the rotor flux transients and neglect the stator flux transients.
  */
 case class AsynchronousMachineDynamics
 (
@@ -117,22 +114,9 @@ extends
 }
 
 /**
- * The electrical equations of all variations of the asynchronous model are based on the AsynchronousEquivalentCircuit diagram for the direct and quadrature axes, with two equivalent rotor windings in each axis.
- * 
- * <b>Equations for conversion between Equivalent Circuit and Time Constant Reactance forms:</b>
- * <b>Xs</b> = <b>Xm</b> + <b>Xl</b>
- * <b>X'</b> = <b>Xl</b> + <b>Xm</b> * <b>Xlr1</b> / (<b>Xm</b> + <b>Xlr1</b>)
- * <b>X''</b> = <b>Xl</b> + <b>Xm</b> * <b>Xlr1</b>* <b>Xlr2</b> / (<b>Xm</b> * <b>Xlr1</b> + <b>Xm</b> * <b>Xlr2</b> + <b>Xlr1</b> * <b>Xlr2</b>)
- * <b>T'o</b> = (<b>Xm</b> + <b>Xlr1</b>) / (<b>omega</b><b><sub>0</sub></b> * <b>Rr1</b>)
- * <b>T''o</b> = (<b>Xm</b> * <b>Xlr1</b> + <b>Xm</b> * <b>Xlr2</b> + <b>Xlr1</b> * <b>Xlr2</b>) / (<b>omega</b><b><sub>0</sub></b> * <b>Rr2</b> * (<b>Xm </b>+ <b>Xlr1</b>)
- * <b>
- * </b>Same equations using CIM attributes from AsynchronousMachineTimeConstantReactance class on left of = sign and AsynchronousMachineEquivalentCircuit class on right (except as noted):
- * xs = xm + RotatingMachineDynamics.statorLeakageReactance
- * xp = RotatingMachineDynamics.statorLeakageReactance + xm * xlr1 / (xm + xlr1)
- * xpp = RotatingMachineDynamics.statorLeakageReactance + xm * xlr1* xlr2 / (xm * xlr1 + xm * xlr2 + xlr1 * xlr2)
- * tpo = (xm + xlr1) / (2*pi*nominal frequency * rr1)
+ * The electrical equations of all variations of the asynchronous model are based on the AsynchronousEquivalentCircuit diagram for the direct- and quadrature- axes, with two equivalent rotor windings in each axis.
  *
- * tppo = (xm * xlr1 + xm * xlr2 + xlr1 * xlr2) / (2*pi*nominal frequency * rr2 * (xm + xlr1).
+ * Equations for conversion between equivalent circuit and time constant reactance forms:
  *
  * @param sup [[ch.ninecode.model.AsynchronousMachineDynamics AsynchronousMachineDynamics]] Reference to the superclass object.
  * @param rr1 Damper 1 winding resistance.
@@ -142,11 +126,9 @@ extends
  * @param xm Magnetizing reactance.
  * @group AsynchronousMachineDynamics
  * @groupname AsynchronousMachineDynamics Package AsynchronousMachineDynamics
- * @groupdesc AsynchronousMachineDynamics An asynchronous machine model represents a (induction) generator or motor with no external connection to the rotor windings, e.g., squirrel-cage induction machine. 
-
-The interconnection with the electrical network equations may differ among simulation tools.  The program only needs to know the terminal to which this asynchronous machine is connected in order to establish the correct interconnection.  The interconnection with motor�s equipment could also differ due to input and output signals required by standard models.
-
-The asynchronous machine model is used to model wind generators Type 1 and Type 2.  For these, normal practice is to include the rotor flux transients and neglect the stator flux transients.
+ * @groupdesc AsynchronousMachineDynamics An asynchronous machine model represents a (induction) generator or motor with no external connection to the rotor windings, e.g. a squirrel-cage induction machine. 
+The interconnection with the electrical network equations can differ among simulation tools.  The program only needs to know the terminal to which this asynchronous machine is connected in order to establish the correct interconnection.  The interconnection with the motor�s equipment could also differ due to input and output signals required by standard models.
+The asynchronous machine model is used to model wind generators type 1 and type 2.  For these, normal practice is to include the rotor flux transients and neglect the stator flux transients.
  */
 case class AsynchronousMachineEquivalentCircuit
 (
@@ -235,47 +217,42 @@ extends
 }
 
 /**
- * <b>Parameter Notes:</b>
+ * Parameter details:
  * <ol>
- * <li>If <b>X''</b> = <b>X'</b>, a single cage (one equivalent rotor winding per axis) is modelled.</li>
- * <li>The �p� in the attribute names is a substitution for a �prime� in the usual parameter notation, e.g. tpo refers to T'o.</li>
+ * <li>If <i>X'' </i>=<i> X'</i>, a single cage (one equivalent rotor winding per axis) is modelled.</li>
+ * <li>The �<i>p</i>� in the attribute names is a substitution for a �prime� in the usual parameter notation, e.g. <i>tpo</i> refers to <i>T'o</i>.</li>
  * </ol>
- * 
  * The parameters used for models expressed in time constant reactance form include:
- * <ul>
- * <li>RotatingMachine.ratedS (MVAbase)</li>
- * <li>RotatingMachineDynamics.damping (D)</li>
- * <li>RotatingMachineDynamics.inertia (H)</li>
- * <li>RotatingMachineDynamics.saturationFactor (S1)</li>
- * <li>RotatingMachineDynamics.saturationFactor120 (S12)</li>
- * <li>RotatingMachineDynamics.statorLeakageReactance (Xl)</li>
- * <li>RotatingMachineDynamics.statorResistance (Rs)</li>
- * <li>.xs (Xs)</li>
- * <li>.xp (X')</li>
- * <li>.xpp (X'')</li>
- * <li>.tpo (T'o)</li>
- * <li>.tppo (T''o).</li>
+ * - RotatingMachine.ratedS (<i>MVAbase</i>);
+ * - RotatingMachineDynamics.damping (<i>D</i>);
+ * - RotatingMachineDynamics.inertia (<i>H</i>);
+ * - RotatingMachineDynamics.saturationFactor (<i>S1</i>);
+ * - RotatingMachineDynamics.saturationFactor120 (<i>S12</i>);
+ * - RotatingMachineDynamics.statorLeakageReactance (<i>Xl</i>);
+ * - RotatingMachineDynamics.statorResistance (<i>Rs</i>);
+ * - .xs (<i>Xs</i>);
+ * - .xp (<i>X'</i>);
+ * - .xpp (<i>X''</i>);
+ * - .tpo (<i>T'o</i>);
  *
- * </ul>
+ * - .tppo (<i>T''o</i>).
  *
  * @param sup [[ch.ninecode.model.AsynchronousMachineDynamics AsynchronousMachineDynamics]] Reference to the superclass object.
- * @param tpo Transient rotor time constant (T'o) (&gt; T''o).
- *        Typical Value = 5.
- * @param tppo Subtransient rotor time constant (T''o) (&gt; 0).
- *        Typical Value = 0.03.
- * @param xp Transient reactance (unsaturated) (X') (&gt;=X'').
- *        Typical Value = 0.5.
- * @param xpp Subtransient reactance (unsaturated) (X'') (&gt; Xl).
- *        Typical Value = 0.2.
- * @param xs Synchronous reactance (Xs) (&gt;= X').
- *        Typical Value = 1.8.
+ * @param tpo Transient rotor time constant (<i>T'o</i>) (&gt; AsynchronousMachineTimeConstantReactance.tppo).
+ *        Typical value = 5.
+ * @param tppo Subtransient rotor time constant (<i>T''o</i>) (&gt; 0).
+ *        Typical value = 0,03.
+ * @param xp Transient reactance (unsaturated) (<i>X'</i>) (&gt;= AsynchronousMachineTimeConstantReactance.xpp).
+ *        Typical value = 0,5.
+ * @param xpp Subtransient reactance (unsaturated) (<i>X''</i>) (&gt; RotatingMachineDynamics.statorLeakageReactance).
+ *        Typical value = 0,2.
+ * @param xs Synchronous reactance (<i>Xs</i>) (&gt;= AsynchronousMachineTimeConstantReactance.xp).
+ *        Typical value = 1,8.
  * @group AsynchronousMachineDynamics
  * @groupname AsynchronousMachineDynamics Package AsynchronousMachineDynamics
- * @groupdesc AsynchronousMachineDynamics An asynchronous machine model represents a (induction) generator or motor with no external connection to the rotor windings, e.g., squirrel-cage induction machine. 
-
-The interconnection with the electrical network equations may differ among simulation tools.  The program only needs to know the terminal to which this asynchronous machine is connected in order to establish the correct interconnection.  The interconnection with motor�s equipment could also differ due to input and output signals required by standard models.
-
-The asynchronous machine model is used to model wind generators Type 1 and Type 2.  For these, normal practice is to include the rotor flux transients and neglect the stator flux transients.
+ * @groupdesc AsynchronousMachineDynamics An asynchronous machine model represents a (induction) generator or motor with no external connection to the rotor windings, e.g. a squirrel-cage induction machine. 
+The interconnection with the electrical network equations can differ among simulation tools.  The program only needs to know the terminal to which this asynchronous machine is connected in order to establish the correct interconnection.  The interconnection with the motor�s equipment could also differ due to input and output signals required by standard models.
+The asynchronous machine model is used to model wind generators type 1 and type 2.  For these, normal practice is to include the rotor flux transients and neglect the stator flux transients.
  */
 case class AsynchronousMachineTimeConstantReactance
 (

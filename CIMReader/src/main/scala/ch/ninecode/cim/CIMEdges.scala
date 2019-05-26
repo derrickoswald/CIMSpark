@@ -116,7 +116,7 @@ with Serializable
                 def do_conducting (conducting: ConductingEquipment)
                 {
                     bucket.voltage = conducting.BaseVoltage
-                    bucket.status = conducting.SvStatus
+                    bucket.status = if (null != conducting.SvStatus) conducting.SvStatus.mkString else null
                     do_equipment (conducting.Equipment)
                 }
 
@@ -140,7 +140,7 @@ with Serializable
                     case Some(o) if o.getClass == classOf[ACLineSegment] =>
                         do_conductor (o.asInstanceOf[ACLineSegment].Conductor)
                     case Some(o) if o.getClass == classOf[AsynchronousMachine] =>
-                        do_conducting (o.asInstanceOf[AsynchronousMachine].RotatingMachine.RegulatingCondEq.ConductingEquipment)
+                        do_conducting (o.asInstanceOf[AsynchronousMachine].RotatingMachine.RegulatingCondEq.EnergyConnection.ConductingEquipment)
                     case Some(o) if o.getClass == classOf[Breaker] =>
                         do_switch (o.asInstanceOf[Breaker].ProtectedSwitch.Switch)
                     case Some(o) if o.getClass == classOf[BusbarSection] =>
@@ -160,13 +160,13 @@ with Serializable
                     case Some(o) if o.getClass == classOf[EarthFaultCompensator] =>
                         do_conducting (o.asInstanceOf[EarthFaultCompensator].ConductingEquipment);
                     case Some(o) if o.getClass == classOf[EnergyConsumer] =>
-                        do_conducting (o.asInstanceOf[EnergyConsumer].ConductingEquipment)
+                        do_conducting (o.asInstanceOf[EnergyConsumer].EnergyConnection.ConductingEquipment)
                     case Some(o) if o.getClass == classOf[EnergySource] =>
-                        do_conducting (o.asInstanceOf[EnergySource].ConductingEquipment)
+                        do_conducting (o.asInstanceOf[EnergySource].EnergyConnection.ConductingEquipment)
                     case Some(o) if o.getClass == classOf[ExternalNetworkInjection] =>
-                        do_conducting (o.asInstanceOf[ExternalNetworkInjection].RegulatingCondEq.ConductingEquipment)
+                        do_conducting (o.asInstanceOf[ExternalNetworkInjection].RegulatingCondEq.EnergyConnection.ConductingEquipment)
                     case Some(o) if o.getClass == classOf[FrequencyConverter] =>
-                        do_conducting (o.asInstanceOf[FrequencyConverter].RegulatingCondEq.ConductingEquipment)
+                        do_conducting (o.asInstanceOf[FrequencyConverter].RegulatingCondEq.EnergyConnection.ConductingEquipment)
                     case Some(o) if o.getClass == classOf[Fuse] =>
                         do_switch (o.asInstanceOf[Fuse].Switch)
                     case Some(o) if o.getClass == classOf[Ground] =>
@@ -188,9 +188,9 @@ with Serializable
                         do_switch (o.asInstanceOf[ProtectedSwitch].Switch)
                     // Recloser
                     case Some(o) if o.getClass == classOf[RegulatingCondEq] =>
-                        do_conducting (o.asInstanceOf[RegulatingCondEq].ConductingEquipment)
+                        do_conducting (o.asInstanceOf[RegulatingCondEq].EnergyConnection.ConductingEquipment)
                     case Some(o) if o.getClass == classOf[RotatingMachine] =>
-                        do_conducting (o.asInstanceOf[RotatingMachine].RegulatingCondEq.ConductingEquipment)
+                        do_conducting (o.asInstanceOf[RotatingMachine].RegulatingCondEq.EnergyConnection.ConductingEquipment)
                     // Sectionalizer
                     // SeriesCompensator
                     // ShuntCompensator
@@ -392,7 +392,7 @@ with Serializable
         // join assets & lifecycles with edges
         val asset = getOrElse[Asset]
         val lifecycledate = getOrElse[LifecycleDate]
-        val assets = asset.keyBy (_.lifecycle).leftOuterJoin (lifecycledate.keyBy (_.id)).values
+        val assets = asset.keyBy (_.lifecycleDate).leftOuterJoin (lifecycledate.keyBy (_.id)).values
         def psr (arg: (Asset, Option[LifecycleDate])) =
         {
             val p = arg._1.PowerSystemResources

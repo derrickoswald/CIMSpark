@@ -100,6 +100,94 @@ extends
 }
 
 /**
+ * An electrochemical energy storage device.
+ *
+ * @param sup [[ch.ninecode.model.PowerElectronicsUnit PowerElectronicsUnit]] Reference to the superclass object.
+ * @param batteryState The current state of the battery (charging, full, etc.).
+ * @param ratedE Full energy storage capacity of the battery.
+ * @param storedE Amount of energy currently stored; no more than ratedE.
+ * @group Production
+ * @groupname Production Package Production
+ * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
+ */
+case class BatteryUnit
+(
+    override val sup: PowerElectronicsUnit,
+    batteryState: String,
+    ratedE: Double,
+    storedE: Double
+)
+extends
+    Element
+{
+    /**
+     * Zero args constructor.
+     */
+    def this () = { this (null, null, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def PowerElectronicsUnit: PowerElectronicsUnit = sup.asInstanceOf[PowerElectronicsUnit]
+    override def copy (): Row = { clone ().asInstanceOf[BatteryUnit] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = BatteryUnit.cls
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (BatteryUnit.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (BatteryUnit.fields (position), value)
+        emitattr (0, batteryState)
+        emitelem (1, ratedE)
+        emitelem (2, storedE)
+        s.toString
+    }
+    override def export: String =
+    {
+        "\t<cim:BatteryUnit rdf:ID=\"%s\">\n%s\t</cim:BatteryUnit>".format (id, export_fields)
+    }
+}
+
+object BatteryUnit
+extends
+    Parseable[BatteryUnit]
+{
+    override val fields: Array[String] = Array[String] (
+        "batteryState",
+        "ratedE",
+        "storedE"
+    )
+    val batteryState: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val ratedE: Fielder = parse_element (element (cls, fields(1)))
+    val storedE: Fielder = parse_element (element (cls, fields(2)))
+
+    def parse (context: Context): BatteryUnit =
+    {
+        implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
+        val ret = BatteryUnit (
+            PowerElectronicsUnit.parse (context),
+            mask (batteryState (), 0),
+            toDouble (mask (ratedE (), 1)),
+            toDouble (mask (storedE (), 2))
+        )
+        ret.bitfields = bitfields
+        ret
+    }
+}
+
+/**
  * Compressed air energy storage plant.
  *
  * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
@@ -408,7 +496,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param emissionType The type of emission, for example sulfur dioxide (SO2).
- *        The y1AxisUnits of the curve contains the unit of measure (e.g. kg) and the emissionType is the type of emission (e.g. sulfer dioxide).
+ *        The y1AxisUnits of the curve contains the unit of measure (e.g. kg) and the emissionType is the type of emission (e.g. sulfur dioxide).
  * @param emissionValueSource The source of the emission value.
  * @param ThermalGeneratingUnit [[ch.ninecode.model.ThermalGeneratingUnit ThermalGeneratingUnit]] A thermal generating unit may have one or more emission allowance accounts.
  * @group Production
@@ -502,7 +590,7 @@ extends
  * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param emissionContent The emission content per quantity of fuel burned.
  * @param emissionType The type of emission, which also gives the production rate measurement unit.
- *        The y1AxisUnits of the curve contains the unit of measure (e.g. kg) and the emissionType is the type of emission (e.g. sulfer dioxide).
+ *        The y1AxisUnits of the curve contains the unit of measure (e.g. kg) and the emissionType is the type of emission (e.g. sulfur dioxide).
  * @param isNetGrossP Flag is set to true when output is expressed in net active power.
  * @param ThermalGeneratingUnit [[ch.ninecode.model.ThermalGeneratingUnit ThermalGeneratingUnit]] A thermal generating unit may have  one or more emission curves.
  * @group Production
@@ -597,7 +685,7 @@ extends
 /**
  * The fossil fuel consumed by the non-nuclear thermal generating unit.
  *
- * For example, coal, oil, gas, etc.   This a the specific fuels that the generating unit can consume.
+ * For example, coal, oil, gas, etc.   These are the specific fuels that the generating unit can consume.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param fossilFuelType The type of fossil fuel, such as coal, oil, or gas.
@@ -612,7 +700,7 @@ extends
  *        This fuel (e.g., oil) is sometimes used to supplement the base fuel (e.g., coal) at high active power output levels.
  * @param lowBreakpointP The active power output level of the unit at which the given type of fuel is switched off.
  *        This fuel (e.g., oil) is sometimes used to stabilize the base fuel (e.g., coal) at low active power output levels.
- * @param FuelAllocationSchedules [[ch.ninecode.model.FuelAllocationSchedule FuelAllocationSchedule]] A fuel allocation schedule must have a fossil fuel.
+ * @param FuelAllocationSchedules [[ch.ninecode.model.FuelAllocationSchedule FuelAllocationSchedule]] A fuel allocation schedule shall have a fossil fuel.
  * @param ThermalGeneratingUnit [[ch.ninecode.model.ThermalGeneratingUnit ThermalGeneratingUnit]] A thermal generating unit may have one or more fossil fuels.
  * @group Production
  * @groupname Production Package Production
@@ -752,9 +840,9 @@ extends
  * @param fuelAllocationEndDate The end time and date of the fuel allocation schedule.
  * @param fuelAllocationStartDate The start time and date of the fuel allocation schedule.
  * @param fuelType The type of fuel, which also indicates the corresponding measurement unit.
- * @param maxFuelAllocation The maximum amount fuel that is allocated for consumption for the scheduled time period.
- * @param minFuelAllocation The minimum amount fuel that is allocated for consumption for the scheduled time period, e.g., based on a "take-or-pay" contract.
- * @param FossilFuel [[ch.ninecode.model.FossilFuel FossilFuel]] A fuel allocation schedule must have a fossil fuel.
+ * @param maxFuelAllocation The maximum amount of fuel that is allocated for consumption for the scheduled time period.
+ * @param minFuelAllocation The minimum amount of fuel that is allocated for consumption for the scheduled time period, e.g., based on a "take-or-pay" contract.
+ * @param FossilFuel [[ch.ninecode.model.FossilFuel FossilFuel]] A fuel allocation schedule shall have a fossil fuel.
  * @param ThermalGeneratingUnit [[ch.ninecode.model.ThermalGeneratingUnit ThermalGeneratingUnit]] A thermal generating unit may have one or more fuel allocation schedules.
  * @group Production
  * @groupname Production Package Production
@@ -1037,7 +1125,7 @@ extends
  * @param allocSpinResP The planned unused capacity (spinning reserve) which can be used to support emergency load.
  * @param autoCntrlMarginP The planned unused capacity which can be used to support automatic control overruns.
  * @param baseP For dispatchable units, this value represents the economic active power basepoint, for units that are not dispatchable, this value represents the fixed generation value.
- *        The value must be between the operating low and high limits.
+ *        The value shall be between the operating low and high limits.
  * @param controlDeadband Unit control error deadband.
  *        When a unit's desired active power change is less than this deadband, then no control pulses will be sent to the unit.
  * @param controlPulseHigh Pulse high limit which is the largest control pulse that the unit can respond to.
@@ -1046,6 +1134,7 @@ extends
  * @param efficiency The efficiency of the unit in converting mechanical energy, from the prime mover, into electrical energy.
  * @param genControlMode The unit control mode.
  * @param genControlSource The source of controls for a generating unit.
+ *        Defines the control status of the generating unit.
  * @param governorMPL Governor motor position limit.
  * @param governorSCD Governor Speed Changer Droop.
  *        This is the change in generator power output divided by the change in frequency normalized by the nominal power of the generator and the nominal frequency and expressed in percent and negated. A positive value of speed change droop provides additional generator output upon a drop in frequency.
@@ -1058,13 +1147,14 @@ extends
  * @param maxOperatingP This is the maximum operating active power limit the dispatcher can enter for this unit.
  * @param maximumAllowableSpinningReserve Maximum allowable spinning reserve.
  *        Spinning reserve will never be considered greater than this value regardless of the current operating point.
- * @param minEconomicP Low economic active power limit that must be greater than or equal to the minimum operating active power limit.
+ * @param minEconomicP Low economic active power limit that shall be greater than or equal to the minimum operating active power limit.
  * @param minOperatingP This is the minimum operating active power limit the dispatcher can enter for this unit.
  * @param minimumOffTime Minimum time interval between unit shutdown and startup.
  * @param modelDetail Detail level of the generator model data.
  * @param nominalP The nominal power of the generating unit.
  *        Used to give precise meaning to percentage based attributes such as the governor speed change droop (governorSCD attribute).
  * @param normalPF Generating unit economic participation factor.
+ *        The sum of the participation factors across generating units does not have to sum to one.  It is used for representing distributed slack participation factor.
  * @param penaltyFactor Defined as: 1 / ( 1 - Incremental Transmission Loss); with the Incremental Transmission Loss expressed as a plus or minus value.
  *        The typical range of penalty factors is (0.9 to 1.1).
  * @param raiseRampRate The normal maximum rate the generating unit active power output can be raised by control actions.
@@ -1267,7 +1357,7 @@ extends
         Relationship ("GenUnitOpCostCurves", "GenUnitOpCostCurve", "0..*", "1"),
         Relationship ("GenUnitOpSchedule", "GenUnitOpSchedule", "0..1", "1"),
         Relationship ("GrossToNetActivePowerCurves", "GrossToNetActivePowerCurve", "0..*", "1"),
-        Relationship ("RotatingMachine", "RotatingMachine", "1..*", "0..1")
+        Relationship ("RotatingMachine", "RotatingMachine", "0..*", "0..1")
     )
     val allocSpinResP: Fielder = parse_element (element (cls, fields(0)))
     val autoCntrlMarginP: Fielder = parse_element (element (cls, fields(1)))
@@ -1369,7 +1459,7 @@ extends
 /**
  * Relationship between the generating unit's gross active power output on the X-axis (measured at the terminals of the machine(s)) and the generating unit's net active power output on the Y-axis (based on utility-defined measurements at the power station).
  *
- * Station service loads, when modeled, should be treated as non-conforming bus loads. There may be more than one curve, depending on the auxiliary equipment that is in service.
+ * Station service loads, when modelled, should be treated as non-conforming bus loads. There may be more than one curve, depending on the auxiliary equipment that is in service.
  *
  * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param GeneratingUnit [[ch.ninecode.model.GeneratingUnit GeneratingUnit]] A generating unit may have a gross active power to net active power curve, describing the losses and auxiliary power requirements of the unit.
@@ -1645,7 +1735,7 @@ extends
 }
 
 /**
- * Relationship between unit efficiency in percent and unit output active power for a given net head in meters.
+ * Relationship between unit efficiency as percentage and unit output active power for a given net head in meters.
  *
  * The relationship between efficiency, discharge, head, and power output is expressed as follows:   E =KP/HQ
  *
@@ -1728,8 +1818,10 @@ extends
  * A generating unit whose prime mover is a hydraulic turbine (e.g., Francis, Pelton, Kaplan).
  *
  * @param sup [[ch.ninecode.model.GeneratingUnit GeneratingUnit]] Reference to the superclass object.
+ * @param dropHeight The height water drops from the reservoir mid-point to the turbine.
  * @param energyConversionCapability Energy conversion capability for generating.
  * @param hydroUnitWaterCost The equivalent cost of water that drives the hydro turbine.
+ * @param turbineType Type of turbine.
  * @param HydroGeneratingEfficiencyCurves [[ch.ninecode.model.HydroGeneratingEfficiencyCurve HydroGeneratingEfficiencyCurve]] A hydro generating unit has an efficiency curve.
  * @param HydroPowerPlant [[ch.ninecode.model.HydroPowerPlant HydroPowerPlant]] The hydro generating unit belongs to a hydro power plant.
  * @param PenstockLossCurve [[ch.ninecode.model.PenstockLossCurve PenstockLossCurve]] A hydro generating unit has a penstock loss curve.
@@ -1741,8 +1833,10 @@ extends
 case class HydroGeneratingUnit
 (
     override val sup: GeneratingUnit,
+    dropHeight: Double,
     energyConversionCapability: String,
     hydroUnitWaterCost: Double,
+    turbineType: String,
     HydroGeneratingEfficiencyCurves: List[String],
     HydroPowerPlant: String,
     PenstockLossCurve: String,
@@ -1754,7 +1848,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, 0.0, List(), null, null, List()) }
+    def this () = { this (null, 0.0, null, 0.0, null, List(), null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -1780,12 +1874,14 @@ extends
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (HydroGeneratingUnit.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (HydroGeneratingUnit.fields (position), value)
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (HydroGeneratingUnit.fields (position), x))
-        emitattr (0, energyConversionCapability)
-        emitelem (1, hydroUnitWaterCost)
-        emitattrs (2, HydroGeneratingEfficiencyCurves)
-        emitattr (3, HydroPowerPlant)
-        emitattr (4, PenstockLossCurve)
-        emitattrs (5, TailbayLossCurve)
+        emitelem (0, dropHeight)
+        emitattr (1, energyConversionCapability)
+        emitelem (2, hydroUnitWaterCost)
+        emitattr (3, turbineType)
+        emitattrs (4, HydroGeneratingEfficiencyCurves)
+        emitattr (5, HydroPowerPlant)
+        emitattr (6, PenstockLossCurve)
+        emitattrs (7, TailbayLossCurve)
         s.toString
     }
     override def export: String =
@@ -1799,8 +1895,10 @@ extends
     Parseable[HydroGeneratingUnit]
 {
     override val fields: Array[String] = Array[String] (
+        "dropHeight",
         "energyConversionCapability",
         "hydroUnitWaterCost",
+        "turbineType",
         "HydroGeneratingEfficiencyCurves",
         "HydroPowerPlant",
         "PenstockLossCurve",
@@ -1812,12 +1910,14 @@ extends
         Relationship ("PenstockLossCurve", "PenstockLossCurve", "0..1", "1"),
         Relationship ("TailbayLossCurve", "TailbayLossCurve", "0..*", "1")
     )
-    val energyConversionCapability: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val hydroUnitWaterCost: Fielder = parse_element (element (cls, fields(1)))
-    val HydroGeneratingEfficiencyCurves: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
-    val HydroPowerPlant: Fielder = parse_attribute (attribute (cls, fields(3)))
-    val PenstockLossCurve: Fielder = parse_attribute (attribute (cls, fields(4)))
-    val TailbayLossCurve: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
+    val dropHeight: Fielder = parse_element (element (cls, fields(0)))
+    val energyConversionCapability: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val hydroUnitWaterCost: Fielder = parse_element (element (cls, fields(2)))
+    val turbineType: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val HydroGeneratingEfficiencyCurves: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val HydroPowerPlant: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val PenstockLossCurve: Fielder = parse_attribute (attribute (cls, fields(6)))
+    val TailbayLossCurve: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
 
     def parse (context: Context): HydroGeneratingUnit =
     {
@@ -1825,12 +1925,14 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = HydroGeneratingUnit (
             GeneratingUnit.parse (context),
-            mask (energyConversionCapability (), 0),
-            toDouble (mask (hydroUnitWaterCost (), 1)),
-            masks (HydroGeneratingEfficiencyCurves (), 2),
-            mask (HydroPowerPlant (), 3),
-            mask (PenstockLossCurve (), 4),
-            masks (TailbayLossCurve (), 5)
+            toDouble (mask (dropHeight (), 0)),
+            mask (energyConversionCapability (), 1),
+            toDouble (mask (hydroUnitWaterCost (), 2)),
+            mask (turbineType (), 3),
+            masks (HydroGeneratingEfficiencyCurves (), 4),
+            mask (HydroPowerPlant (), 5),
+            mask (PenstockLossCurve (), 6),
+            masks (TailbayLossCurve (), 7)
         )
         ret.bitfields = bitfields
         ret
@@ -2115,7 +2217,7 @@ extends
 /**
  * The hydro pump's Operator-approved current operating schedule (or plan), typically produced with the aid of unit commitment type analyses.
  *
- * The unit's operating schedule status is typically given as: (0=unavailable) (1=avilable to startup or shutdown)  (2=must pump).
+ * The unit's operating schedule status is typically given as: (0=unavailable) (1=available to startup or shutdown)  (2=must pump).
  *
  * @param sup [[ch.ninecode.model.RegularIntervalSchedule RegularIntervalSchedule]] Reference to the superclass object.
  * @param HydroPump [[ch.ninecode.model.HydroPump HydroPump]] The hydro pump has a pumping schedule over time, indicating when pumping is to occur.
@@ -2362,7 +2464,7 @@ extends
 /**
  * Relationship between reservoir volume and reservoir level.
  *
- * The  volume is at the y-axis and the reservoir level at the x-axis.
+ * The  volume is at the Y-axis and the reservoir level at the X-axis.
  *
  * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param Reservoir [[ch.ninecode.model.Reservoir Reservoir]] A reservoir may have a level versus volume relationship.
@@ -2577,6 +2679,223 @@ extends
             mask (HydroGeneratingUnit (), 0)
         )
         ret.bitfields = bitfields
+        ret
+    }
+}
+
+/**
+ * A photovoltaic device or an aggregation of such devices.
+ *
+ * @param sup [[ch.ninecode.model.PowerElectronicsUnit PowerElectronicsUnit]] Reference to the superclass object.
+ * @group Production
+ * @groupname Production Package Production
+ * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
+ */
+case class PhotoVoltaicUnit
+(
+    override val sup: PowerElectronicsUnit
+)
+extends
+    Element
+{
+    /**
+     * Zero args constructor.
+     */
+    def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def PowerElectronicsUnit: PowerElectronicsUnit = sup.asInstanceOf[PowerElectronicsUnit]
+    override def copy (): Row = { clone ().asInstanceOf[PhotoVoltaicUnit] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        sup.export_fields
+    }
+    override def export: String =
+    {
+        "\t<cim:PhotoVoltaicUnit rdf:ID=\"%s\">\n%s\t</cim:PhotoVoltaicUnit>".format (id, export_fields)
+    }
+}
+
+object PhotoVoltaicUnit
+extends
+    Parseable[PhotoVoltaicUnit]
+{
+
+    def parse (context: Context): PhotoVoltaicUnit =
+    {
+        implicit val ctx: Context = context
+        val ret = PhotoVoltaicUnit (
+            PowerElectronicsUnit.parse (context)
+        )
+        ret
+    }
+}
+
+/**
+ * A generating unit or battery or aggregation that connects to the AC network using power electronics rather than rotating machines.
+ *
+ * @param sup [[ch.ninecode.model.Equipment Equipment]] Reference to the superclass object.
+ * @param maxP Maximum active power limit.
+ *        This is the maximum (nameplate) limit for the unit.
+ * @param minP Minimum active power limit.
+ *        This is the minimum (nameplate) limit for the unit.
+ * @param PowerElectronicsConnection [[ch.ninecode.model.PowerElectronicsConnection PowerElectronicsConnection]] A power electronics unit has a connection to the AC network.
+ * @group Production
+ * @groupname Production Package Production
+ * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
+ */
+case class PowerElectronicsUnit
+(
+    override val sup: Equipment,
+    maxP: Double,
+    minP: Double,
+    PowerElectronicsConnection: String
+)
+extends
+    Element
+{
+    /**
+     * Zero args constructor.
+     */
+    def this () = { this (null, 0.0, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def Equipment: Equipment = sup.asInstanceOf[Equipment]
+    override def copy (): Row = { clone ().asInstanceOf[PowerElectronicsUnit] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = PowerElectronicsUnit.cls
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PowerElectronicsUnit.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PowerElectronicsUnit.fields (position), value)
+        emitelem (0, maxP)
+        emitelem (1, minP)
+        emitattr (2, PowerElectronicsConnection)
+        s.toString
+    }
+    override def export: String =
+    {
+        "\t<cim:PowerElectronicsUnit rdf:ID=\"%s\">\n%s\t</cim:PowerElectronicsUnit>".format (id, export_fields)
+    }
+}
+
+object PowerElectronicsUnit
+extends
+    Parseable[PowerElectronicsUnit]
+{
+    override val fields: Array[String] = Array[String] (
+        "maxP",
+        "minP",
+        "PowerElectronicsConnection"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("PowerElectronicsConnection", "PowerElectronicsConnection", "1", "0..*")
+    )
+    val maxP: Fielder = parse_element (element (cls, fields(0)))
+    val minP: Fielder = parse_element (element (cls, fields(1)))
+    val PowerElectronicsConnection: Fielder = parse_attribute (attribute (cls, fields(2)))
+
+    def parse (context: Context): PowerElectronicsUnit =
+    {
+        implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
+        val ret = PowerElectronicsUnit (
+            Equipment.parse (context),
+            toDouble (mask (maxP (), 0)),
+            toDouble (mask (minP (), 1)),
+            mask (PowerElectronicsConnection (), 2)
+        )
+        ret.bitfields = bitfields
+        ret
+    }
+}
+
+/**
+ * A wind generating unit that connects to the AC network with power electronics rather than rotating machines or an aggregation of such units.
+ *
+ * @param sup [[ch.ninecode.model.PowerElectronicsUnit PowerElectronicsUnit]] Reference to the superclass object.
+ * @group Production
+ * @groupname Production Package Production
+ * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
+ */
+case class PowerElectronicsWindUnit
+(
+    override val sup: PowerElectronicsUnit
+)
+extends
+    Element
+{
+    /**
+     * Zero args constructor.
+     */
+    def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def PowerElectronicsUnit: PowerElectronicsUnit = sup.asInstanceOf[PowerElectronicsUnit]
+    override def copy (): Row = { clone ().asInstanceOf[PowerElectronicsWindUnit] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        sup.export_fields
+    }
+    override def export: String =
+    {
+        "\t<cim:PowerElectronicsWindUnit rdf:ID=\"%s\">\n%s\t</cim:PowerElectronicsWindUnit>".format (id, export_fields)
+    }
+}
+
+object PowerElectronicsWindUnit
+extends
+    Parseable[PowerElectronicsWindUnit]
+{
+
+    def parse (context: Context): PowerElectronicsWindUnit =
+    {
+        implicit val ctx: Context = context
+        val ret = PowerElectronicsWindUnit (
+            PowerElectronicsUnit.parse (context)
+        )
         ret
     }
 }
@@ -2864,7 +3183,9 @@ extends
 }
 
 /**
- * A solar thermal generating unit.
+ * A solar thermal generating unit, connected to the grid by means of a rotating machine.
+ *
+ * This class does not represent photovoltaic (PV) generation.
  *
  * @param sup [[ch.ninecode.model.GeneratingUnit GeneratingUnit]] Reference to the superclass object.
  * @group Production
@@ -3094,7 +3415,7 @@ extends
 }
 
 /**
- * Rate in gross active power/minute (Y-axis) at which a unit can be loaded versus the number of hours (X-axis) the unit was off line.
+ * Rate in gross active power per minute (Y-axis) at which a unit can be loaded versus the number of hours (X-axis) the unit was off line.
  *
  * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param hotStandbyRamp The startup ramp rate in gross for a unit that is on hot standby.
@@ -3183,7 +3504,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param fixedMaintCost Fixed maintenance cost.
- * @param hotStandbyHeat The amount of heat input per time uint required for hot standby operation.
+ * @param hotStandbyHeat The amount of heat input per time unit required for hot standby operation.
  * @param incrementalMaintCost Incremental maintenance cost.
  * @param minimumDownTime The minimum number of hours the unit must be down before restart.
  * @param minimumRunTime The minimum number of hours the unit must be operating before being allowed to shut down.
@@ -3419,7 +3740,7 @@ extends
 }
 
 /**
- * Relationship between tailbay head loss hight (y-axis) and the total discharge into the power station's tailbay volume per time unit (x-axis) .
+ * Relationship between tailbay head loss height (Y-axis) and the total discharge into the power station's tailbay volume per time unit (X-axis) .
  *
  * There could be more than one curve depending on the level of the tailbay reservoir or river level.
  *
@@ -3755,12 +4076,12 @@ extends
 }
 
 /**
- * A wind driven generating unit.
+ * A wind driven generating unit, connected to the grid by means of a rotating machine.
  *
  * May be used to represent a single turbine or an aggregation.
  *
  * @param sup [[ch.ninecode.model.GeneratingUnit GeneratingUnit]] Reference to the superclass object.
- * @param windGenUnitType The kind of wind generating unit
+ * @param windGenUnitType The kind of wind generating unit.
  * @group Production
  * @groupname Production Package Production
  * @groupdesc Production The production package is responsible for classes which describe various kinds of generators. These classes also provide production costing information which is used to economically allocate demand among committed units and calculate reserve quantities.
@@ -3837,6 +4158,7 @@ private[ninecode] object _Production
     {
         List (
             AirCompressor.register,
+            BatteryUnit.register,
             CAESPlant.register,
             CogenerationPlant.register,
             CombinedCyclePlant.register,
@@ -3860,6 +4182,9 @@ private[ninecode] object _Production
             LevelVsVolumeCurve.register,
             NuclearGeneratingUnit.register,
             PenstockLossCurve.register,
+            PhotoVoltaicUnit.register,
+            PowerElectronicsUnit.register,
+            PowerElectronicsWindUnit.register,
             Reservoir.register,
             ShutdownCurve.register,
             SolarGeneratingUnit.register,

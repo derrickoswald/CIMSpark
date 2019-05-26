@@ -257,7 +257,6 @@ extends
  * @param sup [[ch.ninecode.model.Agreement Agreement]] Reference to the superclass object.
  * @param defaultIntegrationMethod The default method by which interchange schedules are to be integrated to obtain hourly MWh schedules for accounting.
  *        Method #1 is to integrate the instantaneous schedule between the hourly boundaries. Method #2 compensates for any up/down ramping that occurs across the hourly boundary (this is called block accounting).
- * @param MktOrganisation [[ch.ninecode.model.MktOrganisation MktOrganisation]] <em>undocumented</em>
  * @group InfFinancial
  * @groupname InfFinancial Package InfFinancial
  * @groupdesc InfFinancial This package is responsible for Settlement and Billing. These classes represent the legal entities who participate in formal or informal agreements.
@@ -265,8 +264,7 @@ extends
 case class IntSchedAgreement
 (
     override val sup: Agreement,
-    defaultIntegrationMethod: String,
-    MktOrganisation: List[String]
+    defaultIntegrationMethod: String
 )
 extends
     Element
@@ -274,7 +272,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, List()) }
+    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -298,9 +296,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = IntSchedAgreement.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (IntSchedAgreement.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (IntSchedAgreement.fields (position), x))
         emitelem (0, defaultIntegrationMethod)
-        emitattrs (1, MktOrganisation)
         s.toString
     }
     override def export: String =
@@ -314,14 +310,9 @@ extends
     Parseable[IntSchedAgreement]
 {
     override val fields: Array[String] = Array[String] (
-        "defaultIntegrationMethod",
-        "MktOrganisation"
-    )
-    override val relations: List[Relationship] = List (
-        Relationship ("MktOrganisation", "MktOrganisation", "0..*", "0..*")
+        "defaultIntegrationMethod"
     )
     val defaultIntegrationMethod: Fielder = parse_element (element (cls, fields(0)))
-    val MktOrganisation: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): IntSchedAgreement =
     {
@@ -329,8 +320,7 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = IntSchedAgreement (
             Agreement.parse (context),
-            mask (defaultIntegrationMethod (), 0),
-            masks (MktOrganisation (), 1)
+            mask (defaultIntegrationMethod (), 0)
         )
         ret.bitfields = bitfields
         ret

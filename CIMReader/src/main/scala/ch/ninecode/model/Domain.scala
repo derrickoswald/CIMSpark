@@ -15,11 +15,12 @@ import ch.ninecode.cim.Relationship
  * @param start Start date of this interval.
  * @group Domain
  * @groupname Domain Package Domain
- * @groupdesc Domain The domain package define primitive datatypes that are used by classes in other packages. Stereotypes are used to describe the datatypes. The following stereotypes are defined:
+ * @groupdesc Domain The domain package defines primitive datatypes that are used by classes in other packages. Stereotypes are used to describe the datatypes. The following stereotypes are defined:
 &lt;&lt;enumeration&gt;&gt; A list of permissible constant values.
 &lt;&lt;Primitive&gt;&gt; The most basic data types used to compose all other data types.
 &lt;&lt;CIMDatatype&gt;&gt; A datatype that contains a value attribute, an optional unit of measure and a unit multiplier. The unit and multiplier may be specified as a static variable initialized to the allowed value.
-&lt;&lt;Compound&gt;&gt; A composite of Primitive, enumeration, CIMDatatype or othe Compound classes, as long as the Compound classes do not recurse.
+&lt;&lt;Compound&gt;&gt; A composite of Primitive, enumeration, CIMDatatype or other Compound classes, as long as the Compound classes do not recurse.
+For all datatypes both positive and negative values are allowed unless stated otherwise for a particular datatype.
  */
 case class DateInterval
 (
@@ -93,18 +94,21 @@ extends
 }
 
 /**
- * Interval between two date and time points.
+ * Interval between two date and time points, where the interval includes the start time but excludes end time.
  *
  * @param sup Reference to the superclass object.
  * @param end End date and time of this interval.
+ *        The end date and time where the interval is defined up to, but excluded.
  * @param start Start date and time of this interval.
+ *        The start date and time is included in the defined interval.
  * @group Domain
  * @groupname Domain Package Domain
- * @groupdesc Domain The domain package define primitive datatypes that are used by classes in other packages. Stereotypes are used to describe the datatypes. The following stereotypes are defined:
+ * @groupdesc Domain The domain package defines primitive datatypes that are used by classes in other packages. Stereotypes are used to describe the datatypes. The following stereotypes are defined:
 &lt;&lt;enumeration&gt;&gt; A list of permissible constant values.
 &lt;&lt;Primitive&gt;&gt; The most basic data types used to compose all other data types.
 &lt;&lt;CIMDatatype&gt;&gt; A datatype that contains a value attribute, an optional unit of measure and a unit multiplier. The unit and multiplier may be specified as a static variable initialized to the allowed value.
-&lt;&lt;Compound&gt;&gt; A composite of Primitive, enumeration, CIMDatatype or othe Compound classes, as long as the Compound classes do not recurse.
+&lt;&lt;Compound&gt;&gt; A composite of Primitive, enumeration, CIMDatatype or other Compound classes, as long as the Compound classes do not recurse.
+For all datatypes both positive and negative values are allowed unless stated otherwise for a particular datatype.
  */
 case class DateTimeInterval
 (
@@ -178,14 +182,21 @@ extends
 }
 
 /**
-
+ * Quantity with decimal value and associated unit or currency information.
+ *
+ * @param sup Reference to the superclass object.
+ * @param currency Currency of this quantity.
+ * @param multiplier Unit multiplier of this quantity.
+ * @param unit Unit of this quantity.
+ * @param value Value of this quantity.
  * @group Domain
  * @groupname Domain Package Domain
- * @groupdesc Domain The domain package define primitive datatypes that are used by classes in other packages. Stereotypes are used to describe the datatypes. The following stereotypes are defined:
+ * @groupdesc Domain The domain package defines primitive datatypes that are used by classes in other packages. Stereotypes are used to describe the datatypes. The following stereotypes are defined:
 &lt;&lt;enumeration&gt;&gt; A list of permissible constant values.
 &lt;&lt;Primitive&gt;&gt; The most basic data types used to compose all other data types.
 &lt;&lt;CIMDatatype&gt;&gt; A datatype that contains a value attribute, an optional unit of measure and a unit multiplier. The unit and multiplier may be specified as a static variable initialized to the allowed value.
-&lt;&lt;Compound&gt;&gt; A composite of Primitive, enumeration, CIMDatatype or othe Compound classes, as long as the Compound classes do not recurse.
+&lt;&lt;Compound&gt;&gt; A composite of Primitive, enumeration, CIMDatatype or other Compound classes, as long as the Compound classes do not recurse.
+For all datatypes both positive and negative values are allowed unless stated otherwise for a particular datatype.
  */
 case class DecimalQuantity
 (
@@ -273,16 +284,17 @@ extends
  * Quantity with float value and associated unit information.
  *
  * @param sup Reference to the superclass object.
- * @param multiplier <em>undocumented</em>
- * @param unit <em>undocumented</em>
- * @param value <em>undocumented</em>
+ * @param multiplier Unit multiplier of this quantity.
+ * @param unit Unit of this quantity.
+ * @param value Value of this quantity.
  * @group Domain
  * @groupname Domain Package Domain
- * @groupdesc Domain The domain package define primitive datatypes that are used by classes in other packages. Stereotypes are used to describe the datatypes. The following stereotypes are defined:
+ * @groupdesc Domain The domain package defines primitive datatypes that are used by classes in other packages. Stereotypes are used to describe the datatypes. The following stereotypes are defined:
 &lt;&lt;enumeration&gt;&gt; A list of permissible constant values.
 &lt;&lt;Primitive&gt;&gt; The most basic data types used to compose all other data types.
 &lt;&lt;CIMDatatype&gt;&gt; A datatype that contains a value attribute, an optional unit of measure and a unit multiplier. The unit and multiplier may be specified as a static variable initialized to the allowed value.
-&lt;&lt;Compound&gt;&gt; A composite of Primitive, enumeration, CIMDatatype or othe Compound classes, as long as the Compound classes do not recurse.
+&lt;&lt;Compound&gt;&gt; A composite of Primitive, enumeration, CIMDatatype or other Compound classes, as long as the Compound classes do not recurse.
+For all datatypes both positive and negative values are allowed unless stated otherwise for a particular datatype.
  */
 case class FloatQuantity
 (
@@ -365,16 +377,17 @@ extends
  * Quantity with integer value and associated unit information.
  *
  * @param sup Reference to the superclass object.
- * @param multiplier <em>undocumented</em>
- * @param unit <em>undocumented</em>
- * @param value <em>undocumented</em>
+ * @param multiplier Unit multiplier of this quantity.
+ * @param unit Unit of this quantity.
+ * @param value Value of this quantity.
  * @group Domain
  * @groupname Domain Package Domain
- * @groupdesc Domain The domain package define primitive datatypes that are used by classes in other packages. Stereotypes are used to describe the datatypes. The following stereotypes are defined:
+ * @groupdesc Domain The domain package defines primitive datatypes that are used by classes in other packages. Stereotypes are used to describe the datatypes. The following stereotypes are defined:
 &lt;&lt;enumeration&gt;&gt; A list of permissible constant values.
 &lt;&lt;Primitive&gt;&gt; The most basic data types used to compose all other data types.
 &lt;&lt;CIMDatatype&gt;&gt; A datatype that contains a value attribute, an optional unit of measure and a unit multiplier. The unit and multiplier may be specified as a static variable initialized to the allowed value.
-&lt;&lt;Compound&gt;&gt; A composite of Primitive, enumeration, CIMDatatype or othe Compound classes, as long as the Compound classes do not recurse.
+&lt;&lt;Compound&gt;&gt; A composite of Primitive, enumeration, CIMDatatype or other Compound classes, as long as the Compound classes do not recurse.
+For all datatypes both positive and negative values are allowed unless stated otherwise for a particular datatype.
  */
 case class IntegerQuantity
 (
@@ -454,18 +467,19 @@ extends
 }
 
 /**
- * Interval between two times specified as mont and date.
+ * Interval between two times specified as month and day.
  *
  * @param sup Reference to the superclass object.
  * @param end End time of this interval.
  * @param start Start time of this interval.
  * @group Domain
  * @groupname Domain Package Domain
- * @groupdesc Domain The domain package define primitive datatypes that are used by classes in other packages. Stereotypes are used to describe the datatypes. The following stereotypes are defined:
+ * @groupdesc Domain The domain package defines primitive datatypes that are used by classes in other packages. Stereotypes are used to describe the datatypes. The following stereotypes are defined:
 &lt;&lt;enumeration&gt;&gt; A list of permissible constant values.
 &lt;&lt;Primitive&gt;&gt; The most basic data types used to compose all other data types.
 &lt;&lt;CIMDatatype&gt;&gt; A datatype that contains a value attribute, an optional unit of measure and a unit multiplier. The unit and multiplier may be specified as a static variable initialized to the allowed value.
-&lt;&lt;Compound&gt;&gt; A composite of Primitive, enumeration, CIMDatatype or othe Compound classes, as long as the Compound classes do not recurse.
+&lt;&lt;Compound&gt;&gt; A composite of Primitive, enumeration, CIMDatatype or other Compound classes, as long as the Compound classes do not recurse.
+For all datatypes both positive and negative values are allowed unless stated otherwise for a particular datatype.
  */
 case class MonthDayInterval
 (
@@ -542,16 +556,17 @@ extends
  * Quantity with string value (when it is not important whether it is an integral or a floating point number) and associated unit information.
  *
  * @param sup Reference to the superclass object.
- * @param multiplier <em>undocumented</em>
- * @param unit <em>undocumented</em>
- * @param value <em>undocumented</em>
+ * @param multiplier Unit multiplier of this quantity.
+ * @param unit Unit of this quantity.
+ * @param value Value of this quantity.
  * @group Domain
  * @groupname Domain Package Domain
- * @groupdesc Domain The domain package define primitive datatypes that are used by classes in other packages. Stereotypes are used to describe the datatypes. The following stereotypes are defined:
+ * @groupdesc Domain The domain package defines primitive datatypes that are used by classes in other packages. Stereotypes are used to describe the datatypes. The following stereotypes are defined:
 &lt;&lt;enumeration&gt;&gt; A list of permissible constant values.
 &lt;&lt;Primitive&gt;&gt; The most basic data types used to compose all other data types.
 &lt;&lt;CIMDatatype&gt;&gt; A datatype that contains a value attribute, an optional unit of measure and a unit multiplier. The unit and multiplier may be specified as a static variable initialized to the allowed value.
-&lt;&lt;Compound&gt;&gt; A composite of Primitive, enumeration, CIMDatatype or othe Compound classes, as long as the Compound classes do not recurse.
+&lt;&lt;Compound&gt;&gt; A composite of Primitive, enumeration, CIMDatatype or other Compound classes, as long as the Compound classes do not recurse.
+For all datatypes both positive and negative values are allowed unless stated otherwise for a particular datatype.
  */
 case class StringQuantity
 (
@@ -638,11 +653,12 @@ extends
  * @param start Start time of this interval.
  * @group Domain
  * @groupname Domain Package Domain
- * @groupdesc Domain The domain package define primitive datatypes that are used by classes in other packages. Stereotypes are used to describe the datatypes. The following stereotypes are defined:
+ * @groupdesc Domain The domain package defines primitive datatypes that are used by classes in other packages. Stereotypes are used to describe the datatypes. The following stereotypes are defined:
 &lt;&lt;enumeration&gt;&gt; A list of permissible constant values.
 &lt;&lt;Primitive&gt;&gt; The most basic data types used to compose all other data types.
 &lt;&lt;CIMDatatype&gt;&gt; A datatype that contains a value attribute, an optional unit of measure and a unit multiplier. The unit and multiplier may be specified as a static variable initialized to the allowed value.
-&lt;&lt;Compound&gt;&gt; A composite of Primitive, enumeration, CIMDatatype or othe Compound classes, as long as the Compound classes do not recurse.
+&lt;&lt;Compound&gt;&gt; A composite of Primitive, enumeration, CIMDatatype or other Compound classes, as long as the Compound classes do not recurse.
+For all datatypes both positive and negative values are allowed unless stated otherwise for a particular datatype.
  */
 case class TimeInterval
 (

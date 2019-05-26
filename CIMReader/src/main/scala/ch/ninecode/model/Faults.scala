@@ -16,7 +16,7 @@ import ch.ninecode.cim.Relationship
  * @param Terminal [[ch.ninecode.model.Terminal Terminal]] The terminal connecting to the bus to which the fault is applied.
  * @group Faults
  * @groupname Faults Package Faults
- * @groupdesc Faults The package describe faults that may happen to conducting equipment, e.g. tree falling on a power line.
+ * @groupdesc Faults The package describes faults that may happen to conducting equipment, e.g. tree falling on a power line.
  */
 case class EquipmentFault
 (
@@ -88,29 +88,33 @@ extends
 }
 
 /**
- * Abnormal condition causing current flow through conducting equipment, such as caused by equipment failure or short circuits from objects not typically modeled (for example, a tree falling on a line).
+ * Abnormal condition causing current flow through conducting equipment, such as caused by equipment failure or short circuits from objects not typically modelled (for example, a tree falling on a line).
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param impedance [[ch.ninecode.model.FaultImpedance FaultImpedance]] Fault impedance.
  *        Its usage is described by 'kind'.
  * @param kind The kind of phase fault.
+ * @param occurredDateTime The date and time at which the fault occurred.
  * @param phases The phases participating in the fault.
  *        The fault connections into these phases are further specified by the type of fault.
  * @param FaultCauseTypes [[ch.ninecode.model.FaultCauseType FaultCauseType]] All types of fault cause.
  * @param FaultyEquipment [[ch.ninecode.model.Equipment Equipment]] Equipment carrying this fault.
+ * @param Location [[ch.ninecode.model.Location Location]] <em>undocumented</em>
  * @param Outage [[ch.ninecode.model.Outage Outage]] Outage associated with this fault.
  * @group Faults
  * @groupname Faults Package Faults
- * @groupdesc Faults The package describe faults that may happen to conducting equipment, e.g. tree falling on a power line.
+ * @groupdesc Faults The package describes faults that may happen to conducting equipment, e.g. tree falling on a power line.
  */
 case class Fault
 (
     override val sup: IdentifiedObject,
     impedance: String,
     kind: String,
+    occurredDateTime: String,
     phases: String,
     FaultCauseTypes: List[String],
     FaultyEquipment: String,
+    Location: String,
     Outage: String
 )
 extends
@@ -119,7 +123,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, List(), null, null) }
+    def this () = { this (null, null, null, null, null, List(), null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -142,14 +146,17 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Fault.cls
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Fault.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Fault.fields (position), value)
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Fault.fields (position), x))
         emitattr (0, impedance)
         emitattr (1, kind)
-        emitattr (2, phases)
-        emitattrs (3, FaultCauseTypes)
-        emitattr (4, FaultyEquipment)
-        emitattr (5, Outage)
+        emitelem (2, occurredDateTime)
+        emitattr (3, phases)
+        emitattrs (4, FaultCauseTypes)
+        emitattr (5, FaultyEquipment)
+        emitattr (6, Location)
+        emitattr (7, Outage)
         s.toString
     }
     override def export: String =
@@ -165,23 +172,28 @@ extends
     override val fields: Array[String] = Array[String] (
         "impedance",
         "kind",
+        "occurredDateTime",
         "phases",
         "FaultCauseTypes",
         "FaultyEquipment",
+        "Location",
         "Outage"
     )
     override val relations: List[Relationship] = List (
         Relationship ("impedance", "FaultImpedance", "0..1", "0..*"),
         Relationship ("FaultCauseTypes", "FaultCauseType", "0..*", "0..*"),
         Relationship ("FaultyEquipment", "Equipment", "0..1", "0..*"),
+        Relationship ("Location", "Location", "0..1", "0..*"),
         Relationship ("Outage", "Outage", "0..1", "0..*")
     )
     val impedance: Fielder = parse_attribute (attribute (cls, fields(0)))
     val kind: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val phases: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val FaultCauseTypes: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
-    val FaultyEquipment: Fielder = parse_attribute (attribute (cls, fields(4)))
-    val Outage: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val occurredDateTime: Fielder = parse_element (element (cls, fields(2)))
+    val phases: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val FaultCauseTypes: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val FaultyEquipment: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val Location: Fielder = parse_attribute (attribute (cls, fields(6)))
+    val Outage: Fielder = parse_attribute (attribute (cls, fields(7)))
 
     def parse (context: Context): Fault =
     {
@@ -191,10 +203,12 @@ extends
             IdentifiedObject.parse (context),
             mask (impedance (), 0),
             mask (kind (), 1),
-            mask (phases (), 2),
-            masks (FaultCauseTypes (), 3),
-            mask (FaultyEquipment (), 4),
-            mask (Outage (), 5)
+            mask (occurredDateTime (), 2),
+            mask (phases (), 3),
+            masks (FaultCauseTypes (), 4),
+            mask (FaultyEquipment (), 5),
+            mask (Location (), 6),
+            mask (Outage (), 7)
         )
         ret.bitfields = bitfields
         ret
@@ -205,14 +219,16 @@ extends
  * Type of cause of the fault.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param ConfigurationEvent [[ch.ninecode.model.ConfigurationEvent ConfigurationEvent]] <em>undocumented</em>
  * @param Faults [[ch.ninecode.model.Fault Fault]] All faults with this cause type.
  * @group Faults
  * @groupname Faults Package Faults
- * @groupdesc Faults The package describe faults that may happen to conducting equipment, e.g. tree falling on a power line.
+ * @groupdesc Faults The package describes faults that may happen to conducting equipment, e.g. tree falling on a power line.
  */
 case class FaultCauseType
 (
     override val sup: IdentifiedObject,
+    ConfigurationEvent: List[String],
     Faults: List[String]
 )
 extends
@@ -221,7 +237,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, List()) }
+    def this () = { this (null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -245,7 +261,8 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = FaultCauseType.cls
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (FaultCauseType.fields (position), x))
-        emitattrs (0, Faults)
+        emitattrs (0, ConfigurationEvent)
+        emitattrs (1, Faults)
         s.toString
     }
     override def export: String =
@@ -259,12 +276,15 @@ extends
     Parseable[FaultCauseType]
 {
     override val fields: Array[String] = Array[String] (
+        "ConfigurationEvent",
         "Faults"
     )
     override val relations: List[Relationship] = List (
+        Relationship ("ConfigurationEvent", "ConfigurationEvent", "0..*", "1"),
         Relationship ("Faults", "Fault", "0..*", "0..*")
     )
-    val Faults: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val ConfigurationEvent: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val Faults: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): FaultCauseType =
     {
@@ -272,7 +292,8 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = FaultCauseType (
             IdentifiedObject.parse (context),
-            masks (Faults (), 0)
+            masks (ConfigurationEvent (), 0),
+            masks (Faults (), 1)
         )
         ret.bitfields = bitfields
         ret
@@ -289,7 +310,7 @@ extends
  * @param xLineToLine The reactance of the fault between phases.
  * @group Faults
  * @groupname Faults Package Faults
- * @groupdesc Faults The package describe faults that may happen to conducting equipment, e.g. tree falling on a power line.
+ * @groupdesc Faults The package describes faults that may happen to conducting equipment, e.g. tree falling on a power line.
  */
 case class FaultImpedance
 (
@@ -380,7 +401,7 @@ extends
  * @param ACLineSegment [[ch.ninecode.model.ACLineSegment ACLineSegment]] The line segment of this line fault.
  * @group Faults
  * @groupname Faults Package Faults
- * @groupdesc Faults The package describe faults that may happen to conducting equipment, e.g. tree falling on a power line.
+ * @groupdesc Faults The package describes faults that may happen to conducting equipment, e.g. tree falling on a power line.
  */
 case class LineFault
 (

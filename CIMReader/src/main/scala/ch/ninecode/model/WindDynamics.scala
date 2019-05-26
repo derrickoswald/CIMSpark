@@ -8,25 +8,20 @@ import ch.ninecode.cim.Parseable
 import ch.ninecode.cim.Relationship
 
 /**
- * The constant aerodynamic torque model assumes that the aerodynamic torque is constant.
+ * Constant aerodynamic torque model which assumes that the aerodynamic torque is constant.
  *
- * Reference: IEC Standard 61400-27-1 Section 5.6.1.1.
+ * Reference: IEC 61400-27-1:2015, 5.6.1.1.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param WindGenTurbineType1aIEC [[ch.ninecode.model.WindGenTurbineType1aIEC WindGenTurbineType1aIEC]] Wind turbine type 1A model with which this wind aerodynamic model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
- * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
-<ul>
-	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
-	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
-	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
-	<li>Type 4: Wind turbines connected fully through a power converter.</li>
-</ul>
-
-Models included in this package are according to IEC 61400-27-1.
-
-Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
+ * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
+- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+- type 4: wind turbines connected to the grid through a full size power converter.
+Models included in this package are according to IEC 61400-27-1:2015.
  */
 case class WindAeroConstIEC
 (
@@ -100,27 +95,22 @@ extends
 /**
  * One-dimensional aerodynamic model.
  *
- * Reference: IEC Standard 614000-27-1 Section 5.6.1.2.
+ * Reference: IEC 61400-27-1:2015, 5.6.1.2.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param ka Aerodynamic gain (<i>k</i><i><sub>a</sub></i>).
- *        It is type dependent parameter.
+ *        It is a type-dependent parameter.
  * @param thetaomega Initial pitch angle (<i>theta</i><i><sub>omega0</sub></i>).
- *        It is case dependent parameter.
+ *        It is a case-dependent parameter.
  * @param WindTurbineType3IEC [[ch.ninecode.model.WindTurbineType3IEC WindTurbineType3IEC]] Wind turbine type 3 model with which this wind aerodynamic model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
- * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
-<ul>
-	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
-	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
-	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
-	<li>Type 4: Wind turbines connected fully through a power converter.</li>
-</ul>
-
-Models included in this package are according to IEC 61400-27-1.
-
-Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
+ * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
+- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+- type 4: wind turbines connected to the grid through a full size power converter.
+Models included in this package are according to IEC 61400-27-1:2015.
  */
 case class WindAeroOneDimIEC
 (
@@ -205,37 +195,32 @@ extends
 /**
  * Two-dimensional aerodynamic model.
  *
- * Reference: IEC Standard 614000-27-1 Section 5.6.1.3.
+ * Reference: IEC 61400-27-1:2015, 5.6.1.3.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param dpomega Partial derivative of aerodynamic power with respect to changes in WTR speed (<i>dp</i><i><sub>omega</sub></i>).
- *        It is type dependent parameter.
+ *        It is a type-dependent parameter.
  * @param dptheta Partial derivative of aerodynamic power with respect to changes in pitch angle (<i>dp</i><i><sub>theta</sub></i>).
- *        It is type dependent parameter.
- * @param dpv1 Partial derivative (<i>dp</i><sub>v1</sub>).
- *        It is type dependent parameter.
+ *        It is a type-dependent parameter.
+ * @param dpv1 Partial derivative (<i>dp</i><i><sub>v1</sub></i>).
+ *        It is a type-dependent parameter.
  * @param omegazero Rotor speed if the wind turbine is not derated (<i>omega</i><i><sub>0</sub></i>).
- *        It is type dependent parameter.
- * @param pavail Available aerodynamic power (<i>p</i><sub>avail</sub>).
- *        It is case dependent parameter.
+ *        It is a type-dependent parameter.
+ * @param pavail Available aerodynamic power (<i>p</i><i><sub>avail</sub></i><i>)</i>.
+ *        It is a case-dependent parameter.
  * @param thetav2 Blade angle at twice rated wind speed (<i>theta</i><i><sub>v2</sub></i>).
- *        It is type dependent parameter.
+ *        It is a type-dependent parameter.
  * @param thetazero Pitch angle if the wind turbine is not derated (<i>theta</i><i><sub>0</sub></i>).
- *        It is case dependent parameter.
+ *        It is a case-dependent parameter.
  * @param WindTurbineType3IEC [[ch.ninecode.model.WindTurbineType3IEC WindTurbineType3IEC]] Wind turbine type 3 model with which this wind aerodynamic model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
- * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
-<ul>
-	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
-	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
-	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
-	<li>Type 4: Wind turbines connected fully through a power converter.</li>
-</ul>
-
-Models included in this package are according to IEC 61400-27-1.
-
-Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
+ * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
+- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+- type 4: wind turbines connected to the grid through a full size power converter.
+Models included in this package are according to IEC 61400-27-1:2015.
  */
 case class WindAeroTwoDimIEC
 (
@@ -348,39 +333,30 @@ extends
  * The current limitation model combines the physical limits and the control limits.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param imax Maximum continuous current at the wind turbine terminals (<i>i</i><sub>max</sub>).
- *        It is type dependent parameter.
- * @param imaxdip Maximum current during voltage dip at the wind turbine terminals (<i>i</i><sub>maxdip</sub>).
- *        It is project dependent parameter.
- * @param kpqu Partial derivative of reactive current limit (<i>K</i><sub>pqu</sub>).
- *        It is type dependent parameter.
- * @param mdfslim Limitation of type 3 stator current  (<i>M</i><sub>DFSLim</sub>):
- *        - false=0: total current limitation,
- *        - true=1: stator current limitation).
- *        It is type dependent parameter.
- * @param mqpri Prioritisation of q control during UVRT (<i>M</i><sub>qpri</sub>):
- *        - true = 1: reactive power priority,
- *        - false = 0: active power priority.
- *        It is project dependent parameter.
- * @param tufiltcl Voltage measurement filter time constant (<i>T</i><sub>ufiltcl</sub>).
- *        It is type dependent parameter.
- * @param upqumax Wind turbine voltage in the operation point where zero reactive current can be delivered (<i>u</i><sub>pqumax</sub>).
- *        It is type dependent parameter.
+ * @param imax Maximum continuous current at the wind turbine terminals (<i>i</i><i><sub>max</sub></i>).
+ *        It is a type-dependent parameter.
+ * @param imaxdip Maximum current during voltage dip at the wind turbine terminals (<i>i</i><i><sub>maxdip</sub></i>).
+ *        It is a project-dependent parameter.
+ * @param kpqu Partial derivative of reactive current limit (<i>K</i><i><sub>pqu</sub></i>) versus voltage.
+ *        It is a type-dependent parameter.
+ * @param mdfslim Limitation of type 3 stator current (<i>M</i><i><sub>DFSLim</sub></i>). <i>M</i><i><sub>DFSLim</sub></i><sub> </sub>= 1 for wind turbines type 4.
+ *        It is a type-dependent parameter.
+ * @param mqpri Prioritisation of Q control during UVRT (<i>M</i><i><sub>qpri</sub></i>).
+ *        It is a project-dependent parameter.
+ * @param tufiltcl Voltage measurement filter time constant (<i>T</i><i><sub>ufiltcl</sub></i>) (&gt;= 0).
+ *        It is a type-dependent parameter.
+ * @param upqumax Wind turbine voltage in the operation point where zero reactive current can be delivered (<i>u</i><i><sub>pqumax</sub></i>).
+ *        It is a type-dependent parameter.
  * @param WindDynamicsLookupTable [[ch.ninecode.model.WindDynamicsLookupTable WindDynamicsLookupTable]] The wind dynamics lookup table associated with this current control limitation model.
- * @param WindTurbineType3or4IEC [[ch.ninecode.model.WindTurbineType3or4IEC WindTurbineType3or4IEC]] Wind turbine type 3 or 4 model with which this wind control current limitation model is associated.
+ * @param WindTurbineType3or4IEC [[ch.ninecode.model.WindTurbineType3or4IEC WindTurbineType3or4IEC]] Wind turbine type 3 or type 4 model with which this wind control current limitation model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
- * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
-<ul>
-	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
-	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
-	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
-	<li>Type 4: Wind turbines connected fully through a power converter.</li>
-</ul>
-
-Models included in this package are according to IEC 61400-27-1.
-
-Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
+ * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
+- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+- type 4: wind turbines connected to the grid through a full size power converter.
+Models included in this package are according to IEC 61400-27-1:2015.
  */
 case class WindContCurrLimIEC
 (
@@ -495,74 +471,67 @@ extends
 }
 
 /**
- * P control model Type 3.
+ * P control model type 3.
  *
- * Reference: IEC Standard 61400-27-1 Section 5.6.5.4.
+ * Reference: IEC 61400-27-1:2015, 5.6.5.4.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param dpmax Maximum wind turbine power ramp rate (<i>dp</i><sub>max</sub>).
- *        It is type dependent parameter.
- * @param dprefmax Maximum ramp rate of wind turbine reference power (d<i>p</i><sub>refmax</sub>).
- *        It is project dependent parameter.
- * @param dprefmin Minimum ramp rate of wind turbine reference power (d<i>p</i><sub>refmin</sub>).
- *        It is project dependent parameter.
- * @param dthetamax Ramp limitation of torque, required in some grid codes (d<i>t</i><sub>max</sub>).
- *        It is project dependent parameter.
- * @param dthetamaxuvrt Limitation of torque rise rate during UVRT (d<i>theta</i><sub>maxUVRT</sub>).
- *        It is project dependent parameter.
- * @param kdtd Gain for active drive train damping (<i>K</i><sub>DTD</sub>).
- *        It is type dependent parameter.
+ * @param dpmax Maximum wind turbine power ramp rate (<i>dp</i><i><sub>max</sub></i>).
+ *        It is a type-dependent parameter.
+ * @param dprefmax Maximum ramp rate of wind turbine reference power (<i>dp</i><i><sub>refmax</sub></i>).
+ *        It is a project-dependent parameter.
+ * @param dprefmin Minimum ramp rate of wind turbine reference power (<i>dp</i><i><sub>refmin</sub></i>).
+ *        It is a project-dependent parameter.
+ * @param dthetamax Ramp limitation of torque, required in some grid codes (<i>dt</i><i><sub>max</sub></i>).
+ *        It is a project-dependent parameter.
+ * @param dthetamaxuvrt Limitation of torque rise rate during UVRT (<i>dtheta</i><i><sub>maxUVRT</sub></i>).
+ *        It is a project-dependent parameter.
+ * @param kdtd Gain for active drive train damping (<i>K</i><i><sub>DTD</sub></i>).
+ *        It is a type-dependent parameter.
  * @param kip PI controller integration parameter (<i>K</i><sub>Ip</sub>).
- *        It is type dependent parameter.
+ *        It is a type-dependent parameter.
  * @param kpp PI controller proportional gain (<i>K</i><sub>Pp</sub>).
- *        It is type dependent parameter.
- * @param mpuvrt Enable UVRT power control mode (M<sub>pUVRT).</sub>
- *        true = 1: voltage control
- *        false = 0: reactive power control.
- *        It is project dependent parameter.
- * @param omegaoffset Offset to reference value that limits controller action during rotor speed changes (omega<sub>offset</sub>).
- *        It is case dependent parameter.
+ *        It is a type-dependent parameter.
+ * @param mpuvrt Enable UVRT power control mode (<i>M</i><i><sub>pUVRT</sub></i><sub>)</sub>.
+ *        It is a project-dependent parameter.
+ * @param omegadtd Active drive train damping frequency (<i>omega</i><i><sub>DTD</sub></i>).
+ *        It can be calculated from two mass model parameters. It is a type-dependent parameter.
+ * @param omegaoffset Offset to reference value that limits controller action during rotor speed changes (<i>omega</i><i><sub>offset</sub></i>).
+ *        It is a case-dependent parameter.
  * @param pdtdmax Maximum active drive train damping power (<i>p</i><sub>DTDmax</sub>).
- *        It is type dependent parameter.
- * @param tdvs Time<sub> </sub>delay after deep voltage sags (T<sub>DVS</sub>).
- *        It is project dependent parameter.
+ *        It is a type-dependent parameter.
+ * @param tdvs Time<sub> </sub>delay after deep voltage sags (<i>T</i><i><sub>DVS</sub></i>) (&gt;= 0).
+ *        It is a project-dependent parameter.
  * @param thetaemin Minimum electrical generator torque (<i>t</i><sub>emin</sub>).
- *        It is type dependent parameter.
+ *        It is a type-dependent parameter.
  * @param thetauscale Voltage scaling factor of reset-torque (<i>t</i><sub>uscale</sub>).
- *        It is project dependent parameter.
- * @param tomegafiltp3 Filter time constant for generator speed measurement (<i>T</i><sub>omegafiltp3</sub>).
- *        It is type dependent parameter.
- * @param tpfiltp3 Filter time constant for power measurement (<i>T</i><sub>pfiltp3</sub>).
- *        It is type dependent parameter.
+ *        It is a project-dependent parameter.
+ * @param tomegafiltp3 Filter time constant for generator speed measurement (<i>T</i><sub>omegafiltp3</sub>) (&gt;= 0).
+ *        It is a type-dependent parameter.
+ * @param tomegaref Time constant in speed reference filter (<i>T</i><sub>omega,ref</sub>) (&gt;= 0).
+ *        It is a type-dependent parameter.
+ * @param tpfiltp3 Filter time constant for power measurement (<i>T</i><sub>pfiltp3</sub>) (&gt;= 0).
+ *        It is a type-dependent parameter.
  * @param tpord Time constant in power order lag (<i>T</i><sub>pord</sub>).
- *        It is type dependent parameter.
- * @param tufiltp3 Filter time constant for voltage measurement (<i>T</i><sub>ufiltp3</sub>).
- *        It is type dependent parameter.
- * @param twref Time constant in speed reference filter (<i>T</i><sub>omega,ref</sub>).
- *        It is type dependent parameter.
+ *        It is a type-dependent parameter.
+ * @param tufiltp3 Filter time constant for voltage measurement (<i>T</i><sub>ufiltp3</sub>) (&gt;= 0).
+ *        It is a type-dependent parameter.
  * @param udvs Voltage limit for hold UVRT status after deep voltage sags (<i>u</i><i><sub>DVS</sub></i>).
- *        It is project dependent parameter.
+ *        It is a project-dependent parameter.
  * @param updip Voltage dip threshold for P-control (<i>u</i><sub>Pdip</sub>).
- *        Part of turbine control, often different (e.g 0.8) from converter thresholds. It is project dependent parameter.
- * @param wdtd Active drive train damping frequency (omega<sub>DTD</sub>).
- *        It can be calculated from two mass model parameters. It is type dependent parameter.
- * @param zeta Coefficient for active drive train damping (zeta).
- *        It is type dependent parameter.
+ *        Part of turbine control, often different (e.g 0.8) from converter thresholds. It is a project-dependent parameter.
+ * @param zeta Coefficient for active drive train damping (<i>zeta</i>).
+ *        It is a type-dependent parameter.
  * @param WindDynamicsLookupTable [[ch.ninecode.model.WindDynamicsLookupTable WindDynamicsLookupTable]] The wind dynamics lookup table associated with this P control type 3 model.
- * @param WindTurbineType3IEC [[ch.ninecode.model.WindTurbineType3IEC WindTurbineType3IEC]] Wind turbine type 3 model with which this Wind control P type 3 model is associated.
+ * @param WindTurbineType3IEC [[ch.ninecode.model.WindTurbineType3IEC WindTurbineType3IEC]] Wind turbine type 3 model with which this wind control P type 3 model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
- * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
-<ul>
-	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
-	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
-	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
-	<li>Type 4: Wind turbines connected fully through a power converter.</li>
-</ul>
-
-Models included in this package are according to IEC 61400-27-1.
-
-Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
+ * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
+- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+- type 4: wind turbines connected to the grid through a full size power converter.
+Models included in this package are according to IEC 61400-27-1:2015.
  */
 case class WindContPType3IEC
 (
@@ -576,19 +545,19 @@ case class WindContPType3IEC
     kip: Double,
     kpp: Double,
     mpuvrt: Boolean,
+    omegadtd: Double,
     omegaoffset: Double,
     pdtdmax: Double,
     tdvs: Double,
     thetaemin: Double,
     thetauscale: Double,
     tomegafiltp3: Double,
+    tomegaref: Double,
     tpfiltp3: Double,
     tpord: Double,
     tufiltp3: Double,
-    twref: Double,
     udvs: Double,
     updip: Double,
-    wdtd: Double,
     zeta: Double,
     WindDynamicsLookupTable: List[String],
     WindTurbineType3IEC: String
@@ -634,19 +603,19 @@ extends
         emitelem (6, kip)
         emitelem (7, kpp)
         emitelem (8, mpuvrt)
-        emitelem (9, omegaoffset)
-        emitelem (10, pdtdmax)
-        emitelem (11, tdvs)
-        emitelem (12, thetaemin)
-        emitelem (13, thetauscale)
-        emitelem (14, tomegafiltp3)
-        emitelem (15, tpfiltp3)
-        emitelem (16, tpord)
-        emitelem (17, tufiltp3)
-        emitelem (18, twref)
-        emitelem (19, udvs)
-        emitelem (20, updip)
-        emitelem (21, wdtd)
+        emitelem (9, omegadtd)
+        emitelem (10, omegaoffset)
+        emitelem (11, pdtdmax)
+        emitelem (12, tdvs)
+        emitelem (13, thetaemin)
+        emitelem (14, thetauscale)
+        emitelem (15, tomegafiltp3)
+        emitelem (16, tomegaref)
+        emitelem (17, tpfiltp3)
+        emitelem (18, tpord)
+        emitelem (19, tufiltp3)
+        emitelem (20, udvs)
+        emitelem (21, updip)
         emitelem (22, zeta)
         emitattrs (23, WindDynamicsLookupTable)
         emitattr (24, WindTurbineType3IEC)
@@ -672,19 +641,19 @@ extends
         "kip",
         "kpp",
         "mpuvrt",
+        "omegadtd",
         "omegaoffset",
         "pdtdmax",
         "tdvs",
         "thetaemin",
         "thetauscale",
         "tomegafiltp3",
+        "tomegaref",
         "tpfiltp3",
         "tpord",
         "tufiltp3",
-        "twref",
         "udvs",
         "updip",
-        "wdtd",
         "zeta",
         "WindDynamicsLookupTable",
         "WindTurbineType3IEC"
@@ -702,19 +671,19 @@ extends
     val kip: Fielder = parse_element (element (cls, fields(6)))
     val kpp: Fielder = parse_element (element (cls, fields(7)))
     val mpuvrt: Fielder = parse_element (element (cls, fields(8)))
-    val omegaoffset: Fielder = parse_element (element (cls, fields(9)))
-    val pdtdmax: Fielder = parse_element (element (cls, fields(10)))
-    val tdvs: Fielder = parse_element (element (cls, fields(11)))
-    val thetaemin: Fielder = parse_element (element (cls, fields(12)))
-    val thetauscale: Fielder = parse_element (element (cls, fields(13)))
-    val tomegafiltp3: Fielder = parse_element (element (cls, fields(14)))
-    val tpfiltp3: Fielder = parse_element (element (cls, fields(15)))
-    val tpord: Fielder = parse_element (element (cls, fields(16)))
-    val tufiltp3: Fielder = parse_element (element (cls, fields(17)))
-    val twref: Fielder = parse_element (element (cls, fields(18)))
-    val udvs: Fielder = parse_element (element (cls, fields(19)))
-    val updip: Fielder = parse_element (element (cls, fields(20)))
-    val wdtd: Fielder = parse_element (element (cls, fields(21)))
+    val omegadtd: Fielder = parse_element (element (cls, fields(9)))
+    val omegaoffset: Fielder = parse_element (element (cls, fields(10)))
+    val pdtdmax: Fielder = parse_element (element (cls, fields(11)))
+    val tdvs: Fielder = parse_element (element (cls, fields(12)))
+    val thetaemin: Fielder = parse_element (element (cls, fields(13)))
+    val thetauscale: Fielder = parse_element (element (cls, fields(14)))
+    val tomegafiltp3: Fielder = parse_element (element (cls, fields(15)))
+    val tomegaref: Fielder = parse_element (element (cls, fields(16)))
+    val tpfiltp3: Fielder = parse_element (element (cls, fields(17)))
+    val tpord: Fielder = parse_element (element (cls, fields(18)))
+    val tufiltp3: Fielder = parse_element (element (cls, fields(19)))
+    val udvs: Fielder = parse_element (element (cls, fields(20)))
+    val updip: Fielder = parse_element (element (cls, fields(21)))
     val zeta: Fielder = parse_element (element (cls, fields(22)))
     val WindDynamicsLookupTable: FielderMultiple = parse_attributes (attribute (cls, fields(23)))
     val WindTurbineType3IEC: Fielder = parse_attribute (attribute (cls, fields(24)))
@@ -734,19 +703,19 @@ extends
             toDouble (mask (kip (), 6)),
             toDouble (mask (kpp (), 7)),
             toBoolean (mask (mpuvrt (), 8)),
-            toDouble (mask (omegaoffset (), 9)),
-            toDouble (mask (pdtdmax (), 10)),
-            toDouble (mask (tdvs (), 11)),
-            toDouble (mask (thetaemin (), 12)),
-            toDouble (mask (thetauscale (), 13)),
-            toDouble (mask (tomegafiltp3 (), 14)),
-            toDouble (mask (tpfiltp3 (), 15)),
-            toDouble (mask (tpord (), 16)),
-            toDouble (mask (tufiltp3 (), 17)),
-            toDouble (mask (twref (), 18)),
-            toDouble (mask (udvs (), 19)),
-            toDouble (mask (updip (), 20)),
-            toDouble (mask (wdtd (), 21)),
+            toDouble (mask (omegadtd (), 9)),
+            toDouble (mask (omegaoffset (), 10)),
+            toDouble (mask (pdtdmax (), 11)),
+            toDouble (mask (tdvs (), 12)),
+            toDouble (mask (thetaemin (), 13)),
+            toDouble (mask (thetauscale (), 14)),
+            toDouble (mask (tomegafiltp3 (), 15)),
+            toDouble (mask (tomegaref (), 16)),
+            toDouble (mask (tpfiltp3 (), 17)),
+            toDouble (mask (tpord (), 18)),
+            toDouble (mask (tufiltp3 (), 19)),
+            toDouble (mask (udvs (), 20)),
+            toDouble (mask (updip (), 21)),
             toDouble (mask (zeta (), 22)),
             masks (WindDynamicsLookupTable (), 23),
             mask (WindTurbineType3IEC (), 24)
@@ -757,31 +726,26 @@ extends
 }
 
 /**
- * P control model Type 4A.
+ * P control model type 4A.
  *
- * Reference: IEC Standard 61400-27-1 Section 5.6.5.5.
+ * Reference: IEC 61400-27-1:2015, 5.6.5.5.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param dpmaxp4a Maximum wind turbine power ramp rate (<i>dp</i><sub>maxp4A</sub>).
- *        It is project dependent parameter.
- * @param tpordp4a Time constant in power order lag (<i>T</i><sub>pordp4A</sub>).
- *        It is type dependent parameter.
- * @param tufiltp4a Voltage measurement filter time constant (<i>T</i><sub>ufiltp4A</sub>).
- *        It is type dependent parameter.
+ * @param dpmaxp4a Maximum wind turbine power ramp rate (<i>dp</i><i><sub>maxp4A</sub></i>).
+ *        It is a project-dependent parameter.
+ * @param tpordp4a Time constant in power order lag (<i>T</i><i><sub>pordp4A</sub></i>) (&gt;= 0).
+ *        It is a type-dependent parameter.
+ * @param tufiltp4a Voltage measurement filter time constant (<i>T</i><i><sub>ufiltp4A</sub></i>) (&gt;= 0).
+ *        It is a type-dependent parameter.
  * @param WindTurbineType4aIEC [[ch.ninecode.model.WindTurbineType4aIEC WindTurbineType4aIEC]] Wind turbine type 4A model with which this wind control P type 4A model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
- * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
-<ul>
-	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
-	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
-	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
-	<li>Type 4: Wind turbines connected fully through a power converter.</li>
-</ul>
-
-Models included in this package are according to IEC 61400-27-1.
-
-Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
+ * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
+- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+- type 4: wind turbines connected to the grid through a full size power converter.
+Models included in this package are according to IEC 61400-27-1:2015.
  */
 case class WindContPType4aIEC
 (
@@ -869,33 +833,28 @@ extends
 }
 
 /**
- * P control model Type 4B.
+ * P control model type 4B.
  *
- * Reference: IEC Standard 61400-27-1 Section 5.6.5.6.
+ * Reference: IEC 61400-27-1:2015, 5.6.5.6.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param dpmaxp4b Maximum wind turbine power ramp rate (<i>dp</i><sub>maxp4B</sub>).
- *        It is project dependent parameter.
- * @param tpaero Time constant in aerodynamic power response (<i>T</i><sub>paero</sub>).
- *        It is type dependent parameter.
- * @param tpordp4b Time constant in power order lag (<i>T</i><sub>pordp4B</sub>).
- *        It is type dependent parameter.
- * @param tufiltp4b Voltage measurement filter time constant (<i>T</i><sub>ufiltp4B</sub>).
- *        It is type dependent parameter.
+ * @param dpmaxp4b Maximum wind turbine power ramp rate (<i>dp</i><i><sub>maxp4B</sub></i>).
+ *        It is a project-dependent parameter.
+ * @param tpaero Time constant in aerodynamic power response (<i>T</i><i><sub>paero</sub></i>) (&gt;= 0).
+ *        It is a type-dependent parameter.
+ * @param tpordp4b Time constant in power order lag (<i>T</i><i><sub>pordp4B</sub></i>) (&gt;= 0).
+ *        It is a type-dependent parameter.
+ * @param tufiltp4b Voltage measurement filter time constant (<i>T</i><i><sub>ufiltp4B</sub></i>) (&gt;= 0).
+ *        It is a type-dependent parameter.
  * @param WindTurbineType4bIEC [[ch.ninecode.model.WindTurbineType4bIEC WindTurbineType4bIEC]] Wind turbine type 4B model with which this wind control P type 4B model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
- * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
-<ul>
-	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
-	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
-	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
-	<li>Type 4: Wind turbines connected fully through a power converter.</li>
-</ul>
-
-Models included in this package are according to IEC 61400-27-1.
-
-Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
+ * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
+- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+- type 4: wind turbines connected to the grid through a full size power converter.
+Models included in this package are according to IEC 61400-27-1:2015.
  */
 case class WindContPType4bIEC
 (
@@ -990,43 +949,38 @@ extends
 /**
  * Pitch angle control model.
  *
- * Reference: IEC Standard 61400-27-1 Section 5.6.5.2.
+ * Reference: IEC 61400-27-1:2015, 5.6.5.2.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param dthetamax Maximum pitch positive ramp rate (d<i>theta</i><sub>max</sub>).
- *        It is type dependent parameter. Unit = degrees/sec.
- * @param dthetamin Maximum pitch negative ramp rate (d<i>theta</i><sub>min</sub>).
- *        It is type dependent parameter. Unit = degrees/sec.
- * @param kic Power PI controller integration gain (<i>K</i><sub>Ic</sub>).
- *        It is type dependent parameter.
- * @param kiomega Speed PI controller integration gain (<i>K</i><sub>Iomega</sub>).
- *        It is type dependent parameter.
- * @param kpc Power PI controller proportional gain (<i>K</i><sub>Pc</sub>).
- *        It is type dependent parameter.
- * @param kpomega Speed PI controller proportional gain (<i>K</i><sub>Pomega</sub>).
- *        It is type dependent parameter.
- * @param kpx Pitch cross coupling gain (K<sub>PX</sub>).
- *        It is type dependent parameter.
- * @param thetamax Maximum pitch angle (<i>theta</i><sub>max</sub>).
- *        It is type dependent parameter.
- * @param thetamin Minimum pitch angle (<i>theta</i><sub>min</sub>).
- *        It is type dependent parameter.
- * @param ttheta Pitch time constant (t<i>theta</i>).
- *        It is type dependent parameter.
+ * @param dthetamax Maximum pitch positive ramp rate (<i>dtheta</i><i><sub>max</sub></i>) (&gt; WindContPitchAngleIEC.dthetamin).
+ *        It is a type-dependent parameter. Unit = degrees / s.
+ * @param dthetamin Maximum pitch negative ramp rate (<i>dtheta</i><i><sub>min</sub></i><i>)</i> (&lt; WindContPitchAngleIEC.dthetamax).
+ *        It is a type-dependent parameter. Unit = degrees / s.
+ * @param kic Power PI controller integration gain (<i>K</i><i><sub>Ic</sub></i>).
+ *        It is a type-dependent parameter.
+ * @param kiomega Speed PI controller integration gain (<i>K</i><i><sub>Iomega</sub></i>).
+ *        It is a type-dependent parameter.
+ * @param kpc Power PI controller proportional gain (<i>K</i><i><sub>Pc</sub></i>).
+ *        It is a type-dependent parameter.
+ * @param kpomega Speed PI controller proportional gain (<i>K</i><i><sub>Pomega</sub></i>).
+ *        It is a type-dependent parameter.
+ * @param kpx Pitch cross coupling gain (<i>K</i><i><sub>PX</sub></i>).
+ *        It is a type-dependent parameter.
+ * @param thetamax Maximum pitch angle (<i>theta</i><i><sub>max</sub></i>) (&gt; WindContPitchAngleIEC.thetamin).
+ *        It is a type-dependent parameter.
+ * @param thetamin Minimum pitch angle (<i>theta</i><i><sub>min</sub></i>) (&lt; WindContPitchAngleIEC.thetamax).
+ *        It is a type-dependent parameter.
+ * @param ttheta Pitch time constant (<i>ttheta</i>) (&gt;= 0).
+ *        It is a type-dependent parameter.
  * @param WindTurbineType3IEC [[ch.ninecode.model.WindTurbineType3IEC WindTurbineType3IEC]] Wind turbine type 3 model with which this pitch control model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
- * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
-<ul>
-	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
-	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
-	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
-	<li>Type 4: Wind turbines connected fully through a power converter.</li>
-</ul>
-
-Models included in this package are according to IEC 61400-27-1.
-
-Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
+ * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
+- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+- type 4: wind turbines connected to the grid through a full size power converter.
+Models included in this package are according to IEC 61400-27-1:2015.
  */
 case class WindContPitchAngleIEC
 (
@@ -1151,69 +1105,64 @@ extends
 /**
  * Q control model.
  *
- * Reference: IEC Standard 61400-27-1 Section 5.6.5.7.
+ * Reference: IEC 61400-27-1:2015, 5.6.5.7.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param iqh1 Maximum reactive current injection during dip (i<sub>qh1</sub>).
- *        It is type dependent parameter.
- * @param iqmax Maximum reactive current injection (i<sub>qmax</sub>).
- *        It is type dependent parameter.
- * @param iqmin Minimum reactive current injection (i<sub>qmin</sub>).
- *        It is type dependent parameter.
- * @param iqpost Post fault reactive current injection (<i>i</i><sub>qpost</sub>).
- *        It is project dependent parameter.
- * @param kiq Reactive power PI controller integration gain (<i>K</i><sub>I,q</sub>).
- *        It is type dependent parameter.
- * @param kiu Voltage PI controller integration gain (<i>K</i><sub>I,u</sub>).
- *        It is type dependent parameter.
- * @param kpq Reactive power PI controller proportional gain (<i>K</i><sub>P,q</sub>).
- *        It is type dependent parameter.
- * @param kpu Voltage PI controller proportional gain (<i>K</i><sub>P,u</sub>).
- *        It is type dependent parameter.
- * @param kqv Voltage scaling factor for UVRT current (<i>K</i><sub>qv</sub>).
- *        It is project dependent parameter.
- * @param rdroop Resistive component of voltage drop impedance (<i>r</i><sub>droop</sub>).
- *        It is project dependent parameter.
- * @param tpfiltq Power measurement filter time constant (<i>T</i><sub>pfiltq</sub>).
- *        It is type dependent parameter.
- * @param tpost Length of time period where post fault reactive power is injected (<i>T</i><sub>post</sub>).
- *        It is project dependent parameter.
- * @param tqord Time constant in reactive power order lag (<i>T</i><sub>qord</sub>).
- *        It is type dependent parameter.
- * @param tufiltq Voltage measurement filter time constant (<i>T</i><sub>ufiltq</sub>).
- *        It is type dependent parameter.
- * @param udb1 Voltage dead band lower limit (<i>u</i><sub>db1</sub>).
- *        It is type dependent parameter.
- * @param udb2 Voltage dead band upper limit (<i>u</i><sub>db2</sub>).
- *        It is type dependent parameter.
- * @param umax Maximum voltage in voltage PI controller integral term (u<sub>max</sub>).
- *        It is type dependent parameter.
- * @param umin Minimum voltage in voltage PI controller integral term (u<sub>min</sub>).
- *        It is type dependent parameter.
- * @param uqdip Voltage threshold for UVRT detection in q control (<i>u</i><sub>qdip</sub>).
- *        It is type dependent parameter.
- * @param uref0 User defined bias in voltage reference (<i>u</i><sub>ref0</sub>), used when <i>M</i><sub>qG</sub> is set to voltage control.
- *        It is case dependent parameter.
- * @param windQcontrolModesType Types of general wind turbine Q control modes (<i>M</i><sub>qG</sub>).
- *        It is project dependent parameter.
- * @param windUVRTQcontrolModesType Types of UVRT Q control modes (<i>M</i><sub>qUVRT</sub>).
- *        It is project dependent parameter.
- * @param xdroop Inductive component of voltage drop impedance (<i>x</i><sub>droop</sub>).
- *        It is project dependent parameter.
- * @param WindTurbineType3or4IEC [[ch.ninecode.model.WindTurbineType3or4IEC WindTurbineType3or4IEC]] Wind turbine type 3 or 4 model with which this reactive control model is associated.
+ * @param iqh1 Maximum reactive current injection during dip (<i>i</i><i><sub>qh1</sub></i>).
+ *        It is a type-dependent parameter.
+ * @param iqmax Maximum reactive current injection (<i>i</i><i><sub>qmax</sub></i>) (&gt; WindContQIEC.iqmin).
+ *        It is a type-dependent parameter.
+ * @param iqmin Minimum reactive current injection (<i>i</i><i><sub>qmin</sub></i>) (&lt; WindContQIEC.iqmax).
+ *        It is a type-dependent parameter.
+ * @param iqpost Post fault reactive current injection (<i>i</i><i><sub>qpost</sub></i>).
+ *        It is a project-dependent parameter.
+ * @param kiq Reactive power PI controller integration gain (<i>K</i><i><sub>I,q</sub></i>).
+ *        It is a type-dependent parameter.
+ * @param kiu Voltage PI controller integration gain (<i>K</i><i><sub>I,u</sub></i>).
+ *        It is a type-dependent parameter.
+ * @param kpq Reactive power PI controller proportional gain (<i>K</i><i><sub>P,q</sub></i>).
+ *        It is a type-dependent parameter.
+ * @param kpu Voltage PI controller proportional gain (<i>K</i><i><sub>P,u</sub></i>).
+ *        It is a type-dependent parameter.
+ * @param kqv Voltage scaling factor for UVRT current (<i>K</i><i><sub>qv</sub></i>).
+ *        It is a project-dependent parameter.
+ * @param rdroop Resistive component of voltage drop impedance (<i>r</i><i><sub>droop</sub></i>) (&gt;= 0).
+ *        It is a project-dependent parameter.
+ * @param tpfiltq Power measurement filter time constant (<i>T</i><i><sub>pfiltq</sub></i>) (&gt;= 0).
+ *        It is a type-dependent parameter.
+ * @param tpost Length of time period where post fault reactive power is injected (<i>T</i><i><sub>post</sub></i>) (&gt;= 0).
+ *        It is a project-dependent parameter.
+ * @param tqord Time constant in reactive power order lag (<i>T</i><i><sub>qord</sub></i>) (&gt;= 0).
+ *        It is a type-dependent parameter.
+ * @param tufiltq Voltage measurement filter time constant (<i>T</i><i><sub>ufiltq</sub></i>) (&gt;= 0).
+ *        It is a type-dependent parameter.
+ * @param udb1 Voltage deadband lower limit (<i>u</i><i><sub>db1</sub></i>).
+ *        It is a type-dependent parameter.
+ * @param udb2 Voltage deadband upper limit (<i>u</i><i><sub>db2</sub></i>).
+ *        It is a type-dependent parameter.
+ * @param umax Maximum voltage in voltage PI controller integral term (<i>u</i><i><sub>max</sub></i>) (&gt; WindContQIEC.umin).
+ *        It is a type-dependent parameter.
+ * @param umin Minimum voltage in voltage PI controller integral term (<i>u</i><i><sub>min</sub></i>) (&lt; WindContQIEC.umax).
+ *        It is a type-dependent parameter.
+ * @param uqdip Voltage threshold for UVRT detection in Q control (<i>u</i><i><sub>qdip</sub></i>).
+ *        It is a type-dependent parameter.
+ * @param uref0 User-defined bias in voltage reference (<i>u</i><i><sub>ref0</sub></i>).
+ *        It is a case-dependent parameter.
+ * @param windQcontrolModesType Types of general wind turbine Q control modes (<i>M</i><i><sub>qG</sub></i>).
+ *        It is a project-dependent parameter.
+ * @param windUVRTQcontrolModesType Types of UVRT Q control modes (<i>M</i><i><sub>qUVRT</sub></i>).
+ *        It is a project-dependent parameter.
+ * @param xdroop Inductive component of voltage drop impedance (<i>x</i><i><sub>droop</sub></i>) (&gt;= 0).
+ *        It is a project-dependent parameter.
+ * @param WindTurbineType3or4IEC [[ch.ninecode.model.WindTurbineType3or4IEC WindTurbineType3or4IEC]] Wind turbine type 3 or type 4 model with which this reactive control model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
- * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
-<ul>
-	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
-	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
-	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
-	<li>Type 4: Wind turbines connected fully through a power converter.</li>
-</ul>
-
-Models included in this package are according to IEC 61400-27-1.
-
-Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
+ * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
+- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+- type 4: wind turbines connected to the grid through a full size power converter.
+Models included in this package are according to IEC 61400-27-1:2015.
  */
 case class WindContQIEC
 (
@@ -1403,27 +1352,22 @@ extends
 /**
  * Constant Q limitation model.
  *
- * Reference: IEC Standard 61400-27-1 Section 5.6.5.9.
+ * Reference: IEC 61400-27-1:2015, 5.6.5.9.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param qmax Maximum reactive power (<i>q</i><sub>max</sub>).
- *        It is type dependent parameter.
- * @param qmin Minimum reactive power (<i>q</i><sub>min</sub>).
- *        It is type dependent parameter.
- * @param WindTurbineType3or4IEC [[ch.ninecode.model.WindTurbineType3or4IEC WindTurbineType3or4IEC]] Wind generator type 3 or 4 model with which this constant Q limitation model is associated.
+ * @param qmax Maximum reactive power (<i>q</i><i><sub>max</sub></i>) (&gt; WindContQLimIEC.qmin).
+ *        It is a type-dependent parameter.
+ * @param qmin Minimum reactive power (<i>q</i><i><sub>min</sub></i>) (&lt; WindContQLimIEC.qmax).
+ *        It is a type-dependent parameter.
+ * @param WindTurbineType3or4IEC [[ch.ninecode.model.WindTurbineType3or4IEC WindTurbineType3or4IEC]] Wind generator type 3 or type 4 model with which this constant Q limitation model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
- * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
-<ul>
-	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
-	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
-	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
-	<li>Type 4: Wind turbines connected fully through a power converter.</li>
-</ul>
-
-Models included in this package are according to IEC 61400-27-1.
-
-Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
+ * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
+- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+- type 4: wind turbines connected to the grid through a full size power converter.
+Models included in this package are according to IEC 61400-27-1:2015.
  */
 case class WindContQLimIEC
 (
@@ -1508,28 +1452,23 @@ extends
 /**
  * QP and QU limitation model.
  *
- * Reference: IEC Standard 61400-27-1 Section 5.6.5.10.
+ * Reference: IEC 61400-27-1:2015, 5.6.5.10.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param tpfiltql Power measurement filter time constant for Q capacity (<i>T</i><sub>pfiltql</sub>).
- *        It is type dependent parameter.
- * @param tufiltql Voltage measurement filter time constant for Q capacity (<i>T</i><sub>ufiltql</sub>).
- *        It is type dependent parameter.
+ * @param tpfiltql Power measurement filter time constant for Q capacity (<i>T</i><i><sub>pfiltql</sub></i>) (&gt;= 0).
+ *        It is a type-dependent parameter.
+ * @param tufiltql Voltage measurement filter time constant for Q capacity (<i>T</i><i><sub>ufiltql</sub></i>) (&gt;= 0).
+ *        It is a type-dependent parameter.
  * @param WindDynamicsLookupTable [[ch.ninecode.model.WindDynamicsLookupTable WindDynamicsLookupTable]] The wind dynamics lookup table associated with this QP and QU limitation model.
- * @param WindTurbineType3or4IEC [[ch.ninecode.model.WindTurbineType3or4IEC WindTurbineType3or4IEC]] Wind generator type 3 or 4 model with which this QP and QU limitation model is associated.
+ * @param WindTurbineType3or4IEC [[ch.ninecode.model.WindTurbineType3or4IEC WindTurbineType3or4IEC]] Wind generator type 3 or type 4 model with which this QP and QU limitation model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
- * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
-<ul>
-	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
-	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
-	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
-	<li>Type 4: Wind turbines connected fully through a power converter.</li>
-</ul>
-
-Models included in this package are according to IEC 61400-27-1.
-
-Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
+ * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
+- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+- type 4: wind turbines connected to the grid through a full size power converter.
+Models included in this package are according to IEC 61400-27-1:2015.
  */
 case class WindContQPQULimIEC
 (
@@ -1621,40 +1560,35 @@ extends
 /**
  * Rotor resistance control model.
  *
- * Reference: IEC Standard 61400-27-1 Section 5.6.5.3.
+ * Reference: IEC 61400-27-1:2015, 5.6.5.3.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param kirr Integral gain in rotor resistance PI controller (<i>K</i><sub>Irr</sub>).
- *        It is type dependent parameter.
- * @param komegafilt Filter gain for generator speed measurement (K<sub>omegafilt</sub>).
- *        It is type dependent parameter.
- * @param kpfilt Filter gain for power measurement (<i>K</i><sub>pfilt</sub>).
- *        It is type dependent parameter.
- * @param kprr Proportional gain in rotor resistance PI controller (<i>K</i><sub>Prr</sub>).
- *        It is type dependent parameter.
- * @param rmax Maximum rotor resistance (<i>r</i><sub>max</sub>).
- *        It is type dependent parameter.
- * @param rmin Minimum rotor resistance (<i>r</i><sub>min</sub>).
- *        It is type dependent parameter.
- * @param tomegafiltrr Filter time constant for generator speed measurement (<i>T</i><sub>omegafiltrr</sub>).
- *        It is type dependent parameter.
- * @param tpfiltrr Filter time constant for power measurement (<i>T</i><sub>pfiltrr</sub>).
- *        It is type dependent parameter.
+ * @param kirr Integral gain in rotor resistance PI controller (<i>K</i><i><sub>Irr</sub></i>).
+ *        It is a type-dependent parameter.
+ * @param komegafilt Filter gain for generator speed measurement (<i>K</i><i><sub>omegafilt</sub></i>).
+ *        It is a type-dependent parameter.
+ * @param kpfilt Filter gain for power measurement (<i>K</i><i><sub>pfilt</sub></i>).
+ *        It is a type-dependent parameter.
+ * @param kprr Proportional gain in rotor resistance PI controller (<i>K</i><i><sub>Prr</sub></i>).
+ *        It is a type-dependent parameter.
+ * @param rmax Maximum rotor resistance (<i>r</i><i><sub>max</sub></i>) (&gt; WindContRotorRIEC.rmin).
+ *        It is a type-dependent parameter.
+ * @param rmin Minimum rotor resistance (<i>r</i><i><sub>min</sub></i>) (&lt; WindContRotorRIEC.rmax).
+ *        It is a type-dependent parameter.
+ * @param tomegafiltrr Filter time constant for generator speed measurement (<i>T</i><i><sub>omegafiltrr</sub></i>) (&gt;= 0).
+ *        It is a type-dependent parameter.
+ * @param tpfiltrr Filter time constant for power measurement (<i>T</i><i><sub>pfiltrr</sub></i>) (&gt;= 0).
+ *        It is a type-dependent parameter.
  * @param WindDynamicsLookupTable [[ch.ninecode.model.WindDynamicsLookupTable WindDynamicsLookupTable]] The wind dynamics lookup table associated with this rotor resistance control model.
  * @param WindGenTurbineType2IEC [[ch.ninecode.model.WindGenTurbineType2IEC WindGenTurbineType2IEC]] Wind turbine type 2 model with whitch this wind control rotor resistance model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
- * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
-<ul>
-	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
-	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
-	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
-	<li>Type 4: Wind turbines connected fully through a power converter.</li>
-</ul>
-
-Models included in this package are according to IEC 61400-27-1.
-
-Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
+ * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
+- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+- type 4: wind turbines connected to the grid through a full size power converter.
+Models included in this package are according to IEC 61400-27-1:2015.
  */
 case class WindContRotorRIEC
 (
@@ -1774,13 +1708,13 @@ extends
 }
 
 /**
- * The class models a look up table for the purpose of wind standard models.
+ * Look up table for the purpose of wind standard models.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param input Input value (x) for the lookup table function.
+ * @param input Input value (<i>x</i>) for the lookup table function.
  * @param lookupTableFunctionType Type of the lookup table function.
- * @param output Output value (y) for the lookup table function.
- * @param sequence Sequence numbers of the pairs of the input (x) and the output (y) of the lookup table function.
+ * @param output Output value (<i>y</i>) for the lookup table function.
+ * @param sequence Sequence numbers of the pairs of the input (<i>x</i>) and the output (<i>y</i>) of the lookup table function.
  * @param WindContCurrLimIEC [[ch.ninecode.model.WindContCurrLimIEC WindContCurrLimIEC]] The current control limitation model with which this wind dynamics lookup table is associated.
  * @param WindContPType3IEC [[ch.ninecode.model.WindContPType3IEC WindContPType3IEC]] The P control type 3 model with which this wind dynamics lookup table is associated.
  * @param WindContQPQULimIEC [[ch.ninecode.model.WindContQPQULimIEC WindContQPQULimIEC]] The QP and QU limitation model with which this wind dynamics lookup table is associated.
@@ -1792,17 +1726,12 @@ extends
  * @param WindProtectionIEC [[ch.ninecode.model.WindProtectionIEC WindProtectionIEC]] The grid protection model with which this wind dynamics lookup table is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
- * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
-<ul>
-	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
-	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
-	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
-	<li>Type 4: Wind turbines connected fully through a power converter.</li>
-</ul>
-
-Models included in this package are according to IEC 61400-27-1.
-
-Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
+ * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
+- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+- type 4: wind turbines connected to the grid through a full size power converter.
+Models included in this package are according to IEC 61400-27-1:2015.
  */
 case class WindDynamicsLookupTable
 (
@@ -1943,25 +1872,20 @@ extends
 }
 
 /**
- * Wind turbine IEC Type 1A.
+ * Wind turbine IEC type 1A.
  *
- * Reference: IEC Standard 61400-27-1, section 5.5.2.2.
+ * Reference: IEC 61400-27-1:2015, 5.5.2.2.
  *
  * @param sup [[ch.ninecode.model.WindTurbineType1or2IEC WindTurbineType1or2IEC]] Reference to the superclass object.
  * @param WindAeroConstIEC [[ch.ninecode.model.WindAeroConstIEC WindAeroConstIEC]] Wind aerodynamic model associated with this wind turbine type 1A model.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
- * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
-<ul>
-	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
-	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
-	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
-	<li>Type 4: Wind turbines connected fully through a power converter.</li>
-</ul>
-
-Models included in this package are according to IEC 61400-27-1.
-
-Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
+ * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
+- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+- type 4: wind turbines connected to the grid through a full size power converter.
+Models included in this package are according to IEC 61400-27-1:2015.
  */
 case class WindGenTurbineType1aIEC
 (
@@ -2033,25 +1957,20 @@ extends
 }
 
 /**
- * Wind turbine IEC Type 1B.
+ * Wind turbine IEC type 1B.
  *
- * Reference: IEC Standard 61400-27-1, section 5.5.2.3.
+ * Reference: IEC 61400-27-1:2015, 5.5.2.3.
  *
  * @param sup [[ch.ninecode.model.WindTurbineType1or2IEC WindTurbineType1or2IEC]] Reference to the superclass object.
  * @param WindPitchContPowerIEC [[ch.ninecode.model.WindPitchContPowerIEC WindPitchContPowerIEC]] Pitch control power model associated with this wind turbine type 1B model.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
- * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
-<ul>
-	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
-	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
-	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
-	<li>Type 4: Wind turbines connected fully through a power converter.</li>
-</ul>
-
-Models included in this package are according to IEC 61400-27-1.
-
-Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
+ * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
+- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+- type 4: wind turbines connected to the grid through a full size power converter.
+Models included in this package are according to IEC 61400-27-1:2015.
  */
 case class WindGenTurbineType1bIEC
 (
@@ -2123,26 +2042,21 @@ extends
 }
 
 /**
- * Wind turbine IEC Type 2.
+ * Wind turbine IEC type 2.
  *
- * Reference: IEC Standard 61400-27-1, section 5.5.3.
+ * Reference: IEC 61400-27-1:2015, 5.5.3.
  *
  * @param sup [[ch.ninecode.model.WindTurbineType1or2IEC WindTurbineType1or2IEC]] Reference to the superclass object.
  * @param WindContRotorRIEC [[ch.ninecode.model.WindContRotorRIEC WindContRotorRIEC]] Wind control rotor resistance model associated with wind turbine type 2 model.
  * @param WindPitchContPowerIEC [[ch.ninecode.model.WindPitchContPowerIEC WindPitchContPowerIEC]] Pitch control power model associated with this wind turbine type 2 model.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
- * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
-<ul>
-	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
-	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
-	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
-	<li>Type 4: Wind turbines connected fully through a power converter.</li>
-</ul>
-
-Models included in this package are according to IEC 61400-27-1.
-
-Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
+ * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
+- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+- type 4: wind turbines connected to the grid through a full size power converter.
+Models included in this package are according to IEC 61400-27-1:2015.
  */
 case class WindGenTurbineType2IEC
 (
@@ -2220,29 +2134,24 @@ extends
 }
 
 /**
- * Parent class supporting relationships to IEC wind turbines Type 3 generator models of IEC type 3A and 3B.
+ * Parent class supporting relationships to IEC wind turbines type 3 generator models of IEC type 3A and 3B.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param dipmax Maximum active current ramp rate (di<sub>pmax</sub>).
- *        It is project dependent parameter.
- * @param diqmax Maximum reactive current ramp rate (di<sub>qmax</sub>).
- *        It is project dependent parameter.
- * @param xs Electromagnetic transient reactance (x<sub>S</sub>).
- *        It is type dependent parameter.
+ * @param dipmax Maximum active current ramp rate (<i>di</i><i><sub>pmax</sub></i>).
+ *        It is a project-dependent parameter.
+ * @param diqmax Maximum reactive current ramp rate (<i>di</i><i><sub>qmax</sub></i>).
+ *        It is a project-dependent parameter.
+ * @param xs Electromagnetic transient reactance (<i>x</i><i><sub>S</sub></i>).
+ *        It is a type-dependent parameter.
  * @param WindTurbineType3IEC [[ch.ninecode.model.WindTurbineType3IEC WindTurbineType3IEC]] Wind turbine type 3 model with which this wind generator type 3 is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
- * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
-<ul>
-	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
-	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
-	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
-	<li>Type 4: Wind turbines connected fully through a power converter.</li>
-</ul>
-
-Models included in this package are according to IEC 61400-27-1.
-
-Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
+ * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
+- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+- type 4: wind turbines connected to the grid through a full size power converter.
+Models included in this package are according to IEC 61400-27-1:2015.
  */
 case class WindGenType3IEC
 (
@@ -2330,29 +2239,24 @@ extends
 }
 
 /**
- * IEC Type 3A generator set model.
+ * IEC type 3A generator set model.
  *
- * Reference: IEC Standard 61400-27-1 Section 5.6.3.2.
+ * Reference: IEC 61400-27-1:2015, 5.6.3.2.
  *
  * @param sup [[ch.ninecode.model.WindGenType3IEC WindGenType3IEC]] Reference to the superclass object.
- * @param kpc Current PI controller proportional gain (K<sub>Pc</sub>).
- *        It is type dependent parameter.
- * @param tic Current PI controller integration time constant (T<sub>Ic</sub>).
- *        It is type dependent parameter.
+ * @param kpc Current PI controller proportional gain (<i>K</i><i><sub>Pc</sub></i>).
+ *        It is a type-dependent parameter.
+ * @param tic Current PI controller integration time constant (<i>T</i><i><sub>Ic</sub></i>) (&gt;= 0).
+ *        It is a type-dependent parameter.
  * @param WindTurbineType4IEC [[ch.ninecode.model.WindTurbineType4IEC WindTurbineType4IEC]] Wind turbine type 4 model with which this wind generator type 3A model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
- * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
-<ul>
-	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
-	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
-	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
-	<li>Type 4: Wind turbines connected fully through a power converter.</li>
-</ul>
-
-Models included in this package are according to IEC 61400-27-1.
-
-Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
+ * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
+- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+- type 4: wind turbines connected to the grid through a full size power converter.
+Models included in this package are according to IEC 61400-27-1:2015.
  */
 case class WindGenType3aIEC
 (
@@ -2435,35 +2339,26 @@ extends
 }
 
 /**
- * IEC Type 3B generator set model.
+ * IEC type 3B generator set model.
  *
- * Reference: IEC Standard 61400-27-1 Section 5.6.3.3.
+ * Reference: IEC 61400-27-1:2015, 5.6.3.3.
  *
  * @param sup [[ch.ninecode.model.WindGenType3IEC WindGenType3IEC]] Reference to the superclass object.
- * @param mwtcwp Crowbar control mode (<i>M</i><sub>WTcwp</sub>).
- *        <ul>
- *        <li>true = 1 in the model</li>
- *        <li>false = 0 in the model.</li>
- *        </ul>
- *        The parameter is case dependent parameter.
- * @param tg Current generation Time constant (<i>T</i><sub>g</sub>).
- *        It is type dependent parameter.
- * @param two Time constant for crowbar washout filter (<i>T</i><sub>wo</sub>).
- *        It is case dependent parameter.
+ * @param mwtcwp Crowbar control mode (<i>M</i><i><sub>WTcwp</sub></i>).
+ *        It is a case-dependent parameter.
+ * @param tg Current generation time constant (<i>T</i><i><sub>g</sub></i>) (&gt;= 0).
+ *        It is a type-dependent parameter.
+ * @param two Time constant for crowbar washout filter (<i>T</i><i><sub>wo</sub></i>) (&gt;= 0).
+ *        It is a case-dependent parameter.
  * @param WindDynamicsLookupTable [[ch.ninecode.model.WindDynamicsLookupTable WindDynamicsLookupTable]] The wind dynamics lookup table associated with this generator type 3B model.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
- * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
-<ul>
-	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
-	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
-	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
-	<li>Type 4: Wind turbines connected fully through a power converter.</li>
-</ul>
-
-Models included in this package are according to IEC 61400-27-1.
-
-Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
+ * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
+- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+- type 4: wind turbines connected to the grid through a full size power converter.
+Models included in this package are according to IEC 61400-27-1:2015.
  */
 case class WindGenType3bIEC
 (
@@ -2551,34 +2446,29 @@ extends
 }
 
 /**
- * IEC Type 4 generator set model.
+ * IEC type 4 generator set model.
  *
- * Reference: IEC Standard 61400-27-1 Section 5.6.3.4.
+ * Reference: IEC 61400-27-1:2015, 5.6.3.4.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param dipmax Maximum active current ramp rate (di<sub>pmax</sub>).
- *        It is project dependent parameter.
- * @param diqmax Maximum reactive current ramp rate (di<sub>qmax</sub>).
- *        It is project dependent parameter.
- * @param diqmin Minimum reactive current ramp rate (d<i>i</i><sub>qmin</sub>).
- *        It is case dependent parameter.
- * @param tg Time constant (T<sub>g</sub>).
- *        It is type dependent parameter.
+ * @param dipmax Maximum active current ramp rate (<i>di</i><i><sub>pmax</sub></i>).
+ *        It is a project-dependent parameter.
+ * @param diqmax Maximum reactive current ramp rate (<i>di</i><i><sub>qmax</sub></i>).
+ *        It is a project-dependent parameter.
+ * @param diqmin Minimum reactive current ramp rate (<i>di</i><i><sub>qmin</sub></i>).
+ *        It is a project-dependent parameter.
+ * @param tg Time constant (<i>T</i><i><sub>g</sub></i>) (&gt;= 0).
+ *        It is a type-dependent parameter.
  * @param WindTurbineType4aIEC [[ch.ninecode.model.WindTurbineType4aIEC WindTurbineType4aIEC]] Wind turbine type 4A model with which this wind generator type 4 model is associated.
  * @param WindTurbineType4bIEC [[ch.ninecode.model.WindTurbineType4bIEC WindTurbineType4bIEC]] Wind turbine type 4B model with which this wind generator type 4 model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
- * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
-<ul>
-	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
-	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
-	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
-	<li>Type 4: Wind turbines connected fully through a power converter.</li>
-</ul>
-
-Models included in this package are according to IEC 61400-27-1.
-
-Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
+ * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
+- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+- type 4: wind turbines connected to the grid through a full size power converter.
+Models included in this package are according to IEC 61400-27-1:2015.
  */
 case class WindGenType4IEC
 (
@@ -2679,33 +2569,28 @@ extends
 /**
  * Two mass model.
  *
- * Reference: IEC Standard 61400-27-1 Section 5.6.2.1.
+ * Reference: IEC 61400-27-1:2015, 5.6.2.1.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param cdrt Drive train damping (<i>c</i><i><sub>drt</sub></i><i>)</i>.
- *        It is type dependent parameter.
- * @param hgen Inertia constant of generator (<i>H</i><sub>gen</sub>).
- *        It is type dependent parameter.
- * @param hwtr Inertia constant of wind turbine rotor (<i>H</i><sub>WTR</sub>).
- *        It is type dependent parameter.
+ *        It is a type-dependent parameter.
+ * @param hgen Inertia constant of generator (<i>H</i><i><sub>gen</sub></i>) (&gt;= 0).
+ *        It is a type-dependent parameter.
+ * @param hwtr Inertia constant of wind turbine rotor (<i>H</i><i><sub>WTR</sub></i>) (&gt;= 0).
+ *        It is a type-dependent parameter.
  * @param kdrt Drive train stiffness (<i>k</i><i><sub>drt</sub></i>).
- *        It is type dependent parameter.
- * @param WindTurbineType1or2IEC [[ch.ninecode.model.WindTurbineType1or2IEC WindTurbineType1or2IEC]] Wind generator type 1 or 2 model with which this wind mechanical model is associated.
- * @param WindTurbineType3IEC [[ch.ninecode.model.WindTurbineType3IEC WindTurbineType3IEC]] Wind turbine Type 3 model with which this wind mechanical model is associated.
+ *        It is a type-dependent parameter.
+ * @param WindTurbineType1or2IEC [[ch.ninecode.model.WindTurbineType1or2IEC WindTurbineType1or2IEC]] Wind generator type 1 or type 2 model with which this wind mechanical model is associated.
+ * @param WindTurbineType3IEC [[ch.ninecode.model.WindTurbineType3IEC WindTurbineType3IEC]] Wind turbine type 3 model with which this wind mechanical model is associated.
  * @param WindTurbineType4bIEC [[ch.ninecode.model.WindTurbineType4bIEC WindTurbineType4bIEC]] Wind turbine type 4B model with which this wind mechanical model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
- * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
-<ul>
-	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
-	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
-	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
-	<li>Type 4: Wind turbines connected fully through a power converter.</li>
-</ul>
-
-Models included in this package are according to IEC 61400-27-1.
-
-Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
+ * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
+- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+- type 4: wind turbines connected to the grid through a full size power converter.
+Models included in this package are according to IEC 61400-27-1:2015.
  */
 case class WindMechIEC
 (
@@ -2812,39 +2697,34 @@ extends
 /**
  * Pitch control power model.
  *
- * Reference: IEC Standard 61400-27-1 Section 5.6.5.1.
+ * Reference: IEC 61400-27-1:2015, 5.6.5.1.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param dpmax Rate limit for increasing power (d<i>p</i><sub>max</sub>).
- *        It is type dependent parameter.
- * @param dpmin Rate limit for decreasing power (d<i>p</i><sub>min</sub>).
- *        It is type dependent parameter.
- * @param pmin Minimum power setting (<i>p</i><sub>min</sub>).
- *        It is type dependent parameter.
- * @param pset If <i>p</i><sub>init </sub>&lt; <i>p</i><sub>set </sub>then power will ne ramped down to <i>p</i><sub>min</sub>.
- *        It is (<i>p</i><sub>set</sub>) in the IEC 61400-27-1. It is type dependent parameter.
- * @param t1 Lag time constant (<i>T</i><sub>1</sub>).
- *        It is type dependent parameter.
- * @param tr Voltage measurement time constant (<i>T</i><sub>r</sub>).
- *        It is type dependent parameter.
- * @param uuvrt Dip detection threshold (u<sub>UVRT</sub>).
- *        It is type dependent parameter.
+ * @param dpmax Rate limit for increasing power (<i>dp</i><i><sub>max</sub></i>) (&gt; WindPitchContPowerIEC.dpmin).
+ *        It is a type-dependent parameter.
+ * @param dpmin Rate limit for decreasing power (<i>dp</i><i><sub>min</sub></i>) (&lt; WindPitchContPowerIEC.dpmax).
+ *        It is a type-dependent parameter.
+ * @param pmin Minimum power setting (<i>p</i><i><sub>min</sub></i>).
+ *        It is a type-dependent parameter.
+ * @param pset If <i>p</i><i><sub>init</sub></i><sub> </sub>&lt; <i>p</i><i><sub>set</sub></i><sub> </sub>then power will be ramped down to <i>p</i><i><sub>min</sub></i>.
+ *        It is (<i>p</i><i><sub>set</sub></i>) in the IEC 61400-27-1:2015. It is a type-dependent parameter.
+ * @param t1 Lag time constant (<i>T</i><i><sub>1</sub></i>) (&gt;= 0).
+ *        It is a type-dependent parameter.
+ * @param tr Voltage measurement time constant (<i>T</i><i><sub>r</sub></i>) (&gt;= 0).
+ *        It is a type-dependent parameter.
+ * @param uuvrt Dip detection threshold (<i>u</i><i><sub>UVRT</sub></i>).
+ *        It is a type-dependent parameter.
  * @param WindDynamicsLookupTable [[ch.ninecode.model.WindDynamicsLookupTable WindDynamicsLookupTable]] The wind dynamics lookup table associated with this pitch control power model.
- * @param WindGenTurbineType1bIEC [[ch.ninecode.model.WindGenTurbineType1bIEC WindGenTurbineType1bIEC]] Wind turbine type 1B model with which this Pitch control power model is associated.
- * @param WindGenTurbineType2IEC [[ch.ninecode.model.WindGenTurbineType2IEC WindGenTurbineType2IEC]] Wind turbine type 2 model with which this Pitch control power model is associated.
+ * @param WindGenTurbineType1bIEC [[ch.ninecode.model.WindGenTurbineType1bIEC WindGenTurbineType1bIEC]] Wind turbine type 1B model with which this pitch control power model is associated.
+ * @param WindGenTurbineType2IEC [[ch.ninecode.model.WindGenTurbineType2IEC WindGenTurbineType2IEC]] Wind turbine type 2 model with which this pitch control power model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
- * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
-<ul>
-	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
-	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
-	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
-	<li>Type 4: Wind turbines connected fully through a power converter.</li>
-</ul>
-
-Models included in this package are according to IEC 61400-27-1.
-
-Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
+ * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
+- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+- type 4: wind turbines connected to the grid through a full size power converter.
+Models included in this package are according to IEC 61400-27-1:2015.
  */
 case class WindPitchContPowerIEC
 (
@@ -2965,24 +2845,19 @@ extends
 }
 
 /**
- * Parent class supporting relationships to wind turbines Type 3 and 4 and wind plant IEC and user defined wind plants including their control models.
+ * Parent class supporting relationships to wind turbines type 3 and type 4 and wind plant IEC and user-defined wind plants including their control models.
  *
  * @param sup [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
  * @param RemoteInputSignal [[ch.ninecode.model.RemoteInputSignal RemoteInputSignal]] The remote signal with which this power plant is associated.
- * @param WindTurbineType3or4Dynamics [[ch.ninecode.model.WindTurbineType3or4Dynamics WindTurbineType3or4Dynamics]] The wind turbine type 3 or 4 associated with this wind plant.
+ * @param WindTurbineType3or4Dynamics [[ch.ninecode.model.WindTurbineType3or4Dynamics WindTurbineType3or4Dynamics]] The wind turbine type 3 or type 4 associated with this wind plant.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
- * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
-<ul>
-	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
-	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
-	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
-	<li>Type 4: Wind turbines connected fully through a power converter.</li>
-</ul>
-
-Models included in this package are according to IEC 61400-27-1.
-
-Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
+ * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
+- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+- type 4: wind turbines connected to the grid through a full size power converter.
+Models included in this package are according to IEC 61400-27-1:2015.
  */
 case class WindPlantDynamics
 (
@@ -3063,54 +2938,49 @@ extends
 /**
  * Frequency and active power controller model.
  *
- * Reference: IEC Standard 61400-27-1 Annex D.
+ * Reference: IEC 61400-27-1:2015, Annex D.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param dprefmax Maximum ramp rate of <i>p</i><sub>WTref</sub> request from the plant controller to the wind turbines (<i>dp</i><sub>refmax</sub>).
- *        It is case dependent parameter.
- * @param dprefmin Minimum (negative) ramp rate of <i>p</i><sub>WTref</sub> request from the plant controller to the wind turbines (<i>dp</i><sub>refmin</sub>).
- *        It is project dependent parameter.
- * @param dpwprefmax Maximum positive ramp rate for wind plant power reference (<i>dp</i><sub>WPrefmax</sub>).
- *        It is project dependent parameter.
- * @param dpwprefmin Maximum negative ramp rate for wind plant power reference (<i>dp</i><sub>WPrefmin</sub>).
- *        It is project dependent parameter.
- * @param kiwpp Plant P controller integral gain (<i>K</i><sub>IWPp</sub>).
- *        It is project dependent parameter.
- * @param kiwppmax Maximum PI integrator term (<i>K</i><sub>IWPpmax</sub>).
- *        It is project dependent parameter.
- * @param kiwppmin Minimum PI integrator term (<i>K</i><sub>IWPpmin</sub>).
- *        It is project dependent parameter.
- * @param kpwpp Plant P controller proportional gain (<i>K</i><sub>PWPp</sub>).
- *        It is project dependent parameter.
- * @param kwppref Power reference gain (<i>K</i><sub>WPpref</sub>).
- *        It is project dependent parameter.
- * @param prefmax Maximum <i>p</i><sub>WTref</sub> request from the plant controller to the wind turbines (<i>p</i><sub>refmax</sub>).
- *        It is project dependent parameter.
- * @param prefmin Minimum <i>p</i><sub>WTref</sub> request from the plant controller to the wind turbines (<i>p</i><sub>refmin</sub>).
- *        It is project dependent parameter.
- * @param tpft Lead time constant in reference value transfer function (<i>T</i><sub>pft</sub>).
- *        It is project dependent parameter.
- * @param tpfv Lag time constant in reference value transfer function (<i>T</i><sub>pfv</sub>).
- *        It is project dependent parameter.
- * @param twpffiltp Filter time constant for frequency measurement (<i>T</i><sub>WPffiltp</sub>).
- *        It is project dependent parameter.
- * @param twppfiltp Filter time constant for active power measurement (<i>T</i><sub>WPpfiltp</sub>).
- *        It is project dependent parameter.
+ * @param dprefmax Maximum ramp rate of <i>p</i><i><sub>WTref</sub></i> request from the plant controller to the wind turbines (<i>dp</i><i><sub>refmax</sub></i>) (&gt; WindPlantFreqPcontrolIEC.dprefmin).
+ *        It is a case-dependent parameter.
+ * @param dprefmin Minimum (negative) ramp rate of <i>p</i><i><sub>WTref</sub></i> request from the plant controller to the wind turbines (<i>dp</i><i><sub>refmin</sub></i>) (&lt; WindPlantFreqPcontrolIEC.dprefmax).
+ *        It is a project-dependent parameter.
+ * @param dpwprefmax Maximum positive ramp rate for wind plant power reference (<i>dp</i><i><sub>WPrefmax</sub></i>) (&gt; WindPlantFreqPcontrolIEC.dpwprefmin).
+ *        It is a project-dependent parameter.
+ * @param dpwprefmin Maximum negative ramp rate for wind plant power reference (<i>dp</i><i><sub>WPrefmin</sub></i>) (&lt; WindPlantFreqPcontrolIEC.dpwprefmax).
+ *        It is a project-dependent parameter.
+ * @param kiwpp Plant P controller integral gain (<i>K</i><i><sub>IWPp</sub></i>).
+ *        It is a project-dependent parameter.
+ * @param kiwppmax Maximum PI integrator term (<i>K</i><i><sub>IWPpmax</sub></i>) (&gt; WindPlantFreqPcontrolIEC.kiwppmin).
+ *        It is a project-dependent parameter.
+ * @param kiwppmin Minimum PI integrator term (<i>K</i><i><sub>IWPpmin</sub></i>) (&lt; WindPlantFreqPcontrolIEC.kiwppmax).
+ *        It is a project-dependent parameter.
+ * @param kpwpp Plant P controller proportional gain (<i>K</i><i><sub>PWPp</sub></i>).
+ *        It is a project-dependent parameter.
+ * @param kwppref Power reference gain (<i>K</i><i><sub>WPpref</sub></i>).
+ *        It is a project-dependent parameter.
+ * @param prefmax Maximum <i>p</i><i><sub>WTref</sub></i> request from the plant controller to the wind turbines (<i>p</i><i><sub>refmax</sub></i>) (&gt; WindPlantFreqPcontrolIEC.prefmin).
+ *        It is a project-dependent parameter.
+ * @param prefmin Minimum <i>p</i><i><sub>WTref</sub></i> request from the plant controller to the wind turbines (<i>p</i><i><sub>refmin</sub></i>) (&lt; WindPlantFreqPcontrolIEC.prefmax).
+ *        It is a project-dependent parameter.
+ * @param tpft Lead time constant in reference value transfer function (<i>T</i><i><sub>pft</sub></i>) (&gt;= 0).
+ *        It is a project-dependent parameter.
+ * @param tpfv Lag time constant in reference value transfer function (<i>T</i><i><sub>pfv</sub></i>) (&gt;= 0).
+ *        It is a project-dependent parameter.
+ * @param twpffiltp Filter time constant for frequency measurement (<i>T</i><i><sub>WPffiltp</sub></i>) (&gt;= 0).
+ *        It is a project-dependent parameter.
+ * @param twppfiltp Filter time constant for active power measurement (<i>T</i><i><sub>WPpfiltp</sub></i>) (&gt;= 0).
+ *        It is a project-dependent parameter.
  * @param WindDynamicsLookupTable [[ch.ninecode.model.WindDynamicsLookupTable WindDynamicsLookupTable]] The wind dynamics lookup table associated with this frequency and active power wind plant model.
  * @param WindPlantIEC [[ch.ninecode.model.WindPlantIEC WindPlantIEC]] Wind plant model with which this wind plant frequency and active power control is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
- * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
-<ul>
-	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
-	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
-	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
-	<li>Type 4: Wind turbines connected fully through a power converter.</li>
-</ul>
-
-Models included in this package are according to IEC 61400-27-1.
-
-Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
+ * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
+- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+- type 4: wind turbines connected to the grid through a full size power converter.
+Models included in this package are according to IEC 61400-27-1:2015.
  */
 case class WindPlantFreqPcontrolIEC
 (
@@ -3267,24 +3137,19 @@ extends
 /**
  * Simplified IEC type plant level model.
  *
- * Reference: IEC 61400-27-1, Annex D.
+ * Reference: IEC 61400-27-1:2015, Annex D.
  *
  * @param sup [[ch.ninecode.model.WindPlantDynamics WindPlantDynamics]] Reference to the superclass object.
  * @param WindPlantFreqPcontrolIEC [[ch.ninecode.model.WindPlantFreqPcontrolIEC WindPlantFreqPcontrolIEC]] Wind plant frequency and active power control model associated with this wind plant.
  * @param WindPlantReactiveControlIEC [[ch.ninecode.model.WindPlantReactiveControlIEC WindPlantReactiveControlIEC]] Wind plant model with which this wind reactive control is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
- * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
-<ul>
-	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
-	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
-	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
-	<li>Type 4: Wind turbines connected fully through a power converter.</li>
-</ul>
-
-Models included in this package are according to IEC 61400-27-1.
-
-Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
+ * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
+- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+- type 4: wind turbines connected to the grid through a full size power converter.
+Models included in this package are according to IEC 61400-27-1:2015.
  */
 case class WindPlantIEC
 (
@@ -3364,60 +3229,55 @@ extends
 /**
  * Simplified plant voltage and reactive power control model for use with type 3 and type 4 wind turbine models.
  *
- * Reference: IEC Standard 61400-27-1 Annex D.
+ * Reference: IEC 61400-27-1:2015, Annex D.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param dxrefmax Maximum positive ramp rate for wind turbine reactive power/voltage reference (<i>dx</i><sub>refmax</sub>).
- *        It is project dependent parameter.
- * @param dxrefmin Maximum negative ramp rate for wind turbine reactive power/voltage reference (<i>dx</i><sub>refmin</sub>).
- *        It is project dependent parameter.
- * @param kiwpx Plant Q controller integral gain (<i>K</i><sub>IWPx</sub>).
- *        It is project dependent parameter.
- * @param kiwpxmax Maximum reactive Power/voltage reference from integration (<i>K</i><sub>IWPxmax</sub>).
- *        It is project dependent parameter.
- * @param kiwpxmin Minimum reactive Power/voltage reference from integration (<i>K</i><sub>IWPxmin</sub>).
- *        It is project dependent parameter.
- * @param kpwpx Plant Q controller proportional gain (<i>K</i><sub>PWPx</sub>).
- *        It is project dependent parameter.
- * @param kwpqref Reactive power reference gain (<i>K</i><sub>WPqref</sub>).
- *        It is project dependent parameter.
- * @param kwpqu Plant voltage control droop (<i>K</i><sub>WPqu</sub>).
- *        It is project dependent parameter.
- * @param tuqfilt Filter time constant for voltage dependent reactive power (<i>T</i><sub>uqfilt</sub>).
- *        It is project dependent parameter.
- * @param twppfiltq Filter time constant for active power measurement (<i>T</i><sub>WPpfiltq</sub>).
- *        It is project dependent parameter.
- * @param twpqfiltq Filter time constant for reactive power measurement (<i>T</i><sub>WPqfiltq</sub>).
- *        It is project dependent parameter.
- * @param twpufiltq Filter time constant for voltage measurement (<i>T</i><sub>WPufiltq</sub>).
- *        It is project dependent parameter.
- * @param txft Lead time constant in reference value transfer function (<i>T</i><sub>xft</sub>).
- *        It is project dependent parameter.
- * @param txfv Lag time constant in reference value transfer function (<i>T</i><sub>xfv</sub>).
- *        It is project dependent parameter.
- * @param uwpqdip Voltage threshold for UVRT detection in q control (<i>u</i><sub>WPqdip</sub>).
- *        It is project dependent parameter.
- * @param windPlantQcontrolModesType Reactive power/voltage controller mode (<i>M</i><sub>WPqmode</sub>).
- *        It is case dependent parameter.
- * @param xrefmax Maximum <i>x</i><sub>WTref</sub> (<i>q</i><sub>WTref</sub> or delta <i>u</i><sub>WTref</sub>) request from the plant controller (<i>x</i><sub>refmax</sub>).
- *        It is case dependent parameter.
- * @param xrefmin Minimum <i>x</i><sub>WTref</sub> (<i>q</i><sub>WTref</sub> or delta<i>u</i><sub>WTref</sub>) request from the plant controller (<i>x</i><sub>refmin</sub>).
- *        It is project dependent parameter.
+ * @param dxrefmax Maximum positive ramp rate for wind turbine reactive power/voltage reference (<i>dx</i><i><sub>refmax</sub></i>) (&gt; WindPlantReactiveControlIEC.dxrefmin).
+ *        It is a project-dependent parameter.
+ * @param dxrefmin Maximum negative ramp rate for wind turbine reactive power/voltage reference (<i>dx</i><i><sub>refmin</sub></i>) (&lt; WindPlantReactiveControlIEC.dxrefmax).
+ *        It is a project-dependent parameter.
+ * @param kiwpx Plant Q controller integral gain (<i>K</i><i><sub>IWPx</sub></i>).
+ *        It is a project-dependent parameter.
+ * @param kiwpxmax Maximum reactive power/voltage reference from integration (<i>K</i><i><sub>IWPxmax</sub></i>) (&gt; WindPlantReactiveControlIEC.kiwpxmin).
+ *        It is a project-dependent parameter.
+ * @param kiwpxmin Minimum reactive power/voltage reference from integration (<i>K</i><i><sub>IWPxmin</sub></i>) (&lt; WindPlantReactiveControlIEC.kiwpxmax).
+ *        It is a project-dependent parameter.
+ * @param kpwpx Plant Q controller proportional gain (<i>K</i><i><sub>PWPx</sub></i>).
+ *        It is a project-dependent parameter.
+ * @param kwpqref Reactive power reference gain (<i>K</i><i><sub>WPqref</sub></i>).
+ *        It is a project-dependent parameter.
+ * @param kwpqu Plant voltage control droop (<i>K</i><i><sub>WPqu</sub></i>).
+ *        It is a project-dependent parameter.
+ * @param tuqfilt Filter time constant for voltage-dependent reactive power (<i>T</i><i><sub>uqfilt</sub></i>) (&gt;= 0).
+ *        It is a project-dependent parameter.
+ * @param twppfiltq Filter time constant for active power measurement (<i>T</i><i><sub>WPpfiltq</sub></i>) (&gt;= 0).
+ *        It is a project-dependent parameter.
+ * @param twpqfiltq Filter time constant for reactive power measurement (<i>T</i><i><sub>WPqfiltq</sub></i>) (&gt;= 0).
+ *        It is a project-dependent parameter.
+ * @param twpufiltq Filter time constant for voltage measurement (<i>T</i><i><sub>WPufiltq</sub></i>) (&gt;= 0).
+ *        It is a project-dependent parameter.
+ * @param txft Lead time constant in reference value transfer function (<i>T</i><i><sub>xft</sub></i>) (&gt;= 0).
+ *        It is a project-dependent parameter.
+ * @param txfv Lag time constant in reference value transfer function (<i>T</i><i><sub>xfv</sub></i>) (&gt;= 0).
+ *        It is a project-dependent parameter.
+ * @param uwpqdip Voltage threshold for UVRT detection in Q control (<i>u</i><i><sub>WPqdip</sub></i>).
+ *        It is a project-dependent parameter.
+ * @param windPlantQcontrolModesType Reactive power/voltage controller mode (<i>M</i><i><sub>WPqmode</sub></i>).
+ *        It is a case-dependent parameter.
+ * @param xrefmax Maximum <i>x</i><sub>WTref</sub> (<i>q</i><i><sub>WTref</sub></i> or delta<i> u</i><i><sub>WTref</sub></i>) request from the plant controller (<i>x</i><i><sub>refmax</sub></i>) (&gt; WindPlantReactiveControlIEC.xrefmin).
+ *        It is a case-dependent parameter.
+ * @param xrefmin Minimum <i>x</i><i><sub>WTref</sub></i> (<i>q</i><i><sub>WTref</sub></i> or delta <i>u</i><i><sub>WTref</sub></i>) request from the plant controller (<i>x</i><i><sub>refmin</sub></i>) (&lt; WindPlantReactiveControlIEC.xrefmax).
+ *        It is a project-dependent parameter.
  * @param WindDynamicsLookupTable [[ch.ninecode.model.WindDynamicsLookupTable WindDynamicsLookupTable]] The wind dynamics lookup table associated with this voltage and reactive power wind plant model.
  * @param WindPlantIEC [[ch.ninecode.model.WindPlantIEC WindPlantIEC]] Wind plant reactive control model associated with this wind plant.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
- * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
-<ul>
-	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
-	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
-	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
-	<li>Type 4: Wind turbines connected fully through a power converter.</li>
-</ul>
-
-Models included in this package are according to IEC 61400-27-1.
-
-Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
+ * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
+- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+- type 4: wind turbines connected to the grid through a full size power converter.
+Models included in this package are according to IEC 61400-27-1:2015.
  */
 case class WindPlantReactiveControlIEC
 (
@@ -3587,41 +3447,36 @@ extends
 }
 
 /**
- * The grid protection model includes protection against over and under voltage, and against over and under frequency.
+ * The grid protection model includes protection against over- and under-voltage, and against over- and under-frequency.
  *
- * Reference: IEC Standard 614000-27-1 Section 5.6.6.
+ * Reference: IEC 61400-27-1:2015, 5.6.6.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param dfimax Maximum rate of change of frequency (<i>dF</i><i><sub>max</sub></i>).
- *        It is type dependent parameter.
+ *        It is a type-dependent parameter.
  * @param fover Wind turbine over frequency protection activation threshold (<i>f</i><i><sub>over</sub></i>).
- *        It is project dependent parameter.
+ *        It is a project-dependent parameter.
  * @param funder Wind turbine under frequency protection activation threshold (<i>f</i><i><sub>under</sub></i>).
- *        It is project dependent parameter.
+ *        It is a project-dependent parameter.
  * @param mzc Zero crossing measurement mode (<i>Mzc</i>).
- *        True = 1 if the WT protection system uses zero crossings to detect frequency � otherwise false = 0. It is type dependent parameter.
- * @param tfma Time interval of moving average window (<i>TfMA</i>).
- *        It is type dependent parameter.
+ *        It is a type-dependent parameter.
+ * @param tfma Time interval of moving average window (<i>TfMA</i>) (&gt;= 0).
+ *        It is a type-dependent parameter.
  * @param uover Wind turbine over voltage protection activation threshold (<i>u</i><i><sub>over</sub></i>).
- *        It is project dependent parameter.
+ *        It is a project-dependent parameter.
  * @param uunder Wind turbine under voltage protection activation threshold (<i>u</i><i><sub>under</sub></i>).
- *        It is project dependent parameter.
+ *        It is a project-dependent parameter.
  * @param WindDynamicsLookupTable [[ch.ninecode.model.WindDynamicsLookupTable WindDynamicsLookupTable]] The wind dynamics lookup table associated with this grid protection model.
- * @param WindTurbineType1or2IEC [[ch.ninecode.model.WindTurbineType1or2IEC WindTurbineType1or2IEC]] Wind generator type 1 or 2 model with which this wind turbine protection model is associated.
- * @param WindTurbineType3or4IEC [[ch.ninecode.model.WindTurbineType3or4IEC WindTurbineType3or4IEC]] Wind generator type 3 or 4 model with which this wind turbine protection model is associated.
+ * @param WindTurbineType1or2IEC [[ch.ninecode.model.WindTurbineType1or2IEC WindTurbineType1or2IEC]] Wind generator type 1 or type 2 model with which this wind turbine protection model is associated.
+ * @param WindTurbineType3or4IEC [[ch.ninecode.model.WindTurbineType3or4IEC WindTurbineType3or4IEC]] Wind generator type 3 or type 4 model with which this wind turbine protection model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
- * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
-<ul>
-	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
-	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
-	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
-	<li>Type 4: Wind turbines connected fully through a power converter.</li>
-</ul>
-
-Models included in this package are according to IEC 61400-27-1.
-
-Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
+ * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
+- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+- type 4: wind turbines connected to the grid through a full size power converter.
+Models included in this package are according to IEC 61400-27-1:2015.
  */
 case class WindProtectionIEC
 (
@@ -3744,29 +3599,24 @@ extends
 /**
  * Reference frame rotation model.
  *
- * Reference: IEC Standard 61400-27-1 Section 5.6.3.5.
+ * Reference: IEC 61400-27-1:2015, 5.6.3.5.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param tpll Time constant for PLL first order filter model (T<sub>PLL</sub>).
- *        It is type dependent parameter.
- * @param upll1 Voltage below which the angle of the voltage is filtered and possibly also frozen (u<sub>PLL1</sub>).
- *        It is type dependent parameter.
- * @param upll2 Voltage (u<sub>PLL2</sub>) below which the angle of the voltage is frozen if u<sub>PLL2 </sub>is smaller or equal to u<sub>PLL1</sub> .
- *        It is type dependent parameter.
- * @param WindTurbineType3or4IEC [[ch.ninecode.model.WindTurbineType3or4IEC WindTurbineType3or4IEC]] Wind turbine type 3 or 4 model with which this reference frame rotation model is associated.
+ * @param tpll Time constant for PLL first order filter model (<i>T</i><i><sub>PLL</sub></i>) (&gt;= 0).
+ *        It is a type-dependent parameter.
+ * @param upll1 Voltage below which the angle of the voltage is filtered and possibly also frozen (<i>u</i><i><sub>PLL1</sub></i>).
+ *        It is a type-dependent parameter.
+ * @param upll2 Voltage (<i>u</i><i><sub>PLL2</sub></i>) below which the angle of the voltage is frozen if <i>u</i><i><sub>PLL2</sub></i><sub> </sub>is smaller or equal to <i>u</i><i><sub>PLL1</sub></i> .
+ *        It is a type-dependent parameter.
+ * @param WindTurbineType3or4IEC [[ch.ninecode.model.WindTurbineType3or4IEC WindTurbineType3or4IEC]] Wind turbine type 3 or type 4 model with which this reference frame rotation model is associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
- * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
-<ul>
-	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
-	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
-	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
-	<li>Type 4: Wind turbines connected fully through a power converter.</li>
-</ul>
-
-Models included in this package are according to IEC 61400-27-1.
-
-Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
+ * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
+- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+- type 4: wind turbines connected to the grid through a full size power converter.
+Models included in this package are according to IEC 61400-27-1:2015.
  */
 case class WindRefFrameRotIEC
 (
@@ -3854,24 +3704,21 @@ extends
 }
 
 /**
- * Parent class supporting relationships to wind turbines Type 1 and 2 and their control models.
+ * Parent class supporting relationships to wind turbines type 1 and type 2 and their control models.
+ *
+ * Generator model for wind turbine of type 1 or type 2 is a standard asynchronous generator model.
  *
  * @param sup [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
- * @param AsynchronousMachineDynamics [[ch.ninecode.model.AsynchronousMachineDynamics AsynchronousMachineDynamics]] Asynchronous machine model with which this wind generator type 1 or 2 model is associated.
- * @param RemoteInputSignal [[ch.ninecode.model.RemoteInputSignal RemoteInputSignal]] Remote input signal used by this wind generator Type 1 or Type 2 model.
+ * @param AsynchronousMachineDynamics [[ch.ninecode.model.AsynchronousMachineDynamics AsynchronousMachineDynamics]] Asynchronous machine model with which this wind generator type 1 or type 2 model is associated.
+ * @param RemoteInputSignal [[ch.ninecode.model.RemoteInputSignal RemoteInputSignal]] Remote input signal used by this wind generator type 1 or type 2 model.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
- * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
-<ul>
-	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
-	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
-	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
-	<li>Type 4: Wind turbines connected fully through a power converter.</li>
-</ul>
-
-Models included in this package are according to IEC 61400-27-1.
-
-Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
+ * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
+- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+- type 4: wind turbines connected to the grid through a full size power converter.
+Models included in this package are according to IEC 61400-27-1:2015.
  */
 case class WindTurbineType1or2Dynamics
 (
@@ -3949,26 +3796,21 @@ extends
 }
 
 /**
- * Parent class supporting relationships to IEC wind turbines Type 1 and 2 including their control models.
+ * Parent class supporting relationships to IEC wind turbines type 1 and type 2 including their control models.
  *
- * Generator model for wind turbine of IEC Type 1 or Type 2 is a standard asynchronous generator model.
+ * Generator model for wind turbine of IEC type 1 or type 2 is a standard asynchronous generator model.
  *
  * @param sup [[ch.ninecode.model.WindTurbineType1or2Dynamics WindTurbineType1or2Dynamics]] Reference to the superclass object.
- * @param WindMechIEC [[ch.ninecode.model.WindMechIEC WindMechIEC]] Wind mechanical model associated with this wind generator type 1 or 2 model.
- * @param WindProtectionIEC [[ch.ninecode.model.WindProtectionIEC WindProtectionIEC]] Wind turbune protection model associated with this wind generator type 1 or 2 model.
+ * @param WindMechIEC [[ch.ninecode.model.WindMechIEC WindMechIEC]] Wind mechanical model associated with this wind generator type 1 or type 2 model.
+ * @param WindProtectionIEC [[ch.ninecode.model.WindProtectionIEC WindProtectionIEC]] Wind turbune protection model associated with this wind generator type 1 or type 2 model.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
- * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
-<ul>
-	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
-	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
-	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
-	<li>Type 4: Wind turbines connected fully through a power converter.</li>
-</ul>
-
-Models included in this package are according to IEC 61400-27-1.
-
-Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
+ * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
+- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+- type 4: wind turbines connected to the grid through a full size power converter.
+Models included in this package are according to IEC 61400-27-1:2015.
  */
 case class WindTurbineType1or2IEC
 (
@@ -4046,28 +3888,23 @@ extends
 }
 
 /**
- * Parent class supporting relationships to IEC wind turbines Type 3 including their control models.
+ * Parent class supporting relationships to IEC wind turbines type 3 including their control models.
  *
  * @param sup [[ch.ninecode.model.WindTurbineType3or4IEC WindTurbineType3or4IEC]] Reference to the superclass object.
  * @param WindAeroOneDimIEC [[ch.ninecode.model.WindAeroOneDimIEC WindAeroOneDimIEC]] Wind aerodynamic model associated with this wind generator type 3 model.
  * @param WindAeroTwoDimIEC [[ch.ninecode.model.WindAeroTwoDimIEC WindAeroTwoDimIEC]] Wind aerodynamic model associated with this wind turbine type 3 model.
  * @param WindContPType3IEC [[ch.ninecode.model.WindContPType3IEC WindContPType3IEC]] Wind control P type 3 model associated with this wind turbine type 3 model.
  * @param WindContPitchAngleIEC [[ch.ninecode.model.WindContPitchAngleIEC WindContPitchAngleIEC]] Wind control pitch angle model associated with this wind turbine type 3.
- * @param WindGenType3IEC [[ch.ninecode.model.WindGenType3IEC WindGenType3IEC]] Wind generator Type 3 model associated with this wind turbine type 3 model.
- * @param WindMechIEC [[ch.ninecode.model.WindMechIEC WindMechIEC]] Wind mechanical model associated with this wind turbine Type 3 model.
+ * @param WindGenType3IEC [[ch.ninecode.model.WindGenType3IEC WindGenType3IEC]] Wind generator type 3 model associated with this wind turbine type 3 model.
+ * @param WindMechIEC [[ch.ninecode.model.WindMechIEC WindMechIEC]] Wind mechanical model associated with this wind turbine type 3 model.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
- * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
-<ul>
-	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
-	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
-	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
-	<li>Type 4: Wind turbines connected fully through a power converter.</li>
-</ul>
-
-Models included in this package are according to IEC 61400-27-1.
-
-Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
+ * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
+- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+- type 4: wind turbines connected to the grid through a full size power converter.
+Models included in this package are according to IEC 61400-27-1:2015.
  */
 case class WindTurbineType3IEC
 (
@@ -4169,30 +4006,25 @@ extends
 }
 
 /**
- * Parent class supporting relationships to wind turbines Type 3 and 4 and wind plant including their control models.
+ * Parent class supporting relationships to wind turbines type 3 and type 4 and wind plant including their control models.
  *
  * @param sup [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
- * @param EnergySource [[ch.ninecode.model.EnergySource EnergySource]] Energy Source (current source) with which this wind Type 3 or 4 dynamics model is asoociated.
- * @param RemoteInputSignal [[ch.ninecode.model.RemoteInputSignal RemoteInputSignal]] Remote input signal used by these wind turbine Type 3 or 4 models.
- * @param WindPlantDynamics [[ch.ninecode.model.WindPlantDynamics WindPlantDynamics]] The wind plant with which the wind turbines type 3 or 4 are associated.
+ * @param PowerElectronicsConnection [[ch.ninecode.model.PowerElectronicsConnection PowerElectronicsConnection]] The power electronics connection associated with this wind turbine type 3 or type 4 dynamics model.
+ * @param RemoteInputSignal [[ch.ninecode.model.RemoteInputSignal RemoteInputSignal]] Remote input signal used by these wind turbine type 3 or type 4 models.
+ * @param WindPlantDynamics [[ch.ninecode.model.WindPlantDynamics WindPlantDynamics]] The wind plant with which the wind turbines type 3 or type 4 are associated.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
- * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
-<ul>
-	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
-	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
-	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
-	<li>Type 4: Wind turbines connected fully through a power converter.</li>
-</ul>
-
-Models included in this package are according to IEC 61400-27-1.
-
-Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
+ * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
+- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+- type 4: wind turbines connected to the grid through a full size power converter.
+Models included in this package are according to IEC 61400-27-1:2015.
  */
 case class WindTurbineType3or4Dynamics
 (
     override val sup: DynamicsFunctionBlock,
-    EnergySource: String,
+    PowerElectronicsConnection: String,
     RemoteInputSignal: String,
     WindPlantDynamics: String
 )
@@ -4226,7 +4058,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WindTurbineType3or4Dynamics.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WindTurbineType3or4Dynamics.fields (position), value)
-        emitattr (0, EnergySource)
+        emitattr (0, PowerElectronicsConnection)
         emitattr (1, RemoteInputSignal)
         emitattr (2, WindPlantDynamics)
         s.toString
@@ -4242,16 +4074,16 @@ extends
     Parseable[WindTurbineType3or4Dynamics]
 {
     override val fields: Array[String] = Array[String] (
-        "EnergySource",
+        "PowerElectronicsConnection",
         "RemoteInputSignal",
         "WindPlantDynamics"
     )
     override val relations: List[Relationship] = List (
-        Relationship ("EnergySource", "EnergySource", "1", "0..1"),
+        Relationship ("PowerElectronicsConnection", "PowerElectronicsConnection", "1", "0..1"),
         Relationship ("RemoteInputSignal", "RemoteInputSignal", "0..1", "0..1"),
         Relationship ("WindPlantDynamics", "WindPlantDynamics", "0..1", "1..*")
     )
-    val EnergySource: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val PowerElectronicsConnection: Fielder = parse_attribute (attribute (cls, fields(0)))
     val RemoteInputSignal: Fielder = parse_attribute (attribute (cls, fields(1)))
     val WindPlantDynamics: Fielder = parse_attribute (attribute (cls, fields(2)))
 
@@ -4261,7 +4093,7 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = WindTurbineType3or4Dynamics (
             DynamicsFunctionBlock.parse (context),
-            mask (EnergySource (), 0),
+            mask (PowerElectronicsConnection (), 0),
             mask (RemoteInputSignal (), 1),
             mask (WindPlantDynamics (), 2)
         )
@@ -4271,28 +4103,23 @@ extends
 }
 
 /**
- * Parent class supporting relationships to IEC wind turbines Type 3 and 4 including their control models.
+ * Parent class supporting relationships to IEC wind turbines type 3 and type 4 including their control models.
  *
  * @param sup [[ch.ninecode.model.WindTurbineType3or4Dynamics WindTurbineType3or4Dynamics]] Reference to the superclass object.
- * @param WIndContQIEC [[ch.ninecode.model.WindContQIEC WindContQIEC]] Wind control Q model associated with this wind turbine type 3 or 4 model.
- * @param WindContCurrLimIEC [[ch.ninecode.model.WindContCurrLimIEC WindContCurrLimIEC]] Wind control current limitation model associated with this wind turbine type 3 or 4 model.
- * @param WindContQLimIEC [[ch.ninecode.model.WindContQLimIEC WindContQLimIEC]] Constant Q limitation model associated with this wind generator type 3 or 4 model.
- * @param WindContQPQULimIEC [[ch.ninecode.model.WindContQPQULimIEC WindContQPQULimIEC]] QP and QU limitation model associated with this wind generator type 3 or 4 model.
- * @param WindProtectionIEC [[ch.ninecode.model.WindProtectionIEC WindProtectionIEC]] Wind turbune protection model associated with this wind generator type 3 or 4 model.
- * @param WindRefFrameRotIEC [[ch.ninecode.model.WindRefFrameRotIEC WindRefFrameRotIEC]] Reference frame rotation model associated with this wind turbine type 3 or 4 model.
+ * @param WIndContQIEC [[ch.ninecode.model.WindContQIEC WindContQIEC]] Wind control Q model associated with this wind turbine type 3 or type 4 model.
+ * @param WindContCurrLimIEC [[ch.ninecode.model.WindContCurrLimIEC WindContCurrLimIEC]] Wind control current limitation model associated with this wind turbine type 3 or type 4 model.
+ * @param WindContQLimIEC [[ch.ninecode.model.WindContQLimIEC WindContQLimIEC]] Constant Q limitation model associated with this wind generator type 3 or type 4 model.
+ * @param WindContQPQULimIEC [[ch.ninecode.model.WindContQPQULimIEC WindContQPQULimIEC]] QP and QU limitation model associated with this wind generator type 3 or type 4 model.
+ * @param WindProtectionIEC [[ch.ninecode.model.WindProtectionIEC WindProtectionIEC]] Wind turbune protection model associated with this wind generator type 3 or type 4 model.
+ * @param WindRefFrameRotIEC [[ch.ninecode.model.WindRefFrameRotIEC WindRefFrameRotIEC]] Reference frame rotation model associated with this wind turbine type 3 or type 4 model.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
- * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
-<ul>
-	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
-	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
-	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
-	<li>Type 4: Wind turbines connected fully through a power converter.</li>
-</ul>
-
-Models included in this package are according to IEC 61400-27-1.
-
-Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
+ * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
+- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+- type 4: wind turbines connected to the grid through a full size power converter.
+Models included in this package are according to IEC 61400-27-1:2015.
  */
 case class WindTurbineType3or4IEC
 (
@@ -4394,23 +4221,18 @@ extends
 }
 
 /**
- * Parent class supporting relationships to IEC wind turbines Type 4 including their control models.
+ * Parent class supporting relationships to IEC wind turbines type 4 including their control models.
  *
  * @param sup [[ch.ninecode.model.WindTurbineType3or4IEC WindTurbineType3or4IEC]] Reference to the superclass object.
  * @param WindGenType3aIEC [[ch.ninecode.model.WindGenType3aIEC WindGenType3aIEC]] Wind generator type 3A model associated with this wind turbine type 4 model.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
- * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
-<ul>
-	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
-	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
-	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
-	<li>Type 4: Wind turbines connected fully through a power converter.</li>
-</ul>
-
-Models included in this package are according to IEC 61400-27-1.
-
-Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
+ * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
+- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+- type 4: wind turbines connected to the grid through a full size power converter.
+Models included in this package are according to IEC 61400-27-1:2015.
  */
 case class WindTurbineType4IEC
 (
@@ -4482,26 +4304,21 @@ extends
 }
 
 /**
- * Wind turbine IEC Type 4A.
+ * Wind turbine IEC type 4A.
  *
- * Reference: IEC Standard 61400-27-1, section 5.5.5.3.
+ * Reference: IEC 61400-27-1:2015, 5.5.5.2.
  *
  * @param sup [[ch.ninecode.model.WindTurbineType4IEC WindTurbineType4IEC]] Reference to the superclass object.
  * @param WindContPType4aIEC [[ch.ninecode.model.WindContPType4aIEC WindContPType4aIEC]] Wind control P type 4A model associated with this wind turbine type 4A model.
  * @param WindGenType4IEC [[ch.ninecode.model.WindGenType4IEC WindGenType4IEC]] Wind generator type 4 model associated with this wind turbine type 4A model.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
- * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
-<ul>
-	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
-	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
-	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
-	<li>Type 4: Wind turbines connected fully through a power converter.</li>
-</ul>
-
-Models included in this package are according to IEC 61400-27-1.
-
-Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
+ * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
+- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+- type 4: wind turbines connected to the grid through a full size power converter.
+Models included in this package are according to IEC 61400-27-1:2015.
  */
 case class WindTurbineType4aIEC
 (
@@ -4579,27 +4396,22 @@ extends
 }
 
 /**
- * Wind turbine IEC Type 4A.
+ * Wind turbine IEC type 4B.
  *
- * Reference: IEC Standard 61400-27-1, section 5.5.5.2.
+ * Reference: IEC 61400-27-1:2015, 5.5.5.3.
  *
  * @param sup [[ch.ninecode.model.WindTurbineType4IEC WindTurbineType4IEC]] Reference to the superclass object.
  * @param WindContPType4bIEC [[ch.ninecode.model.WindContPType4bIEC WindContPType4bIEC]] Wind control P type 4B model associated with this wind turbine type 4B model.
  * @param WindGenType4IEC [[ch.ninecode.model.WindGenType4IEC WindGenType4IEC]] Wind generator type 4 model associated with this wind turbine type 4B model.
- * @param WindMechIEC [[ch.ninecode.model.WindMechIEC WindMechIEC]] Wind mechanical model associated with this wind turbine Type 4B model.
+ * @param WindMechIEC [[ch.ninecode.model.WindMechIEC WindMechIEC]] Wind mechanical model associated with this wind turbine type 4B model.
  * @group WindDynamics
  * @groupname WindDynamics Package WindDynamics
- * @groupdesc WindDynamics Wind turbines are generally divided into 4 types, which are currently significant in power systems. The 4 types have the following characteristics:
-<ul>
-	<li>Type 1: Wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage)</li>
-	<li>Type 2: Wind turbine with directly grid connected asynchronous generator with variable rotor resistance</li>
-	<li>Type 3: Wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter)</li>
-	<li>Type 4: Wind turbines connected fully through a power converter.</li>
-</ul>
-
-Models included in this package are according to IEC 61400-27-1.
-
-Note: Each attribute is categorized as type, project, or case parameter. The definitions related to this categorization are specified by IEC 61400-27-1, section 6.4.2.
+ * @groupdesc WindDynamics Wind turbines are generally divided into four types, which are currently significant in power systems.  The four types have the following characteristics:
+- type 1: wind turbine with directly grid connected asynchronous generator with fixed rotor resistance (typically squirrel cage);
+- type 2: wind turbine with directly grid connected asynchronous generator with variable rotor resistance;
+- type 3: wind turbines with doubly-fed asynchronous generators (directly connected stator and rotor connected through power converter);
+- type 4: wind turbines connected to the grid through a full size power converter.
+Models included in this package are according to IEC 61400-27-1:2015.
  */
 case class WindTurbineType4bIEC
 (

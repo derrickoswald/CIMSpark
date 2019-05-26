@@ -11,55 +11,57 @@ import ch.ninecode.cim.Relationship
  * Modified IEEE AC1A alternator-supplied rectifier excitation system with different rate feedback source.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param hvlvgates Indicates if both HV gate and LV gate are active (HVLVgates).
+ * @param hvlvgates Indicates if both HV gate and LV gate are active (<i>HVLVgates</i>).
  *        true = gates are used
  *        false = gates are not used.
- *        Typical Value = true.
- * @param ka Voltage regulator gain (Ka).
- *        Typical Value = 400.
- * @param kc Rectifier loading factor proportional to commutating reactance (Kc).
- *        Typical Value = 0.2.
- * @param kd Demagnetizing factor, a function of exciter alternator reactances (Kd).
- *        Typical Value = 0.38.
- * @param ke Exciter constant related to self-excited field (Ke).
- *        Typical Value = 1.
- * @param kf Excitation control system stabilizer gains (Kf).
- *        Typical Value = 0.03.
- * @param kf1 Coefficient to allow different usage of the model (Kf1).
- *        Typical Value = 0.
- * @param kf2 Coefficient to allow different usage of the model (Kf2).
- *        Typical Value = 1.
- * @param ks Coefficient to allow different usage of the model-speed coefficient (Ks).
- *        Typical Value = 0.
- * @param seve1 Exciter saturation function value at the corresponding exciter voltage, Ve1, back of commutating reactance (Se[Ve1]).
- *        Typical Value = 0.1.
- * @param seve2 Exciter saturation function value at the corresponding exciter voltage, Ve2, back of commutating reactance (Se[Ve2]).
- *        Typical Value = 0.03.
- * @param ta Voltage regulator time constant (Ta).
- *        Typical Value = 0.02.
- * @param tb Voltage regulator time constant (Tb).
- *        Typical Value = 0.
- * @param tc Voltage regulator time constant (T<sub>c</sub>).
- *        Typical Value = 0.
- * @param te Exciter time constant, integration rate associated with exciter control (Te).
- *        Typical Value = 0.8.
- * @param tf Excitation control system stabilizer time constant (Tf).
- *        Typical Value = 1.
- * @param vamax Maximum voltage regulator output (V<sub>amax</sub>).
- *        Typical Value = 14.5.
- * @param vamin Minimum voltage regulator output (V<sub>amin</sub>).
- *        Typical Value = -14.5.
- * @param ve1 Exciter alternator output voltages back of commutating reactance at which saturation is defined (Ve1).
- *        Typical Value = 4.18.
- * @param ve2 Exciter alternator output voltages back of commutating reactance at which saturation is defined (Ve2).
- *        Typical Value = 3.14.
- * @param vrmax Maximum voltage regulator outputs (Vrmax).
- *        Typical Value = 6.03.
- * @param vrmin Minimum voltage regulator outputs (Rrmin).
- *        Typical Value = -5.43.
+ *        Typical value = true.
+ * @param ka Voltage regulator gain (<i>Ka</i>) (&gt; 0).
+ *        Typical value = 400.
+ * @param kc Rectifier loading factor proportional to commutating reactance (<i>Kc</i>) (&gt;= 0).
+ *        Typical value = 0,2.
+ * @param kd Demagnetizing factor, a function of exciter alternator reactances (<i>Kd</i>) (&gt;= 0).
+ *        Typical value = 0,38.
+ * @param ke Exciter constant related to self-excited field (<i>Ke</i>).
+ *        Typical value = 1.
+ * @param kf Excitation control system stabilizer gains (<i>Kf</i>) (&gt;= 0).
+ *        Typical value = 0,03.
+ * @param kf1 Coefficient to allow different usage of the model (<i>Kf1</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param kf2 Coefficient to allow different usage of the model (<i>Kf2</i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param ks Coefficient to allow different usage of the model-speed coefficient (<i>Ks</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param seve1 Exciter saturation function value at the corresponding exciter voltage, <i>Ve</i><i><sub>1</sub></i>, back of commutating reactance (<i>Se[Ve</i><i><sub>1</sub></i><i>]</i>) (&gt;= 0).
+ *        Typical value = 0,1.
+ * @param seve2 Exciter saturation function value at the corresponding exciter voltage, <i>Ve</i><i><sub>2</sub></i>, back of commutating reactance (<i>Se[Ve</i><i><sub>2</sub></i><i>]</i>) (&gt;= 0).
+ *        Typical value = 0,03.
+ * @param ta Voltage regulator time constant (<i>Ta</i>) (&gt; 0).
+ *        Typical value = 0,02.
+ * @param tb Voltage regulator time constant (<i>Tb</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tc Voltage regulator time constant (<i>T</i><i><sub>c</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param te Exciter time constant, integration rate associated with exciter control (<i>Te</i>) (&gt; 0).
+ *        Typical value = 0,8.
+ * @param tf Excitation control system stabilizer time constant (<i>Tf</i>) (&gt; 0).
+ *        Typical value = 1.
+ * @param vamax Maximum voltage regulator output (<i>V</i><i><sub>amax</sub></i>) (&gt; 0).
+ *        Typical value = 14,5.
+ * @param vamin Minimum voltage regulator output (<i>V</i><i><sub>amin</sub></i>) (&lt; 0).
+ *        Typical value = -14,5.
+ * @param ve1 Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>Ve1</i>) (&gt; 0).
+ *        Typical value = 4,18.
+ * @param ve2 Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>Ve2</i>) (&gt; 0).
+ *        Typical value = 3,14.
+ * @param vrmax Maximum voltage regulator outputs (<i>Vrmax</i>) (&gt; 0).
+ *        Typical value = 6,03.
+ * @param vrmin Minimum voltage regulator outputs (<i>Vrmin</i>) (&lt; 0).
+ *        Typical value = -5,43.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
+The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 case class ExcAC1A
 (
@@ -236,69 +238,71 @@ extends
  * Modified IEEE AC2A alternator-supplied rectifier excitation system with different field current limit.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param hvgate Indicates if HV gate is active (HVgate).
+ * @param hvgate Indicates if HV gate is active (<i>HVgate</i>).
  *        true = gate is used
  *        false = gate is not used.
- *        Typical Value = true.
- * @param ka Voltage regulator gain (Ka).
- *        Typical Value = 400.
- * @param kb Second stage regulator gain (Kb) (&gt;0).
- *        Exciter field current controller gain.  Typical Value = 25.
- * @param kb1 Second stage regulator gain (Kb1).
- *        It is exciter field current controller gain used as alternative to Kb to represent a variant of the ExcAC2A model.  Typical Value = 25.
- * @param kc Rectifier loading factor proportional to commutating reactance (Kc).
- *        Typical Value = 0.28.
- * @param kd Demagnetizing factor, a function of exciter alternator reactances (Kd).
- *        Typical Value = 0.35.
- * @param ke Exciter constant related to self-excited field (Ke).
- *        Typical Value = 1.
- * @param kf Excitation control system stabilizer gains (Kf).
- *        Typical Value = 0.03.
- * @param kh Exciter field current feedback gain (Kh).
- *        Typical Value = 1.
- * @param kl Exciter field current limiter gain (Kl).
- *        Typical Value = 10.
- * @param kl1 Coefficient to allow different usage of the model (Kl1).
- *        Typical Value = 1.
- * @param ks Coefficient to allow different usage of the model-speed coefficient (Ks).
- *        Typical Value = 0.
- * @param lvgate Indicates if LV gate is active (LVgate).
+ *        Typical value = true.
+ * @param ka Voltage regulator gain (<i>Ka</i>) (&gt; 0).
+ *        Typical value = 400.
+ * @param kb Second stage regulator gain (<i>Kb</i>) (&gt; 0).
+ *        Exciter field current controller gain.  Typical value = 25.
+ * @param kb1 Second stage regulator gain (<i>Kb1</i>).
+ *        It is exciter field current controller gain used as alternative to <i>Kb</i> to represent a variant of the ExcAC2A model.  Typical value = 25.
+ * @param kc Rectifier loading factor proportional to commutating reactance (<i>Kc</i>) (&gt;= 0).
+ *        Typical value = 0,28.
+ * @param kd Demagnetizing factor, a function of exciter alternator reactances (<i>Kd</i>) (&gt;= 0).
+ *        Typical value = 0,35.
+ * @param ke Exciter constant related to self-excited field (<i>Ke</i>).
+ *        Typical value = 1.
+ * @param kf Excitation control system stabilizer gains (<i>Kf</i>) (&gt;= 0).
+ *        Typical value = 0,03.
+ * @param kh Exciter field current feedback gain (<i>Kh</i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param kl Exciter field current limiter gain (<i>Kl</i>).
+ *        Typical value = 10.
+ * @param kl1 Coefficient to allow different usage of the model (<i>Kl1</i>).
+ *        Typical value = 1.
+ * @param ks Coefficient to allow different usage of the model-speed coefficient (<i>Ks</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param lvgate Indicates if LV gate is active (<i>LVgate</i>).
  *        true = gate is used
  *        false = gate is not used.
- *        Typical Value = true.
- * @param seve1 Exciter saturation function value at the corresponding exciter voltage, Ve<sub>1</sub>, back of commutating reactance (Se[Ve<sub>1</sub>]).
- *        Typical Value = 0.037.
- * @param seve2 Exciter saturation function value at the corresponding exciter voltage, Ve<sub>2</sub>, back of commutating reactance (Se[Ve<sub>2</sub>]).
- *        Typical Value = 0.012.
- * @param ta Voltage regulator time constant (Ta).
- *        Typical Value = 0.02.
- * @param tb Voltage regulator time constant (Tb).
- *        Typical Value = 0.
- * @param tc Voltage regulator time constant (T<sub>c</sub>).
- *        Typical Value = 0.
- * @param te Exciter time constant, integration rate associated with exciter control (Te).
- *        Typical Value = 0.6.
- * @param tf Excitation control system stabilizer time constant (Tf).
- *        Typical Value = 1.
- * @param vamax Maximum voltage regulator output (V<sub>amax</sub>).
- *        Typical Value = 8.
- * @param vamin Minimum voltage regulator output (V<sub>amin</sub>).
- *        Typical Value = -8.
- * @param ve1 Exciter alternator output voltages back of commutating reactance at which saturation is defined (Ve<sub>1</sub>).
- *        Typical Value = 4.4.
- * @param ve2 Exciter alternator output voltages back of commutating reactance at which saturation is defined (Ve<sub>2</sub>).
- *        Typical Value = 3.3.
- * @param vfemax Exciter field current limit reference (Vfemax).
- *        Typical Value = 4.4.
- * @param vlr Maximum exciter field current (Vlr).
- *        Typical Value = 4.4.
- * @param vrmax Maximum voltage regulator outputs (Vrmax).
- *        Typical Value = 105.
- * @param vrmin Minimum voltage regulator outputs (Vrmin).
- *        Typical Value = -95.
+ *        Typical value = true.
+ * @param seve1 Exciter saturation function value at the corresponding exciter voltage, <i>Ve</i><i><sub>1</sub></i>, back of commutating reactance (<i>Se[Ve</i><i><sub>1</sub></i><i>]</i>) (&gt;= 0).
+ *        Typical value = 0,037.
+ * @param seve2 Exciter saturation function value at the corresponding exciter voltage, <i>Ve</i><i><sub>2</sub></i>, back of commutating reactance (<i>Se[Ve</i><i><sub>2</sub></i><i>]</i>) (&gt;= 0).
+ *        Typical value = 0,012.
+ * @param ta Voltage regulator time constant (<i>Ta</i>) (&gt; 0).
+ *        Typical value = 0,02.
+ * @param tb Voltage regulator time constant (<i>Tb</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tc Voltage regulator time constant (<i>Tc</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param te Exciter time constant, integration rate associated with exciter control (<i>Te</i>) (&gt; 0).
+ *        Typical value = 0,6.
+ * @param tf Excitation control system stabilizer time constant (<i>Tf</i>) (&gt; 0).
+ *        Typical value = 1.
+ * @param vamax Maximum voltage regulator output (<i>Vamax</i>) (&gt; 0).
+ *        Typical value = 8.
+ * @param vamin Minimum voltage regulator output (<i>Vamin</i>) (&lt; 0).
+ *        Typical value = -8.
+ * @param ve1 Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>Ve</i><i><sub>1</sub></i>) (&gt; 0).
+ *        Typical value = 4,4.
+ * @param ve2 Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>Ve</i><i><sub>2</sub></i>) (&gt; 0).
+ *        Typical value = 3,3.
+ * @param vfemax Exciter field current limit reference (<i>Vfemax</i>) (&gt;= 0).
+ *        Typical value = 4,4.
+ * @param vlr Maximum exciter field current (<i>Vlr</i>) (&gt; 0).
+ *        Typical value = 4,4.
+ * @param vrmax Maximum voltage regulator outputs (<i>Vrmax</i>) (&gt; 0).
+ *        Typical value = 105.
+ * @param vrmin Minimum voltage regulator outputs (<i>Vrmin</i>) (&lt; 0).
+ *        Typical value = -95.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
+The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 case class ExcAC2A
 (
@@ -505,61 +509,63 @@ extends
  * Modified IEEE AC3A alternator-supplied rectifier excitation system with different field current limit.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param efdn Value of <i>EFD </i>at which feedback gain changes (Efdn).
- *        Typical Value = 2.36.
- * @param ka Voltage regulator gain (Ka).
- *        Typical Value = 45.62.
- * @param kc Rectifier loading factor proportional to commutating reactance (Kc).
- *        Typical Value = 0.104.
- * @param kd Demagnetizing factor, a function of exciter alternator reactances (Kd).
- *        Typical Value = 0.499.
- * @param ke Exciter constant related to self-excited field (Ke).
- *        Typical Value = 1.
- * @param kf Excitation control system stabilizer gains (Kf).
- *        Typical Value = 0.143.
- * @param kf1 Coefficient to allow different usage of the model (Kf1).
- *        Typical Value = 1.
- * @param kf2 Coefficient to allow different usage of the model (Kf2).
- *        Typical Value = 0.
- * @param klv Gain used in the minimum field voltage limiter loop (Klv).
- *        Typical Value = 0.194.
- * @param kn Excitation control system stabilizer gain (Kn).
- *        Typical Value =0.05.
- * @param kr Constant associated with regulator and alternator field power supply (Kr).
- *        Typical Value =3.77.
- * @param ks Coefficient to allow different usage of the model-speed coefficient (Ks).
- *        Typical Value = 0.
- * @param seve1 Exciter saturation function value at the corresponding exciter voltage, Ve<sub>1</sub>, back of commutating reactance (Se[Ve<sub>1</sub>]).
- *        Typical Value = 1.143.
- * @param seve2 Exciter saturation function value at the corresponding exciter voltage, Ve<sub>2</sub>, back of commutating reactance (Se[Ve<sub>2</sub>]).
- *        Typical Value = 0.1.
- * @param ta Voltage regulator time constant (Ta).
- *        Typical Value = 0.013.
- * @param tb Voltage regulator time constant (Tb).
- *        Typical Value = 0.
- * @param tc Voltage regulator time constant (T<sub>c</sub>).
- *        Typical Value = 0.
- * @param te Exciter time constant, integration rate associated with exciter control (Te).
- *        Typical Value = 1.17.
- * @param tf Excitation control system stabilizer time constant (Tf).
- *        Typical Value = 1.
- * @param vamax Maximum voltage regulator output (V<sub>amax</sub>).
- *        Typical Value = 1.
- * @param vamin Minimum voltage regulator output (V<sub>amin</sub>).
- *        Typical Value = -0.95.
- * @param ve1 Exciter alternator output voltages back of commutating reactance at which saturation is defined (Ve1) equals Vemax (Ve1).
- *        Typical Value = 6.24.
- * @param ve2 Exciter alternator output voltages back of commutating reactance at which saturation is defined (Ve<sub>2</sub>).
- *        Typical Value = 4.68.
- * @param vemin Minimum exciter voltage output (Vemin).
- *        Typical Value = 0.1.
- * @param vfemax Exciter field current limit reference (Vfemax).
- *        Typical Value = 16.
- * @param vlv Field voltage used in the minimum field voltage limiter loop (Vlv).
- *        Typical Value = 0.79.
+ * @param efdn Value of <i>Efd </i>at which feedback gain changes (<i>Efdn</i>) (&gt; 0).
+ *        Typical value = 2,36.
+ * @param ka Voltage regulator gain (<i>Ka</i>) (&gt; 0).
+ *        Typical value = 45,62.
+ * @param kc Rectifier loading factor proportional to commutating reactance (<i>Kc</i>) (&gt;= 0).
+ *        Typical value = 0,104.
+ * @param kd Demagnetizing factor, a function of exciter alternator reactances (<i>Kd</i>) (&gt;= 0).
+ *        Typical value = 0,499.
+ * @param ke Exciter constant related to self-excited field (<i>Ke</i>).
+ *        Typical value = 1.
+ * @param kf Excitation control system stabilizer gains (<i>Kf</i>) (&gt;= 0).
+ *        Typical value = 0,143.
+ * @param kf1 Coefficient to allow different usage of the model (<i>Kf1</i>).
+ *        Typical value = 1.
+ * @param kf2 Coefficient to allow different usage of the model (<i>Kf2</i>).
+ *        Typical value = 0.
+ * @param klv Gain used in the minimum field voltage limiter loop (<i>Klv</i>).
+ *        Typical value = 0,194.
+ * @param kn Excitation control system stabilizer gain (<i>Kn</i>) (&gt;= 0).
+ *        Typical value =0,05.
+ * @param kr Constant associated with regulator and alternator field power supply (<i>Kr</i>) (&gt; 0).
+ *        Typical value =3,77.
+ * @param ks Coefficient to allow different usage of the model-speed coefficient (<i>Ks</i>).
+ *        Typical value = 0.
+ * @param seve1 Exciter saturation function value at the corresponding exciter voltage, <i>Ve</i><i><sub>1</sub></i>, back of commutating reactance (<i>Se[Ve</i><i><sub>1</sub></i><i>]</i>) (&gt;= 0).
+ *        Typical value = 1,143.
+ * @param seve2 Exciter saturation function value at the corresponding exciter voltage, <i>Ve</i><i><sub>2</sub></i>, back of commutating reactance (<i>Se[Ve</i><i><sub>2</sub></i><i>]</i>) (&gt;= 0).
+ *        Typical value = 0,1.
+ * @param ta Voltage regulator time constant (<i>Ta</i>) (&gt; 0).
+ *        Typical value = 0,013.
+ * @param tb Voltage regulator time constant (<i>Tb</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tc Voltage regulator time constant (<i>Tc</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param te Exciter time constant, integration rate associated with exciter control (<i>Te</i>) (&gt; 0).
+ *        Typical value = 1,17.
+ * @param tf Excitation control system stabilizer time constant (<i>Tf</i>) (&gt; 0).
+ *        Typical value = 1.
+ * @param vamax Maximum voltage regulator output (<i>Vamax</i>) (&gt; 0).
+ *        Typical value = 1.
+ * @param vamin Minimum voltage regulator output (<i>Vamin</i>) (&lt; 0).
+ *        Typical value = -0,95.
+ * @param ve1 Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>Ve</i><i><sub>1</sub></i>) (&gt; 0).
+ *        Typical value = 6.24.
+ * @param ve2 Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>Ve</i><i><sub>2</sub></i>) (&gt; 0).
+ *        Typical value = 4,68.
+ * @param vemin Minimum exciter voltage output (<i>Vemin</i>) (&lt;= 0).
+ *        Typical value = 0.
+ * @param vfemax Exciter field current limit reference (<i>Vfemax</i>) (&gt;= 0).
+ *        Typical value = 16.
+ * @param vlv Field voltage used in the minimum field voltage limiter loop (<i>Vlv</i>).
+ *        Typical value = 0,79.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
+The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 case class ExcAC3A
 (
@@ -756,27 +762,29 @@ extends
  * Modified IEEE AC4A alternator-supplied rectifier excitation system with different minimum controller output.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param ka Voltage regulator gain (Ka).
- *        Typical Value = 200.
- * @param kc Rectifier loading factor proportional to commutating reactance (Kc).
- *        Typical Value = 0.
- * @param ta Voltage regulator time constant (Ta).
- *        Typical Value = 0.015.
- * @param tb Voltage regulator time constant (Tb).
- *        Typical Value = 10.
- * @param tc Voltage regulator time constant (Tc).
- *        Typical Value = 1.
- * @param vimax Maximum voltage regulator input limit (Vimax).
- *        Typical Value = 10.
- * @param vimin Minimum voltage regulator input limit (Vimin).
- *        Typical Value = -10.
- * @param vrmax Maximum voltage regulator output (Vrmax).
- *        Typical Value = 5.64.
- * @param vrmin Minimum voltage regulator output (Vrmin).
- *        Typical Value = -4.53.
+ * @param ka Voltage regulator gain (<i>Ka</i>) (&gt; 0).
+ *        Typical value = 200.
+ * @param kc Rectifier loading factor proportional to commutating reactance (<i>Kc</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param ta Voltage regulator time constant (<i>Ta</i>) (&gt; 0).
+ *        Typical value = 0,015.
+ * @param tb Voltage regulator time constant (<i>Tb</i>) (&gt;= 0).
+ *        Typical value = 10.
+ * @param tc Voltage regulator time constant (<i>Tc</i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param vimax Maximum voltage regulator input limit (<i>Vimax</i>)  (&gt; 0).
+ *        Typical value = 10.
+ * @param vimin Minimum voltage regulator input limit (<i>Vimin</i>) (&lt; 0).
+ *        Typical value = -10.
+ * @param vrmax Maximum voltage regulator output (<i>Vrmax</i>) (&gt; 0).
+ *        Typical value = 5,64.
+ * @param vrmin Minimum voltage regulator output (<i>Vrmin</i>) (&lt; 0).
+ *        Typical value = -4,53.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
+The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 case class ExcAC4A
 (
@@ -888,45 +896,47 @@ extends
  * Modified IEEE AC5A alternator-supplied rectifier excitation system with different minimum controller output.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param a Coefficient to allow different usage of the model (a).
- *        Typical Value = 1.
- * @param efd1 Exciter voltage at which exciter saturation is defined (Efd1).
- *        Typical Value = 5.6.
- * @param efd2 Exciter voltage at which exciter saturation is defined (Efd2).
- *        Typical Value = 4.2.
- * @param ka Voltage regulator gain (Ka).
- *        Typical Value = 400.
- * @param ke Exciter constant related to self-excited field (Ke).
- *        Typical Value = 1.
- * @param kf Excitation control system stabilizer gains (Kf).
- *        Typical Value = 0.03.
- * @param ks Coefficient to allow different usage of the model-speed coefficient (Ks).
- *        Typical Value = 0.
- * @param seefd1 Exciter saturation function value at the corresponding exciter voltage, Efd1 (S<sub>E</sub>[Efd1]).
- *        Typical Value = 0.86.
- * @param seefd2 Exciter saturation function value at the corresponding exciter voltage, Efd2 (S<sub>E</sub>[Efd2]).
- *        Typical Value = 0.5.
- * @param ta Voltage regulator time constant (Ta).
- *        Typical Value = 0.02.
- * @param tb Voltage regulator time constant (Tb).
- *        Typical Value = 0.
- * @param tc Voltage regulator time constant (Tc).
- *        Typical Value = 0.
- * @param te Exciter time constant, integration rate associated with exciter control (Te).
- *        Typical Value = 0.8.
- * @param tf1 Excitation control system stabilizer time constant (Tf1).
- *        Typical Value  = 1.
- * @param tf2 Excitation control system stabilizer time constant (Tf2).
- *        Typical Value = 0.8.
- * @param tf3 Excitation control system stabilizer time constant (Tf3).
- *        Typical Value = 0.
- * @param vrmax Maximum voltage regulator output (Vrmax).
- *        Typical Value = 7.3.
- * @param vrmin Minimum voltage regulator output (Vrmin).
- *        Typical Value =-7.3.
+ * @param a Coefficient to allow different usage of the model (<i>a</i>).
+ *        Typical value = 1.
+ * @param efd1 Exciter voltage at which exciter saturation is defined (<i>Efd1</i>) (&gt; 0).
+ *        Typical value = 5,6.
+ * @param efd2 Exciter voltage at which exciter saturation is defined (<i>Efd2</i>) (&gt; 0).
+ *        Typical value = 4,2.
+ * @param ka Voltage regulator gain (<i>Ka</i>) (&gt; 0).
+ *        Typical value = 400.
+ * @param ke Exciter constant related to self-excited field (<i>Ke</i>).
+ *        Typical value = 1.
+ * @param kf Excitation control system stabilizer gains (<i>Kf</i>) (&gt;= 0).
+ *        Typical value = 0,03.
+ * @param ks Coefficient to allow different usage of the model-speed coefficient (<i>Ks</i>).
+ *        Typical value = 0.
+ * @param seefd1 Exciter saturation function value at the corresponding exciter voltage, <i>Efd</i><i><sub>1</sub></i> (<i>Se[Efd</i><i><sub>1</sub></i><i>]</i>) (&gt;= 0).
+ *        Typical value = 0,86.
+ * @param seefd2 Exciter saturation function value at the corresponding exciter voltage, <i>Efd</i><i><sub>2</sub></i> (<i>Se[Efd</i><i><sub>2</sub></i><i>]</i>) (&gt;= 0).
+ *        Typical value = 0,5.
+ * @param ta Voltage regulator time constant (<i>Ta</i>) (&gt; 0).
+ *        Typical value = 0,02.
+ * @param tb Voltage regulator time constant (<i>Tb</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tc Voltage regulator time constant (<i>Tc</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param te Exciter time constant, integration rate associated with exciter control (<i>Te</i>) (&gt; 0).
+ *        Typical value = 0,8.
+ * @param tf1 Excitation control system stabilizer time constant (<i>Tf1</i>) (&gt; 0).
+ *        Typical value  = 1.
+ * @param tf2 Excitation control system stabilizer time constant (<i>Tf2</i>) (&gt;= 0).
+ *        Typical value = 0,8.
+ * @param tf3 Excitation control system stabilizer time constant (<i>Tf3</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param vrmax Maximum voltage regulator output (<i>Vrmax</i>) (&gt; 0).
+ *        Typical value = 7,3.
+ * @param vrmin Minimum voltage regulator output (<i>Vrmin</i>) (&lt; 0).
+ *        Typical value =-7,3.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
+The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 case class ExcAC5A
 (
@@ -1083,55 +1093,57 @@ extends
  * Modified IEEE AC6A alternator-supplied rectifier excitation system with speed input.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param ka Voltage regulator gain (Ka).
- *        Typical Value = 536.
- * @param kc Rectifier loading factor proportional to commutating reactance (Kc).
- *        Typical Value = 0.173.
- * @param kd Demagnetizing factor, a function of exciter alternator reactances (Kd).
- *        Typical Value = 1.91.
- * @param ke Exciter constant related to self-excited field (Ke).
- *        Typical Value = 1.6.
- * @param kh Exciter field current limiter gain (Kh).
- *        Typical Value = 92.
- * @param ks Coefficient to allow different usage of the model-speed coefficient (Ks).
- *        Typical Value = 0.
- * @param seve1 Exciter saturation function value at the corresponding exciter voltage, Ve1, back of commutating reactance (Se[Ve1]).
- *        Typical Value = 0.214.
- * @param seve2 Exciter saturation function value at the corresponding exciter voltage, Ve2, back of commutating reactance (Se[Ve2]).
- *        Typical Value = 0.044.
- * @param ta Voltage regulator time constant (Ta).
- *        Typical Value = 0.086.
- * @param tb Voltage regulator time constant (Tb).
- *        Typical Value = 9.
- * @param tc Voltage regulator time constant (Tc).
- *        Typical Value = 3.
- * @param te Exciter time constant, integration rate associated with exciter control (Te).
- *        Typical Value = 1.
- * @param th Exciter field current limiter time constant (Th).
- *        Typical Value = 0.08.
- * @param tj Exciter field current limiter time constant (Tj).
- *        Typical Value = 0.02.
- * @param tk Voltage regulator time constant (Tk).
- *        Typical Value = 0.18.
- * @param vamax Maximum voltage regulator output (Vamax).
- *        Typical Value = 75.
- * @param vamin Minimum voltage regulator output (Vamin).
- *        Typical Value = -75.
- * @param ve1 Exciter alternator output voltages back of commutating reactance at which saturation is defined (Ve<sub>1</sub>).
- *        Typical Value = 7.4.
- * @param ve2 Exciter alternator output voltages back of commutating reactance at which saturation is defined (Ve2).
- *        Typical Value = 5.55.
- * @param vfelim Exciter field current limit reference (Vfelim).
- *        Typical Value = 19.
- * @param vhmax Maximum field current limiter signal reference (Vhmax).
- *        Typical Value = 75.
- * @param vrmax Maximum voltage regulator output (Vrmax).
- *        Typical Value = 44.
- * @param vrmin Minimum voltage regulator output (Vrmin).
- *        Typical Value = -36.
+ * @param ka Voltage regulator gain (<i>Ka</i>) (&gt; 0).
+ *        Typical value = 536.
+ * @param kc Rectifier loading factor proportional to commutating reactance (<i>Kc</i>) (&gt;= 0).
+ *        Typical value = 0,173.
+ * @param kd Demagnetizing factor, a function of exciter alternator reactances (<i>Kd</i>) (&gt;= 0).
+ *        Typical value = 1,91.
+ * @param ke Exciter constant related to self-excited field (<i>Ke</i>).
+ *        Typical value = 1,6.
+ * @param kh Exciter field current limiter gain (<i>Kh</i>) (&gt;= 0).
+ *        Typical value = 92.
+ * @param ks Coefficient to allow different usage of the model-speed coefficient (<i>Ks</i>).
+ *        Typical value = 0.
+ * @param seve1 Exciter saturation function value at the corresponding exciter voltage, <i>Ve</i><i><sub>1</sub></i>, back of commutating reactance (<i>Se[Ve</i><i><sub>1</sub></i><i>]</i>) (&gt;= 0).
+ *        Typical value = 0,214.
+ * @param seve2 Exciter saturation function value at the corresponding exciter voltage, <i>Ve</i><i><sub>2</sub></i>, back of commutating reactance (<i>Se[Ve</i><i><sub>2</sub></i><i>]</i>) (&gt;= 0).
+ *        Typical value = 0,044.
+ * @param ta Voltage regulator time constant (<i>Ta</i>) (&gt;= 0).
+ *        Typical value = 0,086.
+ * @param tb Voltage regulator time constant (<i>Tb</i>) (&gt;= 0).
+ *        Typical value = 9.
+ * @param tc Voltage regulator time constant (<i>Tc</i>) (&gt;= 0).
+ *        Typical value = 3.
+ * @param te Exciter time constant, integration rate associated with exciter control (<i>Te</i>) (&gt; 0).
+ *        Typical value = 1.
+ * @param th Exciter field current limiter time constant (<i>Th</i>) (&gt; 0).
+ *        Typical value = 0,08.
+ * @param tj Exciter field current limiter time constant (<i>Tj</i>) (&gt;= 0).
+ *        Typical value = 0,02.
+ * @param tk Voltage regulator time constant (<i>Tk</i>) (&gt;= 0).
+ *        Typical value = 0,18.
+ * @param vamax Maximum voltage regulator output (<i>Vamax</i>) (&gt; 0).
+ *        Typical value = 75.
+ * @param vamin Minimum voltage regulator output (<i>Vamin</i>) (&lt; 0).
+ *        Typical value = -75.
+ * @param ve1 Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>Ve</i><i><sub>1</sub></i>) (&gt; 0).
+ *        Typical value = 7,4.
+ * @param ve2 Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>Ve</i><i><sub>2</sub></i>) (&gt; 0).
+ *        Typical value = 5,55.
+ * @param vfelim Exciter field current limit reference (<i>Vfelim</i>) (&gt; 0).
+ *        Typical value = 19.
+ * @param vhmax Maximum field current limiter signal reference (<i>Vhmax</i>) (&gt; 0).
+ *        Typical value = 75.
+ * @param vrmax Maximum voltage regulator output (<i>Vrmax</i>) (&gt; 0).
+ *        Typical value = 44.
+ * @param vrmin Minimum voltage regulator output (<i>Vrmin</i>) (&lt; 0).
+ *        Typical value = -36.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
+The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 case class ExcAC6A
 (
@@ -1314,68 +1326,70 @@ extends
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param inlim Input limiter indicator.
- *        true = input limiter Vimax and Vimin is considered
- *        false = input limiter Vimax and Vimin is not considered.
- *        Typical Value = true.
- * @param ka Voltage regulator gain (Ka).
- *        Typical Value = 1.
- * @param kc Rectifier loading factor proportional to commutating reactance (Kc).
- *        Typical Value = 0.55.
- * @param kd Demagnetizing factor, a function of exciter alternator reactances (Kd).
- *        Typical Value = 1.1.
- * @param kdr Voltage regulator derivative gain (Kdr).
- *        Typical Value = 10.
- * @param ke Exciter constant related to self-excited field (Ke).
- *        Typical Value = 1.
- * @param kir Voltage regulator integral gain (Kir).
- *        Typical Value = 5.
- * @param kpr Voltage regulator proportional gain (Kpr).
- *        Typical Value = 80.
- * @param ks Coefficient to allow different usage of the model-speed coefficient (Ks).
- *        Typical Value = 0.
+ *        true = input limiter <i>Vimax</i> and <i>Vimin</i> is considered
+ *        false = input limiter <i>Vimax </i>and <i>Vimin</i> is not considered.
+ *        Typical value = true.
+ * @param ka Voltage regulator gain (<i>Ka</i>) (&gt; 0).
+ *        Typical value = 1.
+ * @param kc Rectifier loading factor proportional to commutating reactance (<i>Kc</i>) (&gt;= 0).
+ *        Typical value = 0,55.
+ * @param kd Demagnetizing factor, a function of exciter alternator reactances (<i>Kd</i>) (&gt;= 0).
+ *        Typical value = 1,1.
+ * @param kdr Voltage regulator derivative gain (<i>Kdr</i>) (&gt;= 0).
+ *        Typical value = 10.
+ * @param ke Exciter constant related to self-excited field (<i>Ke</i>).
+ *        Typical value = 1.
+ * @param kir Voltage regulator integral gain (<i>Kir</i>) (&gt;= 0).
+ *        Typical value = 5.
+ * @param kpr Voltage regulator proportional gain (<i>Kpr</i>) (&gt; 0 if ExcAC8B.kir = 0).
+ *        Typical value = 80.
+ * @param ks Coefficient to allow different usage of the model-speed coefficient (<i>Ks</i>).
+ *        Typical value = 0.
  * @param pidlim PID limiter indicator.
- *        true = input limiter Vpidmax and Vpidmin is considered
- *        false = input limiter Vpidmax and Vpidmin is not considered.
- *        Typical Value = true.
- * @param seve1 Exciter saturation function value at the corresponding exciter voltage, Ve<sub>1</sub>, back of commutating reactance (Se[Ve1]).
- *        Typical Value = 0.3.
- * @param seve2 Exciter saturation function value at the corresponding exciter voltage, Ve<sub>2</sub>, back of commutating reactance (Se[Ve2]).
- *        Typical Value = 3.
- * @param ta Voltage regulator time constant (Ta).
- *        Typical Value = 0.
- * @param tdr Lag time constant (Tdr).
- *        Typical Value = 0.1.
- * @param te Exciter time constant, integration rate associated with exciter control (Te).
- *        Typical Value = 1.2.
- * @param telim Selector for the limiter on the block [1/sTe].
+ *        true = input limiter <i>Vpidmax</i> and <i>Vpidmin</i> is considered
+ *        false = input limiter <i>Vpidmax</i> and <i>Vpidmin</i> is not considered.
+ *        Typical value = true.
+ * @param seve1 Exciter saturation function value at the corresponding exciter voltage, <i>Ve</i><i><sub>1</sub></i>, back of commutating reactance (<i>Se[Ve</i><i><sub>1</sub></i><i>]</i>) (&gt;= 0).
+ *        Typical value = 0,3.
+ * @param seve2 Exciter saturation function value at the corresponding exciter voltage, <i>Ve</i><i><sub>2</sub></i>, back of commutating reactance (<i>Se[Ve</i><i><sub>2</sub></i><i>]</i>) (&gt;= 0).
+ *        Typical value = 3.
+ * @param ta Voltage regulator time constant (<i>Ta</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tdr Lag time constant (<i>Tdr</i>) (&gt; 0 if ExcAC8B.kdr &gt; 0).
+ *        Typical value = 0,1.
+ * @param te Exciter time constant, integration rate associated with exciter control (<i>Te</i>) (&gt; 0).
+ *        Typical value = 1,2.
+ * @param telim Selector for the limiter on the block (<i>1/sTe</i>).
  *        See diagram for meaning of true and false.
- * @param ve1 Exciter alternator output voltages back of commutating reactance at which saturation is defined (Ve<sub>1</sub>) equals V<sub>EMAX</sub> (Ve1).
- *        Typical Value = 6.5.
- * @param ve2 Exciter alternator output voltages back of commutating reactance at which saturation is defined (Ve<sub>2</sub>).
- *        Typical Value = 9.
- * @param vemin Minimum exciter voltage output (Vemin).
- *        Typical Value = 0.
- * @param vfemax Exciter field current limit reference (Vfemax).
- *        Typical Value = 6.
- * @param vimax Input signal maximum (Vimax).
- *        Typical Value = 35.
- * @param vimin Input signal minimum (Vimin).
- *        Typical Value = -10.
- * @param vpidmax PID maximum controller output (Vpidmax).
- *        Typical Value = 35.
- * @param vpidmin PID minimum controller output (Vpidmin).
- *        Typical Value = -10.
- * @param vrmax Maximum voltage regulator output (Vrmax).
- *        Typical Value = 35.
- * @param vrmin Minimum voltage regulator output (Vrmin).
- *        Typical Value = 0.
+ * @param ve1 Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>Ve</i><i><sub>1</sub></i>) (&gt; 0).
+ *        Typical value = 6,5.
+ * @param ve2 Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>Ve</i><i><sub>2</sub></i>) (&gt; 0).
+ *        Typical value = 9.
+ * @param vemin Minimum exciter voltage output (<i>Vemin</i>) (&lt;= 0).
+ *        Typical value = 0.
+ * @param vfemax Exciter field current limit reference (<i>Vfemax</i>).
+ *        Typical value = 6.
+ * @param vimax Input signal maximum (<i>Vimax</i>) (&gt; ExcAC8B.vimin).
+ *        Typical value = 35.
+ * @param vimin Input signal minimum (<i>Vimin</i>) (&lt; ExcAC8B.vimax).
+ *        Typical value = -10.
+ * @param vpidmax PID maximum controller output (<i>Vpidmax</i>) (&gt; ExcAC8B.vpidmin).
+ *        Typical value = 35.
+ * @param vpidmin PID minimum controller output (<i>Vpidmin</i>) (&lt; ExcAC8B.vpidmax).
+ *        Typical value = -10.
+ * @param vrmax Maximum voltage regulator output (<i>Vrmax</i>) (&gt; 0).
+ *        Typical value = 35.
+ * @param vrmin Minimum voltage regulator output (<i>Vrmin</i>) (&lt; 0).
+ *        Typical value = 0.
  * @param vtmult Multiply by generator's terminal voltage indicator.
- *        true =the limits Vrmax and Vrmin are multiplied by the generator�s terminal voltage to represent a thyristor power stage fed from the generator terminals
+ *        true =the limits <i>Vrmax</i> and <i>Vrmin</i> are multiplied by the generator�s terminal voltage to represent a thyristor power stage fed from the generator terminals
  *        false = limits are not multiplied by generator's terminal voltage.
- *        Typical Value = false.
+ *        Typical value = false.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
+The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 case class ExcAC8B
 (
@@ -1579,43 +1593,45 @@ extends
  * It represents static field voltage or excitation current feedback excitation system.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param blint Governor Control Flag (BLINT).
+ * @param blint Governor control flag (<i>BLINT</i>).
  *        0 = lead-lag regulator
  *        1 = proportional integral regulator.
- *        Typical Value = 0.
- * @param ifmn Minimum exciter current (I<sub>FMN</sub>).
- *        Typical Value = -5.2.
- * @param ifmx Maximum exciter current (I<sub>FMX</sub>).
- *        Typical Value = 6.5.
- * @param k2 Exciter gain (K<sub>2</sub>).
- *        Typical Value = 20.
- * @param k3 AVR gain (K<sub>3</sub>).
- *        Typical Value = 1000.
- * @param kce Ceiling factor (K<sub>CE</sub>).
- *        Typical Value = 1.
- * @param krvecc Feedback enabling (K<sub>RVECC</sub>).
- *        0 = Open loop control
- *        1 = Closed loop control.
- *        Typical Value = 1.
- * @param kvfif Rate feedback signal flag (K<sub>VFIF</sub>).
+ *        Typical value = 0.
+ * @param ifmn Minimum exciter current (<i>I</i><i><sub>FMN</sub></i>).
+ *        Typical value = -5,2.
+ * @param ifmx Maximum exciter current (<i>I</i><i><sub>FMX</sub></i>).
+ *        Typical value = 6,5.
+ * @param k2 Exciter gain (<i>K</i><i><sub>2</sub></i>).
+ *        Typical value = 20.
+ * @param k3 AVR gain (<i>K</i><i><sub>3</sub></i>).
+ *        Typical value = 1000.
+ * @param kce Ceiling factor (<i>K</i><i><sub>CE</sub></i>).
+ *        Typical value = 1.
+ * @param krvecc Feedback enabling (<i>K</i><i><sub>RVECC</sub></i>).
+ *        0 = open loop control
+ *        1 = closed loop control.
+ *        Typical value = 1.
+ * @param kvfif Rate feedback signal flag (<i>K</i><i><sub>VFIF</sub></i>).
  *        0 = output voltage of the exciter
  *        1 = exciter field current.
- *        Typical Value = 0.
- * @param t1 Time constant (T<sub>1</sub>).
- *        Typical Value = 20.
- * @param t2 Time constant (T<sub>2</sub>).
- *        Typical Value = 0.05.
- * @param t3 Time constant (T<sub>3</sub>).
- *        Typical Value = 1.6.
- * @param tb Exciter time constant (T<sub>B</sub>).
- *        Typical Value = 0.04.
- * @param vrmn Minimum AVR output (V<sub>RMN</sub>).
- *        Typical Value = -5.2.
- * @param vrmx Maximum AVR output (V<sub>RMX</sub>).
- *        Typical Value = 6.5.
+ *        Typical value = 0.
+ * @param t1 Time constant (<i>T</i><i><sub>1</sub></i>) (&gt;= 0).
+ *        Typical value = 20.
+ * @param t2 Time constant (<i>T</i><i><sub>2</sub></i>) (&gt;= 0).
+ *        Typical value = 0,05.
+ * @param t3 Time constant (<i>T</i><i><sub>3</sub></i>) (&gt;= 0).
+ *        Typical value = 1,6.
+ * @param tb Exciter time constant (<i>T</i><i><sub>B</sub></i>) (&gt;= 0).
+ *        Typical value = 0,04.
+ * @param vrmn Minimum AVR output (<i>V</i><i><sub>RMN</sub></i>).
+ *        Typical value = -5,2.
+ * @param vrmx Maximum AVR output (<i>V</i><i><sub>RMX</sub></i>).
+ *        Typical value = 6,5.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
+The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 case class ExcANS
 (
@@ -1749,38 +1765,40 @@ extends
 }
 
 /**
- * Italian excitation system corresponding to IEEE (1968) Type 1 Model.
+ * Italian excitation system corresponding to IEEE (1968) type 1 model.
  *
- * It represents exciter dynamo and electromechanical regulator.
+ * It represents an exciter dynamo and electromechanical regulator.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param e1 Field voltage value 1  (E1).
- *        Typical Value = 4.18.
- * @param e2 Field voltage value 2 (E2).
- *        Typical Value = 3.14.
- * @param ka AVR gain (K<sub>A</sub>).
- *        Typical Value = 500.
- * @param kf Rate feedback gain (K<sub>F</sub>).
- *        Typical Value = 0.12.
- * @param se1 Saturation factor at E1 (S(E1)).
- *        Typical Value = 0.1.
- * @param se2 Saturation factor at E2 (S(E2)).
- *        Typical Value = 0.03.
- * @param ta AVR time constant (T<sub>A</sub>).
- *        Typical Value = 0.2.
- * @param tb AVR time constant (T<sub>B</sub>).
- *        Typical Value = 0.
- * @param te Exciter time constant (T<sub>E</sub>).
- *        Typical Value = 1.
- * @param tf Rate feedback time constant (T<sub>F</sub>).
- *        Typical Value = 1.
- * @param vrmn Minimum AVR output (V<sub>RMN</sub>).
- *        Typical Value = -6.
- * @param vrmx Maximum AVR output (V<sub>RMX</sub>).
- *        Typical Value = 7.
+ * @param e1 Field voltage value 1 (<i>E</i><i><sub>1</sub></i>).
+ *        Typical value = 4.18.
+ * @param e2 Field voltage value 2 (<i>E</i><i><sub>2</sub></i>).
+ *        Typical value = 3,14.
+ * @param ka AVR gain (<i>K</i><i><sub>A</sub></i>).
+ *        Typical value = 500.
+ * @param kf Rate feedback gain (<i>K</i><i><sub>F</sub></i>).
+ *        Typical value = 0,12.
+ * @param se1 Saturation factor at <i>E</i><i><sub>1</sub></i> (<i>S[E</i><i><sub>1</sub></i><i>]</i>).
+ *        Typical value = 0,1.
+ * @param se2 Saturation factor at <i>E</i><i><sub>2</sub></i> (<i>S[E</i><i><sub>2</sub></i><i>]</i>).
+ *        Typical value = 0,03.
+ * @param ta AVR time constant (<i>T</i><i><sub>A</sub></i>) (&gt;= 0).
+ *        Typical value = 0,2.
+ * @param tb AVR time constant (<i>T</i><i><sub>B</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param te Exciter time constant (<i>T</i><i><sub>E</sub></i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param tf Rate feedback time constant (<i>T</i><i><sub>F</sub></i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param vrmn Minimum AVR output (<i>V</i><i><sub>RMN</sub></i>).
+ *        Typical value = -6.
+ * @param vrmx Maximum AVR output (<i>V</i><i><sub>RMX</sub></i>).
+ *        Typical value = 7.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
+The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 case class ExcAVR1
 (
@@ -1904,40 +1922,42 @@ extends
 }
 
 /**
- * Italian excitation system corresponding to IEEE (1968) Type 2 Model.
+ * Italian excitation system corresponding to IEEE (1968) type 2 model.
  *
- * It represents alternator and rotating diodes and electromechanic voltage regulators.
+ * It represents an alternator and rotating diodes and electromechanic voltage regulators.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param e1 Field voltage value 1 (E1).
- *        Typical Value = 4.18.
- * @param e2 Field voltage value 2 (E2).
- *        Typical Value = 3.14.
- * @param ka AVR gain (K<sub>A</sub>).
- *        Typical Value = 500.
- * @param kf Rate feedback gain (K<sub>F</sub>).
- *        Typical Value = 0.12.
- * @param se1 Saturation factor at E1 (S(E1)).
- *        Typical Value = 0.1.
- * @param se2 Saturation factor at E2 (S(E2)).
- *        Typical Value = 0.03.
- * @param ta AVR time constant (T<sub>A</sub>).
- *        Typical Value = 0.02.
- * @param tb AVR time constant (T<sub>B</sub>).
- *        Typical Value = 0.
- * @param te Exciter time constant (T<sub>E</sub>).
- *        Typical Value = 1.
- * @param tf1 Rate feedback time constant (T<sub>F1</sub>).
- *        Typical Value = 1.
- * @param tf2 Rate feedback time constant (T<sub>F2</sub>).
- *        Typical Value = 1.
- * @param vrmn Minimum AVR output (V<sub>RMN</sub>).
- *        Typical Value = -6.
- * @param vrmx Maximum AVR output (V<sub>RMX</sub>).
- *        Typical Value = 7.
+ * @param e1 Field voltage value 1 (<i>E</i><i><sub>1</sub></i>).
+ *        Typical value = 4,18.
+ * @param e2 Field voltage value 2 (<i>E</i><i><sub>2</sub></i>).
+ *        Typical value = 3,14.
+ * @param ka AVR gain (<i>K</i><i><sub>A</sub></i>).
+ *        Typical value = 500.
+ * @param kf Rate feedback gain (<i>K</i><i><sub>F</sub></i>).
+ *        Typical value = 0,12.
+ * @param se1 Saturation factor at <i>E</i><i><sub>1</sub></i> (<i>S[E</i><i><sub>1</sub></i><i>]</i>).
+ *        Typical value = 0.1.
+ * @param se2 Saturation factor at <i>E</i><i><sub>2</sub></i> (<i>S[E</i><i><sub>2</sub></i><i>]</i>).
+ *        Typical value = 0,03.
+ * @param ta AVR time constant (<i>T</i><i><sub>A</sub></i>) (&gt;= 0).
+ *        Typical value = 0,02.
+ * @param tb AVR time constant (<i>T</i><i><sub>B</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param te Exciter time constant (<i>T</i><i><sub>E</sub></i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param tf1 Rate feedback time constant (<i>T</i><i><sub>F1</sub></i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param tf2 Rate feedback time constant (<i>T</i><i><sub>F2</sub></i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param vrmn Minimum AVR output (<i>V</i><i><sub>RMN</sub></i>).
+ *        Typical value = -6.
+ * @param vrmx Maximum AVR output (<i>V</i><i><sub>RMX</sub></i>).
+ *        Typical value = 7.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
+The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 case class ExcAVR2
 (
@@ -2068,36 +2088,38 @@ extends
 /**
  * Italian excitation system.
  *
- * It represents exciter dynamo and electric regulator.
+ * It represents an exciter dynamo and electric regulator.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param e1 Field voltage value 1 (E1).
- *        Typical Value = 4.18.
- * @param e2 Field voltage value 2 (E2).
- *        Typical Value = 3.14.
- * @param ka AVR gain (K<sub>A</sub>).
- *        Typical Value = 100.
- * @param se1 Saturation factor at E1 (S(E1)).
- *        Typical Value = 0.1.
- * @param se2 Saturation factor at E2 (S(E2)).
- *        Typical Value = 0.03.
- * @param t1 AVR time constant (T<sub>1</sub>).
- *        Typical Value = 20.
- * @param t2 AVR time constant (T<sub>2</sub>).
- *        Typical Value = 1.6.
- * @param t3 AVR time constant (T<sub>3</sub>).
- *        Typical Value = 0.66.
- * @param t4 AVR time constant (T<sub>4</sub>).
- *        Typical Value = 0.07.
- * @param te Exciter time constant (T<sub>E</sub>).
- *        Typical Value = 1.
- * @param vrmn Minimum AVR output (V<sub>RMN</sub>).
- *        Typical Value = -7.5.
- * @param vrmx Maximum AVR output (V<sub>RMX</sub>).
- *        Typical Value = 7.5.
+ * @param e1 Field voltage value 1 (<i>E</i><i><sub>1</sub></i>).
+ *        Typical value = 4,18.
+ * @param e2 Field voltage value 2 (<i>E</i><i><sub>2</sub></i>).
+ *        Typical value = 3,14.
+ * @param ka AVR gain (<i>K</i><i><sub>A</sub></i>).
+ *        Typical value = 100.
+ * @param se1 Saturation factor at <i>E</i><i><sub>1</sub></i><i> </i>(<i>S[E</i><i><sub>1</sub></i><i>]</i>).
+ *        Typical value = 0,1.
+ * @param se2 Saturation factor at <i>E</i><i><sub>2</sub></i><i> </i>(<i>S[E</i><i><sub>2</sub></i><i>]</i>).
+ *        Typical value = 0,03.
+ * @param t1 AVR time constant (<i>T</i><i><sub>1</sub></i>) (&gt;= 0).
+ *        Typical value = 20.
+ * @param t2 AVR time constant (<i>T</i><i><sub>2</sub></i>) (&gt;= 0).
+ *        Typical value = 1,6.
+ * @param t3 AVR time constant (<i>T</i><i><sub>3</sub></i>) (&gt;= 0).
+ *        Typical value = 0,66.
+ * @param t4 AVR time constant (<i>T</i><i><sub>4</sub></i>) (&gt;= 0).
+ *        Typical value = 0,07.
+ * @param te Exciter time constant (<i>T</i><i><sub>E</sub></i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param vrmn Minimum AVR output (<i>V</i><i><sub>RMN</sub></i>).
+ *        Typical value = -7,5.
+ * @param vrmx Maximum AVR output (<i>V</i><i><sub>RMX</sub></i>).
+ *        Typical value = 7,5.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
+The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 case class ExcAVR3
 (
@@ -2223,42 +2245,44 @@ extends
 /**
  * Italian excitation system.
  *
- * It represents static exciter and electric voltage regulator.
+ * It represents a static exciter and electric voltage regulator.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param imul AVR output voltage dependency selector (Imul).
+ * @param imul AVR output voltage dependency selector (<i>I</i><i><sub>MUL</sub></i>).
  *        true = selector is connected
  *        false = selector is not connected.
- *        Typical Value = true.
- * @param ka AVR gain (K<sub>A</sub>).
- *        Typical Value = 300.
- * @param ke Exciter gain (K<sub>E</sub>).
- *        Typical Value = 1.
- * @param kif Exciter internal reactance (K<sub>IF</sub>).
- *        Typical Value = 0.
- * @param t1 AVR time constant (T<sub>1</sub>).
- *        Typical Value = 4.8.
- * @param t1if Exciter current feedback time constant (T<sub>1IF</sub>).
- *        Typical Value = 60.
- * @param t2 AVR time constant (T<sub>2</sub>).
- *        Typical Value = 1.5.
- * @param t3 AVR time constant (T<sub>3</sub>).
- *        Typical Value = 0.
- * @param t4 AVR time constant (T<sub>4</sub>).
- *        Typical Value = 0.
- * @param tif Exciter current feedback time constant (T<sub>IF</sub>).
- *        Typical Value = 0.
- * @param vfmn Minimum exciter output (V<sub>FMN</sub>).
- *        Typical Value = 0.
- * @param vfmx Maximum exciter output (V<sub>FMX</sub>).
- *        Typical Value = 5.
- * @param vrmn Minimum AVR output (V<sub>RMN</sub>).
- *        Typical Value = 0.
- * @param vrmx Maximum AVR output (V<sub>RMX</sub>).
- *        Typical Value = 5.
+ *        Typical value = true.
+ * @param ka AVR gain (<i>K</i><i><sub>A</sub></i>).
+ *        Typical value = 300.
+ * @param ke Exciter gain (<i>K</i><i><sub>E</sub></i><i>)</i>.
+ *        Typical value = 1.
+ * @param kif Exciter internal reactance (<i>K</i><i><sub>IF</sub></i>).
+ *        Typical value = 0.
+ * @param t1 AVR time constant (<i>T</i><i><sub>1</sub></i>) (&gt;= 0).
+ *        Typical value = 4,8.
+ * @param t1if Exciter current feedback time constant (<i>T</i><i><sub>1IF</sub></i>) (&gt;= 0).
+ *        Typical value = 60.
+ * @param t2 AVR time constant (<i>T</i><i><sub>2</sub></i>) (&gt;= 0).
+ *        Typical value = 1,5.
+ * @param t3 AVR time constant (<i>T</i><i><sub>3</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param t4 AVR time constant (<i>T</i><i><sub>4</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tif Exciter current feedback time constant (<i>T</i><i><sub>IF</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param vfmn Minimum exciter output (<i>V</i><i><sub>FMN</sub></i>).
+ *        Typical value = 0.
+ * @param vfmx Maximum exciter output (<i>V</i><i><sub>FMX</sub></i>).
+ *        Typical value = 5.
+ * @param vrmn Minimum AVR output (<i>V</i><i><sub>RMN</sub></i>).
+ *        Typical value = 0.
+ * @param vrmx Maximum AVR output (<i>V</i><i><sub>RMX</sub></i>).
+ *        Typical value = 5.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
+The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 case class ExcAVR4
 (
@@ -2397,13 +2421,14 @@ extends
  * This model can be used as a very simple representation of manual voltage control.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param ka Gain (Ka).
- * @param rex Effective Output Resistance (Rex).
- *        Rex represents the effective output resistance seen by the excitation system.
- * @param ta Time constant (Ta).
+ * @param ka Gain (<i>Ka</i>).
+ * @param rex Effective output resistance (<i>Rex</i>). <i>Rex</i> represents the effective output resistance seen by the excitation system.
+ * @param ta Time constant (<i>Ta</i>) (&gt;= 0).
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
+The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 case class ExcAVR5
 (
@@ -2485,51 +2510,53 @@ extends
  * IVO excitation system.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param a1 Lead coefficient (A1).
- *        Typical Value = 0.5.
- * @param a2 Lag coefficient (A2).
- *        Typical Value = 0.5.
- * @param a3 Lead coefficient (A3).
- *        Typical Value = 0.5.
- * @param a4 Lag coefficient (A4).
- *        Typical Value = 0.5.
- * @param a5 Lead coefficient (A5).
- *        Typical Value = 0.5.
- * @param a6 Lag coefficient (A6).
- *        Typical Value = 0.5.
- * @param k1 Gain (K1).
- *        Typical Value = 1.
- * @param k3 Gain (K3).
- *        Typical Value = 3.
- * @param k5 Gain (K5).
- *        Typical Value = 1.
- * @param t1 Lead time constant (T1).
- *        Typical Value = 0.05.
- * @param t2 Lag time constant (T2).
- *        Typical Value = 0.1.
- * @param t3 Lead time constant (T3).
- *        Typical Value = 0.1.
- * @param t4 Lag time constant (T4).
- *        Typical Value = 0.1.
- * @param t5 Lead time constant (T5).
- *        Typical Value = 0.1.
- * @param t6 Lag time constant (T6).
- *        Typical Value = 0.1.
- * @param vmax1 Lead-lag max. limit (Vmax1).
- *        Typical Value = 5.
- * @param vmax3 Lead-lag max. limit (Vmax3).
- *        Typical Value = 5.
- * @param vmax5 Lead-lag max. limit (Vmax5).
- *        Typical Value = 5.
- * @param vmin1 Lead-lag min. limit (Vmin1).
- *        Typical Value = -5.
- * @param vmin3 Lead-lag min. limit (Vmin3).
- *        Typical Value = -5.
- * @param vmin5 Lead-lag min. limit (Vmin5).
- *        Typical Value = -2.
+ * @param a1 Lead coefficient (<i>A</i><i><sub>1</sub></i>).
+ *        Typical value = 0,5.
+ * @param a2 Lag coefficient (<i>A</i><i><sub>2</sub></i>).
+ *        Typical value = 0,5.
+ * @param a3 Lead coefficient (<i>A</i><i><sub>3</sub></i>).
+ *        Typical value = 0,5.
+ * @param a4 Lag coefficient (<i>A</i><i><sub>4</sub></i>).
+ *        Typical value = 0,5.
+ * @param a5 Lead coefficient (<i>A</i><i><sub>5</sub></i>).
+ *        Typical value = 0,5.
+ * @param a6 Lag coefficient (<i>A</i><i><sub>6</sub></i>).
+ *        Typical value = 0,5.
+ * @param k1 Gain (<i>K</i><i><sub>1</sub></i>).
+ *        Typical value = 1.
+ * @param k3 Gain (<i>K</i><i><sub>3</sub></i>).
+ *        Typical value = 3.
+ * @param k5 Gain (<i>K</i><i><sub>5</sub></i>).
+ *        Typical value = 1.
+ * @param t1 Lead time constant (<i>T</i><i><sub>1</sub></i>) (&gt;= 0).
+ *        Typical value = 0,05.
+ * @param t2 Lag time constant (<i>T</i><i><sub>2</sub></i>) (&gt;= 0).
+ *        Typical value = 0,1.
+ * @param t3 Lead time constant (<i>T</i><i><sub>3</sub></i>) (&gt;= 0).
+ *        Typical value = 0,1.
+ * @param t4 Lag time constant (<i>T</i><i><sub>4</sub></i>) (&gt;= 0).
+ *        Typical value = 0,1.
+ * @param t5 Lead time constant (<i>T</i><i><sub>5</sub></i>) (&gt;= 0).
+ *        Typical value = 0,1.
+ * @param t6 Lag time constant (<i>T</i><i><sub>6</sub></i>) (&gt;= 0).
+ *        Typical value = 0,1.
+ * @param vmax1 Lead-lag maximum limit (<i>Vmax1</i>) (&gt; ExcAVR7.vmin1).
+ *        Typical value = 5.
+ * @param vmax3 Lead-lag maximum limit (<i>Vmax3</i>) (&gt; ExcAVR7.vmin3).
+ *        Typical value = 5.
+ * @param vmax5 Lead-lag maximum limit (<i>Vmax5</i>) (&gt; ExcAVR7.vmin5).
+ *        Typical value = 5.
+ * @param vmin1 Lead-lag minimum limit (<i>Vmin1</i>) (&lt; ExcAVR7.vmax1).
+ *        Typical value = -5.
+ * @param vmin3 Lead-lag minimum limit (<i>Vmin3</i>) (&lt; ExcAVR7.vmax3).
+ *        Typical value = -5.
+ * @param vmin5 Lead-lag minimum limit (<i>Vmin5</i>) (&lt; ExcAVR7.vmax5).
+ *        Typical value = -2.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
+The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 case class ExcAVR7
 (
@@ -2703,33 +2730,35 @@ extends
  * This model represents a static excitation system in which a gated thyristor bridge fed by a transformer at the main generator terminals feeds the main generator directly.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param efdmax Maximum open circuit exciter voltage (Efdmax).
- *        Typical Value = 5.
- * @param efdmin Minimum open circuit exciter voltage (Efdmin).
- *        Typical Value = -5.
- * @param k Steady state gain (K).
- *        Typical Value = 300.
- * @param switch Supplementary signal routing selector (switch).
- *        true = Vs connected to 3rd summing point
- *        false =  Vs connected to 1st summing point (see diagram).
- *        Typical Value = true.
- * @param t1 Controller time constant (T1).
- *        Typical Value = 6.
- * @param t2 Controller time constant (T2).
- *        Typical Value = 1.
- * @param t3 Lead/lag time constant (T3).
- *        Typical Value = 0.05.
- * @param t4 Lead/lag time constant (T4).
- *        Typical Value = 0.01.
- * @param vrmax Maximum control element output (Vrmax).
- *        Typical Value = 5.
- * @param vrmin Minimum control element output (Vrmin).
- *        Typical Value = -5.
- * @param xe Effective excitation transformer reactance (Xe).
- *        Typical Value = 0.05.
+ * @param efdmax Maximum open circuit exciter voltage (<i>Efdmax</i>) (&gt; ExcBBC.efdmin).
+ *        Typical value = 5.
+ * @param efdmin Minimum open circuit exciter voltage (<i>Efdmin</i>) (&lt; ExcBBC.efdmax).
+ *        Typical value = -5.
+ * @param k Steady state gain (<i>K</i>) (not = 0).
+ *        Typical value = 300.
+ * @param switch Supplementary signal routing selector (<i>switch</i>).
+ *        true = <i>Vs</i> connected to 3rd summing point
+ *        false =  <i>Vs</i> connected to 1st summing point (see diagram).
+ *        Typical value = false.
+ * @param t1 Controller time constant (<i>T1</i>) (&gt;= 0).
+ *        Typical value = 6.
+ * @param t2 Controller time constant (<i>T2</i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param t3 Lead/lag time constant (<i>T3</i>) (&gt;= 0).
+ *        If = 0, block is bypassed.  Typical value = 0,05.
+ * @param t4 Lead/lag time constant (<i>T4</i>) (&gt;= 0).
+ *        If = 0, block is bypassed.  Typical value = 0,01.
+ * @param vrmax Maximum control element output (<i>Vrmax</i>) (&gt; ExcBBC.vrmin).
+ *        Typical value = 5.
+ * @param vrmin Minimum control element output (<i>Vrmin</i>) (&lt; ExcBBC.vrmax).
+ *        Typical value = -5.
+ * @param xe Effective excitation transformer reactance (<i>Xe</i>) (&gt;= 0).  <i>Xe</i> models the regulation of the transformer/rectifier unit.
+ *        Typical value = 0,05.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
+The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 case class ExcBBC
 (
@@ -2848,22 +2877,24 @@ extends
 }
 
 /**
- * Czech Proportion/Integral Exciter.
+ * Czech proportion/integral exciter.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param efdmax Exciter output maximum limit (Efdmax).
- * @param efdmin Exciter output minimum limit (Efdmin).
- * @param ka Regulator gain (Ka).
- * @param ke Exciter constant related to self-excited field (Ke).
- * @param kp Regulator proportional gain (Kp).
- * @param ta Regulator time constant (Ta).
- * @param tc Regulator integral time constant (Tc).
- * @param te Exciter time constant, integration rate associated with exciter control (Te).
- * @param vrmax Voltage regulator maximum limit (Vrmax).
- * @param vrmin Voltage regulator minimum limit (Vrmin).
+ * @param efdmax Exciter output maximum limit (<i>Efdmax</i>) (&gt; ExcCZ.efdmin).
+ * @param efdmin Exciter output minimum limit (<i>Efdmin</i>) (&lt; ExcCZ.efdmax).
+ * @param ka Regulator gain (<i>Ka</i>).
+ * @param ke Exciter constant related to self-excited field (<i>Ke</i>).
+ * @param kp Regulator proportional gain (<i>Kp</i>).
+ * @param ta Regulator time constant (<i>Ta</i>) (&gt;= 0).
+ * @param tc Regulator integral time constant (<i>Tc</i>) (&gt;= 0).
+ * @param te Exciter time constant, integration rate associated with exciter control (<i>Te</i>) (&gt;= 0).
+ * @param vrmax Voltage regulator maximum limit (<i>Vrmax</i>) (&gt; ExcCZ.vrmin).
+ * @param vrmin Voltage regulator minimum limit (<i>Vrmin</i>) (&lt; ExcCZ.vrmax).
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
+The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 case class ExcCZ
 (
@@ -2980,52 +3011,54 @@ extends
  * Modified IEEE DC1A direct current commutator exciter with speed input and without underexcitation limiters (UEL) inputs.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param edfmax Maximum voltage exciter output limiter (Efdmax).
- *        Typical Value = 99.
- * @param efd1 Exciter voltage at which exciter saturation is defined (Efd1).
- *        Typical Value = 3.1.
- * @param efd2 Exciter voltage at which exciter saturation is defined (Efd2).
- *        Typical Value = 2.3.
- * @param efdmin Minimum voltage exciter output limiter (Efdmin).
- *        Typical Value = -99.
- * @param exclim (exclim).
+ * @param efd1 Exciter voltage at which exciter saturation is defined (<i>Efd</i><i><sub>1</sub></i>) (&gt; 0).
+ *        Typical value = 3,1.
+ * @param efd2 Exciter voltage at which exciter saturation is defined (<i>Efd</i><i><sub>2</sub></i>) (&gt; 0).
+ *        Typical value = 2,3.
+ * @param efdmax Maximum voltage exciter output limiter (<i>Efdmax</i>) (&gt; ExcDC1A.efdmin).
+ *        Typical value = 99.
+ * @param efdmin Minimum voltage exciter output limiter (<i>Efdmin</i>) (&lt; ExcDC1A.edfmax).
+ *        Typical value = -99.
+ * @param exclim (<i>exclim</i>).
  *        IEEE standard is ambiguous about lower limit on exciter output.
- * @param ka Voltage regulator gain (Ka).
- *        Typical Value = 46.
- * @param ke Exciter constant related to self-excited field (Ke).
- *        Typical Value = 0.
- * @param kf Excitation control system stabilizer gain (Kf).
- *        Typical Value = 0.1.
- * @param ks Coefficient to allow different usage of the model-speed coefficient (Ks).
- *        Typical Value = 0.
- * @param seefd1 Exciter saturation function value at the corresponding exciter voltage, Efd1 (Se[Eefd1]).
- *        Typical Value = 0.33.
- * @param seefd2 Exciter saturation function value at the corresponding exciter voltage, Efd1 (Se[Eefd1]).
- *        Typical Value = 0.33.
- * @param ta Voltage regulator time constant (Ta).
- *        Typical Value = 0.06.
- * @param tb Voltage regulator time constant (Tb).
- *        Typical Value = 0.
- * @param tc Voltage regulator time constant (Tc).
- *        Typical Value = 0.
- * @param te Exciter time constant, integration rate associated with exciter control (Te).
- *        Typical Value = 0.46.
- * @param tf Excitation control system stabilizer time constant (Tf).
- *        Typical Value = 1.
- * @param vrmax Maximum voltage regulator output (Vrmax).
- *        Typical Value = 1.
- * @param vrmin Minimum voltage regulator output (Vrmin).
- *        Typical Value = -0.9.
+ * @param ka Voltage regulator gain (<i>Ka</i>) (&gt; 0).
+ *        Typical value = 46.
+ * @param ke Exciter constant related to self-excited field (<i>Ke</i>).
+ *        Typical value = 0.
+ * @param kf Excitation control system stabilizer gain (<i>Kf</i>) (&gt;= 0).
+ *        Typical value = 0,1.
+ * @param ks Coefficient to allow different usage of the model-speed coefficient (<i>Ks</i>).
+ *        Typical value = 0.
+ * @param seefd1 Exciter saturation function value at the corresponding exciter voltage, <i>Efd</i><i><sub>1</sub></i> (<i>Se[Eefd</i><i><sub>1</sub></i><i>]</i>) (&gt;= 0).
+ *        Typical value = 0,33.
+ * @param seefd2 Exciter saturation function value at the corresponding exciter voltage, <i>Efd</i><i><sub>2</sub></i> (<i>Se[Eefd</i><i><sub>2</sub></i><i>]</i>) (&gt;= 0).
+ *        Typical value = 0,1.
+ * @param ta Voltage regulator time constant (<i>Ta</i>) (&gt; 0).
+ *        Typical value = 0,06.
+ * @param tb Voltage regulator time constant (<i>Tb</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tc Voltage regulator time constant (<i>Tc</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param te Exciter time constant, integration rate associated with exciter control (<i>Te</i>) (&gt; 0).
+ *        Typical value = 0,46.
+ * @param tf Excitation control system stabilizer time constant (<i>Tf</i>) (&gt; 0).
+ *        Typical value = 1.
+ * @param vrmax Maximum voltage regulator output (<i>Vrmax</i>) (&gt; ExcDC1A.vrmin).
+ *        Typical value = 1.
+ * @param vrmin Minimum voltage regulator output (<i>Vrmin</i>) (&lt; 0 and &lt; ExcDC1A.vrmax).
+ *        Typical value = -0,9.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
+The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 case class ExcDC1A
 (
     override val sup: ExcitationSystemDynamics,
-    edfmax: Double,
     efd1: Double,
     efd2: Double,
+    efdmax: Double,
     efdmin: Double,
     exclim: Boolean,
     ka: Double,
@@ -3072,9 +3105,9 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcDC1A.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcDC1A.fields (position), value)
-        emitelem (0, edfmax)
-        emitelem (1, efd1)
-        emitelem (2, efd2)
+        emitelem (0, efd1)
+        emitelem (1, efd2)
+        emitelem (2, efdmax)
         emitelem (3, efdmin)
         emitelem (4, exclim)
         emitelem (5, ka)
@@ -3103,9 +3136,9 @@ extends
     Parseable[ExcDC1A]
 {
     override val fields: Array[String] = Array[String] (
-        "edfmax",
         "efd1",
         "efd2",
+        "efdmax",
         "efdmin",
         "exclim",
         "ka",
@@ -3122,9 +3155,9 @@ extends
         "vrmax",
         "vrmin"
     )
-    val edfmax: Fielder = parse_element (element (cls, fields(0)))
-    val efd1: Fielder = parse_element (element (cls, fields(1)))
-    val efd2: Fielder = parse_element (element (cls, fields(2)))
+    val efd1: Fielder = parse_element (element (cls, fields(0)))
+    val efd2: Fielder = parse_element (element (cls, fields(1)))
+    val efdmax: Fielder = parse_element (element (cls, fields(2)))
     val efdmin: Fielder = parse_element (element (cls, fields(3)))
     val exclim: Fielder = parse_element (element (cls, fields(4)))
     val ka: Fielder = parse_element (element (cls, fields(5)))
@@ -3147,9 +3180,9 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = ExcDC1A (
             ExcitationSystemDynamics.parse (context),
-            toDouble (mask (edfmax (), 0)),
-            toDouble (mask (efd1 (), 1)),
-            toDouble (mask (efd2 (), 2)),
+            toDouble (mask (efd1 (), 0)),
+            toDouble (mask (efd2 (), 1)),
+            toDouble (mask (efdmax (), 2)),
             toDouble (mask (efdmin (), 3)),
             toBoolean (mask (exclim (), 4)),
             toDouble (mask (ka (), 5)),
@@ -3172,52 +3205,54 @@ extends
 }
 
 /**
- * Modified IEEE DC2A direct current commutator exciters with speed input, one more leg block in feedback loop and without underexcitation limiters (UEL) inputs.
+ * Modified IEEE DC2A direct current commutator exciter with speed input, one more leg block in feedback loop and without underexcitation limiters (UEL) inputs.
  *
  * DC type 2 excitation system model with added speed multiplier, added lead-lag, and voltage-dependent limits.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param efd1 Exciter voltage at which exciter saturation is defined (Efd1).
- *        Typical Value = 3.05.
- * @param efd2 Exciter voltage at which exciter saturation is defined (Efd2).
- *        Typical Value = 2.29.
- * @param exclim (exclim).
+ * @param efd1 Exciter voltage at which exciter saturation is defined (<i>Efd</i><i><sub>1</sub></i>) (&gt; 0).
+ *        Typical value = 3,05.
+ * @param efd2 Exciter voltage at which exciter saturation is defined (<i>Efd</i><i><sub>2</sub></i>) (&gt; 0).
+ *        Typical value = 2,29.
+ * @param exclim (<i>exclim</i>).
  *        IEEE standard is ambiguous about lower limit on exciter output.
- * @param ka Voltage regulator gain (Ka).
- *        Typical Value = 300.
- * @param ke Exciter constant related to self-excited field (Ke).
- *        If Ke is entered as zero, the model calculates an effective value of Ke such that the initial condition value of Vr is zero. The zero value of Ke is not changed.  If Ke is entered as non-zero, its value is used directly, without change.  Typical Value = 1.
- * @param kf Excitation control system stabilizer gain (Kf).
- *        Typical Value = 0.1.
- * @param ks Coefficient to allow different usage of the model-speed coefficient (Ks).
- *        Typical Value = 0.
- * @param seefd1 Exciter saturation function value at the corresponding exciter voltage, Efd1 (Se[Eefd1]).
- *        Typical Value = 0.279.
- * @param seefd2 Exciter saturation function value at the corresponding exciter voltage, Efd2 (Se[Efd2]).
- *        Typical Value = 0.117.
- * @param ta Voltage regulator time constant (Ta).
- *        Typical Value = 0.01.
- * @param tb Voltage regulator time constant (Tb).
- *        Typical Value = 0.
- * @param tc Voltage regulator time constant (Tc).
- *        Typical Value = 0.
- * @param te Exciter time constant, integration rate associated with exciter control (Te).
- *        Typical Value = 1.33.
- * @param tf Excitation control system stabilizer time constant (Tf).
- *        Typical Value = 0.675.
- * @param tf1 Excitation control system stabilizer time constant (Tf1).
- *        Typical Value = 0.
- * @param vrmax Maximum voltage regulator output (Vrmax).
- *        Typical Value = 4.95.
- * @param vrmin Minimum voltage regulator output (Vrmin).
- *        Typical Value = -4.9.
- * @param vtlim (Vtlim).
- *        true = limiter at the block [Ka/(1+sTa)] is dependent on Vt
- *        false = limiter at the block is not dependent on Vt.
- *        Typical Value = true.
+ * @param ka Voltage regulator gain (<i>Ka</i>) (&gt; 0).
+ *        Typical value = 300.
+ * @param ke Exciter constant related to self-excited field (<i>Ke</i>).
+ *        If <i>Ke</i> is entered as zero, the model calculates an effective value of <i>Ke</i> such that the initial condition value of <i>Vr</i> is zero. The zero value of <i>Ke</i> is not changed.  If <i>Ke</i> is entered as non-zero, its value is used directly, without change.  Typical value = 1.
+ * @param kf Excitation control system stabilizer gain (<i>Kf</i>) (&gt;= 0).
+ *        Typical value = 0,1.
+ * @param ks Coefficient to allow different usage of the model-speed coefficient (<i>Ks</i>).
+ *        Typical value = 0.
+ * @param seefd1 Exciter saturation function value at the corresponding exciter voltage, <i>Efd</i><i><sub>1</sub></i> (<i>Se[Efd</i><i><sub>1</sub></i><i>]</i>) (&gt;= 0).
+ *        Typical value = 0,279.
+ * @param seefd2 Exciter saturation function value at the corresponding exciter voltage, <i>Efd</i><i><sub>2</sub></i> (<i>Se[Efd</i><i><sub>2</sub></i><i>]</i>) (&gt;= 0).
+ *        Typical value = 0,117.
+ * @param ta Voltage regulator time constant (<i>Ta</i>) (&gt; 0).
+ *        Typical value = 0,01.
+ * @param tb Voltage regulator time constant (<i>Tb</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tc Voltage regulator time constant (<i>Tc</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param te Exciter time constant, integration rate associated with exciter control (<i>Te</i>) (&gt; 0).
+ *        Typical value = 1,33.
+ * @param tf Excitation control system stabilizer time constant (<i>Tf</i>) (&gt; 0).
+ *        Typical value = 0,675.
+ * @param tf1 Excitation control system stabilizer time constant (<i>Tf1</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param vrmax Maximum voltage regulator output (<i>Vrmax</i>) (&gt; ExcDC2A.vrmin).
+ *        Typical value = 4,95.
+ * @param vrmin Minimum voltage regulator output (<i>Vrmin</i>) (&lt; 0 and &lt; ExcDC2A.vrmax).
+ *        Typical value = -4,9.
+ * @param vtlim (<i>Vtlim</i>).
+ *        true = limiter at the block (<i>Ka / [1 + sTa]</i>) is dependent on <i>Vt </i>
+ *        false = limiter at the block is not dependent on <i>Vt</i>.
+ *        Typical value = true.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
+The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 case class ExcDC2A
 (
@@ -3371,56 +3406,58 @@ extends
 }
 
 /**
- * This is modified IEEE DC3A direct current commutator exciters with speed input, and death band.
+ * Modified IEEE DC3A direct current commutator exciter with speed input, and deadband.
  *
  * DC old type 4.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param edfmax Maximum voltage exciter output limiter (Efdmax).
- *        Typical Value = 99.
- * @param efd1 Exciter voltage at which exciter saturation is defined (Efd1).
- *        Typical Value = 2.6.
- * @param efd2 Exciter voltage at which exciter saturation is defined (Efd2).
- *        Typical Value = 3.45.
- * @param efdlim (Efdlim).
+ * @param efd1 Exciter voltage at which exciter saturation is defined (<i>Efd</i><i><sub>1</sub></i>) (&gt; 0).
+ *        Typical value = 2,6.
+ * @param efd2 Exciter voltage at which exciter saturation is defined (<i>Efd</i><i><sub>2</sub></i>) (&gt; 0).
+ *        Typical value = 3,45.
+ * @param efdlim (<i>Efdlim</i>).
  *        true = exciter output limiter is active
  *        false = exciter output limiter not active.
- *        Typical Value = true.
- * @param efdmin Minimum voltage exciter output limiter (Efdmin).
- *        Typical Value = -99.
- * @param exclim (exclim).
+ *        Typical value = true.
+ * @param efdmax Maximum voltage exciter output limiter (<i>Efdmax</i>) (&gt; ExcDC3A.efdmin).
+ *        Typical value = 99.
+ * @param efdmin Minimum voltage exciter output limiter (<i>Efdmin</i>) (&lt; ExcDC3A.efdmax).
+ *        Typical value = -99.
+ * @param exclim (<i>exclim</i>).
  *        IEEE standard is ambiguous about lower limit on exciter output.
- * @param ke Exciter constant related to self-excited field (Ke).
- *        Typical Value = 1.
- * @param kr Death band (Kr).
- *        If Kr is not zero, the voltage regulator input changes at a constant rate if Verr &gt; Kr or Verr &lt; -Kr as per the IEEE (1968) Type 4 model. If Kr is zero, the error signal drives the voltage regulator continuously as per the IEEE (1980) DC3 and IEEE (1992, 2005) DC3A models.  Typical Value = 0.
- * @param ks Coefficient to allow different usage of the model-speed coefficient (Ks).
- *        Typical Value = 0.
- * @param kv Fast raise/lower contact setting (Kv).
- *        Typical Value = 0.05.
- * @param seefd1 Exciter saturation function value at the corresponding exciter voltage, Efd1 (Se[Eefd1]).
- *        Typical Value = 0.1.
- * @param seefd2 Exciter saturation function value at the corresponding exciter voltage, Efd2 (Se[Efd2]).
- *        Typical Value = 0.35.
- * @param te Exciter time constant, integration rate associated with exciter control (Te).
- *        Typical Value = 1.83.
- * @param trh Rheostat travel time (Trh).
- *        Typical Value = 20.
- * @param vrmax Maximum voltage regulator output (Vrmax).
- *        Typical Value = 5.
- * @param vrmin Minimum voltage regulator output (Vrmin).
- *        Typical Value = 0.
+ * @param ke Exciter constant related to self-excited field (<i>Ke</i>).
+ *        Typical value = 1.
+ * @param kr Deadband (<i>Kr</i>).
+ *        Typical value = 0.
+ * @param ks Coefficient to allow different usage of the model-speed coefficient (<i>Ks</i>).
+ *        Typical value = 0.
+ * @param kv Fast raise/lower contact setting (<i>Kv</i>) (&gt; 0).
+ *        Typical value = 0,05.
+ * @param seefd1 Exciter saturation function value at the corresponding exciter voltage, <i>Efd</i><i><sub>1</sub></i> (<i>Se[Efd</i><i><sub>1</sub></i><i>]</i>) (&gt;= 0).
+ *        Typical value = 0,1.
+ * @param seefd2 Exciter saturation function value at the corresponding exciter voltage, <i>Efd</i><i><sub>2</sub></i> (<i>Se[Efd</i><i><sub>2</sub></i><i>]</i>) (&gt;= 0).
+ *        Typical value = 0,35.
+ * @param te Exciter time constant, integration rate associated with exciter control (<i>Te</i>) (&gt; 0).
+ *        Typical value = 1,83.
+ * @param trh Rheostat travel time (<i>Trh</i>) (&gt; 0).
+ *        Typical value = 20.
+ * @param vrmax Maximum voltage regulator output (<i>Vrmax</i>) (&gt; 0).
+ *        Typical value = 5.
+ * @param vrmin Minimum voltage regulator output (<i>Vrmin</i>) (&lt;= 0).
+ *        Typical value = 0.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
+The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 case class ExcDC3A
 (
     override val sup: ExcitationSystemDynamics,
-    edfmax: Double,
     efd1: Double,
     efd2: Double,
     efdlim: Boolean,
+    efdmax: Double,
     efdmin: Double,
     exclim: Boolean,
     ke: Double,
@@ -3440,7 +3477,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, 0.0, false, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    def this () = { this (null, 0.0, 0.0, false, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -3464,10 +3501,10 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ExcDC3A.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcDC3A.fields (position), value)
-        emitelem (0, edfmax)
-        emitelem (1, efd1)
-        emitelem (2, efd2)
-        emitelem (3, efdlim)
+        emitelem (0, efd1)
+        emitelem (1, efd2)
+        emitelem (2, efdlim)
+        emitelem (3, efdmax)
         emitelem (4, efdmin)
         emitelem (5, exclim)
         emitelem (6, ke)
@@ -3493,10 +3530,10 @@ extends
     Parseable[ExcDC3A]
 {
     override val fields: Array[String] = Array[String] (
-        "edfmax",
         "efd1",
         "efd2",
         "efdlim",
+        "efdmax",
         "efdmin",
         "exclim",
         "ke",
@@ -3510,10 +3547,10 @@ extends
         "vrmax",
         "vrmin"
     )
-    val edfmax: Fielder = parse_element (element (cls, fields(0)))
-    val efd1: Fielder = parse_element (element (cls, fields(1)))
-    val efd2: Fielder = parse_element (element (cls, fields(2)))
-    val efdlim: Fielder = parse_element (element (cls, fields(3)))
+    val efd1: Fielder = parse_element (element (cls, fields(0)))
+    val efd2: Fielder = parse_element (element (cls, fields(1)))
+    val efdlim: Fielder = parse_element (element (cls, fields(2)))
+    val efdmax: Fielder = parse_element (element (cls, fields(3)))
     val efdmin: Fielder = parse_element (element (cls, fields(4)))
     val exclim: Fielder = parse_element (element (cls, fields(5)))
     val ke: Fielder = parse_element (element (cls, fields(6)))
@@ -3533,10 +3570,10 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = ExcDC3A (
             ExcitationSystemDynamics.parse (context),
-            toDouble (mask (edfmax (), 0)),
-            toDouble (mask (efd1 (), 1)),
-            toDouble (mask (efd2 (), 2)),
-            toBoolean (mask (efdlim (), 3)),
+            toDouble (mask (efd1 (), 0)),
+            toDouble (mask (efd2 (), 1)),
+            toBoolean (mask (efdlim (), 2)),
+            toDouble (mask (efdmax (), 3)),
             toDouble (mask (efdmin (), 4)),
             toBoolean (mask (exclim (), 5)),
             toDouble (mask (ke (), 6)),
@@ -3556,44 +3593,46 @@ extends
 }
 
 /**
- * This is modified old IEEE type 3 excitation system.
+ * Modified old IEEE type 3 excitation system.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param exclim (exclim).
+ * @param exclim (<i>exclim</i>).
  *        true = lower limit of zero is applied to integrator output
  *        false = lower limit of zero not applied to integrator output.
- *        Typical Value = true.
- * @param ka Voltage regulator gain (Ka).
- *        Typical Value = 300.
- * @param ke Exciter constant related to self-excited field (Ke).
- *        Typical Value = 1.
- * @param kf Excitation control system stabilizer gain (Kf).
- *        Typical Value = 0.1.
- * @param ki Potential circuit gain coefficient (Ki).
- *        Typical Value = 4.83.
- * @param kp Potential circuit gain coefficient (Kp).
- *        Typical Value = 4.37.
- * @param ta Voltage regulator time constant (Ta).
- *        Typical Value = 0.01.
- * @param te Exciter time constant, integration rate associated with exciter control (Te).
- *        Typical Value = 1.83.
- * @param tf Excitation control system stabilizer time constant (Tf).
- *        Typical Value = 0.675.
- * @param vb1max Available exciter voltage limiter (Vb1max).
- *        Typical Value = 11.63.
+ *        Typical value = true.
+ * @param ka Voltage regulator gain (<i>Ka</i>) (&gt; 0).
+ *        Typical value = 300.
+ * @param ke Exciter constant related to self-excited field (<i>Ke</i>).
+ *        Typical value = 1.
+ * @param kf Excitation control system stabilizer gain (<i>Kf</i>) (&gt;= 0).
+ *        Typical value = 0,1.
+ * @param ki Potential circuit gain coefficient (<i>Ki</i>) (&gt;= 0).
+ *        Typical value = 4,83.
+ * @param kp Potential circuit gain coefficient (<i>Kp</i>) (&gt;= 0).
+ *        Typical value = 4,37.
+ * @param ta Voltage regulator time constant (<i>Ta</i>) (&gt; 0).
+ *        Typical value = 0,01.
+ * @param te Exciter time constant, integration rate associated with exciter control (<i>Te</i>) (&gt; 0).
+ *        Typical value = 1,83.
+ * @param tf Excitation control system stabilizer time constant (<i>Tf</i>) (&gt;= 0).
+ *        Typical value = 0,675.
+ * @param vb1max Available exciter voltage limiter (<i>Vb1max</i>) (&gt; 0).
+ *        Typical value = 11,63.
  * @param vblim Vb limiter indicator.
- *        true = exciter Vbmax limiter is active
- *        false = Vb1max is active.
- *        Typical Value = true.
- * @param vbmax Available exciter voltage limiter (Vbmax).
- *        Typical Value = 11.63.
- * @param vrmax Maximum voltage regulator output (Vrmax).
- *        Typical Value = 5.
- * @param vrmin Minimum voltage regulator output (Vrmin).
- *        Typical Value = 0.
+ *        true = exciter <i>Vbmax</i> limiter is active
+ *        false = <i>Vb1max</i> is active.
+ *        Typical value = true.
+ * @param vbmax Available exciter voltage limiter (<i>Vbmax</i>) (&gt; 0).
+ *        Typical value = 11,63.
+ * @param vrmax Maximum voltage regulator output (<i>Vrmax</i>) (&gt; ExcDC3A1.vrmin).
+ *        Typical value = 5.
+ * @param vrmin Minimum voltage regulator output (<i>Vrmin</i>) (&lt; 0 and &lt; ExcDC3A1.vrmax).
+ *        Typical value = 0.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
+The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 case class ExcDC3A1
 (
@@ -3727,44 +3766,46 @@ extends
 }
 
 /**
- * Static PI transformer fed excitation system: ELIN (VATECH) - simplified model.
+ * Static PI transformer fed excitation system ELIN (VATECH) - simplified model.
  *
  * This model represents an all-static excitation system. A PI voltage controller establishes a desired field current set point for a proportional current controller. The integrator of the PI controller has a follow-up input to match its signal to the present field current.  A power system stabilizer with power input is included in the model.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param dpnf Controller follow up dead band (Dpnf).
- *        Typical Value = 0.
- * @param efmax Maximum open circuit excitation voltage (Efmax).
- *        Typical Value = 5.
- * @param efmin Minimum open circuit excitation voltage (Efmin).
- *        Typical Value = -5.
- * @param ks1 Stabilizer Gain 1 (Ks1).
- *        Typical Value = 0.
- * @param ks2 Stabilizer Gain 2 (Ks2).
- *        Typical Value = 0.
- * @param smax Stabilizer Limit Output (smax).
- *        Typical Value = 0.1.
- * @param tfi Current transducer time constant (Tfi).
- *        Typical Value = 0.
- * @param tnu Controller reset time constant (Tnu).
- *        Typical Value = 2.
- * @param ts1 Stabilizer Phase Lag Time Constant (Ts1).
- *        Typical Value = 1.
- * @param ts2 Stabilizer Filter Time Constant (Ts2).
- *        Typical Value = 1.
- * @param tsw Stabilizer parameters (Tsw).
- *        Typical Value = 3.
- * @param vpi Current controller gain (Vpi).
- *        Typical Value = 12.45.
- * @param vpnf Controller follow up gain (Vpnf).
- *        Typical Value = 2.
- * @param vpu Voltage controller proportional gain (Vpu).
- *        Typical Value = 34.5.
- * @param xe Excitation transformer effective reactance (Xe) (&gt;=0).
- *        Xe represents the regulation of the transformer/rectifier unit.  Typical Value = 0.06.
+ * @param dpnf Controller follow up deadband (<i>Dpnf</i>).
+ *        Typical value = 0.
+ * @param efmax Maximum open circuit excitation voltage (<i>Efmax</i>) (&gt; ExcELIN1.efmin).
+ *        Typical value = 5.
+ * @param efmin Minimum open circuit excitation voltage (<i>Efmin</i>) (&lt; ExcELIN1.efmax).
+ *        Typical value = -5.
+ * @param ks1 Stabilizer gain 1 (<i>Ks1</i>).
+ *        Typical value = 0.
+ * @param ks2 Stabilizer gain 2 (<i>Ks2</i>).
+ *        Typical value = 0.
+ * @param smax Stabilizer limit output (<i>smax</i>).
+ *        Typical value = 0,1.
+ * @param tfi Current transducer time constant (<i>Tfi</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tnu Controller reset time constant (<i>Tnu</i>) (&gt;= 0).
+ *        Typical value = 2.
+ * @param ts1 Stabilizer phase lag time constant (<i>Ts1</i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param ts2 Stabilizer filter time constant (<i>Ts2</i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param tsw Stabilizer parameters (<i>Tsw</i>) (&gt;= 0).
+ *        Typical value = 3.
+ * @param vpi Current controller gain (<i>Vpi</i>).
+ *        Typical value = 12,45.
+ * @param vpnf Controller follow up gain (<i>Vpnf</i>).
+ *        Typical value = 2.
+ * @param vpu Voltage controller proportional gain (<i>Vpu</i>).
+ *        Typical value = 34,5.
+ * @param xe Excitation transformer effective reactance (<i>Xe</i>) (&gt;= 0).  <i>Xe</i> represents the regulation of the transformer/rectifier unit.
+ *        Typical value = 0,06.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
+The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 case class ExcELIN1
 (
@@ -3903,68 +3944,70 @@ extends
 }
 
 /**
- * Detailed Excitation System Model - ELIN (VATECH).
+ * Detailed excitation system ELIN (VATECH).
  *
  * This model represents an all-static excitation system. A PI voltage controller establishes a desired field current set point for a proportional current controller. The integrator of the PI controller has a follow-up input to match its signal to the present field current.  Power system stabilizer models used in conjunction with this excitation system model: PssELIN2, PssIEEE2B, Pss2B.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param efdbas Gain (Efdbas).
- *        Typical Value = 0.1.
- * @param iefmax Limiter (Iefmax).
- *        Typical Value = 1.
- * @param iefmax2 Minimum open circuit excitation voltage (Iefmax2).
- *        Typical Value = -5.
- * @param iefmin Limiter (Iefmin).
- *        Typical Value = 1.
- * @param k1 Voltage regulator input gain (K1).
- *        Typical Value = 0.
- * @param k1ec Voltage regulator input limit (K1ec).
- *        Typical Value = 2.
- * @param k2 Gain (K2).
- *        Typical Value = 5.
- * @param k3 Gain (K3).
- *        Typical Value = 0.1.
- * @param k4 Gain (K4).
- *        Typical Value = 0.
- * @param kd1 Voltage controller derivative gain (Kd1).
- *        Typical Value = 34.5.
- * @param ke2 Gain (Ke2).
- *        Typical Value = 0.1.
- * @param ketb Gain (Ketb).
- *        Typical Value = 0.06.
- * @param pid1max Controller follow up gain (PID1max).
- *        Typical Value = 2.
- * @param seve1 Exciter saturation function value at the corresponding exciter voltage, Ve1, back of commutating reactance (Se[Ve1]).
- *        Typical Value = 0.
- * @param seve2 Exciter saturation function value at the corresponding exciter voltage, Ve2, back of commutating reactance (Se[Ve2]).
- *        Typical Value = 1.
- * @param tb1 Voltage controller derivative washout time constant (Tb1).
- *        Typical Value = 12.45.
- * @param te Time constant (Te).
- *        Typical Value = 0.
- * @param te2 Time Constant (Te2).
- *        Typical Value = 1.
- * @param ti1 Controller follow up dead band (Ti1).
- *        Typical Value = 0.
- * @param ti3 Time constant (Ti3).
- *        Typical Value = 3.
- * @param ti4 Time constant (Ti4).
- *        Typical Value = 0.
- * @param tr4 Time constant (Tr4).
- *        Typical Value = 1.
- * @param upmax Limiter (Upmax).
- *        Typical Value = 3.
- * @param upmin Limiter (Upmin).
- *        Typical Value = 0.
- * @param ve1 Exciter alternator output voltages back of commutating reactance at which saturation is defined (Ve1).
- *        Typical Value = 3.
- * @param ve2 Exciter alternator output voltages back of commutating reactance at which saturation is defined (Ve2).
- *        Typical Value = 0.
- * @param xp Excitation transformer effective reactance (Xp).
- *        Typical Value = 1.
+ * @param efdbas Gain (<i>Efdbas</i>).
+ *        Typical value = 0,1.
+ * @param iefmax Limiter (<i>I</i><i><sub>efmax</sub></i>) (&gt; ExcELIN2.iefmin).
+ *        Typical value = 1.
+ * @param iefmax2 Minimum open circuit excitation voltage (<i>I</i><i><sub>efmax2</sub></i>).
+ *        Typical value = -5.
+ * @param iefmin Limiter (<i>I</i><i><sub>efmin</sub></i>) (&lt; ExcELIN2.iefmax).
+ *        Typical value = 1.
+ * @param k1 Voltage regulator input gain (<i>K1</i>).
+ *        Typical value = 0.
+ * @param k1ec Voltage regulator input limit (<i>K1ec</i>).
+ *        Typical value = 2.
+ * @param k2 Gain (<i>K2</i>).
+ *        Typical value = 5.
+ * @param k3 Gain (<i>K3</i>).
+ *        Typical value = 0,1.
+ * @param k4 Gain (<i>K4</i>).
+ *        Typical value = 0.
+ * @param kd1 Voltage controller derivative gain (<i>Kd1</i>).
+ *        Typical value = 34,5.
+ * @param ke2 Gain (<i>Ke2</i>).
+ *        Typical value = 0,1.
+ * @param ketb Gain (<i>Ketb</i>).
+ *        Typical value = 0,06.
+ * @param pid1max Controller follow up gain (<i>PID1max</i>).
+ *        Typical value = 2.
+ * @param seve1 Exciter saturation function value at the corresponding exciter voltage, <i>Ve</i><i><sub>1</sub></i>, back of commutating reactance (<i>Se[Ve</i><i><sub>1</sub></i><i>]</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param seve2 Exciter saturation function value at the corresponding exciter voltage, <i>Ve</i><i><sub>2</sub></i>, back of commutating reactance (<i>Se[Ve</i><i><sub>2</sub></i><i>]</i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param tb1 Voltage controller derivative washout time constant (<i>Tb1</i>) (&gt;= 0).
+ *        Typical value = 12,45.
+ * @param te Time constant (<i>Te</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param te2 Time Constant (<i>T</i><i><sub>e2</sub></i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param ti1 Controller follow up deadband (<i>Ti1</i>).
+ *        Typical value = 0.
+ * @param ti3 Time constant (<i>T</i><i><sub>i3</sub></i>) (&gt;= 0).
+ *        Typical value = 3.
+ * @param ti4 Time constant (<i>T</i><i><sub>i4</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tr4 Time constant (<i>T</i><i><sub>r4</sub></i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param upmax Limiter (<i>Upmax</i>) (&gt; ExcELIN2.upmin).
+ *        Typical value = 3.
+ * @param upmin Limiter (<i>Upmin</i>) (&lt; ExcELIN2.upmax).
+ *        Typical value = 0.
+ * @param ve1 Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>Ve</i><i><sub>1</sub></i>) (&gt; 0).
+ *        Typical value = 3.
+ * @param ve2 Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>Ve</i><i><sub>2</sub></i>) (&gt; 0).
+ *        Typical value = 0.
+ * @param xp Excitation transformer effective reactance (<i>Xp</i>).
+ *        Typical value = 1.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
+The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 case class ExcELIN2
 (
@@ -4163,36 +4206,38 @@ extends
 }
 
 /**
- * Hungarian Excitation System Model, with built-in voltage transducer.
+ * Hungarian excitation system, with built-in voltage transducer.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param ae Major loop PI tag gain factor (Ae).
- *        Typical Value = 3.
- * @param ai Minor loop PI tag gain factor (Ai).
- *        Typical Value = 22.
- * @param atr AVR constant (Atr).
- *        Typical Value = 2.19.
- * @param emax Field voltage control signal upper limit on AVR base (Emax).
- *        Typical Value = 0.996.
- * @param emin Field voltage control signal lower limit on AVR base (Emin).
- *        Typical Value = -0.866.
- * @param imax Major loop PI tag output signal upper limit (Imax).
- *        Typical Value = 2.19.
- * @param imin Major loop PI tag output signal lower limit (Imin).
- *        Typical Value = 0.1.
- * @param ke Voltage base conversion constant (Ke).
- *        Typical Value = 4.666.
- * @param ki Current base conversion constant (Ki).
- *        Typical Value = 0.21428.
- * @param te Major loop PI tag integration time constant (Te).
- *        Typical Value = 0.154.
- * @param ti Minor loop PI control tag integration time constant (Ti).
- *        Typical Value = 0.01333.
- * @param tr Filter time constant (Tr).
- *        If a voltage compensator is used in conjunction with this excitation system model, Tr should be set to 0.  Typical Value = 0.01.
+ * @param ae Major loop PI tag gain factor (<i>Ae</i>).
+ *        Typical value = 3.
+ * @param ai Minor loop PI tag gain factor (<i>Ai</i>).
+ *        Typical value = 22.
+ * @param atr AVR constant (<i>Atr</i>).
+ *        Typical value = 2,19.
+ * @param emax Field voltage control signal upper limit on AVR base (<i>Emax</i>) (&gt; ExcHU.emin).
+ *        Typical value = 0,996.
+ * @param emin Field voltage control signal lower limit on AVR base (<i>Emin</i>) (&lt; ExcHU.emax).
+ *        Typical value = -0,866.
+ * @param imax Major loop PI tag output signal upper limit (<i>Imax</i>) (&gt; ExcHU.imin).
+ *        Typical value = 2,19.
+ * @param imin Major loop PI tag output signal lower limit (<i>Imin</i>) (&lt; ExcHU.imax).
+ *        Typical value = 0,1.
+ * @param ke Voltage base conversion constant (<i>Ke</i>).
+ *        Typical value = 4,666.
+ * @param ki Current base conversion constant (<i>Ki</i>).
+ *        Typical value = 0,21428.
+ * @param te Major loop PI tag integration time constant (<i>Te</i>) (&gt;= 0).
+ *        Typical value = 0,154.
+ * @param ti Minor loop PI control tag integration time constant (<i>Ti</i>) (&gt;= 0).
+ *        Typical value = 0,01333.
+ * @param tr Filter time constant (<i>Tr</i>) (&gt;= 0).
+ *        If a voltage compensator is used in conjunction with this excitation system model, <i>Tr </i>should be set to 0.  Typical value = 0,01.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
+The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 case class ExcHU
 (
@@ -4316,50 +4361,52 @@ extends
 }
 
 /**
- * The class represents IEEE Std 421.5-2005 type AC1A model.
+ * IEEE 421.5-2005 type AC1A model.
  *
- * The model represents the field-controlled alternator-rectifier excitation systems designated Type AC1A. These excitation systems consist of an alternator main exciter with non-controlled rectifiers.
+ * The model represents the field-controlled alternator-rectifier excitation systems designated type AC1A. These excitation systems consist of an alternator main exciter with non-controlled rectifiers.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param ka Voltage regulator gain (K<sub>A</sub>).
- *        Typical Value = 400.
- * @param kc Rectifier loading factor proportional to commutating reactance (K<sub>C</sub>).
- *        Typical Value = 0.2.
- * @param kd Demagnetizing factor, a function of exciter alternator reactances (K<sub>D</sub>).
- *        Typical Value = 0.38.
- * @param ke Exciter constant related to self-excited field (K<sub>E</sub>).
- *        Typical Value = 1.
- * @param kf Excitation control system stabilizer gains (K<sub>F</sub>).
- *        Typical Value = 0.03.
- * @param seve1 Exciter saturation function value at the corresponding exciter voltage, V<sub>E1</sub>, back of commutating reactance (S<sub>E</sub>[V<sub>E1</sub>]).
- *        Typical Value = 0.1.
- * @param seve2 Exciter saturation function value at the corresponding exciter voltage, V<sub>E2</sub>, back of commutating reactance (S<sub>E</sub>[V<sub>E2</sub>]).
- *        Typical Value = 0.03.
- * @param ta Voltage regulator time constant (T<sub>A</sub>).
- *        Typical Value = 0.02.
- * @param tb Voltage regulator time constant (T<sub>B</sub>).
- *        Typical Value = 0.
- * @param tc Voltage regulator time constant (T<sub>C</sub>).
- *        Typical Value = 0.
- * @param te Exciter time constant, integration rate associated with exciter control (T<sub>E</sub>).
- *        Typical Value = 0.8.
- * @param tf Excitation control system stabilizer time constant (T<sub>F</sub>).
- *        Typical Value = 1.
- * @param vamax Maximum voltage regulator output (V<sub>AMAX</sub>).
- *        Typical Value = 14.5.
- * @param vamin Minimum voltage regulator output (V<sub>AMIN</sub>).
- *        Typical Value = -14.5.
- * @param ve1 Exciter alternator output voltages back of commutating reactance at which saturation is defined (V<sub>E1</sub>).
- *        Typical Value = 4.18.
- * @param ve2 Exciter alternator output voltages back of commutating reactance at which saturation is defined (V<sub>E2</sub>).
- *        Typical Value = 3.14.
- * @param vrmax Maximum voltage regulator outputs (V<sub>RMAX</sub>).
- *        Typical Value = 6.03.
- * @param vrmin Minimum voltage regulator outputs (V<sub>RMIN</sub>).
- *        Typical Value = -5.43.
+ * @param ka Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
+ *        Typical value = 400.
+ * @param kc Rectifier loading factor proportional to commutating reactance (<i>K</i><i><sub>C</sub></i>) (&gt;= 0).
+ *        Typical value = 0,2.
+ * @param kd Demagnetizing factor, a function of exciter alternator reactances (<i>K</i><i><sub>D</sub></i>) (&gt;= 0).
+ *        Typical value = 0,38.
+ * @param ke Exciter constant related to self-excited field (<i>K</i><i><sub>E</sub></i>).
+ *        Typical value = 1.
+ * @param kf Excitation control system stabilizer gains (<i>K</i><i><sub>F</sub></i>) (&gt;= 0).
+ *        Typical value = 0,03.
+ * @param seve1 Exciter saturation function value at the corresponding exciter voltage, <i>V</i><i><sub>E1</sub></i>, back of commutating reactance (<i>S</i><i><sub>E</sub></i><i>[V</i><i><sub>E1</sub></i><i>]</i>) (&gt;= 0).
+ *        Typical value = 0,1.
+ * @param seve2 Exciter saturation function value at the corresponding exciter voltage, <i>V</i><i><sub>E2</sub></i>, back of commutating reactance (<i>S</i><i><sub>E</sub></i><i>[V</i><i><sub>E2</sub></i><i>]</i>) (&gt;= 0).
+ *        Typical value = 0,03.
+ * @param ta Voltage regulator time constant (<i>T</i><i><sub>A</sub></i>) (&gt; 0).
+ *        Typical value = 0,02.
+ * @param tb Voltage regulator time constant (<i>T</i><i><sub>B</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tc Voltage regulator time constant (<i>T</i><i><sub>C</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param te Exciter time constant, integration rate associated with exciter control (<i>T</i><i><sub>E</sub></i>) (&gt; 0).
+ *        Typical value = 0,8.
+ * @param tf Excitation control system stabilizer time constant (<i>T</i><i><sub>F</sub></i>) (&gt; 0).
+ *        Typical value = 1.
+ * @param vamax Maximum voltage regulator output (<i>V</i><i><sub>AMAX</sub></i>) (&gt; 0).
+ *        Typical value = 14,5.
+ * @param vamin Minimum voltage regulator output (<i>V</i><i><sub>AMIN</sub></i>) (&lt; 0).
+ *        Typical value = -14,5.
+ * @param ve1 Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>V</i><i><sub>E1</sub></i>) (&gt; 0).
+ *        Typical value = 4,18.
+ * @param ve2 Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>V</i><i><sub>E2</sub></i>) (&gt; 0).
+ *        Typical value = 3,14.
+ * @param vrmax Maximum voltage regulator outputs (<i>V</i><i><sub>RMAX</sub></i>) (&gt; 0).
+ *        Typical value = 6,03.
+ * @param vrmin Minimum voltage regulator outputs (<i>V</i><i><sub>RMIN</sub></i>) (&lt; 0).
+ *        Typical value = -5,43.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
+The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 case class ExcIEEEAC1A
 (
@@ -4513,56 +4560,58 @@ extends
 }
 
 /**
- * The class represents IEEE Std 421.5-2005 type AC2A model.
+ * IEEE 421.5-2005 type AC2A model.
  *
- * The model represents a high initial response field-controlled alternator-rectifier excitation system. The alternator main exciter is used with non-controlled rectifiers. The Type AC2A model is similar to that of Type AC1A except for the inclusion of exciter time constant compensation and exciter field current limiting elements.
+ * The model represents a high initial response field-controlled alternator-rectifier excitation system. The alternator main exciter is used with non-controlled rectifiers. The type AC2A model is similar to that of type AC1A except for the inclusion of exciter time constant compensation and exciter field current limiting elements.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param ka Voltage regulator gain (K<sub>A</sub>).
- *        Typical Value = 400.
- * @param kb Second stage regulator gain (K<sub>B</sub>).
- *        Typical Value = 25.
- * @param kc Rectifier loading factor proportional to commutating reactance (K<sub>C</sub>).
- *        Typical Value = 0.28.
- * @param kd Demagnetizing factor, a function of exciter alternator reactances (K<sub>D</sub>).
- *        Typical Value = 0.35.
- * @param ke Exciter constant related to self-excited field (K<sub>E</sub>).
- *        Typical Value = 1.
- * @param kf Excitation control system stabilizer gains (K<sub>F</sub>).
- *        Typical Value = 0.03.
- * @param kh Exciter field current feedback gain (K<sub>H</sub>).
- *        Typical Value = 1.
- * @param seve1 Exciter saturation function value at the corresponding exciter voltage, V<sub>E1</sub>, back of commutating reactance (S<sub>E</sub>[V<sub>E1</sub>]).
- *        Typical Value = 0.037.
- * @param seve2 Exciter saturation function value at the corresponding exciter voltage, V<sub>E2</sub>, back of commutating reactance (S<sub>E</sub>[V<sub>E2</sub>]).
- *        Typical Value = 0.012.
- * @param ta Voltage regulator time constant (T<sub>A</sub>).
- *        Typical Value = 0.02.
- * @param tb Voltage regulator time constant (T<sub>B</sub>).
- *        Typical Value = 0.
- * @param tc Voltage regulator time constant (T<sub>C</sub>).
- *        Typical Value = 0.
- * @param te Exciter time constant, integration rate associated with exciter control (T<sub>E</sub>).
- *        Typical Value = 0.6.
- * @param tf Excitation control system stabilizer time constant (T<sub>F</sub>).
- *        Typical Value = 1.
- * @param vamax Maximum voltage regulator output (V<sub>AMAX</sub>).
- *        Typical Value = 8.
- * @param vamin Minimum voltage regulator output (V<sub>AMIN</sub>).
- *        Typical Value = -8.
- * @param ve1 Exciter alternator output voltages back of commutating reactance at which saturation is defined (V<sub>E1</sub>).
- *        Typical Value = 4.4.
- * @param ve2 Exciter alternator output voltages back of commutating reactance at which saturation is defined (V<sub>E2</sub>).
- *        Typical Value = 3.3.
- * @param vfemax Exciter field current limit reference (V<sub>FEMAX</sub>).
- *        Typical Value = 4.4.
- * @param vrmax Maximum voltage regulator outputs (V<sub>RMAX</sub>).
- *        Typical Value = 105.
- * @param vrmin Minimum voltage regulator outputs (V<sub>RMIN</sub>).
- *        Typical Value = -95.
+ * @param ka Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
+ *        Typical value = 400.
+ * @param kb Second stage regulator gain (<i>K</i><i><sub>B</sub></i>) (&gt; 0).
+ *        Typical value = 25.
+ * @param kc Rectifier loading factor proportional to commutating reactance (<i>K</i><i><sub>C</sub></i>) (&gt;= 0).
+ *        Typical value = 0,28.
+ * @param kd Demagnetizing factor, a function of exciter alternator reactances (<i>K</i><i><sub>D</sub></i>) (&gt;= 0).
+ *        Typical value = 0,35.
+ * @param ke Exciter constant related to self-excited field (<i>K</i><i><sub>E</sub></i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param kf Excitation control system stabilizer gains (<i>K</i><i><sub>F</sub></i>) (&gt;= 0).
+ *        Typical value = 0,03.
+ * @param kh Exciter field current feedback gain (<i>K</i><i><sub>H</sub></i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param seve1 Exciter saturation function value at the corresponding exciter voltage, <i>V</i><i><sub>E1</sub></i>, back of commutating reactance (<i>S</i><i><sub>E</sub></i><i>[V</i><i><sub>E1</sub></i><i>]</i>) (&gt;= 0).
+ *        Typical value = 0,037.
+ * @param seve2 Exciter saturation function value at the corresponding exciter voltage, <i>V</i><i><sub>E2</sub></i>, back of commutating reactance (<i>S</i><i><sub>E</sub></i><i>[V</i><i><sub>E2</sub></i><i>]</i>) (&gt;= 0).
+ *        Typical value = 0,012.
+ * @param ta Voltage regulator time constant (<i>T</i><i><sub>A</sub></i>) (&gt; 0).
+ *        Typical value = 0,02.
+ * @param tb Voltage regulator time constant (<i>T</i><i><sub>B</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tc Voltage regulator time constant (<i>T</i><i><sub>C</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param te Exciter time constant, integration rate associated with exciter control (<i>T</i><i><sub>E</sub></i>) (&gt; 0).
+ *        Typical value = 0,6.
+ * @param tf Excitation control system stabilizer time constant (<i>T</i><i><sub>F</sub></i>) (&gt; 0).
+ *        Typical value = 1.
+ * @param vamax Maximum voltage regulator output (<i>V</i><i><sub>AMAX</sub></i>) (&gt; 0).
+ *        Typical value = 8.
+ * @param vamin Minimum voltage regulator output (<i>V</i><i><sub>AMIN</sub></i>) (&lt; 0).
+ *        Typical value = -8.
+ * @param ve1 Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>V</i><i><sub>E1</sub></i>) (&gt; 0).
+ *        Typical value = 4,4.
+ * @param ve2 Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>V</i><i><sub>E2</sub></i>) (&gt; 0).
+ *        Typical value = 3,3.
+ * @param vfemax Exciter field current limit reference (<i>V</i><i><sub>FEMAX</sub></i>) (&gt; 0).
+ *        Typical value = 4,4.
+ * @param vrmax Maximum voltage regulator outputs (<i>V</i><i><sub>RMAX</sub></i>) (&gt; 0).
+ *        Typical value = 105.
+ * @param vrmin Minimum voltage regulator outputs (<i>V</i><i><sub>RMIN</sub></i>) (&lt; 0).
+ *        Typical value = -95.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
+The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 case class ExcIEEEAC2A
 (
@@ -4731,56 +4780,58 @@ extends
 }
 
 /**
- * The class represents IEEE Std 421.5-2005 type AC3A model.
+ * IEEE 421.5-2005 type AC3A model.
  *
- * The model represents the field-controlled alternator-rectifier excitation systems designated Type AC3A. These excitation systems include an alternator main exciter with non-controlled rectifiers. The exciter employs self-excitation, and the voltage regulator power is derived from the exciter output voltage.  Therefore, this system has an additional nonlinearity, simulated by the use of a multiplier
+ * The model represents the field-controlled alternator-rectifier excitation systems designated type AC3A. These excitation systems include an alternator main exciter with non-controlled rectifiers. The exciter employs self-excitation, and the voltage regulator power is derived from the exciter output voltage.  Therefore, this system has an additional nonlinearity, simulated by the use of a multiplier whose inputs are the voltage regulator command signal, <i>Va</i>, and the exciter output voltage, <i>Efd</i>, times <i>K</i><i><sub>R</sub></i>.  This model is applicable to excitation systems employing static voltage regulators.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param efdn Value of <i>EFD </i>at which feedback gain changes (E<sub>FDN</sub>).
- *        Typical Value = 2.36.
- * @param ka Voltage regulator gain (K<sub>A</sub>).
- *        Typical Value = 45.62.
- * @param kc Rectifier loading factor proportional to commutating reactance (K<sub>C</sub>).
- *        Typical Value = 0.104.
- * @param kd Demagnetizing factor, a function of exciter alternator reactances (K<sub>D</sub>).
- *        Typical Value = 0.499.
- * @param ke Exciter constant related to self-excited field (K<sub>E</sub>).
- *        Typical Value = 1.
- * @param kf Excitation control system stabilizer gains (K<sub>F</sub>).
- *        Typical Value = 0.143.
- * @param kn Excitation control system stabilizer gain (K<sub>N</sub>).
- *        Typical Value = 0.05.
- * @param kr Constant associated with regulator and alternator field power supply (K<sub>R</sub>).
- *        Typical Value = 3.77.
- * @param seve1 Exciter saturation function value at the corresponding exciter voltage, V<sub>E1</sub>, back of commutating reactance (S<sub>E</sub>[V<sub>E1</sub>]).
- *        Typical Value = 1.143.
- * @param seve2 Exciter saturation function value at the corresponding exciter voltage, V<sub>E2</sub>, back of commutating reactance (S<sub>E</sub>[V<sub>E2</sub>]).
- *        Typical Value = 0.1.
- * @param ta Voltage regulator time constant (T<sub>A</sub>).
- *        Typical Value = 0.013.
- * @param tb Voltage regulator time constant (T<sub>B</sub>).
- *        Typical Value = 0.
- * @param tc Voltage regulator time constant (T<sub>C</sub>).
- *        Typical Value = 0.
- * @param te Exciter time constant, integration rate associated with exciter control (T<sub>E</sub>).
- *        Typical Value = 1.17.
- * @param tf Excitation control system stabilizer time constant (T<sub>F</sub>).
- *        Typical Value = 1.
- * @param vamax Maximum voltage regulator output (V<sub>AMAX</sub>).
- *        Typical Value = 1.
- * @param vamin Minimum voltage regulator output (V<sub>AMIN</sub>).
- *        Typical Value = -0.95.
- * @param ve1 Exciter alternator output voltages back of commutating reactance at which saturation is defined (V<sub>E1</sub>) equals V<sub>EMAX </sub>(V<sub>E1</sub>).
- *        Typical Value = 6.24.
- * @param ve2 Exciter alternator output voltages back of commutating reactance at which saturation is defined (V<sub>E2</sub>).
- *        Typical Value = 4.68.
- * @param vemin Minimum exciter voltage output (V<sub>EMIN</sub>).
- *        Typical Value = 0.1.
- * @param vfemax Exciter field current limit reference (V<sub>FEMAX</sub>).
- *        Typical Value = 16.
+ * @param efdn Value of <i>Efd </i>at which feedback gain changes (<i>E</i><i><sub>FDN</sub></i>) (&gt; 0).
+ *        Typical value = 2,36.
+ * @param ka Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
+ *        Typical value = 45,62.
+ * @param kc Rectifier loading factor proportional to commutating reactance (<i>K</i><i><sub>C</sub></i>) (&gt;= 0).
+ *        Typical value = 0,104.
+ * @param kd Demagnetizing factor, a function of exciter alternator reactances (<i>K</i><i><sub>D</sub></i>) (&gt;= 0).
+ *        Typical value = 0,499.
+ * @param ke Exciter constant related to self-excited field (<i>K</i><i><sub>E</sub></i>).
+ *        Typical value = 1.
+ * @param kf Excitation control system stabilizer gains (<i>K</i><i><sub>F</sub></i>) (&gt;= 0).
+ *        Typical value = 0,143.
+ * @param kn Excitation control system stabilizer gain (<i>K</i><i><sub>N</sub></i>) (&gt;= 0).
+ *        Typical value = 0,05.
+ * @param kr Constant associated with regulator and alternator field power supply (<i>K</i><i><sub>R</sub></i>) (&gt; 0).
+ *        Typical value = 3,77.
+ * @param seve1 Exciter saturation function value at the corresponding exciter voltage, <i>V</i><i><sub>E1</sub></i>, back of commutating reactance (<i>S</i><i><sub>E</sub></i><i>[V</i><i><sub>E1</sub></i><i>]</i>) (&gt;= 0).
+ *        Typical value = 1,143.
+ * @param seve2 Exciter saturation function value at the corresponding exciter voltage, <i>V</i><i><sub>E2</sub></i>, back of commutating reactance (<i>S</i><i><sub>E</sub></i><i>[V</i><i><sub>E2</sub></i><i>]</i>) (&gt;= 0).
+ *        Typical value = 0,1.
+ * @param ta Voltage regulator time constant (<i>T</i><i><sub>A</sub></i>) (&gt; 0).
+ *        Typical value = 0,013.
+ * @param tb Voltage regulator time constant (<i>T</i><i><sub>B</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tc Voltage regulator time constant (<i>T</i><i><sub>C</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param te Exciter time constant, integration rate associated with exciter control (<i>T</i><i><sub>E</sub></i>) (&gt; 0).
+ *        Typical value = 1,17.
+ * @param tf Excitation control system stabilizer time constant (<i>T</i><i><sub>F</sub></i>) (&gt; 0).
+ *        Typical value = 1.
+ * @param vamax Maximum voltage regulator output (<i>V</i><i><sub>AMAX</sub></i>) (&gt; 0).
+ *        Typical value = 1.
+ * @param vamin Minimum voltage regulator output (<i>V</i><i><sub>AMIN</sub></i>) (&lt; 0).
+ *        Typical value = -0,95.
+ * @param ve1 Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>V</i><i><sub>E1</sub></i>) (&gt; 0).
+ *        Typical value = 6,24.
+ * @param ve2 Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>V</i><i><sub>E2</sub></i>) (&gt; 0).
+ *        Typical value = 4,68.
+ * @param vemin Minimum exciter voltage output (<i>V</i><i><sub>EMIN</sub></i>) (&lt;= 0).
+ *        Typical value = 0.
+ * @param vfemax Exciter field current limit reference (<i>V</i><i><sub>FEMAX</sub></i>) (&gt;= 0).
+ *        Typical value = 16.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
+The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 case class ExcIEEEAC3A
 (
@@ -4949,32 +5000,34 @@ extends
 }
 
 /**
- * The class represents IEEE Std 421.5-2005 type AC4A model.
+ * IEEE 421.5-2005 type AC4A model.
  *
- * The model represents type AC4A alternator-supplied controlled-rectifier excitation system which is quite different from the other type ac systems. This high initial response excitation system utilizes a full thyristor bridge in the exciter output circuit.  The voltage regulator controls the firing of the thyristor bridges. The exciter alternator uses an independent voltage regulator to control its output voltage to a constant value. These effects are not modeled; however, transient loading effects on the exciter alternator are included.
+ * The model represents type AC4A alternator-supplied controlled-rectifier excitation system which is quite different from the other types of AC systems. This high initial response excitation system utilizes a full thyristor bridge in the exciter output circuit.  The voltage regulator controls the firing of the thyristor bridges. The exciter alternator uses an independent voltage regulator to control its output voltage to a constant value. These effects are not modelled; however, transient loading effects on the exciter alternator are included.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param ka Voltage regulator gain (K<sub>A</sub>).
- *        Typical Value = 200.
- * @param kc Rectifier loading factor proportional to commutating reactance (K<sub>C</sub>).
- *        Typical Value = 0.
- * @param ta Voltage regulator time constant (T<sub>A</sub>).
- *        Typical Value = 0.015.
- * @param tb Voltage regulator time constant (T<sub>B</sub>).
- *        Typical Value = 10.
- * @param tc Voltage regulator time constant (T<sub>C</sub>).
- *        Typical Value = 1.
- * @param vimax Maximum voltage regulator input limit (V<sub>IMAX</sub>).
- *        Typical Value = 10.
- * @param vimin Minimum voltage regulator input limit (V<sub>IMIN</sub>).
- *        Typical Value = -10.
- * @param vrmax Maximum voltage regulator output (V<sub>RMAX</sub>).
- *        Typical Value = 5.64.
- * @param vrmin Minimum voltage regulator output (V<sub>RMIN</sub>).
- *        Typical Value = -4.53.
+ * @param ka Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
+ *        Typical value = 200.
+ * @param kc Rectifier loading factor proportional to commutating reactance (<i>K</i><i><sub>C</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param ta Voltage regulator time constant (<i>T</i><i><sub>A</sub></i>) (&gt; 0).
+ *        Typical value = 0,015.
+ * @param tb Voltage regulator time constant (<i>T</i><i><sub>B</sub></i>) (&gt;= 0).
+ *        Typical value = 10.
+ * @param tc Voltage regulator time constant (<i>T</i><i><sub>C</sub></i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param vimax Maximum voltage regulator input limit (<i>V</i><i><sub>IMAX</sub></i>) (&gt; 0).
+ *        Typical value = 10.
+ * @param vimin Minimum voltage regulator input limit (<i>V</i><i><sub>IMIN</sub></i>) (&lt; 0).
+ *        Typical value = -10.
+ * @param vrmax Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>) (&gt; 0).
+ *        Typical value = 5,64.
+ * @param vrmin Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt; 0).
+ *        Typical value = -4,53.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
+The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 case class ExcIEEEAC4A
 (
@@ -5083,42 +5136,44 @@ extends
 }
 
 /**
- * The class represents IEEE Std 421.5-2005 type AC5A model.
+ * IEEE 421.5-2005 type AC5A model.
  *
- * The model represents a simplified model for brushless excitation systems. The regulator is supplied from a source, such as a permanent magnet generator, which is not affected by system disturbances.  Unlike other ac models, this model uses loaded rather than open circuit exciter saturation data in the same way as it is used for the dc models.  Because the model has been widely implemented by the industry, it is sometimes used to represent other types of systems when either detailed data for them are not available or simplified models are required.
+ * The model represents a simplified model for brushless excitation systems. The regulator is supplied from a source, such as a permanent magnet generator, which is not affected by system disturbances.  Unlike other AC models, this model uses loaded rather than open circuit exciter saturation data in the same way as it is used for the DC models.  Because the model has been widely implemented by the industry, it is sometimes used to represent other types of systems when either detailed data for them are not available or simplified models are required.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param efd1 Exciter voltage at which exciter saturation is defined (E<sub>FD1</sub>).
- *        Typical Value = 5.6.
- * @param efd2 Exciter voltage at which exciter saturation is defined (E<sub>FD2</sub>).
- *        Typical Value = 4.2.
- * @param ka Voltage regulator gain (K<sub>A</sub>).
- *        Typical Value = 400.
- * @param ke Exciter constant related to self-excited field (K<sub>E</sub>).
- *        Typical Value = 1.
- * @param kf Excitation control system stabilizer gains (K<sub>F</sub>).
- *        Typical Value = 0.03.
- * @param seefd1 Exciter saturation function value at the corresponding exciter voltage, E<sub>FD1</sub> (S<sub>E</sub>[E<sub>FD1</sub>]).
- *        Typical Value = 0.86.
- * @param seefd2 Exciter saturation function value at the corresponding exciter voltage, E<sub>FD2</sub> (S<sub>E</sub>[E<sub>FD2</sub>]).
- *        Typical Value = 0.5.
- * @param ta Voltage regulator time constant (T<sub>A</sub>).
- *        Typical Value = 0.02.
- * @param te Exciter time constant, integration rate associated with exciter control (T<sub>E</sub>).
- *        Typical Value = 0.8.
- * @param tf1 Excitation control system stabilizer time constant (T<sub>F1</sub>).
- *        Typical Value = 1.
- * @param tf2 Excitation control system stabilizer time constant (T<sub>F2</sub>).
- *        Typical Value = 1.
- * @param tf3 Excitation control system stabilizer time constant (T<sub>F3</sub>).
- *        Typical Value = 1.
- * @param vrmax Maximum voltage regulator output (V<sub>RMAX</sub>).
- *        Typical Value = 7.3.
- * @param vrmin Minimum voltage regulator output (V<sub>RMIN</sub>).
- *        Typical Value = -7.3.
+ * @param efd1 Exciter voltage at which exciter saturation is defined (<i>E</i><i><sub>FD1</sub></i>) (&gt; 0).
+ *        Typical value = 5,6.
+ * @param efd2 Exciter voltage at which exciter saturation is defined (<i>E</i><i><sub>FD2</sub></i>) (&gt; 0).
+ *        Typical value = 4,2.
+ * @param ka Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
+ *        Typical value = 400.
+ * @param ke Exciter constant related to self-excited field (<i>K</i><i><sub>E</sub></i>).
+ *        Typical value = 1.
+ * @param kf Excitation control system stabilizer gains (<i>K</i><i><sub>F</sub></i>) (&gt;= 0).
+ *        Typical value = 0,03.
+ * @param seefd1 Exciter saturation function value at the corresponding exciter voltage, <i>E</i><i><sub>FD1</sub></i> (<i>S</i><i><sub>E</sub></i><i>[E</i><i><sub>FD1</sub></i><i>]</i>) (&gt;= 0).
+ *        Typical value = 0,86.
+ * @param seefd2 Exciter saturation function value at the corresponding exciter voltage, <i>E</i><i><sub>FD2</sub></i> (<i>S</i><i><sub>E</sub></i><i>[E</i><i><sub>FD2</sub></i><i>]</i>) (&gt;= 0).
+ *        Typical value = 0,5.
+ * @param ta Voltage regulator time constant (<i>T</i><i><sub>A</sub></i>) (&gt; 0).
+ *        Typical value = 0,02.
+ * @param te Exciter time constant, integration rate associated with exciter control (<i>T</i><i><sub>E</sub></i>) (&gt; 0).
+ *        Typical value = 0,8.
+ * @param tf1 Excitation control system stabilizer time constant (<i>T</i><i><sub>F1</sub></i>) (&gt; 0).
+ *        Typical value = 1.
+ * @param tf2 Excitation control system stabilizer time constant (<i>T</i><i><sub>F2</sub></i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param tf3 Excitation control system stabilizer time constant (<i>T</i><i><sub>F3</sub></i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param vrmax Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>) (&gt; 0).
+ *        Typical value = 7,3.
+ * @param vrmin Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt; 0).
+ *        Typical value = -7,3.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
+The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 case class ExcIEEEAC5A
 (
@@ -5252,58 +5307,60 @@ extends
 }
 
 /**
- * The class represents IEEE Std 421.5-2005 type AC6A model.
+ * IEEE 421.5-2005 type AC6A model.
  *
- * The model represents field-controlled alternator-rectifier excitation systems with system-supplied electronic voltage regulators.  The maximum output of the regulator, <b><i>V</i></b><b><i><sub>R</sub></i></b>, is a function of terminal voltage, <b><i>V</i></b><b><i><sub>T</sub></i></b>. The field current limiter included in the original model AC6A remains in the 2005 update.
+ * The model represents field-controlled alternator-rectifier excitation systems with system-supplied electronic voltage regulators.  The maximum output of the regulator, <i>V</i><i><sub>R</sub></i>, is a function of terminal voltage, <i>V</i><i><sub>T</sub></i>. The field current limiter included in the original model AC6A remains in the 2005 update.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param ka Voltage regulator gain (K<sub>A</sub>).
- *        Typical Value = 536.
- * @param kc Rectifier loading factor proportional to commutating reactance (K<sub>C</sub>).
- *        Typical Value = 0.173.
- * @param kd Demagnetizing factor, a function of exciter alternator reactances (K<sub>D</sub>).
- *        Typical Value = 1.91.
- * @param ke Exciter constant related to self-excited field (K<sub>E</sub>).
- *        Typical Value = 1.6.
- * @param kh Exciter field current limiter gain (K<sub>H</sub>).
- *        Typical Value = 92.
- * @param seve1 Exciter saturation function value at the corresponding exciter voltage, V<sub>E1</sub>, back of commutating reactance (S<sub>E</sub>[V<sub>E1</sub>]).
- *        Typical Value = 0.214.
- * @param seve2 Exciter saturation function value at the corresponding exciter voltage, V<sub>E2</sub>, back of commutating reactance (S<sub>E</sub>[V<sub>E2</sub>]).
- *        Typical Value = 0.044.
- * @param ta Voltage regulator time constant (T<sub>A</sub>).
- *        Typical Value = 0.086.
- * @param tb Voltage regulator time constant (T<sub>B</sub>).
- *        Typical Value = 9.
- * @param tc Voltage regulator time constant (T<sub>C</sub>).
- *        Typical Value = 3.
- * @param te Exciter time constant, integration rate associated with exciter control (T<sub>E</sub>).
- *        Typical Value = 1.
- * @param th Exciter field current limiter time constant (T<sub>H</sub>).
- *        Typical Value = 0.08.
- * @param tj Exciter field current limiter time constant (T<sub>J</sub>).
- *        Typical Value = 0.02.
- * @param tk Voltage regulator time constant (T<sub>K</sub>).
- *        Typical Value = 0.18.
- * @param vamax Maximum voltage regulator output (V<sub>AMAX</sub>).
- *        Typical Value = 75.
- * @param vamin Minimum voltage regulator output (V<sub>AMIN</sub>).
- *        Typical Value = -75.
- * @param ve1 Exciter alternator output voltages back of commutating reactance at which saturation is defined (V<sub>E1</sub>) equals V<sub>EMAX </sub>(V<sub>E1</sub>).
- *        Typical Value = 7.4.
- * @param ve2 Exciter alternator output voltages back of commutating reactance at which saturation is defined (V<sub>E2</sub>).
- *        Typical Value = 5.55.
- * @param vfelim Exciter field current limit reference (V<sub>FELIM</sub>).
- *        Typical Value = 19.
- * @param vhmax Maximum field current limiter signal reference (V<sub>HMAX</sub>).
- *        Typical Value = 75.
- * @param vrmax Maximum voltage regulator output (V<sub>RMAX</sub>).
- *        Typical Value = 44.
- * @param vrmin Minimum voltage regulator output (V<sub>RMIN</sub>).
- *        Typical Value = -36.
+ * @param ka Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
+ *        Typical value = 536.
+ * @param kc Rectifier loading factor proportional to commutating reactance (<i>K</i><i><sub>C</sub></i>) (&gt;= 0).
+ *        Typical value = 0,173.
+ * @param kd Demagnetizing factor, a function of exciter alternator reactances (<i>K</i><i><sub>D</sub></i>) (&gt;= 0).
+ *        Typical value = 1,91.
+ * @param ke Exciter constant related to self-excited field (<i>K</i><i><sub>E</sub></i>).
+ *        Typical value = 1,6.
+ * @param kh Exciter field current limiter gain (<i>K</i><i><sub>H</sub></i>) (&gt;= 0).
+ *        Typical value = 92.
+ * @param seve1 Exciter saturation function value at the corresponding exciter voltage, <i>V</i><i><sub>E1</sub></i>, back of commutating reactance (<i>S</i><i><sub>E</sub></i><i>[V</i><i><sub>E1</sub></i><i>])</i> (&gt;= 0).
+ *        Typical value = 0,214.
+ * @param seve2 Exciter saturation function value at the corresponding exciter voltage, <i>V</i><i><sub>E2</sub></i>, back of commutating reactance (<i>S</i><i><sub>E</sub></i><i>[V</i><i><sub>E2</sub></i><i>]</i>) (&gt;= 0).
+ *        Typical value = 0,044.
+ * @param ta Voltage regulator time constant (<i>T</i><i><sub>A</sub></i>) (&gt;= 0).
+ *        Typical value = 0,086.
+ * @param tb Voltage regulator time constant (<i>T</i><i><sub>B</sub></i>) (&gt;= 0).
+ *        Typical value = 9.
+ * @param tc Voltage regulator time constant (<i>T</i><i><sub>C</sub></i>) (&gt;= 0).
+ *        Typical value = 3.
+ * @param te Exciter time constant, integration rate associated with exciter control (<i>T</i><i><sub>E</sub></i>) (&gt; 0).
+ *        Typical value = 1.
+ * @param th Exciter field current limiter time constant (<i>T</i><i><sub>H</sub></i>) (&gt; 0).
+ *        Typical value = 0,08.
+ * @param tj Exciter field current limiter time constant (<i>T</i><i><sub>J</sub></i>) (&gt;= 0).
+ *        Typical value = 0,02.
+ * @param tk Voltage regulator time constant (<i>T</i><i><sub>K</sub></i>) (&gt;= 0).
+ *        Typical value = 0,18.
+ * @param vamax Maximum voltage regulator output (<i>V</i><i><sub>AMAX</sub></i>) (&gt; 0).
+ *        Typical value = 75.
+ * @param vamin Minimum voltage regulator output (V<sub>AMIN</sub>) (&lt; 0).
+ *        Typical value = -75.
+ * @param ve1 Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>V</i><i><sub>E1</sub></i>) (&gt; 0).
+ *        Typical value = 7,4.
+ * @param ve2 Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>V</i><i><sub>E2</sub></i>) (&gt; 0).
+ *        Typical value = 5,55.
+ * @param vfelim Exciter field current limit reference (<i>V</i><i><sub>FELIM</sub></i>) (&gt; 0).
+ *        Typical value = 19.
+ * @param vhmax Maximum field current limiter signal reference (<i>V</i><i><sub>HMAX</sub></i>) (&gt; 0).
+ *        Typical value = 75.
+ * @param vrmax Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>) (&gt; 0).
+ *        Typical value = 44.
+ * @param vrmin Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt; 0).
+ *        Typical value = -36.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
+The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 case class ExcIEEEAC6A
 (
@@ -5477,66 +5534,68 @@ extends
 }
 
 /**
- * The class represents IEEE Std 421.5-2005 type AC7B model.
+ * IEEE 421.5-2005 type AC7B model.
  *
- * The model represents excitation systems which consist of an ac alternator with either stationary or rotating rectifiers to produce the dc field requirements. It is an upgrade to earlier ac excitation systems, which replace only the controls but retain the ac alternator and diode rectifier bridge.
+ * The model represents excitation systems which consist of an AC alternator with either stationary or rotating rectifiers to produce the DC field requirements. It is an upgrade to earlier AC excitation systems, which replace only the controls but retain the AC alternator and diode rectifier bridge.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param kc Rectifier loading factor proportional to commutating reactance (K<sub>C</sub>).
- *        Typical Value = 0.18.
- * @param kd Demagnetizing factor, a function of exciter alternator reactances (K<sub>D</sub>).
- *        Typical Value = 0.02.
- * @param kdr Voltage regulator derivative gain (K<sub>DR</sub>).
- *        Typical Value = 0.
- * @param ke Exciter constant related to self-excited field (K<sub>E</sub>).
- *        Typical Value = 1.
- * @param kf1 Excitation control system stabilizer gain (K<sub>F1</sub>).
- *        Typical Value = 0.212.
- * @param kf2 Excitation control system stabilizer gain (K<sub>F2</sub>).
- *        Typical Value = 0.
- * @param kf3 Excitation control system stabilizer gain (K<sub>F3</sub>).
- *        Typical Value = 0.
- * @param kia Voltage regulator integral gain (K<sub>IA</sub>).
- *        Typical Value = 59.69.
- * @param kir Voltage regulator integral gain (K<sub>IR</sub>).
- *        Typical Value = 4.24.
- * @param kl Exciter field voltage lower limit parameter (K<sub>L</sub>).
- *        Typical Value = 10.
- * @param kp Potential circuit gain coefficient (K<sub>P</sub>).
- *        Typical Value = 4.96.
- * @param kpa Voltage regulator proportional gain (K<sub>PA</sub>).
- *        Typical Value = 65.36.
- * @param kpr Voltage regulator proportional gain (K<sub>PR</sub>).
- *        Typical Value = 4.24.
- * @param seve1 Exciter saturation function value at the corresponding exciter voltage, V<sub>E1</sub>, back of commutating reactance (S<sub>E</sub>[V<sub>E1</sub>]).
- *        Typical Value = 0.44.
- * @param seve2 Exciter saturation function value at the corresponding exciter voltage, V<sub>E2</sub>, back of commutating reactance (S<sub>E</sub>[V<sub>E2</sub>]).
- *        Typical Value = 0.075.
- * @param tdr Lag time constant (T<sub>DR</sub>).
- *        Typical Value = 0.
- * @param te Exciter time constant, integration rate associated with exciter control (T<sub>E</sub>).
- *        Typical Value = 1.1.
- * @param tf Excitation control system stabilizer time constant (T<sub>F</sub>).
- *        Typical Value = 1.
- * @param vamax Maximum voltage regulator output (V<sub>AMAX</sub>).
- *        Typical Value = 1.
- * @param vamin Minimum voltage regulator output (V<sub>AMIN</sub>).
- *        Typical Value = -0.95.
- * @param ve1 Exciter alternator output voltages back of commutating reactance at which saturation is defined (V<sub>E1</sub>) equals V<sub>EMAX</sub> (V<sub>E1</sub>).
- *        Typical Value = 6.3.
- * @param ve2 Exciter alternator output voltages back of commutating reactance at which saturation is defined (V<sub>E2</sub>).
- *        Typical Value = 3.02.
- * @param vemin Minimum exciter voltage output (V<sub>EMIN</sub>).
- *        Typical Value = 0.
- * @param vfemax Exciter field current limit reference (V<sub>FEMAX</sub>).
- *        Typical Value = 6.9.
- * @param vrmax Maximum voltage regulator output (V<sub>RMAX</sub>).
- *        Typical Value = 5.79.
- * @param vrmin Minimum voltage regulator output (V<sub>RMIN</sub>).
- *        Typical Value = -5.79.
+ * @param kc Rectifier loading factor proportional to commutating reactance (<i>K</i><i><sub>C</sub></i>) (&gt;= 0).
+ *        Typical value = 0,18.
+ * @param kd Demagnetizing factor, a function of exciter alternator reactances (<i>K</i><i><sub>D</sub></i>) (&gt;= 0).
+ *        Typical value = 0,02.
+ * @param kdr Voltage regulator derivative gain (<i>K</i><i><sub>DR</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param ke Exciter constant related to self-excited field (<i>K</i><i><sub>E</sub></i>).
+ *        Typical value = 1.
+ * @param kf1 Excitation control system stabilizer gain (<i>K</i><i><sub>F1</sub></i>) (&gt;= 0).
+ *        Typical value = 0,212.
+ * @param kf2 Excitation control system stabilizer gain (<i>K</i><i><sub>F2</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param kf3 Excitation control system stabilizer gain (<i>K</i><i><sub>F3</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param kia Voltage regulator integral gain (<i>K</i><i><sub>IA</sub></i>) (&gt;= 0).
+ *        Typical value = 59,69.
+ * @param kir Voltage regulator integral gain (<i>K</i><i><sub>IR</sub></i>) (&gt;= 0).
+ *        Typical value = 4,24.
+ * @param kl Exciter field voltage lower limit parameter (<i>K</i><i><sub>L</sub></i>).
+ *        Typical value = 10.
+ * @param kp Potential circuit gain coefficient (<i>K</i><i><sub>P</sub></i>) (&gt; 0).
+ *        Typical value = 4,96.
+ * @param kpa Voltage regulator proportional gain (<i>K</i><i><sub>PA</sub></i>) (&gt; 0 if ExcIEEEAC7B.kia = 0).
+ *        Typical value = 65,36.
+ * @param kpr Voltage regulator proportional gain (<i>K</i><i><sub>PR</sub></i>) (&gt; 0 if ExcIEEEAC7B.kir = 0).
+ *        Typical value = 4,24.
+ * @param seve1 Exciter saturation function value at the corresponding exciter voltage, <i>V</i><i><sub>E1</sub></i>, back of commutating reactance (<i>S</i><i><sub>E</sub></i><i>[V</i><i><sub>E1</sub></i><i>]</i>) (&gt;= 0).
+ *        Typical value = 0,44.
+ * @param seve2 Exciter saturation function value at the corresponding exciter voltage, <i>V</i><i><sub>E2</sub></i>, back of commutating reactance (<i>S</i><i><sub>E</sub></i><i>[V</i><i><sub>E2</sub></i><i>]</i>) (&gt;= 0).
+ *        Typical value = 0,075.
+ * @param tdr Lag time constant (<i>T</i><i><sub>DR</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param te Exciter time constant, integration rate associated with exciter control (<i>T</i><i><sub>E</sub></i>) (&gt; 0).
+ *        Typical value = 1,1.
+ * @param tf Excitation control system stabilizer time constant (<i>T</i><i><sub>F</sub></i>) (&gt; 0).
+ *        Typical value = 1.
+ * @param vamax Maximum voltage regulator output (<i>V</i><i><sub>AMAX</sub></i>) (&gt; 0).
+ *        Typical value = 1.
+ * @param vamin Minimum voltage regulator output (<i>V</i><i><sub>AMIN</sub></i>) (&lt; 0).
+ *        Typical value = -0,95.
+ * @param ve1 Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>V</i><i><sub>E1</sub></i>) (&gt; 0).
+ *        Typical value = 6,3.
+ * @param ve2 Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>V</i><i><sub>E2</sub></i>) (&gt; 0).
+ *        Typical value = 3,02.
+ * @param vemin Minimum exciter voltage output (<i>V</i><i><sub>EMIN</sub></i>) (&lt;= 0).
+ *        Typical value = 0.
+ * @param vfemax Exciter field current limit reference (<i>V</i><i><sub>FEMAX</sub></i>).
+ *        Typical value = 6,9.
+ * @param vrmax Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>) (&gt; 0).
+ *        Typical value = 5,79.
+ * @param vrmin Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt; 0).
+ *        Typical value = -5,79.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
+The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 case class ExcIEEEAC7B
 (
@@ -5730,50 +5789,52 @@ extends
 }
 
 /**
- * The class represents IEEE Std 421.5-2005 type AC8B model.
+ * IEEE 421.5-2005 type AC8B model.
  *
- * This model represents a PID voltage regulator with either a brushless exciter or dc exciter. The AVR in this model consists of PID control, with separate constants for the proportional (<b>K</b><b><sub>PR</sub></b>), integral (<b>K</b><b><sub>IR</sub></b>), and derivative (<b>K</b><b><sub>DR</sub></b>) gains. The representation of the brushless exciter (<b>T</b><b><sub>E</sub></b>, <b>K</b><b><sub>E</sub></b>, <b>S</b><b><sub>E</sub></b>, <b>K</b><b><sub>C</sub></b>, <b>K</b><b><sub>D</sub></b>) is similar to the model Type AC2A. The Type AC8B model can be used to represent static voltage regulators applied to brushless excitation systems. Digitally based voltage regulators feeding dc rotating main exciters can be represented with the AC Type AC8B model with the parameters <b>K</b><b><sub>C</sub></b> and <b>K</b><b><sub>D</sub></b> set to 0.  For thyristor power stages fed from the generator terminals, the limits <b>V</b><b><sub>RMAX</sub></b> and <b>V</b><b><sub>RMIN</sub></b> should be a function of terminal voltage: <b>V</b><b><sub>T</sub></b> * <b>V</b><b><sub>RMAX</sub></b><sub> </sub>and <b>V</b><b><sub>T</sub></b> * <b>V</b><b><sub>RMIN</sub></b>.
+ * This model represents a PID voltage regulator with either a brushless exciter or DC exciter. The AVR in this model consists of PID control, with separate constants for the proportional (<i>K</i><i><sub>PR</sub></i>), integral (<i>K</i><i><sub>IR</sub></i>), and derivative (<i>K</i><i><sub>DR</sub></i>) gains. The representation of the brushless exciter (<i>T</i><i><sub>E</sub></i>, <i>K</i><i><sub>E</sub></i>, <i>S</i><i><sub>E</sub></i>, <i>K</i><i><sub>C</sub></i>, <i>K</i><i><sub>D</sub></i>) is similar to the model type AC2A. The type AC8B model can be used to represent static voltage regulators applied to brushless excitation systems. Digitally based voltage regulators feeding DC rotating main exciters can be represented with the AC type AC8B model with the parameters <i>K</i><i><sub>C</sub></i> and <i>K</i><i><sub>D</sub></i> set to 0.  For thyristor power stages fed from the generator terminals, the limits <i>V</i><i><sub>RMAX</sub></i> and <i>V</i><i><sub>RMIN</sub></i><i> </i>should be a function of terminal voltage: V<i><sub>T</sub></i> x <i>V</i><i><sub>RMAX</sub></i><sub> </sub>and <i>V</i><i><sub>T</sub></i> x <i>V</i><i><sub>RMIN</sub></i>.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param ka Voltage regulator gain (K<sub>A</sub>).
- *        Typical Value = 1.
- * @param kc Rectifier loading factor proportional to commutating reactance (K<sub>C</sub>).
- *        Typical Value = 0.55.
- * @param kd Demagnetizing factor, a function of exciter alternator reactances (K<sub>D</sub>).
- *        Typical Value = 1.1.
- * @param kdr Voltage regulator derivative gain (K<sub>DR</sub>).
- *        Typical Value = 10.
- * @param ke Exciter constant related to self-excited field (K<sub>E</sub>).
- *        Typical Value = 1.
- * @param kir Voltage regulator integral gain (K<sub>IR</sub>).
- *        Typical Value = 5.
- * @param kpr Voltage regulator proportional gain (K<sub>PR</sub>).
- *        Typical Value = 80.
- * @param seve1 Exciter saturation function value at the corresponding exciter voltage, V<sub>E1</sub>, back of commutating reactance (S<sub>E</sub>[V<sub>E1</sub>]).
- *        Typical Value = 0.3.
- * @param seve2 Exciter saturation function value at the corresponding exciter voltage, V<sub>E2</sub>, back of commutating reactance (S<sub>E</sub>[V<sub>E2</sub>]).
- *        Typical Value = 3.
- * @param ta Voltage regulator time constant (T<sub>A</sub>).
- *        Typical Value = 0.
- * @param tdr Lag time constant (T<sub>DR</sub>).
- *        Typical Value = 0.1.
- * @param te Exciter time constant, integration rate associated with exciter control (T<sub>E</sub>).
- *        Typical Value = 1.2.
- * @param ve1 Exciter alternator output voltages back of commutating reactance at which saturation is defined (V<sub>E1</sub>) equals V<sub>EMAX</sub> (V<sub>E1</sub>).
- *        Typical Value = 6.5.
- * @param ve2 Exciter alternator output voltages back of commutating reactance at which saturation is defined (V<sub>E2</sub>).
- *        Typical Value = 9.
- * @param vemin Minimum exciter voltage output (V<sub>EMIN</sub>).
- *        Typical Value = 0.
- * @param vfemax Exciter field current limit reference (V<sub>FEMAX</sub>).
- *        Typical Value = 6.
- * @param vrmax Maximum voltage regulator output (V<sub>RMAX</sub>).
- *        Typical Value = 35.
- * @param vrmin Minimum voltage regulator output (V<sub>RMIN</sub>).
- *        Typical Value = 0.
+ * @param ka Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
+ *        Typical value = 1.
+ * @param kc Rectifier loading factor proportional to commutating reactance (<i>K</i><i><sub>C</sub></i>) (&gt;= 0).
+ *        Typical value = 0,55.
+ * @param kd Demagnetizing factor, a function of exciter alternator reactances (<i>K</i><i><sub>D</sub></i>) (&gt;= 0).
+ *        Typical value = 1,1.
+ * @param kdr Voltage regulator derivative gain (<i>K</i><i><sub>DR</sub></i>) (&gt;= 0).
+ *        Typical value = 10.
+ * @param ke Exciter constant related to self-excited field (<i>K</i><i><sub>E</sub></i>).
+ *        Typical value = 1.
+ * @param kir Voltage regulator integral gain (<i>K</i><i><sub>IR</sub></i>) (&gt;= 0).
+ *        Typical value = 5.
+ * @param kpr Voltage regulator proportional gain (<i>K</i><i><sub>PR</sub></i>) (&gt; 0 if ExcIEEEAC8B.kir = 0).
+ *        Typical value = 80.
+ * @param seve1 Exciter saturation function value at the corresponding exciter voltage, <i>V</i><i><sub>E1</sub></i>, back of commutating reactance (<i>S</i><i><sub>E</sub></i><i>[V</i><i><sub>E1</sub></i><i>]</i>) (&gt;= 0).
+ *        Typical value = 0,3.
+ * @param seve2 Exciter saturation function value at the corresponding exciter voltage, <i>V</i><i><sub>E2</sub></i>, back of commutating reactance (<i>S</i><i><sub>E</sub></i><i>[V</i><i><sub>E2</sub></i><i>]</i>) (&gt;= 0).
+ *        Typical value = 3.
+ * @param ta Voltage regulator time constant (<i>T</i><i><sub>A</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tdr Lag time constant (<i>T</i><i><sub>DR</sub></i>) (&gt; 0).
+ *        Typical value = 0,1.
+ * @param te Exciter time constant, integration rate associated with exciter control (<i>T</i><i><sub>E</sub></i>) (&gt; 0).
+ *        Typical value = 1,2.
+ * @param ve1 Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>V</i><i><sub>E1</sub></i>) (&gt; 0).
+ *        Typical value = 6,5.
+ * @param ve2 Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>V</i><i><sub>E2</sub></i>) (&gt; 0).
+ *        Typical value = 9.
+ * @param vemin Minimum exciter voltage output (<i>V</i><i><sub>EMIN</sub></i>) (&lt;= 0).
+ *        Typical value = 0.
+ * @param vfemax Exciter field current limit reference (<i>V</i><i><sub>FEMAX</sub></i>).
+ *        Typical value = 6.
+ * @param vrmax Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>) (&gt; 0).
+ *        Typical value = 35.
+ * @param vrmin Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt;= 0).
+ *        Typical value = 0.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
+The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 case class ExcIEEEAC8B
 (
@@ -5927,48 +5988,50 @@ extends
 }
 
 /**
- * The class represents IEEE Std 421.5-2005 type DC1A model.
+ * IEEE 421.5-2005 type DC1A model.
  *
- * This model represents field-controlled dc commutator exciters with continuously acting voltage regulators (especially the direct-acting rheostatic, rotating amplifier, and magnetic amplifier types).  Because this model has been widely implemented by the industry, it is sometimes used to represent other types of systems when detailed data for them are not available or when a simplified model is required.
+ * This model represents field-controlled DC commutator exciters with continuously acting voltage regulators (especially the direct-acting rheostatic, rotating amplifier, and magnetic amplifier types).  Because this model has been widely implemented by the industry, it is sometimes used to represent other types of systems when detailed data for them are not available or when a simplified model is required.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param efd1 Exciter voltage at which exciter saturation is defined (E<sub>FD1</sub>).
- *        Typical Value = 3.1.
- * @param efd2 Exciter voltage at which exciter saturation is defined (E<sub>FD2</sub>).
- *        Typical Value = 2.3.
- * @param exclim (exclim).
+ * @param efd1 Exciter voltage at which exciter saturation is defined (<i>E</i><i><sub>FD1</sub></i>) (&gt; 0).
+ *        Typical value = 3,1.
+ * @param efd2 Exciter voltage at which exciter saturation is defined (<i>E</i><i><sub>FD2</sub></i>) (&gt; 0).
+ *        Typical value = 2,3.
+ * @param exclim (<i>exclim</i>).
  *        IEEE standard is ambiguous about lower limit on exciter output.
- * @param ka Voltage regulator gain (K<sub>A</sub>).
- *        Typical Value = 46.
- * @param ke Exciter constant related to self-excited field (K<sub>E</sub>).
- *        Typical Value = 0.
- * @param kf Excitation control system stabilizer gain (K<sub>F</sub>).
- *        Typical Value = 0.1.
- * @param seefd1 Exciter saturation function value at the corresponding exciter voltage, E<sub>FD1</sub> (S<sub>E</sub>[E<sub>FD1</sub>]).
- *        Typical Value = 0.33.
- * @param seefd2 Exciter saturation function value at the corresponding exciter voltage, E<sub>FD2</sub> (S<sub>E</sub>[E<sub>FD2</sub>]).
- *        Typical Value = 0.1.
- * @param ta Voltage regulator time constant (T<sub>A</sub>).
- *        Typical Value = 0.06.
- * @param tb Voltage regulator time constant (T<sub>B</sub>).
- *        Typical Value = 0.
- * @param tc Voltage regulator time constant (T<sub>C</sub>).
- *        Typical Value = 0.
- * @param te Exciter time constant, integration rate associated with exciter control (T<sub>E</sub>).
- *        Typical Value = 0.46.
- * @param tf Excitation control system stabilizer time constant (T<sub>F</sub>).
- *        Typical Value = 1.
- * @param uelin UEL input (uelin).
+ * @param ka Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
+ *        Typical value = 46.
+ * @param ke Exciter constant related to self-excited field (<i>K</i><i><sub>E</sub></i>).
+ *        Typical value = 0.
+ * @param kf Excitation control system stabilizer gain (<i>K</i><i><sub>F</sub></i>) (&gt;= 0).
+ *        Typical value = 0.1.
+ * @param seefd1 Exciter saturation function value at the corresponding exciter voltage, <i>E</i><i><sub>FD1</sub></i> (<i>S</i><i><sub>E</sub></i><i>[E</i><i><sub>FD1</sub></i><i>]</i>) (&gt;= 0).
+ *        Typical value = 0.33.
+ * @param seefd2 Exciter saturation function value at the corresponding exciter voltage, <i>E</i><i><sub>FD2</sub></i> (<i>S</i><i><sub>E</sub></i><i>[E</i><i><sub>FD2</sub></i><i>]</i>) (&gt;= 0).
+ *        Typical value = 0,1.
+ * @param ta Voltage regulator time constant (<i>T</i><i><sub>A</sub></i>) (&gt; 0).
+ *        Typical value = 0,06.
+ * @param tb Voltage regulator time constant (<i>T</i><i><sub>B</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tc Voltage regulator time constant (<i>T</i><i><sub>C</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param te Exciter time constant, integration rate associated with exciter control (<i>T</i><i><sub>E</sub></i>) (&gt; 0).
+ *        Typical value = 0,46.
+ * @param tf Excitation control system stabilizer time constant (<i>T</i><i><sub>F</sub></i>) (&gt; 0).
+ *        Typical value = 1.
+ * @param uelin UEL input (<i>uelin</i>).
  *        true = input is connected to the HV gate
  *        false = input connects to the error signal.
- *        Typical Value = true.
- * @param vrmax Maximum voltage regulator output (V<sub>RMAX</sub>).
- *        Typical Value = 1.
- * @param vrmin Minimum voltage regulator output (V<sub>RMIN</sub>).
- *        Typical Value = -0.9.
+ *        Typical value = true.
+ * @param vrmax Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>) (&gt; ExcIEEEDC1A.vrmin).
+ *        Typical value = 1.
+ * @param vrmin Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt; 0 and &lt; ExcIEEEDC1A.vrmax).
+ *        Typical value = -0,9.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
+The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 case class ExcIEEEDC1A
 (
@@ -6112,48 +6175,50 @@ extends
 }
 
 /**
- * The class represents IEEE Std 421.5-2005 type DC2A model.
+ * IEEE 421.5-2005 type DC2A model.
  *
- * This model represents represent field-controlled dc commutator exciters with continuously acting voltage regulators having supplies obtained from the generator or auxiliary bus.  It differs from the Type DC1A model only in the voltage regulator output limits, which are now proportional to terminal voltage <b>V</b><b><sub>T</sub></b>.
+ * This model represents field-controlled DC commutator exciters with continuously acting voltage regulators having supplies obtained from the generator or auxiliary bus.  It differs from the type DC1A model only in the voltage regulator output limits, which are now proportional to terminal voltage <i>V</i><i><sub>T</sub></i>.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param efd1 Exciter voltage at which exciter saturation is defined (E<sub>FD1</sub>).
- *        Typical Value = 3.05.
- * @param efd2 Exciter voltage at which exciter saturation is defined (E<sub>FD2</sub>).
- *        Typical Value = 2.29.
- * @param exclim (exclim).
- *        IEEE standard is ambiguous about lower limit on exciter output. Typical Value = - 999  which means that there is no limit applied.
- * @param ka Voltage regulator gain (K<sub>A</sub>).
- *        Typical Value = 300.
- * @param ke Exciter constant related to self-excited field (K<sub>E</sub>).
- *        Typical Value = 1.
- * @param kf Excitation control system stabilizer gain (K<sub>F</sub>).
- *        Typical Value = 0.1.
- * @param seefd1 Exciter saturation function value at the corresponding exciter voltage, E<sub>FD1</sub> (S<sub>E</sub>[E<sub>FD1</sub>]).
- *        Typical Value = 0.279.
- * @param seefd2 Exciter saturation function value at the corresponding exciter voltage, E<sub>FD2</sub> (S<sub>E</sub>[E<sub>FD2</sub>]).
- *        Typical Value = 0.117.
- * @param ta Voltage regulator time constant (T<sub>A</sub>).
- *        Typical Value = 0.01.
- * @param tb Voltage regulator time constant (T<sub>B</sub>).
- *        Typical Value = 0.
- * @param tc Voltage regulator time constant (T<sub>C</sub>).
- *        Typical Value = 0.
- * @param te Exciter time constant, integration rate associated with exciter control (T<sub>E</sub>).
- *        Typical Value = 1.33.
- * @param tf Excitation control system stabilizer time constant (T<sub>F</sub>).
- *        Typical Value = 0.675.
- * @param uelin UEL input (uelin).
+ * @param efd1 Exciter voltage at which exciter saturation is defined (<i>E</i><i><sub>FD1</sub></i>) (&gt; 0).
+ *        Typical value = 3,05.
+ * @param efd2 Exciter voltage at which exciter saturation is defined (<i>E</i><i><sub>FD2</sub></i>) (&gt; 0).
+ *        Typical value = 2,29.
+ * @param exclim (<i>exclim</i>).
+ *        IEEE standard is ambiguous about lower limit on exciter output. Typical value = - 999  which means that there is no limit applied.
+ * @param ka Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
+ *        Typical value = 300.
+ * @param ke Exciter constant related to self-excited field (<i>K</i><i><sub>E</sub></i>).
+ *        Typical value = 1.
+ * @param kf Excitation control system stabilizer gain (<i>K</i><i><sub>F</sub></i>) (&gt;= 0).
+ *        Typical value = 0,1.
+ * @param seefd1 Exciter saturation function value at the corresponding exciter voltage, <i>E</i><i><sub>FD1</sub></i> (<i>S</i><i><sub>E</sub></i><i>[E</i><i><sub>FD1</sub></i><i>]</i>) (&gt;= 0).
+ *        Typical value = 0,279.
+ * @param seefd2 Exciter saturation function value at the corresponding exciter voltage, <i>E</i><i><sub>FD2</sub></i> (<i>S</i><i><sub>E</sub></i><i>[E</i><i><sub>FD2</sub></i><i>]</i>) (&gt;= 0).
+ *        Typical value = 0,117.
+ * @param ta Voltage regulator time constant (<i>T</i><i><sub>A</sub></i>) (&gt; 0).
+ *        Typical value = 0,01.
+ * @param tb Voltage regulator time constant (<i>T</i><i><sub>B</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tc Voltage regulator time constant (<i>T</i><i><sub>C</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param te Exciter time constant, integration rate associated with exciter control (<i>T</i><i><sub>E</sub></i>) (&gt; 0).
+ *        Typical value = 1,33.
+ * @param tf Excitation control system stabilizer time constant (<i>T</i><i><sub>F</sub></i>) (&gt; 0).
+ *        Typical value = 0,675.
+ * @param uelin UEL input (<i>uelin</i>).
  *        true = input is connected to the HV gate
  *        false = input connects to the error signal.
- *        Typical Value = true.
- * @param vrmax Maximum voltage regulator output (V<sub>RMAX</sub>).
- *        Typical Value = 4.95.
- * @param vrmin Minimum voltage regulator output (V<sub>RMIN</sub>).
- *        Typical Value = -4.9.
+ *        Typical value = true.
+ * @param vrmax Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>)(&gt; ExcIEEEDC2A.vrmin).
+ *        Typical value = 4,95.
+ * @param vrmin Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt; 0 and &lt; ExcIEEEDC2A.vrmax).
+ *        Typical value = -4,9.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
+The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 case class ExcIEEEDC2A
 (
@@ -6297,36 +6362,38 @@ extends
 }
 
 /**
- * The class represents IEEE Std 421.5-2005 type DC3A model.
+ * IEEE 421.5-2005 type DC3A model.
  *
- * This model represents represent older systems, in particular those dc commutator exciters with non-continuously acting regulators that were commonly used before the development of the continuously acting varieties.  These systems respond at basically two different rates, depending upon the magnitude of voltage error. For small errors, adjustment is made periodically with a signal to a motor-operated rheostat. Larger errors cause resistors to be quickly shorted or inserted and a strong forcing signal applied to the exciter. Continuous motion of the motor-operated rheostat occurs for these larger error signals, even though it is bypassed by contactor action.
+ * This model represents older systems, in particular those DC commutator exciters with non-continuously acting regulators that were commonly used before the development of the continuously acting varieties.  These systems respond at basically two different rates, depending upon the magnitude of voltage error. For small errors, adjustment is made periodically with a signal to a motor-operated rheostat. Larger errors cause resistors to be quickly shorted or inserted and a strong forcing signal applied to the exciter. Continuous motion of the motor-operated rheostat occurs for these larger error signals, even though it is bypassed by contactor action.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param efd1 Exciter voltage at which exciter saturation is defined (E<sub>FD1</sub>).
- *        Typical Value = 3.375.
- * @param efd2 Exciter voltage at which exciter saturation is defined (E<sub>FD2</sub>).
- *        Typical Value = 3.15.
- * @param exclim (exclim).
+ * @param efd1 Exciter voltage at which exciter saturation is defined (<i>E</i><i><sub>FD1</sub></i>) (&gt; 0).
+ *        Typical value = 3,375.
+ * @param efd2 Exciter voltage at which exciter saturation is defined (<i>E</i><i><sub>FD2</sub></i>) (&gt; 0).
+ *        Typical value = 3,15.
+ * @param exclim (<i>exclim</i>).
  *        IEEE standard is ambiguous about lower limit on exciter output.
- * @param ke Exciter constant related to self-excited field (K<sub>E</sub>).
- *        Typical Value = 0.05.
- * @param kv Fast raise/lower contact setting (K<sub>V</sub>).
- *        Typical Value = 0.05.
- * @param seefd1 Exciter saturation function value at the corresponding exciter voltage, E<sub>FD1</sub> (S<sub>E</sub>[E<sub>FD1</sub>]).
- *        Typical Value = 0.267.
- * @param seefd2 Exciter saturation function value at the corresponding exciter voltage, E<sub>FD2</sub> (S<sub>E</sub>[E<sub>FD2</sub>]).
- *        Typical Value = 0.068.
- * @param te Exciter time constant, integration rate associated with exciter control (T<sub>E</sub>).
- *        Typical Value = 0.5.
- * @param trh Rheostat travel time (T<sub>RH</sub>).
- *        Typical Value = 20.
- * @param vrmax Maximum voltage regulator output (V<sub>RMAX</sub>).
- *        Typical Value = 1.
- * @param vrmin Minimum voltage regulator output (V<sub>RMIN</sub>).
- *        Typical Value = 0.
+ * @param ke Exciter constant related to self-excited field (<i>K</i><i><sub>E</sub></i>).
+ *        Typical value = 0,05.
+ * @param kv Fast raise/lower contact setting (<i>K</i><i><sub>V</sub></i>) (&gt; 0).
+ *        Typical value = 0,05.
+ * @param seefd1 Exciter saturation function value at the corresponding exciter voltage, <i>E</i><i><sub>FD1</sub></i> (<i>S</i><i><sub>E</sub></i><i>[E</i><i><sub>FD1</sub></i><i>]</i>) (&gt;= 0).
+ *        Typical value = 0,267.
+ * @param seefd2 Exciter saturation function value at the corresponding exciter voltage, <i>E</i><i><sub>FD2</sub></i> (<i>S</i><i><sub>E</sub></i><i>[E</i><i><sub>FD2</sub></i><i>]</i>) (&gt;= 0).
+ *        Typical value = 0,068.
+ * @param te Exciter time constant, integration rate associated with exciter control (<i>T</i><i><sub>E</sub></i>) (&gt; 0).
+ *        Typical value = 0,5.
+ * @param trh Rheostat travel time (<i>T</i><i><sub>RH</sub></i>) (&gt; 0).
+ *        Typical value = 20.
+ * @param vrmax Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>) (&gt; 0).
+ *        Typical value = 1.
+ * @param vrmin Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt;= 0).
+ *        Typical value = 0.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
+The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 case class ExcIEEEDC3A
 (
@@ -6445,56 +6512,58 @@ extends
 }
 
 /**
- * The class represents IEEE Std 421.5-2005 type DC4B model.
+ * IEEE 421.5-2005 type DC4B model.
  *
- * These excitation systems utilize a field-controlled dc commutator exciter with a continuously acting voltage regulator having supplies obtained from the generator or auxiliary bus.
+ * These excitation systems utilize a field-controlled DC commutator exciter with a continuously acting voltage regulator having supplies obtained from the generator or auxiliary bus.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param efd1 Exciter voltage at which exciter saturation is defined (E<sub>FD1</sub>).
- *        Typical Value = 1.75.
- * @param efd2 Exciter voltage at which exciter saturation is defined (E<sub>FD2</sub>).
- *        Typical Value = 2.33.
- * @param ka Voltage regulator gain (K<sub>A</sub>).
- *        Typical Value = 1.
- * @param kd Regulator derivative gain (K<sub>D</sub>).
- *        Typical Value = 20.
- * @param ke Exciter constant related to self-excited field (K<sub>E</sub>).
- *        Typical Value = 1.
- * @param kf Excitation control system stabilizer gain (K<sub>F</sub>).
- *        Typical Value = 0.
- * @param ki Regulator integral gain (K<sub>I</sub>).
- *        Typical Value = 20.
- * @param kp Regulator proportional gain (K<sub>P</sub>).
- *        Typical Value = 20.
- * @param oelin OEL input (OELin).
+ * @param efd1 Exciter voltage at which exciter saturation is defined (<i>E</i><i><sub>FD1</sub></i>) (&gt; 0).
+ *        Typical value = 1,75.
+ * @param efd2 Exciter voltage at which exciter saturation is defined (<i>E</i><i><sub>FD2</sub></i>) (&gt; 0).
+ *        Typical value = 2,33.
+ * @param ka Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
+ *        Typical value = 1.
+ * @param kd Regulator derivative gain (<i>K</i><i><sub>D</sub></i>) (&gt;= 0).
+ *        Typical value = 20.
+ * @param ke Exciter constant related to self-excited field (<i>K</i><i><sub>E</sub></i>).
+ *        Typical value = 1.
+ * @param kf Excitation control system stabilizer gain (<i>K</i><i><sub>F</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param ki Regulator integral gain (<i>K</i><i><sub>I</sub></i>) (&gt;= 0).
+ *        Typical value = 20.
+ * @param kp Regulator proportional gain (<i>K</i><i><sub>P</sub></i>) (&gt;= 0).
+ *        Typical value = 20.
+ * @param oelin OEL input (<i>OELin</i>).
  *        true = LV gate
  *        false = subtract from error signal.
- *        Typical Value = true.
- * @param seefd1 Exciter saturation function value at the corresponding exciter voltage, E<sub>FD1</sub> (S<sub>E</sub>[E<sub>FD1</sub>]).
- *        Typical Value = 0.08.
- * @param seefd2 Exciter saturation function value at the corresponding exciter voltage, E<sub>FD2</sub> (S<sub>E</sub>[E<sub>FD2</sub>]).
- *        Typical Value = 0.27.
- * @param ta Voltage regulator time constant (T<sub>A</sub>).
- *        Typical Value = 0.2.
- * @param td Regulator derivative filter time constant(T<sub>D</sub>).
- *        Typical Value = 0.01.
- * @param te Exciter time constant, integration rate associated with exciter control (T<sub>E</sub>).
- *        Typical Value = 0.8.
- * @param tf Excitation control system stabilizer time constant (T<sub>F</sub>).
- *        Typical Value = 1.
- * @param uelin UEL input (UELin).
+ *        Typical value = true.
+ * @param seefd1 Exciter saturation function value at the corresponding exciter voltage, <i>E</i><i><sub>FD1</sub></i> (<i>S</i><i><sub>E</sub></i><i>[E</i><i><sub>FD1</sub></i><i>]</i>) (&gt;= 0).
+ *        Typical value = 0,08.
+ * @param seefd2 Exciter saturation function value at the corresponding exciter voltage, <i>E</i><i><sub>FD2</sub></i> (<i>S</i><i><sub>E</sub></i><i>[E</i><i><sub>FD2</sub></i><i>]</i>) (&gt;= 0).
+ *        Typical value = 0,27.
+ * @param ta Voltage regulator time constant (<i>T</i><i><sub>A</sub></i>) (&gt; 0).
+ *        Typical value = 0,2.
+ * @param td Regulator derivative filter time constant (<i>T</i><i><sub>D</sub></i>) (&gt; 0 if ExcIEEEDC4B.kd &gt; 0).
+ *        Typical value = 0,01.
+ * @param te Exciter time constant, integration rate associated with exciter control (<i>T</i><i><sub>E</sub></i>) (&gt; 0).
+ *        Typical value = 0,8.
+ * @param tf Excitation control system stabilizer time constant (<i>T</i><i><sub>F</sub></i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param uelin UEL input (<i>UELin</i>).
  *        true = HV gate
  *        false = add to error signal.
- *        Typical Value = true.
- * @param vemin Minimum exciter voltage output(V<sub>EMIN</sub>).
- *        Typical Value = 0.
- * @param vrmax Maximum voltage regulator output (V<sub>RMAX</sub>).
- *        Typical Value = 2.7.
- * @param vrmin Minimum voltage regulator output (V<sub>RMIN</sub>).
- *        Typical Value = -0.9.
+ *        Typical value = true.
+ * @param vemin Minimum exciter voltage output (<i>V</i><i><sub>EMIN</sub></i>) (&lt;= 0).
+ *        Typical value = 0.
+ * @param vrmax Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>) (&gt; ExcIEEEDC4B.vrmin).
+ *        Typical value = 2,7.
+ * @param vrmin Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt;= 0 and &lt; ExcIEEEDC4B.vrmax).
+ *        Typical value = -0,9.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
+The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 case class ExcIEEEDC4B
 (
@@ -6653,54 +6722,56 @@ extends
 }
 
 /**
- * The class represents IEEE Std 421.5-2005 type ST1A model.
+ * IEEE 421.5-2005 type ST1A model.
  *
  * This model represents systems in which excitation power is supplied through a transformer from the generator terminals (or the unit�s auxiliary bus) and is regulated by a controlled rectifier.  The maximum exciter voltage available from such systems is directly related to the generator terminal voltage.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param ilr Exciter output current limit reference (I<sub>LR</sub>).
- *        Typical Value = 0.
- * @param ka Voltage regulator gain (K<sub>A</sub>).
- *        Typical Value = 190.
- * @param kc Rectifier loading factor proportional to commutating reactance (K<sub>C</sub>).
- *        Typical Value = 0.08.
- * @param kf Excitation control system stabilizer gains (K<sub>F</sub>).
- *        Typical Value = 0.
- * @param klr Exciter output current limiter gain (K<sub>LR</sub>).
- *        Typical Value = 0.
- * @param pssin Selector of the Power System Stabilizer (PSS) input (PSSin).
- *        true = PSS input (Vs) added to error signal
- *        false = PSS input (Vs) added to voltage regulator output.
- *        Typical Value = true.
- * @param ta Voltage regulator time constant (T<sub>A</sub>).
- *        Typical Value = 0.
- * @param tb Voltage regulator time constant (T<sub>B</sub>).
- *        Typical Value = 10.
- * @param tb1 Voltage regulator time constant (T<sub>B1</sub>).
- *        Typical Value = 0.
- * @param tc Voltage regulator time constant (T<sub>C</sub>).
- *        Typical Value = 1.
- * @param tc1 Voltage regulator time constant (T<sub>C1</sub>).
- *        Typical Value = 0.
- * @param tf Excitation control system stabilizer time constant (T<sub>F</sub>).
- *        Typical Value = 1.
- * @param uelin Selector of the connection of the UEL input (UELin).
- *        Typical Value = ignoreUELsignal.
- * @param vamax Maximum voltage regulator output (V<sub>AMAX</sub>).
- *        Typical Value = 14.5.
- * @param vamin Minimum voltage regulator output (V<sub>AMIN</sub>).
- *        Typical Value = -14.5.
- * @param vimax Maximum voltage regulator input limit (V<sub>IMAX</sub>).
- *        Typical Value = 999.
- * @param vimin Minimum voltage regulator input limit (V<sub>IMIN</sub>).
- *        Typical Value = -999.
- * @param vrmax Maximum voltage regulator outputs (V<sub>RMAX</sub>).
- *        Typical Value = 7.8.
- * @param vrmin Minimum voltage regulator outputs (V<sub>RMIN</sub>).
- *        Typical Value = -6.7.
+ * @param ilr Exciter output current limit reference (<i>I</i><i><sub>LR</sub></i><i>)</i>.
+ *        Typical value = 0.
+ * @param ka Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
+ *        Typical value = 190.
+ * @param kc Rectifier loading factor proportional to commutating reactance (<i>K</i><i><sub>C</sub></i>) (&gt;= 0).
+ *        Typical value = 0,08.
+ * @param kf Excitation control system stabilizer gains (<i>K</i><i><sub>F</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param klr Exciter output current limiter gain (<i>K</i><i><sub>LR</sub></i>).
+ *        Typical value = 0.
+ * @param pssin Selector of the Power System Stabilizer (PSS) input (<i>PSSin</i>).
+ *        true = PSS input (<i>Vs</i>) added to error signal
+ *        false = PSS input (<i>Vs</i>) added to voltage regulator output.
+ *        Typical value = true.
+ * @param ta Voltage regulator time constant (<i>T</i><i><sub>A</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tb Voltage regulator time constant (<i>T</i><i><sub>B</sub></i>) (&gt;= 0).
+ *        Typical value = 10.
+ * @param tb1 Voltage regulator time constant (<i>T</i><i><sub>B1</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tc Voltage regulator time constant (<i>T</i><i><sub>C</sub></i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param tc1 Voltage regulator time constant (<i>T</i><i><sub>C1</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tf Excitation control system stabilizer time constant (<i>T</i><i><sub>F</sub></i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param uelin Selector of the connection of the UEL input (<i>UELin</i>).
+ *        Typical value = ignoreUELsignal.
+ * @param vamax Maximum voltage regulator output (<i>V</i><i><sub>AMAX</sub></i>) (&gt; 0).
+ *        Typical value = 14,5.
+ * @param vamin Minimum voltage regulator output (<i>V</i><i><sub>AMIN</sub></i>) (&lt; 0).
+ *        Typical value = -14,5.
+ * @param vimax Maximum voltage regulator input limit (<i>V</i><i><sub>IMAX</sub></i>) (&gt; 0).
+ *        Typical value = 999.
+ * @param vimin Minimum voltage regulator input limit (<i>V</i><i><sub>IMIN</sub></i>) (&lt; 0).
+ *        Typical value = -999.
+ * @param vrmax Maximum voltage regulator outputs (<i>V</i><i><sub>RMAX</sub></i>) (&gt; 0).
+ *        Typical value = 7,8.
+ * @param vrmin Minimum voltage regulator outputs (<i>V</i><i><sub>RMIN</sub></i>) (&lt; 0).
+ *        Typical value = -6,7.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
+The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 case class ExcIEEEST1A
 (
@@ -6860,42 +6931,44 @@ extends
 }
 
 /**
- * The class represents IEEE Std 421.5-2005 type ST2A model.
+ * IEEE 421.5-2005 type ST2A model.
  *
- * Some static systems utilize both current and voltage sources (generator terminal quantities) to comprise the power source.  The regulator controls the exciter output through controlled saturation of the power transformer components.  These compound-source rectifier excitation systems are designated Type ST2A and are represented by ExcIEEEST2A.
+ * Some static systems use both current and voltage sources (generator terminal quantities) to comprise the power source.  The regulator controls the exciter output through controlled saturation of the power transformer components.  These compound-source rectifier excitation systems are designated type ST2A and are represented by ExcIEEEST2A.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param efdmax Maximum field voltage (E<sub>FDMax</sub>).
- *        Typical Value = 99.
- * @param ka Voltage regulator gain (K<sub>A</sub>).
- *        Typical Value = 120.
- * @param kc Rectifier loading factor proportional to commutating reactance (K<sub>C</sub>).
- *        Typical Value = 1.82.
- * @param ke Exciter constant related to self-excited field (K<sub>E</sub>).
- *        Typical Value = 1.
- * @param kf Excitation control system stabilizer gains (K<sub>F</sub>).
- *        Typical Value = 0.05.
- * @param ki Potential circuit gain coefficient (K<sub>I</sub>).
- *        Typical Value = 8.
- * @param kp Potential circuit gain coefficient (K<sub>P</sub>).
- *        Typical Value = 4.88.
- * @param ta Voltage regulator time constant (T<sub>A</sub>).
- *        Typical Value = 0.15.
- * @param te Exciter time constant, integration rate associated with exciter control (T<sub>E</sub>).
- *        Typical Value = 0.5.
- * @param tf Excitation control system stabilizer time constant (T<sub>F</sub>).
- *        Typical Value = 1.
- * @param uelin UEL input (UELin).
+ * @param efdmax Maximum field voltage (<i>E</i><i><sub>FDMax</sub></i>) (&gt;= 0).
+ *        Typical value = 99.
+ * @param ka Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
+ *        Typical value = 120.
+ * @param kc Rectifier loading factor proportional to commutating reactance (<i>K</i><i><sub>C</sub></i>) (&gt;= 0).
+ *        Typical value = 1,82.
+ * @param ke Exciter constant related to self-excited field (<i>K</i><i><sub>E</sub></i>).
+ *        Typical value = 1.
+ * @param kf Excitation control system stabilizer gains (<i>K</i><i><sub>F</sub></i>) (&gt;= 0).
+ *        Typical value = 0,05.
+ * @param ki Potential circuit gain coefficient (<i>K</i><i><sub>I</sub></i>) (&gt;= 0).
+ *        Typical value = 8.
+ * @param kp Potential circuit gain coefficient (<i>K</i><i><sub>P</sub></i>) (&gt;= 0).
+ *        Typical value = 4,88.
+ * @param ta Voltage regulator time constant (<i>T</i><i><sub>A</sub></i>) (&gt; 0).
+ *        Typical value = 0,15.
+ * @param te Exciter time constant, integration rate associated with exciter control (<i>T</i><i><sub>E</sub></i>) (&gt; 0).
+ *        Typical value = 0,5.
+ * @param tf Excitation control system stabilizer time constant (<i>T</i><i><sub>F</sub></i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param uelin UEL input (<i>UELin</i>).
  *        true = HV gate
  *        false = add to error signal.
- *        Typical Value = true.
- * @param vrmax Maximum voltage regulator outputs (V<sub>RMAX</sub>).
- *        Typical Value = 1.
- * @param vrmin Minimum voltage regulator outputs (V<sub>RMIN</sub>).
- *        Typical Value = 0.
+ *        Typical value = true.
+ * @param vrmax Maximum voltage regulator outputs (<i>V</i><i><sub>RMAX</sub></i>) (&gt; 0).
+ *        Typical value = 1.
+ * @param vrmin Minimum voltage regulator outputs (<i>V</i><i><sub>RMIN</sub></i>) (&lt;= 0).
+ *        Typical value = 0.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
+The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 case class ExcIEEEST2A
 (
@@ -7024,54 +7097,56 @@ extends
 }
 
 /**
- * The class represents IEEE Std 421.5-2005 type ST3A model.
+ * IEEE 421.5-2005 type ST3A model.
  *
- * Some static systems utilize a field voltage control loop to linearize the exciter control characteristic. This also makes the output independent of supply source variations until supply limitations are reached.  These systems utilize a variety of controlled-rectifier designs: full thyristor complements or hybrid bridges
+ * Some static systems utilize a field voltage control loop to linearize the exciter control characteristic. This also makes the output independent of supply source variations until supply limitations are reached.  These systems utilize a variety of controlled-rectifier designs: full thyristor complements or hybrid bridges in either series or shunt configurations. The power source can consist of only a potential source, either fed from the machine terminals or from internal windings. Some designs can have compound power sources utilizing both machine potential and current. These power sources are represented as phasor combinations of machine terminal current and voltage and are accommodated by suitable parameters in model type ST3A which is represented by ExcIEEEST3A.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param ka Voltage regulator gain (K<sub>A</sub>).
- *        This is parameter K in the IEEE Std. Typical Value = 200.
- * @param kc Rectifier loading factor proportional to commutating reactance (K<sub>C</sub>).
- *        Typical Value = 0.2.
- * @param kg Feedback gain constant of the inner loop field regulator (K<sub>G</sub>).
- *        Typical Value = 1.
- * @param ki Potential circuit gain coefficient (K<sub>I</sub>).
- *        Typical Value = 0.
- * @param km Forward gain constant of the inner loop field regulator (K<sub>M</sub>).
- *        Typical Value = 7.93.
- * @param kp Potential circuit gain coefficient (K<sub>P</sub>).
- *        Typical Value = 6.15.
- * @param ta Voltage regulator time constant (T<sub>A</sub>).
- *        Typical Value = 0.
- * @param tb Voltage regulator time constant (T<sub>B</sub>).
- *        Typical Value = 10.
- * @param tc Voltage regulator time constant (T<sub>C</sub>).
- *        Typical Value = 1.
- * @param thetap Potential circuit phase angle (thetap).
- *        Typical Value = 0.
- * @param tm Forward time constant of inner loop field regulator (T<sub>M</sub>).
- *        Typical Value = 0.4.
- * @param vbmax Maximum excitation voltage (V<sub>BMax</sub>).
- *        Typical Value = 6.9.
- * @param vgmax Maximum inner loop feedback voltage (V<sub>GMax</sub>).
- *        Typical Value = 5.8.
- * @param vimax Maximum voltage regulator input limit (V<sub>IMAX</sub>).
- *        Typical Value = 0.2.
- * @param vimin Minimum voltage regulator input limit (V<sub>IMIN</sub>).
- *        Typical Value = -0.2.
- * @param vmmax Maximum inner loop output (V<sub>MMax</sub>).
- *        Typical Value = 1.
- * @param vmmin Minimum inner loop output (V<sub>MMin</sub>).
- *        Typical Value = 0.
- * @param vrmax Maximum voltage regulator output (V<sub>RMAX</sub>).
- *        Typical Value = 10.
- * @param vrmin Minimum voltage regulator output (V<sub>RMIN</sub>).
- *        Typical Value = -10.
- * @param xl Reactance associated with potential source (X<sub>L</sub>).
- *        Typical Value = 0.081.
+ * @param ka Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
+ *        This is parameter <i>K</i> in the IEEE standard. Typical value = 200.
+ * @param kc Rectifier loading factor proportional to commutating reactance (<i>K</i><i><sub>C</sub></i>) (&gt;= 0).
+ *        Typical value = 0,2.
+ * @param kg Feedback gain constant of the inner loop field regulator (<i>K</i><i><sub>G</sub></i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param ki Potential circuit gain coefficient (<i>K</i><i><sub>I</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param km Forward gain constant of the inner loop field regulator (<i>K</i><i><sub>M</sub></i>) (&gt; 0).
+ *        Typical value = 7,93.
+ * @param kp Potential circuit gain coefficient (<i>K</i><i><sub>P</sub></i>) (&gt; 0).
+ *        Typical value = 6,15.
+ * @param ta Voltage regulator time constant (<i>T</i><i><sub>A</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tb Voltage regulator time constant (<i>T</i><i><sub>B</sub></i>) (&gt;= 0).
+ *        Typical value = 10.
+ * @param tc Voltage regulator time constant (<i>T</i><i><sub>C</sub></i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param thetap Potential circuit phase angle (<i>thetap</i>).
+ *        Typical value = 0.
+ * @param tm Forward time constant of inner loop field regulator (<i>T</i><i><sub>M</sub></i>) (&gt; 0).
+ *        Typical value = 0,4.
+ * @param vbmax Maximum excitation voltage (<i>V</i><i><sub>BMax</sub></i>) (&gt; 0).
+ *        Typical value = 6,9.
+ * @param vgmax Maximum inner loop feedback voltage (<i>V</i><i><sub>GMax</sub></i>) (&gt;= 0).
+ *        Typical value = 5,8.
+ * @param vimax Maximum voltage regulator input limit (<i>V</i><i><sub>IMAX</sub></i>) (&gt; 0).
+ *        Typical value = 0,2.
+ * @param vimin Minimum voltage regulator input limit (<i>V</i><i><sub>IMIN</sub></i>) (&lt; 0).
+ *        Typical value = -0,2.
+ * @param vmmax Maximum inner loop output (<i>V</i><i><sub>MMax</sub></i>) (&gt; 0).
+ *        Typical value = 1.
+ * @param vmmin Minimum inner loop output (<i>V</i><i><sub>MMin</sub></i>) (&lt;= 0).
+ *        Typical value = 0.
+ * @param vrmax Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>) (&gt; 0).
+ *        Typical value = 10.
+ * @param vrmin Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt; 0).
+ *        Typical value = -10.
+ * @param xl Reactance associated with potential source (<i>X</i><i><sub>L</sub></i>) (&gt;= 0).
+ *        Typical value = 0,081.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
+The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 case class ExcIEEEST3A
 (
@@ -7235,46 +7310,48 @@ extends
 }
 
 /**
- * The class represents IEEE Std 421.5-2005 type ST4B model.
+ * IEEE 421.5-2005 type ST4B model.
  *
- * This model is a variation of the Type ST3A model, with a proportional plus integral (PI) regulator block replacing the lag-lead regulator characteristic that is in the ST3A model. Both potential and compound source rectifier excitation systems are modeled.  The PI regulator blocks have non-windup limits that are represented. The voltage regulator of this model is typically implemented digitally.
+ * This model is a variation of the type ST3A model, with a proportional plus integral (PI) regulator block replacing the lag-lead regulator characteristic that is in the ST3A model. Both potential and compound source rectifier excitation systems are modelled.  The PI regulator blocks have non-windup limits that are represented. The voltage regulator of this model is typically implemented digitally.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param kc Rectifier loading factor proportional to commutating reactance (K<sub>C</sub>).
- *        Typical Value = 0.113.
- * @param kg Feedback gain constant of the inner loop field regulator (K<sub>G</sub>).
- *        Typical Value = 0.
- * @param ki Potential circuit gain coefficient (K<sub>I</sub>).
- *        Typical Value = 0.
- * @param kim Voltage regulator integral gain output (K<sub>IM</sub>).
- *        Typical Value = 0.
- * @param kir Voltage regulator integral gain (K<sub>IR</sub>).
- *        Typical Value = 10.75.
- * @param kp Potential circuit gain coefficient (K<sub>P</sub>).
- *        Typical Value = 9.3.
- * @param kpm Voltage regulator proportional gain output (K<sub>PM</sub>).
- *        Typical Value = 1.
- * @param kpr Voltage regulator proportional gain (K<sub>PR</sub>).
- *        Typical Value = 10.75.
- * @param ta Voltage regulator time constant (T<sub>A</sub>).
- *        Typical Value = 0.02.
- * @param thetap Potential circuit phase angle (thetap).
- *        Typical Value = 0.
- * @param vbmax Maximum excitation voltage (V<sub>BMax</sub>).
- *        Typical Value = 11.63.
- * @param vmmax Maximum inner loop output (V<sub>MMax</sub>).
- *        Typical Value = 99.
- * @param vmmin Minimum inner loop output (V<sub>MMin</sub>).
- *        Typical Value = -99.
- * @param vrmax Maximum voltage regulator output (V<sub>RMAX</sub>).
- *        Typical Value = 1.
- * @param vrmin Minimum voltage regulator output (V<sub>RMIN</sub>).
- *        Typical Value = -0.87.
- * @param xl Reactance associated with potential source (X<sub>L</sub>).
- *        Typical Value = 0.124.
+ * @param kc Rectifier loading factor proportional to commutating reactance (<i>K</i><i><sub>C</sub></i>) (&gt;= 0).
+ *        Typical value = 0,113.
+ * @param kg Feedback gain constant of the inner loop field regulator (<i>K</i><i><sub>G</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param ki Potential circuit gain coefficient (<i>K</i><i><sub>I</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param kim Voltage regulator integral gain output (<i>K</i><i><sub>IM</sub></i>).
+ *        Typical value = 0.
+ * @param kir Voltage regulator integral gain (<i>K</i><i><sub>IR</sub></i>).
+ *        Typical value = 10,75.
+ * @param kp Potential circuit gain coefficient (<i>K</i><i><sub>P</sub></i>) (&gt; 0).
+ *        Typical value = 9,3.
+ * @param kpm Voltage regulator proportional gain output (<i>K</i><i><sub>PM</sub></i>).
+ *        Typical value = 1.
+ * @param kpr Voltage regulator proportional gain (<i>K</i><i><sub>PR</sub></i>).
+ *        Typical value = 10,75.
+ * @param ta Voltage regulator time constant (<i>T</i><i><sub>A</sub></i>) (&gt;= 0).
+ *        Typical value = 0,02.
+ * @param thetap Potential circuit phase angle (<i>thetap</i>).
+ *        Typical value = 0.
+ * @param vbmax Maximum excitation voltage (<i>V</i><i><sub>BMax</sub></i>) (&gt; 0).
+ *        Typical value = 11,63.
+ * @param vmmax Maximum inner loop output (<i>V</i><i><sub>MMax</sub></i>) (&gt; ExcIEEEST4B.vmmin).
+ *        Typical value = 99.
+ * @param vmmin Minimum inner loop output (<i>V</i><i><sub>MMin</sub></i>) (&lt; ExcIEEEST4B.vmmax).
+ *        Typical value = -99.
+ * @param vrmax Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>) (&gt; 0).
+ *        Typical value = 1.
+ * @param vrmin Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt; 0).
+ *        Typical value = -0,87.
+ * @param xl Reactance associated with potential source (<i>X</i><i><sub>L</sub></i>) (&gt;= 0).
+ *        Typical value = 0,124.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
+The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 case class ExcIEEEST4B
 (
@@ -7418,48 +7495,50 @@ extends
 }
 
 /**
- * The class represents IEEE Std 421.5-2005 type ST5B model.
+ * IEEE 421.5-2005 type ST5B model.
  *
- * The Type ST5B excitation system is a variation of the Type ST1A model, with alternative overexcitation and underexcitation inputs and additional limits.
+ * The type ST5B excitation system is a variation of the type ST1A model, with alternative overexcitation and underexcitation inputs and additional limits.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param kc Rectifier regulation factor (K<sub>C</sub>).
- *        Typical Value = 0.004.
- * @param kr Regulator gain (K<sub>R</sub>).
- *        Typical Value = 200.
- * @param t1 Firing circuit time constant (T1).
- *        Typical Value = 0.004.
- * @param tb1 Regulator lag time constant (T<sub>B1</sub>).
- *        Typical Value = 6.
- * @param tb2 Regulator lag time constant (T<sub>B2</sub>).
- *        Typical Value = 0.01.
- * @param tc1 Regulator lead time constant (T<sub>C1</sub>).
- *        Typical Value = 0.8.
- * @param tc2 Regulator lead time constant (T<sub>C2</sub>).
- *        Typical Value = 0.08.
- * @param tob1 OEL lag time constant (T<sub>OB1</sub>).
- *        Typical Value = 2.
- * @param tob2 OEL lag time constant (T<sub>OB2</sub>).
- *        Typical Value = 0.08.
- * @param toc1 OEL lead time constant (T<sub>OC1</sub>).
- *        Typical Value = 0.1.
- * @param toc2 OEL lead time constant (T<sub>OC2</sub>).
- *        Typical Value = 0.08.
- * @param tub1 UEL lag time constant (T<sub>UB1</sub>).
- *        Typical Value = 10.
- * @param tub2 UEL lag time constant (T<sub>UB2</sub>).
- *        Typical Value = 0.05.
- * @param tuc1 UEL lead time constant (T<sub>UC1</sub>).
- *        Typical Value = 2.
- * @param tuc2 UEL lead time constant (T<sub>UC2</sub>).
- *        Typical Value = 0.1.
- * @param vrmax Maximum voltage regulator output (V<sub>RMAX</sub>).
- *        Typical Value = 5.
- * @param vrmin Minimum voltage regulator output (V<sub>RMIN</sub>).
- *        Typical Value = -4.
+ * @param kc Rectifier regulation factor (<i>K</i><i><sub>C</sub></i>) (&gt;= 0).
+ *        Typical value = 0,004.
+ * @param kr Regulator gain (<i>K</i><i><sub>R</sub></i>) (&gt; 0).
+ *        Typical value = 200.
+ * @param t1 Firing circuit time constant (<i>T1</i>) (&gt;= 0).
+ *        Typical value = 0,004.
+ * @param tb1 Regulator lag time constant (<i>T</i><i><sub>B1</sub></i>) (&gt;= 0).
+ *        Typical value = 6.
+ * @param tb2 Regulator lag time constant (<i>T</i><i><sub>B2</sub></i>) (&gt;= 0).
+ *        Typical value = 0,01.
+ * @param tc1 Regulator lead time constant (<i>T</i><i><sub>C1</sub></i>) (&gt;= 0).
+ *        Typical value = 0,8.
+ * @param tc2 Regulator lead time constant (<i>T</i><i><sub>C2</sub></i>) (&gt;= 0).
+ *        Typical value = 0,08.
+ * @param tob1 OEL lag time constant (<i>T</i><i><sub>OB1</sub></i>) (&gt;= 0).
+ *        Typical value = 2.
+ * @param tob2 OEL lag time constant (<i>T</i><i><sub>OB2</sub></i>) (&gt;= 0).
+ *        Typical value = 0,08.
+ * @param toc1 OEL lead time constant (<i>T</i><i><sub>OC1</sub></i>) (&gt;= 0).
+ *        Typical value = 0,1.
+ * @param toc2 OEL lead time constant (<i>T</i><i><sub>OC2</sub></i>) (&gt;= 0).
+ *        Typical value = 0,08.
+ * @param tub1 UEL lag time constant (<i>T</i><i><sub>UB1</sub></i>) (&gt;= 0).
+ *        Typical value = 10.
+ * @param tub2 UEL lag time constant (<i>T</i><i><sub>UB2</sub></i>) (&gt;= 0).
+ *        Typical value = 0,05.
+ * @param tuc1 UEL lead time constant (<i>T</i><i><sub>UC1</sub></i>) (&gt;= 0).
+ *        Typical value = 2.
+ * @param tuc2 UEL lead time constant (<i>T</i><i><sub>UC2</sub></i>) (&gt;= 0).
+ *        Typical value = 0,1.
+ * @param vrmax Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>) (&gt; 0).
+ *        Typical value = 5.
+ * @param vrmin Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt; 0).
+ *        Typical value = -4.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
+The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 case class ExcIEEEST5B
 (
@@ -7608,42 +7687,44 @@ extends
 }
 
 /**
- * The class represents IEEE Std 421.5-2005 type ST6B model.
+ * IEEE 421.5-2005 type ST6B model.
  *
  * This model consists of a PI voltage regulator with an inner loop field voltage regulator and pre-control. The field voltage regulator implements a proportional control. The pre-control and the delay in the feedback circuit increase the dynamic response.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param ilr Exciter output current limit reference (I<sub>LR</sub>).
- *        Typical Value = 4.164.
- * @param kci Exciter output current limit adjustment (K<sub>CI</sub>).
- *        Typical Value = 1.0577.
- * @param kff Pre-control gain constant of the inner loop field regulator (K<sub>FF</sub>).
- *        Typical Value = 1.
- * @param kg Feedback gain constant of the inner loop field regulator (K<sub>G</sub>).
- *        Typical Value = 1.
- * @param kia Voltage regulator integral gain (K<sub>IA</sub>).
- *        Typical Value = 45.094.
- * @param klr Exciter output current limiter gain (K<sub>LR</sub>).
- *        Typical Value = 17.33.
- * @param km Forward gain constant of the inner loop field regulator (K<sub>M</sub>).
- *        Typical Value = 1.
- * @param kpa Voltage regulator proportional gain (K<sub>PA</sub>).
- *        Typical Value = 18.038.
- * @param oelin OEL input selector (OELin).
- *        Typical Value = noOELinput.
- * @param tg Feedback time constant of inner loop field voltage regulator (T<sub>G</sub>).
- *        Typical Value = 0.02.
- * @param vamax Maximum voltage regulator output (V<sub>AMAX</sub>).
- *        Typical Value = 4.81.
- * @param vamin Minimum voltage regulator output (V<sub>AMIN</sub>).
- *        Typical Value = -3.85.
- * @param vrmax Maximum voltage regulator output (V<sub>RMAX</sub>).
- *        Typical Value = 4.81.
- * @param vrmin Minimum voltage regulator output (V<sub>RMIN</sub>).
- *        Typical Value = -3.85.
+ * @param ilr Exciter output current limit reference (<i>I</i><i><sub>LR</sub></i>) (&gt; 0).
+ *        Typical value = 4,164.
+ * @param kci Exciter output current limit adjustment (<i>K</i><i><sub>CI</sub></i>) (&gt; 0).
+ *        Typical value = 1,0577.
+ * @param kff Pre-control gain constant of the inner loop field regulator (<i>K</i><i><sub>FF</sub></i>).
+ *        Typical value = 1.
+ * @param kg Feedback gain constant of the inner loop field regulator (<i>K</i><i><sub>G</sub></i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param kia Voltage regulator integral gain (<i>K</i><i><sub>IA</sub></i>) (&gt; 0).
+ *        Typical value = 45,094.
+ * @param klr Exciter output current limiter gain (<i>K</i><i><sub>LR</sub></i>) (&gt; 0).
+ *        Typical value = 17,33.
+ * @param km Forward gain constant of the inner loop field regulator (<i>K</i><i><sub>M</sub></i>).
+ *        Typical value = 1.
+ * @param kpa Voltage regulator proportional gain (<u>K</u><u><sub>PA</sub></u>) (&gt; 0).
+ *        Typical value = 18,038.
+ * @param oelin OEL input selector (<i>OELin</i>).
+ *        Typical value = noOELinput.
+ * @param tg Feedback time constant of inner loop field voltage regulator (<i>T</i><i><sub>G</sub></i>) (&gt;= 0).
+ *        Typical value = 0,02.
+ * @param vamax Maximum voltage regulator output (V<i><sub>AMAX</sub></i>) (&gt; 0).
+ *        Typical value = 4,81.
+ * @param vamin Minimum voltage regulator output (<i>V</i><i><sub>AMIN</sub></i>) (&lt; 0).
+ *        Typical value = -3,85.
+ * @param vrmax Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>) (&gt; 0).
+ *        Typical value = 4,81.
+ * @param vrmin Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt; 0).
+ *        Typical value = -3,85.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
+The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 case class ExcIEEEST6B
 (
@@ -7778,44 +7859,46 @@ extends
 }
 
 /**
- * The class represents IEEE Std 421.5-2005 type ST7B model.
+ * IEEE 421.5-2005 type ST7B model.
  *
- * This model is representative of static potential-source excitation systems. In this system, the AVR consists of a PI voltage regulator. A phase lead-lag filter in series allows introduction of a derivative function, typically used with brushless excitation systems. In that case, the regulator is of the PID type. In addition, the terminal voltage channel includes a phase lead-lag filter.  The AVR includes the appropriate inputs on its reference for overexcitation limiter (OEL1), underexcitation limiter (UEL), stator current limiter (SCL), and current compensator (DROOP). All these limitations, when they work at voltage reference level, keep the PSS (VS signal from Type PSS1A, PSS2A, or PSS2B) in operation. However, the UEL limitation can also be transferred to the high value (HV) gate acting on the output signal. In addition, the output signal passes through a low value (LV) gate for a ceiling overexcitation limiter (OEL2).
+ * This model is representative of static potential-source excitation systems. In this system, the AVR consists of a PI voltage regulator. A phase lead-lag filter in series allows the introduction of a derivative function, typically used with brushless excitation systems. In that case, the regulator is of the PID type. In addition, the terminal voltage channel includes a phase lead-lag filter.  The AVR includes the appropriate inputs on its reference for overexcitation limiter (OEL1), underexcitation limiter (UEL), stator current limiter (SCL), and current compensator (DROOP). All these limitations, when they work at voltage reference level, keep the PSS (VS signal from PSS) in operation. However, the UEL limitation can also be transferred to the high value (HV) gate acting on the output signal. In addition, the output signal passes through a low value (LV) gate for a ceiling overexcitation limiter (OEL2).
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param kh High-value gate feedback gain (K<sub>H</sub>).
- *        Typical Value 1.
- * @param kia Voltage regulator integral gain (K<sub>IA</sub>).
- *        Typical Value = 1.
- * @param kl Low-value gate feedback gain (K<sub>L</sub>).
- *        Typical Value 1.
- * @param kpa Voltage regulator proportional gain (K<sub>PA</sub>).
- *        Typical Value = 40.
- * @param oelin OEL input selector (OELin).
- *        Typical Value = noOELinput.
- * @param tb Regulator lag time constant (T<sub>B</sub>).
- *        Typical Value 1.
- * @param tc Regulator lead time constant (T<sub>C</sub>).
- *        Typical Value 1.
- * @param tf Excitation control system stabilizer time constant (T<sub>F</sub>).
- *        Typical Value 1.
- * @param tg Feedback time constant of inner loop field voltage regulator (T<sub>G</sub>).
- *        Typical Value 1.
- * @param tia Feedback time constant (T<sub>IA</sub>).
- *        Typical Value = 3.
- * @param uelin UEL input selector (UELin).
- *        Typical Value = noUELinput.
- * @param vmax Maximum voltage reference signal (V<sub>MAX</sub>).
- *        Typical Value = 1.1.
- * @param vmin Minimum voltage reference signal (V<sub>MIN</sub>).
- *        Typical Value = 0.9.
- * @param vrmax Maximum voltage regulator output (V<sub>RMAX</sub>).
- *        Typical Value = 5.
- * @param vrmin Minimum voltage regulator output (V<sub>RMIN</sub>).
- *        Typical Value = -4.5.
+ * @param kh High-value gate feedback gain (<i>K</i><i><sub>H</sub></i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param kia Voltage regulator integral gain (<i>K</i><i><sub>IA</sub></i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param kl Low-value gate feedback gain (<i>K</i><i><sub>L</sub></i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param kpa Voltage regulator proportional gain (<i>K</i><i><sub>PA</sub></i>) (&gt; 0).
+ *        Typical value = 40.
+ * @param oelin OEL input selector (<i>OELin</i>).
+ *        Typical value = noOELinput.
+ * @param tb Regulator lag time constant (<i>T</i><i><sub>B</sub></i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param tc Regulator lead time constant (<i>T</i><i><sub>C</sub></i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param tf Excitation control system stabilizer time constant (<i>T</i><i><sub>F</sub></i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param tg Feedback time constant of inner loop field voltage regulator (<i>T</i><i><sub>G</sub></i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param tia Feedback time constant (<i>T</i><i><sub>IA</sub></i>) (&gt;= 0).
+ *        Typical value = 3.
+ * @param uelin UEL input selector (<i>UELin</i>).
+ *        Typical value = noUELinput.
+ * @param vmax Maximum voltage reference signal (<i>V</i><i><sub>MAX</sub></i>) (&gt; 0 and &gt; ExcIEEEST7B.vmin).
+ *        Typical value = 1,1.
+ * @param vmin Minimum voltage reference signal (<i>V</i><i><sub>MIN</sub></i>) (&gt; 0 and &lt; ExcIEEEST7B.vmax).
+ *        Typical value = 0,9.
+ * @param vrmax Maximum voltage regulator output (<i>V</i><i><sub>RMAX</sub></i>) (&gt; 0).
+ *        Typical value = 5.
+ * @param vrmin Minimum voltage regulator output (<i>V</i><i><sub>RMIN</sub></i>) (&lt; 0).
+ *        Typical value = -4,5.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
+The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 case class ExcIEEEST7B
 (
@@ -7955,31 +8038,178 @@ extends
 }
 
 /**
- * Modified IEEE Type ST1 Excitation System with semi-continuous and acting terminal voltage limiter.
+ * Bus or solid fed SCR (silicon-controlled rectifier) bridge excitation system model type NI (NVE).
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param e1 Saturation parameter (E<sub>1</sub>).
- * @param e2 Saturation parameter (E<sub>2</sub>).
- * @param ka Gain (K<sub>A</sub>).
- * @param kc Gain (K<sub>C</sub>).
- * @param kd Gain (K<sub>D</sub>).
- * @param ke Gain (K<sub>E</sub>).
- * @param kf Gain (K<sub>F</sub>).
- * @param see1 Saturation parameter (S<sub>E</sub>(E<sub>1</sub>)).
- * @param see2 Saturation parameter (S<sub>E</sub>(E<sub>2</sub>)).
- * @param t1 Time constant (T<sub>1</sub>).
- * @param t2 Time constant (T<sub>2</sub>).
- * @param t3 Time constant (T<sub>3</sub>).
- * @param t4 Time constant (T<sub>4</sub>).
- * @param t5 Time constant (T<sub>5</sub>).
- * @param t6 Time constant (T<sub>6</sub>).
- * @param te Time constant (T<sub>E</sub>).
- * @param tf Time constant (T<sub>F</sub>).
- * @param vrmax Limiter (V<sub>RMAX</sub>).
- * @param vrmin Limiter (V<sub>RMIN</sub>).
+ * @param busFedSelector Fed by selector (<i>BusFedSelector</i>).
+ *        true = bus fed (switch is closed)
+ *        false = solid fed (switch is open).
+ *        Typical value = true.
+ * @param ka Voltage regulator gain (<i>Ka</i>) (&gt; 0).
+ *        Typical value = 210.
+ * @param kf Excitation control system stabilizer gain (<i>Kf</i>) (&gt; 0).
+ *        Typical value 0,01.
+ * @param r <i>rc</i> / <i>rfd</i> (<i>R</i>) (&gt;= 0).
+ *        0 means exciter has negative current capability
+ *        &gt; 0 means exciter does not have negative current capability.
+ *        Typical value = 5.
+ * @param ta Voltage regulator time constant (<i>Ta</i>) (&gt; 0).
+ *        Typical value = 0,02.
+ * @param tf1 Excitation control system stabilizer time constant (<i>Tf1</i>) (&gt; 0).
+ *        Typical value = 1,0.
+ * @param tf2 Excitation control system stabilizer time constant (<i>Tf2</i>) (&gt; 0).
+ *        Typical value = 0,1.
+ * @param tr Time constant (<i>Tr</i>) (&gt;= 0).
+ *        Typical value = 0,02.
+ * @param vrmax Maximum voltage regulator ouput (<i>Vrmax</i>) (&gt; ExcNI.vrmin).
+ *        Typical value = 5,0.
+ * @param vrmin Minimum voltage regulator ouput (<i>Vrmin</i>) (&lt; ExcNI.vrmax).
+ *        Typical value = -2,0.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
+The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ */
+case class ExcNI
+(
+    override val sup: ExcitationSystemDynamics,
+    busFedSelector: Boolean,
+    ka: Double,
+    kf: Double,
+    r: Double,
+    ta: Double,
+    tf1: Double,
+    tf2: Double,
+    tr: Double,
+    vrmax: Double,
+    vrmin: Double
+)
+extends
+    Element
+{
+    /**
+     * Zero args constructor.
+     */
+    def this () = { this (null, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup.asInstanceOf[ExcitationSystemDynamics]
+    override def copy (): Row = { clone ().asInstanceOf[ExcNI] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcNI.cls
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcNI.fields (position), value)
+        emitelem (0, busFedSelector)
+        emitelem (1, ka)
+        emitelem (2, kf)
+        emitelem (3, r)
+        emitelem (4, ta)
+        emitelem (5, tf1)
+        emitelem (6, tf2)
+        emitelem (7, tr)
+        emitelem (8, vrmax)
+        emitelem (9, vrmin)
+        s.toString
+    }
+    override def export: String =
+    {
+        "\t<cim:ExcNI rdf:ID=\"%s\">\n%s\t</cim:ExcNI>".format (id, export_fields)
+    }
+}
+
+object ExcNI
+extends
+    Parseable[ExcNI]
+{
+    override val fields: Array[String] = Array[String] (
+        "busFedSelector",
+        "ka",
+        "kf",
+        "r",
+        "ta",
+        "tf1",
+        "tf2",
+        "tr",
+        "vrmax",
+        "vrmin"
+    )
+    val busFedSelector: Fielder = parse_element (element (cls, fields(0)))
+    val ka: Fielder = parse_element (element (cls, fields(1)))
+    val kf: Fielder = parse_element (element (cls, fields(2)))
+    val r: Fielder = parse_element (element (cls, fields(3)))
+    val ta: Fielder = parse_element (element (cls, fields(4)))
+    val tf1: Fielder = parse_element (element (cls, fields(5)))
+    val tf2: Fielder = parse_element (element (cls, fields(6)))
+    val tr: Fielder = parse_element (element (cls, fields(7)))
+    val vrmax: Fielder = parse_element (element (cls, fields(8)))
+    val vrmin: Fielder = parse_element (element (cls, fields(9)))
+
+    def parse (context: Context): ExcNI =
+    {
+        implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
+        val ret = ExcNI (
+            ExcitationSystemDynamics.parse (context),
+            toBoolean (mask (busFedSelector (), 0)),
+            toDouble (mask (ka (), 1)),
+            toDouble (mask (kf (), 2)),
+            toDouble (mask (r (), 3)),
+            toDouble (mask (ta (), 4)),
+            toDouble (mask (tf1 (), 5)),
+            toDouble (mask (tf2 (), 6)),
+            toDouble (mask (tr (), 7)),
+            toDouble (mask (vrmax (), 8)),
+            toDouble (mask (vrmin (), 9))
+        )
+        ret.bitfields = bitfields
+        ret
+    }
+}
+
+/**
+ * Modified IEEE type ST1 excitation system with semi-continuous and acting terminal voltage limiter.
+ *
+ * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param e1 Saturation parameter (<i>E</i><i><sub>1</sub></i>).
+ * @param e2 Saturation parameter (<i>E</i><i><sub>2</sub></i>).
+ * @param ka Gain (<i>K</i><i><sub>A</sub></i>).
+ * @param kc Gain (<i>K</i><i><sub>C</sub></i>).
+ * @param kd Gain (<i>K</i><i><sub>D</sub></i>).
+ * @param ke Gain (<i>K</i><i><sub>E</sub></i>).
+ * @param kf Gain (<i>K</i><i><sub>F</sub></i>).
+ * @param see1 Saturation parameter (<i>S</i><i><sub>E</sub></i><i>[E</i><i><sub>1</sub></i><i>]</i>).
+ * @param see2 Saturation parameter (<i>S</i><i><sub>E</sub></i><i>[E</i><i><sub>2</sub></i><i>]</i>).
+ * @param t1 Time constant (<i>T</i><i><sub>1</sub></i>) (&gt;= 0).
+ * @param t2 Time constant (<i>T</i><i><sub>2</sub></i>) (&gt;= 0).
+ * @param t3 Time constant (<i>T</i><i><sub>3</sub></i>) (&gt;= 0).
+ * @param t4 Time constant (<i>T</i><i><sub>4</sub></i>) (&gt;= 0).
+ * @param t5 Time constant (<i>T</i><i><sub>5</sub></i>) (&gt;= 0).
+ * @param t6 Time constant (<i>T</i><i><sub>6</sub></i>) (&gt;= 0).
+ * @param te Time constant (<i>T</i><i><sub>E</sub></i>) (&gt;= 0).
+ * @param tf Time constant (<i>T</i><i><sub>F</sub></i>) (&gt;= 0).
+ * @param vrmax Limiter (<i>V</i><i><sub>RMAX</sub></i>) (&gt; ExcOEX3T.vrmin).
+ * @param vrmin Limiter (<i>V</i><i><sub>RMIN</sub></i>) (&lt; ExcOEX3T.vrmax).
+ * @group ExcitationSystemDynamics
+ * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
+The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 case class ExcOEX3T
 (
@@ -8138,60 +8368,62 @@ extends
 }
 
 /**
- * Proportional/Integral Regulator Excitation System Model.
+ * Proportional/integral regulator excitation system.
  *
  * This model can be used to represent excitation systems with a proportional-integral (PI) voltage regulator controller.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param e1 Field voltage value 1 (E1).
- *        Typical Value = 0.
- * @param e2 Field voltage value 2 (E2).
- *        Typical Value = 0.
- * @param efdmax Exciter maximum limit (Efdmax).
- *        Typical Value = 8.
- * @param efdmin Exciter minimum limit (Efdmin).
- *        Typical Value = -0.87.
- * @param ka PI controller gain (Ka).
- *        Typical Value = 3.15.
- * @param kc Exciter regulation factor (Kc).
- *        Typical Value = 0.08.
- * @param ke Exciter constant (Ke).
- *        Typical Value = 0.
- * @param kf Rate feedback gain (Kf).
- *        Typical Value = 0.
- * @param ki Current source gain (Ki).
- *        Typical Value = 0.
- * @param kp Potential source gain (Kp).
- *        Typical Value = 6.5.
- * @param se1 Saturation factor at E1 (Se1).
- *        Typical Value = 0.
- * @param se2 Saturation factor at E2 (Se2).
- *        Typical Value = 0.
- * @param ta1 PI controller time constant (Ta1).
- *        Typical Value = 1.
- * @param ta2 Voltage regulator time constant (Ta2).
- *        Typical Value = 0.01.
- * @param ta3 Lead time constant (Ta3).
- *        Typical Value = 0.
- * @param ta4 Lag time constant (Ta4).
- *        Typical Value = 0.
- * @param te Exciter time constant (Te).
- *        Typical Value = 0.
- * @param tf1 Rate feedback time constant (Tf1).
- *        Typical Value = 0.
- * @param tf2 Rate feedback lag time constant (Tf2).
- *        Typical Value = 0.
- * @param vr1 PI maximum limit (Vr1).
- *        Typical Value = 1.
- * @param vr2 PI minimum limit (Vr2).
- *        Typical Value = -0.87.
- * @param vrmax Voltage regulator maximum limit (Vrmax).
- *        Typical Value = 1.
- * @param vrmin Voltage regulator minimum limit (Vrmin).
- *        Typical Value = -0.87.
+ * @param e1 Field voltage value 1 (<i>E</i><i><sub>1</sub></i>).
+ *        Typical value = 0.
+ * @param e2 Field voltage value 2 (<i>E</i><i><sub>2</sub></i>).
+ *        Typical value = 0.
+ * @param efdmax Exciter maximum limit (<i>E</i><i><sub>fdmax</sub></i>) (&gt; ExcPIC.efdmin).
+ *        Typical value = 8.
+ * @param efdmin Exciter minimum limit (<i>E</i><i><sub>fdmin</sub></i>) (&lt; ExcPIC.efdmax).
+ *        Typical value = -0,87.
+ * @param ka PI controller gain (<i>K</i><i><sub>a</sub></i>).
+ *        Typical value = 3,15.
+ * @param kc Exciter regulation factor (<i>K</i><i><sub>c</sub></i>).
+ *        Typical value = 0,08.
+ * @param ke Exciter constant (<i>K</i><i><sub>e</sub></i>).
+ *        Typical value = 0.
+ * @param kf Rate feedback gain (<i>K</i><i><sub>f</sub></i>).
+ *        Typical value = 0.
+ * @param ki Current source gain (<i>K</i><i><sub>i</sub></i>).
+ *        Typical value = 0.
+ * @param kp Potential source gain (<i>K</i><i><sub>p</sub></i>).
+ *        Typical value = 6,5.
+ * @param se1 Saturation factor at <i>E</i><i><sub>1</sub></i> (<i>Se</i><i><sub>1</sub></i>).
+ *        Typical value = 0.
+ * @param se2 Saturation factor at <i>E</i><i><sub>2</sub></i> (<i>Se</i><i><sub>2</sub></i>).
+ *        Typical value = 0.
+ * @param ta1 PI controller time constant (<i>T</i><i><sub>a1</sub></i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param ta2 Voltage regulator time constant (<i>T</i><i><sub>a2</sub></i>) (&gt;= 0).
+ *        Typical value = 0,01.
+ * @param ta3 Lead time constant (<i>T</i><i><sub>a3</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param ta4 Lag time constant (<i>T</i><i><sub>a4</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param te Exciter time constant (<i>T</i><i><sub>e</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tf1 Rate feedback time constant (<i>T</i><i><sub>f1</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tf2 Rate feedback lag time constant (<i>T</i><i><sub>f2</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param vr1 PI maximum limit (<i>V</i><i><sub>r1</sub></i>).
+ *        Typical value = 1.
+ * @param vr2 PI minimum limit (<i>V</i><i><sub>r2</sub></i>).
+ *        Typical value = -0,87.
+ * @param vrmax Voltage regulator maximum limit (<i>V</i><i><sub>rmax</sub></i>) (&gt; ExcPIC.vrmin).
+ *        Typical value = 1.
+ * @param vrmin Voltage regulator minimum limit (<i>V</i><i><sub>rmin</sub></i>) (&lt; ExcPIC.vrmax).
+ *        Typical value = -0,87.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
+The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 case class ExcPIC
 (
@@ -8370,86 +8602,88 @@ extends
 }
 
 /**
- * General Purpose Rotating Excitation System Model.
+ * General purpose rotating excitation system.
  *
  * This model can be used to represent a wide range of excitation systems whose DC power source is an AC or DC generator. It encompasses IEEE type AC1, AC2, DC1, and DC2 excitation system models.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param e1 Field voltage value 1 (E1).
- *        Typical Value = 3.
- * @param e2 Field voltage value 2 (E2).
- *        Typical Value = 4.
- * @param fbf Rate feedback signal flag (Fbf).
- *        Typical Value = fieldCurrent.
- * @param flimf Limit type flag (Flimf).
- *        Typical Value = 0.
- * @param kc Rectifier regulation factor (Kc).
- *        Typical Value = 0.05.
- * @param kd Exciter regulation factor (Kd).
- *        Typical Value = 2.
- * @param ke Exciter field proportional constant (Ke).
- *        Typical Value = 1.
- * @param kefd Field voltage feedback gain (Kefd).
- *        Typical Value = 0.
- * @param kf Rate feedback gain (Kf).
- *        Typical Value = 0.05.
- * @param kh Field voltage controller feedback gain (Kh).
- *        Typical Value = 0.
- * @param kii Field Current Regulator Integral Gain (Kii).
- *        Typical Value = 0.
- * @param kip Field Current Regulator Proportional Gain (Kip).
- *        Typical Value = 1.
- * @param ks Coefficient to allow different usage of the model-speed coefficient (Ks).
- *        Typical Value = 0.
- * @param kvi Voltage Regulator Integral Gain (Kvi).
- *        Typical Value = 0.
- * @param kvp Voltage Regulator Proportional Gain (Kvp).
- *        Typical Value = 2800.
- * @param kvphz V/Hz limiter gain (Kvphz).
- *        Typical Value = 0.
- * @param nvphz Pickup speed of V/Hz limiter (Nvphz).
- *        Typical Value = 0.
- * @param se1 Saturation factor at E1 (Se1).
- *        Typical Value = 0.0001.
- * @param se2 Saturation factor at E2 (Se2).
- *        Typical Value = 0.001.
- * @param ta Voltage Regulator time constant (Ta).
- *        Typical Value = 0.01.
- * @param tb1 Lag time constant (Tb1).
- *        Typical Value = 0.
- * @param tb2 Lag time constant (Tb2).
- *        Typical Value = 0.
- * @param tc1 Lead time constant (Tc1).
- *        Typical Value = 0.
- * @param tc2 Lead time constant (Tc2).
- *        Typical Value = 0.
- * @param te Exciter field time constant (Te).
- *        Typical Value = 1.2.
- * @param tf Rate feedback time constant (Tf).
- *        Typical Value = 1.
- * @param tf1 Feedback lead time constant (Tf1).
- *        Typical Value = 0.
- * @param tf2 Feedback lag time constant (Tf2).
- *        Typical Value = 0.
- * @param tp Field current Bridge time constant (Tp).
- *        Typical Value = 0.
- * @param vcmax Maximum compounding voltage (Vcmax).
- *        Typical Value = 0.
- * @param vfmax Maximum Exciter Field Current (Vfmax).
- *        Typical Value = 47.
- * @param vfmin Minimum Exciter Field Current (Vfmin).
- *        Typical Value = -20.
- * @param vimax Voltage Regulator Input Limit (Vimax).
- *        Typical Value = 0.1.
- * @param vrmax Maximum controller output (Vrmax).
- *        Typical Value = 47.
- * @param vrmin Minimum controller output (Vrmin).
- *        Typical Value = -20.
- * @param xc Exciter compounding reactance (Xc).
- *        Typical Value = 0.
+ * @param e1 Field voltage value 1 (<i>E</i><i><sub>1</sub></i>).
+ *        Typical value = 3.
+ * @param e2 Field voltage value 2 (<i>E</i><i><sub>2</sub></i>).
+ *        Typical value = 4.
+ * @param fbf Rate feedback signal flag (<i>fbf</i>).
+ *        Typical value = fieldCurrent.
+ * @param flimf Limit type flag (<i>Flimf</i>).
+ *        Typical value = 0.
+ * @param kc Rectifier regulation factor (<i>Kc</i>).
+ *        Typical value = 0,05.
+ * @param kd Exciter regulation factor (<i>Kd</i>).
+ *        Typical value = 2.
+ * @param ke Exciter field proportional constant (<i>Ke</i>).
+ *        Typical value = 1.
+ * @param kefd Field voltage feedback gain (<i>Kefd</i>).
+ *        Typical value = 0.
+ * @param kf Rate feedback gain (<i>Kf</i>) (&gt;= 0).
+ *        Typical value = 0,05.
+ * @param kh Field voltage controller feedback gain (<i>Kh</i>).
+ *        Typical value = 0.
+ * @param kii Field current regulator integral gain (<i>Kii</i>).
+ *        Typical value = 0.
+ * @param kip Field current regulator proportional gain (<i>Kip</i>).
+ *        Typical value = 1.
+ * @param ks Coefficient to allow different usage of the model-speed coefficient (<i>Ks</i>).
+ *        Typical value = 0.
+ * @param kvi Voltage regulator integral gain (<i>Kvi</i>).
+ *        Typical value = 0.
+ * @param kvp Voltage regulator proportional gain (<i>Kvp</i>).
+ *        Typical value = 2800.
+ * @param kvphz V/Hz limiter gain (<i>Kvphz</i>).
+ *        Typical value = 0.
+ * @param nvphz Pickup speed of V/Hz limiter (<i>Nvphz</i>).
+ *        Typical value = 0.
+ * @param se1 Saturation factor at <i>E</i><i><sub>1</sub></i><i> </i>(<i>Se</i><i><sub>1</sub></i>).
+ *        Typical value = 0,0001.
+ * @param se2 Saturation factor at <i>E</i><i><sub>2</sub></i> (<i>Se</i><i><sub>2</sub></i>).
+ *        Typical value = 0,001.
+ * @param ta Voltage regulator time constant (<i>Ta</i>) (&gt;= 0).
+ *        If = 0, block is bypassed.  Typical value = 0,01.
+ * @param tb1 Lag time constant (<i>Tb1</i>) (&gt;= 0).
+ *        If = 0, block is bypassed.  Typical value = 0.
+ * @param tb2 Lag time constant (<i>Tb2</i>) (&gt;= 0).
+ *        If = 0, block is bypassed.  Typical value = 0.
+ * @param tc1 Lead time constant (<i>Tc1</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tc2 Lead time constant (<i>Tc2</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param te Exciter field time constant (<i>Te</i>) (&gt; 0).
+ *        Typical value = 1,2.
+ * @param tf Rate feedback time constant (<i>Tf</i>) (&gt;= 0).
+ *        If = 0, the feedback path is not used.  Typical value = 1.
+ * @param tf1 Feedback lead time constant (<i>Tf1</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tf2 Feedback lag time constant (<i>Tf2</i>) (&gt;= 0).
+ *        If = 0, block is bypassed.  Typical value = 0.
+ * @param tp Field current bridge time constant (<i>Tp</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param vcmax Maximum compounding voltage (<i>Vcmax</i>).
+ *        Typical value = 0.
+ * @param vfmax Maximum exciter field current (<i>Vfmax</i>) (&gt; ExcREXS.vfmin).
+ *        Typical value = 47.
+ * @param vfmin Minimum exciter field current (<i>Vfmin</i>) (&lt; ExcREXS.vfmax).
+ *        Typical value = -20.
+ * @param vimax Voltage regulator input limit (<i>Vimax</i>).
+ *        Typical value = 0,1.
+ * @param vrmax Maximum controller output (V<i>rmax</i>) (&gt; ExcREXS.vrmin).
+ *        Typical value = 47.
+ * @param vrmin Minimum controller output (<i>Vrmin</i>) (&lt; ExcREXS.vrmax).
+ *        Typical value = -20.
+ * @param xc Exciter compounding reactance (<i>Xc</i>).
+ *        Typical value = 0.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
+The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 case class ExcREXS
 (
@@ -8694,29 +8928,195 @@ extends
 }
 
 /**
- * Simple excitation system model representing generic characteristics of many excitation systems; intended for use where negative field current may be a problem.
+ * Excitation system type RQB (four-loop regulator, r?gulateur quatre boucles, developed in France) primarily used in nuclear or thermal generating units.
+ *
+ * This excitation system shall be always used together with power system stabilizer type PssRQB.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param cswitch Power source switch (Cswitch).
- *        true = fixed voltage of 1.0 PU
- *        false = generator terminal voltage.
- * @param emax Maximum field voltage output (Emax).
- *        Typical Value = 5.
- * @param emin Minimum field voltage output (Emin).
- *        Typical Value = 0.
- * @param k Gain (K) (&gt;0).
- *        Typical Value = 200.
- * @param rcrfd Rc/Rfd - ratio of field discharge resistance to field winding resistance (RcRfd).
- *        Typical Value = 0.
- * @param tatb Ta/Tb - gain reduction ratio of lag-lead element (TaTb).
- *        The parameter Ta is not defined explicitly.  Typical Value = 0.1.
- * @param tb Denominator time constant of lag-lead block (Tb).
- *        Typical Value = 10.
- * @param te Time constant of gain block (Te) (&gt;0).
- *        Typical Value = 0.02.
+ * @param ki0 Voltage reference input gain (<i>Ki0</i>).
+ *        Typical value = 12,7.
+ * @param ki1 Voltage input gain (<i>Ki1</i>).
+ *        Typical value = -16,8.
+ * @param klir OEL input gain (<i>KLIR</i>).
+ *        Typical value = 12,13.
+ * @param klus Limiter gain (<i>KLUS</i>).
+ *        Typical value = 50.
+ * @param lsat Integrator limiter (<i>LSAT</i>).
+ *        Typical value = 5,73.
+ * @param lus Setpoint (<i>LUS</i>).
+ *        Typical value = 0,12.
+ * @param mesu Voltage input time constant (<i>MESU</i>) (&gt;= 0).
+ *        Typical value = 0,02.
+ * @param t4m Input time constant (<i>T4M</i>) (&gt;= 0).
+ *        Typical value = 5.
+ * @param tc Lead lag time constant (<i>TC</i>) (&gt;= 0).
+ *        Typical value = 0,02.
+ * @param te Lead lag time constant (<i>TE</i>) (&gt;= 0).
+ *        Typical value = 0,22.
+ * @param tf Exciter time constant (<i>TF</i>) (&gt;= 0).
+ *        Typical value = 0,01.
+ * @param ucmax Maximum voltage reference limit (<i>UCMAX</i>) (&gt; ExcRQB.ucmin).
+ *        Typical value = 1,1.
+ * @param ucmin Minimum voltage reference limit (<i>UCMIN</i>) (&lt; ExcRQB.ucmax).
+ *        Typical value = 0,9.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
+The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
+ */
+case class ExcRQB
+(
+    override val sup: ExcitationSystemDynamics,
+    ki0: Double,
+    ki1: Double,
+    klir: Double,
+    klus: Double,
+    lsat: Double,
+    lus: Double,
+    mesu: Double,
+    t4m: Double,
+    tc: Double,
+    te: Double,
+    tf: Double,
+    ucmax: Double,
+    ucmin: Double
+)
+extends
+    Element
+{
+    /**
+     * Zero args constructor.
+     */
+    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def ExcitationSystemDynamics: ExcitationSystemDynamics = sup.asInstanceOf[ExcitationSystemDynamics]
+    override def copy (): Row = { clone ().asInstanceOf[ExcRQB] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = ExcRQB.cls
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ExcRQB.fields (position), value)
+        emitelem (0, ki0)
+        emitelem (1, ki1)
+        emitelem (2, klir)
+        emitelem (3, klus)
+        emitelem (4, lsat)
+        emitelem (5, lus)
+        emitelem (6, mesu)
+        emitelem (7, t4m)
+        emitelem (8, tc)
+        emitelem (9, te)
+        emitelem (10, tf)
+        emitelem (11, ucmax)
+        emitelem (12, ucmin)
+        s.toString
+    }
+    override def export: String =
+    {
+        "\t<cim:ExcRQB rdf:ID=\"%s\">\n%s\t</cim:ExcRQB>".format (id, export_fields)
+    }
+}
+
+object ExcRQB
+extends
+    Parseable[ExcRQB]
+{
+    override val fields: Array[String] = Array[String] (
+        "ki0",
+        "ki1",
+        "klir",
+        "klus",
+        "lsat",
+        "lus",
+        "mesu",
+        "t4m",
+        "tc",
+        "te",
+        "tf",
+        "ucmax",
+        "ucmin"
+    )
+    val ki0: Fielder = parse_element (element (cls, fields(0)))
+    val ki1: Fielder = parse_element (element (cls, fields(1)))
+    val klir: Fielder = parse_element (element (cls, fields(2)))
+    val klus: Fielder = parse_element (element (cls, fields(3)))
+    val lsat: Fielder = parse_element (element (cls, fields(4)))
+    val lus: Fielder = parse_element (element (cls, fields(5)))
+    val mesu: Fielder = parse_element (element (cls, fields(6)))
+    val t4m: Fielder = parse_element (element (cls, fields(7)))
+    val tc: Fielder = parse_element (element (cls, fields(8)))
+    val te: Fielder = parse_element (element (cls, fields(9)))
+    val tf: Fielder = parse_element (element (cls, fields(10)))
+    val ucmax: Fielder = parse_element (element (cls, fields(11)))
+    val ucmin: Fielder = parse_element (element (cls, fields(12)))
+
+    def parse (context: Context): ExcRQB =
+    {
+        implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
+        val ret = ExcRQB (
+            ExcitationSystemDynamics.parse (context),
+            toDouble (mask (ki0 (), 0)),
+            toDouble (mask (ki1 (), 1)),
+            toDouble (mask (klir (), 2)),
+            toDouble (mask (klus (), 3)),
+            toDouble (mask (lsat (), 4)),
+            toDouble (mask (lus (), 5)),
+            toDouble (mask (mesu (), 6)),
+            toDouble (mask (t4m (), 7)),
+            toDouble (mask (tc (), 8)),
+            toDouble (mask (te (), 9)),
+            toDouble (mask (tf (), 10)),
+            toDouble (mask (ucmax (), 11)),
+            toDouble (mask (ucmin (), 12))
+        )
+        ret.bitfields = bitfields
+        ret
+    }
+}
+
+/**
+ * Simple excitation system with generic characteristics typical of many excitation systems; intended for use where negative field current could be a problem.
+ *
+ * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
+ * @param cswitch Power source switch (<i>Cswitch</i>).
+ *        true = fixed voltage of 1.0 PU
+ *        false = generator terminal voltage.
+ * @param emax Maximum field voltage output (<i>Emax</i>) (&gt; ExcSCRX.emin).
+ *        Typical value = 5.
+ * @param emin Minimum field voltage output (<i>Emin</i>) (&lt; ExcSCRX.emax).
+ *        Typical value = 0.
+ * @param k Gain (<i>K</i>) (&gt; 0).
+ *        Typical value = 200.
+ * @param rcrfd Ratio of field discharge resistance to field winding resistance ([<i>rc / rfd]</i>).
+ *        Typical value = 0.
+ * @param tatb Gain reduction ratio of lag-lead element ([<i>Ta</i> / <i>Tb</i>]).
+ *        The parameter <i>Ta</i> is not defined explicitly.  Typical value = 0.1.
+ * @param tb Denominator time constant of lag-lead block (<i>Tb</i>) (&gt;= 0).
+ *        Typical value = 10.
+ * @param te Time constant of gain block (<i>Te</i>) (&gt; 0).
+ *        Typical value = 0,02.
+ * @group ExcitationSystemDynamics
+ * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
+The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 case class ExcSCRX
 (
@@ -8820,32 +9220,34 @@ extends
 }
 
 /**
- * Simplified Excitation System Model.
+ * Simplified excitation system.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param efdmax Field voltage clipping maximum limit (Efdmax).
- *        Typical Value = 5.
- * @param efdmin Field voltage clipping minimum limit (Efdmin).
- *        Typical Value = -5.
- * @param emax Maximum field voltage output (Emax).
- *        Typical Value = 5.
- * @param emin Minimum field voltage output (Emin).
- *        Typical Value = -5.
- * @param k Gain (K) (&gt;0).
- *        Typical Value = 100.
- * @param kc PI controller gain (Kc).
- *        Typical Value = 0.08.
- * @param tatb Ta/Tb - gain reduction ratio of lag-lead element (TaTb).
- *        Typical Value = 0.1.
- * @param tb Denominator time constant of lag-lead block (Tb).
- *        Typical Value = 10.
- * @param tc PI controller phase lead time constant (Tc).
- *        Typical Value = 0.
- * @param te Time constant of gain block (Te).
- *        Typical Value = 0.05.
+ * @param efdmax Field voltage clipping maximum limit (<i>Efdmax</i>) (&gt; ExcSEXS.efdmin).
+ *        Typical value = 5.
+ * @param efdmin Field voltage clipping minimum limit (<i>Efdmin</i>) (&lt; ExcSEXS.efdmax).
+ *        Typical value = -5.
+ * @param emax Maximum field voltage output (<i>Emax</i>) (&gt; ExcSEXS.emin).
+ *        Typical value = 5.
+ * @param emin Minimum field voltage output (<i>Emin</i>) (&lt; ExcSEXS.emax).
+ *        Typical value = -5.
+ * @param k Gain (<i>K</i>) (&gt; 0).
+ *        Typical value = 100.
+ * @param kc PI controller gain (<i>Kc</i>) (&gt; 0 if ExcSEXS.tc &gt; 0).
+ *        Typical value = 0,08.
+ * @param tatb Gain reduction ratio of lag-lead element (<i>[Ta / Tb]</i>).
+ *        Typical value = 0,1.
+ * @param tb Denominator time constant of lag-lead block (<i>Tb</i>) (&gt;= 0).
+ *        Typical value = 10.
+ * @param tc PI controller phase lead time constant (<i>Tc</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param te Time constant of gain block (<i>Te</i>) (&gt; 0).
+ *        Typical value = 0,05.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
+The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 case class ExcSEXS
 (
@@ -8959,78 +9361,80 @@ extends
 }
 
 /**
- * Slovakian Excitation System Model.
+ * Slovakian excitation system.
  *
  * UEL and secondary voltage control are included in this model. When this model is used, there cannot be a separate underexcitation limiter or VAr controller model.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param efdmax Field voltage clipping limit (Efdmax).
- * @param efdmin Field voltage clipping limit (Efdmin).
- * @param emax Maximum field voltage output (Emax).
- *        Typical Value = 20.
- * @param emin Minimum field voltage output (Emin).
- *        Typical Value = -20.
- * @param k Gain (K).
- *        Typical Value = 1.
- * @param k1 Parameter of underexcitation limit (K1).
- *        Typical Value = 0.1364.
- * @param k2 Parameter of underexcitation limit (K2).
- *        Typical Value = -0.3861.
- * @param kc PI controller gain (Kc).
- *        Typical Value = 70.
- * @param kce Rectifier regulation factor (Kce).
- *        Typical Value = 0.
- * @param kd Exciter internal reactance (Kd).
- *        Typical Value = 0.
- * @param kgob P controller gain (Kgob).
- *        Typical Value = 10.
- * @param kp PI controller gain (Kp).
- *        Typical Value = 1.
- * @param kqi PI controller gain of integral component (Kqi).
- *        Typical Value = 0.
- * @param kqob Rate of rise of the reactive power (Kqob).
- * @param kqp PI controller gain (Kqp).
- *        Typical Value = 0.
- * @param nq Dead band of reactive power (nq).
- *        Determines the range of sensitivity.  Typical Value = 0.001.
- * @param qconoff Secondary voltage control state (Qc_on_off).
- *        true = secondary voltage control is ON
- *        false = secondary voltage control is OFF.
- *        Typical Value = false.
- * @param qz Desired value (setpoint) of reactive power, manual setting (Qz).
- * @param remote Selector to apply automatic calculation in secondary controller model.
+ * @param efdmax Field voltage clipping upper level limit (<i>Efdmax</i>) (&gt; ExcSK.efdmin).
+ * @param efdmin Field voltage clipping lower level limit (<i>Efdmin</i>) (&lt; ExcSK.efdmax).
+ * @param emax Maximum field voltage output (<i>Emax</i>) (&gt; ExcSK.emin).
+ *        Typical value = 20.
+ * @param emin Minimum field voltage output (<i>Emin</i>) (&lt; ExcSK.emax).
+ *        Typical value = -20.
+ * @param k Gain (<i>K</i>).
+ *        Typical value = 1.
+ * @param k1 Parameter of underexcitation limit (<i>K1</i>).
+ *        Typical value = 0,1364.
+ * @param k2 Parameter of underexcitation limit (<i>K2</i>).
+ *        Typical value = -0,3861.
+ * @param kc PI controller gain (<i>Kc</i>).
+ *        Typical value = 70.
+ * @param kce Rectifier regulation factor (<i>Kce</i>).
+ *        Typical value = 0.
+ * @param kd Exciter internal reactance (<i>Kd</i>).
+ *        Typical value = 0.
+ * @param kgob P controller gain (<i>Kgob</i>).
+ *        Typical value = 10.
+ * @param kp PI controller gain (<i>Kp</i>).
+ *        Typical value = 1.
+ * @param kqi PI controller gain of integral component (<i>Kqi</i>).
+ *        Typical value = 0.
+ * @param kqob Rate of rise of the reactive power (<i>Kqob</i>).
+ * @param kqp PI controller gain (<i>Kqp</i>).
+ *        Typical value = 0.
+ * @param nq Deadband of reactive power (<i>nq</i>).
+ *        Determines the range of sensitivity.  Typical value = 0,001.
+ * @param qconoff Secondary voltage control state (<i>Qc_on_off</i>).
+ *        true = secondary voltage control is on
+ *        false = secondary voltage control is off.
+ *        Typical value = false.
+ * @param qz Desired value (setpoint) of reactive power, manual setting (<i>Qz</i>).
+ * @param remote Selector to apply automatic calculation in secondary controller model (<i>remote</i>).
  *        true = automatic calculation is activated
- *        false = manual set is active; the use of desired value of reactive power (Qz) is required.
- *        Typical Value = true.
- * @param sbase Apparent power of the unit (Sbase).
- *        Unit = MVA.  Typical Value = 259.
- * @param tc PI controller phase lead time constant (Tc).
- *        Typical Value = 8.
- * @param te Time constant of gain block (Te).
- *        Typical Value = 0.1.
- * @param ti PI controller phase lead time constant (Ti).
- *        Typical Value = 2.
- * @param tp Time constant (Tp).
- *        Typical Value = 0.1.
- * @param tr Voltage transducer time constant (Tr).
- *        Typical Value = 0.01.
- * @param uimax Maximum error (Uimax).
- *        Typical Value = 10.
- * @param uimin Minimum error (UImin).
- *        Typical Value = -10.
- * @param urmax Maximum controller output (URmax).
- *        Typical Value = 10.
- * @param urmin Minimum controller output (URmin).
- *        Typical Value = -10.
- * @param vtmax Maximum terminal voltage input (Vtmax).
- *        Determines the range of voltage dead band.  Typical Value = 1.05.
- * @param vtmin Minimum terminal voltage input (Vtmin).
- *        Determines the range of voltage dead band.  Typical Value = 0.95.
- * @param yp Maximum output (Yp).
- *        Minimum output = 0.  Typical Value = 1.
+ *        false = manual set is active; the use of desired value of reactive power (<i>Qz</i>) is required.
+ *        Typical value = true.
+ * @param sbase Apparent power of the unit (<i>Sbase</i>) (&gt; 0).
+ *        Unit = MVA.  Typical value = 259.
+ * @param tc PI controller phase lead time constant (<i>Tc</i>) (&gt;= 0).
+ *        Typical value = 8.
+ * @param te Time constant of gain block (<i>Te</i>) (&gt;= 0).
+ *        Typical value = 0,1.
+ * @param ti PI controller phase lead time constant (<i>Ti</i>) (&gt;= 0).
+ *        Typical value = 2.
+ * @param tp Time constant (<i>Tp</i>) (&gt;= 0).
+ *        Typical value = 0,1.
+ * @param tr Voltage transducer time constant (<i>Tr</i>) (&gt;= 0).
+ *        Typical value = 0,01.
+ * @param uimax Maximum error (<i>UImax</i>) (&gt; ExcSK.uimin).
+ *        Typical value = 10.
+ * @param uimin Minimum error (<i>UImin</i>) (&lt; ExcSK.uimax).
+ *        Typical value = -10.
+ * @param urmax Maximum controller output (<i>URmax</i>) (&gt; ExcSK.urmin).
+ *        Typical value = 10.
+ * @param urmin Minimum controller output (<i>URmin</i>) (&lt; ExcSK.urmax).
+ *        Typical value = -10.
+ * @param vtmax Maximum terminal voltage input (<i>Vtmax</i>) (&gt; ExcSK.vtmin).
+ *        Determines the range of voltage deadband.  Typical value = 1,05.
+ * @param vtmin Minimum terminal voltage input (<i>Vtmin</i>) (&lt; ExcSK.vtmax).
+ *        Determines the range of voltage deadband.  Typical value = 0,95.
+ * @param yp Maximum output (<i>Yp</i>).
+ *        Typical value = 1.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
+The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 case class ExcSK
 (
@@ -9257,45 +9661,47 @@ extends
  * Modification of an old IEEE ST1A static excitation system without overexcitation limiter (OEL) and underexcitation limiter (UEL).
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param ilr Exciter output current limit reference (Ilr).
- *        Typical Value = 0.
- * @param ka Voltage regulator gain (Ka).
- *        Typical Value = 190.
- * @param kc Rectifier loading factor proportional to commutating reactance (Kc).
- *        Typical Value = 0.05.
- * @param kf Excitation control system stabilizer gains (Kf).
- *        Typical Value = 0.
- * @param klr Exciter output current limiter gain (Klr).
- *        Typical Value = 0.
- * @param ta Voltage regulator time constant (Ta).
- *        Typical Value = 0.02.
- * @param tb Voltage regulator time constant (Tb).
- *        Typical Value = 10.
- * @param tb1 Voltage regulator time constant (Tb<sub>1</sub>).
- *        Typical Value = 0.
- * @param tc Voltage regulator time constant (Tc).
- *        Typical Value = 1.
- * @param tc1 Voltage regulator time constant (Tc<sub>1</sub>).
- *        Typical Value = 0.
- * @param tf Excitation control system stabilizer time constant (Tf).
- *        Typical Value = 1.
- * @param vamax Maximum voltage regulator output (Vamax).
- *        Typical Value = 999.
- * @param vamin Minimum voltage regulator output (Vamin).
- *        Typical Value = -999.
- * @param vimax Maximum voltage regulator input limit (Vimax).
- *        Typical Value = 999.
- * @param vimin Minimum voltage regulator input limit (Vimin).
- *        Typical Value = -999.
- * @param vrmax Maximum voltage regulator outputs (Vrmax).
- *        Typical Value = 7.8.
- * @param vrmin Minimum voltage regulator outputs (Vrmin).
- *        Typical Value = -6.7.
- * @param xe Excitation xfmr effective reactance (Xe).
- *        Typical Value = 0.04.
+ * @param ilr Exciter output current limit reference (<i>Ilr</i>).
+ *        Typical value = 0.
+ * @param ka Voltage regulator gain (<i>Ka</i>) (&gt; 0).
+ *        Typical value = 190.
+ * @param kc Rectifier loading factor proportional to commutating reactance (<i>Kc</i>) (&gt;= 0).
+ *        Typical value = 0,05.
+ * @param kf Excitation control system stabilizer gains (<i>Kf</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param klr Exciter output current limiter gain (<i>Klr</i>).
+ *        Typical value = 0.
+ * @param ta Voltage regulator time constant (<i>Ta</i>) (&gt;= 0).
+ *        Typical value = 0,02.
+ * @param tb Voltage regulator time constant (<i>Tb</i>) (&gt;= 0).
+ *        Typical value = 10.
+ * @param tb1 Voltage regulator time constant (<i>Tb1</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tc Voltage regulator time constant (<i>Tc</i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param tc1 Voltage regulator time constant (<i>Tc1</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tf Excitation control system stabilizer time constant (<i>Tf</i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param vamax Maximum voltage regulator output (<i>Vamax</i>) (&gt; 0).
+ *        Typical value = 999.
+ * @param vamin Minimum voltage regulator output (<i>Vamin</i>) (&lt; 0).
+ *        Typical value = -999.
+ * @param vimax Maximum voltage regulator input limit (<i>Vimax</i>) (&gt; 0).
+ *        Typical value = 999.
+ * @param vimin Minimum voltage regulator input limit (<i>Vimin</i>) (&lt; 0).
+ *        Typical value = -999.
+ * @param vrmax Maximum voltage regulator outputs (<i>Vrmax</i>) (&gt; 0) .
+ *        Typical value = 7,8.
+ * @param vrmin Minimum voltage regulator outputs (<i>Vrmin</i>) (&lt; 0).
+ *        Typical value = -6,7.
+ * @param xe Excitation xfmr effective reactance (<i>Xe</i>).
+ *        Typical value = 0,04.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
+The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 case class ExcST1A
 (
@@ -9449,44 +9855,46 @@ extends
 }
 
 /**
- * Modified IEEE ST2A static excitation system - another lead-lag block added to match  the model defined by WECC.
+ * Modified IEEE ST2A static excitation system with another lead-lag block added to match the model defined by WECC.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param efdmax Maximum field voltage (Efdmax).
- *        Typical Value = 99.
- * @param ka Voltage regulator gain (Ka).
- *        Typical Value = 120.
- * @param kc Rectifier loading factor proportional to commutating reactance (Kc).
- *        Typical Value = 1.82.
- * @param ke Exciter constant related to self-excited field (Ke).
- *        Typical Value = 1.
- * @param kf Excitation control system stabilizer gains (Kf).
- *        Typical Value = 0.05.
- * @param ki Potential circuit gain coefficient (Ki).
- *        Typical Value = 8.
- * @param kp Potential circuit gain coefficient (Kp).
- *        Typical Value = 4.88.
- * @param ta Voltage regulator time constant (Ta).
- *        Typical Value = 0.15.
- * @param tb Voltage regulator time constant (Tb).
- *        Typical Value = 0.
- * @param tc Voltage regulator time constant (Tc).
- *        Typical Value = 0.
- * @param te Exciter time constant, integration rate associated with exciter control (Te).
- *        Typical Value = 0.5.
- * @param tf Excitation control system stabilizer time constant (Tf).
- *        Typical Value = 0.7.
- * @param uelin UEL input (UELin).
+ * @param efdmax Maximum field voltage (<i>Efdmax</i>) (&gt;= 0).
+ *        Typical value = 99.
+ * @param ka Voltage regulator gain (<i>Ka</i>) (&gt; 0).
+ *        Typical value = 120.
+ * @param kc Rectifier loading factor proportional to commutating reactance (<i>Kc</i>) (&gt;= 0).
+ *        Typical value = 1,82.
+ * @param ke Exciter constant related to self-excited field (<i>Ke</i>).
+ *        Typical value = 1.
+ * @param kf Excitation control system stabilizer gains (<i>kf</i>) (&gt;= 0).
+ *        Typical value = 0,05.
+ * @param ki Potential circuit gain coefficient (<i>K</i><i><sub>i</sub></i>) (&gt;= 0).
+ *        Typical value = 8.
+ * @param kp Potential circuit gain coefficient (<i>K</i><i><sub>p</sub></i>) (&gt;= 0).
+ *        Typical value = 4,88.
+ * @param ta Voltage regulator time constant (<i>Ta</i>) (&gt; 0).
+ *        Typical value = 0,15.
+ * @param tb Voltage regulator time constant (<i>Tb</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tc Voltage regulator time constant (<i>Tc</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param te Exciter time constant, integration rate associated with exciter control (<i>Te</i>) (&gt; 0).
+ *        Typical value = 0,5.
+ * @param tf Excitation control system stabilizer time constant (<i>Tf</i>) (&gt;= 0).
+ *        Typical value = 0,7.
+ * @param uelin UEL input (<i>UELin</i>).
  *        true = HV gate
  *        false = add to error signal.
- *        Typical Value = false.
- * @param vrmax Maximum voltage regulator outputs (Vrmax).
- *        Typical Value = 1.
- * @param vrmin Minimum voltage regulator outputs (Vrmin).
- *        Typical Value = -1.
+ *        Typical value = false.
+ * @param vrmax Maximum voltage regulator outputs (<i>Vrmax</i>) (&gt; 0).
+ *        Typical value = 1.
+ * @param vrmin Minimum voltage regulator outputs (<i>Vrmin</i>) (&lt; 0).
+ *        Typical value = -1.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
+The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 case class ExcST2A
 (
@@ -9628,49 +10036,51 @@ extends
  * Modified IEEE ST3A static excitation system with added speed multiplier.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param efdmax Maximum AVR output (Efdmax).
- *        Typical Value = 6.9.
- * @param kc Rectifier loading factor proportional to commutating reactance (Kc).
- *        Typical Value = 1.1.
- * @param kg Feedback gain constant of the inner loop field regulator (Kg).
- *        Typical Value = 1.
- * @param ki Potential circuit gain coefficient (Ki).
- *        Typical Value = 4.83.
- * @param kj AVR gain (Kj).
- *        Typical Value = 200.
- * @param km Forward gain constant of the inner loop field regulator (Km).
- *        Typical Value = 7.04.
- * @param kp Potential source gain (Kp) (&gt;0).
- *        Typical Value = 4.37.
- * @param ks Coefficient to allow different usage of the model-speed coefficient (Ks).
- *        Typical Value = 0.
- * @param ks1 Coefficient to allow different usage of the model-speed coefficient (Ks1).
- *        Typical Value = 0.
- * @param tb Voltage regulator time constant (Tb).
- *        Typical Value = 6.67.
- * @param tc Voltage regulator time constant (Tc).
- *        Typical Value = 1.
- * @param thetap Potential circuit phase angle (thetap).
- *        Typical Value = 20.
- * @param tm Forward time constant of inner loop field regulator (Tm).
- *        Typical Value = 1.
- * @param vbmax Maximum excitation voltage (Vbmax).
- *        Typical Value = 8.63.
- * @param vgmax Maximum inner loop feedback voltage (Vgmax).
- *        Typical Value = 6.53.
- * @param vimax Maximum voltage regulator input limit (Vimax).
- *        Typical Value = 0.2.
- * @param vimin Minimum voltage regulator input limit (Vimin).
- *        Typical Value = -0.2.
- * @param vrmax Maximum voltage regulator output (Vrmax).
- *        Typical Value = 1.
- * @param vrmin Minimum voltage regulator output (Vrmin).
- *        Typical Value = 0.
- * @param xl Reactance associated with potential source (Xl).
- *        Typical Value = 0.09.
+ * @param efdmax Maximum AVR output (<i>Efdmax</i>) (&gt;= 0).
+ *        Typical value = 6,9.
+ * @param kc Rectifier loading factor proportional to commutating reactance (<i>Kc</i>) (&gt;= 0).
+ *        Typical value = 1,1.
+ * @param kg Feedback gain constant of the inner loop field regulator (<i>Kg</i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param ki Potential circuit gain coefficient (<i>K</i><i><sub>i</sub></i>) (&gt;= 0).
+ *        Typical value = 4,83.
+ * @param kj AVR gain (<i>Kj</i>) (&gt; 0).
+ *        Typical value = 200.
+ * @param km Forward gain constant of the inner loop field regulator (<i>Km</i>) (&gt; 0).
+ *        Typical value = 7,04.
+ * @param kp Potential source gain (<i>K</i><i><sub>p</sub></i>) (&gt; 0).
+ *        Typical value = 4,37.
+ * @param ks Coefficient to allow different usage of the model-speed coefficient (<i>Ks</i>).
+ *        Typical value = 0.
+ * @param ks1 Coefficient to allow different usage of the model-speed coefficient (<i>Ks1</i>).
+ *        Typical value = 0.
+ * @param tb Voltage regulator time constant (<i>Tb</i>) (&gt;= 0).
+ *        Typical value = 6,67.
+ * @param tc Voltage regulator time constant (<i>Tc</i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param thetap Potential circuit phase angle (<i>theta</i><i><sub>p</sub></i>).
+ *        Typical value = 20.
+ * @param tm Forward time constant of inner loop field regulator (<i>Tm</i>) (&gt; 0).
+ *        Typical value = 1.
+ * @param vbmax Maximum excitation voltage (<i>Vbmax</i>) (&gt; 0).
+ *        Typical value = 8,63.
+ * @param vgmax Maximum inner loop feedback voltage (<i>Vgmax</i>) (&gt;= 0).
+ *        Typical value = 6,53.
+ * @param vimax Maximum voltage regulator input limit (<i>Vimax</i>) (&gt; 0).
+ *        Typical value = 0,2.
+ * @param vimin Minimum voltage regulator input limit (<i>Vimin</i>) (&lt; 0).
+ *        Typical value = -0,2.
+ * @param vrmax Maximum voltage regulator output (<i>Vrmax</i>) (&gt; 0).
+ *        Typical value = 1.
+ * @param vrmin Minimum voltage regulator output (<i>Vrmin</i>) (&lt; 0).
+ *        Typical value = -1.
+ * @param xl Reactance associated with potential source (<i>Xl</i>) (&gt;= 0).
+ *        Typical value = 0,09.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
+The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 case class ExcST3A
 (
@@ -9834,54 +10244,56 @@ extends
 }
 
 /**
- * Modified IEEE ST4B static excitation system with maximum inner loop feedback gain <b>Vgmax</b>.
+ * Modified IEEE ST4B static excitation system with maximum inner loop feedback gain <i>Vgmax</i>.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param kc Rectifier loading factor proportional to commutating reactance (Kc).
- *        Typical Value = 0.113.
- * @param kg Feedback gain constant of the inner loop field regulator (Kg).
- *        Typical Value = 0.
- * @param ki Potential circuit gain coefficient (Ki).
- *        Typical Value = 0.
- * @param kim Voltage regulator integral gain output (Kim).
- *        Typical Value = 0.
- * @param kir Voltage regulator integral gain (Kir).
- *        Typical Value = 10.75.
- * @param kp Potential circuit gain coefficient (Kp).
- *        Typical Value = 9.3.
- * @param kpm Voltage regulator proportional gain output (Kpm).
- *        Typical Value = 1.
- * @param kpr Voltage regulator proportional gain (Kpr).
- *        Typical Value = 10.75.
- * @param lvgate Selector (LVgate).
- *        true = LVgate is part of the block diagram
- *        false = LVgate is not part of the block diagram.
- *        Typical Value = false.
- * @param ta Voltage regulator time constant (Ta).
- *        Typical Value = 0.02.
- * @param thetap Potential circuit phase angle (thetap).
- *        Typical Value = 0.
- * @param uel Selector (Uel).
- *        true = UEL is part of block diagram
- *        false = UEL is not part of block diagram.
- *        Typical Value = false.
- * @param vbmax Maximum excitation voltage (Vbmax).
- *        Typical Value = 11.63.
- * @param vgmax Maximum inner loop feedback voltage (Vgmax).
- *        Typical Value = 5.8.
- * @param vmmax Maximum inner loop output (Vmmax).
- *        Typical Value = 99.
- * @param vmmin Minimum inner loop output (Vmmin).
- *        Typical Value = -99.
- * @param vrmax Maximum voltage regulator output (Vrmax).
- *        Typical Value = 1.
- * @param vrmin Minimum voltage regulator output (Vrmin).
- *        Typical Value = -0.87.
- * @param xl Reactance associated with potential source (Xl).
- *        Typical Value = 0.124.
+ * @param kc Rectifier loading factor proportional to commutating reactance (<i>Kc</i>) (&gt;= 0).
+ *        Typical value = 0,113.
+ * @param kg Feedback gain constant of the inner loop field regulator (<i>Kg</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param ki Potential circuit gain coefficient (<i>Ki</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param kim Voltage regulator integral gain output (<i>Kim</i>).
+ *        Typical value = 0.
+ * @param kir Voltage regulator integral gain (<i>Kir</i>).
+ *        Typical value = 10,75.
+ * @param kp Potential circuit gain coefficient (<i>Kp</i>) (&gt; 0).
+ *        Typical value = 9,3.
+ * @param kpm Voltage regulator proportional gain output (<i>Kpm</i>).
+ *        Typical value = 1.
+ * @param kpr Voltage regulator proportional gain (<i>Kpr</i>).
+ *        Typical value = 10,75.
+ * @param lvgate Selector (<i>LVGate</i>).
+ *        true = <i>LVGate</i> is part of the block diagram
+ *        false = <i>LVGate</i> is not part of the block diagram.
+ *        Typical value = false.
+ * @param ta Voltage regulator time constant (<i>Ta</i>) (&gt;= 0).
+ *        Typical value = 0,02.
+ * @param thetap Potential circuit phase angle (<i>theta</i><i><sub>p</sub></i>).
+ *        Typical value = 0.
+ * @param uel Selector (<i>UEL</i>).
+ *        true = <i>UEL</i> is part of block diagram
+ *        false = <i>UEL</i> is not part of block diagram.
+ *        Typical value = false.
+ * @param vbmax Maximum excitation voltage (<i>Vbmax</i>) (&gt; 0).
+ *        Typical value = 11,63.
+ * @param vgmax Maximum inner loop feedback voltage (<i>Vgmax</i>) (&gt;= 0).
+ *        Typical value = 5,8.
+ * @param vmmax Maximum inner loop output (<i>Vmmax</i>) (&gt; ExcST4B.vmmin).
+ *        Typical value = 99.
+ * @param vmmin Minimum inner loop output (<i>Vmmin</i>) (&lt; ExcST4B.vmmax).
+ *        Typical value = -99.
+ * @param vrmax Maximum voltage regulator output (<i>Vrmax</i>) (&gt; 0).
+ *        Typical value = 1.
+ * @param vrmin Minimum voltage regulator output (<i>Vrmin</i>) (&lt; 0).
+ *        Typical value = -0,87.
+ * @param xl Reactance associated with potential source (<i>Xl</i>) (&gt;= 0).
+ *        Typical value = 0,124.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
+The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 case class ExcST4B
 (
@@ -10040,64 +10452,66 @@ extends
 }
 
 /**
- * Modified IEEE ST6B static excitation system with PID controller and optional inner feedbacks loop.
+ * Modified IEEE ST6B static excitation system with PID controller and optional inner feedback loop.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param ilr Exciter output current limit reference (Ilr).
- *        Typical Value = 4.164.
- * @param k1 Selector (K1).
- *        true = feedback is from Ifd
- *        false = feedback is not from Ifd.
- *        Typical Value = true.
- * @param kcl Exciter output current limit adjustment (Kcl).
- *        Typical Value = 1.0577.
- * @param kff Pre-control gain constant of the inner loop field regulator (Kff).
- *        Typical Value = 1.
- * @param kg Feedback gain constant of the inner loop field regulator (Kg).
- *        Typical Value = 1.
- * @param kia Voltage regulator integral gain (Kia).
- *        Typical Value = 45.094.
- * @param klr Exciter output current limit adjustment (Kcl).
- *        Typical Value = 17.33.
- * @param km Forward gain constant of the inner loop field regulator (Km).
- *        Typical Value = 1.
- * @param kpa Voltage regulator proportional gain (Kpa).
- *        Typical Value = 18.038.
- * @param kvd Voltage regulator derivative gain (Kvd).
- *        Typical Value = 0.
- * @param oelin OEL input selector (OELin).
- *        Typical Value = noOELinput.
- * @param tg Feedback time constant of inner loop field voltage regulator (Tg).
- *        Typical Value = 0.02.
- * @param ts Rectifier firing time constant (Ts).
- *        Typical Value = 0.
- * @param tvd Voltage regulator derivative gain (Tvd).
- *        Typical Value = 0.
- * @param vamax Maximum voltage regulator output (Vamax).
- *        Typical Value = 4.81.
- * @param vamin Minimum voltage regulator output (Vamin).
- *        Typical Value = -3.85.
- * @param vilim Selector (Vilim).
- *        true = Vimin-Vimax limiter is active
- *        false = Vimin-Vimax limiter is not active.
- *        Typical Value = true.
- * @param vimax Maximum voltage regulator input limit (Vimax).
- *        Typical Value = 10.
- * @param vimin Minimum voltage regulator input limit (Vimin).
- *        Typical Value = -10.
- * @param vmult Selector (Vmult).
+ * @param ilr Exciter output current limit reference (<i>Ilr</i>) (&gt; 0).
+ *        Typical value = 4,164.
+ * @param k1 Selector (<i>K1</i>).
+ *        true = feedback is from <i>Ifd</i>
+ *        false = feedback is not from <i>Ifd</i>.
+ *        Typical value = true.
+ * @param kcl Exciter output current limit adjustment (<i>Kcl</i>) (&gt; 0).
+ *        Typical value = 1,0577.
+ * @param kff Pre-control gain constant of the inner loop field regulator (<i>Kff</i>).
+ *        Typical value = 1.
+ * @param kg Feedback gain constant of the inner loop field regulator (<i>Kg</i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param kia Voltage regulator integral gain (<i>Kia</i>) (&gt; 0).
+ *        Typical value = 45,094.
+ * @param klr Exciter output current limit adjustment (<i>Kcl</i>) (&gt; 0).
+ *        Typical value = 17,33.
+ * @param km Forward gain constant of the inner loop field regulator (<i>Km</i>).
+ *        Typical value = 1.
+ * @param kpa Voltage regulator proportional gain (<i>Kpa</i>) (&gt; 0).
+ *        Typical value = 18,038.
+ * @param kvd Voltage regulator derivative gain (<i>Kvd</i>).
+ *        Typical value = 0.
+ * @param oelin OEL input selector (<i>OELin</i>).
+ *        Typical value = noOELinput (corresponds to <i>OELin</i> = 0 on diagram).
+ * @param tg Feedback time constant of inner loop field voltage regulator (<i>Tg</i>) (&gt;= 0).
+ *        Typical value = 0,02.
+ * @param ts Rectifier firing time constant (<i>Ts</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tvd Voltage regulator derivative gain (<i>Tvd</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param vamax Maximum voltage regulator output (<i>Vamax</i>) (&gt; 0).
+ *        Typical value = 4,81.
+ * @param vamin Minimum voltage regulator output (<i>Vamin</i>) (&lt; 0).
+ *        Typical value = -3,85.
+ * @param vilim Selector (<i>Vilim</i>).
+ *        true = <i>Vimin</i>-<i>Vimax</i> limiter is active
+ *        false = <i>Vimin</i>-<i>Vimax</i> limiter is not active.
+ *        Typical value = true.
+ * @param vimax Maximum voltage regulator input limit (<i>Vimax</i>) (&gt; ExcST6B.vimin).
+ *        Typical value = 10.
+ * @param vimin Minimum voltage regulator input limit (<i>Vimin</i>) (&lt; ExcST6B.vimax).
+ *        Typical value = -10.
+ * @param vmult Selector (<i>vmult</i>).
  *        true = multiply regulator output by terminal voltage
  *        false = do not multiply regulator output by terminal voltage.
- *        Typical Value = true.
- * @param vrmax Maximum voltage regulator output (Vrmax).
- *        Typical Value = 4.81.
- * @param vrmin Minimum voltage regulator output (Vrmin).
- *        Typical Value = -3.85.
- * @param xc Excitation source reactance (Xc).
- *        Typical Value = 0.05.
+ *        Typical value = true.
+ * @param vrmax Maximum voltage regulator output (<i>Vrmax</i>) (&gt; 0).
+ *        Typical value = 4,81.
+ * @param vrmin Minimum voltage regulator output (<i>Vrmin</i>) (&lt; 0).
+ *        Typical value = -3,85.
+ * @param xc Excitation source reactance (<i>Xc</i>).
+ *        Typical value = 0,05.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
+The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 case class ExcST6B
 (
@@ -10280,41 +10694,43 @@ extends
  * Modified IEEE ST7B static excitation system without stator current limiter (SCL) and current compensator (DROOP) inputs.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
- * @param kh High-value gate feedback gain (Kh).
- *        Typical Value = 1.
- * @param kia Voltage regulator integral gain (Kia).
- *        Typical Value = 1.
- * @param kl Low-value gate feedback gain (Kl).
- *        Typical Value = 1.
- * @param kpa Voltage regulator proportional gain (Kpa).
- *        Typical Value = 40.
- * @param oelin OEL input selector (OELin).
- *        Typical Value = noOELinput.
- * @param tb Regulator lag time constant (Tb).
- *        Typical Value = 1.
- * @param tc Regulator lead time constant (Tc).
- *        Typical Value = 1.
- * @param tf Excitation control system stabilizer time constant (Tf).
- *        Typical Value = 1.
- * @param tg Feedback time constant of inner loop field voltage regulator (Tg).
- *        Typical Value = 1.
- * @param tia Feedback time constant (Tia).
- *        Typical Value = 3.
- * @param ts Rectifier firing time constant (Ts).
- *        Typical Value = 0.
- * @param uelin UEL input selector (UELin).
- *        Typical Value = noUELinput.
- * @param vmax Maximum voltage reference signal (Vmax).
- *        Typical Value = 1.1.
- * @param vmin Minimum voltage reference signal (Vmin).
- *        Typical Value = 0.9.
- * @param vrmax Maximum voltage regulator output (Vrmax).
- *        Typical Value = 5.
- * @param vrmin Minimum voltage regulator output (Vrmin).
- *        Typical Value = -4.5.
+ * @param kh High-value gate feedback gain (<i>Kh</i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param kia Voltage regulator integral gain (<i>Kia</i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param kl Low-value gate feedback gain (<i>Kl</i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param kpa Voltage regulator proportional gain (<i>Kpa</i>) (&gt; 0).
+ *        Typical value = 40.
+ * @param oelin OEL input selector (<i>OELin</i>).
+ *        Typical value = noOELinput.
+ * @param tb Regulator lag time constant (<i>Tb</i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param tc Regulator lead time constant (<i>Tc</i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param tf Excitation control system stabilizer time constant (<i>Tf</i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param tg Feedback time constant of inner loop field voltage regulator (<i>Tg</i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param tia Feedback time constant (<i>Tia</i>) (&gt;= 0).
+ *        Typical value = 3.
+ * @param ts Rectifier firing time constant (<i>Ts</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param uelin UEL input selector (<i>UELin</i>).
+ *        Typical value = noUELinput.
+ * @param vmax Maximum voltage reference signal (<i>Vmax</i>) (&gt; 0 and &gt; ExcST7B.vmin)).
+ *        Typical value = 1,1.
+ * @param vmin Minimum voltage reference signal (<i>Vmin</i>) (&gt; 0 and &lt; ExcST7B.vmax).
+ *        Typical value = 0,9.
+ * @param vrmax Maximum voltage regulator output (<i>Vrmax</i>) (&gt; 0).
+ *        Typical value = 5.
+ * @param vrmin Minimum voltage regulator output (<i>Vrmin</i>) (&lt; 0).
+ *        Typical value = -4,5.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
+The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 case class ExcST7B
 (
@@ -10459,20 +10875,22 @@ extends
 }
 
 /**
- * Excitation system function block whose behavior is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
+ * Excitation system function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  *
  * @param sup [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
  * @param DiscontinuousExcitationControlDynamics [[ch.ninecode.model.DiscontinuousExcitationControlDynamics DiscontinuousExcitationControlDynamics]] Discontinuous excitation control model associated with this excitation system model.
  * @param OverexcitationLimiterDynamics [[ch.ninecode.model.OverexcitationLimiterDynamics OverexcitationLimiterDynamics]] Overexcitation limiter model associated with this excitation system model.
- * @param PFVArControllerType1Dynamics [[ch.ninecode.model.PFVArControllerType1Dynamics PFVArControllerType1Dynamics]] Power Factor or VAr controller Type I model associated with this excitation system model.
- * @param PFVArControllerType2Dynamics [[ch.ninecode.model.PFVArControllerType2Dynamics PFVArControllerType2Dynamics]] Power Factor or VAr controller Type II model associated with this excitation system model.
+ * @param PFVArControllerType1Dynamics [[ch.ninecode.model.PFVArControllerType1Dynamics PFVArControllerType1Dynamics]] Power factor or VAr controller type 1 model associated with this excitation system model.
+ * @param PFVArControllerType2Dynamics [[ch.ninecode.model.PFVArControllerType2Dynamics PFVArControllerType2Dynamics]] Power factor or VAr controller type 2 model associated with this excitation system model.
  * @param PowerSystemStabilizerDynamics [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Power system stabilizer model associated with this excitation system model.
  * @param SynchronousMachineDynamics [[ch.ninecode.model.SynchronousMachineDynamics SynchronousMachineDynamics]] Synchronous machine model with which this excitation system model is associated.
  * @param UnderexcitationLimiterDynamics [[ch.ninecode.model.UnderexcitationLimiterDynamics UnderexcitationLimiterDynamics]] Undrexcitation limiter model associated with this excitation system model.
  * @param VoltageCompensatorDynamics [[ch.ninecode.model.VoltageCompensatorDynamics VoltageCompensatorDynamics]] Voltage compensator model associated with this excitation system model.
  * @group ExcitationSystemDynamics
  * @groupname ExcitationSystemDynamics Package ExcitationSystemDynamics
- * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (Efd) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). The data parameters are different for each excitation system model; the same parameter name may have different meaning in different models.
+ * @groupdesc ExcitationSystemDynamics The excitation system model provides the field voltage (<i>Efd</i>) for a synchronous machine model.  It is linked to a specific generator (synchronous machine). 
+The representation of all limits used by the models (not including IEEE standard models) shall comply with the representation defined in the Annex E of the IEEE 421.5-2005, unless specified differently in the documentation of the model.
+The parameters are different for each excitation system model; the same parameter name can have different meaning in different models.
  */
 case class ExcitationSystemDynamics
 (
@@ -10554,7 +10972,7 @@ extends
         Relationship ("PowerSystemStabilizerDynamics", "PowerSystemStabilizerDynamics", "0..1", "1"),
         Relationship ("SynchronousMachineDynamics", "SynchronousMachineDynamics", "1", "0..1"),
         Relationship ("UnderexcitationLimiterDynamics", "UnderexcitationLimiterDynamics", "0..1", "1"),
-        Relationship ("VoltageCompensatorDynamics", "VoltageCompensatorDynamics", "0..1", "1")
+        Relationship ("VoltageCompensatorDynamics", "VoltageCompensatorDynamics", "1", "1")
     )
     val DiscontinuousExcitationControlDynamics: Fielder = parse_attribute (attribute (cls, fields(0)))
     val OverexcitationLimiterDynamics: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -10632,9 +11050,11 @@ private[ninecode] object _ExcitationSystemDynamics
             ExcIEEEST5B.register,
             ExcIEEEST6B.register,
             ExcIEEEST7B.register,
+            ExcNI.register,
             ExcOEX3T.register,
             ExcPIC.register,
             ExcREXS.register,
+            ExcRQB.register,
             ExcSCRX.register,
             ExcSEXS.register,
             ExcSK.register,

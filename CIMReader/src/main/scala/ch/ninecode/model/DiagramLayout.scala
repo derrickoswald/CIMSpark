@@ -22,7 +22,7 @@ import ch.ninecode.cim.Relationship
  * @param DiagramStyle [[ch.ninecode.model.DiagramStyle DiagramStyle]] A Diagram may have a DiagramStyle.
  * @group DiagramLayout
  * @groupname DiagramLayout Package DiagramLayout
- * @groupdesc DiagramLayout This package describes diagram layout. This describes how objects are arranged in a coordianate system rather than how they are rendered.
+ * @groupdesc DiagramLayout This package describes diagram layout. This describes how objects are arranged in a coordinate system rather than how they are rendered.
  */
 case class Diagram
 (
@@ -141,7 +141,7 @@ extends
  * @param offsetY The offset in the Y direction.
  *        This is used for defining the offset from centre for rendering an icon (the default is that a single point specifies the centre of the icon).
  * @param rotation Sets the angle of rotation of the diagram object.
- *        Zero degrees is pointing to the top of the diagram.  Rotation is clockwise.
+ *        Zero degrees is pointing to the top of the diagram.  Rotation is clockwise.  DiagramObject.rotation=0 has the following meaning: The connection point of an element which has one terminal is pointing to the top side of the diagram. The connection point "From side" of an element which has more than one terminal is pointing to the top side of the diagram.
  * @param Diagram [[ch.ninecode.model.Diagram Diagram]] A diagram object is part of a diagram.
  * @param DiagramObjectPoints [[ch.ninecode.model.DiagramObjectPoint DiagramObjectPoint]] A diagram object can have 0 or more points to reflect its layout position, routing (for polylines) or boundary (for polygons).
  * @param DiagramObjectStyle [[ch.ninecode.model.DiagramObjectStyle DiagramObjectStyle]] A diagram object has a style associated that provides a reference for the style used in the originating system.
@@ -149,7 +149,7 @@ extends
  * @param VisibilityLayers [[ch.ninecode.model.VisibilityLayer VisibilityLayer]] A diagram object can be part of multiple visibility layers.
  * @group DiagramLayout
  * @groupname DiagramLayout Package DiagramLayout
- * @groupdesc DiagramLayout This package describes diagram layout. This describes how objects are arranged in a coordianate system rather than how they are rendered.
+ * @groupdesc DiagramLayout This package describes diagram layout. This describes how objects are arranged in a coordinate system rather than how they are rendered.
  */
 case class DiagramObject
 (
@@ -278,7 +278,7 @@ extends
  * @param DiagramObjectPoints [[ch.ninecode.model.DiagramObjectPoint DiagramObjectPoint]] A diagram object glue point is associated with 2 or more object points that are considered to be 'glued' together.
  * @group DiagramLayout
  * @groupname DiagramLayout Package DiagramLayout
- * @groupdesc DiagramLayout This package describes diagram layout. This describes how objects are arranged in a coordianate system rather than how they are rendered.
+ * @groupdesc DiagramLayout This package describes diagram layout. This describes how objects are arranged in a coordinate system rather than how they are rendered.
  */
 case class DiagramObjectGluePoint
 (
@@ -363,7 +363,7 @@ extends
  * @param DiagramObjectGluePoint [[ch.ninecode.model.DiagramObjectGluePoint DiagramObjectGluePoint]] The 'glue' point to which this point is associated.
  * @group DiagramLayout
  * @groupname DiagramLayout Package DiagramLayout
- * @groupdesc DiagramLayout This package describes diagram layout. This describes how objects are arranged in a coordianate system rather than how they are rendered.
+ * @groupdesc DiagramLayout This package describes diagram layout. This describes how objects are arranged in a coordinate system rather than how they are rendered.
  */
 case class DiagramObjectPoint
 (
@@ -464,13 +464,13 @@ extends
 /**
  * A reference to a style used by the originating system for a diagram object.
  *
- * A diagram object style describes information such as line thickness, shape such as circle or rectangle etc, and color.
+ * A diagram object style describes information such as line thickness, shape such as circle or rectangle etc, and colour.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param StyledObjects [[ch.ninecode.model.DiagramObject DiagramObject]] A style can be assigned to multiple diagram objects.
  * @group DiagramLayout
  * @groupname DiagramLayout Package DiagramLayout
- * @groupdesc DiagramLayout This package describes diagram layout. This describes how objects are arranged in a coordianate system rather than how they are rendered.
+ * @groupdesc DiagramLayout This package describes diagram layout. This describes how objects are arranged in a coordinate system rather than how they are rendered.
  */
 case class DiagramObjectStyle
 (
@@ -542,15 +542,15 @@ extends
 }
 
 /**
- * The diagram style refer to a style used by the originating system for a diagram.
+ * The diagram style refers to a style used by the originating system for a diagram.
  *
- * A diagram style describes information such as schematic, geographic, bus-branch etc.
+ * A diagram style describes information such as schematic, geographic, etc.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param Diagram [[ch.ninecode.model.Diagram Diagram]] A DiagramStyle can be used by many Diagrams.
  * @group DiagramLayout
  * @groupname DiagramLayout Package DiagramLayout
- * @groupdesc DiagramLayout This package describes diagram layout. This describes how objects are arranged in a coordianate system rather than how they are rendered.
+ * @groupdesc DiagramLayout This package describes diagram layout. This describes how objects are arranged in a coordinate system rather than how they are rendered.
  */
 case class DiagramStyle
 (
@@ -628,7 +628,7 @@ extends
  * @param text The text that is displayed by this text diagram object.
  * @group DiagramLayout
  * @groupname DiagramLayout Package DiagramLayout
- * @groupdesc DiagramLayout This package describes diagram layout. This describes how objects are arranged in a coordianate system rather than how they are rendered.
+ * @groupdesc DiagramLayout This package describes diagram layout. This describes how objects are arranged in a coordinate system rather than how they are rendered.
  */
 case class TextDiagramObject
 (
@@ -707,7 +707,7 @@ extends
  * @param VisibleObjects [[ch.ninecode.model.DiagramObject DiagramObject]] A visibility layer can contain one or more diagram objects.
  * @group DiagramLayout
  * @groupname DiagramLayout Package DiagramLayout
- * @groupdesc DiagramLayout This package describes diagram layout. This describes how objects are arranged in a coordianate system rather than how they are rendered.
+ * @groupdesc DiagramLayout This package describes diagram layout. This describes how objects are arranged in a coordinate system rather than how they are rendered.
  */
 case class VisibilityLayer
 (

@@ -13,19 +13,18 @@ import ch.ninecode.cim.Relationship
  * The several variations differ in the following ways:
  *
  * @param sup [[ch.ninecode.model.SynchronousMachineDynamics SynchronousMachineDynamics]] Reference to the superclass object.
- * @param efdBaseRatio Ratio (Exciter voltage/Generator voltage) of Efd bases of exciter and generator models.
- *        Typical Value = 1.
+ * @param efdBaseRatio Ratio (exciter voltage/generator voltage) of <i>Efd</i> bases of exciter and generator models (&gt; 0).
+ *        Typical value = 1.
  * @param ifdBaseType Excitation base system mode.
- *        It should be equal to the value of WLMDV given by the user. WLMDV is the per unit ratio between the field voltage and the excitation current: Efd = WLMDV*Ifd. Typical Value = ifag.
- * @param saturationFactor120QAxis Q-axis saturation factor at 120% of rated terminal voltage (S12q) (&gt;=S1q).
- *        Typical Value = 0.12.
- * @param saturationFactorQAxis Q-axis saturation factor at rated terminal voltage (S1q) (&gt;= 0).
- *        Typical Value = 0.02.
+ *        It should be equal to the value of <i>WLMDV</i> given by the user. <i>WLMDV</i> is the PU ratio between the field voltage and the excitation current: <i>Efd</i> = <i>WLMDV</i> x <i>Ifd</i>. Typical value = ifag.
+ * @param saturationFactor120QAxis Quadrature-axis saturation factor at 120% of rated terminal voltage (<i>S12q</i>) (&gt;= SynchonousMachineDetailed.saturationFactorQAxis).
+ *        Typical value = 0,12.
+ * @param saturationFactorQAxis Quadrature-axis saturation factor at rated terminal voltage (<i>S1q</i>) (&gt;= 0).
+ *        Typical value = 0,02.
  * @group SynchronousMachineDynamics
  * @groupname SynchronousMachineDynamics Package SynchronousMachineDynamics
- * @groupdesc SynchronousMachineDynamics For conventional power generating units (e.g., thermal, hydro, combustion turbine), a synchronous machine model represents the electrical characteristics of the generator and the mechanical characteristics of the turbine-generator rotational inertia.  Large industrial motors or groups of similar motors may be represented by individual motor models which are represented as <b>generators with negative active power</b> in the static (power flow) data.  
-
-The interconnection with the electrical network equations may differ among simulation tools.  The tool only needs to know the synchronous machine to establish the correct interconnection.  The interconnection with motor�s equipment could also differ due to input and output signals required by standard models.
+ * @groupdesc SynchronousMachineDynamics For conventional power generating units (e.g., thermal, hydro, combustion turbine), a synchronous machine model represents the electrical characteristics of the generator and the mechanical characteristics of the turbine-generator rotational inertia.  Large industrial motors or groups of similar motors can be represented by individual motor models which are represented as generators with negative active power in the static (power flow) data.  
+The interconnection with the electrical network equations can differ among simulation tools.  The tool only needs to know the synchronous machine to establish the correct interconnection.  The interconnection with the motor�s equipment could also differ due to input and output signals required by standard models.
  */
 case class SynchronousMachineDetailed
 (
@@ -111,34 +110,33 @@ extends
 
 /**
  * Synchronous machine whose behaviour is described by reference to a standard model expressed in one of the following forms:
- * <ul>
- * <li>simplified (or classical), where a group of generators or motors is not modelled in detail</li>
- * </ul>
- * <ul>
- * <li>detailed, in equivalent circuit form</li>
- * <li>detailed, in time constant reactance form</li>
- * </ul>
- * <font color="#0f0f0f">or by definition of a user-defined model.</font>
- * <font color="#0f0f0f">
- * </font><font color="#0f0f0f"><b>Note:</b>  It is a common practice to represent small generators by a negative load rather than by a dynamic generator model when performing dynamics simulations.
+ * - simplified (or classical), where a group of generators or motors is not modelled in detail;
+ * - detailed, in equivalent circuit form;
+ * - detailed, in time constant reactance form; or
+ * <font color="#0f0f0f">- by definition of a user-defined model.</font>
+ * <font color="#0f0f0f">It is a common practice to represent small generators by a negative load rather than by a dynamic generator model when performing dynamics simulations.
  *
- * In this case a SynchronousMachine in the static model is not represented by anything in the dynamics model, instead it is treated as ordinary load.</font>
+ * In this case, a SynchronousMachine in the static model is not represented by anything in the dynamics model, instead it is treated as an ordinary load.</font>
  *
  * @param sup [[ch.ninecode.model.RotatingMachineDynamics RotatingMachineDynamics]] Reference to the superclass object.
+ * @param CrossCompoundTurbineGovernorDyanmics [[ch.ninecode.model.CrossCompoundTurbineGovernorDynamics CrossCompoundTurbineGovernorDynamics]] The cross-compound turbine governor with which this high-pressure synchronous machine is associated.
+ * @param CrossCompoundTurbineGovernorDynamics [[ch.ninecode.model.CrossCompoundTurbineGovernorDynamics CrossCompoundTurbineGovernorDynamics]] The cross-compound turbine governor with which this low-pressure synchronous machine is associated.
  * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Excitation system model associated with this synchronous machine model.
  * @param GenICompensationForGenJ [[ch.ninecode.model.GenICompensationForGenJ GenICompensationForGenJ]] Compensation of voltage compensator's generator for current flow out of this  generator.
  * @param MechanicalLoadDynamics [[ch.ninecode.model.MechanicalLoadDynamics MechanicalLoadDynamics]] Mechanical load model associated with this synchronous machine model.
  * @param SynchronousMachine [[ch.ninecode.model.SynchronousMachine SynchronousMachine]] Synchronous machine to which synchronous machine dynamics model applies.
  * @param TurbineGovernorDynamics [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Turbine-governor model associated with this synchronous machine model.
+ *        Multiplicity of greater than one is intended to support hydro units that have multiple turbines on one generator.
  * @group SynchronousMachineDynamics
  * @groupname SynchronousMachineDynamics Package SynchronousMachineDynamics
- * @groupdesc SynchronousMachineDynamics For conventional power generating units (e.g., thermal, hydro, combustion turbine), a synchronous machine model represents the electrical characteristics of the generator and the mechanical characteristics of the turbine-generator rotational inertia.  Large industrial motors or groups of similar motors may be represented by individual motor models which are represented as <b>generators with negative active power</b> in the static (power flow) data.  
-
-The interconnection with the electrical network equations may differ among simulation tools.  The tool only needs to know the synchronous machine to establish the correct interconnection.  The interconnection with motor�s equipment could also differ due to input and output signals required by standard models.
+ * @groupdesc SynchronousMachineDynamics For conventional power generating units (e.g., thermal, hydro, combustion turbine), a synchronous machine model represents the electrical characteristics of the generator and the mechanical characteristics of the turbine-generator rotational inertia.  Large industrial motors or groups of similar motors can be represented by individual motor models which are represented as generators with negative active power in the static (power flow) data.  
+The interconnection with the electrical network equations can differ among simulation tools.  The tool only needs to know the synchronous machine to establish the correct interconnection.  The interconnection with the motor�s equipment could also differ due to input and output signals required by standard models.
  */
 case class SynchronousMachineDynamics
 (
     override val sup: RotatingMachineDynamics,
+    CrossCompoundTurbineGovernorDyanmics: String,
+    CrossCompoundTurbineGovernorDynamics: String,
     ExcitationSystemDynamics: String,
     GenICompensationForGenJ: List[String],
     MechanicalLoadDynamics: String,
@@ -151,7 +149,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, List(), null, null, List()) }
+    def this () = { this (null, null, null, null, List(), null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -176,11 +174,13 @@ extends
         implicit val clz: String = SynchronousMachineDynamics.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (SynchronousMachineDynamics.fields (position), value)
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (SynchronousMachineDynamics.fields (position), x))
-        emitattr (0, ExcitationSystemDynamics)
-        emitattrs (1, GenICompensationForGenJ)
-        emitattr (2, MechanicalLoadDynamics)
-        emitattr (3, SynchronousMachine)
-        emitattrs (4, TurbineGovernorDynamics)
+        emitattr (0, CrossCompoundTurbineGovernorDyanmics)
+        emitattr (1, CrossCompoundTurbineGovernorDynamics)
+        emitattr (2, ExcitationSystemDynamics)
+        emitattrs (3, GenICompensationForGenJ)
+        emitattr (4, MechanicalLoadDynamics)
+        emitattr (5, SynchronousMachine)
+        emitattrs (6, TurbineGovernorDynamics)
         s.toString
     }
     override def export: String =
@@ -194,6 +194,8 @@ extends
     Parseable[SynchronousMachineDynamics]
 {
     override val fields: Array[String] = Array[String] (
+        "CrossCompoundTurbineGovernorDyanmics",
+        "CrossCompoundTurbineGovernorDynamics",
         "ExcitationSystemDynamics",
         "GenICompensationForGenJ",
         "MechanicalLoadDynamics",
@@ -201,17 +203,21 @@ extends
         "TurbineGovernorDynamics"
     )
     override val relations: List[Relationship] = List (
+        Relationship ("CrossCompoundTurbineGovernorDyanmics", "CrossCompoundTurbineGovernorDynamics", "0..1", "1"),
+        Relationship ("CrossCompoundTurbineGovernorDynamics", "CrossCompoundTurbineGovernorDynamics", "0..1", "1"),
         Relationship ("ExcitationSystemDynamics", "ExcitationSystemDynamics", "0..1", "1"),
         Relationship ("GenICompensationForGenJ", "GenICompensationForGenJ", "0..*", "1"),
         Relationship ("MechanicalLoadDynamics", "MechanicalLoadDynamics", "0..1", "0..1"),
         Relationship ("SynchronousMachine", "SynchronousMachine", "1", "0..1"),
-        Relationship ("TurbineGovernorDynamics", "TurbineGovernorDynamics", "0..*", "0..*")
+        Relationship ("TurbineGovernorDynamics", "TurbineGovernorDynamics", "0..*", "0..1")
     )
-    val ExcitationSystemDynamics: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val GenICompensationForGenJ: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
-    val MechanicalLoadDynamics: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val SynchronousMachine: Fielder = parse_attribute (attribute (cls, fields(3)))
-    val TurbineGovernorDynamics: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val CrossCompoundTurbineGovernorDyanmics: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val CrossCompoundTurbineGovernorDynamics: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val ExcitationSystemDynamics: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val GenICompensationForGenJ: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val MechanicalLoadDynamics: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val SynchronousMachine: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val TurbineGovernorDynamics: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
 
     def parse (context: Context): SynchronousMachineDynamics =
     {
@@ -219,11 +225,13 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = SynchronousMachineDynamics (
             RotatingMachineDynamics.parse (context),
-            mask (ExcitationSystemDynamics (), 0),
-            masks (GenICompensationForGenJ (), 1),
-            mask (MechanicalLoadDynamics (), 2),
-            mask (SynchronousMachine (), 3),
-            masks (TurbineGovernorDynamics (), 4)
+            mask (CrossCompoundTurbineGovernorDyanmics (), 0),
+            mask (CrossCompoundTurbineGovernorDynamics (), 1),
+            mask (ExcitationSystemDynamics (), 2),
+            masks (GenICompensationForGenJ (), 3),
+            mask (MechanicalLoadDynamics (), 4),
+            mask (SynchronousMachine (), 5),
+            masks (TurbineGovernorDynamics (), 6)
         )
         ret.bitfields = bitfields
         ret
@@ -231,51 +239,26 @@ extends
 }
 
 /**
- * The electrical equations for all variations of the synchronous models are based on the SynchronousEquivalentCircuit diagram for the direct and quadrature axes.
- * 
- * <b>Equations for conversion between Equivalent Circuit and Time Constant Reactance forms:</b>
- * <b>Xd</b> = <b>Xad</b> + <b>Xl</b>
- * <b>X�d</b> = <b>Xl</b> + <b>Xad</b> * <b>Xfd</b> / (<b>Xad</b> + <b>Xfd</b>)
- * <b>X�d</b> = <b>Xl</b> + <b>Xad</b> * <b>Xfd </b>* <b>X1d</b> / (<b>Xad</b> * <b>Xfd</b> + <b>Xad</b> * <b>X1d</b> + <b>Xfd</b> * <b>X1d</b>)
- * <b>Xq</b> = <b>Xaq</b> + <b>Xl</b>
- * <b>X�q</b> = <b>Xl</b> + <b>Xaq</b> * <b>X1q</b> / (<b>Xaq</b>+ <b>X1q</b>)
- * <b>X�q</b> = <b>Xl</b> + <b>Xaq</b> *<b> X1q</b>* <b>X2q</b> / (<b>Xaq</b> * <b>X1q</b> + <b>Xaq</b> * <b>X2q</b> + <b>X1q</b> * <b>X2q</b>)
- * <b>T�do</b> = (<b>Xad</b> + <b>Xfd</b>) / (<b>omega</b><b><sub>0</sub></b> * <b>Rfd</b>)
- * <b>T�do</b> = (<b>Xad</b> * <b>Xfd</b> + <b>Xad</b> * <b>X1d</b> + <b>Xfd</b> * <b>X1d</b>) / (<b>omega</b><b><sub>0</sub></b> * <b>R1d</b> * (<b>Xad</b> + <b>Xfd</b>)
- * <b>T�qo</b> = (<b>Xaq</b> + <b>X1q</b>) / (<b>omega</b><b><sub>0</sub></b> * <b>R1q</b>)
- * <b>T�qo</b> = (<b>Xaq</b> * <b>X1q</b> + <b>Xaq</b> * <b>X2q</b> + <b>X1q</b> * <b>X2q</b>)/ (<b>omega</b><b><sub>0</sub></b> * <b>R2q</b> * (<b>Xaq</b> + <b>X1q</b>)
- * <b>
- * </b>Same equations using CIM attributes from SynchronousMachineTimeConstantReactance class on left of = sign and SynchronousMachineEquivalentCircuit class on right (except as noted):
- * xDirectSync = xad + RotatingMachineDynamics.statorLeakageReactance
- * xDirectTrans = RotatingMachineDynamics.statorLeakageReactance + xad * xfd / (xad + xfd)
- * xDirectSubtrans = RotatingMachineDynamics.statorLeakageReactance + xad * xfd * x1d / (xad * xfd + xad * x1d + xfd * x1d)
- * xQuadSync = xaq + RotatingMachineDynamics.statorLeakageReactance
- * xQuadTrans = RotatingMachineDynamics.statorLeakageReactance + xaq * x1q / (xaq+ x1q)
- * xQuadSubtrans = RotatingMachineDynamics.statorLeakageReactance + xaq * x1q* x2q / (xaq * x1q + xaq * x2q + x1q * x2q)
- * tpdo = (xad + xfd) / (2*pi*nominal frequency * rfd)
- * tppdo = (xad * xfd + xad * x1d + xfd * x1d) / (2*pi*nominal frequency * r1d * (xad + xfd)
- * tpqo = (xaq + x1q) / (2*pi*nominal frequency * r1q)
- * tppqo = (xaq * x1q + xaq * x2q + x1q * x2q)/ (2*pi*nominal frequency * r2q * (xaq + x1q).
+ * The electrical equations for all variations of the synchronous models are based on the SynchronousEquivalentCircuit diagram for the direct- and quadrature- axes.
  *
- * Are only valid for a simplified model where "Canay" reactance is zero.
+ * Equations for conversion between equivalent circuit and time constant reactance forms:
  *
  * @param sup [[ch.ninecode.model.SynchronousMachineDetailed SynchronousMachineDetailed]] Reference to the superclass object.
- * @param r1d D-axis damper 1 winding resistance.
- * @param r1q Q-axis damper 1 winding resistance.
- * @param r2q Q-axis damper 2 winding resistance.
+ * @param r1d Direct-axis damper 1 winding resistance.
+ * @param r1q Quadrature-axis damper 1 winding resistance.
+ * @param r2q Quadrature-axis damper 2 winding resistance.
  * @param rfd Field winding resistance.
- * @param x1d D-axis damper 1 winding leakage reactance.
- * @param x1q Q-axis damper 1 winding leakage reactance.
- * @param x2q Q-axis damper 2 winding leakage reactance.
- * @param xad D-axis mutual reactance.
- * @param xaq Q-axis mutual reactance.
+ * @param x1d Direct-axis damper 1 winding leakage reactance.
+ * @param x1q Quadrature-axis damper 1 winding leakage reactance.
+ * @param x2q Quadrature-axis damper 2 winding leakage reactance.
+ * @param xad Direct-axis mutual reactance.
+ * @param xaq Quadrature-axis mutual reactance.
  * @param xf1d Differential mutual (�Canay�) reactance.
  * @param xfd Field winding leakage reactance.
  * @group SynchronousMachineDynamics
  * @groupname SynchronousMachineDynamics Package SynchronousMachineDynamics
- * @groupdesc SynchronousMachineDynamics For conventional power generating units (e.g., thermal, hydro, combustion turbine), a synchronous machine model represents the electrical characteristics of the generator and the mechanical characteristics of the turbine-generator rotational inertia.  Large industrial motors or groups of similar motors may be represented by individual motor models which are represented as <b>generators with negative active power</b> in the static (power flow) data.  
-
-The interconnection with the electrical network equations may differ among simulation tools.  The tool only needs to know the synchronous machine to establish the correct interconnection.  The interconnection with motor�s equipment could also differ due to input and output signals required by standard models.
+ * @groupdesc SynchronousMachineDynamics For conventional power generating units (e.g., thermal, hydro, combustion turbine), a synchronous machine model represents the electrical characteristics of the generator and the mechanical characteristics of the turbine-generator rotational inertia.  Large industrial motors or groups of similar motors can be represented by individual motor models which are represented as generators with negative active power in the static (power flow) data.  
+The interconnection with the electrical network equations can differ among simulation tools.  The tool only needs to know the synchronous machine to establish the correct interconnection.  The interconnection with the motor�s equipment could also differ due to input and output signals required by standard models.
  */
 case class SynchronousMachineEquivalentCircuit
 (
@@ -394,16 +377,15 @@ extends
 }
 
 /**
- * The simplified model represents a synchronous generator as a constant internal voltage behind an impedance (<b>Rs</b> + <b>jXp</b>) as shown in the Simplified diagram.
+ * The simplified model represents a synchronous generator as a constant internal voltage behind an impedance<i> </i>(<i>Rs + jXp</i>) as shown in the Simplified diagram.
  *
- * Since internal voltage is held constant, there is no <b>Efd</b> input and any excitation system model will be ignored.  There is also no <b>Ifd</b> output.
+ * Since internal voltage is held constant, there is no <i>Efd</i> input and any excitation system model will be ignored.  There is also no <i>Ifd</i> output.
  *
  * @param sup [[ch.ninecode.model.SynchronousMachineDynamics SynchronousMachineDynamics]] Reference to the superclass object.
  * @group SynchronousMachineDynamics
  * @groupname SynchronousMachineDynamics Package SynchronousMachineDynamics
- * @groupdesc SynchronousMachineDynamics For conventional power generating units (e.g., thermal, hydro, combustion turbine), a synchronous machine model represents the electrical characteristics of the generator and the mechanical characteristics of the turbine-generator rotational inertia.  Large industrial motors or groups of similar motors may be represented by individual motor models which are represented as <b>generators with negative active power</b> in the static (power flow) data.  
-
-The interconnection with the electrical network equations may differ among simulation tools.  The tool only needs to know the synchronous machine to establish the correct interconnection.  The interconnection with motor�s equipment could also differ due to input and output signals required by standard models.
+ * @groupdesc SynchronousMachineDynamics For conventional power generating units (e.g., thermal, hydro, combustion turbine), a synchronous machine model represents the electrical characteristics of the generator and the mechanical characteristics of the turbine-generator rotational inertia.  Large industrial motors or groups of similar motors can be represented by individual motor models which are represented as generators with negative active power in the static (power flow) data.  
+The interconnection with the electrical network equations can differ among simulation tools.  The tool only needs to know the synchronous machine to establish the correct interconnection.  The interconnection with the motor�s equipment could also differ due to input and output signals required by standard models.
  */
 case class SynchronousMachineSimplified
 (
@@ -461,73 +443,40 @@ extends
 
 /**
  * Synchronous machine detailed modelling types are defined by the combination of the attributes SynchronousMachineTimeConstantReactance.modelType and SynchronousMachineTimeConstantReactance.rotorType.
- * <b>
- * </b><b>Parameter notes:</b>
- * <ol>
- * <li>The �p� in the time-related attribute names is a substitution for a �prime� in the usual parameter notation, e.g. tpdo refers to <b>T'do</b>.</li>
- * </ol>
- * <b>
- * </b>The parameters used for models expressed in time constant reactance form include:
- * <ul>
- * <li>RotatingMachine.ratedS (MVAbase)</li>
- * <li>RotatingMachineDynamics.damping (D)</li>
- * <li>RotatingMachineDynamics.inertia (H)</li>
- * <li>RotatingMachineDynamics.saturationFactor (S1)</li>
- * <li>RotatingMachineDynamics.saturationFactor120 (S12)</li>
- * <li>RotatingMachineDynamics.statorLeakageReactance (Xl)</li>
- * <li>RotatingMachineDynamics.statorResistance (Rs)</li>
- * <li>SynchronousMachineTimeConstantReactance.ks (Ks)</li>
- * <li>SynchronousMachineDetailed.saturationFactorQAxis (S1q)</li>
- * <li>SynchronousMachineDetailed.saturationFactor120QAxis (S12q)</li>
- * <li>SynchronousMachineDetailed.efdBaseRatio</li>
- * <li>SynchronousMachineDetailed.ifdBaseType</li>
- * <li>SynchronousMachineDetailed.ifdBaseValue, if present</li>
- * <li>.xDirectSync (Xd)</li>
- * <li>.xDirectTrans (X'd)</li>
- * <li>.xDirectSubtrans (X''d)</li>
- * <li>.xQuadSync (Xq)</li>
- * <li>.xQuadTrans (X'q)</li>
- * <li>.xQuadSubtrans (X''q)</li>
- * <li>.tpdo (T'do)</li>
- * <li>.tppdo (T''do)</li>
- * <li>.tpqo (T'qo)</li>
- * <li>.tppqo (T''qo)</li>
- * <li>.tc.</li>
  *
- * </ul>
+ * Parameter details:
  *
  * @param sup [[ch.ninecode.model.SynchronousMachineDetailed SynchronousMachineDetailed]] Reference to the superclass object.
- * @param ks Saturation loading correction factor (Ks) (&gt;= 0).
- *        Used only by Type J model.  Typical Value = 0.
- * @param modelType Type of synchronous machine model used in Dynamic simulation applications.
+ * @param ks Saturation loading correction factor (<i>Ks</i>) (&gt;= 0).
+ *        Used only by type J model.  Typical value = 0.
+ * @param modelType Type of synchronous machine model used in dynamic simulation applications.
  * @param rotorType Type of rotor on physical machine.
- * @param tc Damping time constant for �Canay� reactance.
- *        Typical Value = 0.
- * @param tpdo Direct-axis transient rotor time constant (T'do) (&gt; T''do).
- *        Typical Value = 5.
- * @param tppdo Direct-axis subtransient rotor time constant (T''do) (&gt; 0).
- *        Typical Value = 0.03.
- * @param tppqo Quadrature-axis subtransient rotor time constant (T''qo) (&gt; 0).
- *        Typical Value = 0.03.
- * @param tpqo Quadrature-axis transient rotor time constant (T'qo) (&gt; T''qo).
- *        Typical Value = 0.5.
- * @param xDirectSubtrans Direct-axis subtransient reactance (unsaturated) (X''d) (&gt; Xl).
- *        Typical Value = 0.2.
- * @param xDirectSync Direct-axis synchronous reactance (Xd) (&gt;= X'd).
- *        The quotient of a sustained value of that AC component of armature voltage that is produced by the total direct-axis flux due to direct-axis armature current and the value of the AC component of this current, the machine running at rated speed. Typical Value = 1.8.
- * @param xDirectTrans Direct-axis transient reactance (unsaturated) (X'd) (&gt; =X''d).
- *        Typical Value = 0.5.
- * @param xQuadSubtrans Quadrature-axis subtransient reactance (X''q) (&gt; Xl).
- *        Typical Value = 0.2.
- * @param xQuadSync Quadrature-axis synchronous reactance (Xq) (&gt; =X'q).
- *        The ratio of the component of reactive armature voltage, due to the quadrature-axis component of armature current, to this component of current, under steady state conditions and at rated frequency.  Typical Value = 1.6.
- * @param xQuadTrans Quadrature-axis transient reactance (X'q) (&gt; =X''q).
- *        Typical Value = 0.3.
+ * @param tc Damping time constant for �Canay� reactance (&gt;= 0).
+ *        Typical value = 0.
+ * @param tpdo Direct-axis transient rotor time constant (<i>T'do</i>) (&gt; SynchronousMachineTimeConstantReactance.tppdo).
+ *        Typical value = 5.
+ * @param tppdo Direct-axis subtransient rotor time constant (<i>T''do</i>) (&gt; 0).
+ *        Typical value = 0,03.
+ * @param tppqo Quadrature-axis subtransient rotor time constant (<i>T''qo</i>) (&gt; 0).
+ *        Typical value = 0,03.
+ * @param tpqo Quadrature-axis transient rotor time constant (<i>T'qo</i>) (&gt; SynchronousMachineTimeConstantReactance.tppqo).
+ *        Typical value = 0,5.
+ * @param xDirectSubtrans Direct-axis subtransient reactance (unsaturated) (<i>X''d</i>) (&gt; RotatingMachineDynamics.statorLeakageReactance).
+ *        Typical value = 0,2.
+ * @param xDirectSync Direct-axis synchronous reactance (<i>Xd</i>) (&gt;= SynchronousMachineTimeConstantReactance.xDirectTrans).
+ *        The quotient of a sustained value of that AC component of armature voltage that is produced by the total direct-axis flux due to direct-axis armature current and the value of the AC component of this current, the machine running at rated speed.  Typical value = 1,8.
+ * @param xDirectTrans Direct-axis transient reactance (unsaturated) (<i>X'd</i>) (&gt;= SynchronousMachineTimeConstantReactance.xDirectSubtrans).
+ *        Typical value = 0,5.
+ * @param xQuadSubtrans Quadrature-axis subtransient reactance (<i>X''q</i>) (&gt; RotatingMachineDynamics.statorLeakageReactance).
+ *        Typical value = 0,2.
+ * @param xQuadSync Quadrature-axis synchronous reactance (<i>Xq</i>) (&gt;= SynchronousMachineTimeConstantReactance.xQuadTrans).
+ *        The ratio of the component of reactive armature voltage, due to the quadrature-axis component of armature current, to this component of current, under steady state conditions and at rated frequency.  Typical value = 1,6.
+ * @param xQuadTrans Quadrature-axis transient reactance (<i>X'q</i>) (&gt;= SynchronousMachineTimeConstantReactance.xQuadSubtrans).
+ *        Typical value = 0,3.
  * @group SynchronousMachineDynamics
  * @groupname SynchronousMachineDynamics Package SynchronousMachineDynamics
- * @groupdesc SynchronousMachineDynamics For conventional power generating units (e.g., thermal, hydro, combustion turbine), a synchronous machine model represents the electrical characteristics of the generator and the mechanical characteristics of the turbine-generator rotational inertia.  Large industrial motors or groups of similar motors may be represented by individual motor models which are represented as <b>generators with negative active power</b> in the static (power flow) data.  
-
-The interconnection with the electrical network equations may differ among simulation tools.  The tool only needs to know the synchronous machine to establish the correct interconnection.  The interconnection with motor�s equipment could also differ due to input and output signals required by standard models.
+ * @groupdesc SynchronousMachineDynamics For conventional power generating units (e.g., thermal, hydro, combustion turbine), a synchronous machine model represents the electrical characteristics of the generator and the mechanical characteristics of the turbine-generator rotational inertia.  Large industrial motors or groups of similar motors can be represented by individual motor models which are represented as generators with negative active power in the static (power flow) data.  
+The interconnection with the electrical network equations can differ among simulation tools.  The tool only needs to know the synchronous machine to establish the correct interconnection.  The interconnection with the motor�s equipment could also differ due to input and output signals required by standard models.
  */
 case class SynchronousMachineTimeConstantReactance
 (

@@ -8,88 +8,175 @@ import ch.ninecode.cim.Parseable
 import ch.ninecode.cim.Relationship
 
 /**
- * General model for any prime mover with a PID governor, used primarily for combustion turbine and combined cycle units.
+ * Turbine-governor cross-compound function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  *
- * This model can be used to represent a variety of prime movers controlled by PID governors.  It is suitable, for example, for representation of
- *
- * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param aset Acceleration limiter setpoint (Aset).
- *        Unit = PU/sec.  Typical Value = 0.01.
- * @param db Speed governor dead band in per unit speed (db).
- *        In the majority of applications, it is recommended that this value be set to zero.  Typical Value = 0.
- * @param dm Speed sensitivity coefficient (Dm).
- *        Dm can represent either the variation of the engine power with the shaft speed or the variation of maximum power capability with shaft speed.  If it is positive it describes the falling slope of the engine speed verses power characteristic as speed increases. A slightly falling characteristic is typical for reciprocating engines and some aero-derivative turbines.  If it is negative the engine power is assumed to be unaffected by the shaft speed, but the maximum permissible fuel flow is taken to fall with falling shaft speed. This is characteristic of single-shaft industrial turbines due to exhaust temperature limits.  Typical Value = 0.
- * @param ka Acceleration limiter gain (Ka).
- *        Typical Value = 10.
- * @param kdgov Governor derivative gain (Kdgov).
- *        Typical Value = 0.
- * @param kigov Governor integral gain (Kigov).
- *        Typical Value = 2.
- * @param kiload Load limiter integral gain for PI controller (Kiload).
- *        Typical Value = 0.67.
- * @param kimw Power controller (reset) gain (Kimw).
- *        The default value of 0.01 corresponds to a reset time of 100 seconds.  A value of 0.001 corresponds to a relatively slow acting load controller.  Typical Value = 0.01.
- * @param kpgov Governor proportional gain (Kpgov).
- *        Typical Value = 10.
- * @param kpload Load limiter proportional gain for PI controller (Kpload).
- *        Typical Value = 2.
- * @param kturb Turbine gain (Kturb) (&gt;0).
- *        Typical Value = 1.5.
- * @param ldref Load limiter reference value (Ldref).
- *        Typical Value = 1.
- * @param maxerr Maximum value for speed error signal (maxerr).
- *        Typical Value = 0.05.
- * @param minerr Minimum value for speed error signal (minerr).
- *        Typical Value = -0.05.
- * @param mwbase Base for power values (MWbase) (&gt; 0).
- *        Unit = MW.
- * @param r Permanent droop (R).
- *        Typical Value = 0.04.
- * @param rclose Minimum valve closing rate (Rclose).
- *        Unit = PU/sec.  Typical Value = -0.1.
- * @param rdown Maximum rate of load limit decrease (Rdown).
- *        Typical Value = -99.
- * @param ropen Maximum valve opening rate (Ropen).
- *        Unit = PU/sec.  Typical Value = 0.10.
- * @param rselect Feedback signal for droop (Rselect).
- *        Typical Value = electricalPower.
- * @param rup Maximum rate of load limit increase (Rup).
- *        Typical Value = 99.
- * @param ta Acceleration limiter time constant (Ta) (&gt;0).
- *        Typical Value = 0.1.
- * @param tact Actuator time constant (Tact).
- *        Typical Value = 0.5.
- * @param tb Turbine lag time constant (Tb) (&gt;0).
- *        Typical Value = 0.5.
- * @param tc Turbine lead time constant (Tc).
- *        Typical Value = 0.
- * @param tdgov Governor derivative controller time constant (Tdgov).
- *        Typical Value = 1.
- * @param teng Transport time delay for diesel engine used in representing diesel engines where there is a small but measurable transport delay between a change in fuel flow setting and the development of torque (Teng).
- *        Teng should be zero in all but special cases where this transport delay is of particular concern.  Typical Value = 0.
- * @param tfload Load Limiter time constant (Tfload) (&gt;0).
- *        Typical Value = 3.
- * @param tpelec Electrical power transducer time constant (Tpelec) (&gt;0).
- *        Typical Value = 1.
- * @param tsa Temperature detection lead time constant (Tsa).
- *        Typical Value = 4.
- * @param tsb Temperature detection lag time constant (Tsb).
- *        Typical Value = 5.
- * @param vmax Maximum valve position limit (Vmax).
- *        Typical Value = 1.
- * @param vmin Minimum valve position limit (Vmin).
- *        Typical Value = 0.15.
- * @param wfnl No load fuel flow (Wfnl).
- *        Typical Value = 0.2.
- * @param wfspd Switch for fuel source characteristic to recognize that fuel flow, for a given fuel valve stroke, can be proportional to engine speed (Wfspd).
- *        true = fuel flow proportional to speed (for some gas turbines and diesel engines with positive displacement fuel injectors)
- *        false = fuel control system keeps fuel flow independent of engine speed.
- *        Typical Value = true.
+ * @param sup [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
+ * @param HighPressureSynchronousMachineDynamics [[ch.ninecode.model.SynchronousMachineDynamics SynchronousMachineDynamics]] High-pressure synchronous machine with which this cross-compound turbine governor is associated.
+ * @param LowPressureSynchronousMachineDynamics [[ch.ninecode.model.SynchronousMachineDynamics SynchronousMachineDynamics]] Low-pressure synchronous machine with which this cross-compound turbine governor is associated.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
+ */
+case class CrossCompoundTurbineGovernorDynamics
+(
+    override val sup: DynamicsFunctionBlock,
+    HighPressureSynchronousMachineDynamics: String,
+    LowPressureSynchronousMachineDynamics: String
+)
+extends
+    Element
+{
+    /**
+     * Zero args constructor.
+     */
+    def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def DynamicsFunctionBlock: DynamicsFunctionBlock = sup.asInstanceOf[DynamicsFunctionBlock]
+    override def copy (): Row = { clone ().asInstanceOf[CrossCompoundTurbineGovernorDynamics] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = CrossCompoundTurbineGovernorDynamics.cls
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (CrossCompoundTurbineGovernorDynamics.fields (position), value)
+        emitattr (0, HighPressureSynchronousMachineDynamics)
+        emitattr (1, LowPressureSynchronousMachineDynamics)
+        s.toString
+    }
+    override def export: String =
+    {
+        "\t<cim:CrossCompoundTurbineGovernorDynamics rdf:ID=\"%s\">\n%s\t</cim:CrossCompoundTurbineGovernorDynamics>".format (id, export_fields)
+    }
+}
+
+object CrossCompoundTurbineGovernorDynamics
+extends
+    Parseable[CrossCompoundTurbineGovernorDynamics]
+{
+    override val fields: Array[String] = Array[String] (
+        "HighPressureSynchronousMachineDynamics",
+        "LowPressureSynchronousMachineDynamics"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("HighPressureSynchronousMachineDynamics", "SynchronousMachineDynamics", "1", "0..1"),
+        Relationship ("LowPressureSynchronousMachineDynamics", "SynchronousMachineDynamics", "1", "0..1")
+    )
+    val HighPressureSynchronousMachineDynamics: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val LowPressureSynchronousMachineDynamics: Fielder = parse_attribute (attribute (cls, fields(1)))
+
+    def parse (context: Context): CrossCompoundTurbineGovernorDynamics =
+    {
+        implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
+        val ret = CrossCompoundTurbineGovernorDynamics (
+            DynamicsFunctionBlock.parse (context),
+            mask (HighPressureSynchronousMachineDynamics (), 0),
+            mask (LowPressureSynchronousMachineDynamics (), 1)
+        )
+        ret.bitfields = bitfields
+        ret
+    }
+}
+
+/**
+ * General model for any prime mover with a PID governor, used primarily for combustion turbine and combined cycle units.
+ *
+ * This model can be used to represent a variety of prime movers controlled by PID governors.  It is suitable, for example, for the representation of:
+ *
+ * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
+ * @param aset Acceleration limiter setpoint (<i>Aset</i>).
+ *        Unit = PU / s.  Typical value = 0,01.
+ * @param db Speed governor deadband in PU speed (<i>db</i>).
+ *        In the majority of applications, it is recommended that this value be set to zero.  Typical value = 0.
+ * @param dm Speed sensitivity coefficient (<i>Dm</i>).  <i>Dm</i> can represent either the variation of the engine power with the shaft speed or the variation of maximum power capability with shaft speed.
+ *        If it is positive it describes the falling slope of the engine speed verses power characteristic as speed increases. A slightly falling characteristic is typical for reciprocating engines and some aero-derivative turbines.  If it is negative the engine power is assumed to be unaffected by the shaft speed, but the maximum permissible fuel flow is taken to fall with falling shaft speed. This is characteristic of single-shaft industrial turbines due to exhaust temperature limits.  Typical value = 0.
+ * @param ka Acceleration limiter gain (<i>Ka</i>).
+ *        Typical value = 10.
+ * @param kdgov Governor derivative gain (<i>Kdgov</i>).
+ *        Typical value = 0.
+ * @param kigov Governor integral gain (<i>Kigov</i>).
+ *        Typical value = 2.
+ * @param kiload Load limiter integral gain for PI controller (<i>Kiload</i>).
+ *        Typical value = 0,67.
+ * @param kimw Power controller (reset) gain (<i>Kimw</i>).
+ *        The default value of 0,01 corresponds to a reset time of 100 s.  A value of 0,001 corresponds to a relatively slow-acting load controller.  Typical value = 0,01.
+ * @param kpgov Governor proportional gain (<i>Kpgov</i>).
+ *        Typical value = 10.
+ * @param kpload Load limiter proportional gain for PI controller (<i>Kpload</i>).
+ *        Typical value = 2.
+ * @param kturb Turbine gain (<i>Kturb</i>) (&gt; 0).
+ *        Typical value = 1,5.
+ * @param ldref Load limiter reference value (<i>Ldref</i>).
+ *        Typical value = 1.
+ * @param maxerr Maximum value for speed error signal (<i>maxerr</i>) (&gt; GovCT1.minerr).
+ *        Typical value = 0,05.
+ * @param minerr Minimum value for speed error signal (<i>minerr</i>) (&lt; GovCT1.maxerr).
+ *        Typical value = -0,05.
+ * @param mwbase Base for power values (<i>MWbase</i>) (&gt; 0).
+ *        Unit = MW.
+ * @param r Permanent droop (<i>R</i>).
+ *        Typical value = 0,04.
+ * @param rclose Minimum valve closing rate (<i>Rclose</i>).
+ *        Unit = PU / s.  Typical value = -0,1.
+ * @param rdown Maximum rate of load limit decrease (<i>Rdown</i>).
+ *        Typical value = -99.
+ * @param ropen Maximum valve opening rate (<i>Ropen</i>).
+ *        Unit = PU / s.  Typical value = 0.10.
+ * @param rselect Feedback signal for droop (<i>Rselect</i>).
+ *        Typical value = electricalPower.
+ * @param rup Maximum rate of load limit increase (<i>Rup</i>).
+ *        Typical value = 99.
+ * @param ta Acceleration limiter time constant (<i>Ta</i>) (&gt; 0).
+ *        Typical value = 0,1.
+ * @param tact Actuator time constant (<i>Tact</i>) (&gt;= 0).
+ *        Typical value = 0,5.
+ * @param tb Turbine lag time constant (<i>Tb</i>) (&gt; 0).
+ *        Typical value = 0,5.
+ * @param tc Turbine lead time constant (<i>Tc</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tdgov Governor derivative controller time constant (<i>Tdgov</i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param teng Transport time delay for diesel engine used in representing diesel engines where there is a small but measurable transport delay between a change in fuel flow setting and the development of torque (<i>Teng</i>) (&gt;= 0).  <i>Teng</i> should be zero in all but special cases where this transport delay is of particular concern.
+ *        Typical value = 0.
+ * @param tfload Load-limiter time constant (<i>Tfload</i>) (&gt; 0).
+ *        Typical value = 3.
+ * @param tpelec Electrical power transducer time constant (<i>Tpelec</i>) (&gt; 0).
+ *        Typical value = 1.
+ * @param tsa Temperature detection lead time constant (<i>Tsa</i>) (&gt;= 0).
+ *        Typical value = 4.
+ * @param tsb Temperature detection lag time constant (<i>Tsb</i>) (&gt;= 0).
+ *        Typical value = 5.
+ * @param vmax Maximum valve position limit (<i>Vmax</i>) (&gt; GovCT1.vmin).
+ *        Typical value = 1.
+ * @param vmin Minimum valve position limit (<i>Vmin</i>) (&lt; GovCT1.vmax).
+ *        Typical value = 0,15.
+ * @param wfnl No load fuel flow (<i>Wfnl</i>).
+ *        Typical value = 0,2.
+ * @param wfspd Switch for fuel source characteristic to recognize that fuel flow, for a given fuel valve stroke, can be proportional to engine speed (<i>Wfspd</i>).
+ *        true = fuel flow proportional to speed (for some gas turbines and diesel engines with positive displacement fuel injectors)
+ *        false = fuel control system keeps fuel flow independent of engine speed.
+ *        Typical value = true.
+ * @group TurbineGovernorDynamics
+ * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 case class GovCT1
 (
@@ -329,130 +416,130 @@ extends
 }
 
 /**
- * General governor model with frequency-dependent fuel flow limit.
+ * General governor with frequency-dependent fuel flow limit.
  *
  * This model is a modification of the GovCT1<b> </b>model in order to represent the frequency-dependent fuel flow limit of a specific gas turbine manufacturer.
  *
  * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param aset Acceleration limiter setpoint (Aset).
- *        Unit = PU/sec.  Typical Value = 10.
- * @param db Speed governor dead band in per unit speed (db).
- *        In the majority of applications, it is recommended that this value be set to zero.  Typical Value = 0.
- * @param dm Speed sensitivity coefficient (Dm).
- *        Dm can represent either the variation of the engine power with the shaft speed or the variation of maximum power capability with shaft speed.  If it is positive it describes the falling slope of the engine speed verses power characteristic as speed increases. A slightly falling characteristic is typical for reciprocating engines and some aero-derivative turbines.  If it is negative the engine power is assumed to be unaffected by the shaft speed, but the maximum permissible fuel flow is taken to fall with falling shaft speed. This is characteristic of single-shaft industrial turbines due to exhaust temperature limits.  Typical Value = 0.
- * @param flim1 Frequency threshold 1 (Flim1).
- *        Unit = Hz.  Typical Value = 59.
- * @param flim10 Frequency threshold 10 (Flim10).
- *        Unit = Hz.  Typical Value = 0.
- * @param flim2 Frequency threshold 2 (Flim2).
- *        Unit = Hz.  Typical Value = 0.
- * @param flim3 Frequency threshold 3 (Flim3).
- *        Unit = Hz.  Typical Value = 0.
- * @param flim4 Frequency threshold 4 (Flim4).
- *        Unit = Hz.  Typical Value = 0.
- * @param flim5 Frequency threshold 5 (Flim5).
- *        Unit = Hz.  Typical Value = 0.
- * @param flim6 Frequency threshold 6 (Flim6).
- *        Unit = Hz.  Typical Value = 0.
- * @param flim7 Frequency threshold 7 (Flim7).
- *        Unit = Hz.  Typical Value = 0.
- * @param flim8 Frequency threshold 8 (Flim8).
- *        Unit = Hz.  Typical Value = 0.
- * @param flim9 Frequency threshold 9 (Flim9).
- *        Unit = Hz.  Typical Value = 0.
- * @param ka Acceleration limiter Gain (Ka).
- *        Typical Value = 10.
- * @param kdgov Governor derivative gain (Kdgov).
- *        Typical Value = 0.
- * @param kigov Governor integral gain (Kigov).
- *        Typical Value = 0.45.
- * @param kiload Load limiter integral gain for PI controller (Kiload).
- *        Typical Value = 1.
- * @param kimw Power controller (reset) gain (Kimw).
- *        The default value of 0.01 corresponds to a reset time of 100 seconds.  A value of 0.001 corresponds to a relatively slow acting load controller.  Typical Value = 0.
- * @param kpgov Governor proportional gain (Kpgov).
- *        Typical Value = 4.
- * @param kpload Load limiter proportional gain for PI controller (Kpload).
- *        Typical Value = 1.
- * @param kturb Turbine gain (Kturb).
- *        Typical Value = 1.9168.
- * @param ldref Load limiter reference value (Ldref).
- *        Typical Value = 1.
- * @param maxerr Maximum value for speed error signal (Maxerr).
- *        Typical Value = 1.
- * @param minerr Minimum value for speed error signal (Minerr).
- *        Typical Value = -1.
- * @param mwbase Base for power values (MWbase) (&gt; 0).
+ * @param aset Acceleration limiter setpoint (<i>Aset</i>).
+ *        Unit = PU / s.  Typical value = 10.
+ * @param db Speed governor deadband in PU speed (<i>db</i>).
+ *        In the majority of applications, it is recommended that this value be set to zero.  Typical value = 0.
+ * @param dm Speed sensitivity coefficient (<i>Dm</i>).  <i>Dm</i> can represent either the variation of the engine power with the shaft speed or the variation of maximum power capability with shaft speed.
+ *        If it is positive it describes the falling slope of the engine speed verses power characteristic as speed increases. A slightly falling characteristic is typical for reciprocating engines and some aero-derivative turbines.  If it is negative the engine power is assumed to be unaffected by the shaft speed, but the maximum permissible fuel flow is taken to fall with falling shaft speed. This is characteristic of single-shaft industrial turbines due to exhaust temperature limits.  Typical value = 0.
+ * @param flim1 Frequency threshold 1 (<i>Flim1</i>).
+ *        Unit = Hz.  Typical value = 59.
+ * @param flim10 Frequency threshold 10 (<i>Flim10</i>).
+ *        Unit = Hz.  Typical value = 0.
+ * @param flim2 Frequency threshold 2 (<i>Flim2</i>).
+ *        Unit = Hz.  Typical value = 0.
+ * @param flim3 Frequency threshold 3 (<i>Flim3</i>).
+ *        Unit = Hz.  Typical value = 0.
+ * @param flim4 Frequency threshold 4 (<i>Flim4</i>).
+ *        Unit = Hz.  Typical value = 0.
+ * @param flim5 Frequency threshold 5 (<i>Flim5</i>).
+ *        Unit = Hz.  Typical value = 0.
+ * @param flim6 Frequency threshold 6 (<i>Flim6</i>).
+ *        Unit = Hz.  Typical value = 0.
+ * @param flim7 Frequency threshold 7 (<i>Flim7</i>).
+ *        Unit = Hz.  Typical value = 0.
+ * @param flim8 Frequency threshold 8 (<i>Flim8</i>).
+ *        Unit = Hz.  Typical value = 0.
+ * @param flim9 Frequency threshold 9 (<i>Flim9</i>).
+ *        Unit = Hz.  Typical value = 0.
+ * @param ka Acceleration limiter gain (<i>Ka</i>).
+ *        Typical value = 10.
+ * @param kdgov Governor derivative gain (<i>Kdgov</i>).
+ *        Typical value = 0.
+ * @param kigov Governor integral gain (<i>Kigov</i>).
+ *        Typical value = 0,45.
+ * @param kiload Load limiter integral gain for PI controller (<i>Kiload</i>).
+ *        Typical value = 1.
+ * @param kimw Power controller (reset) gain (<i>Kimw</i>).
+ *        The default value of 0,01 corresponds to a reset time of 100 seconds.  A value of 0,001 corresponds to a relatively slow-acting load controller.  Typical value = 0.
+ * @param kpgov Governor proportional gain (<i>Kpgov</i>).
+ *        Typical value = 4.
+ * @param kpload Load limiter proportional gain for PI controller (<i>Kpload</i>).
+ *        Typical value = 1.
+ * @param kturb Turbine gain (<i>Kturb</i>).
+ *        Typical value = 1,9168.
+ * @param ldref Load limiter reference value (<i>Ldref</i>).
+ *        Typical value = 1.
+ * @param maxerr Maximum value for speed error signal (<i>Maxerr</i>) (&gt; GovCT2.minerr).
+ *        Typical value = 1.
+ * @param minerr Minimum value for speed error signal (<i>Minerr</i>) (&lt; GovCT2.maxerr).
+ *        Typical value = -1.
+ * @param mwbase Base for power values (<i>MWbase</i>) (&gt; 0).
  *        Unit = MW.
- * @param plim1 Power limit 1 (Plim1).
- *        Typical Value = 0.8325.
- * @param plim10 Power limit 10 (Plim10).
- *        Typical Value = 0.
+ * @param plim1 Power limit 1 (<i>Plim1</i>).
+ *        Typical value = 0,8325.
+ * @param plim10 Power limit 10 (<i>Plim10</i>).
+ *        Typical value = 0.
  * @param plim2 Power limit 2 (Plim2).
- *        Typical Value = 0.
- * @param plim3 Power limit 3 (Plim3).
- *        Typical Value = 0.
- * @param plim4 Power limit 4 (Plim4).
- *        Typical Value = 0.
- * @param plim5 Power limit 5 (Plim5).
- *        Typical Value = 0.
- * @param plim6 Power limit 6 (Plim6).
- *        Typical Value = 0.
- * @param plim7 Power limit 7 (Plim7).
- *        Typical Value = 0.
- * @param plim8 Power limit 8 (Plim8).
- *        Typical Value = 0.
- * @param plim9 Power Limit 9 (Plim9).
- *        Typical Value = 0.
- * @param prate Ramp rate for frequency-dependent power limit (Prate).
- *        Typical Value = 0.017.
- * @param r Permanent droop (R).
- *        Typical Value = 0.05.
- * @param rclose Minimum valve closing rate (Rclose).
- *        Unit = PU/sec.  Typical Value = -99.
- * @param rdown Maximum rate of load limit decrease (Rdown).
- *        Typical Value = -99.
- * @param ropen Maximum valve opening rate (Ropen).
- *        Unit = PU/sec.  Typical Value = 99.
- * @param rselect Feedback signal for droop (Rselect).
- *        Typical Value = electricalPower.
- * @param rup Maximum rate of load limit increase (Rup).
- *        Typical Value = 99.
- * @param ta Acceleration limiter time constant (Ta).
- *        Typical Value = 1.
- * @param tact Actuator time constant (Tact).
- *        Typical Value = 0.4.
- * @param tb Turbine lag time constant (Tb).
- *        Typical Value = 0.1.
- * @param tc Turbine lead time constant (Tc).
- *        Typical Value = 0.
- * @param tdgov Governor derivative controller time constant (Tdgov).
- *        Typical Value = 1.
- * @param teng Transport time delay for diesel engine used in representing diesel engines where there is a small but measurable transport delay between a change in fuel flow setting and the development of torque (Teng).
- *        Teng should be zero in all but special cases where this transport delay is of particular concern.  Typical Value = 0.
- * @param tfload Load Limiter time constant (Tfload).
- *        Typical Value = 3.
- * @param tpelec Electrical power transducer time constant (Tpelec).
- *        Typical Value = 2.5.
- * @param tsa Temperature detection lead time constant (Tsa).
- *        Typical Value = 0.
- * @param tsb Temperature detection lag time constant (Tsb).
- *        Typical Value = 50.
- * @param vmax Maximum valve position limit (Vmax).
- *        Typical Value = 1.
- * @param vmin Minimum valve position limit (Vmin).
- *        Typical Value = 0.175.
- * @param wfnl No load fuel flow (Wfnl).
- *        Typical Value = 0.187.
- * @param wfspd Switch for fuel source characteristic to recognize that fuel flow, for a given fuel valve stroke, can be proportional to engine speed (Wfspd).
+ *        Typical value = 0.
+ * @param plim3 Power limit 3 (<i>Plim3</i>).
+ *        Typical value = 0.
+ * @param plim4 Power limit 4 (<i>Plim4</i>).
+ *        Typical value = 0.
+ * @param plim5 Power limit 5 (<i>Plim5</i>).
+ *        Typical value = 0.
+ * @param plim6 Power limit 6 (<i>Plim6</i>).
+ *        Typical value = 0.
+ * @param plim7 Power limit 7 (<i>Plim7</i>).
+ *        Typical value = 0.
+ * @param plim8 Power limit 8 (<i>Plim8</i>).
+ *        Typical value = 0.
+ * @param plim9 Power Limit 9 (<i>Plim9</i>).
+ *        Typical value = 0.
+ * @param prate Ramp rate for frequency-dependent power limit (<i>Prate</i>).
+ *        Typical value = 0,017.
+ * @param r Permanent droop (<i>R</i>).
+ *        Typical value = 0,05.
+ * @param rclose Minimum valve closing rate (<i>Rclose</i>).
+ *        Unit = PU / s.  Typical value = -99.
+ * @param rdown Maximum rate of load limit decrease (<i>Rdown</i>).
+ *        Typical value = -99.
+ * @param ropen Maximum valve opening rate (<i>Ropen</i>).
+ *        Unit = PU / s.  Typical value = 99.
+ * @param rselect Feedback signal for droop (<i>Rselect</i>).
+ *        Typical value = electricalPower.
+ * @param rup Maximum rate of load limit increase (<i>Rup</i>).
+ *        Typical value = 99.
+ * @param ta Acceleration limiter time constant (<i>Ta</i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param tact Actuator time constant (<i>Tact</i>) (&gt;= 0).
+ *        Typical value = 0,4.
+ * @param tb Turbine lag time constant (<i>Tb</i>) (&gt;= 0).
+ *        Typical value = 0,1.
+ * @param tc Turbine lead time constant (<i>Tc</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tdgov Governor derivative controller time constant (<i>Tdgov</i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param teng Transport time delay for diesel engine used in representing diesel engines where there is a small but measurable transport delay between a change in fuel flow setting and the development of torque (<i>Teng</i>) (&gt;= 0).  <i>Teng</i> should be zero in all but special cases where this transport delay is of particular concern.
+ *        Typical value = 0.
+ * @param tfload Load limiter time constant (<i>Tfload</i>) (&gt;= 0).
+ *        Typical value = 3.
+ * @param tpelec Electrical power transducer time constant (<i>Tpelec</i>) (&gt;= 0).
+ *        Typical value = 2,5.
+ * @param tsa Temperature detection lead time constant (<i>Tsa</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tsb Temperature detection lag time constant (<i>Tsb</i>) (&gt;= 0).
+ *        Typical value = 50.
+ * @param vmax Maximum valve position limit (<i>Vmax</i>) (&gt; GovCT2.vmin).
+ *        Typical value = 1.
+ * @param vmin Minimum valve position limit (<i>Vmin</i>) (&lt; GovCT2.vmax).
+ *        Typical value = 0,175.
+ * @param wfnl No load fuel flow (<i>Wfnl</i>).
+ *        Typical value = 0,187.
+ * @param wfspd Switch for fuel source characteristic to recognize that fuel flow, for a given fuel valve stroke, can be proportional to engine speed (<i>Wfspd</i>).
  *        true = fuel flow proportional to speed (for some gas turbines and diesel engines with positive displacement fuel injectors)
  *        false = fuel control system keeps fuel flow independent of engine speed.
- *        Typical Value = false.
+ *        Typical value = false.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 case class GovCT2
 (
@@ -800,30 +887,31 @@ extends
  * Single shaft gas turbine.
  *
  * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param at Ambient temperature load limit (Load Limit).
- *        Typical Value = 1.
- * @param dturb Turbine damping factor (Dturb).
- *        Typical Value = 0.18.
- * @param kt Temperature limiter gain (Kt).
- *        Typical Value = 3.
- * @param mwbase Base for power values (MWbase) (&gt; 0).
- * @param r Permanent droop (R).
- *        Typical Value = 0.04.
- * @param t1 Governor mechanism time constant (T1).
- *        T1 represents the natural valve positioning time constant of the governor for small disturbances, as seen when rate limiting is not in effect.  Typical Value = 0.5.
- * @param t2 Turbine power time constant (T2).
- *        T2 represents delay due to internal energy storage of the gas turbine engine. T2 can be used to give a rough approximation to the delay associated with acceleration of the compressor spool of a multi-shaft engine, or with the compressibility of gas in the plenum of a the free power turbine of an aero-derivative unit, for example.  Typical Value = 0.5.
- * @param t3 Turbine exhaust temperature time constant (T3).
- *        Typical Value = 3.
- * @param vmax Maximum turbine power, PU of MWbase (Vmax).
- *        Typical Value = 1.
- * @param vmin Minimum turbine power, PU of MWbase (Vmin).
- *        Typical Value = 0.
+ * @param at Ambient temperature load limit (<i>Load Limit</i>).
+ *        Typical value = 1.
+ * @param dturb Turbine damping factor (<i>Dturb</i>).
+ *        Typical value = 0,18.
+ * @param kt Temperature limiter gain (<i>Kt</i>).
+ *        Typical value = 3.
+ * @param mwbase Base for power values (<i>MWbase</i>) (&gt; 0).
+ *        Unit = MW.
+ * @param r Permanent droop (<i>R</i>) (&gt;0).
+ *        Typical value = 0,04.
+ * @param t1 Governor mechanism time constant (<i>T1</i>) (&gt;= 0).  <i>T1</i> represents the natural valve positioning time constant of the governor for small disturbances, as seen when rate limiting is not in effect.
+ *        Typical value = 0,5.
+ * @param t2 Turbine power time constant (<i>T2</i>) (&gt;= 0).  <i>T2</i> represents delay due to internal energy storage of the gas turbine engine. <i>T2</i> can be used to give a rough approximation to the delay associated with acceleration of the compressor spool of a multi-shaft engine, or with the compressibility of gas in the plenum of a free power turbine of an aero-derivative unit, for example.
+ *        Typical value = 0,5.
+ * @param t3 Turbine exhaust temperature time constant (<i>T3</i>) (&gt;= 0).
+ *        Typical value = 3.
+ * @param vmax Maximum turbine power, PU of MWbase (<i>Vmax</i>) (&gt; GovGAST.vmin).
+ *        Typical value = 1.
+ * @param vmin Minimum turbine power, PU of MWbase (<i>Vmin</i>) (&lt; GovGAST.vmax).
+ *        Typical value = 0.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 case class GovGAST
 (
@@ -940,79 +1028,79 @@ extends
  * Modified single shaft gas turbine.
  *
  * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param a Turbine power time constant numerator scale factor (a).
- *        Typical Value = 0.8.
- * @param b Turbine power time constant denominator scale factor (b).
- *        Typical Value = 1.
- * @param db1 Intentional dead-band width (db1).
- *        Unit = Hz.  Typical Value = 0.
- * @param db2 Unintentional dead-band (db2).
- *        Unit = MW.  Typical Value = 0.
- * @param eps Intentional db hysteresis (eps).
- *        Unit = Hz.  Typical Value = 0.
- * @param fidle Fuel flow at zero power output (Fidle).
- *        Typical Value = 0.18.
- * @param gv1 Nonlinear gain point 1, PU gv (Gv1).
- *        Typical Value = 0.
- * @param gv2 Nonlinear gain point 2,PU gv (Gv2).
- *        Typical Value = 0.
- * @param gv3 Nonlinear gain point 3, PU gv (Gv3).
- *        Typical Value = 0.
- * @param gv4 Nonlinear gain point 4, PU gv (Gv4).
- *        Typical Value = 0.
- * @param gv5 Nonlinear gain point 5, PU gv (Gv5).
- *        Typical Value = 0.
- * @param gv6 Nonlinear gain point 6, PU gv (Gv6).
- *        Typical Value = 0.
- * @param ka Governor gain (Ka).
- *        Typical Value = 0.
- * @param kt Temperature limiter gain (Kt).
- *        Typical Value = 3.
- * @param lmax Ambient temperature load limit (Lmax).
- *        Lmax is the turbine power output corresponding to the limiting exhaust gas temperature.  Typical Value = 1.
- * @param loadinc Valve position change allowed at fast rate (Loadinc).
- *        Typical Value = 0.05.
- * @param ltrate Maximum long term fuel valve opening rate (Ltrate).
- *        Typical Value = 0.02.
- * @param mwbase Base for power values (MWbase) (&gt; 0).
+ * @param a Turbine power time constant numerator scale factor (<i>a</i>).
+ *        Typical value = 0,8.
+ * @param b Turbine power time constant denominator scale factor (<i>b</i>) (&gt;0).
+ *        Typical value = 1.
+ * @param db1 Intentional dead-band width (<i>db1</i>).
+ *        Unit = Hz.  Typical value = 0.
+ * @param db2 Unintentional dead-band (<i>db2</i>).
+ *        Unit = MW.  Typical value = 0.
+ * @param eps Intentional db hysteresis (<i>eps</i>).
+ *        Unit = Hz.  Typical value = 0.
+ * @param fidle Fuel flow at zero power output (<i>Fidle</i>).
+ *        Typical value = 0,18.
+ * @param gv1 Nonlinear gain point 1, PU gv (<i>Gv1</i>).
+ *        Typical value = 0.
+ * @param gv2 Nonlinear gain point 2,PU gv (<i>Gv2</i>).
+ *        Typical value = 0.
+ * @param gv3 Nonlinear gain point 3, PU gv (<i>Gv3</i>).
+ *        Typical value = 0.
+ * @param gv4 Nonlinear gain point 4, PU gv (<i>Gv4</i>).
+ *        Typical value = 0.
+ * @param gv5 Nonlinear gain point 5, PU gv (<i>Gv5</i>).
+ *        Typical value = 0.
+ * @param gv6 Nonlinear gain point 6, PU gv (<i>Gv6</i>).
+ *        Typical value = 0.
+ * @param ka Governor gain (<i>Ka</i>).
+ *        Typical value = 0.
+ * @param kt Temperature limiter gain (<i>Kt</i>).
+ *        Typical value = 3.
+ * @param lmax Ambient temperature load limit (<i>Lmax</i>).  <i>Lmax</i> is the turbine power output corresponding to the limiting exhaust gas temperature.
+ *        Typical value = 1.
+ * @param loadinc Valve position change allowed at fast rate (<i>Loadinc</i>).
+ *        Typical value = 0,05.
+ * @param ltrate Maximum long term fuel valve opening rate (<i>Ltrate</i>).
+ *        Typical value = 0,02.
+ * @param mwbase Base for power values (<i>MWbase</i>) (&gt; 0).
  *        Unit = MW.
- * @param pgv1 Nonlinear gain point 1, PU power (Pgv1).
- *        Typical Value = 0.
- * @param pgv2 Nonlinear gain point 2, PU power (Pgv2).
- *        Typical Value = 0.
- * @param pgv3 Nonlinear gain point 3, PU power (Pgv3).
- *        Typical Value = 0.
- * @param pgv4 Nonlinear gain point 4, PU power (Pgv4).
- *        Typical Value = 0.
- * @param pgv5 Nonlinear gain point 5, PU power (Pgv5).
- *        Typical Value = 0.
- * @param pgv6 Nonlinear gain point 6, PU power (Pgv6).
- *        Typical Value = 0.
- * @param r Permanent droop (R).
- *        Typical Value = 0.04.
- * @param rmax Maximum fuel valve opening rate (Rmax).
- *        Unit = PU/sec.  Typical Value = 1.
- * @param t1 Governor mechanism time constant (T1).
- *        T1 represents the natural valve positioning time constant of the governor for small disturbances, as seen when rate limiting is not in effect.  Typical Value = 0.5.
- * @param t2 Turbine power time constant (T2).
- *        T2 represents delay due to internal energy storage of the gas turbine engine. T2 can be used to give a rough approximation to the delay associated with acceleration of the compressor spool of a multi-shaft engine, or with the compressibility of gas in the plenum of the free power turbine of an aero-derivative unit, for example.  Typical Value = 0.5.
- * @param t3 Turbine exhaust temperature time constant (T3).
- *        T3 represents delay in the exhaust temperature and load limiting system. Typical Value = 3.
- * @param t4 Governor lead time constant (T4).
- *        Typical Value = 0.
- * @param t5 Governor lag time constant (T5).
- *        Typical Value = 0.
- * @param tltr Valve position averaging time constant (Tltr).
- *        Typical Value = 10.
- * @param vmax Maximum turbine power, PU of MWbase (Vmax).
- *        Typical Value = 1.
- * @param vmin Minimum turbine power, PU of MWbase (Vmin).
- *        Typical Value = 0.
+ * @param pgv1 Nonlinear gain point 1, PU power (<i>Pgv1</i>).
+ *        Typical value = 0.
+ * @param pgv2 Nonlinear gain point 2, PU power (<i>Pgv2</i>).
+ *        Typical value = 0.
+ * @param pgv3 Nonlinear gain point 3, PU power (<i>Pgv3</i>).
+ *        Typical value = 0.
+ * @param pgv4 Nonlinear gain point 4, PU power (<i>Pgv4</i>).
+ *        Typical value = 0.
+ * @param pgv5 Nonlinear gain point 5, PU power (<i>Pgv5</i>).
+ *        Typical value = 0.
+ * @param pgv6 Nonlinear gain point 6, PU power (<i>Pgv6</i>).
+ *        Typical value = 0.
+ * @param r Permanent droop (<i>R</i>) (&gt;0).
+ *        Typical value = 0,04.
+ * @param rmax Maximum fuel valve opening rate (<i>Rmax</i>).
+ *        Unit = PU / s.  Typical value = 1.
+ * @param t1 Governor mechanism time constant (<i>T1</i>) (&gt;= 0).  <i>T1</i> represents the natural valve positioning time constant of the governor for small disturbances, as seen when rate limiting is not in effect.
+ *        Typical value = 0,5.
+ * @param t2 Turbine power time constant (<i>T2</i>) (&gt;= 0). <i>T2</i> represents delay due to internal energy storage of the gas turbine engine. <i>T2</i> can be used to give a rough approximation to the delay associated with acceleration of the compressor spool of a multi-shaft engine, or with the compressibility of gas in the plenum of the free power turbine of an aero-derivative unit, for example.
+ *        Typical value = 0,5.
+ * @param t3 Turbine exhaust temperature time constant (<i>T3</i>) (&gt;= 0).  <i>T3</i> represents delay in the exhaust temperature and load limiting system.
+ *        Typical value = 3.
+ * @param t4 Governor lead time constant (<i>T4</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param t5 Governor lag time constant (<i>T5</i>) (&gt;= 0).
+ *        If = 0, entire gain and lead-lag block is bypassed.  Typical value = 0.
+ * @param tltr Valve position averaging time constant (<i>Tltr</i>) (&gt;= 0).
+ *        Typical value = 10.
+ * @param vmax Maximum turbine power, PU of MWbase (<i>Vmax</i>) (&gt; GovGAST1.vmin).
+ *        Typical value = 1.
+ * @param vmin Minimum turbine power, PU of MWbase (<i>Vmin</i>) (&lt; GovGAST1.vmax).
+ *        Typical value = 0.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 case class GovGAST1
 (
@@ -1246,55 +1334,55 @@ extends
 }
 
 /**
- * Gas turbine model.
+ * Gas turbine.
  *
  * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param a Valve positioner (A).
- * @param af1 Exhaust temperature Parameter (Af1).
- *        Unit = per unit temperature.  Based on temperature in degrees C.
- * @param af2 Coefficient equal to 0.5(1-speed) (Af2).
- * @param b Valve positioner (B).
- * @param bf1 (Bf1).
- *        Bf1 = E(1-w) where E (speed sensitivity coefficient) is 0.55 to 0.65 x Tr.  Unit = per unit temperature.  Based on temperature in degrees C.
- * @param bf2 Turbine Torque Coefficient K<sub>hhv</sub> (depends on heating value of fuel stream in combustion chamber) (Bf2).
- * @param c Valve positioner (C).
- * @param cf2 Coefficient defining fuel flow where power output is 0% (Cf2).
- *        Synchronous but no output.  Typically 0.23 x K<sub>hhv</sub> (23% fuel flow).
- * @param ecr Combustion reaction time delay (Ecr).
- * @param etd Turbine and exhaust delay (Etd).
- * @param k3 Ratio of Fuel Adjustment (K3).
- * @param k4 Gain of radiation shield (K4).
- * @param k5 Gain of radiation shield (K5).
- * @param k6 Minimum fuel flow (K6).
- * @param kf Fuel system feedback (Kf).
- * @param mwbase Base for power values (MWbase) (&gt; 0).
+ * @param a Valve positioner (<i>A</i>).
+ * @param af1 Exhaust temperature parameter (<i>Af1</i>).
+ *        Unit = PU temperature.  Based on temperature in degrees C.
+ * @param af2 Coefficient equal to 0,5(1-speed) (<i>Af2</i>).
+ * @param b Valve positioner (<i>B</i>).
+ * @param bf1 (<i>Bf1</i>).  <i>Bf1</i> = <i>E</i>(1 - <i>W</i>) where <i>E</i> (speed sensitivity coefficient) is 0,55 to 0,65 x <i>Tr</i>.
+ *        Unit = PU temperature.  Based on temperature in degrees C.
+ * @param bf2 Turbine torque coefficient K<sub>hhv</sub> (depends on heating value of fuel stream in combustion chamber) (<i>Bf2</i>).
+ * @param c Valve positioner (<i>C</i>).
+ * @param cf2 Coefficient defining fuel flow where power output is 0% (<i>Cf2</i>).
+ *        Synchronous but no output.  Typically 0,23 x K<sub>hhv</sub> (23% fuel flow).
+ * @param ecr Combustion reaction time delay (<i>Ecr</i>) (&gt;= 0).
+ * @param etd Turbine and exhaust delay (<i>Etd</i>) (&gt;= 0).
+ * @param k3 Ratio of fuel adjustment (<i>K3</i>).
+ * @param k4 Gain of radiation shield (<i>K4</i>).
+ * @param k5 Gain of radiation shield (<i>K5</i>).
+ * @param k6 Minimum fuel flow (<i>K6</i>).
+ * @param kf Fuel system feedback (<i>Kf</i>).
+ * @param mwbase Base for power values (<i>MWbase</i>) (&gt; 0).
  *        Unit = MW.
- * @param t Fuel Control Time Constant (T).
- * @param t3 Radiation shield time constant (T3).
- * @param t4 Thermocouple time constant (T4).
- * @param t5 Temperature control time constant (T5).
- * @param tc Temperature control (Tc).
- *        Unit = �F or �C depending on constants Af1 and Bf1.
- * @param tcd Compressor discharge time constant (Tcd).
- * @param tf Fuel system time constant (Tf).
- * @param tmax Maximum Turbine limit (Tmax).
- * @param tmin Minimum Turbine limit (Tmin).
- * @param tr Rated temperature (Tr).
- *        Unit = �C depending on parameters Af1 and Bf1.
- * @param trate Turbine rating (Trate).
+ * @param t Fuel control time constant (<i>T</i>) (&gt;= 0).
+ * @param t3 Radiation shield time constant (<i>T3</i>) (&gt;= 0).
+ * @param t4 Thermocouple time constant (<i>T4</i>) (&gt;= 0).
+ * @param t5 Temperature control time constant (<i>T5</i>) (&gt;= 0).
+ * @param tc Temperature control (<i>Tc</i>).
+ *        Unit = �F or �C depending on parameters <i>Af1</i> and <i>Bf1</i>.
+ * @param tcd Compressor discharge time constant (<i>Tcd</i>) (&gt;= 0).
+ * @param tf Fuel system time constant (<i>Tf</i>) (&gt;= 0).
+ * @param tmax Maximum turbine limit (<i>Tmax</i>) (&gt; GovGAST2.tmin).
+ * @param tmin Minimum turbine limit (<i>Tmin</i>) (&lt; GovGAST2.tmax).
+ * @param tr Rated temperature (<i>Tr</i>).
+ *        Unit = �C depending on parameters<i> Af1 </i>and <i>Bf1</i>.
+ * @param trate Turbine rating (<i>Trate</i>).
  *        Unit = MW.
- * @param tt Temperature controller integration rate (Tt).
- * @param w Governor gain (1/droop) on turbine rating (W).
- * @param x Governor lead time constant (X).
- * @param y Governor lag time constant (Y) (&gt;0).
- * @param z Governor mode (Z).
- *        true = Droop
- *        false = ISO.
+ * @param tt Temperature controller integration rate (<i>Tt</i>) (&gt;= 0).
+ * @param w Governor gain (1/droop) on turbine rating (<i>W</i>).
+ * @param x Governor lead time constant (<i>X</i>) (&gt;= 0).
+ * @param y Governor lag time constant (<i>Y</i>) (&gt; 0).
+ * @param z Governor mode (<i>Z</i>).
+ *        1 = droop
+ *        0 = isochronous.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 case class GovGAST2
 (
@@ -1330,7 +1418,7 @@ case class GovGAST2
     w: Double,
     x: Double,
     y: Double,
-    z: Boolean
+    z: Int
 )
 extends
     Element
@@ -1338,7 +1426,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false) }
+    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0) }
     /**
      * Return the superclass object.
      *
@@ -1510,7 +1598,7 @@ extends
             toDouble (mask (w (), 28)),
             toDouble (mask (x (), 29)),
             toDouble (mask (y (), 30)),
-            toBoolean (mask (z (), 31))
+            toInteger (mask (z (), 31))
         )
         ret.bitfields = bitfields
         ret
@@ -1521,53 +1609,53 @@ extends
  * Generic turbogas with acceleration and temperature controller.
  *
  * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param bca Acceleration limit set-point (Bca).
- *        Unit = 1/s.  Typical Value = 0.01.
- * @param bp Droop (bp).
- *        Typical Value = 0.05.
- * @param dtc Exhaust temperature variation due to fuel flow increasing from 0 to 1 PU (deltaTc).
- *        Typical Value = 390.
- * @param ka Minimum fuel flow (Ka).
- *        Typical Value = 0.23.
- * @param kac Fuel system feedback (K<sub>AC</sub>).
- *        Typical Value = 0.
- * @param kca Acceleration control integral gain (Kca).
- *        Unit = 1/s.  Typical Value = 100.
- * @param ksi Gain of radiation shield (Ksi).
- *        Typical Value = 0.8.
- * @param ky Coefficient of transfer function of fuel valve positioner (Ky).
- *        Typical Value = 1.
- * @param mnef Fuel flow maximum negative error value (MN<sub>EF</sub>).
- *        Typical Value = -0.05.
- * @param mxef Fuel flow maximum positive error value (MX<sub>EF</sub>).
- *        Typical Value = 0.05.
- * @param rcmn Minimum fuel flow (RCMN).
- *        Typical Value = -0.1.
- * @param rcmx Maximum fuel flow (RCMX).
- *        Typical Value = 1.
- * @param tac Fuel control time constant (Tac).
- *        Typical Value = 0.1.
- * @param tc Compressor discharge volume time constant (Tc).
- *        Typical Value = 0.2.
- * @param td Temperature controller derivative gain (Td).
- *        Typical Value = 3.3.
- * @param tfen Turbine rated exhaust temperature correspondent to Pm=1 PU (Tfen).
- *        Typical Value = 540.
- * @param tg Time constant of speed governor (Tg).
- *        Typical Value = 0.05.
- * @param tsi Time constant of radiation shield (Tsi).
- *        Typical Value = 15.
- * @param tt Temperature controller integration rate (Tt).
- *        Typical Value = 250.
- * @param ttc Time constant of thermocouple (Ttc).
- *        Typical Value = 2.5.
- * @param ty Time constant of fuel valve positioner (Ty).
- *        Typical Value = 0.2.
+ * @param bca Acceleration limit set-point (<i>Bca</i>).
+ *        Unit = 1/s.  Typical value = 0,01.
+ * @param bp Droop (<i>bp</i>).
+ *        Typical value = 0,05.
+ * @param dtc Exhaust temperature variation due to fuel flow increasing from 0 to 1 PU (<i>deltaTc</i>).
+ *        Typical value = 390.
+ * @param ka Minimum fuel flow (<i>Ka</i>).
+ *        Typical value = 0,23.
+ * @param kac Fuel system feedback (<i>K</i><i><sub>AC</sub></i>).
+ *        Typical value = 0.
+ * @param kca Acceleration control integral gain (<i>Kca</i>).
+ *        Unit = 1/s.  Typical value = 100.
+ * @param ksi Gain of radiation shield (<i>Ksi</i>).
+ *        Typical value = 0,8.
+ * @param ky Coefficient of transfer function of fuel valve positioner (<i>Ky</i>).
+ *        Typical value = 1.
+ * @param mnef Fuel flow maximum negative error value (<i>MNef</i>).
+ *        Typical value = -0,05.
+ * @param mxef Fuel flow maximum positive error value (<i>MXef</i>).
+ *        Typical value = 0,05.
+ * @param rcmn Minimum fuel flow (<i>RCMN</i>).
+ *        Typical value = -0,1.
+ * @param rcmx Maximum fuel flow (<i>RCMX</i>).
+ *        Typical value = 1.
+ * @param tac Fuel control time constant (<i>Tac</i>) (&gt;= 0).
+ *        Typical value = 0,1.
+ * @param tc Compressor discharge volume time constant (<i>Tc</i>) (&gt;= 0).
+ *        Typical value = 0,2.
+ * @param td Temperature controller derivative gain (<i>Td</i>) (&gt;= 0).
+ *        Typical value = 3,3.
+ * @param tfen Turbine rated exhaust temperature correspondent to Pm=1 PU (<i>Tfen</i>).
+ *        Typical value = 540.
+ * @param tg Time constant of speed governor (<i>Tg</i>) (&gt;= 0).
+ *        Typical value = 0,05.
+ * @param tsi Time constant of radiation shield (<i>Tsi</i>) (&gt;= 0).
+ *        Typical value = 15.
+ * @param tt Temperature controller integration rate (<i>Tt</i>).
+ *        Typical value = 250.
+ * @param ttc Time constant of thermocouple (<i>Ttc</i>) (&gt;= 0).
+ *        Typical value = 2,5.
+ * @param ty Time constant of fuel valve positioner (<i>Ty</i>) (&gt;= 0).
+ *        Typical value = 0,2.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 case class GovGAST3
 (
@@ -1739,33 +1827,33 @@ extends
  * Generic turbogas.
  *
  * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param bp Droop (bp).
- *        Typical Value = 0.05.
- * @param ktm Compressor gain (K<sub>tm</sub>).
- *        Typical Value = 0.
- * @param mnef Fuel flow maximum negative error value (MN<sub>EF</sub>).
- *        Typical Value = -0.05.
- * @param mxef Fuel flow maximum positive error value (MX<sub>EF</sub>).
- *        Typical Value = 0.05.
- * @param rymn Minimum valve opening (RYMN).
- *        Typical Value = 0.
- * @param rymx Maximum valve opening (RYMX).
- *        Typical Value = 1.1.
- * @param ta Maximum gate opening velocity (T<sub>A</sub>).
- *        Typical Value = 3.
- * @param tc Maximum gate closing velocity (T<sub>c</sub>).
- *        Typical Value = 0.5.
- * @param tcm Fuel control time constant (T<sub>cm</sub>).
- *        Typical Value = 0.1.
- * @param tm Compressor discharge volume time constant (T<sub>m</sub>).
- *        Typical Value = 0.2.
- * @param tv Time constant of fuel valve positioner (T<sub>y</sub>).
- *        Typical Value = 0.1.
+ * @param bp Droop (<i>b</i><i><sub>p</sub></i>).
+ *        Typical value = 0,05.
+ * @param ktm Compressor gain (<i>Ktm</i>).
+ *        Typical value = 0.
+ * @param mnef Fuel flow maximum negative error value (<i>MNef</i>).
+ *        Typical value = -0,05.
+ * @param mxef Fuel flow maximum positive error value (<i>MXef</i>).
+ *        Typical value = 0,05.
+ * @param rymn Minimum valve opening (<i>RYMN</i>).
+ *        Typical value = 0.
+ * @param rymx Maximum valve opening (<i>RYMX</i>).
+ *        Typical value = 1,1.
+ * @param ta Maximum gate opening velocity (<i>TA</i>) (&gt;= 0).
+ *        Typical value = 3.
+ * @param tc Maximum gate closing velocity (<i>TC</i>) (&gt;= 0).
+ *        Typical value = 0,5.
+ * @param tcm Fuel control time constant (<i>Tcm</i>) (&gt;= 0).
+ *        Typical value = 0,1.
+ * @param tm Compressor discharge volume time constant (<i>Tm</i>) (&gt;= 0).
+ *        Typical value = 0,2.
+ * @param ty Time constant of fuel valve positioner (<i>Ty</i>) (&gt;= 0).
+ *        Typical value = 0,1.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 case class GovGAST4
 (
@@ -1780,7 +1868,7 @@ case class GovGAST4
     tc: Double,
     tcm: Double,
     tm: Double,
-    tv: Double
+    ty: Double
 )
 extends
     Element
@@ -1822,7 +1910,7 @@ extends
         emitelem (7, tc)
         emitelem (8, tcm)
         emitelem (9, tm)
-        emitelem (10, tv)
+        emitelem (10, ty)
         s.toString
     }
     override def export: String =
@@ -1846,7 +1934,7 @@ extends
         "tc",
         "tcm",
         "tm",
-        "tv"
+        "ty"
     )
     val bp: Fielder = parse_element (element (cls, fields(0)))
     val ktm: Fielder = parse_element (element (cls, fields(1)))
@@ -1858,7 +1946,7 @@ extends
     val tc: Fielder = parse_element (element (cls, fields(7)))
     val tcm: Fielder = parse_element (element (cls, fields(8)))
     val tm: Fielder = parse_element (element (cls, fields(9)))
-    val tv: Fielder = parse_element (element (cls, fields(10)))
+    val ty: Fielder = parse_element (element (cls, fields(10)))
 
     def parse (context: Context): GovGAST4 =
     {
@@ -1876,7 +1964,7 @@ extends
             toDouble (mask (tc (), 7)),
             toDouble (mask (tcm (), 8)),
             toDouble (mask (tm (), 9)),
-            toDouble (mask (tv (), 10))
+            toDouble (mask (ty (), 10))
         )
         ret.bitfields = bitfields
         ret
@@ -1884,51 +1972,53 @@ extends
 }
 
 /**
- * Woodward Gas turbine governor model.
+ * Woodward� gas turbine governor.
+ * [Footnote: Woodward gas turbines are an example of suitable products available commercially.
+ *
+ * This information is given for the convenience of users of this document and does not constitute an endorsement by IEC of these products.]
  *
  * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
  * @param a Valve positioner (<i>A</i>).
- * @param af1 Exhaust temperature Parameter (Af1).
- * @param af2 Coefficient equal to 0.5(1-speed) (Af2).
+ * @param af1 Exhaust temperature parameter (<i>Af1</i>).
+ * @param af2 Coefficient equal to 0,5(1-speed) (<i>Af2</i>).
  * @param b Valve positioner (<i>B</i>).
- * @param bf1 (Bf1).
- *        Bf1 = E(1-w) where E (speed sensitivity coefficient) is 0.55 to 0.65 x Tr.
- * @param bf2 Turbine Torque Coefficient K<sub>hhv</sub> (depends on heating value of fuel stream in combustion chamber) (Bf2).
+ * @param bf1 (<i>Bf1</i>).  <i>Bf1</i> = <i>E</i>(1-<i>w</i>) where <i>E</i> (speed sensitivity coefficient) is 0,55 to 0,65 x <i>Tr</i>.
+ * @param bf2 Turbine torque coefficient K<sub>hhv</sub> (depends on heating value of fuel stream in combustion chamber) (<i>Bf2</i>).
  * @param c Valve positioner (<i>C</i>).
- * @param cf2 Coefficient defining fuel flow where power output is 0% (Cf2).
- *        Synchronous but no output.  Typically 0.23 x K<sub>hhv </sub>(23% fuel flow).
- * @param ecr Combustion reaction time delay (Ecr).
- * @param etd Turbine and exhaust delay (Etd).
- * @param k3 Ratio of Fuel Adjustment (K3).
- * @param k4 Gain of radiation shield (K4).
- * @param k5 Gain of radiation shield (K5).
- * @param k6 Minimum fuel flow (K6).
- * @param kd Drop Governor Gain (Kd).
- * @param kdroop (Kdroop).
- * @param kf Fuel system feedback (Kf).
- * @param ki Isochronous Governor Gain (Ki).
- * @param kp PID Proportional gain (Kp).
- * @param mwbase Base for power values (MWbase) (&gt; 0).
+ * @param cf2 Coefficient defining fuel flow where power output is 0 % (<i>Cf2</i>).
+ *        Synchronous but no output.  Typically 0,23 x K<sub>hhv </sub>(23 % fuel flow).
+ * @param ecr Combustion reaction time delay (<i>Ecr</i>) (&gt;= 0).
+ * @param etd Turbine and exhaust delay (<i>Etd</i>) (&gt;= 0).
+ * @param k3 Ratio of fuel adjustment (<i>K3</i>).
+ * @param k4 Gain of radiation shield (<i>K4</i>).
+ * @param k5 Gain of radiation shield (<i>K5</i>).
+ * @param k6 Minimum fuel flow (<i>K6</i>).
+ * @param kd Drop governor gain (<i>Kd</i>).
+ * @param kdroop (<i>Kdroop</i>) (&gt;= 0).
+ * @param kf Fuel system feedback (<i>Kf</i>).
+ * @param ki Isochronous Governor Gain (<i>Ki</i>).
+ * @param kp PID proportional gain (<i>Kp</i>).
+ * @param mwbase Base for power values (<i>MWbase</i>) (&gt; 0).
  *        Unit = MW.
- * @param t Fuel Control Time Constant (T).
- * @param t3 Radiation shield time constant (T3).
- * @param t4 Thermocouple time constant (T4).
- * @param t5 Temperature control time constant (T5).
- * @param tc Temperature control (Tc).
- * @param tcd Compressor discharge time constant (Tcd).
- * @param td Power transducer time constant (Td).
- * @param tf Fuel system time constant (Tf).
- * @param tmax Maximum Turbine limit (Tmax).
- * @param tmin Minimum Turbine limit (Tmin).
- * @param tr Rated temperature (Tr).
- * @param trate Turbine rating (Trate).
+ * @param t Fuel control time constant (<i>T</i>) (&gt;= 0).
+ * @param t3 Radiation shield time constant (<i>T3</i>) (&gt;= 0).
+ * @param t4 Thermocouple time constant (<i>T4</i>) (&gt;= 0).
+ * @param t5 Temperature control time constant (<i>T5</i>) (&gt;= 0).
+ * @param tc Temperature control (<i>Tc</i>).
+ * @param tcd Compressor discharge time constant (<i>Tcd</i>) (&gt;= 0).
+ * @param td Power transducer time constant (<i>Td</i>) (&gt;= 0).
+ * @param tf Fuel system time constant (<i>Tf</i>) (&gt;= 0).
+ * @param tmax Maximum Turbine limit (<i>Tmax</i>) (&gt; GovGASTWD.tmin).
+ * @param tmin Minimum turbine limit (<i>Tmin</i>) (&lt; GovGASTWD.tmax).
+ * @param tr Rated temperature (<i>Tr</i>).
+ * @param trate Turbine rating (<i>Trate</i>).
  *        Unit = MW.
- * @param tt Temperature controller integration rate (Tt).
+ * @param tt Temperature controller integration rate (<i>Tt</i>) (&gt;= 0).
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 case class GovGASTWD
 (
@@ -2157,42 +2247,42 @@ extends
 }
 
 /**
- * Basic Hydro turbine governor model.
+ * Basic hydro turbine governor.
  *
  * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param at Turbine gain (At) (&gt;0).
- *        Typical Value = 1.2.
- * @param dturb Turbine damping factor (Dturb) (&gt;=0).
- *        Typical Value = 0.5.
- * @param gmax Maximum gate opening (Gmax) (&gt;0).
- *        Typical Value = 1.
- * @param gmin Minimum gate opening (Gmin) (&gt;=0).
- *        Typical Value = 0.
- * @param hdam Turbine nominal head (hdam).
- *        Typical Value = 1.
- * @param mwbase Base for power values (MWbase) (&gt; 0).
+ * @param at Turbine gain (<i>At</i>) (&gt; 0).
+ *        Typical value = 1,2.
+ * @param dturb Turbine damping factor (<i>Dturb</i>) (&gt;= 0).
+ *        Typical value = 0,5.
+ * @param gmax Maximum gate opening (<i>Gmax</i>) (&gt; 0 and &gt; GovHydro.gmin).
+ *        Typical value = 1.
+ * @param gmin Minimum gate opening (<i>Gmin</i>) (&gt;= 0 and &lt; GovHydro1.gmax).
+ *        Typical value = 0.
+ * @param hdam Turbine nominal head (<i>hdam</i>).
+ *        Typical value = 1.
+ * @param mwbase Base for power values (<i>MWbase</i>) (&gt; 0).
  *        Unit = MW.
- * @param qnl No-load flow at nominal head (qnl) (&gt;=0).
- *        Typical Value = 0.08.
- * @param rperm Permanent droop (R) (&gt;0).
- *        Typical Value = 0.04.
- * @param rtemp Temporary droop (r) (&gt;R).
- *        Typical Value = 0.3.
- * @param tf Filter time constant (<i>Tf</i>) (&gt;0).
- *        Typical Value = 0.05.
- * @param tg Gate servo time constant (Tg) (&gt;0).
- *        Typical Value = 0.5.
- * @param tr Washout time constant (Tr) (&gt;0).
- *        Typical Value = 5.
- * @param tw Water inertia time constant (Tw) (&gt;0).
- *        Typical Value = 1.
- * @param velm Maximum gate velocity (Vlem) (&gt;0).
- *        Typical Value = 0.2.
+ * @param qnl No-load flow at nominal head (<i>qnl</i>) (&gt;= 0).
+ *        Typical value = 0,08.
+ * @param rperm Permanent droop (<i>R</i>) (&gt; 0).
+ *        Typical value = 0,04.
+ * @param rtemp Temporary droop (<i>r</i>) (&gt; GovHydro1.rperm).
+ *        Typical value = 0,3.
+ * @param tf Filter time constant (<i>Tf</i>) (&gt; 0).
+ *        Typical value = 0,05.
+ * @param tg Gate servo time constant (<i>Tg</i>) (&gt; 0).
+ *        Typical value = 0,5.
+ * @param tr Washout time constant (<i>Tr</i>) (&gt; 0).
+ *        Typical value = 5.
+ * @param tw Water inertia time constant (<i>Tw</i>) (&gt; 0).
+ *        Typical value = 1.
+ * @param velm Maximum gate velocity (<i>Vlem</i>) (&gt; 0).
+ *        Typical value = 0,2.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 case class GovHydro1
 (
@@ -2326,72 +2416,72 @@ extends
 }
 
 /**
- * IEEE hydro turbine governor model represents plants with straightforward penstock configurations and hydraulic-dashpot governors.
+ * IEEE hydro turbine governor with straightforward penstock configuration and hydraulic-dashpot governor.
  *
  * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param aturb Turbine numerator multiplier (Aturb).
- *        Typical Value = -1.
- * @param bturb Turbine denominator multiplier (Bturb).
- *        Typical Value = 0.5.
- * @param db1 Intentional deadband width (db1).
- *        Unit = Hz.  Typical Value = 0.
- * @param db2 Unintentional deadband (db2).
- *        Unit = MW.  Typical Value = 0.
- * @param eps Intentional db hysteresis (eps).
- *        Unit = Hz.  Typical Value = 0.
- * @param gv1 Nonlinear gain point 1, PU gv (Gv1).
- *        Typical Value = 0.
- * @param gv2 Nonlinear gain point 2, PU gv (Gv2).
- *        Typical Value = 0.
- * @param gv3 Nonlinear gain point 3, PU gv (Gv3).
- *        Typical Value = 0.
- * @param gv4 Nonlinear gain point 4, PU gv (Gv4).
- *        Typical Value = 0.
- * @param gv5 Nonlinear gain point 5, PU gv (Gv5).
- *        Typical Value = 0.
- * @param gv6 Nonlinear gain point 6, PU gv (Gv6).
- *        Typical Value = 0.
- * @param kturb Turbine gain (Kturb).
- *        Typical Value = 1.
- * @param mwbase Base for power values (MWbase) (&gt; 0).
+ * @param aturb Turbine numerator multiplier (<i>Aturb</i>).
+ *        Typical value = -1.
+ * @param bturb Turbine denominator multiplier (<i>Bturb</i>) (&gt; 0).
+ *        Typical value = 0,5.
+ * @param db1 Intentional deadband width (<i>db1</i>).
+ *        Unit = Hz.  Typical value = 0.
+ * @param db2 Unintentional deadband (<i>db2</i>).
+ *        Unit = MW.  Typical value = 0.
+ * @param eps Intentional db hysteresis (<i>eps</i>).
+ *        Unit = Hz.  Typical value = 0.
+ * @param gv1 Nonlinear gain point 1, PU gv (<i>Gv1</i>).
+ *        Typical value = 0.
+ * @param gv2 Nonlinear gain point 2, PU gv (<i>Gv2</i>).
+ *        Typical value = 0.
+ * @param gv3 Nonlinear gain point 3, PU gv (<i>Gv3</i>).
+ *        Typical value = 0.
+ * @param gv4 Nonlinear gain point 4, PU gv (<i>Gv4</i>).
+ *        Typical value = 0.
+ * @param gv5 Nonlinear gain point 5, PU gv (<i>Gv5</i>).
+ *        Typical value = 0.
+ * @param gv6 Nonlinear gain point 6, PU gv (<i>Gv6</i>).
+ *        Typical value = 0.
+ * @param kturb Turbine gain (<i>Kturb</i>).
+ *        Typical value = 1.
+ * @param mwbase Base for power values (<i>MWbase</i>) (&gt; 0).
  *        Unit = MW.
- * @param pgv1 Nonlinear gain point 1, PU power (Pgv1).
- *        Typical Value = 0.
- * @param pgv2 Nonlinear gain point 2, PU power (Pgv2).
- *        Typical Value = 0.
- * @param pgv3 Nonlinear gain point 3, PU power (Pgv3).
- *        Typical Value = 0.
- * @param pgv4 Nonlinear gain point 4, PU power (Pgv4).
- *        Typical Value = 0.
- * @param pgv5 Nonlinear gain point 5, PU power (Pgv5).
- *        Typical Value = 0.
- * @param pgv6 Nonlinear gain point 6, PU power (Pgv6).
- *        Typical Value = 0.
- * @param pmax Maximum gate opening (Pmax).
- *        Typical Value = 1.
- * @param pmin Minimum gate opening; (<i>Pmin</i>).
- *        Typical Value = 0.
- * @param rperm Permanent droop (Rperm).
- *        Typical Value = 0.05.
- * @param rtemp Temporary droop (Rtemp).
- *        Typical Value = 0.5.
- * @param tg Gate servo time constant (Tg).
- *        Typical Value = 0.5.
- * @param tp Pilot servo valve time constant (Tp).
- *        Typical Value = 0.03.
- * @param tr Dashpot time constant (Tr).
- *        Typical Value = 12.
- * @param tw Water inertia time constant (Tw).
- *        Typical Value = 2.
- * @param uc Maximum gate closing velocity (Uc) (&lt;0).
- *        Unit = PU/sec.   Typical Value = -0.1.
- * @param uo Maximum gate opening velocity (Uo).
- *        Unit = PU/sec.  Typical Value = 0.1.
+ * @param pgv1 Nonlinear gain point 1, PU power (<i>Pgv1</i>).
+ *        Typical value = 0.
+ * @param pgv2 Nonlinear gain point 2, PU power (<i>Pgv2</i>).
+ *        Typical value = 0.
+ * @param pgv3 Nonlinear gain point 3, PU power (<i>Pgv3</i>).
+ *        Typical value = 0.
+ * @param pgv4 Nonlinear gain point 4, PU power (P<i>gv4</i>).
+ *        Typical value = 0.
+ * @param pgv5 Nonlinear gain point 5, PU power (<i>Pgv5</i>).
+ *        Typical value = 0.
+ * @param pgv6 Nonlinear gain point 6, PU power (<i>Pgv6</i>).
+ *        Typical value = 0.
+ * @param pmax Maximum gate opening (<i>Pmax</i>) (&gt; GovHydro2.pmin).
+ *        Typical value = 1.
+ * @param pmin Minimum gate opening (<i>Pmin</i>) (&lt; GovHydro2.pmax).
+ *        Typical value = 0.
+ * @param rperm Permanent droop (<i>Rperm</i>).
+ *        Typical value = 0,05.
+ * @param rtemp Temporary droop (<i>Rtemp</i>).
+ *        Typical value = 0,5.
+ * @param tg Gate servo time constant (<i>Tg</i>) (&gt; 0).
+ *        Typical value = 0,5.
+ * @param tp Pilot servo valve time constant (<i>Tp</i>) (&gt;= 0).
+ *        Typical value = 0,03.
+ * @param tr Dashpot time constant (<i>Tr</i>) (&gt;= 0).
+ *        Typical value = 12.
+ * @param tw Water inertia time constant (<i>Tw</i>) (&gt;= 0).
+ *        Typical value = 2.
+ * @param uc Maximum gate closing velocity (<i>Uc</i>) (&lt; 0).
+ *        Unit = PU / s.   Typical value = -0,1.
+ * @param uo Maximum gate opening velocity (<i>Uo</i>).
+ *        Unit = PU / s.  Typical value = 0,1.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 case class GovHydro2
 (
@@ -2600,90 +2690,90 @@ extends
 }
 
 /**
- * Modified IEEE Hydro Governor-Turbine Model.
+ * Modified IEEE hydro governor-turbine.
  *
- * This model differs from that defined in the IEEE modeling guideline paper in that the limits on gate position and velocity do not permit "wind up" of the upstream signals.
+ * This model differs from that defined in the IEEE modelling guideline paper in that the limits on gate position and velocity do not permit "wind up" of the upstream signals.
  *
  * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param at Turbine gain (At).
- *        Typical Value = 1.2.
- * @param db1 Intentional dead-band width (db1).
- *        Unit = Hz.  Typical Value = 0.
- * @param db2 Unintentional dead-band (db2).
- *        Unit = MW.  Typical Value = 0.
- * @param dturb Turbine damping factor (Dturb).
- *        Typical Value = 0.2.
- * @param eps Intentional db hysteresis (eps).
- *        Unit = Hz.  Typical Value = 0.
- * @param governorControl Governor control flag (Cflag).
+ * @param at Turbine gain (<i>At</i>) (&gt;0).
+ *        Typical value = 1,2.
+ * @param db1 Intentional dead-band width (<i>db1</i>).
+ *        Unit = Hz.  Typical value = 0.
+ * @param db2 Unintentional dead-band (<i>db2</i>).
+ *        Unit = MW.  Typical value = 0.
+ * @param dturb Turbine damping factor (<i>Dturb</i>).
+ *        Typical value = 0,2.
+ * @param eps Intentional db hysteresis (<i>eps</i>).
+ *        Unit = Hz.  Typical value = 0.
+ * @param governorControl Governor control flag (<i>Cflag</i>).
  *        true = PID control is active
  *        false = double derivative control is active.
- *        Typical Value = true.
- * @param gv1 Nonlinear gain point 1, PU gv (Gv1).
- *        Typical Value = 0.
- * @param gv2 Nonlinear gain point 2, PU gv (Gv2).
- *        Typical Value = 0.
- * @param gv3 Nonlinear gain point 3, PU gv (Gv3).
- *        Typical Value = 0.
- * @param gv4 Nonlinear gain point 4, PU gv (Gv4).
- *        Typical Value = 0.
- * @param gv5 Nonlinear gain point 5, PU gv (Gv5).
- *        Typical Value = 0.
- * @param gv6 Nonlinear gain point 6, PU gv (Gv6).
- *        Typical Value = 0.
- * @param h0 Turbine nominal head (H0).
- *        Typical Value = 1.
- * @param k1 Derivative gain (K1).
- *        Typical Value = 0.01.
- * @param k2 Double derivative gain, if Cflag = -1 (K2).
- *        Typical Value = 2.5.
- * @param kg Gate servo gain (Kg).
- *        Typical Value = 2.
- * @param ki Integral gain (Ki).
- *        Typical Value = 0.5.
- * @param mwbase Base for power values (MWbase) (&gt; 0).
+ *        Typical value = true.
+ * @param gv1 Nonlinear gain point 1, PU gv (<i>Gv1</i>).
+ *        Typical value = 0.
+ * @param gv2 Nonlinear gain point 2, PU gv (<i>Gv2</i>).
+ *        Typical value = 0.
+ * @param gv3 Nonlinear gain point 3, PU gv (<i>Gv3</i>).
+ *        Typical value = 0.
+ * @param gv4 Nonlinear gain point 4, PU gv (<i>Gv4</i>).
+ *        Typical value = 0.
+ * @param gv5 Nonlinear gain point 5, PU gv (<i>Gv5</i>).
+ *        Typical value = 0.
+ * @param gv6 Nonlinear gain point 6, PU gv (<i>Gv6</i>).
+ *        Typical value = 0.
+ * @param h0 Turbine nominal head (<i>H0</i>).
+ *        Typical value = 1.
+ * @param k1 Derivative gain (<i>K1</i>).
+ *        Typical value = 0,01.
+ * @param k2 Double derivative gain, if <i>Cflag</i> = -1 (<i>K2</i>).
+ *        Typical value = 2,5.
+ * @param kg Gate servo gain (<i>Kg</i>).
+ *        Typical value = 2.
+ * @param ki Integral gain (<i>Ki</i>).
+ *        Typical value = 0,5.
+ * @param mwbase Base for power values (<i>MWbase</i>) (&gt; 0).
  *        Unit = MW.
- * @param pgv1 Nonlinear gain point 1, PU power (Pgv1).
- *        Typical Value = 0.
- * @param pgv2 Nonlinear gain point 2, PU power (Pgv2).
- *        Typical Value = 0.
- * @param pgv3 Nonlinear gain point 3, PU power (Pgv3).
- *        Typical Value = 0.
- * @param pgv4 Nonlinear gain point 4, PU power (Pgv4).
- *        Typical Value = 0.
- * @param pgv5 Nonlinear gain point 5, PU power (Pgv5).
- *        Typical Value = 0.
- * @param pgv6 Nonlinear gain point 6, PU power (Pgv6).
- *        Typical Value = 0.
- * @param pmax Maximum gate opening, PU of MWbase (Pmax).
- *        Typical Value = 1.
- * @param pmin Minimum gate opening, PU of MWbase (Pmin).
- *        Typical Value = 0.
- * @param qnl No-load turbine flow at nominal head (Qnl).
- *        Typical Value = 0.08.
- * @param relec Steady-state droop, PU, for electrical power feedback (Relec).
- *        Typical Value = 0.05.
- * @param rgate Steady-state droop, PU, for governor output feedback (Rgate).
- *        Typical Value = 0.
- * @param td Input filter time constant (Td).
- *        Typical Value = 0.05.
- * @param tf Washout time constant (Tf).
- *        Typical Value = 0.1.
- * @param tp Gate servo time constant (Tp).
- *        Typical Value = 0.05.
- * @param tt Power feedback time constant (Tt).
- *        Typical Value = 0.2.
- * @param tw Water inertia time constant (Tw).
- *        Typical Value = 1.
- * @param velcl Maximum gate closing velocity (Velcl).
- *        Unit = PU/sec.  Typical Value = -0.2.
- * @param velop Maximum gate opening velocity (Velop).
- *        Unit = PU/sec. Typical Value = 0.2.
+ * @param pgv1 Nonlinear gain point 1, PU power (<i>Pgv1</i>).
+ *        Typical value = 0.
+ * @param pgv2 Nonlinear gain point 2, PU power (<i>Pgv2</i>).
+ *        Typical value = 0.
+ * @param pgv3 Nonlinear gain point 3, PU power (<i>Pgv3</i>).
+ *        Typical value = 0.
+ * @param pgv4 Nonlinear gain point 4, PU power (<i>Pgv4</i>).
+ *        Typical value = 0.
+ * @param pgv5 Nonlinear gain point 5, PU power (<i>Pgv5</i>).
+ *        Typical value = 0.
+ * @param pgv6 Nonlinear gain point 6, PU power (<i>Pgv6</i>).
+ *        Typical value = 0.
+ * @param pmax Maximum gate opening, PU of MWbase (<i>Pmax</i>) (&gt; GovHydro3.pmin).
+ *        Typical value = 1.
+ * @param pmin Minimum gate opening, PU of <i>MWbase</i> (<i>Pmin</i>) (&lt; GovHydro3.pmax).
+ *        Typical value = 0.
+ * @param qnl No-load turbine flow at nominal head (<i>Qnl</i>).
+ *        Typical value = 0,08.
+ * @param relec Steady-state droop, PU, for electrical power feedback (<i>Relec</i>).
+ *        Typical value = 0,05.
+ * @param rgate Steady-state droop, PU, for governor output feedback (<i>Rgate</i>).
+ *        Typical value = 0.
+ * @param td Input filter time constant (<i>Td</i>) (&gt;= 0).
+ *        Typical value = 0,05.
+ * @param tf Washout time constant (<i>Tf</i>) (&gt;= 0).
+ *        Typical value = 0,1.
+ * @param tp Gate servo time constant (<i>Tp</i>) (&gt;= 0).
+ *        Typical value = 0,05.
+ * @param tt Power feedback time constant (<i>Tt</i>) (&gt;= 0).
+ *        Typical value = 0,2.
+ * @param tw Water inertia time constant (<i>Tw</i>) (&gt;= 0).
+ *        If = 0, block is bypassed.  Typical value = 1.
+ * @param velcl Maximum gate closing velocity (<i>Velcl</i>).
+ *        Unit = PU / s.  Typical value = -0,2.
+ * @param velop Maximum gate opening velocity (<i>Velop</i>).
+ *        Unit = PU / s. Typical value = 0,2.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 case class GovHydro3
 (
@@ -2929,90 +3019,91 @@ extends
 /**
  * Hydro turbine and governor.
  *
- * Represents plants with straight-forward penstock configurations and hydraulic governors of traditional 'dashpot' type.  This model can be used to represent simple, Francis, Pelton or Kaplan turbines.
+ * Represents plants with straight-forward penstock configurations and hydraulic governors of the traditional 'dashpot' type.  This model can be used to represent simple, Francis/Pelton or Kaplan turbines.
  *
  * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param at Turbine gain (At).
- *        Typical Value = 1.2.
- * @param bgv0 Kaplan blade servo point 0 (Bgv0).
- *        Typical Value = 0.
- * @param bgv1 Kaplan blade servo point 1 (Bgv1).
- *        Typical Value = 0.
- * @param bgv2 Kaplan blade servo point 2 (Bgv2).
- *        Typical Value = 0.  Typical Value Francis = 0, Kaplan = 0.1.
- * @param bgv3 Kaplan blade servo point 3 (Bgv3).
- *        Typical Value = 0.  Typical Value Francis = 0, Kaplan = 0.667.
- * @param bgv4 Kaplan blade servo point 4 (Bgv4).
- *        Typical Value = 0.  Typical Value Francis = 0, Kaplan = 0.9.
- * @param bgv5 Kaplan blade servo point 5 (Bgv5).
- *        Typical Value = 0.  Typical Value Francis = 0, Kaplan = 1.
- * @param bmax Maximum blade adjustment factor (Bmax).
- *        Typical Value = 0.  Typical Value Francis = 0, Kaplan = 1.1276.
- * @param db1 Intentional deadband width (db1).
- *        Unit = Hz.  Typical Value = 0.
- * @param db2 Unintentional dead-band (db2).
- *        Unit = MW.  Typical Value = 0.
- * @param dturb Turbine damping factor (Dturb).
- *        Unit = delta P (PU of MWbase) / delta speed (PU).
- * @param eps Intentional db hysteresis (eps).
- *        Unit = Hz.  Typical Value = 0.
- * @param gmax Maximum gate opening, PU of MWbase (Gmax).
- *        Typical Value = 1.
- * @param gmin Minimum gate opening, PU of MWbase (Gmin).
- *        Typical Value = 0.
- * @param gv0 Nonlinear gain point 0, PU gv (Gv0).
- *        Typical Value = 0.  Typical Value Francis = 0.1, Kaplan = 0.1.
- * @param gv1 Nonlinear gain point 1, PU gv (Gv1).
- *        Typical Value = 0.  Typical Value Francis = 0.4, Kaplan = 0.4.
- * @param gv2 Nonlinear gain point 2, PU gv (Gv2).
- *        Typical Value = 0.  Typical Value Francis = 0.5, Kaplan = 0.5.
- * @param gv3 Nonlinear gain point 3, PU gv (Gv3).
- *        Typical Value = 0.  Typical Value Francis = 0.7, Kaplan = 0.7.
- * @param gv4 Nonlinear gain point 4, PU gv (Gv4).
- *        Typical Value = 0.  Typical Value Francis = 0.8, Kaplan = 0.8.
- * @param gv5 Nonlinear gain point 5, PU gv (Gv5).
- *        Typical Value = 0.  Typical Value Francis = 0.9, Kaplan = 0.9.
- * @param hdam Head available at dam (hdam).
- *        Typical Value = 1.
- * @param mwbase Base for power values (MWbase) (&gt;0).
+ * @param at Turbine gain (<i>At</i>).
+ *        Typical value = 1,2.
+ * @param bgv0 Kaplan blade servo point 0 (<i>Bgv0</i>) (= 0 for simple, = 0 for Francis/Pelton).
+ *        Typical value for Kaplan = 0.
+ * @param bgv1 Kaplan blade servo point 1 (<i>Bgv1</i>) (= 0 for simple, = 0 for Francis/Pelton).
+ *        Typical value for Kaplan = 0.
+ * @param bgv2 Kaplan blade servo point 2 (<i>Bgv2</i>) (= 0 for simple, = 0 for Francis/Pelton).
+ *        Typical value for Kaplan = 0,1.
+ * @param bgv3 Kaplan blade servo point 3 (<i>Bgv3</i>) (= 0 for simple, = 0 for Francis/Pelton).
+ *        Typical value for Kaplan = 0,667.
+ * @param bgv4 Kaplan blade servo point 4 (<i>Bgv4</i>) (= 0 for simple, = 0 for Francis/Pelton).
+ *        Typical value for Kaplan = 0,9.
+ * @param bgv5 Kaplan blade servo point 5 (<i>Bgv5</i>) (= 0 for simple, = 0 for Francis/Pelton).
+ *        Typical value for Kaplan = 1.
+ * @param bmax Maximum blade adjustment factor (<i>Bmax</i>)  (= 0 for simple, = 0 for Francis/Pelton).
+ *        Typical value for Kaplan = 1,1276.
+ * @param db1 Intentional deadband width (<i>db1</i>).
+ *        Unit = Hz.  Typical value = 0.
+ * @param db2 Unintentional dead-band (<i>db2</i>).
+ *        Unit = MW.  Typical value = 0.
+ * @param dturb Turbine damping factor (<i>Dturb</i>).
+ *        Unit = delta P (PU of <i>MWbase</i>) / delta speed (PU).  Typical value for simple = 0,5, Francis/Pelton = 1,1, Kaplan = 1,1.
+ * @param eps Intentional db hysteresis (<i>eps</i>).
+ *        Unit = Hz.  Typical value = 0.
+ * @param gmax Maximum gate opening, PU of <i>MWbase</i> (<i>Gmax</i>) (&gt; GovHydro4.gmin).
+ *        Typical value = 1.
+ * @param gmin Minimum gate opening, PU of <i>MWbase</i> (<i>Gmin</i>) (&lt; GovHydro4.gmax).
+ *        Typical value = 0.
+ * @param gv0 Nonlinear gain point 0, PU gv (<i>Gv0</i>) (= 0 for simple).
+ *        Typical for Francis/Pelton = 0,1, Kaplan = 0,1.
+ * @param gv1 Nonlinear gain point 1, PU gv (<i>Gv1</i>) (= 0 for simple, &gt; GovHydro4.gv0 for Francis/Pelton and Kaplan).
+ *        Typical value for Francis/Pelton = 0,4, Kaplan = 0,4.
+ * @param gv2 Nonlinear gain point 2, PU gv (<i>Gv2</i>) (= 0 for simple, &gt; GovHydro4.gv1 for Francis/Pelton and Kaplan).
+ *        Typical value for Francis/Pelton = 0,5, Kaplan = 0,5.
+ * @param gv3 Nonlinear gain point 3, PU gv (<i>Gv3</i>)  (= 0 for simple, &gt; GovHydro4.gv2 for Francis/Pelton and Kaplan).
+ *        Typical value for Francis/Pelton = 0,7, Kaplan = 0,7.
+ * @param gv4 Nonlinear gain point 4, PU gv (<i>Gv4</i>)  (= 0 for simple, &gt; GovHydro4.gv3 for Francis/Pelton and Kaplan).
+ *        Typical value for  Francis/Pelton = 0,8, Kaplan = 0,8.
+ * @param gv5 Nonlinear gain point 5, PU gv (<i>Gv5</i>)  (= 0 for simple, &lt; 1 and &gt; GovHydro4.gv4 for Francis/Pelton and Kaplan).
+ *        Typical value for Francis/Pelton = 0,9, Kaplan = 0,9.
+ * @param hdam Head available at dam (<i>hdam</i>).
+ *        Typical value = 1.
+ * @param model The kind of model being represented (simple, Francis/Pelton or Kaplan).
+ * @param mwbase Base for power values (<i>MWbase</i>) (&gt; 0).
  *        Unit = MW.
- * @param pgv0 Nonlinear gain point 0, PU power (Pgv0).
- *        Typical Value = 0.
- * @param pgv1 Nonlinear gain point 1, PU power (Pgv1).
- *        Typical Value = 0.  Typical Value Francis = 0.42, Kaplan = 0.35.
- * @param pgv2 Nonlinear gain point 2, PU power (Pgv2).
- *        Typical Value = 0.  Typical Value Francis = 0.56, Kaplan = 0.468.
- * @param pgv3 Nonlinear gain point 3, PU power (Pgv3).
- *        Typical Value = 0.  Typical Value Francis = 0.8, Kaplan = 0.796.
- * @param pgv4 Nonlinear gain point 4, PU power (Pgv4).
- *        Typical Value = 0.  Typical Value Francis = 0.9, Kaplan = 0.917.
- * @param pgv5 Nonlinear gain point 5, PU power (Pgv5).
- *        Typical Value = 0.  Typical Value Francis = 0.97, Kaplan = 0.99.
- * @param qn1 No-load flow at nominal head (Qnl).
- *        Typical Value = 0.08.  Typical Value Francis = 0, Kaplan = 0.
- * @param rperm Permanent droop (Rperm).
- *        Typical Value = 0.05.
- * @param rtemp Temporary droop (Rtemp).
- *        Typical Value = 0.3.
- * @param tblade Blade servo time constant (Tblade).
- *        Typical Value = 100.
- * @param tg Gate servo time constant (Tg) (&gt;0).
- *        Typical Value = 0.5.
- * @param tp Pilot servo time constant (Tp).
- *        Typical Value = 0.1.
- * @param tr Dashpot time constant (Tr) (&gt;0).
- *        Typical Value = 5.
- * @param tw Water inertia time constant (Tw) (&gt;0).
- *        Typical Value = 1.
- * @param uc Max gate closing velocity (Uc).
- *        Typical Value = 0.2.
- * @param uo Max gate opening velocity (Uo).
- *        Typical Value = 0.2.
+ * @param pgv0 Nonlinear gain point 0, PU power (<i>Pgv0</i>) (= 0 for simple).
+ *        Typical value = 0.
+ * @param pgv1 Nonlinear gain point 1, PU power (<i>Pgv1</i>) (= 0 for simple).
+ *        Typical value for Francis/Pelton = 0,42, Kaplan = 0,35.
+ * @param pgv2 Nonlinear gain point 2, PU power (<i>Pgv2</i>) (= 0 for simple).
+ *        Typical value for Francis/Pelton = 0,56, Kaplan = 0,468.
+ * @param pgv3 Nonlinear gain point 3, PU power (<i>Pgv3</i>) (= 0 for simple).
+ *        Typical value for Francis/Pelton = 0,8, Kaplan = 0,796.
+ * @param pgv4 Nonlinear gain point 4, PU power (<i>Pgv4</i>) (= 0 for simple).
+ *        Typical value for Francis/Pelton = 0,9, Kaplan = 0,917.
+ * @param pgv5 Nonlinear gain point 5, PU power (<i>Pgv5</i>) (= 0 for simple).
+ *        Typical value for Francis/Pelton = 0,97, Kaplan = 0,99.
+ * @param qnl No-load flow at nominal head (<i>Qnl</i>).
+ *        Typical value for simple = 0,08, Francis/Pelton = 0, Kaplan = 0.
+ * @param rperm Permanent droop (<i>Rperm</i>) (&gt;= 0).
+ *        Typical value = 0,05.
+ * @param rtemp Temporary droop (<i>Rtemp</i>) (&gt;= 0).
+ *        Typical value = 0,3.
+ * @param tblade Blade servo time constant (<i>Tblade</i>) (&gt;= 0).
+ *        Typical value = 100.
+ * @param tg Gate servo time constant (<i>Tg</i>) (&gt; 0).
+ *        Typical value = 0,5.
+ * @param tp Pilot servo time constant (<i>Tp</i>) (&gt;= 0).
+ *        Typical value = 0,1.
+ * @param tr Dashpot time constant (<i>Tr</i>) (&gt;= 0).
+ *        Typical value = 5.
+ * @param tw Water inertia time constant (<i>Tw</i>) (&gt; 0).
+ *        Typical value = 1.
+ * @param uc Max gate closing velocity (<i>Uc</i>).
+ *        Typical value = 0,2.
+ * @param uo Max gate opening velocity (<i>Uo</i>).
+ *        Typical value = 0,2.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 case class GovHydro4
 (
@@ -3038,6 +3129,7 @@ case class GovHydro4
     gv4: Double,
     gv5: Double,
     hdam: Double,
+    model: String,
     mwbase: Double,
     pgv0: Double,
     pgv1: Double,
@@ -3045,7 +3137,7 @@ case class GovHydro4
     pgv3: Double,
     pgv4: Double,
     pgv5: Double,
-    qn1: Double,
+    qnl: Double,
     rperm: Double,
     rtemp: Double,
     tblade: Double,
@@ -3062,7 +3154,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -3086,6 +3178,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovHydro4.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovHydro4.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (GovHydro4.fields (position), value)
         emitelem (0, at)
         emitelem (1, bgv0)
         emitelem (2, bgv1)
@@ -3107,23 +3200,24 @@ extends
         emitelem (18, gv4)
         emitelem (19, gv5)
         emitelem (20, hdam)
-        emitelem (21, mwbase)
-        emitelem (22, pgv0)
-        emitelem (23, pgv1)
-        emitelem (24, pgv2)
-        emitelem (25, pgv3)
-        emitelem (26, pgv4)
-        emitelem (27, pgv5)
-        emitelem (28, qn1)
-        emitelem (29, rperm)
-        emitelem (30, rtemp)
-        emitelem (31, tblade)
-        emitelem (32, tg)
-        emitelem (33, tp)
-        emitelem (34, tr)
-        emitelem (35, tw)
-        emitelem (36, uc)
-        emitelem (37, uo)
+        emitattr (21, model)
+        emitelem (22, mwbase)
+        emitelem (23, pgv0)
+        emitelem (24, pgv1)
+        emitelem (25, pgv2)
+        emitelem (26, pgv3)
+        emitelem (27, pgv4)
+        emitelem (28, pgv5)
+        emitelem (29, qnl)
+        emitelem (30, rperm)
+        emitelem (31, rtemp)
+        emitelem (32, tblade)
+        emitelem (33, tg)
+        emitelem (34, tp)
+        emitelem (35, tr)
+        emitelem (36, tw)
+        emitelem (37, uc)
+        emitelem (38, uo)
         s.toString
     }
     override def export: String =
@@ -3158,6 +3252,7 @@ extends
         "gv4",
         "gv5",
         "hdam",
+        "model",
         "mwbase",
         "pgv0",
         "pgv1",
@@ -3165,7 +3260,7 @@ extends
         "pgv3",
         "pgv4",
         "pgv5",
-        "qn1",
+        "qnl",
         "rperm",
         "rtemp",
         "tblade",
@@ -3197,23 +3292,24 @@ extends
     val gv4: Fielder = parse_element (element (cls, fields(18)))
     val gv5: Fielder = parse_element (element (cls, fields(19)))
     val hdam: Fielder = parse_element (element (cls, fields(20)))
-    val mwbase: Fielder = parse_element (element (cls, fields(21)))
-    val pgv0: Fielder = parse_element (element (cls, fields(22)))
-    val pgv1: Fielder = parse_element (element (cls, fields(23)))
-    val pgv2: Fielder = parse_element (element (cls, fields(24)))
-    val pgv3: Fielder = parse_element (element (cls, fields(25)))
-    val pgv4: Fielder = parse_element (element (cls, fields(26)))
-    val pgv5: Fielder = parse_element (element (cls, fields(27)))
-    val qn1: Fielder = parse_element (element (cls, fields(28)))
-    val rperm: Fielder = parse_element (element (cls, fields(29)))
-    val rtemp: Fielder = parse_element (element (cls, fields(30)))
-    val tblade: Fielder = parse_element (element (cls, fields(31)))
-    val tg: Fielder = parse_element (element (cls, fields(32)))
-    val tp: Fielder = parse_element (element (cls, fields(33)))
-    val tr: Fielder = parse_element (element (cls, fields(34)))
-    val tw: Fielder = parse_element (element (cls, fields(35)))
-    val uc: Fielder = parse_element (element (cls, fields(36)))
-    val uo: Fielder = parse_element (element (cls, fields(37)))
+    val model: Fielder = parse_attribute (attribute (cls, fields(21)))
+    val mwbase: Fielder = parse_element (element (cls, fields(22)))
+    val pgv0: Fielder = parse_element (element (cls, fields(23)))
+    val pgv1: Fielder = parse_element (element (cls, fields(24)))
+    val pgv2: Fielder = parse_element (element (cls, fields(25)))
+    val pgv3: Fielder = parse_element (element (cls, fields(26)))
+    val pgv4: Fielder = parse_element (element (cls, fields(27)))
+    val pgv5: Fielder = parse_element (element (cls, fields(28)))
+    val qnl: Fielder = parse_element (element (cls, fields(29)))
+    val rperm: Fielder = parse_element (element (cls, fields(30)))
+    val rtemp: Fielder = parse_element (element (cls, fields(31)))
+    val tblade: Fielder = parse_element (element (cls, fields(32)))
+    val tg: Fielder = parse_element (element (cls, fields(33)))
+    val tp: Fielder = parse_element (element (cls, fields(34)))
+    val tr: Fielder = parse_element (element (cls, fields(35)))
+    val tw: Fielder = parse_element (element (cls, fields(36)))
+    val uc: Fielder = parse_element (element (cls, fields(37)))
+    val uo: Fielder = parse_element (element (cls, fields(38)))
 
     def parse (context: Context): GovHydro4 =
     {
@@ -3242,23 +3338,24 @@ extends
             toDouble (mask (gv4 (), 18)),
             toDouble (mask (gv5 (), 19)),
             toDouble (mask (hdam (), 20)),
-            toDouble (mask (mwbase (), 21)),
-            toDouble (mask (pgv0 (), 22)),
-            toDouble (mask (pgv1 (), 23)),
-            toDouble (mask (pgv2 (), 24)),
-            toDouble (mask (pgv3 (), 25)),
-            toDouble (mask (pgv4 (), 26)),
-            toDouble (mask (pgv5 (), 27)),
-            toDouble (mask (qn1 (), 28)),
-            toDouble (mask (rperm (), 29)),
-            toDouble (mask (rtemp (), 30)),
-            toDouble (mask (tblade (), 31)),
-            toDouble (mask (tg (), 32)),
-            toDouble (mask (tp (), 33)),
-            toDouble (mask (tr (), 34)),
-            toDouble (mask (tw (), 35)),
-            toDouble (mask (uc (), 36)),
-            toDouble (mask (uo (), 37))
+            mask (model (), 21),
+            toDouble (mask (mwbase (), 22)),
+            toDouble (mask (pgv0 (), 23)),
+            toDouble (mask (pgv1 (), 24)),
+            toDouble (mask (pgv2 (), 25)),
+            toDouble (mask (pgv3 (), 26)),
+            toDouble (mask (pgv4 (), 27)),
+            toDouble (mask (pgv5 (), 28)),
+            toDouble (mask (qnl (), 29)),
+            toDouble (mask (rperm (), 30)),
+            toDouble (mask (rtemp (), 31)),
+            toDouble (mask (tblade (), 32)),
+            toDouble (mask (tg (), 33)),
+            toDouble (mask (tp (), 34)),
+            toDouble (mask (tr (), 35)),
+            toDouble (mask (tw (), 36)),
+            toDouble (mask (uc (), 37)),
+            toDouble (mask (uo (), 38))
         )
         ret.bitfields = bitfields
         ret
@@ -3269,83 +3366,84 @@ extends
  * Double derivative hydro governor and turbine.
  *
  * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param aturb Turbine numerator multiplier (Aturb) (note 3).
- *        Typical Value = -1.
- * @param bturb Turbine denominator multiplier (Bturb) (note 3).
- *        Typical Value = 0.5.
- * @param db1 Intentional dead-band width (db1).
- *        Unit = Hz.  Typical Value = 0.
- * @param db2 Unintentional dead-band (db2).
- *        Unit = MW.  Typical Value = 0.
- * @param eps Intentional db hysteresis (eps).
- *        Unit = Hz.  Typical Value = 0.
- * @param gmax Maximum gate opening (Gmax).
- *        Typical Value = 0.
- * @param gmin Minimum gate opening (Gmin).
- *        Typical Value = 0.
- * @param gv1 Nonlinear gain point 1, PU gv (Gv1).
- *        Typical Value = 0.
- * @param gv2 Nonlinear gain point 2, PU gv (Gv2).
- *        Typical Value = 0.
- * @param gv3 Nonlinear gain point 3, PU gv (Gv3).
- *        Typical Value = 0.
- * @param gv4 Nonlinear gain point 4, PU gv (Gv4).
- *        Typical Value = 0.
- * @param gv5 Nonlinear gain point 5, PU gv (Gv5).
- *        Typical Value = 0.
- * @param gv6 Nonlinear gain point 6, PU gv (Gv6).
- *        Typical Value = 0.
- * @param inputSignal Input signal switch (Flag).
- *        true = Pe input is used
- *        false = feedback is received from CV.
- *        Flag is normally dependent on Tt.  If Tf is zero, Flag is set to false. If Tf is not zero, Flag is set to true.
- * @param k1 Single derivative gain (K1).
- *        Typical Value = 3.6.
- * @param k2 Double derivative gain (K2).
- *        Typical Value = 0.2.
- * @param kg Gate servo gain (Kg).
- *        Typical Value = 3.
- * @param ki Integral gain (Ki).
- *        Typical Value = 1.
- * @param mwbase Base for power values (MWbase) (&gt;0).
+ * @param aturb Turbine numerator multiplier (<i>Aturb</i>) (see parameter detail 3).
+ *        Typical value = -1.
+ * @param bturb Turbine denominator multiplier (<i>Bturb</i>) (see parameter detail 3).
+ *        Typical value = 0,5.
+ * @param db1 Intentional dead-band width (<i>db1</i>).
+ *        Unit = Hz.  Typical value = 0.
+ * @param db2 Unintentional dead-band (<i>db2</i>).
+ *        Unit = MW.  Typical value = 0.
+ * @param eps Intentional db hysteresis (<i>eps</i>).
+ *        Unit = Hz.  Typical value = 0.
+ * @param gmax Maximum gate opening (<i>Gmax</i>) (&gt; GovHydroDD.gmin).
+ *        Typical value = 0.
+ * @param gmin Minimum gate opening (<i>Gmin</i>) (&lt; GovHydroDD.gmax).
+ *        Typical value = 0.
+ * @param gv1 Nonlinear gain point 1, PU gv (<i>Gv1</i>).
+ *        Typical value = 0.
+ * @param gv2 Nonlinear gain point 2, PU gv (<i>Gv2</i>).
+ *        Typical value = 0.
+ * @param gv3 Nonlinear gain point 3, PU gv (<i>Gv3</i>).
+ *        Typical value = 0.
+ * @param gv4 Nonlinear gain point 4, PU gv (<i>Gv4</i>).
+ *        Typical value = 0.
+ * @param gv5 Nonlinear gain point 5, PU gv (<i>Gv5</i>).
+ *        Typical value = 0.
+ * @param gv6 Nonlinear gain point 6, PU gv (<i>Gv6</i>).
+ *        Typical value = 0.
+ * @param inputSignal Input signal switch (<i>Flag</i>).
+ *        true = <i>Pe</i> input is used
+ *        false = feedback is received from <i>CV</i>.
+ *        <i>Flag</i> is normally dependent on <i>Tt</i>.
+ *        If <i>Tt</i> is zero, <i>Flag</i> is set to false. If <i>Tt</i> is not zero, <i>Flag</i> is set to true.
+ * @param k1 Single derivative gain (<i>K1</i>).
+ *        Typical value = 3,6.
+ * @param k2 Double derivative gain (<i>K2</i>).
+ *        Typical value = 0,2.
+ * @param kg Gate servo gain (<i>Kg</i>).
+ *        Typical value = 3.
+ * @param ki Integral gain (<i>Ki</i>).
+ *        Typical value = 1.
+ * @param mwbase Base for power values (<i>MWbase</i>) (&gt;0).
  *        Unit = MW.
- * @param pgv1 Nonlinear gain point 1, PU power (Pgv1).
- *        Typical Value = 0.
- * @param pgv2 Nonlinear gain point 2, PU power (Pgv2).
- *        Typical Value = 0.
- * @param pgv3 Nonlinear gain point 3, PU power (Pgv3).
- *        Typical Value = 0.
- * @param pgv4 Nonlinear gain point 4, PU power (Pgv4).
- *        Typical Value = 0.
- * @param pgv5 Nonlinear gain point 5, PU power (Pgv5).
- *        Typical Value = 0.
- * @param pgv6 Nonlinear gain point 6, PU power (Pgv6).
- *        Typical Value = 0.
- * @param pmax Maximum gate opening, PU of MWbase (Pmax).
- *        Typical Value = 1.
- * @param pmin Minimum gate opening, PU of MWbase (Pmin).
- *        Typical Value = 0.
- * @param r Steady state droop (R).
- *        Typical Value = 0.05.
- * @param td Input filter time constant (Td).
- *        Typical Value = 0.
- * @param tf Washout time constant (Tf).
- *        Typical Value = 0.1.
- * @param tp Gate servo time constant (Tp).
- *        Typical Value = 0.35.
- * @param tt Power feedback time constant (Tt).
- *        Typical Value = 0.02.
- * @param tturb Turbine time constant (Tturb) (note 3).
- *        Typical Value = 0.8.
- * @param velcl Maximum gate closing velocity (Velcl).
- *        Unit = PU/sec.  Typical Value = -0.14.
- * @param velop Maximum gate opening velocity (Velop).
- *        Unit = PU/sec.  Typical Value = 0.09.
+ * @param pgv1 Nonlinear gain point 1, PU power (<i>Pgv1</i>).
+ *        Typical value = 0.
+ * @param pgv2 Nonlinear gain point 2, PU power (<i>Pgv2</i>).
+ *        Typical value = 0.
+ * @param pgv3 Nonlinear gain point 3, PU power (<i>Pgv3</i>).
+ *        Typical value = 0.
+ * @param pgv4 Nonlinear gain point 4, PU power (<i>Pgv4</i>).
+ *        Typical value = 0.
+ * @param pgv5 Nonlinear gain point 5, PU power (<i>Pgv5</i>).
+ *        Typical value = 0.
+ * @param pgv6 Nonlinear gain point 6, PU power (<i>Pgv6</i>).
+ *        Typical value = 0.
+ * @param pmax Maximum gate opening, PU of <i>MWbase</i> (<i>Pmax</i>) (&gt; GovHydroDD.pmin).
+ *        Typical value = 1.
+ * @param pmin Minimum gate opening, PU of <i>MWbase</i> (<i>Pmin</i>) (&gt; GovHydroDD.pmax).
+ *        Typical value = 0.
+ * @param r Steady state droop (<i>R</i>).
+ *        Typical value = 0,05.
+ * @param td Input filter time constant (<i>Td</i>) (&gt;= 0).
+ *        If = 0, block is bypassed.  Typical value = 0.
+ * @param tf Washout time constant (<i>Tf</i>) (&gt;= 0).
+ *        Typical value = 0,1.
+ * @param tp Gate servo time constant (<i>Tp</i>) (&gt;= 0).
+ *        If = 0, block is bypassed.  Typical value = 0,35.
+ * @param tt Power feedback time constant (<i>Tt</i>) (&gt;= 0).
+ *        If = 0, block is bypassed.  Typical value = 0,02.
+ * @param tturb Turbine time constant (<i>Tturb</i>)  (&gt;= 0).
+ *        See parameter detail 3.  Typical value = 0,8.
+ * @param velcl Maximum gate closing velocity (<i>Velcl</i>).
+ *        Unit = PU / s.  Typical value = -0,14.
+ * @param velop Maximum gate opening velocity (<i>Velop</i>).
+ *        Unit = PU / s.  Typical value = 0,09.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 case class GovHydroDD
 (
@@ -3589,67 +3687,67 @@ extends
  * This model can be used to represent three types of governors.
  *
  * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param am Opening section S<sub>eff</sub> at the maximum efficiency (Am).
- *        Typical Value = 0.7.
- * @param av0 Area of the surge tank (A<sub>V0</sub>).
- *        Unit = m<sup>2</sup>. Typical Value = 30.
- * @param av1 Area of the compensation tank (A<sub>V1</sub>).
- *        Unit = m<sup>2</sup>. Typical Value = 700.
- * @param bp Droop (Bp).
- *        Typical Value = 0.05.
- * @param db1 Intentional dead-band width (DB1).
- *        Unit = Hz.  Typical Value = 0.
- * @param etamax Maximum efficiency (EtaMax).
- *        Typical Value = 1.05.
- * @param governorControl Governor control flag (Cflag).
- *        Typical Value = mechanicHydrolicTachoAccelerator.
- * @param h1 Head of compensation chamber water level with respect to the level of penstock (H<sub>1</sub>).
- *        Unit = m. Typical Value = 4.
- * @param h2 Head of surge tank water level with respect to the level of penstock (H<sub>2</sub>).
- *        Unit = m. Typical Value = 40.
- * @param hn Rated hydraulic head (H<sub>n</sub>).
- *        Unit = m. Typical Value = 250.
- * @param kc Penstock loss coefficient (due to friction) (Kc).
- *        Typical Value = 0.025.
- * @param kg Water tunnel and surge chamber loss coefficient (due to friction) (Kg).
- *        Typical Value = 0.025.
- * @param kt Washout gain (Kt).
- *        Typical Value = 0.25.
- * @param qc0 No-load turbine flow at nominal head (Qc0).
- *        Typical Value = 0.21.
- * @param qn Rated flow (Q<sub>n</sub>).
- *        Unit = m<sup>3</sup>/s. Typical Value = 40.
- * @param ta Derivative gain (Ta).
- *        Typical Value = 3.
- * @param td Washout time constant (Td).
- *        Typical Value = 3.
- * @param ts Gate servo time constant (Ts).
- *        Typical Value = 0.5.
- * @param twnc Water inertia time constant (Twnc).
- *        Typical Value = 1.
- * @param twng Water tunnel and surge chamber inertia time constant (Twng).
- *        Typical Value = 3.
- * @param tx Derivative feedback gain (Tx).
- *        Typical Value = 1.
- * @param va Maximum gate opening velocity (Va).
- *        Unit = PU/sec.  Typical Value = 0.011.
- * @param valvmax Maximum gate opening (ValvMax).
- *        Typical Value = 1.
- * @param valvmin Minimum gate opening (ValvMin).
- *        Typical Value = 0.
- * @param vc Maximum gate closing velocity (Vc).
- *        Unit = PU/sec.  Typical Value = -0.011.
- * @param waterTunnelSurgeChamberSimulation Water tunnel and surge chamber simulation (Tflag).
+ * @param am Opening section <i>S</i><i><sub>EFF</sub></i> at the maximum efficiency (<i>Am</i>).
+ *        Typical value = 0,7.
+ * @param av0 Area of the surge tank (<i>A</i><i><sub>V0</sub></i>).
+ *        Unit = m<sup>2</sup>. Typical value = 30.
+ * @param av1 Area of the compensation tank (<i>A</i><i><sub>V1</sub></i>).
+ *        Unit = m<sup>2</sup>. Typical value = 700.
+ * @param bp Droop (<i>Bp</i>).
+ *        Typical value = 0,05.
+ * @param db1 Intentional dead-band width (<i>DB1</i>).
+ *        Unit = Hz.  Typical value = 0.
+ * @param etamax Maximum efficiency (<i>EtaMax</i>).
+ *        Typical value = 1,05.
+ * @param governorControl Governor control flag (<i>Cflag</i>).
+ *        Typical value = mechanicHydrolicTachoAccelerator.
+ * @param h1 Head of compensation chamber water level with respect to the level of penstock (<i>H</i><i><sub>1</sub></i>).
+ *        Unit = km.  Typical value = 0,004.
+ * @param h2 Head of surge tank water level with respect to the level of penstock (<i>H</i><i><sub>2</sub></i>).
+ *        Unit = km.  Typical value = 0,040.
+ * @param hn Rated hydraulic head (<i>H</i><i><sub>n</sub></i>).
+ *        Unit = km.  Typical value = 0,250.
+ * @param kc Penstock loss coefficient (due to friction) (<i>Kc</i>).
+ *        Typical value = 0,025.
+ * @param kg Water tunnel and surge chamber loss coefficient (due to friction) (<i>Kg</i>).
+ *        Typical value = 0,025.
+ * @param kt Washout gain (<i>Kt</i>).
+ *        Typical value = 0,25.
+ * @param qc0 No-load turbine flow at nominal head (<i>Qc0</i>).
+ *        Typical value = 0,1.
+ * @param qn Rated flow (<i>Q</i><i><sub>n</sub></i>).
+ *        Unit = m<sup>3</sup>/s. Typical value = 250.
+ * @param ta Derivative gain (<i>Ta</i>) (&gt;= 0).
+ *        Typical value = 3.
+ * @param td Washout time constant (<i>Td</i>) (&gt;= 0).
+ *        Typical value = 6.
+ * @param ts Gate servo time constant (<i>Ts</i>) (&gt;= 0).
+ *        Typical value = 0,5.
+ * @param twnc Water inertia time constant (<i>Twnc</i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param twng Water tunnel and surge chamber inertia time constant (<i>Twng</i>) (&gt;= 0).
+ *        Typical value = 3.
+ * @param tx Derivative feedback gain (<i>Tx</i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param va Maximum gate opening velocity (<i>Va</i>).
+ *        Unit = PU / s.  Typical value = 0,06.
+ * @param valvmax Maximum gate opening (<i>ValvMax</i>) (&gt; GovHydroFrancis.valvmin).
+ *        Typical value = 1,1.
+ * @param valvmin Minimum gate opening (<i>ValvMin</i>) (&lt; GovHydroFrancis.valvmax).
+ *        Typical value = 0.
+ * @param vc Maximum gate closing velocity (<i>Vc</i>).
+ *        Unit = PU / s.  Typical value = -0,06.
+ * @param waterTunnelSurgeChamberSimulation Water tunnel and surge chamber simulation (<i>Tflag</i>).
  *        true = enable of water tunnel and surge chamber simulation
  *        false = inhibit of water tunnel and surge chamber simulation.
- *        Typical Value = false.
- * @param zsfc Head of upper water level with respect to the level of penstock (Zsfc).
- *        Unit = m.  Typical Value = 25.
+ *        Typical value = false.
+ * @param zsfc Head of upper water level with respect to the level of penstock (<i>Zsfc</i>).
+ *        Unit = km.  Typical value = 0,025.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 case class GovHydroFrancis
 (
@@ -3849,28 +3947,28 @@ extends
 }
 
 /**
- * IEEE Simplified Hydro Governor-Turbine Model.
+ * IEEE simplified hydro governor-turbine model.
  *
- * Used for Mechanical-Hydraulic and Electro-Hydraulic turbine governors, with our without steam feedback. Typical values given are for Mechanical-Hydraulic.
+ * Used for mechanical-hydraulic and electro-hydraulic turbine governors, with or without steam feedback. Typical values given are for mechanical-hydraulic turbine-governor.
  *
  * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param k Governor gain (K<i>)</i>.
- * @param mwbase Base for power values (MWbase) (&gt; 0).
+ * @param k Governor gain (<i>K)</i>.
+ * @param mwbase Base for power values (<i>MWbase</i>) (&gt; 0).
  *        Unit = MW.
- * @param pmax Gate maximum (Pmax).
- * @param pmin Gate minimum (Pmin).
- * @param t1 Governor lag time constant (T1).
- *        Typical Value = 0.25.
- * @param t2 Governor lead time constant (T2<i>)</i>.
- *        Typical Value = 0.
- * @param t3 Gate actuator time constant (T3).
- *        Typical Value = 0.1.
- * @param t4 Water starting time (T4).
+ * @param pmax Gate maximum (<i>Pmax</i>) (&gt; GovHydroIEEE0.pmin).
+ * @param pmin Gate minimum (<i>Pmin</i>) (&lt; GovHydroIEEE.pmax).
+ * @param t1 Governor lag time constant (<i>T1</i>) (&gt;= 0).
+ *        Typical value = 0,25.
+ * @param t2 Governor lead time constant (<i>T2)</i> (&gt;= 0).
+ *        Typical value = 0.
+ * @param t3 Gate actuator time constant (<i>T3</i>) (&gt;= 0).
+ *        Typical value = 0,1.
+ * @param t4 Water starting time (<i>T4</i>) (&gt;= 0).
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 case class GovHydroIEEE0
 (
@@ -3976,66 +4074,66 @@ extends
 /**
  * IEEE hydro turbine governor model represents plants with straightforward penstock configurations and hydraulic-dashpot governors.
  *
- * Ref<font color="#0f0f0f">erence: IEEE Transactions on Power Apparatus and Systems</font>
+ * Ref<font color="#0f0f0f">erence: IEEE Transactions on Power Apparatus and Systems, November/December 1973, Volume PAS-92, Number 6, <i><u>Dynamic Models for Steam and Hydro Turbines in Power System Studies</u></i>, page 1904.</font>
  *
  * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param aturb Turbine numerator multiplier (Aturb).
- *        Typical Value = -1.
- * @param bturb Turbine denominator multiplier (Bturb).
- *        Typical Value = 0.5.
- * @param gv1 Nonlinear gain point 1, PU gv (Gv1).
- *        Typical Value = 0.
- * @param gv2 Nonlinear gain point 2, PU gv (Gv2).
- *        Typical Value = 0.
- * @param gv3 Nonlinear gain point 3, PU gv (Gv3).
- *        Typical Value = 0.
- * @param gv4 Nonlinear gain point 4, PU gv (Gv4).
- *        Typical Value = 0.
- * @param gv5 Nonlinear gain point 5, PU gv (Gv5).
- *        Typical Value = 0.
- * @param gv6 Nonlinear gain point 6, PU gv (Gv6).
- *        Typical Value = 0.
- * @param kturb Turbine gain (Kturb).
- *        Typical Value = 1.
- * @param mwbase Base for power values (MWbase) (&gt; 0).
+ * @param aturb Turbine numerator multiplier (<i>Aturb</i>).
+ *        Typical value = -1.
+ * @param bturb Turbine denominator multiplier (<i>Bturb</i>) (&gt; 0).
+ *        Typical value = 0,5.
+ * @param gv1 Nonlinear gain point 1, PU gv (<i>Gv1</i>).
+ *        Typical value = 0.
+ * @param gv2 Nonlinear gain point 2, PU gv (<i>Gv2</i>).
+ *        Typical value = 0.
+ * @param gv3 Nonlinear gain point 3, PU gv (<i>Gv3</i>).
+ *        Typical value = 0.
+ * @param gv4 Nonlinear gain point 4, PU gv (<i>Gv4</i>).
+ *        Typical value = 0.
+ * @param gv5 Nonlinear gain point 5, PU gv (<i>Gv5</i>).
+ *        Typical value = 0.
+ * @param gv6 Nonlinear gain point 6, PU gv (<i>Gv6</i>).
+ *        Typical value = 0.
+ * @param kturb Turbine gain (<i>Kturb</i>).
+ *        Typical value = 1.
+ * @param mwbase Base for power values (<i>MWbase</i>) (&gt; 0).
  *        Unit = MW.
- * @param pgv1 Nonlinear gain point 1, PU power (Pgv1).
- *        Typical Value = 0.
- * @param pgv2 Nonlinear gain point 2, PU power (Pgv2).
- *        Typical Value = 0.
- * @param pgv3 Nonlinear gain point 3, PU power (Pgv3).
- *        Typical Value = 0.
- * @param pgv4 Nonlinear gain point 4, PU power (Pgv4).
- *        Typical Value = 0.
- * @param pgv5 Nonlinear gain point 5, PU power (Pgv5).
- *        Typical Value = 0.
- * @param pgv6 Nonlinear gain point 6, PU power (Pgv6).
- *        Typical Value = 0.
- * @param pmax Maximum gate opening (Pmax).
- *        Typical Value = 1.
- * @param pmin Minimum gate opening (Pmin).
- *        Typical Value = 0.
- * @param rperm Permanent droop (Rperm).
- *        Typical Value = 0.05.
- * @param rtemp Temporary droop (Rtemp).
- *        Typical Value = 0.5.
- * @param tg Gate servo time constant (Tg).
- *        Typical Value = 0.5.
- * @param tp Pilot servo valve time constant (Tp).
- *        Typical Value = 0.03.
- * @param tr Dashpot time constant (Tr).
- *        Typical Value = 12.
- * @param tw Water inertia time constant (Tw).
- *        Typical Value = 2.
- * @param uc Maximum gate closing velocity (Uc) (&lt;0).
- *        Typical Value = -0.1.
- * @param uo Maximum gate opening velocity (Uo).
- *        Unit = PU/sec.  Typical Value = 0.1.
+ * @param pgv1 Nonlinear gain point 1, PU power (<i>Pgv1</i>).
+ *        Typical value = 0.
+ * @param pgv2 Nonlinear gain point 2, PU power (<i>Pgv2</i>).
+ *        Typical value = 0.
+ * @param pgv3 Nonlinear gain point 3, PU power (<i>Pgv3</i>).
+ *        Typical value = 0.
+ * @param pgv4 Nonlinear gain point 4, PU power (<i>Pgv4</i>).
+ *        Typical value = 0.
+ * @param pgv5 Nonlinear gain point 5, PU power (<i>Pgv5</i>).
+ *        Typical value = 0.
+ * @param pgv6 Nonlinear gain point 6, PU power (<i>Pgv6</i>).
+ *        Typical value = 0.
+ * @param pmax Maximum gate opening (<i>Pmax</i>) (&gt; GovHydroIEEE2.pmin).
+ *        Typical value = 1.
+ * @param pmin Minimum gate opening (<i>Pmin</i>) (&lt;GovHydroIEEE2.pmax).
+ *        Typical value = 0.
+ * @param rperm Permanent droop (<i>Rperm</i>).
+ *        Typical value = 0,05.
+ * @param rtemp Temporary droop (<i>Rtemp</i>).
+ *        Typical value = 0,5.
+ * @param tg Gate servo time constant (<i>Tg</i>) (&gt;= 0).
+ *        Typical value = 0,5.
+ * @param tp Pilot servo valve time constant (<i>Tp</i>) (&gt;= 0).
+ *        Typical value = 0,03.
+ * @param tr Dashpot time constant (<i>Tr</i>) (&gt;= 0).
+ *        Typical value = 12.
+ * @param tw Water inertia time constant (<i>Tw</i>) (&gt;= 0).
+ *        Typical value = 2.
+ * @param uc Maximum gate closing velocity (<i>Uc</i>) (&lt;0).
+ *        Typical value = -0,1.
+ * @param uo Maximum gate opening velocity (<i>Uo</i>).
+ *        Unit = PU / s.  Typical value = 0,1.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 case class GovHydroIEEE2
 (
@@ -4232,79 +4330,80 @@ extends
  * PID governor and turbine.
  *
  * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param aturb Turbine numerator multiplier (Aturb) (note 3).
- *        Typical Value -1.
- * @param bturb Turbine denominator multiplier (Bturb) (note 3).
- *        Typical Value = 0.5.
- * @param db1 Intentional dead-band width (db1).
- *        Unit = Hz.  Typical Value = 0.
- * @param db2 Unintentional dead-band (db2).
- *        Unit = MW.  Typical Value = 0.
- * @param eps Intentional db hysteresis (eps).
- *        Unit = Hz.  Typical Value = 0.
- * @param gv1 Nonlinear gain point 1, PU gv (Gv1).
- *        Typical Value = 0.
- * @param gv2 Nonlinear gain point 2, PU gv (Gv2).
- *        Typical Value = 0.
- * @param gv3 Nonlinear gain point 3, PU gv (Gv3).
- *        Typical Value = 0.
- * @param gv4 Nonlinear gain point 4, PU gv (Gv4).
- *        Typical Value = 0.
- * @param gv5 Nonlinear gain point 5, PU gv (Gv5).
- *        Typical Value = 0.
- * @param gv6 Nonlinear gain point 6, PU gv (Gv6).
- *        Typical Value = 0.
- * @param inputSignal Input signal switch (Flag).
- *        true = Pe input is used
- *        false = feedback is received from CV.
- *        Flag is normally dependent on Tt.  If Tf is zero, Flag is set to false. If Tf is not zero, Flag is set to true.  Typical Value = true.
- * @param kd Derivative gain (Kd).
- *        Typical Value = 1.11.
- * @param kg Gate servo gain (Kg).
- *        Typical Value = 2.5.
- * @param ki Integral gain (Ki).
- *        Typical Value = 0.36.
- * @param kp Proportional gain (Kp).
- *        Typical Value = 0.1.
- * @param mwbase Base for power values (MWbase) (&gt;0).
+ * @param aturb Turbine numerator multiplier (<i>Aturb</i>) (see parameter detail 3).
+ *        Typical value -1.
+ * @param bturb Turbine denominator multiplier (<i>Bturb</i>) (see parameter detail 3).
+ *        Typical value = 0,5.
+ * @param db1 Intentional dead-band width (<i>db1</i>).
+ *        Unit = Hz.  Typical value = 0.
+ * @param db2 Unintentional dead-band (<i>db2</i>).
+ *        Unit = MW.  Typical value = 0.
+ * @param eps Intentional db hysteresis (<i>eps</i>).
+ *        Unit = Hz.  Typical value = 0.
+ * @param gv1 Nonlinear gain point 1, PU gv (<i>Gv1</i>).
+ *        Typical value = 0.
+ * @param gv2 Nonlinear gain point 2, PU gv (<i>Gv2</i>).
+ *        Typical value = 0.
+ * @param gv3 Nonlinear gain point 3, PU gv (<i>Gv3</i>).
+ *        Typical value = 0.
+ * @param gv4 Nonlinear gain point 4, PU gv (<i>Gv4</i>).
+ *        Typical value = 0.
+ * @param gv5 Nonlinear gain point 5, PU gv (<i>Gv5</i>).
+ *        Typical value = 0.
+ * @param gv6 Nonlinear gain point 6, PU gv (<i>Gv6</i>).
+ *        Typical value = 0.
+ * @param inputSignal Input signal switch (<i>Flag</i>).
+ *        true = <i>Pe</i> input is used
+ *        false = feedback is received from <i>CV</i>.
+ *        <i>Flag</i> is normally dependent on <i>Tt</i>.
+ *        If <i>Tt </i>is zero, <i>Flag</i> is set to false. If <i>Tt</i> is not zero, <i>Flag</i> is set to true.
+ * @param kd Derivative gain (<i>Kd</i>).
+ *        Typical value = 1,11.
+ * @param kg Gate servo gain (<i>Kg</i>).
+ *        Typical value = 2,5.
+ * @param ki Integral gain (<i>Ki</i>).
+ *        Typical value = 0,36.
+ * @param kp Proportional gain (<i>Kp</i>).
+ *        Typical value = 0,1.
+ * @param mwbase Base for power values (<i>MWbase</i>) (&gt; 0).
  *        Unit = MW.
- * @param pgv1 Nonlinear gain point 1, PU power (Pgv1).
- *        Typical Value = 0.
- * @param pgv2 Nonlinear gain point 2, PU power (Pgv2).
- *        Typical Value = 0.
- * @param pgv3 Nonlinear gain point 3, PU power (Pgv3).
- *        Typical Value = 0.
- * @param pgv4 Nonlinear gain point 4, PU power (Pgv4).
- *        Typical Value = 0.
- * @param pgv5 Nonlinear gain point 5, PU power (Pgv5).
- *        Typical Value = 0.
- * @param pgv6 Nonlinear gain point 6, PU power (Pgv6).
- *        Typical Value = 0.
- * @param pmax Maximum gate opening, PU of MWbase (Pmax).
- *        Typical Value = 1.
- * @param pmin Minimum gate opening, PU of MWbase (Pmin).
- *        Typical Value = 0.
- * @param r Steady state droop (R).
- *        Typical Value = 0.05.
- * @param td Input filter time constant (Td).
- *        Typical Value = 0.
- * @param tf Washout time constant (Tf).
- *        Typical Value = 0.1.
- * @param tp Gate servo time constant (Tp).
- *        Typical Value = 0.35.
- * @param tt Power feedback time constant (Tt).
- *        Typical Value = 0.02.
- * @param tturb Turbine time constant (Tturb) (note 3).
- *        Typical Value = 0.8.
- * @param velcl Maximum gate closing velocity (Velcl).
- *        Unit = PU/sec.  Typical Value = -0.14.
- * @param velop Maximum gate opening velocity (Velop).
- *        Unit = PU/sec.  Typical Value = 0.09.
+ * @param pgv1 Nonlinear gain point 1, PU power (<i>Pgv1</i>).
+ *        Typical value = 0.
+ * @param pgv2 Nonlinear gain point 2, PU power (<i>Pgv2</i>).
+ *        Typical value = 0.
+ * @param pgv3 Nonlinear gain point 3, PU power (<i>Pgv3</i>).
+ *        Typical value = 0.
+ * @param pgv4 Nonlinear gain point 4, PU power (<i>Pgv4</i>).
+ *        Typical value = 0.
+ * @param pgv5 Nonlinear gain point 5, PU power (<i>Pgv5</i>).
+ *        Typical value = 0.
+ * @param pgv6 Nonlinear gain point 6, PU power (<i>Pgv6</i>).
+ *        Typical value = 0.
+ * @param pmax Maximum gate opening, PU of MWbase (<i>Pmax</i>) (&gt; GovHydroPID.pmin).
+ *        Typical value = 1.
+ * @param pmin Minimum gate opening, PU of MWbase (<i>Pmin</i>) (&lt; GovHydroPID.pmax).
+ *        Typical value = 0.
+ * @param r Steady state droop (<i>R</i>).
+ *        Typical value = 0,05.
+ * @param td Input filter time constant (<i>Td</i>) (&gt;= 0).
+ *        If = 0, block is bypassed.  Typical value = 0.
+ * @param tf Washout time constant (<i>Tf</i>) (&gt;= 0).
+ *        Typical value = 0,1.
+ * @param tp Gate servo time constant (<i>Tp</i>) (&gt;= 0).
+ *        If = 0, block is bypassed.  Typical value = 0,35.
+ * @param tt Power feedback time constant (<i>Tt</i>) (&gt;= 0).
+ *        If = 0, block is bypassed.  Typical value = 0,02.
+ * @param tturb Turbine time constant (<i>Tturb</i>) (&gt;= 0).
+ *        See Parameter detail 3.  Typical value = 0,8.
+ * @param velcl Maximum gate closing velocity (<i>Velcl</i>).
+ *        Unit = PU / s.  Typical value = -0,14.
+ * @param velop Maximum gate opening velocity (<i>Velop</i>).
+ *        Unit = PU / s.  Typical value = 0,09.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 case class GovHydroPID
 (
@@ -4535,59 +4634,58 @@ extends
 /**
  * Hydro turbine and governor.
  *
- * Represents plants with straight forward penstock configurations and "three term" electro-hydraulic governors (i.e. Woodard electronic).
+ * Represents plants with straightforward penstock configurations and "three term" electro-hydraulic governors (i.e. Woodward<sup>TM</sup> electronic).
  *
  * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param atw Factor multiplying Tw (Atw).
- *        Typical Value = 0.
- * @param d Turbine damping factor (D).
- *        Unit = delta P / delta speed.  Typical Value = 0.
- * @param feedbackSignal Feedback signal type flag (Flag).
+ * @param atw Factor multiplying <i>Tw</i> (<i>Atw</i>).
+ *        Typical value = 0.
+ * @param d Turbine damping factor (<i>D</i>).
+ *        Unit = delta P / delta speed.  Typical value = 0.
+ * @param feedbackSignal Feedback signal type flag (<i>Flag</i>).
  *        true = use gate position feedback signal
  *        false = use Pe.
- * @param g0 Gate opening at speed no load (G0).
- *        Typical Value = 0.
- * @param g1 Intermediate gate opening (G1).
- *        Typical Value = 0.
- * @param g2 Intermediate gate opening (G2).
- *        Typical Value = 0.
- * @param gmax Maximum gate opening (Gmax).
- *        Typical Value = 0.
- * @param gmin Minimum gate opening (Gmin).
- *        Typical Value = 0.
- * @param kd Derivative gain (Kd).
- *        Typical Value = 0.
- * @param ki Reset gain (Ki).
- *        Unit = PU/ sec.  Typical Value = 0.
- * @param kp Proportional gain (Kp).
- *        Typical Value = 0.
- * @param mwbase Base for power values (MWbase) (&gt;0).
+ * @param g0 Gate opening at speed no load (<i>G0</i>).
+ *        Typical value = 0.
+ * @param g1 Intermediate gate opening (<i>G1</i>).
+ *        Typical value = 0.
+ * @param g2 Intermediate gate opening (<i>G2</i>).
+ *        Typical value = 0.
+ * @param gmax Maximum gate opening (<i>Gmax</i>) (&gt; GovHydroPID2.gmin).
+ *        Typical value = 0.
+ * @param gmin Minimum gate opening (<i>Gmin</i>) (&gt; GovHydroPID2.gmax).
+ *        Typical value = 0.
+ * @param kd Derivative gain (<i>Kd</i>).
+ *        Typical value = 0.
+ * @param ki Reset gain (<i>Ki</i>).
+ *        Unit = PU/s.  Typical value = 0.
+ * @param kp Proportional gain (<i>Kp</i>).
+ *        Typical value = 0.
+ * @param mwbase Base for power values (<i>MWbase</i>) (&gt;0).
  *        Unit = MW.
- * @param p1 Power at gate opening G1 (P1).
- *        Typical Value = 0.
- * @param p2 Power at gate opening G2 (P2).
- *        Typical Value = 0.
- * @param p3 Power at full opened gate (P3).
- *        Typical Value = 0.
- * @param rperm Permanent drop (Rperm).
- *        Typical Value = 0.
- * @param ta Controller time constant (Ta) (&gt;0).
- *        Typical Value = 0.
- * @param tb Gate servo time constant (Tb) (&gt;0).
- *        Typical Value = 0.
- * @param treg Speed detector time constant (Treg).
- *        Typical Value = 0.
- * @param tw Water inertia time constant (Tw) (&gt;0).
- *        Typical Value = 0.
- * @param velmax Maximum gate opening velocity (Velmax).
- *        Unit = PU/sec.  Typical Value = 0.
- * @param velmin Maximum gate closing velocity (Velmin).
- *        Unit = PU/sec.  Typical Value = 0.
+ * @param p1 Power at gate opening <i>G1</i> (<i>P1</i>).
+ *        Typical value = 0.
+ * @param p2 Power at gate opening G2 (<i>P2</i>).
+ *        Typical value = 0.
+ * @param p3 Power at full opened gate (<i>P3</i>).
+ *        Typical value = 0.
+ * @param rperm Permanent drop (<i>Rperm</i>).
+ *        Typical value = 0.
+ * @param ta Controller time constant (<i>Ta</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tb Gate servo time constant (<i>Tb</i>) (&gt; 0).
+ * @param treg Speed detector time constant (<i>Treg</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tw Water inertia time constant (<i>Tw</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param velmax Maximum gate opening velocity (<i>Velmax</i>) (&lt; GovHydroPID2.velmin).
+ *        Unit = PU / s.  Typical value = 0.
+ * @param velmin Maximum gate closing velocity (<i>Velmin</i>) (&gt; GovHydroPID2.velmax).
+ *        Unit = PU / s.  Typical value = 0.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 case class GovHydroPID2
 (
@@ -4766,73 +4864,71 @@ extends
  * This model can be used to represent the dynamic related to water tunnel and surge chamber.
  *
  * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param av0 Area of the surge tank (A<sub>V0</sub>).
- *        Unit = m<sup>2</sup>. Typical Value = 30.
- * @param av1 Area of the compensation tank (A<sub>V1</sub>).
- *        Unit = m<sup>2</sup>. Typical Value = 700.
- * @param bp Droop (bp).
- *        Typical Value = 0.05.
- * @param db1 Intentional dead-band width (DB1).
- *        Unit = Hz.  Typical Value = 0.
- * @param db2 Intentional dead-band width of valve opening error (DB2).
- *        Unit = Hz.  Typical Value = 0.01.
- * @param h1 Head of compensation chamber water level with respect to the level of penstock (H<sub>1</sub>).
- *        Unit = m. Typical Value = 4.
- * @param h2 Head of surge tank water level with respect to the level of penstock (H<sub>2</sub>).
- *        Unit = m. Typical Value = 40.
- * @param hn Rated hydraulic head (H<sub>n</sub>).
- *        Unit = m. Typical Value = 250.
- * @param kc Penstock loss coefficient (due to friction) (Kc).
- *        Typical Value = 0.025.
- * @param kg Water tunnel and surge chamber loss coefficient (due to friction) (Kg).
- *        Typical Value = -0.025.
- * @param qc0 No-load turbine flow at nominal head (Qc0).
- *        Typical Value = 0.05.
- * @param qn Rated flow (Q<sub>n</sub>).
- *        Unit = m<sup>3</sup>/s. Typical Value = 40.
- * @param simplifiedPelton Simplified Pelton model simulation (Sflag).
+ * @param av0 Area of the surge tank (<i>A</i><i><sub>V0</sub></i>).
+ *        Unit = m<sup>2</sup>. Typical value = 30.
+ * @param av1 Area of the compensation tank (<i>A</i><i><sub>V1</sub></i>).
+ *        Unit = m<sup>2</sup>. Typical value = 700.
+ * @param bp Droop (<i>bp</i>).
+ *        Typical value = 0,05.
+ * @param db1 Intentional dead-band width (<i>DB1</i>).
+ *        Unit = Hz.  Typical value = 0.
+ * @param db2 Intentional dead-band width of valve opening error (<i>DB2</i>).
+ *        Unit = Hz.  Typical value = 0,01.
+ * @param h1 Head of compensation chamber water level with respect to the level of penstock (<i>H</i><i><sub>1</sub></i>).
+ *        Unit = km.  Typical value = 0,004.
+ * @param h2 Head of surge tank water level with respect to the level of penstock (<i>H</i><i><sub>2</sub></i>).
+ *        Unit = km.  Typical value = 0,040.
+ * @param hn Rated hydraulic head (<i>H</i><i><sub>n</sub></i>).
+ *        Unit = km.  Typical value = 0,250.
+ * @param kc Penstock loss coefficient (due to friction) (<i>Kc</i>).
+ *        Typical value = 0,025.
+ * @param kg Water tunnel and surge chamber loss coefficient (due to friction) (<i>Kg</i>).
+ *        Typical value = 0,025.
+ * @param qc0 No-load turbine flow at nominal head (<i>Qc0</i>).
+ *        Typical value = 0,05.
+ * @param qn Rated flow (<i>Q</i><i><sub>n</sub></i>).
+ *        Unit = m<sup>3</sup>/s. Typical value = 250.
+ * @param simplifiedPelton Simplified Pelton model simulation (<i>Sflag</i>).
  *        true = enable of simplified Pelton model simulation
- *        false = enable of complete Pelton model simulation (non linear gain).
- *        Typical Value = false.
- * @param staticCompensating Static compensating characteristic (Cflag).
- *        true = enable of static compensating characteristic
- *        false = inhibit of static compensating characteristic.
- *        Typical Value = false.
- * @param ta Derivative gain (accelerometer time constant) (Ta).
- *        Typical Value = 3.
- * @param ts Gate servo time constant (Ts).
- *        Typical Value = 0.15.
- * @param tv Servomotor integrator time constant (TV).
- *        Typical Value = 0.3.
- * @param twnc Water inertia time constant (Twnc).
- *        Typical Value = 1.
- * @param twng Water tunnel and surge chamber inertia time constant (Twng).
- *        Typical Value = 3.
- * @param tx Electronic integrator time constant (Tx).
- *        Typical Value = 0.5.
- * @param va Maximum gate opening velocity (Va).
- *        Unit = PU/sec.  Typical Value = 0.016.
- * @param valvmax Maximum gate opening (ValvMax).
- *        Typical Value = 1.
- * @param valvmin Minimum gate opening (ValvMin).
- *        Typical Value = 0.
- * @param vav Maximum servomotor valve opening velocity (Vav).
- *        Typical Value = 0.017.
- * @param vc Maximum gate closing velocity (Vc).
- *        Unit = PU/sec.  Typical Value = -0.016.
- * @param vcv Maximum servomotor valve closing velocity (Vcv).
- *        Typical Value = -0.017.
- * @param waterTunnelSurgeChamberSimulation Water tunnel and surge chamber simulation (Tflag).
+ *        false = enable of complete Pelton model simulation (non-linear gain).
+ *        Typical value = true.
+ * @param staticCompensating Static compensating characteristic (<i>Cflag</i>).
+ *        It should be true if simplifiedPelton = false.
+ * @param ta Derivative gain (accelerometer time constant) (<i>Ta</i>) (&gt;= 0).
+ *        Typical value = 3.
+ * @param ts Gate servo time constant (<i>Ts</i>) (&gt;= 0).
+ *        Typical value = 0,15.
+ * @param tv Servomotor integrator time constant (<i>Tv</i>) (&gt;= 0).
+ *        Typical value = 0,3.
+ * @param twnc Water inertia time constant (<i>Twnc</i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param twng Water tunnel and surge chamber inertia time constant (<i>Twng</i>) (&gt;= 0).
+ *        Typical value = 3.
+ * @param tx Electronic integrator time constant (<i>Tx</i>) (&gt;= 0).
+ *        Typical value = 0,5.
+ * @param va Maximum gate opening velocity (<i>Va</i>).
+ *        Unit = PU / s.  Typical value = 0,06.
+ * @param valvmax Maximum gate opening (<i>ValvMax</i>) (&gt; GovHydroPelton.valvmin).
+ *        Typical value = 1,1.
+ * @param valvmin Minimum gate opening (<i>ValvMin</i>) (&lt; GovHydroPelton.valvmax).
+ *        Typical value = 0.
+ * @param vav Maximum servomotor valve opening velocity (<i>Vav</i>).
+ *        Typical value = 0,1.
+ * @param vc Maximum gate closing velocity (<i>Vc</i>).
+ *        Unit = PU / s.  Typical value = -0,06.
+ * @param vcv Maximum servomotor valve closing velocity (<i>Vcv</i>).
+ *        Typical value = -0,1.
+ * @param waterTunnelSurgeChamberSimulation Water tunnel and surge chamber simulation (<i>Tflag</i>).
  *        true = enable of water tunnel and surge chamber simulation
  *        false = inhibit of water tunnel and surge chamber simulation.
- *        Typical Value = false.
- * @param zsfc Head of upper water level with respect to the level of penstock (Zsfc).
- *        Unit = m. Typical Value = 25.
+ *        Typical value = false.
+ * @param zsfc Head of upper water level with respect to the level of penstock (<i>Zsfc</i>).
+ *        Unit = km.  Typical value = 0,025.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 case class GovHydroPelton
 (
@@ -5039,97 +5135,98 @@ extends
  * Fourth order lead-lag governor and hydro turbine.
  *
  * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param at Turbine gain (At).
- *        Typical Value = 1.2.
- * @param db1 Intentional dead-band width (db1).
- *        Unit = Hz.  Typical Value = 0.
- * @param db2 Unintentional dead-band (db2).
- *        Unit = MW.  Typical Value = 0.
- * @param dturb Turbine damping factor (Dturb).
- *        Typical Value = 0.2.
- * @param eps Intentional db hysteresis (eps).
- *        Unit = Hz.  Typical Value = 0.
- * @param gmax Maximum governor output (Gmax).
- *        Typical Value = 1.05.
- * @param gmin Minimum governor output (Gmin).
- *        Typical Value = -0.05.
- * @param gv1 Nonlinear gain point 1, PU gv (Gv1).
- *        Typical Value = 0.
- * @param gv2 Nonlinear gain point 2, PU gv (Gv2).
- *        Typical Value = 0.
- * @param gv3 Nonlinear gain point 3, PU gv (Gv3).
- *        Typical Value = 0.
- * @param gv4 Nonlinear gain point 4, PU gv (Gv4).
- *        Typical Value = 0.
- * @param gv5 Nonlinear gain point 5, PU gv (Gv5).
- *        Typical Value = 0.
- * @param gv6 Nonlinear gain point 6, PU gv (Gv6).
- *        Typical Value = 0.
- * @param h0 Turbine nominal head (H0).
- *        Typical Value = 1.
- * @param inputSignal Input signal switch (Flag).
- *        true = Pe input is used
- *        false = feedback is received from CV.
- *        Flag is normally dependent on Tt.  If Tf is zero, Flag is set to false. If Tf is not zero, Flag is set to true.  Typical Value = true.
- * @param kg Gate servo gain (Kg).
- *        Typical Value = 2.
- * @param ki Integral gain (Ki).
- *        Typical Value = 0.5.
- * @param mwbase Base for power values (MWbase) (&gt;0).
+ * @param at Turbine gain (<i>At</i>).
+ *        Typical value = 1,2.
+ * @param db1 Intentional dead-band width (<i>db1</i>).
+ *        Unit = Hz.  Typical value = 0.
+ * @param db2 Unintentional dead-band (<i>db2</i>).
+ *        Unit = MW.  Typical value = 0.
+ * @param dturb Turbine damping factor (<i>Dturb</i>).
+ *        Typical value = 0,2.
+ * @param eps Intentional db hysteresis (<i>eps</i>).
+ *        Unit = Hz.  Typical value = 0.
+ * @param gmax Maximum governor output (<i>Gmax</i>) (&gt; GovHydroR.gmin).
+ *        Typical value = 1,05.
+ * @param gmin Minimum governor output (<i>Gmin</i>) (&lt; GovHydroR.gmax).
+ *        Typical value = -0,05.
+ * @param gv1 Nonlinear gain point 1, PU gv (<i>Gv1</i>).
+ *        Typical value = 0.
+ * @param gv2 Nonlinear gain point 2, PU gv (<i>Gv2</i>).
+ *        Typical value = 0.
+ * @param gv3 Nonlinear gain point 3, PU gv (<i>Gv3</i>).
+ *        Typical value = 0.
+ * @param gv4 Nonlinear gain point 4, PU gv (<i>Gv4</i>).
+ *        Typical value = 0.
+ * @param gv5 Nonlinear gain point 5, PU gv (<i>Gv5</i>).
+ *        Typical value = 0.
+ * @param gv6 Nonlinear gain point 6, PU gv (<i>Gv6</i>).
+ *        Typical value = 0.
+ * @param h0 Turbine nominal head (<i>H0</i>).
+ *        Typical value = 1.
+ * @param inputSignal Input signal switch (<i>Flag</i>).
+ *        true = <i>Pe</i> input is used
+ *        false = feedback is received from <i>CV</i>.
+ *        <i>Flag</i> is normally dependent on <i>Tt</i>.
+ *        If <i>Tt </i>is zero, <i>Flag</i> is set to false. If <i>Tt</i> is not zero, <i>Flag</i> is set to true.
+ * @param kg Gate servo gain (<i>Kg</i>).
+ *        Typical value = 2.
+ * @param ki Integral gain (<i>Ki</i>).
+ *        Typical value = 0,5.
+ * @param mwbase Base for power values (<i>MWbase</i>) (&gt; 0).
  *        Unit = MW.
- * @param pgv1 Nonlinear gain point 1, PU power (Pgv1).
- *        Typical Value = 0.
- * @param pgv2 Nonlinear gain point 2, PU power (Pgv2).
- *        Typical Value = 0.
- * @param pgv3 Nonlinear gain point 3, PU power (Pgv3).
- *        Typical Value = 0.
- * @param pgv4 Nonlinear gain point 4, PU power (Pgv4).
- *        Typical Value = 0.
- * @param pgv5 Nonlinear gain point 5, PU power (Pgv5).
- *        Typical Value = 0.
- * @param pgv6 Nonlinear gain point 6, PU power (Pgv6).
- *        Typical Value = 0.
- * @param pmax Maximum gate opening, PU of MWbase (Pmax).
- *        Typical Value = 1.
- * @param pmin Minimum gate opening, PU of MWbase (Pmin).
- *        Typical Value = 0.
- * @param qnl No-load turbine flow at nominal head (Qnl).
- *        Typical Value = 0.08.
- * @param r Steady-state droop (R).
- *        Typical Value = 0.05.
- * @param t1 Lead time constant 1 (T1).
- *        Typical Value = 1.5.
- * @param t2 Lag time constant 1 (T2).
- *        Typical Value = 0.1.
- * @param t3 Lead time constant 2 (T3).
- *        Typical Value = 1.5.
- * @param t4 Lag time constant 2 (T4).
- *        Typical Value = 0.1.
- * @param t5 Lead time constant 3 (T5).
- *        Typical Value = 0.
- * @param t6 Lag time constant 3 (T6).
- *        Typical Value = 0.05.
- * @param t7 Lead time constant 4 (T7).
- *        Typical Value = 0.
- * @param t8 Lag time constant 4 (T8).
- *        Typical Value = 0.05.
- * @param td Input filter time constant (Td).
- *        Typical Value = 0.05.
- * @param tp Gate servo time constant (Tp).
- *        Typical Value = 0.05.
- * @param tt Power feedback time constant (Tt).
- *        Typical Value = 0.
- * @param tw Water inertia time constant (Tw).
- *        Typical Value = 1.
- * @param velcl Maximum gate closing velocity (Velcl).
- *        Unit = PU/sec.  Typical Value = -0.2.
- * @param velop Maximum gate opening velocity (Velop).
- *        Unit = PU/sec.  Typical Value = 0.2.
+ * @param pgv1 Nonlinear gain point 1, PU power (<i>Pgv1</i>).
+ *        Typical value = 0.
+ * @param pgv2 Nonlinear gain point 2, PU power (<i>Pgv2</i>).
+ *        Typical value = 0.
+ * @param pgv3 Nonlinear gain point 3, PU power (<i>Pgv3</i>).
+ *        Typical value = 0.
+ * @param pgv4 Nonlinear gain point 4, PU power (<i>Pgv4</i>).
+ *        Typical value = 0.
+ * @param pgv5 Nonlinear gain point 5, PU power (<i>Pgv5</i>).
+ *        Typical value = 0.
+ * @param pgv6 Nonlinear gain point 6, PU power (<i>Pgv6</i>).
+ *        Typical value = 0.
+ * @param pmax Maximum gate opening, PU of <i>MWbase</i> (<i>Pmax</i>) (&gt; GovHydroR.pmin).
+ *        Typical value = 1.
+ * @param pmin Minimum gate opening, PU of <i>MWbase</i> (<i>Pmin</i>) (&lt; GovHydroR.pmax).
+ *        Typical value = 0.
+ * @param qnl No-load turbine flow at nominal head (<i>Qnl</i>).
+ *        Typical value = 0,08.
+ * @param r Steady-state droop (<i>R</i>).
+ *        Typical value = 0,05.
+ * @param t1 Lead time constant 1 (<i>T1</i>) (&gt;= 0).
+ *        Typical value = 1,5.
+ * @param t2 Lag time constant 1 (<i>T2</i>) (&gt;= 0).
+ *        Typical value = 0,1.
+ * @param t3 Lead time constant 2 (<i>T3</i>) (&gt;= 0).
+ *        Typical value = 1,5.
+ * @param t4 Lag time constant 2 (<i>T4</i>) (&gt;= 0).
+ *        Typical value = 0,1.
+ * @param t5 Lead time constant 3 (<i>T5</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param t6 Lag time constant 3 (<i>T6</i>) (&gt;= 0).
+ *        Typical value = 0,05.
+ * @param t7 Lead time constant 4 (<i>T7</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param t8 Lag time constant 4 (<i>T8</i>) (&gt;= 0).
+ *        Typical value = 0,05.
+ * @param td Input filter time constant (<i>Td</i>) (&gt;= 0).
+ *        Typical value = 0,05.
+ * @param tp Gate servo time constant (<i>Tp</i>) (&gt;= 0).
+ *        Typical value = 0,05.
+ * @param tt Power feedback time constant (<i>Tt</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tw Water inertia time constant (<i>Tw</i>) (&gt; 0).
+ *        Typical value = 1.
+ * @param velcl Maximum gate closing velocity (<i>Velcl</i>).
+ *        Unit = PU / s.  Typical value = -0,2.
+ * @param velop Maximum gate opening velocity (<i>Velop</i>).
+ *        Unit = PU / s.  Typical value = 0,2.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 case class GovHydroR
 (
@@ -5403,100 +5500,105 @@ extends
 }
 
 /**
- * Woodward Electric Hydro Governor Model.
+ * Woodward<sup>TM </sup>electric hydro governor.
+ * [Footnote: Woodward electric hydro governors are an example of suitable products available commercially.
+ *
+ * This information is given for the convenience of users of this document and does not constitute an endorsement by IEC of these products.]
  *
  * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param db Speed Dead Band (db).
- * @param dicn Value to allow the integral controller to advance beyond the gate limits (Dicn).
- * @param dpv Value to allow the Pilot valve controller to advance beyond the gate limits (Dpv).
- * @param dturb Turbine damping factor (Dturb).
- *        Unit = delta P (PU of MWbase) / delta speed (PU).
- * @param feedbackSignal Feedback signal selection (Sw).
- *        true = PID Output (if R-Perm-Gate=droop and R-Perm-Pe=0)
- *        false = Electrical Power (if R-Perm-Gate=0 and R-Perm-Pe=droop) or
- *        false = Gate Position (if R-Perm-Gate=droop and R-Perm-Pe=0).
- * @param fl1 Flow Gate 1 (Fl1).
+ * @param db Speed deadband (<i>db</i>).
+ * @param dicn Value to allow the integral controller to advance beyond the gate limits (<i>Dicn</i>).
+ * @param dpv Value to allow the pilot valve controller to advance beyond the gate limits (<i>Dpv</i>).
+ * @param dturb Turbine damping factor (<i>Dturb</i>).
+ *        Unit = delta P (PU of <i>MWbase</i>) / delta speed (PU).
+ * @param feedbackSignal Feedback signal selection (<i>Sw</i>).
+ *        true = PID output (if <i>R-Perm-Gate </i>= droop and <i>R-Perm-Pe </i>= 0)
+ *        false = electrical power (if <i>R-Perm-Gate </i>= 0 and <i>R-Perm-Pe </i>= droop) or
+ *        false = gate position (if R<i>-Perm-Gate </i>= droop and <i>R-Perm-Pe </i>= 0).
+ *        Typical value = false.
+ * @param fl1 Flowgate 1 (<i>Fl1</i>).
  *        Flow value for gate position point 1 for lookup table representing water flow through the turbine as a function of gate position to produce steady state flow.
- * @param fl2 Flow Gate 2 (Fl2).
+ * @param fl2 Flowgate 2 (<i>Fl2</i>).
  *        Flow value for gate position point 2 for lookup table representing water flow through the turbine as a function of gate position to produce steady state flow.
- * @param fl3 Flow Gate 3 (Fl3).
+ * @param fl3 Flowgate 3 (<i>Fl3</i>).
  *        Flow value for gate position point 3 for lookup table representing water flow through the turbine as a function of gate position to produce steady state flow.
- * @param fl4 Flow Gate 4 (Fl4).
+ * @param fl4 Flowgate 4 (<i>Fl4</i>).
  *        Flow value for gate position point 4 for lookup table representing water flow through the turbine as a function of gate position to produce steady state flow.
- * @param fl5 Flow Gate 5 (Fl5).
+ * @param fl5 Flowgate 5 (<i>Fl5</i>).
  *        Flow value for gate position point 5 for lookup table representing water flow through the turbine as a function of gate position to produce steady state flow.
- * @param fp1 Flow P1 (Fp1).
- *        Turbine Flow value for point 1 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
- * @param fp10 Flow P10 (Fp10).
- *        Turbine Flow value for point 10 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
- * @param fp2 Flow P2 (Fp2).
- *        Turbine Flow value for point 2 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
- * @param fp3 Flow P3 (Fp3).
- *        Turbine Flow value for point 3 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
- * @param fp4 Flow P4 (Fp4).
- *        Turbine Flow value for point 4 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
- * @param fp5 Flow P5 (Fp5).
- *        Turbine Flow value for point 5 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
- * @param fp6 Flow P6 (Fp6).
- *        Turbine Flow value for point 6 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
- * @param fp7 Flow P7 (Fp7).
- *        Turbine Flow value for point 7 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
- * @param fp8 Flow P8 (Fp8).
- *        Turbine Flow value for point 8 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
- * @param fp9 Flow P9 (Fp9).
- *        Turbine Flow value for point 9 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
- * @param gmax Maximum Gate Position (Gmax).
- * @param gmin Minimum Gate Position (Gmin).
- * @param gtmxcl Maximum gate closing rate (Gtmxcl).
- * @param gtmxop Maximum gate opening rate (Gtmxop).
- * @param gv1 Gate 1 (Gv1).
+ * @param fp1 Flow P1 (<i>Fp1</i>).
+ *        Turbine flow value for point 1 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
+ * @param fp10 Flow P10 (<i>Fp10</i>).
+ *        Turbine flow value for point 10 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
+ * @param fp2 Flow P2 (<i>Fp2</i>).
+ *        Turbine flow value for point 2 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
+ * @param fp3 Flow P3 (<i>Fp3</i>).
+ *        Turbine flow value for point 3 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
+ * @param fp4 Flow P4 (<i>Fp4</i>).
+ *        Turbine flow value for point 4 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
+ * @param fp5 Flow P5 (<i>Fp5</i>).
+ *        Turbine flow value for point 5 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
+ * @param fp6 Flow P6 (<i>Fp6</i>).
+ *        Turbine flow value for point 6 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
+ * @param fp7 Flow P7 (<i>Fp7</i>).
+ *        Turbine flow value for point 7 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
+ * @param fp8 Flow P8 (<i>Fp8</i>).
+ *        Turbine flow value for point 8 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
+ * @param fp9 Flow P9 (<i>Fp9</i>).
+ *        Turbine flow value for point 9 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
+ * @param gmax Maximum gate position (<i>Gmax</i>) (&gt; GovHydroWEH.gmin).
+ * @param gmin Minimum gate position (<i>Gmin</i>) (&lt; GovHydroWEH.gmax).
+ * @param gtmxcl Maximum gate closing rate (<i>Gtmxcl</i>).
+ * @param gtmxop Maximum gate opening rate (<i>Gtmxop</i>).
+ * @param gv1 Gate 1 (<i>Gv1</i>).
  *        Gate Position value for point 1 for lookup table representing water flow through the turbine as a function of gate position to produce steady state flow.
- * @param gv2 Gate 2 (Gv2).
+ * @param gv2 Gate 2 (<i>Gv2</i>).
  *        Gate Position value for point 2 for lookup table representing water flow through the turbine as a function of gate position to produce steady state flow.
- * @param gv3 Gate 3 (Gv3).
+ * @param gv3 Gate 3 (<i>Gv3</i>).
  *        Gate Position value for point 3 for lookup table representing water flow through the turbine as a function of gate position to produce steady state flow.
- * @param gv4 Gate 4 (Gv4).
+ * @param gv4 Gate 4 (<i>Gv4</i>).
  *        Gate Position value for point 4 for lookup table representing water flow through the turbine as a function of gate position to produce steady state flow.
- * @param gv5 Gate 5 (Gv5).
+ * @param gv5 Gate 5 (<i>Gv5</i>).
  *        Gate Position value for point 5 for lookup table representing water flow through the turbine as a function of gate position to produce steady state flow.
- * @param kd Derivative controller derivative gain (Kd).
- * @param ki Derivative controller Integral gain (Ki).
- * @param kp Derivative control gain (Kp).
- * @param mwbase Base for power values (MWbase) (&gt;0).
+ * @param kd Derivative controller derivative gain (<i>Kd</i>).
+ * @param ki Derivative controller Integral gain (<i>Ki</i>).
+ * @param kp Derivative control gain (<i>Kp</i>).
+ * @param mwbase Base for power values (<i>MWbase</i>) (&gt; 0).
  *        Unit = MW.
- * @param pmss1 Pmss Flow P1 (Pmss1).
- *        Mechanical Power output Pmss for Turbine Flow point 1 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
- * @param pmss10 Pmss Flow P10 (Pmss10).
- *        Mechanical Power output Pmss for Turbine Flow point 10 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
- * @param pmss2 Pmss Flow P2 (Pmss2).
- *        Mechanical Power output Pmss for Turbine Flow point 2 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
- * @param pmss3 Pmss Flow P3 (Pmss3).
- *        Mechanical Power output Pmss for Turbine Flow point 3 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
- * @param pmss4 Pmss Flow P4 (Pmss4).
- *        Mechanical Power output Pmss for Turbine Flow point 4 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
- * @param pmss5 Pmss Flow P5 (Pmss5).
- *        Mechanical Power output Pmss for Turbine Flow point 5 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
- * @param pmss6 Pmss Flow P6 (Pmss6).
- *        Mechanical Power output Pmss for Turbine Flow point 6 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
- * @param pmss7 Pmss Flow P7 (Pmss7).
- *        Mechanical Power output Pmss for Turbine Flow point 7 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
- * @param pmss8 Pmss Flow P8 (Pmss8).
- *        Mechanical Power output Pmss for Turbine Flow point 8 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
- * @param pmss9 Pmss Flow P9 (Pmss9).
- *        Mechanical Power output Pmss for Turbine Flow point 9 for lookup table representing per unit mechanical power on machine MVA rating as a function of turbine flow.
- * @param rpg Permanent droop for governor output feedback (R-Perm-Gate).
- * @param rpp Permanent droop for electrical power feedback (R-Perm-Pe).
- * @param td Derivative controller time constant to limit the derivative characteristic beyond a breakdown frequency to avoid amplification of high-frequency noise (Td).
- * @param tdv Distributive Valve time lag time constant (Tdv).
- * @param tg Value to allow the Distribution valve controller to advance beyond the gate movement rate limit (Tg).
- * @param tp Pilot Valve time lag time constant (Tp).
- * @param tpe Electrical power droop time constant (Tpe).
- * @param tw Water inertia time constant (Tw) (&gt;0).
+ * @param pmss1 Pmss flow P1 (<i>Pmss1</i>).
+ *        Mechanical power output for turbine flow point 1 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
+ * @param pmss10 Pmss flow P10 (<i>Pmss10</i>).
+ *        Mechanical power output for turbine flow point 10 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
+ * @param pmss2 Pmss flow P2 (<i>Pmss2</i>).
+ *        Mechanical power output for turbine flow point 2 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
+ * @param pmss3 Pmss flow P3 (<i>Pmss3</i>).
+ *        Mechanical power output for turbine flow point 3 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
+ * @param pmss4 Pmss flow P4 (<i>Pmss4</i>).
+ *        Mechanical power output for turbine flow point 4 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
+ * @param pmss5 Pmss flow P5 (<i>Pmss5</i>).
+ *        Mechanical power output for turbine flow point 5 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
+ * @param pmss6 Pmss flow P6 (<i>Pmss6</i>).
+ *        Mechanical power output for turbine flow point 6 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
+ * @param pmss7 Pmss flow P7 (<i>Pmss7</i>).
+ *        Mechanical power output for turbine flow point 7 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
+ * @param pmss8 Pmss flow P8 (<i>Pmss8</i>).
+ *        Mechanical power output for turbine flow point 8 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
+ * @param pmss9 Pmss flow P9 (<i>Pmss9</i>).
+ *        Mechanical power output for turbine flow point 9 for lookup table representing PU mechanical power on machine MVA rating as a function of turbine flow.
+ * @param rpg Permanent droop for governor output feedback (<i>R-Perm-Gate</i>).
+ * @param rpp Permanent droop for electrical power feedback (<i>R-Perm-Pe</i>).
+ * @param td Derivative controller time constant (<i>Td</i>) (&gt;= 0).
+ *        Limits the derivative characteristic beyond a breakdown frequency to avoid amplification of high-frequency noise.
+ * @param tdv Distributive valve time lag time constant (<i>Tdv</i>) (&gt;= 0).
+ * @param tg Value to allow the distribution valve controller to advance beyond the gate movement rate limit (<i>Tg</i>) (&gt;= 0).
+ * @param tp Pilot valve time lag time constant (<i>Tp</i>) (&gt;= 0).
+ * @param tpe Electrical power droop time constant (<i>Tpe</i>) (&gt;= 0).
+ * @param tw Water inertia time constant (<i>Tw</i>) (&gt; 0).
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 case class GovHydroWEH
 (
@@ -5815,46 +5917,49 @@ extends
 }
 
 /**
- * Woodward PID Hydro Governor.
+ * Woodward<sup>TM</sup> PID hydro governor.
+ * [Footnote: Woodward PID hydro governors are an example of suitable products available commercially.
+ *
+ * This information is given for the convenience of users of this document and does not constitute an endorsement by IEC of these products.]
  *
  * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param d Turbine damping factor (D).
+ * @param d Turbine damping factor (<i>D</i>).
  *        Unit = delta P / delta speed.
- * @param gatmax Gate opening Limit Maximum (Gatmax).
- * @param gatmin Gate opening Limit Minimum (Gatmin).
- * @param gv1 Gate position 1 (Gv1).
- * @param gv2 Gate position 2 (Gv2).
- * @param gv3 Gate position 3 (Gv3).
- * @param kd Derivative gain (Kd).
- *        Typical Value = 1.11.
- * @param ki Reset gain (Ki).
- *        Typical Value = 0.36.
- * @param kp Proportional gain (Kp).
- *        Typical Value = 0.1.
- * @param mwbase Base for power values  (MWbase) (&gt;0).
+ * @param gatmax Gate opening limit maximum (<i>Gatmax</i>) (&gt; GovHydroWPID.gatmin).
+ * @param gatmin Gate opening limit minimum (<i>Gatmin</i>) (&lt; GovHydroWPID.gatmax).
+ * @param gv1 Gate position 1 (<i>Gv1</i>).
+ * @param gv2 Gate position 2 (<i>Gv2</i>).
+ * @param gv3 Gate position 3 (<i>Gv3</i>) (= 1,0).
+ * @param kd Derivative gain (<i>Kd</i>).
+ *        Typical value = 1,11.
+ * @param ki Reset gain (<i>Ki</i>).
+ *        Typical value = 0,36.
+ * @param kp Proportional gain (<i>Kp</i>).
+ *        Typical value = 0,1.
+ * @param mwbase Base for power values  (<i>MWbase</i>) (&gt; 0).
  *        Unit = MW.
- * @param pgv1 Output at Gv1 PU of MWbase (Pgv1).
- * @param pgv2 Output at Gv2 PU of MWbase (Pgv2).
- * @param pgv3 Output at Gv3 PU of MWbase (Pgv3).
- * @param pmax Maximum Power Output (Pmax).
- * @param pmin Minimum Power Output (Pmin).
- * @param reg Permanent drop (Reg).
- * @param ta Controller time constant (Ta) (&gt;0).
- *        Typical Value = 0.
- * @param tb Gate servo time constant (Tb) (&gt;0).
- *        Typical Value = 0.
- * @param treg Speed detector time constant (Treg).
- * @param tw Water inertia time constant (Tw) (&gt;0).
- *        Typical Value = 0.
- * @param velmax Maximum gate opening velocity (Velmax).
- *        Unit = PU/sec.  Typical Value = 0.
- * @param velmin Maximum gate closing velocity (Velmin).
- *        Unit = PU/sec.  Typical Value = 0.
+ * @param pgv1 Output at <i>Gv1</i> PU of <i>MWbase</i> (<i>Pgv1</i>).
+ * @param pgv2 Output at <i>Gv2</i> PU of <i>MWbase</i> (<i>Pgv2</i>).
+ * @param pgv3 Output at <i>Gv3</i> PU of <i>MWbase</i> (<i>Pgv3</i>).
+ * @param pmax Maximum power output (<i>Pmax</i>) (&gt; GovHydroWPID.pmin).
+ * @param pmin Minimum power output (<i>Pmin</i>) (&lt; GovHydroWPID.pmax).
+ * @param reg Permanent drop (<i>Reg</i>).
+ * @param ta Controller time constant (<i>Ta</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tb Gate servo time constant (<i>Tb</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param treg Speed detector time constant (<i>Treg</i>) (&gt;= 0).
+ * @param tw Water inertia time constant (<i>Tw</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param velmax Maximum gate opening velocity (<i>Velmax</i>) (&gt; GovHydroWPID.velmin).
+ *        Unit = PU / s.  Typical value = 0.
+ * @param velmin Maximum gate closing velocity (<i>Velmin</i>) (&lt; GovHydroWPID.velmax).
+ *        Unit = PU / s.  Typical value = 0.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 case class GovHydroWPID
 (
@@ -6028,30 +6133,30 @@ extends
 }
 
 /**
- * A simplified steam turbine governor model.
+ * A simplified steam turbine governor.
  *
  * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param dt Turbine damping coefficient (Dt).
- *        Unit = delta P / delta speed. Typical Value = 0.
- * @param mwbase Base for power values (MWbase)  (&gt;0).
+ * @param dt Turbine damping coefficient (<i>Dt</i>).
+ *        Unit = delta P / delta speed. Typical value = 0.
+ * @param mwbase Base for power values (<i>MWbase</i>) (&gt; 0).
  *        Unit = MW.
- * @param r Permanent droop (R).
- *        Typical Value = 0.05.
- * @param t1 Steam bowl time constant (T1).
- *        Typical Value = 0.5.
- * @param t2 Numerator time constant of T2/T3 block (T2).
- *        Typical Value = 3.
- * @param t3 Reheater time constant (T3).
- *        Typical Value = 10.
- * @param vmax Maximum valve position, PU of mwcap (Vmax).
- *        Typical Value = 1.
- * @param vmin Minimum valve position, PU of mwcap (Vmin).
- *        Typical Value = 0.
+ * @param r Permanent droop (<i>R</i>).
+ *        Typical value = 0,05.
+ * @param t1 Steam bowl time constant (<i>T1</i>) (&gt; 0).
+ *        Typical value = 0,5.
+ * @param t2 Numerator time constant of <i>T2</i>/<i>T3</i> block (<i>T2</i>) (&gt;= 0).
+ *        Typical value = 3.
+ * @param t3 Reheater time constant (<i>T3</i>) (&gt; 0).
+ *        Typical value = 10.
+ * @param vmax Maximum valve position, PU of <i>mwcap</i> (<i>Vmax</i>) (&gt; GovSteam0.vmin).
+ *        Typical value = 1.
+ * @param vmin Minimum valve position, PU of <i>mwcap</i> (<i>Vmin</i>) (&lt; GovSteam0.vmax).
+ *        Typical value = 0.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 case class GovSteam0
 (
@@ -6155,98 +6260,98 @@ extends
 }
 
 /**
- * Steam turbine governor model, based on the GovSteamIEEE1 model  (with optional deadband and nonlinear valve gain added).
+ * Steam turbine governor, based on the GovSteamIEEE1 (with optional deadband and nonlinear valve gain added).
  *
  * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param db1 Intentional deadband width (db1).
- *        Unit = Hz.  Typical Value = 0.
- * @param db2 Unintentional deadband (db2).
- *        Unit = MW.  Typical Value = 0.
- * @param eps Intentional db hysteresis (eps).
- *        Unit = Hz.  Typical Value = 0.
- * @param gv1 Nonlinear gain valve position point 1 (GV1).
- *        Typical Value = 0.
- * @param gv2 Nonlinear gain valve position point 2 (GV2).
- *        Typical Value = 0.4.
- * @param gv3 Nonlinear gain valve position point 3 (GV3).
- *        Typical Value = 0.5.
- * @param gv4 Nonlinear gain valve position point 4 (GV4).
- *        Typical Value = 0.6.
- * @param gv5 Nonlinear gain valve position point 5 (GV5).
- *        Typical Value = 1.
- * @param gv6 Nonlinear gain valve position point 6 (GV6).
- *        Typical Value = 0.
- * @param k Governor gain (reciprocal of droop) (K) (&gt;0).
- *        Typical Value = 25.
- * @param k1 Fraction of HP shaft power after first boiler pass (K1).
- *        Typical Value = 0.2.
- * @param k2 Fraction of LP shaft power after first boiler pass (K2).
- *        Typical Value = 0.
- * @param k3 Fraction of HP shaft power after second boiler pass (K3).
- *        Typical Value = 0.3.
- * @param k4 Fraction of LP shaft power after second boiler pass (K4).
- *        Typical Value = 0.
- * @param k5 Fraction of HP shaft power after third boiler pass (K5).
- *        Typical Value = 0.5.
- * @param k6 Fraction of LP shaft power after third boiler pass (K6).
- *        Typical Value = 0.
- * @param k7 Fraction of HP shaft power after fourth boiler pass (K7).
- *        Typical Value = 0.
- * @param k8 Fraction of LP shaft power after fourth boiler pass (K8).
- *        Typical Value = 0.
- * @param mwbase Base for power values (MWbase) (&gt;0).
+ * @param db1 Intentional deadband width (<i>db1</i>).
+ *        Unit = Hz.  Typical value = 0.
+ * @param db2 Unintentional deadband (<i>db2</i>).
+ *        Unit = MW.  Typical value = 0.
+ * @param eps Intentional db hysteresis (<i>eps</i>).
+ *        Unit = Hz.  Typical value = 0.
+ * @param gv1 Nonlinear gain valve position point 1 (<i>GV1</i>).
+ *        Typical value = 0.
+ * @param gv2 Nonlinear gain valve position point 2 (<i>GV2</i>).
+ *        Typical value = 0,4.
+ * @param gv3 Nonlinear gain valve position point 3 (<i>GV3</i>).
+ *        Typical value = 0,5.
+ * @param gv4 Nonlinear gain valve position point 4 (<i>GV4</i>).
+ *        Typical value = 0,6.
+ * @param gv5 Nonlinear gain valve position point 5 (<i>GV5</i>).
+ *        Typical value = 1.
+ * @param gv6 Nonlinear gain valve position point 6 (<i>GV6</i>).
+ *        Typical value = 0.
+ * @param k Governor gain (reciprocal of droop) (<i>K</i>) (&gt; 0).
+ *        Typical value = 25.
+ * @param k1 Fraction of HP shaft power after first boiler pass (<i>K1</i>).
+ *        Typical value = 0,2.
+ * @param k2 Fraction of LP shaft power after first boiler pass (<i>K2</i>).
+ *        Typical value = 0.
+ * @param k3 Fraction of HP shaft power after second boiler pass (<i>K3</i>).
+ *        Typical value = 0,3.
+ * @param k4 Fraction of LP shaft power after second boiler pass (<i>K4</i>).
+ *        Typical value = 0.
+ * @param k5 Fraction of HP shaft power after third boiler pass (<i>K5</i>).
+ *        Typical value = 0,5.
+ * @param k6 Fraction of LP shaft power after third boiler pass (<i>K6</i>).
+ *        Typical value = 0.
+ * @param k7 Fraction of HP shaft power after fourth boiler pass (<i>K7</i>).
+ *        Typical value = 0.
+ * @param k8 Fraction of LP shaft power after fourth boiler pass (<i>K8</i>).
+ *        Typical value = 0.
+ * @param mwbase Base for power values (<i>MWbase</i>) (&gt; 0).
  *        Unit = MW.
- * @param pgv1 Nonlinear gain power value point 1 (Pgv1).
- *        Typical Value = 0.
- * @param pgv2 Nonlinear gain power value point 2 (Pgv2).
- *        Typical Value = 0.75.
- * @param pgv3 Nonlinear gain power value point 3 (Pgv3).
- *        Typical Value = 0.91.
- * @param pgv4 Nonlinear gain power value point 4 (Pgv4).
- *        Typical Value = 0.98.
- * @param pgv5 Nonlinear gain power value point 5 (Pgv5).
- *        Typical Value = 1.
- * @param pgv6 Nonlinear gain power value point 6 (Pgv6).
- *        Typical Value = 0.
- * @param pmax Maximum valve opening (Pmax) (&gt; Pmin).
- *        Typical Value = 1.
- * @param pmin Minimum valve opening (Pmin) (&gt;=0).
- *        Typical Value = 0.
+ * @param pgv1 Nonlinear gain power value point 1 (<i>Pgv1</i>).
+ *        Typical value = 0.
+ * @param pgv2 Nonlinear gain power value point 2 (<i>Pgv2</i>).
+ *        Typical value = 0,75.
+ * @param pgv3 Nonlinear gain power value point 3 (<i>Pgv3</i>).
+ *        Typical value = 0,91.
+ * @param pgv4 Nonlinear gain power value point 4 (<i>Pgv4</i>).
+ *        Typical value = 0,98.
+ * @param pgv5 Nonlinear gain power value point 5 (<i>Pgv5</i>).
+ *        Typical value = 1.
+ * @param pgv6 Nonlinear gain power value point 6 (<i>Pgv6</i>).
+ *        Typical value = 0.
+ * @param pmax Maximum valve opening (<i>Pmax</i>) (&gt; GovSteam1.pmin).
+ *        Typical value = 1.
+ * @param pmin Minimum valve opening (<i>Pmin</i>) (&gt;= 0 and &lt; GovSteam1.pmax).
+ *        Typical value = 0.
  * @param sdb1 Intentional deadband indicator.
  *        true = intentional deadband is applied
  *        false = intentional deadband is not applied.
- *        Typical Value = true.
+ *        Typical value = true.
  * @param sdb2 Unintentional deadband location.
  *        true = intentional deadband is applied before point "A"
  *        false = intentional deadband is applied after point "A".
- *        Typical Value = true.
- * @param t1 Governor lag time constant (T1).
- *        Typical Value = 0.
- * @param t2 Governor lead time constant (T2).
- *        Typical Value = 0.
- * @param t3 Valve positioner time constant (T3<i>) </i>(&gt;0).
- *        Typical Value = 0.1.
- * @param t4 Inlet piping/steam bowl time constant (T4).
- *        Typical Value = 0.3.
- * @param t5 Time constant of second boiler pass (T5).
- *        Typical Value = 5.
- * @param t6 Time constant of third boiler pass (T6).
- *        Typical Value = 0.5.
- * @param t7 Time constant of fourth boiler pass (T7).
- *        Typical Value = 0.
- * @param uc Maximum valve closing velocity (Uc) (&lt;0).
- *        Unit = PU/sec.  Typical Value = -10.
- * @param uo Maximum valve opening velocity (Uo) (&gt;0).
- *        Unit = PU/sec.  Typical Value = 1.
+ *        Typical value = true.
+ * @param t1 Governor lag time constant (<i>T1</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param t2 Governor lead time constant (<i>T2</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param t3 Valve positioner time constant (<i>T3) </i>(&gt; 0).
+ *        Typical value = 0,1.
+ * @param t4 Inlet piping/steam bowl time constant (<i>T4</i>) (&gt;= 0).
+ *        Typical value = 0,3.
+ * @param t5 Time constant of second boiler pass (<i>T5</i>) (&gt;= 0).
+ *        Typical value = 5.
+ * @param t6 Time constant of third boiler pass (<i>T6</i>) (&gt;= 0).
+ *        Typical value = 0,5.
+ * @param t7 Time constant of fourth boiler pass (<i>T7</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param uc Maximum valve closing velocity (<i>Uc</i>) (&lt; 0).
+ *        Unit = PU / s.  Typical value = -10.
+ * @param uo Maximum valve opening velocity (<i>Uo</i>) (&gt; 0).
+ *        Unit = PU / s.  Typical value = 1.
  * @param valve Nonlinear valve characteristic.
  *        true = nonlinear valve characteristic is used
  *        false = nonlinear valve characteristic is not used.
- *        Typical Value = true.
+ *        Typical value = true.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 case class GovSteam1
 (
@@ -6505,30 +6610,30 @@ extends
 }
 
 /**
- * Simplified governor model.
+ * Simplified governor.
  *
  * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param dbf Frequency dead band (DBF).
- *        Typical Value = 0.
- * @param k Governor gain (reciprocal of droop) (K).
- *        Typical Value = 20.
- * @param mnef Fuel flow maximum negative error value (MN<sub>EF</sub>).
- *        Typical Value = -1.
- * @param mxef Fuel flow maximum positive error value (MX<sub>EF</sub>).
- *        Typical Value = 1.
- * @param pmax Maximum fuel flow (P<sub>MAX</sub>).
- *        Typical Value = 1.
- * @param pmin Minimum fuel flow (P<sub>MIN</sub>).
- *        Typical Value = 0.
- * @param t1 Governor lag time constant (T<sub>1</sub>) (&gt;0).
- *        Typical Value = 0.45.
- * @param t2 Governor lead time constant (T<sub>2</sub>) (may be 0).
- *        Typical Value = 0.
+ * @param dbf Frequency deadband (<i>DBF</i>).
+ *        Typical value = 0.
+ * @param k Governor gain (reciprocal of droop) (<i>K</i>).
+ *        Typical value = 20.
+ * @param mnef Fuel flow maximum negative error value (<i>MN</i><i><sub>EF</sub></i>).
+ *        Typical value = -1.
+ * @param mxef Fuel flow maximum positive error value (<i>MX</i><i><sub>EF</sub></i>).
+ *        Typical value = 1.
+ * @param pmax Maximum fuel flow (<i>P</i><i><sub>MAX</sub></i>) (&gt; GovSteam2.pmin).
+ *        Typical value = 1.
+ * @param pmin Minimum fuel flow (<i>P</i><i><sub>MIN</sub></i>) (&lt; GovSteam2.pmax).
+ *        Typical value = 0.
+ * @param t1 Governor lag time constant (<i>T</i><i><sub>1</sub></i>) (&gt; 0).
+ *        Typical value = 0,45.
+ * @param t2 Governor lead time constant (<i>T</i><i><sub>2</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 case class GovSteam2
 (
@@ -6632,52 +6737,246 @@ extends
 }
 
 /**
- * Cross compound turbine governor model.
+ * European governor model.
  *
  * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param dhp HP damping factor (Dhp).
- *        Typical Value = 0.
- * @param dlp LP damping factor (Dlp).
- *        Typical Value = 0.
- * @param fhp Fraction of HP power ahead of reheater (Fhp).
- *        Typical Value = 0.3.
- * @param flp Fraction of LP power ahead of reheater (Flp).
- *        Typical Value = 0.7.
- * @param mwbase Base for power values (MWbase) (&gt;0).
- *        Unit = MW.
- * @param pmaxhp Maximum HP value position (Pmaxhp).
- *        Typical Value = 1.
- * @param pmaxlp Maximum LP value position (Pmaxlp).
- *        Typical Value = 1.
- * @param rhp HP governor droop (Rhp).
- *        Typical Value = 0.05.
- * @param rlp LP governor droop (Rlp).
- *        Typical Value = 0.05.
- * @param t1hp HP governor time constant (T1hp).
- *        Typical Value = 0.1.
- * @param t1lp LP governor time constant (T1lp).
- *        Typical Value = 0.1.
- * @param t3hp HP turbine time constant (T3hp).
- *        Typical Value = 0.1.
- * @param t3lp LP turbine time constant (T3lp).
- *        Typical Value = 0.1.
- * @param t4hp HP turbine time constant (T4hp).
- *        Typical Value = 0.1.
- * @param t4lp LP turbine time constant (T4lp).
- *        Typical Value = 0.1.
- * @param t5hp HP reheater time constant (T5hp).
- *        Typical Value = 10.
- * @param t5lp LP reheater time constant (T5lp).
- *        Typical Value = 10.
+ * @param fcut Frequency deadband (<i>f</i><i><sub>cut</sub></i>) (&gt;= 0).
+ *        Typical value = 0,002.
+ * @param k2 Gain (<i>K2</i>).
+ *        Typical value = 0,75.
+ * @param k3 Gain (<i>K3</i>).
+ *        Typical value = 0,5.
+ * @param kd Gain (<i>Kd</i>).
+ *        Typical value = 1,0.
+ * @param kg Gain (<i>Kg</i>).
+ *        Typical value = 1,0.
+ * @param kls Gain (<i>Kls</i>) (&gt; 0).
+ *        Typical value = 0,1.
+ * @param kp Gain (<i>Kp</i>).
+ *        Typical value = 1,0.
+ * @param ks Gain (<i>Ks</i>).
+ *        Typical value = 21,0.
+ * @param peflag Electric power input selection (Peflag).
+ *        true = electric power input
+ *        false = feedback signal.
+ *        Typical value = false.
+ * @param pmax High power limit (<i>Pmax</i>) (&gt; GovSteamBB.pmin).
+ *        Typical value = 1,0.
+ * @param pmin Low power limit (<i>Pmin</i>) (&lt; GovSteamBB.pmax).
+ *        Typical value = 0.
+ * @param t1 Time constant (<i>T1</i>).
+ *        Typical value = 0,05.
+ * @param t4 Time constant (<i>T4</i>).
+ *        Typical value = 0,15.
+ * @param t5 Time constant (<i>T5</i>).
+ *        Typical value = 12,0.
+ * @param t6 Time constant (<i>T6</i>).
+ *        Typical value = 0,75.
+ * @param td Time constant (<i>Td</i>) (&gt; 0).
+ *        Typical value = 1,0.
+ * @param tn Time constant (<i>Tn</i>) (&gt; 0).
+ *        Typical value = 1,0.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
+ */
+case class GovSteamBB
+(
+    override val sup: TurbineGovernorDynamics,
+    fcut: Double,
+    k2: Double,
+    k3: Double,
+    kd: Double,
+    kg: Double,
+    kls: Double,
+    kp: Double,
+    ks: Double,
+    peflag: Boolean,
+    pmax: Double,
+    pmin: Double,
+    t1: Double,
+    t4: Double,
+    t5: Double,
+    t6: Double,
+    td: Double,
+    tn: Double
+)
+extends
+    Element
+{
+    /**
+     * Zero args constructor.
+     */
+    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, false, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
+    override def copy (): Row = { clone ().asInstanceOf[GovSteamBB] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = GovSteamBB.cls
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovSteamBB.fields (position), value)
+        emitelem (0, fcut)
+        emitelem (1, k2)
+        emitelem (2, k3)
+        emitelem (3, kd)
+        emitelem (4, kg)
+        emitelem (5, kls)
+        emitelem (6, kp)
+        emitelem (7, ks)
+        emitelem (8, peflag)
+        emitelem (9, pmax)
+        emitelem (10, pmin)
+        emitelem (11, t1)
+        emitelem (12, t4)
+        emitelem (13, t5)
+        emitelem (14, t6)
+        emitelem (15, td)
+        emitelem (16, tn)
+        s.toString
+    }
+    override def export: String =
+    {
+        "\t<cim:GovSteamBB rdf:ID=\"%s\">\n%s\t</cim:GovSteamBB>".format (id, export_fields)
+    }
+}
+
+object GovSteamBB
+extends
+    Parseable[GovSteamBB]
+{
+    override val fields: Array[String] = Array[String] (
+        "fcut",
+        "k2",
+        "k3",
+        "kd",
+        "kg",
+        "kls",
+        "kp",
+        "ks",
+        "peflag",
+        "pmax",
+        "pmin",
+        "t1",
+        "t4",
+        "t5",
+        "t6",
+        "td",
+        "tn"
+    )
+    val fcut: Fielder = parse_element (element (cls, fields(0)))
+    val k2: Fielder = parse_element (element (cls, fields(1)))
+    val k3: Fielder = parse_element (element (cls, fields(2)))
+    val kd: Fielder = parse_element (element (cls, fields(3)))
+    val kg: Fielder = parse_element (element (cls, fields(4)))
+    val kls: Fielder = parse_element (element (cls, fields(5)))
+    val kp: Fielder = parse_element (element (cls, fields(6)))
+    val ks: Fielder = parse_element (element (cls, fields(7)))
+    val peflag: Fielder = parse_element (element (cls, fields(8)))
+    val pmax: Fielder = parse_element (element (cls, fields(9)))
+    val pmin: Fielder = parse_element (element (cls, fields(10)))
+    val t1: Fielder = parse_element (element (cls, fields(11)))
+    val t4: Fielder = parse_element (element (cls, fields(12)))
+    val t5: Fielder = parse_element (element (cls, fields(13)))
+    val t6: Fielder = parse_element (element (cls, fields(14)))
+    val td: Fielder = parse_element (element (cls, fields(15)))
+    val tn: Fielder = parse_element (element (cls, fields(16)))
+
+    def parse (context: Context): GovSteamBB =
+    {
+        implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
+        val ret = GovSteamBB (
+            TurbineGovernorDynamics.parse (context),
+            toDouble (mask (fcut (), 0)),
+            toDouble (mask (k2 (), 1)),
+            toDouble (mask (k3 (), 2)),
+            toDouble (mask (kd (), 3)),
+            toDouble (mask (kg (), 4)),
+            toDouble (mask (kls (), 5)),
+            toDouble (mask (kp (), 6)),
+            toDouble (mask (ks (), 7)),
+            toBoolean (mask (peflag (), 8)),
+            toDouble (mask (pmax (), 9)),
+            toDouble (mask (pmin (), 10)),
+            toDouble (mask (t1 (), 11)),
+            toDouble (mask (t4 (), 12)),
+            toDouble (mask (t5 (), 13)),
+            toDouble (mask (t6 (), 14)),
+            toDouble (mask (td (), 15)),
+            toDouble (mask (tn (), 16))
+        )
+        ret.bitfields = bitfields
+        ret
+    }
+}
+
+/**
+ * Cross compound turbine governor.
+ *
+ * Unlike tandem compound units, cross compound units are not on the same shaft.
+ *
+ * @param sup [[ch.ninecode.model.CrossCompoundTurbineGovernorDynamics CrossCompoundTurbineGovernorDynamics]] Reference to the superclass object.
+ * @param dhp HP damping factor (<i>Dhp</i>).
+ *        Typical value = 0.
+ * @param dlp LP damping factor (<i>Dlp</i>).
+ *        Typical value = 0.
+ * @param fhp Fraction of HP power ahead of reheater (<i>Fhp</i>).
+ *        Typical value = 0,3.
+ * @param flp Fraction of LP power ahead of reheater (<i>Flp</i>).
+ *        Typical value = 0,7.
+ * @param mwbase Base for power values (<i>MWbase</i>) (&gt; 0).
+ *        Unit = MW.
+ * @param pmaxhp Maximum HP value position (<i>Pmaxhp</i>).
+ *        Typical value = 1.
+ * @param pmaxlp Maximum LP value position (<i>Pmaxlp</i>).
+ *        Typical value = 1.
+ * @param rhp HP governor droop (<i>Rhp</i>) (&gt; 0).
+ *        Typical value = 0,05.
+ * @param rlp LP governor droop (<i>Rlp</i>) (&gt; 0).
+ *        Typical value = 0,05.
+ * @param t1hp HP governor time constant (<i>T1hp</i>) (&gt;= 0).
+ *        Typical value = 0,1.
+ * @param t1lp LP governor time constant (<i>T1lp</i>) (&gt;= 0).
+ *        Typical value = 0,1.
+ * @param t3hp HP turbine time constant (<i>T3hp</i>) (&gt;= 0).
+ *        Typical value = 0,1.
+ * @param t3lp LP turbine time constant (<i>T3lp</i>) (&gt;= 0).
+ *        Typical value = 0,1.
+ * @param t4hp HP turbine time constant (<i>T4hp</i>) (&gt;= 0).
+ *        Typical value = 0,1.
+ * @param t4lp LP turbine time constant (<i>T4lp</i>) (&gt;= 0).
+ *        Typical value = 0,1.
+ * @param t5hp HP reheater time constant (<i>T5hp</i>) (&gt;= 0).
+ *        Typical value = 10.
+ * @param t5lp LP reheater time constant (<i>T5lp</i>) (&gt;= 0).
+ *        Typical value = 10.
+ * @group TurbineGovernorDynamics
+ * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 case class GovSteamCC
 (
-    override val sup: TurbineGovernorDynamics,
+    override val sup: CrossCompoundTurbineGovernorDynamics,
     dhp: Double,
     dlp: Double,
     fhp: Double,
@@ -6711,7 +7010,7 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def TurbineGovernorDynamics: TurbineGovernorDynamics = sup.asInstanceOf[TurbineGovernorDynamics]
+    def CrossCompoundTurbineGovernorDynamics: CrossCompoundTurbineGovernorDynamics = sup.asInstanceOf[CrossCompoundTurbineGovernorDynamics]
     override def copy (): Row = { clone ().asInstanceOf[GovSteamCC] }
     override def get (i: Int): Object =
     {
@@ -6797,7 +7096,7 @@ extends
         implicit val ctx: Context = context
         implicit var bitfields: Array[Int] = Array(0)
         val ret = GovSteamCC (
-            TurbineGovernorDynamics.parse (context),
+            CrossCompoundTurbineGovernorDynamics.parse (context),
             toDouble (mask (dhp (), 0)),
             toDouble (mask (dlp (), 1)),
             toDouble (mask (fhp (), 2)),
@@ -6822,84 +7121,84 @@ extends
 }
 
 /**
- * Simplified model  of boiler and steam turbine with PID governor.
+ * Simplified boiler and steam turbine with PID governor.
  *
  * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param chc Control valves rate closing limit (Chc).
- *        Unit = PU/sec.  Typical Value = -3.3.
- * @param cho Control valves rate opening limit (Cho).
- *        Unit = PU/sec.  Typical Value = 0.17.
- * @param cic Intercept valves rate closing limit (Cic).
- *        Typical Value = -2.2.
- * @param cio Intercept valves rate opening limit (Cio).
- *        Typical Value = 0.123.
- * @param db1 Dead band of the frequency corrector (db1).
- *        Typical Value = 0.
- * @param db2 Dead band of the speed governor (db2).
- *        Typical Value = 0.0004.
- * @param hhpmax Maximum control valve position (Hhpmax).
- *        Typical Value = 1.
- * @param ke Gain of the power controller (Ke).
- *        Typical Value = 0.65.
- * @param kfcor Gain of the frequency corrector (Kfcor).
- *        Typical Value = 20.
- * @param khp Fraction of total turbine output generated by HP part (Khp).
- *        Typical Value = 0.277.
- * @param klp Fraction of total turbine output generated by HP part (Klp).
- *        Typical Value = 0.723.
- * @param kwcor Gain of the speed governor (Kwcor).
- *        Typical Value = 20.
- * @param mwbase Base for power values (MWbase) (&gt;0).
+ * @param chc Control valves rate closing limit (<i>Chc</i>).
+ *        Unit = PU / s.  Typical value = -3,3.
+ * @param cho Control valves rate opening limit (<i>Cho</i>).
+ *        Unit = PU / s.  Typical value = 0,17.
+ * @param cic Intercept valves rate closing limit (<i>Cic</i>).
+ *        Typical value = -2,2.
+ * @param cio Intercept valves rate opening limit (<i>Cio</i>).
+ *        Typical value = 0,123.
+ * @param db1 Deadband of the frequency corrector (<i>db1</i>).
+ *        Typical value = 0.
+ * @param db2 Deadband of the speed governor (<i>db2</i>).
+ *        Typical value = 0,0004.
+ * @param hhpmax Maximum control valve position (<i>Hhpmax</i>).
+ *        Typical value = 1.
+ * @param ke Gain of the power controller (<i>Ke</i>).
+ *        Typical value = 0,65.
+ * @param kfcor Gain of the frequency corrector (<i>Kfcor</i>).
+ *        Typical value = 20.
+ * @param khp Fraction of total turbine output generated by HP part (<i>Khp</i>).
+ *        Typical value = 0,277.
+ * @param klp Fraction of total turbine output generated by HP part (<i>Klp</i>).
+ *        Typical value = 0,723.
+ * @param komegacor Gain of the speed governor (<i>Kwcor</i>).
+ *        Typical value = 20.
+ * @param mwbase Base for power values (<i>MWbase</i>) (&gt; 0).
  *        Unit = MW.
- * @param pmax Maximal active power of the turbine (Pmax).
- *        Typical Value = 1.
- * @param prhmax Maximum low pressure limit (Prhmax).
- *        Typical Value = 1.4.
- * @param simx Intercept valves transfer limit (Simx).
- *        Typical Value = 0.425.
- * @param tb Boiler time constant (Tb).
- *        Typical Value = 100.
- * @param tdp Derivative time constant of the power controller (Tdp).
- *        Typical Value = 0.
- * @param ten Electro hydraulic transducer (Ten).
- *        Typical Value = 0.1.
- * @param tf Frequency transducer time constant (Tf).
- *        Typical Value = 0.
- * @param tfp Time constant of the power controller (Tfp).
- *        Typical Value = 0.
- * @param thp High pressure (HP) time constant of the turbine (Thp).
- *        Typical Value = 0.31.
- * @param tip Integral time constant of the power controller (Tip).
- *        Typical Value = 2.
- * @param tlp Low pressure(LP) time constant of the turbine (Tlp).
- *        Typical Value = 0.45.
- * @param tp Power transducer time constant (Tp).
- *        Typical Value = 0.07.
- * @param trh Reheater  time constant of the turbine (Trh).
- *        Typical Value = 8.
- * @param tvhp Control valves servo time constant (Tvhp).
- *        Typical Value = 0.1.
- * @param tvip Intercept valves servo time constant (Tvip).
- *        Typical Value = 0.15.
- * @param tw Speed transducer time constant (Tw).
- *        Typical Value = 0.02.
- * @param wfmax Upper limit for frequency correction (Wfmax).
- *        Typical Value = 0.05.
- * @param wfmin Lower limit for frequency correction (Wfmin).
- *        Typical Value = -0.05.
- * @param wmax1 Emergency speed control lower limit (wmax1).
- *        Typical Value = 1.025.
- * @param wmax2 Emergency speed control upper limit (wmax2).
- *        Typical Value = 1.05.
- * @param wwmax Upper limit for the speed governor (Wwmax).
- *        Typical Value = 0.1.
- * @param wwmin Lower limit for the speed governor frequency correction (Wwmin).
- *        Typical Value = -1.
+ * @param pmax Maximal active power of the turbine (<i>Pmax</i>).
+ *        Typical value = 1.
+ * @param prhmax Maximum low pressure limit (<i>Prhmax</i>).
+ *        Typical value = 1,4.
+ * @param simx Intercept valves transfer limit (<i>Simx</i>).
+ *        Typical value = 0,425.
+ * @param tb Boiler time constant (<i>Tb</i>) (&gt;= 0).
+ *        Typical value = 100.
+ * @param tdp Derivative time constant of the power controller (<i>Tdp</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param ten Electro hydraulic transducer (<i>Ten</i>) (&gt;= 0).
+ *        Typical value = 0,1.
+ * @param tf Frequency transducer time constant (<i>Tf</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tfp Time constant of the power controller (<i>Tfp</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param thp High pressure (HP) time constant of the turbine (<i>Thp</i>) (&gt;= 0).
+ *        Typical value = 0,31.
+ * @param tip Integral time constant of the power controller (<i>Tip</i>) (&gt;= 0).
+ *        Typical value = 2.
+ * @param tlp Low pressure (LP) time constant of the turbine (<i>Tlp</i>) (&gt;= 0).
+ *        Typical value = 0,45.
+ * @param tp Power transducer time constant (<i>Tp</i>) (&gt;= 0).
+ *        Typical value = 0,07.
+ * @param trh Reheater  time constant of the turbine (<i>Trh</i>) (&gt;= 0).
+ *        Typical value = 8.
+ * @param tvhp Control valves servo time constant (<i>Tvhp</i>) (&gt;= 0).
+ *        Typical value = 0,1.
+ * @param tvip Intercept valves servo time constant (<i>Tvip</i>) (&gt;= 0).
+ *        Typical value = 0,15.
+ * @param tw Speed transducer time constant (<i>Tw</i>) (&gt;= 0).
+ *        Typical value = 0,02.
+ * @param wfmax Upper limit for frequency correction (<i>Wfmax</i>) (&gt; GovSteamEU.wfmin).
+ *        Typical value = 0,05.
+ * @param wfmin Lower limit for frequency correction (<i>Wfmin</i>) (&lt; GovSteamEU.wfmax).
+ *        Typical value = -0,05.
+ * @param wmax1 Emergency speed control lower limit (<i>wmax1</i>).
+ *        Typical value = 1,025.
+ * @param wmax2 Emergency speed control upper limit (<i>wmax2</i>).
+ *        Typical value = 1,05.
+ * @param wwmax Upper limit for the speed governor (<i>Wwmax</i>) (&gt; GovSteamEU.wwmin).
+ *        Typical value = 0,1.
+ * @param wwmin Lower limit for the speed governor frequency correction (<i>Wwmin</i>) (&lt; GovSteamEU.wwmax).
+ *        Typical value = -1.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 case class GovSteamEU
 (
@@ -6915,7 +7214,7 @@ case class GovSteamEU
     kfcor: Double,
     khp: Double,
     klp: Double,
-    kwcor: Double,
+    komegacor: Double,
     mwbase: Double,
     pmax: Double,
     prhmax: Double,
@@ -6981,7 +7280,7 @@ extends
         emitelem (8, kfcor)
         emitelem (9, khp)
         emitelem (10, klp)
-        emitelem (11, kwcor)
+        emitelem (11, komegacor)
         emitelem (12, mwbase)
         emitelem (13, pmax)
         emitelem (14, prhmax)
@@ -7029,7 +7328,7 @@ extends
         "kfcor",
         "khp",
         "klp",
-        "kwcor",
+        "komegacor",
         "mwbase",
         "pmax",
         "prhmax",
@@ -7065,7 +7364,7 @@ extends
     val kfcor: Fielder = parse_element (element (cls, fields(8)))
     val khp: Fielder = parse_element (element (cls, fields(9)))
     val klp: Fielder = parse_element (element (cls, fields(10)))
-    val kwcor: Fielder = parse_element (element (cls, fields(11)))
+    val komegacor: Fielder = parse_element (element (cls, fields(11)))
     val mwbase: Fielder = parse_element (element (cls, fields(12)))
     val pmax: Fielder = parse_element (element (cls, fields(13)))
     val prhmax: Fielder = parse_element (element (cls, fields(14)))
@@ -7107,7 +7406,7 @@ extends
             toDouble (mask (kfcor (), 8)),
             toDouble (mask (khp (), 9)),
             toDouble (mask (klp (), 10)),
-            toDouble (mask (kwcor (), 11)),
+            toDouble (mask (komegacor (), 11)),
             toDouble (mask (mwbase (), 12)),
             toDouble (mask (pmax (), 13)),
             toDouble (mask (prhmax (), 14)),
@@ -7138,28 +7437,27 @@ extends
 }
 
 /**
- * Steam turbine governor with reheat time constants and modeling of the effects of fast valve closing to reduce mechanical power.
+ * Steam turbine governor with reheat time constants and modelling of the effects of fast valve closing to reduce mechanical power.
  *
  * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param dt (Dt).
- * @param k Fraction of the turbine power developed by turbine sections not involved in fast valving (K).
- * @param mwbase Alternate Base used instead of Machine base in equipment model if necessary (MWbase) (&gt;0).
+ * @param dt (<i>Dt</i>).
+ * @param k Fraction of the turbine power developed by turbine sections not involved in fast valving (<i>K</i>).
+ * @param mwbase Alternate base used instead of machine base in equipment model if necessary (<i>MWbase</i>) (&gt; 0).
  *        Unit = MW.
- * @param r (R).
- * @param t1 Governor time constant (T1).
- * @param t3 Reheater time constant (T3).
- * @param ta Time after initial time for valve to close (Ta).
- * @param tb Time after initial time for valve to begin opening (Tb).
- * @param tc Time after initial time for valve to become fully open (Tc).
- * @param ti Initial time to begin fast valving (Ti).
- * @param tt Time constant with which power falls off after intercept valve closure (Tt).
- * @param vmax (Vmax).
- * @param vmin (Vmin).
+ * @param r (<i>R</i>).
+ * @param t1 Governor time constant (<i>T1</i>) (&gt;= 0).
+ * @param t3 Reheater time constant (<i>T3</i>) (&gt;= 0).
+ * @param ta Time after initial time for valve to close (<i>Ta</i>) (&gt;= 0).
+ * @param tb Time after initial time for valve to begin opening (<i>Tb</i>) (&gt;= 0).
+ * @param tc Time after initial time for valve to become fully open (<i>Tc</i>) (&gt;= 0).
+ * @param tt Time constant with which power falls off after intercept valve closure (<i>Tt</i>) (&gt;= 0).
+ * @param vmax (<i>Vmax</i>) (&gt; GovSteamFV2.vmin).
+ * @param vmin (<i>Vmin</i>) (&lt; GovSteamFV2.vmax).
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 case class GovSteamFV2
 (
@@ -7173,7 +7471,6 @@ case class GovSteamFV2
     ta: Double,
     tb: Double,
     tc: Double,
-    ti: Double,
     tt: Double,
     vmax: Double,
     vmin: Double
@@ -7184,7 +7481,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -7217,10 +7514,9 @@ extends
         emitelem (6, ta)
         emitelem (7, tb)
         emitelem (8, tc)
-        emitelem (9, ti)
-        emitelem (10, tt)
-        emitelem (11, vmax)
-        emitelem (12, vmin)
+        emitelem (9, tt)
+        emitelem (10, vmax)
+        emitelem (11, vmin)
         s.toString
     }
     override def export: String =
@@ -7243,7 +7539,6 @@ extends
         "ta",
         "tb",
         "tc",
-        "ti",
         "tt",
         "vmax",
         "vmin"
@@ -7257,10 +7552,9 @@ extends
     val ta: Fielder = parse_element (element (cls, fields(6)))
     val tb: Fielder = parse_element (element (cls, fields(7)))
     val tc: Fielder = parse_element (element (cls, fields(8)))
-    val ti: Fielder = parse_element (element (cls, fields(9)))
-    val tt: Fielder = parse_element (element (cls, fields(10)))
-    val vmax: Fielder = parse_element (element (cls, fields(11)))
-    val vmin: Fielder = parse_element (element (cls, fields(12)))
+    val tt: Fielder = parse_element (element (cls, fields(9)))
+    val vmax: Fielder = parse_element (element (cls, fields(10)))
+    val vmin: Fielder = parse_element (element (cls, fields(11)))
 
     def parse (context: Context): GovSteamFV2 =
     {
@@ -7277,10 +7571,9 @@ extends
             toDouble (mask (ta (), 6)),
             toDouble (mask (tb (), 7)),
             toDouble (mask (tc (), 8)),
-            toDouble (mask (ti (), 9)),
-            toDouble (mask (tt (), 10)),
-            toDouble (mask (vmax (), 11)),
-            toDouble (mask (vmin (), 12))
+            toDouble (mask (tt (), 9)),
+            toDouble (mask (vmax (), 10)),
+            toDouble (mask (vmin (), 11))
         )
         ret.bitfields = bitfields
         ret
@@ -7288,61 +7581,97 @@ extends
 }
 
 /**
- * Simplified GovSteamIEEE1 Steam turbine governor model with Prmax limit and fast valving.
+ * Simplified GovSteamIEEE1 steam turbine governor with Prmax limit and fast valving.
  *
  * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param k Governor gain, (reciprocal of droop) (K).
- *        Typical Value = 20.
- * @param k1 Fraction of turbine power developed after first boiler pass (K1).
- *        Typical Value = 0.2.
- * @param k2 Fraction of turbine power developed after second boiler pass (K2).
- *        Typical Value = 0.2.
- * @param k3 Fraction of hp turbine power developed after crossover or third boiler pass (K3).
- *        Typical Value = 0.6.
- * @param mwbase Base for power values (MWbase) (&gt;0).
+ * @param gv1 Nonlinear gain valve position point 1 (<i>GV1</i>).
+ *        Typical value = 0.
+ * @param gv2 Nonlinear gain valve position point 2 (<i>GV2</i>).
+ *        Typical value = 0,4.
+ * @param gv3 Nonlinear gain valve position point 3 (<i>GV3</i>).
+ *        Typical value = 0,5.
+ * @param gv4 Nonlinear gain valve position point 4 (<i>GV4</i>).
+ *        Typical value = 0,6.
+ * @param gv5 Nonlinear gain valve position point 5 (<i>GV5</i>).
+ *        Typical value = 1.
+ * @param gv6 Nonlinear gain valve position point 6 (<i>GV6</i>).
+ *        Typical value = 0.
+ * @param k Governor gain, (reciprocal of droop) (<i>K</i>).
+ *        Typical value = 20.
+ * @param k1 Fraction of turbine power developed after first boiler pass (<i>K1</i>).
+ *        Typical value = 0,2.
+ * @param k2 Fraction of turbine power developed after second boiler pass (<i>K2</i>).
+ *        Typical value = 0,2.
+ * @param k3 Fraction of hp turbine power developed after crossover or third boiler pass (<i>K3</i>).
+ *        Typical value = 0,6.
+ * @param mwbase Base for power values (<i>MWbase</i>) (&gt; 0).
  *        Unit = MW.
- * @param pmax Maximum valve opening, PU of MWbase (Pmax).
- *        Typical Value = 1.
- * @param pmin Minimum valve opening, PU of MWbase (Pmin).
- *        Typical Value = 0.
- * @param prmax Max. pressure in reheater (Prmax).
- *        Typical Value = 1.
- * @param t1 Governor lead time constant (T1).
- *        Typical Value = 0.
- * @param t2 Governor lag time constant (T2).
- *        Typical Value = 0.
- * @param t3 Valve positioner time constant (T3).
- *        Typical Value = 0.
- * @param t4 Inlet piping/steam bowl time constant (T4).
- *        Typical Value = 0.2.
- * @param t5 Time constant of second boiler pass (i.e. reheater) (T5).
- *        Typical Value = 0.5.
- * @param t6 Time constant of crossover or third boiler pass (T6).
- *        Typical Value = 10.
- * @param ta Time to close intercept valve (IV) (Ta).
- *        Typical Value = 0.97.
- * @param tb Time until IV starts to reopen (Tb).
- *        Typical Value = 0.98.
- * @param tc Time until IV is fully open (Tc).
- *        Typical Value = 0.99.
- * @param uc Maximum valve closing velocity (Uc).
- *        Unit = PU/sec.  Typical Value = -1.
- * @param uo Maximum valve opening velocity (Uo).
- *        Unit = PU/sec.  Typical Value = 0.1.
+ * @param pgv1 Nonlinear gain power value point 1 (<i>Pgv1</i>).
+ *        Typical value = 0.
+ * @param pgv2 Nonlinear gain power value point 2 (<i>Pgv2</i>).
+ *        Typical value = 0,75.
+ * @param pgv3 Nonlinear gain power value point 3 (<i>Pgv3</i>).
+ *        Typical value = 0,91.
+ * @param pgv4 Nonlinear gain power value point 4 (<i>Pgv4</i>).
+ *        Typical value = 0,98.
+ * @param pgv5 Nonlinear gain power value point 5 (<i>Pgv5</i>).
+ *        Typical value = 1.
+ * @param pgv6 Nonlinear gain power value point 6 (<i>Pgv6</i>).
+ *        Typical value = 0.
+ * @param pmax Maximum valve opening, PU of <i>MWbase</i> (<i>Pmax</i>) (&gt; GovSteamFV3.pmin).
+ *        Typical value = 1.
+ * @param pmin Minimum valve opening, PU of <i>MWbase</i> (<i>Pmin</i>) (&lt; GovSteamFV3.pmax).
+ *        Typical value = 0.
+ * @param prmax Max. pressure in reheater (<i>Prmax</i>).
+ *        Typical value = 1.
+ * @param t1 Governor lead time constant (<i>T1</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param t2 Governor lag time constant (<i>T2</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param t3 Valve positioner time constant (<i>T3</i>) (&gt; 0).
+ *        Typical value = 0.
+ * @param t4 Inlet piping/steam bowl time constant (<i>T4</i>) (&gt;= 0).
+ *        Typical value = 0,2.
+ * @param t5 Time constant of second boiler pass (i.e. reheater) (<i>T5</i>) (&gt; 0 if fast valving is used, otherwise &gt;= 0).
+ *        Typical value = 0,5.
+ * @param t6 Time constant of crossover or third boiler pass (<i>T6</i>) (&gt;= 0).
+ *        Typical value = 10.
+ * @param ta Time to close intercept valve (IV) (<i>Ta</i>) (&gt;= 0).
+ *        Typical value = 0,97.
+ * @param tb Time until IV starts to reopen (<i>Tb</i>) (&gt;= 0).
+ *        Typical value = 0,98.
+ * @param tc Time until IV is fully open (<i>Tc</i>) (&gt;= 0).
+ *        Typical value = 0,99.
+ * @param uc Maximum valve closing velocity (<i>Uc</i>).
+ *        Unit = PU / s.  Typical value = -1.
+ * @param uo Maximum valve opening velocity (<i>Uo</i>).
+ *        Unit = PU / s.  Typical value = 0,1.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 case class GovSteamFV3
 (
     override val sup: TurbineGovernorDynamics,
+    gv1: Double,
+    gv2: Double,
+    gv3: Double,
+    gv4: Double,
+    gv5: Double,
+    gv6: Double,
     k: Double,
     k1: Double,
     k2: Double,
     k3: Double,
     mwbase: Double,
+    pgv1: Double,
+    pgv2: Double,
+    pgv3: Double,
+    pgv4: Double,
+    pgv5: Double,
+    pgv6: Double,
     pmax: Double,
     pmin: Double,
     prmax: Double,
@@ -7364,7 +7693,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -7388,25 +7717,37 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = GovSteamFV3.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (GovSteamFV3.fields (position), value)
-        emitelem (0, k)
-        emitelem (1, k1)
-        emitelem (2, k2)
-        emitelem (3, k3)
-        emitelem (4, mwbase)
-        emitelem (5, pmax)
-        emitelem (6, pmin)
-        emitelem (7, prmax)
-        emitelem (8, t1)
-        emitelem (9, t2)
-        emitelem (10, t3)
-        emitelem (11, t4)
-        emitelem (12, t5)
-        emitelem (13, t6)
-        emitelem (14, ta)
-        emitelem (15, tb)
-        emitelem (16, tc)
-        emitelem (17, uc)
-        emitelem (18, uo)
+        emitelem (0, gv1)
+        emitelem (1, gv2)
+        emitelem (2, gv3)
+        emitelem (3, gv4)
+        emitelem (4, gv5)
+        emitelem (5, gv6)
+        emitelem (6, k)
+        emitelem (7, k1)
+        emitelem (8, k2)
+        emitelem (9, k3)
+        emitelem (10, mwbase)
+        emitelem (11, pgv1)
+        emitelem (12, pgv2)
+        emitelem (13, pgv3)
+        emitelem (14, pgv4)
+        emitelem (15, pgv5)
+        emitelem (16, pgv6)
+        emitelem (17, pmax)
+        emitelem (18, pmin)
+        emitelem (19, prmax)
+        emitelem (20, t1)
+        emitelem (21, t2)
+        emitelem (22, t3)
+        emitelem (23, t4)
+        emitelem (24, t5)
+        emitelem (25, t6)
+        emitelem (26, ta)
+        emitelem (27, tb)
+        emitelem (28, tc)
+        emitelem (29, uc)
+        emitelem (30, uo)
         s.toString
     }
     override def export: String =
@@ -7420,11 +7761,23 @@ extends
     Parseable[GovSteamFV3]
 {
     override val fields: Array[String] = Array[String] (
+        "gv1",
+        "gv2",
+        "gv3",
+        "gv4",
+        "gv5",
+        "gv6",
         "k",
         "k1",
         "k2",
         "k3",
         "mwbase",
+        "pgv1",
+        "pgv2",
+        "pgv3",
+        "pgv4",
+        "pgv5",
+        "pgv6",
         "pmax",
         "pmin",
         "prmax",
@@ -7440,25 +7793,37 @@ extends
         "uc",
         "uo"
     )
-    val k: Fielder = parse_element (element (cls, fields(0)))
-    val k1: Fielder = parse_element (element (cls, fields(1)))
-    val k2: Fielder = parse_element (element (cls, fields(2)))
-    val k3: Fielder = parse_element (element (cls, fields(3)))
-    val mwbase: Fielder = parse_element (element (cls, fields(4)))
-    val pmax: Fielder = parse_element (element (cls, fields(5)))
-    val pmin: Fielder = parse_element (element (cls, fields(6)))
-    val prmax: Fielder = parse_element (element (cls, fields(7)))
-    val t1: Fielder = parse_element (element (cls, fields(8)))
-    val t2: Fielder = parse_element (element (cls, fields(9)))
-    val t3: Fielder = parse_element (element (cls, fields(10)))
-    val t4: Fielder = parse_element (element (cls, fields(11)))
-    val t5: Fielder = parse_element (element (cls, fields(12)))
-    val t6: Fielder = parse_element (element (cls, fields(13)))
-    val ta: Fielder = parse_element (element (cls, fields(14)))
-    val tb: Fielder = parse_element (element (cls, fields(15)))
-    val tc: Fielder = parse_element (element (cls, fields(16)))
-    val uc: Fielder = parse_element (element (cls, fields(17)))
-    val uo: Fielder = parse_element (element (cls, fields(18)))
+    val gv1: Fielder = parse_element (element (cls, fields(0)))
+    val gv2: Fielder = parse_element (element (cls, fields(1)))
+    val gv3: Fielder = parse_element (element (cls, fields(2)))
+    val gv4: Fielder = parse_element (element (cls, fields(3)))
+    val gv5: Fielder = parse_element (element (cls, fields(4)))
+    val gv6: Fielder = parse_element (element (cls, fields(5)))
+    val k: Fielder = parse_element (element (cls, fields(6)))
+    val k1: Fielder = parse_element (element (cls, fields(7)))
+    val k2: Fielder = parse_element (element (cls, fields(8)))
+    val k3: Fielder = parse_element (element (cls, fields(9)))
+    val mwbase: Fielder = parse_element (element (cls, fields(10)))
+    val pgv1: Fielder = parse_element (element (cls, fields(11)))
+    val pgv2: Fielder = parse_element (element (cls, fields(12)))
+    val pgv3: Fielder = parse_element (element (cls, fields(13)))
+    val pgv4: Fielder = parse_element (element (cls, fields(14)))
+    val pgv5: Fielder = parse_element (element (cls, fields(15)))
+    val pgv6: Fielder = parse_element (element (cls, fields(16)))
+    val pmax: Fielder = parse_element (element (cls, fields(17)))
+    val pmin: Fielder = parse_element (element (cls, fields(18)))
+    val prmax: Fielder = parse_element (element (cls, fields(19)))
+    val t1: Fielder = parse_element (element (cls, fields(20)))
+    val t2: Fielder = parse_element (element (cls, fields(21)))
+    val t3: Fielder = parse_element (element (cls, fields(22)))
+    val t4: Fielder = parse_element (element (cls, fields(23)))
+    val t5: Fielder = parse_element (element (cls, fields(24)))
+    val t6: Fielder = parse_element (element (cls, fields(25)))
+    val ta: Fielder = parse_element (element (cls, fields(26)))
+    val tb: Fielder = parse_element (element (cls, fields(27)))
+    val tc: Fielder = parse_element (element (cls, fields(28)))
+    val uc: Fielder = parse_element (element (cls, fields(29)))
+    val uo: Fielder = parse_element (element (cls, fields(30)))
 
     def parse (context: Context): GovSteamFV3 =
     {
@@ -7466,25 +7831,37 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = GovSteamFV3 (
             TurbineGovernorDynamics.parse (context),
-            toDouble (mask (k (), 0)),
-            toDouble (mask (k1 (), 1)),
-            toDouble (mask (k2 (), 2)),
-            toDouble (mask (k3 (), 3)),
-            toDouble (mask (mwbase (), 4)),
-            toDouble (mask (pmax (), 5)),
-            toDouble (mask (pmin (), 6)),
-            toDouble (mask (prmax (), 7)),
-            toDouble (mask (t1 (), 8)),
-            toDouble (mask (t2 (), 9)),
-            toDouble (mask (t3 (), 10)),
-            toDouble (mask (t4 (), 11)),
-            toDouble (mask (t5 (), 12)),
-            toDouble (mask (t6 (), 13)),
-            toDouble (mask (ta (), 14)),
-            toDouble (mask (tb (), 15)),
-            toDouble (mask (tc (), 16)),
-            toDouble (mask (uc (), 17)),
-            toDouble (mask (uo (), 18))
+            toDouble (mask (gv1 (), 0)),
+            toDouble (mask (gv2 (), 1)),
+            toDouble (mask (gv3 (), 2)),
+            toDouble (mask (gv4 (), 3)),
+            toDouble (mask (gv5 (), 4)),
+            toDouble (mask (gv6 (), 5)),
+            toDouble (mask (k (), 6)),
+            toDouble (mask (k1 (), 7)),
+            toDouble (mask (k2 (), 8)),
+            toDouble (mask (k3 (), 9)),
+            toDouble (mask (mwbase (), 10)),
+            toDouble (mask (pgv1 (), 11)),
+            toDouble (mask (pgv2 (), 12)),
+            toDouble (mask (pgv3 (), 13)),
+            toDouble (mask (pgv4 (), 14)),
+            toDouble (mask (pgv5 (), 15)),
+            toDouble (mask (pgv6 (), 16)),
+            toDouble (mask (pmax (), 17)),
+            toDouble (mask (pmin (), 18)),
+            toDouble (mask (prmax (), 19)),
+            toDouble (mask (t1 (), 20)),
+            toDouble (mask (t2 (), 21)),
+            toDouble (mask (t3 (), 22)),
+            toDouble (mask (t4 (), 23)),
+            toDouble (mask (t5 (), 24)),
+            toDouble (mask (t6 (), 25)),
+            toDouble (mask (ta (), 26)),
+            toDouble (mask (tb (), 27)),
+            toDouble (mask (tc (), 28)),
+            toDouble (mask (uc (), 29)),
+            toDouble (mask (uo (), 30))
         )
         ret.bitfields = bitfields
         ret
@@ -7495,113 +7872,113 @@ extends
  * Detailed electro-hydraulic governor for steam unit.
  *
  * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param cpsmn Minimum value of pressure regulator output (Cpsmn).
- *        Typical Value = -1.
- * @param cpsmx Maximum value of pressure regulator output (Cpsmx).
- *        Typical Value = 1.
- * @param crmn Minimum value of regulator set-point (Crmn).
- *        Typical Value = 0.
- * @param crmx Maximum value of regulator set-point (Crmx).
- *        Typical Value = 1.2.
- * @param kdc Derivative gain of pressure regulator (Kdc).
- *        Typical Value = 1.
- * @param kf1 Frequency bias (reciprocal of droop) (Kf1).
- *        Typical Value = 20.
- * @param kf3 Frequency control (reciprocal of droop) (Kf3).
- *        Typical Value = 20.
- * @param khp Fraction  of total turbine output generated by HP part (Khp).
- *        Typical Value = 0.35.
- * @param kic Integral gain of pressure regulator (Kic).
- *        Typical Value = 0.0033.
- * @param kip Integral gain of pressure feedback regulator (Kip).
- *        Typical Value = 0.5.
- * @param kit Integral gain of electro-hydraulic regulator (Kit).
- *        Typical Value = 0.04.
- * @param kmp1 First gain coefficient of  intercept valves characteristic (Kmp1).
- *        Typical Value = 0.5.
- * @param kmp2 Second gain coefficient of intercept valves characteristic (Kmp2).
- *        Typical Value = 3.5.
- * @param kpc Proportional gain of pressure regulator (Kpc).
- *        Typical Value = 0.5.
- * @param kpp Proportional gain of pressure feedback regulator (Kpp).
- *        Typical Value = 1.
- * @param kpt Proportional gain of electro-hydraulic regulator (Kpt).
- *        Typical Value = 0.3.
- * @param krc Maximum variation of fuel flow (Krc).
- *        Typical Value = 0.05.
- * @param ksh Pressure loss due to flow friction in the boiler tubes (Ksh).
- *        Typical Value = 0.08.
- * @param lpi Maximum negative power error (Lpi).
- *        Typical Value = -0.15.
- * @param lps Maximum positive power error (Lps).
- *        Typical Value = 0.03.
- * @param mnef Lower limit for frequency correction (MN<sub>EF</sub>).
- *        Typical Value = -0.05.
- * @param mxef Upper limit for frequency correction (MX<sub>EF</sub>).
- *        Typical Value = 0.05.
- * @param pr1 First value of pressure set point static characteristic (Pr1).
- *        Typical Value = 0.2.
- * @param pr2 Second value of pressure set point static characteristic, corresponding to Ps0 = 1.0 PU (Pr2).
- *        Typical Value = 0.75.
- * @param psmn Minimum value of pressure set point static characteristic (Psmn).
- *        Typical Value = 1.
- * @param rsmimn Minimum value of integral regulator (Rsmimn).
- *        Typical Value = 0.
- * @param rsmimx Maximum value of integral regulator (Rsmimx).
- *        Typical Value = 1.1.
- * @param rvgmn Minimum value of integral regulator (Rvgmn).
- *        Typical Value = 0.
- * @param rvgmx Maximum value of integral regulator (Rvgmx).
- *        Typical Value = 1.2.
- * @param srmn Minimum valve opening (Srmn).
- *        Typical Value = 0.
- * @param srmx Maximum valve opening (Srmx).
- *        Typical Value = 1.1.
- * @param srsmp Intercept valves characteristic discontinuity point (Srsmp).
- *        Typical Value = 0.43.
- * @param svmn Maximum regulator gate closing velocity (Svmn).
- *        Typical Value = -0.0333.
- * @param svmx Maximum regulator gate opening velocity (Svmx).
- *        Typical Value = 0.0333.
- * @param ta Control valves rate opening time (Ta).
- *        Typical Value = 0.8.
- * @param tam Intercept valves rate opening time (Tam).
- *        Typical Value = 0.8.
- * @param tc Control valves rate closing time (Tc).
- *        Typical Value = 0.5.
- * @param tcm Intercept valves rate closing time (Tcm).
- *        Typical Value = 0.5.
- * @param tdc Derivative time constant of pressure regulator (Tdc).
- *        Typical Value = 90.
- * @param tf1 Time constant of fuel regulation (Tf1).
- *        Typical Value = 10.
- * @param tf2 Time constant of steam chest (Tf2).
- *        Typical Value = 10.
- * @param thp High pressure (HP) time constant of the turbine (Thp).
- *        Typical Value = 0.15.
- * @param tmp Low pressure (LP) time constant of the turbine (Tmp).
- *        Typical Value = 0.4.
- * @param trh Reheater  time constant of the turbine (Trh).
- *        Typical Value = 10.
- * @param tv Boiler time constant (Tv).
- *        Typical Value = 60.
- * @param ty Control valves servo time constant (Ty).
- *        Typical Value = 0.1.
- * @param y Coefficient of linearized equations of turbine (Stodola formulation) (Y).
- *        Typical Value = 0.13.
- * @param yhpmn Minimum control valve position (Yhpmn).
- *        Typical Value = 0.
- * @param yhpmx Maximum control valve position (Yhpmx).
- *        Typical Value = 1.1.
- * @param ympmn Minimum intercept valve position (Ympmn).
- *        Typical Value = 0.
- * @param ympmx Maximum intercept valve position (Ympmx).
- *        Typical Value = 1.1.
+ * @param cpsmn Minimum value of pressure regulator output (<i>Cpsmn</i>).
+ *        Typical value = -1.
+ * @param cpsmx Maximum value of pressure regulator output (<i>Cpsmx</i>).
+ *        Typical value = 1.
+ * @param crmn Minimum value of regulator set-point (<i>Crmn</i>).
+ *        Typical value = 0.
+ * @param crmx Maximum value of regulator set-point (<i>Crmx</i>).
+ *        Typical value = 1,2.
+ * @param kdc Derivative gain of pressure regulator (<i>Kdc</i>).
+ *        Typical value = 1.
+ * @param kf1 Frequency bias (reciprocal of droop) (<i>Kf1</i>).
+ *        Typical value = 20.
+ * @param kf3 Frequency control (reciprocal of droop) (<i>Kf3</i>).
+ *        Typical value = 20.
+ * @param khp Fraction  of total turbine output generated by HP part (<i>Khp</i>).
+ *        Typical value = 0,35.
+ * @param kic Integral gain of pressure regulator (<i>Kic</i>).
+ *        Typical value = 0,0033.
+ * @param kip Integral gain of pressure feedback regulator (<i>Kip</i>).
+ *        Typical value = 0,5.
+ * @param kit Integral gain of electro-hydraulic regulator (<i>Kit</i>).
+ *        Typical value = 0,04.
+ * @param kmp1 First gain coefficient of  intercept valves characteristic (<i>Kmp1</i>).
+ *        Typical value = 0,5.
+ * @param kmp2 Second gain coefficient of intercept valves characteristic (<i>Kmp2</i>).
+ *        Typical value = 3,5.
+ * @param kpc Proportional gain of pressure regulator (<i>Kpc</i>).
+ *        Typical value = 0,5.
+ * @param kpp Proportional gain of pressure feedback regulator (<i>Kpp</i>).
+ *        Typical value = 1.
+ * @param kpt Proportional gain of electro-hydraulic regulator (<i>Kpt</i>).
+ *        Typical value = 0,3.
+ * @param krc Maximum variation of fuel flow (<i>Krc</i>).
+ *        Typical value = 0,05.
+ * @param ksh Pressure loss due to flow friction in the boiler tubes (<i>Ksh</i>).
+ *        Typical value = 0,08.
+ * @param lpi Maximum negative power error (<i>Lpi</i>).
+ *        Typical value = -0,15.
+ * @param lps Maximum positive power error (<i>Lps</i>).
+ *        Typical value = 0,03.
+ * @param mnef Lower limit for frequency correction (<i>MN</i><i><sub>EF</sub></i>).
+ *        Typical value = -0,05.
+ * @param mxef Upper limit for frequency correction (<i>MX</i><i><sub>EF</sub></i>).
+ *        Typical value = 0,05.
+ * @param pr1 First value of pressure set point static characteristic (<i>Pr1</i>).
+ *        Typical value = 0,2.
+ * @param pr2 Second value of pressure set point static characteristic, corresponding to <i>Ps0</i> = 1,0 PU (<i>Pr2</i>).
+ *        Typical value = 0,75.
+ * @param psmn Minimum value of pressure set point static characteristic (<i>Psmn</i>).
+ *        Typical value = 1.
+ * @param rsmimn Minimum value of integral regulator (<i>Rsmimn</i>).
+ *        Typical value = 0.
+ * @param rsmimx Maximum value of integral regulator (<i>Rsmimx</i>).
+ *        Typical value = 1,1.
+ * @param rvgmn Minimum value of integral regulator (<i>Rvgmn</i>).
+ *        Typical value = 0.
+ * @param rvgmx Maximum value of integral regulator (<i>Rvgmx</i>).
+ *        Typical value = 1,2.
+ * @param srmn Minimum valve opening (<i>Srmn</i>).
+ *        Typical value = 0.
+ * @param srmx Maximum valve opening (<i>Srmx</i>).
+ *        Typical value = 1,1.
+ * @param srsmp Intercept valves characteristic discontinuity point (<i>Srsmp</i>).
+ *        Typical value = 0,43.
+ * @param svmn Maximum regulator gate closing velocity (<i>Svmn</i>).
+ *        Typical value = -0,0333.
+ * @param svmx Maximum regulator gate opening velocity (<i>Svmx</i>).
+ *        Typical value = 0,0333.
+ * @param ta Control valves rate opening time (<i>Ta</i>) (&gt;= 0).
+ *        Typical value = 0,8.
+ * @param tam Intercept valves rate opening time (<i>Tam</i>) (&gt;= 0).
+ *        Typical value = 0,8.
+ * @param tc Control valves rate closing time (<i>Tc</i>) (&gt;= 0).
+ *        Typical value = 0,5.
+ * @param tcm Intercept valves rate closing time (<i>Tcm</i>) (&gt;= 0).
+ *        Typical value = 0,5.
+ * @param tdc Derivative time constant of pressure regulator (<i>Tdc</i>) (&gt;= 0).
+ *        Typical value = 90.
+ * @param tf1 Time constant of fuel regulation (<i>Tf1</i>) (&gt;= 0).
+ *        Typical value = 10.
+ * @param tf2 Time constant of steam chest (<i>Tf2</i>) (&gt;= 0).
+ *        Typical value = 10.
+ * @param thp High pressure (HP) time constant of the turbine (<i>Thp</i>) (&gt;= 0).
+ *        Typical value = 0,15.
+ * @param tmp Low pressure (LP) time constant of the turbine (<i>Tmp</i>) (&gt;= 0).
+ *        Typical value = 0,4.
+ * @param trh Reheater  time constant of the turbine (<i>Trh</i>) (&gt;= 0).
+ *        Typical value = 10.
+ * @param tv Boiler time constant (<i>Tv</i>) (&gt;= 0).
+ *        Typical value = 60.
+ * @param ty Control valves servo time constant (<i>Ty</i>) (&gt;= 0).
+ *        Typical value = 0,1.
+ * @param y Coefficient of linearized equations of turbine (Stodola formulation) (<i>Y</i>).
+ *        Typical value = 0,13.
+ * @param yhpmn Minimum control valve position (<i>Yhpmn</i>).
+ *        Typical value = 0.
+ * @param yhpmx Maximum control valve position (<i>Yhpmx</i>).
+ *        Typical value = 1,1.
+ * @param ympmn Minimum intercept valve position (<i>Ympmn</i>).
+ *        Typical value = 0.
+ * @param ympmx Maximum intercept valve position (<i>Ympmx</i>).
+ *        Typical value = 1,1.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 case class GovSteamFV4
 (
@@ -7922,55 +8299,55 @@ extends
 /**
  * IEEE steam turbine governor model.
  *
- * Ref<font color="#0f0f0f">erence: IEEE Transactions on Power Apparatus and Systems</font>
+ * Ref<font color="#0f0f0f">erence: IEEE Transactions on Power Apparatus and Systems, November/December 1973, Volume PAS-92, Number 6, <i><u>Dynamic Models for Steam and Hydro Turbines in Power System Studies</u></i>, page 1904.</font>
  *
  * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param k Governor gain (reciprocal of droop) (K) (&gt; 0).
- *        Typical Value = 25.
- * @param k1 Fraction of HP shaft power after first boiler pass (K1).
- *        Typical Value = 0.2.
- * @param k2 Fraction of LP shaft power after first boiler pass (K2).
- *        Typical Value = 0.
- * @param k3 Fraction of HP shaft power after second boiler pass (K3).
- *        Typical Value = 0.3.
- * @param k4 Fraction of LP shaft power after second boiler pass (K4).
- *        Typical Value = 0.
- * @param k5 Fraction of HP shaft power after third boiler pass (K5).
- *        Typical Value = 0.5.
- * @param k6 Fraction of LP shaft power after third boiler pass (K6).
- *        Typical Value = 0.
- * @param k7 Fraction of HP shaft power after fourth boiler pass (K7).
- *        Typical Value = 0.
- * @param k8 Fraction of LP shaft power after fourth boiler pass (K8).
- *        Typical Value = 0.
- * @param mwbase Base for power values (MWbase) (&gt; 0)<i>.</i>
- * @param pmax Maximum valve opening (Pmax) (&gt; Pmin).
- *        Typical Value = 1.
- * @param pmin Minimum valve opening (Pmin) (&gt;= 0).
- *        Typical Value = 0.
- * @param t1 Governor lag time constant (T1).
- *        Typical Value = 0.
- * @param t2 Governor lead time constant (T2).
- *        Typical Value = 0.
- * @param t3 Valve positioner time constant (T3) (&gt; 0).
- *        Typical Value = 0.1.
- * @param t4 Inlet piping/steam bowl time constant (T4).
- *        Typical Value = 0.3.
- * @param t5 Time constant of second boiler pass (T5).
- *        Typical Value = 5.
- * @param t6 Time constant of third boiler pass (T6).
- *        Typical Value = 0.5.
- * @param t7 Time constant of fourth boiler pass (T7).
- *        Typical Value = 0.
- * @param uc Maximum valve closing velocity (Uc) (&lt; 0).
- *        Unit = PU/sec.  Typical Value = -10.
- * @param uo Maximum valve opening velocity (Uo) (&gt; 0).
- *        Unit = PU/sec.  Typical Value = 1.
+ * @param k Governor gain (reciprocal of droop) (<i>K</i>) (&gt; 0).
+ *        Typical value = 25.
+ * @param k1 Fraction of HP shaft power after first boiler pass (<i>K1</i>).
+ *        Typical value = 0,2.
+ * @param k2 Fraction of LP shaft power after first boiler pass (<i>K2</i>).
+ *        Typical value = 0.
+ * @param k3 Fraction of HP shaft power after second boiler pass (<i>K3</i>).
+ *        Typical value = 0,3.
+ * @param k4 Fraction of LP shaft power after second boiler pass (<i>K4</i>).
+ *        Typical value = 0.
+ * @param k5 Fraction of HP shaft power after third boiler pass (<i>K5</i>).
+ *        Typical value = 0,5.
+ * @param k6 Fraction of LP shaft power after third boiler pass (<i>K6</i>).
+ *        Typical value = 0.
+ * @param k7 Fraction of HP shaft power after fourth boiler pass (<i>K7</i>).
+ *        Typical value = 0.
+ * @param k8 Fraction of LP shaft power after fourth boiler pass (<i>K8</i>).
+ *        Typical value = 0.
+ * @param mwbase Base for power values (<i>MWbase</i>) (&gt; 0)<i>. </i>Unit = MW.
+ * @param pmax Maximum valve opening (<i>Pmax</i>) (&gt; GovSteamIEEE1.pmin).
+ *        Typical value = 1.
+ * @param pmin Minimum valve opening (<i>Pmin</i>) (&gt;= 0 and &lt; GovSteamIEEE1.pmax).
+ *        Typical value = 0.
+ * @param t1 Governor lag time constant (<i>T1</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param t2 Governor lead time constant (<i>T2</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param t3 Valve positioner time constant (<i>T3</i>) (&gt; 0).
+ *        Typical value = 0,1.
+ * @param t4 Inlet piping/steam bowl time constant (<i>T4</i>) (&gt;= 0).
+ *        Typical value = 0,3.
+ * @param t5 Time constant of second boiler pass (<i>T5</i>) (&gt;= 0).
+ *        Typical value = 5.
+ * @param t6 Time constant of third boiler pass (<i>T6</i>) (&gt;= 0).
+ *        Typical value = 0,5.
+ * @param t7 Time constant of fourth boiler pass (<i>T7</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param uc Maximum valve closing velocity (<i>Uc</i>) (&lt; 0).
+ *        Unit = PU / s.  Typical value = -10.
+ * @param uo Maximum valve opening velocity (<i>Uo</i>) (&gt; 0).
+ *        Unit = PU / s.  Typical value = 1.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 case class GovSteamIEEE1
 (
@@ -8139,27 +8516,27 @@ extends
 }
 
 /**
- * Simplified Steam turbine governor model.
+ * Simplified steam turbine governor.
  *
  * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
- * @param k1 One/per unit regulation (K1).
- * @param k2 Fraction (K2).
- * @param k3 Fraction (K3).
- * @param mwbase Base for power values (MWbase) (&gt;0).
+ * @param k1 One / PU regulation (<i>K1</i>).
+ * @param k2 Fraction (<i>K2</i>).
+ * @param k3 Fraction (<i>K3</i>).
+ * @param mwbase Base for power values (<i>MWbase</i>) (&gt; 0).
  *        Unit = MW.
- * @param pmax Upper power limit (Pmax).
- * @param pmin Lower power limit (Pmin).
- * @param t1 Controller lag (T1).
- * @param t2 Controller lead compensation (T2).
- * @param t3 Governor lag (T3) (&gt;0).
- * @param t4 Delay due to steam inlet volumes associated with steam chest and inlet piping (T4).
- * @param t5 Reheater delay including hot and cold leads (T5).
- * @param t6 Delay due to IP-LP turbine, crossover pipes and LP end hoods (T6).
+ * @param pmax Upper power limit (<i>Pmax</i>) (&gt; GovSteamSGO.pmin).
+ * @param pmin Lower power limit (<i>Pmin</i>) (&gt;= 0 and &lt; GovSteamSGO.pmax).
+ * @param t1 Controller lag (<i>T1</i>) (&gt;= 0).
+ * @param t2 Controller lead compensation (<i>T2</i>) (&gt;= 0).
+ * @param t3 Governor lag (<i>T3</i>) (&gt; 0).
+ * @param t4 Delay due to steam inlet volumes associated with steam chest and inlet piping (<i>T4</i>) (&gt;= 0).
+ * @param t5 Reheater delay including hot and cold leads (<i>T5</i>) (&gt;= 0).
+ * @param t6 Delay due to IP-LP turbine, crossover pipes and LP end hoods (<i>T6</i>) (&gt;= 0).
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 case class GovSteamSGO
 (
@@ -8283,23 +8660,25 @@ extends
 }
 
 /**
- * Turbine-governor function block whose behavior is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
+ * Turbine-governor function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  *
  * @param sup [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
  * @param AsynchronousMachineDynamics [[ch.ninecode.model.AsynchronousMachineDynamics AsynchronousMachineDynamics]] Asynchronous machine model with which this turbine-governor model is associated.
+ *        TurbineGovernorDynamics shall have either an association to SynchronousMachineDynamics or to AsynchronousMachineDynamics.
  * @param SynchronousMachineDynamics [[ch.ninecode.model.SynchronousMachineDynamics SynchronousMachineDynamics]] Synchronous machine model with which this turbine-governor model is associated.
+ *        TurbineGovernorDynamics shall have either an association to SynchronousMachineDynamics or to AsynchronousMachineDynamics.
  * @param TurbineLoadControllerDynamics [[ch.ninecode.model.TurbineLoadControllerDynamics TurbineLoadControllerDynamics]] Turbine load controller providing input to this turbine-governor.
  * @group TurbineGovernorDynamics
  * @groupname TurbineGovernorDynamics Package TurbineGovernorDynamics
- * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (Pm) or torque (Tm) for the generator model.  
-Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, GovSteamIEEE1) are documented in IEEE Transactions not in IEEE standards. For that reason, diagrams are supplied for those models.
-A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM Dynamics model is a future effort.
+ * @groupdesc TurbineGovernorDynamics The turbine-governor model is linked to one or two synchronous generators and determines the shaft mechanical power (<i>Pm</i>) or torque (<i>Tm</i>) for the generator model.  
+Unlike IEEE standard models for other function blocks, the three IEEE turbine-governor standard models (GovHydroIEEE0, GovHydroIEEE2, and GovSteamIEEE1) are documented in IEEE Transactions, not in IEEE standards. For that reason, diagrams are supplied for those models.
+A 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, provides updated information on a variety of models including IEEE, vendor and reliability authority models.  Fully incorporating the results of that report into the CIM dynamics model is a future effort.
  */
 case class TurbineGovernorDynamics
 (
     override val sup: DynamicsFunctionBlock,
     AsynchronousMachineDynamics: String,
-    SynchronousMachineDynamics: List[String],
+    SynchronousMachineDynamics: String,
     TurbineLoadControllerDynamics: String
 )
 extends
@@ -8308,7 +8687,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, List(), null) }
+    def this () = { this (null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -8332,9 +8711,8 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = TurbineGovernorDynamics.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (TurbineGovernorDynamics.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (TurbineGovernorDynamics.fields (position), x))
         emitattr (0, AsynchronousMachineDynamics)
-        emitattrs (1, SynchronousMachineDynamics)
+        emitattr (1, SynchronousMachineDynamics)
         emitattr (2, TurbineLoadControllerDynamics)
         s.toString
     }
@@ -8355,11 +8733,11 @@ extends
     )
     override val relations: List[Relationship] = List (
         Relationship ("AsynchronousMachineDynamics", "AsynchronousMachineDynamics", "0..1", "0..1"),
-        Relationship ("SynchronousMachineDynamics", "SynchronousMachineDynamics", "0..*", "0..*"),
+        Relationship ("SynchronousMachineDynamics", "SynchronousMachineDynamics", "0..1", "0..*"),
         Relationship ("TurbineLoadControllerDynamics", "TurbineLoadControllerDynamics", "0..1", "1")
     )
     val AsynchronousMachineDynamics: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val SynchronousMachineDynamics: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+    val SynchronousMachineDynamics: Fielder = parse_attribute (attribute (cls, fields(1)))
     val TurbineLoadControllerDynamics: Fielder = parse_attribute (attribute (cls, fields(2)))
 
     def parse (context: Context): TurbineGovernorDynamics =
@@ -8369,7 +8747,7 @@ extends
         val ret = TurbineGovernorDynamics (
             DynamicsFunctionBlock.parse (context),
             mask (AsynchronousMachineDynamics (), 0),
-            masks (SynchronousMachineDynamics (), 1),
+            mask (SynchronousMachineDynamics (), 1),
             mask (TurbineLoadControllerDynamics (), 2)
         )
         ret.bitfields = bitfields
@@ -8382,6 +8760,7 @@ private[ninecode] object _TurbineGovernorDynamics
     def register: List[ClassInfo] =
     {
         List (
+            CrossCompoundTurbineGovernorDynamics.register,
             GovCT1.register,
             GovCT2.register,
             GovGAST.register,
@@ -8407,6 +8786,7 @@ private[ninecode] object _TurbineGovernorDynamics
             GovSteam0.register,
             GovSteam1.register,
             GovSteam2.register,
+            GovSteamBB.register,
             GovSteamCC.register,
             GovSteamEU.register,
             GovSteamFV2.register,

@@ -21,20 +21,20 @@ import ch.ninecode.cim.Relationship
  * @param pressureSetpointTC1 Pressure setpoint time constant.
  * @param pressureSetpointTC2 Pressure setpoint time constant.
  * @param proportionalGain Proportional gain.
- * @param rfAux1 Coefficient for modeling the effect of off-nominal frequency and voltage on recirculation and core flow, which affects the BWR power output.
- * @param rfAux2 Coefficient for modeling the effect of off-nominal frequency and voltage on recirculation and core flow, which affects the BWR power output.
- * @param rfAux3 Coefficient for modeling the effect of off-nominal frequency and voltage on recirculation and core flow, which affects the BWR power output.
- * @param rfAux4 Coefficient for modeling the effect of off-nominal frequency and voltage on recirculation and core flow, which affects the BWR power output.
- * @param rfAux5 Coefficient for modeling the effect of off-nominal frequency and voltage on recirculation and core flow, which affects the BWR power output.
- * @param rfAux6 Coefficient for modeling the effect of off-nominal frequency and voltage on recirculation and core flow, which affects the BWR power output.
- * @param rfAux7 Coefficient for modeling the effect of off-nominal frequency and voltage on recirculation and core flow, which affects the BWR power output.
- * @param rfAux8 Coefficient for modeling the effect of off-nominal frequency and voltage on recirculation and core flow, which affects the BWR power output.
+ * @param rfAux1 Coefficient for modelling the effect of off-nominal frequency and voltage on recirculation and core flow, which affects the BWR power output.
+ * @param rfAux2 Coefficient for modelling the effect of off-nominal frequency and voltage on recirculation and core flow, which affects the BWR power output.
+ * @param rfAux3 Coefficient for modelling the effect of off-nominal frequency and voltage on recirculation and core flow, which affects the BWR power output.
+ * @param rfAux4 Coefficient for modelling the effect of off-nominal frequency and voltage on recirculation and core flow, which affects the BWR power output.
+ * @param rfAux5 Coefficient for modelling the effect of off-nominal frequency and voltage on recirculation and core flow, which affects the BWR power output.
+ * @param rfAux6 Coefficient for modelling the effect of off-nominal frequency and voltage on recirculation and core flow, which affects the BWR power output.
+ * @param rfAux7 Coefficient for modelling the effect of off-nominal frequency and voltage on recirculation and core flow, which affects the BWR power output.
+ * @param rfAux8 Coefficient for modelling the effect of off-nominal frequency and voltage on recirculation and core flow, which affects the BWR power output.
  * @param rodPattern Rod pattern.
  * @param rodPatternConstant Constant associated with rod pattern.
  * @param upperLimit Initial upper limit.
  * @group GenerationTrainingSimulation
  * @groupname GenerationTrainingSimulation Package GenerationTrainingSimulation
- * @groupdesc GenerationTrainingSimulation The Generation Dynamics package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
+ * @groupdesc GenerationTrainingSimulation The GenerationTrainingSimululation package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
  */
 case class BWRSteamSupply
 (
@@ -209,7 +209,7 @@ extends
  * @param CombustionTurbine [[ch.ninecode.model.CombustionTurbine CombustionTurbine]] A combustion turbine may have an active power versus ambient temperature relationship.
  * @group GenerationTrainingSimulation
  * @groupname GenerationTrainingSimulation Package GenerationTrainingSimulation
- * @groupdesc GenerationTrainingSimulation The Generation Dynamics package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
+ * @groupdesc GenerationTrainingSimulation The GenerationTrainingSimululation package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
  */
 case class CTTempActivePowerCurve
 (
@@ -281,10 +281,10 @@ extends
 }
 
 /**
- * A prime mover that is typically fueled by gas or light oil.
+ * A prime mover that is typically fuelled by gas or light oil.
  *
  * @param sup [[ch.ninecode.model.PrimeMover PrimeMover]] Reference to the superclass object.
- * @param ambientTemp Default ambient temperature to be used in modeling applications.
+ * @param ambientTemp Default ambient temperature to be used in modelling applications.
  * @param auxPowerVersusFrequency Off-nominal frequency effect on turbine auxiliaries.
  *        Per unit reduction in auxiliary active power consumption versus per unit reduction in frequency (from rated frequency).
  * @param auxPowerVersusVoltage Off-nominal voltage effect on turbine auxiliaries.
@@ -300,7 +300,7 @@ extends
  * @param HeatRecoveryBoiler [[ch.ninecode.model.HeatRecoveryBoiler HeatRecoveryBoiler]] A combustion turbine may have a heat recovery boiler for making steam.
  * @group GenerationTrainingSimulation
  * @groupname GenerationTrainingSimulation Package GenerationTrainingSimulation
- * @groupdesc GenerationTrainingSimulation The Generation Dynamics package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
+ * @groupdesc GenerationTrainingSimulation The GenerationTrainingSimululation package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
  */
 case class CombustionTurbine
 (
@@ -431,7 +431,7 @@ extends
  * @param drumBoilerRating Rating of drum boiler in steam units.
  * @group GenerationTrainingSimulation
  * @groupname GenerationTrainingSimulation Package GenerationTrainingSimulation
- * @groupdesc GenerationTrainingSimulation The Generation Dynamics package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
+ * @groupdesc GenerationTrainingSimulation The GenerationTrainingSimululation package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
  */
 case class DrumBoiler
 (
@@ -500,7 +500,7 @@ extends
 }
 
 /**
- * Fossil fueled boiler (e.g., coal, oil, gas).
+ * Fossil fuelled boiler (e.g., coal, oil, gas).
  *
  * @param sup [[ch.ninecode.model.SteamSupply SteamSupply]] Reference to the superclass object.
  * @param auxPowerVersusFrequency Off nominal frequency effect on auxiliary real power.
@@ -516,7 +516,7 @@ extends
  * @param controlTC Time constant.
  * @param feedWaterIG Feedwater integral gain ratio.
  * @param feedWaterPG Feedwater proportional gain ratio.
- * @param feedWaterTC Feedwater time constant rato.
+ * @param feedWaterTC Feedwater time constant ratio.
  * @param fuelDemandLimit Fuel demand limit.
  * @param fuelSupplyDelay Fuel delay.
  * @param fuelSupplyTC Fuel supply time constant.
@@ -533,7 +533,7 @@ extends
  * @param throttlePressureSP Throttle pressure setpoint.
  * @group GenerationTrainingSimulation
  * @groupname GenerationTrainingSimulation Package GenerationTrainingSimulation
- * @groupdesc GenerationTrainingSimulation The Generation Dynamics package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
+ * @groupdesc GenerationTrainingSimulation The GenerationTrainingSimululation package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
  */
 case class FossilSteamSupply
 (
@@ -735,7 +735,7 @@ extends
  * @param CombustionTurbines [[ch.ninecode.model.CombustionTurbine CombustionTurbine]] A combustion turbine may have a heat recovery boiler for making steam.
  * @group GenerationTrainingSimulation
  * @groupname GenerationTrainingSimulation Package GenerationTrainingSimulation
- * @groupdesc GenerationTrainingSimulation The Generation Dynamics package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
+ * @groupdesc GenerationTrainingSimulation The GenerationTrainingSimululation package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
  */
 case class HeatRecoveryBoiler
 (
@@ -831,7 +831,7 @@ extends
  * @param waterStartingTime Water starting time.
  * @group GenerationTrainingSimulation
  * @groupname GenerationTrainingSimulation Package GenerationTrainingSimulation
- * @groupdesc GenerationTrainingSimulation The Generation Dynamics package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
+ * @groupdesc GenerationTrainingSimulation The GenerationTrainingSimululation package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
  */
 case class HydroTurbine
 (
@@ -976,7 +976,7 @@ extends
  * @param throttlePressureSP Throttle pressure setpoint.
  * @group GenerationTrainingSimulation
  * @groupname GenerationTrainingSimulation Package GenerationTrainingSimulation
- * @groupdesc GenerationTrainingSimulation The Generation Dynamics package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
+ * @groupdesc GenerationTrainingSimulation The GenerationTrainingSimululation package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
  */
 case class PWRSteamSupply
 (
@@ -1147,7 +1147,7 @@ extends
  * @param SynchronousMachines [[ch.ninecode.model.SynchronousMachine SynchronousMachine]] Synchronous machines this Prime mover drives.
  * @group GenerationTrainingSimulation
  * @groupname GenerationTrainingSimulation Package GenerationTrainingSimulation
- * @groupdesc GenerationTrainingSimulation The Generation Dynamics package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
+ * @groupdesc GenerationTrainingSimulation The GenerationTrainingSimululation package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
  */
 case class PrimeMover
 (
@@ -1232,7 +1232,7 @@ extends
  * @param SteamTurbines [[ch.ninecode.model.SteamTurbine SteamTurbine]] Steam turbines may have steam supplied by a steam supply.
  * @group GenerationTrainingSimulation
  * @groupname GenerationTrainingSimulation Package GenerationTrainingSimulation
- * @groupdesc GenerationTrainingSimulation The Generation Dynamics package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
+ * @groupdesc GenerationTrainingSimulation The GenerationTrainingSimululation package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
  */
 case class SteamSupply
 (
@@ -1328,7 +1328,7 @@ extends
  * @param SteamSupplys [[ch.ninecode.model.SteamSupply SteamSupply]] Steam turbines may have steam supplied by a steam supply.
  * @group GenerationTrainingSimulation
  * @groupname GenerationTrainingSimulation Package GenerationTrainingSimulation
- * @groupdesc GenerationTrainingSimulation The Generation Dynamics package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
+ * @groupdesc GenerationTrainingSimulation The GenerationTrainingSimululation package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
  */
 case class SteamTurbine
 (
@@ -1466,7 +1466,7 @@ extends
  * @param sup [[ch.ninecode.model.FossilSteamSupply FossilSteamSupply]] Reference to the superclass object.
  * @group GenerationTrainingSimulation
  * @groupname GenerationTrainingSimulation Package GenerationTrainingSimulation
- * @groupdesc GenerationTrainingSimulation The Generation Dynamics package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
+ * @groupdesc GenerationTrainingSimulation The GenerationTrainingSimululation package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
  */
 case class Subcritical
 (
@@ -1528,7 +1528,7 @@ extends
  * @param sup [[ch.ninecode.model.FossilSteamSupply FossilSteamSupply]] Reference to the superclass object.
  * @group GenerationTrainingSimulation
  * @groupname GenerationTrainingSimulation Package GenerationTrainingSimulation
- * @groupdesc GenerationTrainingSimulation The Generation Dynamics package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
+ * @groupdesc GenerationTrainingSimulation The GenerationTrainingSimululation package contains prime movers, such as turbines and boilers, which are needed for simulation and educational purposes.
  */
 case class Supercritical
 (

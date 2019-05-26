@@ -171,7 +171,7 @@ extends
 }
 
 /**
- * A equipment to which the in service status is to change such as a power transformer or AC line segment.
+ * Equipment whose in service status is to change, such as a power transformer or AC line segment.
  *
  * @param sup [[ch.ninecode.model.ContingencyElement ContingencyElement]] Reference to the superclass object.
  * @param contingentStatus The status for the associated equipment when in the contingency state.

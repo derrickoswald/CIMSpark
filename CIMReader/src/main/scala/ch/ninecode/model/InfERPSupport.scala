@@ -188,7 +188,7 @@ extends
  * @param sup [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
  * @param DesignLocation [[ch.ninecode.model.DesignLocation DesignLocation]] <em>undocumented</em>
  * @param ErpBOM [[ch.ninecode.model.ErpBOM ErpBOM]] <em>undocumented</em>
- * @param TypeAsset [[ch.ninecode.model.GenericAssetModelOrMaterial GenericAssetModelOrMaterial]] <em>undocumented</em>
+ * @param TypeAsset [[ch.ninecode.model.CatalogAssetType CatalogAssetType]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
@@ -258,7 +258,7 @@ extends
     override val relations: List[Relationship] = List (
         Relationship ("DesignLocation", "DesignLocation", "0..1", "0..*"),
         Relationship ("ErpBOM", "ErpBOM", "1", "0..*"),
-        Relationship ("TypeAsset", "GenericAssetModelOrMaterial", "0..1", "0..*")
+        Relationship ("TypeAsset", "CatalogAssetType", "0..1", "0..*")
     )
     val DesignLocation: Fielder = parse_attribute (attribute (cls, fields(0)))
     val ErpBOM: Fielder = parse_attribute (attribute (cls, fields(1)))
@@ -736,7 +736,6 @@ extends
  *
  * @param sup [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
  * @param status <em>undocumented</em>
- * @param AssetModel [[ch.ninecode.model.AssetModel AssetModel]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
  * @groupdesc InfERPSupport The package contains portions of the model defined byEnterprise Resource Planning (ERP) standards like those proposed by the Open Applications Group (OAG). It is provided to facilitate integration among electric utility applications (CIM) and enterprise resource planning (ERP) applications (as defined by OAG). Rather than inventing new CIM classes that accomplish similar functionality as in existing ERP models, the preferred approach is to use and extend ERP classes as appropriate in other packages.
@@ -749,8 +748,7 @@ If a model other that the OAG standard is used as a basis for ERP integration, t
 case class ErpInventoryCount
 (
     override val sup: ErpIdentifiedObject,
-    status: String,
-    AssetModel: String
+    status: String
 )
 extends
     Element
@@ -758,7 +756,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null) }
+    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -783,7 +781,6 @@ extends
         implicit val clz: String = ErpInventoryCount.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ErpInventoryCount.fields (position), value)
         emitattr (0, status)
-        emitattr (1, AssetModel)
         s.toString
     }
     override def export: String =
@@ -797,14 +794,9 @@ extends
     Parseable[ErpInventoryCount]
 {
     override val fields: Array[String] = Array[String] (
-        "status",
-        "AssetModel"
-    )
-    override val relations: List[Relationship] = List (
-        Relationship ("AssetModel", "AssetModel", "0..1", "0..*")
+        "status"
     )
     val status: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val AssetModel: Fielder = parse_attribute (attribute (cls, fields(1)))
 
     def parse (context: Context): ErpInventoryCount =
     {
@@ -812,8 +804,7 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = ErpInventoryCount (
             ErpIdentifiedObject.parse (context),
-            mask (status (), 0),
-            mask (AssetModel (), 1)
+            mask (status (), 0)
         )
         ret.bitfields = bitfields
         ret
@@ -1190,7 +1181,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
  * @param status <em>undocumented</em>
- * @param TypeAsset [[ch.ninecode.model.GenericAssetModelOrMaterial GenericAssetModelOrMaterial]] <em>undocumented</em>
+ * @param TypeAsset [[ch.ninecode.model.CatalogAssetType CatalogAssetType]] <em>undocumented</em>
  * @param TypeMaterial [[ch.ninecode.model.TypeMaterial TypeMaterial]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
@@ -1259,7 +1250,7 @@ extends
         "TypeMaterial"
     )
     override val relations: List[Relationship] = List (
-        Relationship ("TypeAsset", "GenericAssetModelOrMaterial", "0..1", "0..*"),
+        Relationship ("TypeAsset", "CatalogAssetType", "0..1", "0..*"),
         Relationship ("TypeMaterial", "TypeMaterial", "0..1", "0..*")
     )
     val status: Fielder = parse_attribute (attribute (cls, fields(0)))
@@ -3324,7 +3315,7 @@ extends
  * @param ErpPOLineItem [[ch.ninecode.model.ErpPOLineItem ErpPOLineItem]] <em>undocumented</em>
  * @param ErpQuoteLineItem [[ch.ninecode.model.ErpQuoteLineItem ErpQuoteLineItem]] <em>undocumented</em>
  * @param ErpRequisition [[ch.ninecode.model.ErpRequisition ErpRequisition]] <em>undocumented</em>
- * @param TypeAsset [[ch.ninecode.model.GenericAssetModelOrMaterial GenericAssetModelOrMaterial]] <em>undocumented</em>
+ * @param TypeAsset [[ch.ninecode.model.CatalogAssetType CatalogAssetType]] <em>undocumented</em>
  * @param TypeMaterial [[ch.ninecode.model.TypeMaterial TypeMaterial]] <em>undocumented</em>
  * @group InfERPSupport
  * @groupname InfERPSupport Package InfERPSupport
@@ -3418,7 +3409,7 @@ extends
         Relationship ("ErpPOLineItem", "ErpPOLineItem", "0..1", "0..1"),
         Relationship ("ErpQuoteLineItem", "ErpQuoteLineItem", "0..1", "0..1"),
         Relationship ("ErpRequisition", "ErpRequisition", "1", "0..*"),
-        Relationship ("TypeAsset", "GenericAssetModelOrMaterial", "0..1", "0..*"),
+        Relationship ("TypeAsset", "CatalogAssetType", "0..1", "0..*"),
         Relationship ("TypeMaterial", "TypeMaterial", "0..1", "0..*")
     )
     val code: Fielder = parse_element (element (cls, fields(0)))

@@ -8,17 +8,17 @@ import ch.ninecode.cim.Parseable
 import ch.ninecode.cim.Relationship
 
 /**
- * Used to define the type of generation for scheduling purposes.
+ * Examples would be "Boundary" or "Region" type of frame.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param EnergySource [[ch.ninecode.model.EnergySource EnergySource]] Energy Source of a particular Energy Scheduling Type
- * @group InfEnergySource
- * @groupname InfEnergySource Package InfEnergySource
+ * @param ModelFrame [[ch.ninecode.model.FrameworkPart FrameworkPart]] Model frames of the model frame type.
+ * @group unused
+ * @groupname unused Package unused
  */
-case class EnergySchedulingType
+case class ModelFrameType
 (
     override val sup: IdentifiedObject,
-    EnergySource: List[String]
+    ModelFrame: List[String]
 )
 extends
     Element
@@ -36,7 +36,7 @@ extends
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
     def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { clone ().asInstanceOf[EnergySchedulingType] }
+    override def copy (): Row = { clone ().asInstanceOf[ModelFrameType] }
     override def get (i: Int): Object =
     {
         if (i < productArity)
@@ -48,48 +48,48 @@ extends
     override def export_fields: String =
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
-        implicit val clz: String = EnergySchedulingType.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (EnergySchedulingType.fields (position), x))
-        emitattrs (0, EnergySource)
+        implicit val clz: String = ModelFrameType.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ModelFrameType.fields (position), x))
+        emitattrs (0, ModelFrame)
         s.toString
     }
     override def export: String =
     {
-        "\t<cim:EnergySchedulingType rdf:ID=\"%s\">\n%s\t</cim:EnergySchedulingType>".format (id, export_fields)
+        "\t<cim:ModelFrameType rdf:ID=\"%s\">\n%s\t</cim:ModelFrameType>".format (id, export_fields)
     }
 }
 
-object EnergySchedulingType
+object ModelFrameType
 extends
-    Parseable[EnergySchedulingType]
+    Parseable[ModelFrameType]
 {
     override val fields: Array[String] = Array[String] (
-        "EnergySource"
+        "ModelFrame"
     )
     override val relations: List[Relationship] = List (
-        Relationship ("EnergySource", "EnergySource", "0..*", "0..1")
+        Relationship ("ModelFrame", "FrameworkPart", "0..*", "1")
     )
-    val EnergySource: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val ModelFrame: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
 
-    def parse (context: Context): EnergySchedulingType =
+    def parse (context: Context): ModelFrameType =
     {
         implicit val ctx: Context = context
         implicit var bitfields: Array[Int] = Array(0)
-        val ret = EnergySchedulingType (
+        val ret = ModelFrameType (
             IdentifiedObject.parse (context),
-            masks (EnergySource (), 0)
+            masks (ModelFrame (), 0)
         )
         ret.bitfields = bitfields
         ret
     }
 }
 
-private[ninecode] object _InfEnergySource
+private[ninecode] object _unused
 {
     def register: List[ClassInfo] =
     {
         List (
-            EnergySchedulingType.register
+            ModelFrameType.register
         )
     }
 }

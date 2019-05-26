@@ -309,7 +309,7 @@ extends
 /**
  * In accounting transactions, a ledger is a book containing accounts to which debits and credits are posted from journals, where transactions are initially recorded.
  *
- * Journal entries are periodically posted to the ledger. Ledger Actual represents actual amounts by account within ledger within company or business area. Actual amounts may be generated in a source application and then loaded to a specific ledger within the enterprise general ledger or budget application.
+ * Journal entries are periodically posted to the ledger. Ledger actual represents actual amounts by account within ledger within company or within business area. Actual amounts may be generated in a source application and then loaded to a specific ledger within the enterprise general ledger or budget application.
  *
  * @param sup Reference to the superclass object.
  * @param MarketLedgerEntries [[ch.ninecode.model.MarketLedgerEntry MarketLedgerEntry]] <em>undocumented</em>
@@ -510,7 +510,7 @@ extends
 }
 
 /**
- * Subclass of IEC61968: Common:ActivityRecord
+ * Subclass of IEC61968: Common:ActivityRecord.
  *
  * @param sup [[ch.ninecode.model.ActivityRecord ActivityRecord]] Reference to the superclass object.
  * @param MarketFactors [[ch.ninecode.model.MarketFactors MarketFactors]] <em>undocumented</em>
@@ -588,11 +588,9 @@ extends
 }
 
 /**
- * Subclass of IEC61970:Topology:ConnectivityNode
+ * Subclass of IEC61970:Topology:ConnectivityNode.
  *
  * @param sup [[ch.ninecode.model.ConnectivityNode ConnectivityNode]] Reference to the superclass object.
- * @param endEffectiveDate end effective date
- * @param startEffectiveDate start effective date
  * @param CnodeDistributionFactor [[ch.ninecode.model.CnodeDistributionFactor CnodeDistributionFactor]] <em>undocumented</em>
  * @param IndividualPnode [[ch.ninecode.model.IndividualPnode IndividualPnode]] <em>undocumented</em>
  * @param LossPenaltyFactor [[ch.ninecode.model.LossSensitivity LossSensitivity]] <em>undocumented</em>
@@ -607,8 +605,6 @@ extends
 case class MktConnectivityNode
 (
     override val sup: ConnectivityNode,
-    endEffectiveDate: String,
-    startEffectiveDate: String,
     CnodeDistributionFactor: List[String],
     IndividualPnode: String,
     LossPenaltyFactor: List[String],
@@ -623,7 +619,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, List(), null, List(), List(), null, List(), null) }
+    def this () = { this (null, List(), null, List(), List(), null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -646,18 +642,15 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MktConnectivityNode.cls
-        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (MktConnectivityNode.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (MktConnectivityNode.fields (position), value)
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (MktConnectivityNode.fields (position), x))
-        emitelem (0, endEffectiveDate)
-        emitelem (1, startEffectiveDate)
-        emitattrs (2, CnodeDistributionFactor)
-        emitattr (3, IndividualPnode)
-        emitattrs (4, LossPenaltyFactor)
-        emitattrs (5, NodeConstraintTerm)
-        emitattr (6, RTO)
-        emitattrs (7, RegisteredResource)
-        emitattr (8, SysLoadDistribuFactor)
+        emitattrs (0, CnodeDistributionFactor)
+        emitattr (1, IndividualPnode)
+        emitattrs (2, LossPenaltyFactor)
+        emitattrs (3, NodeConstraintTerm)
+        emitattr (4, RTO)
+        emitattrs (5, RegisteredResource)
+        emitattr (6, SysLoadDistribuFactor)
         s.toString
     }
     override def export: String =
@@ -671,8 +664,6 @@ extends
     Parseable[MktConnectivityNode]
 {
     override val fields: Array[String] = Array[String] (
-        "endEffectiveDate",
-        "startEffectiveDate",
         "CnodeDistributionFactor",
         "IndividualPnode",
         "LossPenaltyFactor",
@@ -690,15 +681,13 @@ extends
         Relationship ("RegisteredResource", "RegisteredResource", "0..*", "0..1"),
         Relationship ("SysLoadDistribuFactor", "SysLoadDistributionFactor", "0..1", "1")
     )
-    val endEffectiveDate: Fielder = parse_element (element (cls, fields(0)))
-    val startEffectiveDate: Fielder = parse_element (element (cls, fields(1)))
-    val CnodeDistributionFactor: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
-    val IndividualPnode: Fielder = parse_attribute (attribute (cls, fields(3)))
-    val LossPenaltyFactor: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
-    val NodeConstraintTerm: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
-    val RTO: Fielder = parse_attribute (attribute (cls, fields(6)))
-    val RegisteredResource: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
-    val SysLoadDistribuFactor: Fielder = parse_attribute (attribute (cls, fields(8)))
+    val CnodeDistributionFactor: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val IndividualPnode: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val LossPenaltyFactor: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val NodeConstraintTerm: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val RTO: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val RegisteredResource: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
+    val SysLoadDistribuFactor: Fielder = parse_attribute (attribute (cls, fields(6)))
 
     def parse (context: Context): MktConnectivityNode =
     {
@@ -706,15 +695,13 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = MktConnectivityNode (
             ConnectivityNode.parse (context),
-            mask (endEffectiveDate (), 0),
-            mask (startEffectiveDate (), 1),
-            masks (CnodeDistributionFactor (), 2),
-            mask (IndividualPnode (), 3),
-            masks (LossPenaltyFactor (), 4),
-            masks (NodeConstraintTerm (), 5),
-            mask (RTO (), 6),
-            masks (RegisteredResource (), 7),
-            mask (SysLoadDistribuFactor (), 8)
+            masks (CnodeDistributionFactor (), 0),
+            mask (IndividualPnode (), 1),
+            masks (LossPenaltyFactor (), 2),
+            masks (NodeConstraintTerm (), 3),
+            mask (RTO (), 4),
+            masks (RegisteredResource (), 5),
+            mask (SysLoadDistribuFactor (), 6)
         )
         ret.bitfields = bitfields
         ret
@@ -722,179 +709,7 @@ extends
 }
 
 /**
- * Subclass of IEC61970:Wires:EnergyConsumer
- *
- * @param sup [[ch.ninecode.model.EnergyConsumer EnergyConsumer]] Reference to the superclass object.
- * @param EnergyConsumerData [[ch.ninecode.model.EnergyConsumerData EnergyConsumerData]] <em>undocumented</em>
- * @param RegisteredLoad [[ch.ninecode.model.RegisteredLoad RegisteredLoad]] <em>undocumented</em>
- * @group MarketOpCommon
- * @groupname MarketOpCommon Package MarketOpCommon
- * @groupdesc MarketOpCommon This package contains the common objects shared by MarketOperations packages.
- */
-case class MktEnergyConsumer
-(
-    override val sup: EnergyConsumer,
-    EnergyConsumerData: List[String],
-    RegisteredLoad: String
-)
-extends
-    Element
-{
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List(), null) }
-    /**
-     * Return the superclass object.
-     *
-     * @return The typed superclass nested object.
-     * @group Hierarchy
-     * @groupname Hierarchy Class Hierarchy Related
-     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
-     */
-    def EnergyConsumer: EnergyConsumer = sup.asInstanceOf[EnergyConsumer]
-    override def copy (): Row = { clone ().asInstanceOf[MktEnergyConsumer] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
-        implicit val clz: String = MktEnergyConsumer.cls
-        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (MktEnergyConsumer.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (MktEnergyConsumer.fields (position), x))
-        emitattrs (0, EnergyConsumerData)
-        emitattr (1, RegisteredLoad)
-        s.toString
-    }
-    override def export: String =
-    {
-        "\t<cim:MktEnergyConsumer rdf:ID=\"%s\">\n%s\t</cim:MktEnergyConsumer>".format (id, export_fields)
-    }
-}
-
-object MktEnergyConsumer
-extends
-    Parseable[MktEnergyConsumer]
-{
-    override val fields: Array[String] = Array[String] (
-        "EnergyConsumerData",
-        "RegisteredLoad"
-    )
-    override val relations: List[Relationship] = List (
-        Relationship ("EnergyConsumerData", "EnergyConsumerData", "0..*", "1"),
-        Relationship ("RegisteredLoad", "RegisteredLoad", "0..1", "0..*")
-    )
-    val EnergyConsumerData: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
-    val RegisteredLoad: Fielder = parse_attribute (attribute (cls, fields(1)))
-
-    def parse (context: Context): MktEnergyConsumer =
-    {
-        implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
-        val ret = MktEnergyConsumer (
-            EnergyConsumer.parse (context),
-            masks (EnergyConsumerData (), 0),
-            mask (RegisteredLoad (), 1)
-        )
-        ret.bitfields = bitfields
-        ret
-    }
-}
-
-/**
- * Subclass of IEC61970:Production:GeneratingUnit
- *
- * @param sup [[ch.ninecode.model.GeneratingUnit GeneratingUnit]] Reference to the superclass object.
- * @param GeneratingUnitDynamicValues [[ch.ninecode.model.GeneratingUnitDynamicValues GeneratingUnitDynamicValues]] <em>undocumented</em>
- * @param RegisteredGenerator [[ch.ninecode.model.RegisteredGenerator RegisteredGenerator]] <em>undocumented</em>
- * @group MarketOpCommon
- * @groupname MarketOpCommon Package MarketOpCommon
- * @groupdesc MarketOpCommon This package contains the common objects shared by MarketOperations packages.
- */
-case class MktGeneratingUnit
-(
-    override val sup: GeneratingUnit,
-    GeneratingUnitDynamicValues: List[String],
-    RegisteredGenerator: String
-)
-extends
-    Element
-{
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List(), null) }
-    /**
-     * Return the superclass object.
-     *
-     * @return The typed superclass nested object.
-     * @group Hierarchy
-     * @groupname Hierarchy Class Hierarchy Related
-     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
-     */
-    def GeneratingUnit: GeneratingUnit = sup.asInstanceOf[GeneratingUnit]
-    override def copy (): Row = { clone ().asInstanceOf[MktGeneratingUnit] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
-        implicit val clz: String = MktGeneratingUnit.cls
-        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (MktGeneratingUnit.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (MktGeneratingUnit.fields (position), x))
-        emitattrs (0, GeneratingUnitDynamicValues)
-        emitattr (1, RegisteredGenerator)
-        s.toString
-    }
-    override def export: String =
-    {
-        "\t<cim:MktGeneratingUnit rdf:ID=\"%s\">\n%s\t</cim:MktGeneratingUnit>".format (id, export_fields)
-    }
-}
-
-object MktGeneratingUnit
-extends
-    Parseable[MktGeneratingUnit]
-{
-    override val fields: Array[String] = Array[String] (
-        "GeneratingUnitDynamicValues",
-        "RegisteredGenerator"
-    )
-    override val relations: List[Relationship] = List (
-        Relationship ("GeneratingUnitDynamicValues", "GeneratingUnitDynamicValues", "0..*", "1"),
-        Relationship ("RegisteredGenerator", "RegisteredGenerator", "0..1", "0..*")
-    )
-    val GeneratingUnitDynamicValues: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
-    val RegisteredGenerator: Fielder = parse_attribute (attribute (cls, fields(1)))
-
-    def parse (context: Context): MktGeneratingUnit =
-    {
-        implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
-        val ret = MktGeneratingUnit (
-            GeneratingUnit.parse (context),
-            masks (GeneratingUnitDynamicValues (), 0),
-            mask (RegisteredGenerator (), 1)
-        )
-        ret.bitfields = bitfields
-        ret
-    }
-}
-
-/**
- * Subclass for IEC61970:Wires:Line
+ * Subclass for IEC61970:Wires:Line.
  *
  * @param sup [[ch.ninecode.model.Line Line]] Reference to the superclass object.
  * @param Flowgate [[ch.ninecode.model.Flowgate Flowgate]] <em>undocumented</em>
@@ -980,98 +795,13 @@ extends
 }
 
 /**
- * Subclass of IEC61970:LoadModel: LoadArea
- *
- * @param sup [[ch.ninecode.model.LoadArea LoadArea]] Reference to the superclass object.
- * @param AreaLoadCurve [[ch.ninecode.model.AreaLoadCurve AreaLoadCurve]] <em>undocumented</em>
- * @param RegisteredLoad [[ch.ninecode.model.RegisteredLoad RegisteredLoad]] <em>undocumented</em>
- * @group MarketOpCommon
- * @groupname MarketOpCommon Package MarketOpCommon
- * @groupdesc MarketOpCommon This package contains the common objects shared by MarketOperations packages.
- */
-case class MktLoadArea
-(
-    override val sup: LoadArea,
-    AreaLoadCurve: List[String],
-    RegisteredLoad: List[String]
-)
-extends
-    Element
-{
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, List(), List()) }
-    /**
-     * Return the superclass object.
-     *
-     * @return The typed superclass nested object.
-     * @group Hierarchy
-     * @groupname Hierarchy Class Hierarchy Related
-     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
-     */
-    def LoadArea: LoadArea = sup.asInstanceOf[LoadArea]
-    override def copy (): Row = { clone ().asInstanceOf[MktLoadArea] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
-        implicit val clz: String = MktLoadArea.cls
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (MktLoadArea.fields (position), x))
-        emitattrs (0, AreaLoadCurve)
-        emitattrs (1, RegisteredLoad)
-        s.toString
-    }
-    override def export: String =
-    {
-        "\t<cim:MktLoadArea rdf:ID=\"%s\">\n%s\t</cim:MktLoadArea>".format (id, export_fields)
-    }
-}
-
-object MktLoadArea
-extends
-    Parseable[MktLoadArea]
-{
-    override val fields: Array[String] = Array[String] (
-        "AreaLoadCurve",
-        "RegisteredLoad"
-    )
-    override val relations: List[Relationship] = List (
-        Relationship ("AreaLoadCurve", "AreaLoadCurve", "0..*", "0..1"),
-        Relationship ("RegisteredLoad", "RegisteredLoad", "0..*", "1")
-    )
-    val AreaLoadCurve: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
-    val RegisteredLoad: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
-
-    def parse (context: Context): MktLoadArea =
-    {
-        implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
-        val ret = MktLoadArea (
-            LoadArea.parse (context),
-            masks (AreaLoadCurve (), 0),
-            masks (RegisteredLoad (), 1)
-        )
-        ret.bitfields = bitfields
-        ret
-    }
-}
-
-/**
- * Subclass of IEC61970:Meas:Measurement
+ * Subclass of IEC61970:Meas:Measurement.
  *
  * @param sup [[ch.ninecode.model.Measurement Measurement]] Reference to the superclass object.
  * @param ByTiePoint [[ch.ninecode.model.TiePoint TiePoint]] A measurement is made on the B side of a tie point
  * @param DynamicSchedule [[ch.ninecode.model.DynamicSchedule DynamicSchedule]] <em>undocumented</em>
  * @param ForTiePoint [[ch.ninecode.model.TiePoint TiePoint]] A measurement is made on the A side of a tie point
- * @param Pnode [[ch.ninecode.model.Pnode Pnode]] <em>undocumented</em>
+ * @param Pnode [[ch.ninecode.model.Pnode Pnode]] Allows Pnode an association to aggregated resources external DC ties or psuedo tie measurements.
  * @param ViolationLimit [[ch.ninecode.model.ViolationLimit ViolationLimit]] <em>undocumented</em>
  * @group MarketOpCommon
  * @groupname MarketOpCommon Package MarketOpCommon
@@ -1172,178 +902,7 @@ extends
 }
 
 /**
- * Subclass of IEC61968:Core2:TopLevel:Organisation
- *
- * @param sup [[ch.ninecode.model.Organisation Organisation]] Reference to the superclass object.
- * @param creditFlag Flag to indicate creditworthiness (Y, N)
- * @param creditStartEffectiveDate Date that the organisation becomes creditworthy.
- * @param endEffectiveDate end effective date
- * @param lastModified Indication of the last time this Organization information was modified.
- * @param organisationID Organisation (internal) ID
- * @param qualificationStatus Organisation qualification status, Qualified, Not Qualified, or Disqualified
- * @param startEffectiveDate start effective date
- * @param CRROrgRole [[ch.ninecode.model.CRROrgRole CRROrgRole]] <em>undocumented</em>
- * @param IntSchedAgreement [[ch.ninecode.model.IntSchedAgreement IntSchedAgreement]] <em>undocumented</em>
- * @param MarketPerson [[ch.ninecode.model.MarketPerson MarketPerson]] <em>undocumented</em>
- * @param OrgPnodeAllocation [[ch.ninecode.model.OrgPnodeAllocation OrgPnodeAllocation]] <em>undocumented</em>
- * @param OrgResOwnership [[ch.ninecode.model.OrgResOwnership OrgResOwnership]] <em>undocumented</em>
- * @param RegisteredResource [[ch.ninecode.model.RegisteredResource RegisteredResource]] <em>undocumented</em>
- * @param SchedulingCoordinator [[ch.ninecode.model.SchedulingCoordinator SchedulingCoordinator]] <em>undocumented</em>
- * @param ViolationLimit [[ch.ninecode.model.ViolationLimit ViolationLimit]] <em>undocumented</em>
- * @group MarketOpCommon
- * @groupname MarketOpCommon Package MarketOpCommon
- * @groupdesc MarketOpCommon This package contains the common objects shared by MarketOperations packages.
- */
-case class MktOrganisation
-(
-    override val sup: Organisation,
-    creditFlag: String,
-    creditStartEffectiveDate: String,
-    endEffectiveDate: String,
-    lastModified: String,
-    organisationID: Int,
-    qualificationStatus: String,
-    startEffectiveDate: String,
-    CRROrgRole: List[String],
-    IntSchedAgreement: List[String],
-    MarketPerson: List[String],
-    OrgPnodeAllocation: List[String],
-    OrgResOwnership: List[String],
-    RegisteredResource: List[String],
-    SchedulingCoordinator: List[String],
-    ViolationLimit: List[String]
-)
-extends
-    Element
-{
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, null, 0, null, null, List(), List(), List(), List(), List(), List(), List(), List()) }
-    /**
-     * Return the superclass object.
-     *
-     * @return The typed superclass nested object.
-     * @group Hierarchy
-     * @groupname Hierarchy Class Hierarchy Related
-     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
-     */
-    def Organisation: Organisation = sup.asInstanceOf[Organisation]
-    override def copy (): Row = { clone ().asInstanceOf[MktOrganisation] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
-        implicit val clz: String = MktOrganisation.cls
-        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (MktOrganisation.fields (position), value)
-        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (MktOrganisation.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (MktOrganisation.fields (position), x))
-        emitattr (0, creditFlag)
-        emitelem (1, creditStartEffectiveDate)
-        emitelem (2, endEffectiveDate)
-        emitelem (3, lastModified)
-        emitelem (4, organisationID)
-        emitelem (5, qualificationStatus)
-        emitelem (6, startEffectiveDate)
-        emitattrs (7, CRROrgRole)
-        emitattrs (8, IntSchedAgreement)
-        emitattrs (9, MarketPerson)
-        emitattrs (10, OrgPnodeAllocation)
-        emitattrs (11, OrgResOwnership)
-        emitattrs (12, RegisteredResource)
-        emitattrs (13, SchedulingCoordinator)
-        emitattrs (14, ViolationLimit)
-        s.toString
-    }
-    override def export: String =
-    {
-        "\t<cim:MktOrganisation rdf:ID=\"%s\">\n%s\t</cim:MktOrganisation>".format (id, export_fields)
-    }
-}
-
-object MktOrganisation
-extends
-    Parseable[MktOrganisation]
-{
-    override val fields: Array[String] = Array[String] (
-        "creditFlag",
-        "creditStartEffectiveDate",
-        "endEffectiveDate",
-        "lastModified",
-        "organisationID",
-        "qualificationStatus",
-        "startEffectiveDate",
-        "CRROrgRole",
-        "IntSchedAgreement",
-        "MarketPerson",
-        "OrgPnodeAllocation",
-        "OrgResOwnership",
-        "RegisteredResource",
-        "SchedulingCoordinator",
-        "ViolationLimit"
-    )
-    override val relations: List[Relationship] = List (
-        Relationship ("CRROrgRole", "CRROrgRole", "0..*", "1"),
-        Relationship ("IntSchedAgreement", "IntSchedAgreement", "0..*", "0..*"),
-        Relationship ("MarketPerson", "MarketPerson", "0..*", "0..*"),
-        Relationship ("OrgPnodeAllocation", "OrgPnodeAllocation", "0..*", "1"),
-        Relationship ("OrgResOwnership", "OrgResOwnership", "0..*", "1"),
-        Relationship ("RegisteredResource", "RegisteredResource", "0..*", "0..1"),
-        Relationship ("SchedulingCoordinator", "SchedulingCoordinator", "0..*", "1"),
-        Relationship ("ViolationLimit", "ViolationLimit", "0..*", "0..*")
-    )
-    val creditFlag: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val creditStartEffectiveDate: Fielder = parse_element (element (cls, fields(1)))
-    val endEffectiveDate: Fielder = parse_element (element (cls, fields(2)))
-    val lastModified: Fielder = parse_element (element (cls, fields(3)))
-    val organisationID: Fielder = parse_element (element (cls, fields(4)))
-    val qualificationStatus: Fielder = parse_element (element (cls, fields(5)))
-    val startEffectiveDate: Fielder = parse_element (element (cls, fields(6)))
-    val CRROrgRole: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
-    val IntSchedAgreement: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
-    val MarketPerson: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
-    val OrgPnodeAllocation: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
-    val OrgResOwnership: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
-    val RegisteredResource: FielderMultiple = parse_attributes (attribute (cls, fields(12)))
-    val SchedulingCoordinator: FielderMultiple = parse_attributes (attribute (cls, fields(13)))
-    val ViolationLimit: FielderMultiple = parse_attributes (attribute (cls, fields(14)))
-
-    def parse (context: Context): MktOrganisation =
-    {
-        implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
-        val ret = MktOrganisation (
-            Organisation.parse (context),
-            mask (creditFlag (), 0),
-            mask (creditStartEffectiveDate (), 1),
-            mask (endEffectiveDate (), 2),
-            mask (lastModified (), 3),
-            toInteger (mask (organisationID (), 4)),
-            mask (qualificationStatus (), 5),
-            mask (startEffectiveDate (), 6),
-            masks (CRROrgRole (), 7),
-            masks (IntSchedAgreement (), 8),
-            masks (MarketPerson (), 9),
-            masks (OrgPnodeAllocation (), 10),
-            masks (OrgResOwnership (), 11),
-            masks (RegisteredResource (), 12),
-            masks (SchedulingCoordinator (), 13),
-            masks (ViolationLimit (), 14)
-        )
-        ret.bitfields = bitfields
-        ret
-    }
-}
-
-/**
- * Subclass of IEC61970:Wires:PowerTransformer
+ * Subclass of IEC61970:Wires:PowerTransformer.
  *
  * @param sup [[ch.ninecode.model.PowerTransformer PowerTransformer]] Reference to the superclass object.
  * @param EndAFlow [[ch.ninecode.model.BranchEndFlow BranchEndFlow]] <em>undocumented</em>
@@ -1436,11 +995,9 @@ extends
 }
 
 /**
- * Subclass of IEC61970:Core:Terminal
+ * Subclass of IEC61970:Core:Terminal.
  *
  * @param sup [[ch.ninecode.model.Terminal Terminal]] Reference to the superclass object.
- * @param endEffectiveDate This is the end date/time of the element eligibility for the flowgate.
- * @param startEffectiveDate This is the begin date/time of the element eligibility for the flowgate.
  * @param Flowgate [[ch.ninecode.model.Flowgate Flowgate]] <em>undocumented</em>
  * @param TerminalConstraintTerm [[ch.ninecode.model.TerminalConstraintTerm TerminalConstraintTerm]] <em>undocumented</em>
  * @group MarketOpCommon
@@ -1450,8 +1007,6 @@ extends
 case class MktTerminal
 (
     override val sup: Terminal,
-    endEffectiveDate: String,
-    startEffectiveDate: String,
     Flowgate: String,
     TerminalConstraintTerm: List[String]
 )
@@ -1461,7 +1016,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, List()) }
+    def this () = { this (null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -1484,13 +1039,10 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = MktTerminal.cls
-        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (MktTerminal.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (MktTerminal.fields (position), value)
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (MktTerminal.fields (position), x))
-        emitelem (0, endEffectiveDate)
-        emitelem (1, startEffectiveDate)
-        emitattr (2, Flowgate)
-        emitattrs (3, TerminalConstraintTerm)
+        emitattr (0, Flowgate)
+        emitattrs (1, TerminalConstraintTerm)
         s.toString
     }
     override def export: String =
@@ -1504,8 +1056,6 @@ extends
     Parseable[MktTerminal]
 {
     override val fields: Array[String] = Array[String] (
-        "endEffectiveDate",
-        "startEffectiveDate",
         "Flowgate",
         "TerminalConstraintTerm"
     )
@@ -1513,10 +1063,8 @@ extends
         Relationship ("Flowgate", "Flowgate", "0..1", "0..*"),
         Relationship ("TerminalConstraintTerm", "TerminalConstraintTerm", "0..*", "1")
     )
-    val endEffectiveDate: Fielder = parse_element (element (cls, fields(0)))
-    val startEffectiveDate: Fielder = parse_element (element (cls, fields(1)))
-    val Flowgate: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val TerminalConstraintTerm: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val Flowgate: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val TerminalConstraintTerm: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): MktTerminal =
     {
@@ -1524,10 +1072,8 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = MktTerminal (
             Terminal.parse (context),
-            mask (endEffectiveDate (), 0),
-            mask (startEffectiveDate (), 1),
-            mask (Flowgate (), 2),
-            masks (TerminalConstraintTerm (), 3)
+            mask (Flowgate (), 0),
+            masks (TerminalConstraintTerm (), 1)
         )
         ret.bitfields = bitfields
         ret
@@ -1535,7 +1081,7 @@ extends
 }
 
 /**
- * Subclass of IEC61968:Domain2:UserAttribute
+ * Subclass of IEC61968:Domain2:UserAttribute.
  *
  * @param sup [[ch.ninecode.model.UserAttribute UserAttribute]] Reference to the superclass object.
  * @param AttributeProperty [[ch.ninecode.model.AttributeProperty AttributeProperty]] <em>undocumented</em>
@@ -1658,12 +1204,8 @@ private[ninecode] object _MarketOpCommon
             MarketLedgerEntry.register,
             MktActivityRecord.register,
             MktConnectivityNode.register,
-            MktEnergyConsumer.register,
-            MktGeneratingUnit.register,
             MktLine.register,
-            MktLoadArea.register,
             MktMeasurement.register,
-            MktOrganisation.register,
             MktPowerTransformer.register,
             MktTerminal.register,
             MktUserAttribute.register

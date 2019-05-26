@@ -15,7 +15,7 @@ import ch.ninecode.cim.Relationship
  * @param RemoteInputSignal [[ch.ninecode.model.RemoteInputSignal RemoteInputSignal]] Remote input signal used by this power system stabilizer model.
  * @group PowerSystemStabilizerDynamics
  * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
- * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (Vs) to the excitation system model to improve damping of system oscillations.  A variety of input signals may be used depending on the particular design.
+ * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.  A variety of input signals can be used depending on the particular design.
  */
 case class PowerSystemStabilizerDynamics
 (
@@ -94,52 +94,52 @@ extends
 }
 
 /**
- * Italian PSS - three input PSS (speed, frequency, power).
+ * Italian PSS with three inputs (speed, frequency, power).
  *
  * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
- * @param kf Frequency power input gain (K<sub>F</sub>).
- *        Typical Value = 5.
- * @param kpe Electric power input gain (K<sub>PE</sub>).
- *        Typical Value = 0.3.
- * @param ks PSS gain (K<sub>S</sub>).
- *        Typical Value = 1.
- * @param kw Shaft speed power input gain (K<sub>W</sub>).
- *        Typical Value = 0.
- * @param pmin Minimum power PSS enabling (P<sub>MIN</sub>).
- *        Typical Value = 0.25.
- * @param t10 Lead/lag time constant (T<sub>10</sub>).
- *        Typical Value = 0.
- * @param t5 Washout (T<sub>5</sub>).
- *        Typical Value = 3.5.
- * @param t6 Filter time constant (T<sub>6</sub>).
- *        Typical Value = 0.
- * @param t7 Lead/lag time constant (T<sub>7</sub>).
- *        Typical Value = 0.
- * @param t8 Lead/lag time constant (T<sub>8</sub>).
- *        Typical Value = 0.
- * @param t9 Lead/lag time constant (T<sub>9</sub>).
- *        Typical Value = 0.
- * @param tpe Electric power filter time constant (T<sub>PE</sub>).
- *        Typical Value = 0.05.
- * @param vadat <font color="#0f0f0f">Signal selector (V<sub>adAt</sub>).</font>
- *        <font color="#0f0f0f">true = closed (Generator Power is greater than Pmin)</font>
- *        <font color="#0f0f0f">false = open (Pe is smaller than Pmin).</font>
- *        <font color="#0f0f0f">Typical Value = true.</font>
- * @param vsmn Stabilizer output max limit (V<sub>SMN</sub>).
- *        Typical Value = -0.06.
- * @param vsmx Stabilizer output min limit (V<sub>SMX</sub>).
- *        Typical Value = 0.06.
+ * @param kf Frequency power input gain (<i>K</i><i><sub>F</sub></i>).
+ *        Typical value = 5.
+ * @param komega Shaft speed power input gain (<i>K</i><i><sub>omega</sub></i>).
+ *        Typical value = 0.
+ * @param kpe Electric power input gain (<i>K</i><i><sub>PE</sub></i>).
+ *        Typical value = 0,3.
+ * @param ks PSS gain (<i>Ks</i>).
+ *        Typical value = 1.
+ * @param pmin Minimum power PSS enabling (<i>Pmin</i>).
+ *        Typical value = 0,25.
+ * @param t10 Lead/lag time constant (<i>T</i><i><sub>10</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param t5 Washout (<i>T</i><i><sub>5</sub></i>) (&gt;= 0).
+ *        Typical value = 3,5.
+ * @param t6 Filter time constant (<i>T</i><i><sub>6</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param t7 Lead/lag time constant (<i>T</i><i><sub>7</sub></i>) (&gt;= 0).
+ *        If = 0, both blocks are bypassed.  Typical value = 0.
+ * @param t8 Lead/lag time constant (<i>T</i><i><sub>8</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param t9 Lead/lag time constant (<i>T</i><i><sub>9</sub></i>) (&gt;= 0).
+ *        If = 0, both blocks are bypassed.  Typical value = 0.
+ * @param tpe Electric power filter time constant (<i>T</i><i><sub>PE</sub></i>) (&gt;= 0).
+ *        Typical value = 0,05.
+ * @param vadat <font color="#0f0f0f">Signal selector (<i>V</i><i><sub>ADAT</sub></i>).</font>
+ *        <font color="#0f0f0f">true = closed (generator power is greater than <i>Pmin</i>)</font>
+ *        <font color="#0f0f0f">false = open (<i>Pe</i> is smaller than <i>Pmin</i>).</font>
+ *        <font color="#0f0f0f">Typical value = true.</font>
+ * @param vsmn Stabilizer output maximum limit (<i>V</i><i><sub>SMN</sub></i>).
+ *        Typical value = -0,06.
+ * @param vsmx Stabilizer output minimum limit (<i>V</i><i><sub>SMX</sub></i>).
+ *        Typical value = 0,06.
  * @group PowerSystemStabilizerDynamics
  * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
- * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (Vs) to the excitation system model to improve damping of system oscillations.  A variety of input signals may be used depending on the particular design.
+ * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.  A variety of input signals can be used depending on the particular design.
  */
 case class Pss1
 (
     override val sup: PowerSystemStabilizerDynamics,
     kf: Double,
+    komega: Double,
     kpe: Double,
     ks: Double,
-    kw: Double,
     pmin: Double,
     t10: Double,
     t5: Double,
@@ -183,9 +183,9 @@ extends
         implicit val clz: String = Pss1.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Pss1.fields (position), value)
         emitelem (0, kf)
-        emitelem (1, kpe)
-        emitelem (2, ks)
-        emitelem (3, kw)
+        emitelem (1, komega)
+        emitelem (2, kpe)
+        emitelem (3, ks)
         emitelem (4, pmin)
         emitelem (5, t10)
         emitelem (6, t5)
@@ -211,9 +211,9 @@ extends
 {
     override val fields: Array[String] = Array[String] (
         "kf",
+        "komega",
         "kpe",
         "ks",
-        "kw",
         "pmin",
         "t10",
         "t5",
@@ -227,9 +227,9 @@ extends
         "vsmx"
     )
     val kf: Fielder = parse_element (element (cls, fields(0)))
-    val kpe: Fielder = parse_element (element (cls, fields(1)))
-    val ks: Fielder = parse_element (element (cls, fields(2)))
-    val kw: Fielder = parse_element (element (cls, fields(3)))
+    val komega: Fielder = parse_element (element (cls, fields(1)))
+    val kpe: Fielder = parse_element (element (cls, fields(2)))
+    val ks: Fielder = parse_element (element (cls, fields(3)))
     val pmin: Fielder = parse_element (element (cls, fields(4)))
     val t10: Fielder = parse_element (element (cls, fields(5)))
     val t5: Fielder = parse_element (element (cls, fields(6)))
@@ -249,9 +249,9 @@ extends
         val ret = Pss1 (
             PowerSystemStabilizerDynamics.parse (context),
             toDouble (mask (kf (), 0)),
-            toDouble (mask (kpe (), 1)),
-            toDouble (mask (ks (), 2)),
-            toDouble (mask (kw (), 3)),
+            toDouble (mask (komega (), 1)),
+            toDouble (mask (kpe (), 2)),
+            toDouble (mask (ks (), 3)),
             toDouble (mask (pmin (), 4)),
             toDouble (mask (t10 (), 5)),
             toDouble (mask (t5 (), 6)),
@@ -275,33 +275,33 @@ extends
  * It is a modified version in order to allow representation of various vendors' implementations on PSS type 1A.
  *
  * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
- * @param a1 Notch filter parameter (A1).
- * @param a2 Notch filter parameter (A2).
- * @param a3 Notch filter parameter (A3).
- * @param a4 Notch filter parameter (A4).
- * @param a5 Notch filter parameter (A5).
- * @param a6 Notch filter parameter (A6).
- * @param a7 Notch filter parameter (A7).
- * @param a8 Notch filter parameter (A8).
- * @param inputSignalType Type of input signal.
- * @param kd Selector (Kd).
+ * @param a1 Notch filter parameter (<i>A</i><i><sub>1</sub></i>).
+ * @param a2 Notch filter parameter (<i>A</i><i><sub>2</sub></i>).
+ * @param a3 Notch filter parameter (<i>A</i><i><sub>3</sub></i>).
+ * @param a4 Notch filter parameter (<i>A</i><i><sub>4</sub></i>).
+ * @param a5 Notch filter parameter (<i>A</i><i><sub>5</sub></i>).
+ * @param a6 Notch filter parameter (<i>A</i><i><sub>6</sub></i>).
+ * @param a7 Notch filter parameter (<i>A</i><i><sub>7</sub></i>).
+ * @param a8 Notch filter parameter (<i>A</i><i><sub>8</sub></i>).
+ * @param inputSignalType Type of input signal (rotorAngularFrequencyDeviation, busFrequencyDeviation, generatorElectricalPower, generatorAcceleratingPower, busVoltage, or busVoltageDerivative).
+ * @param kd Selector (<i>Kd</i>).
  *        true = e<sup>-sTdelay</sup> used
  *        false = e<sup>-sTdelay</sup> not used.
- * @param ks Stabilizer gain (Ks).
- * @param t1 Lead/lag time constant (T1).
- * @param t2 Lead/lag time constant (T2).
- * @param t3 Lead/lag time constant (T3).
- * @param t4 Lead/lag time constant (T4).
- * @param t5 Washout time constant (T5).
- * @param t6 Transducer time constant (T6).
- * @param tdelay Time constant (Tdelay).
- * @param vcl Stabilizer input cutoff threshold (Vcl).
- * @param vcu Stabilizer input cutoff threshold (Vcu).
- * @param vrmax Maximum stabilizer output (Vrmax).
- * @param vrmin Minimum stabilizer output (Vrmin).
+ * @param ks Stabilizer gain (<i>K</i><i><sub>s</sub></i>).
+ * @param t1 Lead/lag time constant (<i>T</i><i><sub>1</sub></i>) (&gt;= 0).
+ * @param t2 Lead/lag time constant (<i>T</i><i><sub>2</sub></i>) (&gt;= 0).
+ * @param t3 Lead/lag time constant (<i>T</i><i><sub>3</sub></i>) (&gt;= 0).
+ * @param t4 Lead/lag time constant (<i>T</i><i><sub>4</sub></i>) (&gt;= 0).
+ * @param t5 Washout time constant (<i>T</i><i><sub>5</sub></i>) (&gt;= 0).
+ * @param t6 Transducer time constant (<i>T</i><i><sub>6</sub></i>) (&gt;= 0).
+ * @param tdelay Time constant (<i>Tdelay</i>) (&gt;= 0).
+ * @param vcl Stabilizer input cutoff threshold (<i>Vcl</i>).
+ * @param vcu Stabilizer input cutoff threshold (<i>Vcu</i>).
+ * @param vrmax Maximum stabilizer output (<i>Vrmax</i>) (&gt; Pss1A.vrmin).
+ * @param vrmin Minimum stabilizer output (<i>Vrmin</i>) (&lt; Pss1A.vrmax).
  * @group PowerSystemStabilizerDynamics
  * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
- * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (Vs) to the excitation system model to improve damping of system oscillations.  A variety of input signals may be used depending on the particular design.
+ * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.  A variety of input signals can be used depending on the particular design.
  */
 case class Pss1A
 (
@@ -476,83 +476,77 @@ extends
 }
 
 /**
- * Modified IEEE PSS2B Model.
+ * Modified IEEE PSS2B.
  *
  * Extra lead/lag (or rate) block added at end (up to 4 lead/lags total).
  *
  * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
- * @param a Numerator constant (a).
- *        Typical Value = 1.
- * @param inputSignal1Type Type of input signal #1.
- *        Typical Value = rotorSpeed.
- * @param inputSignal2Type Type of input signal #2.
- *        Typical Value = generatorElectricalPower.
- * @param ks1 Stabilizer gain (Ks1).
- *        Typical Value = 12.
- * @param ks2 Gain on signal #2 (Ks2).
- *        Typical Value = 0.2.
- * @param ks3 Gain on signal #2 input before ramp-tracking filter (Ks3).
- *        Typical Value = 1.
- * @param ks4 Gain on signal #2 input after ramp-tracking filter (Ks4).
- *        Typical Value = 1.
- * @param m Denominator order of ramp tracking filter (M).
- *        Typical Value = 5.
- * @param n Order of ramp tracking filter (N).
- *        Typical Value = 1.
- * @param t1 Lead/lag time constant (T1).
- *        Typical Value = 0.12.
- * @param t10 Lead/lag time constant (T10).
- *        Typical Value = 0.
- * @param t11 Lead/lag time constant (T11).
- *        Typical Value = 0.
- * @param t2 Lead/lag time constant (T2).
- *        Typical Value = 0.02.
- * @param t3 Lead/lag time constant (T3).
- *        Typical Value = 0.3.
- * @param t4 Lead/lag time constant (T4).
- *        Typical Value = 0.02.
- * @param t6 Time constant on signal #1 (T6).
- *        Typical Value = 0.
- * @param t7 Time constant on signal #2 (T7).
- *        Typical Value = 2.
- * @param t8 Lead of ramp tracking filter (T8).
- *        Typical Value = 0.2.
- * @param t9 Lag of ramp tracking filter (T9).
- *        Typical Value = 0.1.
- * @param ta Lead constant (Ta).
- *        Typical Value = 0.
- * @param tb Lag time constant (Tb).
- *        Typical Value = 0.
- * @param tw1 First washout on signal #1 (Tw1).
- *        Typical Value = 2.
- * @param tw2 Second washout on signal #1 (Tw2).
- *        Typical Value = 2.
- * @param tw3 First washout on signal #2 (Tw3).
- *        Typical Value = 2.
- * @param tw4 Second washout on signal #2 (Tw4).
- *        Typical Value = 0.
- * @param vsi1max Input signal #1 max limit (Vsi1max).
- *        Typical Value = 2.
- * @param vsi1min Input signal #1 min limit (Vsi1min).
- *        Typical Value = -2.
- * @param vsi2max Input signal #2 max limit (Vsi2max).
- *        Typical Value = 2.
- * @param vsi2min Input signal #2 min limit (Vsi2min).
- *        Typical Value = -2.
- * @param vstmax Stabilizer output max limit (Vstmax).
- *        Typical Value = 0.1.
- * @param vstmin Stabilizer output min limit (Vstmin).
- *        Typical Value = -0.1.
+ * @param a Numerator constant (<i>a</i>).
+ *        Typical value = 1.
+ * @param ks1 Stabilizer gain (<i>Ks1</i>).
+ *        Typical value = 12.
+ * @param ks2 Gain on signal #2 (<i>Ks2</i>).
+ *        Typical value = 0,2.
+ * @param ks3 Gain on signal #2 input before ramp-tracking filter (<i>Ks3</i>).
+ *        Typical value = 1.
+ * @param ks4 Gain on signal #2 input after ramp-tracking filter (<i>Ks4</i>).
+ *        Typical value = 1.
+ * @param m Denominator order of ramp tracking filter (<i>m</i>).
+ *        Typical value = 5.
+ * @param n Order of ramp tracking filter (<i>n</i>).
+ *        Typical value = 1.
+ * @param t1 Lead/lag time constant (<i>T</i><i><sub>1</sub></i>) (&gt;= 0).
+ *        Typical value = 0,12.
+ * @param t10 Lead/lag time constant (<i>T</i><i><sub>10</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param t11 Lead/lag time constant (<i>T</i><i><sub>11</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param t2 Lead/lag time constant (<i>T</i><i><sub>2</sub></i>) (&gt;= 0).
+ *        Typical value = 0,02.
+ * @param t3 Lead/lag time constant (<i>T</i><i><sub>3</sub></i>) (&gt;= 0).
+ *        Typical value = 0,3.
+ * @param t4 Lead/lag time constant (<i>T</i><i><sub>4</sub></i>) (&gt;= 0).
+ *        Typical value = 0,02.
+ * @param t6 Time constant on signal #1 (<i>T</i><i><sub>6</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param t7 Time constant on signal #2 (<i>T</i><i><sub>7</sub></i>) (&gt;= 0).
+ *        Typical value = 2.
+ * @param t8 Lead of ramp tracking filter (<i>T</i><i><sub>8</sub></i>) (&gt;= 0).
+ *        Typical value = 0,2.
+ * @param t9 Lag of ramp tracking filter (<i>T</i><i><sub>9</sub></i>) (&gt;= 0).
+ *        Typical value = 0,1.
+ * @param ta Lead constant (<i>T</i><i><sub>a</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tb Lag time constant (<i>T</i><i><sub>b</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tw1 First washout on signal #1 (<i>T</i><i><sub>w1</sub></i>) (&gt;= 0).
+ *        Typical value = 2.
+ * @param tw2 Second washout on signal #1 (<i>T</i><i><sub>w2</sub></i>) (&gt;= 0).
+ *        Typical value = 2.
+ * @param tw3 First washout on signal #2 (<i>T</i><i><sub>w3</sub></i>) (&gt;= 0).
+ *        Typical value = 2.
+ * @param tw4 Second washout on signal #2 (<i>T</i><i><sub>w4</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param vsi1max Input signal #1 maximum limit (<i>Vsi1max</i>) (&gt; Pss2B.vsi1min).
+ *        Typical value = 2.
+ * @param vsi1min Input signal #1 minimum limit (<i>Vsi1min</i>) (&lt; Pss2B.vsi1max).
+ *        Typical value = -2.
+ * @param vsi2max Input signal #2 maximum limit (<i>Vsi2max</i>) (&gt; Pss2B.vsi2min).
+ *        Typical value = 2.
+ * @param vsi2min Input signal #2 minimum limit (<i>Vsi2min</i>) (&lt; Pss2B.vsi2max).
+ *        Typical value = -2.
+ * @param vstmax Stabilizer output maximum limit (<i>Vstmax</i>) (&gt; Pss2B.vstmin).
+ *        Typical value = 0,1.
+ * @param vstmin Stabilizer output minimum limit (<i>Vstmin</i>) (&lt; Pss2B.vstmax).
+ *        Typical value = -0,1.
  * @group PowerSystemStabilizerDynamics
  * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
- * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (Vs) to the excitation system model to improve damping of system oscillations.  A variety of input signals may be used depending on the particular design.
+ * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.  A variety of input signals can be used depending on the particular design.
  */
 case class Pss2B
 (
     override val sup: PowerSystemStabilizerDynamics,
     a: Double,
-    inputSignal1Type: String,
-    inputSignal2Type: String,
     ks1: Double,
     ks2: Double,
     ks3: Double,
@@ -588,7 +582,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, null, null, 0.0, 0.0, 0.0, 0.0, 0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0, 0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -612,38 +606,35 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = Pss2B.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (Pss2B.fields (position), value)
-        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Pss2B.fields (position), value)
         emitelem (0, a)
-        emitattr (1, inputSignal1Type)
-        emitattr (2, inputSignal2Type)
-        emitelem (3, ks1)
-        emitelem (4, ks2)
-        emitelem (5, ks3)
-        emitelem (6, ks4)
-        emitelem (7, m)
-        emitelem (8, n)
-        emitelem (9, t1)
-        emitelem (10, t10)
-        emitelem (11, t11)
-        emitelem (12, t2)
-        emitelem (13, t3)
-        emitelem (14, t4)
-        emitelem (15, t6)
-        emitelem (16, t7)
-        emitelem (17, t8)
-        emitelem (18, t9)
-        emitelem (19, ta)
-        emitelem (20, tb)
-        emitelem (21, tw1)
-        emitelem (22, tw2)
-        emitelem (23, tw3)
-        emitelem (24, tw4)
-        emitelem (25, vsi1max)
-        emitelem (26, vsi1min)
-        emitelem (27, vsi2max)
-        emitelem (28, vsi2min)
-        emitelem (29, vstmax)
-        emitelem (30, vstmin)
+        emitelem (1, ks1)
+        emitelem (2, ks2)
+        emitelem (3, ks3)
+        emitelem (4, ks4)
+        emitelem (5, m)
+        emitelem (6, n)
+        emitelem (7, t1)
+        emitelem (8, t10)
+        emitelem (9, t11)
+        emitelem (10, t2)
+        emitelem (11, t3)
+        emitelem (12, t4)
+        emitelem (13, t6)
+        emitelem (14, t7)
+        emitelem (15, t8)
+        emitelem (16, t9)
+        emitelem (17, ta)
+        emitelem (18, tb)
+        emitelem (19, tw1)
+        emitelem (20, tw2)
+        emitelem (21, tw3)
+        emitelem (22, tw4)
+        emitelem (23, vsi1max)
+        emitelem (24, vsi1min)
+        emitelem (25, vsi2max)
+        emitelem (26, vsi2min)
+        emitelem (27, vstmax)
+        emitelem (28, vstmin)
         s.toString
     }
     override def export: String =
@@ -658,8 +649,6 @@ extends
 {
     override val fields: Array[String] = Array[String] (
         "a",
-        "inputSignal1Type",
-        "inputSignal2Type",
         "ks1",
         "ks2",
         "ks3",
@@ -690,36 +679,34 @@ extends
         "vstmin"
     )
     val a: Fielder = parse_element (element (cls, fields(0)))
-    val inputSignal1Type: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val inputSignal2Type: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val ks1: Fielder = parse_element (element (cls, fields(3)))
-    val ks2: Fielder = parse_element (element (cls, fields(4)))
-    val ks3: Fielder = parse_element (element (cls, fields(5)))
-    val ks4: Fielder = parse_element (element (cls, fields(6)))
-    val m: Fielder = parse_element (element (cls, fields(7)))
-    val n: Fielder = parse_element (element (cls, fields(8)))
-    val t1: Fielder = parse_element (element (cls, fields(9)))
-    val t10: Fielder = parse_element (element (cls, fields(10)))
-    val t11: Fielder = parse_element (element (cls, fields(11)))
-    val t2: Fielder = parse_element (element (cls, fields(12)))
-    val t3: Fielder = parse_element (element (cls, fields(13)))
-    val t4: Fielder = parse_element (element (cls, fields(14)))
-    val t6: Fielder = parse_element (element (cls, fields(15)))
-    val t7: Fielder = parse_element (element (cls, fields(16)))
-    val t8: Fielder = parse_element (element (cls, fields(17)))
-    val t9: Fielder = parse_element (element (cls, fields(18)))
-    val ta: Fielder = parse_element (element (cls, fields(19)))
-    val tb: Fielder = parse_element (element (cls, fields(20)))
-    val tw1: Fielder = parse_element (element (cls, fields(21)))
-    val tw2: Fielder = parse_element (element (cls, fields(22)))
-    val tw3: Fielder = parse_element (element (cls, fields(23)))
-    val tw4: Fielder = parse_element (element (cls, fields(24)))
-    val vsi1max: Fielder = parse_element (element (cls, fields(25)))
-    val vsi1min: Fielder = parse_element (element (cls, fields(26)))
-    val vsi2max: Fielder = parse_element (element (cls, fields(27)))
-    val vsi2min: Fielder = parse_element (element (cls, fields(28)))
-    val vstmax: Fielder = parse_element (element (cls, fields(29)))
-    val vstmin: Fielder = parse_element (element (cls, fields(30)))
+    val ks1: Fielder = parse_element (element (cls, fields(1)))
+    val ks2: Fielder = parse_element (element (cls, fields(2)))
+    val ks3: Fielder = parse_element (element (cls, fields(3)))
+    val ks4: Fielder = parse_element (element (cls, fields(4)))
+    val m: Fielder = parse_element (element (cls, fields(5)))
+    val n: Fielder = parse_element (element (cls, fields(6)))
+    val t1: Fielder = parse_element (element (cls, fields(7)))
+    val t10: Fielder = parse_element (element (cls, fields(8)))
+    val t11: Fielder = parse_element (element (cls, fields(9)))
+    val t2: Fielder = parse_element (element (cls, fields(10)))
+    val t3: Fielder = parse_element (element (cls, fields(11)))
+    val t4: Fielder = parse_element (element (cls, fields(12)))
+    val t6: Fielder = parse_element (element (cls, fields(13)))
+    val t7: Fielder = parse_element (element (cls, fields(14)))
+    val t8: Fielder = parse_element (element (cls, fields(15)))
+    val t9: Fielder = parse_element (element (cls, fields(16)))
+    val ta: Fielder = parse_element (element (cls, fields(17)))
+    val tb: Fielder = parse_element (element (cls, fields(18)))
+    val tw1: Fielder = parse_element (element (cls, fields(19)))
+    val tw2: Fielder = parse_element (element (cls, fields(20)))
+    val tw3: Fielder = parse_element (element (cls, fields(21)))
+    val tw4: Fielder = parse_element (element (cls, fields(22)))
+    val vsi1max: Fielder = parse_element (element (cls, fields(23)))
+    val vsi1min: Fielder = parse_element (element (cls, fields(24)))
+    val vsi2max: Fielder = parse_element (element (cls, fields(25)))
+    val vsi2min: Fielder = parse_element (element (cls, fields(26)))
+    val vstmax: Fielder = parse_element (element (cls, fields(27)))
+    val vstmin: Fielder = parse_element (element (cls, fields(28)))
 
     def parse (context: Context): Pss2B =
     {
@@ -728,36 +715,34 @@ extends
         val ret = Pss2B (
             PowerSystemStabilizerDynamics.parse (context),
             toDouble (mask (a (), 0)),
-            mask (inputSignal1Type (), 1),
-            mask (inputSignal2Type (), 2),
-            toDouble (mask (ks1 (), 3)),
-            toDouble (mask (ks2 (), 4)),
-            toDouble (mask (ks3 (), 5)),
-            toDouble (mask (ks4 (), 6)),
-            toInteger (mask (m (), 7)),
-            toInteger (mask (n (), 8)),
-            toDouble (mask (t1 (), 9)),
-            toDouble (mask (t10 (), 10)),
-            toDouble (mask (t11 (), 11)),
-            toDouble (mask (t2 (), 12)),
-            toDouble (mask (t3 (), 13)),
-            toDouble (mask (t4 (), 14)),
-            toDouble (mask (t6 (), 15)),
-            toDouble (mask (t7 (), 16)),
-            toDouble (mask (t8 (), 17)),
-            toDouble (mask (t9 (), 18)),
-            toDouble (mask (ta (), 19)),
-            toDouble (mask (tb (), 20)),
-            toDouble (mask (tw1 (), 21)),
-            toDouble (mask (tw2 (), 22)),
-            toDouble (mask (tw3 (), 23)),
-            toDouble (mask (tw4 (), 24)),
-            toDouble (mask (vsi1max (), 25)),
-            toDouble (mask (vsi1min (), 26)),
-            toDouble (mask (vsi2max (), 27)),
-            toDouble (mask (vsi2min (), 28)),
-            toDouble (mask (vstmax (), 29)),
-            toDouble (mask (vstmin (), 30))
+            toDouble (mask (ks1 (), 1)),
+            toDouble (mask (ks2 (), 2)),
+            toDouble (mask (ks3 (), 3)),
+            toDouble (mask (ks4 (), 4)),
+            toInteger (mask (m (), 5)),
+            toInteger (mask (n (), 6)),
+            toDouble (mask (t1 (), 7)),
+            toDouble (mask (t10 (), 8)),
+            toDouble (mask (t11 (), 9)),
+            toDouble (mask (t2 (), 10)),
+            toDouble (mask (t3 (), 11)),
+            toDouble (mask (t4 (), 12)),
+            toDouble (mask (t6 (), 13)),
+            toDouble (mask (t7 (), 14)),
+            toDouble (mask (t8 (), 15)),
+            toDouble (mask (t9 (), 16)),
+            toDouble (mask (ta (), 17)),
+            toDouble (mask (tb (), 18)),
+            toDouble (mask (tw1 (), 19)),
+            toDouble (mask (tw2 (), 20)),
+            toDouble (mask (tw3 (), 21)),
+            toDouble (mask (tw4 (), 22)),
+            toDouble (mask (vsi1max (), 23)),
+            toDouble (mask (vsi1min (), 24)),
+            toDouble (mask (vsi2max (), 25)),
+            toDouble (mask (vsi2min (), 26)),
+            toDouble (mask (vstmax (), 27)),
+            toDouble (mask (vstmin (), 28))
         )
         ret.bitfields = bitfields
         ret
@@ -765,32 +750,32 @@ extends
 }
 
 /**
- * PTI Microprocessor-Based Stabilizer type 1.
+ * PTI microprocessor-based stabilizer type 1.
  *
  * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
- * @param inputSignal1Type Type of input signal #1.
- *        Typical Value = rotorAngularFrequencyDeviation.
- * @param inputSignal2Type Type of input signal #2.
- *        Typical Value = generatorElectricalPower.
- * @param k1 Gain (K1).
- * @param k2 Gain (K2).
- * @param lsmax Limiter (Lsmax).
- * @param lsmin Limiter (Lsmin).
- * @param t1 Time constant (T1).
- * @param t10 Time constant (T10).
- * @param t2 Time constant (T2).
- * @param t3 Time constant (T3).
- * @param t4 Time constant (T4).
- * @param t5 Time constant (T5).
- * @param t6 Time constant (T6).
- * @param t7 Time constant (T7).
- * @param t8 Time constant (T8).
- * @param t9 Time constant (T9).
- * @param vcl Cutoff limiter (Vcl).
- * @param vcu Cutoff limiter (Vcu).
+ * @param inputSignal1Type Type of input signal #1 (rotorAngularFrequencyDeviation, busFrequencyDeviation, generatorElectricalPower, generatorAcceleratingPower, busVoltage, or busVoltageDerivative - shall be different than Pss2ST.inputSignal2Type).
+ *        Typical value = rotorAngularFrequencyDeviation.
+ * @param inputSignal2Type Type of input signal #2 (rotorAngularFrequencyDeviation, busFrequencyDeviation, generatorElectricalPower, generatorAcceleratingPower, busVoltage, or busVoltageDerivative - shall be different than Pss2ST.inputSignal1Type).
+ *        Typical value = busVoltageDerivative.
+ * @param k1 Gain (<i>K</i><i><sub>1</sub></i>).
+ * @param k2 Gain (<i>K</i><i><sub>2</sub></i>).
+ * @param lsmax Limiter (<i>L</i><i><sub>SMAX</sub></i>) (&gt; Pss2ST.lsmin).
+ * @param lsmin Limiter (<i>L</i><i><sub>SMIN</sub></i>) (&lt; Pss2ST.lsmax).
+ * @param t1 Time constant (<i>T</i><i><sub>1</sub></i>) (&gt;= 0).
+ * @param t10 Time constant (<i>T</i><i><sub>10</sub></i>) (&gt;= 0).
+ * @param t2 Time constant (<i>T</i><i><sub>2</sub></i>) (&gt;= 0).
+ * @param t3 Time constant (<i>T</i><i><sub>3</sub></i>) (&gt;= 0).
+ * @param t4 Time constant (<i>T</i><i><sub>4</sub></i>) (&gt;= 0).
+ * @param t5 Time constant (<i>T</i><i><sub>5</sub></i>) (&gt;= 0).
+ * @param t6 Time constant (<i>T</i><i><sub>6</sub></i>) (&gt;= 0).
+ * @param t7 Time constant (<i>T</i><i><sub>7</sub></i>) (&gt;= 0).
+ * @param t8 Time constant (<i>T</i><i><sub>8</sub></i>) (&gt;= 0).
+ * @param t9 Time constant (<i>T</i><i><sub>9</sub></i>) (&gt;= 0).
+ * @param vcl Cutoff limiter (<i>V</i><i><sub>CL</sub></i>).
+ * @param vcu Cutoff limiter (<i>V</i><i><sub>CU</sub></i>).
  * @group PowerSystemStabilizerDynamics
  * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
- * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (Vs) to the excitation system model to improve damping of system oscillations.  A variety of input signals may be used depending on the particular design.
+ * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.  A variety of input signals can be used depending on the particular design.
  */
 case class Pss2ST
 (
@@ -945,52 +930,52 @@ extends
 }
 
 /**
- * Italian PSS - Detailed PSS.
+ * Detailed Italian PSS.
  *
  * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
- * @param ctw2 Selector for Second washout enabling (C<sub>TW2</sub>).
+ * @param ctw2 Selector for second washout enabling (<i>C</i><i><sub>TW2</sub></i>).
  *        true = second washout filter is bypassed
  *        false = second washout filter in use.
- *        Typical Value = true.
- * @param deadband Stabilizer output dead band (DeadBand).
- *        Typical Value = 0.
- * @param isfreq Selector for Frequency/shaft speed input (IsFreq).
- *        true = speed
- *        false = frequency.
- *        Typical Value = true.
- * @param kf Frequency/shaft speed input gain (K<sub>F</sub>).
- *        Typical Value = 5.
- * @param kpe Electric power input gain (K<sub>PE</sub>).
- *        Typical Value = 0.3.
- * @param kpss PSS gain (K<sub>PSS</sub>).
- *        Typical Value = 1.
- * @param pmm Minimum power PSS enabling (P<sub>mn</sub>).
- *        Typical Value = 0.25.
- * @param tl1 Lead/lag time constant (T<sub>L1</sub>).
- *        Typical Value = 0.
- * @param tl2 Lead/lag time constant (T<sub>L2</sub>).
- *        Typical Value = 0.
- * @param tl3 Lead/lag time constant (T<sub>L3</sub>).
- *        Typical Value = 0.
- * @param tl4 Lead/lag time constant (T<sub>L4</sub>).
- *        Typical Value = 0.
- * @param tpe Electric power filter time constant (T<sub>PE</sub>).
- *        Typical Value = 0.05.
- * @param tw1 First WashOut (T<sub>w1</sub>).
- *        Typical Value = 3.5.
- * @param tw2 Second WashOut (T<sub>w2</sub>).
- *        Typical Value = 0.
- * @param vadat <font color="#0f0f0f">Signal selector (V<sub>adAtt</sub>).</font>
- *        <font color="#0f0f0f">true = closed (Generator Power is greater than Pmin)</font>
- *        <font color="#0f0f0f">false = open (Pe is smaller than Pmin).</font>
- *        <font color="#0f0f0f">Typical Value = true.</font>
- * @param vsmn Stabilizer output max limit (V<sub>SMN</sub>).
- *        Typical Value = -0.1.
- * @param vsmx Stabilizer output min limit (V<sub>SMX</sub>).
- *        Typical Value = 0.1.
+ *        Typical value = true.
+ * @param deadband Stabilizer output deadband (<i>DEADBAND</i>).
+ *        Typical value = 0.
+ * @param isfreq Selector for frequency/shaft speed input (<i>isFreq</i>).
+ *        true = speed (same meaning as InputSignaKind.rotorSpeed)
+ *        false = frequency (same meaning as InputSignalKind.busFrequency).
+ *        Typical value = true (same meaning as InputSignalKind.rotorSpeed).
+ * @param kf Frequency/shaft speed input gain (<i>K</i><i><sub>F</sub></i>).
+ *        Typical value = 5.
+ * @param kpe Electric power input gain (<i>K</i><i><sub>PE</sub></i>).
+ *        Typical value = 0,3.
+ * @param kpss PSS gain (<i>K</i><i><sub>PSS</sub></i>).
+ *        Typical value = 1.
+ * @param pmin Minimum power PSS enabling (<i>Pmin</i>).
+ *        Typical value = 0,25.
+ * @param tl1 Lead/lag time constant (<i>T</i><i><sub>L1</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tl2 Lead/lag time constant (<i>T</i><i><sub>L2</sub></i>) (&gt;= 0).
+ *        If = 0, both blocks are bypassed.  Typical value = 0.
+ * @param tl3 Lead/lag time constant (<i>T</i><i><sub>L3</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tl4 Lead/lag time constant (T<sub>L4</sub>) (&gt;= 0).
+ *        If = 0, both blocks are bypassed.  Typical value = 0.
+ * @param tpe Electric power filter time constant (<i>T</i><i><sub>PE</sub></i>) (&gt;= 0).
+ *        Typical value = 0,05.
+ * @param tw1 First washout (<i>T</i><i><sub>W1</sub></i>) (&gt;= 0).
+ *        Typical value = 3,5.
+ * @param tw2 Second washout (<i>T</i><i><sub>W2</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param vadat <font color="#0f0f0f">Signal selector (<i>V</i><i><sub>adAtt</sub></i>).</font>
+ *        <font color="#0f0f0f">true = closed (generator power is greater than <i>Pmin</i>)</font>
+ *        <font color="#0f0f0f">false = open (<i>Pe</i> is smaller than <i>Pmin</i>).</font>
+ *        <font color="#0f0f0f">Typical value = true.</font>
+ * @param vsmn Stabilizer output maximum limit (<i>V</i><i><sub>SMN</sub></i>).
+ *        Typical value = -0,1.
+ * @param vsmx Stabilizer output minimum limit (<i>V</i><i><sub>SMX</sub></i>).
+ *        Typical value = 0,1.
  * @group PowerSystemStabilizerDynamics
  * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
- * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (Vs) to the excitation system model to improve damping of system oscillations.  A variety of input signals may be used depending on the particular design.
+ * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.  A variety of input signals can be used depending on the particular design.
  */
 case class Pss5
 (
@@ -1001,7 +986,7 @@ case class Pss5
     kf: Double,
     kpe: Double,
     kpss: Double,
-    pmm: Double,
+    pmin: Double,
     tl1: Double,
     tl2: Double,
     tl3: Double,
@@ -1049,7 +1034,7 @@ extends
         emitelem (3, kf)
         emitelem (4, kpe)
         emitelem (5, kpss)
-        emitelem (6, pmm)
+        emitelem (6, pmin)
         emitelem (7, tl1)
         emitelem (8, tl2)
         emitelem (9, tl3)
@@ -1079,7 +1064,7 @@ extends
         "kf",
         "kpe",
         "kpss",
-        "pmm",
+        "pmin",
         "tl1",
         "tl2",
         "tl3",
@@ -1097,7 +1082,7 @@ extends
     val kf: Fielder = parse_element (element (cls, fields(3)))
     val kpe: Fielder = parse_element (element (cls, fields(4)))
     val kpss: Fielder = parse_element (element (cls, fields(5)))
-    val pmm: Fielder = parse_element (element (cls, fields(6)))
+    val pmin: Fielder = parse_element (element (cls, fields(6)))
     val tl1: Fielder = parse_element (element (cls, fields(7)))
     val tl2: Fielder = parse_element (element (cls, fields(8)))
     val tl3: Fielder = parse_element (element (cls, fields(9)))
@@ -1121,7 +1106,7 @@ extends
             toDouble (mask (kf (), 3)),
             toDouble (mask (kpe (), 4)),
             toDouble (mask (kpss (), 5)),
-            toDouble (mask (pmm (), 6)),
+            toDouble (mask (pmin (), 6)),
             toDouble (mask (tl1 (), 7)),
             toDouble (mask (tl2 (), 8)),
             toDouble (mask (tl3 (), 9)),
@@ -1142,31 +1127,31 @@ extends
  * Power system stabilizer typically associated with ExcELIN2 (though PssIEEE2B or Pss2B can also be used).
  *
  * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
- * @param apss Coefficient (a_PSS).
- *        Typical Value = 0.1.
- * @param ks1 Gain (Ks1).
- *        Typical Value = 1.
- * @param ks2 Gain (Ks2).
- *        Typical Value = 0.1.
- * @param ppss Coefficient (p_PSS) (&gt;=0 and &lt;=4).
- *        Typical Value = 0.1.
- * @param psslim PSS limiter (psslim).
- *        Typical Value = 0.1.
- * @param ts1 Time constant (Ts1).
- *        Typical Value = 0.
- * @param ts2 Time constant (Ts2).
- *        Typical Value = 1.
- * @param ts3 Time constant (Ts3).
- *        Typical Value = 1.
- * @param ts4 Time constant (Ts4).
- *        Typical Value = 0.1.
- * @param ts5 Time constant (Ts5).
- *        Typical Value = 0.
- * @param ts6 Time constant (Ts6).
- *        Typical Value = 1.
+ * @param apss Coefficient (<i>a_PSS</i>).
+ *        Typical value = 0,1.
+ * @param ks1 Gain (<i>Ks1</i>).
+ *        Typical value = 1.
+ * @param ks2 Gain (<i>Ks2</i>).
+ *        Typical value = 0,1.
+ * @param ppss Coefficient (<i>p_PSS</i>) (&gt;= 0 and &lt;= 4).
+ *        Typical value = 0,1.
+ * @param psslim PSS limiter (<i>psslim</i>).
+ *        Typical value = 0,1.
+ * @param ts1 Time constant (<i>Ts1</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param ts2 Time constant (<i>Ts2</i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param ts3 Time constant (<i>Ts3</i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param ts4 Time constant (<i>Ts4</i>) (&gt;= 0).
+ *        Typical value = 0,1.
+ * @param ts5 Time constant (<i>Ts5</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param ts6 Time constant (<i>Ts6</i>) (&gt;= 0).
+ *        Typical value = 1.
  * @group PowerSystemStabilizerDynamics
  * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
- * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (Vs) to the excitation system model to improve damping of system oscillations.  A variety of input signals may be used depending on the particular design.
+ * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.  A variety of input signals can be used depending on the particular design.
  */
 case class PssELIN2
 (
@@ -1285,38 +1270,38 @@ extends
 }
 
 /**
- * The class represents IEEE Std 421.5-2005 type PSS1A power system stabilizer model.
+ * IEEE 421.5-2005 type PSS1A power system stabilizer model.
  *
- * PSS1A is the generalized form of a PSS with a single input. Some common stabilizer input signals are speed, frequency, and power.
+ * PSS1A is the generalized form of a PSS with a single input signal.
  *
  * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
- * @param a1 PSS signal conditioning frequency filter constant (A1).
- *        Typical Value = 0.061.
- * @param a2 PSS signal conditioning frequency filter constant (A2).
- *        Typical Value = 0.0017.
- * @param inputSignalType Type of input signal.
- *        Typical Value = rotorAngularFrequencyDeviation.
- * @param ks Stabilizer gain (Ks).
- *        Typical Value = 5.
- * @param t1 Lead/lag time constant (T1).
- *        Typical Value = 0.3.
- * @param t2 Lead/lag time constant (T2).
- *        Typical Value = 0.03.
- * @param t3 Lead/lag time constant (T3).
- *        Typical Value = 0.3.
- * @param t4 Lead/lag time constant (T4).
- *        Typical Value = 0.03.
- * @param t5 Washout time constant (T5).
- *        Typical Value = 10.
- * @param t6 Transducer time constant (T6).
- *        Typical Value = 0.01.
- * @param vrmax Maximum stabilizer output (Vrmax).
- *        Typical Value = 0.05.
- * @param vrmin Minimum stabilizer output (Vrmin).
- *        Typical Value = -0.05.
+ * @param a1 PSS signal conditioning frequency filter constant (<i>A1</i>).
+ *        Typical value = 0,061.
+ * @param a2 PSS signal conditioning frequency filter constant (<i>A2</i>).
+ *        Typical value = 0,0017.
+ * @param inputSignalType Type of input signal (rotorAngularFrequencyDeviation, generatorElectricalPower, or busFrequencyDeviation).
+ *        Typical value = rotorAngularFrequencyDeviation.
+ * @param ks Stabilizer gain (<i>Ks</i>).
+ *        Typical value = 5.
+ * @param t1 Lead/lag time constant (<i>T1</i>) (&gt;= 0).
+ *        Typical value = 0,3.
+ * @param t2 Lead/lag time constant (<i>T2</i>) (&gt;= 0).
+ *        Typical value = 0,03.
+ * @param t3 Lead/lag time constant (<i>T3</i>) (&gt;= 0).
+ *        Typical value = 0,3.
+ * @param t4 Lead/lag time constant (<i>T4</i>) (&gt;= 0).
+ *        Typical value = 0,03.
+ * @param t5 Washout time constant (<i>T5</i>) (&gt;= 0).
+ *        Typical value = 10.
+ * @param t6 Transducer time constant (<i>T6</i>) (&gt;= 0).
+ *        Typical value = 0,01.
+ * @param vrmax Maximum stabilizer output (<i>Vrmax</i>) (&gt; PssIEEE1A.vrmin).
+ *        Typical value = 0,05.
+ * @param vrmin Minimum stabilizer output (<i>Vrmin</i>) (&lt; PssIEEE1A.vrmax).
+ *        Typical value = -0,05.
  * @group PowerSystemStabilizerDynamics
  * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
- * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (Vs) to the excitation system model to improve damping of system oscillations.  A variety of input signals may be used depending on the particular design.
+ * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.  A variety of input signals can be used depending on the particular design.
  */
 case class PssIEEE1A
 (
@@ -1441,68 +1426,68 @@ extends
 }
 
 /**
- * The class represents IEEE Std 421.5-2005 type PSS2B power system stabilizer model.
+ * IEEE 421.5-2005 type PSS2B power system stabilizer model.
  *
  * This stabilizer model is designed to represent a variety of dual-input stabilizers, which normally use combinations of power and speed or frequency to derive the stabilizing signal.
  *
  * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
- * @param inputSignal1Type Type of input signal #1.
- *        Typical Value = rotorSpeed.
- * @param inputSignal2Type Type of input signal #2.
- *        Typical Value = generatorElectricalPower.
- * @param ks1 Stabilizer gain (Ks1).
- *        Typical Value = 12.
- * @param ks2 Gain on signal #2 (Ks2).
- *        Typical Value = 0.2.
- * @param ks3 Gain on signal #2 input before ramp-tracking filter (Ks3).
- *        Typical Value = 1.
- * @param m Denominator order of ramp tracking filter (M).
- *        Typical Value = 5.
- * @param n Order of ramp tracking filter (N).
- *        Typical Value = 1.
- * @param t1 Lead/lag time constant (T1).
- *        Typical Value = 0.12.
- * @param t10 Lead/lag time constant (T10).
- *        Typical Value = 0.
- * @param t11 Lead/lag time constant (T11).
- *        Typical Value = 0.
- * @param t2 Lead/lag time constant (T2).
- *        Typical Value = 0.02.
- * @param t3 Lead/lag time constant (T3).
- *        Typical Value = 0.3.
- * @param t4 Lead/lag time constant (T4).
- *        Typical Value = 0.02.
- * @param t6 Time constant on signal #1 (T6).
- *        Typical Value = 0.
- * @param t7 Time constant on signal #2 (T7).
- *        Typical Value = 2.
- * @param t8 Lead of ramp tracking filter (T8).
- *        Typical Value = 0.2.
- * @param t9 Lag of ramp tracking filter (T9).
- *        Typical Value = 0.1.
- * @param tw1 First washout on signal #1 (Tw1).
- *        Typical Value = 2.
- * @param tw2 Second washout on signal #1 (Tw2).
- *        Typical Value = 2.
- * @param tw3 First washout on signal #2 (Tw3).
- *        Typical Value = 2.
- * @param tw4 Second washout on signal #2 (Tw4).
- *        Typical Value = 0.
- * @param vsi1max Input signal #1 max limit (Vsi1max).
- *        Typical Value = 2.
- * @param vsi1min Input signal #1 min limit (Vsi1min).
- *        Typical Value = -2.
- * @param vsi2max Input signal #2 max limit (Vsi2max).
- *        Typical Value = 2.
- * @param vsi2min Input signal #2 min limit (Vsi2min).
- *        Typical Value = -2.
- * @param vstmax Stabilizer output max limit (Vstmax).
- *        Typical Value = 0.1.
- * @param vstmin Stabilizer output min limit (Vstmin).
- *        Typical Value = -0.1.
+ * @param inputSignal1Type Type of input signal #1 (rotorAngularFrequencyDeviation, busFrequencyDeviation).
+ *        Typical value = rotorAngularFrequencyDeviation.
+ * @param inputSignal2Type Type of input signal #2 (generatorElectricalPower).
+ *        Typical value = generatorElectricalPower.
+ * @param ks1 Stabilizer gain (<i>Ks1</i>).
+ *        Typical value = 12.
+ * @param ks2 Gain on signal #2 (<i>Ks2</i>).
+ *        Typical value = 0,2.
+ * @param ks3 Gain on signal #2 input before ramp-tracking filter (<i>Ks3</i>).
+ *        Typical value = 1.
+ * @param m Denominator order of ramp tracking filter (<i>M</i>).
+ *        Typical value = 5.
+ * @param n Order of ramp tracking filter (<i>N</i>).
+ *        Typical value = 1.
+ * @param t1 Lead/lag time constant (<i>T1</i>) (&gt;= 0).
+ *        Typical value = 0,12.
+ * @param t10 Lead/lag time constant (<i>T10</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param t11 Lead/lag time constant (<i>T11</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param t2 Lead/lag time constant (<i>T2</i>) (&gt;= 0).
+ *        Typical value = 0,02.
+ * @param t3 Lead/lag time constant (<i>T3</i>) (&gt;= 0).
+ *        Typical value = 0,3.
+ * @param t4 Lead/lag time constant (<i>T4</i>) (&gt;= 0).
+ *        Typical value = 0,02.
+ * @param t6 Time constant on signal #1 (<i>T6</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param t7 Time constant on signal #2 (<i>T7</i>) (&gt;= 0).
+ *        Typical value = 2.
+ * @param t8 Lead of ramp tracking filter (<i>T8</i>) (&gt;= 0).
+ *        Typical value = 0,2.
+ * @param t9 Lag of ramp tracking filter (<i>T9</i>) (&gt;= 0).
+ *        Typical value = 0,1.
+ * @param tw1 First washout on signal #1 (<i>Tw1</i>) (&gt;= 0).
+ *        Typical value = 2.
+ * @param tw2 Second washout on signal #1 (<i>Tw2</i>) (&gt;= 0).
+ *        Typical value = 2.
+ * @param tw3 First washout on signal #2 (<i>Tw3</i>) (&gt;= 0).
+ *        Typical value = 2.
+ * @param tw4 Second washout on signal #2 (<i>Tw4</i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param vsi1max Input signal #1 maximum limit (<i>Vsi1max</i>) (&gt; PssIEEE2B.vsi1min).
+ *        Typical value = 2.
+ * @param vsi1min Input signal #1 minimum limit (<i>Vsi1min</i>) (&lt; PssIEEE2B.vsi1max).
+ *        Typical value = -2.
+ * @param vsi2max Input signal #2 maximum limit (<i>Vsi2max</i>) (&gt; PssIEEE2B.vsi2min).
+ *        Typical value = 2.
+ * @param vsi2min Input signal #2 minimum limit (<i>Vsi2min</i>) (&lt; PssIEEE2B.vsi2max).
+ *        Typical value = -2.
+ * @param vstmax Stabilizer output maximum limit (<i>Vstmax</i>) (&gt; PssIEEE2B.vstmin).
+ *        Typical value = 0,1.
+ * @param vstmin Stabilizer output minimum limit (<i>Vstmin</i>) (&lt; PssIEEE2B.vstmax).
+ *        Typical value = -0,1.
  * @group PowerSystemStabilizerDynamics
  * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
- * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (Vs) to the excitation system model to improve damping of system oscillations.  A variety of input signals may be used depending on the particular design.
+ * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.  A variety of input signals can be used depending on the particular design.
  */
 case class PssIEEE2B
 (
@@ -1702,52 +1687,48 @@ extends
 }
 
 /**
- * The class represents IEEE Std 421.5-2005 type PSS3B power system stabilizer model.
+ * IEEE 421.5-2005 type PSS3B power system stabilizer model.
  *
  * The PSS model PSS3B has dual inputs of electrical power and rotor angular frequency deviation. The signals are used to derive an equivalent mechanical power signal.
  *
  * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
- * @param a1 Notch filter parameter (A1).
- *        Typical Value = 0.359.
- * @param a2 Notch filter parameter (A2).
- *        Typical Value = 0.586.
- * @param a3 Notch filter parameter (A3).
- *        Typical Value = 0.429.
- * @param a4 Notch filter parameter (A4).
- *        Typical Value = 0.564.
- * @param a5 Notch filter parameter (A5).
- *        Typical Value = 0.001.
- * @param a6 Notch filter parameter (A6).
- *        Typical Value = 0.
- * @param a7 Notch filter parameter (A7).
- *        Typical Value = 0.031.
- * @param a8 Notch filter parameter (A8).
- *        Typical Value = 0.
- * @param inputSignal1Type Type of input signal #1.
- *        Typical Value = generatorElectricalPower.
- * @param inputSignal2Type Type of input signal #2.
- *        Typical Value = rotorSpeed.
- * @param ks1 Gain on signal # 1 (Ks1).
- *        Typical Value = -0.602.
- * @param ks2 Gain on signal # 2 (Ks2).
- *        Typical Value = 30.12.
- * @param t1 Transducer time constant (T1).
- *        Typical Value = 0.012.
- * @param t2 Transducer time constant (T2).
- *        Typical Value = 0.012.
- * @param tw1 Washout time constant (Tw1).
- *        Typical Value = 0.3.
- * @param tw2 Washout time constant (Tw2).
- *        Typical Value = 0.3.
- * @param tw3 Washout time constant (Tw3).
- *        Typical Value = 0.6.
- * @param vstmax Stabilizer output max limit (Vstmax).
- *        Typical Value = 0.1.
- * @param vstmin Stabilizer output min limit (Vstmin).
- *        Typical Value = -0.1.
+ * @param a1 Notch filter parameter (<i>A1</i>).
+ *        Typical value = 0,359.
+ * @param a2 Notch filter parameter (<i>A2</i>).
+ *        Typical value = 0,586.
+ * @param a3 Notch filter parameter (<i>A3</i>).
+ *        Typical value = 0,429.
+ * @param a4 Notch filter parameter (<i>A4</i>).
+ *        Typical value = 0,564.
+ * @param a5 Notch filter parameter (<i>A5</i>).
+ *        Typical value = 0,001.
+ * @param a6 Notch filter parameter (<i>A6</i>).
+ *        Typical value = 0.
+ * @param a7 Notch filter parameter (<i>A7</i>).
+ *        Typical value = 0,031.
+ * @param a8 Notch filter parameter (<i>A8</i>).
+ *        Typical value = 0.
+ * @param ks1 Gain on signal # 1 (<i>Ks1</i>).
+ *        Typical value = -0,602.
+ * @param ks2 Gain on signal # 2 (<i>Ks2</i>).
+ *        Typical value = 30,12.
+ * @param t1 Transducer time constant (<i>T1</i>) (&gt;= 0).
+ *        Typical value = 0,012.
+ * @param t2 Transducer time constant (<i>T2</i>) (&gt;= 0).
+ *        Typical value = 0,012.
+ * @param tw1 Washout time constant (<i>Tw1</i>) (&gt;= 0).
+ *        Typical value = 0,3.
+ * @param tw2 Washout time constant (<i>Tw2</i>) (&gt;= 0).
+ *        Typical value = 0,3.
+ * @param tw3 Washout time constant (<i>Tw3</i>) (&gt;= 0).
+ *        Typical value = 0,6.
+ * @param vstmax Stabilizer output maximum limit (<i>Vstmax</i>) (&gt; PssIEEE3B.vstmin).
+ *        Typical value = 0,1.
+ * @param vstmin Stabilizer output minimum limit (<i>Vstmin</i>) (&lt; PssIEEE3B.vstmax).
+ *        Typical value = -0,1.
  * @group PowerSystemStabilizerDynamics
  * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
- * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (Vs) to the excitation system model to improve damping of system oscillations.  A variety of input signals may be used depending on the particular design.
+ * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.  A variety of input signals can be used depending on the particular design.
  */
 case class PssIEEE3B
 (
@@ -1760,8 +1741,6 @@ case class PssIEEE3B
     a6: Double,
     a7: Double,
     a8: Double,
-    inputSignal1Type: String,
-    inputSignal2Type: String,
     ks1: Double,
     ks2: Double,
     t1: Double,
@@ -1778,7 +1757,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, null, null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
     /**
      * Return the superclass object.
      *
@@ -1802,7 +1781,6 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = PssIEEE3B.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PssIEEE3B.fields (position), value)
-        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (PssIEEE3B.fields (position), value)
         emitelem (0, a1)
         emitelem (1, a2)
         emitelem (2, a3)
@@ -1811,17 +1789,15 @@ extends
         emitelem (5, a6)
         emitelem (6, a7)
         emitelem (7, a8)
-        emitattr (8, inputSignal1Type)
-        emitattr (9, inputSignal2Type)
-        emitelem (10, ks1)
-        emitelem (11, ks2)
-        emitelem (12, t1)
-        emitelem (13, t2)
-        emitelem (14, tw1)
-        emitelem (15, tw2)
-        emitelem (16, tw3)
-        emitelem (17, vstmax)
-        emitelem (18, vstmin)
+        emitelem (8, ks1)
+        emitelem (9, ks2)
+        emitelem (10, t1)
+        emitelem (11, t2)
+        emitelem (12, tw1)
+        emitelem (13, tw2)
+        emitelem (14, tw3)
+        emitelem (15, vstmax)
+        emitelem (16, vstmin)
         s.toString
     }
     override def export: String =
@@ -1843,8 +1819,6 @@ extends
         "a6",
         "a7",
         "a8",
-        "inputSignal1Type",
-        "inputSignal2Type",
         "ks1",
         "ks2",
         "t1",
@@ -1863,17 +1837,15 @@ extends
     val a6: Fielder = parse_element (element (cls, fields(5)))
     val a7: Fielder = parse_element (element (cls, fields(6)))
     val a8: Fielder = parse_element (element (cls, fields(7)))
-    val inputSignal1Type: Fielder = parse_attribute (attribute (cls, fields(8)))
-    val inputSignal2Type: Fielder = parse_attribute (attribute (cls, fields(9)))
-    val ks1: Fielder = parse_element (element (cls, fields(10)))
-    val ks2: Fielder = parse_element (element (cls, fields(11)))
-    val t1: Fielder = parse_element (element (cls, fields(12)))
-    val t2: Fielder = parse_element (element (cls, fields(13)))
-    val tw1: Fielder = parse_element (element (cls, fields(14)))
-    val tw2: Fielder = parse_element (element (cls, fields(15)))
-    val tw3: Fielder = parse_element (element (cls, fields(16)))
-    val vstmax: Fielder = parse_element (element (cls, fields(17)))
-    val vstmin: Fielder = parse_element (element (cls, fields(18)))
+    val ks1: Fielder = parse_element (element (cls, fields(8)))
+    val ks2: Fielder = parse_element (element (cls, fields(9)))
+    val t1: Fielder = parse_element (element (cls, fields(10)))
+    val t2: Fielder = parse_element (element (cls, fields(11)))
+    val tw1: Fielder = parse_element (element (cls, fields(12)))
+    val tw2: Fielder = parse_element (element (cls, fields(13)))
+    val tw3: Fielder = parse_element (element (cls, fields(14)))
+    val vstmax: Fielder = parse_element (element (cls, fields(15)))
+    val vstmin: Fielder = parse_element (element (cls, fields(16)))
 
     def parse (context: Context): PssIEEE3B =
     {
@@ -1889,17 +1861,15 @@ extends
             toDouble (mask (a6 (), 5)),
             toDouble (mask (a7 (), 6)),
             toDouble (mask (a8 (), 7)),
-            mask (inputSignal1Type (), 8),
-            mask (inputSignal2Type (), 9),
-            toDouble (mask (ks1 (), 10)),
-            toDouble (mask (ks2 (), 11)),
-            toDouble (mask (t1 (), 12)),
-            toDouble (mask (t2 (), 13)),
-            toDouble (mask (tw1 (), 14)),
-            toDouble (mask (tw2 (), 15)),
-            toDouble (mask (tw3 (), 16)),
-            toDouble (mask (vstmax (), 17)),
-            toDouble (mask (vstmin (), 18))
+            toDouble (mask (ks1 (), 8)),
+            toDouble (mask (ks2 (), 9)),
+            toDouble (mask (t1 (), 10)),
+            toDouble (mask (t2 (), 11)),
+            toDouble (mask (tw1 (), 12)),
+            toDouble (mask (tw2 (), 13)),
+            toDouble (mask (tw3 (), 14)),
+            toDouble (mask (vstmax (), 15)),
+            toDouble (mask (vstmin (), 16))
         )
         ret.bitfields = bitfields
         ret
@@ -1907,140 +1877,140 @@ extends
 }
 
 /**
- * The class represents IEEE Std 421.5-2005 type PSS2B power system stabilizer model.
+ * IEEE 421.5-2005 type PSS4B power system stabilizer.
  *
- * The PSS4B model represents a structure based on multiple working frequency bands. Three separate bands, respectively dedicated to the low-, intermediate- and high-frequency modes of oscillations, are used in this delta-omega (speed input) PSS.
+ * The PSS4B model represents a structure based on multiple working frequency bands. Three separate bands, respectively dedicated to the low-, intermediate- and high-frequency modes of oscillations, are used in this delta omega (speed input) PSS.
  *
  * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
- * @param bwh1 Notch filter 1 (high-frequency band): Three dB bandwidth (B<sub>wi</sub>).
- * @param bwh2 Notch filter 2 (high-frequency band): Three dB bandwidth (B<sub>wi</sub>).
- * @param bwl1 Notch filter 1 (low-frequency band): Three dB bandwidth (B<sub>wi</sub>).
- * @param bwl2 Notch filter 2 (low-frequency band): Three dB bandwidth (B<sub>wi</sub>).
- * @param kh High band gain (K<sub>H</sub>).
- *        Typical Value = 120.
- * @param kh1 High band differential filter gain (K<sub>H1</sub>).
- *        Typical Value = 66.
- * @param kh11 High band first lead-lag blocks coefficient (K<sub>H11</sub>).
- *        Typical Value = 1.
- * @param kh17 High band first lead-lag blocks coefficient (K<sub>H17</sub>).
- *        Typical Value = 1.
- * @param kh2 High band differential filter gain (K<sub>H2</sub>).
- *        Typical Value = 66.
- * @param ki Intermediate band gain (K<sub>I</sub>).
- *        Typical Value = 30.
- * @param ki1 Intermediate band differential filter gain (K<sub>I1</sub>).
- *        Typical Value = 66.
- * @param ki11 Intermediate band first lead-lag blocks coefficient (K<sub>I11</sub>).
- *        Typical Value = 1.
- * @param ki17 Intermediate band first lead-lag blocks coefficient (K<sub>I17</sub>).
- *        Typical Value = 1.
- * @param ki2 Intermediate band differential filter gain (K<sub>I2</sub>).
- *        Typical Value = 66.
- * @param kl Low band gain (K<sub>L</sub>).
- *        Typical Value = 7.5.
- * @param kl1 Low band differential filter gain (K<sub>L1</sub>).
- *        Typical Value = 66.
- * @param kl11 Low band first lead-lag blocks coefficient (K<sub>L11</sub>).
- *        Typical Value = 1.
- * @param kl17 Low band first lead-lag blocks coefficient (K<sub>L17</sub>).
- *        Typical Value = 1.
- * @param kl2 Low band differential filter gain (K<sub>L2</sub>).
- *        Typical Value = 66.
- * @param omeganh1 Notch filter 1 (high-frequency band): filter frequency (omega<sub>ni</sub>).
- * @param omeganh2 Notch filter 2 (high-frequency band): filter frequency (omega<sub>ni</sub>).
- * @param omeganl1 Notch filter 1 (low-frequency band): filter frequency (omega<sub>ni</sub>).
- * @param omeganl2 Notch filter 2 (low-frequency band): filter frequency (omega<sub>ni</sub>).
- * @param th1 High band time constant (T<sub>H1</sub>).
- *        Typical Value = 0.01513.
- * @param th10 High band time constant (T<sub>H10</sub>).
- *        Typical Value = 0.
- * @param th11 High band time constant (T<sub>H11</sub>).
- *        Typical Value = 0.
- * @param th12 High band time constant (T<sub>H12</sub>).
- *        Typical Value = 0.
- * @param th2 High band time constant (T<sub>H2</sub>).
- *        Typical Value = 0.01816.
- * @param th3 High band time constant (T<sub>H3</sub>).
- *        Typical Value = 0.
- * @param th4 High band time constant (T<sub>H4</sub>).
- *        Typical Value = 0.
- * @param th5 High band time constant (T<sub>H5</sub>).
- *        Typical Value = 0.
- * @param th6 High band time constant (T<sub>H6</sub>).
- *        Typical Value = 0.
- * @param th7 High band time constant (T<sub>H7</sub>).
- *        Typical Value = 0.01816.
- * @param th8 High band time constant (T<sub>H8</sub>).
- *        Typical Value = 0.02179.
- * @param th9 High band time constant (T<sub>H9</sub>).
- *        Typical Value = 0.
- * @param ti1 Intermediate band time constant (T<sub>I1</sub>).
- *        Typical Value = 0.173.
- * @param ti10 Intermediate band time constant (T<sub>I11</sub>).
- *        Typical Value = 0.
- * @param ti11 Intermediate band time constant (T<sub>I11</sub>).
- *        Typical Value = 0.
- * @param ti12 Intermediate band time constant (T<sub>I2</sub>).
- *        Typical Value = 0.
- * @param ti2 Intermediate band time constant (T<sub>I2</sub>).
- *        Typical Value = 0.2075.
- * @param ti3 Intermediate band time constant (T<sub>I3</sub>).
- *        Typical Value = 0.
- * @param ti4 Intermediate band time constant (T<sub>I4</sub>).
- *        Typical Value = 0.
- * @param ti5 Intermediate band time constant (T<sub>I5</sub>).
- *        Typical Value = 0.
- * @param ti6 Intermediate band time constant (T<sub>I6</sub>).
- *        Typical Value = 0.
- * @param ti7 Intermediate band time constant (T<sub>I7</sub>).
- *        Typical Value = 0.2075.
- * @param ti8 Intermediate band time constant (T<sub>I8</sub>).
- *        Typical Value = 0.2491.
- * @param ti9 Intermediate band time constant (T<sub>I9</sub>).
- *        Typical Value = 0.
- * @param tl1 Low band time constant (T<sub>L1</sub>).
- *        Typical Value = 1.73.
- * @param tl10 Low band time constant (T<sub>L10</sub>).
- *        Typical Value = 0.
- * @param tl11 Low band time constant (T<sub>L11</sub>).
- *        Typical Value = 0.
- * @param tl12 Low band time constant (T<sub>L12</sub>).
- *        Typical Value = 0.
- * @param tl2 Low band time constant (T<sub>L2</sub>).
- *        Typical Value = 2.075.
- * @param tl3 Low band time constant (T<sub>L3</sub>).
- *        Typical Value = 0.
- * @param tl4 Low band time constant (T<sub>L4</sub>).
- *        Typical Value = 0.
- * @param tl5 Low band time constant (T<sub>L5</sub>).
- *        Typical Value = 0.
- * @param tl6 Low band time constant (T<sub>L6</sub>).
- *        Typical Value = 0.
- * @param tl7 Low band time constant (T<sub>L7</sub>).
- *        Typical Value = 2.075.
- * @param tl8 Low band time constant (T<sub>L8</sub>).
- *        Typical Value = 2.491.
- * @param tl9 Low band time constant (T<sub>L9</sub>).
- *        Typical Value = 0.
- * @param vhmax High band output maximum limit (V<sub>Hmax</sub>).
- *        Typical Value = 0.6.
- * @param vhmin High band output minimum limit (V<sub>Hmin</sub>).
- *        Typical Value = -0.6.
- * @param vimax Intermediate band output maximum limit (V<sub>Imax</sub>).
- *        Typical Value = 0.6.
- * @param vimin Intermediate band output minimum limit (V<sub>Imin</sub>).
- *        Typical Value = -0.6.
- * @param vlmax Low band output maximum limit (V<sub>Lmax</sub>).
- *        Typical Value = 0.075.
- * @param vlmin Low band output minimum limit (V<sub>Lmin</sub>).
- *        Typical Value = -0.075.
- * @param vstmax PSS output maximum limit (V<sub>STmax</sub>).
- *        Typical Value = 0.15.
- * @param vstmin PSS output minimum limit (V<sub>STmin</sub>).
- *        Typical Value = -0.15.
+ * @param bwh1 Notch filter 1 (high-frequency band): three dB bandwidth (<i>B</i><i><sub>wi</sub></i>).
+ * @param bwh2 Notch filter 2 (high-frequency band): three dB bandwidth (<i>B</i><i><sub>wi</sub></i>).
+ * @param bwl1 Notch filter 1 (low-frequency band): three dB bandwidth (<i>B</i><i><sub>wi</sub></i>).
+ * @param bwl2 Notch filter 2 (low-frequency band): three dB bandwidth (<i>B</i><i><sub>wi</sub></i>).
+ * @param kh High band gain (<i>K</i><i><sub>H</sub></i>).
+ *        Typical value = 120.
+ * @param kh1 High band differential filter gain (<i>K</i><i><sub>H1</sub></i>).
+ *        Typical value = 66.
+ * @param kh11 High band first lead-lag blocks coefficient (<i>K</i><i><sub>H11</sub></i>).
+ *        Typical value = 1.
+ * @param kh17 High band first lead-lag blocks coefficient (<i>K</i><i><sub>H17</sub></i>).
+ *        Typical value = 1.
+ * @param kh2 High band differential filter gain (<i>K</i><i><sub>H2</sub></i>).
+ *        Typical value = 66.
+ * @param ki Intermediate band gain (<i>K</i><i><sub>I</sub></i>).
+ *        Typical value = 30.
+ * @param ki1 Intermediate band differential filter gain (<i>K</i><i><sub>I1</sub></i>).
+ *        Typical value = 66.
+ * @param ki11 Intermediate band first lead-lag blocks coefficient (<i>K</i><i><sub>I11</sub></i>).
+ *        Typical value = 1.
+ * @param ki17 Intermediate band first lead-lag blocks coefficient (<i>K</i><i><sub>I17</sub></i>).
+ *        Typical value = 1.
+ * @param ki2 Intermediate band differential filter gain (<i>K</i><i><sub>I2</sub></i>).
+ *        Typical value = 66.
+ * @param kl Low band gain (<i>K</i><i><sub>L</sub></i>).
+ *        Typical value = 7.5.
+ * @param kl1 Low band differential filter gain (<i>K</i><i><sub>L1</sub></i>).
+ *        Typical value = 66.
+ * @param kl11 Low band first lead-lag blocks coefficient (<i>K</i><i><sub>L11</sub></i>).
+ *        Typical value = 1.
+ * @param kl17 Low band first lead-lag blocks coefficient (<i>K</i><i><sub>L17</sub></i>).
+ *        Typical value = 1.
+ * @param kl2 Low band differential filter gain (<i>K</i><i><sub>L2</sub></i>).
+ *        Typical value = 66.
+ * @param omeganh1 Notch filter 1 (high-frequency band): filter frequency (<i>omega</i><i><sub>ni</sub></i>).
+ * @param omeganh2 Notch filter 2 (high-frequency band): filter frequency (<i>omega</i><i><sub>ni</sub></i>).
+ * @param omeganl1 Notch filter 1 (low-frequency band): filter frequency (<i>omega</i><i><sub>ni</sub></i>).
+ * @param omeganl2 Notch filter 2 (low-frequency band): filter frequency (<i>omega</i><i><sub>ni</sub></i>).
+ * @param th1 High band time constant (<i>T</i><i><sub>H1</sub></i>) (&gt;= 0).
+ *        Typical value = 0,01513.
+ * @param th10 High band time constant (<i>T</i><i><sub>H10</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param th11 High band time constant (<i>T</i><i><sub>H11</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param th12 High band time constant (<i>T</i><i><sub>H12</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param th2 High band time constant (<i>T</i><i><sub>H2</sub></i>) (&gt;= 0).
+ *        Typical value = 0,01816.
+ * @param th3 High band time constant (<i>T</i><i><sub>H3</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param th4 High band time constant (<i>T</i><i><sub>H4</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param th5 High band time constant (<i>T</i><i><sub>H5</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param th6 High band time constant (<i>T</i><i><sub>H6</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param th7 High band time constant (<i>T</i><i><sub>H7</sub></i>) (&gt;= 0).
+ *        Typical value = 0,01816.
+ * @param th8 High band time constant (<i>T</i><i><sub>H8</sub></i>) (&gt;= 0).
+ *        Typical value = 0,02179.
+ * @param th9 High band time constant (<i>T</i><i><sub>H9</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param ti1 Intermediate band time constant (<i>T</i><i><sub>I1</sub></i>) (&gt;= 0).
+ *        Typical value = 0,173.
+ * @param ti10 Intermediate band time constant (<i>T</i><i><sub>I10</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param ti11 Intermediate band time constant (<i>T</i><i><sub>I11</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param ti12 Intermediate band time constant (<i>T</i><i><sub>I12</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param ti2 Intermediate band time constant (<i>T</i><i><sub>I2</sub></i>) (&gt;= 0).
+ *        Typical value = 0,2075.
+ * @param ti3 Intermediate band time constant (<i>T</i><i><sub>I3</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param ti4 Intermediate band time constant (<i>T</i><i><sub>I4</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param ti5 Intermediate band time constant (<i>T</i><i><sub>I5</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param ti6 Intermediate band time constant (<i>T</i><i><sub>I6</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param ti7 Intermediate band time constant (<i>T</i><i><sub>I7</sub></i>) (&gt;= 0).
+ *        Typical value = 0,2075.
+ * @param ti8 Intermediate band time constant (<i>T</i><i><sub>I8</sub></i>) (&gt;= 0).
+ *        Typical value = 0,2491.
+ * @param ti9 Intermediate band time constant (<i>T</i><i><sub>I9</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tl1 Low band time constant (<i>T</i><i><sub>L1</sub></i>) (&gt;= 0).
+ *        Typical value = 1,73.
+ * @param tl10 Low band time constant (<i>T</i><i><sub>L10</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tl11 Low band time constant (<i>T</i><i><sub>L11</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tl12 Low band time constant (<i>T</i><i><sub>L12</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tl2 Low band time constant (<i>T</i><i><sub>L2</sub></i>) (&gt;= 0).
+ *        Typical value = 2,075.
+ * @param tl3 Low band time constant (<i>T</i><i><sub>L3</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tl4 Low band time constant (<i>T</i><i><sub>L4</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tl5 Low band time constant (<i>T</i><i><sub>L5</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tl6 Low band time constant (<i>T</i><i><sub>L6</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param tl7 Low band time constant (<i>T</i><i><sub>L7</sub></i>) (&gt;= 0).
+ *        Typical value = 2,075.
+ * @param tl8 Low band time constant (<i>T</i><i><sub>L8</sub></i>) (&gt;= 0).
+ *        Typical value = 2,491.
+ * @param tl9 Low band time constant (<i>T</i><i><sub>L9</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param vhmax High band output maximum limit (<i>V</i><i><sub>Hmax</sub></i>) (&gt; PssIEEE4B.vhmin).
+ *        Typical value = 0,6.
+ * @param vhmin High band output minimum limit (<i>V</i><i><sub>Hmin</sub></i>) (&lt; PssIEEE4V.vhmax).
+ *        Typical value = -0,6.
+ * @param vimax Intermediate band output maximum limit (<i>V</i><i><sub>Imax</sub></i>) (&gt; PssIEEE4B.vimin).
+ *        Typical value = 0,6.
+ * @param vimin Intermediate band output minimum limit (<i>V</i><i><sub>Imin</sub></i>) (&lt; PssIEEE4B.vimax).
+ *        Typical value = -0,6.
+ * @param vlmax Low band output maximum limit (<i>V</i><i><sub>Lmax</sub></i>) (&gt; PssIEEE4B.vlmin).
+ *        Typical value = 0,075.
+ * @param vlmin Low band output minimum limit (<i>V</i><i><sub>Lmin</sub></i>) (&lt; PssIEEE4B.vlmax).
+ *        Typical value = -0,075.
+ * @param vstmax PSS output maximum limit (<i>V</i><i><sub>STmax</sub></i>) (&gt; PssIEEE4B.vstmin).
+ *        Typical value = 0,15.
+ * @param vstmin PSS output minimum limit (<i>V</i><i><sub>STmin</sub></i>) (&lt; PssIEEE4B.vstmax).
+ *        Typical value = -0,15.
  * @group PowerSystemStabilizerDynamics
  * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
- * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (Vs) to the excitation system model to improve damping of system oscillations.  A variety of input signals may be used depending on the particular design.
+ * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.  A variety of input signals can be used depending on the particular design.
  */
 case class PssIEEE4B
 (
@@ -2439,34 +2409,34 @@ extends
 }
 
 /**
- * PTI Microprocessor-Based Stabilizer type 1.
+ * PTI microprocessor-based stabilizer type 1.
  *
  * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
- * @param dtc Time step related to activation of controls (Dtc).
- *        Typical Value = 0.025.
- * @param dtf Time step frequency calculation (Dtf).
- *        Typical Value = 0.025.
- * @param dtp Time step active power calculation (Dtp).
- *        Typical Value = 0.0125.
- * @param k Gain (K).
- *        Typical Value = 9.
- * @param m (M).
- *        M=2*H.  Typical Value = 5.
- * @param t1 Time constant (T1).
- *        Typical Value = 0.3.
- * @param t2 Time constant (T2).
- *        Typical Value = 1.
- * @param t3 Time constant (T3).
- *        Typical Value = 0.2.
- * @param t4 Time constant (T4).
- *        Typical Value = 0.05.
- * @param tf Time constant (Tf).
- *        Typical Value = 0.2.
- * @param tp Time constant (Tp).
- *        Typical Value = 0.2.
+ * @param dtc Time step related to activation of controls (<i>deltatc</i>) (&gt;= 0).
+ *        Typical value = 0,025.
+ * @param dtf Time step frequency calculation (<i>deltatf</i>) (&gt;= 0).
+ *        Typical value = 0,025.
+ * @param dtp Time step active power calculation (<i>deltatp</i>) (&gt;= 0).
+ *        Typical value = 0,0125.
+ * @param k Gain (<i>K</i>).
+ *        Typical value = 9.
+ * @param m (<i>M</i>).  <i>M </i>= 2 x <i>H</i>.
+ *        Typical value = 5.
+ * @param t1 Time constant (<i>T1</i>) (&gt;= 0).
+ *        Typical value = 0,3.
+ * @param t2 Time constant (<i>T2</i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param t3 Time constant (<i>T3</i>) (&gt;= 0).
+ *        Typical value = 0,2.
+ * @param t4 Time constant (<i>T4</i>) (&gt;= 0).
+ *        Typical value = 0,05.
+ * @param tf Time constant (<i>Tf</i>) (&gt;= 0).
+ *        Typical value = 0,2.
+ * @param tp Time constant (<i>Tp</i>) (&gt;= 0).
+ *        Typical value = 0,2.
  * @group PowerSystemStabilizerDynamics
  * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
- * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (Vs) to the excitation system model to improve damping of system oscillations.  A variety of input signals may be used depending on the particular design.
+ * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.  A variety of input signals can be used depending on the particular design.
  */
 case class PssPTIST1
 (
@@ -2585,61 +2555,61 @@ extends
 }
 
 /**
- * PTI Microprocessor-Based Stabilizer type 3.
+ * PTI microprocessor-based stabilizer type 3.
  *
  * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
- * @param a0 Filter coefficient (A0).
- * @param a1 Limiter (Al).
- * @param a2 Filter coefficient (A2).
- * @param a3 Filter coefficient (A3).
- * @param a4 Filter coefficient (A4).
- * @param a5 Filter coefficient (A5).
- * @param al Limiter (Al).
- * @param athres Threshold value above which output averaging will be bypassed (Athres).
- *        Typical Value = 0.005.
- * @param b0 Filter coefficient (B0).
- * @param b1 Filter coefficient (B1).
- * @param b2 Filter coefficient (B2).
- * @param b3 Filter coefficient (B3).
- * @param b4 Filter coefficient (B4).
- * @param b5 Filter coefficient (B5).
- * @param dl Limiter (Dl).
- * @param dtc Time step related to activation of controls (0.03 for 50 Hz) (Dtc).
- *        Typical Value = 0.025.
- * @param dtf Time step frequency calculation (0.03 for 50 Hz) (Dtf).
- *        Typical Value = 0.025.
- * @param dtp Time step active power calculation (0.015 for 50 Hz) (Dtp).
- *        Typical Value = 0.0125.
- * @param isw Digital/analog output switch (Isw).
- *        true = produce analog output
+ * @param a0 Filter coefficient (<i>A0</i>).
+ * @param a1 Limiter (<i>Al</i>).
+ * @param a2 Filter coefficient (<i>A2</i>).
+ * @param a3 Filter coefficient (<i>A3</i>).
+ * @param a4 Filter coefficient (<i>A4</i>).
+ * @param a5 Filter coefficient (<i>A5</i>).
+ * @param al Limiter (<i>Al</i>).
+ * @param athres Threshold value above which output averaging will be bypassed (<i>Athres</i>).
+ *        Typical value = 0,005.
+ * @param b0 Filter coefficient (<i>B0</i>).
+ * @param b1 Filter coefficient (<i>B1</i>).
+ * @param b2 Filter coefficient (<i>B2</i>).
+ * @param b3 Filter coefficient (<i>B3</i>).
+ * @param b4 Filter coefficient (<i>B4</i>).
+ * @param b5 Filter coefficient (<i>B5</i>).
+ * @param dl Limiter (<i>Dl</i>).
+ * @param dtc Time step related to activation of controls (<i>deltatc</i>) (&gt;= 0).
+ *        Typical value = 0,025 (0,03 for 50 Hz).
+ * @param dtf Time step frequency calculation (<i>deltatf</i>) (&gt;= 0).
+ *        Typical value = 0,025 (0,03 for 50 Hz).
+ * @param dtp Time step active power calculation (<i>deltatp</i>) (&gt;= 0).
+ *        Typical value = 0,0125  (0,015 for 50 Hz).
+ * @param isw Digital/analogue output switch (<i>Isw</i>).
+ *        true = produce analogue output
  *        false = convert to digital output, using tap selection table.
- * @param k Gain (K).
- *        Typical Value = 9.
- * @param lthres Threshold value (Lthres).
- * @param m (M).
- *        M=2*H.  Typical Value = 5.
- * @param nav Number of control outputs to average (Nav) (1 &lt;= Nav &lt;= 16).
- *        Typical Value = 4.
- * @param ncl Number of counts at limit to active limit function (Ncl) (&gt;0).
- * @param ncr Number of counts until reset after limit function is triggered (Ncr).
- * @param pmin (Pmin).
- * @param t1 Time constant (T1).
- *        Typical Value = 0.3.
- * @param t2 Time constant (T2).
- *        Typical Value = 1.
- * @param t3 Time constant (T3).
- *        Typical Value = 0.2.
- * @param t4 Time constant (T4).
- *        Typical Value = 0.05.
- * @param t5 Time constant (T5).
- * @param t6 Time constant (T6).
- * @param tf Time constant (Tf).
- *        Typical Value = 0.2.
- * @param tp Time constant (Tp).
- *        Typical Value = 0.2.
+ * @param k Gain (<i>K</i>).
+ *        Typical value = 9.
+ * @param lthres Threshold value (<i>Lthres</i>).
+ * @param m (<i>M</i>).  <i>M</i> = 2 x <i>H</i>.
+ *        Typical value = 5.
+ * @param nav Number of control outputs to average (<i>NAV</i>) (1 &lt;=  <i>NAV</i> &lt;= 16).
+ *        Typical value = 4.
+ * @param ncl Number of counts at limit to active limit function (<i>NCL</i>) (&gt; 0).
+ * @param ncr Number of counts until reset after limit function is triggered (<i>NCR</i>).
+ * @param pmin (<i>Pmin</i>).
+ * @param t1 Time constant (<i>T1</i>) (&gt;= 0).
+ *        Typical value = 0,3.
+ * @param t2 Time constant (<i>T2</i>) (&gt;= 0).
+ *        Typical value = 1.
+ * @param t3 Time constant (<i>T3</i>) (&gt;= 0).
+ *        Typical value = 0,2.
+ * @param t4 Time constant (<i>T4</i>) (&gt;= 0).
+ *        Typical value = 0,05.
+ * @param t5 Time constant (<i>T5</i>) (&gt;= 0).
+ * @param t6 Time constant (<i>T6</i>) (&gt;= 0).
+ * @param tf Time constant (<i>Tf</i>) (&gt;= 0).
+ *        Typical value = 0,2.
+ * @param tp Time constant (<i>Tp</i>) (&gt;= 0).
+ *        Typical value = 0,2.
  * @group PowerSystemStabilizerDynamics
  * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
- * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (Vs) to the excitation system model to improve damping of system oscillations.  A variety of input signals may be used depending on the particular design.
+ * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.  A variety of input signals can be used depending on the particular design.
  */
 case class PssPTIST3
 (
@@ -2873,23 +2843,175 @@ extends
 }
 
 /**
+ * Power system stabilizer type RQB.
+ *
+ * This power system stabilizer is intended to be used together with excitation system type ExcRQB, which is primarily used in nuclear or thermal generating units.
+ *
+ * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
+ * @param kdpm Lead lag gain (<i>KDPM</i>).
+ *        Typical value = 0,185.
+ * @param ki2 Speed input gain (<i>Ki2</i>).
+ *        Typical value = 3,43.
+ * @param ki3 Electrical power input gain (<i>Ki3</i>).
+ *        Typical value = -11,45.
+ * @param ki4 Mechanical power input gain (<i>Ki4</i>).
+ *        Typical value = 11,86.
+ * @param sibv Speed deadband (<i>SIBV</i>).
+ *        Typical value = 0,006.
+ * @param t4f Lead lag time constant (<i>T4F</i>) (&gt;= 0).
+ *        Typical value = 0,045.
+ * @param t4m Input time constant (<i>T4M</i>) (&gt;= 0).
+ *        Typical value = 5.
+ * @param t4mom Speed time constant (<i>T4MOM</i>) (&gt;= 0).
+ *        Typical value = 1,27.
+ * @param tomd Speed delay (<i>TOMD</i>) (&gt;= 0).
+ *        Typical value = 0,02.
+ * @param tomsl Speed time constant (<i>TOMSL</i>) (&gt;= 0).
+ *        Typical value = 0,04.
+ * @group PowerSystemStabilizerDynamics
+ * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
+ * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.  A variety of input signals can be used depending on the particular design.
+ */
+case class PssRQB
+(
+    override val sup: PowerSystemStabilizerDynamics,
+    kdpm: Double,
+    ki2: Double,
+    ki3: Double,
+    ki4: Double,
+    sibv: Double,
+    t4f: Double,
+    t4m: Double,
+    t4mom: Double,
+    tomd: Double,
+    tomsl: Double
+)
+extends
+    Element
+{
+    /**
+     * Zero args constructor.
+     */
+    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics = sup.asInstanceOf[PowerSystemStabilizerDynamics]
+    override def copy (): Row = { clone ().asInstanceOf[PssRQB] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = PssRQB.cls
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PssRQB.fields (position), value)
+        emitelem (0, kdpm)
+        emitelem (1, ki2)
+        emitelem (2, ki3)
+        emitelem (3, ki4)
+        emitelem (4, sibv)
+        emitelem (5, t4f)
+        emitelem (6, t4m)
+        emitelem (7, t4mom)
+        emitelem (8, tomd)
+        emitelem (9, tomsl)
+        s.toString
+    }
+    override def export: String =
+    {
+        "\t<cim:PssRQB rdf:ID=\"%s\">\n%s\t</cim:PssRQB>".format (id, export_fields)
+    }
+}
+
+object PssRQB
+extends
+    Parseable[PssRQB]
+{
+    override val fields: Array[String] = Array[String] (
+        "kdpm",
+        "ki2",
+        "ki3",
+        "ki4",
+        "sibv",
+        "t4f",
+        "t4m",
+        "t4mom",
+        "tomd",
+        "tomsl"
+    )
+    val kdpm: Fielder = parse_element (element (cls, fields(0)))
+    val ki2: Fielder = parse_element (element (cls, fields(1)))
+    val ki3: Fielder = parse_element (element (cls, fields(2)))
+    val ki4: Fielder = parse_element (element (cls, fields(3)))
+    val sibv: Fielder = parse_element (element (cls, fields(4)))
+    val t4f: Fielder = parse_element (element (cls, fields(5)))
+    val t4m: Fielder = parse_element (element (cls, fields(6)))
+    val t4mom: Fielder = parse_element (element (cls, fields(7)))
+    val tomd: Fielder = parse_element (element (cls, fields(8)))
+    val tomsl: Fielder = parse_element (element (cls, fields(9)))
+
+    def parse (context: Context): PssRQB =
+    {
+        implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
+        val ret = PssRQB (
+            PowerSystemStabilizerDynamics.parse (context),
+            toDouble (mask (kdpm (), 0)),
+            toDouble (mask (ki2 (), 1)),
+            toDouble (mask (ki3 (), 2)),
+            toDouble (mask (ki4 (), 3)),
+            toDouble (mask (sibv (), 4)),
+            toDouble (mask (t4f (), 5)),
+            toDouble (mask (t4m (), 6)),
+            toDouble (mask (t4mom (), 7)),
+            toDouble (mask (tomd (), 8)),
+            toDouble (mask (tomsl (), 9))
+        )
+        ret.bitfields = bitfields
+        ret
+    }
+}
+
+/**
  * Power sensitive stabilizer model.
  *
  * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
- * @param kx Gain (Kx).
- * @param ta Time constant (Ta).
- * @param tb Time constant (Tb).
- * @param tc Time constant (Tc).
- * @param td Time constant (Td).
- * @param te Time constant (Te).
- * @param tt Time constant (Tt).
- * @param tx1 Reset time constant (Tx1).
- * @param tx2 Time constant (Tx2).
- * @param vsmax Limiter (Vsmax).
- * @param vsmin Limiter (Vsmin).
+ * @param kx Gain (<i>Kx</i>).
+ *        Typical value = 2,7.
+ * @param ta Time constant (<i>Ta</i>) (&gt;= 0).
+ *        Typical value = 0,37.
+ * @param tb Time constant (<i>Tb</i>) (&gt;= 0).
+ *        Typical value = 0,37.
+ * @param tc Time constant (<i>Tc</i>) (&gt;= 0).
+ *        Typical value = 0,035.
+ * @param td Time constant (<i>Td</i>) (&gt;= 0).
+ *        Typical value = 0,0.
+ * @param te Time constant (<i>Te</i>) (&gt;= 0).
+ *        Typical value = 0,0169.
+ * @param tt Time constant (<i>Tt</i>) (&gt;= 0).
+ *        Typical value = 0,18.
+ * @param tx1 Reset time constant (<i>Tx1</i>) (&gt;= 0).
+ *        Typical value = 0,035.
+ * @param tx2 Time constant (<i>Tx2</i>) (&gt;= 0).
+ *        Typical value = 5,0.
+ * @param vsmax Limiter (<i>Vsmax</i>) (&gt; PssSB4.vsmin).
+ *        Typical value = 0,062.
+ * @param vsmin Limiter (<i>Vsmin</i>) (&lt; PssSB4.vsmax).
+ *        Typical value = -0,062.
  * @group PowerSystemStabilizerDynamics
  * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
- * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (Vs) to the excitation system model to improve damping of system oscillations.  A variety of input signals may be used depending on the particular design.
+ * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.  A variety of input signals can be used depending on the particular design.
  */
 case class PssSB4
 (
@@ -3008,38 +3130,41 @@ extends
 }
 
 /**
- * Model for Siemens �H infinity� power system stabilizer with generator electrical power input.
+ * Siemens<sup>TM</sup> �H infinity� power system stabilizer with generator electrical power input.
+ * [Footnote: Siemens "H infinity" power system stabilizers are an example of suitable products available commercially.
+ *
+ * This information is given for the convenience of users of this document and does not constitute an endorsement by IEC of these products.]
  *
  * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
- * @param k Main gain (K).
- *        Typical Value = 1.
- * @param k0 Gain 0 (K0).
- *        Typical Value = 0.012.
- * @param k1 Gain 1 (K1).
- *        Typical Value = 0.488.
- * @param k2 Gain 2 (K2).
- *        Typical Value = 0.064.
- * @param k3 Gain 3 (K3).
- *        Typical Value = 0.224.
- * @param k4 Gain 4 (K4).
- *        Typical Value = 0.1.
- * @param t1 Time constant 1 (T1).
- *        Typical Value = 0.076.
- * @param t2 Time constant 2 (T2).
- *        Typical Value = 0.086.
- * @param t3 Time constant 3 (T3).
- *        Typical Value = 1.068.
- * @param t4 Time constant 4 (T4).
- *        Typical Value = 1.913.
- * @param td Input time constant (Td).
- *        Typical Value = 10.
- * @param vsmax Output maximum limit (Vsmax).
- *        Typical Value = 0.1.
- * @param vsmin Output minimum limit (Vsmin).
- *        Typical Value = -0.1.
+ * @param k Main gain (<i>K</i>).
+ *        Typical value = 1.
+ * @param k0 Gain 0 (<i>K0</i>).
+ *        Typical value = 0,012.
+ * @param k1 Gain 1 (<i>K1</i>).
+ *        Typical value = 0,488.
+ * @param k2 Gain 2 (<i>K2</i>).
+ *        Typical value = 0,064.
+ * @param k3 Gain 3 (<i>K3</i>).
+ *        Typical value = 0,224.
+ * @param k4 Gain 4 (<i>K4</i>).
+ *        Typical value = 0,1.
+ * @param t1 Time constant 1 (<i>T1</i>) (&gt; 0).
+ *        Typical value = 0,076.
+ * @param t2 Time constant 2 (<i>T2</i>) (&gt; 0).
+ *        Typical value = 0,086.
+ * @param t3 Time constant 3 (<i>T3</i>) (&gt; 0).
+ *        Typical value = 1,068.
+ * @param t4 Time constant 4 (<i>T4</i>) (&gt; 0).
+ *        Typical value = 1,913.
+ * @param td Input time constant (<i>T</i><i><sub>d</sub></i>) (&gt;= 0).
+ *        Typical value = 10.
+ * @param vsmax Output maximum limit (<i>Vsmax</i>) (&gt; PssSH.vsmin).
+ *        Typical value = 0,1.
+ * @param vsmin Output minimum limit (<i>Vsmin</i>) (&lt; PssSH.vsmax).
+ *        Typical value = -0,1.
  * @group PowerSystemStabilizerDynamics
  * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
- * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (Vs) to the excitation system model to improve damping of system oscillations.  A variety of input signals may be used depending on the particular design.
+ * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.  A variety of input signals can be used depending on the particular design.
  */
 case class PssSH
 (
@@ -3168,34 +3293,34 @@ extends
 }
 
 /**
- * PSS Slovakian type � three inputs.
+ * Slovakian PSS with three inputs.
  *
  * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
- * @param k1 Gain P (K1).
- *        Typical Value = -0.3.
- * @param k2 Gain fe (K2).
- *        Typical Value = -0.15.
- * @param k3 Gain If (K3).
- *        Typical Value = 10.
- * @param t1 Denominator time constant (T1).
- *        Typical Value = 0.3.
- * @param t2 Filter time constant (T2).
- *        Typical Value = 0.35.
- * @param t3 Denominator time constant (T3).
- *        Typical Value = 0.22.
- * @param t4 Filter time constant (T4).
- *        Typical Value = 0.02.
- * @param t5 Denominator time constant (T5).
- *        Typical Value = 0.02.
- * @param t6 Filter time constant (T6).
- *        Typical Value = 0.02.
- * @param vsmax Stabilizer output max limit (Vsmax).
- *        Typical Value = 0.4.
- * @param vsmin Stabilizer output min limit (Vsmin).
- *        Typical Value = -0.4.
+ * @param k1 Gain <i>P</i> (<i>K</i><i><sub>1</sub></i>).
+ *        Typical value = -0,3.
+ * @param k2 Gain <i>f</i><i><sub>E</sub></i><i> </i>(<i>K</i><i><sub>2</sub></i>).
+ *        Typical value = -0,15.
+ * @param k3 Gain <i>I</i><i><sub>f</sub></i><i> </i>(<i>K</i><i><sub>3</sub></i>).
+ *        Typical value = 10.
+ * @param t1 Denominator time constant (<i>T</i><i><sub>1</sub></i>) (&gt; 0,005).
+ *        Typical value = 0,3.
+ * @param t2 Filter time constant (<i>T</i><i><sub>2</sub></i>) (&gt; 0,005).
+ *        Typical value = 0,35.
+ * @param t3 Denominator time constant (<i>T</i><i><sub>3</sub></i>) (&gt; 0,005).
+ *        Typical value = 0,22.
+ * @param t4 Filter time constant (<i>T</i><i><sub>4</sub></i>) (&gt; 0,005).
+ *        Typical value = 0,02.
+ * @param t5 Denominator time constant (<i>T</i><i><sub>5</sub></i>) (&gt; 0,005).
+ *        Typical value = 0,02.
+ * @param t6 Filter time constant (<i>T</i><i><sub>6</sub></i>) (&gt; 0,005).
+ *        Typical value = 0,02.
+ * @param vsmax Stabilizer output maximum limit (<i>V</i><i><sub>SMAX</sub></i>) (&gt; PssSK.vsmin).
+ *        Typical value = 0,4.
+ * @param vsmin Stabilizer output minimum limit (<i>V</i><i><sub>SMIN</sub></i>) (&lt; PssSK.vsmax).
+ *        Typical value = -0.4.
  * @group PowerSystemStabilizerDynamics
  * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
- * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (Vs) to the excitation system model to improve damping of system oscillations.  A variety of input signals may be used depending on the particular design.
+ * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.  A variety of input signals can be used depending on the particular design.
  */
 case class PssSK
 (
@@ -3314,30 +3439,176 @@ extends
 }
 
 /**
- * Dual input Power System Stabilizer, based on IEEE type 2, with modified output limiter defined by WECC (Western Electricity Coordinating Council, USA).
+ * Power system stabilizer part of an ABB excitation system.
+ * [Footnote: ABB excitation systems are an example of suitable products available commercially.
+ *
+ * This information is given for the convenience of users of this document and does not constitute an endorsement by IEC of these products.]
  *
  * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
- * @param inputSignal1Type Type of input signal #1.
- * @param inputSignal2Type Type of input signal #2.
- * @param k1 Input signal 1 gain  (K<sub>1</sub>).
- * @param k2 Input signal 2 gain (K<sub>2</sub>).
- * @param t1 Input signal 1 transducer time constant (T<sub>1</sub>).
- * @param t10 Lag time constant (T<sub>10</sub>).
- * @param t2 Input signal 2 transducer time constant (T<sub>2</sub>).
- * @param t3 Stabilizer washout time constant (T<sub>3</sub>).
- * @param t4 Stabilizer washout time lag constant (T<sub>4</sub>) (&gt;0).
- * @param t5 Lead time constant (T<sub>5</sub>).
- * @param t6 Lag time constant (T<sub>6</sub>).
- * @param t7 Lead time constant (T<sub>7</sub>).
- * @param t8 Lag time constant (T<sub>8</sub>).
- * @param t9 Lead time constant (T<sub>9</sub>).
- * @param vcl Minimum value for voltage compensator output (V<sub>CL</sub>).
- * @param vcu Maximum value for voltage compensator output (V<sub>CU</sub>).
- * @param vsmax Maximum output signal (Vsmax).
- * @param vsmin Minimum output signal (Vsmin).
+ * @param hlim Stabilizer output limiter (<i>H</i><i><sub>LIM</sub></i>).
+ *        Typical value = 0,5.
+ * @param k2 Gain (<i>K2</i>).
+ *        Typical value = 1,0.
+ * @param k3 Gain (<i>K3</i>).
+ *        Typical value = 0,25.
+ * @param k4 Gain (<i>K4</i>).
+ *        Typical value = 0,075.
+ * @param k5 Gain (<i>K5</i>).
+ *        Typical value = 2,5.
+ * @param t2 Time constant (<i>T2</i>).
+ *        Typical value = 4,0.
+ * @param t3 Time constant (<i>T3</i>).
+ *        Typical value = 2,0.
+ * @param t5 Time constant (<i>T5</i>).
+ *        Typical value = 4,5.
  * @group PowerSystemStabilizerDynamics
  * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
- * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (Vs) to the excitation system model to improve damping of system oscillations.  A variety of input signals may be used depending on the particular design.
+ * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.  A variety of input signals can be used depending on the particular design.
+ */
+case class PssSTAB2A
+(
+    override val sup: PowerSystemStabilizerDynamics,
+    hlim: Double,
+    k2: Double,
+    k3: Double,
+    k4: Double,
+    k5: Double,
+    t2: Double,
+    t3: Double,
+    t5: Double
+)
+extends
+    Element
+{
+    /**
+     * Zero args constructor.
+     */
+    def this () = { this (null, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def PowerSystemStabilizerDynamics: PowerSystemStabilizerDynamics = sup.asInstanceOf[PowerSystemStabilizerDynamics]
+    override def copy (): Row = { clone ().asInstanceOf[PssSTAB2A] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = PssSTAB2A.cls
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (PssSTAB2A.fields (position), value)
+        emitelem (0, hlim)
+        emitelem (1, k2)
+        emitelem (2, k3)
+        emitelem (3, k4)
+        emitelem (4, k5)
+        emitelem (5, t2)
+        emitelem (6, t3)
+        emitelem (7, t5)
+        s.toString
+    }
+    override def export: String =
+    {
+        "\t<cim:PssSTAB2A rdf:ID=\"%s\">\n%s\t</cim:PssSTAB2A>".format (id, export_fields)
+    }
+}
+
+object PssSTAB2A
+extends
+    Parseable[PssSTAB2A]
+{
+    override val fields: Array[String] = Array[String] (
+        "hlim",
+        "k2",
+        "k3",
+        "k4",
+        "k5",
+        "t2",
+        "t3",
+        "t5"
+    )
+    val hlim: Fielder = parse_element (element (cls, fields(0)))
+    val k2: Fielder = parse_element (element (cls, fields(1)))
+    val k3: Fielder = parse_element (element (cls, fields(2)))
+    val k4: Fielder = parse_element (element (cls, fields(3)))
+    val k5: Fielder = parse_element (element (cls, fields(4)))
+    val t2: Fielder = parse_element (element (cls, fields(5)))
+    val t3: Fielder = parse_element (element (cls, fields(6)))
+    val t5: Fielder = parse_element (element (cls, fields(7)))
+
+    def parse (context: Context): PssSTAB2A =
+    {
+        implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
+        val ret = PssSTAB2A (
+            PowerSystemStabilizerDynamics.parse (context),
+            toDouble (mask (hlim (), 0)),
+            toDouble (mask (k2 (), 1)),
+            toDouble (mask (k3 (), 2)),
+            toDouble (mask (k4 (), 3)),
+            toDouble (mask (k5 (), 4)),
+            toDouble (mask (t2 (), 5)),
+            toDouble (mask (t3 (), 6)),
+            toDouble (mask (t5 (), 7))
+        )
+        ret.bitfields = bitfields
+        ret
+    }
+}
+
+/**
+ * Dual input power system stabilizer, based on IEEE type 2, with modified output limiter defined by WECC (Western Electricity Coordinating Council, USA).
+ *
+ * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
+ * @param inputSignal1Type Type of input signal #1 (rotorAngularFrequencyDeviation, busFrequencyDeviation, generatorElectricalPower, generatorAcceleratingPower, busVoltage, or busVoltageDerivative - shall be different than PssWECC.inputSignal2Type).
+ *        Typical value = rotorAngularFrequencyDeviation.
+ * @param inputSignal2Type Type of input signal #2 (rotorAngularFrequencyDeviation, busFrequencyDeviation, generatorElectricalPower, generatorAcceleratingPower, busVoltage, busVoltageDerivative - shall be different than PssWECC.inputSignal1Type).
+ *        Typical value = busVoltageDerivative.
+ * @param k1 Input signal 1 gain (<i>K</i><i><sub>1</sub></i>).
+ *        Typical value = 1,13.
+ * @param k2 Input signal 2 gain (<i>K</i><i><sub>2</sub></i>).
+ *        Typical value = 0,0.
+ * @param t1 Input signal 1 transducer time constant (<i>T</i><i><sub>1</sub></i>) (&gt;= 0).
+ *        Typical value = 0,037.
+ * @param t10 Lag time constant (<i>T</i><i><sub>10</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param t2 Input signal 2 transducer time constant (<i>T</i><i><sub>2</sub></i>) (&gt;= 0).
+ *        Typical value = 0,0.
+ * @param t3 Stabilizer washout time constant (<i>T</i><i><sub>3</sub></i>) (&gt;= 0).
+ *        Typical value = 9,5.
+ * @param t4 Stabilizer washout time lag constant (<i>T</i><i><sub>4</sub></i>) (&gt;= 0).
+ *        Typical value = 9,5.
+ * @param t5 Lead time constant (<i>T</i><i><sub>5</sub></i>) (&gt;= 0).
+ *        Typical value = 1,7.
+ * @param t6 Lag time constant (<i>T</i><i><sub>6</sub></i>) (&gt;= 0).
+ *        Typical value = 1,5.
+ * @param t7 Lead time constant (<i>T</i><i><sub>7</sub></i>) (&gt;= 0).
+ *        Typical value = 1,7.
+ * @param t8 Lag time constant (<i>T</i><i><sub>8</sub></i>) (&gt;= 0).
+ *        Typical value = 1,5.
+ * @param t9 Lead time constant (<i>T</i><i><sub>9</sub></i>) (&gt;= 0).
+ *        Typical value = 0.
+ * @param vcl Minimum value for voltage compensator output (<i>V</i><i><sub>CL</sub></i>).
+ *        Typical value = 0.
+ * @param vcu Maximum value for voltage compensator output (<i>V</i><i><sub>CU</sub></i>).
+ *        Typical value = 0.
+ * @param vsmax Maximum output signal (<i>Vsmax</i>) (&gt; PssWECC.vsmin).
+ *        Typical value = 0,05.
+ * @param vsmin Minimum output signal (<i>Vsmin</i>) (&lt; PssWECC.vsmax).
+ *        Typical value = -0,05.
+ * @group PowerSystemStabilizerDynamics
+ * @groupname PowerSystemStabilizerDynamics Package PowerSystemStabilizerDynamics
+ * @groupdesc PowerSystemStabilizerDynamics The power system stabilizer (PSS) model provides an input (<i>Vs</i>) to the excitation system model to improve damping of system oscillations.  A variety of input signals can be used depending on the particular design.
  */
 case class PssWECC
 (
@@ -3509,9 +3780,11 @@ private[ninecode] object _PowerSystemStabilizerDynamics
             PssIEEE4B.register,
             PssPTIST1.register,
             PssPTIST3.register,
+            PssRQB.register,
             PssSB4.register,
             PssSH.register,
             PssSK.register,
+            PssSTAB2A.register,
             PssWECC.register
         )
     }

@@ -10,9 +10,10 @@ import ch.ninecode.cim.Relationship
 /**
  * The connection to remote units is through one or more communication links.
  *
- * Reduntant links may exist. The CommunicationLink class inherit PowerSystemResource. The intention is to allow CommunicationLinks to have Measurements. These Measurements can be used to model link status as operational, out of service, unit failure etc.
+ * Reduntant links may exist. The CommunicationLink class inherits PowerSystemResource. The intention is to allow CommunicationLinks to have Measurements. These Measurements can be used to model link status as operational, out of service, unit failure etc.
  *
  * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
+ * @param BilateralExchangeActor [[ch.ninecode.model.BilateralExchangeActor BilateralExchangeActor]] ICCP data provider or consumer using communication addressing for a Bilateral table.
  * @param RemoteUnits [[ch.ninecode.model.RemoteUnit RemoteUnit]] RTUs may be attached to communication links.
  * @group SCADA
  * @groupname SCADA Package SCADA
@@ -22,6 +23,7 @@ This package also supports alarm presentation but it is not expected to be used 
 case class CommunicationLink
 (
     override val sup: PowerSystemResource,
+    BilateralExchangeActor: String,
     RemoteUnits: List[String]
 )
 extends
@@ -30,7 +32,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, List()) }
+    def this () = { this (null, null, List()) }
     /**
      * Return the superclass object.
      *
@@ -53,8 +55,10 @@ extends
     {
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = CommunicationLink.cls
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (CommunicationLink.fields (position), value)
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (CommunicationLink.fields (position), x))
-        emitattrs (0, RemoteUnits)
+        emitattr (0, BilateralExchangeActor)
+        emitattrs (1, RemoteUnits)
         s.toString
     }
     override def export: String =
@@ -68,12 +72,15 @@ extends
     Parseable[CommunicationLink]
 {
     override val fields: Array[String] = Array[String] (
+        "BilateralExchangeActor",
         "RemoteUnits"
     )
     override val relations: List[Relationship] = List (
+        Relationship ("BilateralExchangeActor", "BilateralExchangeActor", "0..1", "0..n"),
         Relationship ("RemoteUnits", "RemoteUnit", "0..*", "1..*")
     )
-    val RemoteUnits: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val BilateralExchangeActor: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val RemoteUnits: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): CommunicationLink =
     {
@@ -81,7 +88,8 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = CommunicationLink (
             PowerSystemResource.parse (context),
-            masks (RemoteUnits (), 0)
+            mask (BilateralExchangeActor (), 0),
+            masks (RemoteUnits (), 1)
         )
         ret.bitfields = bitfields
         ret
@@ -89,7 +97,7 @@ extends
 }
 
 /**
- * Remote controls are ouputs that are sent by the remote unit to actuators in the process.
+ * Remote controls are outputs that are sent by the remote unit to actuators in the process.
  *
  * @param sup [[ch.ninecode.model.RemotePoint RemotePoint]] Reference to the superclass object.
  * @param actuatorMaximum The maximum set point value accepted by the remote control point.
@@ -187,9 +195,9 @@ extends
 }
 
 /**
- * For a RTU remote points correspond to telemetered values or control outputs.
+ * For an RTU, remote points correspond to telemetered values or control outputs.
  *
- * Other units (e.g. control centers) usually also contain calculated values.
+ * Other units (e.g. control centres) usually also contain calculated values.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param RemoteUnit [[ch.ninecode.model.RemoteUnit RemoteUnit]] Remote unit this point belongs to.
@@ -372,9 +380,9 @@ extends
 }
 
 /**
- * A remote unit can be a RTU, IED, substation control system, control center etc.
+ * A remote unit can be an RTU, IED, substation control system, control centre, etc.
  *
- * The communication with the remote unit can be through various standard protocols (e.g. IEC 61870, IEC 61850) or non standard protocols (e.g. DNP, RP570 etc.). A remote unit contain remote data points that might be telemetered, collected or calculated. The RemoteUnit class inherit PowerSystemResource. The intention is to allow RemotUnits to have Measurements. These Measurements can be used to model unit status as operational, out of service, unit failure etc.
+ * The communication with the remote unit can be through various standard protocols (e.g. IEC 61870, IEC 61850) or non standard protocols (e.g. DNP, RP570, etc.). A remote unit contains remote data points that might be telemetered, collected or calculated. The RemoteUnit class inherits PowerSystemResource. The intention is to allow RemoteUnits to have Measurements. These Measurements can be used to model unit status as operational, out of service, unit failure, etc.
  *
  * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @param remoteUnitType Type of remote unit.

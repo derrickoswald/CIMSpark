@@ -137,7 +137,6 @@ extends
  * @param enforced True if limit is enforced.
  * @param Flowgate [[ch.ninecode.model.Flowgate Flowgate]] <em>undocumented</em>
  * @param MktMeasurement [[ch.ninecode.model.MktMeasurement MktMeasurement]] <em>undocumented</em>
- * @param MktOrganisation [[ch.ninecode.model.MktOrganisation MktOrganisation]] <em>undocumented</em>
  * @group InfCongestionRevenueRights
  * @groupname InfCongestionRevenueRights Package InfCongestionRevenueRights
  */
@@ -146,8 +145,7 @@ case class ViolationLimit
     override val sup: Limit,
     enforced: Boolean,
     Flowgate: String,
-    MktMeasurement: String,
-    MktOrganisation: List[String]
+    MktMeasurement: String
 )
 extends
     Element
@@ -155,7 +153,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, false, null, null, List()) }
+    def this () = { this (null, false, null, null) }
     /**
      * Return the superclass object.
      *
@@ -180,11 +178,9 @@ extends
         implicit val clz: String = ViolationLimit.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ViolationLimit.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ViolationLimit.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ViolationLimit.fields (position), x))
         emitelem (0, enforced)
         emitattr (1, Flowgate)
         emitattr (2, MktMeasurement)
-        emitattrs (3, MktOrganisation)
         s.toString
     }
     override def export: String =
@@ -200,18 +196,15 @@ extends
     override val fields: Array[String] = Array[String] (
         "enforced",
         "Flowgate",
-        "MktMeasurement",
-        "MktOrganisation"
+        "MktMeasurement"
     )
     override val relations: List[Relationship] = List (
         Relationship ("Flowgate", "Flowgate", "0..1", "0..*"),
-        Relationship ("MktMeasurement", "MktMeasurement", "0..1", "0..*"),
-        Relationship ("MktOrganisation", "MktOrganisation", "0..*", "0..*")
+        Relationship ("MktMeasurement", "MktMeasurement", "0..1", "0..*")
     )
     val enforced: Fielder = parse_element (element (cls, fields(0)))
     val Flowgate: Fielder = parse_attribute (attribute (cls, fields(1)))
     val MktMeasurement: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val MktOrganisation: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
 
     def parse (context: Context): ViolationLimit =
     {
@@ -221,8 +214,7 @@ extends
             Limit.parse (context),
             toBoolean (mask (enforced (), 0)),
             mask (Flowgate (), 1),
-            mask (MktMeasurement (), 2),
-            masks (MktOrganisation (), 3)
+            mask (MktMeasurement (), 2)
         )
         ret.bitfields = bitfields
         ret

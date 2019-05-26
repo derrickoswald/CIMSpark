@@ -8,17 +8,16 @@ import ch.ninecode.cim.Parseable
 import ch.ninecode.cim.Relationship
 
 /**
- * Power Factor or VAr controller Type I function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
+ * Power factor or VAr controller type 1 function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  *
  * @param sup [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
- * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Excitation system model with which this Power Factor or VAr controller Type I model is associated.
- * @param RemoteInputSignal [[ch.ninecode.model.RemoteInputSignal RemoteInputSignal]] Remote input signal used by this Power Factor or VAr controller Type I model.
- * @param VoltageAdjusterDynamics [[ch.ninecode.model.VoltageAdjusterDynamics VoltageAdjusterDynamics]] Voltage adjuster model associated with this Power Factor or VA controller Type I model.
+ * @param ExcitationSystemDynamics [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Excitation system model with which this power actor or VAr controller type 1 model is associated.
+ * @param RemoteInputSignal [[ch.ninecode.model.RemoteInputSignal RemoteInputSignal]] Remote input signal used by this power factor or VAr controller type 1 model.
+ * @param VoltageAdjusterDynamics [[ch.ninecode.model.VoltageAdjusterDynamics VoltageAdjusterDynamics]] Voltage adjuster model associated with this power factor or VAr controller type 1 model.
  * @group PFVArControllerType1Dynamics
  * @groupname PFVArControllerType1Dynamics Package PFVArControllerType1Dynamics
- * @groupdesc PFVArControllerType1Dynamics <font color="#0f0f0f">Excitation systems for synchronous machines are sometimes supplied with an optional means of automatically adjusting generator output reactive power (VAr) or power factor (PF) to a user-specified value This can be accomplished with either a reactive power or power factor controller or regulator.  A reactive power or power factor controller is defined as a PF/VAr controller in IEEE Std 421.1 as �A control function that acts through the reference adjuster to modify the voltage regulator set point to maintain the synchronous machine steady-state power factor or reactive power at a predetermined value.� </font>
-<font color="#0f0f0f">
-</font><font color="#0f0f0f">For additional information please refer to IEEE Standard 421.5-2005, Section 11.</font>
+ * @groupdesc PFVArControllerType1Dynamics <font color="#0f0f0f">Excitation systems for synchronous machines are sometimes supplied with an optional means of automatically adjusting generator output reactive power (VAr) or power factor (PF) to a user-specified value. This can be accomplished with either a reactive power or power factor controller or regulator.  A reactive power or power factor controller is defined as a PF/VAr controller in IEEE 421.1 as �a control function that acts through the reference adjuster to modify the voltage regulator set point to maintain the synchronous machine steady-state power factor or reactive power at a predetermined value.� </font>
+<font color="#0f0f0f">For additional information please refer to IEEE 421.5-2005, 11.</font>
  */
 case class PFVArControllerType1Dynamics
 (
@@ -102,28 +101,27 @@ extends
 }
 
 /**
- * The class represents IEEE PF Controller Type 1 which operates by moving the voltage reference directly.
+ * IEEE PF controller type 1 which operates by moving the voltage reference directly.
  *
- * Reference: IEEE Standard 421.5-2005 Section 11.2.
+ * Reference: IEEE 421.5-2005, 11.2.
  *
  * @param sup [[ch.ninecode.model.PFVArControllerType1Dynamics PFVArControllerType1Dynamics]] Reference to the superclass object.
  * @param ovex Overexcitation Flag (<i>OVEX</i>)
  *        true = overexcited
  *        false = underexcited.
- * @param tpfc PF controller time delay (<i>T</i><i><sub>PFC</sub></i>).
- *        Typical Value = 5.
+ * @param tpfc PF controller time delay (<i>T</i><i><sub>PFC</sub></i>) (&gt;= 0).
+ *        Typical value = 5.
  * @param vitmin Minimum machine terminal current needed to enable pf/var controller (<i>V</i><i><sub>ITMIN</sub></i>).
  * @param vpf Synchronous machine power factor (<i>V</i><i><sub>PF</sub></i>).
- * @param vpfcbw PF controller dead band (<i>V</i><i><sub>PFC_BW</sub></i>).
- *        Typical Value = 0.05.
+ * @param vpfcbw PF controller deadband (<i>V</i><i><sub>PFC_BW</sub></i>).
+ *        Typical value = 0,05.
  * @param vpfref PF controller reference (<i>V</i><i><sub>PFREF</sub></i>).
- * @param vvtmax Maximum machine terminal voltage needed for pf/var controller to be enabled (<i>V</i><i><sub>VTMAX</sub></i>).
- * @param vvtmin Minimum machine terminal voltage needed to enable pf/var controller (<i>V</i><i><sub>VTMIN</sub></i>).
+ * @param vvtmax Maximum machine terminal voltage needed for pf/var controller to be enabled (<i>V</i><i><sub>VTMAX</sub></i>) (&gt; PFVArType1IEEEPFController.vvtmin).
+ * @param vvtmin Minimum machine terminal voltage needed to enable pf/var controller (<i>V</i><i><sub>VTMIN</sub></i>) (&lt; PFVArType1IEEEPFController.vvtmax).
  * @group PFVArControllerType1Dynamics
  * @groupname PFVArControllerType1Dynamics Package PFVArControllerType1Dynamics
- * @groupdesc PFVArControllerType1Dynamics <font color="#0f0f0f">Excitation systems for synchronous machines are sometimes supplied with an optional means of automatically adjusting generator output reactive power (VAr) or power factor (PF) to a user-specified value This can be accomplished with either a reactive power or power factor controller or regulator.  A reactive power or power factor controller is defined as a PF/VAr controller in IEEE Std 421.1 as �A control function that acts through the reference adjuster to modify the voltage regulator set point to maintain the synchronous machine steady-state power factor or reactive power at a predetermined value.� </font>
-<font color="#0f0f0f">
-</font><font color="#0f0f0f">For additional information please refer to IEEE Standard 421.5-2005, Section 11.</font>
+ * @groupdesc PFVArControllerType1Dynamics <font color="#0f0f0f">Excitation systems for synchronous machines are sometimes supplied with an optional means of automatically adjusting generator output reactive power (VAr) or power factor (PF) to a user-specified value. This can be accomplished with either a reactive power or power factor controller or regulator.  A reactive power or power factor controller is defined as a PF/VAr controller in IEEE 421.1 as �a control function that acts through the reference adjuster to modify the voltage regulator set point to maintain the synchronous machine steady-state power factor or reactive power at a predetermined value.� </font>
+<font color="#0f0f0f">For additional information please refer to IEEE 421.5-2005, 11.</font>
  */
 case class PFVArType1IEEEPFController
 (
@@ -227,24 +225,23 @@ extends
 }
 
 /**
- * The class represents IEEE VAR Controller Type 1 which operates by moving the voltage reference directly.
+ * IEEE VAR controller type 1 which operates by moving the voltage reference directly.
  *
- * Reference: IEEE Standard 421.5-2005 Section 11.3.
+ * Reference: IEEE 421.5-2005, 11.3.
  *
  * @param sup [[ch.ninecode.model.PFVArControllerType1Dynamics PFVArControllerType1Dynamics]] Reference to the superclass object.
- * @param tvarc Var controller time delay (<i>T</i><i><sub>VARC</sub></i>).
- *        Typical Value = 5.
+ * @param tvarc Var controller time delay (<i>T</i><i><sub>VARC</sub></i>) (&gt;= 0).
+ *        Typical value = 5.
  * @param vvar Synchronous machine power factor (<i>V</i><i><sub>VAR</sub></i>).
- * @param vvarcbw Var controller dead band (<i>V</i><i><sub>VARC_BW</sub></i>).
- *        Typical Value = 0.02.
+ * @param vvarcbw Var controller deadband (<i>V</i><i><sub>VARC_BW</sub></i>).
+ *        Typical value = 0,02.
  * @param vvarref Var controller reference (<i>V</i><i><sub>VARREF</sub></i>).
- * @param vvtmax Maximum machine terminal voltage needed for pf/var controller to be enabled (<i>V</i><i><sub>VTMAX</sub></i>).
- * @param vvtmin Minimum machine terminal voltage needed to enable pf/var controller (<i>V</i><i><sub>VTMIN</sub></i>).
+ * @param vvtmax Maximum machine terminal voltage needed for pf/VAr controller to be enabled (<i>V</i><i><sub>VTMAX</sub></i>) (&gt; PVFArType1IEEEVArController.vvtmin).
+ * @param vvtmin Minimum machine terminal voltage needed to enable pf/var controller (<i>V</i><i><sub>VTMIN</sub></i>) (&lt; PVFArType1IEEEVArController.vvtmax).
  * @group PFVArControllerType1Dynamics
  * @groupname PFVArControllerType1Dynamics Package PFVArControllerType1Dynamics
- * @groupdesc PFVArControllerType1Dynamics <font color="#0f0f0f">Excitation systems for synchronous machines are sometimes supplied with an optional means of automatically adjusting generator output reactive power (VAr) or power factor (PF) to a user-specified value This can be accomplished with either a reactive power or power factor controller or regulator.  A reactive power or power factor controller is defined as a PF/VAr controller in IEEE Std 421.1 as �A control function that acts through the reference adjuster to modify the voltage regulator set point to maintain the synchronous machine steady-state power factor or reactive power at a predetermined value.� </font>
-<font color="#0f0f0f">
-</font><font color="#0f0f0f">For additional information please refer to IEEE Standard 421.5-2005, Section 11.</font>
+ * @groupdesc PFVArControllerType1Dynamics <font color="#0f0f0f">Excitation systems for synchronous machines are sometimes supplied with an optional means of automatically adjusting generator output reactive power (VAr) or power factor (PF) to a user-specified value. This can be accomplished with either a reactive power or power factor controller or regulator.  A reactive power or power factor controller is defined as a PF/VAr controller in IEEE 421.1 as �a control function that acts through the reference adjuster to modify the voltage regulator set point to maintain the synchronous machine steady-state power factor or reactive power at a predetermined value.� </font>
+<font color="#0f0f0f">For additional information please refer to IEEE 421.5-2005, 11.</font>
  */
 case class PFVArType1IEEEVArController
 (

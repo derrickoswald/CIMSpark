@@ -8,25 +8,28 @@ import ch.ninecode.cim.Parseable
 import ch.ninecode.cim.Relationship
 
 /**
- * Used to apply user standard names to topology buses.
+ * Used to apply user standard names to TopologicalNodes.
  *
- * Typically used for "bus/branch" case generation. Associated with one or more terminals that are normally connected with the bus name.    The associated terminals are normally connected by non-retained switches. For a ring bus station configuration, all busbar terminals in the ring are typically associated.   For a breaker and a half scheme, both busbars would normally be associated.  For a ring bus, all busbars would normally be associated.  For a "straight" busbar configuration, normally only the main terminal at the busbar would be associated.
+ * Associated with one or more terminals that are normally connected with the bus name.    The associated terminals are normally connected by non-retained switches. For a ring bus station configuration, all BusbarSection terminals in the ring are typically associated.   For a breaker and a half scheme, both BusbarSections would normally be associated.  For a ring bus, all BusbarSections would normally be associated.  For a "straight" busbar configuration, normally only the main terminal at the BusbarSection would be associated.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param priority Priority of bus name marker for use as topology bus name.
- *        Use 0 for don t care.  Use 1 for highest priority.  Use 2 as priority is less than 1 and so on.
+ *        Use 0 for do not care.  Use 1 for highest priority.  Use 2 as priority is less than 1 and so on.
  * @param ReportingGroup [[ch.ninecode.model.ReportingGroup ReportingGroup]] The reporting group to which this bus name marker belongs.
  * @param Terminal [[ch.ninecode.model.ACDCTerminal ACDCTerminal]] The terminals associated with this bus name marker.
+ * @param TopologicalNode [[ch.ninecode.model.TopologicalNode TopologicalNode]] A user defined topological node that was originally defined in a planning model not yet having topology described by ConnectivityNodes.
+ *        Once ConnectivityNodes has been created they may linked to user defined ToplogicalNdes using BusNameMarkers.
  * @group Topology
  * @groupname Topology Package Topology
- * @groupdesc Topology An extension to the Core Package that in association with the Terminal class models Connectivity, that is the physical definition of how equipment is connected together. In addition it models Topology, that is the logical definition of how equipment is connected via closed switches. The Topology definition is independent of the other electrical characteristics.
+ * @groupdesc Topology An extension to the Core Package that, in association with the Terminal class, models Connectivity, that is the physical definition of how equipment is connected together. In addition it models Topology, that is the logical definition of how equipment is connected via closed switches. The Topology definition is independent of the other electrical characteristics.
  */
 case class BusNameMarker
 (
     override val sup: IdentifiedObject,
     priority: Int,
     ReportingGroup: String,
-    Terminal: List[String]
+    Terminal: List[String],
+    TopologicalNode: String
 )
 extends
     Element
@@ -34,7 +37,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0, null, List()) }
+    def this () = { this (null, 0, null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -63,6 +66,7 @@ extends
         emitelem (0, priority)
         emitattr (1, ReportingGroup)
         emitattrs (2, Terminal)
+        emitattr (3, TopologicalNode)
         s.toString
     }
     override def export: String =
@@ -78,15 +82,18 @@ extends
     override val fields: Array[String] = Array[String] (
         "priority",
         "ReportingGroup",
-        "Terminal"
+        "Terminal",
+        "TopologicalNode"
     )
     override val relations: List[Relationship] = List (
         Relationship ("ReportingGroup", "ReportingGroup", "0..1", "0..*"),
-        Relationship ("Terminal", "ACDCTerminal", "1..*", "0..1")
+        Relationship ("Terminal", "ACDCTerminal", "1..*", "0..1"),
+        Relationship ("TopologicalNode", "TopologicalNode", "0..1", "0..*")
     )
     val priority: Fielder = parse_element (element (cls, fields(0)))
     val ReportingGroup: Fielder = parse_attribute (attribute (cls, fields(1)))
     val Terminal: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val TopologicalNode: Fielder = parse_attribute (attribute (cls, fields(3)))
 
     def parse (context: Context): BusNameMarker =
     {
@@ -96,109 +103,8 @@ extends
             IdentifiedObject.parse (context),
             toInteger (mask (priority (), 0)),
             mask (ReportingGroup (), 1),
-            masks (Terminal (), 2)
-        )
-        ret.bitfields = bitfields
-        ret
-    }
-}
-
-/**
- * DC bus.
- *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
- * @param DCEquipmentContainer [[ch.ninecode.model.DCEquipmentContainer DCEquipmentContainer]] <em>undocumented</em>
- * @param DCNodes [[ch.ninecode.model.DCNode DCNode]] See association end TopologicalNode.
- *        ConnectivityNodes.
- * @param DCTerminals [[ch.ninecode.model.DCBaseTerminal DCBaseTerminal]] See association end TopologicalNode.
- *        Terminal.
- * @param DCTopologicalIsland [[ch.ninecode.model.DCTopologicalIsland DCTopologicalIsland]] <em>undocumented</em>
- * @group Topology
- * @groupname Topology Package Topology
- * @groupdesc Topology An extension to the Core Package that in association with the Terminal class models Connectivity, that is the physical definition of how equipment is connected together. In addition it models Topology, that is the logical definition of how equipment is connected via closed switches. The Topology definition is independent of the other electrical characteristics.
- */
-case class DCTopologicalNode
-(
-    override val sup: IdentifiedObject,
-    DCEquipmentContainer: String,
-    DCNodes: List[String],
-    DCTerminals: List[String],
-    DCTopologicalIsland: String
-)
-extends
-    Element
-{
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, List(), List(), null) }
-    /**
-     * Return the superclass object.
-     *
-     * @return The typed superclass nested object.
-     * @group Hierarchy
-     * @groupname Hierarchy Class Hierarchy Related
-     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
-     */
-    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-    override def copy (): Row = { clone ().asInstanceOf[DCTopologicalNode] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
-        implicit val clz: String = DCTopologicalNode.cls
-        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (DCTopologicalNode.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (DCTopologicalNode.fields (position), x))
-        emitattr (0, DCEquipmentContainer)
-        emitattrs (1, DCNodes)
-        emitattrs (2, DCTerminals)
-        emitattr (3, DCTopologicalIsland)
-        s.toString
-    }
-    override def export: String =
-    {
-        "\t<cim:DCTopologicalNode rdf:ID=\"%s\">\n%s\t</cim:DCTopologicalNode>".format (id, export_fields)
-    }
-}
-
-object DCTopologicalNode
-extends
-    Parseable[DCTopologicalNode]
-{
-    override val fields: Array[String] = Array[String] (
-        "DCEquipmentContainer",
-        "DCNodes",
-        "DCTerminals",
-        "DCTopologicalIsland"
-    )
-    override val relations: List[Relationship] = List (
-        Relationship ("DCEquipmentContainer", "DCEquipmentContainer", "0..1", "0..*"),
-        Relationship ("DCNodes", "DCNode", "0..*", "0..1"),
-        Relationship ("DCTerminals", "DCBaseTerminal", "0..*", "0..1"),
-        Relationship ("DCTopologicalIsland", "DCTopologicalIsland", "0..1", "1..*")
-    )
-    val DCEquipmentContainer: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val DCNodes: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
-    val DCTerminals: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
-    val DCTopologicalIsland: Fielder = parse_attribute (attribute (cls, fields(3)))
-
-    def parse (context: Context): DCTopologicalNode =
-    {
-        implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
-        val ret = DCTopologicalNode (
-            IdentifiedObject.parse (context),
-            mask (DCEquipmentContainer (), 0),
-            masks (DCNodes (), 1),
-            masks (DCTerminals (), 2),
-            mask (DCTopologicalIsland (), 3)
+            masks (Terminal (), 2),
+            mask (TopologicalNode (), 3)
         )
         ret.bitfields = bitfields
         ret
@@ -216,7 +122,7 @@ extends
  * @param TopologicalNodes [[ch.ninecode.model.TopologicalNode TopologicalNode]] A topological node belongs to a topological island.
  * @group Topology
  * @groupname Topology Package Topology
- * @groupdesc Topology An extension to the Core Package that in association with the Terminal class models Connectivity, that is the physical definition of how equipment is connected together. In addition it models Topology, that is the logical definition of how equipment is connected via closed switches. The Topology definition is independent of the other electrical characteristics.
+ * @groupdesc Topology An extension to the Core Package that, in association with the Terminal class, models Connectivity, that is the physical definition of how equipment is connected together. In addition it models Topology, that is the logical definition of how equipment is connected via closed switches. The Topology definition is independent of the other electrical characteristics.
  */
 case class TopologicalIsland
 (
@@ -306,19 +212,20 @@ extends
  *        Positive sign means injection into the TopologicalNode (bus).
  * @param AngleRefTopologicalIsland [[ch.ninecode.model.TopologicalIsland TopologicalIsland]] The island for which the node is an angle reference.
  *        Normally there is one angle reference node for each island.
- * @param BaseVoltage [[ch.ninecode.model.BaseVoltage BaseVoltage]] The base voltage of the topologocial node.
- * @param ConnectivityNodeContainer [[ch.ninecode.model.ConnectivityNodeContainer ConnectivityNodeContainer]] The connectivity node container to which the toplogical node belongs.
+ * @param BaseVoltage [[ch.ninecode.model.BaseVoltage BaseVoltage]] The base voltage of the topological node.
+ * @param BusNameMarker [[ch.ninecode.model.BusNameMarker BusNameMarker]] BusnameMarkers that may refer to a pre defined TopologicalNode.
+ * @param ConnectivityNodeContainer [[ch.ninecode.model.ConnectivityNodeContainer ConnectivityNodeContainer]] The connectivity node container to which the topological node belongs.
  * @param ConnectivityNodes [[ch.ninecode.model.ConnectivityNode ConnectivityNode]] The connectivity nodes combine together to form this topological node.
  *        May depend on the current state of switches in the network.
  * @param ReportingGroup [[ch.ninecode.model.ReportingGroup ReportingGroup]] The reporting group to which the topological node belongs.
  * @param SvInjection [[ch.ninecode.model.SvInjection SvInjection]] The injection flows state variables associated with the topological node.
  * @param SvVoltage [[ch.ninecode.model.SvVoltage SvVoltage]] The state voltage associated with the topological node.
  * @param Terminal [[ch.ninecode.model.Terminal Terminal]] The terminals associated with the topological node.
- *        This can be used as an alternative to the connectivity node path to terminal, thus making it unneccesary to model connectivity nodes in some cases.   Note that if connectivity nodes are in the model, this association would probably not be used as an input specification.
+ *        This can be used as an alternative to the connectivity node path to terminal, thus making it unnecessary to model connectivity nodes in some cases.   Note that if connectivity nodes are in the model, this association would probably not be used as an input specification.
  * @param TopologicalIsland [[ch.ninecode.model.TopologicalIsland TopologicalIsland]] A topological node belongs to a topological island.
  * @group Topology
  * @groupname Topology Package Topology
- * @groupdesc Topology An extension to the Core Package that in association with the Terminal class models Connectivity, that is the physical definition of how equipment is connected together. In addition it models Topology, that is the logical definition of how equipment is connected via closed switches. The Topology definition is independent of the other electrical characteristics.
+ * @groupdesc Topology An extension to the Core Package that, in association with the Terminal class, models Connectivity, that is the physical definition of how equipment is connected together. In addition it models Topology, that is the logical definition of how equipment is connected via closed switches. The Topology definition is independent of the other electrical characteristics.
  */
 case class TopologicalNode
 (
@@ -327,11 +234,12 @@ case class TopologicalNode
     qInjection: Double,
     AngleRefTopologicalIsland: String,
     BaseVoltage: String,
+    BusNameMarker: List[String],
     ConnectivityNodeContainer: String,
     ConnectivityNodes: List[String],
     ReportingGroup: String,
-    SvInjection: String,
-    SvVoltage: String,
+    SvInjection: List[String],
+    SvVoltage: List[String],
     Terminal: List[String],
     TopologicalIsland: String
 )
@@ -341,7 +249,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, null, null, null, List(), null, null, null, List(), null) }
+    def this () = { this (null, 0.0, 0.0, null, null, List(), null, List(), null, List(), List(), List(), null) }
     /**
      * Return the superclass object.
      *
@@ -371,13 +279,14 @@ extends
         emitelem (1, qInjection)
         emitattr (2, AngleRefTopologicalIsland)
         emitattr (3, BaseVoltage)
-        emitattr (4, ConnectivityNodeContainer)
-        emitattrs (5, ConnectivityNodes)
-        emitattr (6, ReportingGroup)
-        emitattr (7, SvInjection)
-        emitattr (8, SvVoltage)
-        emitattrs (9, Terminal)
-        emitattr (10, TopologicalIsland)
+        emitattrs (4, BusNameMarker)
+        emitattr (5, ConnectivityNodeContainer)
+        emitattrs (6, ConnectivityNodes)
+        emitattr (7, ReportingGroup)
+        emitattrs (8, SvInjection)
+        emitattrs (9, SvVoltage)
+        emitattrs (10, Terminal)
+        emitattr (11, TopologicalIsland)
         s.toString
     }
     override def export: String =
@@ -395,6 +304,7 @@ extends
         "qInjection",
         "AngleRefTopologicalIsland",
         "BaseVoltage",
+        "BusNameMarker",
         "ConnectivityNodeContainer",
         "ConnectivityNodes",
         "ReportingGroup",
@@ -406,11 +316,12 @@ extends
     override val relations: List[Relationship] = List (
         Relationship ("AngleRefTopologicalIsland", "TopologicalIsland", "0..1", "0..1"),
         Relationship ("BaseVoltage", "BaseVoltage", "0..1", "0..*"),
+        Relationship ("BusNameMarker", "BusNameMarker", "0..*", "0..1"),
         Relationship ("ConnectivityNodeContainer", "ConnectivityNodeContainer", "0..1", "0..*"),
         Relationship ("ConnectivityNodes", "ConnectivityNode", "0..*", "0..1"),
         Relationship ("ReportingGroup", "ReportingGroup", "0..1", "0..*"),
-        Relationship ("SvInjection", "SvInjection", "0..1", "1"),
-        Relationship ("SvVoltage", "SvVoltage", "0..1", "1"),
+        Relationship ("SvInjection", "SvInjection", "0..*", "1"),
+        Relationship ("SvVoltage", "SvVoltage", "0..*", "1"),
         Relationship ("Terminal", "Terminal", "0..*", "0..1"),
         Relationship ("TopologicalIsland", "TopologicalIsland", "0..1", "1..*")
     )
@@ -418,13 +329,14 @@ extends
     val qInjection: Fielder = parse_element (element (cls, fields(1)))
     val AngleRefTopologicalIsland: Fielder = parse_attribute (attribute (cls, fields(2)))
     val BaseVoltage: Fielder = parse_attribute (attribute (cls, fields(3)))
-    val ConnectivityNodeContainer: Fielder = parse_attribute (attribute (cls, fields(4)))
-    val ConnectivityNodes: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
-    val ReportingGroup: Fielder = parse_attribute (attribute (cls, fields(6)))
-    val SvInjection: Fielder = parse_attribute (attribute (cls, fields(7)))
-    val SvVoltage: Fielder = parse_attribute (attribute (cls, fields(8)))
-    val Terminal: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
-    val TopologicalIsland: Fielder = parse_attribute (attribute (cls, fields(10)))
+    val BusNameMarker: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val ConnectivityNodeContainer: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val ConnectivityNodes: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
+    val ReportingGroup: Fielder = parse_attribute (attribute (cls, fields(7)))
+    val SvInjection: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
+    val SvVoltage: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
+    val Terminal: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
+    val TopologicalIsland: Fielder = parse_attribute (attribute (cls, fields(11)))
 
     def parse (context: Context): TopologicalNode =
     {
@@ -436,13 +348,14 @@ extends
             toDouble (mask (qInjection (), 1)),
             mask (AngleRefTopologicalIsland (), 2),
             mask (BaseVoltage (), 3),
-            mask (ConnectivityNodeContainer (), 4),
-            masks (ConnectivityNodes (), 5),
-            mask (ReportingGroup (), 6),
-            mask (SvInjection (), 7),
-            mask (SvVoltage (), 8),
-            masks (Terminal (), 9),
-            mask (TopologicalIsland (), 10)
+            masks (BusNameMarker (), 4),
+            mask (ConnectivityNodeContainer (), 5),
+            masks (ConnectivityNodes (), 6),
+            mask (ReportingGroup (), 7),
+            masks (SvInjection (), 8),
+            masks (SvVoltage (), 9),
+            masks (Terminal (), 10),
+            mask (TopologicalIsland (), 11)
         )
         ret.bitfields = bitfields
         ret
@@ -455,7 +368,6 @@ private[ninecode] object _Topology
     {
         List (
             BusNameMarker.register,
-            DCTopologicalNode.register,
             TopologicalIsland.register,
             TopologicalNode.register
         )

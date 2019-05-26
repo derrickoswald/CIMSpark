@@ -15,6 +15,7 @@ import ch.ninecode.cim.Relationship
  * @param priority Priority of work.
  * @param statusKind Kind of work status.
  * @param TimeSchedules [[ch.ninecode.model.WorkTimeSchedule WorkTimeSchedule]] All time schedules for this work or work task.
+ * @param WorkActivityRecords [[ch.ninecode.model.WorkActivityRecord WorkActivityRecord]] All activity records for this work or work task.
  * @param WorkLocation [[ch.ninecode.model.WorkLocation WorkLocation]] Location for this work/task.
  * @group Work
  * @groupname Work Package Work
@@ -27,6 +28,7 @@ case class BaseWork
     priority: String,
     statusKind: String,
     TimeSchedules: List[String],
+    WorkActivityRecords: List[String],
     WorkLocation: String
 )
 extends
@@ -35,7 +37,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, List(), null) }
+    def this () = { this (null, null, null, null, List(), List(), null) }
     /**
      * Return the superclass object.
      *
@@ -64,7 +66,8 @@ extends
         emitattr (1, priority)
         emitattr (2, statusKind)
         emitattrs (3, TimeSchedules)
-        emitattr (4, WorkLocation)
+        emitattrs (4, WorkActivityRecords)
+        emitattr (5, WorkLocation)
         s.toString
     }
     override def export: String =
@@ -82,17 +85,20 @@ extends
         "priority",
         "statusKind",
         "TimeSchedules",
+        "WorkActivityRecords",
         "WorkLocation"
     )
     override val relations: List[Relationship] = List (
         Relationship ("TimeSchedules", "WorkTimeSchedule", "0..*", "0..1"),
+        Relationship ("WorkActivityRecords", "WorkActivityRecord", "0..*", "0..1"),
         Relationship ("WorkLocation", "WorkLocation", "0..1", "0..*")
     )
     val kind: Fielder = parse_attribute (attribute (cls, fields(0)))
     val priority: Fielder = parse_attribute (attribute (cls, fields(1)))
     val statusKind: Fielder = parse_attribute (attribute (cls, fields(2)))
     val TimeSchedules: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
-    val WorkLocation: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val WorkActivityRecords: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val WorkLocation: Fielder = parse_attribute (attribute (cls, fields(5)))
 
     def parse (context: Context): BaseWork =
     {
@@ -104,7 +110,101 @@ extends
             mask (priority (), 1),
             mask (statusKind (), 2),
             masks (TimeSchedules (), 3),
-            mask (WorkLocation (), 4)
+            masks (WorkActivityRecords (), 4),
+            mask (WorkLocation (), 5)
+        )
+        ret.bitfields = bitfields
+        ret
+    }
+}
+
+/**
+ * Description of location internal to a building.
+ *
+ * @param sup [[ch.ninecode.model.WorkLocation WorkLocation]] Reference to the superclass object.
+ * @param buildingName Name of building where location is.
+ * @param buildingNumber Number of building where location is.
+ * @param floor Floor of location.
+ * @param roomNumber Room number of location.
+ * @group Work
+ * @groupname Work Package Work
+ * @groupdesc Work This package contains the core information classes that support work management and network extension planning applications.
+ */
+case class InternalLocation
+(
+    override val sup: WorkLocation,
+    buildingName: String,
+    buildingNumber: String,
+    floor: Int,
+    roomNumber: String
+)
+extends
+    Element
+{
+    /**
+     * Zero args constructor.
+     */
+    def this () = { this (null, null, null, 0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def WorkLocation: WorkLocation = sup.asInstanceOf[WorkLocation]
+    override def copy (): Row = { clone ().asInstanceOf[InternalLocation] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = InternalLocation.cls
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (InternalLocation.fields (position), value)
+        emitelem (0, buildingName)
+        emitelem (1, buildingNumber)
+        emitelem (2, floor)
+        emitelem (3, roomNumber)
+        s.toString
+    }
+    override def export: String =
+    {
+        "\t<cim:InternalLocation rdf:ID=\"%s\">\n%s\t</cim:InternalLocation>".format (id, export_fields)
+    }
+}
+
+object InternalLocation
+extends
+    Parseable[InternalLocation]
+{
+    override val fields: Array[String] = Array[String] (
+        "buildingName",
+        "buildingNumber",
+        "floor",
+        "roomNumber"
+    )
+    val buildingName: Fielder = parse_element (element (cls, fields(0)))
+    val buildingNumber: Fielder = parse_element (element (cls, fields(1)))
+    val floor: Fielder = parse_element (element (cls, fields(2)))
+    val roomNumber: Fielder = parse_element (element (cls, fields(3)))
+
+    def parse (context: Context): InternalLocation =
+    {
+        implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
+        val ret = InternalLocation (
+            WorkLocation.parse (context),
+            mask (buildingName (), 0),
+            mask (buildingNumber (), 1),
+            toInteger (mask (floor (), 2)),
+            mask (roomNumber (), 3)
         )
         ret.bitfields = bitfields
         ret
@@ -205,6 +305,89 @@ extends
 }
 
 /**
+ * Maintenance work task.
+ *
+ * Costs associated with this are considered preventive maintenance (PM) costs.
+ *
+ * @param sup [[ch.ninecode.model.WorkTask WorkTask]] Reference to the superclass object.
+ * @param breakerMaintenanceKind Kind of breaker maintenance performed by this maintenance work task.
+ * @param transformerMaintenanceKind Kind of transformer maintenance performed by this maintenance work task.
+ * @group Work
+ * @groupname Work Package Work
+ * @groupdesc Work This package contains the core information classes that support work management and network extension planning applications.
+ */
+case class MaintenanceWorkTask
+(
+    override val sup: WorkTask,
+    breakerMaintenanceKind: String,
+    transformerMaintenanceKind: String
+)
+extends
+    Element
+{
+    /**
+     * Zero args constructor.
+     */
+    def this () = { this (null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def WorkTask: WorkTask = sup.asInstanceOf[WorkTask]
+    override def copy (): Row = { clone ().asInstanceOf[MaintenanceWorkTask] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = MaintenanceWorkTask.cls
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (MaintenanceWorkTask.fields (position), value)
+        emitattr (0, breakerMaintenanceKind)
+        emitattr (1, transformerMaintenanceKind)
+        s.toString
+    }
+    override def export: String =
+    {
+        "\t<cim:MaintenanceWorkTask rdf:ID=\"%s\">\n%s\t</cim:MaintenanceWorkTask>".format (id, export_fields)
+    }
+}
+
+object MaintenanceWorkTask
+extends
+    Parseable[MaintenanceWorkTask]
+{
+    override val fields: Array[String] = Array[String] (
+        "breakerMaintenanceKind",
+        "transformerMaintenanceKind"
+    )
+    val breakerMaintenanceKind: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val transformerMaintenanceKind: Fielder = parse_attribute (attribute (cls, fields(1)))
+
+    def parse (context: Context): MaintenanceWorkTask =
+    {
+        implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
+        val ret = MaintenanceWorkTask (
+            WorkTask.parse (context),
+            mask (breakerMaintenanceKind (), 0),
+            mask (transformerMaintenanceKind (), 1)
+        )
+        ret.bitfields = bitfields
+        ret
+    }
+}
+
+/**
  * The physical consumable supply used for work and other purposes.
  *
  * It includes items such as nuts, bolts, brackets, glue, etc.
@@ -291,6 +474,184 @@ extends
             mask (quantity (), 0),
             mask (TypeMaterial (), 1),
             mask (WorkTask (), 2)
+        )
+        ret.bitfields = bitfields
+        ret
+    }
+}
+
+/**
+ * Asset component to be repaired or problem area to be corrected.
+ *
+ * @param sup Reference to the superclass object.
+ * @param breakerRepairItem Breaker component or problem area which is the focus of this maintenance work task (for work tasks related to breakers only).
+ * @param transformerRepairItem Transformer component or problem area which is the focus of this maintenance work task (for work tasks related to transformers only).
+ * @param RepairWorkTask [[ch.ninecode.model.RepairWorkTask RepairWorkTask]] Repair work task under which breaker item of this type is repaired.
+ * @group Work
+ * @groupname Work Package Work
+ * @groupdesc Work This package contains the core information classes that support work management and network extension planning applications.
+ */
+case class RepairItem
+(
+    override val sup: BasicElement,
+    breakerRepairItem: String,
+    transformerRepairItem: String,
+    RepairWorkTask: List[String]
+)
+extends
+    Element
+{
+    /**
+     * Zero args constructor.
+     */
+    def this () = { this (null, null, null, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
+    override def copy (): Row = { clone ().asInstanceOf[RepairItem] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = RepairItem.cls
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (RepairItem.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (RepairItem.fields (position), x))
+        emitattr (0, breakerRepairItem)
+        emitattr (1, transformerRepairItem)
+        emitattrs (2, RepairWorkTask)
+        s.toString
+    }
+    override def export: String =
+    {
+        "\t<cim:RepairItem rdf:ID=\"%s\">\n%s\t</cim:RepairItem>".format (id, export_fields)
+    }
+}
+
+object RepairItem
+extends
+    Parseable[RepairItem]
+{
+    override val fields: Array[String] = Array[String] (
+        "breakerRepairItem",
+        "transformerRepairItem",
+        "RepairWorkTask"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("RepairWorkTask", "RepairWorkTask", "0..*", "0..*")
+    )
+    val breakerRepairItem: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val transformerRepairItem: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val RepairWorkTask: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+
+    def parse (context: Context): RepairItem =
+    {
+        implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
+        val ret = RepairItem (
+            BasicElement.parse (context),
+            mask (breakerRepairItem (), 0),
+            mask (transformerRepairItem (), 1),
+            masks (RepairWorkTask (), 2)
+        )
+        ret.bitfields = bitfields
+        ret
+    }
+}
+
+/**
+ * Work task for asset repair.
+ *
+ * Costs associated with this are considered corrective maintenance (CM) costs.
+ *
+ * @param sup [[ch.ninecode.model.WorkTask WorkTask]] Reference to the superclass object.
+ * @param emergency Repair work is emergency.
+ * @param BreakerRepairItem [[ch.ninecode.model.RepairItem RepairItem]] Type of breaker item to be repaird by this repair work task.
+ * @group Work
+ * @groupname Work Package Work
+ * @groupdesc Work This package contains the core information classes that support work management and network extension planning applications.
+ */
+case class RepairWorkTask
+(
+    override val sup: WorkTask,
+    emergency: Boolean,
+    BreakerRepairItem: List[String]
+)
+extends
+    Element
+{
+    /**
+     * Zero args constructor.
+     */
+    def this () = { this (null, false, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def WorkTask: WorkTask = sup.asInstanceOf[WorkTask]
+    override def copy (): Row = { clone ().asInstanceOf[RepairWorkTask] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = RepairWorkTask.cls
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (RepairWorkTask.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (RepairWorkTask.fields (position), x))
+        emitelem (0, emergency)
+        emitattrs (1, BreakerRepairItem)
+        s.toString
+    }
+    override def export: String =
+    {
+        "\t<cim:RepairWorkTask rdf:ID=\"%s\">\n%s\t</cim:RepairWorkTask>".format (id, export_fields)
+    }
+}
+
+object RepairWorkTask
+extends
+    Parseable[RepairWorkTask]
+{
+    override val fields: Array[String] = Array[String] (
+        "emergency",
+        "BreakerRepairItem"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("BreakerRepairItem", "RepairItem", "0..*", "0..*")
+    )
+    val emergency: Fielder = parse_element (element (cls, fields(0)))
+    val BreakerRepairItem: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
+
+    def parse (context: Context): RepairWorkTask =
+    {
+        implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
+        val ret = RepairWorkTask (
+            WorkTask.parse (context),
+            toBoolean (mask (emergency (), 0)),
+            masks (BreakerRepairItem (), 1)
         )
         ret.bitfields = bitfields
         ret
@@ -466,6 +827,7 @@ extends
  *
  * @param sup [[ch.ninecode.model.BaseWork BaseWork]] Reference to the superclass object.
  * @param requestDateTime Date and time work was requested.
+ * @param workOrderNumber Work order number (or other unique identifying information) for this work.
  * @param Appointments [[ch.ninecode.model.Appointment Appointment]] All appointments for this work.
  * @param BusinessCase [[ch.ninecode.model.BusinessCase BusinessCase]] <em>undocumented</em>
  * @param Customers [[ch.ninecode.model.Customer Customer]] All the customers for which this work is performed.
@@ -485,6 +847,7 @@ case class Work
 (
     override val sup: BaseWork,
     requestDateTime: String,
+    workOrderNumber: String,
     Appointments: List[String],
     BusinessCase: String,
     Customers: List[String],
@@ -503,7 +866,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, List(), null, List(), List(), null, List(), null, null, List(), List(), List()) }
+    def this () = { this (null, null, null, List(), null, List(), List(), null, List(), null, null, List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -530,17 +893,18 @@ extends
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (Work.fields (position), value)
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Work.fields (position), x))
         emitelem (0, requestDateTime)
-        emitattrs (1, Appointments)
-        emitattr (2, BusinessCase)
-        emitattrs (3, Customers)
-        emitattrs (4, Designs)
-        emitattr (5, ErpProjectAccounting)
-        emitattrs (6, Incidents)
-        emitattr (7, Project)
-        emitattr (8, WorkBillingInfo)
-        emitattrs (9, WorkCostDetails)
-        emitattrs (10, WorkFlowSteps)
-        emitattrs (11, WorkTasks)
+        emitelem (1, workOrderNumber)
+        emitattrs (2, Appointments)
+        emitattr (3, BusinessCase)
+        emitattrs (4, Customers)
+        emitattrs (5, Designs)
+        emitattr (6, ErpProjectAccounting)
+        emitattrs (7, Incidents)
+        emitattr (8, Project)
+        emitattr (9, WorkBillingInfo)
+        emitattrs (10, WorkCostDetails)
+        emitattrs (11, WorkFlowSteps)
+        emitattrs (12, WorkTasks)
         s.toString
     }
     override def export: String =
@@ -555,6 +919,7 @@ extends
 {
     override val fields: Array[String] = Array[String] (
         "requestDateTime",
+        "workOrderNumber",
         "Appointments",
         "BusinessCase",
         "Customers",
@@ -581,17 +946,18 @@ extends
         Relationship ("WorkTasks", "WorkTask", "0..*", "1")
     )
     val requestDateTime: Fielder = parse_element (element (cls, fields(0)))
-    val Appointments: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
-    val BusinessCase: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val Customers: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
-    val Designs: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
-    val ErpProjectAccounting: Fielder = parse_attribute (attribute (cls, fields(5)))
-    val Incidents: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
-    val Project: Fielder = parse_attribute (attribute (cls, fields(7)))
-    val WorkBillingInfo: Fielder = parse_attribute (attribute (cls, fields(8)))
-    val WorkCostDetails: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
-    val WorkFlowSteps: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
-    val WorkTasks: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
+    val workOrderNumber: Fielder = parse_element (element (cls, fields(1)))
+    val Appointments: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
+    val BusinessCase: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val Customers: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val Designs: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
+    val ErpProjectAccounting: Fielder = parse_attribute (attribute (cls, fields(6)))
+    val Incidents: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
+    val Project: Fielder = parse_attribute (attribute (cls, fields(8)))
+    val WorkBillingInfo: Fielder = parse_attribute (attribute (cls, fields(9)))
+    val WorkCostDetails: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
+    val WorkFlowSteps: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
+    val WorkTasks: FielderMultiple = parse_attributes (attribute (cls, fields(12)))
 
     def parse (context: Context): Work =
     {
@@ -600,17 +966,103 @@ extends
         val ret = Work (
             BaseWork.parse (context),
             mask (requestDateTime (), 0),
-            masks (Appointments (), 1),
-            mask (BusinessCase (), 2),
-            masks (Customers (), 3),
-            masks (Designs (), 4),
-            mask (ErpProjectAccounting (), 5),
-            masks (Incidents (), 6),
-            mask (Project (), 7),
-            mask (WorkBillingInfo (), 8),
-            masks (WorkCostDetails (), 9),
-            masks (WorkFlowSteps (), 10),
-            masks (WorkTasks (), 11)
+            mask (workOrderNumber (), 1),
+            masks (Appointments (), 2),
+            mask (BusinessCase (), 3),
+            masks (Customers (), 4),
+            masks (Designs (), 5),
+            mask (ErpProjectAccounting (), 6),
+            masks (Incidents (), 7),
+            mask (Project (), 8),
+            mask (WorkBillingInfo (), 9),
+            masks (WorkCostDetails (), 10),
+            masks (WorkFlowSteps (), 11),
+            masks (WorkTasks (), 12)
+        )
+        ret.bitfields = bitfields
+        ret
+    }
+}
+
+/**
+ * Records information about the status of work or work task at a point in time.
+ *
+ * @param sup [[ch.ninecode.model.ActivityRecord ActivityRecord]] Reference to the superclass object.
+ * @param percentComplete Estimated percentage of completion of this individual work task or overall work order.
+ * @param BaseWork [[ch.ninecode.model.BaseWork BaseWork]] Base work that this activity record tracks.
+ * @group Work
+ * @groupname Work Package Work
+ * @groupdesc Work This package contains the core information classes that support work management and network extension planning applications.
+ */
+case class WorkActivityRecord
+(
+    override val sup: ActivityRecord,
+    percentComplete: Double,
+    BaseWork: String
+)
+extends
+    Element
+{
+    /**
+     * Zero args constructor.
+     */
+    def this () = { this (null, 0.0, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def ActivityRecord: ActivityRecord = sup.asInstanceOf[ActivityRecord]
+    override def copy (): Row = { clone ().asInstanceOf[WorkActivityRecord] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = WorkActivityRecord.cls
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WorkActivityRecord.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WorkActivityRecord.fields (position), value)
+        emitelem (0, percentComplete)
+        emitattr (1, BaseWork)
+        s.toString
+    }
+    override def export: String =
+    {
+        "\t<cim:WorkActivityRecord rdf:ID=\"%s\">\n%s\t</cim:WorkActivityRecord>".format (id, export_fields)
+    }
+}
+
+object WorkActivityRecord
+extends
+    Parseable[WorkActivityRecord]
+{
+    override val fields: Array[String] = Array[String] (
+        "percentComplete",
+        "BaseWork"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("BaseWork", "BaseWork", "0..1", "0..*")
+    )
+    val percentComplete: Fielder = parse_element (element (cls, fields(0)))
+    val BaseWork: Fielder = parse_attribute (attribute (cls, fields(1)))
+
+    def parse (context: Context): WorkActivityRecord =
+    {
+        implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
+        val ret = WorkActivityRecord (
+            ActivityRecord.parse (context),
+            toDouble (mask (percentComplete (), 0)),
+            mask (BaseWork (), 1)
         )
         ret.bitfields = bitfields
         ret
@@ -621,6 +1073,7 @@ extends
  * Asset used to perform work.
  *
  * @param sup [[ch.ninecode.model.Asset Asset]] Reference to the superclass object.
+ * @param CUWorkEquipmentAsset [[ch.ninecode.model.CUWorkEquipmentItem CUWorkEquipmentItem]] <em>undocumented</em>
  * @param Crew [[ch.ninecode.model.Crew Crew]] Crew using this work asset.
  * @group Work
  * @groupname Work Package Work
@@ -629,6 +1082,7 @@ extends
 case class WorkAsset
 (
     override val sup: Asset,
+    CUWorkEquipmentAsset: String,
     Crew: String
 )
 extends
@@ -637,7 +1091,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null) }
+    def this () = { this (null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -661,7 +1115,8 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = WorkAsset.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WorkAsset.fields (position), value)
-        emitattr (0, Crew)
+        emitattr (0, CUWorkEquipmentAsset)
+        emitattr (1, Crew)
         s.toString
     }
     override def export: String =
@@ -675,12 +1130,15 @@ extends
     Parseable[WorkAsset]
 {
     override val fields: Array[String] = Array[String] (
+        "CUWorkEquipmentAsset",
         "Crew"
     )
     override val relations: List[Relationship] = List (
+        Relationship ("CUWorkEquipmentAsset", "CUWorkEquipmentItem", "0..1", "0..1"),
         Relationship ("Crew", "Crew", "0..1", "0..*")
     )
-    val Crew: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val CUWorkEquipmentAsset: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val Crew: Fielder = parse_attribute (attribute (cls, fields(1)))
 
     def parse (context: Context): WorkAsset =
     {
@@ -688,7 +1146,8 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = WorkAsset (
             Asset.parse (context),
-            mask (Crew (), 0)
+            mask (CUWorkEquipmentAsset (), 0),
+            mask (Crew (), 1)
         )
         ret.bitfields = bitfields
         ret
@@ -789,7 +1248,27 @@ extends
 }
 
 /**
-
+ * A task within a set of work.
+ *
+ * @param sup [[ch.ninecode.model.BaseWork BaseWork]] Reference to the superclass object.
+ * @param completedDateTime Date and time work task was completed.
+ * @param contractorCost Total contractor costs associated with the work task.
+ * @param crewETA Estimated time of arrival, so that customer or police/fire department can be informed when the crew will arrive.
+ * @param instruction Instructions for performing this task.
+ * @param laborCost Total labor costs associated with the work task.
+ * @param laborHours Hours of labor expended under work task.
+ * @param materiallCost Total material costs associated with the work task.
+ * @param schedOverride If specified, override schedule and perform this task in accordance with instructions specified here.
+ * @param startedDateTime Date and time work task was started.
+ * @param taskKind Kind of work.
+ * @param toolCost Total tool costs associated with the work task.
+ * @param Assets [[ch.ninecode.model.Asset Asset]] All assets on which this non-replacement work task is performed.
+ * @param Crews [[ch.ninecode.model.Crew Crew]] All crews participating in this work task.
+ * @param MaterialItems [[ch.ninecode.model.MaterialItem MaterialItem]] <em>undocumented</em>
+ * @param OldAsset [[ch.ninecode.model.Asset Asset]] Old asset replaced by this work task.
+ * @param ProcedureDataSet [[ch.ninecode.model.ProcedureDataSet ProcedureDataSet]] Procedure data set associated with this work task.
+ * @param SwitchingPlan [[ch.ninecode.model.SwitchingPlan SwitchingPlan]] Switching plan executed by this work task.
+ * @param Work [[ch.ninecode.model.Work Work]] Work this task belongs to.
  * @group Work
  * @groupname Work Package Work
  * @groupdesc Work This package contains the core information classes that support work management and network extension planning applications.
@@ -797,14 +1276,22 @@ extends
 case class WorkTask
 (
     override val sup: BaseWork,
+    completedDateTime: String,
+    contractorCost: Double,
     crewETA: String,
     instruction: String,
+    laborCost: Double,
+    laborHours: Double,
+    materiallCost: Double,
     schedOverride: String,
+    startedDateTime: String,
     taskKind: String,
+    toolCost: Double,
     Assets: List[String],
     Crews: List[String],
     MaterialItems: List[String],
     OldAsset: String,
+    ProcedureDataSet: List[String],
     SwitchingPlan: String,
     Work: String
 )
@@ -814,7 +1301,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null, List(), List(), List(), null, null, null) }
+    def this () = { this (null, null, 0.0, null, null, 0.0, 0.0, 0.0, null, null, null, 0.0, List(), List(), List(), null, List(), null, null) }
     /**
      * Return the superclass object.
      *
@@ -840,16 +1327,24 @@ extends
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WorkTask.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WorkTask.fields (position), value)
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (WorkTask.fields (position), x))
-        emitelem (0, crewETA)
-        emitelem (1, instruction)
-        emitelem (2, schedOverride)
-        emitattr (3, taskKind)
-        emitattrs (4, Assets)
-        emitattrs (5, Crews)
-        emitattrs (6, MaterialItems)
-        emitattr (7, OldAsset)
-        emitattr (8, SwitchingPlan)
-        emitattr (9, Work)
+        emitelem (0, completedDateTime)
+        emitelem (1, contractorCost)
+        emitelem (2, crewETA)
+        emitelem (3, instruction)
+        emitelem (4, laborCost)
+        emitelem (5, laborHours)
+        emitelem (6, materiallCost)
+        emitelem (7, schedOverride)
+        emitelem (8, startedDateTime)
+        emitattr (9, taskKind)
+        emitelem (10, toolCost)
+        emitattrs (11, Assets)
+        emitattrs (12, Crews)
+        emitattrs (13, MaterialItems)
+        emitattr (14, OldAsset)
+        emitattrs (15, ProcedureDataSet)
+        emitattr (16, SwitchingPlan)
+        emitattr (17, Work)
         s.toString
     }
     override def export: String =
@@ -863,14 +1358,22 @@ extends
     Parseable[WorkTask]
 {
     override val fields: Array[String] = Array[String] (
+        "completedDateTime",
+        "contractorCost",
         "crewETA",
         "instruction",
+        "laborCost",
+        "laborHours",
+        "materiallCost",
         "schedOverride",
+        "startedDateTime",
         "taskKind",
+        "toolCost",
         "Assets",
         "Crews",
         "MaterialItems",
         "OldAsset",
+        "ProcedureDataSet",
         "SwitchingPlan",
         "Work"
     )
@@ -879,19 +1382,28 @@ extends
         Relationship ("Crews", "Crew", "0..*", "0..*"),
         Relationship ("MaterialItems", "MaterialItem", "0..*", "0..1"),
         Relationship ("OldAsset", "Asset", "0..1", "0..*"),
+        Relationship ("ProcedureDataSet", "ProcedureDataSet", "0..*", "0..1"),
         Relationship ("SwitchingPlan", "SwitchingPlan", "0..1", "0..*"),
         Relationship ("Work", "Work", "1", "0..*")
     )
-    val crewETA: Fielder = parse_element (element (cls, fields(0)))
-    val instruction: Fielder = parse_element (element (cls, fields(1)))
-    val schedOverride: Fielder = parse_element (element (cls, fields(2)))
-    val taskKind: Fielder = parse_attribute (attribute (cls, fields(3)))
-    val Assets: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
-    val Crews: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
-    val MaterialItems: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
-    val OldAsset: Fielder = parse_attribute (attribute (cls, fields(7)))
-    val SwitchingPlan: Fielder = parse_attribute (attribute (cls, fields(8)))
-    val Work: Fielder = parse_attribute (attribute (cls, fields(9)))
+    val completedDateTime: Fielder = parse_element (element (cls, fields(0)))
+    val contractorCost: Fielder = parse_element (element (cls, fields(1)))
+    val crewETA: Fielder = parse_element (element (cls, fields(2)))
+    val instruction: Fielder = parse_element (element (cls, fields(3)))
+    val laborCost: Fielder = parse_element (element (cls, fields(4)))
+    val laborHours: Fielder = parse_element (element (cls, fields(5)))
+    val materiallCost: Fielder = parse_element (element (cls, fields(6)))
+    val schedOverride: Fielder = parse_element (element (cls, fields(7)))
+    val startedDateTime: Fielder = parse_element (element (cls, fields(8)))
+    val taskKind: Fielder = parse_attribute (attribute (cls, fields(9)))
+    val toolCost: Fielder = parse_element (element (cls, fields(10)))
+    val Assets: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
+    val Crews: FielderMultiple = parse_attributes (attribute (cls, fields(12)))
+    val MaterialItems: FielderMultiple = parse_attributes (attribute (cls, fields(13)))
+    val OldAsset: Fielder = parse_attribute (attribute (cls, fields(14)))
+    val ProcedureDataSet: FielderMultiple = parse_attributes (attribute (cls, fields(15)))
+    val SwitchingPlan: Fielder = parse_attribute (attribute (cls, fields(16)))
+    val Work: Fielder = parse_attribute (attribute (cls, fields(17)))
 
     def parse (context: Context): WorkTask =
     {
@@ -899,16 +1411,24 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = WorkTask (
             BaseWork.parse (context),
-            mask (crewETA (), 0),
-            mask (instruction (), 1),
-            mask (schedOverride (), 2),
-            mask (taskKind (), 3),
-            masks (Assets (), 4),
-            masks (Crews (), 5),
-            masks (MaterialItems (), 6),
-            mask (OldAsset (), 7),
-            mask (SwitchingPlan (), 8),
-            mask (Work (), 9)
+            mask (completedDateTime (), 0),
+            toDouble (mask (contractorCost (), 1)),
+            mask (crewETA (), 2),
+            mask (instruction (), 3),
+            toDouble (mask (laborCost (), 4)),
+            toDouble (mask (laborHours (), 5)),
+            toDouble (mask (materiallCost (), 6)),
+            mask (schedOverride (), 7),
+            mask (startedDateTime (), 8),
+            mask (taskKind (), 9),
+            toDouble (mask (toolCost (), 10)),
+            masks (Assets (), 11),
+            masks (Crews (), 12),
+            masks (MaterialItems (), 13),
+            mask (OldAsset (), 14),
+            masks (ProcedureDataSet (), 15),
+            mask (SwitchingPlan (), 16),
+            mask (Work (), 17)
         )
         ret.bitfields = bitfields
         ret
@@ -919,7 +1439,7 @@ extends
  * Time schedule specific to work.
  *
  * @param sup [[ch.ninecode.model.TimeSchedule TimeSchedule]] Reference to the superclass object.
- * @param kind Kind of this work schedule.
+ * @param kind [[ch.ninecode.model.WorkTimeScheduleKind WorkTimeScheduleKind]] Kind of this work schedule.
  * @param BaseWork [[ch.ninecode.model.BaseWork BaseWork]] Time schedule for this work or work task.
  * @group Work
  * @groupname Work Package Work
@@ -980,6 +1500,7 @@ extends
         "BaseWork"
     )
     override val relations: List[Relationship] = List (
+        Relationship ("kind", "WorkTimeScheduleKind", "0..1", "0..*"),
         Relationship ("BaseWork", "BaseWork", "0..1", "0..*")
     )
     val kind: Fielder = parse_attribute (attribute (cls, fields(0)))
@@ -999,21 +1520,132 @@ extends
     }
 }
 
+/**
+ * Kind of work schedule.
+ *
+ * @param sup Reference to the superclass object.
+ * @param actual Actual work time schedule.
+ * @param earliest Earliest work time schedule.
+ * @param estimate Estimate work time schedule.
+ * @param immediate ??.
+ * @param latest Latest work time schedule.
+ * @param request Request work time schedule.
+ * @group Work
+ * @groupname Work Package Work
+ * @groupdesc Work This package contains the core information classes that support work management and network extension planning applications.
+ */
+case class WorkTimeScheduleKind
+(
+    override val sup: BasicElement,
+    actual: String,
+    earliest: String,
+    estimate: String,
+    immediate: String,
+    latest: String,
+    request: String
+)
+extends
+    Element
+{
+    /**
+     * Zero args constructor.
+     */
+    def this () = { this (null, null, null, null, null, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def  Element: Element = sup.asInstanceOf[Element]
+    override def copy (): Row = { clone ().asInstanceOf[WorkTimeScheduleKind] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = WorkTimeScheduleKind.cls
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (WorkTimeScheduleKind.fields (position), value)
+        emitattr (0, actual)
+        emitattr (1, earliest)
+        emitattr (2, estimate)
+        emitattr (3, immediate)
+        emitattr (4, latest)
+        emitattr (5, request)
+        s.toString
+    }
+    override def export: String =
+    {
+        "\t<cim:WorkTimeScheduleKind rdf:ID=\"%s\">\n%s\t</cim:WorkTimeScheduleKind>".format (id, export_fields)
+    }
+}
+
+object WorkTimeScheduleKind
+extends
+    Parseable[WorkTimeScheduleKind]
+{
+    override val fields: Array[String] = Array[String] (
+        "actual",
+        "earliest",
+        "estimate",
+        "immediate",
+        "latest",
+        "request"
+    )
+    val actual: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val earliest: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val estimate: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val immediate: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val latest: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val request: Fielder = parse_attribute (attribute (cls, fields(5)))
+
+    def parse (context: Context): WorkTimeScheduleKind =
+    {
+        implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
+        val ret = WorkTimeScheduleKind (
+            BasicElement.parse (context),
+            mask (actual (), 0),
+            mask (earliest (), 1),
+            mask (estimate (), 2),
+            mask (immediate (), 3),
+            mask (latest (), 4),
+            mask (request (), 5)
+        )
+        ret.bitfields = bitfields
+        ret
+    }
+}
+
 private[ninecode] object _Work
 {
     def register: List[ClassInfo] =
     {
         List (
             BaseWork.register,
+            InternalLocation.register,
             MaintenanceLocation.register,
+            MaintenanceWorkTask.register,
             MaterialItem.register,
+            RepairItem.register,
+            RepairWorkTask.register,
             Tool.register,
             Vehicle.register,
             Work.register,
+            WorkActivityRecord.register,
             WorkAsset.register,
             WorkLocation.register,
             WorkTask.register,
-            WorkTimeSchedule.register
+            WorkTimeSchedule.register,
+            WorkTimeScheduleKind.register
         )
     }
 }

@@ -14,7 +14,7 @@ import ch.ninecode.cim.Relationship
  * @param LoadGroup [[ch.ninecode.model.ConformLoadGroup ConformLoadGroup]] Group of this ConformLoad.
  * @group LoadModel
  * @groupname LoadModel Package LoadModel
- * @groupdesc LoadModel This package is responsible for modeling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and daytypes, are also included here.
+ * @groupdesc LoadModel This package is responsible for modelling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and day types, are also included here.
 
 This information is used by Load Forecasting and Load Management.
  */
@@ -95,7 +95,7 @@ extends
  * @param EnergyConsumers [[ch.ninecode.model.ConformLoad ConformLoad]] Conform loads assigned to this ConformLoadGroup.
  * @group LoadModel
  * @groupname LoadModel Package LoadModel
- * @groupdesc LoadModel This package is responsible for modeling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and daytypes, are also included here.
+ * @groupdesc LoadModel This package is responsible for modelling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and day types, are also included here.
 
 This information is used by Load Forecasting and Load Management.
  */
@@ -154,7 +154,7 @@ extends
         "EnergyConsumers"
     )
     override val relations: List[Relationship] = List (
-        Relationship ("ConformLoadSchedules", "ConformLoadSchedule", "1..*", "1"),
+        Relationship ("ConformLoadSchedules", "ConformLoadSchedule", "0..*", "1"),
         Relationship ("EnergyConsumers", "ConformLoad", "0..*", "0..1")
     )
     val ConformLoadSchedules: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
@@ -183,7 +183,7 @@ extends
  * @param ConformLoadGroup [[ch.ninecode.model.ConformLoadGroup ConformLoadGroup]] The ConformLoadGroup where the ConformLoadSchedule belongs.
  * @group LoadModel
  * @groupname LoadModel Package LoadModel
- * @groupdesc LoadModel This package is responsible for modeling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and daytypes, are also included here.
+ * @groupdesc LoadModel This package is responsible for modelling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and day types, are also included here.
 
 This information is used by Load Forecasting and Load Management.
  */
@@ -239,7 +239,7 @@ extends
         "ConformLoadGroup"
     )
     override val relations: List[Relationship] = List (
-        Relationship ("ConformLoadGroup", "ConformLoadGroup", "1", "1..*")
+        Relationship ("ConformLoadGroup", "ConformLoadGroup", "1", "0..*")
     )
     val ConformLoadGroup: Fielder = parse_attribute (attribute (cls, fields(0)))
 
@@ -265,7 +265,7 @@ extends
  * @param SeasonDayTypeSchedules [[ch.ninecode.model.SeasonDayTypeSchedule SeasonDayTypeSchedule]] Schedules that use this DayType.
  * @group LoadModel
  * @groupname LoadModel Package LoadModel
- * @groupdesc LoadModel This package is responsible for modeling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and daytypes, are also included here.
+ * @groupdesc LoadModel This package is responsible for modelling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and day types, are also included here.
 
 This information is used by Load Forecasting and Load Management.
  */
@@ -347,7 +347,7 @@ extends
  * @param ControlArea [[ch.ninecode.model.ControlArea ControlArea]] The control area specification that is used for the load forecast.
  * @group LoadModel
  * @groupname LoadModel Package LoadModel
- * @groupdesc LoadModel This package is responsible for modeling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and daytypes, are also included here.
+ * @groupdesc LoadModel This package is responsible for modelling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and day types, are also included here.
 
 This information is used by Load Forecasting and Load Management.
  */
@@ -427,7 +427,7 @@ extends
  * @param SubLoadAreas [[ch.ninecode.model.SubLoadArea SubLoadArea]] The SubLoadAreas in the LoadArea.
  * @group LoadModel
  * @groupname LoadModel Package LoadModel
- * @groupdesc LoadModel This package is responsible for modeling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and daytypes, are also included here.
+ * @groupdesc LoadModel This package is responsible for modelling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and day types, are also included here.
 
 This information is used by Load Forecasting and Load Management.
  */
@@ -507,7 +507,7 @@ extends
  * @param SubLoadArea [[ch.ninecode.model.SubLoadArea SubLoadArea]] The SubLoadArea where the Loadgroup belongs.
  * @group LoadModel
  * @groupname LoadModel Package LoadModel
- * @groupdesc LoadModel This package is responsible for modeling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and daytypes, are also included here.
+ * @groupdesc LoadModel This package is responsible for modelling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and day types, are also included here.
 
 This information is used by Load Forecasting and Load Management.
  */
@@ -588,20 +588,20 @@ extends
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param exponentModel Indicates the exponential voltage dependency model is to be used.
  *        If false, the coefficient model is to be used.
- * @param pConstantCurrent Portion of active power load modeled as constant current.
- * @param pConstantImpedance Portion of active power load modeled as constant impedance.
- * @param pConstantPower Portion of active power load modeled as constant power.
+ * @param pConstantCurrent Portion of active power load modelled as constant current.
+ * @param pConstantImpedance Portion of active power load modelled as constant impedance.
+ * @param pConstantPower Portion of active power load modelled as constant power.
  * @param pFrequencyExponent Exponent of per unit frequency effecting active power.
  * @param pVoltageExponent Exponent of per unit voltage effecting real power.
- * @param qConstantCurrent Portion of reactive power load modeled as constant current.
- * @param qConstantImpedance Portion of reactive power load modeled as constant impedance.
- * @param qConstantPower Portion of reactive power load modeled as constant power.
+ * @param qConstantCurrent Portion of reactive power load modelled as constant current.
+ * @param qConstantImpedance Portion of reactive power load modelled as constant impedance.
+ * @param qConstantPower Portion of reactive power load modelled as constant power.
  * @param qFrequencyExponent Exponent of per unit frequency effecting reactive power.
  * @param qVoltageExponent Exponent of per unit voltage effecting reactive power.
  * @param EnergyConsumer [[ch.ninecode.model.EnergyConsumer EnergyConsumer]] The set of loads that have the response characteristics.
  * @group LoadModel
  * @groupname LoadModel Package LoadModel
- * @groupdesc LoadModel This package is responsible for modeling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and daytypes, are also included here.
+ * @groupdesc LoadModel This package is responsible for modelling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and day types, are also included here.
 
 This information is used by Load Forecasting and Load Management.
  */
@@ -731,13 +731,13 @@ extends
 }
 
 /**
- * NonConformLoad represent loads that do not follow a daily load change pattern and changes are not correlated with the daily load change pattern.
+ * NonConformLoad represents loads that do not follow a daily load change pattern and whose changes are not correlated with the daily load change pattern.
  *
  * @param sup [[ch.ninecode.model.EnergyConsumer EnergyConsumer]] Reference to the superclass object.
  * @param LoadGroup [[ch.ninecode.model.NonConformLoadGroup NonConformLoadGroup]] Group of this ConformLoad.
  * @group LoadModel
  * @groupname LoadModel Package LoadModel
- * @groupdesc LoadModel This package is responsible for modeling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and daytypes, are also included here.
+ * @groupdesc LoadModel This package is responsible for modelling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and day types, are also included here.
 
 This information is used by Load Forecasting and Load Management.
  */
@@ -818,7 +818,7 @@ extends
  * @param NonConformLoadSchedules [[ch.ninecode.model.NonConformLoadSchedule NonConformLoadSchedule]] The NonConformLoadSchedules in the NonConformLoadGroup.
  * @group LoadModel
  * @groupname LoadModel Package LoadModel
- * @groupdesc LoadModel This package is responsible for modeling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and daytypes, are also included here.
+ * @groupdesc LoadModel This package is responsible for modelling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and day types, are also included here.
 
 This information is used by Load Forecasting and Load Management.
  */
@@ -878,7 +878,7 @@ extends
     )
     override val relations: List[Relationship] = List (
         Relationship ("EnergyConsumers", "NonConformLoad", "0..*", "0..1"),
-        Relationship ("NonConformLoadSchedules", "NonConformLoadSchedule", "1..*", "1")
+        Relationship ("NonConformLoadSchedules", "NonConformLoadSchedule", "0..*", "1")
     )
     val EnergyConsumers: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
     val NonConformLoadSchedules: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
@@ -898,13 +898,13 @@ extends
 }
 
 /**
- * An active power (Y1-axis) and reactive power (Y2-axis) schedule (curves) versus time (X-axis) for non-conforming loads, e.g., large industrial load or power station service (where modeled).
+ * An active power (Y1-axis) and reactive power (Y2-axis) schedule (curves) versus time (X-axis) for non-conforming loads, e.g., large industrial load or power station service (where modelled).
  *
  * @param sup [[ch.ninecode.model.SeasonDayTypeSchedule SeasonDayTypeSchedule]] Reference to the superclass object.
  * @param NonConformLoadGroup [[ch.ninecode.model.NonConformLoadGroup NonConformLoadGroup]] The NonConformLoadGroup where the NonConformLoadSchedule belongs.
  * @group LoadModel
  * @groupname LoadModel Package LoadModel
- * @groupdesc LoadModel This package is responsible for modeling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and daytypes, are also included here.
+ * @groupdesc LoadModel This package is responsible for modelling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and day types, are also included here.
 
 This information is used by Load Forecasting and Load Management.
  */
@@ -960,7 +960,7 @@ extends
         "NonConformLoadGroup"
     )
     override val relations: List[Relationship] = List (
-        Relationship ("NonConformLoadGroup", "NonConformLoadGroup", "1", "1..*")
+        Relationship ("NonConformLoadGroup", "NonConformLoadGroup", "1", "0..*")
     )
     val NonConformLoadGroup: Fielder = parse_attribute (attribute (cls, fields(0)))
 
@@ -986,7 +986,7 @@ extends
  * @param EnergyConsumers [[ch.ninecode.model.EnergyConsumer EnergyConsumer]] Energy consumer is assigned to the power cut zone.
  * @group LoadModel
  * @groupname LoadModel Package LoadModel
- * @groupdesc LoadModel This package is responsible for modeling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and daytypes, are also included here.
+ * @groupdesc LoadModel This package is responsible for modelling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and day types, are also included here.
 
 This information is used by Load Forecasting and Load Management.
  */
@@ -1080,7 +1080,7 @@ extends
  * @param SeasonDayTypeSchedules [[ch.ninecode.model.SeasonDayTypeSchedule SeasonDayTypeSchedule]] Schedules that use this Season.
  * @group LoadModel
  * @groupname LoadModel Package LoadModel
- * @groupdesc LoadModel This package is responsible for modeling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and daytypes, are also included here.
+ * @groupdesc LoadModel This package is responsible for modelling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and day types, are also included here.
 
 This information is used by Load Forecasting and Load Management.
  */
@@ -1178,7 +1178,7 @@ extends
  * @param Season [[ch.ninecode.model.Season Season]] Season for the Schedule.
  * @group LoadModel
  * @groupname LoadModel Package LoadModel
- * @groupdesc LoadModel This package is responsible for modeling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and daytypes, are also included here.
+ * @groupdesc LoadModel This package is responsible for modelling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and day types, are also included here.
 
 This information is used by Load Forecasting and Load Management.
  */
@@ -1263,7 +1263,7 @@ extends
  * @param sup [[ch.ninecode.model.EnergyConsumer EnergyConsumer]] Reference to the superclass object.
  * @group LoadModel
  * @groupname LoadModel Package LoadModel
- * @groupdesc LoadModel This package is responsible for modeling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and daytypes, are also included here.
+ * @groupdesc LoadModel This package is responsible for modelling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and day types, are also included here.
 
 This information is used by Load Forecasting and Load Management.
  */
@@ -1329,7 +1329,7 @@ extends
  * @param LoadGroups [[ch.ninecode.model.LoadGroup LoadGroup]] The Loadgroups in the SubLoadArea.
  * @group LoadModel
  * @groupname LoadModel Package LoadModel
- * @groupdesc LoadModel This package is responsible for modeling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and daytypes, are also included here.
+ * @groupdesc LoadModel This package is responsible for modelling the energy consumers and the system load as curves and associated curve data. Special circumstances that may affect the load, such as seasons and day types, are also included here.
 
 This information is used by Load Forecasting and Load Management.
  */

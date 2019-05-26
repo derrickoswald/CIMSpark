@@ -70,14 +70,16 @@ extends
 }
 
 /**
- * The SvInjection is reporting the calculated bus injection minus the sum of the terminal flows.
+ * The SvInjection reports the calculated bus injection minus the sum of the terminal flows.
  *
  * The terminal flow is positive out from the bus (load sign convention) and bus injection has positive flow into the bus. SvInjection may have the remainder after state estimation or slack after power flow calculation.
  *
  * @param sup [[ch.ninecode.model.StateVariable StateVariable]] Reference to the superclass object.
- * @param pInjection The active power injected into the bus in addition to injections from equipment terminals.
+ * @param pInjection The active power mismatch between calculated injection and initial injection.
  *        Positive sign means injection into the TopologicalNode (bus).
- * @param qInjection The reactive power injected into the bus in addition to injections from equipment terminals.
+ * @param phase The terminal phase at which the connection is applied.
+ *        If missing, the injection is assumed to be balanced among non-neutral phases.
+ * @param qInjection The reactive power mismatch between calculated injection and initial injection.
  *        Positive sign means injection into the TopologicalNode (bus).
  * @param TopologicalNode [[ch.ninecode.model.TopologicalNode TopologicalNode]] The topological node associated with the flow injection state variable.
  * @group StateVariables
@@ -88,6 +90,7 @@ case class SvInjection
 (
     override val sup: StateVariable,
     pInjection: Double,
+    phase: String,
     qInjection: Double,
     TopologicalNode: String
 )
@@ -97,7 +100,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, null) }
+    def this () = { this (null, 0.0, null, 0.0, null) }
     /**
      * Return the superclass object.
      *
@@ -123,8 +126,9 @@ extends
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (SvInjection.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (SvInjection.fields (position), value)
         emitelem (0, pInjection)
-        emitelem (1, qInjection)
-        emitattr (2, TopologicalNode)
+        emitattr (1, phase)
+        emitelem (2, qInjection)
+        emitattr (3, TopologicalNode)
         s.toString
     }
     override def export: String =
@@ -139,15 +143,17 @@ extends
 {
     override val fields: Array[String] = Array[String] (
         "pInjection",
+        "phase",
         "qInjection",
         "TopologicalNode"
     )
     override val relations: List[Relationship] = List (
-        Relationship ("TopologicalNode", "TopologicalNode", "1", "0..1")
+        Relationship ("TopologicalNode", "TopologicalNode", "1", "0..*")
     )
     val pInjection: Fielder = parse_element (element (cls, fields(0)))
-    val qInjection: Fielder = parse_element (element (cls, fields(1)))
-    val TopologicalNode: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val phase: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val qInjection: Fielder = parse_element (element (cls, fields(2)))
+    val TopologicalNode: Fielder = parse_attribute (attribute (cls, fields(3)))
 
     def parse (context: Context): SvInjection =
     {
@@ -156,8 +162,9 @@ extends
         val ret = SvInjection (
             StateVariable.parse (context),
             toDouble (mask (pInjection (), 0)),
-            toDouble (mask (qInjection (), 1)),
-            mask (TopologicalNode (), 2)
+            mask (phase (), 1),
+            toDouble (mask (qInjection (), 2)),
+            mask (TopologicalNode (), 3)
         )
         ret.bitfields = bitfields
         ret
@@ -172,6 +179,8 @@ extends
  * @param sup [[ch.ninecode.model.StateVariable StateVariable]] Reference to the superclass object.
  * @param p The active power flow.
  *        Load sign convention is used, i.e. positive sign means flow out from a TopologicalNode (bus) into the conducting equipment.
+ * @param phase The individual phase of the flow.
+ *        If unspecified, then assumed to be balanced among phases.
  * @param q The reactive power flow.
  *        Load sign convention is used, i.e. positive sign means flow out from a TopologicalNode (bus) into the conducting equipment.
  * @param Terminal [[ch.ninecode.model.Terminal Terminal]] The terminal associated with the power flow state variable.
@@ -183,6 +192,7 @@ case class SvPowerFlow
 (
     override val sup: StateVariable,
     p: Double,
+    phase: String,
     q: Double,
     Terminal: String
 )
@@ -192,7 +202,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, null) }
+    def this () = { this (null, 0.0, null, 0.0, null) }
     /**
      * Return the superclass object.
      *
@@ -218,8 +228,9 @@ extends
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (SvPowerFlow.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (SvPowerFlow.fields (position), value)
         emitelem (0, p)
-        emitelem (1, q)
-        emitattr (2, Terminal)
+        emitattr (1, phase)
+        emitelem (2, q)
+        emitattr (3, Terminal)
         s.toString
     }
     override def export: String =
@@ -234,15 +245,17 @@ extends
 {
     override val fields: Array[String] = Array[String] (
         "p",
+        "phase",
         "q",
         "Terminal"
     )
     override val relations: List[Relationship] = List (
-        Relationship ("Terminal", "Terminal", "1", "0..1")
+        Relationship ("Terminal", "Terminal", "1", "0..*")
     )
     val p: Fielder = parse_element (element (cls, fields(0)))
-    val q: Fielder = parse_element (element (cls, fields(1)))
-    val Terminal: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val phase: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val q: Fielder = parse_element (element (cls, fields(2)))
+    val Terminal: Fielder = parse_attribute (attribute (cls, fields(3)))
 
     def parse (context: Context): SvPowerFlow =
     {
@@ -251,8 +264,9 @@ extends
         val ret = SvPowerFlow (
             StateVariable.parse (context),
             toDouble (mask (p (), 0)),
-            toDouble (mask (q (), 1)),
-            mask (Terminal (), 2)
+            mask (phase (), 1),
+            toDouble (mask (q (), 2)),
+            mask (Terminal (), 3)
         )
         ret.bitfields = bitfields
         ret
@@ -263,7 +277,9 @@ extends
  * State variable for the number of sections in service for a shunt compensator.
  *
  * @param sup [[ch.ninecode.model.StateVariable StateVariable]] Reference to the superclass object.
- * @param sections The number of sections in service as a continous variable.
+ * @param phase The terminal phase at which the connection is applied.
+ *        If missing, the injection is assumed to be balanced among non-neutral phases.
+ * @param sections The number of sections in service as a continuous variable.
  *        To get integer value scale with ShuntCompensator.bPerSection.
  * @param ShuntCompensator [[ch.ninecode.model.ShuntCompensator ShuntCompensator]] The shunt compensator for which the state applies.
  * @group StateVariables
@@ -273,6 +289,7 @@ extends
 case class SvShuntCompensatorSections
 (
     override val sup: StateVariable,
+    phase: String,
     sections: Double,
     ShuntCompensator: String
 )
@@ -282,7 +299,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, null) }
+    def this () = { this (null, null, 0.0, null) }
     /**
      * Return the superclass object.
      *
@@ -307,8 +324,9 @@ extends
         implicit val clz: String = SvShuntCompensatorSections.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (SvShuntCompensatorSections.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (SvShuntCompensatorSections.fields (position), value)
-        emitelem (0, sections)
-        emitattr (1, ShuntCompensator)
+        emitattr (0, phase)
+        emitelem (1, sections)
+        emitattr (2, ShuntCompensator)
         s.toString
     }
     override def export: String =
@@ -322,14 +340,16 @@ extends
     Parseable[SvShuntCompensatorSections]
 {
     override val fields: Array[String] = Array[String] (
+        "phase",
         "sections",
         "ShuntCompensator"
     )
     override val relations: List[Relationship] = List (
-        Relationship ("ShuntCompensator", "ShuntCompensator", "1", "0..1")
+        Relationship ("ShuntCompensator", "ShuntCompensator", "1", "0..*")
     )
-    val sections: Fielder = parse_element (element (cls, fields(0)))
-    val ShuntCompensator: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val phase: Fielder = parse_attribute (attribute (cls, fields(0)))
+    val sections: Fielder = parse_element (element (cls, fields(1)))
+    val ShuntCompensator: Fielder = parse_attribute (attribute (cls, fields(2)))
 
     def parse (context: Context): SvShuntCompensatorSections =
     {
@@ -337,8 +357,9 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = SvShuntCompensatorSections (
             StateVariable.parse (context),
-            toDouble (mask (sections (), 0)),
-            mask (ShuntCompensator (), 1)
+            mask (phase (), 0),
+            toDouble (mask (sections (), 1)),
+            mask (ShuntCompensator (), 2)
         )
         ret.bitfields = bitfields
         ret
@@ -350,6 +371,9 @@ extends
  *
  * @param sup [[ch.ninecode.model.StateVariable StateVariable]] Reference to the superclass object.
  * @param inService The in service status as a result of topology processing.
+ *        It indicates if the equipment is considered as energized by the power flow. It reflects if the equipment is connected within a solvable island.  It does not necessarily reflect whether or not the island was solved by the power flow.
+ * @param phase The individual phase status.
+ *        If the attribute is unspecified, then three phase model is assumed.
  * @param ConductingEquipment [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] The conducting equipment associated with the status state variable.
  * @group StateVariables
  * @groupname StateVariables Package StateVariables
@@ -359,6 +383,7 @@ case class SvStatus
 (
     override val sup: StateVariable,
     inService: Boolean,
+    phase: String,
     ConductingEquipment: String
 )
 extends
@@ -367,7 +392,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, false, null) }
+    def this () = { this (null, false, null, null) }
     /**
      * Return the superclass object.
      *
@@ -393,7 +418,8 @@ extends
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (SvStatus.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (SvStatus.fields (position), value)
         emitelem (0, inService)
-        emitattr (1, ConductingEquipment)
+        emitattr (1, phase)
+        emitattr (2, ConductingEquipment)
         s.toString
     }
     override def export: String =
@@ -408,13 +434,15 @@ extends
 {
     override val fields: Array[String] = Array[String] (
         "inService",
+        "phase",
         "ConductingEquipment"
     )
     override val relations: List[Relationship] = List (
-        Relationship ("ConductingEquipment", "ConductingEquipment", "1", "0..1")
+        Relationship ("ConductingEquipment", "ConductingEquipment", "1", "0..*")
     )
     val inService: Fielder = parse_element (element (cls, fields(0)))
-    val ConductingEquipment: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val phase: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val ConductingEquipment: Fielder = parse_attribute (attribute (cls, fields(2)))
 
     def parse (context: Context): SvStatus =
     {
@@ -423,7 +451,100 @@ extends
         val ret = SvStatus (
             StateVariable.parse (context),
             toBoolean (mask (inService (), 0)),
-            mask (ConductingEquipment (), 1)
+            mask (phase (), 1),
+            mask (ConductingEquipment (), 2)
+        )
+        ret.bitfields = bitfields
+        ret
+    }
+}
+
+/**
+ * State variable for switch.
+ *
+ * @param sup [[ch.ninecode.model.StateVariable StateVariable]] Reference to the superclass object.
+ * @param open The attribute tells if the computed state of the switch is considered open.
+ * @param phase The terminal phase at which the connection is applied.
+ *        If missing, the injection is assumed to be balanced among non-neutral phases.
+ * @param Switch [[ch.ninecode.model.Switch Switch]] The switch associated with the switch state.
+ * @group StateVariables
+ * @groupname StateVariables Package StateVariables
+ * @groupdesc StateVariables State variables for analysis solutions such as powerflow.
+ */
+case class SvSwitch
+(
+    override val sup: StateVariable,
+    open: Boolean,
+    phase: String,
+    Switch: String
+)
+extends
+    Element
+{
+    /**
+     * Zero args constructor.
+     */
+    def this () = { this (null, false, null, null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def StateVariable: StateVariable = sup.asInstanceOf[StateVariable]
+    override def copy (): Row = { clone ().asInstanceOf[SvSwitch] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = SvSwitch.cls
+        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (SvSwitch.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (SvSwitch.fields (position), value)
+        emitelem (0, open)
+        emitattr (1, phase)
+        emitattr (2, Switch)
+        s.toString
+    }
+    override def export: String =
+    {
+        "\t<cim:SvSwitch rdf:ID=\"%s\">\n%s\t</cim:SvSwitch>".format (id, export_fields)
+    }
+}
+
+object SvSwitch
+extends
+    Parseable[SvSwitch]
+{
+    override val fields: Array[String] = Array[String] (
+        "open",
+        "phase",
+        "Switch"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("Switch", "Switch", "1", "0..*")
+    )
+    val open: Fielder = parse_element (element (cls, fields(0)))
+    val phase: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val Switch: Fielder = parse_attribute (attribute (cls, fields(2)))
+
+    def parse (context: Context): SvSwitch =
+    {
+        implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
+        val ret = SvSwitch (
+            StateVariable.parse (context),
+            toBoolean (mask (open (), 0)),
+            mask (phase (), 1),
+            mask (Switch (), 2)
         )
         ret.bitfields = bitfields
         ret
@@ -432,8 +553,6 @@ extends
 
 /**
  * State variable for transformer tap step.
- *
- * This class is to be used for taps of LTC (load tap changing) transformers, not fixed tap transformers.
  *
  * @param sup [[ch.ninecode.model.StateVariable StateVariable]] Reference to the superclass object.
  * @param position The floating point tap position.
@@ -523,7 +642,9 @@ extends
  *
  * @param sup [[ch.ninecode.model.StateVariable StateVariable]] Reference to the superclass object.
  * @param angle The voltage angle of the topological node complex voltage with respect to system reference.
- * @param v The voltage magnitude of the topological node.
+ * @param phase If specified the voltage is the line to ground voltage of the individual phase.
+ *        If unspecified, then the voltage is assumed balanced.
+ * @param v The voltage magnitude at the topological node.
  * @param TopologicalNode [[ch.ninecode.model.TopologicalNode TopologicalNode]] The topological node associated with the voltage state.
  * @group StateVariables
  * @groupname StateVariables Package StateVariables
@@ -533,6 +654,7 @@ case class SvVoltage
 (
     override val sup: StateVariable,
     angle: Double,
+    phase: String,
     v: Double,
     TopologicalNode: String
 )
@@ -542,7 +664,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, 0.0, null) }
+    def this () = { this (null, 0.0, null, 0.0, null) }
     /**
      * Return the superclass object.
      *
@@ -568,8 +690,9 @@ extends
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (SvVoltage.fields (position), value)
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (SvVoltage.fields (position), value)
         emitelem (0, angle)
-        emitelem (1, v)
-        emitattr (2, TopologicalNode)
+        emitattr (1, phase)
+        emitelem (2, v)
+        emitattr (3, TopologicalNode)
         s.toString
     }
     override def export: String =
@@ -584,15 +707,17 @@ extends
 {
     override val fields: Array[String] = Array[String] (
         "angle",
+        "phase",
         "v",
         "TopologicalNode"
     )
     override val relations: List[Relationship] = List (
-        Relationship ("TopologicalNode", "TopologicalNode", "1", "0..1")
+        Relationship ("TopologicalNode", "TopologicalNode", "1", "0..*")
     )
     val angle: Fielder = parse_element (element (cls, fields(0)))
-    val v: Fielder = parse_element (element (cls, fields(1)))
-    val TopologicalNode: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val phase: Fielder = parse_attribute (attribute (cls, fields(1)))
+    val v: Fielder = parse_element (element (cls, fields(2)))
+    val TopologicalNode: Fielder = parse_attribute (attribute (cls, fields(3)))
 
     def parse (context: Context): SvVoltage =
     {
@@ -601,8 +726,9 @@ extends
         val ret = SvVoltage (
             StateVariable.parse (context),
             toDouble (mask (angle (), 0)),
-            toDouble (mask (v (), 1)),
-            mask (TopologicalNode (), 2)
+            mask (phase (), 1),
+            toDouble (mask (v (), 2)),
+            mask (TopologicalNode (), 3)
         )
         ret.bitfields = bitfields
         ret
@@ -619,6 +745,7 @@ private[ninecode] object _StateVariables
             SvPowerFlow.register,
             SvShuntCompensatorSections.register,
             SvStatus.register,
+            SvSwitch.register,
             SvTapStep.register,
             SvVoltage.register
         )

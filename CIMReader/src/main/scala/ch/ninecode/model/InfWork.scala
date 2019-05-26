@@ -413,121 +413,6 @@ extends
 }
 
 /**
- * Compatible unit for various types of assets such as transformers switches, substation fences, poles, etc..
- *
- * @param sup [[ch.ninecode.model.WorkIdentifiedObject WorkIdentifiedObject]] Reference to the superclass object.
- * @param quantity Quantity of the type asset within the CU.
- * @param status <em>undocumented</em>
- * @param typeAssetCode The code for this type of asset.
- * @param CompatibleUnits [[ch.ninecode.model.CompatibleUnit CompatibleUnit]] <em>undocumented</em>
- * @param TypeAsset [[ch.ninecode.model.GenericAssetModelOrMaterial GenericAssetModelOrMaterial]] <em>undocumented</em>
- * @group InfWork
- * @groupname InfWork Package InfWork
- * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"The Work package is used to define classes related to work. There are several different aspects of work.
-The Work Initiation (Work, Project, Request).
-The Work Design package is used for managing designs (CompatibleUnit, Design, DesignLocation, WorkTask).
-The Work Schedule package is used for the scheduling and coordination of work (AccessPermit, MaterialItem, OneCallRequest, Regulation).
-The Work Closing package is used for tracking costs of work (CostType, LaborItem, WorkCostDetail, VehicleItem).
-The Work Standards package is used for the definition of compatible units (CULaborItem, CUVehicleItem, CUGroup).
-This package is used for inspection and maintenance (InspectionDataSet, Procedure).
-The WorkService package defines Appointment class".
- */
-case class CUAsset
-(
-    override val sup: WorkIdentifiedObject,
-    quantity: String,
-    status: String,
-    typeAssetCode: String,
-    CompatibleUnits: List[String],
-    TypeAsset: String
-)
-extends
-    Element
-{
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, null, null, null, List(), null) }
-    /**
-     * Return the superclass object.
-     *
-     * @return The typed superclass nested object.
-     * @group Hierarchy
-     * @groupname Hierarchy Class Hierarchy Related
-     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
-     */
-    def WorkIdentifiedObject: WorkIdentifiedObject = sup.asInstanceOf[WorkIdentifiedObject]
-    override def copy (): Row = { clone ().asInstanceOf[CUAsset] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
-        implicit val clz: String = CUAsset.cls
-        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (CUAsset.fields (position), value)
-        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (CUAsset.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (CUAsset.fields (position), x))
-        emitattr (0, quantity)
-        emitattr (1, status)
-        emitelem (2, typeAssetCode)
-        emitattrs (3, CompatibleUnits)
-        emitattr (4, TypeAsset)
-        s.toString
-    }
-    override def export: String =
-    {
-        "\t<cim:CUAsset rdf:ID=\"%s\">\n%s\t</cim:CUAsset>".format (id, export_fields)
-    }
-}
-
-object CUAsset
-extends
-    Parseable[CUAsset]
-{
-    override val fields: Array[String] = Array[String] (
-        "quantity",
-        "status",
-        "typeAssetCode",
-        "CompatibleUnits",
-        "TypeAsset"
-    )
-    override val relations: List[Relationship] = List (
-        Relationship ("CompatibleUnits", "CompatibleUnit", "0..*", "0..*"),
-        Relationship ("TypeAsset", "GenericAssetModelOrMaterial", "0..1", "0..1")
-    )
-    val quantity: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val status: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val typeAssetCode: Fielder = parse_element (element (cls, fields(2)))
-    val CompatibleUnits: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
-    val TypeAsset: Fielder = parse_attribute (attribute (cls, fields(4)))
-
-    def parse (context: Context): CUAsset =
-    {
-        implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
-        val ret = CUAsset (
-            WorkIdentifiedObject.parse (context),
-            mask (quantity (), 0),
-            mask (status (), 1),
-            mask (typeAssetCode (), 2),
-            masks (CompatibleUnits (), 3),
-            mask (TypeAsset (), 4)
-        )
-        ret.bitfields = bitfields
-        ret
-    }
-}
-
-/**
  * Compatible unit contractor item.
  *
  * @param sup [[ch.ninecode.model.WorkIdentifiedObject WorkIdentifiedObject]] Reference to the superclass object.
@@ -1113,7 +998,7 @@ extends
  * @param rate Standard usage rate for the type of vehicle.
  * @param status <em>undocumented</em>
  * @param CompatibleUnits [[ch.ninecode.model.CompatibleUnit CompatibleUnit]] <em>undocumented</em>
- * @param TypeAsset [[ch.ninecode.model.GenericAssetModelOrMaterial GenericAssetModelOrMaterial]] <em>undocumented</em>
+ * @param TypeAsset [[ch.ninecode.model.WorkAsset WorkAsset]] <em>undocumented</em>
  * @group InfWork
  * @groupname InfWork Package InfWork
  * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
@@ -1195,7 +1080,7 @@ extends
     )
     override val relations: List[Relationship] = List (
         Relationship ("CompatibleUnits", "CompatibleUnit", "0..*", "0..*"),
-        Relationship ("TypeAsset", "GenericAssetModelOrMaterial", "0..1", "0..1")
+        Relationship ("TypeAsset", "WorkAsset", "0..1", "0..1")
     )
     val equipCode: Fielder = parse_element (element (cls, fields(0)))
     val rate: Fielder = parse_element (element (cls, fields(1)))
@@ -1355,7 +1240,6 @@ extends
  * @param estCost Estimated total cost for perfoming CU.
  * @param quantity The quantity, unit of measure, and multiplier at the CU level that applies to the materials.
  * @param CUAllowableAction [[ch.ninecode.model.CUAllowableAction CUAllowableAction]] <em>undocumented</em>
- * @param CUAssets [[ch.ninecode.model.CUAsset CUAsset]] <em>undocumented</em>
  * @param CUContractorItems [[ch.ninecode.model.CUContractorItem CUContractorItem]] <em>undocumented</em>
  * @param CUGroup [[ch.ninecode.model.CUGroup CUGroup]] <em>undocumented</em>
  * @param CULaborItems [[ch.ninecode.model.CULaborItem CULaborItem]] <em>undocumented</em>
@@ -1363,6 +1247,7 @@ extends
  * @param CUWorkEquipmentItems [[ch.ninecode.model.CUWorkEquipmentItem CUWorkEquipmentItem]] <em>undocumented</em>
  * @param CostType [[ch.ninecode.model.CostType CostType]] <em>undocumented</em>
  * @param DesignLocationCUs [[ch.ninecode.model.DesignLocationCU DesignLocationCU]] <em>undocumented</em>
+ * @param GenericAssetModel [[ch.ninecode.model.CatalogAssetType CatalogAssetType]] <em>undocumented</em>
  * @param Procedures [[ch.ninecode.model.Procedure Procedure]] <em>undocumented</em>
  * @param PropertyUnit [[ch.ninecode.model.PropertyUnit PropertyUnit]] <em>undocumented</em>
  * @group InfWork
@@ -1385,7 +1270,6 @@ case class CompatibleUnit
     estCost: Double,
     quantity: String,
     CUAllowableAction: String,
-    CUAssets: List[String],
     CUContractorItems: List[String],
     CUGroup: String,
     CULaborItems: List[String],
@@ -1393,6 +1277,7 @@ case class CompatibleUnit
     CUWorkEquipmentItems: List[String],
     CostType: String,
     DesignLocationCUs: List[String],
+    GenericAssetModel: String,
     Procedures: List[String],
     PropertyUnit: String
 )
@@ -1402,7 +1287,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, null, null, List(), List(), null, List(), List(), List(), null, List(), List(), null) }
+    def this () = { this (null, 0.0, null, null, List(), null, List(), List(), List(), null, List(), null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -1431,14 +1316,14 @@ extends
         emitelem (0, estCost)
         emitelem (1, quantity)
         emitattr (2, CUAllowableAction)
-        emitattrs (3, CUAssets)
-        emitattrs (4, CUContractorItems)
-        emitattr (5, CUGroup)
-        emitattrs (6, CULaborItems)
-        emitattrs (7, CUMaterialItems)
-        emitattrs (8, CUWorkEquipmentItems)
-        emitattr (9, CostType)
-        emitattrs (10, DesignLocationCUs)
+        emitattrs (3, CUContractorItems)
+        emitattr (4, CUGroup)
+        emitattrs (5, CULaborItems)
+        emitattrs (6, CUMaterialItems)
+        emitattrs (7, CUWorkEquipmentItems)
+        emitattr (8, CostType)
+        emitattrs (9, DesignLocationCUs)
+        emitattr (10, GenericAssetModel)
         emitattrs (11, Procedures)
         emitattr (12, PropertyUnit)
         s.toString
@@ -1457,7 +1342,6 @@ extends
         "estCost",
         "quantity",
         "CUAllowableAction",
-        "CUAssets",
         "CUContractorItems",
         "CUGroup",
         "CULaborItems",
@@ -1465,12 +1349,12 @@ extends
         "CUWorkEquipmentItems",
         "CostType",
         "DesignLocationCUs",
+        "GenericAssetModel",
         "Procedures",
         "PropertyUnit"
     )
     override val relations: List[Relationship] = List (
         Relationship ("CUAllowableAction", "CUAllowableAction", "0..1", "0..*"),
-        Relationship ("CUAssets", "CUAsset", "0..*", "0..*"),
         Relationship ("CUContractorItems", "CUContractorItem", "0..*", "0..*"),
         Relationship ("CUGroup", "CUGroup", "0..1", "0..*"),
         Relationship ("CULaborItems", "CULaborItem", "0..*", "0..*"),
@@ -1478,20 +1362,21 @@ extends
         Relationship ("CUWorkEquipmentItems", "CUWorkEquipmentItem", "0..*", "0..*"),
         Relationship ("CostType", "CostType", "0..1", "0..*"),
         Relationship ("DesignLocationCUs", "DesignLocationCU", "0..*", "0..*"),
+        Relationship ("GenericAssetModel", "CatalogAssetType", "0..1", "0..*"),
         Relationship ("Procedures", "Procedure", "0..*", "0..*"),
         Relationship ("PropertyUnit", "PropertyUnit", "0..1", "0..*")
     )
     val estCost: Fielder = parse_element (element (cls, fields(0)))
     val quantity: Fielder = parse_element (element (cls, fields(1)))
     val CUAllowableAction: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val CUAssets: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
-    val CUContractorItems: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
-    val CUGroup: Fielder = parse_attribute (attribute (cls, fields(5)))
-    val CULaborItems: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
-    val CUMaterialItems: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
-    val CUWorkEquipmentItems: FielderMultiple = parse_attributes (attribute (cls, fields(8)))
-    val CostType: Fielder = parse_attribute (attribute (cls, fields(9)))
-    val DesignLocationCUs: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
+    val CUContractorItems: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
+    val CUGroup: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val CULaborItems: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
+    val CUMaterialItems: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
+    val CUWorkEquipmentItems: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
+    val CostType: Fielder = parse_attribute (attribute (cls, fields(8)))
+    val DesignLocationCUs: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
+    val GenericAssetModel: Fielder = parse_attribute (attribute (cls, fields(10)))
     val Procedures: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
     val PropertyUnit: Fielder = parse_attribute (attribute (cls, fields(12)))
 
@@ -1504,14 +1389,14 @@ extends
             toDouble (mask (estCost (), 0)),
             mask (quantity (), 1),
             mask (CUAllowableAction (), 2),
-            masks (CUAssets (), 3),
-            masks (CUContractorItems (), 4),
-            mask (CUGroup (), 5),
-            masks (CULaborItems (), 6),
-            masks (CUMaterialItems (), 7),
-            masks (CUWorkEquipmentItems (), 8),
-            mask (CostType (), 9),
-            masks (DesignLocationCUs (), 10),
+            masks (CUContractorItems (), 3),
+            mask (CUGroup (), 4),
+            masks (CULaborItems (), 5),
+            masks (CUMaterialItems (), 6),
+            masks (CUWorkEquipmentItems (), 7),
+            mask (CostType (), 8),
+            masks (DesignLocationCUs (), 9),
+            mask (GenericAssetModel (), 10),
             masks (Procedures (), 11),
             mask (PropertyUnit (), 12)
         )
@@ -4583,91 +4468,6 @@ extends
     }
 }
 
-/**
- * A type of ActivityRecord that records information about the status of an item, such as a Work or WorkTask, at a point in time.
- *
- * @param sup [[ch.ninecode.model.ActivityRecord ActivityRecord]] Reference to the superclass object.
- * @param percentComplete Estimated percentage of completion of this individual work task or overall work order.
- * @group InfWork
- * @groupname InfWork Package InfWork
- * @groupdesc InfWork The package covers all types of work, including inspection, maintenance, repair, restoration, and construction. It covers the full life cycle including request, initiate, track and record work. Standardized designs (compatible units) are used where possible.
-
-TODO: The following has been copied from a very old version of draft Part 11, so the references are wrong, but we store the knowledge here to reuse later:
-"The Work package is used to define classes related to work. There are several different aspects of work.
-The Work Initiation (Work, Project, Request).
-The Work Design package is used for managing designs (CompatibleUnit, Design, DesignLocation, WorkTask).
-The Work Schedule package is used for the scheduling and coordination of work (AccessPermit, MaterialItem, OneCallRequest, Regulation).
-The Work Closing package is used for tracking costs of work (CostType, LaborItem, WorkCostDetail, VehicleItem).
-The Work Standards package is used for the definition of compatible units (CULaborItem, CUVehicleItem, CUGroup).
-This package is used for inspection and maintenance (InspectionDataSet, Procedure).
-The WorkService package defines Appointment class".
- */
-case class WorkStatusEntry
-(
-    override val sup: ActivityRecord,
-    percentComplete: Double
-)
-extends
-    Element
-{
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null, 0.0) }
-    /**
-     * Return the superclass object.
-     *
-     * @return The typed superclass nested object.
-     * @group Hierarchy
-     * @groupname Hierarchy Class Hierarchy Related
-     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
-     */
-    def ActivityRecord: ActivityRecord = sup.asInstanceOf[ActivityRecord]
-    override def copy (): Row = { clone ().asInstanceOf[WorkStatusEntry] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
-        implicit val clz: String = WorkStatusEntry.cls
-        def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (WorkStatusEntry.fields (position), value)
-        emitelem (0, percentComplete)
-        s.toString
-    }
-    override def export: String =
-    {
-        "\t<cim:WorkStatusEntry rdf:ID=\"%s\">\n%s\t</cim:WorkStatusEntry>".format (id, export_fields)
-    }
-}
-
-object WorkStatusEntry
-extends
-    Parseable[WorkStatusEntry]
-{
-    override val fields: Array[String] = Array[String] (
-        "percentComplete"
-    )
-    val percentComplete: Fielder = parse_element (element (cls, fields(0)))
-
-    def parse (context: Context): WorkStatusEntry =
-    {
-        implicit val ctx: Context = context
-        implicit var bitfields: Array[Int] = Array(0)
-        val ret = WorkStatusEntry (
-            ActivityRecord.parse (context),
-            toDouble (mask (percentComplete (), 0))
-        )
-        ret.bitfields = bitfields
-        ret
-    }
-}
-
 private[ninecode] object _InfWork
 {
     def register: List[ClassInfo] =
@@ -4677,7 +4477,6 @@ private[ninecode] object _InfWork
             Assignment.register,
             BusinessCase.register,
             CUAllowableAction.register,
-            CUAsset.register,
             CUContractorItem.register,
             CUGroup.register,
             CULaborCode.register,
@@ -4710,8 +4509,7 @@ private[ninecode] object _InfWork
             WorkCostSummary.register,
             WorkDocument.register,
             WorkFlowStep.register,
-            WorkIdentifiedObject.register,
-            WorkStatusEntry.register
+            WorkIdentifiedObject.register
         )
     }
 }

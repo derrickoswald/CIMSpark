@@ -10,7 +10,7 @@ import ch.ninecode.cim.Relationship
 /**
  * AuxiliaryEquipment describe equipment that is not performing any primary functions but support for the equipment performing the primary function.
  *
- * AuxiliaryEquipment is attached to primary eqipment via an association with Terminal.
+ * AuxiliaryEquipment is attached to primary equipment via an association with Terminal.
  *
  * @param sup [[ch.ninecode.model.Equipment Equipment]] Reference to the superclass object.
  * @param Terminal [[ch.ninecode.model.Terminal Terminal]] The Terminal at the equipment where the AuxiliaryEquipment is attached.
@@ -247,6 +247,68 @@ extends
         implicit val ctx: Context = context
         val ret = FaultIndicator (
             AuxiliaryEquipment.parse (context)
+        )
+        ret
+    }
+}
+
+/**
+ * Represents a two terminal and power conducting device of negligible impedance that senses flow through the device.
+ *
+ * @param sup [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] Reference to the superclass object.
+ * @group AuxiliaryEquipment
+ * @groupname AuxiliaryEquipment Package AuxiliaryEquipment
+ * @groupdesc AuxiliaryEquipment Contains equipment which is not normal conducting equipment such as sensors, fault locators, and surge protectors.  These devices do not define power carrying topological connections as conducting equipment, but are associated to terminals of other conducting equipment.
+ */
+case class FlowSensor
+(
+    override val sup: ConductingEquipment
+)
+extends
+    Element
+{
+    /**
+     * Zero args constructor.
+     */
+    def this () = { this (null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def ConductingEquipment: ConductingEquipment = sup.asInstanceOf[ConductingEquipment]
+    override def copy (): Row = { clone ().asInstanceOf[FlowSensor] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        sup.export_fields
+    }
+    override def export: String =
+    {
+        "\t<cim:FlowSensor rdf:ID=\"%s\">\n%s\t</cim:FlowSensor>".format (id, export_fields)
+    }
+}
+
+object FlowSensor
+extends
+    Parseable[FlowSensor]
+{
+
+    def parse (context: Context): FlowSensor =
+    {
+        implicit val ctx: Context = context
+        val ret = FlowSensor (
+            ConductingEquipment.parse (context)
         )
         ret
     }
@@ -604,6 +666,7 @@ private[ninecode] object _AuxiliaryEquipment
             AuxiliaryEquipment.register,
             CurrentTransformer.register,
             FaultIndicator.register,
+            FlowSensor.register,
             PostLineSensor.register,
             PotentialTransformer.register,
             Sensor.register,

@@ -11,10 +11,10 @@ import ch.ninecode.cim.Relationship
  * Mechanical load model type 1.
  *
  * @param sup [[ch.ninecode.model.MechanicalLoadDynamics MechanicalLoadDynamics]] Reference to the superclass object.
- * @param a Speed squared coefficient (a).
- * @param b Speed coefficient (b).
- * @param d Speed to the exponent coefficient (d).
- * @param e Exponent (e).
+ * @param a Speed squared coefficient (<i>a</i>).
+ * @param b Speed coefficient (<i>b</i>).
+ * @param d Speed to the exponent coefficient (<i>d</i>).
+ * @param e Exponent (<i>e</i>).
  * @group MechanicalLoadDynamics
  * @groupname MechanicalLoadDynamics Package MechanicalLoadDynamics
  * @groupdesc MechanicalLoadDynamics A mechanical load represents the variation in a motor's shaft torque or power as a function of shaft speed.
@@ -101,11 +101,13 @@ extends
 }
 
 /**
- * Mechanical load function block whose behavior is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
+ * Mechanical load function block whose behaviour is described by reference to a standard model <font color="#0f0f0f">or by definition of a user-defined model.</font>
  *
  * @param sup [[ch.ninecode.model.DynamicsFunctionBlock DynamicsFunctionBlock]] Reference to the superclass object.
  * @param AsynchronousMachineDynamics [[ch.ninecode.model.AsynchronousMachineDynamics AsynchronousMachineDynamics]] Asynchronous machine model with which this mechanical load model is associated.
+ *        MechanicalLoadDynamics shall have either an association to SynchronousMachineDynamics or to AsynchronousMachineDynamics.
  * @param SynchronousMachineDynamics [[ch.ninecode.model.SynchronousMachineDynamics SynchronousMachineDynamics]] Synchronous machine model with which this mechanical load model is associated.
+ *        MechanicalLoadDynamics shall have either an association to SynchronousMachineDynamics or AsynchronousMachineDyanmics.
  * @group MechanicalLoadDynamics
  * @groupname MechanicalLoadDynamics Package MechanicalLoadDynamics
  * @groupdesc MechanicalLoadDynamics A mechanical load represents the variation in a motor's shaft torque or power as a function of shaft speed.

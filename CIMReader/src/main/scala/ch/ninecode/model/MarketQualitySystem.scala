@@ -10,7 +10,7 @@ import ch.ninecode.cim.Relationship
 /**
  * Models Market clearing results.
  *
- * Indicates market horizon, interval based. Used by a market quality system for billing and settlement purposes
+ * Indicates market horizon, interval based. Used by a market quality system for billing and settlement purposes.
  *
  * @param sup Reference to the superclass object.
  * @param intervalStartTime <em>undocumented</em>
@@ -107,7 +107,7 @@ extends
 }
 
 /**
- * Models Market clearing results in terms of price and MW values
+ * Models Market clearing results in terms of price and MW values.
  *
  * @param sup Reference to the superclass object.
  * @param aggregateType "1" --  "Detail",
@@ -230,7 +230,7 @@ extends
 }
 
 /**
- * Models Market clearing results for Auxillary costs
+ * Models Market clearing results for Auxiliary costs.
  *
  * @param sup Reference to the superclass object.
  * @param intervalStartTime <em>undocumented</em>
@@ -334,7 +334,7 @@ extends
 }
 
 /**
- * Models Auxillary Values
+ * Models Auxiliary Values.
  *
  * @param sup Reference to the superclass object.
  * @param RegisteredGenerator [[ch.ninecode.model.RegisteredGenerator RegisteredGenerator]] <em>undocumented</em>
@@ -419,7 +419,7 @@ extends
 }
 
 /**
- * Models Auxillary Values
+ * Models Auxiliary Values.
  *
  * @param sup [[ch.ninecode.model.AuxiliaryObject AuxiliaryObject]] Reference to the superclass object.
  * @param availUndispatchedQ <em>undocumented</em>
@@ -560,7 +560,7 @@ extends
 }
 
 /**
- * Model Expected Energy  from Market Clearing, interval based
+ * Model Expected Energy from Market Clearing, interval based.
  *
  * @param sup Reference to the superclass object.
  * @param intervalStartTime <em>undocumented</em>
@@ -657,7 +657,7 @@ extends
 }
 
 /**
- * Model Expected Energy  from Market Clearing
+ * Model Expected Energy from Market Clearing.
  *
  * @param sup Reference to the superclass object.
  * @param energyTypeCode <em>undocumented</em>
@@ -755,7 +755,7 @@ extends
 }
 
 /**
- * Models 5-Minutes Auxillary Data
+ * Models 5-Minutes Auxiliary Data.
  *
  * @param sup Reference to the superclass object.
  * @param intervalStartTime <em>undocumented</em>
@@ -852,7 +852,7 @@ extends
 }
 
 /**
- * Models 10-Minutes Auxillary Data
+ * Models 10-Minutes Auxiliary Data.
  *
  * @param sup Reference to the superclass object.
  * @param intervalStartTime <em>undocumented</em>
@@ -949,7 +949,7 @@ extends
 }
 
 /**
- * Models prices at Trading Hubs, interval based
+ * Models prices at Trading Hubs, interval based.
  *
  * @param sup Reference to the superclass object.
  * @param intervalStartTime <em>undocumented</em>
@@ -1053,7 +1053,7 @@ extends
 }
 
 /**
- * Models prices at Trading Hubs
+ * Models prices at Trading Hubs.
  *
  * @param sup Reference to the superclass object.
  * @param price Utilizes the Market type.

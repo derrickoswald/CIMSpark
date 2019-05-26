@@ -1104,13 +1104,14 @@ extends
 /**
  * One of a sequence of intervals defined in terms of consumption quantity of a service such as electricity, water, gas, etc.
  *
- * It is typically used in association with TariffProfile to define the steps or blocks in a step tariff structure, where startValue simultaneously defines the entry value of this step and the closing value of the previous step. Where consumption is &gt;= startValue it falls within this interval and where consumption is &lt; startValue it falls within the previous interval.
+ * It is typically used in association with TariffProfile to define the steps or blocks in a step tariff structure, where startValue simultaneously defines the entry value of this step and the closing value of the previous step. Where consumption is >= startValue it falls within this interval and where consumption is < startValue it falls within the previous interval.
  *
  * @param sup Reference to the superclass object.
  * @param sequenceNumber A sequential reference that defines the identity of this interval and its relative position with respect to other intervals in a sequence of intervals.
  * @param startValue The lowest level of consumption that defines the starting point of this interval.
  *        The interval extends to the start of the next interval or until it is reset to the start of the first interval by TariffProfile.tariffCycle.
  * @param Charges [[ch.ninecode.model.Charge Charge]] All charges used to define this consumption tariff interval.
+ * @param ReadingType [[ch.ninecode.model.ReadingType ReadingType]] Reading type for 'startValue'.
  * @param TariffProfiles [[ch.ninecode.model.TariffProfile TariffProfile]] All tariff profiles defined by this consumption tariff interval.
  * @param TouTariffIntervals [[ch.ninecode.model.TimeTariffInterval TimeTariffInterval]] All time of use tariff intervals influenced by this consumption tariff interval.
  * @group PaymentMetering
@@ -1123,6 +1124,7 @@ case class ConsumptionTariffInterval
     sequenceNumber: Int,
     startValue: Double,
     Charges: List[String],
+    ReadingType: String,
     TariffProfiles: List[String],
     TouTariffIntervals: List[String]
 )
@@ -1132,7 +1134,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0, 0.0, List(), List(), List()) }
+    def this () = { this (null, 0, 0.0, List(), null, List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -1156,12 +1158,14 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = ConsumptionTariffInterval.cls
         def emitelem (position: Int, value: Any): Unit = if (mask (position)) emit_element (ConsumptionTariffInterval.fields (position), value)
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (ConsumptionTariffInterval.fields (position), value)
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (ConsumptionTariffInterval.fields (position), x))
         emitelem (0, sequenceNumber)
         emitelem (1, startValue)
         emitattrs (2, Charges)
-        emitattrs (3, TariffProfiles)
-        emitattrs (4, TouTariffIntervals)
+        emitattr (3, ReadingType)
+        emitattrs (4, TariffProfiles)
+        emitattrs (5, TouTariffIntervals)
         s.toString
     }
     override def export: String =
@@ -1178,19 +1182,22 @@ extends
         "sequenceNumber",
         "startValue",
         "Charges",
+        "ReadingType",
         "TariffProfiles",
         "TouTariffIntervals"
     )
     override val relations: List[Relationship] = List (
         Relationship ("Charges", "Charge", "0..*", "0..*"),
+        Relationship ("ReadingType", "ReadingType", "0..1", "0..*"),
         Relationship ("TariffProfiles", "TariffProfile", "0..*", "0..*"),
         Relationship ("TouTariffIntervals", "TimeTariffInterval", "0..*", "0..*")
     )
     val sequenceNumber: Fielder = parse_element (element (cls, fields(0)))
     val startValue: Fielder = parse_element (element (cls, fields(1)))
     val Charges: FielderMultiple = parse_attributes (attribute (cls, fields(2)))
-    val TariffProfiles: FielderMultiple = parse_attributes (attribute (cls, fields(3)))
-    val TouTariffIntervals: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val ReadingType: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val TariffProfiles: FielderMultiple = parse_attributes (attribute (cls, fields(4)))
+    val TouTariffIntervals: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
 
     def parse (context: Context): ConsumptionTariffInterval =
     {
@@ -1201,8 +1208,9 @@ extends
             toInteger (mask (sequenceNumber (), 0)),
             toDouble (mask (startValue (), 1)),
             masks (Charges (), 2),
-            masks (TariffProfiles (), 3),
-            masks (TouTariffIntervals (), 4)
+            mask (ReadingType (), 3),
+            masks (TariffProfiles (), 4),
+            masks (TouTariffIntervals (), 5)
         )
         ret.bitfields = bitfields
         ret

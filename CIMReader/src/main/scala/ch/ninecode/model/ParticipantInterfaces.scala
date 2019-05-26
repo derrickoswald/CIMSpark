@@ -188,7 +188,7 @@ extends
 }
 
 /**
- * Property for a particular attribute that contains name and value
+ * Property for a particular attribute that contains name and value.
  *
  * @param sup Reference to the superclass object.
  * @param propertyName <em>undocumented</em>
@@ -300,7 +300,6 @@ extends
  * @param MitigatedBidSegment [[ch.ninecode.model.MitigatedBidSegment MitigatedBidSegment]] <em>undocumented</em>
  * @param ProductBids [[ch.ninecode.model.ProductBid ProductBid]] A bid comprises one or more product bids of market products
  * @param RMRDetermination [[ch.ninecode.model.RMRDetermination RMRDetermination]] <em>undocumented</em>
- * @param SchedulingCoordinator [[ch.ninecode.model.SchedulingCoordinator SchedulingCoordinator]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
@@ -319,8 +318,7 @@ case class Bid
     MitigatedBid: List[String],
     MitigatedBidSegment: List[String],
     ProductBids: List[String],
-    RMRDetermination: List[String],
-    SchedulingCoordinator: String
+    RMRDetermination: List[String]
 )
 extends
     Element
@@ -328,7 +326,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null, List(), List(), null, null, List(), List(), List(), List(), null) }
+    def this () = { this (null, null, null, null, null, List(), List(), null, null, List(), List(), List(), List()) }
     /**
      * Return the superclass object.
      *
@@ -366,7 +364,6 @@ extends
         emitattrs (9, MitigatedBidSegment)
         emitattrs (10, ProductBids)
         emitattrs (11, RMRDetermination)
-        emitattr (12, SchedulingCoordinator)
         s.toString
     }
     override def export: String =
@@ -391,8 +388,7 @@ extends
         "MitigatedBid",
         "MitigatedBidSegment",
         "ProductBids",
-        "RMRDetermination",
-        "SchedulingCoordinator"
+        "RMRDetermination"
     )
     override val relations: List[Relationship] = List (
         Relationship ("ActionRequest", "ActionRequest", "1", "0..*"),
@@ -403,8 +399,7 @@ extends
         Relationship ("MitigatedBid", "MitigatedBid", "0..*", "0..1"),
         Relationship ("MitigatedBidSegment", "MitigatedBidSegment", "0..*", "1"),
         Relationship ("ProductBids", "ProductBid", "1..*", "1"),
-        Relationship ("RMRDetermination", "RMRDetermination", "0..*", "0..1"),
-        Relationship ("SchedulingCoordinator", "SchedulingCoordinator", "0..1", "0..*")
+        Relationship ("RMRDetermination", "RMRDetermination", "0..*", "0..1")
     )
     val marketType: Fielder = parse_attribute (attribute (cls, fields(0)))
     val startTime: Fielder = parse_element (element (cls, fields(1)))
@@ -418,7 +413,6 @@ extends
     val MitigatedBidSegment: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
     val ProductBids: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
     val RMRDetermination: FielderMultiple = parse_attributes (attribute (cls, fields(11)))
-    val SchedulingCoordinator: Fielder = parse_attribute (attribute (cls, fields(12)))
 
     def parse (context: Context): Bid =
     {
@@ -437,8 +431,7 @@ extends
             masks (MitigatedBid (), 8),
             masks (MitigatedBidSegment (), 9),
             masks (ProductBids (), 10),
-            masks (RMRDetermination (), 11),
-            mask (SchedulingCoordinator (), 12)
+            masks (RMRDetermination (), 11)
         )
         ret.bitfields = bitfields
         ret
@@ -446,7 +439,7 @@ extends
 }
 
 /**
- * This class allows SC to input different time intervals for distribution factors
+ * This class allows SC to input different time intervals for distribution factors.
  *
  * @param sup Reference to the superclass object.
  * @param timeIntervalEnd End of the time interval n which bid is valid (yyyy-mm-dd hh24: mi: ss)
@@ -545,7 +538,7 @@ extends
 }
 
 /**
- * This class represent the error information for a bid that is detected during bid validation
+ * This class represent the error information for a bid that is detected during bid validation.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param componentType <em>undocumented</em>
@@ -1675,7 +1668,7 @@ extends
 }
 
 /**
- * Response from registered resource acknowleging receipt of dispatch instructions
+ * Response from registered resource acknowledging receipt of dispatch instructions.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param acceptMW The accepted mw amount by the responder. aka response mw.
@@ -1899,7 +1892,7 @@ extends
 }
 
 /**
- * Offer to supply energy/ancillary services from a generating unit or resource
+ * Offer to supply energy/ancillary services from a generating unit or resource.
  *
  * @param sup [[ch.ninecode.model.ResourceBid ResourceBid]] Reference to the superclass object.
  * @param combinedCycleUnitOffer Will indicate if the unit is part of a CC offer or not
@@ -2206,7 +2199,7 @@ extends
 }
 
 /**
- * This class represents the inter tie bid
+ * This class represents the inter tie bid.
  *
  * @param sup [[ch.ninecode.model.ResourceBid ResourceBid]] Reference to the superclass object.
  * @param minHourlyBlock  The minimum hourly block for an Inter-Tie Resource supplied within the bid.
@@ -2299,7 +2292,7 @@ extends
 }
 
 /**
- * Response from an intertie resource acknowleging receipt of dispatch instructions
+ * Response from an intertie resource acknowledging receipt of dispatch instructions.
  *
  * @param sup Reference to the superclass object.
  * @param acceptMW The accepted mw amount by the responder. aka response mw.
@@ -2410,7 +2403,7 @@ extends
 }
 
 /**
- * Offer to supply energy/ancillary services from a load resource (participating load reduces consumption)
+ * Offer to supply energy/ancillary services from a load resource (participating load reduces consumption).
  *
  * @param sup [[ch.ninecode.model.ResourceBid ResourceBid]] Reference to the superclass object.
  * @param dropRampRate Maximum rate that load can be reduced (MW/minute)
@@ -2598,7 +2591,7 @@ extends
 }
 
 /**
- * Metered SubSystem Load Following Instruction
+ * Metered SubSystem Load Following Instruction.
  *
  * @param sup Reference to the superclass object.
  * @param endTime Instruction End Time
@@ -2708,7 +2701,6 @@ extends
  *
  * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param LoadBid [[ch.ninecode.model.LoadBid LoadBid]] <em>undocumented</em>
- * @param RegisteredLoad [[ch.ninecode.model.RegisteredLoad RegisteredLoad]] <em>undocumented</em>
  * @group ParticipantInterfaces
  * @groupname ParticipantInterfaces Package ParticipantInterfaces
  * @groupdesc ParticipantInterfaces Market participant interfaces for bids and trades.
@@ -2716,8 +2708,7 @@ extends
 case class LoadReductionPriceCurve
 (
     override val sup: Curve,
-    LoadBid: String,
-    RegisteredLoad: List[String]
+    LoadBid: String
 )
 extends
     Element
@@ -2725,7 +2716,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, List()) }
+    def this () = { this (null, null) }
     /**
      * Return the superclass object.
      *
@@ -2749,9 +2740,7 @@ extends
         implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
         implicit val clz: String = LoadReductionPriceCurve.cls
         def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (LoadReductionPriceCurve.fields (position), value)
-        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (LoadReductionPriceCurve.fields (position), x))
         emitattr (0, LoadBid)
-        emitattrs (1, RegisteredLoad)
         s.toString
     }
     override def export: String =
@@ -2765,15 +2754,12 @@ extends
     Parseable[LoadReductionPriceCurve]
 {
     override val fields: Array[String] = Array[String] (
-        "LoadBid",
-        "RegisteredLoad"
+        "LoadBid"
     )
     override val relations: List[Relationship] = List (
-        Relationship ("LoadBid", "LoadBid", "1", "0..*"),
-        Relationship ("RegisteredLoad", "RegisteredLoad", "0..*", "0..*")
+        Relationship ("LoadBid", "LoadBid", "1", "0..*")
     )
     val LoadBid: Fielder = parse_attribute (attribute (cls, fields(0)))
-    val RegisteredLoad: FielderMultiple = parse_attributes (attribute (cls, fields(1)))
 
     def parse (context: Context): LoadReductionPriceCurve =
     {
@@ -2781,8 +2767,7 @@ extends
         implicit var bitfields: Array[Int] = Array(0)
         val ret = LoadReductionPriceCurve (
             Curve.parse (context),
-            mask (LoadBid (), 0),
-            masks (RegisteredLoad (), 1)
+            mask (LoadBid (), 0)
         )
         ret.bitfields = bitfields
         ret
@@ -2790,9 +2775,9 @@ extends
 }
 
 /**
- * A Major Charge Group is the same as Invocie Type which provides the highest level of grouping for charge types configration.
+ * A Major Charge Group is the same as Invoice Type which provides the highest level of grouping for charge types configuration.
  *
- * Examples as Market, FERC, RMR,
+ * Examples: Market, FERC, RMR.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param effectiveDate <em>undocumented</em>
@@ -3540,7 +3525,7 @@ extends
 }
 
 /**
- * Ramp rate as a function of resource MW output
+ * Ramp rate as a function of resource MW output.
  *
  * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param condition condition for the ramp rate
@@ -3659,7 +3644,7 @@ extends
 }
 
 /**
- * Energy bid for generation, load, or virtual type for the whole of the market-trading period (i.e., one day in day ahead market or one hour in the real time market)
+ * Energy bid for generation, load, or virtual type for the whole of the market-trading period (i.e., one day in day ahead market or one hour in the real time market).
  *
  * @param sup [[ch.ninecode.model.Bid Bid]] Reference to the superclass object.
  * @param aggregationFlag Aggregation flag
@@ -4021,7 +4006,7 @@ extends
 }
 
 /**
- * Inter Scheduling Coordinator Trades to model financial trades which may impact settlement
+ * Inter Scheduling Coordinator Trades to model financial trades which may impact settlement.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param adjustedTradeQuantity The validated and current market accepted trade amount of a physical energy trade.
@@ -4473,7 +4458,7 @@ extends
 }
 
 /**
- * Bilateral or scheduled transactions for energy and ancillary services considered by market clearing process
+ * Bilateral or scheduled transactions for energy and ancillary services considered by market clearing process.
  *
  * @param sup [[ch.ninecode.model.Bid Bid]] Reference to the superclass object.
  * @param demandTransaction Set true if this is a demand transaction.

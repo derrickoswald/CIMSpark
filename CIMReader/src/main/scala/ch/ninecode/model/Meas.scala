@@ -272,7 +272,7 @@ extends
 }
 
 /**
- * This command reset the counter value to zero.
+ * This command resets the counter value to zero.
  *
  * @param sup [[ch.ninecode.model.Control Control]] Reference to the superclass object.
  * @param AccumulatorValue [[ch.ninecode.model.AccumulatorValue AccumulatorValue]] The accumulator value that is reset by the command.
@@ -356,7 +356,7 @@ extends
  * @param value The value to supervise.
  *        The value is positive.
  * @param Accumulator [[ch.ninecode.model.Accumulator Accumulator]] Measurement to which this value is connected.
- * @param AccumulatorReset [[ch.ninecode.model.AccumulatorReset AccumulatorReset]] The command that reset the accumulator value.
+ * @param AccumulatorReset [[ch.ninecode.model.AccumulatorReset AccumulatorReset]] The command that resets the accumulator value.
  * @group Meas
  * @groupname Meas Package Meas
  * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
@@ -1027,13 +1027,14 @@ extends
  *
  * It represents control outputs that are used to change the state in a process, e.g. close or open breaker, a set point value or a raise lower command.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IOPoint IOPoint]] Reference to the superclass object.
  * @param controlType Specifies the type of Control, e.g.
  *        BreakerOn/Off, GeneratorVoltageSetPoint, TieLineFlow etc. The ControlType.name shall be unique among all specified types and describe the type.
  * @param operationInProgress Indicates that a client is currently sending control commands that has not completed.
  * @param timeStamp The last time a control output was sent.
  * @param unitMultiplier The unit multiplier of the controlled quantity.
  * @param unitSymbol The unit of measure of the controlled quantity.
+ * @param ControlAction [[ch.ninecode.model.ControlAction ControlAction]] <em>undocumented</em>
  * @param PowerSystemResource [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Regulating device governed by this control output.
  * @param RemoteControl [[ch.ninecode.model.RemoteControl RemoteControl]] The remote point controlling the physical actuator.
  * @group Meas
@@ -1042,12 +1043,13 @@ extends
  */
 case class Control
 (
-    override val sup: IdentifiedObject,
+    override val sup: IOPoint,
     controlType: String,
     operationInProgress: Boolean,
     timeStamp: String,
     unitMultiplier: String,
     unitSymbol: String,
+    ControlAction: String,
     PowerSystemResource: String,
     RemoteControl: String
 )
@@ -1057,7 +1059,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, false, null, null, null, null, null) }
+    def this () = { this (null, null, false, null, null, null, null, null, null) }
     /**
      * Return the superclass object.
      *
@@ -1066,7 +1068,7 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
+    def IOPoint: IOPoint = sup.asInstanceOf[IOPoint]
     override def copy (): Row = { clone ().asInstanceOf[Control] }
     override def get (i: Int): Object =
     {
@@ -1087,8 +1089,9 @@ extends
         emitelem (2, timeStamp)
         emitattr (3, unitMultiplier)
         emitattr (4, unitSymbol)
-        emitattr (5, PowerSystemResource)
-        emitattr (6, RemoteControl)
+        emitattr (5, ControlAction)
+        emitattr (6, PowerSystemResource)
+        emitattr (7, RemoteControl)
         s.toString
     }
     override def export: String =
@@ -1107,10 +1110,12 @@ extends
         "timeStamp",
         "unitMultiplier",
         "unitSymbol",
+        "ControlAction",
         "PowerSystemResource",
         "RemoteControl"
     )
     override val relations: List[Relationship] = List (
+        Relationship ("ControlAction", "ControlAction", "0..1", "0..1"),
         Relationship ("PowerSystemResource", "PowerSystemResource", "0..1", "0..*"),
         Relationship ("RemoteControl", "RemoteControl", "0..1", "1")
     )
@@ -1119,22 +1124,24 @@ extends
     val timeStamp: Fielder = parse_element (element (cls, fields(2)))
     val unitMultiplier: Fielder = parse_attribute (attribute (cls, fields(3)))
     val unitSymbol: Fielder = parse_attribute (attribute (cls, fields(4)))
-    val PowerSystemResource: Fielder = parse_attribute (attribute (cls, fields(5)))
-    val RemoteControl: Fielder = parse_attribute (attribute (cls, fields(6)))
+    val ControlAction: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val PowerSystemResource: Fielder = parse_attribute (attribute (cls, fields(6)))
+    val RemoteControl: Fielder = parse_attribute (attribute (cls, fields(7)))
 
     def parse (context: Context): Control =
     {
         implicit val ctx: Context = context
         implicit var bitfields: Array[Int] = Array(0)
         val ret = Control (
-            IdentifiedObject.parse (context),
+            IOPoint.parse (context),
             mask (controlType (), 0),
             toBoolean (mask (operationInProgress (), 1)),
             mask (timeStamp (), 2),
             mask (unitMultiplier (), 3),
             mask (unitSymbol (), 4),
-            mask (PowerSystemResource (), 5),
-            mask (RemoteControl (), 6)
+            mask (ControlAction (), 5),
+            mask (PowerSystemResource (), 6),
+            mask (RemoteControl (), 7)
         )
         ret.bitfields = bitfields
         ret
@@ -1249,66 +1256,6 @@ extends
 }
 
 /**
-
- * @group Meas
- * @groupname Meas Package Meas
- * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
- */
-case class DiscreteCommand
-(
-    override val sup: Command
-)
-extends
-    Element
-{
-    /**
-     * Zero args constructor.
-     */
-    def this () = { this (null) }
-    /**
-     * Return the superclass object.
-     *
-     * @return The typed superclass nested object.
-     * @group Hierarchy
-     * @groupname Hierarchy Class Hierarchy Related
-     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
-     */
-    def Command: Command = sup.asInstanceOf[Command]
-    override def copy (): Row = { clone ().asInstanceOf[DiscreteCommand] }
-    override def get (i: Int): Object =
-    {
-        if (i < productArity)
-            productElement (i).asInstanceOf[AnyRef]
-        else
-            throw new IllegalArgumentException ("invalid property index " + i)
-    }
-    override def length: Int = productArity
-    override def export_fields: String =
-    {
-        sup.export_fields
-    }
-    override def export: String =
-    {
-        "\t<cim:DiscreteCommand rdf:ID=\"%s\">\n%s\t</cim:DiscreteCommand>".format (id, export_fields)
-    }
-}
-
-object DiscreteCommand
-extends
-    Parseable[DiscreteCommand]
-{
-
-    def parse (context: Context): DiscreteCommand =
-    {
-        implicit val ctx: Context = context
-        val ret = DiscreteCommand (
-            Command.parse (context)
-        )
-        ret
-    }
-}
-
-/**
  * DiscreteValue represents a discrete MeasurementValue.
  *
  * @param sup [[ch.ninecode.model.MeasurementValue MeasurementValue]] Reference to the superclass object.
@@ -1394,6 +1341,94 @@ extends
             toInteger (mask (value (), 0)),
             mask (Command (), 1),
             mask (Discrete (), 2)
+        )
+        ret.bitfields = bitfields
+        ret
+    }
+}
+
+/**
+ * The class describe a measurement or control value.
+ *
+ * The purpose is to enable having attributes and associations common for measurement and control.
+ *
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param BilateralToIOPoint [[ch.ninecode.model.ProvidedBilateralPoint ProvidedBilateralPoint]] Bilateral ICCP point for the measurement or control.
+ * @param IOPointSource [[ch.ninecode.model.IOPointSource IOPointSource]] Local merasurement value source for an ICCP point.
+ * @group Meas
+ * @groupname Meas Package Meas
+ * @groupdesc Meas Contains entities that describe dynamic measurement data exchanged between applications.
+ */
+case class IOPoint
+(
+    override val sup: IdentifiedObject,
+    BilateralToIOPoint: List[String],
+    IOPointSource: String
+)
+extends
+    Element
+{
+    /**
+     * Zero args constructor.
+     */
+    def this () = { this (null, List(), null) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
+    override def copy (): Row = { clone ().asInstanceOf[IOPoint] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = IOPoint.cls
+        def emitattr (position: Int, value: Any): Unit = if (mask (position)) emit_attribute (IOPoint.fields (position), value)
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (IOPoint.fields (position), x))
+        emitattrs (0, BilateralToIOPoint)
+        emitattr (1, IOPointSource)
+        s.toString
+    }
+    override def export: String =
+    {
+        "\t<cim:IOPoint rdf:ID=\"%s\">\n%s\t</cim:IOPoint>".format (id, export_fields)
+    }
+}
+
+object IOPoint
+extends
+    Parseable[IOPoint]
+{
+    override val fields: Array[String] = Array[String] (
+        "BilateralToIOPoint",
+        "IOPointSource"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("BilateralToIOPoint", "ProvidedBilateralPoint", "0..*", "0..1"),
+        Relationship ("IOPointSource", "IOPointSource", "0..1", "0..*")
+    )
+    val BilateralToIOPoint: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+    val IOPointSource: Fielder = parse_attribute (attribute (cls, fields(1)))
+
+    def parse (context: Context): IOPoint =
+    {
+        implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
+        val ret = IOPoint (
+            IdentifiedObject.parse (context),
+            masks (BilateralToIOPoint (), 0),
+            mask (IOPointSource (), 1)
         )
         ret.bitfields = bitfields
         ret
@@ -1567,10 +1602,14 @@ extends
  *        For example, this specifies if the measurement represents an indoor temperature, outdoor temperature, bus voltage, line flow, etc.
  * @param phases Indicates to which phases the measurement applies and avoids the need to use 'measurementType' to also encode phase information (which would explode the types).
  *        The phase information in Measurement, along with 'measurementType' and 'phases' uniquely defines a Measurement for a device, based on normal network phase. Their meaning will not change when the computed energizing phasing is changed due to jumpers or other reasons.
+ * @param uncefactUnitCode Contains a string value for units and multipliers from a list maintained by UN/CEFACT and described in recommendation No. 20, "Codes for Units of Measure Used in International Trade".
+ *        Refer to the UN/CEFACT recommendation for details.
  * @param unitMultiplier The unit multiplier of the measured quantity.
  * @param unitSymbol The unit of measure of the measured quantity.
  * @param Asset [[ch.ninecode.model.Asset Asset]] <em>undocumented</em>
+ * @param CalculationMethodHierarchy [[ch.ninecode.model.CalculationMethodHierarchy CalculationMethodHierarchy]] Calculation method hierarchy which applies to this analog.
  * @param Locations [[ch.ninecode.model.Location Location]] <em>undocumented</em>
+ * @param MeasurementAction [[ch.ninecode.model.MeasurementAction MeasurementAction]] <em>undocumented</em>
  * @param MeasurementCalculatorInput [[ch.ninecode.model.MeasurementCalculatorInput MeasurementCalculatorInput]] <em>undocumented</em>
  * @param PinMeasurement [[ch.ninecode.model.PinMeasurement PinMeasurement]] <em>undocumented</em>
  * @param PowerSystemResource [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] The power system resource that contains the measurement.
@@ -1586,10 +1625,13 @@ case class Measurement
     override val sup: IdentifiedObject,
     measurementType: String,
     phases: String,
+    uncefactUnitCode: String,
     unitMultiplier: String,
     unitSymbol: String,
     Asset: String,
+    CalculationMethodHierarchy: String,
     Locations: List[String],
+    MeasurementAction: String,
     MeasurementCalculatorInput: List[String],
     PinMeasurement: List[String],
     PowerSystemResource: String,
@@ -1603,7 +1645,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, null, null, null, null, null, List(), List(), List(), null, List(), List(), null) }
+    def this () = { this (null, null, null, null, null, null, null, null, List(), null, List(), List(), null, List(), List(), null) }
     /**
      * Return the superclass object.
      *
@@ -1631,16 +1673,19 @@ extends
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Measurement.fields (position), x))
         emitelem (0, measurementType)
         emitattr (1, phases)
-        emitattr (2, unitMultiplier)
-        emitattr (3, unitSymbol)
-        emitattr (4, Asset)
-        emitattrs (5, Locations)
-        emitattrs (6, MeasurementCalculatorInput)
-        emitattrs (7, PinMeasurement)
-        emitattr (8, PowerSystemResource)
-        emitattrs (9, Procedures)
-        emitattrs (10, ProtectiveActionAdjustment)
-        emitattr (11, Terminal)
+        emitelem (2, uncefactUnitCode)
+        emitattr (3, unitMultiplier)
+        emitattr (4, unitSymbol)
+        emitattr (5, Asset)
+        emitattr (6, CalculationMethodHierarchy)
+        emitattrs (7, Locations)
+        emitattr (8, MeasurementAction)
+        emitattrs (9, MeasurementCalculatorInput)
+        emitattrs (10, PinMeasurement)
+        emitattr (11, PowerSystemResource)
+        emitattrs (12, Procedures)
+        emitattrs (13, ProtectiveActionAdjustment)
+        emitattr (14, Terminal)
         s.toString
     }
     override def export: String =
@@ -1656,10 +1701,13 @@ extends
     override val fields: Array[String] = Array[String] (
         "measurementType",
         "phases",
+        "uncefactUnitCode",
         "unitMultiplier",
         "unitSymbol",
         "Asset",
+        "CalculationMethodHierarchy",
         "Locations",
+        "MeasurementAction",
         "MeasurementCalculatorInput",
         "PinMeasurement",
         "PowerSystemResource",
@@ -1669,7 +1717,9 @@ extends
     )
     override val relations: List[Relationship] = List (
         Relationship ("Asset", "Asset", "0..1", "0..*"),
+        Relationship ("CalculationMethodHierarchy", "CalculationMethodHierarchy", "0..1", "0..*"),
         Relationship ("Locations", "Location", "0..*", "0..*"),
+        Relationship ("MeasurementAction", "MeasurementAction", "0..1", "0..1"),
         Relationship ("MeasurementCalculatorInput", "MeasurementCalculatorInput", "0..*", "1"),
         Relationship ("PinMeasurement", "PinMeasurement", "0..*", "0..1"),
         Relationship ("PowerSystemResource", "PowerSystemResource", "0..1", "0..*"),
@@ -1679,16 +1729,19 @@ extends
     )
     val measurementType: Fielder = parse_element (element (cls, fields(0)))
     val phases: Fielder = parse_attribute (attribute (cls, fields(1)))
-    val unitMultiplier: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val unitSymbol: Fielder = parse_attribute (attribute (cls, fields(3)))
-    val Asset: Fielder = parse_attribute (attribute (cls, fields(4)))
-    val Locations: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
-    val MeasurementCalculatorInput: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
-    val PinMeasurement: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
-    val PowerSystemResource: Fielder = parse_attribute (attribute (cls, fields(8)))
-    val Procedures: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
-    val ProtectiveActionAdjustment: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
-    val Terminal: Fielder = parse_attribute (attribute (cls, fields(11)))
+    val uncefactUnitCode: Fielder = parse_element (element (cls, fields(2)))
+    val unitMultiplier: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val unitSymbol: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val Asset: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val CalculationMethodHierarchy: Fielder = parse_attribute (attribute (cls, fields(6)))
+    val Locations: FielderMultiple = parse_attributes (attribute (cls, fields(7)))
+    val MeasurementAction: Fielder = parse_attribute (attribute (cls, fields(8)))
+    val MeasurementCalculatorInput: FielderMultiple = parse_attributes (attribute (cls, fields(9)))
+    val PinMeasurement: FielderMultiple = parse_attributes (attribute (cls, fields(10)))
+    val PowerSystemResource: Fielder = parse_attribute (attribute (cls, fields(11)))
+    val Procedures: FielderMultiple = parse_attributes (attribute (cls, fields(12)))
+    val ProtectiveActionAdjustment: FielderMultiple = parse_attributes (attribute (cls, fields(13)))
+    val Terminal: Fielder = parse_attribute (attribute (cls, fields(14)))
 
     def parse (context: Context): Measurement =
     {
@@ -1698,16 +1751,19 @@ extends
             IdentifiedObject.parse (context),
             mask (measurementType (), 0),
             mask (phases (), 1),
-            mask (unitMultiplier (), 2),
-            mask (unitSymbol (), 3),
-            mask (Asset (), 4),
-            masks (Locations (), 5),
-            masks (MeasurementCalculatorInput (), 6),
-            masks (PinMeasurement (), 7),
-            mask (PowerSystemResource (), 8),
-            masks (Procedures (), 9),
-            masks (ProtectiveActionAdjustment (), 10),
-            mask (Terminal (), 11)
+            mask (uncefactUnitCode (), 2),
+            mask (unitMultiplier (), 3),
+            mask (unitSymbol (), 4),
+            mask (Asset (), 5),
+            mask (CalculationMethodHierarchy (), 6),
+            masks (Locations (), 7),
+            mask (MeasurementAction (), 8),
+            masks (MeasurementCalculatorInput (), 9),
+            masks (PinMeasurement (), 10),
+            mask (PowerSystemResource (), 11),
+            masks (Procedures (), 12),
+            masks (ProtectiveActionAdjustment (), 13),
+            mask (Terminal (), 14)
         )
         ret.bitfields = bitfields
         ret
@@ -1719,14 +1775,15 @@ extends
  *
  * A state value is an instance of a measurement from a specific source. Measurements can be associated with many state values, each representing a different source for the measurement.
  *
- * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param sup [[ch.ninecode.model.IOPoint IOPoint]] Reference to the superclass object.
  * @param sensorAccuracy The limit, expressed as a percentage of the sensor maximum, that errors will not exceed when the sensor is used under  reference conditions.
- * @param timeStamp The time when the value was last updated
+ * @param timeStamp The time when the value was last updated.
+ * @param CalculationMethodHierarchy [[ch.ninecode.model.CalculationMethodHierarchy CalculationMethodHierarchy]] <em>undocumented</em>
  * @param ErpPerson [[ch.ninecode.model.OldPerson OldPerson]] <em>undocumented</em>
  * @param MeasurementValueQuality [[ch.ninecode.model.MeasurementValueQuality MeasurementValueQuality]] A MeasurementValue has a MeasurementValueQuality associated with it.
  * @param MeasurementValueSource [[ch.ninecode.model.MeasurementValueSource MeasurementValueSource]] A reference to the type of source that updates the MeasurementValue, e.g.
  *        SCADA, CCLink, manual, etc. User conventions for the names of sources are contained in the introduction to IEC 61970-301.
- * @param ProcedureDataSets [[ch.ninecode.model.ProcedureDataSet ProcedureDataSet]] <em>undocumented</em>
+ * @param ProcedureDataSet [[ch.ninecode.model.ProcedureDataSet ProcedureDataSet]] <em>undocumented</em>
  * @param RemoteSource [[ch.ninecode.model.RemoteSource RemoteSource]] Link to the physical telemetered point associated with this measurement.
  * @group Meas
  * @groupname Meas Package Meas
@@ -1734,13 +1791,14 @@ extends
  */
 case class MeasurementValue
 (
-    override val sup: IdentifiedObject,
+    override val sup: IOPoint,
     sensorAccuracy: Double,
     timeStamp: String,
+    CalculationMethodHierarchy: String,
     ErpPerson: String,
     MeasurementValueQuality: String,
     MeasurementValueSource: String,
-    ProcedureDataSets: List[String],
+    ProcedureDataSet: List[String],
     RemoteSource: String
 )
 extends
@@ -1749,7 +1807,7 @@ extends
     /**
      * Zero args constructor.
      */
-    def this () = { this (null, 0.0, null, null, null, null, List(), null) }
+    def this () = { this (null, 0.0, null, null, null, null, null, List(), null) }
     /**
      * Return the superclass object.
      *
@@ -1758,7 +1816,7 @@ extends
      * @groupname Hierarchy Class Hierarchy Related
      * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
      */
-    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
+    def IOPoint: IOPoint = sup.asInstanceOf[IOPoint]
     override def copy (): Row = { clone ().asInstanceOf[MeasurementValue] }
     override def get (i: Int): Object =
     {
@@ -1777,11 +1835,12 @@ extends
         def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (MeasurementValue.fields (position), x))
         emitelem (0, sensorAccuracy)
         emitelem (1, timeStamp)
-        emitattr (2, ErpPerson)
-        emitattr (3, MeasurementValueQuality)
-        emitattr (4, MeasurementValueSource)
-        emitattrs (5, ProcedureDataSets)
-        emitattr (6, RemoteSource)
+        emitattr (2, CalculationMethodHierarchy)
+        emitattr (3, ErpPerson)
+        emitattr (4, MeasurementValueQuality)
+        emitattr (5, MeasurementValueSource)
+        emitattrs (6, ProcedureDataSet)
+        emitattr (7, RemoteSource)
         s.toString
     }
     override def export: String =
@@ -1797,40 +1856,44 @@ extends
     override val fields: Array[String] = Array[String] (
         "sensorAccuracy",
         "timeStamp",
+        "CalculationMethodHierarchy",
         "ErpPerson",
         "MeasurementValueQuality",
         "MeasurementValueSource",
-        "ProcedureDataSets",
+        "ProcedureDataSet",
         "RemoteSource"
     )
     override val relations: List[Relationship] = List (
+        Relationship ("CalculationMethodHierarchy", "CalculationMethodHierarchy", "0..1", "0..1"),
         Relationship ("ErpPerson", "OldPerson", "0..1", "0..*"),
         Relationship ("MeasurementValueQuality", "MeasurementValueQuality", "0..1", "1"),
         Relationship ("MeasurementValueSource", "MeasurementValueSource", "1", "0..*"),
-        Relationship ("ProcedureDataSets", "ProcedureDataSet", "0..*", "0..*"),
+        Relationship ("ProcedureDataSet", "ProcedureDataSet", "0..*", "0..*"),
         Relationship ("RemoteSource", "RemoteSource", "0..1", "1")
     )
     val sensorAccuracy: Fielder = parse_element (element (cls, fields(0)))
     val timeStamp: Fielder = parse_element (element (cls, fields(1)))
-    val ErpPerson: Fielder = parse_attribute (attribute (cls, fields(2)))
-    val MeasurementValueQuality: Fielder = parse_attribute (attribute (cls, fields(3)))
-    val MeasurementValueSource: Fielder = parse_attribute (attribute (cls, fields(4)))
-    val ProcedureDataSets: FielderMultiple = parse_attributes (attribute (cls, fields(5)))
-    val RemoteSource: Fielder = parse_attribute (attribute (cls, fields(6)))
+    val CalculationMethodHierarchy: Fielder = parse_attribute (attribute (cls, fields(2)))
+    val ErpPerson: Fielder = parse_attribute (attribute (cls, fields(3)))
+    val MeasurementValueQuality: Fielder = parse_attribute (attribute (cls, fields(4)))
+    val MeasurementValueSource: Fielder = parse_attribute (attribute (cls, fields(5)))
+    val ProcedureDataSet: FielderMultiple = parse_attributes (attribute (cls, fields(6)))
+    val RemoteSource: Fielder = parse_attribute (attribute (cls, fields(7)))
 
     def parse (context: Context): MeasurementValue =
     {
         implicit val ctx: Context = context
         implicit var bitfields: Array[Int] = Array(0)
         val ret = MeasurementValue (
-            IdentifiedObject.parse (context),
+            IOPoint.parse (context),
             toDouble (mask (sensorAccuracy (), 0)),
             mask (timeStamp (), 1),
-            mask (ErpPerson (), 2),
-            mask (MeasurementValueQuality (), 3),
-            mask (MeasurementValueSource (), 4),
-            masks (ProcedureDataSets (), 5),
-            mask (RemoteSource (), 6)
+            mask (CalculationMethodHierarchy (), 2),
+            mask (ErpPerson (), 3),
+            mask (MeasurementValueQuality (), 4),
+            mask (MeasurementValueSource (), 5),
+            masks (ProcedureDataSet (), 6),
+            mask (RemoteSource (), 7)
         )
         ret.bitfields = bitfields
         ret
@@ -1840,7 +1903,7 @@ extends
 /**
  * Measurement quality flags.
  *
- * Bits 0-10 are defined for substation automation in draft IEC 61850 part 7-3. Bits 11-15 are reserved for future expansion by that document. Bits 16-31 are reserved for EMS applications.
+ * Bits 0-10 are defined for substation automation in IEC 61850-7-3. Bits 11-15 are reserved for future expansion by that document. Bits 16-31 are reserved for EMS applications.
  *
  * @param sup [[ch.ninecode.model.Quality61850 Quality61850]] Reference to the superclass object.
  * @param MeasurementValue [[ch.ninecode.model.MeasurementValue MeasurementValue]] A MeasurementValue has a MeasurementValueQuality associated with it.
@@ -1920,7 +1983,7 @@ extends
 /**
  * MeasurementValueSource describes the alternative sources updating a MeasurementValue.
  *
- * User conventions for how to use the MeasurementValueSource attributes are described in the introduction to IEC 61970-301.
+ * User conventions for how to use the MeasurementValueSource attributes are defined in IEC 61970-301.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param MeasurementValues [[ch.ninecode.model.MeasurementValue MeasurementValue]] The MeasurementValues updated by the source.
@@ -2007,13 +2070,13 @@ extends
  * @param oldData Measurement value is old and possibly invalid, as it has not been successfully updated during a specified time interval.
  * @param operatorBlocked Measurement value is blocked and hence unavailable for transmission.
  * @param oscillatory To prevent some overload of the communication it is sensible to detect and suppress oscillating (fast changing) binary inputs.
- *        If a signal changes in a defined time (tosc) twice in the same direction (from 0 to 1 or from 1 to 0) then oscillation is detected and the detail quality identifier "oscillatory" is set. If it is detected a configured numbers of transient changes could be passed by. In this time the validity status "questionable" is set. If after this defined numbers of changes the signal is still in the oscillating state the value shall be set either to the opposite state of the previous stable value or to a defined default value. In this case the validity status "questionable" is reset and "invalid" is set as long as the signal is oscillating. If it is configured such that no transient changes should be passed by then the validity status "invalid" is set immediately in addition to the detail quality identifier "oscillatory" (used for status information only).
+ *        If a signal changes in a defined time twice in the same direction (from 0 to 1 or from 1 to 0) then oscillation is detected and the detail quality identifier "oscillatory" is set. If it is detected a configured numbers of transient changes could be passed by. In this time the validity status "questionable" is set. If after this defined numbers of changes the signal is still in the oscillating state the value shall be set either to the opposite state of the previous stable value or to a defined default value. In this case the validity status "questionable" is reset and "invalid" is set as long as the signal is oscillating. If it is configured such that no transient changes should be passed by then the validity status "invalid" is set immediately in addition to the detail quality identifier "oscillatory" (used for status information only).
  * @param outOfRange Measurement value is beyond a predefined range of value.
  * @param overFlow Measurement value is beyond the capability of being  represented properly.
  *        For example, a counter value overflows from maximum count back to a value of zero.
  * @param source Source gives information related to the origin of a value.
  *        The value may be acquired from the process, defaulted or substituted.
- * @param suspect A correlation function has detected that the value is not consitent with other values.
+ * @param suspect A correlation function has detected that the value is not consistent with other values.
  *        Typically set by a network State Estimator.
  * @param test Measurement value is transmitted for test purposes.
  * @param validity Validity of the measurement value.
@@ -2144,7 +2207,9 @@ extends
 }
 
 /**
- * An analog control that increase or decrease a set point value with pulses.
+ * An analog control that increases or decreases a set point value with pulses.
+ *
+ * Unless otherwise specified, one pulse moves the set point by one.
  *
  * @param sup [[ch.ninecode.model.AnalogControl AnalogControl]] Reference to the superclass object.
  * @param ValueAliasSet [[ch.ninecode.model.ValueAliasSet ValueAliasSet]] The ValueAliasSet used for translation of a Control value to a name.
@@ -2222,7 +2287,7 @@ extends
 }
 
 /**
- * An analog control that issue a set point value.
+ * An analog control that issues a set point value.
  *
  * @param sup [[ch.ninecode.model.AnalogControl AnalogControl]] Reference to the superclass object.
  * @param normalValue Normal value for Control.value e.g. used for percentage scaling.
@@ -2466,7 +2531,7 @@ extends
 }
 
 /**
- * Describes the translation of a set of values into a name and is intendend to facilitate cusom translations.
+ * Describes the translation of a set of values into a name and is intendend to facilitate custom translations.
  *
  * Each ValueAliasSet has a name, description etc. A specific Measurement may represent a discrete state like Open, Closed, Intermediate etc. This requires a translation from the MeasurementValue.value number to a string, e.g. 0-&gt;"Invalid", 1-&gt;"Open", 2-&gt;"Closed", 3-&gt;"Intermediate". Each ValueToAlias member in ValueAliasSet.Value describe a mapping for one particular value to a name.
  *
@@ -2669,8 +2734,8 @@ private[ninecode] object _Meas
             Command.register,
             Control.register,
             Discrete.register,
-            DiscreteCommand.register,
             DiscreteValue.register,
+            IOPoint.register,
             Limit.register,
             LimitSet.register,
             Measurement.register,

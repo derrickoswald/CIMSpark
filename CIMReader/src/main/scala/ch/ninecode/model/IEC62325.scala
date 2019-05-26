@@ -16,7 +16,7 @@ import ch.ninecode.cim.Relationship
  *        For example IEC62325CIM10v03.
  * @group IEC62325
  * @groupname IEC62325 Package IEC62325
- * @groupdesc IEC62325 The IEC 62325 subpackages of the CIM are developed, standardized and maintained by IEC TC57 Working Group 16.
+ * @groupdesc IEC62325 The IEC 62325 subpackages of the CIM are developed, standardized and maintained by the IEC TC57.
  */
 case class IEC62325CIMVersion
 (
