@@ -2,8 +2,8 @@ lazy val cimreader = (project in file(".")).
   settings(
     organization := "ch.ninecode.cim",
     name := "CIMReader",
-    version := "2.4.3-3.6.0",
-    scalaVersion := "2.11.8",
+    version := "2.3.2-3.6.0",
+    scalaVersion := "2.11.12",
     licenses += ("MIT", url("http://opensource.org/licenses/MIT")),
     javaOptions += "-Xss4m",
     bintrayPackageLabels := Seq("CIM", "9code")
