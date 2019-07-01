@@ -1,9 +1,9 @@
 <!DOCTYPE html >
 <html>
         <head>
-          <title>cim - CIMReader 2.11-2.3.2-3.4.0 API - ch.ninecode.cim</title>
-          <meta name="description" content="cim - CIMReader 2.11 - 2.3.2 - 3.4.0 API - ch.ninecode.cim" />
-          <meta name="keywords" content="cim CIMReader 2.11 2.3.2 3.4.0 API ch.ninecode.cim" />
+          <title>cim - CIMReader 2.11-2.4.3-3.6.0 API - ch.ninecode.cim</title>
+          <meta name="description" content="cim - CIMReader 2.11 - 2.4.3 - 3.6.0 API - ch.ninecode.cim" />
+          <meta name="keywords" content="cim CIMReader 2.11 2.4.3 3.6.0 API ch.ninecode.cim" />
           <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
           
       <link href="../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
@@ -232,71 +232,6 @@ the elements that are retained.
       </a>
     </span>
       
-    </li><li name="ch.ninecode.cim.CIMExport" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="CIMExportextendsCIMRDDwithSerializable"></a>
-      <a id="CIMExport:CIMExport"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">class</span>
-      </span>
-      <span class="symbol">
-        <a href="CIMExport.html"><span class="name">CIMExport</span></a><span class="result"> extends <a href="CIMRDD.html" class="extype" name="ch.ninecode.cim.CIMRDD">CIMRDD</a> with <span class="extype" name="scala.Serializable">Serializable</span></span>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.package@CIMExportextendsCIMRDDwithSerializable" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <p class="shortcomment cmt">Export (a subset of) CIM data.</p><div class="fullcomment"><div class="comment cmt"><p>Export (a subset of) CIM data.
-</p></div><dl class="attributes block"> <div class="block">Examples:
-               <ol><li class="cmt"><p>Export one transformer area (trafokreis)</p><pre><span class="cmt">// enter Spark shell environment</span>
-spark-shell --master spark:<span class="cmt">//sandbox:7077 --executor-memory 4g --driver-memory 1g --conf spark.sql.warehouse.dir=file:/tmp/spark-warehouse --jars /opt/code/CIMReader-2.11-2.2.0-2.2.1.jar</span>
-<span class="cmt">// read the large CIM file</span>
-<span class="kw">import</span> scala.collection.mutable.HashMap
-<span class="kw">import</span> org.apache.spark.rdd.RDD
-<span class="kw">import</span> ch.ninecode.cim._
-<span class="kw">import</span> ch.ninecode.model._
-<span class="kw">val</span> opts = <span class="kw">new</span> HashMap[<span class="std">String</span>,<span class="std">String</span>] ()
-opts.put(<span class="lit">"StorageLevel"</span>, <span class="lit">"MEMORY_AND_DISK_SER"</span>)
-<span class="kw">val</span> element = spark.read.format (<span class="lit">"ch.ninecode.cim"</span>).options (opts).load (<span class="lit">"hdfs://sandbox:8020/data/bkw_cim_export_equipmentsstripe2.rdf"</span>)
-element.count
-<span class="cmt">// process topology with islands</span>
-<span class="kw">val</span> ntp = <span class="kw">new</span> CIMNetworkTopologyProcessor (spark, org.apache.spark.storage.StorageLevel.MEMORY_AND_DISK_SER)
-<span class="kw">val</span> elements2 = ntp.process (<span class="kw">true</span>)
-elements2.count
-<span class="cmt">// get the name of the transformer's low voltage pin TopologicalNode</span>
-<span class="kw">val</span> terminals = sc.getPersistentRDDs.filter(_._2.name == <span class="lit">"Terminal"</span>).head._2.asInstanceOf[RDD[Terminal]]
-<span class="kw">val</span> NSpin = terminals.filter (x <span class="kw">=&gt;</span> x.ConductingEquipment == <span class="lit">"TRA7872"</span> &amp;&amp; x.ACDCTerminal.sequenceNumber == <span class="num">2</span>)
-println (NSpin.first.TopologicalNode)
-MUI452395_island
-<span class="cmt">// get the name of the trafokreis TopologicalIsland</span>
-<span class="kw">val</span> nodes = sc.getPersistentRDDs.filter(_._2.name == <span class="lit">"TopologicalNode"</span>).head._2.asInstanceOf[RDD[TopologicalNode]]
-<span class="kw">val</span> NSnode = nodes.filter (_.id == <span class="lit">"MUI452395_island"</span>)
-println (NSnode.first.TopologicalIsland)
-TRA7872_terminal_2_island
-<span class="cmt">// export the reduced CIM file</span>
-<span class="kw">val</span> export = <span class="kw">new</span> CIMExport (spark)
-export.exportIsland (<span class="lit">"TRA7872_terminal_2_island"</span>, <span class="lit">"TRA7872.rdf"</span>)</pre></li>, <li class="cmt"><p>Export entire deduplicated CIM file with it's topology</p><pre><span class="cmt">// enter Spark shell environment</span>
-spark-shell --master spark:<span class="cmt">//sandbox:7077 --executor-memory 4g --driver-memory 1g --conf spark.sql.warehouse.dir=file:/tmp/spark-warehouse --jars /opt/code/CIMReader-2.11-2.2.0-2.2.1.jar</span>
-<span class="cmt">// read the large CIM file</span>
-<span class="kw">import</span> scala.collection.mutable.HashMap
-<span class="kw">import</span> org.apache.spark.rdd.RDD
-<span class="kw">import</span> ch.ninecode.cim._
-<span class="kw">import</span> ch.ninecode.model._
-<span class="kw">val</span> opts = <span class="kw">new</span> HashMap[<span class="std">String</span>,<span class="std">String</span>] ()
-opts.put(<span class="lit">"StorageLevel"</span>, <span class="lit">"MEMORY_AND_DISK_SER"</span>)
-opts.put(<span class="lit">"ch.ninecode.cim.do_deduplication"</span>, <span class="lit">"true"</span>)
-<span class="kw">val</span> element = spark.read.format (<span class="lit">"ch.ninecode.cim"</span>).options (opts).load (<span class="lit">"hdfs://sandbox:8020/data/bkw_cim_export_equipmentsstripe1.rdf,hdfs://sandbox:8020/data/bkw_cim_export_equipmentsstripe2.rdf, etc."</span>)
-element.count
-<span class="cmt">// process topology (your choice of with or without islands)</span>
-<span class="kw">val</span> ntp = <span class="kw">new</span> CIMNetworkTopologyProcessor (spark, org.apache.spark.storage.StorageLevel.MEMORY_AND_DISK_SER)
-<span class="kw">val</span> elements2 = ntp.process (<span class="kw">true</span>)
-elements2.count
-<span class="cmt">// export the complete CIM file</span>
-<span class="kw">val</span> export = <span class="kw">new</span> CIMExport (spark)
-export.exportAll (<span class="lit">"bkw_cim_export_equipment.rdf"</span>)</pre></li></ol>
-            </div></dl></div>
     </li><li name="ch.ninecode.cim.CIMFileFormat" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="CIMFileFormatextendsFileFormat"></a>
       <a id="CIMFileFormat:CIMFileFormat"></a>
@@ -864,61 +799,6 @@ Other methods are helpers for parsing the regular XML structure of CIM rdf files
       </a>
     </span>
       <p class="shortcomment cmt">Get a list of classes suitable for Kryo registration.</p>
-    </li><li name="ch.ninecode.cim.CIMExportMain" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="CIMExportMain"></a>
-      <a id="CIMExportMain:CIMExportMain"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">object</span>
-      </span>
-      <span class="symbol">
-        <a href="CIMExportMain$.html"><span class="name">CIMExportMain</span></a>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.package@CIMExportMain" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <p class="shortcomment cmt">Application to export (subset by island) CIM files.</p><div class="fullcomment"><div class="comment cmt"><p>Application to export (subset by island) CIM files.</p><p>This program reads in one or more CIM files and exports topological islands
-as subset CIM files.</p></div></div>
-    </li><li name="ch.ninecode.cim.CIMServerJDBC" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
-      <a id="CIMServerJDBC"></a>
-      <a id="CIMServerJDBC:CIMServerJDBC"></a>
-      <h4 class="signature">
-      <span class="modifier_kind">
-        <span class="modifier"></span>
-        <span class="kind">object</span>
-      </span>
-      <span class="symbol">
-        <a href="CIMServerJDBC$.html"><span class="name">CIMServerJDBC</span></a>
-      </span>
-      </h4><span class="permalink">
-      <a href="../../../index.html#ch.ninecode.cim.package@CIMServerJDBC" title="Permalink" target="_top">
-        <img src="../../../lib/permalink.png" alt="Permalink" />
-      </a>
-    </span>
-      <p class="shortcomment cmt">Application to expose CIM files as a Hive database.</p><div class="fullcomment"><div class="comment cmt"><p>Application to expose CIM files as a Hive database.</p><p>This program reads in one or more CIM files and
-runs a Hive/Thrift server to expose the RDD as JDBC tables.</p><p>The program is usually run on the master node with a command like:</p><pre>$ spark-submit --master spark:<span class="cmt">//sandbox:7077 --driver-memory 1g --executor-memory 4g /opt/code/CIMServerJDBC-2.11-2.3.1-3.0.1-jar-with-dependencies.jar --host sandbox --port 10004 "hdfs://sandbox:8020/data/cim_data_file.rdf"</span></pre><p>It will read the rdf file and create a Spark RDD for each CIM class,
-a description of which can be found in [Model.md](https://github.com/derrickoswald/CIMReader/blob/master/Model.md).</p><p>It then sets up a Hive/Thrift server on port 10004 (or what was specified on the command line)
-to serve these RDD as JDBC tables.</p><p>The program then waits for a Return to signal that it should exit.</p><p>A java client program can get a JDBC connection to the Hive/Thrift server
-using the [Hive JDBC driver](https://mvnrepository.com/artifact/org.apache.hive/hive-jdbc/2.0.1)
-and the usual JDBC connection process:</p><pre><span class="kw">private</span> static <span class="std">String</span> driverName = <span class="lit">"org.apache.hive.jdbc.HiveDriver"</span>;
-<span class="kw">private</span> static <span class="std">String</span> port = <span class="lit">"10004"</span>;
-<span class="kw">private</span> static <span class="std">String</span> database = <span class="lit">"default"</span>;
-<span class="kw">private</span> static <span class="std">String</span> host = <span class="lit">"localhost"</span>;
-<span class="kw">private</span> static <span class="std">String</span> user = <span class="lit">"hive"</span>;
-<span class="kw">try</span>
-{
-    <span class="std">Class</span>.forName (driverName);
-}
-<span class="kw">catch</span> (ClassNotFoundException e)
-{
-    e.printStackTrace ();
-    System.exit (<span class="num">1</span>);
-}
-Connection con = DriverManager.getConnection (<span class="lit">"jdbc:hive2://"</span> + host + <span class="lit">":"</span> + port + <span class="lit">"/"</span> + database, user, <span class="lit">""</span>);</pre><p>A <a href="https://github.com/derrickoswald/CIMReader/blob/master/src/jdbc/src/main/java/ch/ninecode/cim/CIMJava.java" target="_blank">sample program</a>
-is provided in the src/main/java directory.</p></div></div>
     </li><li name="ch.ninecode.cim.CIMTopologyOptions" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
       <a id="CIMTopologyOptions"></a>
       <a id="CIMTopologyOptions:CIMTopologyOptions"></a>

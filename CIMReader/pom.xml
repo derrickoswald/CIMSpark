@@ -5,7 +5,7 @@
         <groupId>ch.ninecode.cim</groupId>
         <artifactId>CIMSpark</artifactId>
         <relativePath>../pom.xml</relativePath>
-        <version>2.11-2.3.2-3.5.0</version>
+        <version>2.11-2.4.3-3.6.0</version>
     </parent>
     <artifactId>CIMReader</artifactId>
     <name>${project.artifactId}</name>
@@ -80,7 +80,7 @@
 
         <dependency>
             <groupId>com.github.scopt</groupId>
-            <artifactId>scopt_2.11</artifactId>
+            <artifactId>scopt_${version.dependency.scala}</artifactId>
             <version>${version.dependency.scopt}</version>
             <scope>compile</scope>
         </dependency>
@@ -147,7 +147,7 @@
                      https://mvnrepository.com/artifact/net.alchim31.maven/scala-maven-plugin -->
                 <groupId>net.alchim31.maven</groupId>
                 <artifactId>scala-maven-plugin</artifactId>
-                <version>3.2.2</version>
+                <version>${version.dependency.scalamavenplugin}</version>
                 <configuration>
                     <scalaCompatVersion>${version.dependency.scala}</scalaCompatVersion>
                     <scalaVersion>${version.dependency.scalalibrary}</scalaVersion>

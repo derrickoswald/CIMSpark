@@ -6,7 +6,7 @@
     <groupId>ch.ninecode.cim</groupId>
     <artifactId>CIMSpark</artifactId>
     <!-- version>${version.dependency.scala}-${version.dependency.spark}-CIMSPARK_VERSION</version -->
-    <version>2.11-2.3.2-3.5.0</version>
+    <version>2.11-2.4.3-3.6.0</version>
     <packaging>pom</packaging>
     <name>CIM-Spark interface.</name>
 
@@ -22,20 +22,21 @@
         <!-- Scala versions -->
         <version.dependency.scala>2.11</version.dependency.scala>
         <version.dependency.scalalibrary>2.11.12</version.dependency.scalalibrary>
+        <version.dependency.scalamavenplugin>4.1.0</version.dependency.scalamavenplugin>
 
         <!-- Spark versions -->
         <version.dependency.hadoop>2.7.6</version.dependency.hadoop>
-        <version.dependency.spark>2.3.2</version.dependency.spark>
-        <version.dependency.cassandra_spark>2.3.2</version.dependency.cassandra_spark>
+        <version.dependency.spark>2.4.3</version.dependency.spark>
+        <version.dependency.cassandra_spark>2.4.1</version.dependency.cassandra_spark>
 
         <!-- Component versions -->
         <version.dependency.json>1.1.2</version.dependency.json>
         <version.dependency.sqlite>3.21.0.1</version.dependency.sqlite>
-        <version.dependency.scopt>3.7.0</version.dependency.scopt>
+        <version.dependency.scopt>4.0.0-RC2</version.dependency.scopt>
 
         <!-- test versions -->
         <version.dependency.junit>4.12</version.dependency.junit>
-        <version.dependency.scalatest>3.0.5</version.dependency.scalatest>
+        <version.dependency.scalatest>3.0.8</version.dependency.scalatest>
 
     </properties>
 
