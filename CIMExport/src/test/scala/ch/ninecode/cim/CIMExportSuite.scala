@@ -259,7 +259,7 @@ class CIMExportSuite
             )
     }
 
-    test ("ExportAllTrans formersCassandra")
+    test ("ExportAllTransformersCassandra")
     {
         implicit spark: SparkSession ⇒
 
