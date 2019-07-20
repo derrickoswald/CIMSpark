@@ -138,10 +138,15 @@ extends
  *        If this value is true then a receiving application should consider the first and last points to be connected.
  * @param offsetX The offset in the X direction.
  *        This is used for defining the offset from centre for rendering an icon (the default is that a single point specifies the centre of the icon).
+ *        
+ *        The offset is in per-unit with 0 indicating there is no offset from the horizontal centre of the icon.  -0.5 indicates it is offset by 50% to the left and 0.5 indicates an offset of 50% to the right.
  * @param offsetY The offset in the Y direction.
  *        This is used for defining the offset from centre for rendering an icon (the default is that a single point specifies the centre of the icon).
+ *        
+ *        The offset is in per-unit with 0 indicating there is no offset from the vertical centre of the icon.  The offset direction is dependent on the orientation of the diagram, with -0.5 and 0.5 indicating an offset of +/- 50% on the vertical axis.
  * @param rotation Sets the angle of rotation of the diagram object.
  *        Zero degrees is pointing to the top of the diagram.  Rotation is clockwise.  DiagramObject.rotation=0 has the following meaning: The connection point of an element which has one terminal is pointing to the top side of the diagram. The connection point "From side" of an element which has more than one terminal is pointing to the top side of the diagram.
+ *        DiagramObject.rotation=90 has the following meaning: The connection point of an element which has one terminal is pointing to the right hand side of the diagram. The connection point "From side" of an element which has more than one terminal is pointing to the right hand side of the diagram.
  * @param Diagram [[ch.ninecode.model.Diagram Diagram]] A diagram object is part of a diagram.
  * @param DiagramObjectPoints [[ch.ninecode.model.DiagramObjectPoint DiagramObjectPoint]] A diagram object can have 0 or more points to reflect its layout position, routing (for polylines) or boundary (for polygons).
  * @param DiagramObjectStyle [[ch.ninecode.model.DiagramObjectStyle DiagramObjectStyle]] A diagram object has a style associated that provides a reference for the style used in the originating system.
@@ -700,6 +705,8 @@ extends
  * Layers are typically used for grouping diagram objects according to themes and scales.
  *
  * Themes are used to display or hide certain information (e.g., lakes, borders), while scales are used for hiding or displaying information depending on the current zoom level (hide text when it is too small to be read, or when it exceeds the screen size). This is also called de-cluttering.
+ * 
+ * CIM based graphics exchange will support an m:n relationship between diagram objects and layers. It will be the task of the importing system to convert an m:n case into an appropriate 1:n representation if the importing system does not support m:n.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param drawingOrder The drawing order for this layer.

@@ -11,6 +11,7 @@ import ch.ninecode.cim.Relationship
  * A wire or combination of wires, with consistent electrical characteristics, building a single electrical system, used to carry alternating current between points in the power system.
  *
  * For symmetrical, transposed three phase lines, it is sufficient to use attributes of the line segment, which describe impedances and admittances for the entire length of the segment.  Additionally impedances can be computed by using length and associated per length impedances.
+ * The BaseVoltage at the two ends of ACLineSegments in a Line shall have the same BaseVoltage.nominalVoltage. However, boundary lines may have slightly different BaseVoltage.nominalVoltages and variation is allowed. Larger voltage difference in general requires use of an equivalent branch.
  *
  * @param sup [[ch.ninecode.model.Conductor Conductor]] Reference to the superclass object.
  * @param b0ch Zero sequence shunt (charging) susceptance, uniformly distributed, of the entire line section.
@@ -655,6 +656,7 @@ extends
  * A Clamp is a galvanic connection at a line segment where other equipment is connected.
  *
  * A Clamp does not cut the line segment.
+ * A Clamp is ConductingEquipment and has one Terminal with an associated ConnectivityNode. Any other ConductingEquipment can be connected to the Clamp ConnectivityNode.
  *
  * @param sup [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] Reference to the superclass object.
  * @param lengthFromTerminal1 The length to the place where the clamp is located starting from side one of the line segment, i.e. the line segment terminal with sequence number equal to 1.
@@ -742,6 +744,7 @@ extends
  * A model of a set of individual Switches normally enclosed within the same cabinet and possibly with interlocks that restrict the combination of switch positions.
  *
  * These are typically found in medium voltage distribution networks.
+ * A CompositeSwitch could represent a Ring-Main-Unit (RMU), or pad-mounted switchgear, with primitive internal devices such as an internal bus-bar plus 3 or 4 internal switches each of which may individually be open or closed. A CompositeSwitch and a set of contained Switches can also be used to represent a multi-position switch e.g. a switch that can connect a circuit to Ground, Open or Busbar.
  *
  * @param sup [[ch.ninecode.model.Equipment Equipment]] Reference to the superclass object.
  * @param compositeSwitchType An alphanumeric code that can be used as a reference to extra information such as the description of the interlocking scheme if any.
@@ -966,6 +969,8 @@ extends
  * A cut separates a line segment into two parts.
  *
  * The cut appears as a switch inserted between these two parts and connects them together. As the cut is normally open there is no galvanic connection between the two line segment parts. But it is possible to close the cut to get galvanic connection.
+ * The cut terminals are oriented towards the line segment terminals with the same sequence number. Hence the cut terminal with sequence number equal to 1 is oriented to the line segment's terminal with sequence number equal to 1.
+ * The cut terminals also act as connection points for jumpers and other equipment, e.g. a mobile generator. To enable this, connectivity nodes are placed at the cut terminals. Once the connectivity nodes are in place any conducting equipment can be connected at them.
  *
  * @param sup [[ch.ninecode.model.Switch Switch]] Reference to the superclass object.
  * @param lengthFromTerminal1 The length to the place where the cut is located starting from side one of the cut line segment, i.e. the line segment Terminal with sequenceNumber equal to 1.
@@ -1268,6 +1273,8 @@ extends
  *        True if the neutral is solidly grounded.
  * @param p Active power of the load.
  *        Load sign convention is used, i.e. positive sign means flow out from a node.
+ *        For voltage dependent loads the value is at rated voltage.
+ *        Starting value for a steady state solution.
  * @param pfixed Active power of the load that is a fixed quantity.
  *        Load sign convention is used, i.e. positive sign means flow out from a node.
  * @param pfixedPct Fixed active power as a percentage of load group fixed active power.
@@ -1275,6 +1282,8 @@ extends
  * @param phaseConnection The type of phase connection, such as wye or delta.
  * @param q Reactive power of the load.
  *        Load sign convention is used, i.e. positive sign means flow out from a node.
+ *        For voltage dependent loads the value is at rated voltage.
+ *        Starting value for a steady state solution.
  * @param qfixed Reactive power of the load that is a fixed quantity.
  *        Load sign convention is used, i.e. positive sign means flow out from a node.
  * @param qfixedPct Fixed reactive power as a percentage of load group fixed reactive power.
@@ -1428,6 +1437,8 @@ extends
  * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @param p Active power of the load.
  *        Load sign convention is used, i.e. positive sign means flow out from a node.
+ *        For voltage dependent loads the value is at rated voltage.
+ *        Starting value for a steady state solution.
  * @param pfixed Active power of the load that is a fixed quantity.
  *        Load sign convention is used, i.e. positive sign means flow out from a node.
  * @param pfixedPct Fixed active power as per cent of load group fixed active power.
@@ -1436,6 +1447,8 @@ extends
  *        If the energy consumer is wye connected, the connection is from the indicated phase to the central ground or neutral point.  If the energy consumer is delta connected, the phase indicates an energy consumer connected from the indicated phase to the next logical non-neutral phase.
  * @param q Reactive power of the load.
  *        Load sign convention is used, i.e. positive sign means flow out from a node.
+ *        For voltage dependent loads the value is at rated voltage.
+ *        Starting value for a steady state solution.
  * @param qfixed Reactive power of the load that is a fixed quantity.
  *        Load sign convention is used, i.e. positive sign means flow out from a node.
  * @param qfixedPct Fixed reactive power as per cent of load group fixed reactive power.
@@ -1634,6 +1647,7 @@ extends
  * @param sup [[ch.ninecode.model.EnergyConnection EnergyConnection]] Reference to the superclass object.
  * @param activePower High voltage source active injection.
  *        Load sign convention is used, i.e. positive sign means flow out from a node.
+ *        Starting value for steady state solutions.
  * @param nominalVoltage Phase-to-phase nominal voltage.
  * @param pMax This is the maximum active power that can be produced by the source.
  *        Load sign convention is used, i.e. positive sign means flow out from a TopologicalNode (bus) into the conducting equipment.
@@ -1643,6 +1657,7 @@ extends
  * @param r0 Zero sequence Thevenin resistance.
  * @param reactivePower High voltage source reactive injection.
  *        Load sign convention is used, i.e. positive sign means flow out from a node.
+ *        Starting value for steady state solutions.
  * @param rn Negative sequence Thevenin resistance.
  * @param voltageAngle Phase angle of a-phase open circuit used when voltage characteristics need to be imposed at the node associated with the terminal of the energy source, such as when voltages and angles from the transmission level are used as input to the distribution network.
  * @param voltageMagnitude Phase-to-phase open circuit voltage magnitude used when voltage characteristics need to be imposed at the node associated with the terminal of the energy source, such as when voltages and angles from the transmission level are used as input to the distribution network.
@@ -1921,8 +1936,10 @@ extends
  *        Used for short circuit data exchange according to IEC 60909.
  * @param p Active power injection.
  *        Load sign convention is used, i.e. positive sign means flow out from a node.
+ *        Starting value for steady state solutions.
  * @param q Reactive power injection.
  *        Load sign convention is used, i.e. positive sign means flow out from a node.
+ *        Starting value for steady state solutions.
  * @param referencePriority Priority of unit for use as powerflow voltage phase angle reference bus selection. 0 = don t care (default) 1 = highest priority. 2 is less than 1 and so on.
  * @param voltageFactor Voltage factor in pu, which was used to calculate short-circuit current Ik" and power Sk".
  *        Used only if short circuit calculations are done according to superposition method.
@@ -4187,10 +4204,13 @@ extends
  * Describes a tap changer with a linear relation between the tap step and the phase angle difference across the transformer.
  *
  * This is a mathematical model that is an approximation of a real phase tap changer.
+ * The phase angle is computed as stepPhaseShiftIncrement times the tap position.
+ * The secondary side voltage magnitude is the same as at the primary side.
  *
  * @param sup [[ch.ninecode.model.PhaseTapChanger PhaseTapChanger]] Reference to the superclass object.
  * @param stepPhaseShiftIncrement Phase shift per step position.
  *        A positive value indicates a positive phase shift from the winding where the tap is located to the other winding (for a two-winding transformer).
+ *        The actual phase shift increment might be more accurately computed from the symmetrical or asymmetrical models or a tap step table lookup if those are available.
  * @param xMax The reactance depends on the tap position according to a "u" shaped curve.
  *        The maximum reactance (xMax) appears at the low and high tap positions.
  * @param xMin The reactance depends on the tap position according to a "u" shaped curve.
@@ -4753,8 +4773,10 @@ extends
  *        This is the minimum (nameplate) limit for the unit.
  * @param p Active power injection.
  *        Load sign convention is used, i.e. positive sign means flow out from a node.
+ *        Starting value for a steady state solution.
  * @param q Reactive power injection.
  *        Load sign convention is used, i.e. positive sign means flow out from a node.
+ *        Starting value for a steady state solution.
  * @param r Equivalent resistance (RG) of generator.
  *        RG is considered for the calculation of all currents, except for the calculation of the peak current ip. Used for short circuit data exchange according to IEC 60909.
  * @param r0 Zero sequence resistance of the synchronous machine.
@@ -5025,6 +5047,9 @@ extends
  * An electrical device consisting of  two or more coupled windings, with or without a magnetic core, for introducing mutual coupling between electric circuits.
  *
  * Transformers can be used to control voltage and phase shift (active power flow).
+ * A power transformer may be composed of separate transformer tanks that need not be identical.
+ * A power transformer can be modelled with or without tanks and is intended for use in both balanced and unbalanced representations.   A power transformer typically has two terminals, but may have one (grounding), three or more terminals.
+ * The inherited association ConductingEquipment.BaseVoltage should not be used.  The association from TransformerEnd to BaseVoltage should be used instead.
  *
  * @param sup [[ch.ninecode.model.ConductingEquipment ConductingEquipment]] Reference to the superclass object.
  * @param beforeShCircuitHighestOperatingCurrent The highest operating current (Ib in IEC 60909-0) before short circuit (depends on network configuration and relevant reliability philosophy).
@@ -5041,6 +5066,11 @@ extends
  *        Used for short circuit data exchange according to IEC 60909.
  * @param vectorGroup Vector group of the transformer for protective relaying, e.g., Dyn1.
  *        For unbalanced transformers, this may not be simply determined from the constituent winding connections and phase angle displacements.
+ *        
+ *        The vectorGroup string consists of the following components in the order listed: high voltage winding connection, mid voltage winding connection (for three winding transformers), phase displacement clock number from 0 to 11,  low voltage winding connection
+ *        phase displacement clock number from 0 to 11.   The winding connections are D (delta), Y (wye), YN (wye with neutral), Z (zigzag), ZN (zigzag with neutral), A (auto transformer). Upper case means the high voltage, lower case mid or low. The high voltage winding always has clock position 0 and is not included in the vector group string.  Some examples: YNy0 (two winding wye to wye with no phase displacement), YNd11 (two winding wye to delta with 330 degrees phase displacement), YNyn0d5 (three winding transformer wye with neutral high voltage, wye with neutral mid voltage and no phase displacement, delta low voltage with 150 degrees displacement).
+ *        
+ *        Phase displacement is defined as the angular difference between the phasors representing the voltages between the neutral point (real or imaginary) and the corresponding terminals of two windings, a positive sequence voltage system being applied to the high-voltage terminals, following each other in alphabetical sequence if they are lettered, or in numerical sequence if they are numbered: the phasors are assumed to rotate in a counter-clockwise sense.
  * @param PowerTransformerEnd [[ch.ninecode.model.PowerTransformerEnd PowerTransformerEnd]] The ends of this power transformer.
  * @param TransformerTanks [[ch.ninecode.model.TransformerTank TransformerTank]] All transformers that belong to this bank.
  * @group Wires
@@ -5162,6 +5192,11 @@ extends
  * A PowerTransformerEnd is associated with each Terminal of a PowerTransformer.
  *
  * The impedance values r, r0, x, and x0 of a PowerTransformerEnd represents a star equivalent as follows.
+ * 1) for a two Terminal PowerTransformer the high voltage (TransformerEnd.endNumber=1) PowerTransformerEnd has non zero values on r, r0, x, and x0 while the low voltage (TransformerEnd.endNumber=2) PowerTransformerEnd has zero values for r, r0, x, and x0.  Parameters are always provided, even if the PowerTransformerEnds have the same rated voltage.  In this case, the parameters are provided at the PowerTransformerEnd which has TransformerEnd.endNumber equal to 1.
+ * 2) for a three Terminal PowerTransformer the three PowerTransformerEnds represent a star equivalent with each leg in the star represented by r, r0, x, and x0 values.
+ * 3) For a three Terminal transformer each PowerTransformerEnd shall have g, g0, b and b0 values corresponding to the no load losses distributed on the three PowerTransformerEnds. The total no load loss shunt impedances may also be placed at one of the PowerTransformerEnds, preferably the end numbered 1, having the shunt values on end 1.  This is the preferred way.
+ * 4) for a PowerTransformer with more than three Terminals the PowerTransformerEnd impedance values cannot be used. Instead use the TransformerMeshImpedance or split the transformer into multiple PowerTransformers.
+ * Each PowerTransformerEnd must be contained by a PowerTransformer. Because a PowerTransformerEnd (or any other object) can not be contained by more than one parent, a PowerTransformerEnd can not have an association to an EquipmentContainer (Substation, VoltageLevel, etc).
  *
  * @param sup [[ch.ninecode.model.TransformerEnd TransformerEnd]] Reference to the superclass object.
  * @param b Magnetizing branch susceptance (B mag).
@@ -5931,6 +5966,8 @@ extends
  * Specifies a set of equipment that works together to control a power system quantity such as voltage or flow.
  *
  * Remote bus voltage control is possible by specifying the controlled terminal located at some place remote from the controlling equipment.
+ * In case multiple equipment, possibly of different types, control the same terminal, there shall be only one RegulatingControl at that terminal. The specified terminal shall be associated with the connectivity node of the controlled point.  The most specific subtype of RegulatingControl shall be used in case such equipment participate in the control, e.g. TapChangerControl for tap changers.
+ * For flow control, load sign convention is used, i.e. positive sign means flow out from a TopologicalNode (bus) into the conducting equipment.
  *
  * @param sup [[ch.ninecode.model.PowerSystemResource PowerSystemResource]] Reference to the superclass object.
  * @param discrete The regulation is performed in a discrete mode.
@@ -5941,6 +5978,7 @@ extends
  * @param monitoredPhase Phase voltage controlling this regulator, measured at regulator location.
  * @param targetDeadband This is a deadband used with discrete control to avoid excessive update of controls like tap changers and shunt compensator banks while regulating.
  *        The units of those appropriate for the mode.  It is primarily used if the RegulatingControl.discrete is set to "true". Tools should handle cases in which RegulatingControl.targetDeadband has a value if RegulatingControl.discrete is set to "false" or cases in which RegulatingControl.targetDeadband equals zero.
+ *        Note that for instance, if the targetValue is 100 kV and the targetDeadband is 2 kV the range is from 99 to 101 kV.
  * @param targetValue The target value specified for case input.
  *        This value can be used for the target value without the use of schedules. The value has the units appropriate to the mode attribute.
  * @param targetValueUnitMultiplier Specify the multiplier for used for the targetValue.
@@ -6169,8 +6207,10 @@ extends
  * @param sup [[ch.ninecode.model.RegulatingCondEq RegulatingCondEq]] Reference to the superclass object.
  * @param p Active power injection.
  *        Load sign convention is used, i.e. positive sign means flow out from a node.
+ *        Starting value for a steady state solution.
  * @param q Reactive power injection.
  *        Load sign convention is used, i.e. positive sign means flow out from a node.
+ *        Starting value for a steady state solution.
  * @param ratedPowerFactor Power factor (nameplate data).
  *        It is primarily used for short circuit data exchange according to IEC 60909.
  * @param ratedS Nameplate apparent power rating for the unit.
@@ -6716,6 +6756,8 @@ extends
  * A facility for providing variable and controllable shunt reactive power.
  *
  * The SVC typically consists of a stepdown transformer, filter, thyristor-controlled reactor, and thyristor-switched capacitor arms.
+ * 
+ * The SVC may operate in fixed MVar output mode or in voltage control mode. When in voltage control mode, the output of the SVC will be proportional to the deviation of voltage at the controlled bus from the voltage setpoint.  The SVC characteristic slope defines the proportion.  If the voltage at the controlled bus is equal to the voltage setpoint, the SVC MVar output is zero.
  *
  * @param sup [[ch.ninecode.model.RegulatingCondEq RegulatingCondEq]] Reference to the superclass object.
  * @param capacitiveRating Capacitive reactance at maximum capacitive reactive power.
@@ -6724,6 +6766,7 @@ extends
  *        Shall always be negative.
  * @param q Reactive power injection.
  *        Load sign convention is used, i.e. positive sign means flow out from a node.
+ *        Starting value for a steady state solution.
  * @param sVCControlMode SVC control mode.
  * @param slope The characteristics slope of an SVC defines how the reactive power output changes in proportion to the difference between the regulated bus voltage and the voltage setpoint.
  * @param voltageSetPoint The reactive power output of the SVC is proportional to the difference between the voltage at the regulated bus and the voltage setpoint.
@@ -7210,6 +7253,8 @@ extends
  *        - Ikk=0: Generator with no compound excitation.
  *        - Ikk&lt;&gt;0: Generator with compound excitation.
  *        Ikk is used to calculate the minimum steady-state short-circuit current for generators with compound excitation.
+ *        (4.6.1.2 in IEC 60909-0:2001).
+ *        Used only for single fed short circuit on a generator. (4.3.4.2. in IEC 60909-0:2001).
  * @param manualToAVR Time delay required when switching from Manual to Automatic Voltage Regulation.
  *        This value is used in the accelerating power reference frame for powerflow solutions.
  * @param maxQ Maximum reactive power limit.
@@ -7498,12 +7543,16 @@ extends
  * @param ltcFlag Specifies whether or not a TapChanger has load tap changing capabilities.
  * @param neutralStep The neutral tap step position for this winding.
  *        The attribute shall be equal to or greater than lowStep and equal or less than highStep.
+ *        It is the step position where the voltage is neutralU when the other terminals of the transformer are at the ratedU.  If there are other tap changers on the transformer those taps are kept constant at their neutralStep.
  * @param neutralU Voltage at which the winding operates at the neutral tap setting.
  *        It is the voltage at the terminal of the PowerTransformerEnd associated with the tap changer when all tap changers on the transformer are at their neutralStep position.  Normally neutralU of the tap changer is the same as ratedU of the PowerTransformerEnd, but it can differ in special cases such as when the tapping mechanism is separate from the winding more common on lower voltage transformers.
+ *        This attribute is not relevant for PhaseTapChangerAsymmetrical, PhaseTapChangerSymmetrical and PhaseTapChangerLinear.
  * @param normalStep The tap step position used in "normal" network operation for this winding.
  *        For a "Fixed" tap changer indicates the current physical tap setting.
+ *        The attribute shall be equal to or greater than lowStep and equal to or less than highStep.
  * @param step Tap changer position.
  *        Starting step for a steady state solution. Non integer values are allowed to support continuous tap variables. The reasons for continuous value are to support study cases where no discrete tap changer has yet been designed, a solution where a narrow voltage band forces the tap step to oscillate or to accommodate for a continuous solution as input.
+ *        The attribute shall be equal to or greater than lowStep and equal to or less than highStep.
  * @param subsequentDelay For an LTC, the delay for subsequent tap changer operation (second and later step changes).
  * @param SvTapStep [[ch.ninecode.model.SvTapStep SvTapStep]] The tap step state associated with the tap changer.
  * @param TapChangerControl [[ch.ninecode.model.TapChangerControl TapChangerControl]] The regulating control scheme in which this tap changer participates.
@@ -7767,15 +7816,20 @@ extends
  * @param sup Reference to the superclass object.
  * @param b The magnetizing branch susceptance deviation as a percentage of nominal value.
  *        The actual susceptance is calculated as follows:
+ *        calculated magnetizing susceptance = b(nominal) * (1 + b(from this class)/100).   The b(nominal) is defined as the static magnetizing susceptance on the associated power transformer end or ends.  This model assumes the star impedance (pi model) form.
  * @param g The magnetizing branch conductance deviation as a percentage of nominal value.
  *        The actual conductance is calculated as follows:
+ *        calculated magnetizing conductance = g(nominal) * (1 + g(from this class)/100).   The g(nominal) is defined as the static magnetizing conductance on the associated power transformer end or ends.  This model assumes the star impedance (pi model) form.
  * @param r The resistance deviation as a percentage of nominal value.
  *        The actual reactance is calculated as follows:
+ *        calculated resistance = r(nominal) * (1 + r(from this class)/100).   The r(nominal) is defined as the static resistance on the associated power transformer end or ends.  This model assumes the star impedance (pi model) form.
  * @param ratio The voltage at the tap step divided by rated voltage of the transformer end having the tap changer.
  *        Hence this is a value close to one.
+ *        For example, if the ratio at step 1 is 1.01, and the rated voltage of the transformer end is 110kV, then the voltage obtained by setting the tap changer to step 1 to is 111.1kV.
  * @param step The tap step.
  * @param x The series reactance deviation as a percentage of nominal value.
  *        The actual reactance is calculated as follows:
+ *        calculated reactance = x(nominal) * (1 + x(from this class)/100).   The x(nominal) is defined as the static series reactance on the associated power transformer end or ends.  This model assumes the star impedance (pi model) form.
  * @group Wires
  * @groupname Wires Package Wires
  * @groupdesc Wires An extension to the Core and Topology package that models information on the electrical characteristics of Transmission and Distribution networks. This package is used by network applications such as State Estimation, Load Flow and Optimal Power Flow.
@@ -8387,6 +8441,7 @@ extends
  * Transformer star impedance (Pi-model) that accurately reflects impedance for transformers with 2 or 3 windings.
  *
  * For transformers with 4 or more windings, TransformerMeshImpedance class shall be used.
+ * For transmission networks use PowerTransformerEnd impedances (r, r0, x, x0, b, b0, g and g0).
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param r Resistance of the transformer end.

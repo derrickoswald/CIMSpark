@@ -115,6 +115,8 @@ extends
  * An electrically connected subset of the network.
  *
  * Topological islands can change as the current network state changes: e.g. due to
+ * - disconnect switches or breakers changing state in a SCADA/EMS.
+ * - manual creation, change or deletion of topological nodes in a planning tool.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param AngleRefTopologicalNode [[ch.ninecode.model.TopologicalNode TopologicalNode]] The angle reference for the island.
@@ -204,12 +206,15 @@ extends
  * For a detailed substation model a topological node is a set of connectivity nodes that, in the current network state, are connected together through any type of closed switches, including  jumpers.
  *
  * Topological nodes change as the current network state changes (i.e., switches, breakers, etc. change state).
+ * For a planning model, switch statuses are not used to form topological nodes. Instead they are manually created or deleted in a model builder tool. Topological nodes maintained this way are also called "busses".
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param pInjection The active power injected into the bus at this location in addition to injections from equipment.
  *        Positive sign means injection into the TopologicalNode (bus).
+ *        Starting value for a steady state solution.
  * @param qInjection The reactive power injected into the bus at this location in addition to injections from equipment.
  *        Positive sign means injection into the TopologicalNode (bus).
+ *        Starting value for a steady state solution.
  * @param AngleRefTopologicalIsland [[ch.ninecode.model.TopologicalIsland TopologicalIsland]] The island for which the node is an angle reference.
  *        Normally there is one angle reference node for each island.
  * @param BaseVoltage [[ch.ninecode.model.BaseVoltage BaseVoltage]] The base voltage of the topological node.

@@ -1,205 +1,213 @@
 package ch.ninecode.cim.CIMTool
 
 import java.io.File
-import java.nio.file.{Files, Paths}
+import java.nio.file.Files
+import java.nio.file.Paths
 import java.nio.charset.StandardCharsets
+
+import scala.collection.JavaConversions._
+import scala.collection.SortedSet
 
 import com.healthmarketscience.jackcess.Database
 import com.healthmarketscience.jackcess.DatabaseBuilder
 import com.healthmarketscience.jackcess.Table
 
-import scala.collection.mutable
-
 case class ModelParser (db: Database)
 {
-    val packages: mutable.Map[Int, Package] = mutable.Map[Int,Package]()
-    val classes: mutable.Map[Int, Class] = mutable.Map[Int,Class]()
-    val attributes: mutable.Map[Int, List[Attribute]] = mutable.Map[Int,List[Attribute]]()
-    val roles: mutable.Set[Role] = mutable.Set[Role]()
-    val domains: mutable.Set[Domain] = mutable.Set[Domain]()
+    type ID = Int
 
-    lazy val getPackageTable: Table = db.getTable ("t_package")
-    lazy val getObjectTable: Table = db.getTable ("t_object")
+    lazy val getPackageTable: Table =   db.getTable ("t_package")
+    lazy val getObjectTable: Table =    db.getTable ("t_object")
     lazy val getConnectorTable: Table = db.getTable ("t_connector")
     lazy val getAttributeTable: Table = db.getTable ("t_attribute")
-    lazy val globalPackage: Package = packages.find (_._2.global) match { case Some (p) => p._2 case _ => null }
 
-    def gatherPackageIDs (): Unit =
-    {
-        val it = getPackageTable.iterator ()
-        while (it.hasNext)
-        {
-            val row = Row (it.next ())
-            val global = row.getName.equals ("Model")
-            val pkg = Package (row.getXUID, row.getName, global, row.getNotes)
-            packages.put (row.getPackageID, pkg)
-        }
-    }
+    lazy val packages: Map[ID, Package] = extractPackages
+    lazy val classes: Map[ID, Class] = extractClasses
+    lazy val attributes: Map[ID, List[Attribute]] = extractAttributes
+    lazy val roles: Set[Role] = extractAssociations
+    lazy val domains: Set[Domain] = extractDomains
 
-    def extractPackages (): Unit =
-    {
-        val it = getPackageTable.iterator ()
-        while (it.hasNext)
-        {
-            val row = Row (it.next ())
-            val pkg = packages(row.getPackageID)
-            if (!pkg.global)
-                pkg.parent = packages.getOrElse (row.getParentID, globalPackage)
-        }
-    }
+    lazy val globalPackage: Package = packages.values.find (_.global).orNull
 
-    def extractClasses (): Unit =
+    def extractPackages: Map[ID, Package] =
     {
-        val it = getObjectTable.iterator ()
-        while (it.hasNext)
-        {
-            val row = Row (it.next ())
-            if (row.getObjectType.equals ("Class") || row.getObjectType.equals ("Enumeration"))
+        val packs = getPackageTable
+            .iterator
+            .map (Row (_))
+            .map (row ⇒ (row.getPackageID, (row.getParentID, new Package (row))))
+            .toMap
+
+        // adjust parent values
+        val global = packs.values.map (_._2).find (_.global).orNull
+        packs.mapValues (
+            row ⇒
             {
-                val pkg = packages.getOrElse (row.getPackageID, globalPackage)
-                val stereotype = if (row.hasStereotype) row.getStereotype else null
-                val cls = Class (row.getXUID, row.getName, row.getNote, pkg, stereotype)
-                classes.put (row.getObjectID, cls)
+                val (parent, pkg) = row
+                if (pkg.global)
+                    pkg
+                else
+                    pkg.copy (parent = packs.getOrElse (parent, (0, global))._2)
             }
-            else
-            {
-                val skip = Array ("Boundary", "Note", "Package", "Text", "Object")
-                if (!skip.contains (row.getObjectType))
-                    println ("pkg: " + row.getInt ("Package_ID") + " name: " + row.getName + " type: " + row.getObjectType)
-            }
-        }
+        )
     }
 
-    def extractAttributes (): Unit =
+    def extractClasses: Map[ID, Class] =
     {
-        val it = getAttributeTable.iterator ()
-        while (it.hasNext)
-        {
-            val row = Row (it.next ())
-            val cls_id = row.getObjectID
-            val cls = classes.getOrElse (cls_id, null)
+        val skip = Array ("Boundary", "Note", "Package", "Text", "Object", "Constraint")
+        val clses = getObjectTable
+            .iterator
+            .map (Row (_))
+            .filter (row ⇒ !skip.contains (row.getObjectType))
+            .map (row ⇒ (row.getObjectID, row))
+            .toMap
+            .mapValues (
+                row ⇒
+                {
+                    val pkg = packages.getOrElse (row.getPackageID, globalPackage)
+                    val typ = row.getObjectType
+                    if (!typ.equals ("Class") && !typ.equals ("Enumeration"))
+                        throw new Exception ("pkg: %s name: %s unhandled type: %s".format (pkg.name, row.getName, typ))
+                    new Class (row, pkg)
+                }
+            )
+
+        // get a map of superclass id values
+        val supers = (
+            for (
+                row ← getConnectorTable.iterator.map (Row (_));
+                typ = row.getConnectorType
+                if typ.equals ("Generalization")
+            )
+                yield (row.getStartObjectID, row.getEndObjectID)
+            ).toMap
+
+        // adjust superclasses
+        for ((id, cls) ← clses)
+            yield
+                if (supers.contains (id))
+                    (id, cls.copy (sup = clses.getOrElse (supers(id), null)))
+                else
+                    (id, cls)
+    }
+
+    def extractAttributes: Map[ID,List[Attribute]] =
+    {
+        val ret = scala.collection.mutable.Map[ID,List[Attribute]] ()
+
+        for (
+            row ← getAttributeTable.iterator.map (Row (_));
+            cls_id = row.getObjectID;
+            cls = classes.getOrElse (cls_id, null)
+        )
             if (null != cls)
             {
-                val classifier = if (row.hasClassifier) classes.getOrElse (row.getClassifier, null) else null
-                val dflt = if (row.hasDefault) row.getDefault else null
-                val attribute = Attribute (row.getXUID, row.getName, cls.pkg, cls, row.getNotes, row.getType, classifier, dflt)
-                if (attributes.contains (cls_id))
-                    attributes.put (cls_id, attributes(cls_id) :+ attribute)
+                val attribute = Attribute (
+                    row.getXUID,
+                    row.getName,
+                    cls.pkg,
+                    cls,
+                    row.getNotes,
+                    row.getType,
+                    if (row.hasClassifier) classes.getOrElse (row.getClassifier, null) else null,
+                    if (row.hasDefault) row.getDefault else null)
+                if (ret.contains (cls_id))
+                    ret.put (cls_id, ret(cls_id) :+ attribute)
                 else
-                    attributes.put (cls_id, List (attribute))
+                    ret.put (cls_id, List (attribute))
             }
             else
-                System.out.println("Could not find the domain of attribute " + row.getName + ". Domain ID = " + cls_id)
-        }
+                println("Could not find the domain of attribute " + row.getName + ". Domain ID = " + cls_id)
+
+        ret.toMap
     }
 
-    def extractAssociations (): Unit =
+    def extractAssociations: Set[Role] =
     {
-        val it = getConnectorTable.iterator ()
-        while (it.hasNext)
-        {
-            val row = Row (it.next ())
-            val typ = row.getConnectorType
-            if (typ.equals ("Generalization") || typ.equals ("Association") || typ.equals ("Aggregation"))
+        val ret = scala.collection.mutable.Set[Role] ()
+        for (
+            row ← getConnectorTable.iterator.map (Row (_));
+            typ = row.getConnectorType
+            if typ.equals ("Association") || typ.equals ("Aggregation");
+            src = classes.getOrElse (row.getStartObjectID, null);
+            dst = classes.getOrElse (row.getEndObjectID, null)
+            if (null != src) && (null != dst)
+        )
             {
-                val src = classes.getOrElse (row.getStartObjectID, null)
-                val dst = classes.getOrElse (row.getEndObjectID, null)
-                if ((null != src) && (null != dst))
-                {
-                    if (typ.equals ("Generalization"))
-                        src.sup  = dst
-                    else
-                    {
-                        val rolea = Role (row.getXUID, row.getDestRole, src, dst, row.getDestRoleNote, row.getDestCard, row.getDestIsAggregate, sideA = true)
-                        val roleb = Role (row.getXUID, row.getSourceRole, dst, src, row.getSourceRoleNote, row.getSourceCard, row.getSourceIsAggregate, sideA = false)
-                        rolea.mate = roleb
-                        roleb.mate = rolea
-                        roles.add (rolea)
-                        roles.add (roleb)
-                    }
-                }
+                val rolea = Role (row.getXUID, row.getDestRole, src, dst, row.getDestRoleNote, row.getDestCard, row.getDestIsAggregate, sideA = true)
+                val roleb = Role (row.getXUID, row.getSourceRole, dst, src, row.getSourceRoleNote, row.getSourceCard, row.getSourceIsAggregate, sideA = false)
+                rolea.mate = roleb
+                roleb.mate = rolea
+                ret.add (rolea)
+                ret.add (roleb)
             }
-        }
+        ret.toSet
     }
 
-    def extractDomains (): Unit =
+    def extractDomains: Set[Domain] =
     {
-        val it = getObjectTable.iterator ()
-        while (it.hasNext)
-        {
-            val row = Row (it.next ())
-            if (row.getObjectType.equals ("Class"))
+        val noenum = Set[String]()
+        val ret = for (
+            row ← getObjectTable.iterator.map (Row (_))
+            if row.getObjectType.equals ("Class");
+            cls_id = row.getObjectID;
+            xuid = row.getXUID;
+            name = row.getName;
+            note = row.getNote;
+            stereotype = if (row.hasStereotype) row.getStereotype else null;
+            domain = stereotype match
             {
-                val cls_id = row.getObjectID
-                val xuid = row.getXUID
-                val name = row.getName
-                val note = row.getNote
-                val stereotype = if (row.hasStereotype) row.getStereotype else null
-                val noenum = scala.collection.immutable.Set[String]()
-                val domain = stereotype match
-                {
-                    case "Primitive" =>
-                        Domain (xuid, name, note, stereotype, packages.getOrElse (row.getPackageID, null), noenum, "")
-                    case "CIMDatatype" =>
-                        val details = attributes(cls_id)
-                        val value = details.find (_.name == "value") match { case Some(attribute) => attribute.typ case None => null }
-                        Domain (xuid, name, note, stereotype, packages.getOrElse (row.getPackageID, null), noenum, value)
-                    case "Compound" =>
-                        val details = attributes(cls_id)
-                        val value = details.find (_.name == "value") match { case Some(attribute) => attribute.typ case None => null }
-                        Domain (xuid, name, note, stereotype, packages.getOrElse (row.getPackageID, null), noenum, value)
-                    case "enumeration" =>
-                        val enumeration = if (attributes.contains (cls_id)) attributes(cls_id).map (_.name).toSet else Set[String]()
-                        Domain (xuid, name, note, stereotype, packages.getOrElse (row.getPackageID, null), enumeration, "")
-                    case _ =>
-                        null
-                }
-                if (null != domain)
-                    domains.add (domain)
+                case "Primitive" =>
+                    Domain (xuid, name, note, stereotype, packages.getOrElse (row.getPackageID, null), noenum, "")
+                case "CIMDatatype" =>
+                    val details = attributes(cls_id)
+                    val value = details.find (_.name == "value") match { case Some(attribute) => attribute.typ case None => null }
+                    Domain (xuid, name, note, stereotype, packages.getOrElse (row.getPackageID, null), noenum, value)
+                case "Compound" =>
+                    val details = attributes(cls_id)
+                    val value = details.find (_.name == "value") match { case Some(attribute) => attribute.typ case None => null }
+                    Domain (xuid, name, note, stereotype, packages.getOrElse (row.getPackageID, null), noenum, value)
+                case "enumeration" =>
+                    val enumeration = if (attributes.contains (cls_id)) attributes(cls_id).map (_.name).toSet else Set[String]()
+                    Domain (xuid, name, note, stereotype, packages.getOrElse (row.getPackageID, null), enumeration, "")
+                case _ =>
+                    null
             }
-        }
+            if null != domain
+        )
+            yield domain
+
+        ret.toSet
     }
 
-    def showPackages (): Unit =
-    {
-        for (pkg <- packages)
-            println (pkg._2)
-    }
-
-    def showClasses (): Unit =
-    {
-        for (cls <- classes)
-            println (cls._2)
-    }
-
-    def showAttributes (): Unit =
-    {
-        for (class_attributes <- attributes)
-            for (attribute <- class_attributes._2)
-                println (attribute)
-    }
-
-    def showRoles (): Unit =
-    {
-        for (role <- roles)
-            println (role)
-    }
-
-    def showDomains (): Unit =
-    {
-        for (domain <- domains)
-            println (domain)
-    }
-
-    def run (): Unit =
-    {
-        gatherPackageIDs ()
-        extractPackages ()
-        extractClasses ()
-        extractAttributes ()
-        extractAssociations ()
-        extractDomains ()
-    }
+//    def showPackages (): Unit =
+//    {
+//        for (pkg ← packages)
+//            println (pkg._2)
+//    }
+//
+//    def showClasses (): Unit =
+//    {
+//        for (cls ← classes)
+//            println (cls._2)
+//    }
+//
+//    def showAttributes (): Unit =
+//    {
+//        for (class_attributes ← attributes; attribute ← class_attributes._2)
+//            println (attribute)
+//    }
+//
+//    def showRoles (): Unit =
+//    {
+//        for (role ← roles)
+//            println (role)
+//    }
+//
+//    def showDomains (): Unit =
+//    {
+//        for (domain ← domains)
+//            println (domain)
+//    }
 
     /**
      * Create a list of classes in the package.
@@ -209,26 +217,22 @@ case class ModelParser (db: Database)
      * @param pkg the package to get the classes for
      * @return a sorted list of classes in the package
      */
-    def classesFor (pkg: Package): mutable.SortedSet[Class] =
+    def classesFor (pkg: Package): SortedSet[Class] =
     {
         implicit val ordering: Ordering[Class] = new Ordering[Class]
         {
             def compare (a: Class, b: Class): Int = a.name.compareTo (b.name)
         }
 
-        val ret: mutable.SortedSet[Class] = mutable.SortedSet[Class]()
+        def stereo (cls: Class): Boolean =
+            (cls.stereotype != "enumeration") &&
+            (cls.stereotype != "CIMDatatype") &&
+            (cls.stereotype != "Primitive")
 
-        for (cls <- classes.filter (x => x._2.pkg == pkg))
-        {
-            val stereotype = cls._2.stereotype
-            if ((stereotype != "enumeration") && (stereotype != "CIMDatatype") && (stereotype != "Primitive"))
-                ret.add (cls._2)
-        }
-
-        ret
+        SortedSet[Class](classes.values.filter (cls ⇒ cls.pkg == pkg && stereo (cls)).toSeq:_*)
     }
 
-    def objectIdFor (cls: Class): Int = { classes.find (_._2.xuid == cls.xuid) match { case Some (c: (Int, Class)) ⇒ c._1 case _ ⇒ 0 } }
+    def objectIdFor (cls: Class): Int = { classes.find (_._2.xuid == cls.xuid) match { case Some (c: (ID, Class)) ⇒ c._1 case _ ⇒ 0 } }
     def attributesFor (cls: Class): List[Attribute] = attributes.getOrElse (objectIdFor (cls), List[Attribute]())
     def rolesFor (cls: Class): List[Role] = roles.filter (r ⇒ r.src == cls && r.name != "").toList
 }
@@ -250,7 +254,7 @@ object ModelParser
         }
 
         val parser = ModelParser (DatabaseBuilder.open (new File ("private_data/" + file)))
-        parser.run ()
+
 //        println ("Packages: " + parser.packages.size)
 //        parser.showPackages ()
 //        println ("Classes: " + parser.classes.size)
@@ -265,7 +269,7 @@ object ModelParser
         dir.mkdir
         if (SCALA)
         {
-            val packages = mutable.SortedSet[(String, Int)]()
+            val packages = scala.collection.mutable.SortedSet[(String, Int)]()
             for (pkg <- parser.packages)
             {
                 val scala = Scala (parser, pkg._2)

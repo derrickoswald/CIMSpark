@@ -335,6 +335,7 @@ extends
  * @param divisible An indication whether or not each element of the bid may be partially accepted or not.
  * @param exclusiveBidsIdentification Unique identification associated with all linked tenders.
  *        The identification of a set of tenders that are linked together signifying that only one can be accepted.
+ *        This identification is defined by the tenderer and must be unique for a given auction.
  * @param linkedBidsIdentification Unique identification associated with all linked bids.
  * @param minimumActivationQuantity The minimum quantity of energy that can be activated at a given time interval.
  * @param priority The numeric local priority given to a bid.
@@ -1772,6 +1773,7 @@ extends
  * Description of quantities needed in the data exchange.
  *
  * The type of the quantity is described either by the role of the association or the type attribute.
+ * The quality attribute provides the information about the quality of the quantity (measured, estimated, etc.).
  *
  * @param sup Reference to the superclass object.
  * @param quality The quality of the information being provided.

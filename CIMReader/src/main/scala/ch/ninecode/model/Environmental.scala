@@ -1204,6 +1204,10 @@ extends
  * An environmental event to which one or more forecasts or observations may be tied and which may relate to or affect one or more assets.
  *
  * This class is intended to be used as a means of grouping forecasts and/or observations and could be used for a variety of purposes, including:
+ * <ul>
+ * <li>to define a 'named' event like Hurricane Katrina and allow the historic (or forecast) values for phenomena and measurements (precipitation, temperature) across time to be  associated with it</li>
+ * <li>to identify assets that were (or are forecast to be) affected by a phenomenon or set of measurements</li>
+ * </ul>
  *
  * @param sup [[ch.ninecode.model.ActivityRecord ActivityRecord]] Reference to the superclass object.
  * @param EnvironmentalInformation [[ch.ninecode.model.EnvironmentalInformation EnvironmentalInformation]] Forecast or observation related to this environmental event.
@@ -2397,6 +2401,9 @@ extends
  * @param sup [[ch.ninecode.model.SpacePhenomenon SpacePhenomenon]] Reference to the superclass object.
  * @param changeDst Change in the disturbance  - storm time (Dst) index.
  *        The size of a geomagnetic storm is classified as:
+ *        - moderate ( -50 nT &gt;minimum of Dst &gt; -100 nT)
+ *        - intense (-100 nT &gt; minimum Dst &gt; -250 nT) or
+ *        - super-storm ( minimum of Dst &lt; -250 nT).
  * @group Environmental
  * @groupname Environmental Package Environmental
  */

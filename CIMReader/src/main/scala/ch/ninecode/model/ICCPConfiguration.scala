@@ -299,6 +299,9 @@ extends
  * @param pointQuality Specifies the type of ICCP quality that will be conveyed as part of the ICCP Point.
  * @param pointType Indicates the ICCP Point type that is to be conveyed.
  *        A CIM AccumlatorValue  shall be mapped to an ICCP real.
+ *        A CIM AnalogValue shall be mapped to an ICCP real.
+ *        A CIM DiscreteValue shall be mapped to either an ICCP real, state, stateSupplemental, or either protection event type.
+ *        A CIM StringMeasurementValue does not have a standardized mapping.
  * @param scope Indicates if the Point is global scoped (e.g.
  *        VCC) or accessible only to the Bilateral table peer (e.g. ICC).
  * @group ICCPConfiguration
@@ -1186,6 +1189,11 @@ extends
  * @param keepAliveTime Indicates the default interval at which TCP will check if the TCP connection is still valid.
  * @param port This value is only needed to be specified for called nodes (e.g. those that respond to a TCP.
  *        Open request).
+ *        
+ *        This value specifies the TCP port to be used. Well known and "registered" ports are preferred and can be found at:
+ *        http://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml
+ *        
+ *        For IEC 60870-6 TASE.2 (e.g. ICCP) and IEC 61850, the value used shall be 102 for non-TLS protected exchanges. The value shall be 3782 for TLS transported ICCP and 61850 exchanges.
  * @param PublicX509Certificate [[ch.ninecode.model.PublicX509Certificate PublicX509Certificate]] Is the Public Certificate used for mutual authentication between peers.
  * @group ICCPConfiguration
  * @groupname ICCPConfiguration Package ICCPConfiguration

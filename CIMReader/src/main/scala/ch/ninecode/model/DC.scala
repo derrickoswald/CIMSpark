@@ -24,6 +24,7 @@ import ch.ninecode.cim.Relationship
  *        Used in loss calculations.
  * @param p Active power at the point of common coupling.
  *        Load sign convention is used, i.e. positive sign means flow out from a node.
+ *        Starting value for a steady state solution in the case a simplified power flow model is used.
  * @param poleLossP The active power loss at a DC Pole
  *        &equals; idleLoss + switchingLoss*|Idc| + resitiveLoss*Idc<sup>2</sup>
  *        For lossless operation Pdc=Pac
@@ -32,6 +33,7 @@ import ch.ninecode.cim.Relationship
  *        Converter state variable used in power flow.
  * @param q Reactive power at the point of common coupling.
  *        Load sign convention is used, i.e. positive sign means flow out from a node.
+ *        Starting value for a steady state solution in the case a simplified power flow model is used.
  * @param ratedUdc Rated converter DC voltage, also called UdN.
  *        Converter configuration data used in power flow.
  * @param resistiveLoss Converter configuration data used in power flow.
@@ -1749,6 +1751,8 @@ extends
  * An electrically connected subset of the network.
  *
  * DC topological islands can change as the current network state changes: e.g. due to
+ * - disconnect switches or breakers changing state in a SCADA/EMS.
+ * - manual creation, change or deletion of topological nodes in a planning tool.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param DCTopologicalNodes [[ch.ninecode.model.DCTopologicalNode DCTopologicalNode]] The DC topological nodes in a DC topological island.

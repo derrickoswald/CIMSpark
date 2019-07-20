@@ -104,6 +104,8 @@ extends
  * Relationship under a particular name, usually evidenced by a deposit against which withdrawals can be made.
  *
  * Types of bank accounts include: demand, time, custodial, joint, trustee, corporate, special, and regular accounts.
+ * A statement of transactions during a fiscal period and the resulting balance is maintained on each account.
+ * For Payment metering, the account is associated with Bank and Supplier, reflecting details of the bank account used for depositing revenue collected by TokenVendor. The name of the account holder should be specified in 'name' attribute.
  *
  * @param sup [[ch.ninecode.model.BankAccount BankAccount]] Reference to the superclass object.
  * @param bankABA Bank ABA.
@@ -733,6 +735,7 @@ extends
  * This is related to Inventory physical counts organized by AssetModel.
  *
  * Note that a count of a type of asset can be accomplished by the association inherited by AssetModel (from Document) to Asset.
+ * It enables ERP applications to transfer an inventory count between ERP and the actual physical inventory location. This count may be a cycle count or a physical count.
  *
  * @param sup [[ch.ninecode.model.ErpIdentifiedObject ErpIdentifiedObject]] Reference to the superclass object.
  * @param status <em>undocumented</em>
@@ -1367,6 +1370,7 @@ extends
  * Book for recording accounting transactions as they occur.
  *
  * Transactions and adjustments are first recorded in a journal, which is like a diary of instructions, advising which account to be charged and by how much.
+ * A journal represents a change in the balances of a business's financial accounts. Many tasks or transactions throughout an enterprise will result in the creation of a journal. Some examples are creating a customer invoice, paying a vendor, transferring inventory, or paying employees.
  *
  * @param sup [[ch.ninecode.model.ErpDocument ErpDocument]] Reference to the superclass object.
  * @param ErpJournalEntries [[ch.ninecode.model.ErpJournalEntry ErpJournalEntry]] <em>undocumented</em>

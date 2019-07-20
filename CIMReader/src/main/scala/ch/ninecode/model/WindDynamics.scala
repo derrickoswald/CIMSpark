@@ -331,6 +331,7 @@ extends
  * Current limitation model.
  *
  * The current limitation model combines the physical limits and the control limits.
+ * Reference: IEC 61400-27-1:2015, 5.6.5.8.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param imax Maximum continuous current at the wind turbine terminals (<i>i</i><i><sub>max</sub></i>).
@@ -341,8 +342,12 @@ extends
  *        It is a type-dependent parameter.
  * @param mdfslim Limitation of type 3 stator current (<i>M</i><i><sub>DFSLim</sub></i>). <i>M</i><i><sub>DFSLim</sub></i><sub> </sub>= 1 for wind turbines type 4.
  *        It is a type-dependent parameter.
+ *        false= total current limitation (0 in the IEC model)
+ *        true=stator current limitation (1 in the IEC model).
  * @param mqpri Prioritisation of Q control during UVRT (<i>M</i><i><sub>qpri</sub></i>).
  *        It is a project-dependent parameter.
+ *        true = reactive power priority (1 in the IEC model)
+ *        false = active power priority (0 in the IEC model).
  * @param tufiltcl Voltage measurement filter time constant (<i>T</i><i><sub>ufiltcl</sub></i>) (&gt;= 0).
  *        It is a type-dependent parameter.
  * @param upqumax Wind turbine voltage in the operation point where zero reactive current can be delivered (<i>u</i><i><sub>pqumax</sub></i>).
@@ -494,6 +499,8 @@ extends
  *        It is a type-dependent parameter.
  * @param mpuvrt Enable UVRT power control mode (<i>M</i><i><sub>pUVRT</sub></i><sub>)</sub>.
  *        It is a project-dependent parameter.
+ *        true = voltage control (1 in the IEC model)
+ *        false = reactive power control (0 in the IEC model).
  * @param omegadtd Active drive train damping frequency (<i>omega</i><i><sub>DTD</sub></i>).
  *        It can be calculated from two mass model parameters. It is a type-dependent parameter.
  * @param omegaoffset Offset to reference value that limits controller action during rotor speed changes (<i>omega</i><i><sub>offset</sub></i>).
@@ -2346,6 +2353,8 @@ extends
  * @param sup [[ch.ninecode.model.WindGenType3IEC WindGenType3IEC]] Reference to the superclass object.
  * @param mwtcwp Crowbar control mode (<i>M</i><i><sub>WTcwp</sub></i>).
  *        It is a case-dependent parameter.
+ *        true = 1 in the IEC model
+ *        false = 0 in the IEC model.
  * @param tg Current generation time constant (<i>T</i><i><sub>g</sub></i>) (&gt;= 0).
  *        It is a type-dependent parameter.
  * @param two Time constant for crowbar washout filter (<i>T</i><i><sub>wo</sub></i>) (&gt;= 0).
@@ -3460,6 +3469,8 @@ extends
  *        It is a project-dependent parameter.
  * @param mzc Zero crossing measurement mode (<i>Mzc</i>).
  *        It is a type-dependent parameter.
+ *        true = WT protection system uses zero crossings to detect frequency (1 in the IEC model)
+ *        false = WT protection system does not use zero crossings to detect frequency (0 in the IEC model).
  * @param tfma Time interval of moving average window (<i>TfMA</i>) (&gt;= 0).
  *        It is a type-dependent parameter.
  * @param uover Wind turbine over voltage protection activation threshold (<i>u</i><i><sub>over</sub></i>).
@@ -3799,6 +3810,7 @@ extends
  * Parent class supporting relationships to IEC wind turbines type 1 and type 2 including their control models.
  *
  * Generator model for wind turbine of IEC type 1 or type 2 is a standard asynchronous generator model.
+ * Reference: IEC 61400-27-1:2015, 5.5.2 and 5.5.3.
  *
  * @param sup [[ch.ninecode.model.WindTurbineType1or2Dynamics WindTurbineType1or2Dynamics]] Reference to the superclass object.
  * @param WindMechIEC [[ch.ninecode.model.WindMechIEC WindMechIEC]] Wind mechanical model associated with this wind generator type 1 or type 2 model.

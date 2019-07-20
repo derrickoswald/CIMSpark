@@ -11,6 +11,10 @@ import ch.ninecode.cim.Relationship
  * All synchronous machine detailed types use a subset of the same data parameters and input/output variables.
  *
  * The several variations differ in the following ways:
+ * - the number of  equivalent windings that are included;
+ * - the way in which saturation is incorporated into the model;
+ * - whether or not �subtransient saliency� (<i>X''q</i> not = <i>X''d</i>) is represented.
+ * It is not necessary for each simulation tool to have separate models for each of the model types.  The same model can often be used for several types by alternative logic within the model.  Also, differences in saturation representation might not result in significant model performance differences so model substitutions are often acceptable.
  *
  * @param sup [[ch.ninecode.model.SynchronousMachineDynamics SynchronousMachineDynamics]] Reference to the superclass object.
  * @param efdBaseRatio Ratio (exciter voltage/generator voltage) of <i>Efd</i> bases of exciter and generator models (&gt; 0).
@@ -117,6 +121,10 @@ extends
  * <font color="#0f0f0f">It is a common practice to represent small generators by a negative load rather than by a dynamic generator model when performing dynamics simulations.
  *
  * In this case, a SynchronousMachine in the static model is not represented by anything in the dynamics model, instead it is treated as an ordinary load.</font>
+ * <font color="#0f0f0f">Parameter details:</font>
+ * <ol>
+ * <li><font color="#0f0f0f">Synchronous machine parameters such as <i>Xl, Xd, Xp</i> etc. are actually used as inductances in the models,</font> but are commonly referred to as reactances since, at nominal frequency, the PU values are the same. However, some references use the symbol <i>L</i> instead of <i>X</i>.</li>
+ * </ol>
  *
  * @param sup [[ch.ninecode.model.RotatingMachineDynamics RotatingMachineDynamics]] Reference to the superclass object.
  * @param CrossCompoundTurbineGovernorDyanmics [[ch.ninecode.model.CrossCompoundTurbineGovernorDynamics CrossCompoundTurbineGovernorDynamics]] The cross-compound turbine governor with which this high-pressure synchronous machine is associated.
@@ -242,6 +250,28 @@ extends
  * The electrical equations for all variations of the synchronous models are based on the SynchronousEquivalentCircuit diagram for the direct- and quadrature- axes.
  *
  * Equations for conversion between equivalent circuit and time constant reactance forms:
+ * <i>Xd</i> = <i>Xad </i>+<i> Xl</i>
+ * <i>X�d</i> = <i>Xl</i> + <i>Xad</i> x <i>Xfd</i> / (<i>Xad</i> + <i>Xfd</i>)
+ * <i>X�d</i> = <i>Xl</i> + <i>Xad</i> x <i>Xfd</i> x <i>X1d</i> / (<i>Xad</i> x <i>Xfd</i> + <i>Xad</i> x <i>X1d</i> + <i>Xfd</i> x <i>X1d</i>)
+ * <i>Xq</i> = <i>Xaq</i> + <i>Xl</i>
+ * <i>X�q</i> = <i>Xl</i> + <i>Xaq</i> x <i>X1q</i> / (<i>Xaq</i> + <i>X1q</i>)
+ * <i>X�q</i> = <i>Xl</i> + <i>Xaq</i> x <i>X1q</i> x <i>X2q</i> / (<i>Xaq</i> x <i>X1q</i> + <i>Xaq</i> x <i>X2q</i> + <i>X1q</i> x <i>X2q</i>)
+ * <i>T�do</i> = (<i>Xad</i> + <i>Xfd</i>) / (<i>omega</i><i><sub>0</sub></i> x <i>Rfd</i>)
+ * <i>T�do</i> = (<i>Xad</i> x <i>Xfd</i> + <i>Xad</i> x <i>X1d</i> + <i>Xfd</i> x <i>X1d</i>) / (<i>omega</i><i><sub>0</sub></i> x <i>R1d</i> x (<i>Xad</i> + <i>Xfd</i>)
+ * <i>T�qo</i> = (<i>Xaq</i> + <i>X1q</i>) / (<i>omega</i><i><sub>0</sub></i> x <i>R1q</i>)
+ * <i>T�qo</i> = (<i>Xaq</i> x <i>X1q</i> + <i>Xaq</i> x <i>X2q</i> + <i>X1q</i> x <i>X2q</i>) / (<i>omega</i><i><sub>0</sub></i> x <i>R2q</i> x (<i>Xaq</i> + <i>X1q</i>)
+ * Same equations using CIM attributes from SynchronousMachineTimeConstantReactance class on left of "=" and SynchronousMachineEquivalentCircuit class on right (except as noted):
+ * xDirectSync = xad + RotatingMachineDynamics.statorLeakageReactance
+ * xDirectTrans = RotatingMachineDynamics.statorLeakageReactance + xad x xfd / (xad + xfd)
+ * xDirectSubtrans = RotatingMachineDynamics.statorLeakageReactance + xad x xfd x x1d / (xad x xfd + xad x x1d + xfd x x1d)
+ * xQuadSync = xaq + RotatingMachineDynamics.statorLeakageReactance
+ * xQuadTrans = RotatingMachineDynamics.statorLeakageReactance + xaq x x1q / (xaq+ x1q)
+ * xQuadSubtrans = RotatingMachineDynamics.statorLeakageReactance + xaq x x1q x x2q / (xaq x x1q + xaq x x2q + x1q x x2q)
+ * tpdo = (xad + xfd) / (2 x pi x nominal frequency x rfd)
+ * tppdo = (xad x xfd + xad x x1d + xfd x x1d) / (2 x pi x nominal frequency x r1d x (xad + xfd)
+ * tpqo = (xaq + x1q) / (2 x pi x nominal frequency x r1q)
+ * tppqo = (xaq x x1q + xaq x x2q + x1q x x2q) / (2 x pi x nominal frequency x r2q x (xaq + x1q)
+ * These are only valid for a simplified model where "Canay" reactance is zero.
  *
  * @param sup [[ch.ninecode.model.SynchronousMachineDetailed SynchronousMachineDetailed]] Reference to the superclass object.
  * @param r1d Direct-axis damper 1 winding resistance.
@@ -380,6 +410,12 @@ extends
  * The simplified model represents a synchronous generator as a constant internal voltage behind an impedance<i> </i>(<i>Rs + jXp</i>) as shown in the Simplified diagram.
  *
  * Since internal voltage is held constant, there is no <i>Efd</i> input and any excitation system model will be ignored.  There is also no <i>Ifd</i> output.
+ * This model should not be used for representing a real generator except, perhaps, small generators whose response is insignificant.
+ * The parameters used for the simplified model include:
+ * - RotatingMachineDynamics.damping (<i>D</i>);
+ * - RotatingMachineDynamics.inertia (<i>H</i>);
+ * - RotatingMachineDynamics.statorLeakageReactance (used to exchange <i>jXp </i>for SynchronousMachineSimplified);
+ * - RotatingMachineDynamics.statorResistance (<i>Rs</i>).
  *
  * @param sup [[ch.ninecode.model.SynchronousMachineDynamics SynchronousMachineDynamics]] Reference to the superclass object.
  * @group SynchronousMachineDynamics
@@ -445,6 +481,33 @@ extends
  * Synchronous machine detailed modelling types are defined by the combination of the attributes SynchronousMachineTimeConstantReactance.modelType and SynchronousMachineTimeConstantReactance.rotorType.
  *
  * Parameter details:
+ * <ol>
+ * <li>The �p� in the time-related attribute names is a substitution for a �prime� in the usual parameter notation, e.g. tpdo refers to <i>T'do</i>.</li>
+ * <li>The parameters used for models expressed in time constant reactance form include:</li>
+ * </ol>
+ * - RotatingMachine.ratedS (<i>MVAbase</i>);
+ * - RotatingMachineDynamics.damping (<i>D</i>);
+ * - RotatingMachineDynamics.inertia (<i>H</i>);
+ * - RotatingMachineDynamics.saturationFactor (<i>S1</i>);
+ * - RotatingMachineDynamics.saturationFactor120 (<i>S12</i>);
+ * - RotatingMachineDynamics.statorLeakageReactance (<i>Xl</i>);
+ * - RotatingMachineDynamics.statorResistance (<i>Rs</i>);
+ * - SynchronousMachineTimeConstantReactance.ks (<i>Ks</i>);
+ * - SynchronousMachineDetailed.saturationFactorQAxis (<i>S1q</i>);
+ * - SynchronousMachineDetailed.saturationFactor120QAxis (<i>S12q</i>);
+ * - SynchronousMachineDetailed.efdBaseRatio;
+ * - SynchronousMachineDetailed.ifdBaseType;
+ * - .xDirectSync (<i>Xd</i>);
+ * - .xDirectTrans (<i>X'd</i>);
+ * - .xDirectSubtrans (<i>X''d</i>);
+ * - .xQuadSync (<i>Xq</i>);
+ * - .xQuadTrans (<i>X'q</i>);
+ * - .xQuadSubtrans (<i>X''q</i>);
+ * - .tpdo (<i>T'do</i>);
+ * - .tppdo (<i>T''do</i>);
+ * - .tpqo (<i>T'qo</i>);
+ * - .tppqo (<i>T''qo</i>);
+ * - .tc.
  *
  * @param sup [[ch.ninecode.model.SynchronousMachineDetailed SynchronousMachineDetailed]] Reference to the superclass object.
  * @param ks Saturation loading correction factor (<i>Ks</i>) (&gt;= 0).

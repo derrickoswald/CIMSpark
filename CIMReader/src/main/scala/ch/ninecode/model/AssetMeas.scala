@@ -1415,6 +1415,8 @@ extends
  * Description of period for which calculation is performed.
  *
  * Conditions:
+ * F:
+ * {Not sure where these came from� delete from UML?}
  *
  * @param sup [[ch.ninecode.model.StatisticalCalculation StatisticalCalculation]] Reference to the superclass object.
  * @param calculationIntervalMagnitude Number of units (of calculationIntervalUnit) in the calculation interval.

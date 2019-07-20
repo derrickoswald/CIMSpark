@@ -208,6 +208,7 @@ extends
  * IEEE type DEC2A model for discontinuous excitation control.
  *
  * This system provides transient excitation boosting via an open-loop control as initiated by a trigger signal generated remotely.
+ * Reference: IEEE 421.5-2005 12.3.
  *
  * @param sup [[ch.ninecode.model.DiscontinuousExcitationControlDynamics DiscontinuousExcitationControlDynamics]] Reference to the superclass object.
  * @param td1 Discontinuous controller time constant (<i>T</i><i><sub>D1</sub></i>) (&gt;= 0).
@@ -310,6 +311,7 @@ extends
  * IEEE type DEC3A model.
  *
  * In some systems, the stabilizer output is disconnected from the regulator immediately following a severe fault to prevent the stabilizer from competing with action of voltage regulator during the first swing.
+ * Reference: IEEE 421.5-2005 12.4.
  *
  * @param sup [[ch.ninecode.model.DiscontinuousExcitationControlDynamics DiscontinuousExcitationControlDynamics]] Reference to the superclass object.
  * @param tdr Reset time delay (<i>T</i><i><sub>DR</sub></i>) (&gt;= 0).

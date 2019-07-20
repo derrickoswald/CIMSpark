@@ -16,6 +16,7 @@ import ch.ninecode.cim.Relationship
  * @param isNetworked Indication that station is part of a network of stations used to monitor weather phenomena covering a large geographical area.
  * @param timeZoneOffset The time offset from UTC (a.k.a.
  *        GMT) configured in the station "clock", not (necessarily) the time zone in which the station is physically located.
+ *        This attribute exists to support management of utility monitoring stations and has no direct relationship to the manner in which time is expressed in EnvironmentalValueSet.
  * @param EnvironmentalAnalog [[ch.ninecode.model.EnvironmentalAnalog EnvironmentalAnalog]] Environmental analog measurement provided by this monitoring station.
  * @param Location [[ch.ninecode.model.Location Location]] Location of this monitoring station.
  * @param ReportingCapability [[ch.ninecode.model.ReportingCapability ReportingCapability]] One of the reporting capabilities of this monitoring station.

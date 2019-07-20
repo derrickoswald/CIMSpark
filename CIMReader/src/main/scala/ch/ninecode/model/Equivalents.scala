@@ -13,34 +13,48 @@ import ch.ninecode.cim.Relationship
  * @param sup [[ch.ninecode.model.EquivalentEquipment EquivalentEquipment]] Reference to the superclass object.
  * @param negativeR12 Negative sequence series resistance from terminal sequence  1 to terminal sequence 2.
  *        Used for short circuit data exchange according to IEC 60909.
+ *        EquivalentBranch is a result of network reduction prior to the data exchange.
  * @param negativeR21 Negative sequence series resistance from terminal sequence 2 to terminal sequence 1.
  *        Used for short circuit data exchange according to IEC 60909.
+ *        EquivalentBranch is a result of network reduction prior to the data exchange.
  * @param negativeX12 Negative sequence series reactance from terminal sequence  1 to terminal sequence 2.
  *        Used for short circuit data exchange according to IEC 60909.
+ *        Usage : EquivalentBranch is a result of network reduction prior to the data exchange.
  * @param negativeX21 Negative sequence series reactance from terminal sequence 2 to terminal sequence 1.
  *        Used for short circuit data exchange according to IEC 60909.
+ *        Usage: EquivalentBranch is a result of network reduction prior to the data exchange.
  * @param positiveR12 Positive sequence series resistance from terminal sequence  1 to terminal sequence 2 .
  *        Used for short circuit data exchange according to IEC 60909.
+ *        EquivalentBranch is a result of network reduction prior to the data exchange.
  * @param positiveR21 Positive sequence series resistance from terminal sequence 2 to terminal sequence 1.
  *        Used for short circuit data exchange according to IEC 60909.
+ *        EquivalentBranch is a result of network reduction prior to the data exchange.
  * @param positiveX12 Positive sequence series reactance from terminal sequence  1 to terminal sequence 2.
  *        Used for short circuit data exchange according to IEC 60909.
+ *        Usage : EquivalentBranch is a result of network reduction prior to the data exchange.
  * @param positiveX21 Positive sequence series reactance from terminal sequence 2 to terminal sequence 1.
  *        Used for short circuit data exchange according to IEC 60909.
+ *        Usage : EquivalentBranch is a result of network reduction prior to the data exchange.
  * @param r Positive sequence series resistance of the reduced branch.
  * @param r21 Resistance from terminal sequence 2 to terminal sequence 1 .
  *        Used for steady state power flow. This attribute is optional and represent unbalanced network such as off-nominal phase shifter. If only EquivalentBranch.r is given, then EquivalentBranch.r21 is assumed equal to EquivalentBranch.r.
+ *        Usage rule : EquivalentBranch is a result of network reduction prior to the data exchange.
  * @param x Positive sequence series reactance of the reduced branch.
  * @param x21 Reactance from terminal sequence 2 to terminal sequence 1.
  *        Used for steady state power flow. This attribute is optional and represents an unbalanced network such as off-nominal phase shifter. If only EquivalentBranch.x is given, then EquivalentBranch.x21 is assumed equal to EquivalentBranch.x.
+ *        Usage rule: EquivalentBranch is a result of network reduction prior to the data exchange.
  * @param zeroR12 Zero sequence series resistance from terminal sequence  1 to terminal sequence 2.
  *        Used for short circuit data exchange according to IEC 60909.
+ *        EquivalentBranch is a result of network reduction prior to the data exchange.
  * @param zeroR21 Zero sequence series resistance from terminal sequence  2 to terminal sequence 1.
  *        Used for short circuit data exchange according to IEC 60909.
+ *        Usage : EquivalentBranch is a result of network reduction prior to the data exchange.
  * @param zeroX12 Zero sequence series reactance from terminal sequence  1 to terminal sequence 2.
  *        Used for short circuit data exchange according to IEC 60909.
+ *        Usage : EquivalentBranch is a result of network reduction prior to the data exchange.
  * @param zeroX21 Zero sequence series reactance from terminal sequence 2 to terminal sequence 1.
  *        Used for short circuit data exchange according to IEC 60909.
+ *        Usage : EquivalentBranch is a result of network reduction prior to the data exchange.
  * @group Equivalents
  * @groupname Equivalents Package Equivalents
  * @groupdesc Equivalents The equivalents package models equivalent networks.
@@ -280,24 +294,32 @@ extends
  *        Used for modelling of infeed for load flow exchange. Not used for short circuit modelling.  If maxQ and minQ are not used ReactiveCapabilityCurve can be used.
  * @param p Equivalent active power injection.
  *        Load sign convention is used, i.e. positive sign means flow out from a node.
+ *        Starting value for steady state solutions.
  * @param q Equivalent reactive power injection.
  *        Load sign convention is used, i.e. positive sign means flow out from a node.
+ *        Starting value for steady state solutions.
  * @param r Positive sequence resistance.
  *        Used to represent Extended-Ward (IEC 60909).
+ *        Usage : Extended-Ward is a result of network reduction prior to the data exchange.
  * @param r0 Zero sequence resistance.
  *        Used to represent Extended-Ward (IEC 60909).
+ *        Usage : Extended-Ward is a result of network reduction prior to the data exchange.
  * @param r2 Negative sequence resistance.
  *        Used to represent Extended-Ward (IEC 60909).
+ *        Usage : Extended-Ward is a result of network reduction prior to the data exchange.
  * @param regulationCapability Specifies whether or not the EquivalentInjection has the capability to regulate the local voltage.
  * @param regulationStatus Specifies the default regulation status of the EquivalentInjection.
  *        True is regulating.  False is not regulating.
  * @param regulationTarget The target voltage for voltage regulation.
  * @param x Positive sequence reactance.
  *        Used to represent Extended-Ward (IEC 60909).
+ *        Usage : Extended-Ward is a result of network reduction prior to the data exchange.
  * @param x0 Zero sequence reactance.
  *        Used to represent Extended-Ward (IEC 60909).
+ *        Usage : Extended-Ward is a result of network reduction prior to the data exchange.
  * @param x2 Negative sequence reactance.
  *        Used to represent Extended-Ward (IEC 60909).
+ *        Usage : Extended-Ward is a result of network reduction prior to the data exchange.
  * @param ReactiveCapabilityCurve [[ch.ninecode.model.ReactiveCapabilityCurve ReactiveCapabilityCurve]] The reactive capability curve used by this equivalent injection.
  * @group Equivalents
  * @groupname Equivalents Package Equivalents

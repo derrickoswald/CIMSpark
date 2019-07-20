@@ -777,6 +777,17 @@ extends
  * A Default Energy Bid is a monotonically increasing staircase function consisting at maximum 10 economic bid segments, or 10 (\$/MW, MW) pairs.
  *
  * There are three methods for determining the Default Energy Bid:
+ * <ul>
+ * <li>Cost Based: derived from the Heat Rate or Average Cost multiplied by the Gas Price Index plus 10%.</li>
+ * <li>LMP Based: a weighted average of LMPs in the preceding 90 days.</li>
+ * <li>Negotiated: an amount negotiated with the designated Independent Entity.</li>
+ * </ul>
+ * 
+ * Default Startup Bid
+ * A Default Startup Bid (DSUB) shall be calculated for each RMR unit based on the Startup Cost stored in the Master File and the applicable GPI and EPI.
+ * 
+ * Default Minimum Load Bid
+ * A Default Minimum Load Bid (DMLB) shall be calculated for each RMR unit based on the Minimum Load Cost stored in the Master File and the applicable GPI.
  *
  * @param sup [[ch.ninecode.model.Bid Bid]] Reference to the superclass object.
  * @param bidType Default bid type such as Default Energy Bid, Default Minimum Load Bid, and Default Startup Bid
@@ -1935,6 +1946,8 @@ extends
  * Generic constraints can represent secure areas, voltage profile, transient stability and voltage collapse limits.
  *
  * The generic constraints can be one of the following forms:
+ * a)	Thermal MW limit constraints type
+ * b)	Group line flow constraint type
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param intervalEndTime Interval End Time
@@ -2371,6 +2384,12 @@ extends
  * This class models the load distribution factors.
  *
  * This class should be used in one of two ways:
+ * 
+ * Use it along with the AggregatedPnode and the IndividualPnode to show the distriubtion of each individual party
+ * 
+ * OR
+ * 
+ * Use it with Mkt_EnergyConsumer to represent the current MW/Mvar distribution within it's parnet load group.
  *
  * @param sup Reference to the superclass object.
  * @param pDistFactor Real power (MW) load distribution factor
@@ -3744,6 +3763,16 @@ extends
  * Typically provided by RTO systems, constraints identified in both base case and critical contingency cases have to be transferred.
  *
  * A constraint has N (&gt;=1) constraint terms. A term is represented by an instance of TerminalConstraintTerm.
+ * The constraint expression is:
+ * minValue &lt;= c1*x1 + c2*x2 + .... cn*xn + k &lt;= maxValue
+ * where:
+ * - cn is ConstraintTerm.factor
+ * - xn is the flow at the terminal
+ * Flow into the associated equipment is positive for the purpose of ConnectivityNode NodeConstraintTerm.
+ * 
+ * k is SecurityConstraintsLinear.resourceMW.
+ * The units of k are assumed to be same as the units of the flows, xn.  The constants, cn, are dimensionless.
+ * With these conventions, cn and k are all positive for a typical constraint such as "weighted sum of generation shall be less than limit". Furthermore, cn are all 1.0 for a case such as "interface flow shall be less than limit", assuming the terminals are chosen on the importing side of the interface.
  *
  * @param sup [[ch.ninecode.model.MarketFactors MarketFactors]] Reference to the superclass object.
  * @param BaseCaseConstraintLimit [[ch.ninecode.model.BaseCaseConstraintLimit BaseCaseConstraintLimit]] <em>undocumented</em>
@@ -4362,6 +4391,8 @@ extends
  * A Transmission Right(TR) can be a chain of TR's or on individual.
  *
  * When a transmission right is not a chain, this is formally the ETC/TOR Entitlement for each ETC/TOR contract with the inclusion of CVR(Converted Rights) as an ETC. This is the sum of all entitlements on all related transmission interfaces for the same TR.
+ * 
+ * When TR is a chain, its entitlement is the minimum of all entitlements for the individual TRs in the chain.
  *
  * @param sup Reference to the superclass object.
  * @param entitlement The entitlement

@@ -584,10 +584,30 @@ extends
  * Models the characteristic response of the load demand due to changes in system conditions such as voltage and frequency.
  *
  * This is not related to demand response.
+ * 
+ * If LoadResponseCharacteristic.exponentModel is True, the voltage exponents are specified and used as to calculate:
+ * 
+ * Active power component = Pnominal * (Voltage/cim:BaseVoltage.nominalVoltage) ** cim:LoadResponseCharacteristic.pVoltageExponent
+ * 
+ * Reactive power component = Qnominal * (Voltage/cim:BaseVoltage.nominalVoltage)** cim:LoadResponseCharacteristic.qVoltageExponent
+ * 
+ * Where  * means "multiply" and ** is "raised to power of".
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param exponentModel Indicates the exponential voltage dependency model is to be used.
  *        If false, the coefficient model is to be used.
+ *        The exponential voltage dependency model consist of the attributes
+ *        - pVoltageExponent
+ *        - qVoltageExponent.
+ *        The coefficient model consist of the attributes
+ *        - pConstantImpedance
+ *        - pConstantCurrent
+ *        - pConstantPower
+ *        - qConstantImpedance
+ *        - qConstantCurrent
+ *        - qConstantPower.
+ *        The sum of pConstantImpedance, pConstantCurrent and pConstantPower shall equal 1.
+ *        The sum of qConstantImpedance, qConstantCurrent and qConstantPower shall equal 1.
  * @param pConstantCurrent Portion of active power load modelled as constant current.
  * @param pConstantImpedance Portion of active power load modelled as constant impedance.
  * @param pConstantPower Portion of active power load modelled as constant power.
