@@ -322,6 +322,7 @@ extends
  * An ad-hoc auxiliary account agreement associated with a customer agreement, not part of the customer's account, but typically subject to formal agreement between customer and supplier (utility).
  *
  * Typically this is used to collect revenue owed by the customer for other services or arrears accrued with the utility for other services. It is typically linked to a prepaid token purchase transaction, thus forcing the customer to make a payment towards settlement of the auxiliary account balance whenever the customer needs to purchase a prepaid token for electricity.
+ * The present status of the auxiliary agreement can be defined in the context of the utility's business rules, for example: enabled, disabled, pending, over recovered, under recovered, written off, etc.
  *
  * @param sup [[ch.ninecode.model.Agreement Agreement]] Reference to the superclass object.
  * @param arrearsInterest The interest per annum to be charged prorata on 'AuxiliaryAccount.dueArrears' at the end of each 'payCycle'.
@@ -1907,19 +1908,32 @@ extends
  * Generally referring to a period of operation or work performed.
  *
  * Whether the shift is open/closed can be derived from attributes 'activityInterval.start' and 'activityInterval.end'.
+ * The grand total for receipts (i.e., cumulative total of all actual receipted amounts during this shift; bankable + non-bankable; excludes rounding error totals) can be derived from receipt:
+ * &equals;sum('Receipt.receiptAmount'); includes bankable and non-bankable receipts.
+ * It also has to be reconciled against:
+ * &equals;sum('receiptsGrandTotalBankable' + 'receiptsGrandTotalNonBankable')
+ * and against receipt summary:
+ * &equals;sum('ReceiptSummary.receiptsTotal').
+ * The attributes with "GrandTotal" defined in this class may need to be used when the source data is periodically flushed from the system and then these cannot be derived.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param activityInterval Interval for activity of this shift.
  * @param receiptsGrandTotalBankable Total of amounts receipted during this shift that can be manually banked (cash and cheques for example).
  *        Values are obtained from Receipt attributes:
+ *        &equals;sum(Receipt.receiptAmount) for all Receipt.bankable = true.
  * @param receiptsGrandTotalNonBankable Total of amounts receipted during this shift that cannot be manually banked (card payments for example).
  *        Values are obtained from Receipt attributes:
+ *        &equals;sum(Receipt.receiptAmount) for all Receipt.bankable = false.
  * @param receiptsGrandTotalRounding Cumulative amount in error due to process rounding not reflected in receiptsGrandTotal.
  *        Values are obtained from Receipt attributes:
+ *        &equals;sum(Receipt.receiptRounding).
  * @param transactionsGrandTotal Cumulative total of transacted amounts during this shift.
  *        Values are obtained from transaction:
+ *        &equals;sum('Transaction.transactionAmount'). It also has to be reconciled against transaction summary:
+ *        &equals;sum('TransactionSummary.transactionsTotal').
  * @param transactionsGrandTotalRounding Cumulative amount in error due to process rounding not reflected in transactionsGandTotal.
  *        Values are obtained from Transaction attributes:
+ *        &equals;sum(Transaction.transactionRounding).
  * @group PaymentMetering
  * @groupname PaymentMetering Package PaymentMetering
  * @groupdesc PaymentMetering This package is an extension of the Metering package and contains the information classes that support specialised applications such as prepayment metering. These classes are generally associated with the collection and control of revenue from the customer for a delivered service.
@@ -2122,6 +2136,7 @@ extends
  * Tender is what is "offered" by the customer towards making a payment and is often more than the required payment (hence the need for 'change').
  *
  * The payment is thus that part of the Tender that goes towards settlement of a particular transaction.
+ * Tender is modelled as an aggregation of Cheque and Card. Both these tender types can exist in a single tender bid thus 'accountHolderName' has to exist separately in each of Cheque and Card as each could have a different account holder name.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param amount Amount tendered by customer.

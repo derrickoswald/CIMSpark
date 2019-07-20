@@ -14,7 +14,8 @@ case class Package (
     name: String,
     global: Boolean,
     notes: String,
-    var parent: Package = null)
+    parent: Package = null)
 {
+    def this (row: Row) = this (row.getXUID, row.getName, row.getName.equals ("Model"), row.getNotes, null)
     override def toString: String = (if (null != parent) parent.name + ":" else "") + name +  (if (global) " global" else "")
 }

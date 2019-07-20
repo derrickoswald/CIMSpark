@@ -1,6 +1,7 @@
 package ch.ninecode.cim.CIMTool
 
 import scala.collection.mutable
+import scala.collection.SortedSet
 
 case class Scala (parser: ModelParser, pkg: Package)
 {
@@ -97,7 +98,7 @@ case class Scala (parser: ModelParser, pkg: Package)
         "_" + valid_class_name (pkg.name)
     }
 
-    def details (classes: mutable.Set[Class]) (attribute: Attribute): Member =
+    def details (classes: SortedSet[Class]) (attribute: Attribute): Member =
     {
         val name = attribute.name
         val variable = valid_attribute_name (attribute)

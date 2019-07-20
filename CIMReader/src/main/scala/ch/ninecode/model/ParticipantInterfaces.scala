@@ -1029,6 +1029,18 @@ extends
  * @param selfSchedSptResource Price Taker Export Self Sched Support Resource
  * @param selfSchedType This attribute is used to specify if a bid includes a self sched bid.
  *        If so what self sched type is it. The possible values are shown as follow but not limited to:
+ *        
+ *        'ETC' - Existing transmission contract
+ *        'TOR' - Transmission ownership right
+ *        'RMR' - Reliability must run
+ *        'RGMR' - Regulatory must run
+ *        "RMT" - Relaiability must take
+ *        "PT" - Price taker
+ *        "LPT" - Low price taker
+ *        "SP" - Self provision
+ *        "RA" - Resource adequacy
+ *        
+ *        This attribute is originally defined in the BidSelfSched class
  * @param updateType <em>undocumented</em>
  * @param wheelingTransactionReference A unique identifier of a wheeling transaction.
  *        A wheeling transaction is a balanced Energy exchange among Supply and Demand Resources.
@@ -1675,6 +1687,8 @@ extends
  * @param acceptStatus The accept status submitted by the responder. enumeration type needs to be defined
  * @param certificationName The Subject DN is the X509 Certificate Subject DN.
  *        This is the essentially the certificate name presented by the client. In the case of ADS Certificates, this will be the user name. It may be from an API Client or the MP Client (GUI).
+ *        
+ *        The Subject ID normally includes more than just the user name (Common Name), it can also contain information such as City, Company ID, etc.
  * @param clearedMW MW amount associated with instruction.
  *        For 5 minute binding dispatches, this is the Goto MW or DOT
  * @param instructionTime The target date/time for the received instruction.
@@ -2125,6 +2139,8 @@ extends
  * An indicator specifying that a resource shall have an Hourly Pre-Dispatch.
  *
  * The resource could be a RegisteredGenerator or a RegisteredInterTie.
+ * 
+ * This schedule is assocated with the hourly parameters in a resource bid.
  *
  * @param sup [[ch.ninecode.model.BidHourlySchedule BidHourlySchedule]] Reference to the superclass object.
  * @param value Flag defining that for this hour in the resource bid the resource shall have an hourly pre-dispatch.
@@ -3374,6 +3390,8 @@ extends
  * The fixed operating level of a Pump Storage Hydro Unit operating as a hydro pump.
  *
  * Associated with the energy market product type.
+ * 
+ * This schedule is assocated with the hourly parameters in a resource bid associated with a specific product within the bid.
  *
  * @param sup [[ch.ninecode.model.BidHourlyProductSchedule BidHourlyProductSchedule]] Reference to the superclass object.
  * @param value <em>undocumented</em>
@@ -4025,6 +4043,7 @@ extends
  * @param tradeQuantity tradeQuantity:
  *        If tradeType = IST, The amount of an Energy Trade.
  *        If tradeType = AST, The amount of an Ancillary Service Obligation Trade.
+ *        If tradeType = UCT, The amount of a Unit Commitment Obligation Trade.
  * @param tradeStatus Resulting status of the trade following the rule engine processing.
  * @param updateTimeStamp <em>undocumented</em>
  * @param updateUser <em>undocumented</em>

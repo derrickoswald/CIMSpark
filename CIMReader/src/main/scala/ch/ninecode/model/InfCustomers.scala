@@ -11,6 +11,7 @@ import ch.ninecode.cim.Relationship
  * Compliance events are used for reporting regulatory or contract compliance issues and/or variances.
  *
  * These might be created as a consequence of local business processes and associated rules. It is anticipated that this class will be customised extensively to meet local implementation needs.
+ * Use inherited 'type' to indicate that, for example, expected performance will not be met or reported as mandated.
  *
  * @param sup [[ch.ninecode.model.ActivityRecord ActivityRecord]] Reference to the superclass object.
  * @param deadline The deadline for compliance.
@@ -88,6 +89,9 @@ extends
  * The creation of the monthly customer billing statements is the method employed to notify Customers of charges, adjustments and credits applied to their account for Services and Products.
  *
  * The actuall billing occurs through an ErpInvoice. The CustomerBillingInfo includes information from the payment, collection, meter reading, installed meter, service, site, customer, customer account, customer agreement, services and pricing subject areas. Each component price shows up as a separate line item on the ErpInvoice.
+ * The Customer Billing Statement may include collection and account messages, marketing/civic event messages and bill inserts.
+ * One Customer Billing Statement is produced for all Agreements under a CustomerAccount per billing cycle date defined in 'CustomerAccount.billingCycle'.
+ * The history of CustomerBillingInfo, Invoices and Payments is to be maintained in associated ActivityRecords.
  *
  * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param billingDate Business date designated for the billing run which produced this CustomerBillingInfo.
@@ -415,6 +419,9 @@ extends
  * A service guarantee, often imposed by a regulator, defines conditions that, if not satisfied, will result in the utility making a monetary payment to the customer.
  *
  * Note that guarantee's identifier is in the 'name' attribute and the status of the guarantee is in the 'Status.status' attribute.
+ * Example service requirements include:
+ * 1) If power is not restored within 24 hours, customers can claim \$50 for residential customers or \$100 for commercial and industrial customers. In addition for each extra period of 12 hours the customer's supply has not been activated, the customer can claim \$25.
+ * 2) If a customer has a question about their electricity bill, the utility will investigate and respond to the inquiry within 15 working days. If utility fails to meet its guarantee, utility will automatically pay the customer \$50.
  *
  * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param applicationPeriod Period in which this service guantee applies.
@@ -511,6 +518,7 @@ extends
  * The Standard Industrial Classification (SIC) are the codes that identify the type of products/service an industry is involved in, and used for statutory reporting purposes.
  *
  * For example, in the USA these codes are located by the federal government, and then published in a book entitled "The Standard Industrial Classification Manual". The codes are arranged in a hierarchical structure.
+ * Note that Residential Service Agreements are not classified according to the SIC codes.
  *
  * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param code Standard alphanumeric code assigned to a particular product/service within an industry.

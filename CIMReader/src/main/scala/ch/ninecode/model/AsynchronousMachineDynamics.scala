@@ -14,6 +14,7 @@ import ch.ninecode.cim.Relationship
  * <li>Asynchronous machine parameters such as <i>Xl, Xs,</i> etc. are actually used as inductances in the model, but are commonly referred to as reactances since, at nominal frequency, the PU values are the same.
  *
  * However, some references use the symbol <i>L</i> instead of <i>X</i>.</li>
+ * </ol>
  *
  * @param sup [[ch.ninecode.model.RotatingMachineDynamics RotatingMachineDynamics]] Reference to the superclass object.
  * @param AsynchronousMachine [[ch.ninecode.model.AsynchronousMachine AsynchronousMachine]] Asynchronous machine to which this asynchronous machine dynamics model applies.
@@ -117,6 +118,17 @@ extends
  * The electrical equations of all variations of the asynchronous model are based on the AsynchronousEquivalentCircuit diagram for the direct- and quadrature- axes, with two equivalent rotor windings in each axis.
  *
  * Equations for conversion between equivalent circuit and time constant reactance forms:
+ * <i>Xs</i> = <i>Xm</i> + <i>Xl</i>
+ * <i>X'</i> = <i>Xl</i> + <i>Xm</i> x <i>Xlr1 </i>/ (<i>Xm </i>+ <i>Xlr1</i>)
+ * <i>X''</i> = <i>Xl</i> + <i>Xm</i> x <i>Xlr1</i> x <i>Xlr2</i> / (<i>Xm</i> x <i>Xlr1</i> + <i>Xm</i> x <i>Xlr2</i> + <i>Xlr1</i> x <i>Xlr2</i>)
+ * <i>T'o</i> = (<i>Xm</i> + <i>Xlr1</i>) / (<i>omega</i><i><sub>0</sub></i> x <i>Rr1</i>)
+ * <i>T''o</i> = (<i>Xm</i> x <i>Xlr1</i> + <i>Xm</i> x <i>Xlr2</i> + <i>Xlr1</i> x <i>Xlr2</i>) / (<i>omega</i><i><sub>0</sub></i> x <i>Rr2</i> x (<i>Xm</i> + <i>Xlr1</i>)
+ * Same equations using CIM attributes from AsynchronousMachineTimeConstantReactance class on left of "=" and AsynchronousMachineEquivalentCircuit class on right (except as noted):
+ * xs = xm + RotatingMachineDynamics.statorLeakageReactance
+ * xp = RotatingMachineDynamics.statorLeakageReactance + xm x xlr1 / (xm + xlr1)
+ * xpp = RotatingMachineDynamics.statorLeakageReactance + xm x xlr1 x xlr2 / (xm x xlr1 + xm x xlr2 + xlr1 x xlr2)
+ * tpo = (xm + xlr1) / (2 x pi x nominal frequency x rr1)
+ * tppo = (xm x xlr1 + xm x xlr2 + xlr1 x xlr2) / (2 x pi x nominal frequency x rr2 x (xm + xlr1).
  *
  * @param sup [[ch.ninecode.model.AsynchronousMachineDynamics AsynchronousMachineDynamics]] Reference to the superclass object.
  * @param rr1 Damper 1 winding resistance.

@@ -471,6 +471,10 @@ extends
  * A value associated with a specific kind of limit.
  *
  * The sub class value attribute shall be positive.
+ * The sub class value attribute is inversely proportional to OperationalLimitType.acceptableDuration (acceptableDuration for short). A pair of value_x and acceptableDuration_x are related to each other as follows:
+ * if value_1 &gt; value_2 &gt; value_3 &gt;... then
+ * acceptableDuration_1 &lt; acceptableDuration_2 &lt; acceptableDuration_3 &lt; ...
+ * A value_x with direction="high" shall be greater than a value_y with direction="low".
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param LimitDependencyModel [[ch.ninecode.model.LimitDependency LimitDependency]] The limit dependency models which are used to calculate this limit.

@@ -116,6 +116,14 @@ extends
  * <font color="#0f0f0f">Terminal voltage transducer and load compensator as defined in IEEE 421.5-2005, 4.
  *
  * This model is common to all excitation system models described in the IEEE Standard. </font>
+ * <font color="#0f0f0f">Parameter details:</font>
+ * <ol>
+ * <li><font color="#0f0f0f">If <i>Rc</i> and <i>Xc</i> are set to zero, the l</font>oad compensation is not employed and the behaviour is as a simple sensing circuit.</li>
+ * </ol>
+ * <ol>
+ * <li>If all parameters (<i>Rc</i>, <i>Xc</i> and <i>Tr</i>) are set to zero, the standard model VCompIEEEType1 is bypassed.</li>
+ * </ol>
+ * Reference: IEEE 421.5-2005 4.
  *
  * @param sup [[ch.ninecode.model.VoltageCompensatorDynamics VoltageCompensatorDynamics]] Reference to the superclass object.
  * @param rc <font color="#0f0f0f">Resistive component of compensation of a generator (<i>Rc</i>) (&gt;= 0).</font>
@@ -212,6 +220,12 @@ extends
  * <font color="#0f0f0f">Terminal voltage transducer and load compensator as defined in IEEE 421.5-2005, 4.
  *
  * This model is designed to cover the following types of compensation: </font>
+ * <ul>
+ * <li><font color="#0f0f0f">reactive droop;</font></li>
+ * <li><font color="#0f0f0f">transformer-drop or line-drop compensation;</font></li>
+ * <li><font color="#0f0f0f">reactive differential compensation known also as cross-current compensation.</font></li>
+ * </ul>
+ * <font color="#0f0f0f">Reference: IEEE 421.5-2005, 4.</font>
  *
  * @param sup [[ch.ninecode.model.VoltageCompensatorDynamics VoltageCompensatorDynamics]] Reference to the superclass object.
  * @param tr <font color="#0f0f0f">Time constant which is used for the combined voltage sensing and compensation signal (<i>Tr</i>) (&gt;= 0).</font>

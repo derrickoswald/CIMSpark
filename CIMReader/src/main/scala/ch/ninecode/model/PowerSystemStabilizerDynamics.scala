@@ -1273,6 +1273,7 @@ extends
  * IEEE 421.5-2005 type PSS1A power system stabilizer model.
  *
  * PSS1A is the generalized form of a PSS with a single input signal.
+ * Reference: IEEE 1A 421.5-2005, 8.1.
  *
  * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
  * @param a1 PSS signal conditioning frequency filter constant (<i>A1</i>).
@@ -1429,6 +1430,7 @@ extends
  * IEEE 421.5-2005 type PSS2B power system stabilizer model.
  *
  * This stabilizer model is designed to represent a variety of dual-input stabilizers, which normally use combinations of power and speed or frequency to derive the stabilizing signal.
+ * Reference: IEEE 2B 421.5-2005, 8.2.
  *
  * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
  * @param inputSignal1Type Type of input signal #1 (rotorAngularFrequencyDeviation, busFrequencyDeviation).
@@ -1690,6 +1692,8 @@ extends
  * IEEE 421.5-2005 type PSS3B power system stabilizer model.
  *
  * The PSS model PSS3B has dual inputs of electrical power and rotor angular frequency deviation. The signals are used to derive an equivalent mechanical power signal.
+ * This model has 2 input signals. They have the following fixed types (expressed in terms of InputSignalKind values): the first one is of rotorAngleFrequencyDeviation type and the second one is of generatorElectricalPower type.
+ * Reference: IEEE 3B 421.5-2005, 8.3.
  *
  * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
  * @param a1 Notch filter parameter (<i>A1</i>).
@@ -1880,6 +1884,10 @@ extends
  * IEEE 421.5-2005 type PSS4B power system stabilizer.
  *
  * The PSS4B model represents a structure based on multiple working frequency bands. Three separate bands, respectively dedicated to the low-, intermediate- and high-frequency modes of oscillations, are used in this delta omega (speed input) PSS.
+ * There is an error in the in IEEE 421.5-2005 PSS4B model: the <i>Pe</i> input should read �<i>Pe</i>. This implies that the input <i>Pe</i> needs to be multiplied by -1.
+ * Reference: IEEE 4B 421.5-2005, 8.4.
+ * Parameter details:
+ * This model has 2 input signals. They have the following fixed types (expressed in terms of InputSignalKind values): the first one is of rotorAngleFrequencyDeviation type and the second one is of generatorElectricalPower type.
  *
  * @param sup [[ch.ninecode.model.PowerSystemStabilizerDynamics PowerSystemStabilizerDynamics]] Reference to the superclass object.
  * @param bwh1 Notch filter 1 (high-frequency band): three dB bandwidth (<i>B</i><i><sub>wi</sub></i>).

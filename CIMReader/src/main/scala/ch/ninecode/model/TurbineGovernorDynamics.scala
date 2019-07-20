@@ -98,6 +98,17 @@ extends
  * General model for any prime mover with a PID governor, used primarily for combustion turbine and combined cycle units.
  *
  * This model can be used to represent a variety of prime movers controlled by PID governors.  It is suitable, for example, for the representation of:
+ * <ul>
+ * <li>gas turbine and single shaft combined cycle turbines</li>
+ * </ul>
+ * <ul>
+ * <li>diesel engines with modern electronic or digital governors  </li>
+ * </ul>
+ * <ul>
+ * <li>steam turbines where steam is supplied from a large boiler drum or a large header whose pressure is substantially constant over the period under study</li>
+ * <li>simple hydro turbines in dam configurations where the water column length is short and water inertia effects are minimal.</li>
+ * </ul>
+ * Additional information on this model is available in the 2012 IEEE report, <i><u>Dynamic Models for Turbine-Governors in Power System Studies</u></i>, 3.1.2.3 pages 3-4 (GGOV1).
  *
  * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
  * @param aset Acceleration limiter setpoint (<i>Aset</i>).
@@ -3397,6 +3408,7 @@ extends
  *        false = feedback is received from <i>CV</i>.
  *        <i>Flag</i> is normally dependent on <i>Tt</i>.
  *        If <i>Tt</i> is zero, <i>Flag</i> is set to false. If <i>Tt</i> is not zero, <i>Flag</i> is set to true.
+ *        Typical value = true.
  * @param k1 Single derivative gain (<i>K1</i>).
  *        Typical value = 3,6.
  * @param k2 Double derivative gain (<i>K2</i>).
@@ -3685,6 +3697,7 @@ extends
  * Detailed hydro unit - Francis model.
  *
  * This model can be used to represent three types of governors.
+ * A schematic of the hydraulic system of detailed hydro unit models, such as Francis and Pelton, is provided in the DetailedHydroModelHydraulicSystem diagram.
  *
  * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
  * @param am Opening section <i>S</i><i><sub>EFF</sub></i> at the maximum efficiency (<i>Am</i>).
@@ -3950,6 +3963,7 @@ extends
  * IEEE simplified hydro governor-turbine model.
  *
  * Used for mechanical-hydraulic and electro-hydraulic turbine governors, with or without steam feedback. Typical values given are for mechanical-hydraulic turbine-governor.
+ * Ref<font color="#0f0f0f">erence: IEEE Transactions on Power Apparatus and Systems, November/December 1973, Volume PAS-92, Number 6, <i><u>Dynamic Models for Steam and Hydro Turbines in Power System Studies</u></i>, page 1904.</font>
  *
  * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
  * @param k Governor gain (<i>K)</i>.
@@ -4357,6 +4371,7 @@ extends
  *        false = feedback is received from <i>CV</i>.
  *        <i>Flag</i> is normally dependent on <i>Tt</i>.
  *        If <i>Tt </i>is zero, <i>Flag</i> is set to false. If <i>Tt</i> is not zero, <i>Flag</i> is set to true.
+ *        Typical value = true.
  * @param kd Derivative gain (<i>Kd</i>).
  *        Typical value = 1,11.
  * @param kg Gate servo gain (<i>Kg</i>).
@@ -4635,6 +4650,7 @@ extends
  * Hydro turbine and governor.
  *
  * Represents plants with straightforward penstock configurations and "three term" electro-hydraulic governors (i.e. Woodward<sup>TM</sup> electronic).
+ * [Footnote: Woodward electronic governors are an example of suitable products available commercially. This information is given for the convenience of users of this document and does not constitute an endorsement by IEC of these products.]
  *
  * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
  * @param atw Factor multiplying <i>Tw</i> (<i>Atw</i>).
@@ -4862,6 +4878,7 @@ extends
  * Detailed hydro unit - Pelton model.
  *
  * This model can be used to represent the dynamic related to water tunnel and surge chamber.
+ * The DetailedHydroModelHydraulicSystem diagram, located under the GovHydroFrancis class, provides a schematic of the hydraulic system of detailed hydro unit models, such as Francis and Pelton.
  *
  * @param sup [[ch.ninecode.model.TurbineGovernorDynamics TurbineGovernorDynamics]] Reference to the superclass object.
  * @param av0 Area of the surge tank (<i>A</i><i><sub>V0</sub></i>).
@@ -4894,6 +4911,9 @@ extends
  *        Typical value = true.
  * @param staticCompensating Static compensating characteristic (<i>Cflag</i>).
  *        It should be true if simplifiedPelton = false.
+ *        true = enable of static compensating characteristic
+ *        false = inhibit of static compensating characteristic.
+ *        Typical value = false.
  * @param ta Derivative gain (accelerometer time constant) (<i>Ta</i>) (&gt;= 0).
  *        Typical value = 3.
  * @param ts Gate servo time constant (<i>Ts</i>) (&gt;= 0).
@@ -5168,6 +5188,7 @@ extends
  *        false = feedback is received from <i>CV</i>.
  *        <i>Flag</i> is normally dependent on <i>Tt</i>.
  *        If <i>Tt </i>is zero, <i>Flag</i> is set to false. If <i>Tt</i> is not zero, <i>Flag</i> is set to true.
+ *        Typical value = true.
  * @param kg Gate servo gain (<i>Kg</i>).
  *        Typical value = 2.
  * @param ki Integral gain (<i>Ki</i>).

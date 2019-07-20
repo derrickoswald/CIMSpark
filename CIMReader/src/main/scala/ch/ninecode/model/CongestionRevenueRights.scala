@@ -227,6 +227,8 @@ extends
  * Congestion Revenue Rights (CRR) class that is inherited from a Document class.
  *
  * A CRR is a financial concept that is used to hedge congestion charges.
+ * 
+ * The CRR is usually settled based on the Locational Marginal Prices (LMPs) that are calculated in the day-ahead market. These LMPs are determined by the Day-ahead resource schedules/bids. CRRs will not hedge against marginal losses. If the congestion component of LMP at the sink is greater than at the source, then the CRR owner is entitled to receive a portion of congestion revenues. If the congestion component at the sink is less than at the source, then an obligation-type CRR owner will be charged, but an option-type CRR owner will not.
  *
  * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param cRRcategory CRR category represents 'PTP' for a point-to-point CRR, or 'NSR' for a Network Service Right.

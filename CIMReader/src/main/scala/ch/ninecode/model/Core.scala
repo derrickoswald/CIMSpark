@@ -15,6 +15,7 @@ import ch.ninecode.cim.Relationship
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param connected The connected status is related to a bus-branch model and the topological node to terminal relation.
  *        True implies the terminal is connected to the related topological node and false implies it is not.
+ *        In a bus-branch model, the connected status is used to tell if equipment is disconnected without having to change the connectivity described by the topological node to terminal relation. A valid case is that conducting equipment can be connected in one end and open in the other. In particular for an AC line segment, where the reactive line charging can be significant, this is a relevant case.
  * @param sequenceNumber The orientation of the terminal connections for a multiple terminal conducting equipment.
  *        The sequence numbering starts with 1 and additional terminals should follow in increasing order.   The first terminal is the "starting point" for a two terminal branch.
  * @param BusNameMarker [[ch.ninecode.model.BusNameMarker BusNameMarker]] The bus name marker used to name the bus (topological node).
@@ -1612,10 +1613,12 @@ extends
  * @param sup Reference to the superclass object.
  * @param aliasName The aliasName is free text human readable name of the object alternative to IdentifiedObject.name.
  *        It may be non unique and may not correlate to a naming hierarchy.
+ *        The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.
  * @param description The description is a free human readable text describing or naming the object.
  *        It may be non unique and may not correlate to a naming hierarchy.
  * @param mRID Master resource identifier issued by a model authority.
  *        The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID, as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.
+ *        For CIMXML data files in RDF syntax conforming to IEC 61970-552, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.
  * @param name The name is any free human readable and possibly non unique text naming the object.
  * @param DiagramObjects [[ch.ninecode.model.DiagramObject DiagramObject]] The diagram objects that are associated with the domain object.
  * @param InstanceSet [[ch.ninecode.model.InstanceSet InstanceSet]] Dataset containing the data objects.
@@ -2017,6 +2020,7 @@ extends
  * Type of name.
  *
  * Possible values for attribute 'name' are implementation dependent but standard profiles may specify types. An enterprise may have multiple IT systems each having its own local name for the same object, e.g. a planning system may have different names from an EMS. An object may also have different names within the same IT system, e.g. localName as defined in CIM version 14. The definition from CIM14 is:
+ * The localName is a human readable name of the object. It is a free text name local to a node in a naming hierarchy similar to a file directory structure. A power system related naming hierarchy may be: Substation, VoltageLevel, Equipment etc. Children of the same parent in such a hierarchy have names that typically are unique among them.
  *
  * @param sup Reference to the superclass object.
  * @param description Description of the name type.

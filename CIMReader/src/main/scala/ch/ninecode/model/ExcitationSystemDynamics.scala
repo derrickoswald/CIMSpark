@@ -1361,6 +1361,7 @@ extends
  *        Typical value = 1,2.
  * @param telim Selector for the limiter on the block (<i>1/sTe</i>).
  *        See diagram for meaning of true and false.
+ *        Typical value = false.
  * @param ve1 Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>Ve</i><i><sub>1</sub></i>) (&gt; 0).
  *        Typical value = 6,5.
  * @param ve2 Exciter alternator output voltages back of commutating reactance at which saturation is defined (<i>Ve</i><i><sub>2</sub></i>) (&gt; 0).
@@ -3021,6 +3022,9 @@ extends
  *        Typical value = -99.
  * @param exclim (<i>exclim</i>).
  *        IEEE standard is ambiguous about lower limit on exciter output.
+ *        true = a lower limit of zero is applied to integrator output
+ *        false = a lower limit of zero is not applied to integrator output.
+ *        Typical value = true.
  * @param ka Voltage regulator gain (<i>Ka</i>) (&gt; 0).
  *        Typical value = 46.
  * @param ke Exciter constant related to self-excited field (<i>Ke</i>).
@@ -3216,6 +3220,9 @@ extends
  *        Typical value = 2,29.
  * @param exclim (<i>exclim</i>).
  *        IEEE standard is ambiguous about lower limit on exciter output.
+ *        true = a lower limit of zero is applied to integrator output
+ *        false = a lower limit of zero is not applied to integrator output.
+ *        Typical value = true.
  * @param ka Voltage regulator gain (<i>Ka</i>) (&gt; 0).
  *        Typical value = 300.
  * @param ke Exciter constant related to self-excited field (<i>Ke</i>).
@@ -3425,6 +3432,9 @@ extends
  *        Typical value = -99.
  * @param exclim (<i>exclim</i>).
  *        IEEE standard is ambiguous about lower limit on exciter output.
+ *        true = a lower limit of zero is applied to integrator output
+ *        false = a lower limit of zero not applied to integrator output.
+ *        Typical value = true.
  * @param ke Exciter constant related to self-excited field (<i>Ke</i>).
  *        Typical value = 1.
  * @param kr Deadband (<i>Kr</i>).
@@ -4364,6 +4374,7 @@ extends
  * IEEE 421.5-2005 type AC1A model.
  *
  * The model represents the field-controlled alternator-rectifier excitation systems designated type AC1A. These excitation systems consist of an alternator main exciter with non-controlled rectifiers.
+ * Reference: IEEE 421.5-2005, 6.1.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param ka Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
@@ -4563,6 +4574,7 @@ extends
  * IEEE 421.5-2005 type AC2A model.
  *
  * The model represents a high initial response field-controlled alternator-rectifier excitation system. The alternator main exciter is used with non-controlled rectifiers. The type AC2A model is similar to that of type AC1A except for the inclusion of exciter time constant compensation and exciter field current limiting elements.
+ * Reference: IEEE 421.5-2005, 6.2.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param ka Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
@@ -4783,6 +4795,7 @@ extends
  * IEEE 421.5-2005 type AC3A model.
  *
  * The model represents the field-controlled alternator-rectifier excitation systems designated type AC3A. These excitation systems include an alternator main exciter with non-controlled rectifiers. The exciter employs self-excitation, and the voltage regulator power is derived from the exciter output voltage.  Therefore, this system has an additional nonlinearity, simulated by the use of a multiplier whose inputs are the voltage regulator command signal, <i>Va</i>, and the exciter output voltage, <i>Efd</i>, times <i>K</i><i><sub>R</sub></i>.  This model is applicable to excitation systems employing static voltage regulators.
+ * Reference: IEEE 421.5-2005, 6.3.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param efdn Value of <i>Efd </i>at which feedback gain changes (<i>E</i><i><sub>FDN</sub></i>) (&gt; 0).
@@ -5003,6 +5016,7 @@ extends
  * IEEE 421.5-2005 type AC4A model.
  *
  * The model represents type AC4A alternator-supplied controlled-rectifier excitation system which is quite different from the other types of AC systems. This high initial response excitation system utilizes a full thyristor bridge in the exciter output circuit.  The voltage regulator controls the firing of the thyristor bridges. The exciter alternator uses an independent voltage regulator to control its output voltage to a constant value. These effects are not modelled; however, transient loading effects on the exciter alternator are included.
+ * Reference: IEEE 421.5-2005, 6.4.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param ka Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
@@ -5139,6 +5153,7 @@ extends
  * IEEE 421.5-2005 type AC5A model.
  *
  * The model represents a simplified model for brushless excitation systems. The regulator is supplied from a source, such as a permanent magnet generator, which is not affected by system disturbances.  Unlike other AC models, this model uses loaded rather than open circuit exciter saturation data in the same way as it is used for the DC models.  Because the model has been widely implemented by the industry, it is sometimes used to represent other types of systems when either detailed data for them are not available or simplified models are required.
+ * Reference: IEEE 421.5-2005, 6.5.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param efd1 Exciter voltage at which exciter saturation is defined (<i>E</i><i><sub>FD1</sub></i>) (&gt; 0).
@@ -5310,6 +5325,7 @@ extends
  * IEEE 421.5-2005 type AC6A model.
  *
  * The model represents field-controlled alternator-rectifier excitation systems with system-supplied electronic voltage regulators.  The maximum output of the regulator, <i>V</i><i><sub>R</sub></i>, is a function of terminal voltage, <i>V</i><i><sub>T</sub></i>. The field current limiter included in the original model AC6A remains in the 2005 update.
+ * Reference: IEEE 421.5-2005, 6.6.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param ka Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
@@ -5537,6 +5553,7 @@ extends
  * IEEE 421.5-2005 type AC7B model.
  *
  * The model represents excitation systems which consist of an AC alternator with either stationary or rotating rectifiers to produce the DC field requirements. It is an upgrade to earlier AC excitation systems, which replace only the controls but retain the AC alternator and diode rectifier bridge.
+ * Reference: IEEE 421.5-2005, 6.7. Note, however, that in IEEE 421.5-2005, the [1 / <i>sT</i><i><sub>E</sub></i>] block is shown as [1 / (1 + <i>sT</i><i><sub>E</sub></i>)], which is incorrect.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param kc Rectifier loading factor proportional to commutating reactance (<i>K</i><i><sub>C</sub></i>) (&gt;= 0).
@@ -5792,6 +5809,7 @@ extends
  * IEEE 421.5-2005 type AC8B model.
  *
  * This model represents a PID voltage regulator with either a brushless exciter or DC exciter. The AVR in this model consists of PID control, with separate constants for the proportional (<i>K</i><i><sub>PR</sub></i>), integral (<i>K</i><i><sub>IR</sub></i>), and derivative (<i>K</i><i><sub>DR</sub></i>) gains. The representation of the brushless exciter (<i>T</i><i><sub>E</sub></i>, <i>K</i><i><sub>E</sub></i>, <i>S</i><i><sub>E</sub></i>, <i>K</i><i><sub>C</sub></i>, <i>K</i><i><sub>D</sub></i>) is similar to the model type AC2A. The type AC8B model can be used to represent static voltage regulators applied to brushless excitation systems. Digitally based voltage regulators feeding DC rotating main exciters can be represented with the AC type AC8B model with the parameters <i>K</i><i><sub>C</sub></i> and <i>K</i><i><sub>D</sub></i> set to 0.  For thyristor power stages fed from the generator terminals, the limits <i>V</i><i><sub>RMAX</sub></i> and <i>V</i><i><sub>RMIN</sub></i><i> </i>should be a function of terminal voltage: V<i><sub>T</sub></i> x <i>V</i><i><sub>RMAX</sub></i><sub> </sub>and <i>V</i><i><sub>T</sub></i> x <i>V</i><i><sub>RMIN</sub></i>.
+ * Reference: IEEE 421.5-2005, 6.8.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param ka Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
@@ -5991,6 +6009,7 @@ extends
  * IEEE 421.5-2005 type DC1A model.
  *
  * This model represents field-controlled DC commutator exciters with continuously acting voltage regulators (especially the direct-acting rheostatic, rotating amplifier, and magnetic amplifier types).  Because this model has been widely implemented by the industry, it is sometimes used to represent other types of systems when detailed data for them are not available or when a simplified model is required.
+ * Reference: IEEE 421.5-2005, 5.1.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param efd1 Exciter voltage at which exciter saturation is defined (<i>E</i><i><sub>FD1</sub></i>) (&gt; 0).
@@ -5999,6 +6018,9 @@ extends
  *        Typical value = 2,3.
  * @param exclim (<i>exclim</i>).
  *        IEEE standard is ambiguous about lower limit on exciter output.
+ *        true = a lower limit of zero is applied to integrator output
+ *        false = a lower limit of zero is not applied to integrator output.
+ *        Typical value = true.
  * @param ka Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
  *        Typical value = 46.
  * @param ke Exciter constant related to self-excited field (<i>K</i><i><sub>E</sub></i>).
@@ -6178,6 +6200,8 @@ extends
  * IEEE 421.5-2005 type DC2A model.
  *
  * This model represents field-controlled DC commutator exciters with continuously acting voltage regulators having supplies obtained from the generator or auxiliary bus.  It differs from the type DC1A model only in the voltage regulator output limits, which are now proportional to terminal voltage <i>V</i><i><sub>T</sub></i>.
+ * It is representative of solid-state replacements for various forms of older mechanical and rotating amplifier regulating equipment connected to DC commutator exciters.
+ * Reference: IEEE 421.5-2005, 5.2.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param efd1 Exciter voltage at which exciter saturation is defined (<i>E</i><i><sub>FD1</sub></i>) (&gt; 0).
@@ -6365,6 +6389,7 @@ extends
  * IEEE 421.5-2005 type DC3A model.
  *
  * This model represents older systems, in particular those DC commutator exciters with non-continuously acting regulators that were commonly used before the development of the continuously acting varieties.  These systems respond at basically two different rates, depending upon the magnitude of voltage error. For small errors, adjustment is made periodically with a signal to a motor-operated rheostat. Larger errors cause resistors to be quickly shorted or inserted and a strong forcing signal applied to the exciter. Continuous motion of the motor-operated rheostat occurs for these larger error signals, even though it is bypassed by contactor action.
+ * Reference: IEEE 421.5-2005, 5.3.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param efd1 Exciter voltage at which exciter saturation is defined (<i>E</i><i><sub>FD1</sub></i>) (&gt; 0).
@@ -6373,6 +6398,9 @@ extends
  *        Typical value = 3,15.
  * @param exclim (<i>exclim</i>).
  *        IEEE standard is ambiguous about lower limit on exciter output.
+ *        true = a lower limit of zero is applied to integrator output
+ *        false = a lower limit of zero is not applied to integrator output.
+ *        Typical value = true.
  * @param ke Exciter constant related to self-excited field (<i>K</i><i><sub>E</sub></i>).
  *        Typical value = 0,05.
  * @param kv Fast raise/lower contact setting (<i>K</i><i><sub>V</sub></i>) (&gt; 0).
@@ -6515,6 +6543,7 @@ extends
  * IEEE 421.5-2005 type DC4B model.
  *
  * These excitation systems utilize a field-controlled DC commutator exciter with a continuously acting voltage regulator having supplies obtained from the generator or auxiliary bus.
+ * Reference: IEEE 421.5-2005, 5.4.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param efd1 Exciter voltage at which exciter saturation is defined (<i>E</i><i><sub>FD1</sub></i>) (&gt; 0).
@@ -6725,6 +6754,7 @@ extends
  * IEEE 421.5-2005 type ST1A model.
  *
  * This model represents systems in which excitation power is supplied through a transformer from the generator terminals (or the unit�s auxiliary bus) and is regulated by a controlled rectifier.  The maximum exciter voltage available from such systems is directly related to the generator terminal voltage.
+ * Reference: IEEE 421.5-2005, 7.1.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param ilr Exciter output current limit reference (<i>I</i><i><sub>LR</sub></i><i>)</i>.
@@ -6934,6 +6964,7 @@ extends
  * IEEE 421.5-2005 type ST2A model.
  *
  * Some static systems use both current and voltage sources (generator terminal quantities) to comprise the power source.  The regulator controls the exciter output through controlled saturation of the power transformer components.  These compound-source rectifier excitation systems are designated type ST2A and are represented by ExcIEEEST2A.
+ * Reference: IEEE 421.5-2005, 7.2.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param efdmax Maximum field voltage (<i>E</i><i><sub>FDMax</sub></i>) (&gt;= 0).
@@ -7100,6 +7131,7 @@ extends
  * IEEE 421.5-2005 type ST3A model.
  *
  * Some static systems utilize a field voltage control loop to linearize the exciter control characteristic. This also makes the output independent of supply source variations until supply limitations are reached.  These systems utilize a variety of controlled-rectifier designs: full thyristor complements or hybrid bridges in either series or shunt configurations. The power source can consist of only a potential source, either fed from the machine terminals or from internal windings. Some designs can have compound power sources utilizing both machine potential and current. These power sources are represented as phasor combinations of machine terminal current and voltage and are accommodated by suitable parameters in model type ST3A which is represented by ExcIEEEST3A.
+ * Reference: IEEE 421.5-2005, 7.3.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param ka Voltage regulator gain (<i>K</i><i><sub>A</sub></i>) (&gt; 0).
@@ -7313,6 +7345,7 @@ extends
  * IEEE 421.5-2005 type ST4B model.
  *
  * This model is a variation of the type ST3A model, with a proportional plus integral (PI) regulator block replacing the lag-lead regulator characteristic that is in the ST3A model. Both potential and compound source rectifier excitation systems are modelled.  The PI regulator blocks have non-windup limits that are represented. The voltage regulator of this model is typically implemented digitally.
+ * Reference: IEEE 421.5-2005, 7.4.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param kc Rectifier loading factor proportional to commutating reactance (<i>K</i><i><sub>C</sub></i>) (&gt;= 0).
@@ -7498,6 +7531,8 @@ extends
  * IEEE 421.5-2005 type ST5B model.
  *
  * The type ST5B excitation system is a variation of the type ST1A model, with alternative overexcitation and underexcitation inputs and additional limits.
+ * The block diagram in the IEEE 421.5 standard has input signal <i>Vc </i>and does not indicate the summation point with <i>Vref</i>. The implementation of the ExcIEEEST5B shall consider summation point with <i>Vref</i>.
+ * Reference: IEEE 421.5-2005, 7.5.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param kc Rectifier regulation factor (<i>K</i><i><sub>C</sub></i>) (&gt;= 0).
@@ -7690,6 +7725,7 @@ extends
  * IEEE 421.5-2005 type ST6B model.
  *
  * This model consists of a PI voltage regulator with an inner loop field voltage regulator and pre-control. The field voltage regulator implements a proportional control. The pre-control and the delay in the feedback circuit increase the dynamic response.
+ * Reference: IEEE 421.5-2005, 7.6.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param ilr Exciter output current limit reference (<i>I</i><i><sub>LR</sub></i>) (&gt; 0).
@@ -7862,6 +7898,7 @@ extends
  * IEEE 421.5-2005 type ST7B model.
  *
  * This model is representative of static potential-source excitation systems. In this system, the AVR consists of a PI voltage regulator. A phase lead-lag filter in series allows the introduction of a derivative function, typically used with brushless excitation systems. In that case, the regulator is of the PID type. In addition, the terminal voltage channel includes a phase lead-lag filter.  The AVR includes the appropriate inputs on its reference for overexcitation limiter (OEL1), underexcitation limiter (UEL), stator current limiter (SCL), and current compensator (DROOP). All these limitations, when they work at voltage reference level, keep the PSS (VS signal from PSS) in operation. However, the UEL limitation can also be transferred to the high value (HV) gate acting on the output signal. In addition, the output signal passes through a low value (LV) gate for a ceiling overexcitation limiter (OEL2).
+ * Reference: IEEE 421.5-2005, 7.7.
  *
  * @param sup [[ch.ninecode.model.ExcitationSystemDynamics ExcitationSystemDynamics]] Reference to the superclass object.
  * @param kh High-value gate feedback gain (<i>K</i><i><sub>H</sub></i>) (&gt;= 0).

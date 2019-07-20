@@ -1495,6 +1495,15 @@ extends
  * Document describing details of an active or planned outage in a part of the electrical network.
  *
  * A non-planned outage may be created upon:
+ * - a breaker trip,
+ * - a fault indicator status change,
+ * - a meter event indicating customer outage,
+ * - a reception of one or more customer trouble calls, or
+ * - an operator command, reflecting information obtained from the field crew.
+ * Outage restoration may be performed using a switching plan which complements the outage information with detailed switching activities, including the relationship to the crew and work.
+ * A planned outage may be created upon:
+ * - a request for service, maintenance or construction work in the field, or
+ * - an operator-defined outage for what-if/contingency network analysis.
  *
  * @param sup [[ch.ninecode.model.Document Document]] Reference to the superclass object.
  * @param actualPeriod Actual outage period; end of the period corresponds to the actual restoration time.
@@ -3507,10 +3516,20 @@ extends
  * Document describing the consequence of an unplanned outage in a part of the electrical network.
  *
  * For the purposes of this model, an unplanned outage refers to a state where energy is not delivered; such as, customers out of service, a street light is not served, etc.
+ * A unplanned outage may be created upon:
+ * - impacts the SAIDI calculation
+ * - a breaker trip,
+ * - a fault indicator status change,
+ * - a meter event indicating customer outage,
+ * - a reception of one or more customer trouble calls, or
+ * - an operator command, reflecting information obtained from the field crew.
+ * Outage restoration may be performed using a switching plan which complements the outage information with detailed switching activities, including the relationship to the crew and work.
  *
  * @param sup [[ch.ninecode.model.Outage Outage]] Reference to the superclass object.
  * @param cause The cause of this outage.
  *        This is the cause that is used to present to external entities.  That is, the cause is weather, equipment failure, etc.
+ *        
+ *        Note: At present, this is a free text; could be replaced with a separate associated class in case we have multiple causes (e.g. OutageCauseType, inheriting from IdentifiedObject).
  * @param causeKind <em>undocumented</em>
  * @param reportedStartTime The earliest start time of the Outage - as reported by some system or individual
  * @param FieldDispatchHistory [[ch.ninecode.model.FieldDispatchHistory FieldDispatchHistory]] <em>undocumented</em>

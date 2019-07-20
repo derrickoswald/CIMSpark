@@ -1153,6 +1153,7 @@ extends
  * @param modelDetail Detail level of the generator model data.
  * @param nominalP The nominal power of the generating unit.
  *        Used to give precise meaning to percentage based attributes such as the governor speed change droop (governorSCD attribute).
+ *        The attribute shall be a positive value equal to or less than RotatingMachine.ratedS.
  * @param normalPF Generating unit economic participation factor.
  *        The sum of the participation factors across generating units does not have to sum to one.  It is used for representing distributed slack participation factor.
  * @param penaltyFactor Defined as: 1 / ( 1 - Incremental Transmission Loss); with the Incremental Transmission Loss expressed as a plus or minus value.
@@ -1738,6 +1739,8 @@ extends
  * Relationship between unit efficiency as percentage and unit output active power for a given net head in meters.
  *
  * The relationship between efficiency, discharge, head, and power output is expressed as follows:   E =KP/HQ
+ * where:  E is the efficiency, as a percentage; P is the active power; H is the height; Q is the discharge, volume/time unit; K is a constant.
+ * For example, a curve instance for a given net head could show efficiency (Y-axis) versus active power output (X-axis) or versus discharge on the X-axis.
  *
  * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param HydroGeneratingUnit [[ch.ninecode.model.HydroGeneratingUnit HydroGeneratingUnit]] A hydro generating unit has an efficiency curve.

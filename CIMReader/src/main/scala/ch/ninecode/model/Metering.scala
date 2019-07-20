@@ -661,6 +661,8 @@ extends
  * Asset container that performs one or more end device functions.
  *
  * One type of end device is a meter which can perform metering, load management, connect/disconnect, accounting functions, etc. Some end devices, such as ones monitoring and controlling air conditioners, refrigerators, pool pumps may be connected to a meter. All end devices may have communication capability defined by the associated communication function(s). An end device may be owned by a consumer, a service provider, utility or otherwise.
+ * There may be a related end device function that identifies a sensor or control point within a metering application or communications systems (e.g., water, gas, electricity).
+ * Some devices may use an optical port that conforms to the ANSI C12.18 standard for communications.
  *
  * @param sup [[ch.ninecode.model.AssetContainer AssetContainer]] Reference to the superclass object.
  * @param amrSystem Automated meter reading (AMR) or other communication system responsible for communications to this end device.
@@ -2172,6 +2174,42 @@ extends
  * Time sequence of readings of the same reading type.
  *
  * Contained interval readings may need conversion through the application of an offset and a scalar defined in associated pending.
+ * Table 548 shows all association ends of IntervalBlock with other classes.
+ * Table 548 � Association ends of Metering::IntervalBlock with other classes
+ * Associations
+ * name
+ * mult to
+ * type
+ * description
+ * 
+ * 0..*
+ * PendingCalculation
+ * 0..1
+ * PendingCalculation
+ * Pending calculation to apply to interval reading values contained by this block (after which the resulting reading type is different than the original because it reflects the conversion result).
+ * 
+ * 0..*
+ * IntervalReadings
+ * 0..*
+ * IntervalReading
+ * Interval reading contained in this block.
+ * 
+ * 0..*
+ * ReadingType
+ * 0..1
+ * ReadingType
+ * Type information for interval reading values contained in this block.
+ * 
+ * 0..*
+ * MeterReading
+ * 0..1
+ * MeterReading
+ * Meter reading containing this interval block.
+ * 
+ * 
+ * IntervalReading
+ * Data captured at regular intervals of time. Interval data could be captured as incremental data, absolute data, or relative data. The source for the data is usually a tariff quantity or an engineering quantity. Data is typically captured in time-tagged, uniform, fixed-length intervals of 5 min, 10 min, 15 min, 30 min, or 60 min.
+ * Note: Interval Data is sometimes also called "Interval Data Readings" (IDR).
  *
  * @param sup Reference to the superclass object.
  * @param IntervalReadings [[ch.ninecode.model.IntervalReading IntervalReading]] Interval reading contained in this block.
@@ -2274,6 +2312,7 @@ extends
  * Data captured at regular intervals of time.
  *
  * Interval data could be captured as incremental data, absolute data, or relative data. The source for the data is usually a tariff quantity or an engineering quantity. Data is typically captured in time-tagged, uniform, fixed-length intervals of 5 min, 10 min, 15 min, 30 min, or 60 min.
+ * Note: Interval Data is sometimes also called "Interval Data Readings" (IDR).
  *
  * @param sup [[ch.ninecode.model.BaseReading BaseReading]] Reference to the superclass object.
  * @param IntervalBlocks [[ch.ninecode.model.IntervalBlock IntervalBlock]] All blocks containing this interval reading.
@@ -2881,6 +2920,7 @@ extends
  * @param appliance [[ch.ninecode.model.ControlledAppliance ControlledAppliance]] Appliance being controlled.
  * @param avgLoadAdjustment Used to define a maximum energy usage limit as a percentage of the client implementations specific average energy usage.
  *        The load adjustment percentage is added to 100% creating a percentage limit applied to the client implementations specific average energy usage. A -10% load adjustment percentage will establish an energy usage limit equal to 90% of the client implementations specific average energy usage. Each load adjustment percentage is referenced to the client implementations specific average energy usage. There are no cumulative effects.
+ *        The range of this field is -100% to +100% with a resolution of 1. A -100% value equals a total load shed. A +100% value will limit the energy usage to the client implementations specific average energy usage.
  * @param cancelControlMode Encoding of cancel control.
  * @param cancelDateTime Timestamp when a canceling of the event is scheduled to start.
  * @param cancelNow If true, a canceling of the event should start immediately.
@@ -3973,9 +4013,11 @@ extends
  *        This is mainly used to define a mathematical operation carried out over 'macroPeriod', but may also be used to describe an attribute of the data when the 'macroPeriod' is not defined.
  * @param argument [[ch.ninecode.model.RationalNumber RationalNumber]] Argument used to introduce numbers into the unit of measure description where they are needed (e.g., 4 where the measure needs an argument such as CEMI(n=4)).
  *        Most arguments used in practice however will be integers (i.e., 'denominator'=1).
+ *        Value 0 in 'numerator' and 'denominator' means not applicable.
  * @param commodity Commodity being measured.
  * @param consumptionTier In case of common flat-rate pricing for power, in which all purchases are at a given rate, 'consumptionTier'=0.
  *        Otherwise, the value indicates the consumption tier, which can be used in conjunction with TOU or CPP pricing.
+ *        Consumption tier pricing refers to the method of billing in which a certain "block" of energy is purchased/sold at one price, after which the next block of energy is purchased at another price, and so on, all throughout a defined period. At the start of the defined period, consumption is initially zero, and any usage is measured against the first consumption tier ('consumptionTier'=1). If this block of energy is consumed before the end of the period, energy consumption moves to be reconed against the second consumption tier ('consumptionTier'=2), and so on. At the end of the defined period, the consumption accumulator is reset, and usage within the 'consumptionTier'=1 restarts.
  * @param cpp Critical peak period (CPP) bucket the reading value is attributed to.
  *        Value 0 means not applicable. Even though CPP is usually considered a specialised form of time of use 'tou', this attribute is defined explicitly for flexibility.
  * @param currency Metering-specific currency.
@@ -3987,6 +4029,7 @@ extends
  *        When combined with 'unit', it provides detail to the unit of measure. For example, 'energy' with a unit of measure of 'kWh' indicates to the user that active energy is being measured, while with 'kVAh' or 'kVArh', it indicates apparent energy and reactive energy, respectively. 'power' can be combined in a similar way with various power units of measure: Distortion power ('distortionVoltAmperes') with 'kVA' is different from 'power' with 'kVA'.
  * @param measuringPeriod Time attribute inherent or fundamental to the reading value (as opposed to 'macroPeriod' that supplies an "adjective" to describe aspects of a time period with regard to the measurement).
  *        It refers to the way the value was originally measured and not to the frequency at which it is reported or presented. For example, an hourly interval of consumption data would have value 'hourly' as an attribute. However in the case of an hourly sampled voltage value, the meterReadings schema would carry the 'hourly' interval size information.
+ *        It is common for meters to report demand in a form that is measured over the course of a portion of an hour, while enterprise applications however commonly assume the demand (in kW or kVAr) normalised to 1 hour. The system that receives readings directly from the meter therefore shall perform this transformation before publishing readings for use by the other enterprise systems. The scalar used is chosen based on the block size (not any sub-interval size).
  * @param multiplier Metering-specific multiplier.
  * @param phases Metering-specific phase code.
  * @param tou Time of use (TOU) bucket the reading value is attributed to.

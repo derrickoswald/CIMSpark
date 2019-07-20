@@ -92,6 +92,7 @@ extends
  * Power factor / reactive power regulator.
  *
  * This model represents the power factor or reactive power controller such as the Basler SCP-250. The controller measures power factor or reactive power (PU on generator rated power) and compares it with the operator's set point.
+ * [Footnote: Basler SCP-250 is an example of a suitable product available commercially. This information is given for the convenience of users of this document and does not constitute an endorsement by IEC of this product.]
  *
  * @param sup [[ch.ninecode.model.PFVArControllerType2Dynamics PFVArControllerType2Dynamics]] Reference to the superclass object.
  * @param j Selector (<i>J</i>).
@@ -199,6 +200,7 @@ extends
  * IEEE PF controller type 2 which is a summing point type controller making up the outside loop of a two-loop system.
  *
  * This controller is implemented as a slow PI type controller. The voltage regulator forms the inner loop and is implemented as a fast controller.
+ * Reference: IEEE 421.5-2005, 11.4.
  *
  * @param sup [[ch.ninecode.model.PFVArControllerType2Dynamics PFVArControllerType2Dynamics]] Reference to the superclass object.
  * @param exlon Overexcitation or under excitation flag (<i>EXLON</i>)
@@ -320,6 +322,7 @@ extends
  * IEEE VAR controller type 2 which is a summing point type controller.
  *
  * It makes up the outside loop of a two-loop system. This controller is implemented as a slow PI type controller, and the voltage regulator forms the inner loop and is implemented as a fast controller.
+ * Reference: IEEE 421.5-2005, 11.5.
  *
  * @param sup [[ch.ninecode.model.PFVArControllerType2Dynamics PFVArControllerType2Dynamics]] Reference to the superclass object.
  * @param exlon Overexcitation or under excitation flag (<i>EXLON</i>)

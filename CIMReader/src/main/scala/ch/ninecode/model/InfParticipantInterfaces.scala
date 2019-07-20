@@ -11,6 +11,8 @@ import ch.ninecode.cim.Relationship
  * A unique identifier of a wheeling transaction.
  *
  * A wheeling transaction is a balanced Energy exchange among Supply and Demand Resources.
+ * 
+ * This schedule is assocated with the hourly parameters in a resource bid.
  *
  * @param sup [[ch.ninecode.model.BidHourlySchedule BidHourlySchedule]] Reference to the superclass object.
  * @param value <em>undocumented</em>

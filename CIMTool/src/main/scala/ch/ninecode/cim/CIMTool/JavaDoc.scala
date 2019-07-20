@@ -5,7 +5,7 @@ import java.util.regex.Pattern
 case class JavaDoc (note: String, leftpad: Int, members: Iterable[Member] = List(), group: String = "", group_name: String = "", group_description: String = "")
 {
     lazy val spaces: String = (for (i <- 0 until leftpad) yield " ").mkString ("")
-    val regex: Pattern = Pattern.compile ("""([\s\S^.]*?\.)\s*?(\p{Upper}.*)|([\s\S]*[\n])(.*)""")
+    val regex: Pattern = Pattern.compile ("""([\s\S^.]*?\.)\s*?(\p{Upper}.*)|([\s\S]*[\n])(.*)""", Pattern.DOTALL)
     val (summary, body) =
         if (null == note)
             ("", "")
@@ -29,7 +29,7 @@ case class JavaDoc (note: String, leftpad: Int, members: Iterable[Member] = List
         val l2 = l1.replace ("$", "\\$")
         // remove leading equals signs to avoid looking like a heading
         val l3 = l2.split ('\n')
-        val l4 = l3.map ((l) => if (l.startsWith ("=")) "&equals;" + l.substring (1) else l)
+        val l4 = l3.map (l => if (l.startsWith ("=")) "&equals;" + l.substring (1) else l)
         l4.mkString ("\n")
     }
 

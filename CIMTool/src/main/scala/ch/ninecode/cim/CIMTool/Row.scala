@@ -9,7 +9,7 @@ case class Row (fields: Map[String,Object])
     def getInt (name: String): Int =
     {
         val raw = fields.get (name)
-        if (raw.isInstanceOf[Int])
+        if ((null != raw) && raw.isInstanceOf[Int])
             raw.asInstanceOf[Int]
         else
             0
@@ -19,7 +19,7 @@ case class Row (fields: Map[String,Object])
     {
         val raw = fields.get (name)
         if (null != raw)
-            raw.toString ()
+            raw.toString
         else
             ""
     }

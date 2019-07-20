@@ -855,6 +855,8 @@ extends
  * Logical Configuration of a Combined Cycle plant.
  *
  * Operating Combined Cycle Plant (CCP) configurations are represented as Logical CCP Resources. Logical representation shall be used for Market applications to optimize and control Market Operations. Logical representation is also necessary for controlling the number of CCP configurations and to temper performance issues that may otherwise occur.
+ * 
+ * For example,(2CT configuration),(1CT + 1ST configuration) are examples of logical configuration, without specifying the specific CT and ST participating in the configuration.
  *
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param CombinedCycleConfiguration [[ch.ninecode.model.CombinedCycleConfiguration CombinedCycleConfiguration]] <em>undocumented</em>
@@ -1235,6 +1237,8 @@ extends
  * @param contractStatus Contract status
  * @param contractType type of the contract.
  *        Possible values are but not limited by:
+ *        
+ *        ETC, TOR or RMR and RMT self schedules
  * @param financialLocation Indicator if the location associated with this contract is financial (e.g. pricing nodes) or physical (e.g. connectivity nodes).
  * @param financialRightsDAM Flag to indicate this contract provides financial rights in the DA Market
  * @param financialRightsRTM Flag to indicate this contract provides financial rights in the RT Market
@@ -3581,6 +3585,7 @@ extends
  * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
  * @param category Category of this person relative to utility operations, classified according to the utility's corporate standards and practices.
  *        Examples include employee, contractor, agent, not affiliated, etc.
+ *        This field is not used to indicate whether this person is a customer of the utility. Often an employee or contractor is also a customer. Customer information is gained with relationship to Organisation and CustomerData. In similar fashion, this field does not indicate the various roles this person may fill as part of utility operations.
  * @param electronicAddressAlternate Alternate Electronic address.
  * @param electronicAddressPrimary Primary Electronic address.
  * @param firstName Person's first name.
@@ -3757,6 +3762,8 @@ extends
  * @param qualificationID Qualification identifier.
  * @param status The status of the privilege.
  *        Shows the status of the user�s qualification.
+ *        The current statuses are: 1=New, 2=Active, 3=Refused, 4=Terminated, 5=Withdrawn
+ *        and it is subject to update.
  * @param statusType This is the name of the status of the qualification and is used to display the status of the user's or organization's status.
  * @param MarketSkills [[ch.ninecode.model.MarketSkill MarketSkill]] <em>undocumented</em>
  * @group ReferenceData
@@ -6663,6 +6670,8 @@ extends
  * Model of a load that is registered to participate in the market.
  *
  * RegisteredLoad is used to model any load that is served by the wholesale market directly. RegisteredLoads may be dispatchable or non-dispatchable and may or may not have bid curves. Examples of RegisteredLoads would include: distribution company load, energy retailer load, large bulk power system connected facility load.
+ * 
+ * Loads that are served indirectly, for example - through an energy retailer or a vertical utility, should be modeled as RegisteredDistributedResources. Examples of RegisteredDistributedResources would include: distribution level storage, distribution level generation and distribution level demand response.
  *
  * @param sup [[ch.ninecode.model.RegisteredResource RegisteredResource]] Reference to the superclass object.
  * @param blockLoadTransfer Emergency operating procedure - Flag to indicate that the Resource is Block Load pseudo resource.

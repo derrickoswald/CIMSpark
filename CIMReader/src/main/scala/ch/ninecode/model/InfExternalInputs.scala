@@ -102,6 +102,8 @@ extends
  * A curve relating  reserve requirement versus time, showing the values of a specific reserve requirement for each unit of the period covered.
  *
  * The  curve can be based on "absolute" time or on "normalized' time.
+ * X is time, typically expressed in absolute time
+ * Y1 is reserve requirement, typically expressed in MW
  *
  * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param ReserveReq [[ch.ninecode.model.ReserveReq ReserveReq]] <em>undocumented</em>
@@ -364,6 +366,8 @@ extends
  * Optionally, this curve expresses elasticity of the associated requirement.
  *
  * For example, used to reduce requirements when clearing price exceeds reasonable values when the supply quantity becomes scarce. For example, a single point value of \$1000/MW for a spinning reserve will cause a reduction in the required spinning reserve.
+ * X axis is constrained quantity (e.g., MW)
+ * Y1 axis is money per constrained quantity
  *
  * @param sup [[ch.ninecode.model.Curve Curve]] Reference to the superclass object.
  * @param ReserveReq [[ch.ninecode.model.ReserveReq ReserveReq]] <em>undocumented</em>

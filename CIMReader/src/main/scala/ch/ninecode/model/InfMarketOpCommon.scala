@@ -33,8 +33,12 @@ import ch.ninecode.cim.Relationship
  * @param transmissionServiceProvider Transmission service provider.
  * @param BalanceResponsibleParty A party that has a contract proving financial security and identifying balance responsibility with the Imbalance Settlement Responsible of the Market Balance Area entitling the party to operate in the market.
  *        This is the only role allowing a party to nominate energy on a wholesale level.
+ *        <b><i>Additional information:</i></b>
+ *        The meaning of the word "balance" in this context signifies that the quantity contracted to provide or to consume shall be equal to the quantity really provided or consumed. Equivalent to "Program responsible party" in the Netherlands. Equivalent to "Balance group manager" in Germany. Equivalent to "market agent" in Spain.
  * @param BalanceSupplier A party that markets the difference between actual metered energy consumption and the energy bought with firm energy contracts by the Party Connected to the Grid.
  *        In addition the Balance Supplier markets any difference with the firm energy contract (of the Party Connected to the Grid) and the metered production.
+ *        <b><i>Additional information:</i></b>
+ *        There is only one Balance Supplier for each Accounting Point.
  * @param BillingAgent The party responsible for invoicing a concerned party.
  * @param BlockEnergyTrader A party that is selling or buying energy on a firm basis (a fixed volume per market time period).
  * @param CapacityCoordinator A party, acting on behalf of the System Operators involved, responsible for establishing a coordinated Offered Capacity and/or Net Transfer Capacity (NTC) and/or Available Transfer Capacity (ATC) between several Market Balance Areas.
@@ -49,21 +53,33 @@ import ch.ninecode.cim.Relationship
  * @param ControlAreaOperator Responsible for :
  *        1.
  *        The coordination of exchange programs between its related Market Balance Areas and for the exchanges between its associated Control Areas.
+ *        2. The load frequency control for its own area.
+ *        3. The coordination of the correction of time deviations.
  * @param ControlBlockOperator Responsible for :
  *        1.
  *        The coordination of exchanges between its associated Control Blocks and the organisation of the coordination of exchange programs between its related Control Areas.
+ *        2. The load frequency control within its own block and ensuring that its Control Areas respect their obligations in respect to load frequency control and time deviation.
+ *        3. The organisation of the settlement and/or compensation between its Control Areas.
  * @param CoordinationCenterOperator Responsible for :
  *        1.
  *        The coordination of exchange programs between its related Control Blocks and for the exchanges between its associated Coordination Center Zones.
+ *        2. Ensuring that its Control Blocks respect their obligations in respect to load frequency control.
+ *        3. Calculating the time deviation in cooperation with the associated coordination centers.
+ *        4. Carrying out the settlement and/or compensation between its Control Blocks and against the other Coordination Center Zones.
  * @param GridAccessProvider A party responsible for providing access to the grid through an Accounting Point and its use for energy consumption or production to the Party Connected to the Grid.
  * @param GridOperator A party that operates one or more grids.
  * @param ImbalanceSettlementResponsible A party that is responsible for settlement of the difference between the contracted quantities and the realised quantities of energy products for the Balance Responsible Parties in a Market Balance Area.
  *        Note:
+ *        The Imbalance Settlement Responsible has not the responsibility to invoice. The Imbalance Settlement Responsible may delegate the invoicing responsibility to a more generic role such as a Billing Agent.
  * @param InterconnectionTradeResponsible Is a Balance Responsible Party or depends on one.
  *        They are recognized by the Nomination Validator for the nomination of already allocated capacity.
+ *        <b><i>Additional information:</i></b>
+ *        This is a type of Balance Responsible Party.
  * @param MOLResponsible Responsible for the management of the available tenders for all Acquiring System Operators to establish the order of the reserve capacity that can be activated.
  * @param MarketInformationAggregator Market Information Aggregator, A party that provides market related information that has been compiled from the figures supplied by different actors in the market.
  *        This information may also be published or distributed for general use.
+ *        <b><i>Note:</i></b>
+ *        The Market Information Aggregator may receive information from any market participant that is relevant for publication or distribution.
  * @param MarketOperator The unique power exchange of trades for the actual delivery of energy that receives the bids from the Balance Responsible Parties that have a contract to bid.
  *        The Market Operator determines the market energy price for the Market Balance Area after applying technical constraints from the System Operator. It may also establish the price for the reconciliation within a Metering Grid Area.
  * @param MeterAdministrator A party responsible for keeping a database of meters.
@@ -87,6 +103,7 @@ import ch.ninecode.cim.Relationship
  * @param ReconciliationAccountable A party that is financially accountable for the reconciled volume of energy products for a profiled Accounting Point.
  * @param ReconciliationResponsible A party that is responsible for reconciling, within a Metering Grid Area, the volumes used in the imbalance settlement process for profiled Accounting Points and the actual metered quantities.
  *        Note:
+ *        The Reconciliation Responsible may delegate the invoicing responsibility to a more generic role such as a Billing Agent.
  * @param ReserveAllocator Informs the market of reserve requirements, receives tenders against the requirements and in compliance with the prequalification criteria, determines what tenders meet requirements and assigns tenders.
  * @param ResourceProvider A role that manages a resource object and provides the schedules for it
  * @param SchedulingCoordinator A party that is responsible for the schedule information and its exchange on behalf of a Balance Responsible Party.
@@ -94,6 +111,7 @@ import ch.ninecode.cim.Relationship
  * @param SystemOperator A party that is responsible for a stable power system operation
  *        (including the organisation of physical balance) through a transmission grid in a geographical area.
  *        The System Operator will also determine and be responsible for cross border capacity and exchanges. If necessary they may reduce allocated capacity to ensure operational stability. Transmission as mentioned above means "the transport of electricity on the extra high or high voltage network with a view to its delivery to final customers or to distributors. Operation of transmission includes as well the tasks of system operation concerning its management of energy flows, reliability of the system and availability of all necessary system services." (definition taken from the ENTSO-E RGCE Operation handbook Glossary).
+ *        <b><i>Note: </i></b>additional obligations may be imposed through local market rules.
  * @param TradeResponsibleParty A party who can be brought to rights, legally and financially, for any imbalance between energy nominated and consumed for all associated Accounting Points.
  *        <b><i>Note:</i></b>
  *        A power exchange without any privileged responsibilities acts as a Trade Responsible Party.

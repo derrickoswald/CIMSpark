@@ -510,6 +510,7 @@ extends
  *        Examples include new, rebuilt, overhaul required, other. Refer to inspection data for information on the most current condition of the asset.
  * @param baselineLossOfLife Percentage of initial life expectancy that has been lost as of the last life expectancy baseline.
  *        Represents
+ *        (initial life expectancy - current life expectancy) / initial life expectancy.
  * @param critical True if asset is considered critical for some reason (for example, a pole with critical attachments).
  * @param electronicAddress Electronic address.
  * @param inUseDate [[ch.ninecode.model.InUseDate InUseDate]] In use dates for this asset.
@@ -3959,7 +3960,7 @@ extends
  * Some interrupters have one fixed and one moving contact, some have 2 fixed contacts, some 2 moving contacts. An interrupter will have relationships with 2 bushings and those relationships may be any combination of the FixedContact and MovingContact associations.
  *
  * @param sup [[ch.ninecode.model.Asset Asset]] Reference to the superclass object.
- * @param Bushing [[ch.ninecode.model.Bushing Bushing]] Bushing(s) to which the moving contact(s) of this interrupter is(are) attached.
+ * @param Bushing [[ch.ninecode.model.Bushing Bushing]] Bushing(s) to which the fixed contact(s) of this interrupter is(are) attached.
  *        Some interrupters have one fixed and one moving contact, some have 2 fixed contacts, some 2 moving contacts. An interrupter will have relationships with 2 bushings and those relationships may be any combination of the FixedContact and MovingContact associations.
  * @param OperatingMechanism [[ch.ninecode.model.OperatingMechanism OperatingMechanism]] Breaker mechanism controlling this interrupter.
  * @group Assets

@@ -629,6 +629,7 @@ extends
  * @param status <em>undocumented</em>
  * @param type Utility-specific classification for this person, according to the utility's corporate standards and practices.
  *        Examples include employee, contractor, agent, not affiliated, etc.
+ *        Note that this field is not used to indicate whether this person is a customer of the utility. Often an employee or contractor is also a customer. Customer information is gained with relationship to Organisation and CustomerData. In similar fashion, this field does not indicate the various roles this person may fill as part of utility operations.
  * @param Crafts [[ch.ninecode.model.Craft Craft]] <em>undocumented</em>
  * @param CustomerData [[ch.ninecode.model.Customer Customer]] <em>undocumented</em>
  * @param ErpCompetency [[ch.ninecode.model.ErpCompetency ErpCompetency]] <em>undocumented</em>
@@ -775,6 +776,7 @@ extends
  * Roles played between Organisations and other Organisations.
  *
  * This includes role ups for ogranisations, cost centers, profit centers, regulatory reporting, etc.
+ * Note that the parent and child relationship is indicated by the name on each end of the association.
  *
  * @param sup [[ch.ninecode.model.OrganisationRole OrganisationRole]] Reference to the superclass object.
  * @param clientID Identifiers of the organisation held by another organisation, such as a government agency (federal, state, province, city, county), financial institution (Dun and Bradstreet), etc.

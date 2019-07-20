@@ -1257,6 +1257,7 @@ extends
  * Project B is an alternative to project A.
  *
  * Project A is the primary alternative.
+ * Multiple project alternatives should not be selected into a single network study case.
  *
  * @param sup [[ch.ninecode.model.NetworkModelProjectRelationship NetworkModelProjectRelationship]] Reference to the superclass object.
  * @group NetworkModelProjects

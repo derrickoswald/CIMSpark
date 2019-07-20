@@ -619,6 +619,10 @@ extends
  *        This will be on an interval boundary.
  * @param minStatusChangeTime SCUC commitment period start-up time.
  *        Calculated start up time based on the StartUpTimeCurve provided with the Bid.
+ *        
+ *        This is a combination of StartUp time bid and Unit down time.
+ *        
+ *        Units is minutes
  * @param noLoadCost Unit no load cost in case of energy commodity
  * @param updateTimeStamp <em>undocumented</em>
  * @param updateType <em>undocumented</em>
@@ -1140,6 +1144,8 @@ extends
  *        This is only applicable when two DOPs exist for the same time, but with different MW values.  E.g. when indicating a step in the curve.  Its used to determine if the curve steps up or down.
  * @param runIndicatorDOP Indication of DOP validity.
  *        Shows the DOP is calculated from the latest run (YES). A NO indicator shows that the DOP is copied from a previous execution.
+ *        
+ *        Up to 2 intervals can be missed.
  * @param timestampDOP DOP time stamp
  * @param updateTimeStamp <em>undocumented</em>
  * @param updateType <em>undocumented</em>
@@ -2725,6 +2731,10 @@ extends
  *        The instruction has been blocked by an Operator.
  * @param minStatusChangeTime Minimum start up time required to bring the unit online (minutes).
  *        SCUC commitment period start-up time. Calculated start up time based on the StartUpTimeCurve provided with the Bid.
+ *        
+ *        This is a combination of StartUp time bid and Unit down time.
+ *        
+ *        Units is minutes
  * @param updateTimeStamp <em>undocumented</em>
  * @param updateType <em>undocumented</em>
  * @param updateUser <em>undocumented</em>

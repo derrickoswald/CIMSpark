@@ -206,12 +206,14 @@ extends
  * A generic container of a version of instance data.
  *
  * The MRID can be used in an audit trail, not in reusable script intended to work with new versions of data.
+ * A dataset could be serialized multiple times and in multiple technologies, yet retain the same identity.
  *
  * @param sup Reference to the superclass object.
  * @param description The description is a free human readable text describing or naming the object.
  *        It may be non unique and may not correlate to a naming hierarchy.
  * @param mRID Master resource identifier issued by a model authority.
  *        The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID,  as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.
+ *        For CIMXML data files in RDF syntax conforming to IEC 61970-552 Edition 1, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.
  * @param name The name is any free human readable and possibly non unique text naming the object.
  * @param AlternateModel [[ch.ninecode.model.AlternateModel AlternateModel]] The alternate model using the data.
  * @param Profile [[ch.ninecode.model.Profile Profile]] The profiles that describe the contents of the data set and the rules governing the contents of the data set.
@@ -761,85 +763,85 @@ extends
     }
 }
 
-///**
-// * Describes the existence of a profile.
-// *
-// * The MRID is usually defined as a static value by the document or artifact that defines the contents of the profile and the rules for using the profile.
-// *
-// * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
-// * @param DataSet [[ch.ninecode.model.DataSet DataSet]] The data sets that make use of the profile.
-// * @group GenericDataSet
-// * @groupname GenericDataSet Package GenericDataSet
-// * @groupdesc GenericDataSet Contains classes used for generic dataset modelling.
-// */
-//case class Profile
-//(
-//    override val sup: IdentifiedObject,
-//    DataSet: List[String]
-//)
-//extends
-//    Element
-//{
-//    /**
-//     * Zero args constructor.
-//     */
-//    def this () = { this (null, List()) }
-//    /**
-//     * Return the superclass object.
-//     *
-//     * @return The typed superclass nested object.
-//     * @group Hierarchy
-//     * @groupname Hierarchy Class Hierarchy Related
-//     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
-//     */
-//    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
-//    override def copy (): Row = { clone ().asInstanceOf[Profile] }
-//    override def get (i: Int): Object =
-//    {
-//        if (i < productArity)
-//            productElement (i).asInstanceOf[AnyRef]
-//        else
-//            throw new IllegalArgumentException ("invalid property index " + i)
-//    }
-//    override def length: Int = productArity
-//    override def export_fields: String =
-//    {
-//        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
-//        implicit val clz: String = Profile.cls
-//        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Profile.fields (position), x))
-//        emitattrs (0, DataSet)
-//        s.toString
-//    }
-//    override def export: String =
-//    {
-//        "\t<cim:Profile rdf:ID=\"%s\">\n%s\t</cim:Profile>".format (id, export_fields)
-//    }
-//}
-//
-//object Profile
-//extends
-//    Parseable[Profile]
-//{
-//    override val fields: Array[String] = Array[String] (
-//        "DataSet"
-//    )
-//    override val relations: List[Relationship] = List (
-//        Relationship ("DataSet", "DataSet", "0..*", "1..*")
-//    )
-//    val DataSet: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
-//
-//    def parse (context: Context): Profile =
-//    {
-//        implicit val ctx: Context = context
-//        implicit var bitfields: Array[Int] = Array(0)
-//        val ret = Profile (
-//            IdentifiedObject.parse (context),
-//            masks (DataSet (), 0)
-//        )
-//        ret.bitfields = bitfields
-//        ret
-//    }
-//}
+/**
+ * Describes the existence of a profile.
+ *
+ * The MRID is usually defined as a static value by the document or artifact that defines the contents of the profile and the rules for using the profile.
+ *
+ * @param sup [[ch.ninecode.model.IdentifiedObject IdentifiedObject]] Reference to the superclass object.
+ * @param DataSet [[ch.ninecode.model.DataSet DataSet]] The data sets that make use of the profile.
+ * @group GenericDataSet
+ * @groupname GenericDataSet Package GenericDataSet
+ * @groupdesc GenericDataSet Contains classes used for generic dataset modelling.
+ */
+case class Profile
+(
+    override val sup: IdentifiedObject,
+    DataSet: List[String]
+)
+extends
+    Element
+{
+    /**
+     * Zero args constructor.
+     */
+    def this () = { this (null, List()) }
+    /**
+     * Return the superclass object.
+     *
+     * @return The typed superclass nested object.
+     * @group Hierarchy
+     * @groupname Hierarchy Class Hierarchy Related
+     * @groupdesc Hierarchy Members related to the nested hierarchy of CIM classes.
+     */
+    def IdentifiedObject: IdentifiedObject = sup.asInstanceOf[IdentifiedObject]
+    override def copy (): Row = { clone ().asInstanceOf[Profile] }
+    override def get (i: Int): Object =
+    {
+        if (i < productArity)
+            productElement (i).asInstanceOf[AnyRef]
+        else
+            throw new IllegalArgumentException ("invalid property index " + i)
+    }
+    override def length: Int = productArity
+    override def export_fields: String =
+    {
+        implicit val s: StringBuilder = new StringBuilder (sup.export_fields)
+        implicit val clz: String = Profile.cls
+        def emitattrs (position: Int, value: List[String]): Unit = if (mask (position) && (null != value)) value.foreach (x ⇒ emit_attribute (Profile.fields (position), x))
+        emitattrs (0, DataSet)
+        s.toString
+    }
+    override def export: String =
+    {
+        "\t<cim:Profile rdf:ID=\"%s\">\n%s\t</cim:Profile>".format (id, export_fields)
+    }
+}
+
+object Profile
+extends
+    Parseable[Profile]
+{
+    override val fields: Array[String] = Array[String] (
+        "DataSet"
+    )
+    override val relations: List[Relationship] = List (
+        Relationship ("DataSet", "DataSet", "0..*", "1..*")
+    )
+    val DataSet: FielderMultiple = parse_attributes (attribute (cls, fields(0)))
+
+    def parse (context: Context): Profile =
+    {
+        implicit val ctx: Context = context
+        implicit var bitfields: Array[Int] = Array(0)
+        val ret = Profile (
+            IdentifiedObject.parse (context),
+            masks (DataSet (), 0)
+        )
+        ret.bitfields = bitfields
+        ret
+    }
+}
 
 private[ninecode] object _GenericDataSet
 {
@@ -854,8 +856,8 @@ private[ninecode] object _GenericDataSet
             ObjectCreation.register,
             ObjectDeletion.register,
             ObjectModification.register,
-            ObjectReverseModification.register
-//            Profile.register
+            ObjectReverseModification.register,
+            Profile.register
         )
     }
 }
